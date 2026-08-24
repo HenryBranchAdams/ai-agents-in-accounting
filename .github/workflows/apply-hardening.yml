@@ -29,6 +29,22 @@ jobs:
         with:
           node-version: 22
           cache: npm
+      - name: Patch migration lint fixes
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          path = Path("scripts/apply-repository-hardening.py")
+          text = path.read_text(encoding="utf-8")
+          text = text.replace(
+              '    if (!open || term.length < 2) {\n      setRemote({ items: [], total: 0, status: "idle" });\n      return;\n    }',
+              '    if (!open || term.length < 2) return;',
+          )
+          text = text.replace(
+              'write("scripts/check-source-freshness.mjs", r\'\'\'\n#!/usr/bin/env node',
+              'write("scripts/check-source-freshness.mjs", r\'\'\'#!/usr/bin/env node',
+          )
+          path.write_text(text, encoding="utf-8")
+          PY
       - name: Apply changes
         run: python3 scripts/apply-repository-hardening.py
       - name: Update dependency lock
