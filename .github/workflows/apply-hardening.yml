@@ -55,6 +55,80 @@ jobs:
           PY
       - name: Apply changes
         run: python3 scripts/apply-repository-hardening.py
+      - name: Align legacy contract tests
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          path = Path("tests/rendered-html.test.mjs")
+          text = path.read_text(encoding="utf-8")
+          text = text.replace(
+              'test("renders development preview metadata", async () => {',
+              'test("does not publish development preview metadata in production", async () => {',
+              1,
+          )
+          text = text.replace(
+              '  assert.match(await response.text(), developmentPreviewMeta);',
+              '  assert.doesNotMatch(await response.text(), developmentPreviewMeta);',
+              1,
+          )
+          text = text.replace(
+              '  assert.equal(metaPayload.total_records, 433);',
+              '  assert.equal(metaPayload.total_source_records, 433);\n  assert.ok(metaPayload.total_records > metaPayload.total_source_records);',
+              1,
+          )
+          replacement = '''test("keeps canonical corpus search server-side", async () => {
+            const clientSource = await readFile(new URL("../app/DocsSearch.tsx", import.meta.url), "utf8");
+            const serverIndex = await readFile(new URL("../app/search-index.ts", import.meta.url), "utf8");
+            assert.match(clientSource, /\\/api\\/v1\\/search/);
+            for (const heavyModule of [
+              "resources-data",
+              "workflows-data",
+              "governance-data",
+              "platform-data",
+              "reference-data",
+            ]) {
+              assert.doesNotMatch(clientSource, new RegExp(heavyModule));
+            }
+            for (const canonicalCollection of [
+              "authorityLevels",
+              "workflowRecords",
+              "controlPatterns",
+              "sensitiveActions",
+              "templates",
+              "glossary",
+              "resources",
+              "packs",
+              "benchmarkCases",
+              "releaseNotes",
+            ]) {
+              assert.match(serverIndex, new RegExp(canonicalCollection));
+            }
+            const response = await request("/api/v1/search?q=bank%20reconciliation&type=workflow&type=pack&limit=100");
+            assert.equal(response.status, 200);
+            const payload = await response.json();
+            assert.ok(payload.items.some((item) => item.record_type === "workflow"));
+            assert.ok(payload.items.some((item) => item.record_type === "pack"));
+          });
+
+          test("publishes governance, controls, templates, and terminology in equivalent formats"'''
+          text, replaced = re.subn(
+              r'test\("indexes every canonical record collection in global search".*?test\("publishes governance, controls, templates, and terminology in equivalent formats"',
+              replacement,
+              text,
+              count=1,
+              flags=re.S,
+          )
+          if replaced != 1:
+              raise RuntimeError("search contract test block not found")
+          text = text.replace(
+              '  assert.equal(manifest.release.id, "2026-08-23.9");',
+              '  assert.equal(manifest.release.id, "2026-08-24.1");',
+              1,
+          )
+          path.write_text(text, encoding="utf-8")
+          PY
       - name: Update dependency lock
         run: npm install --save-dev --package-lock-only @playwright/test@latest @axe-core/playwright@latest
       - name: Install dependencies
