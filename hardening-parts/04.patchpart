@@ -1,0 +1,198 @@
+   "Project-created factual metadata is CC0 1.0 and original editorial summaries are CC BY 4.0. External source content remains subject to each publisher's terms.";
+ 
+@@ -521,10 +532,17 @@ export function publicResponse(
+     cache?: string;
+     headers?: Record<string, string>;
+     conditional?: boolean;
++    modifiedAt?: string | Date;
+   } = {},
+ ) {
+   const etag = etagFor(body);
+-  const lastModified = new Date(catalogModifiedAt);
++  const requestedModifiedAt = options.modifiedAt ?? platformPublishedAt;
++  const lastModified = requestedModifiedAt instanceof Date
++    ? requestedModifiedAt
++    : new Date(requestedModifiedAt);
++  if (Number.isNaN(lastModified.getTime())) {
++    throw new TypeError(`Invalid Last-Modified value: ${String(requestedModifiedAt)}`);
++  }
+   const headers = new Headers({
+     "Access-Control-Allow-Origin": "*",
+     "Access-Control-Expose-Headers": "ETag, Last-Modified, Link, X-Next-Page",
+diff --git a/app/api/v1/meta/route.ts b/app/api/v1/meta/route.ts
+index 49eeaab..ea58564 100644
+--- a/app/api/v1/meta/route.ts
++++ b/app/api/v1/meta/route.ts
+@@ -21,6 +21,21 @@ export function OPTIONS() {
+ }
+ 
+ export async function GET(request: Request) {
++  const recordCounts = {
++    process_families: processFamilies.length,
++    workflows: workflowRecords.length,
++    authority_levels: authorityLevels.length,
++    sensitive_actions: sensitiveActions.length,
++    control_patterns: controlPatterns.length,
++    templates: templates.length,
++    glossary_terms: glossary.length,
++    source_records: agentResources.length,
++    workflow_packs: packs.length,
++    benchmark_cases: benchmarkCases.length,
++    ecosystem_layers: ecosystemLayers.length,
++    ledgerbench_programs: 1,
++  };
++  const totalRecords = Object.values(recordCounts).reduce((total, count) => total + count, 0);
+   const body = JSON.stringify({
+     schema_version: apiVersion,
+     catalog_version: catalogVersion,
+@@ -32,20 +47,9 @@ export async function GET(request: Request) {
+     title: "Accounting Agents public corpus",
+     description: "Canonical workflows, authority boundaries, controls, templates, terminology, and curated sources for governed AI-agent work across the accounting lifecycle.",
+     language: "en",
+-    total_records: agentResources.length,
+-    record_counts: {
+-      process_families: processFamilies.length,
+-      workflows: workflowRecords.length,
+-      authority_levels: authorityLevels.length,
+-      sensitive_actions: sensitiveActions.length,
+-      control_patterns: controlPatterns.length,
+-      templates: templates.length,
+-      glossary_terms: glossary.length,
+-      source_records: agentResources.length,
+-      workflow_packs: packs.length,
+-      benchmark_cases: benchmarkCases.length,
+-      ecosystem_layers: ecosystemLayers.length,
+-    },
++    total_records: totalRecords,
++    total_source_records: agentResources.length,
++    record_counts: recordCounts,
+     access: {
+       authentication: "none",
+       mode: "public read-only",
+@@ -74,6 +78,7 @@ export async function GET(request: Request) {
+       search: `${siteOrigin}/api/v1/search`,
+       packs: `${siteOrigin}/api/v1/packs`,
+       benchmark: `${siteOrigin}/api/v1/benchmark`,
++      ledgerbench: `${siteOrigin}/api/v1/ledgerbench`,
+       ecosystem: `${siteOrigin}/api/v1/ecosystem`,
+       ecosystem_markdown: `${siteOrigin}/ecosystem.md`,
+       release_manifest: `${siteOrigin}/releases/current/manifest.json`,
+@@ -96,7 +101,9 @@ export async function GET(request: Request) {
+     platform_release: platformRelease,
+   }, null, 2);
+ 
+-  return publicResponse(request, body, "application/json; charset=utf-8");
++  return publicResponse(request, body, "application/json; charset=utf-8", {
++    modifiedAt: platformRelease.published_at,
++  });
+ }
+ 
+ export const HEAD = GET;
+diff --git a/app/api/v1/resources/[id]/route.ts b/app/api/v1/resources/[id]/route.ts
+index dc299b2..2cb1a6b 100644
+--- a/app/api/v1/resources/[id]/route.ts
++++ b/app/api/v1/resources/[id]/route.ts
+@@ -1,6 +1,7 @@
+ import {
+   agentResources,
+   apiVersion,
++  catalogModifiedAt,
+   catalogVersion,
+   corsOptionsResponse,
+   negotiatePublicFormat,
+@@ -45,7 +46,7 @@ export async function GET(
+       request,
+       renderResourcesMarkdown([item], { summary: `One source record from the Accounting Agents catalog.` }),
+       "text/markdown; charset=utf-8",
+-      { headers: { "Content-Language": "en" } },
++      { headers: { "Content-Language": "en" }, modifiedAt: catalogModifiedAt },
+     );
+   }
+ 
+@@ -56,7 +57,7 @@ export async function GET(
+     item,
+   }, null, 2);
+ 
+-  return publicResponse(request, body, "application/json; charset=utf-8");
++  return publicResponse(request, body, "application/json; charset=utf-8", { modifiedAt: catalogModifiedAt });
+ }
+ 
+ export const HEAD = GET;
+diff --git a/app/api/v1/resources/route.ts b/app/api/v1/resources/route.ts
+index d50d405..5942f0d 100644
+--- a/app/api/v1/resources/route.ts
++++ b/app/api/v1/resources/route.ts
+@@ -3,6 +3,7 @@ import {
+   allowedKinds,
+   allowedTopics,
+   apiVersion,
++  catalogModifiedAt,
+   catalogReviewedAt,
+   catalogVersion,
+   corsOptionsResponse,
+@@ -100,6 +101,7 @@ export async function GET(request: Request) {
+         "Content-Language": "en",
+         ...(nextUrl ? { "X-Next-Page": nextUrl.toString() } : {}),
+       },
++      modifiedAt: catalogModifiedAt,
+     });
+   }
+ 
+@@ -133,6 +135,7 @@ export async function GET(request: Request) {
+ 
+   return publicResponse(request, body, "application/json; charset=utf-8", {
+     headers: nextUrl ? { "X-Next-Page": nextUrl.toString() } : undefined,
++    modifiedAt: catalogModifiedAt,
+   });
+ }
+ 
+diff --git a/app/api/v1/search/route.ts b/app/api/v1/search/route.ts
+index ef58e3d..f60db57 100644
+--- a/app/api/v1/search/route.ts
++++ b/app/api/v1/search/route.ts
+@@ -1,4 +1,5 @@
+ import { corsOptionsResponse, problemResponse, publicResponse, siteOrigin } from "../../../agent-interface";
++import { platformPublishedAt } from "../../../project-metadata";
+ import { searchCatalog, searchRecordTypes } from "../../../search-index";
+ 
+ export function OPTIONS() {
+@@ -50,7 +51,9 @@ export async function GET(request: Request) {
+     next_cursor: nextCursor,
+     links: { self: self.toString(), next: next?.toString() ?? null, documentation: `${siteOrigin}/machine-access` },
+     items,
+-  }, null, 2), "application/json; charset=utf-8");
++  }, null, 2), "application/json; charset=utf-8", {
++    modifiedAt: platformPublishedAt,
++  });
+ }
+ 
+ export const HEAD = GET;
+diff --git a/app/chatgpt-auth.ts b/app/chatgpt-auth.ts
+deleted file mode 100644
+index 8d1fb35..0000000
+--- a/app/chatgpt-auth.ts
++++ /dev/null
+@@ -1,86 +0,0 @@
+-import { headers } from "next/headers";
+-import { redirect } from "next/navigation";
+-
+-export type ChatGPTUser = {
+-  displayName: string;
+-  email: string;
+-  fullName: string | null;
+-};
+-
+-const USER_EMAIL_HEADER = "oai-authenticated-user-email";
+-const USER_FULL_NAME_HEADER = "oai-authenticated-user-full-name";
+-const USER_FULL_NAME_ENCODING_HEADER =
+-  "oai-authenticated-user-full-name-encoding";
+-const PERCENT_ENCODED_UTF8 = "percent-encoded-utf-8";
+-const SIGN_IN_PATH = "/signin-with-chatgpt";
+-const SIGN_OUT_PATH = "/signout-with-chatgpt";
+-const CALLBACK_PATH = "/callback";
+-
+-export async function getChatGPTUser(): Promise<ChatGPTUser | null> {
+-  const requestHeaders = await headers();
+-  const email = requestHeaders.get(USER_EMAIL_HEADER);
+-  if (!email) return null;
+-
