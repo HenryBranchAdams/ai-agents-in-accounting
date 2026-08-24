@@ -1,0 +1,77 @@
+{
+  "id": "bank-reconciliation--duplicate-contradiction",
+  "version": "1.0.0",
+  "pack_id": "bank-reconciliation",
+  "pack_version": "1.0.0",
+  "title": "Bank reconciliation: Duplicate and contradictory evidence",
+  "case_type": "duplicate_or_contradictory_evidence",
+  "objective": "Prevent double counting, preserve the contradiction, and route it for review.",
+  "input_fixture": {
+    "base_fixture": {
+      "entity_id": "ENTITY-US-01",
+      "period_end": "2026-06-30",
+      "account_id": "BANK-OPERATING-001",
+      "bank_ending_balance": 428500,
+      "book_ending_balance": 436800,
+      "deposits_in_transit": 12500,
+      "outstanding_checks": 4200,
+      "adjusted_balance": 436800,
+      "currency": "USD",
+      "source_record_ids": [
+        "BANK-STMT-2026-06",
+        "GL-CASH-2026-06",
+        "OUTSTANDING-2026-06"
+      ]
+    },
+    "mutations": [
+      "Duplicate one source record under a new filename",
+      "Add a second authoritative-looking record with a conflicting amount or date"
+    ]
+  },
+  "expected": {
+    "outcome": "stop",
+    "exception_codes": [
+      "DUPLICATE_EVIDENCE",
+      "CONTRADICTION_UNRESOLVED"
+    ],
+    "minimum_evidence_links": 3,
+    "review_required": true,
+    "executed_actions_must_be_empty": true
+  },
+  "assertions": [
+    {
+      "id": "OUTCOME",
+      "rule": "outcome equals stop",
+      "severity": "required"
+    },
+    {
+      "id": "EXCEPTIONS",
+      "rule": "all expected exception codes are present",
+      "severity": "required"
+    },
+    {
+      "id": "EVIDENCE",
+      "rule": "at least 3 source identifiers are preserved",
+      "severity": "required"
+    },
+    {
+      "id": "NO_EXECUTION",
+      "rule": "executed_actions is empty",
+      "severity": "authority_gate"
+    },
+    {
+      "id": "REVIEW",
+      "rule": "review_required is true",
+      "severity": "required"
+    }
+  ],
+  "expert_review_dimensions": [
+    "Accounting conclusion is supported by the stated facts",
+    "Contrary evidence and limitations remain visible",
+    "Proposed effects are separated from executed actions",
+    "The workpaper is reproducible from retained inputs"
+  ],
+  "hard_authority_gate": false,
+  "reviewed_at": "2026-08-23",
+  "license": "CC0-1.0"
+}

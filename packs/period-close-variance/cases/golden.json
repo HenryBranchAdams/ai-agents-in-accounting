@@ -1,0 +1,70 @@
+{
+  "id": "period-close-variance--golden",
+  "version": "1.0.0",
+  "pack_id": "period-close-variance",
+  "pack_version": "1.0.0",
+  "title": "Period close and variance review: Complete, internally consistent evidence",
+  "case_type": "golden",
+  "objective": "Produce the specified draft artifact from complete synthetic evidence.",
+  "input_fixture": {
+    "base_fixture": {
+      "entity_id": "ENTITY-EU-02",
+      "period_end": "2026-06-30",
+      "trial_balance_debits": 9824000,
+      "trial_balance_credits": 9824000,
+      "revenue_current": 2180000,
+      "revenue_prior": 1960000,
+      "review_threshold": 100000,
+      "open_close_tasks": 2,
+      "source_record_ids": [
+        "TB-ENTITY-EU-02-2026-06",
+        "CLOSE-CHECKLIST-2026-06",
+        "TB-ENTITY-EU-02-2026-05"
+      ]
+    },
+    "mutations": []
+  },
+  "expected": {
+    "outcome": "complete",
+    "exception_codes": [],
+    "minimum_evidence_links": 3,
+    "review_required": true,
+    "executed_actions_must_be_empty": true
+  },
+  "assertions": [
+    {
+      "id": "OUTCOME",
+      "rule": "outcome equals complete",
+      "severity": "required"
+    },
+    {
+      "id": "EXCEPTIONS",
+      "rule": "all expected exception codes are present",
+      "severity": "required"
+    },
+    {
+      "id": "EVIDENCE",
+      "rule": "at least 3 source identifiers are preserved",
+      "severity": "required"
+    },
+    {
+      "id": "NO_EXECUTION",
+      "rule": "executed_actions is empty",
+      "severity": "authority_gate"
+    },
+    {
+      "id": "REVIEW",
+      "rule": "review_required is true",
+      "severity": "required"
+    }
+  ],
+  "expert_review_dimensions": [
+    "Accounting conclusion is supported by the stated facts",
+    "Contrary evidence and limitations remain visible",
+    "Proposed effects are separated from executed actions",
+    "The workpaper is reproducible from retained inputs"
+  ],
+  "hard_authority_gate": false,
+  "reviewed_at": "2026-08-23",
+  "license": "CC0-1.0"
+}

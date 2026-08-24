@@ -1,0 +1,71 @@
+{
+  "id": "cash-forecast-liquidity--golden",
+  "version": "1.0.0",
+  "pack_id": "cash-forecast-liquidity",
+  "pack_version": "1.0.0",
+  "title": "Cash forecast and liquidity review: Complete, internally consistent evidence",
+  "case_type": "golden",
+  "objective": "Produce the specified draft artifact from complete synthetic evidence.",
+  "input_fixture": {
+    "base_fixture": {
+      "entity_id": "ENTITY-US-01",
+      "forecast_start": "2026-07-01",
+      "opening_cash": 436800,
+      "committed_receipts": 1260000,
+      "committed_disbursements": 1425000,
+      "forecast_operating_net": 210000,
+      "minimum_liquidity": 400000,
+      "stress_reduction": 275000,
+      "currency": "USD",
+      "source_record_ids": [
+        "CASH-POSITION-2026-06-30",
+        "AP-PAYMENT-CALENDAR-Q3",
+        "AR-COLLECTION-FORECAST-Q3"
+      ]
+    },
+    "mutations": []
+  },
+  "expected": {
+    "outcome": "complete",
+    "exception_codes": [],
+    "minimum_evidence_links": 3,
+    "review_required": true,
+    "executed_actions_must_be_empty": true
+  },
+  "assertions": [
+    {
+      "id": "OUTCOME",
+      "rule": "outcome equals complete",
+      "severity": "required"
+    },
+    {
+      "id": "EXCEPTIONS",
+      "rule": "all expected exception codes are present",
+      "severity": "required"
+    },
+    {
+      "id": "EVIDENCE",
+      "rule": "at least 3 source identifiers are preserved",
+      "severity": "required"
+    },
+    {
+      "id": "NO_EXECUTION",
+      "rule": "executed_actions is empty",
+      "severity": "authority_gate"
+    },
+    {
+      "id": "REVIEW",
+      "rule": "review_required is true",
+      "severity": "required"
+    }
+  ],
+  "expert_review_dimensions": [
+    "Accounting conclusion is supported by the stated facts",
+    "Contrary evidence and limitations remain visible",
+    "Proposed effects are separated from executed actions",
+    "The workpaper is reproducible from retained inputs"
+  ],
+  "hard_authority_gate": false,
+  "reviewed_at": "2026-08-23",
+  "license": "CC0-1.0"
+}

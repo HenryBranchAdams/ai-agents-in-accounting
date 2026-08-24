@@ -1,0 +1,88 @@
+{
+  "id": "accrual-journal-entry--duplicate-contradiction",
+  "version": "1.0.0",
+  "pack_id": "accrual-journal-entry",
+  "pack_version": "1.0.0",
+  "title": "Accrual and journal-entry preparation: Duplicate and contradictory evidence",
+  "case_type": "duplicate_or_contradictory_evidence",
+  "objective": "Prevent double counting, preserve the contradiction, and route it for review.",
+  "input_fixture": {
+    "base_fixture": {
+      "entity_id": "ENTITY-US-01",
+      "period_end": "2026-06-30",
+      "contract_id": "CONTRACT-CLOUD-018",
+      "service_start": "2026-06-01",
+      "service_end": "2026-08-31",
+      "contract_value": 24000,
+      "current_period_amount": 8000,
+      "currency": "USD",
+      "proposed_lines": [
+        {
+          "account": "Software expense",
+          "debit": 8000,
+          "credit": 0
+        },
+        {
+          "account": "Accrued liabilities",
+          "debit": 0,
+          "credit": 8000
+        }
+      ],
+      "source_record_ids": [
+        "CONTRACT-CLOUD-018",
+        "SERVICE-CONFIRMATION-2026-06",
+        "GL-ACCRUALS-2026-06"
+      ]
+    },
+    "mutations": [
+      "Duplicate one source record under a new filename",
+      "Add a second authoritative-looking record with a conflicting amount or date"
+    ]
+  },
+  "expected": {
+    "outcome": "stop",
+    "exception_codes": [
+      "DUPLICATE_EVIDENCE",
+      "CONTRADICTION_UNRESOLVED"
+    ],
+    "minimum_evidence_links": 3,
+    "review_required": true,
+    "executed_actions_must_be_empty": true
+  },
+  "assertions": [
+    {
+      "id": "OUTCOME",
+      "rule": "outcome equals stop",
+      "severity": "required"
+    },
+    {
+      "id": "EXCEPTIONS",
+      "rule": "all expected exception codes are present",
+      "severity": "required"
+    },
+    {
+      "id": "EVIDENCE",
+      "rule": "at least 3 source identifiers are preserved",
+      "severity": "required"
+    },
+    {
+      "id": "NO_EXECUTION",
+      "rule": "executed_actions is empty",
+      "severity": "authority_gate"
+    },
+    {
+      "id": "REVIEW",
+      "rule": "review_required is true",
+      "severity": "required"
+    }
+  ],
+  "expert_review_dimensions": [
+    "Accounting conclusion is supported by the stated facts",
+    "Contrary evidence and limitations remain visible",
+    "Proposed effects are separated from executed actions",
+    "The workpaper is reproducible from retained inputs"
+  ],
+  "hard_authority_gate": false,
+  "reviewed_at": "2026-08-23",
+  "license": "CC0-1.0"
+}

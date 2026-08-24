@@ -1,0 +1,747 @@
+import {
+  agentResources,
+  allowedKinds,
+  allowedTopics,
+  apiVersion,
+  catalogReviewedAt,
+  catalogVersion,
+  publicResponse,
+  siteOrigin,
+} from "../agent-interface";
+import { allowedAuthorityLevels, allowedFamilies } from "../domain-interface";
+import { corpusReviewedAt, corpusVersion } from "../domain-model";
+import { ecosystemLayers } from "../ecosystem-data";
+import { controlPatterns, sensitiveActions } from "../governance-data";
+import { glossary, templates } from "../reference-data";
+import { workflowRecords } from "../workflows-data";
+import {
+  benchmarkCaseSchema,
+  benchmarkCases,
+  packSchema,
+  packs,
+  releaseManifestSchema,
+} from "../platform-data";
+
+const resourceSchema = {
+  type: "object",
+  additionalProperties: false,
+  required: [
+    "id", "record_version", "record_updated_at", "topic", "source_type", "owner", "title",
+    "published_or_status", "jurisdiction", "access", "summary", "reviewed_at", "verified_at",
+    "source_license", "source_license_url", "source_rights", "metadata_rights", "annotation_rights", "canonical_source_url", "catalog_url", "record_url", "provenance",
+  ],
+  properties: {
+    id: { type: "string", pattern: "^src_[a-z0-9]{7,}$", description: "Stable catalog ID." },
+    record_version: { type: "string" },
+    record_updated_at: { type: "string", format: "date" },
+    topic: { type: "string", enum: allowedTopics },
+    source_type: { type: "string", enum: allowedKinds },
+    owner: { type: "string" },
+    title: { type: "string" },
+    published_or_status: { type: "string" },
+    jurisdiction: { type: "string" },
+    access: { type: "string" },
+    summary: { type: "string" },
+    reviewed_at: { type: "string", format: "date" },
+    verified_at: { type: "string", format: "date" },
+    source_license: { type: "string", enum: ["unknown"] },
+    source_license_url: { type: ["string", "null"], format: "uri" },
+    source_rights: {
+      type: "object",
+      additionalProperties: false,
+      required: ["status", "license_id", "license_url", "full_text_stored", "permission_scope", "notes"],
+      properties: {
+        status: { type: "string", enum: ["unknown"] },
+        license_id: { type: "null" },
+        license_url: { type: "null" },
+        full_text_stored: { type: "boolean", const: false },
+        permission_scope: { type: "null" },
+        notes: { type: "string" },
+      },
+    },
+    metadata_rights: {
+      type: "object",
+      additionalProperties: false,
+      required: ["license_id", "license_url", "applies_to"],
+      properties: {
+        license_id: { type: "string", const: "CC0-1.0" },
+        license_url: { type: "string", format: "uri" },
+        applies_to: { type: "string" },
+      },
+    },
+    annotation_rights: {
+      type: "object",
+      additionalProperties: false,
+      required: ["creator", "license_id", "license_url", "applies_to"],
+      properties: {
+        creator: { type: "string", const: "Accounting Agents contributors" },
+        license_id: { type: "string", const: "CC-BY-4.0" },
+        license_url: { type: "string", format: "uri" },
+        applies_to: { type: "string" },
+      },
+    },
+    canonical_source_url: { type: "string", format: "uri" },
+    catalog_url: { type: "string", format: "uri" },
+    record_url: { type: "string", format: "uri" },
+    provenance: {
+      type: "object",
+      additionalProperties: false,
+      required: ["source_owner", "source_url", "annotation_by", "annotation_type"],
+      properties: {
+        source_owner: { type: "string" },
+        source_url: { type: "string", format: "uri" },
+        annotation_by: { type: "string", const: "Accounting Agents" },
+        annotation_type: { type: "string", const: "original editorial summary" },
+      },
+    },
+  },
+} as const;
+
+const stringArraySchema = { type: "array", items: { type: "string" } } as const;
+const provenanceSchema = {
+  type: "object",
+  required: ["publisher", "annotation_type", "source_basis", "review_process"],
+  properties: {
+    publisher: { type: "string" },
+    annotation_type: { type: "string" },
+    source_basis: {
+      oneOf: [
+        { type: "string" },
+        { type: "array", items: { type: "string" } },
+      ],
+    },
+    review_process: { type: "string" },
+  },
+  additionalProperties: true,
+} as const;
+
+const workflowActionSchema = {
+  type: "object",
+  additionalProperties: false,
+  required: ["action", "authority_level", "agent_role", "human_role"],
+  properties: {
+    action: { type: "string" },
+    authority_level: { type: "string", enum: allowedAuthorityLevels },
+    agent_role: { type: "string" },
+    human_role: { type: "string" },
+  },
+} as const;
+
+const workflowSourceLinkSchema = {
+  type: "object",
+  additionalProperties: false,
+  required: ["source_id", "supports", "claims", "applicability"],
+  properties: {
+    source_id: { type: "string", pattern: "^src_" },
+    supports: {
+      type: "string",
+      enum: ["framework baseline", "workflow-specific claim", "evidence design", "documentation design"],
+    },
+    claims: {
+      type: "array",
+      minItems: 1,
+      description: "Exact workflow claims and the human-page sections where their citations appear.",
+      items: {
+        type: "object",
+        additionalProperties: false,
+        required: ["text", "placement"],
+        properties: {
+          text: { type: "string" },
+          placement: { type: "string", enum: ["objective", "evidence", "authority", "record"] },
+        },
+      },
+    },
+    applicability: { type: "string" },
+  },
+} as const;
+
+const workflowRequired = [
+  "id", "version", "family", "family_name", "name", "summary", "accounting_objective",
+  "accountable_owner", "reviewer", "trigger", "scope", "entity_scope", "period_scope", "trigger_scope",
+  "jurisdiction", "inputs", "control_totals", "source_ids", "source_links", "agent_procedures",
+  "deterministic_checks", "read_tools", "write_tools",
+  "authority_level", "actions", "thresholds", "human_decisions", "segregation_of_duties",
+  "stop_conditions", "outputs", "proposed_accounting_effects", "run_record", "retention",
+  "reproducibility", "failure_modes", "recovery_actions", "pilot_measures", "production_signals",
+  "reviewed_at", "review_status", "provenance",
+] as const;
+
+const workflowSchema = {
+  type: "object",
+  additionalProperties: false,
+  required: workflowRequired,
+  properties: {
+    id: { type: "string", pattern: "^wf-[a-z0-9-]+$" },
+    version: { type: "string" },
+    family: { type: "string", enum: allowedFamilies },
+    family_name: { type: "string" },
+    name: { type: "string" },
+    summary: { type: "string" },
+    accounting_objective: { type: "string" },
+    accountable_owner: { type: "string" },
+    reviewer: { type: "string" },
+    trigger: { type: "string" },
+    scope: { type: "string" },
+    entity_scope: { type: "string" },
+    period_scope: { type: "string" },
+    trigger_scope: { type: "string" },
+    jurisdiction: { type: "string" },
+    inputs: stringArraySchema,
+    control_totals: stringArraySchema,
+    source_ids: { type: "array", items: { type: "string", pattern: "^src_" } },
+    source_links: { type: "array", items: workflowSourceLinkSchema },
+    agent_procedures: stringArraySchema,
+    deterministic_checks: stringArraySchema,
+    read_tools: stringArraySchema,
+    write_tools: stringArraySchema,
+    authority_level: {
+      type: "string",
+      enum: allowedAuthorityLevels,
+      description: "Controlling workflow boundary. Inspect actions for the separate preparation, recommendation, execution, and human-only levels.",
+    },
+    actions: { type: "array", items: workflowActionSchema },
+    thresholds: stringArraySchema,
+    human_decisions: stringArraySchema,
+    segregation_of_duties: stringArraySchema,
+    stop_conditions: stringArraySchema,
+    outputs: stringArraySchema,
+    proposed_accounting_effects: { type: "string" },
+    run_record: stringArraySchema,
+    retention: { type: "string" },
+    reproducibility: { type: "string" },
+    failure_modes: stringArraySchema,
+    recovery_actions: stringArraySchema,
+    pilot_measures: stringArraySchema,
+    production_signals: stringArraySchema,
+    reviewed_at: { type: "string", format: "date" },
+    review_status: { type: "string" },
+    provenance: provenanceSchema,
+  },
+} as const;
+
+const normalizedRecordProperties = {
+  version: { type: "string" },
+  reviewed_at: { type: "string", format: "date" },
+  review_status: { type: "string" },
+  provenance: provenanceSchema,
+} as const;
+
+const authorityLevelSchema = {
+  type: "object",
+  additionalProperties: false,
+  required: [
+    "id", "label", "agent_role", "execution_rule", "required_controls", "accounting_example",
+    "boundary", "version", "reviewed_at", "review_status", "provenance",
+  ],
+  properties: {
+    id: { type: "string", enum: allowedAuthorityLevels },
+    label: { type: "string" },
+    agent_role: { type: "string" },
+    execution_rule: { type: "string" },
+    required_controls: stringArraySchema,
+    accounting_example: { type: "string" },
+    boundary: { type: "string" },
+    ...normalizedRecordProperties,
+  },
+} as const;
+
+const sensitiveActionSchema = {
+  type: "object",
+  additionalProperties: false,
+  required: [
+    "id", "version", "name", "summary", "default_authority", "agent_may_prepare",
+    "agent_may_execute", "human_only_conditions", "identity_and_sod", "limits",
+    "approval_evidence", "pre_execution_checks", "rollback_or_compensation", "logging_and_review",
+    "source_ids", "reviewed_at", "review_status", "provenance",
+  ],
+  properties: {
+    id: { type: "string", pattern: "^sa-[a-z0-9-]+$" },
+    name: { type: "string" },
+    summary: { type: "string" },
+    default_authority: { type: "string", enum: allowedAuthorityLevels },
+    agent_may_prepare: stringArraySchema,
+    agent_may_execute: stringArraySchema,
+    human_only_conditions: stringArraySchema,
+    identity_and_sod: stringArraySchema,
+    limits: stringArraySchema,
+    approval_evidence: stringArraySchema,
+    pre_execution_checks: stringArraySchema,
+    rollback_or_compensation: stringArraySchema,
+    logging_and_review: stringArraySchema,
+    source_ids: { type: "array", items: { type: "string", pattern: "^src_" } },
+    ...normalizedRecordProperties,
+  },
+} as const;
+
+const controlPatternSchema = {
+  type: "object",
+  additionalProperties: false,
+  required: [
+    "id", "version", "name", "risk", "objective", "procedure", "evidence", "exceptions",
+    "owner", "frequency", "source_ids", "reviewed_at", "review_status", "provenance",
+  ],
+  properties: {
+    id: { type: "string", pattern: "^ctrl-[a-z0-9-]+$" },
+    name: { type: "string" },
+    risk: { type: "string" },
+    objective: { type: "string" },
+    procedure: stringArraySchema,
+    evidence: stringArraySchema,
+    exceptions: stringArraySchema,
+    owner: { type: "string" },
+    frequency: { type: "string" },
+    source_ids: { type: "array", items: { type: "string", pattern: "^src_" } },
+    ...normalizedRecordProperties,
+  },
+} as const;
+
+const templateSchema = {
+  type: "object",
+  additionalProperties: false,
+  required: [
+    "id", "version", "name", "purpose", "use_when", "sections", "reviewed_at",
+    "review_status", "provenance",
+  ],
+  properties: {
+    id: { type: "string", pattern: "^tpl-[a-z0-9-]+$" },
+    name: { type: "string" },
+    purpose: { type: "string" },
+    use_when: { type: "string" },
+    sections: {
+      type: "array",
+      items: {
+        type: "object",
+        additionalProperties: false,
+        required: ["heading", "prompt"],
+        properties: { heading: { type: "string" }, prompt: { type: "string" } },
+      },
+    },
+    ...normalizedRecordProperties,
+  },
+} as const;
+
+const glossaryEntrySchema = {
+  type: "object",
+  additionalProperties: false,
+  required: [
+    "id", "term", "definition", "related", "version", "reviewed_at", "review_status", "provenance",
+  ],
+  properties: {
+    id: { type: "string", pattern: "^term-[a-z0-9-]+$" },
+    term: { type: "string" },
+    definition: { type: "string" },
+    related: stringArraySchema,
+    ...normalizedRecordProperties,
+  },
+} as const;
+
+const ecosystemLayerSchema = {
+  type: "object",
+  additionalProperties: false,
+  required: ["id", "name", "role", "posture", "use_here", "boundary", "local_href", "local_label", "source_ids"],
+  properties: {
+    id: { type: "string", pattern: "^[a-z0-9-]+$" },
+    name: { type: "string" },
+    role: { type: "string" },
+    posture: { type: "string", enum: ["adopted", "available when needed", "deferred"] },
+    use_here: { type: "string" },
+    boundary: { type: "string" },
+    local_href: { type: ["string", "null"] },
+    local_label: { type: ["string", "null"] },
+    source_ids: { type: "array", items: { type: "string", pattern: "^src_" } },
+  },
+} as const;
+
+const problemSchema = {
+  type: "object",
+  required: ["type", "title", "status", "detail"],
+  properties: {
+    type: { type: "string", format: "uri" },
+    title: { type: "string" },
+    status: { type: "integer" },
+    detail: { type: "string" },
+  },
+  additionalProperties: true,
+} as const;
+
+const commonParameters = [
+  { name: "q", in: "query", description: "Space-separated terms combined with AND logic.", schema: { type: "string", maxLength: 200 } },
+  { name: "limit", in: "query", schema: { type: "integer", minimum: 1, maximum: 200, default: 50 } },
+  { name: "cursor", in: "query", description: "ID of the last record from the previous page in the same filtered result set.", schema: { type: "string" } },
+  { name: "format", in: "query", description: "Overrides Accept-based content negotiation.", schema: { type: "string", enum: ["json", "markdown"] } },
+] as const;
+
+const workflowCollectionParameters = [
+  ...commonParameters,
+  { name: "family", in: "query", schema: { type: "string", enum: allowedFamilies } },
+  { name: "authority", in: "query", schema: { type: "string", enum: allowedAuthorityLevels } },
+] as const;
+
+const resourceCollectionParameters = [
+  ...commonParameters,
+  { name: "topic", in: "query", schema: { type: "string", enum: allowedTopics } },
+  { name: "kind", in: "query", schema: { type: "string", enum: allowedKinds } },
+] as const;
+
+function collectionResponses(schemaName: string) {
+  return {
+    "200": {
+      description: "Matching records in JSON or Markdown.",
+      headers: {
+        ETag: { schema: { type: "string" } },
+        "Last-Modified": { schema: { type: "string" } },
+        "X-Next-Page": { schema: { type: "string", format: "uri" } },
+      },
+      content: {
+        "application/json": {
+          schema: {
+            type: "object",
+            required: [
+              "schema_version", "total_catalog_records", "total_matching_records", "returned_records",
+              "limit", "cursor", "next_cursor", "filters", "links", "items",
+            ],
+            properties: {
+              schema_version: { type: "string" },
+              corpus_version: { type: "string" },
+              corpus_reviewed_at: { type: "string", format: "date" },
+              catalog_version: { type: "string" },
+              catalog_reviewed_at: { type: "string", format: "date" },
+              collection: { type: "string" },
+              rights_notice: { type: "string" },
+              total_catalog_records: { type: "integer" },
+              total_matching_records: { type: "integer" },
+              returned_records: { type: "integer" },
+              limit: { type: "integer" },
+              cursor: { type: ["string", "null"] },
+              next_cursor: { type: ["string", "null"] },
+              filters: { type: "object", additionalProperties: true },
+              links: { type: "object", additionalProperties: true },
+              items: { type: "array", items: { $ref: `#/components/schemas/${schemaName}` } },
+            },
+            additionalProperties: true,
+          },
+        },
+        "text/markdown": { schema: { type: "string" } },
+      },
+    },
+    "304": { description: "The representation has not changed." },
+    "400": { description: "Invalid query parameter.", content: { "application/problem+json": { schema: { $ref: "#/components/schemas/Problem" } } } },
+    "406": { description: "No acceptable JSON or Markdown representation was requested.", content: { "application/problem+json": { schema: { $ref: "#/components/schemas/Problem" } } } },
+  };
+}
+
+function collectionPath(operationId: string, summary: string, tag: string, schemaName: string) {
+  return {
+    get: {
+      operationId,
+      summary,
+      tags: [tag],
+      parameters: commonParameters,
+      responses: collectionResponses(schemaName),
+    },
+    head: {
+      operationId: `${operationId}Head`,
+      summary: "Retrieve collection headers",
+      tags: [tag],
+      parameters: commonParameters,
+      responses: {
+        "200": { description: "Collection headers." },
+        "304": { description: "The representation has not changed." },
+        "400": { description: "Invalid query parameter." },
+        "406": { description: "No acceptable representation was requested." },
+      },
+    },
+    options: {
+      operationId: `${operationId}Options`,
+      summary: "CORS preflight",
+      tags: [tag],
+      responses: { "204": { description: "Allowed methods and headers." } },
+    },
+  };
+}
+
+const document = {
+  openapi: "3.1.0",
+  info: {
+    title: "Accounting Agents Public Corpus API",
+    version: apiVersion,
+    summary: "Read-only access to accounting-agent workflows, authority, controls, templates, terminology, sources, and the open-interface map.",
+    description: `Corpus ${corpusVersion}, reviewed ${corpusReviewedAt}; source catalog ${catalogVersion}, reviewed ${catalogReviewedAt}. Coverage does not grant execution authority. External source content remains subject to each publisher's terms.`,
+  },
+  servers: [{ url: siteOrigin, description: "Public production service" }],
+  security: [],
+  tags: [
+    { name: "Workflows", description: `${workflowRecords.length} canonical workflow specifications across eight accounting process families.` },
+    { name: "Authority", description: "A0–A4 and human-only authority boundaries." },
+    { name: "Governance", description: `${sensitiveActions.length} sensitive-action boundaries and ${controlPatterns.length} control patterns.` },
+    { name: "Reference", description: `${templates.length} implementation templates and ${glossary.length} controlled terms.` },
+    { name: "Resources", description: `${agentResources.length} standards, guidance, technical references, evidence, and practice examples.` },
+    { name: "Packs", description: `${packs.length} portable workflow packs with clean-room synthetic fixtures.` },
+    { name: "Benchmark", description: `${benchmarkCases.length} public conformance cases with hard authority gates.` },
+    { name: "Ecosystem", description: `${ecosystemLayers.length} role-based interface and standards layers.` },
+    { name: "Discovery", description: "Corpus metadata and controlled taxonomies." },
+  ],
+  paths: {
+    "/api/v1/workflows": {
+      get: {
+        operationId: "listWorkflows",
+        summary: "Search and filter workflow records",
+        tags: ["Workflows"],
+        parameters: workflowCollectionParameters,
+        responses: collectionResponses("Workflow"),
+      },
+      head: {
+        operationId: "listWorkflowsHead",
+        summary: "Retrieve workflow collection headers",
+        tags: ["Workflows"],
+        parameters: workflowCollectionParameters,
+        responses: {
+          "200": { description: "Workflow collection headers." },
+          "304": { description: "The representation has not changed." },
+          "400": { description: "Invalid query parameter." },
+          "406": { description: "No acceptable representation was requested." },
+        },
+      },
+      options: { operationId: "listWorkflowsOptions", summary: "CORS preflight", tags: ["Workflows"], responses: { "204": { description: "Allowed methods and headers." } } },
+    },
+    "/api/v1/workflows/{id}": {
+      get: {
+        operationId: "getWorkflow",
+        summary: "Retrieve one workflow record",
+        tags: ["Workflows"],
+        parameters: [
+          { name: "id", in: "path", required: true, schema: { type: "string", pattern: "^wf-[a-z0-9-]+$" } },
+          { name: "format", in: "query", schema: { type: "string", enum: ["json", "markdown"] } },
+        ],
+        responses: {
+          "200": { description: "One workflow record.", content: { "application/json": { schema: { type: "object", required: ["schema_version", "corpus_version", "collection", "item"], properties: { schema_version: { type: "string" }, corpus_version: { type: "string" }, collection: { type: "string", const: "workflows" }, item: { $ref: "#/components/schemas/Workflow" } } } }, "text/markdown": { schema: { type: "string" } } } },
+          "304": { description: "The representation has not changed." },
+          "400": { description: "Invalid format parameter.", content: { "application/problem+json": { schema: { $ref: "#/components/schemas/Problem" } } } },
+          "406": { description: "No acceptable representation was requested.", content: { "application/problem+json": { schema: { $ref: "#/components/schemas/Problem" } } } },
+          "404": { description: "Unknown workflow ID.", content: { "application/problem+json": { schema: { $ref: "#/components/schemas/Problem" } } } },
+        },
+      },
+      head: {
+        operationId: "getWorkflowHead",
+        summary: "Retrieve workflow record headers",
+        tags: ["Workflows"],
+        parameters: [
+          { name: "id", in: "path", required: true, schema: { type: "string", pattern: "^wf-[a-z0-9-]+$" } },
+          { name: "format", in: "query", schema: { type: "string", enum: ["json", "markdown"] } },
+        ],
+        responses: {
+          "200": { description: "Workflow record headers." },
+          "304": { description: "The representation has not changed." },
+          "400": { description: "Invalid format parameter." },
+          "406": { description: "No acceptable representation was requested." },
+          "404": { description: "Unknown workflow ID." },
+        },
+      },
+      options: {
+        operationId: "getWorkflowOptions",
+        summary: "CORS preflight",
+        tags: ["Workflows"],
+        parameters: [{ name: "id", in: "path", required: true, schema: { type: "string", pattern: "^wf-[a-z0-9-]+$" } }],
+        responses: { "204": { description: "Allowed methods and headers." } },
+      },
+    },
+    "/api/v1/authority-levels": collectionPath("listAuthorityLevels", "Search authority levels", "Authority", "AuthorityLevel"),
+    "/api/v1/sensitive-actions": collectionPath("listSensitiveActions", "Search sensitive-action boundaries", "Governance", "SensitiveAction"),
+    "/api/v1/controls": collectionPath("listControls", "Search control patterns", "Governance", "ControlPattern"),
+    "/api/v1/templates": collectionPath("listTemplates", "Search implementation templates", "Reference", "Template"),
+    "/api/v1/glossary": collectionPath("listGlossary", "Search controlled terms", "Reference", "GlossaryEntry"),
+    "/api/v1/ecosystem": collectionPath("listEcosystemLayers", "Search open-interface and standards layers", "Ecosystem", "EcosystemLayer"),
+    "/api/v1/resources": {
+      get: {
+        operationId: "listResources",
+        summary: "Search and filter source records",
+        tags: ["Resources"],
+        parameters: resourceCollectionParameters,
+        responses: collectionResponses("Resource"),
+      },
+      head: {
+        operationId: "listResourcesHead",
+        summary: "Retrieve source collection headers",
+        tags: ["Resources"],
+        parameters: resourceCollectionParameters,
+        responses: {
+          "200": { description: "Source collection headers." },
+          "304": { description: "The representation has not changed." },
+          "400": { description: "Invalid query parameter." },
+          "406": { description: "No acceptable representation was requested." },
+        },
+      },
+      options: { operationId: "listResourcesOptions", summary: "CORS preflight", tags: ["Resources"], responses: { "204": { description: "Allowed methods and headers." } } },
+    },
+    "/api/v1/resources/{id}": {
+      get: {
+        operationId: "getResource",
+        summary: "Retrieve one source record",
+        tags: ["Resources"],
+        parameters: [
+          { name: "id", in: "path", required: true, schema: { type: "string", pattern: "^src_[a-z0-9]{7,}$" } },
+          { name: "format", in: "query", schema: { type: "string", enum: ["json", "markdown"] } },
+        ],
+        responses: {
+          "200": { description: "One source record.", content: { "application/json": { schema: { type: "object", required: ["schema_version", "catalog_version", "rights_notice", "item"], properties: { schema_version: { type: "string" }, catalog_version: { type: "string" }, rights_notice: { type: "string" }, item: { $ref: "#/components/schemas/Resource" } } } }, "text/markdown": { schema: { type: "string" } } } },
+          "304": { description: "The representation has not changed." },
+          "400": { description: "Invalid format parameter.", content: { "application/problem+json": { schema: { $ref: "#/components/schemas/Problem" } } } },
+          "406": { description: "No acceptable representation was requested.", content: { "application/problem+json": { schema: { $ref: "#/components/schemas/Problem" } } } },
+          "404": { description: "Unknown resource ID.", content: { "application/problem+json": { schema: { $ref: "#/components/schemas/Problem" } } } },
+        },
+      },
+      head: {
+        operationId: "getResourceHead",
+        summary: "Retrieve source record headers",
+        tags: ["Resources"],
+        parameters: [
+          { name: "id", in: "path", required: true, schema: { type: "string", pattern: "^src_[a-z0-9]{7,}$" } },
+          { name: "format", in: "query", schema: { type: "string", enum: ["json", "markdown"] } },
+        ],
+        responses: {
+          "200": { description: "Source record headers." },
+          "304": { description: "The representation has not changed." },
+          "400": { description: "Invalid format parameter." },
+          "406": { description: "No acceptable representation was requested." },
+          "404": { description: "Unknown source ID." },
+        },
+      },
+      options: {
+        operationId: "getResourceOptions",
+        summary: "CORS preflight",
+        tags: ["Resources"],
+        parameters: [{ name: "id", in: "path", required: true, schema: { type: "string", pattern: "^src_[a-z0-9]{7,}$" } }],
+        responses: { "204": { description: "Allowed methods and headers." } },
+      },
+    },
+    "/api/v1/search": {
+      get: {
+        operationId: "searchCorpus",
+        summary: "Search pages, workflows, sources, packs, cases, and changes",
+        tags: ["Discovery"],
+        parameters: [
+          { name: "q", in: "query", required: true, schema: { type: "string", minLength: 1, maxLength: 200 } },
+          { name: "type", in: "query", description: "Repeat or comma-separate record types.", schema: { type: "array", items: { type: "string" } }, style: "form", explode: true },
+          { name: "family", in: "query", schema: { type: "string" } },
+          { name: "authority", in: "query", schema: { type: "string" } },
+          { name: "topic", in: "query", schema: { type: "string" } },
+          { name: "kind", in: "query", schema: { type: "string" } },
+          { name: "limit", in: "query", schema: { type: "integer", minimum: 1, maximum: 100, default: 25 } },
+          { name: "cursor", in: "query", description: "record_type:id cursor from the prior page with the same filters.", schema: { type: "string" } },
+        ],
+        responses: {
+          "200": { description: "Explainably ranked search results.", content: { "application/json": { schema: { type: "object" } } } },
+          "304": { description: "The representation has not changed." },
+          "400": { description: "Invalid or missing query.", content: { "application/problem+json": { schema: { $ref: "#/components/schemas/Problem" } } } },
+        },
+      },
+      head: { operationId: "searchCorpusHead", summary: "Retrieve search headers", tags: ["Discovery"], responses: { "200": { description: "Search headers." }, "400": { description: "Invalid or missing query." } } },
+      options: { operationId: "searchCorpusOptions", summary: "CORS preflight", tags: ["Discovery"], responses: { "204": { description: "Allowed methods and headers." } } },
+    },
+    "/api/v1/packs": {
+      get: {
+        operationId: "listPacks",
+        summary: "Search portable workflow packs",
+        tags: ["Packs"],
+        parameters: [...commonParameters, { name: "family", in: "query", schema: { type: "string", enum: allowedFamilies } }],
+        responses: collectionResponses("Pack"),
+      },
+      head: { operationId: "listPacksHead", summary: "Retrieve pack collection headers", tags: ["Packs"], parameters: commonParameters, responses: { "200": { description: "Pack collection headers." }, "400": { description: "Invalid query." } } },
+      options: { operationId: "listPacksOptions", summary: "CORS preflight", tags: ["Packs"], responses: { "204": { description: "Allowed methods and headers." } } },
+    },
+    "/api/v1/packs/{id}": {
+      get: {
+        operationId: "getPack",
+        summary: "Retrieve one workflow pack",
+        tags: ["Packs"],
+        parameters: [
+          { name: "id", in: "path", required: true, schema: { type: "string" } },
+          { name: "format", in: "query", schema: { type: "string", enum: ["json", "markdown"] } },
+        ],
+        responses: {
+          "200": { description: "One workflow pack in JSON or Markdown.", content: { "application/json": { schema: { type: "object", properties: { item: { $ref: "#/components/schemas/Pack" } } } }, "text/markdown": { schema: { type: "string" } } } },
+          "404": { description: "Unknown pack ID.", content: { "application/problem+json": { schema: { $ref: "#/components/schemas/Problem" } } } },
+        },
+      },
+      head: { operationId: "getPackHead", summary: "Retrieve pack headers", tags: ["Packs"], parameters: [{ name: "id", in: "path", required: true, schema: { type: "string" } }], responses: { "200": { description: "Pack headers." }, "404": { description: "Unknown pack ID." } } },
+      options: { operationId: "getPackOptions", summary: "CORS preflight", tags: ["Packs"], responses: { "204": { description: "Allowed methods and headers." } } },
+    },
+    "/api/v1/benchmark": {
+      get: {
+        operationId: "listBenchmarkCases",
+        summary: "Search Accounting Agent Bench cases",
+        tags: ["Benchmark"],
+        parameters: [
+          ...commonParameters,
+          { name: "pack", in: "query", schema: { type: "string", enum: packs.map((pack) => pack.id) } },
+          { name: "case_type", in: "query", schema: { type: "string" } },
+        ],
+        responses: collectionResponses("BenchmarkCase"),
+      },
+      head: { operationId: "listBenchmarkCasesHead", summary: "Retrieve benchmark headers", tags: ["Benchmark"], parameters: commonParameters, responses: { "200": { description: "Benchmark headers." }, "400": { description: "Invalid query." } } },
+      options: { operationId: "listBenchmarkCasesOptions", summary: "CORS preflight", tags: ["Benchmark"], responses: { "204": { description: "Allowed methods and headers." } } },
+    },
+    "/api/v1/meta": {
+      get: {
+        operationId: "getCorpusMetadata",
+        summary: "Retrieve corpus metadata, rights notes, and canonical links",
+        tags: ["Discovery"],
+        responses: {
+          "200": { description: "Corpus metadata.", content: { "application/json": { schema: { type: "object" } } } },
+          "304": { description: "The representation has not changed." },
+        },
+      },
+      head: {
+        operationId: "getCorpusMetadataHead",
+        summary: "Retrieve corpus metadata headers",
+        tags: ["Discovery"],
+        responses: { "200": { description: "Corpus metadata headers." }, "304": { description: "The representation has not changed." } },
+      },
+      options: { operationId: "getCorpusMetadataOptions", summary: "CORS preflight", tags: ["Discovery"], responses: { "204": { description: "Allowed methods and headers." } } },
+    },
+    "/api/v1/taxonomy": {
+      get: {
+        operationId: "getCorpusTaxonomy",
+        summary: "Retrieve controlled families, authority levels, topics, and source types",
+        tags: ["Discovery"],
+        responses: {
+          "200": { description: "Corpus taxonomy.", content: { "application/json": { schema: { type: "object" } } } },
+          "304": { description: "The representation has not changed." },
+        },
+      },
+      head: {
+        operationId: "getCorpusTaxonomyHead",
+        summary: "Retrieve corpus taxonomy headers",
+        tags: ["Discovery"],
+        responses: { "200": { description: "Corpus taxonomy headers." }, "304": { description: "The representation has not changed." } },
+      },
+      options: { operationId: "getCorpusTaxonomyOptions", summary: "CORS preflight", tags: ["Discovery"], responses: { "204": { description: "Allowed methods and headers." } } },
+    },
+  },
+  components: {
+    schemas: {
+      Resource: resourceSchema,
+      Workflow: workflowSchema,
+      AuthorityLevel: authorityLevelSchema,
+      SensitiveAction: sensitiveActionSchema,
+      ControlPattern: controlPatternSchema,
+      Template: templateSchema,
+      GlossaryEntry: glossaryEntrySchema,
+      EcosystemLayer: ecosystemLayerSchema,
+      Pack: packSchema,
+      BenchmarkCase: benchmarkCaseSchema,
+      ReleaseManifest: releaseManifestSchema,
+      Problem: problemSchema,
+    },
+  },
+};
+
+export async function GET(request: Request) {
+  return publicResponse(
+    request,
+    JSON.stringify(document, null, 2),
+    "application/vnd.oai.openapi+json;version=3.1; charset=utf-8",
+  );
+}
+
+export const HEAD = GET;
