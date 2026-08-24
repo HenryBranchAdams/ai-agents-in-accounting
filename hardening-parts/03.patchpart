@@ -1,0 +1,181 @@
+-              const current = links.findIndex((link) => link === document.activeElement);
+-              const next = event.key === "ArrowDown"
+-                ? links[(current + 1) % links.length]
+-                : links[current <= 0 ? links.length - 1 : current - 1];
+-              next.focus();
+-            }}
+-            ref={dialogRef}
+-          >
+-            <h2 className="sr-only" id="docs-search-title">Search documentation</h2>
+-            <div className="search-input-row">
+-              <span className="search-icon" aria-hidden="true">⌕</span>
+-              <input
+-                aria-label="Search documentation"
+-                onChange={(event) => setQuery(event.target.value)}
+-                placeholder="Search documentation"
+-                ref={inputRef}
+-                type="search"
+-                value={query}
+-              />
+-              <button type="button" onClick={closeSearch} aria-label="Close search">
+-                Esc
+-              </button>
+-            </div>
+-            <p aria-live="polite" className="sr-only">
+-              {searchResult.total} search results{searchResult.total > results.length ? `; showing the first ${results.length}` : ""}
+-            </p>
+-            <div className="search-results">
+-              {results.length ? (
+-                groups.map(([category, items], index) => (
+-                  <section aria-labelledby={`search-group-${index}`} className="search-result-group" key={category}>
+-                    <h3 id={`search-group-${index}`}>{category}</h3>
+-                    {items.map((item) => (
+-                      <a href={item.href} key={item.href} onClick={closeSearch}>
+-                        <strong>{item.title}</strong>
+-                        <span>{item.detail}</span>
+-                      </a>
+-                    ))}
+-                  </section>
+-                ))
+-              ) : (
+-                <p className="search-empty">No pages match “{query}”.</p>
+-              )}
+-            </div>
+-          </dialog>
++              links[0].click();
++              return;
++            }
++            if (event.key !== "ArrowDown" && event.key !== "ArrowUp") return;
++            if (!links.length) return;
++            event.preventDefault();
++            const current = links.findIndex((link) => link === document.activeElement);
++            const next = event.key === "ArrowDown"
++              ? links[(current + 1) % links.length]
++              : links[current <= 0 ? links.length - 1 : current - 1];
++            next.focus();
++          }}
++          ref={dialogRef}
++        >
++          <h2 className="sr-only" id="docs-search-title">Search documentation</h2>
++          <div className="search-input-row">
++            <span className="search-icon" aria-hidden="true">⌕</span>
++            <input
++              aria-label="Search documentation"
++              onChange={(event) => setQuery(event.target.value)}
++              placeholder="Search documentation"
++              ref={inputRef}
++              type="search"
++              value={query}
++            />
++            <button type="button" onClick={closeSearch} aria-label="Close search">Esc</button>
++          </div>
++          <p aria-live="polite" className="sr-only">
++            {loading
++              ? "Searching documentation"
++              : `${total} search results${total > results.length ? `; showing the first ${results.length}` : ""}`}
++          </p>
++          <div className="search-results" aria-busy={loading}>
++            {loading ? (
++              <p className="search-empty">Searching…</p>
++            ) : error ? (
++              <p className="search-empty">{error}</p>
++            ) : results.length ? (
++              groups.map(([category, items], index) => (
++                <section aria-labelledby={`search-group-${index}`} className="search-result-group" key={category}>
++                  <h3 id={`search-group-${index}`}>{category}</h3>
++                  {items.map((item) => (
++                    <Link href={item.href} key={`${category}:${item.href}`} onClick={closeSearch}>
++                      <strong>{item.title}</strong>
++                      <span>{item.detail}</span>
++                    </Link>
++                  ))}
++                </section>
++              ))
++            ) : (
++              <p className="search-empty">No pages match “{query}”.</p>
++            )}
++          </div>
++        </dialog>
+       )}
+     </>
+   );
+diff --git a/app/DocsShell.tsx b/app/DocsShell.tsx
+index 4d2ed52..9d04064 100644
+--- a/app/DocsShell.tsx
++++ b/app/DocsShell.tsx
+@@ -45,13 +45,13 @@ function Navigation({ active, mobile = false }: { active: string; mobile?: boole
+         <div className="nav-group" key={group.label}>
+           <p>{group.label}</p>
+           {group.items.map((item) => (
+-            <a
++            <Link
+               aria-current={item.href === active ? "page" : undefined}
+               href={item.href}
+               key={item.href}
+             >
+               {item.label}
+-            </a>
++            </Link>
+           ))}
+         </div>
+       ))}
+@@ -85,7 +85,7 @@ export function DocsShell({
+         <DocsSearch />
+         <nav className="top-links" aria-label="Utility navigation">
+           <Link href="/packs">Packs</Link>
+-          <a href="/machine-access">Agent access</a>
++          <Link href="/machine-access">Agent access</Link>
+         </nav>
+         <details className="mobile-navigation">
+           <summary>Menu</summary>
+@@ -139,16 +139,16 @@ export function DocsShell({
+             {(previous || next) && (
+               <nav aria-label="Page navigation" className="page-navigation">
+                 {previous ? (
+-                  <a href={previous.href} rel="prev">
++                  <Link href={previous.href} rel="prev">
+                     <span>Previous</span>
+                     {previous.label}
+-                  </a>
++                  </Link>
+                 ) : <span />}
+                 {next ? (
+-                  <a href={next.href} rel="next">
++                  <Link href={next.href} rel="next">
+                     <span>Next</span>
+                     {next.label}
+-                  </a>
++                  </Link>
+                 ) : <span />}
+               </nav>
+             )}
+diff --git a/app/agent-interface.ts b/app/agent-interface.ts
+index 6b0272d..9f6ae91 100644
+--- a/app/agent-interface.ts
++++ b/app/agent-interface.ts
+@@ -17,11 +17,22 @@ import { glossary, templates } from "./reference-data";
+ import { processFamilies, workflowRecords } from "./workflows-data";
+ import { renderDomainCorpusMarkdown, shiftMarkdownHeadings } from "./domain-interface";
+ 
+-export const siteOrigin = "https://accounting-agents.madebyhenry.chatgpt.site";
+-export const catalogReviewedAt = "2026-08-23";
+-export const catalogModifiedAt = "2026-08-23T00:00:00.000Z";
+-export const catalogVersion = "2026-08-23.7";
+-export const apiVersion = "1.0";
++export {
++  apiVersion,
++  catalogModifiedAt,
++  catalogReviewedAt,
++  catalogVersion,
++  platformPublishedAt,
++  siteOrigin,
++} from "./project-metadata";
++import {
++  apiVersion,
++  catalogModifiedAt,
++  catalogReviewedAt,
++  catalogVersion,
++  platformPublishedAt,
++  siteOrigin,
++} from "./project-metadata";
+ export const rightsNotice =
