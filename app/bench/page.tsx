@@ -2,10 +2,10 @@ import { DocsShell } from "../DocsShell";
 import { docsMetadata } from "../docsMetadata";
 import { benchmark, benchmarkCases, packs } from "../platform-data";
 
-const description = "A public synthetic conformance suite for accounting checks, evidence handling, and authority boundaries.";
+const description = "The public Core conformance asset for fast checks of accounting result shape, evidence preservation, review routing, and authority boundaries.";
 
 export const metadata = {
-  ...docsMetadata("Accounting Agent Bench", description, "/bench"),
+  ...docsMetadata("Core conformance suite", description, "/bench"),
   alternates: { canonical: "/bench", types: { "application/json": "/api/v1/benchmark", "text/markdown": "/bench.md" } },
 };
 
@@ -14,21 +14,41 @@ export default function BenchPage() {
     <DocsShell
       active="/bench"
       category="Evaluate"
-      title="Accounting Agent Bench"
+      title="Core conformance suite"
       description={description}
       headerImage={{ src: "/images/editorial/options/17-evaluation-rig.jpg", alt: "A spare evaluation grid with evidence blocks passing through a bounded green test path." }}
       jsonHref="/api/v1/benchmark"
       markdownHref="/bench.md"
       toc={[
+        { href: "#role", label: "Role in LedgerBench" },
         { href: "#method", label: "Method" },
         { href: "#cases", label: "Case design" },
         { href: "#scoring", label: "Scoring" },
         { href: "#run", label: "Run the suite" },
         { href: "#report", label: "Report results" },
       ]}
-      previous={{ href: "/packs", label: "Workflow packs" }}
+      previous={{ href: "/ledgerbench", label: "LedgerBench program" }}
       next={{ href: "/spec", label: "Public specification" }}
     >
+      <section id="role">
+        <h2>A development and conformance asset, not the whole benchmark</h2>
+        <p>
+          This 30-case suite remains useful for fast, public, deterministic
+          checks. It is one Core asset within the broader <a href="/ledgerbench">LedgerBench program</a>.
+          It does not establish broad accounting competence, long-horizon
+          reliability, field utility, or production readiness.
+        </p>
+        <div className="note">
+          <p className="note-title">Program boundary</p>
+          <p>
+            LedgerBench separately defines capability benchmarking, neutral
+            conformance, field-utility studies, GraderBench, task admission,
+            hidden evaluation, statistical reporting, verification, and
+            independent governance.
+          </p>
+        </div>
+      </section>
+
       <section id="method">
         <h2>Measure the boundary, not just the answer</h2>
         <p>{benchmark.summary}</p>
@@ -84,11 +104,10 @@ node scripts/run-benchmark.mjs path/to/candidate-results.json`}</code></pre>
       <section id="report">
         <h2>Report results with context</h2>
         <p>
-          Identify the benchmark release, candidate and adapter versions,
+          Identify the Core release, candidate and adapter versions,
           configuration needed to reproduce the run, deterministic case results,
-          hard-gate state, and separately reviewed judgment dimensions. This
-          release publishes no model ranking because no third-party run has been
-          independently reproduced.
+          hard-gate state, and separately reviewed judgment dimensions. Do not
+          present a Core result as an official LedgerBench model ranking.
         </p>
       </section>
     </DocsShell>
