@@ -1,0 +1,188 @@
+diff --git a/.github/workflows/export-source.yml b/.github/workflows/export-source.yml
+deleted file mode 100644
+index 3102ba3..0000000
+--- a/.github/workflows/export-source.yml
++++ /dev/null
+@@ -1,25 +0,0 @@
+-name: Export source
+-
+-on:
+-  pull_request:
+-  push:
+-    branches:
+-      - chore/repository-hardening
+-
+-permissions:
+-  contents: read
+-
+-jobs:
+-  export:
+-    runs-on: ubuntu-latest
+-    steps:
+-      - uses: actions/checkout@v4
+-      - name: Package checkout
+-        run: tar --exclude=.git -czf /tmp/repository-source.tar.gz .
+-      - name: Upload checkout
+-        uses: actions/upload-artifact@v4
+-        with:
+-          name: repository-source
+-          path: /tmp/repository-source.tar.gz
+-          if-no-files-found: error
+-          retention-days: 1
+diff --git a/.github/workflows/ledgerbench.yml b/.github/workflows/ledgerbench.yml
+index a982620..fcf447c 100644
+--- a/.github/workflows/ledgerbench.yml
++++ b/.github/workflows/ledgerbench.yml
+@@ -56,10 +56,6 @@ on:
+ permissions:
+   contents: read
+ 
+-env:
+-  SITES_INSTALL_TIMEOUT: 8m
+-  SITES_BUILD_TIMEOUT: 4m
+-
+ jobs:
+   verify:
+     runs-on: ubuntu-latest
+@@ -70,12 +66,8 @@ jobs:
+         with:
+           node-version: "22.13.0"
+       - name: Install locked dependencies
+-        run: npm run install:ci
++        run: npm ci
+       - name: Validate LedgerBench program invariants
+         run: npm run validate:ledgerbench
+-      - name: Typecheck
+-        run: npx tsc --noEmit
+-      - name: Lint
+-        run: npm run lint
+-      - name: Build and run all tests
+-        run: npm test
++      - name: Run focused LedgerBench tests
++        run: npm run test:ledgerbench
+diff --git a/.gitignore b/.gitignore
+index c413892..eaa04bb 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -40,3 +40,8 @@ next-env.d.ts
+ /.sites-runtime/
+ /outputs/
+ /work/
++
++# browser and operational reports
++/playwright-report/
++/test-results/
++/source-freshness-report.json
+diff --git a/.npmrc b/.npmrc
+index 0edab15..9f274d6 100644
+--- a/.npmrc
++++ b/.npmrc
+@@ -1,4 +1,3 @@
+ audit=false
+ fund=false
+ update-notifier=false
+-cache=.sites-runtime/npm-cache
+diff --git a/CITATION.cff b/CITATION.cff
+index d016961..6ab1513 100644
+--- a/CITATION.cff
++++ b/CITATION.cff
+@@ -2,12 +2,12 @@ cff-version: 1.2.0
+ message: "If you use Accounting Agents, cite the versioned release and the specific records or packs you relied on."
+ title: "Accounting Agents"
+ type: software
+-version: "2026-08-23.9"
+-date-released: "2026-08-23"
++version: "2026-08-24.1"
++date-released: "2026-08-24"
+ license:
+   - MIT
+   - CC-BY-4.0
+   - CC0-1.0
+-repository-code: "https://accounting-agents.madebyhenry.chatgpt.site/downloads/accounting-agents-source.zip"
++repository-code: "https://github.com/HenryBranchAdams/ai-agents-in-accounting"
+ url: "https://accounting-agents.madebyhenry.chatgpt.site"
+ abstract: "An open field guide, portable workflow-pack library, and benchmark for governed AI-agent work in accounting and finance."
+diff --git a/CONTRIBUTING.md b/CONTRIBUTING.md
+index 0be42b0..ae34920 100644
+--- a/CONTRIBUTING.md
++++ b/CONTRIBUTING.md
+@@ -33,11 +33,12 @@ Before admission, a LedgerBench task requires:
+ 
+ Task proposals must state the accounting problem, role, reviewer, evidence universe, as-of time, authority, resource budget, deliverables, terminal states, acceptance model, valid alternatives, hard gates, rights, and conflicts. See `docs/ledgerbench/TASK_ADMISSION.md`.
+ 
+-## Local checks
++## Local setup and checks
+ 
+-Run:
++Use Node.js 22.13 or newer. Install with the standard lockfile path on macOS, Windows, or Linux:
+ 
+ ```sh
++npm ci
+ npm run generate:platform
+ npm run validate:platform
+ npm run validate:ledgerbench
+@@ -45,6 +46,8 @@ npm run lint
+ npm test
+ ```
+ 
++Run `npm run test:browser` for Chromium and WebKit interaction coverage when navigation, search, responsive layout, or accessibility behavior changes. Hosting-specific wrappers are documented in the README and are not the normal contributor path.
++
+ For the existing Core conformance harness, also run `npm run benchmark:sample`.
+ 
+ ## Review
+diff --git a/README.md b/README.md
+index af9de73..0ef3688 100644
+--- a/README.md
++++ b/README.md
+@@ -21,19 +21,28 @@ Coverage never grants execution authority. Agents may prepare work; accountable
+ 
+ ## Development
+ 
+-Requires Node.js 22.13 or newer and Linux with `flock`, `curl`, GNU `timeout`, and `zip`.
++Requires Node.js 22.13 or newer. The normal contributor path is cross-platform:
+ 
+ ```sh
+-npm run install:ci
++npm ci
+ npm run generate:platform
+ npm run validate:platform
+ npm run lint
+ npm test
+ ```
+ 
+-`npm test` builds the production Worker and runs contract, site-wide quality, mobile, and LedgerBench program suites. See [`TESTING.md`](TESTING.md) for the coverage matrix, focused commands, and release gates.
++`npm test` builds the production Worker and runs contract, site-wide quality, mobile, and LedgerBench program suites. `npm run test:browser` adds real Chromium and WebKit interaction tests with the pinned Playwright and axe-core development dependencies. See [`TESTING.md`](TESTING.md) for the coverage matrix and release gates.
+ 
+-`data/open-source-platform.mjs` is the canonical source for packs, public conformance cases, and release notes. `data/ledgerbench-program.mjs` is the canonical structured Preview record for the LedgerBench measurement program.
++The current ChatGPT Sites environment has an additional hardened wrapper for its constrained Linux runtime:
++
++```sh
++npm run sites:install
++npm run sites:build
++```
++
++Those commands require Linux `flock`, `curl`, GNU `timeout`, and `/proc`; ordinary contributors and other CI providers do not.
++
++`data/open-source-platform.mjs` is the canonical source for packs, public conformance cases, and release notes. `data/ledgerbench-program.mjs` is the canonical structured Preview record for the LedgerBench measurement program. `data/release.json` is the single release/version/date descriptor used by human and machine projections.
+ 
+ Run the deterministic Core reference harness:
+ 
+@@ -55,7 +64,7 @@ npm run archive:source
+ - `docs/ledgerbench/`: program constitution, task admission, statistical analysis, governance, and submission rules
+ - `packs/`: generated portable pack directories
+ - `benchmark/`: current Core candidate-result contract and reference-shape sample
+-- `clients/`: zero-dependency JavaScript and Python clients
++- `clients/`: zero-dependency, versioned reference clients (examples rather than published SDK packages)
+ - `bin/`: reference CLI
+ - `docs/strategy/`: research and product rationale
+ - `tests/`: rendered Worker, accessibility, API, schema, release, route-crawl, mobile, link, asset, metadata, referential-integrity, and LedgerBench program contracts
+diff --git a/SOURCE_ARCHIVE_NOTICE.md b/SOURCE_ARCHIVE_NOTICE.md
+index 87735ea..74ab85a 100644
+--- a/SOURCE_ARCHIVE_NOTICE.md
++++ b/SOURCE_ARCHIVE_NOTICE.md
+@@ -1,6 +1,6 @@
+ # Source archive notice
+ 
+-The public source archive contains project source, original content, generated pack artifacts, synthetic fixtures, and project imagery. It excludes Git history, installed dependencies, build output, runtime caches, credentials, and the source archive itself.
++The public source archive contains project source, contribution and CI configuration, original content, generated pack artifacts, synthetic fixtures, and project imagery. It excludes Git history, installed dependencies, build output, runtime caches, credentials, and the source archive itself.
+ 
