@@ -1,0 +1,60 @@
+name: apply-repository-hardening
+
+on:
+  push:
+    branches:
+      - feat/repository-hardening
+
+permissions:
+  contents: write
+
+concurrency:
+  group: apply-repository-hardening
+  cancel-in-progress: false
+
+jobs:
+  apply:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/repository-hardening
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Apply changes
+        run: python3 scripts/apply-repository-hardening.py
+      - name: Update dependency lock
+        run: npm install --save-dev --package-lock-only @playwright/test@latest @axe-core/playwright@latest
+      - name: Install dependencies
+        run: npm ci
+      - name: Generate platform artifacts
+        run: npm run generate:platform
+      - name: Validate generated contracts
+        run: |
+          npm run validate:platform
+          npm run validate:ledgerbench
+      - name: Lint
+        run: npm run lint
+      - name: Unit and rendered-worker suites
+        run: npm test
+      - name: Install browsers
+        run: npx playwright install --with-deps chromium webkit
+      - name: Create visual baselines
+        run: npm run test:browser:update
+      - name: Verify browser suite
+        run: npm run test:browser
+      - name: Build deterministic source archive
+        run: npm run archive:source
+      - name: Verify clean patch
+        run: git diff --check
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Harden repository operations and runtime quality"
+          git push origin HEAD:feat/repository-hardening
