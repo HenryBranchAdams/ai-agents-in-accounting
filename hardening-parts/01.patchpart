@@ -1,0 +1,161 @@
+ The archive does not contain copies of linked external publications. Source-catalog records contain citations, access notes, rights status, and original annotations. External works remain with their publishers.
+ 
+diff --git a/TESTING.md b/TESTING.md
+index 7ac70c6..0d05a76 100644
+--- a/TESTING.md
++++ b/TESTING.md
+@@ -10,8 +10,8 @@ The test suite treats the built Worker as the public product. It sends requests
+ | Navigation | Internal links from primary documentation pages resolve; fragment targets exist on the destination page. |
+ | Media | Every local image referenced by a canonical page exists in the published asset tree and has alternative text. |
+ | Accessibility | Language, skip link, landmarks, heading structure, table captions, search labels, keyboard shortcuts, and editorial-image alternatives. |
+-| Mobile layout | Phone viewport metadata, mobile-navigation parity, active-page state, touch-target sizing, safe-area spacing, dynamic viewport units, responsive search, and overflow containment. |
+-| Public API | GET, HEAD, OPTIONS, CORS, content negotiation, pagination, filters, cache validators, and problem-detail errors. |
++| Mobile layout | Static phone contracts plus real WebKit phone rendering, navigation, search, viewport-overflow, and table-scroll checks. |
++| Public API | GET, HEAD, OPTIONS, CORS, content negotiation, pagination, filters, layer-correct cache validators, and problem-detail errors. |
+ | Machine access | OpenAPI, API catalog, `llms.txt`, `AGENTS.md`, Markdown, JSON snapshots, feeds, schemas, and release manifests. |
+ | Corpus integrity | Unique identifiers and valid references across workflows, sources, controls, templates, packs, benchmark cases, reading-room shelves, and ecosystem layers. |
+ | Content quality | Required metadata, valid HTTPS source URLs, rights boundaries, source provenance, and prohibited placeholder or promotional language. |
+@@ -32,6 +32,9 @@ npm run test:quality
+ # Mobile semantics and compiled responsive-style contracts
+ npm run test:mobile
+ 
++# Real Chromium and WebKit interaction and axe accessibility coverage
++npm run test:browser
++
+ # Static analysis and generated-platform validation
+ npm run lint
+ npm run validate:platform
+@@ -41,3 +44,11 @@ npm run benchmark:sample
+ ```
+ 
+ Run `npm run generate:platform` before the release gate when canonical pack, benchmark, or release data changes.
++
++## GitHub release gates
++
++- **Release gate** installs with `npm ci`, regenerates artifacts, rejects drift, validates release metadata, typechecks, lints, builds the production Worker, runs every Node test, exercises the Core harness, rebuilds the source archive, and uploads logs.
++- **Browser quality** runs representative desktop Chromium and phone WebKit interactions.
++- **Source freshness** performs a scheduled point-in-time check of external source endpoints and opens a review issue without treating one transient outage as a release failure.
++
++After the workflows are merged, maintainers must require the release and browser checks in `main` branch protection. See `docs/maintainers/repository-settings.md`.
+diff --git a/app/DocsSearch.tsx b/app/DocsSearch.tsx
+index 8fdee13..4e6ae29 100644
+--- a/app/DocsSearch.tsx
++++ b/app/DocsSearch.tsx
+@@ -1,28 +1,58 @@
+ "use client";
+ 
++import Link from "next/link";
+ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+ import { searchItems } from "./content";
+-import { authorityLevels } from "./domain-model";
+-import { controlPatterns, sensitiveActions } from "./governance-data";
+-import { glossary, templates } from "./reference-data";
+-import { resources } from "./resources-data";
+-import { workflowRecords } from "./workflows-data";
+-import { benchmarkCases, packs, releaseNotes } from "./platform-data";
+ 
+ type SearchEntry = (typeof searchItems)[number];
+ 
+-function searchRank(item: SearchEntry, term: string) {
+-  const title = item.title.toLowerCase();
+-  const hrefTail = item.href.split(/[\/#]/).filter(Boolean).at(-1)?.toLowerCase() ?? "";
+-  if (title === term || hrefTail === term) return 0;
+-  if (title.startsWith(term) || hrefTail.startsWith(term)) return 1;
+-  if (title.includes(term)) return 2;
+-  return 3;
++type ApiSearchItem = {
++  id: string;
++  record_type: string;
++  title: string;
++  summary: string;
++  canonical_path: string;
++  kind: string | null;
++};
++
++type ApiSearchResponse = {
++  total_matching_records: number;
++  items: ApiSearchItem[];
++};
++
++const resultCategory: Record<string, string> = {
++  page: "Guide",
++  workflow: "Workflows",
++  resource: "Source library",
++  authority: "Authority levels",
++  control: "Control patterns",
++  "sensitive-action": "Sensitive actions",
++  template: "Templates",
++  glossary: "Glossary",
++  pack: "Workflow packs",
++  benchmark: "Core conformance",
++  change: "Changes",
++  ecosystem: "Open ecosystem",
++};
++
++const cache = new Map<string, ApiSearchResponse>();
++
++function toSearchEntry(item: ApiSearchItem): SearchEntry {
++  return {
++    href: item.canonical_path,
++    title: item.title,
++    category: resultCategory[item.record_type] ?? item.kind ?? "Corpus",
++    detail: item.summary,
++  };
+ }
+ 
+ export function DocsSearch() {
+   const [open, setOpen] = useState(false);
+   const [query, setQuery] = useState("");
++  const [remoteResults, setRemoteResults] = useState<SearchEntry[]>([]);
++  const [remoteTotal, setRemoteTotal] = useState(0);
++  const [loading, setLoading] = useState(false);
++  const [error, setError] = useState<string | null>(null);
+   const dialogRef = useRef<HTMLDialogElement>(null);
+   const inputRef = useRef<HTMLInputElement>(null);
+   const previousFocusRef = useRef<HTMLElement | null>(null);
+@@ -76,144 +106,59 @@ export function DocsSearch() {
+     };
+   }, [open]);
+ 
+-  const searchResult = useMemo(() => {
+-    const term = query.trim().toLowerCase();
+-    if (!term) return { items: searchItems, total: searchItems.length };
+-    const pageResults = searchItems.filter((item) =>
+-      `${item.title} ${item.category} ${item.detail}`.toLowerCase().includes(term),
+-    );
+-    const sourceResults: SearchEntry[] = resources
+-      .filter((resource) =>
+-        `${resource.id} ${resource.title} ${resource.owner} ${resource.topic} ${resource.kind} ${resource.note}`
+-          .toLowerCase()
+-          .includes(term),
+-      )
+-      .map((resource) => ({
+-        href: `/resources/${resource.id}`,
+-        title: resource.title,
+-        category: "Source library",
+-        detail: `${resource.owner} · ${resource.kind}`,
+-      }));
+-
+-    const workflowResults: SearchEntry[] = workflowRecords
+-      .filter((workflow) =>
+-        `${workflow.id} ${workflow.name} ${workflow.family_name} ${workflow.summary} ${workflow.accounting_objective}`
+-          .toLowerCase()
+-          .includes(term),
+-      )
+-      .map((workflow) => ({
+-        href: `/workflows/${workflow.family}/${workflow.id}`,
+-        title: workflow.name,
+-        category: workflow.family_name,
+-        detail: `Controlling boundary ${workflow.authority_level} · ${workflow.summary}`,
+-      }));
+-
+-    const glossaryResults: SearchEntry[] = glossary
+-      .filter((entry) => `${entry.id} ${entry.term} ${entry.definition} ${entry.related.join(" ")}`.toLowerCase().includes(term))
+-      .map((entry) => ({
+-        href: `/glossary#${entry.id}`,
+-        title: entry.term,
+-        category: "Glossary",
+-        detail: entry.definition,
+-      }));
+-
+-    const controlResults: SearchEntry[] = controlPatterns
