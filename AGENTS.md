@@ -51,3 +51,17 @@ Run the archive command only after all source and generated artifacts are curren
 - Update fixed release, corpus, catalog, source-count, and reading-room-count assertions.
 - Update the sitemap, navigation, search index, Markdown discovery, and README when adding a public route.
 - Rebuild generated artifacts and the source archive before publishing.
+
+## Agent skills
+
+### Issue tracker
+
+Work is tracked in GitHub Issues for `HenryBranchAdams/ai-agents-in-accounting`. See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+Use the default five-role triage vocabulary. See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Use the single-context domain-documentation layout. See `docs/agents/domain.md`.
