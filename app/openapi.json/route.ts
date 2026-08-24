@@ -13,6 +13,12 @@ import { corpusReviewedAt, corpusVersion } from "../domain-model";
 import { ecosystemLayers } from "../ecosystem-data";
 import { controlPatterns, sensitiveActions } from "../governance-data";
 import { glossary, templates } from "../reference-data";
+import {
+  ledgerBenchEpisodeSchema,
+  ledgerBenchProgramSchema,
+  ledgerBenchResultSchema,
+  ledgerBenchSubmissionSchema,
+} from "../ledgerbench-data";
 import { workflowRecords } from "../workflows-data";
 import {
   benchmarkCaseSchema,
@@ -478,6 +484,7 @@ const document = {
     { name: "Resources", description: `${agentResources.length} standards, guidance, technical references, evidence, and practice examples.` },
     { name: "Packs", description: `${packs.length} portable workflow packs with clean-room synthetic fixtures.` },
     { name: "Benchmark", description: `${benchmarkCases.length} public conformance cases with hard authority gates.` },
+    { name: "LedgerBench", description: "Preview benchmark program, episode, result, and submission contracts." },
     { name: "Ecosystem", description: `${ecosystemLayers.length} role-based interface and standards layers.` },
     { name: "Discovery", description: "Corpus metadata and controlled taxonomies." },
   ],
@@ -681,6 +688,23 @@ const document = {
       head: { operationId: "listBenchmarkCasesHead", summary: "Retrieve benchmark headers", tags: ["Benchmark"], parameters: commonParameters, responses: { "200": { description: "Benchmark headers." }, "400": { description: "Invalid query." } } },
       options: { operationId: "listBenchmarkCasesOptions", summary: "CORS preflight", tags: ["Benchmark"], responses: { "204": { description: "Allowed methods and headers." } } },
     },
+    "/api/v1/ledgerbench": {
+      get: {
+        operationId: "getLedgerBenchProgram",
+        summary: "Retrieve the canonical LedgerBench program record",
+        tags: ["LedgerBench"],
+        responses: {
+          "200": { description: "LedgerBench program record and canonical links.", content: { "application/json": { schema: { type: "object", properties: { item: { $ref: "#/components/schemas/LedgerBenchProgram" } } } } } },
+          "304": { description: "The representation has not changed." },
+        },
+      },
+      head: { operationId: "getLedgerBenchProgramHead", summary: "Retrieve LedgerBench program headers", tags: ["LedgerBench"], responses: { "200": { description: "LedgerBench program headers." }, "304": { description: "The representation has not changed." } } },
+      options: { operationId: "getLedgerBenchProgramOptions", summary: "CORS preflight", tags: ["LedgerBench"], responses: { "204": { description: "Allowed methods and headers." } } },
+    },
+    "/schemas/ledgerbench-program.schema.json": { get: { operationId: "getLedgerBenchProgramSchema", summary: "Retrieve the LedgerBench program JSON Schema", tags: ["LedgerBench"], responses: { "200": { description: "Program schema.", content: { "application/schema+json": { schema: { type: "object" } } } } } } },
+    "/schemas/ledgerbench-episode.schema.json": { get: { operationId: "getLedgerBenchEpisodeSchema", summary: "Retrieve the LedgerBench episode JSON Schema", tags: ["LedgerBench"], responses: { "200": { description: "Episode schema.", content: { "application/schema+json": { schema: { type: "object" } } } } } } },
+    "/schemas/ledgerbench-result.schema.json": { get: { operationId: "getLedgerBenchResultSchema", summary: "Retrieve the LedgerBench result JSON Schema", tags: ["LedgerBench"], responses: { "200": { description: "Result schema.", content: { "application/schema+json": { schema: { type: "object" } } } } } } },
+    "/schemas/ledgerbench-submission.schema.json": { get: { operationId: "getLedgerBenchSubmissionSchema", summary: "Retrieve the LedgerBench submission JSON Schema", tags: ["LedgerBench"], responses: { "200": { description: "Submission schema.", content: { "application/schema+json": { schema: { type: "object" } } } } } } },
     "/api/v1/meta": {
       get: {
         operationId: "getCorpusMetadata",
@@ -730,6 +754,10 @@ const document = {
       EcosystemLayer: ecosystemLayerSchema,
       Pack: packSchema,
       BenchmarkCase: benchmarkCaseSchema,
+      LedgerBenchProgram: ledgerBenchProgramSchema,
+      LedgerBenchEpisode: ledgerBenchEpisodeSchema,
+      LedgerBenchResult: ledgerBenchResultSchema,
+      LedgerBenchSubmission: ledgerBenchSubmissionSchema,
       ReleaseManifest: releaseManifestSchema,
       Problem: problemSchema,
     },

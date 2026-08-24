@@ -1,0 +1,129 @@
+name: LedgerBench task nomination
+description: Propose a representative accounting episode for the LedgerBench item-admission pipeline.
+title: "[LedgerBench task]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        LedgerBench tasks must represent real accounting work, use synthetic or redistributable evidence, preserve human accountability, and support independent expert solving and review. A nomination is the first admission stage; it is not an accepted benchmark item.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Accounting problem and decision
+      description: What work must be completed, who uses it, and what decision or reviewer action follows?
+      placeholder: Describe the business problem, accounting objective, and accountable decision.
+    validations:
+      required: true
+
+  - type: input
+    id: role
+    attributes:
+      label: Acting role and reviewer
+      placeholder: Senior accountant prepares; accounting manager reviews
+    validations:
+      required: true
+
+  - type: dropdown
+    id: domain
+    attributes:
+      label: Primary accounting domain
+      options:
+        - General ledger and close
+        - Procure to pay
+        - Order to cash and revenue
+        - Treasury and cash
+        - Payroll and benefits
+        - Assets, leases, inventory, and cost accounting
+        - Consolidation and financial reporting
+        - Tax and regulatory reporting
+        - Audit, assurance, and internal control
+        - Technical accounting and policy
+        - Planning, forecasting, and management analysis
+        - Enterprise knowledge and evidence support
+    validations:
+      required: true
+
+  - type: textarea
+    id: workflow
+    attributes:
+      label: Real human workflow
+      description: Describe how a qualified practitioner performs this work today, including tools, evidence, checks, review, and typical completion time.
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence universe and conditions
+      description: List the source records and any realistic noise, missingness, versioning, contradiction, cutoff, access, or negative-control conditions.
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Initial state, as-of time, and operating context
+      description: State the entity, period, reporting framework, jurisdiction, systems, currencies, company context, and cutoff.
+    validations:
+      required: true
+
+  - type: textarea
+    id: authority
+    attributes:
+      label: Authority and prohibited actions
+      description: What may the agent prepare, recommend, or execute? Which approvals, external actions, or human-reserved decisions must remain prohibited?
+    validations:
+      required: true
+
+  - type: textarea
+    id: deliverables
+    attributes:
+      label: Required deliverables and terminal states
+      description: Name the native and structured outputs and when complete, escalate, or justified stop is correct.
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance model and valid alternatives
+      description: Describe invariants, tolerances, required evidence, valid alternative methods, reviewer criteria, materiality, and hard exclusions.
+    validations:
+      required: true
+
+  - type: textarea
+    id: risk
+    attributes:
+      label: Risk and adversarial conditions
+      description: Identify material consequences and plausible failure modes, including fabricated evidence, unsafe action, access breach, or hidden instructions.
+    validations:
+      required: true
+
+  - type: textarea
+    id: rights
+    attributes:
+      label: Data rights and provenance
+      description: Explain who created the proposed evidence, whether it is synthetic, and what rights permit benchmark use and redistribution.
+    validations:
+      required: true
+
+  - type: textarea
+    id: conflicts
+    attributes:
+      label: Contributor affiliations and conflicts
+      description: Disclose relevant employers, vendors, products, clients, sponsorships, or other interests.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: attestations
+    attributes:
+      label: Attestations
+      options:
+        - label: I have not included client, employer, engagement, bank, employee, vendor, taxpayer, credential, or other confidential production data.
+          required: true
+        - label: The task is intended to measure representative accounting work rather than trivia or a benchmark-specific trick.
+          required: true
+        - label: I understand that at least two independent practitioner solves, separate review, ambiguity review, grader proof, adversarial review, human baselines, and governance approval are required before admission.
+          required: true

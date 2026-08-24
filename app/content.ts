@@ -55,8 +55,9 @@ export const navGroups: NavGroup[] = [
   {
     label: "Evaluate",
     items: [
+      { href: "/ledgerbench", label: "LedgerBench program" },
       { href: "/evaluation", label: "Evaluation and testing" },
-      { href: "/bench", label: "Accounting Agent Bench" },
+      { href: "/bench", label: "Core conformance suite" },
     ],
   },
   {
@@ -100,7 +101,8 @@ export const searchItems = [
   { href: "/ecosystem", title: "Map the open agent ecosystem", category: "Build", detail: "AGENTS.md, MCP, A2A, web interfaces, and accounting-domain contracts" },
   { href: "/pilot#steps", title: "Run a supervised pilot", category: "Implementation", detail: "Scope, shadow, supervise, measure" },
   { href: "/pilot#measures", title: "Measure pilot quality", category: "Implementation", detail: "Accuracy, exceptions, rework, and overrides" },
-  { href: "/evaluation", title: "Evaluate agent workflows", category: "Implement", detail: "Normal, edge, adversarial, and regression cases" },
+  { href: "/ledgerbench", title: "Design a first-class accounting-agent benchmark", category: "Evaluate", detail: "Measurement claim, products, tracks, Accepted Work Rate, hidden evaluation, verification, and governance" },
+  { href: "/evaluation", title: "Evaluate agent workflows", category: "Evaluate", detail: "Normal, edge, adversarial, and regression cases" },
   { href: "/operations", title: "Operate agents in production", category: "Implement", detail: "Monitoring, changes, incidents, and recovery" },
   { href: "/templates", title: "Use templates and checklists", category: "Reference", detail: "Fourteen practical implementation artifacts" },
   { href: "/glossary", title: "Read the glossary", category: "Reference", detail: "Accounting-agent operating vocabulary" },
@@ -108,7 +110,7 @@ export const searchItems = [
   { href: "/reading-room", title: "Enter the reading room", category: "Reference", detail: "Curated papers, essays, reports, and practice perspectives" },
   { href: "/machine-access", title: "Connect an agent", category: "Reference", detail: "Agent instructions, Markdown context, resource API, and OpenAPI contract" },
   { href: "/packs", title: "Use a workflow pack", category: "Build", detail: "Synthetic fixtures, reference outputs, and hard gates" },
-  { href: "/bench", title: "Run Accounting Agent Bench", category: "Evaluate", detail: "Thirty public conformance cases across six packs" },
+  { href: "/bench", title: "Run the Core conformance suite", category: "Evaluate", detail: "Thirty public cases across six packs; subordinate to the LedgerBench program" },
   { href: "/spec", title: "Read the public specification", category: "Build", detail: "Identifiers, record contracts, rights, versioning, and conformance" },
   { href: "/methodology", title: "Review the methodology", category: "Project", detail: "Source admission, claims, review states, and corrections" },
   { href: "/changes", title: "Follow corpus changes", category: "Project", detail: "Immutable releases, compatibility, JSON Feed, and Atom" },

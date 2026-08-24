@@ -1,0 +1,81 @@
+name: LedgerBench program
+
+on:
+  pull_request:
+    paths:
+      - "data/ledgerbench-program.mjs"
+      - "data/ledgerbench/**"
+      - "app/ledgerbench/**"
+      - "app/ledgerbench-data.ts"
+      - "app/ledgerbench.md/**"
+      - "app/api/v1/ledgerbench/**"
+      - "app/schemas/ledgerbench-*.schema.json/**"
+      - "docs/ledgerbench/**"
+      - "scripts/validate-ledgerbench.mjs"
+      - "tests/ledgerbench-program.test.mjs"
+      - "app/content.ts"
+      - "app/agent-interface.ts"
+      - "app/openapi.json/route.ts"
+      - "app/[wellKnown]/api-catalog/route.ts"
+      - "app/sitemap.ts"
+      - "app/bench/page.tsx"
+      - "README.md"
+      - "CONTRIBUTING.md"
+      - "BENCHMARK_SUBMISSIONS.md"
+      - "package.json"
+      - "package-lock.json"
+      - ".github/workflows/ledgerbench.yml"
+  push:
+    branches: [main]
+    paths:
+      - "data/ledgerbench-program.mjs"
+      - "data/ledgerbench/**"
+      - "app/ledgerbench/**"
+      - "app/ledgerbench-data.ts"
+      - "app/ledgerbench.md/**"
+      - "app/api/v1/ledgerbench/**"
+      - "app/schemas/ledgerbench-*.schema.json/**"
+      - "docs/ledgerbench/**"
+      - "scripts/validate-ledgerbench.mjs"
+      - "tests/ledgerbench-program.test.mjs"
+      - "tests/rendered-html.test.mjs"
+      - "tests/site-quality.test.mjs"
+      - "app/content.ts"
+      - "app/agent-interface.ts"
+      - "app/openapi.json/route.ts"
+      - "app/[wellKnown]/api-catalog/route.ts"
+      - "app/sitemap.ts"
+      - "app/bench/page.tsx"
+      - "README.md"
+      - "CONTRIBUTING.md"
+      - "BENCHMARK_SUBMISSIONS.md"
+      - "package.json"
+      - "package-lock.json"
+      - ".github/workflows/ledgerbench.yml"
+
+permissions:
+  contents: read
+
+env:
+  SITES_INSTALL_TIMEOUT: 8m
+  SITES_BUILD_TIMEOUT: 4m
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.13.0"
+      - name: Install locked dependencies
+        run: npm run install:ci
+      - name: Validate LedgerBench program invariants
+        run: npm run validate:ledgerbench
+      - name: Typecheck
+        run: npx tsc --noEmit
+      - name: Lint
+        run: npm run lint
+      - name: Build and run all tests
+        run: npm test
