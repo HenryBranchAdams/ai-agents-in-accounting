@@ -1,4 +1,4 @@
-export default {
+const ledgerBenchRecord = {
   "capability_dimensions": [
     {
       "id": "evidence-grounding",
@@ -47,3 +47,5 @@ export default {
     }
   ]
 };
+
+export default ledgerBenchRecord;

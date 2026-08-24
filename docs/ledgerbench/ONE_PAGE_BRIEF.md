@@ -53,7 +53,8 @@ An **episode**:
 - **Standardized:** fixed harness, tools, and budget; compares models.
 - **Open Systems:** arbitrary autonomous stack with full disclosure.
 - **Assisted:** controlled human intervention, separately reported.
-- **Conformance:** neutral pass/fail; not a leaderboard.
+
+Conformance is a separate neutral pass/fail product, not a leaderboard division.
 
 ## Primary metric
 

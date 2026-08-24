@@ -11,6 +11,9 @@ function unique(records, label) {
 function validate() {
   assert.equal(ledgerBenchProgram.id, "ledgerbench");
   assert.equal(ledgerBenchProgram.status, "preview");
+  assert.equal(ledgerBenchProgram.review_status, "maintainer-reviewed");
+  assert.match(ledgerBenchProgram.applicability, /US GAAP/i);
+  assert.equal(ledgerBenchProgram.reuse_status, "mixed-rights");
   assert.match(ledgerBenchProgram.version, /^\d+\.\d+\.\d+$/);
   assert.match(ledgerBenchProgram.reviewed_at, /^\d{4}-\d{2}-\d{2}$/);
   assert.ok(ledgerBenchProgram.measurement_claim.length > 80);

@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - "data/ledgerbench-program.mjs"
+      - "data/ledgerbench/**"
       - "app/ledgerbench/**"
       - "app/ledgerbench-data.ts"
       - "app/ledgerbench.md/**"
@@ -13,6 +14,10 @@ on:
       - "scripts/validate-ledgerbench.mjs"
       - "tests/ledgerbench-program.test.mjs"
       - "app/content.ts"
+      - "app/agent-interface.ts"
+      - "app/openapi.json/route.ts"
+      - "app/[wellKnown]/api-catalog/route.ts"
+      - "app/sitemap.ts"
       - "app/bench/page.tsx"
       - "README.md"
       - "CONTRIBUTING.md"
@@ -24,6 +29,7 @@ on:
     branches: [main]
     paths:
       - "data/ledgerbench-program.mjs"
+      - "data/ledgerbench/**"
       - "app/ledgerbench/**"
       - "app/ledgerbench-data.ts"
       - "app/ledgerbench.md/**"
@@ -32,6 +38,19 @@ on:
       - "docs/ledgerbench/**"
       - "scripts/validate-ledgerbench.mjs"
       - "tests/ledgerbench-program.test.mjs"
+      - "tests/rendered-html.test.mjs"
+      - "tests/site-quality.test.mjs"
+      - "app/content.ts"
+      - "app/agent-interface.ts"
+      - "app/openapi.json/route.ts"
+      - "app/[wellKnown]/api-catalog/route.ts"
+      - "app/sitemap.ts"
+      - "app/bench/page.tsx"
+      - "README.md"
+      - "CONTRIBUTING.md"
+      - "BENCHMARK_SUBMISSIONS.md"
+      - "package.json"
+      - "package-lock.json"
       - ".github/workflows/ledgerbench.yml"
 
 permissions:

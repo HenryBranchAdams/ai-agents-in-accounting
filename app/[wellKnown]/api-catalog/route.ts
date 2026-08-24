@@ -16,15 +16,22 @@ const apiEndpoints = [
   `${siteOrigin}/api/v1/search`,
   `${siteOrigin}/api/v1/packs`,
   `${siteOrigin}/api/v1/benchmark`,
+  `${siteOrigin}/api/v1/ledgerbench`,
   metadataUrl,
   `${siteOrigin}/api/v1/taxonomy`,
+];
+const schemaEndpoints = [
+  `${siteOrigin}/schemas/ledgerbench-program.schema.json`,
+  `${siteOrigin}/schemas/ledgerbench-episode.schema.json`,
+  `${siteOrigin}/schemas/ledgerbench-result.schema.json`,
+  `${siteOrigin}/schemas/ledgerbench-submission.schema.json`,
 ];
 
 const document = {
   linkset: [
     {
       anchor: apiCatalogUrl,
-      item: apiEndpoints.map((href) => ({ href })),
+      item: [...apiEndpoints, ...schemaEndpoints].map((href) => ({ href })),
     },
     ...apiEndpoints.map((anchor) => ({
       anchor,
@@ -36,6 +43,11 @@ const document = {
       ],
       "service-doc": [{ href: documentationUrl, type: "text/html" }],
       "service-meta": [{ href: metadataUrl, type: "application/json" }],
+    })),
+    ...schemaEndpoints.map((anchor) => ({
+      anchor,
+      describedby: [{ href: `${siteOrigin}/ledgerbench`, type: "text/html" }],
+      "service-desc": [{ href: anchor, type: "application/schema+json" }],
     })),
   ],
 };

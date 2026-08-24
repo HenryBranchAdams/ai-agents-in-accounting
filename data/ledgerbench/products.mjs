@@ -1,4 +1,4 @@
-export default {
+const ledgerBenchRecord = {
   "products": [
     {
       "id": "capability-benchmark",
@@ -30,3 +30,5 @@ export default {
     }
   ]
 };
+
+export default ledgerBenchRecord;

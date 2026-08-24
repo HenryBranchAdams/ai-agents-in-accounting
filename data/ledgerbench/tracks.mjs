@@ -1,4 +1,4 @@
-export default {
+const ledgerBenchRecord = {
   "tracks": [
     {
       "id": "core",
@@ -60,3 +60,5 @@ export default {
     }
   ]
 };
+
+export default ledgerBenchRecord;

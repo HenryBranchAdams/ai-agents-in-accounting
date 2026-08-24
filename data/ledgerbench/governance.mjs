@@ -1,4 +1,4 @@
-export default {
+const ledgerBenchRecord = {
   "governance": [
     {
       "id": "program-council",
@@ -87,3 +87,5 @@ export default {
     "human_baseline": "Two independent qualified preparers and one independent reviewer per admitted episode."
   }
 };
+
+export default ledgerBenchRecord;

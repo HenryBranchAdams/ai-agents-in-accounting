@@ -1,4 +1,4 @@
-export default {
+const ledgerBenchRecord = {
   "precedents": [
     {
       "id": "mlperf",
@@ -97,3 +97,5 @@ export default {
     "external_sources": "Remain subject to their publishers' terms."
   }
 };
+
+export default ledgerBenchRecord;

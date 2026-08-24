@@ -1,4 +1,4 @@
-export default {
+const ledgerBenchRecord = {
   "split_policy": {
     "primary_splits_are_exclusive": true,
     "splits": [
@@ -66,3 +66,5 @@ export default {
     "Report quality and resource use separately and publish capability–cost frontiers."
   ]
 };
+
+export default ledgerBenchRecord;

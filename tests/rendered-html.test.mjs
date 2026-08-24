@@ -828,6 +828,7 @@ test("publishes a complete agent-ingestion corpus and discovery contract", async
     "/api/v1/search",
     "/api/v1/packs",
     "/api/v1/benchmark",
+    "/api/v1/ledgerbench",
     "/api/v1/ecosystem",
   ]) {
     assert.ok(contract.paths[path], path);
@@ -845,6 +846,6 @@ test("publishes a complete agent-ingestion corpus and discovery contract", async
   assert.match(sitemapText, /\/reading-room/);
   assert.match(sitemapText, /\/packs\/bank-reconciliation/);
   const locations = [...sitemapText.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
-  assert.equal(locations.length, 532);
+  assert.equal(locations.length, 533);
   assert.equal(new Set(locations).size, locations.length);
 });

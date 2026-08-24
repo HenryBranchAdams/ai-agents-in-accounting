@@ -1,4 +1,4 @@
-export default {
+const ledgerBenchRecord = {
   "submission_program": {
     "statuses": [
       {
@@ -31,3 +31,5 @@ export default {
     ]
   }
 };
+
+export default ledgerBenchRecord;

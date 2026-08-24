@@ -20,7 +20,8 @@ export function LedgerBenchFoundations() {
           <div><dt>Unit under test</dt><dd>{ledgerBenchProgram.unit_under_test}</dd></div>
           <div><dt>Unit of evaluation</dt><dd>{ledgerBenchProgram.unit_of_evaluation.name}</dd></div>
           <div><dt>Program version</dt><dd>{ledgerBenchProgram.version}</dd></div>
-          <div><dt>Review state</dt><dd>Maintainer-reviewed Preview; independent program bodies are not yet constituted.</dd></div>
+          <div><dt>Review state</dt><dd>{ledgerBenchProgram.review_status}. {ledgerBenchProgram.provenance.review_process}</dd></div>
+          <div><dt>Applicability</dt><dd>{ledgerBenchProgram.applicability}</dd></div>
         </dl>
         <p>{ledgerBenchProgram.unit_of_evaluation.definition}</p>
         <h3>What a result does not establish</h3>

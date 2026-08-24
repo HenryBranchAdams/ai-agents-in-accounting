@@ -1,4 +1,4 @@
-export default {
+const ledgerBenchRecord = {
   "task_universe": {
     "domains": [
       "General ledger and close",
@@ -92,3 +92,5 @@ export default {
     ]
   }
 };
+
+export default ledgerBenchRecord;

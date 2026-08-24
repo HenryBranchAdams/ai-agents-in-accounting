@@ -1,12 +1,8 @@
-import { publicResponse } from "../../agent-interface";
 import { ledgerBenchProgramSchema } from "../../ledgerbench-data";
+import { ledgerBenchSchemaResponse } from "../../ledgerbench/schema-response";
 
 export async function GET(request: Request) {
-  return publicResponse(
-    request,
-    JSON.stringify(ledgerBenchProgramSchema, null, 2),
-    "application/schema+json; charset=utf-8",
-  );
+  return ledgerBenchSchemaResponse(request, ledgerBenchProgramSchema);
 }
 
 export const HEAD = GET;

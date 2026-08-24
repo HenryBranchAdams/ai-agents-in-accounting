@@ -8,7 +8,7 @@ export const ledgerBenchProgramSchema = {
   type: "object",
   additionalProperties: false,
   required: [
-    "id", "version", "status", "title", "subtitle", "reviewed_at", "mission",
+    "id", "version", "status", "review_status", "applicability", "reuse_status", "title", "subtitle", "reviewed_at", "mission",
     "measurement_claim", "unit_under_test", "unit_of_evaluation", "non_claims",
     "products", "tracks", "divisions", "task_universe", "capability_dimensions",
     "primary_metric", "hard_gates", "required_reporting", "task_admission",
@@ -19,6 +19,9 @@ export const ledgerBenchProgramSchema = {
     id: { type: "string", const: "ledgerbench" },
     version: { type: "string", pattern: semver },
     status: { type: "string", enum: ["proposed", "preview", "active", "saturated", "retired", "archived"] },
+    review_status: { type: "string", enum: ["maintainer-reviewed", "independently-reviewed"] },
+    applicability: { type: "string", minLength: 1 },
+    reuse_status: { type: "string", enum: ["mixed-rights"] },
     title: { type: "string" },
     subtitle: { type: "string" },
     reviewed_at: { type: "string", format: "date" },
@@ -158,7 +161,39 @@ export const ledgerBenchProgramSchema = {
     },
     lifecycle: stringArray,
     launch_gates: stringArray,
-    first_release: { type: "object" },
+    first_release: {
+      type: "object",
+      additionalProperties: false,
+      required: ["name", "status", "reporting_basis", "episode_plan", "minimum_operating_models", "minimum_organizational_contexts", "human_baseline"],
+      properties: {
+        name: { type: "string" },
+        status: { type: "string", enum: ["proposed", "preview", "active"] },
+        reporting_basis: { type: "string" },
+        episode_plan: {
+          type: "array",
+          minItems: 1,
+          items: {
+            type: "object",
+            additionalProperties: false,
+            required: ["track"],
+            properties: {
+              track: { type: "string" },
+              official_hidden_episodes: { type: "integer", minimum: 1 },
+              official_hidden_sequences: { type: "integer", minimum: 1 },
+              public_episodes: { type: "string" },
+            },
+            oneOf: [
+              { required: ["official_hidden_episodes"] },
+              { required: ["official_hidden_sequences"] },
+              { required: ["public_episodes"] },
+            ],
+          },
+        },
+        minimum_operating_models: { type: "integer", minimum: 1 },
+        minimum_organizational_contexts: { type: "integer", minimum: 1 },
+        human_baseline: { type: "string" },
+      },
+    },
     precedents: {
       type: "array",
       minItems: 10,
@@ -174,7 +209,26 @@ export const ledgerBenchProgramSchema = {
         },
       },
     },
-    provenance: { type: "object" },
-    licenses: { type: "object" },
+    provenance: {
+      type: "object",
+      additionalProperties: false,
+      required: ["publisher", "annotation_type", "review_process"],
+      properties: {
+        publisher: { type: "string" },
+        annotation_type: { type: "string" },
+        review_process: { type: "string" },
+      },
+    },
+    licenses: {
+      type: "object",
+      additionalProperties: false,
+      required: ["program_record_and_factual_metadata", "original_explanatory_content", "schemas_and_software", "external_sources"],
+      properties: {
+        program_record_and_factual_metadata: { type: "string", const: "CC0-1.0" },
+        original_explanatory_content: { type: "string", const: "CC-BY-4.0" },
+        schemas_and_software: { type: "string", const: "MIT" },
+        external_sources: { type: "string" },
+      },
+    },
   },
 } as const;

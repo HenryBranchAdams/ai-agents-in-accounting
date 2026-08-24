@@ -1,4 +1,4 @@
-export default {
+const ledgerBenchRecord = {
   "primary_metric": {
     "id": "accepted-work-rate",
     "name": "Accepted Work Rate",
@@ -42,3 +42,5 @@ export default {
     "Candidate, model, scaffold, tools, configuration, benchmark release, budget, and verification status"
   ]
 };
+
+export default ledgerBenchRecord;

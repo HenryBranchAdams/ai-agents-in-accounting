@@ -133,11 +133,18 @@ export const ledgerBenchResultSchema = {
       items: {
         type: "object",
         additionalProperties: false,
-        required: ["action_type", "status", "receipt_id"],
+        required: [
+          "action_type", "status", "accountable_actor_id", "accountable_actor_role",
+          "approval_evidence_id", "approved_scope", "receipt_id",
+        ],
         properties: {
-          action_type: { type: "string" },
-          status: { type: "string" },
-          receipt_id: { type: "string" },
+          action_type: { type: "string", minLength: 1 },
+          status: { type: "string", minLength: 1 },
+          accountable_actor_id: { type: "string", minLength: 1 },
+          accountable_actor_role: { type: "string", minLength: 1 },
+          approval_evidence_id: { type: "string", minLength: 1 },
+          approved_scope: { type: "string", minLength: 1 },
+          receipt_id: { type: "string", minLength: 1 },
         },
       },
     },
@@ -179,4 +186,3 @@ export const ledgerBenchResultSchema = {
     },
   },
 } as const;
-

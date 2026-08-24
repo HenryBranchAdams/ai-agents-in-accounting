@@ -26,6 +26,7 @@ const pages = [
   ["/machine-access", 0.7],
   ["/packs", 0.9],
   ["/bench", 0.9],
+  ["/ledgerbench", 0.9],
   ["/spec", 0.8],
   ["/methodology", 0.7],
   ["/changes", 0.7],

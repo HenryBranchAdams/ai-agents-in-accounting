@@ -1,4 +1,4 @@
-export default {
+const ledgerBenchRecord = {
   "task_admission": [
     {
       "order": 1,
@@ -62,3 +62,5 @@ export default {
     }
   ]
 };
+
+export default ledgerBenchRecord;

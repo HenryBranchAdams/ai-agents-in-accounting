@@ -1,7 +1,10 @@
-export default {
+const ledgerBenchRecord = {
   "id": "ledgerbench",
   "version": "0.1.0",
   "status": "preview",
+  "review_status": "maintainer-reviewed",
+  "applicability": "Preview benchmark design for US GAAP-centered accounting work; each release and episode must state any narrower jurisdictional, reporting-basis, entity, and period limitations.",
+  "reuse_status": "mixed-rights",
   "title": "LedgerBench",
   "subtitle": "A first-class benchmark program for accounting agents",
   "reviewed_at": "2026-08-24",
@@ -25,3 +28,5 @@ export default {
     "A conformance pass establishes only that the tested requirements were not violated in the tested cases."
   ]
 };
+
+export default ledgerBenchRecord;
