@@ -1,0 +1,135 @@
+           <div><dt>/templates</dt><dd>{templates.length} practical implementation structures.</dd></div>
+           <div><dt>/glossary</dt><dd>{glossary.length} controlled terms and related concepts.</dd></div>
+           <div><dt>/resources</dt><dd>{agentResources.length} source records with provenance and access notes.</dd></div>
+-          <div><dt>/search</dt><dd>Ranked search across every public record family with explainable match fields.</dd></div>
++          <div><dt>/search</dt><dd>Ranked search across every public record family; default 25, maximum 100, with explainable match fields.</dd></div>
+           <div><dt>/packs</dt><dd>{packs.length} portable workflow packs.</dd></div>
+           <div><dt>/benchmark</dt><dd>{benchmarkCases.length} public synthetic conformance cases.</dd></div>
+           <div><dt>/ecosystem</dt><dd>{ecosystemLayers.length} interface and standards layers with explicit adoption posture and boundaries.</dd></div>
+@@ -169,7 +169,7 @@ export default function MachineAccessPage() {
+           <div><dt>family</dt><dd>Workflow process family; values are published in the taxonomy endpoint.</dd></div>
+           <div><dt>authority</dt><dd>Workflow authority level from A0 through A4 or human-only.</dd></div>
+           <div><dt>topic / kind</dt><dd>Source-catalog topic and source type.</dd></div>
+-          <div><dt>limit</dt><dd>One through 200 records. The default is 50.</dd></div>
++          <div><dt>limit</dt><dd>Collection endpoints allow one through 200 records and default to 50. Unified search allows one through 100 and defaults to 25.</dd></div>
+           <div><dt>cursor</dt><dd>The last record ID from the previous page. Reuse the same filters.</dd></div>
+           <div><dt>format</dt><dd><code>json</code> or <code>markdown</code>; the Accept header can also select Markdown.</dd></div>
+         </dl>
+diff --git a/app/page.tsx b/app/page.tsx
+index ff03e3e..84bd6c1 100644
+--- a/app/page.tsx
++++ b/app/page.tsx
+@@ -1,6 +1,7 @@
+ import Link from "next/link";
+ import { DocsShell } from "./DocsShell";
+ import { benchmarkCases, packs, releaseNotes } from "./platform-data";
++import { readingRoomResources } from "./reading-room-data";
+ import { resources } from "./resources-data";
+ import { workflowRecords } from "./workflows-data";
+ 
+@@ -34,14 +35,14 @@ export default function OverviewPage() {
+           documentation, and approval.
+         </p>
+         <p>
+-          This open guide describes the work in accounting terms. Sixty workflow
++          This open guide describes the work in accounting terms. {workflowRecords.length} workflow
+           records across eight process families name the objective, evidence,
+           procedures, deterministic checks, authority, human decisions, failure
+           modes, and retained record an implementation needs.
+         </p>
+         <p>
+-          Six portable packs turn representative workflows into synthetic,
+-          runnable specimens. Accounting Agent Bench tests thirty normal, edge,
++          {packs.length} portable packs turn representative workflows into synthetic,
++          runnable specimens. Accounting Agent Bench tests {benchmarkCases.length} normal, edge,
+           adversarial, and authority-boundary cases without using production data.
+         </p>
+         <div className="corpus-summary" role="list" aria-label="Public corpus coverage">
+@@ -60,7 +61,7 @@ export default function OverviewPage() {
+             <span>{releaseNotes[0].summary}</span>
+           </Link>
+           <Link href="/reading-room#financial-services-supervision">
+-            <strong>Expanded reading room · 153 readings</strong>
++            <strong>Expanded reading room · {readingRoomResources.length} readings</strong>
+             <span>Financial supervision, model risk, structured reporting data, field deployments, and continuous assurance.</span>
+           </Link>
+           <Link href="/ecosystem">
+@@ -88,10 +89,10 @@ export default function OverviewPage() {
+       <section id="guide-map">
+         <h2>Choose the job you are here to do</h2>
+         <div className="doc-link-list">
+-          <a href="/fundamentals">
++          <Link href="/fundamentals">
+             <strong>Learn</strong>
+             <span>Start with agent fundamentals, the accounting lifecycle, authority, and controls.</span>
+-          </a>
++          </Link>
+           <Link href="/packs">
+             <strong>Build</strong>
+             <span>Use portable workflow packs, system architecture, pilot guidance, and the public specification.</span>
+@@ -100,10 +101,10 @@ export default function OverviewPage() {
+             <strong>Evaluate</strong>
+             <span>Run synthetic conformance cases with deterministic checks and hard authority gates.</span>
+           </Link>
+-          <a href="/machine-access">
++          <Link href="/machine-access">
+             <strong>Integrate</strong>
+             <span>Use standard HTTP, Markdown, JSON, OpenAPI, schemas, feeds, clients, and a CLI.</span>
+-          </a>
++          </Link>
+         </div>
+         <p>
+           Or browse the <Link href="/workflows">workflow library</Link>, <Link href="/resources">source catalog</Link>,
+@@ -158,8 +159,8 @@ export default function OverviewPage() {
+           </p>
+         </div>
+         <p>
+-          Use <a href="/authority">Authority levels</a> to classify each action
+-          and <a href="/sensitive-actions">Sensitive actions</a> to design the
++          Use <Link href="/authority">Authority levels</Link> to classify each action
++          and <Link href="/sensitive-actions">Sensitive actions</Link> to design the
+           approval, identity, payload, rollback, and logging boundary.
+         </p>
+       </section>
+diff --git a/app/platform-api.ts b/app/platform-api.ts
+index 851f0ea..6db9110 100644
+--- a/app/platform-api.ts
++++ b/app/platform-api.ts
+@@ -64,6 +64,7 @@ export async function platformCollectionResponse<T extends Identified>({
+   if (format === "markdown") {
+     return publicResponse(request, renderMarkdown(items), "text/markdown; charset=utf-8", {
+       headers: next ? { "X-Next-Page": next.toString(), "Content-Language": "en" } : { "Content-Language": "en" },
++      modifiedAt: platformRelease.published_at,
+     });
+   }
+ 
+@@ -90,6 +91,7 @@ export async function platformCollectionResponse<T extends Identified>({
+     items,
+   }, null, 2), "application/json; charset=utf-8", {
+     headers: next ? { "X-Next-Page": next.toString() } : undefined,
++    modifiedAt: platformRelease.published_at,
+   });
+ }
+ 
+@@ -114,6 +116,7 @@ export function platformItemResponse<T extends Identified>({
+   if (format === "markdown") {
+     return publicResponse(request, renderMarkdown(item), "text/markdown; charset=utf-8", {
+       headers: { "Content-Language": "en" },
++      modifiedAt: platformRelease.published_at,
+     });
+   }
+   return publicResponse(request, JSON.stringify({
+@@ -121,5 +124,7 @@ export function platformItemResponse<T extends Identified>({
+     release_version: platformRelease.id,
+     collection,
+     item,
+-  }, null, 2), "application/json; charset=utf-8");
++  }, null, 2), "application/json; charset=utf-8", {
++    modifiedAt: platformRelease.published_at,
++  });
+ }
+diff --git a/app/reading-room.md/route.ts b/app/reading-room.md/route.ts
+index e566d2f..7ef3d03 100644
+--- a/app/reading-room.md/route.ts
++++ b/app/reading-room.md/route.ts
+@@ -1,4 +1,4 @@
