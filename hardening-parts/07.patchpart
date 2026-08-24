@@ -1,0 +1,185 @@
+-import { publicResponse, siteOrigin } from "../agent-interface";
++import { catalogModifiedAt, publicResponse, siteOrigin } from "../agent-interface";
+ import { renderReadingRoomMarkdown } from "../reading-room-data";
+ 
+ export async function GET(request: Request) {
+@@ -6,6 +6,7 @@ export async function GET(request: Request) {
+     request,
+     renderReadingRoomMarkdown(siteOrigin),
+     "text/markdown; charset=utf-8",
++    { modifiedAt: catalogModifiedAt },
+   );
+ }
+ 
+diff --git a/app/resources.md/route.ts b/app/resources.md/route.ts
+index 0165b39..567611f 100644
+--- a/app/resources.md/route.ts
++++ b/app/resources.md/route.ts
+@@ -1,5 +1,6 @@
+ import {
+   agentResources,
++  catalogModifiedAt,
+   publicResponse,
+   renderResourcesMarkdown,
+ } from "../agent-interface";
+@@ -9,7 +10,7 @@ export async function GET(request: Request) {
+     request,
+     renderResourcesMarkdown(agentResources),
+     "text/markdown; charset=utf-8",
+-    { headers: { "Content-Language": "en" } },
++    { modifiedAt: catalogModifiedAt, headers: { "Content-Language": "en" } },
+   );
+ }
+ 
+diff --git a/app/sitemap.ts b/app/sitemap.ts
+index 8a10033..bf84404 100644
+--- a/app/sitemap.ts
++++ b/app/sitemap.ts
+@@ -1,5 +1,5 @@
+ import type { MetadataRoute } from "next";
+-import { siteOrigin } from "./agent-interface";
++import { catalogModifiedAt, corpusModifiedAt, platformPublishedAt, siteOrigin } from "./project-metadata";
+ import { resources } from "./resources-data";
+ import { processFamilies, workflowRecords } from "./workflows-data";
+ import { packs } from "./platform-data";
+@@ -36,35 +36,35 @@ const pages = [
+ export default function sitemap(): MetadataRoute.Sitemap {
+   const staticPages = pages.map(([path, priority]) => ({
+     url: `${siteOrigin}${path}`,
+-    lastModified: new Date("2026-08-23T00:00:00Z"),
++    lastModified: new Date(platformPublishedAt),
+     changeFrequency: "monthly",
+     priority,
+   }));
+ 
+   const familyPages: MetadataRoute.Sitemap = processFamilies.map((family) => ({
+     url: `${siteOrigin}/workflows/${family.id}`,
+-    lastModified: new Date("2026-08-23T00:00:00Z"),
++    lastModified: new Date(corpusModifiedAt),
+     changeFrequency: "monthly",
+     priority: 0.8,
+   }));
+ 
+   const workflowPages: MetadataRoute.Sitemap = workflowRecords.map((workflow) => ({
+     url: `${siteOrigin}/workflows/${workflow.family}/${workflow.id}`,
+-    lastModified: new Date("2026-08-23T00:00:00Z"),
++    lastModified: new Date(corpusModifiedAt),
+     changeFrequency: "monthly",
+     priority: 0.7,
+   }));
+ 
+   const resourcePages: MetadataRoute.Sitemap = resources.map((resource) => ({
+     url: `${siteOrigin}/resources/${resource.id}`,
+-    lastModified: new Date("2026-08-23T00:00:00Z"),
++    lastModified: new Date(catalogModifiedAt),
+     changeFrequency: "monthly",
+     priority: 0.6,
+   }));
+ 
+   const packPages: MetadataRoute.Sitemap = packs.map((pack) => ({
+     url: `${siteOrigin}/packs/${pack.id}`,
+-    lastModified: new Date("2026-08-23T00:00:00Z"),
++    lastModified: new Date(platformPublishedAt),
+     changeFrequency: "monthly",
+     priority: 0.8,
+   }));
+diff --git a/build/sites-vite-plugin.ts b/build/sites-vite-plugin.ts
+index 26563fd..6d80093 100644
+--- a/build/sites-vite-plugin.ts
++++ b/build/sites-vite-plugin.ts
+@@ -7,14 +7,12 @@ async function exists(path: string): Promise<boolean> {
+     await access(path);
+     return true;
+   } catch (error) {
+-    if ((error as NodeJS.ErrnoException).code === "ENOENT") {
+-      return false;
+-    }
++    if ((error as NodeJS.ErrnoException).code === "ENOENT") return false;
+     throw error;
+   }
+ }
+ 
+-// Packages Sites metadata and migrations after Vite finishes compiling.
++// Packages the optional ChatGPT Sites hosting descriptor after Vite compiles.
+ export function sites(): Plugin {
+   let root = process.cwd();
+ 
+@@ -27,7 +25,6 @@ export function sites(): Plugin {
+     async closeBundle() {
+       const outputDirectory = resolve(root, "dist", ".openai");
+       const hostingConfig = resolve(root, ".openai", "hosting.json");
+-      const drizzleSource = resolve(root, "drizzle");
+ 
+       await rm(outputDirectory, { recursive: true, force: true });
+       await mkdir(outputDirectory, { recursive: true });
+@@ -35,11 +32,6 @@ export function sites(): Plugin {
+       if (await exists(hostingConfig)) {
+         await cp(hostingConfig, resolve(outputDirectory, "hosting.json"));
+       }
+-      if (await exists(drizzleSource)) {
+-        await cp(drizzleSource, resolve(outputDirectory, "drizzle"), {
+-          recursive: true,
+-        });
+-      }
+     },
+   };
+ }
+diff --git a/clients/README.md b/clients/README.md
+index ef5a388..0ccb74f 100644
+--- a/clients/README.md
++++ b/clients/README.md
+@@ -1,5 +1,7 @@
+ # Reference clients
+ 
++**Support posture:** these files are maintained reference examples for API version 1.x. They are not published npm or PyPI packages, do not promise independent semantic versioning, and should be vendored or copied deliberately. Breaking API changes require an updated example and compatibility note in the project release record.
++
+ These small, zero-dependency clients demonstrate the public HTTP contract. They are MIT-licensed examples, not required SDKs.
+ 
+ ## JavaScript
+@@ -27,3 +29,7 @@ pack = client.pack("revenue-contract-review")
+ The Python client uses only the standard library. Copy the single module into a governed project or vendor it with the source release.
+ 
+ Keep retrieved record IDs, release versions, review dates, source IDs, and rights fields in the consuming agent’s run record. A successful retrieval does not establish source applicability or action authority.
++
++## Compatibility
++
++The examples target the public read-only API and Node.js 22 or Python 3.11+. They intentionally omit retries, durable caches, telemetry, and framework-specific authentication. Consumers own those production concerns and must preserve the retrieved release, record, source, review, and rights metadata.
+diff --git a/cloudflare-env.d.ts b/cloudflare-env.d.ts
+index c5064c3..a1c8f8e 100644
+--- a/cloudflare-env.d.ts
++++ b/cloudflare-env.d.ts
+@@ -1,14 +1,4 @@
+-/** Minimal bindings used by the application when Cloudflare's runtime types are not installed. */
++/** Minimal asset binding used when Cloudflare runtime types are not installed. */
+ interface Fetcher {
+   fetch(input: RequestInfo | URL, init?: RequestInit): Promise<Response>;
+ }
+-
+-interface D1Database {
+-  readonly __d1DatabaseBrand?: never;
+-}
+-
+-declare module "cloudflare:workers" {
+-  export const env: {
+-    DB?: D1Database;
+-  };
+-}
+diff --git a/data/open-source-platform.mjs b/data/open-source-platform.mjs
+index bd1088c..cf64b28 100644
+--- a/data/open-source-platform.mjs
++++ b/data/open-source-platform.mjs
+@@ -1,11 +1,13 @@
++import releaseMetadata from "./release.json" with { type: "json" };
++
+ export const platformRelease = {
+-  id: "2026-08-23.9",
+-  published_at: "2026-08-23T00:00:00.000Z",
+-  reviewed_at: "2026-08-23",
++  id: releaseMetadata.platform.id,
++  published_at: releaseMetadata.platform.published_at,
++  reviewed_at: releaseMetadata.platform.reviewed_at,
+   status: "current",
+-  title: "Mobile quality and interaction coverage",
+-  summary: "Adds permanent mobile release gates for navigation, touch targets, safe areas, responsive search, overflow containment, and compiled phone styles.",
+-  specification_version: "1.0.0",
++  title: "Repository hardening and portable quality gates",
