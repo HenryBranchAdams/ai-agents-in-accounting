@@ -1,0 +1,187 @@
++  summary: "Adds enforced release and browser gates, portable generation and archives, lazy corpus search, layer-correct caching, source freshness operations, and repository governance scaffolding.",
++  specification_version: releaseMetadata.platform.specification_version,
+   licenses: {
+     software: "MIT",
+     editorial_content: "CC-BY-4.0",
+@@ -378,14 +380,16 @@ export const benchmarkCases = packs.flatMap((pack) => caseTemplates.map((templat
+ export const releaseNotes = [
+   {
+     id: platformRelease.id,
+-    date: "2026-08-23",
++    date: "2026-08-24",
+     title: platformRelease.title,
+     summary: platformRelease.summary,
+     changes: [
+-      "Added mobile-navigation parity and active-page tests across primary documentation routes.",
+-      "Added compiled-style checks for phone breakpoints, safe-area spacing, dynamic viewport units, single-column content, and overflow containment.",
+-      "Raised mobile search, menu, close, navigation, and result controls to a 44-pixel minimum touch target.",
+-      "Set mobile search input text to 16 pixels to prevent automatic iOS form zoom and constrained the dialog to the dynamic viewport.",
++      "Added an enforced GitHub release gate, browser-quality workflow, CODEOWNERS, contribution templates, and dependency automation.",
++      "Moved the default contributor path to portable npm and Node commands while retaining separately named ChatGPT Sites wrappers.",
++      "Replaced client-side corpus imports with debounced, cancellable public-API search and an in-memory result cache.",
++      "Centralized release metadata, made the canonical origin configurable, corrected layer-specific cache validators, and clarified API counts.",
++      "Added deterministic cross-platform ZIP generation, real Chromium and WebKit checks, and scheduled external-source freshness reporting.",
++      "Removed unused root database and authentication scaffolding and documented reference-client support and required repository settings.",
+     ],
+     compatibility: "Additive. Public data contracts are unchanged.",
+   },
+diff --git a/db/index.ts b/db/index.ts
+deleted file mode 100644
+index 19b3799..0000000
+--- a/db/index.ts
++++ /dev/null
+@@ -1,13 +0,0 @@
+-import { env } from "cloudflare:workers";
+-import { drizzle } from "drizzle-orm/d1";
+-import * as schema from "./schema";
+-
+-export function getDb() {
+-  if (!env.DB) {
+-    throw new Error(
+-      "Cloudflare D1 binding `DB` is unavailable. Set the `d1` field in .openai/hosting.json to `DB` or let your control plane inject the real binding values before using the database."
+-    );
+-  }
+-
+-  return drizzle(env.DB, { schema });
+-}
+diff --git a/db/schema.ts b/db/schema.ts
+deleted file mode 100644
+index d2dd83c..0000000
+--- a/db/schema.ts
++++ /dev/null
+@@ -1,4 +0,0 @@
+-// Intentionally empty by default.
+-// Add Drizzle tables here when the site actually needs a database.
+-// See examples/d1/db/schema.ts for an opt-in example.
+-export {};
+diff --git a/drizzle.config.ts b/drizzle.config.ts
+deleted file mode 100644
+index c2b2f34..0000000
+--- a/drizzle.config.ts
++++ /dev/null
+@@ -1,7 +0,0 @@
+-import { defineConfig } from "drizzle-kit";
+-
+-export default defineConfig({
+-  out: "./drizzle",
+-  schema: "./db/schema.ts",
+-  dialect: "sqlite",
+-});
+diff --git a/drizzle/meta/_journal.json b/drizzle/meta/_journal.json
+deleted file mode 100644
+index 4377507..0000000
+--- a/drizzle/meta/_journal.json
++++ /dev/null
+@@ -1,5 +0,0 @@
+-{
+-  "version": "7",
+-  "dialect": "sqlite",
+-  "entries": []
+-}
+diff --git a/examples/d1/app/api/notes/route.ts b/examples/d1/app/api/notes/route.ts
+deleted file mode 100644
+index 07f8318..0000000
+--- a/examples/d1/app/api/notes/route.ts
++++ /dev/null
+@@ -1,58 +0,0 @@
+-import { desc } from "drizzle-orm";
+-import { getDb } from "../../../../../db";
+-import { notes } from "../../../db/schema";
+-
+-function toRouteErrorMessage(error: unknown) {
+-  const message = error instanceof Error ? error.message : "Unexpected error";
+-  const detail =
+-    error instanceof Error && error.cause instanceof Error ? error.cause.message : "";
+-  const combined = `${message}\n${detail}`;
+-
+-  if (combined.includes("no such table") || combined.includes('from "notes"')) {
+-    return "The notes table is unavailable. Generate the migration locally with `npm run db:generate`, then deploy so the platform can apply the generated SQL to the real D1 database.";
+-  }
+-
+-  return message;
+-}
+-
+-export async function GET() {
+-  try {
+-    const db = getDb();
+-    const rows = await db
+-      .select()
+-      .from(notes)
+-      .orderBy(desc(notes.createdAt), desc(notes.id))
+-      .limit(20);
+-
+-    return Response.json({ notes: rows });
+-  } catch (error) {
+-    return Response.json(
+-      { error: toRouteErrorMessage(error) },
+-      { status: 500 }
+-    );
+-  }
+-}
+-
+-export async function POST(request: Request) {
+-  try {
+-    const payload = (await request.json()) as {
+-      title?: string;
+-      content?: string;
+-    };
+-    const title = payload.title?.trim() ?? "";
+-    const content = payload.content?.trim() ?? "";
+-
+-    if (!title) {
+-      return Response.json({ error: "title is required" }, { status: 400 });
+-    }
+-
+-    const db = getDb();
+-    const [note] = await db.insert(notes).values({ title, content }).returning();
+-    return Response.json({ note }, { status: 201 });
+-  } catch (error) {
+-    return Response.json(
+-      { error: toRouteErrorMessage(error) },
+-      { status: 500 }
+-    );
+-  }
+-}
+diff --git a/examples/d1/db/schema.ts b/examples/d1/db/schema.ts
+deleted file mode 100644
+index 7bb0c15..0000000
+--- a/examples/d1/db/schema.ts
++++ /dev/null
+@@ -1,9 +0,0 @@
+-import { sql } from "drizzle-orm";
+-import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
+-
+-export const notes = sqliteTable("notes", {
+-  id: integer("id").primaryKey({ autoIncrement: true }),
+-  title: text("title").notNull(),
+-  content: text("content").notNull().default(""),
+-  createdAt: text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+-});
+diff --git a/package.json b/package.json
+index f7a8994..264218d 100644
+--- a/package.json
++++ b/package.json
+@@ -6,37 +6,41 @@
+     "node": ">=22.13.0"
+   },
+   "scripts": {
+-    "install:ci": "bash scripts/install-ci.sh",
+-    "dev": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vite",
+-    "build": "bash scripts/build-verified.sh",
+-    "start": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext start",
++    "dev": "vite",
++    "build": "vinext build",
++    "start": "vinext start",
+     "test": "npm run build && node --test tests/*.test.mjs",
++    "check:bundle": "node scripts/check-client-bundle.mjs",
+     "test:contracts": "node --test tests/rendered-html.test.mjs",
+     "test:mobile": "node --test tests/mobile-quality.test.mjs",
+     "test:quality": "node --test tests/site-quality.test.mjs",
+-    "lint": "bash scripts/sites-env.sh -- eslint . --ignore-pattern dist --ignore-pattern .next",
++    "test:ledgerbench": "node --test tests/ledgerbench-program.test.mjs",
++    "test:browser": "playwright test",
++    "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
+     "generate:platform": "node scripts/generate-platform-artifacts.mjs",
+-    "validate:platform": "node scripts/validate-platform.mjs",
++    "validate:platform": "node scripts/validate-platform.mjs && node scripts/validate-release-metadata.mjs",
+     "validate:ledgerbench": "node scripts/validate-ledgerbench.mjs",
