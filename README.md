@@ -1,4 +1,4 @@
-# Accounting Agents
+# AI Agents in Accounting
 
 An open field guide, workflow-pack library, benchmark, and machine-readable corpus for governed AI-agent work in accounting and finance.
 
