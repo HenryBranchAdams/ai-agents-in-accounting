@@ -40,6 +40,14 @@ jobs:
               '    if (!open || term.length < 2) return;',
           )
           text = text.replace(
+              '    const cached = resultCache.get(term);\n    if (cached) {\n      setRemote(cached);\n      return;\n    }',
+              '    if (resultCache.has(term)) return;',
+          )
+          text = text.replace(
+              '    return remote;\n  }, [deferredQuery, remote]);',
+              '    return resultCache.get(term.toLowerCase()) ?? remote;\n  }, [deferredQuery, remote]);',
+          )
+          text = text.replace(
               'write("scripts/check-source-freshness.mjs", r\'\'\'\n#!/usr/bin/env node',
               'write("scripts/check-source-freshness.mjs", r\'\'\'#!/usr/bin/env node',
           )
