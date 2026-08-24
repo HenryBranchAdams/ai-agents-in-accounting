@@ -1,0 +1,2631 @@
+diff --git a/.github/workflows/export-source.yml b/.github/workflows/export-source.yml
+deleted file mode 100644
+index 3102ba3..0000000
+--- a/.github/workflows/export-source.yml
++++ /dev/null
+@@ -1,25 +0,0 @@
+-name: Export source
+-
+-on:
+-  pull_request:
+-  push:
+-    branches:
+-      - chore/repository-hardening
+-
+-permissions:
+-  contents: read
+-
+-jobs:
+-  export:
+-    runs-on: ubuntu-latest
+-    steps:
+-      - uses: actions/checkout@v4
+-      - name: Package checkout
+-        run: tar --exclude=.git -czf /tmp/repository-source.tar.gz .
+-      - name: Upload checkout
+-        uses: actions/upload-artifact@v4
+-        with:
+-          name: repository-source
+-          path: /tmp/repository-source.tar.gz
+-          if-no-files-found: error
+-          retention-days: 1
+diff --git a/.github/workflows/ledgerbench.yml b/.github/workflows/ledgerbench.yml
+index a982620..fcf447c 100644
+--- a/.github/workflows/ledgerbench.yml
++++ b/.github/workflows/ledgerbench.yml
+@@ -56,10 +56,6 @@ on:
+ permissions:
+   contents: read
+ 
+-env:
+-  SITES_INSTALL_TIMEOUT: 8m
+-  SITES_BUILD_TIMEOUT: 4m
+-
+ jobs:
+   verify:
+     runs-on: ubuntu-latest
+@@ -70,12 +66,8 @@ jobs:
+         with:
+           node-version: "22.13.0"
+       - name: Install locked dependencies
+-        run: npm run install:ci
++        run: npm ci
+       - name: Validate LedgerBench program invariants
+         run: npm run validate:ledgerbench
+-      - name: Typecheck
+-        run: npx tsc --noEmit
+-      - name: Lint
+-        run: npm run lint
+-      - name: Build and run all tests
+-        run: npm test
++      - name: Run focused LedgerBench tests
++        run: npm run test:ledgerbench
+diff --git a/.gitignore b/.gitignore
+index c413892..3b65688 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -33,6 +33,9 @@ next-env.d.ts
+ /.next
+ /out
+ /dist
++/playwright-report
++/test-results
++/source-freshness-report.json
+ 
+ # misc
+ .DS_Store
+diff --git a/.npmrc b/.npmrc
+index 0edab15..a9a46f2 100644
+--- a/.npmrc
++++ b/.npmrc
+@@ -1,2 +1 @@
+-cache=.npm-cache
+ package-lock=true
+diff --git a/CITATION.cff b/CITATION.cff
+index d016961..8d4716f 100644
+--- a/CITATION.cff
++++ b/CITATION.cff
+@@ -2,13 +2,13 @@ cff-version: 1.2.0
+ message: "If you use Accounting Agents, cite the versioned release and the specific records or packs you relied on."
+ title: "Accounting Agents"
+ type: software
+-version: "2026-08-23.9"
+-date-released: "2026-08-23"
++version: "2026-08-24.1"
++date-released: "2026-08-24"
+ license:
+   - MIT
+   - CC-BY-4.0
+   - CC0-1.0
+-repository-code: "https://accounting-agents.madebyhenry.chatgpt.site/downloads/accounting-agents-source.zip"
++repository-code: "https://github.com/HenryBranchAdams/ai-agents-in-accounting"
+ url: "https://accounting-agents.madebyhenry.chatgpt.site"
+ abstract: "An open field guide, portable workflow-pack library, and benchmark for governed AI-agent work in accounting and finance."
+diff --git a/CONTRIBUTING.md b/CONTRIBUTING.md
+index 1c8b29e..d4604f8 100644
+--- a/CONTRIBUTING.md
++++ b/CONTRIBUTING.md
+@@ -42,8 +42,8 @@ Do not submit client, employer, engagement, bank, employee, vendor, or taxpayer r
+ 
+ ## Local checks
+ 
+-Requires Node.js 22.13 or newer and Linux with `flock`, `curl`, GNU `timeout`, and `zip`.
++Requires Node.js 22.13 or newer. The default contributor path is cross-platform.
+ 
+ ```sh
+-npm run install:ci
++npm ci
+ npm run generate:platform
+ npm run validate:platform
+ npm run lint
+@@ -51,6 +51,13 @@ npm test
+ npm run benchmark:sample
+ npm run archive:source
+ ```
++
++The current ChatGPT Sites host has separately named Linux-specific wrappers:
++
++```sh
++npm run sites:install
++npm run sites:build
++```
++
++Do not use those wrappers as the ordinary contributor contract.
+ 
+ If you change canonical pack, benchmark, release, LedgerBench, or task-admission data, regenerate the derived artifacts before committing. CI rejects unexplained generated-file drift.
+diff --git a/README.md b/README.md
+index cd24c08..1baf8a8 100644
+--- a/README.md
++++ b/README.md
+@@ -1,20 +1,24 @@
+ # AI Agents in Accounting
+ 
+-An open field guide, workflow-pack library, benchmark, and machine-readable corpus for governed AI-agent work in accounting and finance.
++An open field guide, workflow library, measurement program, conformance suite, and machine-readable corpus for governed AI-agent work in accounting and finance.
+ 
+-The public site is [accounting-agents.madebyhenry.chatgpt.site](https://accounting-agents.madebyhenry.chatgpt.site). It publishes 60 canonical workflows, 433 source records, 153 curated readings across 20 shelves, six portable packs, 30 benchmark cases, controlled governance records, Markdown and JSON projections, a versioned read-only API, OpenAPI, JSON Schemas, and small reference clients.
++The public site is [accounting-agents.madebyhenry.chatgpt.site](https://accounting-agents.madebyhenry.chatgpt.site). It publishes 60 canonical workflows, 433 source records, 153 curated readings across 20 shelves, six portable packs, 30 public conformance cases, LedgerBench program contracts, controlled governance records, Markdown and JSON projections, a versioned read-only API, OpenAPI, JSON Schemas, and small reference clients.
+ 
+ ## Four ways in
+ 
+ - Learn: definitions, lifecycle, authority, controls, evidence, and operations.
+ - Build: portable packs with synthetic fixtures and reference outputs.
+-- Evaluate: Accounting Agent Bench and its hard authority gates.
++- Evaluate: the LedgerBench measurement program and the public Core conformance suite.
+ - Integrate: standard HTTP, Markdown, JSON, OpenAPI, feeds, clients, and CLI.
+ 
++[LedgerBench](https://accounting-agents.madebyhenry.chatgpt.site/ledgerbench) is the Preview-stage measurement program for accounting-agent capability, conformance, field utility, and grader validity. It defines the measurement claim, task universe, products, tracks, divisions, Accepted Work Rate, hard gates, task-admission process, hidden evaluation strategy, verification states, statistical discipline, and independent governance required before an official model ranking is published.
++
++The existing 30-case Accounting Agent Bench remains a public Core conformance asset. It does not by itself define LedgerBench or establish broad accounting competence.
++
+ The [open ecosystem map](https://accounting-agents.madebyhenry.chatgpt.site/ecosystem) distinguishes direct web access, AGENTS.md, MCP, A2A, and accounting-domain contracts by role and adoption posture. The repository `AGENTS.md` gives coding agents the build, content, rights, and verification rules for contributing safely.
+ 
+ Coverage never grants execution authority. Agents may prepare work; accountable people approve conclusions and sensitive external actions.
+ 
+ ## Development
+ 
+-Requires Node.js 22.13 or newer and Linux with `flock`, `curl`, GNU `timeout`, and `zip`.
++Requires Node.js 22.13 or newer. The normal contributor path is cross-platform:
+ 
+ ```sh
+-npm run install:ci
++npm ci
+ npm run generate:platform
+ npm run validate:platform
+ npm run lint
+@@ -22,20 +26,35 @@ npm test
+ ```
+ 
+-`npm test` builds the production Worker and runs contract, site-wide quality, and mobile suites. See [`TESTING.md`](TESTING.md) for the coverage matrix, focused commands, and release gates.
++`npm test` builds the production Worker and runs contract, site-wide quality, mobile, and LedgerBench program suites. `npm run test:browser` adds real Chromium and WebKit interaction tests with the pinned Playwright and axe-core development dependencies. See [`TESTING.md`](TESTING.md) for the coverage matrix and release gates.
++
++The current ChatGPT Sites environment has an additional hardened wrapper for its constrained Linux runtime:
++
++```sh
++npm run sites:install
++npm run sites:build
++```
++
++Those commands require Linux `flock`, `curl`, GNU `timeout`, and `/proc`; ordinary contributors and other CI providers do not.
+ 
+-`data/open-source-platform.mjs` is the canonical source for packs, benchmark cases, and release notes. `npm run generate:platform` produces the portable pack tree, benchmark sample, JSON downloads, and pack archive. Do not edit generated pack artifacts by hand.
++`data/open-source-platform.mjs` is the canonical source for packs, public conformance cases, and release notes. `data/ledgerbench-program.mjs` is the canonical structured Preview record for the LedgerBench measurement program. `data/release.json` is the single release/version/date descriptor used by human and machine projections.
+ 
+-Run the deterministic reference harness:
++Run the deterministic Core reference harness:
+ 
+ ```sh
+ npm run benchmark:sample
+@@ -48,17 +67,31 @@ npm run archive:source
+ 
+ - `app/`: semantic HTML pages, Markdown projections, API routes, feeds, schemas, and shared records
+-- `data/open-source-platform.mjs`: canonical platform release, packs, cases, and changes
++- `data/open-source-platform.mjs`: canonical portable packs, Core conformance cases, and changes
++- `data/ledgerbench-program.mjs`: canonical LedgerBench program record
++- `docs/ledgerbench/`: program constitution, task admission, statistical analysis, governance, and submission rules
+ - `packs/`: generated portable pack directories
+-- `benchmark/`: candidate-result contract and reference-shape sample
+-- `clients/`: zero-dependency JavaScript and Python clients
++- `benchmark/`: current Core candidate-result contract and reference-shape sample
++- `clients/`: zero-dependency, versioned reference clients (examples rather than published SDK packages)
+ - `bin/`: reference CLI
+ - `docs/strategy/`: research and product rationale
+-- `tests/`: rendered Worker, accessibility, API, schema, release, route-crawl, mobile, link, asset, metadata, and referential-integrity contracts
++- `tests/`: rendered Worker, accessibility, API, schema, release, route-crawl, mobile, link, asset, metadata, referential-integrity, and LedgerBench program contracts
+ 
+ The deployed site is public and read-only. It does not use a database, authentication, vector store, runtime scraper, or required agent framework.
+ 
++## LedgerBench machine surfaces
++
++- Human guide: `/ledgerbench`
++- Markdown: `/ledgerbench.md`
++- Program API: `/api/v1/ledgerbench`
++- Program schema: `/schemas/ledgerbench-program.schema.json`
++- Episode schema: `/schemas/ledgerbench-episode.schema.json`
++- Candidate-result schema: `/schemas/ledgerbench-result.schema.json`
++- Submission schema: `/schemas/ledgerbench-submission.schema.json`
++
++The Preview does not yet publish an official hidden item bank, independently validated automated judge, verified submission round, or model ranking.
++
+ ## Rights
+ 
+-- Software: MIT — `LICENSE` and `LICENSES/MIT.txt`
+-- Original educational content: CC BY 4.0 — `LICENSE-CONTENT.md`
++- Software and schemas: MIT — `LICENSE` and `LICENSES/MIT.txt`
++- Original educational and program content: CC BY 4.0 — `LICENSE-CONTENT.md`
+ - Project-created factual metadata and clean-room synthetic fixtures: CC0 1.0 — `LICENSE-DATA.md`
+ - External publications: not redistributed; publisher terms apply
+ 
+@@ -68,4 +101,6 @@ This is a mixed-rights repository. See `LICENSE_POLICY.md`, `NOTICE.md`, and reco
+ 
+ ## Contributing and governance
+ 
+-Read `CONTRIBUTING.md`, `EDITORIAL_POLICY.md`, `GOVERNANCE.md`, `SECURITY.md`, `CORRECTIONS.md`, `BENCHMARK_SUBMISSIONS.md`, and `CODE_OF_CONDUCT.md`. Use synthetic data only; never submit client, employer, engagement, bank, employee, vendor, or taxpayer records.
++Read `CONTRIBUTING.md`, `EDITORIAL_POLICY.md`, `GOVERNANCE.md`, `SECURITY.md`, `CORRECTIONS.md`, `BENCHMARK_SUBMISSIONS.md`, `docs/ledgerbench/`, and `CODE_OF_CONDUCT.md`.
++
++Use synthetic data only. Never submit client, employer, engagement, bank, employee, vendor, or taxpayer records.
+diff --git a/SOURCE_ARCHIVE_NOTICE.md b/SOURCE_ARCHIVE_NOTICE.md
+index 87735ea..1c60bad 100644
+--- a/SOURCE_ARCHIVE_NOTICE.md
++++ b/SOURCE_ARCHIVE_NOTICE.md
+@@ -1,7 +1,7 @@
+ # Source archive notice
+ 
+-`public/downloads/accounting-agents-source.zip` is produced by `npm run archive:source` and is an immutable public source snapshot for the current release.
++`public/downloads/accounting-agents-source.zip` is produced by the cross-platform `npm run archive:source` command and is an immutable public source snapshot for the current release.
+ 
+ The archive includes application code, canonical records, generated packs, benchmark fixtures, tests, governance files, and the mixed-license notices required to interpret those materials. It excludes installed dependencies, build output, caches, environment files, and private data.
+ 
+-After changing source files, regenerate platform artifacts first, then rebuild the source archive and verify `public/downloads/SHA256SUMS` and `public/downloads/archive-digests.json`.
++After changing source files, regenerate platform artifacts first, then rebuild the source archive and verify `public/downloads/SHA256SUMS` and `public/downloads/archive-digests.json`. Archive entries are sorted and use the release timestamp so repeated builds from the same tree are byte-stable.
+diff --git a/TESTING.md b/TESTING.md
+index 7ac70c6..2129bd8 100644
+--- a/TESTING.md
++++ b/TESTING.md
+@@ -9,6 +9,7 @@ The test suite treats the built Worker as the public product. It sends requests
+ | Media | Every local image referenced by a canonical page exists in the published asset tree and has alternative text. |
+ | Accessibility | Language, skip link, landmarks, heading structure, table captions, search labels, keyboard shortcuts, and editorial-image alternatives. |
++| Browser accessibility | Axe WCAG checks plus keyboard operation in real Chromium and phone WebKit. |
+ | Mobile layout | Static phone contracts plus real WebKit phone rendering, navigation, search, viewport-overflow, and table-scroll checks. |
+ | Public API | GET, HEAD, OPTIONS, CORS, content negotiation, pagination, filters, layer-correct cache validators, and problem-detail errors. |
+ | Machine access | OpenAPI, API catalog, `llms.txt`, `AGENTS.md`, Markdown, JSON snapshots, feeds, schemas, and release manifests. |
+@@ -30,7 +31,7 @@ npm run test:quality
+ # Mobile semantics and compiled responsive-style contracts
+ npm run test:mobile
+ 
+-# Real Chromium and WebKit interaction coverage (downloads pinned browser tooling)
++# Real Chromium and WebKit interaction and axe accessibility coverage
+ npm run test:browser
+ 
+ # Static analysis and generated-platform validation
+@@ -44,7 +45,7 @@ Run `npm run generate:platform` before the release gate when canonical pack, ben
+ ## GitHub release gates
+ 
+ - **Release gate** installs with `npm ci`, regenerates artifacts, rejects drift, validates release metadata, typechecks, lints, builds the production Worker, runs every Node test, exercises the Core harness, rebuilds the source archive, and uploads logs.
+-- **Browser quality** runs representative desktop Chromium and phone WebKit interactions.
++- **Browser quality** runs representative desktop Chromium and phone WebKit interactions and fails on serious or critical axe violations.
+ - **Source freshness** performs a scheduled point-in-time check of external source endpoints and opens a review issue without treating one transient outage as a release failure.
+ 
+ After the workflows are merged, maintainers must require the release and browser checks in `main` branch protection. See `docs/maintainers/repository-settings.md`.
+diff --git a/app/DocsSearch.tsx b/app/DocsSearch.tsx
+index 8fdee13..4e6ae29 100644
+--- a/app/DocsSearch.tsx
++++ b/app/DocsSearch.tsx
+@@ -1,28 +1,58 @@
+ "use client";
+ 
++import Link from "next/link";
+ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+ import { searchItems } from "./content";
+-import { authorityLevels } from "./domain-model";
+-import { controlPatterns, sensitiveActions } from "./governance-data";
+-import { glossary, templates } from "./reference-data";
+-import { resources } from "./resources-data";
+-import { workflowRecords } from "./workflows-data";
+-import { benchmarkCases, packs, releaseNotes } from "./platform-data";
+ 
+ type SearchEntry = (typeof searchItems)[number];
+ 
+-function searchRank(item: SearchEntry, term: string) {
+-  const title = item.title.toLowerCase();
+-  const hrefTail = item.href.split(/[\/#]/).filter(Boolean).at(-1)?.toLowerCase() ?? "";
+-  if (title === term || hrefTail === term) return 0;
+-  if (title.startsWith(term) || hrefTail.startsWith(term)) return 1;
+-  if (title.includes(term)) return 2;
+-  return 3;
++type ApiSearchItem = {
++  id: string;
++  record_type: string;
++  title: string;
++  summary: string;
++  canonical_path: string;
++  kind: string | null;
++};
++
++type ApiSearchResponse = {
++  total_matching_records: number;
++  items: ApiSearchItem[];
++};
++
++const resultCategory: Record<string, string> = {
++  page: "Guide",
++  workflow: "Workflows",
++  resource: "Source library",
++  authority: "Authority levels",
++  control: "Control patterns",
++  "sensitive-action": "Sensitive actions",
++  template: "Templates",
++  glossary: "Glossary",
++  pack: "Workflow packs",
++  benchmark: "Core conformance",
++  change: "Changes",
++  ecosystem: "Open ecosystem",
++};
++
++const cache = new Map<string, ApiSearchResponse>();
++
++function toSearchEntry(item: ApiSearchItem): SearchEntry {
++  return {
++    href: item.canonical_path,
++    title: item.title,
++    category: resultCategory[item.record_type] ?? item.kind ?? "Corpus",
++    detail: item.summary,
++  };
+ }
+ 
+ export function DocsSearch() {
+   const [open, setOpen] = useState(false);
+   const [query, setQuery] = useState("");
++  const [remoteResults, setRemoteResults] = useState<SearchEntry[]>([]);
++  const [remoteTotal, setRemoteTotal] = useState(0);
++  const [loading, setLoading] = useState(false);
++  const [error, setError] = useState<string | null>(null);
+   const dialogRef = useRef<HTMLDialogElement>(null);
+   const inputRef = useRef<HTMLInputElement>(null);
+   const previousFocusRef = useRef<HTMLElement | null>(null);
+@@ -76,144 +106,59 @@ export function DocsSearch() {
+     };
+   }, [open]);
+ 
+-  const searchResult = useMemo(() => {
+-    const term = query.trim().toLowerCase();
+-    if (!term) return { items: searchItems, total: searchItems.length };
+-    const pageResults = searchItems.filter((item) =>
+-      `${item.title} ${item.category} ${item.detail}`.toLowerCase().includes(term),
+-    );
+-    const sourceResults: SearchEntry[] = resources
+-      .filter((resource) =>
+-        `${resource.id} ${resource.title} ${resource.owner} ${resource.topic} ${resource.kind} ${resource.note}`
+-          .toLowerCase()
+-          .includes(term),
+-      )
+-      .map((resource) => ({
+-        href: `/resources/${resource.id}`,
+-        title: resource.title,
+-        category: "Source library",
+-        detail: `${resource.owner} · ${resource.kind}`,
+-      }));
+-
+-    const workflowResults: SearchEntry[] = workflowRecords
+-      .filter((workflow) =>
+-        `${workflow.id} ${workflow.name} ${workflow.family_name} ${workflow.summary} ${workflow.accounting_objective}`
+-          .toLowerCase()
+-          .includes(term),
+-      )
+-      .map((workflow) => ({
+-        href: `/workflows/${workflow.family}/${workflow.id}`,
+-        title: workflow.name,
+-        category: workflow.family_name,
+-        detail: `Controlling boundary ${workflow.authority_level} · ${workflow.summary}`,
+-      }));
+-
+-    const glossaryResults: SearchEntry[] = glossary
+-      .filter((entry) => `${entry.id} ${entry.term} ${entry.definition} ${entry.related.join(" ")}`.toLowerCase().includes(term))
+-      .map((entry) => ({
+-        href: `/glossary#${entry.id}`,
+-        title: entry.term,
+-        category: "Glossary",
+-        detail: entry.definition,
+-      }));
+-
+-    const controlResults: SearchEntry[] = controlPatterns
+-      .filter((control) =>
+-        `${control.id} ${control.name} ${control.risk} ${control.objective} ${control.procedure.join(" ")} ${control.evidence.join(" ")} ${control.exceptions.join(" ")}`
+-          .toLowerCase()
+-          .includes(term),
+-      )
+-      .map((control) => ({
+-        href: `/controls#${control.id}`,
+-        title: control.name,
+-        category: "Control patterns",
+-        detail: control.objective,
+-      }));
+-
+-    const authorityResults: SearchEntry[] = authorityLevels
+-      .filter((level) =>
+-        `${level.id} ${level.label} ${level.agent_role} ${level.execution_rule} ${level.required_controls.join(" ")} ${level.accounting_example} ${level.boundary}`
+-          .toLowerCase()
+-          .includes(term),
+-      )
+-      .map((level) => ({
+-        href: `/authority#level-${level.id}`,
+-        title: `${level.id === "human-only" ? "Human-only" : level.id} · ${level.label}`,
+-        category: "Authority levels",
+-        detail: level.boundary,
+-      }));
+-
+-    const sensitiveActionResults: SearchEntry[] = sensitiveActions
+-      .filter((action) =>
+-        `${action.id} ${action.name} ${action.summary} ${action.default_authority} ${action.agent_may_prepare.join(" ")} ${action.agent_may_execute.join(" ")} ${action.human_only_conditions.join(" ")} ${action.identity_and_sod.join(" ")} ${action.limits.join(" ")} ${action.approval_evidence.join(" ")} ${action.pre_execution_checks.join(" ")} ${action.rollback_or_compensation.join(" ")} ${action.logging_and_review.join(" ")}`
+-          .toLowerCase()
+-          .includes(term),
+-      )
+-      .map((action) => ({
+-        href: `/sensitive-actions#${action.id}`,
+-        title: action.name,
+-        category: "Sensitive actions",
+-        detail: `Default ${action.default_authority} · ${action.summary}`,
+-      }));
+-
+-    const templateResults: SearchEntry[] = templates
+-      .filter((template) =>
+-        `${template.id} ${template.name} ${template.purpose} ${template.use_when} ${template.sections.map((section) => `${section.heading} ${section.prompt}`).join(" ")}`
+-          .toLowerCase()
+-          .includes(term),
+-      )
+-      .map((template) => ({
+-        href: `/templates#${template.id}`,
+-        title: template.name,
+-        category: "Templates",
+-        detail: template.purpose,
+-      }));
++  useEffect(() => {
++    const term = query.trim();
++    if (!open || !term) {
++      setRemoteResults([]);
++      setRemoteTotal(0);
++      setLoading(false);
++      setError(null);
++      return;
++    }
+ 
+-    const packResults: SearchEntry[] = packs
+-      .filter((pack) => JSON.stringify(pack).toLowerCase().includes(term))
+-      .map((pack) => ({
+-        href: `/packs/${pack.id}`,
+-        title: pack.title,
+-        category: "Workflow packs",
+-        detail: `${pack.process_family} · ${pack.authority_level} · ${pack.summary}`,
+-      }));
++    const cached = cache.get(term.toLowerCase());
++    if (cached) {
++      setRemoteResults(cached.items.map(toSearchEntry));
++      setRemoteTotal(cached.total_matching_records);
++      setLoading(false);
++      setError(null);
++      return;
++    }
+ 
+-    const benchmarkResults: SearchEntry[] = benchmarkCases
+-      .filter((item) => JSON.stringify(item).toLowerCase().includes(term))
+-      .map((item) => ({
+-        href: `/bench#${item.id}`,
+-        title: item.title,
+-        category: "Accounting Agent Bench",
+-        detail: `${item.case_type} · expected ${item.expected.outcome}`,
+-      }));
++    const controller = new AbortController();
++    const timer = window.setTimeout(async () => {
++      setLoading(true);
++      setError(null);
++      try {
++        const response = await fetch(`/api/v1/search?q=${encodeURIComponent(term)}&limit=80`, {
++          headers: { Accept: "application/json" },
++          signal: controller.signal,
++        });
++        if (!response.ok) throw new Error(`Search request failed with ${response.status}.`);
++        const payload = await response.json() as ApiSearchResponse;
++        cache.set(term.toLowerCase(), payload);
++        setRemoteResults(payload.items.map(toSearchEntry));
++        setRemoteTotal(payload.total_matching_records);
++      } catch (caught) {
++        if (controller.signal.aborted) return;
++        setRemoteResults([]);
++        setRemoteTotal(0);
++        setError(caught instanceof Error ? caught.message : "Search is unavailable.");
++      } finally {
++        if (!controller.signal.aborted) setLoading(false);
++      }
++    }, 180);
+ 
+-    const changeResults: SearchEntry[] = releaseNotes
+-      .filter((item) => JSON.stringify(item).toLowerCase().includes(term))
+-      .map((item) => ({
+-        href: `/changes#release-${item.id}`,
+-        title: item.title,
+-        category: "Changes",
+-        detail: `${item.id} · ${item.summary}`,
+-      }));
++    return () => {
++      window.clearTimeout(timer);
++      controller.abort();
++    };
++  }, [open, query]);
+ 
+-    const matches = [
+-      ...pageResults,
+-      ...workflowResults,
+-      ...authorityResults,
+-      ...controlResults,
+-      ...sensitiveActionResults,
+-      ...templateResults,
+-      ...glossaryResults,
+-      ...sourceResults,
+-      ...packResults,
+-      ...benchmarkResults,
+-      ...changeResults,
+-    ].sort((left, right) => searchRank(left, term) - searchRank(right, term));
+-    return { items: matches.slice(0, 100), total: matches.length };
+-  }, [query]);
+-  const results = searchResult.items;
++  const results = query.trim() ? remoteResults : searchItems;
++  const total = query.trim() ? remoteTotal : searchItems.length;
+   const groups = useMemo(() => {
+     const grouped = new Map<string, SearchEntry[]>();
+     for (const result of results) {
+@@ -222,7 +167,14 @@ export function DocsSearch() {
+               value={query}
+             />
+-            <button type="button" onClick={closeSearch}>Esc</button>
++            <button type="button" onClick={closeSearch} aria-label="Close search">Esc</button>
+           </div>
+-          <p aria-live="polite" className="sr-only">{results.length} search results</p>
+-          <div className="search-results">
+-            {results.length ? (
++          <p aria-live="polite" className="sr-only">
++            {loading
++              ? "Searching documentation"
++              : `${total} search results${total > results.length ? `; showing the first ${results.length}` : ""}`}
++          </p>
++          <div className="search-results" aria-busy={loading}>
++            {loading ? (
++              <p className="search-empty">Searching…</p>
++            ) : error ? (
++              <p className="search-empty">{error}</p>
++            ) : results.length ? (
+               groups.map(([category, items], index) => (
+                 <section aria-labelledby={`search-group-${index}`} className="search-result-group" key={category}>
+                   <h3 id={`search-group-${index}`}>{category}</h3>
+                   {items.map((item) => (
+-                    <a href={item.href} key={`${category}:${item.href}`} onClick={closeSearch}>
++                    <Link href={item.href} key={`${category}:${item.href}`} onClick={closeSearch}>
+                       <strong>{item.title}</strong>
+                       <span>{item.detail}</span>
+-                    </a>
++                    </Link>
+                   ))}
+                 </section>
+               ))
+diff --git a/app/DocsShell.tsx b/app/DocsShell.tsx
+index 4d2ed52..720229e 100644
+--- a/app/DocsShell.tsx
++++ b/app/DocsShell.tsx
+@@ -47,7 +47,7 @@ function Navigation({ active, mobile = false }: { active: string; mobile?: boole
+         <div className="nav-group" key={group.label}>
+           <p>{group.label}</p>
+           {group.items.map((item) => (
+-            <a
++            <Link
+               aria-current={item.href === active ? "page" : undefined}
+               href={item.href}
+               key={item.href}
+@@ -55,7 +55,7 @@ function Navigation({ active, mobile = false }: { active: string; mobile?: boole
+             >
+               {item.label}
+-            </a>
++            </Link>
+           ))}
+         </div>
+       ))}
+@@ -91,8 +91,8 @@ export function DocsShell({
+         <DocsSearch />
+         <nav className="top-links" aria-label="Utility navigation">
+           <Link href="/packs">Packs</Link>
+-          <a href="/machine-access">Agent access</a>
++          <Link href="/machine-access">Agent access</Link>
+         </nav>
+         <details className="mobile-navigation">
+           <summary>Menu</summary>
+@@ -159,15 +159,15 @@ export function DocsShell({
+             {(previous || next) && (
+               <nav aria-label="Page navigation" className="page-navigation">
+                 {previous ? (
+-                  <a href={previous.href} rel="prev">
++                  <Link href={previous.href} rel="prev">
+                     <span>Previous</span>
+                     {previous.label}
+-                  </a>
++                  </Link>
+                 ) : <span />}
+                 {next ? (
+-                  <a href={next.href} rel="next">
++                  <Link href={next.href} rel="next">
+                     <span>Next</span>
+                     {next.label}
+-                  </a>
++                  </Link>
+                 ) : <span />}
+               </nav>
+             )}
+diff --git a/app/agent-interface.ts b/app/agent-interface.ts
+index 5782fb6..021e9f5 100644
+--- a/app/agent-interface.ts
++++ b/app/agent-interface.ts
+@@ -11,13 +11,26 @@ import { authorityLevels } from "./domain-model";
+ import { controlPatterns, sensitiveActions } from "./governance-data";
+ import { glossary, templates } from "./reference-data";
+ import { processFamilies, workflowRecords } from "./workflows-data";
++import {
++  apiVersion,
++  catalogModifiedAt,
++  catalogReviewedAt,
++  catalogVersion,
++  platformPublishedAt,
++  siteOrigin,
++} from "./project-metadata";
+ 
+-export const siteOrigin = "https://accounting-agents.madebyhenry.chatgpt.site";
+-export const catalogReviewedAt = "2026-08-23";
+-export const catalogModifiedAt = "2026-08-23T00:00:00.000Z";
+-export const catalogVersion = "2026-08-23.7";
+-export const apiVersion = "1.0";
++export {
++  apiVersion,
++  catalogModifiedAt,
++  catalogReviewedAt,
++  catalogVersion,
++  platformPublishedAt,
++  siteOrigin,
++} from "./project-metadata";
+ export const rightsNotice =
+   "Project-created factual metadata is CC0 1.0 and original editorial summaries are CC BY 4.0. External source content remains subject to each publisher's terms.";
+@@ -520,6 +533,7 @@ export function publicResponse(
+     headers?: Record<string, string>;
+     conditional?: boolean;
++    modifiedAt?: string | Date;
+   } = {},
+ ) {
+   const etag = etagFor(body);
+-  const lastModified = new Date(catalogModifiedAt);
++  const requestedModifiedAt = options.modifiedAt ?? platformPublishedAt;
++  const lastModified = requestedModifiedAt instanceof Date
++    ? requestedModifiedAt
++    : new Date(requestedModifiedAt);
++  if (Number.isNaN(lastModified.getTime())) {
++    throw new TypeError(`Invalid Last-Modified value: ${String(requestedModifiedAt)}`);
++  }
+   const headers = new Headers({
+@@ -543,7 +557,10 @@ export function publicResponse(
+     const ifNoneMatch = request.headers.get("if-none-match");
+-    if (ifNoneMatch?.split(",").map((value) => value.trim()).includes(etag)) {
++    const etagMatches = ifNoneMatch
++      ?.split(",")
++      .map((value) => value.trim())
++      .some((value) => value === "*" || value === etag);
++
++    if (etagMatches) {
+       return new Response(null, { status: 304, headers });
+     }
+ 
+-    const ifModifiedSince = request.headers.get("if-modified-since");
+-    const since = ifModifiedSince ? new Date(ifModifiedSince) : null;
++    if (!ifNoneMatch) {
++      const ifModifiedSince = request.headers.get("if-modified-since");
++      const since = ifModifiedSince ? new Date(ifModifiedSince) : null;
+ 
+-    if (since && !Number.isNaN(since.getTime()) && lastModified <= since) {
+-      return new Response(null, { status: 304, headers });
++      if (since && !Number.isNaN(since.getTime()) && lastModified <= since) {
++        return new Response(null, { status: 304, headers });
++      }
+     }
+   }
+diff --git a/app/api/v1/meta/route.ts b/app/api/v1/meta/route.ts
+index 49eeaab..3f34703 100644
+--- a/app/api/v1/meta/route.ts
++++ b/app/api/v1/meta/route.ts
+@@ -19,6 +19,21 @@ export function OPTIONS() {
+ }
+ 
+ export async function GET(request: Request) {
++  const recordCounts = {
++    process_families: processFamilies.length,
++    workflows: workflowRecords.length,
++    authority_levels: authorityLevels.length,
++    sensitive_actions: sensitiveActions.length,
++    control_patterns: controlPatterns.length,
++    templates: templates.length,
++    glossary_terms: glossary.length,
++    source_records: agentResources.length,
++    workflow_packs: packs.length,
++    benchmark_cases: benchmarkCases.length,
++    ecosystem_layers: ecosystemLayers.length,
++    ledgerbench_programs: 1,
++  };
++  const totalRecords = Object.values(recordCounts).reduce((total, count) => total + count, 0);
+   const body = JSON.stringify({
+@@ -32,8 +47,9 @@ export async function GET(request: Request) {
+     title: "Accounting Agents public corpus",
+     description: "Canonical workflows, authority boundaries, controls, templates, terminology, and curated sources for governed AI-agent work across the accounting lifecycle.",
+     language: "en",
+-    total_records: agentResources.length,
+-    record_counts: {
++    total_records: totalRecords,
++    total_source_records: agentResources.length,
++    record_counts: recordCounts,
+-      process_families: processFamilies.length,
+-      workflows: workflowRecords.length,
+-      authority_levels: authorityLevels.length,
+-      sensitive_actions: sensitiveActions.length,
+-      control_patterns: controlPatterns.length,
+-      templates: templates.length,
+-      glossary_terms: glossary.length,
+-      source_records: agentResources.length,
+-      workflow_packs: packs.length,
+-      benchmark_cases: benchmarkCases.length,
+-      ecosystem_layers: ecosystemLayers.length,
+-    },
+@@ -59,6 +75,7 @@ export async function GET(request: Request) {
+       packs: `${siteOrigin}/api/v1/packs`,
+       benchmark: `${siteOrigin}/api/v1/benchmark`,
++      ledgerbench: `${siteOrigin}/api/v1/ledgerbench`,
+@@ -78,5 +95,7 @@ export async function GET(request: Request) {
+     platform_release: platformRelease,
+   }, null, 2);
+ 
+-  return publicResponse(request, body, "application/json; charset=utf-8");
++  return publicResponse(request, body, "application/json; charset=utf-8", {
++    modifiedAt: platformRelease.published_at,
++  });
+ }
+diff --git a/app/api/v1/resources/[id]/route.ts b/app/api/v1/resources/[id]/route.ts
+index dc299b2..283a74d 100644
+--- a/app/api/v1/resources/[id]/route.ts
++++ b/app/api/v1/resources/[id]/route.ts
+@@ -1,6 +1,7 @@
+ import {
+   agentResourceById,
+   apiVersion,
++  catalogModifiedAt,
+@@ -31,6 +32,7 @@ export async function GET(request: Request, context: { params: Promise<{ id: str
+     return publicResponse(request, renderResourcesMarkdown([record]), "text/markdown; charset=utf-8", {
+       headers: { "Content-Language": "en" },
++      modifiedAt: catalogModifiedAt,
+@@ -47,5 +49,7 @@ export async function GET(request: Request, context: { params: Promise<{ id: str
+     }, null, 2),
+     "application/json; charset=utf-8",
++    { modifiedAt: catalogModifiedAt },
+   );
+ }
+diff --git a/app/api/v1/resources/route.ts b/app/api/v1/resources/route.ts
+index d50d405..32f9cc3 100644
+--- a/app/api/v1/resources/route.ts
++++ b/app/api/v1/resources/route.ts
+@@ -3,6 +3,7 @@ import {
+   allowedKinds,
+   allowedTopics,
+   apiVersion,
++  catalogModifiedAt,
+@@ -84,6 +85,7 @@ export async function GET(request: Request) {
+       headers: nextUrl ? { "X-Next-Page": nextUrl.toString(), "Content-Language": "en" } : { "Content-Language": "en" },
++      modifiedAt: catalogModifiedAt,
+@@ -112,6 +114,7 @@ export async function GET(request: Request) {
+   return publicResponse(request, body, "application/json; charset=utf-8", {
+     headers: nextUrl ? { "X-Next-Page": nextUrl.toString() } : undefined,
++    modifiedAt: catalogModifiedAt,
+   });
+ }
+diff --git a/app/api/v1/search/route.ts b/app/api/v1/search/route.ts
+index ef58e3d..7dbbfb5 100644
+--- a/app/api/v1/search/route.ts
++++ b/app/api/v1/search/route.ts
+@@ -1,4 +1,5 @@
+ import { corsOptionsResponse, problemResponse, publicResponse, siteOrigin } from "../../../agent-interface";
++import { platformPublishedAt } from "../../../project-metadata";
+@@ -45,5 +46,7 @@ export async function GET(request: Request) {
+     items,
+-  }, null, 2), "application/json; charset=utf-8");
++  }, null, 2), "application/json; charset=utf-8", {
++    modifiedAt: platformPublishedAt,
++  });
+ }
+diff --git a/app/docsMetadata.ts b/app/docsMetadata.ts
+index 1142553..fdfd371 100644
+--- a/app/docsMetadata.ts
++++ b/app/docsMetadata.ts
+@@ -2,8 +2,23 @@ import type { Metadata } from "next";
+ 
+ export function docsMetadata(title: string, description: string, canonical: string): Metadata {
++  const fullTitle = `${title} | Accounting Agents`;
+   return {
+-    title: `${title} | Accounting Agents`,
++    title: fullTitle,
+     description,
+     alternates: { canonical },
++    openGraph: {
++      title: fullTitle,
++      description,
++      images: [{ url: "/og.png", width: 1200, height: 630, alt: "Accounting Agents field guide" }],
++    },
++    twitter: {
++      card: "summary_large_image",
++      title: fullTitle,
++      description,
++      images: ["/og.png"],
++    },
+   };
+ }
+diff --git a/app/domain-api.ts b/app/domain-api.ts
+index 1d18706..2764413 100644
+--- a/app/domain-api.ts
++++ b/app/domain-api.ts
+@@ -6,7 +6,7 @@ import {
+   siteOrigin,
+ } from "./agent-interface";
+-import { corpusReviewedAt, corpusVersion } from "./domain-model";
++import { corpusModifiedAt, corpusReviewedAt, corpusVersion } from "./domain-model";
+@@ -84,6 +84,7 @@ export async function domainCollectionResponse<T extends IdentifiedRecord>({
+       },
++      modifiedAt: corpusModifiedAt,
+@@ -122,6 +123,7 @@ export async function domainCollectionResponse<T extends IdentifiedRecord>({
+     headers: nextUrl ? { "X-Next-Page": nextUrl.toString() } : undefined,
++    modifiedAt: corpusModifiedAt,
+@@ -157,6 +159,7 @@ export function domainItemResponse<T extends IdentifiedRecord>({
+       headers: { "Content-Language": "en" },
++      modifiedAt: corpusModifiedAt,
+@@ -170,5 +173,6 @@ export function domainItemResponse<T extends IdentifiedRecord>({
+     }, null, 2),
+     "application/json; charset=utf-8",
++    { modifiedAt: corpusModifiedAt },
+   );
+ }
+diff --git a/app/domain-model.ts b/app/domain-model.ts
+index bf6416b..ac098b0 100644
+--- a/app/domain-model.ts
++++ b/app/domain-model.ts
+@@ -1,10 +1,12 @@
+-export const corpusVersion = "2026-08-23.5";
+-export const domainSchemaVersion = "1.0";
+-export const corpusReviewedAt = "2026-08-23";
++export {
++  corpusModifiedAt,
++  corpusReviewedAt,
++  corpusVersion,
++  domainSchemaVersion,
++} from "./project-metadata";
+ 
+ export type ProcessFamilyId =
+diff --git a/app/downloads/reading-room.json/route.ts b/app/downloads/reading-room.json/route.ts
+index 0b43885..c936de8 100644
+--- a/app/downloads/reading-room.json/route.ts
++++ b/app/downloads/reading-room.json/route.ts
+@@ -42,5 +42,7 @@ export async function GET(request: Request) {
+-  return publicResponse(request, body, "application/json; charset=utf-8");
++  return publicResponse(request, body, "application/json; charset=utf-8", {
++    modifiedAt: catalogModifiedAt,
++  });
+ }
+diff --git a/app/downloads/resources.json/route.ts b/app/downloads/resources.json/route.ts
+index 81a2c36..d990035 100644
+--- a/app/downloads/resources.json/route.ts
++++ b/app/downloads/resources.json/route.ts
+@@ -2,6 +2,7 @@ import {
+   agentResources,
+   apiVersion,
++  catalogModifiedAt,
+@@ -19,6 +20,7 @@ export async function GET(request: Request) {
+ 
+   return publicResponse(request, body, "application/json; charset=utf-8", {
++    modifiedAt: catalogModifiedAt,
+     headers: {
+diff --git a/app/layout.tsx b/app/layout.tsx
+index 286d1a1..65ce227 100644
+--- a/app/layout.tsx
++++ b/app/layout.tsx
+@@ -1,5 +1,6 @@
+ import type { Metadata } from "next";
+ import "./globals.css";
++import { siteOrigin } from "./project-metadata";
+ 
+ export const metadata: Metadata = {
+-  metadataBase: new URL("https://accounting-agents.madebyhenry.chatgpt.site"),
++  metadataBase: new URL(siteOrigin),
+@@ -49,7 +50,9 @@ export default function RootLayout({
+   return (
+     <html lang="en">
+       <head>
+-        <meta content="development" name="codex-preview" />
++        {process.env.CODEX_PREVIEW === "development" && (
++          <meta content="development" name="codex-preview" />
++        )}
+         <link href="/agent-context.md" rel="alternate" type="text/markdown" />
+diff --git a/app/machine-access/page.tsx b/app/machine-access/page.tsx
+index bd295f9..4118c2f 100644
+--- a/app/machine-access/page.tsx
++++ b/app/machine-access/page.tsx
+@@ -317,7 +317,8 @@ export default function MachineAccessPage() {
+           <li>Use <code>Accept: application/json</code> or <code>Accept: text/markdown</code>.</li>
+           <li>Use <code>format=json</code> or <code>format=markdown</code> to request a representation explicitly.</li>
+-          <li>Use <code>limit</code> from 1 through 200. The default is 50.</li>
++          <li>Collection endpoints accept <code>limit</code> from 1 through 200 and default to 50.</li>
++          <li>Unified search accepts <code>limit</code> from 1 through 100 and defaults to 25.</li>
+           <li>Pass the returned stable <code>next_cursor</code> to continue the same filtered set.</li>
+diff --git a/app/page.tsx b/app/page.tsx
+index ff03e3e..9e28472 100644
+--- a/app/page.tsx
++++ b/app/page.tsx
+@@ -1,4 +1,6 @@
++import Link from "next/link";
+ import { DocsShell } from "./DocsShell";
++import { benchmarkCases, packs, releaseNotes } from "./platform-data";
+ import { readingRoomResources } from "./reading-room-data";
+@@ -35,15 +37,15 @@ export default function OverviewPage() {
+-          This open guide describes the work in accounting terms. Sixty workflow
++          This open guide describes the work in accounting terms. {workflowRecords.length} workflow
+@@ -42,8 +44,8 @@ export default function OverviewPage() {
+-          Six portable packs turn representative workflows into synthetic,
+-          runnable specimens. Accounting Agent Bench tests 30 normal, edge,
++          {packs.length} portable packs turn representative workflows into synthetic,
++          runnable specimens. Accounting Agent Bench tests {benchmarkCases.length} normal, edge,
+@@ -60,15 +62,15 @@ export default function OverviewPage() {
+-          <a href={`/changes#release-${releaseNotes[0].id}`}>
++          <Link href={`/changes#release-${releaseNotes[0].id}`}>
+@@ -63,8 +65,8 @@ export default function OverviewPage() {
+-          </a>
+-          <a href="/reading-room#financial-services-supervision">
+-            <strong>Expanded reading room · 153 readings</strong>
++          </Link>
++          <Link href="/reading-room#financial-services-supervision">
++            <strong>Expanded reading room · {readingRoomResources.length} readings</strong>
+@@ -72,8 +74,8 @@ export default function OverviewPage() {
+-          </a>
+-          <a href="/ecosystem">
++          </Link>
++          <Link href="/ecosystem">
+@@ -82,7 +84,7 @@ export default function OverviewPage() {
+-          </a>
++          </Link>
+@@ -108,7 +110,7 @@ export default function OverviewPage() {
+-          <a href="/fundamentals">
++          <Link href="/fundamentals">
+@@ -111,8 +113,8 @@ export default function OverviewPage() {
+-          </a>
+-          <a href="/packs">
++          </Link>
++          <Link href="/packs">
+@@ -120,8 +122,8 @@ export default function OverviewPage() {
+-          </a>
+-          <a href="/bench">
++          </Link>
++          <Link href="/bench">
+@@ -129,8 +131,8 @@ export default function OverviewPage() {
+-          </a>
+-          <a href="/machine-access">
++          </Link>
++          <Link href="/machine-access">
+@@ -138,12 +140,12 @@ export default function OverviewPage() {
+-          </a>
++          </Link>
+         </div>
+         <p>
+-          Or browse the <a href="/workflows">workflow library</a>, <a href="/resources">source catalog</a>,
+-          and <a href="/reading-room">reading room</a> directly.
++          Or browse the <Link href="/workflows">workflow library</Link>, <Link href="/resources">source catalog</Link>,
++          and <Link href="/reading-room">reading room</Link> directly.
+@@ -166,7 +168,7 @@ export default function OverviewPage() {
+-          <a href="/ecosystem">
++          <Link href="/ecosystem">
+@@ -169,8 +171,8 @@ export default function OverviewPage() {
+-          </a>
+-          <a href="/AGENTS.md">
++          </Link>
++          <Link href="/AGENTS.md">
+@@ -178,8 +180,8 @@ export default function OverviewPage() {
+-          </a>
+-          <a href="/machine-access">
++          </Link>
++          <Link href="/machine-access">
+@@ -187,8 +189,8 @@ export default function OverviewPage() {
+-          </a>
+-          <a href="/open-source">
++          </Link>
++          <Link href="/open-source">
+@@ -196,7 +198,7 @@ export default function OverviewPage() {
+-          </a>
++          </Link>
+@@ -221,9 +223,9 @@ export default function OverviewPage() {
+-          Use <a href="/authority">Authority levels</a> to classify each action
+-          and <a href="/sensitive-actions">Sensitive actions</a> to design the
++          Use <Link href="/authority">Authority levels</Link> to classify each action
++          and <Link href="/sensitive-actions">Sensitive actions</Link> to design the
+@@ -231,7 +233,7 @@ export default function OverviewPage() {
+-        </p>
++        </p>
+diff --git a/app/platform-api.ts b/app/platform-api.ts
+index 851f0ea..fd75654 100644
+--- a/app/platform-api.ts
++++ b/app/platform-api.ts
+@@ -78,6 +78,7 @@ export async function platformCollectionResponse<T extends Identified>({
+       headers: next ? { "X-Next-Page": next.toString(), "Content-Language": "en" } : { "Content-Language": "en" },
++      modifiedAt: platformRelease.published_at,
+@@ -91,6 +92,7 @@ export async function platformCollectionResponse<T extends Identified>({
+     headers: next ? { "X-Next-Page": next.toString() } : undefined,
++    modifiedAt: platformRelease.published_at,
+@@ -114,6 +116,7 @@ export function platformItemResponse<T extends Identified>({
+       headers: { "Content-Language": "en" },
++      modifiedAt: platformRelease.published_at,
+@@ -121,5 +124,7 @@ export function platformItemResponse<T extends Identified>({
+     release_version: platformRelease.id,
+     collection,
+     item,
+-  }, null, 2), "application/json; charset=utf-8");
++  }, null, 2), "application/json; charset=utf-8", {
++    modifiedAt: platformRelease.published_at,
++  });
+ }
+diff --git a/app/project-metadata.ts b/app/project-metadata.ts
+new file mode 100644
+index 0000000..a8f93d5
+--- /dev/null
++++ b/app/project-metadata.ts
+@@ -0,0 +1,33 @@
++import release from "../data/release.json";
++
++function normalizeOrigin(value: string) {
++  try {
++    const url = new URL(value);
++    return url.toString().replace(/\/$/, "");
++  } catch {
++    return release.default_site_origin;
++  }
++}
++
++export const siteOrigin = normalizeOrigin(
++  process.env.PUBLIC_SITE_ORIGIN
++    ?? process.env.NEXT_PUBLIC_SITE_ORIGIN
++    ?? release.default_site_origin,
++);
++
++export const packageVersion = release.package_version;
++export const apiVersion = release.api_version;
++export const platformReleaseId = release.platform.id;
++export const platformPublishedAt = release.platform.published_at;
++export const platformReviewedAt = release.platform.reviewed_at;
++export const specificationVersion = release.platform.specification_version;
++export const corpusVersion = release.corpus.version;
++export const corpusModifiedAt = release.corpus.modified_at;
++export const corpusReviewedAt = release.corpus.reviewed_at;
++export const domainSchemaVersion = release.corpus.schema_version;
++export const catalogVersion = release.catalog.version;
++export const catalogModifiedAt = release.catalog.modified_at;
++export const catalogReviewedAt = release.catalog.reviewed_at;
++export const projectRelease = release;
+diff --git a/app/reading-room.md/route.ts b/app/reading-room.md/route.ts
+index e566d2f..fe825b5 100644
+--- a/app/reading-room.md/route.ts
++++ b/app/reading-room.md/route.ts
+@@ -1,4 +1,4 @@
+-import { publicResponse, siteOrigin } from "../agent-interface";
++import { catalogModifiedAt, publicResponse, siteOrigin } from "../agent-interface";
+@@ -8,5 +8,6 @@ export async function GET(request: Request) {
+     renderReadingRoomMarkdown(siteOrigin),
+     "text/markdown; charset=utf-8",
++    { modifiedAt: catalogModifiedAt },
+   );
+ }
+diff --git a/app/resources.md/route.ts b/app/resources.md/route.ts
+index 0165b39..7f97bbb 100644
+--- a/app/resources.md/route.ts
++++ b/app/resources.md/route.ts
+@@ -1,6 +1,7 @@
+ import {
+   agentResources,
++  catalogModifiedAt,
+@@ -11,5 +12,5 @@ export async function GET(request: Request) {
+     renderResourcesMarkdown(agentResources),
+     "text/markdown; charset=utf-8",
+-    { headers: { "Content-Language": "en" } },
++    { modifiedAt: catalogModifiedAt, headers: { "Content-Language": "en" } },
+   );
+ }
+diff --git a/app/sitemap.ts b/app/sitemap.ts
+index a6e708c..409b82d 100644
+--- a/app/sitemap.ts
++++ b/app/sitemap.ts
+@@ -1,5 +1,5 @@
+ import type { MetadataRoute } from "next";
+-import { siteOrigin } from "./agent-interface";
++import { catalogModifiedAt, corpusModifiedAt, platformPublishedAt, siteOrigin } from "./project-metadata";
+@@ -37,7 +37,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
+-    lastModified: new Date("2026-08-23T00:00:00Z"),
++    lastModified: new Date(platformPublishedAt),
+@@ -44,7 +44,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
+-    lastModified: new Date("2026-08-23T00:00:00Z"),
++    lastModified: new Date(corpusModifiedAt),
+@@ -51,7 +51,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
+-    lastModified: new Date("2026-08-23T00:00:00Z"),
++    lastModified: new Date(corpusModifiedAt),
+@@ -58,7 +58,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
+-    lastModified: new Date("2026-08-23T00:00:00Z"),
++    lastModified: new Date(catalogModifiedAt),
+@@ -65,7 +65,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
+-    lastModified: new Date("2026-08-23T00:00:00Z"),
++    lastModified: new Date(platformPublishedAt),
+diff --git a/build/sites-vite-plugin.ts b/build/sites-vite-plugin.ts
+index 26563fd..6d80093 100644
+--- a/build/sites-vite-plugin.ts
++++ b/build/sites-vite-plugin.ts
+@@ -7,14 +7,12 @@ async function exists(path: string): Promise<boolean> {
+     await access(path);
+     return true;
+   } catch (error) {
+-    if ((error as NodeJS.ErrnoException).code === "ENOENT") {
+-      return false;
+-    }
++    if ((error as NodeJS.ErrnoException).code === "ENOENT") return false;
+     throw error;
+   }
+ }
+ 
+-// Packages Sites metadata and migrations after Vite finishes compiling.
++// Packages the optional ChatGPT Sites hosting descriptor after Vite compiles.
+ export function sites(): Plugin {
+@@ -27,7 +25,6 @@ export function sites(): Plugin {
+       const outputDirectory = resolve(root, "dist", ".openai");
+       const hostingConfig = resolve(root, ".openai", "hosting.json");
+-      const drizzleSource = resolve(root, "drizzle");
+@@ -35,11 +32,6 @@ export function sites(): Plugin {
+       if (await exists(hostingConfig)) {
+         await cp(hostingConfig, resolve(outputDirectory, "hosting.json"));
+       }
+-      if (await exists(drizzleSource)) {
+-        await cp(drizzleSource, resolve(outputDirectory, "drizzle"), {
+-          recursive: true,
+-        });
+-      }
+     },
+   };
+ }
+diff --git a/clients/README.md b/clients/README.md
+index ef5a388..6164421 100644
+--- a/clients/README.md
++++ b/clients/README.md
+@@ -1,6 +1,14 @@
+ # Reference clients
+ 
+-These dependency-free clients demonstrate the public API contract. They are not generated SDKs and do not hide rights or source metadata.
++These dependency-free clients demonstrate the public API contract. They are maintained reference examples, not published npm or PyPI SDKs. They do not hide rights or source metadata.
++
++## Support posture
++
++- API compatibility: the clients target public API version `1.x`.
++- Distribution: copy or vendor the files directly; no package-manager availability is implied.
++- Dependencies: none beyond the language standard library.
++- Scope: resource, workflow, pack, benchmark, and unified-search reads.
++- Stability: breaking example changes follow the public API and project release notes.
+ 
+ ## JavaScript
+diff --git a/cloudflare-env.d.ts b/cloudflare-env.d.ts
+index 1e13fdd..f3f51b4 100644
+--- a/cloudflare-env.d.ts
++++ b/cloudflare-env.d.ts
+@@ -1,6 +1,5 @@
+ // Generated by Wrangler via `wrangler types`
+ interface CloudflareEnv {
+-  DB: D1Database;
+   ASSETS: Fetcher;
+ }
+diff --git a/data/open-source-platform.mjs b/data/open-source-platform.mjs
+index bd1088c..cf64b28 100644
+--- a/data/open-source-platform.mjs
++++ b/data/open-source-platform.mjs
+@@ -1,11 +1,13 @@
++import releaseMetadata from "./release.json" with { type: "json" };
++
+ export const platformRelease = {
+-  id: "2026-08-23.9",
+-  published_at: "2026-08-23T00:00:00.000Z",
+-  reviewed_at: "2026-08-23",
++  id: releaseMetadata.platform.id,
++  published_at: releaseMetadata.platform.published_at,
++  reviewed_at: releaseMetadata.platform.reviewed_at,
+   status: "current",
+-  title: "Mobile quality and interaction coverage",
+-  summary: "Adds permanent mobile release gates for navigation, touch targets, safe areas, responsive search, overflow containment, and compiled phone styles.",
+-  specification_version: "1.0.0",
++  title: "Repository hardening and portable quality gates",
++  summary: "Adds enforced release and browser gates, portable generation and archives, lazy corpus search, layer-correct caching, source freshness operations, and repository governance scaffolding.",
++  specification_version: releaseMetadata.platform.specification_version,
+@@ -378,14 +380,16 @@ export const benchmarkCases = packs.flatMap((pack) => caseTemplates.map((templat
+ export const releaseNotes = [
+   {
+     id: platformRelease.id,
+-    date: "2026-08-23",
++    date: "2026-08-24",
+@@ -394,10 +398,12 @@ export const releaseNotes = [
+     changes: [
+-      "Added mobile-navigation parity and active-page tests across primary documentation routes.",
+-      "Added compiled-style checks for phone breakpoints, safe-area spacing, dynamic viewport units, single-column content, and overflow containment.",
+-      "Raised mobile search, menu, close, navigation, and result controls to a 44-pixel minimum touch target.",
+-      "Set mobile search input text to 16 pixels to prevent automatic iOS form zoom and constrained the dialog to the dynamic viewport.",
++      "Added an enforced GitHub release gate, browser-quality workflow, CODEOWNERS, contribution templates, and dependency automation.",
++      "Moved the default contributor path to portable npm and Node commands while retaining separately named ChatGPT Sites wrappers.",
++      "Replaced client-side corpus imports with debounced, cancellable public-API search and an in-memory result cache.",
++      "Centralized release metadata, made the canonical origin configurable, corrected layer-specific cache validators, and clarified API counts.",
++      "Added deterministic cross-platform ZIP generation, real Chromium and WebKit checks, and scheduled external-source freshness reporting.",
++      "Removed unused root database and authentication scaffolding and documented reference-client support and required repository settings.",
+     ],
+diff --git a/data/release.json b/data/release.json
+new file mode 100644
+index 0000000..f394306
+--- /dev/null
++++ b/data/release.json
+@@ -0,0 +1,22 @@
++{
++  "package_version": "0.1.0",
++  "api_version": "1.0",
++  "platform": {
++    "id": "2026-08-24.1",
++    "published_at": "2026-08-24T00:00:00.000Z",
++    "reviewed_at": "2026-08-24",
++    "specification_version": "1.0.0"
++  },
++  "corpus": {
++    "version": "2026-08-23.5",
++    "modified_at": "2026-08-23T00:00:00.000Z",
++    "reviewed_at": "2026-08-23",
++    "schema_version": "1.0"
++  },
++  "catalog": {
++    "version": "2026-08-23.7",
++    "modified_at": "2026-08-23T00:00:00.000Z",
++    "reviewed_at": "2026-08-23"
++  },
++  "default_site_origin": "https://accounting-agents.madebyhenry.chatgpt.site"
++}
+diff --git a/db/index.ts b/db/index.ts
+deleted file mode 100644
+index 19b3799..0000000
+--- a/db/index.ts
++++ /dev/null
+@@ -1,15 +0,0 @@
+-import { drizzle } from "drizzle-orm/d1";
+-import * as schema from "./schema";
+-
+-export function getDb(env?: CloudflareEnv) {
+-  if (env?.DB) return drizzle(env.DB, { schema });
+-
+-  if (typeof process !== "undefined" && process.env.NODE_ENV === "production") {
+-    throw new Error("DB binding is missing in production");
+-  }
+-
+-  throw new Error("Database is unavailable. Use D1 locally through Wrangler or provide the Worker binding.");
+-}
+-
+diff --git a/db/schema.ts b/db/schema.ts
+deleted file mode 100644
+index d2dd83c..0000000
+--- a/db/schema.ts
++++ /dev/null
+@@ -1,8 +0,0 @@
+-// Example schema. Replace with your tables, then run `npm run db:generate`.
+-import { sqliteTable, text, integer } from "drizzle-orm/sqlite-core";
+-
+-export const notes = sqliteTable("notes", {
+-  id: integer("id").primaryKey({ autoIncrement: true }),
+-  body: text("body").notNull(),
+-  createdAt: integer("created_at", { mode: "timestamp" }).notNull(),
+-});
+diff --git a/drizzle.config.ts b/drizzle.config.ts
+deleted file mode 100644
+index c2b2f34..0000000
+--- a/drizzle.config.ts
++++ /dev/null
+@@ -1,8 +0,0 @@
+-import { defineConfig } from "drizzle-kit";
+-
+-export default defineConfig({
+-  schema: "./db/schema.ts",
+-  out: "./drizzle",
+-  dialect: "sqlite",
+-});
+diff --git a/drizzle/meta/_journal.json b/drizzle/meta/_journal.json
+deleted file mode 100644
+index 4377507..0000000
+--- a/drizzle/meta/_journal.json
++++ /dev/null
+@@ -1,5 +0,0 @@
+-{
+-  "version": "7",
+-  "dialect": "sqlite",
+-  "entries": []
+-}
+diff --git a/examples/d1/app/api/notes/route.ts b/examples/d1/app/api/notes/route.ts
+deleted file mode 100644
+index 07f8318..0000000
+--- a/examples/d1/app/api/notes/route.ts
++++ /dev/null
+@@ -1,62 +0,0 @@
+-import { getCloudflareContext } from "@opennextjs/cloudflare";
+-import { eq } from "drizzle-orm";
+-import { getDb } from "../../../../../db";
+-import { notes } from "../../../../../db/schema";
+-
+-export async function GET() {
+-  const { env } = await getCloudflareContext({ async: true });
+-  const db = getDb(env as unknown as CloudflareEnv);
+-  const rows = await db.select().from(notes).orderBy(notes.id);
+-  return Response.json(rows);
+-}
+-
+-export async function POST(request: Request) {
+-  const { env } = await getCloudflareContext({ async: true });
+-  const db = getDb(env as unknown as CloudflareEnv);
+-  const body = await request.json().catch(() => null) as { body?: string } | null;
+-
+-  if (!body?.body?.trim()) {
+-    return Response.json({ error: "body is required" }, { status: 400 });
+-  }
+-
+-  const inserted = await db
+-    .insert(notes)
+-    .values({ body: body.body.trim(), createdAt: new Date() })
+-    .returning();
+-
+-  return Response.json(inserted[0], { status: 201 });
+-}
+-
+-export async function DELETE(request: Request) {
+-  const { env } = await getCloudflareContext({ async: true });
+-  const db = getDb(env as unknown as CloudflareEnv);
+-  const id = Number(new URL(request.url).searchParams.get("id"));
+-
+-  if (!Number.isInteger(id) || id < 1) {
+-    return Response.json({ error: "valid id is required" }, { status: 400 });
+-  }
+-
+-  const deleted = await db.delete(notes).where(eq(notes.id, id)).returning();
+-  if (!deleted.length) return Response.json({ error: "not found" }, { status: 404 });
+-  return Response.json(deleted[0]);
+-}
+diff --git a/examples/d1/db/schema.ts b/examples/d1/db/schema.ts
+deleted file mode 100644
+index 7bb0c15..0000000
+--- a/examples/d1/db/schema.ts
++++ /dev/null
+@@ -1,17 +0,0 @@
+-import { sqliteTable, text, integer } from "drizzle-orm/sqlite-core";
+-
+-// Example schema. Replace with your tables, then run `npm run db:generate`.
+-export const notes = sqliteTable("notes", {
+-  id: integer("id").primaryKey({ autoIncrement: true }),
+-  body: text("body").notNull(),
+-  createdAt: integer("created_at", { mode: "timestamp" }).notNull(),
+-});
+diff --git a/package.json b/package.json
+index f7a8994..264218d 100644
+--- a/package.json
++++ b/package.json
+@@ -6,37 +6,41 @@
+     "node": ">=22.13.0"
+   },
+   "scripts": {
+-    "install:ci": "bash scripts/install-ci.sh",
+-    "dev": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vite",
+-    "build": "bash scripts/build-verified.sh",
+-    "start": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext start",
++    "dev": "vite",
++    "build": "vinext build",
++    "start": "vinext start",
+     "test": "npm run build && node --test tests/*.test.mjs",
++    "check:bundle": "node scripts/check-client-bundle.mjs",
+     "test:contracts": "node --test tests/rendered-html.test.mjs",
+     "test:mobile": "node --test tests/mobile-quality.test.mjs",
+     "test:quality": "node --test tests/site-quality.test.mjs",
+-    "lint": "bash scripts/sites-env.sh -- eslint . --ignore-pattern dist --ignore-pattern .next",
++    "test:ledgerbench": "node --test tests/ledgerbench-program.test.mjs",
++    "test:browser": "playwright test",
++    "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
+     "generate:platform": "node scripts/generate-platform-artifacts.mjs",
+-    "validate:platform": "node scripts/validate-platform.mjs",
++    "validate:platform": "node scripts/validate-platform.mjs && node scripts/validate-release-metadata.mjs",
+     "validate:ledgerbench": "node scripts/validate-ledgerbench.mjs",
+     "benchmark:sample": "node scripts/run-benchmark.mjs benchmark/sample-results.json",
+-    "archive:source": "bash scripts/build-source-archive.sh",
+-    "db:generate": "bash scripts/sites-env.sh -- drizzle-kit generate"
++    "archive:source": "node scripts/build-source-archive.mjs",
++    "check:sources": "node scripts/check-source-freshness.mjs --report source-freshness-report.json",
++    "sites:install": "bash scripts/install-sites.sh",
++    "sites:build": "bash scripts/build-sites.sh"
+   },
+   "dependencies": {
+-    "drizzle-orm": "0.45.2",
+     "next": "16.2.6",
+@@ -46,13 +50,14 @@
+   "devDependencies": {
+     "@cloudflare/vite-plugin": "1.37.1",
++    "@playwright/test": "1.62.1",
+@@ -54,7 +59,7 @@
+     "@vitejs/plugin-rsc": "0.5.26",
+-    "drizzle-kit": "0.31.10",
++    "axe-core": "4.13.0",
+diff --git a/playwright.config.mjs b/playwright.config.mjs
+new file mode 100644
+index 0000000..f3f20a6
+--- /dev/null
++++ b/playwright.config.mjs
+@@ -0,0 +1,25 @@
++import { defineConfig, devices } from "@playwright/test";
++
++export default defineConfig({
++  testDir: "./tests/browser",
++  fullyParallel: true,
++  retries: process.env.CI ? 1 : 0,
++  reporter: process.env.CI ? [["html", { outputFolder: "playwright-report", open: "never" }], ["line"]] : "line",
++  use: {
++    baseURL: "http://127.0.0.1:4173",
++    trace: "retain-on-failure",
++    screenshot: "only-on-failure",
++    video: "retain-on-failure",
++  },
++  webServer: {
++    command: "npm run dev -- --host 127.0.0.1 --port 4173",
++    url: "http://127.0.0.1:4173",
++    reuseExistingServer: !process.env.CI,
++    timeout: 120_000,
++  },
++  projects: [
++    { name: "chromium-desktop", use: { ...devices["Desktop Chrome"] } },
++    { name: "webkit-phone", use: { ...devices["iPhone 13"] } },
++  ],
++});
+diff --git a/scripts/build-sites.sh b/scripts/build-sites.sh
+new file mode 100755
+index 0000000..a19c134
+--- /dev/null
++++ b/scripts/build-sites.sh
+@@ -0,0 +1,28 @@
++#!/usr/bin/env bash
++set -euo pipefail
++
++script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
++
++if [[ "${SITES_ENV_READY:-}" != "1" ]]; then
++  exec "${script_dir}/sites-env.sh" -- "$0" "$@"
++fi
++
++command -v timeout || {
++  echo "build-sites.sh requires GNU timeout." >&2
++  exit 69
++}
++
++vinext="${SITES_PROJECT_ROOT}/node_modules/.bin/vinext"
++if [[ ! -x "${vinext}" ]]; then
++  echo "vinext is unavailable. Run npm run sites:install and wait for it to finish before building." >&2
++  exit 69
++fi
++
++echo "Running bounded vinext build..."
++timeout \
++  --signal=TERM \
++  --kill-after="${SITES_BUILD_KILL_AFTER:-10s}" \
++  "${SITES_BUILD_TIMEOUT:-3m}" \
++  "${vinext}" build
+diff --git a/scripts/build-source-archive.mjs b/scripts/build-source-archive.mjs
+new file mode 100644
+index 0000000..8e5b090
+--- /dev/null
++++ b/scripts/build-source-archive.mjs
+@@ -0,0 +1,48 @@
++import { createHash } from "node:crypto";
++import { mkdir, readFile, stat, writeFile } from "node:fs/promises";
++import { dirname, join } from "node:path";
++import { fileURLToPath } from "node:url";
++import release from "../data/release.json" with { type: "json" };
++import { writeZipFromPaths } from "./lib/zip.mjs";
++
++const projectRoot = dirname(dirname(fileURLToPath(import.meta.url)));
++const downloads = join(projectRoot, "public", "downloads");
++const sourceArchive = join(downloads, "accounting-agents-source.zip");
++const sourcePaths = [
++  ".github", ".openai", "app", "benchmark", "bin", "build", "clients", "data", "docs",
++  "LICENSE", "LICENSE-CONTENT.md", "LICENSE-DATA.md", "LICENSES", "AGENTS.md", "ATTRIBUTION.md",
++  "BENCHMARK_SUBMISSIONS.md", "CITATION.cff", "CODE_OF_CONDUCT.md", "CONTRIBUTING.md",
++  "CORRECTIONS.md", "EDITORIAL_POLICY.md", "GOVERNANCE.md", "NOTICE.md", "README.md", "RELEASES.md",
++  "SECURITY.md", "SOURCE_ARCHIVE_NOTICE.md", "packs", "public/images", "scripts", "tests", "worker",
++  "package.json", "package-lock.json", "tsconfig.json", "next.config.ts", "eslint.config.mjs",
++  "postcss.config.mjs", "vite.config.ts", "cloudflare-env.d.ts",
++];
++const assetNames = [
++  "accounting-agent-packs.zip",
++  "accounting-agent-packs.json",
++  "accounting-agent-bench.json",
++  "accounting-agents-source.zip",
++];
++
++await mkdir(downloads, { recursive: true });
++await writeZipFromPaths(sourceArchive, projectRoot, sourcePaths, {
++  timestamp: release.platform.published_at,
++});
++
++const assets = {};
++const checksumLines = [];
++for (const name of assetNames) {
++  const path = join(downloads, name);
++  const bytes = await readFile(path);
++  const digest = createHash("sha256").update(bytes).digest("hex");
++  const size = (await stat(path)).size;
++  checksumLines.push(`${digest}  ${name}`);
++  assets[name] = { sha256: `sha256:${digest}`, bytes: size };
++}
++await writeFile(join(downloads, "SHA256SUMS"), `${checksumLines.join("\n")}\n`, "utf8");
++await writeFile(join(downloads, "archive-digests.json"), `${JSON.stringify({
++  generated_at: release.platform.published_at,
++  assets,
++}, null, 2)}\n`, "utf8");
++
++process.stdout.write(`Built ${assetNames.length} checksummed release assets.\n`);
+diff --git a/scripts/build-source-archive.sh b/scripts/build-source-archive.sh
+deleted file mode 100644
+index 4abda1b..0000000
+--- a/scripts/build-source-archive.sh
++++ /dev/null
+@@ -1,40 +0,0 @@
+-#!/usr/bin/env bash
+-set -euo pipefail
+-
+-cd "$(dirname "$0")/.."
+-
+-downloads="public/downloads"
+-source_archive="${downloads}/accounting-agents-source.zip"
+-mkdir -p "${downloads}"
+-rm -f "${source_archive}"
+-
+-zip -qr "${source_archive}" \
+-  .github \
+-  .openai \
+-  app \
+-  benchmark \
+-  bin \
+-  build \
+-  clients \
+-  data \
+-  docs \
+-  LICENSE \
+-  LICENSE-CONTENT.md \
+-  LICENSE-DATA.md \
+-  LICENSES \
+-  AGENTS.md \
+-  ATTRIBUTION.md \
+-  BENCHMARK_SUBMISSIONS.md \
+-  CITATION.cff \
+-  CODE_OF_CONDUCT.md \
+-  CONTRIBUTING.md \
+-  CORRECTIONS.md \
+-  EDITORIAL_POLICY.md \
+-  GOVERNANCE.md \
+-  NOTICE.md \
+-  README.md \
+-  RELEASES.md \
+-  SECURITY.md \
+-  SOURCE_ARCHIVE_NOTICE.md \
+-  packs \
+-  public/images \
+-  scripts \
+-  tests \
+-  worker \
+-  package.json \
+-  package-lock.json \
+-  tsconfig.json \
+-  next.config.ts \
+-  eslint.config.mjs \
+-  postcss.config.mjs \
+-  vite.config.ts \
+-  cloudflare-env.d.ts
+-
+-sha256sum \
+-  public/downloads/accounting-agent-packs.zip \
+-  public/downloads/accounting-agent-packs.json \
+-  public/downloads/accounting-agent-bench.json \
+-  public/downloads/accounting-agents-source.zip \
+-  > public/downloads/SHA256SUMS
+-
+-node --input-type=module <<'NODE'
+-import { createHash } from "node:crypto";
+-import { readFileSync, statSync, writeFileSync } from "node:fs";
+-
+-const names = ["accounting-agent-packs.zip", "accounting-agent-packs.json", "accounting-agent-bench.json", "accounting-agents-source.zip"];
+-const assets = Object.fromEntries(names.map((name) => {
+-  const path = `public/downloads/${name}`;
+-  const bytes = readFileSync(path);
+-  return [name, { sha256: `sha256:${createHash("sha256").update(bytes).digest("hex")}`, bytes: statSync(path).size }];
+-}));
+-writeFileSync("public/downloads/archive-digests.json", `${JSON.stringify({ generated_at: "2026-08-23T00:00:00.000Z", assets }, null, 2)}\n`);
+-NODE
+diff --git a/scripts/build-verified.sh b/scripts/build-verified.sh
+deleted file mode 100755
+index 6c69cf3..0000000
+--- a/scripts/build-verified.sh
++++ /dev/null
+@@ -1,26 +0,0 @@
+-#!/usr/bin/env bash
+-set -euo pipefail
+-
+-script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+-
+-if [[ "${SITES_ENV_READY:-}" != "1" ]]; then
+-  exec "${script_dir}/sites-env.sh" -- "$0" "$@"
+-fi
+-
+-command -v timeout || {
+-  echo "build-verified.sh requires GNU timeout." >&2
+-  exit 69
+-}
+-
+-vinext="${SITES_PROJECT_ROOT}/node_modules/.bin/vinext"
+-if [[ ! -x "${vinext}" ]]; then
+-  echo "vinext is unavailable. Run npm run install:ci and wait for it to finish before building." >&2
+-  exit 69
+-fi
+-
+-echo "Running bounded vinext build..."
+-timeout \
+-  --signal=TERM \
+-  --kill-after="${SITES_BUILD_KILL_AFTER:-10s}" \
+-  "${SITES_BUILD_TIMEOUT:-3m}" \
+-  "${vinext}" build
+diff --git a/scripts/check-client-bundle.mjs b/scripts/check-client-bundle.mjs
+new file mode 100644
+index 0000000..4f5d31a
+--- /dev/null
++++ b/scripts/check-client-bundle.mjs
+@@ -0,0 +1,32 @@
++import { readdir, stat } from "node:fs/promises";
++import { join, relative } from "node:path";
++import { fileURLToPath } from "node:url";
++
++const root = new URL("../dist/", import.meta.url);
++const rootPath = fileURLToPath(root);
++const totalBudget = Number(process.env.CLIENT_JS_BUDGET_BYTES ?? 5_000_000);
++const chunkBudget = Number(process.env.CLIENT_CHUNK_BUDGET_BYTES ?? 1_000_000);
++const files = [];
++
++async function walk(directory) {
++  for (const entry of await readdir(directory, { withFileTypes: true })) {
++    const path = join(directory, entry.name);
++    if (entry.isDirectory()) {
++      if (entry.name === "server" || entry.name === ".openai") continue;
++      await walk(path);
++    } else if (entry.isFile() && path.endsWith(".js")) {
++      files.push({ path: relative(rootPath, path), bytes: (await stat(path)).size });
++    }
++  }
++}
++
++await walk(rootPath);
++if (!files.length) throw new Error("No client JavaScript files were found under dist/.");
++const total = files.reduce((sum, file) => sum + file.bytes, 0);
++const largest = [...files].sort((left, right) => right.bytes - left.bytes)[0];
++process.stdout.write(`${JSON.stringify({ total_bytes: total, total_budget: totalBudget, largest_chunk: largest, chunk_budget: chunkBudget }, null, 2)}\n`);
++if (total > totalBudget) throw new Error(`Client JavaScript ${total} exceeds ${totalBudget} bytes.`);
++if (largest.bytes > chunkBudget) throw new Error(`Client chunk ${largest.path} is ${largest.bytes} bytes; budget is ${chunkBudget}.`);
+diff --git a/scripts/check-source-freshness.mjs b/scripts/check-source-freshness.mjs
+new file mode 100644
+index 0000000..a79bd76
+--- /dev/null
++++ b/scripts/check-source-freshness.mjs
+@@ -0,0 +1,151 @@
++import { writeFile } from "node:fs/promises";
++import release from "../data/release.json" with { type: "json" };
++
++const args = new Map();
++for (let index = 2; index < process.argv.length; index += 1) {
++  const value = process.argv[index];
++  if (!value.startsWith("--")) continue;
++  const key = value.slice(2);
++  const next = process.argv[index + 1];
++  if (next && !next.startsWith("--")) {
++    args.set(key, next);
++    index += 1;
++  } else {
++    args.set(key, true);
++  }
++}
++
++const baseUrl = String(args.get("base-url") ?? release.default_site_origin).replace(/\/$/, "");
++const reportPath = String(args.get("report") ?? "source-freshness-report.json");
++const timeoutMs = Number(args.get("timeout-ms") ?? 15000);
++const concurrency = Math.max(1, Number(args.get("concurrency") ?? 12));
++const attempts = Math.max(1, Number(args.get("attempts") ?? 2));
++const maximum = Math.max(1, Number(args.get("max") ?? Number.MAX_SAFE_INTEGER));
++const dryRun = args.has("dry-run");
++const strict = args.has("strict");
++
++async function fetchCatalog() {
++  const records = [];
++  let cursor = null;
++  do {
++    const url = new URL("/api/v1/resources", baseUrl);
++    url.searchParams.set("limit", "200");
++    if (cursor) url.searchParams.set("cursor", cursor);
++    const response = await fetch(url, { headers: { Accept: "application/json" } });
++    if (!response.ok) throw new Error(`Catalog request failed: ${response.status} ${url}`);
++    const payload = await response.json();
++    records.push(...payload.items);
++    cursor = payload.next_cursor;
++  } while (cursor && records.length < maximum);
++  return records.slice(0, maximum);
++}
++
++async function requestRecord(record) {
++  const controller = new AbortController();
++  const timer = setTimeout(() => controller.abort(), timeoutMs);
++  const target = record.canonical_source_url;
++  try {
++    let response = await fetch(target, {
++      method: "HEAD",
++      redirect: "follow",
++      signal: controller.signal,
++      headers: { "User-Agent": "Accounting-Agents-Source-Verifier/1.0" },
++    });
++    if ([400, 403, 405, 501].includes(response.status)) {
++      response = await fetch(target, {
++        method: "GET",
++        redirect: "follow",
++        signal: controller.signal,
++        headers: {
++          Range: "bytes=0-0",
++          "User-Agent": "Accounting-Agents-Source-Verifier/1.0",
++        },
++      });
++    }
++    return {
++      ok: response.status >= 200 && response.status < 400,
++      status: response.status,
++      final_url: response.url,
++      content_type: response.headers.get("content-type"),
++      redirect_changed: response.url !== target,
++      error: null,
++    };
++  } catch (error) {
++    return {
++      ok: false,
++      status: null,
++      final_url: null,
++      content_type: null,
++      redirect_changed: false,
++      error: error instanceof Error ? error.message : String(error),
++    };
++  } finally {
++    clearTimeout(timer);
++  }
++}
++
++async function checkRecord(record) {
++  const base = {
++    id: record.id,
++    title: record.title,
++    source_owner: record.owner,
++    canonical_source_url: record.canonical_source_url,
++    checked_at: new Date().toISOString(),
++  };
++  const history = [];
++  for (let attempt = 1; attempt <= attempts; attempt += 1) {
++    const result = await requestRecord(record);
++    history.push({ attempt, status: result.status, error: result.error });
++    if (result.ok) return { ...base, ...result, attempts: attempt, attempt_history: history };
++    if (attempt < attempts) await new Promise((resolve) => setTimeout(resolve, 500 * attempt));
++  }
++  const last = await Promise.resolve(history.at(-1));
++  return {
++    ...base,
++    ok: false,
++    status: last?.status ?? null,
++    final_url: null,
++    content_type: null,
++    redirect_changed: false,
++    error: last?.error ?? "request failed",
++    attempts,
++    attempt_history: history,
++  };
++}
++
++async function mapConcurrent(records, worker) {
++  const results = new Array(records.length);
++  let nextIndex = 0;
++  await Promise.all(Array.from({ length: Math.min(concurrency, records.length) }, async () => {
++    while (nextIndex < records.length) {
++      const index = nextIndex;
++      nextIndex += 1;
++      results[index] = await worker(records[index]);
++    }
++  }));
++  return results;
++}
++
++if (dryRun) {
++  const report = {
++    schema_version: "1.0",
++    dry_run: true,
++    base_url: baseUrl,
++    timeout_ms: timeoutMs,
++    concurrency,
++    attempts,
++    checked_at: new Date().toISOString(),
++  };
++  await writeFile(reportPath, `${JSON.stringify(report, null, 2)}\n`, "utf8");
++  process.stdout.write(`Source verifier configuration is valid; wrote ${reportPath}.\n`);
++} else {
++  const records = await fetchCatalog();
++  const checks = await mapConcurrent(records, checkRecord);
++  const failures = checks.filter((item) => !item.ok);
++  const redirects = checks.filter((item) => item.redirect_changed);
++  const report = {
++    schema_version: "1.0",
++    catalog_base_url: baseUrl,
++    checked_at: new Date().toISOString(),
++    total_records: checks.length,
++    successful_records: checks.length - failures.length,
++    failed_records: failures.length,
++    redirected_records: redirects.length,
++    attempts_per_source: attempts,
++    note: "This is a point-in-time access check. A source is reported failed only after the configured repeated attempts; failure still does not prove withdrawal or invalidity.",
++    checks,
++  };
++  await writeFile(reportPath, `${JSON.stringify(report, null, 2)}\n`, "utf8");
++  process.stdout.write(`Checked ${checks.length} sources: ${failures.length} failed, ${redirects.length} redirected.\n`);
++  if (strict && failures.length) process.exitCode = 1;
++}
+diff --git a/scripts/generate-platform-artifacts.mjs b/scripts/generate-platform-artifacts.mjs
+index 24631dd..8f92a2f 100644
+--- a/scripts/generate-platform-artifacts.mjs
++++ b/scripts/generate-platform-artifacts.mjs
+@@ -1,8 +1,8 @@
+-import { execFileSync } from "node:child_process";
+ import { mkdir, rm, writeFile } from "node:fs/promises";
+@@ -5,6 +5,7 @@ import { fileURLToPath } from "node:url";
+ import { benchmark, benchmarkCases, packs, platformData } from "../data/open-source-platform.mjs";
++import { writeZipFromPaths } from "./lib/zip.mjs";
+@@ -91,5 +92,7 @@ await writeJson(join(benchmarkRoot, "sample-results.json"), sampleResults);
+-execFileSync("zip", ["-qr", zipPath, "packs"], { cwd: projectRoot });
++await writeZipFromPaths(zipPath, projectRoot, ["packs"], {
++  timestamp: platformData.release.published_at,
++});
+diff --git a/scripts/install-ci.sh b/scripts/install-ci.sh
+deleted file mode 100755
+index d02e170..0000000
+--- a/scripts/install-ci.sh
++++ /dev/null
+@@ -1,189 +0,0 @@
+-#!/usr/bin/env bash
+-set -euo pipefail
+-
+-script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+-
+-if [[ "${SITES_ENV_READY:-}" != "1" ]]; then
+-  exec "${script_dir}/sites-env.sh" -- "$0" "$@"
+-fi
+-
+-command -v flock || {
+-  echo "install-ci.sh requires Linux flock." >&2
+-  exit 69
+-}
+-command -v timeout || {
+-  echo "install-ci.sh requires GNU timeout." >&2
+-  exit 69
+-}
+-command -v curl || {
+-  echo "install-ci.sh requires curl for the locked-tarball preflight." >&2
+-  exit 69
+-}
+-command -v sha256sum || {
+-  echo "install-ci.sh requires sha256sum for cache and install verification." >&2
+-  exit 69
+-}
+-
+-runtime_root="${SITES_PROJECT_ROOT}/.sites-runtime"
+-expected_home="${runtime_root}/home"
+-expected_cache="${runtime_root}/npm-cache"
+-
+-echo "[sites] validating writable install environment"
+-if [[ "${HOME}" != "${expected_home}" ]]; then
+-  echo "Expected HOME=${expected_home}, got HOME=${HOME}." >&2
+-  exit 78
+-fi
+-actual_cache="$(npm config get cache)"
+-if [[ "${actual_cache}" != "${expected_cache}" ]]; then
+-  echo "Expected npm cache ${expected_cache}, got ${actual_cache}." >&2
+-  exit 78
+-fi
+-touch "${HOME}/.sites-write-test" "${expected_cache}/.sites-write-test"
+-rm -f "${HOME}/.sites-write-test" "${expected_cache}/.sites-write-test"
+-echo "[sites] environment passed: HOME=${HOME}, cache=${expected_cache}"
+-
+-lock_file="${runtime_root}/install.lock"
+-exec 9>"${lock_file}"
+-if ! flock -n 9; then
+-  echo "Another dependency install is already running for ${SITES_PROJECT_ROOT}." >&2
+-  exit 75
+-fi
+-
+-# Catch an installer started outside this helper. Linux exposes both its command
+-# line and working directory through /proc, so avoid broad process-name matches.
+-for process in /proc/[0-9]*; do
+-  pid="${process##*/}"
+-  [[ "${pid}" != "$$" && "${pid}" != "${PPID}" ]] || continue
+-  process_cwd="$(readlink -f "${process}/cwd" || true)"
+-  [[ "${process_cwd}" == "${SITES_PROJECT_ROOT}" ]] || continue
+-  process_command="$(tr '\0' ' ' <"${process}/cmdline" || true)"
+-  if [[ "${process_command}" == *"npm ci"* ]]; then
+-    echo "Another npm ci is visible in ${SITES_PROJECT_ROOT}; refusing to overlap installs." >&2
+-    exit 75
+-  fi
+-done
+-
+-lockfile_sha256="$(sha256sum "${SITES_PROJECT_ROOT}/package-lock.json" | awk '{print $1}')"
+-use_seeded_cache=0
+-seed_cache="${SITES_NPM_CACHE_SEED:-}"
+-if [[ -n "${seed_cache}" && -d "${seed_cache}" ]]; then
+-  seed_lockfile_sha256="$(cat "${seed_cache}/.sites-lockfile-sha256" || true)"
+-  if [[ "${seed_lockfile_sha256}" == "${lockfile_sha256}" ]]; then
+-    echo "[sites] restoring image-seeded npm cache"
+-    cp -a "${seed_cache}/." "${expected_cache}/"
+-    use_seeded_cache=1
+-    echo "[sites] image cache seed matched; registry fallback remains available"
+-  else
+-    echo "[sites] image cache seed does not match this lockfile; using the network path"
+-  fi
+-fi
+-
+-locked_vinext_output="$({ node --input-type=module - "${SITES_PROJECT_ROOT}/package-lock.json" <<'NODE'
+-import { readFile } from "node:fs/promises";
+-
+-const lock = JSON.parse(await readFile(process.argv[2], "utf8"));
+-const vinext = lock.packages?.["node_modules/vinext"];
+-if (!vinext?.resolved || !vinext?.integrity) {
+-  throw new Error("package-lock.json does not contain a resolved, integrity-pinned vinext tarball");
+-}
+-console.log(vinext.resolved);
+-console.log(vinext.integrity);
+-NODE
+-})" || {
+-  echo "Could not read the integrity-pinned vinext tarball from package-lock.json." >&2
+-  exit 65
+-}
+-mapfile -t locked_vinext <<<"${locked_vinext_output}"
+-if [[ "${#locked_vinext[@]}" -ne 2 ]]; then
+-  echo "Expected exactly one Vinext URL and integrity value from package-lock.json." >&2
+-  exit 65
+-fi
+-
+-locked_tarball="${locked_vinext[0]}"
+-locked_integrity="${locked_vinext[1]}"
+-
+-if [[ "${use_seeded_cache}" == "0" ]]; then
+-  registry="$(npm config get registry)"
+-  preflight_url="$({ node --input-type=module - "${locked_tarball}" "${registry}" <<'NODE'
+-const locked = new URL(process.argv[2]);
+-const registry = new URL(process.argv[3]);
+-if (locked.hostname === "registry.npmjs.org") {
+-  locked.protocol = registry.protocol;
+-  locked.host = registry.host;
+-  locked.pathname = `${registry.pathname.replace(/\/$/, "")}${locked.pathname}`;
+-}
+-process.stdout.write(locked.href);
+-NODE
+-})" || {
+-  echo "Could not construct the locked-tarball preflight URL." >&2
+-  exit 65
+-  }
+-
+-  preflight_dir="${runtime_root}/preflight"
+-  preflight_tarball="${preflight_dir}/vinext.tgz"
+-  mkdir -p "${preflight_dir}"
+-
+-  echo "[sites] downloading the complete locked vinext tarball"
+-  curl \
+-    --fail \
+-    --location \
+-    --silent \
+-    --show-error \
+-    --retry 0 \
+-    --connect-timeout 15 \
+-    --max-time 120 \
+-    --output "${preflight_tarball}" \
+-    "${preflight_url}"
+-
+-  echo "[sites] verifying locked vinext tarball integrity"
+-  node --input-type=module - "${preflight_tarball}" "${locked_integrity}" <<'NODE'
+-import { createHash } from "node:crypto";
+-import { readFile } from "node:fs/promises";
+-
+-const [algorithm, expected] = process.argv[3].split("-", 2);
+-if (!algorithm || !expected) {
+-  throw new Error(`unsupported integrity value: ${process.argv[3]}`);
+-}
+-const actual = createHash(algorithm)
+-  .update(await readFile(process.argv[2]))
+-  .digest("base64");
+-if (actual !== expected) {
+-  throw new Error(`vinext tarball integrity mismatch for ${algorithm}`);
+-}
+-NODE
+-  echo "[sites] network and integrity preflight passed"
+-fi
+-
+-echo "[sites] running exactly one bounded npm ci"
+-export NPM_CONFIG_MAXSOCKETS=1
+-export NPM_CONFIG_FETCH_RETRIES=0
+-export NPM_CONFIG_FETCH_TIMEOUT=30000
+-npm_ci_args=(ci --cache "${expected_cache}")
+-if [[ "${use_seeded_cache}" == "1" ]]; then
+-  npm_ci_args+=(--prefer-offline)
+-fi
+-timeout \
+-  --signal=TERM \
+-  --kill-after="${SITES_INSTALL_KILL_AFTER:-15s}" \
+-  "${SITES_INSTALL_TIMEOUT:-8m}" \
+-  npm "${npm_ci_args[@]}"
+-
+-vinext="${SITES_PROJECT_ROOT}/node_modules/.bin/vinext"
+-if [[ ! -x "${vinext}" ]]; then
+-  echo "npm ci exited successfully but node_modules/.bin/vinext is unavailable." >&2
+-  exit 69
+-fi
+-
+-node --input-type=module - "${SITES_PROJECT_ROOT}/node_modules/.sites-install.json" "${lockfile_sha256}" <<'NODE'
+-import { writeFile } from "node:fs/promises";
+-
+-await writeFile(
+-  process.argv[2],
+-  `${JSON.stringify({
+-    lockfile_sha256: process.argv[3],
+-    node: process.version,
+-    platform: `${process.platform}-${process.arch}`,
+-  }, null, 2)}\n`,
+-);
+-NODE
+-echo "[sites] npm ci passed and vinext is available"
+diff --git a/scripts/install-sites.sh b/scripts/install-sites.sh
+new file mode 100755
+index 0000000..4c60703
+--- /dev/null
++++ b/scripts/install-sites.sh
+@@ -0,0 +1,189 @@
++#!/usr/bin/env bash
++set -euo pipefail
++
++script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
++
++if [[ "${SITES_ENV_READY:-}" != "1" ]]; then
++  exec "${script_dir}/sites-env.sh" -- "$0" "$@"
++fi
++
++command -v flock || {
++  echo "install-sites.sh requires Linux flock." >&2
++  exit 69
++}
++command -v timeout || {
++  echo "install-sites.sh requires GNU timeout." >&2
++  exit 69
++}
++command -v curl || {
++  echo "install-sites.sh requires curl for the locked-tarball preflight." >&2
++  exit 69
++}
++command -v sha256sum || {
++  echo "install-sites.sh requires sha256sum for cache and install verification." >&2
++  exit 69
++}
++
++runtime_root="${SITES_PROJECT_ROOT}/.sites-runtime"
++expected_home="${runtime_root}/home"
++expected_cache="${runtime_root}/npm-cache"
++
++echo "[sites] validating writable install environment"
++if [[ "${HOME}" != "${expected_home}" ]]; then
++  echo "Expected HOME=${expected_home}, got HOME=${HOME}." >&2
++  exit 78
++fi
++actual_cache="$(npm config get cache)"
++if [[ "${actual_cache}" != "${expected_cache}" ]]; then
++  echo "Expected npm cache ${expected_cache}, got ${actual_cache}." >&2
++  exit 78
++fi
++touch "${HOME}/.sites-write-test" "${expected_cache}/.sites-write-test"
++rm -f "${HOME}/.sites-write-test" "${expected_cache}/.sites-write-test"
++echo "[sites] environment passed: HOME=${HOME}, cache=${expected_cache}"
++
++lock_file="${runtime_root}/install.lock"
++exec 9>"${lock_file}"
++if ! flock -n 9; then
++  echo "Another dependency install is already running for ${SITES_PROJECT_ROOT}." >&2
++  exit 75
++fi
++
++# Catch an installer started outside this helper. Linux exposes both its command
++# line and working directory through /proc, so avoid broad process-name matches.
++for process in /proc/[0-9]*; do
++  pid="${process##*/}"
++  [[ "${pid}" != "$$" && "${pid}" != "${PPID}" ]] || continue
++  process_cwd="$(readlink -f "${process}/cwd" || true)"
++  [[ "${process_cwd}" == "${SITES_PROJECT_ROOT}" ]] || continue
++  process_command="$(tr '\0' ' ' <"${process}/cmdline" || true)"
++  if [[ "${process_command}" == *"npm ci"* ]]; then
++    echo "Another npm ci is visible in ${SITES_PROJECT_ROOT}; refusing to overlap installs." >&2
++    exit 75
++  fi
++done
++
++lockfile_sha256="$(sha256sum "${SITES_PROJECT_ROOT}/package-lock.json" | awk '{print $1}')"
++use_seeded_cache=0
++seed_cache="${SITES_NPM_CACHE_SEED:-}"
++if [[ -n "${seed_cache}" && -d "${seed_cache}" ]]; then
++  seed_lockfile_sha256="$(cat "${seed_cache}/.sites-lockfile-sha256" || true)"
++  if [[ "${seed_lockfile_sha256}" == "${lockfile_sha256}" ]]; then
++    echo "[sites] restoring image-seeded npm cache"
++    cp -a "${seed_cache}/." "${expected_cache}/"
++    use_seeded_cache=1
++    echo "[sites] image cache seed matched; registry fallback remains available"
++  else
++    echo "[sites] image cache seed does not match this lockfile; using the network path"
++  fi
++fi
++
++locked_vinext_output="$({ node --input-type=module - "${SITES_PROJECT_ROOT}/package-lock.json" <<'NODE'
++import { readFile } from "node:fs/promises";
++
++const lock = JSON.parse(await readFile(process.argv[2], "utf8"));
++const vinext = lock.packages?.["node_modules/vinext"];
++if (!vinext?.resolved || !vinext?.integrity) {
++  throw new Error("package-lock.json does not contain a resolved, integrity-pinned vinext tarball");
++}
++console.log(vinext.resolved);
++console.log(vinext.integrity);
++NODE
++})" || {
++  echo "Could not read the integrity-pinned vinext tarball from package-lock.json." >&2
++  exit 65
++}
++mapfile -t locked_vinext <<<"${locked_vinext_output}"
++if [[ "${#locked_vinext[@]}" -ne 2 ]]; then
++  echo "Expected exactly one Vinext URL and integrity value from package-lock.json." >&2
++  exit 65
++fi
++
++locked_tarball="${locked_vinext[0]}"
++locked_integrity="${locked_vinext[1]}"
++
++if [[ "${use_seeded_cache}" == "0" ]]; then
++  registry="$(npm config get registry)"
++  preflight_url="$({ node --input-type=module - "${locked_tarball}" "${registry}" <<'NODE'
++const locked = new URL(process.argv[2]);
++const registry = new URL(process.argv[3]);
++if (locked.hostname === "registry.npmjs.org") {
++  locked.protocol = registry.protocol;
++  locked.host = registry.host;
++  locked.pathname = `${registry.pathname.replace(/\/$/, "")}${locked.pathname}`;
++}
++process.stdout.write(locked.href);
++NODE
++})" || {
++  echo "Could not construct the locked-tarball preflight URL." >&2
++  exit 65
++  }
++
++  preflight_dir="${runtime_root}/preflight"
++  preflight_tarball="${preflight_dir}/vinext.tgz"
++  mkdir -p "${preflight_dir}"
++
++  echo "[sites] downloading the complete locked vinext tarball"
++  curl \
++    --fail \
++    --location \
++    --silent \
++    --show-error \
++    --retry 0 \
++    --connect-timeout 15 \
++    --max-time 120 \
++    --output "${preflight_tarball}" \
++    "${preflight_url}"
++
++  echo "[sites] verifying locked vinext tarball integrity"
++  node --input-type=module - "${preflight_tarball}" "${locked_integrity}" <<'NODE'
++import { createHash } from "node:crypto";
++import { readFile } from "node:fs/promises";
++
++const [algorithm, expected] = process.argv[3].split("-", 2);
++if (!algorithm || !expected) {
++  throw new Error(`unsupported integrity value: ${process.argv[3]}`);
++}
++const actual = createHash(algorithm)
++  .update(await readFile(process.argv[2]))
++  .digest("base64");
++if (actual !== expected) {
++  throw new Error(`vinext tarball integrity mismatch for ${algorithm}`);
++}
++NODE
++  echo "[sites] network and integrity preflight passed"
++fi
++
++echo "[sites] running exactly one bounded npm ci"
++export NPM_CONFIG_MAXSOCKETS=1
++export NPM_CONFIG_FETCH_RETRIES=0
++export NPM_CONFIG_FETCH_TIMEOUT=30000
++npm_ci_args=(ci --cache "${expected_cache}")
++if [[ "${use_seeded_cache}" == "1" ]]; then
++  npm_ci_args+=(--prefer-offline)
++fi
++timeout \
++  --signal=TERM \
++  --kill-after="${SITES_INSTALL_KILL_AFTER:-15s}" \
++  "${SITES_INSTALL_TIMEOUT:-8m}" \
++  npm "${npm_ci_args[@]}"
++
++vinext="${SITES_PROJECT_ROOT}/node_modules/.bin/vinext"
++if [[ ! -x "${vinext}" ]]; then
++  echo "npm ci exited successfully but node_modules/.bin/vinext is unavailable." >&2
++  exit 69
++fi
++
++node --input-type=module - "${SITES_PROJECT_ROOT}/node_modules/.sites-install.json" "${lockfile_sha256}" <<'NODE'
++import { writeFile } from "node:fs/promises";
++
++await writeFile(
++  process.argv[2],
++  `${JSON.stringify({
++    lockfile_sha256: process.argv[3],
++    node: process.version,
++    platform: `${process.platform}-${process.arch}`,
++  }, null, 2)}\n`,
++);
++NODE
++echo "[sites] npm ci passed and vinext is available"
+diff --git a/scripts/lib/zip.mjs b/scripts/lib/zip.mjs
+new file mode 100644
+index 0000000..8f2a02e
+--- /dev/null
++++ b/scripts/lib/zip.mjs
+@@ -0,0 +1,117 @@
++import { deflateRawSync } from "node:zlib";
++import { lstat, readdir, readFile, writeFile } from "node:fs/promises";
++import { join, relative, resolve, sep } from "node:path";
++
++const CRC_TABLE = new Uint32Array(256);
++for (let n = 0; n < 256; n += 1) {
++  let value = n;
++  for (let bit = 0; bit < 8; bit += 1) {
++    value = (value & 1) ? (0xedb88320 ^ (value >>> 1)) : (value >>> 1);
++  }
++  CRC_TABLE[n] = value >>> 0;
++}
++
++function crc32(bytes) {
++  let crc = 0xffffffff;
++  for (const byte of bytes) crc = CRC_TABLE[(crc ^ byte) & 0xff] ^ (crc >>> 8);
++  return (crc ^ 0xffffffff) >>> 0;
++}
++
++function dosDateTime(value) {
++  const date = new Date(value);
++  const year = Math.max(1980, Math.min(2107, date.getUTCFullYear()));
++  const dosDate = ((year - 1980) << 9) | ((date.getUTCMonth() + 1) << 5) | date.getUTCDate();
++  const dosTime = (date.getUTCHours() << 11) | (date.getUTCMinutes() << 5) | Math.floor(date.getUTCSeconds() / 2);
++  return { dosDate, dosTime };
++}
++
++function localHeader(entry, offsetDate) {
++  const name = Buffer.from(entry.path, "utf8");
++  const buffer = Buffer.alloc(30);
++  buffer.writeUInt32LE(0x04034b50, 0);
++  buffer.writeUInt16LE(20, 4);
++  buffer.writeUInt16LE(0x0800, 6);
++  buffer.writeUInt16LE(8, 8);
++  buffer.writeUInt16LE(offsetDate.dosTime, 10);
++  buffer.writeUInt16LE(offsetDate.dosDate, 12);
++  buffer.writeUInt32LE(entry.crc, 14);
++  buffer.writeUInt32LE(entry.compressed.length, 18);
++  buffer.writeUInt32LE(entry.data.length, 22);
++  buffer.writeUInt16LE(name.length, 26);
++  buffer.writeUInt16LE(0, 28);
++  return Buffer.concat([buffer, name]);
++}
++
++function centralHeader(entry, offsetDate) {
++  const name = Buffer.from(entry.path, "utf8");
++  const buffer = Buffer.alloc(46);
++  buffer.writeUInt32LE(0x02014b50, 0);
++  buffer.writeUInt16LE(0x0314, 4);
++  buffer.writeUInt16LE(20, 6);
++  buffer.writeUInt16LE(0x0800, 8);
++  buffer.writeUInt16LE(8, 10);
++  buffer.writeUInt16LE(offsetDate.dosTime, 12);
++  buffer.writeUInt16LE(offsetDate.dosDate, 14);
++  buffer.writeUInt32LE(entry.crc, 16);
++  buffer.writeUInt32LE(entry.compressed.length, 20);
++  buffer.writeUInt32LE(entry.data.length, 24);
++  buffer.writeUInt16LE(name.length, 28);
++  buffer.writeUInt16LE(0, 30);
++  buffer.writeUInt16LE(0, 32);
++  buffer.writeUInt16LE(0, 34);
++  buffer.writeUInt16LE(0, 36);
++  buffer.writeUInt32LE(((entry.mode & 0xffff) << 16) >>> 0, 38);
++  buffer.writeUInt32LE(entry.offset, 42);
++  return Buffer.concat([buffer, name]);
++}
++
++function endRecord(entries, centralSize, centralOffset) {
++  const buffer = Buffer.alloc(22);
++  buffer.writeUInt32LE(0x06054b50, 0);
++  buffer.writeUInt16LE(0, 4);
++  buffer.writeUInt16LE(0, 6);
++  buffer.writeUInt16LE(entries.length, 8);
++  buffer.writeUInt16LE(entries.length, 10);
++  buffer.writeUInt32LE(centralSize, 12);
++  buffer.writeUInt32LE(centralOffset, 16);
++  buffer.writeUInt16LE(0, 20);
++  return buffer;
++}
++
++async function collectFile(root, absolutePath, archivePath, entries) {
++  const stats = await lstat(absolutePath);
++  if (stats.isDirectory()) {
++    const children = await readdir(absolutePath);
++    children.sort((left, right) => left.localeCompare(right));
++    for (const child of children) {
++      await collectFile(root, join(absolutePath, child), `${archivePath}/${child}`.replace(/^\//, ""), entries);
++    }
++    return;
++  }
++  if (!stats.isFile()) return;
++  const data = await readFile(absolutePath);
++  entries.push({
++    path: archivePath.split(sep).join("/"),
++    data,
++    compressed: deflateRawSync(data, { level: 9 }),
++    crc: crc32(data),
++    mode: stats.mode,
++    offset: 0,
++  });
++}
++
++export async function writeZipFromPaths(outputPath, rootPath, inputPaths, { timestamp = "1980-01-01T00:00:00.000Z" } = {}) {
++  const root = resolve(rootPath);
++  const entries = [];
++  for (const input of [...inputPaths].sort((left, right) => left.localeCompare(right))) {
++    const absolute = resolve(root, input);
++    const archivePath = relative(root, absolute).split(sep).join("/");
++    await collectFile(root, absolute, archivePath, entries);
++  }
++  entries.sort((left, right) => left.path.localeCompare(right));
++  if (entries.length > 0xffff) throw new RangeError("ZIP64 is not supported by this deterministic archive writer.");
++
++  const date = dosDateTime(timestamp);
++  const localParts = [];
++  let offset = 0;
++  for (const entry of entries) {
++    entry.offset = offset;
++    const header = localHeader(entry, date);
++    localParts.push(header, entry.compressed);
++    offset += header.length + entry.compressed.length;
++  }
++
++  const centralParts = entries.map((entry) => centralHeader(entry, date));
++  const centralSize = centralParts.reduce((total, part) => total + part.length, 0);
++  const archive = Buffer.concat([
++    ...localParts,
++    ...centralParts,
++    endRecord(entries, centralSize, offset),
++  ]);
++  await writeFile(outputPath, archive);
++  return { entries: entries.length, bytes: archive.length };
++}
+diff --git a/scripts/validate-release-metadata.mjs b/scripts/validate-release-metadata.mjs
+new file mode 100644
+index 0000000..729f578
+--- /dev/null
++++ b/scripts/validate-release-metadata.mjs
+@@ -0,0 +1,53 @@
++import { readFile } from "node:fs/promises";
++import release from "../data/release.json" with { type: "json" };
++import { platformRelease } from "../data/open-source-platform.mjs";
++
++const root = new URL("../", import.meta.url);
++const packageJson = JSON.parse(await readFile(new URL("package.json", root), "utf8"));
++const citation = await readFile(new URL("CITATION.cff", root), "utf8");
++const errors = [];
++
++function validDate(label, value) {
++  if (Number.isNaN(new Date(value).getTime())) errors.push(`${label} is not a valid date: ${value}`);
++}
++
++if (packageJson.version !== release.package_version) {
++  errors.push(`package.json version ${packageJson.version} does not match data/release.json ${release.package_version}`);
++}
++if (platformRelease.id !== release.platform.id) errors.push("platform release ID drift");
++if (platformRelease.published_at !== release.platform.published_at) errors.push("platform publication date drift");
++if (platformRelease.reviewed_at !== release.platform.reviewed_at) errors.push("platform review date drift");
++if (platformRelease.specification_version !== release.platform.specification_version) errors.push("specification version drift");
++if (!citation.includes(`version: "${release.platform.id}"`)) errors.push("CITATION.cff version drift");
++if (!citation.includes(`date-released: "${release.platform.published_at.slice(0, 10)}"`)) errors.push("CITATION.cff release date drift");
++if (!citation.includes('repository-code: "https://github.com/HenryBranchAdams/ai-agents-in-accounting"')) {
++  errors.push("CITATION.cff must identify the GitHub repository as repository-code");
++}
++
++validDate("platform.published_at", release.platform.published_at);
++validDate("corpus.modified_at", release.corpus.modified_at);
++validDate("catalog.modified_at", release.catalog.modified_at);
++for (const [label, value] of [
++  ["corpus.modified_at", release.corpus.modified_at],
++  ["catalog.modified_at", release.catalog.modified_at],
++]) {
++  if (new Date(value) > new Date(release.platform.published_at)) {
++    errors.push(`${label} cannot be later than platform.published_at`);
++  }
++}
++try {
++  const origin = new URL(release.default_site_origin);
++  if (origin.pathname !== "/") errors.push("default_site_origin must not include a path");
++} catch {
++  errors.push("default_site_origin must be an absolute URL");
++}
++
++if (errors.length) {
++  for (const error of errors) process.stderr.write(`- ${error}\n`);
++  process.exitCode = 1;
++} else {
++  process.stdout.write(`Release metadata ${release.platform.id} is internally consistent.\n`);
++}
+diff --git a/tests/browser/navigation-and-search.spec.mjs b/tests/browser/navigation-and-search.spec.mjs
+new file mode 100644
+index 0000000..9073a18
+--- /dev/null
++++ b/tests/browser/navigation-and-search.spec.mjs
+@@ -0,0 +1,75 @@
++import { readFile } from "node:fs/promises";
++import { expect, test } from "@playwright/test";
++
++const axeSource = await readFile(new URL("../../node_modules/axe-core/axe.min.js", import.meta.url), "utf8");
++
++const representativePages = [
++  "/",
++  "/workflows/record-to-report/wf-r2r-bank-reconciliations",
++  "/resources/src_ifrs15a",
++  "/packs/bank-reconciliation",
++  "/ledgerbench",
++];
++
++test("representative pages render without horizontal viewport overflow", async ({ page }) => {
++  for (const path of representativePages) {
++    await page.goto(path);
++    await expect(page.locator("h1")).toHaveCount(1);
++    const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
++    expect(overflow, `${path} horizontal overflow`).toBeLessThanOrEqual(1);
++  }
++});
++
++
++test("representative pages have no serious or critical axe violations", async ({ page }) => {
++  for (const path of representativePages) {
++    await page.goto(path);
++    await page.addScriptTag({ content: axeSource });
++    const violations = await page.evaluate(async () => {
++      const results = await globalThis.axe.run(document, {
++        resultTypes: ["violations"],
++        runOnly: { type: "tag", values: ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"] },
++      });
++      return results.violations
++        .filter((item) => ["serious", "critical"].includes(item.impact))
++        .map((item) => ({ id: item.id, impact: item.impact, nodes: item.nodes.length }));
++    });
++    expect(violations, `${path} automated accessibility violations`).toEqual([]);
++  }
++});
++
++test("global search uses the public API and remains keyboard accessible", async ({ page }) => {
++  await page.goto("/");
++  await page.keyboard.press(process.platform === "darwin" ? "Meta+K" : "Control+K");
++  const dialog = page.getByRole("dialog", { name: "Search documentation" });
++  await expect(dialog).toBeVisible();
++  const input = dialog.getByRole("searchbox", { name: "Search documentation" });
++  await input.fill("bank reconciliation");
++  await expect(dialog.getByRole("link", { name: /Bank reconciliations/i }).first()).toBeVisible();
++  await page.keyboard.press("ArrowDown");
++  await page.keyboard.press("Escape");
++  await expect(dialog).toBeHidden();
++  await expect(page.getByRole("button", { name: /Search documentation/i })).toBeFocused();
++});
++
++test("mobile navigation exposes the same core destinations", async ({ page }, testInfo) => {
++  test.skip(!testInfo.project.name.includes("phone"), "mobile project only");
++  await page.goto("/");
++  await page.getByText("Menu", { exact: true }).click();
++  await expect(page.getByRole("navigation", { name: "Mobile documentation" })).toBeVisible();
++  for (const label of ["All workflows", "Controls and authority", "Workflow packs", "LedgerBench", "Source library"]) {
++    await expect(page.getByRole("navigation", { name: "Mobile documentation" }).getByRole("link", { name: label })).toBeVisible();
++  }
++});
++
++test("wide tables remain operable within a horizontal scroll region", async ({ page }) => {
++  await page.goto("/machine-access");
++  const wrapper = page.locator(".table-scroll").first();
++  if (await wrapper.count()) {
++    await expect(wrapper).toBeVisible();
++    expect(await wrapper.evaluate((element) => getComputedStyle(element).overflowX)).toMatch(/auto|scroll/);
++  }
++});
+diff --git a/tests/rendered-html.test.mjs b/tests/rendered-html.test.mjs
+index 648ae96..283f2b3 100644
+--- a/tests/rendered-html.test.mjs
++++ b/tests/rendered-html.test.mjs
+@@ -3,6 +3,9 @@ import { readFile } from "node:fs/promises";
+ import test from "node:test";
+ 
++const developmentPreviewMeta =
++  /<meta(?=[^>]*\bname=["']codex-preview["'])(?=[^>]*\bcontent=["']development["'])[^>]*>/i;
++
+@@ -188,6 +191,7 @@ test("publishes a complete, crawlable rendered site", async () => {
+     assert.match(html, /<title>[^<]+<\/title>/i, path);
++    assert.doesNotMatch(html, developmentPreviewMeta, `${path} should not expose development preview metadata by default`);
+@@ -305,7 +309,8 @@ test("publishes versioned, cacheable, public API and source snapshots", async (
+   assert.equal(metaJson.access.authentication, "none");
+-  assert.equal(metaJson.total_records, metaJson.record_counts.source_records);
++  assert.equal(metaJson.total_source_records, metaJson.record_counts.source_records);
++  assert.equal(metaJson.total_records, Object.values(metaJson.record_counts).reduce((total, count) => total + count, 0));
+@@ -590,25 +595,11 @@ test("publishes accessible global search with static corpus coverage", async () => {
+-test("publishes accessible global search with static corpus coverage", async () => {
++test("publishes accessible global search with lazy API-backed corpus coverage", async () => {
+@@ -605,18 +596,10 @@ test("publishes accessible global search with static corpus coverage", async () => {
+-  const indexedCorpus = [
+-    ["authorityLevels", "authority"],
+-    ["controlPatterns", "controls"],
+-    ["sensitiveActions", "sensitive actions"],
+-    ["templates", "templates"],
+-    ["glossary", "glossary"],
+-    ["resources", "source library"],
+-    ["workflowRecords", "workflows"],
+-    ["benchmarkCases", "benchmark"],
+-    ["packs", "workflow packs"],
+-    ["releaseNotes", "changes"],
+-  ];
+-  for (const [identifier, label] of indexedCorpus) {
+-    assert.match(source, new RegExp(`\\b${identifier}\\b`), `search should include ${label}`);
+-  }
++  assert.match(source, /fetch\(`\/api\/v1\/search\?q=/, "search should call the public search API");
++  assert.match(source, /AbortController/, "search should cancel obsolete requests");
++  assert.match(source, /setTimeout\(async \(\) =>/, "search should debounce queries");
++  assert.match(source, /const cache = new Map/, "search should cache recent public results");
++  for (const heavyImport of ["resources-data", "workflows-data", "governance-data", "reference-data", "platform-data"]) {
++    assert.doesNotMatch(source, new RegExp(heavyImport), `search client should not import ${heavyImport}`);
++  }
+ });
++
++test("uses layer-specific Last-Modified values for public records", async () => {
++  const resources = await request("/api/v1/resources?limit=1");
++  const workflows = await request("/api/v1/workflows?limit=1");
++  const packs = await request("/api/v1/packs?limit=1");
++  assert.equal(resources.headers.get("last-modified"), new Date("2026-08-23T00:00:00.000Z").toUTCString());
++  assert.equal(workflows.headers.get("last-modified"), new Date("2026-08-23T00:00:00.000Z").toUTCString());
++  assert.equal(packs.headers.get("last-modified"), new Date("2026-08-24T00:00:00.000Z").toUTCString());
++
++  const freshWorkflow = await request("/api/v1/workflows?limit=1", {
++    "if-modified-since": new Date("2026-08-23T00:00:00.000Z").toUTCString(),
++  });
++  assert.equal(freshWorkflow.status, 304);
++
++  const stalePack = await request("/api/v1/packs?limit=1", {
++    "if-modified-since": new Date("2026-08-23T00:00:00.000Z").toUTCString(),
++  });
++  assert.equal(stalePack.status, 200, "platform records changed after the corpus timestamp");
++});
+@@ -722,7 +731,7 @@ test("publishes governance, controls, templates, and terminology in equivalent formats", async () => {
+@@ -722,7 +731,7 @@ test("publishes portable packs, benchmark cases, search, schemas, and release feeds", async () => {
+-  assert.equal(manifest.release.id, "2026-08-23.9");
++  assert.equal(manifest.release.id, "2026-08-24.1");
+diff --git a/tests/site-quality.test.mjs b/tests/site-quality.test.mjs
+index 8a4822a..5b6cb57 100644
+--- a/tests/site-quality.test.mjs
++++ b/tests/site-quality.test.mjs
+@@ -271,6 +271,7 @@ test("representative pages publish complete discovery and social metadata", async () => {
+     assert.match(html, /<meta[^>]+property=["']og:title["'][^>]+content=["'][^"']+["']/i, `${path} og:title`);
++    assert.match(html, /<meta[^>]+property=["']og:image["'][^>]+content=["']https:\/\/[^"']+\/og\.png["']/i, `${path} og:image`);
+diff --git a/worker/index.ts b/worker/index.ts
+index b3cd137..4f0c945 100644
+--- a/worker/index.ts
++++ b/worker/index.ts
+@@ -1,10 +1,9 @@
+-/** Cloudflare Worker entry point for the vinext-starter template. */
++/** Cloudflare Worker entry point for the public read-only Accounting Agents site. */
+@@ -6,7 +6,6 @@ interface Env {
+   ASSETS: Fetcher;
+-  DB: D1Database;
