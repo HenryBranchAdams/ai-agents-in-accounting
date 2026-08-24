@@ -1,0 +1,184 @@
+-      .filter((control) =>
+-        `${control.id} ${control.name} ${control.risk} ${control.objective} ${control.procedure.join(" ")} ${control.evidence.join(" ")} ${control.exceptions.join(" ")}`
+-          .toLowerCase()
+-          .includes(term),
+-      )
+-      .map((control) => ({
+-        href: `/controls#${control.id}`,
+-        title: control.name,
+-        category: "Control patterns",
+-        detail: control.objective,
+-      }));
+-
+-    const authorityResults: SearchEntry[] = authorityLevels
+-      .filter((level) =>
+-        `${level.id} ${level.label} ${level.agent_role} ${level.execution_rule} ${level.required_controls.join(" ")} ${level.accounting_example} ${level.boundary}`
+-          .toLowerCase()
+-          .includes(term),
+-      )
+-      .map((level) => ({
+-        href: `/authority#level-${level.id}`,
+-        title: `${level.id === "human-only" ? "Human-only" : level.id} · ${level.label}`,
+-        category: "Authority levels",
+-        detail: level.boundary,
+-      }));
+-
+-    const sensitiveActionResults: SearchEntry[] = sensitiveActions
+-      .filter((action) =>
+-        `${action.id} ${action.name} ${action.summary} ${action.default_authority} ${action.agent_may_prepare.join(" ")} ${action.agent_may_execute.join(" ")} ${action.human_only_conditions.join(" ")} ${action.identity_and_sod.join(" ")} ${action.limits.join(" ")} ${action.approval_evidence.join(" ")} ${action.pre_execution_checks.join(" ")} ${action.rollback_or_compensation.join(" ")} ${action.logging_and_review.join(" ")}`
+-          .toLowerCase()
+-          .includes(term),
+-      )
+-      .map((action) => ({
+-        href: `/sensitive-actions#${action.id}`,
+-        title: action.name,
+-        category: "Sensitive actions",
+-        detail: `Default ${action.default_authority} · ${action.summary}`,
+-      }));
+-
+-    const templateResults: SearchEntry[] = templates
+-      .filter((template) =>
+-        `${template.id} ${template.name} ${template.purpose} ${template.use_when} ${template.sections.map((section) => `${section.heading} ${section.prompt}`).join(" ")}`
+-          .toLowerCase()
+-          .includes(term),
+-      )
+-      .map((template) => ({
+-        href: `/templates#${template.id}`,
+-        title: template.name,
+-        category: "Templates",
+-        detail: template.purpose,
+-      }));
++  useEffect(() => {
++    const term = query.trim();
++    if (!open || !term) {
++      setRemoteResults([]);
++      setRemoteTotal(0);
++      setLoading(false);
++      setError(null);
++      return;
++    }
+ 
+-    const packResults: SearchEntry[] = packs
+-      .filter((pack) => JSON.stringify(pack).toLowerCase().includes(term))
+-      .map((pack) => ({
+-        href: `/packs/${pack.id}`,
+-        title: pack.title,
+-        category: "Workflow packs",
+-        detail: `${pack.process_family} · ${pack.authority_level} · ${pack.summary}`,
+-      }));
++    const cached = cache.get(term.toLowerCase());
++    if (cached) {
++      setRemoteResults(cached.items.map(toSearchEntry));
++      setRemoteTotal(cached.total_matching_records);
++      setLoading(false);
++      setError(null);
++      return;
++    }
+ 
+-    const benchmarkResults: SearchEntry[] = benchmarkCases
+-      .filter((item) => JSON.stringify(item).toLowerCase().includes(term))
+-      .map((item) => ({
+-        href: `/bench#${item.id}`,
+-        title: item.title,
+-        category: "Accounting Agent Bench",
+-        detail: `${item.case_type} · expected ${item.expected.outcome}`,
+-      }));
++    const controller = new AbortController();
++    const timer = window.setTimeout(async () => {
++      setLoading(true);
++      setError(null);
++      try {
++        const response = await fetch(`/api/v1/search?q=${encodeURIComponent(term)}&limit=80`, {
++          headers: { Accept: "application/json" },
++          signal: controller.signal,
++        });
++        if (!response.ok) throw new Error(`Search request failed with ${response.status}.`);
++        const payload = await response.json() as ApiSearchResponse;
++        cache.set(term.toLowerCase(), payload);
++        setRemoteResults(payload.items.map(toSearchEntry));
++        setRemoteTotal(payload.total_matching_records);
++      } catch (caught) {
++        if (controller.signal.aborted) return;
++        setRemoteResults([]);
++        setRemoteTotal(0);
++        setError(caught instanceof Error ? caught.message : "Search is unavailable.");
++      } finally {
++        if (!controller.signal.aborted) setLoading(false);
++      }
++    }, 180);
+ 
+-    const changeResults: SearchEntry[] = releaseNotes
+-      .filter((item) => JSON.stringify(item).toLowerCase().includes(term))
+-      .map((item) => ({
+-        href: `/changes#release-${item.id}`,
+-        title: item.title,
+-        category: "Changes",
+-        detail: `${item.id} · ${item.summary}`,
+-      }));
++    return () => {
++      window.clearTimeout(timer);
++      controller.abort();
++    };
++  }, [open, query]);
+ 
+-    const matches = [
+-      ...pageResults,
+-      ...workflowResults,
+-      ...authorityResults,
+-      ...controlResults,
+-      ...sensitiveActionResults,
+-      ...templateResults,
+-      ...glossaryResults,
+-      ...sourceResults,
+-      ...packResults,
+-      ...benchmarkResults,
+-      ...changeResults,
+-    ].sort((left, right) => searchRank(left, term) - searchRank(right, term));
+-    return { items: matches.slice(0, 100), total: matches.length };
+-  }, [query]);
+-  const results = searchResult.items;
++  const results = query.trim() ? remoteResults : searchItems;
++  const total = query.trim() ? remoteTotal : searchItems.length;
+   const groups = useMemo(() => {
+-    const grouped = new Map<string, typeof results>();
++    const grouped = new Map<string, SearchEntry[]>();
+     for (const result of results) {
+       const current = grouped.get(result.category) ?? [];
+       current.push(result);
+@@ -238,70 +183,74 @@ export function DocsSearch() {
+       </button>
+ 
+       {open && (
+-          <dialog
+-            aria-labelledby="docs-search-title"
+-            className="search-dialog"
+-            onCancel={(event) => {
+-              event.preventDefault();
+-              closeSearch();
+-            }}
+-            onClick={(event) => {
+-              if (event.target === event.currentTarget) closeSearch();
+-            }}
+-            onKeyDown={(event) => {
+-              const links = [...(dialogRef.current?.querySelectorAll<HTMLAnchorElement>(".search-results a") ?? [])];
+-              if (event.key === "Enter" && document.activeElement === inputRef.current && links[0]) {
+-                event.preventDefault();
+-                links[0].click();
+-                return;
+-              }
+-              if (event.key !== "ArrowDown" && event.key !== "ArrowUp") return;
+-              if (!links.length) return;
++        <dialog
++          aria-labelledby="docs-search-title"
++          className="search-dialog"
++          onCancel={(event) => {
++            event.preventDefault();
++            closeSearch();
++          }}
++          onClick={(event) => {
++            if (event.target === event.currentTarget) closeSearch();
++          }}
++          onKeyDown={(event) => {
++            const links = [...(dialogRef.current?.querySelectorAll<HTMLAnchorElement>(".search-results a") ?? [])];
++            if (event.key === "Enter" && document.activeElement === inputRef.current && links[0]) {
+               event.preventDefault();
