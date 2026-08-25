@@ -47,7 +47,7 @@ const primaryPages = [
   "/sensitive-actions", "/evidence-assurance", "/security-identity", "/architecture",
   "/ecosystem", "/evaluation", "/pilot", "/operations", "/templates", "/glossary",
   "/resources", "/reading-room", "/machine-access", "/packs", "/bench", "/spec",
-  "/methodology", "/changes", "/open-source",
+  "/methodology", "/changes", "/open-source", "/content-contract",
 ];
 
 test("primary pages expose a complete mobile navigation contract", async () => {

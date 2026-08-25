@@ -37,6 +37,8 @@ Run the archive command only after all source and generated artifacts are curren
 - Link to primary sources. Store metadata and original summaries, not third-party full text.
 - Record external source rights as unknown unless a publisher grant is documented.
 - Use only clean-room synthetic fixtures. Never add employer, client, engagement, bank, employee, vendor, customer, or taxpayer data.
+- Give each major human page one primary mode from `/content-contract` and keep tutorial, how-to, explanation, reference, case study, evidence synthesis, and program-documentation concerns visibly distinct.
+- Label visible claims and examples with the content contract's evidence classification; an editorial recommendation, implementation pattern, synthetic example, or empirical finding is not an authoritative requirement.
 
 ## Interface discipline
 

@@ -31,6 +31,7 @@ const pages = [
   ["/methodology", 0.7],
   ["/changes", 0.7],
   ["/open-source", 0.8],
+  ["/content-contract", 0.8],
 ] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {

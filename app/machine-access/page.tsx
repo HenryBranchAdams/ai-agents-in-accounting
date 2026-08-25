@@ -114,6 +114,10 @@ export default function MachineAccessPage() {
             <strong>Open ecosystem API</strong>
             <span>{ecosystemLayers.length} role-based records for direct web access, AGENTS.md, MCP, A2A, and domain contracts.</span>
           </Link>
+          <Link href="/content-contract">
+            <strong>Educational content contract</strong>
+            <span>Seven primary page modes, visible evidence classifications, release gate, proposed measures, and equivalent Markdown and JSON.</span>
+          </Link>
           <Link href="/releases/current/manifest.json">
             <strong>Release manifest</strong>
             <span>Current versions, counts, assets, rights, and a SHA-256 corpus digest.</span>
@@ -160,6 +164,7 @@ export default function MachineAccessPage() {
           <div><dt>/packs</dt><dd>{packs.length} portable workflow packs.</dd></div>
           <div><dt>/benchmark</dt><dd>{benchmarkCases.length} public synthetic conformance cases.</dd></div>
           <div><dt>/ecosystem</dt><dd>{ecosystemLayers.length} interface and standards layers with explicit adoption posture and boundaries.</dd></div>
+          <div><dt>/content-contract</dt><dd>Primary educational modes, evidence classifications, release gate, and proposed success measures.</dd></div>
         </dl>
         <p>Prefix each path above with <code>/api/v1</code>.</p>
 

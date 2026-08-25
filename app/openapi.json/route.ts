@@ -27,6 +27,11 @@ import {
   packs,
   releaseManifestSchema,
 } from "../platform-data";
+import {
+  contentModeIds,
+  educationalContentContract,
+  evidenceClassificationIds,
+} from "../content-contract";
 
 const resourceSchema = {
   type: "object",
@@ -358,6 +363,118 @@ const ecosystemLayerSchema = {
   },
 } as const;
 
+const contentModeSchema = {
+  type: "object",
+  additionalProperties: false,
+  required: ["id", "label", "reader_need", "required_anatomy", "completion_standard", "mixing_quality_boundary"],
+  properties: {
+    id: { type: "string", enum: contentModeIds },
+    label: { type: "string" },
+    reader_need: { type: "string" },
+    required_anatomy: stringArraySchema,
+    completion_standard: { type: "string" },
+    mixing_quality_boundary: { type: "string" },
+  },
+} as const;
+
+const evidenceClassificationSchema = {
+  type: "object",
+  additionalProperties: false,
+  required: ["id", "label", "meaning", "display_reliance_boundary"],
+  properties: {
+    id: { type: "string", enum: evidenceClassificationIds },
+    label: { type: "string" },
+    meaning: { type: "string" },
+    display_reliance_boundary: { type: "string" },
+  },
+} as const;
+
+const contentReleaseImprovementSchema = {
+  type: "object",
+  additionalProperties: false,
+  required: ["id", "label", "test", "evidence_examples"],
+  properties: {
+    id: { type: "string" },
+    label: { type: "string" },
+    test: { type: "string" },
+    evidence_examples: stringArraySchema,
+  },
+} as const;
+
+const contentSuccessMeasureSchema = {
+  type: "object",
+  additionalProperties: false,
+  required: ["id", "label", "question", "signal", "interpretation_boundary"],
+  properties: {
+    id: { type: "string" },
+    label: { type: "string" },
+    question: { type: "string" },
+    signal: { type: "string" },
+    interpretation_boundary: { type: "string" },
+  },
+} as const;
+
+const contentPageAssignmentSchema = {
+  type: "object",
+  additionalProperties: false,
+  required: ["path", "primary_mode", "page_kind"],
+  properties: {
+    path: { type: "string" },
+    primary_mode: { type: "string", enum: contentModeIds },
+    page_kind: { type: "string", enum: ["static", "dynamic"] },
+  },
+} as const;
+
+const contentContractSchema = {
+  type: "object",
+  additionalProperties: false,
+  required: [
+    "id", "version", "title", "description", "prepared_at", "review_status", "review_note",
+    "governing_invariant", "source_basis", "modes", "evidence_classifications", "release_gate",
+    "success_measures", "measurement_status", "page_assignments",
+  ],
+  properties: {
+    id: { type: "string", const: educationalContentContract.id },
+    version: { type: "string", const: educationalContentContract.version },
+    title: { type: "string" },
+    description: { type: "string" },
+    prepared_at: { type: "string", format: "date" },
+    review_status: { type: "string", const: educationalContentContract.review_status },
+    review_note: { type: "string" },
+    governing_invariant: { type: "string" },
+    source_basis: {
+      type: "array",
+      items: {
+        type: "object",
+        additionalProperties: false,
+        required: ["id", "title", "url", "scope"],
+        properties: {
+          id: { type: "string" },
+          title: { type: "string" },
+          url: { type: "string", format: "uri" },
+          scope: { type: "string" },
+        },
+      },
+    },
+    modes: { type: "array", minItems: 7, maxItems: 7, items: contentModeSchema },
+    evidence_classifications: { type: "array", minItems: 7, maxItems: 7, items: evidenceClassificationSchema },
+    release_gate: {
+      type: "object",
+      additionalProperties: false,
+      required: ["principle", "qualifying_improvements", "non_qualifying_basis", "required_boundary"],
+      properties: {
+        principle: { type: "string" },
+        qualifying_improvements: { type: "array", minItems: 6, items: contentReleaseImprovementSchema },
+        non_qualifying_basis: { type: "string" },
+        required_boundary: { type: "string" },
+      },
+    },
+    success_measures: { type: "array", minItems: 9, items: contentSuccessMeasureSchema },
+    measurement_status: { type: "string" },
+    page_assignments: { type: "array", minItems: 1, items: contentPageAssignmentSchema },
+  },
+} as const;
+
 const problemSchema = {
   type: "object",
   required: ["type", "title", "status", "detail"],
@@ -486,6 +603,7 @@ const document = {
     { name: "Benchmark", description: `${benchmarkCases.length} public conformance cases with hard authority gates.` },
     { name: "LedgerBench", description: "Preview benchmark program, episode, result, and submission contracts." },
     { name: "Ecosystem", description: `${ecosystemLayers.length} role-based interface and standards layers.` },
+    { name: "Content", description: `${educationalContentContract.modes.length} educational modes and ${educationalContentContract.evidence_classifications.length} visible evidence classifications.` },
     { name: "Discovery", description: "Corpus metadata and controlled taxonomies." },
   ],
   paths: {
@@ -741,6 +859,51 @@ const document = {
       },
       options: { operationId: "getCorpusTaxonomyOptions", summary: "CORS preflight", tags: ["Discovery"], responses: { "204": { description: "Allowed methods and headers." } } },
     },
+    "/api/v1/content-contract": {
+      get: {
+        operationId: "getContentContract",
+        summary: "Retrieve the educational content contract",
+        tags: ["Content"],
+        parameters: [{ name: "format", in: "query", description: "Overrides Accept-based content negotiation.", schema: { type: "string", enum: ["json", "markdown"] } }],
+        responses: {
+          "200": {
+            description: "Educational content contract in JSON or Markdown.",
+            content: {
+              "application/json": {
+                schema: {
+                  type: "object",
+                  required: ["schema_version", "collection", "rights_notice", "links", "item"],
+                  properties: {
+                    schema_version: { type: "string" },
+                    collection: { type: "string", const: "content_contract" },
+                    rights_notice: { type: "string" },
+                    links: { type: "object", additionalProperties: { type: "string", format: "uri" } },
+                    item: { $ref: "#/components/schemas/ContentContract" },
+                  },
+                },
+              },
+              "text/markdown": { schema: { type: "string" } },
+            },
+          },
+          "304": { description: "The representation has not changed." },
+          "400": { description: "Invalid format parameter.", content: { "application/problem+json": { schema: { $ref: "#/components/schemas/Problem" } } } },
+          "406": { description: "No acceptable JSON or Markdown representation was requested.", content: { "application/problem+json": { schema: { $ref: "#/components/schemas/Problem" } } } },
+        },
+      },
+      head: {
+        operationId: "getContentContractHead",
+        summary: "Retrieve educational content contract headers",
+        tags: ["Content"],
+        parameters: [{ name: "format", in: "query", schema: { type: "string", enum: ["json", "markdown"] } }],
+        responses: {
+          "200": { description: "Content contract headers." },
+          "304": { description: "The representation has not changed." },
+          "400": { description: "Invalid format parameter." },
+          "406": { description: "No acceptable representation was requested." },
+        },
+      },
+      options: { operationId: "getContentContractOptions", summary: "CORS preflight", tags: ["Content"], responses: { "204": { description: "Allowed methods and headers." } } },
+    },
   },
   components: {
     schemas: {
@@ -752,6 +915,7 @@ const document = {
       Template: templateSchema,
       GlossaryEntry: glossaryEntrySchema,
       EcosystemLayer: ecosystemLayerSchema,
+      ContentContract: contentContractSchema,
       Pack: packSchema,
       BenchmarkCase: benchmarkCaseSchema,
       LedgerBenchProgram: ledgerBenchProgramSchema,

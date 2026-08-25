@@ -17,6 +17,8 @@ The existing 30-case Accounting Agent Bench remains a public Core conformance as
 
 The [open ecosystem map](https://accounting-agents.madebyhenry.chatgpt.site/ecosystem) distinguishes direct web access, AGENTS.md, MCP, A2A, and accounting-domain contracts by role and adoption posture. The repository `AGENTS.md` gives coding agents the build, content, rights, and verification rules for contributing safely.
 
+The [educational content contract](https://accounting-agents.madebyhenry.chatgpt.site/content-contract) assigns every major human page one primary mode—Tutorial, How-to, Explanation, Reference, Case study, Evidence synthesis, or Program documentation—and defines visible evidence classifications, an educational release gate, and proposed success measures. The contract is available as [Markdown](https://accounting-agents.madebyhenry.chatgpt.site/content-contract.md) and [JSON](https://accounting-agents.madebyhenry.chatgpt.site/api/v1/content-contract). Instrumentation and results for those measures are not currently claimed.
+
 Coverage never grants execution authority. Agents may prepare work; accountable people approve conclusions and sensitive external actions.
 
 ## Development

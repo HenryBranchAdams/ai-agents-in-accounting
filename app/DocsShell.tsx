@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import Link from "next/link";
 import { DocsSearch } from "./DocsSearch";
 import { navGroups, type NavItem } from "./content";
+import { contentModeForPath } from "./content-contract";
 import { corpusReviewedAt } from "./domain-model";
 
 type TocItem = {
@@ -19,6 +20,8 @@ type DocsShellProps = {
   previous?: NavItem;
   next?: NavItem;
   reviewedAt?: string;
+  reviewStatus?: string;
+  trustDateLabel?: string;
   markdownHref?: string;
   jsonHref?: string;
   headerImage?: {
@@ -69,10 +72,14 @@ export function DocsShell({
   previous,
   next,
   reviewedAt = corpusReviewedAt,
+  reviewStatus = "Maintainer-reviewed educational synthesis",
+  trustDateLabel = "Reviewed",
   markdownHref,
   jsonHref,
   headerImage,
 }: DocsShellProps) {
+  const primaryMode = contentModeForPath(active);
+
   return (
     <>
       <a className="skip-link" href="#main-content">Skip to content</a>
@@ -127,8 +134,9 @@ export function DocsShell({
             </header>
 
             <div aria-label="Page trust and formats" className="doc-trust-row" role="group">
-              <span><time dateTime={reviewedAt}>Reviewed {displayDate(reviewedAt)}</time></span>
-              <span>Maintainer-reviewed educational synthesis</span>
+              <span><time dateTime={reviewedAt}>{trustDateLabel} {displayDate(reviewedAt)}</time></span>
+              <span>{reviewStatus}</span>
+              <span aria-label={`Primary content mode: ${primaryMode.label}`} className="content-mode" data-content-mode={primaryMode.id} data-primary-mode={primaryMode.id}>Content mode: <strong>{primaryMode.label}</strong></span>
               <Link href="/resources#method">Source method</Link>
               {markdownHref && <a href={markdownHref}>Markdown</a>}
               {jsonHref && <a href={jsonHref}>JSON</a>}

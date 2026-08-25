@@ -6,6 +6,7 @@ import { domainRightsNotice, normalizeDomainRecord } from "../../domain-interfac
 import { glossary, templates } from "../../reference-data";
 import { processFamilies, workflowRecords } from "../../workflows-data";
 import { benchmark, benchmarkCases, packs, platformRelease, releaseNotes } from "../../platform-data";
+import { educationalContentContract } from "../../content-contract";
 
 export async function GET(request: Request) {
   const body = JSON.stringify({
@@ -41,6 +42,7 @@ export async function GET(request: Request) {
     benchmark,
     ecosystem_layers: ecosystemLayers,
     release_notes: releaseNotes,
+    content_contract: educationalContentContract,
   }, null, 2);
 
   return publicResponse(request, body, "application/json; charset=utf-8", {
