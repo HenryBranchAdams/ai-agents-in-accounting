@@ -11,6 +11,7 @@ const instructions = `# Accounting Agents public access instructions
 3. Retrieve focused records from /api/v1/workflows, /api/v1/resources, /api/v1/packs, or /api/v1/benchmark.
 4. Preserve stable IDs, versions, review dates, source IDs, and rights fields in the work record.
 5. Follow canonical source links when the task requires current authoritative support.
+6. Use /content-contract to identify each page's primary mode and the evidence classification before reusing educational material.
 
 ## Non-negotiable boundaries
 
@@ -25,6 +26,7 @@ const instructions = `# Accounting Agents public access instructions
 
 - Distinguish rules, official guidance, research papers, technical references, evidence, thought pieces, and practice examples.
 - Source type is not an authority score.
+- Visible evidence classifications distinguish authoritative requirement, official guidance, editorial recommendation, implementation pattern, synthetic example, empirical evidence, and unresolved question. Do not rely on a label without its stated applicability and boundary.
 - Confirm entity, transaction, period, jurisdiction, effective date, amendments, and access before reliance.
 - External publications remain subject to publisher terms; the catalog does not store or sublicense their full text.
 
@@ -42,6 +44,9 @@ const instructions = `# Accounting Agents public access instructions
 - /downloads/context-bundle.md
 - /downloads/corpus.json
 - /api/v1/search
+- /content-contract
+- /content-contract.md
+- /api/v1/content-contract
 - /openapi.json
 - /.well-known/api-catalog
 - /releases/current/manifest.json

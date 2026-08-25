@@ -15,6 +15,7 @@ import { controlPatterns, sensitiveActions } from "../../../governance-data";
 import { glossary, templates } from "../../../reference-data";
 import { processFamilies, workflowRecords } from "../../../workflows-data";
 import { benchmarkCases, packs, platformRelease } from "../../../platform-data";
+import { educationalContentContract } from "../../../content-contract";
 
 export function OPTIONS() {
   return corsOptionsResponse();
@@ -29,6 +30,8 @@ export async function GET(request: Request) {
     corpus_version: corpusVersion,
     corpus_reviewed_at: corpusReviewedAt,
     corpus_modified_at: corpusModifiedAt,
+    content_contract_version: educationalContentContract.version,
+    content_contract_review_status: educationalContentContract.review_status,
     title: "Accounting Agents public corpus",
     description: "Canonical workflows, authority boundaries, controls, templates, terminology, and curated sources for governed AI-agent work across the accounting lifecycle.",
     language: "en",
@@ -45,6 +48,9 @@ export async function GET(request: Request) {
       workflow_packs: packs.length,
       benchmark_cases: benchmarkCases.length,
       ecosystem_layers: ecosystemLayers.length,
+      content_modes: educationalContentContract.modes.length,
+      evidence_classifications: educationalContentContract.evidence_classifications.length,
+      content_page_assignments: educationalContentContract.page_assignments.length,
     },
     access: {
       authentication: "none",
@@ -92,6 +98,9 @@ export async function GET(request: Request) {
       compact_context: `${siteOrigin}/agent-context.md`,
       public_agent_instructions: `${siteOrigin}/AGENTS.md`,
       context_bundle: `${siteOrigin}/downloads/context-bundle.md`,
+      content_contract: `${siteOrigin}/content-contract`,
+      content_contract_markdown: `${siteOrigin}/content-contract.md`,
+      content_contract_api: `${siteOrigin}/api/v1/content-contract`,
     },
     platform_release: platformRelease,
   }, null, 2);

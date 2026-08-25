@@ -14,6 +14,7 @@ import { ecosystemLayers } from "../../../ecosystem-data";
 import { processFamilies, workflowRecords } from "../../../workflows-data";
 import { benchmarkCases, packs } from "../../../platform-data";
 import { searchRecordTypes } from "../../../search-index";
+import { educationalContentContract } from "../../../content-contract";
 
 export function OPTIONS() {
   return corsOptionsResponse();
@@ -69,6 +70,21 @@ export async function GET(request: Request) {
       source_ids: item.source_ids,
     })),
     search_record_types: searchRecordTypes,
+    content_modes: educationalContentContract.modes.map((mode) => ({
+      value: mode.id,
+      label: mode.label,
+      reader_need: mode.reader_need,
+      record_url: "/api/v1/content-contract",
+      human_url: "/content-contract",
+    })),
+    evidence_classifications: educationalContentContract.evidence_classifications.map((classification) => ({
+      value: classification.id,
+      label: classification.label,
+      meaning: classification.meaning,
+      display_reliance_boundary: classification.display_reliance_boundary,
+      record_url: "/api/v1/content-contract",
+      human_url: "/content-contract",
+    })),
   }, null, 2);
 
   return publicResponse(request, body, "application/json; charset=utf-8");

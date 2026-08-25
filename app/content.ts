@@ -76,6 +76,7 @@ export const navGroups: NavGroup[] = [
       { href: "/methodology", label: "Methodology" },
       { href: "/changes", label: "Changes" },
       { href: "/open-source", label: "Open source" },
+      { href: "/content-contract", label: "Content contract" },
     ],
   },
 ];
@@ -115,6 +116,7 @@ export const searchItems = [
   { href: "/methodology", title: "Review the methodology", category: "Project", detail: "Source admission, claims, review states, and corrections" },
   { href: "/changes", title: "Follow corpus changes", category: "Project", detail: "Immutable releases, compatibility, JSON Feed, and Atom" },
   { href: "/open-source", title: "Reuse the open project", category: "Project", detail: "MIT software, CC BY content, CC0 fixtures, and source archive" },
+  { href: "/content-contract", title: "Choose a primary content mode", category: "Project", detail: "Seven educational modes, evidence classifications, release gate, and success measures" },
 ];
 
 export const modes = [

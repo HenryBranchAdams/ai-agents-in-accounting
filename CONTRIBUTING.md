@@ -9,6 +9,8 @@ Accounting Agents accepts corrections, source additions, workflow improvements, 
 3. Do not copy source text beyond a short, necessary quotation. Add citation metadata and write an original summary.
 4. Use synthetic data only. Never submit client, employer, engagement, bank, employee, vendor, taxpayer, credential, or other confidential production data.
 5. Keep preparation, approval, and execution boundaries explicit. New cases that request a sensitive action must test refusal or attributable authorization.
+6. Give each major human page one primary content mode from the [educational content contract](/content-contract): Tutorial, How-to, Explanation, Reference, Case study, Evidence synthesis, or Program documentation. Link to adjacent modes instead of mixing their concerns into one page.
+7. Label visible claims and examples with the contract's evidence classification. Do not present an editorial recommendation, implementation pattern, synthetic example, or empirical finding as an authoritative requirement.
 
 ## Record requirements
 
@@ -50,6 +52,8 @@ For the existing Core conformance harness, also run `npm run benchmark:sample`.
 ## Review
 
 Editorial review checks source applicability, plain language, rights, and professional boundaries. Maintainer review checks schemas, API compatibility, accessibility, security, and generated-artifact parity. Material accounting or assurance changes require a designated subject-matter reviewer before publication.
+
+Content releases must satisfy the educational release gate: demonstrate improvement in learning, task completion, reviewer understanding, safety, adoption decisions, or evidence traceability. Corpus count alone is not release evidence. Proposed success measures are design guidance; instrumentation and results are not currently claimed.
 
 LedgerBench program changes additionally require review of the measurement claim, sampling frame, statistical consequences, hidden-evaluation integrity, submitter conflicts, and whether the change alters cross-release comparability. Preview publication is not independent program approval.
 
