@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { WebMcpTools } from "./WebMcpTools";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://accounting-agents.madebyhenry.chatgpt.site"),
@@ -60,7 +61,10 @@ export default function RootLayout({
         <link href="/.well-known/api-catalog" rel="api-catalog" type="application/linkset+json" />
         <link href="/openapi.json" rel="service-desc" type="application/vnd.oai.openapi+json;version=3.1" />
       </head>
-      <body>{children}</body>
+      <body>
+        <WebMcpTools />
+        {children}
+      </body>
     </html>
   );
 }

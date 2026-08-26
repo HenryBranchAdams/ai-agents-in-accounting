@@ -41,6 +41,7 @@ export default function MachineAccessPage() {
         { href: "#contract", label: "Contract and limits" },
         { href: "#accessibility", label: "Accessible by design" },
         { href: "#ecosystem", label: "Open ecosystem" },
+        { href: "#webmcp", label: "WebMCP site tools" },
         { href: "#mcp", label: "When to add MCP" },
       ]}
       previous={{ href: "/reading-room", label: "Reading room" }}
@@ -289,6 +290,30 @@ export default function MachineAccessPage() {
           Publishing a protocol name is not evidence of maturity. Each record
           states what this service uses, what remains optional, and which
           accounting conclusions the interface cannot establish.
+        </p>
+      </section>
+
+      <section id="webmcp">
+        <h2>Use page-scoped tools with WebMCP</h2>
+        <p>
+          In a compatible ChatGPT or Codex built-in browser, every guide page
+          registers two read-only WebMCP tools. <code>accounting_agents.get_current_page</code>
+          reads the current page&apos;s title, canonical URL, evidence mode, review date,
+          and user-selected text. <code>accounting_agents.search</code> runs the same
+          deterministic, stable-ID search as <code>/api/v1/search</code> and returns
+          canonical human and API URLs.
+        </p>
+        <p>
+          These page tools do not approve an accounting conclusion, change a
+          record, post an entry, send a message, move money, alter permissions,
+          or take another sensitive external action. They return the project&apos;s
+          reliance boundary with each result: agents may prepare accounting work;
+          accountable people approve conclusions and sensitive external actions.
+          Browsers without WebMCP support keep the ordinary HTML, Markdown, JSON,
+          and OpenAPI experience unchanged.
+        </p>
+        <p className="section-sources">
+          Implementation follows OpenAI&apos;s <a href="https://learn.chatgpt.com/docs/webmcp" rel="noreferrer" target="_blank">Site tools guidance</a> and the proposed <a href="https://webmachinelearning.github.io/webmcp/" rel="noreferrer" target="_blank">WebMCP specification</a>.
         </p>
       </section>
 
