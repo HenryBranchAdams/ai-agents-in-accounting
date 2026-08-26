@@ -153,9 +153,9 @@ Each bundle publishes blank, minimum-viable, completed-case, and regulated-enter
 
 ## Dependency frontier
 
-Tickets **01** and **02** were the initial frontier. After 01, tickets **03**, **10**, and **44** open. Ticket 02 also opens the coverage-expansion work and contributes to pilot selection. The canonical cases are intentionally early because they unlock the homepage, lessons, templates, playbooks, essays, and LedgerBench primer.
+Tickets **01**, **10**, and **02** are complete through PRs #90, #92, and #93. Those foundations open six bounded agent increments in the [Foundation milestone](https://github.com/HenryBranchAdams/ai-agents-in-accounting/milestone/1): tickets **03**, **09**, **11**, **13**, **21**, and **44**, corresponding to GitHub issues #8, #12, #16, #14, #13, and #6.
 
-As of the August 26, 2026 tracker reconciliation, ticket **01** is completed by PR #90. The current working frontier is **02**, **03**, **10**, and **44**, corresponding to GitHub issues #7, #8, #5, and #6. GitHub remains authoritative for live state.
+The same milestone keeps tickets **84** and **83**, GitHub issues #17 and #20, visible as human-owned review and scope decisions. The other unique tickets remain an unlabeled dependency backlog rather than an active queue. The canonical cases remain intentionally early because they unlock the homepage, lessons, templates, playbooks, essays, and LedgerBench primer. GitHub remains authoritative for live state.
 
 ## Proposed publication result
 
