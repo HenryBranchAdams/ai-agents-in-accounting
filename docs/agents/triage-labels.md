@@ -9,3 +9,5 @@
 | `wontfix` | `wontfix` | The repository will not pursue the request. |
 
 When an engineering skill names a triage role, apply the corresponding GitHub label from this table.
+
+`ready-for-agent` is a working-frontier label, not a statement that a blocked ticket is well written. Apply it only when every listed blocker is closed and the issue has no assignee.
