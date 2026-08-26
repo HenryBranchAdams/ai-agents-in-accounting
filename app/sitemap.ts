@@ -10,6 +10,7 @@ const pages = [
   ["/lifecycle", 0.9],
   ["/authority", 0.9],
   ["/workflows", 0.9],
+  ["/control-model", 0.9],
   ["/controls", 0.9],
   ["/sensitive-actions", 0.9],
   ["/evidence-assurance", 0.8],
@@ -37,7 +38,7 @@ const pages = [
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages = pages.map(([path, priority]) => ({
     url: `${siteOrigin}${path}`,
-    lastModified: new Date("2026-08-23T00:00:00Z"),
+    lastModified: new Date(path === "/control-model" ? "2026-08-25T00:00:00Z" : "2026-08-23T00:00:00Z"),
     changeFrequency: "monthly",
     priority,
   }));

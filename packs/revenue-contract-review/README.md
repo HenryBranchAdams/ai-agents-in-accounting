@@ -5,7 +5,7 @@ Extract contract facts, map them to the approved revenue policy, and prepare a r
 Pack ID: `revenue-contract-review`  
 Version: 1.0.0  
 Authority boundary: A2  
-Reviewed: 2026-08-23
+Reviewed: 2026-08-25
 
 ## Run order
 

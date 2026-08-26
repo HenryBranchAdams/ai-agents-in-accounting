@@ -35,6 +35,7 @@ export const navGroups: NavGroup[] = [
   {
     label: "Govern",
     items: [
+      { href: "/control-model", label: "Accounting Agent Control Model" },
       { href: "/controls", label: "Controls and authority" },
       { href: "/sensitive-actions", label: "Sensitive actions" },
       { href: "/evidence-assurance", label: "Evidence and assurance" },
@@ -117,6 +118,8 @@ export const searchItems = [
   { href: "/changes", title: "Follow corpus changes", category: "Project", detail: "Immutable releases, compatibility, JSON Feed, and Atom" },
   { href: "/open-source", title: "Reuse the open project", category: "Project", detail: "MIT software, CC BY content, CC0 fixtures, and source archive" },
   { href: "/content-contract", title: "Choose a primary content mode", category: "Project", detail: "Seven educational modes, evidence classifications, release gate, and success measures" },
+  { href: "/control-model", title: "Apply the Accounting Agent Control Model", category: "Govern", detail: "Objective, scope, evidence, procedure, checks, authority, review, action, and record" },
+  { href: "/control-model#scenarios", title: "Review complete control-model scenarios", category: "Govern", detail: "Synthetic accrual-entry and payment-release examples with accountable human decisions" },
 ];
 
 export const modes = [

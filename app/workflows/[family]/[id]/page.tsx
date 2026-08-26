@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { DocsShell } from "../../../DocsShell";
 import {
@@ -9,6 +10,7 @@ import {
 } from "../../../DomainRecords";
 import { siteOrigin } from "../../../agent-interface";
 import { docsMetadata } from "../../../docsMetadata";
+import { controlModelElements } from "../../../control-model";
 import { resources } from "../../../resources-data";
 import { processFamilies, workflowById, workflowRecords, workflowsForFamily } from "../../../workflows-data";
 
@@ -93,6 +95,7 @@ export default async function WorkflowPage({ params }: WorkflowPageProps) {
         { href: "#objective", label: "Objective and scope" },
         { href: "#evidence", label: "Evidence and tools" },
         { href: "#procedure", label: "Procedure and checks" },
+        { href: "#control-model", label: "Control Model mapping" },
         { href: "#authority", label: "Authority and review" },
         { href: "#output", label: "Output and record" },
         { href: "#resilience", label: "Failure and recovery" },
@@ -214,6 +217,29 @@ export default async function WorkflowPage({ params }: WorkflowPageProps) {
           links={workflow.source_links}
           placement="authority"
         />
+      </section>
+
+      <section id="control-model">
+        <h2>Accounting Agent Control Model mapping</h2>
+        <p>
+          This workflow applies the canonical <Link href="/control-model">Accounting Agent Control Model</Link> through
+          the fields below. The mapping does not grant authority: accountable people still approve conclusions and
+          sensitive external actions.
+        </p>
+        <div className="table-wrap">
+          <table>
+            <caption>Control-model elements mapped to {workflow.name} fields</caption>
+            <thead><tr><th>Element</th><th>Workflow fields</th></tr></thead>
+            <tbody>
+              {workflow.control_model.elements.map((mapping) => (
+                <tr key={mapping.element_id}>
+                  <th scope="row"><Link href={`/control-model#element-${mapping.element_id}`}>{controlModelElements.find((element) => element.id === mapping.element_id)?.label}</Link></th>
+                  <td>{mapping.source_fields.map((field) => <code key={field}>{field} </code>)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </section>
 
       <section id="output">

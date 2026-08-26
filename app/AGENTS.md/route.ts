@@ -12,6 +12,7 @@ const instructions = `# Accounting Agents public access instructions
 4. Preserve stable IDs, versions, review dates, source IDs, and rights fields in the work record.
 5. Follow canonical source links when the task requires current authoritative support.
 6. Use /content-contract to identify each page's primary mode and the evidence classification before reusing educational material.
+7. Use /control-model to structure governed work from objective through retained record; apply all nine elements rather than treating the page as a checklist that grants authority.
 
 ## Non-negotiable boundaries
 
@@ -47,6 +48,9 @@ const instructions = `# Accounting Agents public access instructions
 - /content-contract
 - /content-contract.md
 - /api/v1/content-contract
+- /control-model
+- /control-model.md
+- /api/v1/control-model
 - /openapi.json
 - /.well-known/api-catalog
 - /releases/current/manifest.json

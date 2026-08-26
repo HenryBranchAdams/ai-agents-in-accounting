@@ -15,6 +15,7 @@ import { processFamilies, workflowRecords } from "../../../workflows-data";
 import { benchmarkCases, packs } from "../../../platform-data";
 import { searchRecordTypes } from "../../../search-index";
 import { educationalContentContract } from "../../../content-contract";
+import { accountingAgentControlModel } from "../../../control-model";
 
 export function OPTIONS() {
   return corsOptionsResponse();
@@ -84,6 +85,14 @@ export async function GET(request: Request) {
       display_reliance_boundary: classification.display_reliance_boundary,
       record_url: "/api/v1/content-contract",
       human_url: "/content-contract",
+    })),
+    control_model_elements: accountingAgentControlModel.elements.map((element) => ({
+      value: element.id,
+      label: element.label,
+      ordinal: element.ordinal,
+      question: element.question,
+      record_url: "/api/v1/control-model",
+      human_url: `/control-model#element-${element.id}`,
     })),
   }, null, 2);
 

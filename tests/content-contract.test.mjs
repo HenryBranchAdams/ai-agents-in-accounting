@@ -118,6 +118,7 @@ test("content contract is exposed through shared-shell labels and discovery proj
     "/changes": "Program documentation",
     "/open-source": "Program documentation",
     "/content-contract": "Program documentation",
+    "/control-model": "Reference",
   };
   for (const [path, mode] of Object.entries(staticModeLabels)) {
     const html = await (await request(path, { accept: "text/html" })).text();

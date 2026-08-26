@@ -5,7 +5,7 @@ Tie opening cash, separate committed and forecast flows, run scenarios, and esca
 Pack ID: `cash-forecast-liquidity`  
 Version: 1.0.0  
 Authority boundary: A2  
-Reviewed: 2026-08-23
+Reviewed: 2026-08-25
 
 ## Run order
 

@@ -21,11 +21,12 @@ import { controlPatterns, sensitiveActions } from "./governance-data";
 import { glossary, templates } from "./reference-data";
 import { processFamilies, workflowRecords } from "./workflows-data";
 import { renderDomainCorpusMarkdown, shiftMarkdownHeadings } from "./domain-interface";
+import { accountingAgentControlModel, renderControlModelMarkdown } from "./control-model";
 
 export const siteOrigin = "https://accounting-agents.madebyhenry.chatgpt.site";
 export const catalogReviewedAt = "2026-08-23";
-export const catalogModifiedAt = "2026-08-23T00:00:00.000Z";
-export const catalogVersion = "2026-08-23.7";
+export const catalogModifiedAt = "2026-08-25T00:00:00.000Z";
+export const catalogVersion = "2026-08-25.1";
 export const apiVersion = "1.0";
 export const rightsNotice =
   "Project-created factual metadata is CC0 1.0 and original editorial summaries are CC BY 4.0. External source content remains subject to each publisher's terms.";
@@ -391,6 +392,14 @@ export function buildAgentContextMarkdown() {
     "",
     `- [Educational content contract](${siteOrigin}/content-contract): canonical human contract, Markdown projection, and JSON record.`,
     "",
+    "## Accounting Agent Control Model",
+    "",
+    `The ${accountingAgentControlModel.title} v${accountingAgentControlModel.version} applies Objective, Scope, Evidence, Procedure, Checks, Authority, Review, Action, and Record to governed accounting-agent work. It is an implementation pattern under maintainer review, not independent or professional assurance.`,
+    "",
+    accountingAgentControlModel.governing_invariant,
+    "",
+    `- [Canonical Control Model](${siteOrigin}/control-model): human reference, printable summary, two fictional synthetic scenarios, and workflow mappings.`,
+    "",
     "## Human-readable guide",
     "",
     `- [Overview](${siteOrigin}/)` ,
@@ -398,6 +407,7 @@ export function buildAgentContextMarkdown() {
     `- [Accounting lifecycle](${siteOrigin}/lifecycle)`,
     `- [Authority levels](${siteOrigin}/authority)`,
     `- [Workflow library](${siteOrigin}/workflows)`,
+    `- [Accounting Agent Control Model](${siteOrigin}/control-model)`,
     `- [Controls and authority](${siteOrigin}/controls)`,
     `- [Sensitive actions](${siteOrigin}/sensitive-actions)`,
     `- [Evidence and assurance](${siteOrigin}/evidence-assurance)`,
@@ -431,6 +441,8 @@ export function buildLlmsText() {
     `- [Full context bundle](${siteOrigin}/downloads/context-bundle.md): Complete domain corpus plus all ${agentResources.length} source records in Markdown.`,
     `- [Canonical JSON corpus](${siteOrigin}/downloads/corpus.json): All ${workflowRecords.length} workflows, ${authorityLevels.length} authority levels, ${sensitiveActions.length} sensitive-action boundaries, ${controlPatterns.length} controls, ${templates.length} templates, ${glossary.length} glossary terms, and source records.`,
     `- [Workflow corpus](${siteOrigin}/workflows.md): All ${workflowRecords.length} workflow specifications in Markdown.`,
+    `- [Accounting Agent Control Model](${siteOrigin}/control-model): Nine elements, two synthetic scenarios, and all-workflow mappings.`,
+    `- [Accounting Agent Control Model in Markdown](${siteOrigin}/control-model.md): Equivalent text projection with stable IDs.`,
     `- [Authority model](${siteOrigin}/authority-levels.md): The A0–A4 and human-only authority levels in Markdown.`,
     `- [Sensitive actions](${siteOrigin}/sensitive-actions.md): Approval, execution, rollback, and evidence boundaries.`,
     `- [Control patterns](${siteOrigin}/controls.md): Reusable control designs.`,
@@ -469,6 +481,7 @@ export function buildLlmsText() {
     `- [Standard API catalog](${siteOrigin}/.well-known/api-catalog): RFC 9727 discovery document in Linkset JSON.`,
     `- [Agent access guide](${siteOrigin}/machine-access): Endpoint documentation and examples for people integrating agents.`,
     `- [Educational content contract API](${siteOrigin}/api/v1/content-contract): Typed modes, evidence classifications, release gate, measures, and page assignments.`,
+    `- [Accounting Agent Control Model API](${siteOrigin}/api/v1/control-model): Canonical elements, scenarios, workflow mapping, sources, rights, and review status.`,
     "",
     "## Human-readable guide",
     "",
@@ -477,6 +490,7 @@ export function buildLlmsText() {
     `- [Accounting lifecycle](${siteOrigin}/lifecycle): Eight process families covering the complete accounting lifecycle.`,
     `- [Authority levels](${siteOrigin}/authority): A0–A4 and human-only boundaries.`,
     `- [Workflow library](${siteOrigin}/workflows): All ${workflowRecords.length} canonical workflow specifications.`,
+    `- [Accounting Agent Control Model](${siteOrigin}/control-model): Canonical governance reference and printable summary.`,
     `- [Controls and authority](${siteOrigin}/controls): Evidence, authority, control design, and assessment.`,
     `- [Sensitive actions](${siteOrigin}/sensitive-actions): Guardrails for high-impact acts.`,
     `- [Evidence and assurance](${siteOrigin}/evidence-assurance): Workpapers, traces, review, and assurance boundaries.`,
@@ -517,6 +531,8 @@ export function buildContextBundleMarkdown() {
     "## Educational content contract",
     "",
     shiftMarkdownHeadings(renderContentContractMarkdown(), 1).trimEnd(),
+    "",
+    shiftMarkdownHeadings(renderControlModelMarkdown(), 1).trimEnd(),
     "",
     "## Canonical accounting-agent domain corpus",
     "",

@@ -7,6 +7,7 @@ import {
   type WorkflowRecord,
   type WorkflowSourceLink,
 } from "./domain-model";
+import { buildWorkflowControlModelMapping } from "./control-model";
 import { resources } from "./resources-data";
 
 export const processFamilies: ProcessFamily[] = [
@@ -1342,6 +1343,7 @@ function buildWorkflow(seed: WorkflowSeed): WorkflowRecord {
     outputs: seed.outputs,
     proposed_accounting_effects: seed.effect,
     run_record: ["Objective, entity, period, population, and configuration", "Source register and control totals", "Procedures, tool calls, and calculations", "Exceptions, contradictory evidence, and stop events", "Draft effects and immutable approval payload where applicable", "Preparer, reviewer, approvals, timestamps, and final disposition"],
+    control_model: buildWorkflowControlModelMapping(),
     retention: "Retain the workpaper, source lineage, configuration, approvals, and execution evidence under the entity's accounting-record, audit, legal-hold, privacy, and regulatory requirements.",
     reproducibility: "Retain the approved source snapshot or immutable identifiers, transformations, calculations, model and tool versions, policy and prompt versions, exceptions, approvals, and result so a competent reviewer can reproduce the work.",
     failure_modes: ["Source population is incomplete, stale, duplicated, or from the wrong entity or period", "A probabilistic classification is treated as a deterministic fact", "A material exception, contradictory source, or policy question is omitted from the handoff"],

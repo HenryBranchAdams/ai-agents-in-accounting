@@ -32,6 +32,7 @@ import {
   educationalContentContract,
   evidenceClassificationIds,
 } from "../content-contract";
+import { accountingAgentControlModel, controlModelElements } from "../control-model";
 
 const resourceSchema = {
   type: "object",
@@ -175,6 +176,7 @@ const workflowRequired = [
   "stop_conditions", "outputs", "proposed_accounting_effects", "run_record", "retention",
   "reproducibility", "failure_modes", "recovery_actions", "pilot_measures", "production_signals",
   "reviewed_at", "review_status", "provenance",
+  "control_model",
 ] as const;
 
 const workflowSchema = {
@@ -227,6 +229,47 @@ const workflowSchema = {
     reviewed_at: { type: "string", format: "date" },
     review_status: { type: "string" },
     provenance: provenanceSchema,
+    control_model: {
+      type: "object",
+      additionalProperties: false,
+      required: ["model_id", "model_version", "elements"],
+      properties: {
+        model_id: { type: "string", const: accountingAgentControlModel.id },
+        model_version: { type: "string", const: accountingAgentControlModel.version },
+        elements: {
+          type: "array",
+          minItems: 9,
+          maxItems: 9,
+          items: {
+            type: "object",
+            additionalProperties: false,
+            required: ["element_id", "source_fields"],
+            properties: {
+              element_id: { type: "string", enum: controlModelElements.map((element) => element.id) },
+              source_fields: stringArraySchema,
+            },
+          },
+        },
+      },
+    },
+  },
+} as const;
+
+const controlModelSchema = {
+  type: "object",
+  required: ["id", "version", "title", "review_status", "evidence_classification", "governing_invariant", "elements", "scenarios", "workflow_mapping", "source_basis", "rights"],
+  properties: {
+    id: { type: "string", const: accountingAgentControlModel.id },
+    version: { type: "string", const: accountingAgentControlModel.version },
+    title: { type: "string" },
+    review_status: { type: "string" },
+    evidence_classification: { type: "string", const: "implementation-pattern" },
+    governing_invariant: { type: "string" },
+    elements: { type: "array", minItems: 9, maxItems: 9, items: { type: "object", required: ["id", "ordinal", "label", "question", "definition", "required_record", "failure_boundary", "evidence_classification"] } },
+    scenarios: { type: "array", minItems: 2, items: { type: "object", required: ["id", "title", "context", "evidence_classification", "fictional", "elements", "accountable_conclusion"] } },
+    workflow_mapping: { type: "object" },
+    source_basis: { type: "array", items: { type: "object", required: ["id", "title", "url", "classification", "scope"] } },
+    rights: { type: "object" },
   },
 } as const;
 
@@ -904,6 +947,22 @@ const document = {
       },
       options: { operationId: "getContentContractOptions", summary: "CORS preflight", tags: ["Content"], responses: { "204": { description: "Allowed methods and headers." } } },
     },
+    "/api/v1/control-model": {
+      get: {
+        operationId: "getAccountingAgentControlModel",
+        summary: "Retrieve the Accounting Agent Control Model",
+        tags: ["Governance"],
+        parameters: [{ name: "format", in: "query", schema: { type: "string", enum: ["json", "markdown"] } }],
+        responses: {
+          "200": { description: "Control Model in JSON or Markdown.", content: { "application/json": { schema: { type: "object", required: ["schema_version", "collection", "rights_notice", "links", "item"], properties: { schema_version: { type: "string" }, collection: { type: "string", const: "control_model" }, rights_notice: { type: "string" }, links: { type: "object" }, item: { $ref: "#/components/schemas/ControlModel" } } } }, "text/markdown": { schema: { type: "string" } } } },
+          "304": { description: "The representation has not changed." },
+          "400": { description: "Invalid format parameter." },
+          "406": { description: "No acceptable representation was requested." },
+        },
+      },
+      head: { operationId: "getAccountingAgentControlModelHead", summary: "Retrieve Control Model headers", tags: ["Governance"], responses: { "200": { description: "Control Model headers." }, "304": { description: "The representation has not changed." } } },
+      options: { operationId: "getAccountingAgentControlModelOptions", summary: "CORS preflight", tags: ["Governance"], responses: { "204": { description: "Allowed methods and headers." } } },
+    },
   },
   components: {
     schemas: {
@@ -916,6 +975,7 @@ const document = {
       GlossaryEntry: glossaryEntrySchema,
       EcosystemLayer: ecosystemLayerSchema,
       ContentContract: contentContractSchema,
+      ControlModel: controlModelSchema,
       Pack: packSchema,
       BenchmarkCase: benchmarkCaseSchema,
       LedgerBenchProgram: ledgerBenchProgramSchema,
