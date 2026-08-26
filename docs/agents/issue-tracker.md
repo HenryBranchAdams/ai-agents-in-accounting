@@ -9,6 +9,7 @@ Issues and implementation tickets for this repository live in GitHub Issues at `
 - Prefer GitHub native issue dependencies when available. Otherwise, record blockers in an explicit `## Blocked by` section using issue references.
 - An issue is on the working frontier when all listed blockers are closed and it has no assignee.
 - Apply `ready-for-agent` only to issues on that working frontier. Remove it when a new blocker is added; blocked issues otherwise carry no readiness label unless `needs-triage` or `ready-for-human` describes the actual state.
+- Use a milestone to keep the deliberately small active program visible without closing unique dependency-backlog tickets. Milestone membership does not override blockers or readiness labels.
 - Use the repository's triage vocabulary from `docs/agents/triage-labels.md`.
 
 ## Pull requests as a triage surface

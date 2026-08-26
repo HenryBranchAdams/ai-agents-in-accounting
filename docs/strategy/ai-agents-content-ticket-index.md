@@ -92,11 +92,15 @@ Published August 24, 2026 from the approved content audit and roadmap. The plan 
 
 ## Working frontier
 
-Ticket 01, [#4 — Establish the educational content contract](https://github.com/HenryBranchAdams/ai-agents-in-accounting/issues/4), was completed by PR #90. As of the August 26, 2026 tracker reconciliation, the dependency-ready tickets are:
+The initial foundations are complete: ticket 01 / [#4](https://github.com/HenryBranchAdams/ai-agents-in-accounting/issues/4) by PR #90, ticket 10 / [#5](https://github.com/HenryBranchAdams/ai-agents-in-accounting/issues/5) by PR #92, and ticket 02 / [#7](https://github.com/HenryBranchAdams/ai-agents-in-accounting/issues/7) by PR #93.
 
-- [#5 — Publish the Accounting Agent Control Model](https://github.com/HenryBranchAdams/ai-agents-in-accounting/issues/5)
-- [#6 — Add the source-relationship contract and pilot cohort](https://github.com/HenryBranchAdams/ai-agents-in-accounting/issues/6)
-- [#7 — Publish the versioned coverage and gaps map](https://github.com/HenryBranchAdams/ai-agents-in-accounting/issues/7)
+The [Foundation milestone](https://github.com/HenryBranchAdams/ai-agents-in-accounting/milestone/1) is the deliberately small active surface. Its dependency-ready agent tickets are:
+
 - [#8 — Publish the five-minute “Start here” orientation](https://github.com/HenryBranchAdams/ai-agents-in-accounting/issues/8)
+- [#12 — Turn Accounting Lifecycle into a practical process map](https://github.com/HenryBranchAdams/ai-agents-in-accounting/issues/12)
+- [#16 — Publish the authority ladder and decision tree](https://github.com/HenryBranchAdams/ai-agents-in-accounting/issues/16)
+- [#14 — Publish the reviewer’s field guide](https://github.com/HenryBranchAdams/ai-agents-in-accounting/issues/14)
+- [#13 — Add the one-minute workflow brief contract and pilot](https://github.com/HenryBranchAdams/ai-agents-in-accounting/issues/13)
+- [#6 — Add the source-relationship contract and pilot cohort](https://github.com/HenryBranchAdams/ai-agents-in-accounting/issues/6)
 
-Only unblocked, unassigned agent tickets carry `ready-for-agent`. Every ticket retains an explicit `## Blocked by` section using real GitHub issue references. GitHub remains authoritative for live state.
+The same milestone holds two human-owned decisions: [#17 — Establish the subject-matter review program](https://github.com/HenryBranchAdams/ai-agents-in-accounting/issues/17) and [#20 — Add management-finance coverage or narrow project scope](https://github.com/HenryBranchAdams/ai-agents-in-accounting/issues/20). All other unique tickets remain preserved as unlabeled dependency backlog. Only unblocked, unassigned agent tickets carry `ready-for-agent`; GitHub remains authoritative for live state.
