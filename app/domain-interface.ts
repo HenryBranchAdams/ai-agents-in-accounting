@@ -146,6 +146,11 @@ export function renderWorkflowsMarkdown(records: WorkflowRecord[] = workflowReco
       list(lines, "Deterministic checks", workflow.deterministic_checks);
       list(
         lines,
+        `Accounting Agent Control Model (${workflow.control_model.model_id} v${workflow.control_model.model_version})`,
+        workflow.control_model.elements.map((element) => `${element.element_id}: ${element.source_fields.join(", ")}`),
+      );
+      list(
+        lines,
         "Action-level authority",
         workflow.actions.map((action) => `${action.action} — ${action.authority_level}. Agent: ${action.agent_role} Human: ${action.human_role}`),
       );

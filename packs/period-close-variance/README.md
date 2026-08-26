@@ -5,7 +5,7 @@ Track close dependencies, reproduce control totals, and explain material movemen
 Pack ID: `period-close-variance`  
 Version: 1.0.0  
 Authority boundary: A2  
-Reviewed: 2026-08-23
+Reviewed: 2026-08-25
 
 ## Run order
 

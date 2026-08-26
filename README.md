@@ -19,6 +19,8 @@ The [open ecosystem map](https://accounting-agents.madebyhenry.chatgpt.site/ecos
 
 The [educational content contract](https://accounting-agents.madebyhenry.chatgpt.site/content-contract) assigns every major human page one primary mode—Tutorial, How-to, Explanation, Reference, Case study, Evidence synthesis, or Program documentation—and defines visible evidence classifications, an educational release gate, and proposed success measures. The contract is available as [Markdown](https://accounting-agents.madebyhenry.chatgpt.site/content-contract.md) and [JSON](https://accounting-agents.madebyhenry.chatgpt.site/api/v1/content-contract). Instrumentation and results for those measures are not currently claimed.
 
+The [Accounting Agent Control Model](https://accounting-agents.madebyhenry.chatgpt.site/control-model) defines nine elements—Objective, Scope, Evidence, Procedure, Checks, Authority, Review, Action, and Record—and applies them to two fictional synthetic scenarios and all 60 workflows. Equivalent [Markdown](https://accounting-agents.madebyhenry.chatgpt.site/control-model.md) and [JSON](https://accounting-agents.madebyhenry.chatgpt.site/api/v1/control-model) preserve the same stable model, element, and scenario IDs. It is an implementation pattern under maintainer review, not an independent or professional conclusion.
+
 Coverage never grants execution authority. Agents may prepare work; accountable people approve conclusions and sensitive external actions.
 
 ## Development

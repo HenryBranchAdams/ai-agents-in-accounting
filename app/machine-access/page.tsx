@@ -98,6 +98,10 @@ export default function MachineAccessPage() {
             <strong>Workflow API</strong>
             <span>Search by text, process family, or authority and retrieve stable workflow records.</span>
           </Link>
+          <Link href="/control-model">
+            <strong>Accounting Agent Control Model</strong>
+            <span>Nine-element human reference with equivalent Markdown and JSON, two synthetic scenarios, and mappings for every workflow.</span>
+          </Link>
           <Link href="/api/v1/search?q=reconciliation">
             <strong>Unified search API</strong>
             <span>One deterministic index across pages, workflows, sources, packs, cases, and changes.</span>
@@ -165,6 +169,7 @@ export default function MachineAccessPage() {
           <div><dt>/benchmark</dt><dd>{benchmarkCases.length} public synthetic conformance cases.</dd></div>
           <div><dt>/ecosystem</dt><dd>{ecosystemLayers.length} interface and standards layers with explicit adoption posture and boundaries.</dd></div>
           <div><dt>/content-contract</dt><dd>Primary educational modes, evidence classifications, release gate, and proposed success measures.</dd></div>
+          <div><dt>/control-model</dt><dd>Nine canonical governance elements, two synthetic scenarios, workflow mappings, sources, and review limits.</dd></div>
         </dl>
         <p>Prefix each path above with <code>/api/v1</code>.</p>
 

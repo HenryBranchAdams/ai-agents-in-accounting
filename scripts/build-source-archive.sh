@@ -34,7 +34,7 @@ node --input-type=module -e '
     const bytes = await readFile(name);
     assets[name] = { sha256: `sha256:${createHash("sha256").update(bytes).digest("hex")}`, bytes: (await stat(name)).size };
   }
-  await writeFile("archive-digests.json", `${JSON.stringify({ generated_at: "2026-08-23T00:00:00.000Z", assets }, null, 2)}\n`);
+  await writeFile("archive-digests.json", `${JSON.stringify({ generated_at: "2026-08-25T00:00:00.000Z", assets }, null, 2)}\n`);
 '
 
 printf 'Built source archive and SHA-256 manifest.\n'

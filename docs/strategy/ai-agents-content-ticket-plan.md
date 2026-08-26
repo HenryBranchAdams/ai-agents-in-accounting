@@ -7,7 +7,7 @@ Source: the August 24, 2026 content audit and content roadmap. Overlapping recom
 - Tracker: GitHub Issues in `HenryBranchAdams/ai-agents-in-accounting`
 - Triage labels: `needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`
 - Domain documentation: single-context (`CONTEXT.md` plus root `docs/adr/`)
-- Default ticket label: `ready-for-agent`
+- Apply `ready-for-agent` only when every listed blocker is closed and the issue has no assignee. Blocked tickets carry no readiness label; use `needs-triage` or `ready-for-human` when those states apply.
 
 ## A. Learning and editorial foundation
 
@@ -56,7 +56,7 @@ Source: the August 24, 2026 content audit and content roadmap. Overlapping recom
 | 26 | Publish payroll-and-benefits workflow briefs | 21 | Same complete brief coverage for payroll and benefits. |
 | 27 | Publish assets, leases, inventory, and cost workflow briefs | 21 | Same complete brief coverage for long-lived assets, leases, inventory, and cost accounting. |
 | 28 | Publish consolidation-and-reporting workflow briefs | 21 | Same complete brief coverage for consolidation and reporting. |
-| 29 | Publish tax, audit, controls, policy, and planning workflow briefs | 21 | Completes the remaining process families and cross-cutting workflows. |
+| 29 | Publish tax, audit, controls, policy, and planning workflow briefs | 21 | Coordinates separately reviewable increments for tax/regulatory, audit/ICFR, technical-accounting/policy, and unassigned planning workflows. |
 | 30 | Deepen journal-entry preparation and posting | 17, 21 | Adds a distinct scenario, risks, checks, judgments, dependencies, framework variants, workpaper, evaluation cases, and claim-level support. |
 | 31 | Deepen close orchestration | 21 | Adds workflow-specific state, dependencies, handoffs, late evidence, reopening, stop conditions, sample artifact, and evaluation cases. |
 | 32 | Deepen flux and variance analysis | 21 | Adds population and baseline selection, driver decomposition, materiality, false narratives, reviewer challenge, artifact, and cases. |
@@ -135,12 +135,12 @@ Each bundle publishes blank, minimum-viable, completed-case, and regulated-enter
 | # | Ticket | Blocked by | What it delivers |
 |---:|---|---|---|
 | 75 | Publish the real-world practice observatory | 44, 48 | Evidence-tiered deployment records with context, workflow, architecture, authority, claims, limitations, commercial interests, review dates, and non-inferences. |
-| 76 | Add hire-to-retire and payroll-accounting coverage | 02, 21 | Deepens payroll interfaces, master data, benefits, incentives, tax, reconciliation, authority, and evidence boundaries. |
+| 76 | Add hire-to-retire and payroll-accounting coverage | 02, 21, 26 | Deepens the payroll briefs without creating a competing taxonomy, adding interfaces, master data, benefits, incentives, tax, reconciliation, authority, and evidence boundaries. |
 | 77 | Add equity and stock-compensation coverage | 02, 21 | Covers grants, vesting, modifications, forfeitures, valuation inputs, tax effects, disclosures, controls, and evaluation. |
 | 78 | Add M&A and legal-entity-event coverage | 02, 21 | Covers purchase accounting, opening balances, specialists, integration, carve-outs, discontinued operations, controls, and evidence. |
 | 79 | Add sustainability and nonfinancial-reporting coverage | 02, 21 | Covers lineage, estimates, controls, disclosure, assurance, frameworks, and agent boundaries. |
-| 80 | Add fund, nonprofit, governmental, and grant-accounting coverage | 02, 21 | Adds distinct frameworks, restrictions, assertions, fiduciary duties, workflows, and limits. |
-| 81 | Add priority industry overlays | 02, 37 | Adds reviewed overlays for banking, insurance, healthcare, construction, SaaS, energy, manufacturing, and digital assets. |
+| 80 | Add fund, nonprofit, governmental, and grant-accounting coverage | 02, 21 | Adds the four materially distinct domains through separately reviewable increments with explicit frameworks, restrictions, assertions, fiduciary duties, workflows, and limits. |
+| 81 | Add priority industry overlays | 02, 37, 84 | Adds independently sequenced overlays for banking, insurance, healthcare, construction, SaaS, energy, manufacturing, and digital assets under the subject-matter review program. |
 | 82 | Add public-accounting-firm workflow coverage | 02, 21 | Covers acceptance, independence, planning, tax, supervision, consultation, review, and client communication boundaries. |
 | 83 | Add management-finance coverage or narrow project scope | 02 | Resolves the finance claim with FP&A, unit economics, management reporting, capital allocation, and decision support—or explicitly narrows scope. |
 
@@ -153,12 +153,13 @@ Each bundle publishes blank, minimum-viable, completed-case, and regulated-enter
 
 ## Dependency frontier
 
-Tickets **01** and **02** can begin immediately. After 01, tickets **03**, **10**, and **44** open. Ticket 02 also opens the coverage-expansion work and contributes to pilot selection. The canonical cases are intentionally early because they unlock the homepage, lessons, templates, playbooks, essays, and LedgerBench primer.
+Tickets **01** and **02** were the initial frontier. After 01, tickets **03**, **10**, and **44** open. Ticket 02 also opens the coverage-expansion work and contributes to pilot selection. The canonical cases are intentionally early because they unlock the homepage, lessons, templates, playbooks, essays, and LedgerBench primer.
+
+As of the August 26, 2026 tracker reconciliation, ticket **01** is completed by PR #90. The current working frontier is **02**, **03**, **10**, and **44**, corresponding to GitHub issues #7, #8, #5, and #6. GitHub remains authoritative for live state.
 
 ## Proposed publication result
 
 - 85 GitHub issues, published in dependency order
-- Every issue labeled `ready-for-agent`
+- Only dependency-ready agent tickets labeled `ready-for-agent`; human decisions and unresolved splits use the matching triage state
 - Each issue body includes a source reference, end-to-end outcome, acceptance criteria, validation expectations, and explicit blocker links
 - No umbrella issue is required; the two supplied documents remain the source corpus
-

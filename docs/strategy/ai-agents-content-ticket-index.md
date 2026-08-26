@@ -79,12 +79,12 @@ Published August 24, 2026 from the approved content audit and roadmap. The plan 
 | 73 | [#77 — Publish “Why the agent should not assess its own control”](https://github.com/HenryBranchAdams/ai-agents-in-accounting/issues/77) | 12, 19 |
 | 74 | [#83 — Publish “The economics of accepted work”](https://github.com/HenryBranchAdams/ai-agents-in-accounting/issues/83) | 58, 63 |
 | 75 | [#78 — Publish the real-world practice observatory](https://github.com/HenryBranchAdams/ai-agents-in-accounting/issues/78) | 44, 48 |
-| 76 | [#51 — Add hire-to-retire and payroll-accounting coverage](https://github.com/HenryBranchAdams/ai-agents-in-accounting/issues/51) | 02, 21 |
+| 76 | [#51 — Add hire-to-retire and payroll-accounting coverage](https://github.com/HenryBranchAdams/ai-agents-in-accounting/issues/51) | 02, 21, 26 |
 | 77 | [#47 — Add equity and stock-compensation coverage](https://github.com/HenryBranchAdams/ai-agents-in-accounting/issues/47) | 02, 21 |
 | 78 | [#53 — Add M&A and legal-entity-event coverage](https://github.com/HenryBranchAdams/ai-agents-in-accounting/issues/53) | 02, 21 |
 | 79 | [#49 — Add sustainability and nonfinancial-reporting coverage](https://github.com/HenryBranchAdams/ai-agents-in-accounting/issues/49) | 02, 21 |
 | 80 | [#48 — Add fund, nonprofit, governmental, and grant-accounting coverage](https://github.com/HenryBranchAdams/ai-agents-in-accounting/issues/48) | 02, 21 |
-| 81 | [#87 — Add priority industry overlays](https://github.com/HenryBranchAdams/ai-agents-in-accounting/issues/87) | 02, 37 |
+| 81 | [#87 — Add priority industry overlays](https://github.com/HenryBranchAdams/ai-agents-in-accounting/issues/87) | 02, 37, 84 |
 | 82 | [#54 — Add public-accounting-firm workflow coverage](https://github.com/HenryBranchAdams/ai-agents-in-accounting/issues/54) | 02, 21 |
 | 83 | [#20 — Add management-finance coverage or narrow project scope](https://github.com/HenryBranchAdams/ai-agents-in-accounting/issues/20) | 02 |
 | 84 | [#17 — Establish the subject-matter review program](https://github.com/HenryBranchAdams/ai-agents-in-accounting/issues/17) | 02 |
@@ -92,10 +92,11 @@ Published August 24, 2026 from the approved content audit and roadmap. The plan 
 
 ## Working frontier
 
-The initial unblocked tickets are:
+Ticket 01, [#4 — Establish the educational content contract](https://github.com/HenryBranchAdams/ai-agents-in-accounting/issues/4), was completed by PR #90. As of the August 26, 2026 tracker reconciliation, the dependency-ready tickets are:
 
-- [#4 — Establish the educational content contract](https://github.com/HenryBranchAdams/ai-agents-in-accounting/issues/4)
+- [#5 — Publish the Accounting Agent Control Model](https://github.com/HenryBranchAdams/ai-agents-in-accounting/issues/5)
+- [#6 — Add the source-relationship contract and pilot cohort](https://github.com/HenryBranchAdams/ai-agents-in-accounting/issues/6)
 - [#7 — Publish the versioned coverage and gaps map](https://github.com/HenryBranchAdams/ai-agents-in-accounting/issues/7)
+- [#8 — Publish the five-minute “Start here” orientation](https://github.com/HenryBranchAdams/ai-agents-in-accounting/issues/8)
 
-Every ticket carries the `ready-for-agent` label and an explicit `## Blocked by` section using real GitHub issue references.
-
+Only unblocked, unassigned agent tickets carry `ready-for-agent`. Every ticket retains an explicit `## Blocked by` section using real GitHub issue references. GitHub remains authoritative for live state.

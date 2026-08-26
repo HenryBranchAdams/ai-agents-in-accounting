@@ -16,6 +16,7 @@ import { glossary, templates } from "../../../reference-data";
 import { processFamilies, workflowRecords } from "../../../workflows-data";
 import { benchmarkCases, packs, platformRelease } from "../../../platform-data";
 import { educationalContentContract } from "../../../content-contract";
+import { accountingAgentControlModel } from "../../../control-model";
 
 export function OPTIONS() {
   return corsOptionsResponse();
@@ -32,6 +33,8 @@ export async function GET(request: Request) {
     corpus_modified_at: corpusModifiedAt,
     content_contract_version: educationalContentContract.version,
     content_contract_review_status: educationalContentContract.review_status,
+    control_model_version: accountingAgentControlModel.version,
+    control_model_review_status: accountingAgentControlModel.review_status,
     title: "Accounting Agents public corpus",
     description: "Canonical workflows, authority boundaries, controls, templates, terminology, and curated sources for governed AI-agent work across the accounting lifecycle.",
     language: "en",
@@ -51,6 +54,8 @@ export async function GET(request: Request) {
       content_modes: educationalContentContract.modes.length,
       evidence_classifications: educationalContentContract.evidence_classifications.length,
       content_page_assignments: educationalContentContract.page_assignments.length,
+      control_model_elements: accountingAgentControlModel.elements.length,
+      control_model_scenarios: accountingAgentControlModel.scenarios.length,
     },
     access: {
       authentication: "none",
@@ -101,6 +106,9 @@ export async function GET(request: Request) {
       content_contract: `${siteOrigin}/content-contract`,
       content_contract_markdown: `${siteOrigin}/content-contract.md`,
       content_contract_api: `${siteOrigin}/api/v1/content-contract`,
+      control_model: `${siteOrigin}/control-model`,
+      control_model_markdown: `${siteOrigin}/control-model.md`,
+      control_model_api: `${siteOrigin}/api/v1/control-model`,
     },
     platform_release: platformRelease,
   }, null, 2);

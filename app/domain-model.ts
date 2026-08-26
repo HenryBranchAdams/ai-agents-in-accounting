@@ -1,7 +1,27 @@
 export const corpusReviewedAt = "2026-08-23";
-export const corpusModifiedAt = "2026-08-23T00:00:00.000Z";
-export const corpusVersion = "2026-08-23.5";
+export const corpusModifiedAt = "2026-08-25T00:00:00.000Z";
+export const corpusVersion = "2026-08-25.1";
 export const domainSchemaVersion = "1.0";
+
+export type ControlModelElementId =
+  | "objective"
+  | "scope"
+  | "evidence"
+  | "procedure"
+  | "checks"
+  | "authority"
+  | "review"
+  | "action"
+  | "record";
+
+export type WorkflowControlModelMapping = {
+  model_id: "accounting-agent-control-model";
+  model_version: "1.0.0";
+  elements: Array<{
+    element_id: ControlModelElementId;
+    source_fields: string[];
+  }>;
+};
 
 export type AuthorityLevelId = "A0" | "A1" | "A2" | "A3" | "A4" | "human-only";
 
@@ -146,6 +166,7 @@ export type WorkflowRecord = {
   outputs: string[];
   proposed_accounting_effects: string;
   run_record: string[];
+  control_model: WorkflowControlModelMapping;
   retention: string;
   reproducibility: string;
   failure_modes: string[];

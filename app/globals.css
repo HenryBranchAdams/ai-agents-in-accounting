@@ -2213,6 +2213,82 @@ summary:focus-visible {
   }
 }
 
+.evidence-classification {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.75rem;
+  padding: 0.25rem 0.55rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface-strong);
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.control-model-element-list,
+.control-model-scenarios,
+.control-model-source-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.control-model-element-list > article,
+.control-model-scenarios > article,
+.control-model-source-list > article,
+.control-model-print-reference {
+  padding: 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+}
+
+.control-model-element-list article > header {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+}
+
+.control-model-element-list article > header h3,
+.control-model-element-list article > header p,
+.control-model-source-list h3 {
+  margin: 0;
+}
+
+.control-model-quick-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.65rem;
+  padding-left: 1.4rem;
+}
+
+.control-model-quick-list li {
+  break-inside: avoid;
+  padding-right: 0.5rem;
+}
+
+.control-model-quick-list span,
+.control-model-quick-list small {
+  display: block;
+}
+
+.control-model-quick-list small,
+.print-review-note {
+  color: var(--muted);
+}
+
+@media (max-width: 720px) {
+  .control-model-quick-list {
+    grid-template-columns: 1fr;
+  }
+
+  .record-heading-row .evidence-classification {
+    white-space: normal;
+  }
+}
+
 @media print {
   .topbar,
   .sidebar,
@@ -2236,6 +2312,30 @@ summary:focus-visible {
   .governance-record-list > article,
   .record-section {
     break-inside: avoid;
+  }
+
+  .doc-article:has(.control-model-print-reference) > .doc-header,
+  .doc-body:has(.control-model-print-reference) > section:not(.control-model-print-reference),
+  .doc-body:has(.control-model-print-reference) > .screen-only,
+  .control-model-print-reference .screen-only,
+  .doc-article:has(.control-model-print-reference) > .doc-footer {
+    display: none !important;
+  }
+
+  .control-model-print-reference {
+    border: 0;
+    padding: 0;
+  }
+
+  .control-model-quick-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.35rem 0.65rem;
+    font-size: 9.5pt;
+  }
+
+  .control-model-quick-list small {
+    font-size: 8pt;
+    line-height: 1.25;
   }
 
   a {

@@ -5,7 +5,7 @@ Validate a review-control population, reproduce the analysis, preserve exception
 Pack ID: `icfr-control-review`  
 Version: 1.0.0  
 Authority boundary: A2  
-Reviewed: 2026-08-23
+Reviewed: 2026-08-25
 
 ## Run order
 

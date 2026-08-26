@@ -1,10 +1,10 @@
 export const platformRelease = {
-  id: "2026-08-23.9",
-  published_at: "2026-08-23T00:00:00.000Z",
-  reviewed_at: "2026-08-23",
+  id: "2026-08-25.1",
+  published_at: "2026-08-25T00:00:00.000Z",
+  reviewed_at: "2026-08-25",
   status: "current",
-  title: "Mobile quality and interaction coverage",
-  summary: "Adds permanent mobile release gates for navigation, touch targets, safe areas, responsive search, overflow containment, and compiled phone styles.",
+  title: "Accounting Agent Control Model",
+  summary: "Adds a canonical nine-element control model, complete synthetic accrual and payment scenarios, and stable mappings across every workflow.",
   specification_version: "1.0.0",
   licenses: {
     software: "MIT",
@@ -378,9 +378,22 @@ export const benchmarkCases = packs.flatMap((pack) => caseTemplates.map((templat
 export const releaseNotes = [
   {
     id: platformRelease.id,
-    date: "2026-08-23",
+    date: "2026-08-25",
     title: platformRelease.title,
     summary: platformRelease.summary,
+    changes: [
+      "Published Objective, Scope, Evidence, Procedure, Checks, Authority, Review, Action, and Record as stable control-model elements.",
+      "Added complete fictional synthetic accrual-entry and payment-release scenarios without granting approval or execution authority to the agent.",
+      "Mapped all sixty workflow records to the same nine elements in human, Markdown, and JSON surfaces.",
+      "Added printable, discovery, taxonomy, corpus, API, and OpenAPI surfaces with explicit rights and maintainer-review limits.",
+    ],
+    compatibility: "Additive. Existing v1 fields remain compatible; workflow records gain a control_model mapping.",
+  },
+  {
+    id: "2026-08-23.9",
+    date: "2026-08-23",
+    title: "Mobile quality and interaction coverage",
+    summary: "Adds permanent mobile release gates for navigation, touch targets, safe areas, responsive search, overflow containment, and compiled phone styles.",
     changes: [
       "Added mobile-navigation parity and active-page tests across primary documentation routes.",
       "Added compiled-style checks for phone breakpoints, safe-area spacing, dynamic viewport units, single-column content, and overflow containment.",
