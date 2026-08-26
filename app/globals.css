@@ -2289,6 +2289,61 @@ summary:focus-visible {
   }
 }
 
+.coverage-state-grid,
+.coverage-family-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.coverage-state-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.coverage-state-grid > article,
+.coverage-family-list > article {
+  padding: 1.1rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+}
+
+.coverage-state-grid h3,
+.coverage-family-list h3,
+.coverage-family-list header p {
+  margin-top: 0;
+}
+
+.coverage-family-list dl {
+  display: grid;
+  gap: 0.7rem;
+  margin-bottom: 0;
+}
+
+.coverage-family-list dl > div {
+  display: grid;
+  grid-template-columns: minmax(8rem, 0.28fr) 1fr;
+  gap: 0.8rem;
+}
+
+.coverage-family-list dt {
+  font-weight: 700;
+}
+
+.coverage-family-list dd {
+  margin: 0;
+}
+
+@media (max-width: 720px) {
+  .coverage-state-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .coverage-family-list dl > div {
+    grid-template-columns: 1fr;
+    gap: 0.15rem;
+  }
+}
+
 @media print {
   .topbar,
   .sidebar,

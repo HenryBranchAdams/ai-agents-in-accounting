@@ -22,11 +22,12 @@ import { glossary, templates } from "./reference-data";
 import { processFamilies, workflowRecords } from "./workflows-data";
 import { renderDomainCorpusMarkdown, shiftMarkdownHeadings } from "./domain-interface";
 import { accountingAgentControlModel, renderControlModelMarkdown } from "./control-model";
+import { accountingAgentsCoverageMap, renderCoverageMapMarkdown } from "./coverage-map";
 
 export const siteOrigin = "https://accounting-agents.madebyhenry.chatgpt.site";
 export const catalogReviewedAt = "2026-08-23";
 export const catalogModifiedAt = "2026-08-25T00:00:00.000Z";
-export const catalogVersion = "2026-08-25.1";
+export const catalogVersion = "2026-08-25.2";
 export const apiVersion = "1.0";
 export const rightsNotice =
   "Project-created factual metadata is CC0 1.0 and original editorial summaries are CC BY 4.0. External source content remains subject to each publisher's terms.";
@@ -400,11 +401,18 @@ export function buildAgentContextMarkdown() {
     "",
     `- [Canonical Control Model](${siteOrigin}/control-model): human reference, printable summary, two fictional synthetic scenarios, and workflow mappings.`,
     "",
+    "## Coverage and gaps",
+    "",
+    `The versioned coverage map distinguishes ${accountingAgentsCoverageMap.state_definitions.map((state) => state.label).join(", ")}. Source-library presence and planned work are not canonical workflow coverage, and no workflow currently meets every Deep criterion.`,
+    "",
+    `- [Coverage and gaps map](${siteOrigin}/coverage): canonical human map with Markdown and JSON projections.`,
+    "",
     "## Human-readable guide",
     "",
     `- [Overview](${siteOrigin}/)` ,
     `- [Agent fundamentals](${siteOrigin}/fundamentals)`,
     `- [Accounting lifecycle](${siteOrigin}/lifecycle)`,
+    `- [Coverage and gaps](${siteOrigin}/coverage)`,
     `- [Authority levels](${siteOrigin}/authority)`,
     `- [Workflow library](${siteOrigin}/workflows)`,
     `- [Accounting Agent Control Model](${siteOrigin}/control-model)`,
@@ -443,6 +451,8 @@ export function buildLlmsText() {
     `- [Workflow corpus](${siteOrigin}/workflows.md): All ${workflowRecords.length} workflow specifications in Markdown.`,
     `- [Accounting Agent Control Model](${siteOrigin}/control-model): Nine elements, two synthetic scenarios, and all-workflow mappings.`,
     `- [Accounting Agent Control Model in Markdown](${siteOrigin}/control-model.md): Equivalent text projection with stable IDs.`,
+    `- [Coverage and gaps](${siteOrigin}/coverage): Versioned family boundaries, deep-treatment status, expansion gaps, and exclusions.`,
+    `- [Coverage and gaps in Markdown](${siteOrigin}/coverage.md): Equivalent text projection with stable coverage IDs.`,
     `- [Authority model](${siteOrigin}/authority-levels.md): The A0–A4 and human-only authority levels in Markdown.`,
     `- [Sensitive actions](${siteOrigin}/sensitive-actions.md): Approval, execution, rollback, and evidence boundaries.`,
     `- [Control patterns](${siteOrigin}/controls.md): Reusable control designs.`,
@@ -482,12 +492,14 @@ export function buildLlmsText() {
     `- [Agent access guide](${siteOrigin}/machine-access): Endpoint documentation and examples for people integrating agents.`,
     `- [Educational content contract API](${siteOrigin}/api/v1/content-contract): Typed modes, evidence classifications, release gate, measures, and page assignments.`,
     `- [Accounting Agent Control Model API](${siteOrigin}/api/v1/control-model): Canonical elements, scenarios, workflow mapping, sources, rights, and review status.`,
+    `- [Coverage API](${siteOrigin}/api/v1/coverage): Canonical versioned coverage states, family boundaries, planned work, and exclusions.`,
     "",
     "## Human-readable guide",
     "",
     `- [Overview](${siteOrigin}/): Purpose, operating rule, and scope.`,
     `- [Agent fundamentals](${siteOrigin}/fundamentals): Agent definition, operating patterns, work loop, and run record.`,
-    `- [Accounting lifecycle](${siteOrigin}/lifecycle): Eight process families covering the complete accounting lifecycle.`,
+    `- [Accounting lifecycle](${siteOrigin}/lifecycle): Eight core process families with explicitly qualified boundaries.`,
+    `- [Coverage and gaps](${siteOrigin}/coverage): What this release treats deeply, at reference level, through sources, as planned, or as out of scope.`,
     `- [Authority levels](${siteOrigin}/authority): A0–A4 and human-only boundaries.`,
     `- [Workflow library](${siteOrigin}/workflows): All ${workflowRecords.length} canonical workflow specifications.`,
     `- [Accounting Agent Control Model](${siteOrigin}/control-model): Canonical governance reference and printable summary.`,
@@ -533,6 +545,8 @@ export function buildContextBundleMarkdown() {
     shiftMarkdownHeadings(renderContentContractMarkdown(), 1).trimEnd(),
     "",
     shiftMarkdownHeadings(renderControlModelMarkdown(), 1).trimEnd(),
+    "",
+    shiftMarkdownHeadings(renderCoverageMapMarkdown(), 1).trimEnd(),
     "",
     "## Canonical accounting-agent domain corpus",
     "",

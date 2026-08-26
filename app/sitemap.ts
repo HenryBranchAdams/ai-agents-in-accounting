@@ -8,6 +8,7 @@ const pages = [
   ["/", 1],
   ["/fundamentals", 0.9],
   ["/lifecycle", 0.9],
+  ["/coverage", 0.9],
   ["/authority", 0.9],
   ["/workflows", 0.9],
   ["/control-model", 0.9],
@@ -38,7 +39,7 @@ const pages = [
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages = pages.map(([path, priority]) => ({
     url: `${siteOrigin}${path}`,
-    lastModified: new Date(path === "/control-model" ? "2026-08-25T00:00:00Z" : "2026-08-23T00:00:00Z"),
+    lastModified: new Date(path === "/control-model" || path === "/coverage" ? "2026-08-25T00:00:00Z" : "2026-08-23T00:00:00Z"),
     changeFrequency: "monthly",
     priority,
   }));

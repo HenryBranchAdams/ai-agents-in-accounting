@@ -337,6 +337,7 @@ export const contentPageAssignments: readonly ContentPageAssignment[] = [
   { path: "/", primary_mode: "explanation", page_kind: "static" },
   { path: "/fundamentals", primary_mode: "explanation", page_kind: "static" },
   { path: "/lifecycle", primary_mode: "reference", page_kind: "static" },
+  { path: "/coverage", primary_mode: "reference", page_kind: "static" },
   { path: "/authority", primary_mode: "reference", page_kind: "static" },
   { path: "/workflows", primary_mode: "reference", page_kind: "static" },
   { path: "/control-model", primary_mode: "reference", page_kind: "static" },

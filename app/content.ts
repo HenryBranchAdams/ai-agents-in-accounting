@@ -15,6 +15,7 @@ export const navGroups: NavGroup[] = [
       { href: "/", label: "Overview" },
       { href: "/fundamentals", label: "Agent fundamentals" },
       { href: "/lifecycle", label: "Accounting lifecycle" },
+      { href: "/coverage", label: "Coverage and gaps" },
       { href: "/authority", label: "Authority levels" },
     ],
   },
@@ -120,6 +121,7 @@ export const searchItems = [
   { href: "/content-contract", title: "Choose a primary content mode", category: "Project", detail: "Seven educational modes, evidence classifications, release gate, and success measures" },
   { href: "/control-model", title: "Apply the Accounting Agent Control Model", category: "Govern", detail: "Objective, scope, evidence, procedure, checks, authority, review, action, and record" },
   { href: "/control-model#scenarios", title: "Review complete control-model scenarios", category: "Govern", detail: "Synthetic accrual-entry and payment-release examples with accountable human decisions" },
+  { href: "/coverage", title: "Check coverage and gaps", category: "Learn", detail: "Deep, canonical-reference, source-only, planned, and out-of-scope coverage" },
 ];
 
 export const modes = [

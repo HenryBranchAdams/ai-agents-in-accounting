@@ -1,6 +1,6 @@
 export const corpusReviewedAt = "2026-08-23";
 export const corpusModifiedAt = "2026-08-25T00:00:00.000Z";
-export const corpusVersion = "2026-08-25.1";
+export const corpusVersion = "2026-08-25.2";
 export const domainSchemaVersion = "1.0";
 
 export type ControlModelElementId =

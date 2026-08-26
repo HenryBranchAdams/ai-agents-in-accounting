@@ -143,7 +143,7 @@ export default function OverviewPage() {
       <section id="scope">
         <h2>Coverage and execution boundary</h2>
         <p>
-          The guide covers the full accounting lifecycle, including posting,
+          The guide maps a broad core of the accounting lifecycle, including posting,
           payments, filings, master-data changes, deletion, close operations,
           control assessment, and certification. Coverage explains how to
           specify and govern the work; it does not grant execution authority.
@@ -157,6 +157,9 @@ export default function OverviewPage() {
             professional certification remain human-owned.
           </p>
         </div>
+        <p>
+          Check the <a href="/coverage">versioned coverage and gaps map</a> before treating this core map as complete.
+        </p>
         <p>
           Use <a href="/authority">Authority levels</a> to classify each action
           and <a href="/sensitive-actions">Sensitive actions</a> to design the

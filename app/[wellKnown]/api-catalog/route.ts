@@ -21,6 +21,7 @@ const apiEndpoints = [
   `${siteOrigin}/api/v1/taxonomy`,
   `${siteOrigin}/api/v1/content-contract`,
   `${siteOrigin}/api/v1/control-model`,
+  `${siteOrigin}/api/v1/coverage`,
 ];
 const schemaEndpoints = [
   `${siteOrigin}/schemas/ledgerbench-program.schema.json`,
