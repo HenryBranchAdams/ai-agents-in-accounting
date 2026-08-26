@@ -142,7 +142,7 @@ test("serves a versioned, filterable resource API", async () => {
 
   const payload = await response.json();
   assert.equal(payload.schema_version, "1.0");
-  assert.equal(payload.catalog_version, "2026-08-25.1");
+  assert.equal(payload.catalog_version, "2026-08-25.2");
   assert.ok(payload.items.length > 0);
   assert.ok(payload.items.every((item) => item.id.startsWith("src_")));
   assert.ok(payload.items.every((item) => item.source_license === "unknown"));
@@ -302,6 +302,7 @@ test("preserves the semantic accessibility contract on representative pages", as
     "/open-source",
     "/content-contract",
     "/control-model",
+    "/coverage",
   ]) {
     const response = await request(path, { accept: "text/html" });
     assert.equal(response.status, 200, path);
@@ -724,7 +725,7 @@ test("publishes portable packs, benchmark cases, search, schemas, and release fe
   const manifestResponse = await request("/releases/current/manifest.json");
   assert.equal(manifestResponse.status, 200);
   const manifest = await manifestResponse.json();
-  assert.equal(manifest.release.id, "2026-08-25.1");
+  assert.equal(manifest.release.id, "2026-08-25.2");
   assert.equal(manifest.counts.packs, 6);
   assert.equal(manifest.counts.benchmark_cases, 30);
   assert.match(manifest.corpus_digest, /^sha256:[a-f0-9]{64}$/);
@@ -848,6 +849,6 @@ test("publishes a complete agent-ingestion corpus and discovery contract", async
   assert.match(sitemapText, /\/reading-room/);
   assert.match(sitemapText, /\/packs\/bank-reconciliation/);
   const locations = [...sitemapText.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
-  assert.equal(locations.length, 535);
+  assert.equal(locations.length, 536);
   assert.equal(new Set(locations).size, locations.length);
 });

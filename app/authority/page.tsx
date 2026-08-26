@@ -28,7 +28,7 @@ export default function AuthorityPage() {
         { href: "#enforcement", label: "Enforce outside the model" },
         { href: "#sources", label: "Source basis" },
       ]}
-      previous={{ href: "/lifecycle", label: "Accounting lifecycle" }}
+      previous={{ href: "/coverage", label: "Coverage and gaps" }}
       next={{ href: "/workflows", label: "All workflows" }}
     >
       <section id="model">

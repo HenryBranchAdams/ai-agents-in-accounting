@@ -17,6 +17,7 @@ import { processFamilies, workflowRecords } from "../../../workflows-data";
 import { benchmarkCases, packs, platformRelease } from "../../../platform-data";
 import { educationalContentContract } from "../../../content-contract";
 import { accountingAgentControlModel } from "../../../control-model";
+import { accountingAgentsCoverageMap } from "../../../coverage-map";
 
 export function OPTIONS() {
   return corsOptionsResponse();
@@ -35,6 +36,8 @@ export async function GET(request: Request) {
     content_contract_review_status: educationalContentContract.review_status,
     control_model_version: accountingAgentControlModel.version,
     control_model_review_status: accountingAgentControlModel.review_status,
+    coverage_map_version: accountingAgentsCoverageMap.version,
+    coverage_map_review_status: accountingAgentsCoverageMap.review_status,
     title: "Accounting Agents public corpus",
     description: "Canonical workflows, authority boundaries, controls, templates, terminology, and curated sources for governed AI-agent work across the accounting lifecycle.",
     language: "en",
@@ -56,6 +59,10 @@ export async function GET(request: Request) {
       content_page_assignments: educationalContentContract.page_assignments.length,
       control_model_elements: accountingAgentControlModel.elements.length,
       control_model_scenarios: accountingAgentControlModel.scenarios.length,
+      coverage_states: accountingAgentsCoverageMap.state_definitions.length,
+      coverage_family_boundaries: accountingAgentsCoverageMap.family_coverage.length,
+      coverage_expansion_domains: accountingAgentsCoverageMap.expansion_coverage.length,
+      coverage_out_of_scope_boundaries: accountingAgentsCoverageMap.out_of_scope.length,
     },
     access: {
       authentication: "none",
@@ -109,6 +116,9 @@ export async function GET(request: Request) {
       control_model: `${siteOrigin}/control-model`,
       control_model_markdown: `${siteOrigin}/control-model.md`,
       control_model_api: `${siteOrigin}/api/v1/control-model`,
+      coverage: `${siteOrigin}/coverage`,
+      coverage_markdown: `${siteOrigin}/coverage.md`,
+      coverage_api: `${siteOrigin}/api/v1/coverage`,
     },
     platform_release: platformRelease,
   }, null, 2);

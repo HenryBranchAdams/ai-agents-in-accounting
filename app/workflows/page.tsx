@@ -32,14 +32,15 @@ export default function WorkflowsPage() {
       next={{ href: "/workflows/record-to-report", label: "Record to report" }}
     >
       <section id="coverage">
-        <h2>Complete lifecycle coverage</h2>
+        <h2>Canonical-reference coverage</h2>
         <p>
-          The library covers the recurring work of accounting, reporting,
+          The library provides a broad core map of recurring work for accounting, reporting,
           treasury, tax, assurance, and policy teams. Its {workflowRecords.length}
           {" "}records are educational operating specifications: they show what
           an agent may prepare, which decisions remain attributable to people,
           and which system checks must hold before any action.
         </p>
+        <p>See <a href="/coverage">Coverage and gaps</a> for versioned family boundaries, planned deep treatments, expansion gaps, and explicit exclusions.</p>
         <div className="corpus-summary" aria-label="Workflow library summary">
           <div><strong>{workflowRecords.length}</strong><span>workflows</span></div>
           <div><strong>{processFamilies.length}</strong><span>process families</span></div>

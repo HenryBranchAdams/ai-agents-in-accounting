@@ -33,6 +33,25 @@ import {
   evidenceClassificationIds,
 } from "../content-contract";
 import { accountingAgentControlModel, controlModelElements } from "../control-model";
+import { accountingAgentsCoverageMap, coverageStates } from "../coverage-map";
+
+const coverageMapSchema = {
+  type: "object",
+  required: ["id", "version", "title", "review_status", "evidence_classification", "state_definitions", "deep_coverage", "family_coverage", "expansion_coverage", "out_of_scope", "counts", "applicability", "provenance", "rights"],
+  properties: {
+    id: { type: "string", const: accountingAgentsCoverageMap.id },
+    version: { type: "string", const: accountingAgentsCoverageMap.version },
+    title: { type: "string" },
+    review_status: { type: "string" },
+    evidence_classification: { type: "string", const: "editorial-recommendation" },
+    state_definitions: { type: "array", minItems: 5, maxItems: 5, items: { type: "object", required: ["id", "label", "definition"], properties: { id: { type: "string", enum: coverageStates.map((state) => state.id) }, label: { type: "string" }, definition: { type: "string" } } } },
+    deep_coverage: { type: "object", required: ["state", "current_count", "boundary", "planned_candidates", "evidence_classification"] },
+    family_coverage: { type: "array", minItems: 8, maxItems: 8, items: { type: "object", required: ["id", "family_id", "family_name", "state", "workflow_count", "includes", "excludes", "next_gap", "evidence_classification"] } },
+    expansion_coverage: { type: "array", items: { type: "object", required: ["id", "label", "current_state", "source_query", "planned_issue", "boundary"] } },
+    out_of_scope: { type: "array", items: { type: "object", required: ["id", "label", "boundary"] } },
+    counts: { type: "object" }, applicability: { type: "string" }, provenance: { type: "object" }, rights: { type: "object" },
+  },
+} as const;
 
 const resourceSchema = {
   type: "object",
@@ -963,6 +982,20 @@ const document = {
       head: { operationId: "getAccountingAgentControlModelHead", summary: "Retrieve Control Model headers", tags: ["Governance"], responses: { "200": { description: "Control Model headers." }, "304": { description: "The representation has not changed." } } },
       options: { operationId: "getAccountingAgentControlModelOptions", summary: "CORS preflight", tags: ["Governance"], responses: { "204": { description: "Allowed methods and headers." } } },
     },
+    "/api/v1/coverage": {
+      get: {
+        operationId: "getCoverageMap",
+        summary: "Retrieve the versioned coverage and gaps map",
+        tags: ["Content"],
+        parameters: [{ name: "format", in: "query", schema: { type: "string", enum: ["json", "markdown"] } }],
+        responses: {
+          "200": { description: "Coverage map in JSON or Markdown.", content: { "application/json": { schema: { type: "object", required: ["schema_version", "collection", "rights_notice", "links", "item"], properties: { schema_version: { type: "string" }, collection: { type: "string", const: "coverage_map" }, rights_notice: { type: "string" }, links: { type: "object" }, item: { $ref: "#/components/schemas/CoverageMap" } } } }, "text/markdown": { schema: { type: "string" } } } },
+          "304": { description: "The representation has not changed." }, "400": { description: "Invalid format parameter." }, "406": { description: "No acceptable representation was requested." },
+        },
+      },
+      head: { operationId: "getCoverageMapHead", summary: "Retrieve coverage map headers", tags: ["Content"], responses: { "200": { description: "Coverage map headers." }, "304": { description: "The representation has not changed." } } },
+      options: { operationId: "getCoverageMapOptions", summary: "CORS preflight", tags: ["Content"], responses: { "204": { description: "Allowed methods and headers." } } },
+    },
   },
   components: {
     schemas: {
@@ -976,6 +1009,7 @@ const document = {
       EcosystemLayer: ecosystemLayerSchema,
       ContentContract: contentContractSchema,
       ControlModel: controlModelSchema,
+      CoverageMap: coverageMapSchema,
       Pack: packSchema,
       BenchmarkCase: benchmarkCaseSchema,
       LedgerBenchProgram: ledgerBenchProgramSchema,

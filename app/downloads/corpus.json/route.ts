@@ -8,6 +8,7 @@ import { processFamilies, workflowRecords } from "../../workflows-data";
 import { benchmark, benchmarkCases, packs, platformRelease, releaseNotes } from "../../platform-data";
 import { educationalContentContract } from "../../content-contract";
 import { accountingAgentControlModel } from "../../control-model";
+import { accountingAgentsCoverageMap } from "../../coverage-map";
 
 export async function GET(request: Request) {
   const body = JSON.stringify({
@@ -31,6 +32,8 @@ export async function GET(request: Request) {
       ecosystem_layers: ecosystemLayers.length,
       control_model_elements: accountingAgentControlModel.elements.length,
       control_model_scenarios: accountingAgentControlModel.scenarios.length,
+      coverage_states: accountingAgentsCoverageMap.state_definitions.length,
+      coverage_family_boundaries: accountingAgentsCoverageMap.family_coverage.length,
     },
     process_families: processFamilies.map((record) => normalizeDomainRecord(record, "process-family")),
     workflows: workflowRecords.map((record) => normalizeDomainRecord(record, "workflow")),
@@ -47,6 +50,7 @@ export async function GET(request: Request) {
     release_notes: releaseNotes,
     content_contract: educationalContentContract,
     control_model: accountingAgentControlModel,
+    coverage_map: accountingAgentsCoverageMap,
   }, null, 2);
 
   return publicResponse(request, body, "application/json; charset=utf-8", {

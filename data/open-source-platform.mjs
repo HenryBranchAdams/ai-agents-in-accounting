@@ -1,10 +1,10 @@
 export const platformRelease = {
-  id: "2026-08-25.1",
+  id: "2026-08-25.2",
   published_at: "2026-08-25T00:00:00.000Z",
   reviewed_at: "2026-08-25",
   status: "current",
-  title: "Accounting Agent Control Model",
-  summary: "Adds a canonical nine-element control model, complete synthetic accrual and payment scenarios, and stable mappings across every workflow.",
+  title: "Versioned coverage and gaps map",
+  summary: "Qualifies lifecycle claims with five coverage states, explicit family boundaries, planned deep treatments, expansion gaps, and out-of-scope limits.",
   specification_version: "1.0.0",
   licenses: {
     software: "MIT",
@@ -381,6 +381,19 @@ export const releaseNotes = [
     date: "2026-08-25",
     title: platformRelease.title,
     summary: platformRelease.summary,
+    changes: [
+      "Published Deep, Canonical reference, Source-library only, Planned, and Out of scope as stable coverage states.",
+      "Added explicit boundaries for all eight process families and twelve planned deep-treatment candidates.",
+      "Recorded eight expansion gaps and four public-corpus exclusions with stable IDs and visible limitations.",
+      "Qualified unbounded lifecycle claims across the homepage, lifecycle guide, workflow library, compact context, and project documentation.",
+    ],
+    compatibility: "Additive. Existing v1 fields remain compatible; new coverage surfaces and metadata are added.",
+  },
+  {
+    id: "2026-08-25.1",
+    date: "2026-08-25",
+    title: "Accounting Agent Control Model",
+    summary: "Adds a canonical nine-element control model, complete synthetic accrual and payment scenarios, and stable mappings across every workflow.",
     changes: [
       "Published Objective, Scope, Evidence, Procedure, Checks, Authority, Review, Action, and Record as stable control-model elements.",
       "Added complete fictional synthetic accrual-entry and payment-release scenarios without granting approval or execution authority to the agent.",

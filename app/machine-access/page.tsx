@@ -102,6 +102,10 @@ export default function MachineAccessPage() {
             <strong>Accounting Agent Control Model</strong>
             <span>Nine-element human reference with equivalent Markdown and JSON, two synthetic scenarios, and mappings for every workflow.</span>
           </Link>
+          <Link href="/coverage">
+            <strong>Coverage and gaps map</strong>
+            <span>Versioned deep, canonical-reference, source-only, planned, and out-of-scope boundaries in equivalent human, Markdown, and JSON forms.</span>
+          </Link>
           <Link href="/api/v1/search?q=reconciliation">
             <strong>Unified search API</strong>
             <span>One deterministic index across pages, workflows, sources, packs, cases, and changes.</span>
@@ -170,6 +174,7 @@ export default function MachineAccessPage() {
           <div><dt>/ecosystem</dt><dd>{ecosystemLayers.length} interface and standards layers with explicit adoption posture and boundaries.</dd></div>
           <div><dt>/content-contract</dt><dd>Primary educational modes, evidence classifications, release gate, and proposed success measures.</dd></div>
           <div><dt>/control-model</dt><dd>Nine canonical governance elements, two synthetic scenarios, workflow mappings, sources, and review limits.</dd></div>
+          <div><dt>/coverage</dt><dd>Five coverage states, eight process-family boundaries, planned deep treatments, expansion gaps, and explicit exclusions.</dd></div>
         </dl>
         <p>Prefix each path above with <code>/api/v1</code>.</p>
 

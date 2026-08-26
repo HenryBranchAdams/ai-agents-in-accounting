@@ -4,6 +4,8 @@ An open field guide, workflow library, measurement program, conformance suite, a
 
 The public site is [accounting-agents.madebyhenry.chatgpt.site](https://accounting-agents.madebyhenry.chatgpt.site). It publishes 60 canonical workflows, 433 source records, 153 curated readings across 20 shelves, six portable packs, 30 public conformance cases, LedgerBench program contracts, controlled governance records, Markdown and JSON projections, a versioned read-only API, OpenAPI, JSON Schemas, and small reference clients.
 
+The [versioned coverage and gaps map](https://accounting-agents.madebyhenry.chatgpt.site/coverage) distinguishes deep, canonical-reference, source-library-only, planned, and out-of-scope coverage. It qualifies lifecycle claims and is also available as [Markdown](https://accounting-agents.madebyhenry.chatgpt.site/coverage.md) and [JSON](https://accounting-agents.madebyhenry.chatgpt.site/api/v1/coverage).
+
 ## Four ways in
 
 - Learn: definitions, lifecycle, authority, controls, evidence, and operations.

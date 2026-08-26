@@ -4,7 +4,7 @@ import { corpusReviewedAt } from "../domain-model";
 import { processFamilies, workflowsForFamily } from "../workflows-data";
 import { docsMetadata } from "../docsMetadata";
 
-const description = "Map sixty accounting-agent workflows across the full accounting lifecycle before selecting tools or authority.";
+const description = "Map sixty canonical-reference accounting-agent workflows across eight core process families before selecting tools or authority.";
 
 export const metadata = docsMetadata("Accounting lifecycle", description, "/lifecycle");
 
@@ -22,7 +22,7 @@ export default function LifecyclePage() {
         { href: "#sources", label: "Source basis" },
       ]}
       previous={{ href: "/fundamentals", label: "Agent fundamentals" }}
-      next={{ href: "/authority", label: "Authority levels" }}
+      next={{ href: "/coverage", label: "Coverage and gaps" }}
     >
       <section id="map">
         <h2>Lifecycle map</h2>
@@ -57,12 +57,13 @@ export default function LifecyclePage() {
       </section>
 
       <section id="coverage">
-        <h2>Coverage is not permission</h2>
+        <h2>Coverage has explicit limits</h2>
         <p>
-          The guide covers posting, payments, filings, master-data changes,
-          deletion, close operations, control assessment, and certification.
-          That coverage explains how to govern the work. It does not make every
-          action suitable for autonomy.
+          The map provides canonical reference coverage across eight core
+          process families. It does not claim that every accounting or finance
+          domain is represented or that any workflow has a complete deep
+          treatment. Review the <a href="/coverage">versioned coverage and gaps map</a> before
+          reusing a lifecycle claim.
         </p>
         <div className="note note-rule">
           <p>

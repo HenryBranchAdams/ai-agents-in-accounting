@@ -20,7 +20,7 @@ Replace the overview's current “Excluded from the first deployment boundary”
 
 The new section must explain:
 
-- The guide covers the full accounting lifecycle, including posting, payments, filings, master-data changes, deletion, close operations, control assessment, and certification.
+- The guide maps a broad core of the accounting lifecycle, including posting, payments, filings, master-data changes, deletion, close operations, control assessment, and certification; `/coverage` publishes the versioned boundaries and gaps.
 - Coverage does not imply permission.
 - Each workflow is assigned an authority level based on reversibility, materiality, external effect, segregation of duties, and legal accountability.
 - Sensitive actions remain behind deterministic authorization and attributable human approval.

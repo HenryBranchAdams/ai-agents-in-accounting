@@ -16,6 +16,7 @@ import { benchmarkCases, packs } from "../../../platform-data";
 import { searchRecordTypes } from "../../../search-index";
 import { educationalContentContract } from "../../../content-contract";
 import { accountingAgentControlModel } from "../../../control-model";
+import { accountingAgentsCoverageMap } from "../../../coverage-map";
 
 export function OPTIONS() {
   return corsOptionsResponse();
@@ -93,6 +94,13 @@ export async function GET(request: Request) {
       question: element.question,
       record_url: "/api/v1/control-model",
       human_url: `/control-model#element-${element.id}`,
+    })),
+    coverage_states: accountingAgentsCoverageMap.state_definitions.map((state) => ({
+      value: state.id,
+      label: state.label,
+      description: state.definition,
+      record_url: "/api/v1/coverage",
+      human_url: `/coverage#state-${state.id}`,
     })),
   }, null, 2);
 
