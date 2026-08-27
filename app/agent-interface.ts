@@ -33,6 +33,7 @@ import { accountingAgentControlModel, renderControlModelMarkdown } from "./contr
 import { accountingAgentsCoverageMap, renderCoverageMapMarkdown } from "./coverage-map";
 import { accountingAgentsStartHere, renderStartHereMarkdown } from "./start-here";
 import { accountingAgentReviewerGuide, renderReviewerGuideMarkdown } from "./reviewer-guide";
+import { accountingAgentsCoreCourse, coreCourseReadings, renderCoreCourseMarkdown } from "./core-course";
 
 export const siteOrigin = "https://accounting-agents.madebyhenry.chatgpt.site";
 export const catalogReviewedAt = "2026-08-27";
@@ -519,6 +520,13 @@ export function buildAgentContextMarkdown() {
     `- [Start here](${siteOrigin}/start-here): canonical human tutorial with a synthetic exception and knowledge check.`,
     `- [Start here in Markdown](${siteOrigin}/start-here.md): equivalent text projection with stable lesson IDs.`,
     "",
+    "## Core course",
+    "",
+    `The ${accountingAgentsCoreCourse.title} sequences ${coreCourseReadings.length} bounded sources across professional authority, evidence and documentation, agent systems, evaluation, and supervised pilots. It ends in a fictional transfer brief and preserves evidence weight, source status, limitations, learning outcomes, and the accountable-human boundary.`,
+    "",
+    `- [Core course](${siteOrigin}/course): canonical human tutorial and deliberate reading path.`,
+    `- [Core course in Markdown](${siteOrigin}/course.md): equivalent low-token course with stable module, reading, lens, capstone, and question IDs.`,
+    "",
     "## Reviewer field guide",
     "",
     `The ${accountingAgentReviewerGuide.title} guide applies an eight-step evidence challenge, four explicit dispositions, a minimum reviewer packet, automation-bias countermeasures, synthetic good and failure examples, and cross-domain calibration. It is an implementation pattern under maintainer review, not evidence that subject-matter or professional review occurred.`,
@@ -556,6 +564,7 @@ export function buildAgentContextMarkdown() {
     "",
     `- [Overview](${siteOrigin}/)` ,
     `- [Start here](${siteOrigin}/start-here)`,
+    `- [Core course](${siteOrigin}/course)`,
     `- [Agent fundamentals](${siteOrigin}/fundamentals)`,
     `- [Accounting lifecycle](${siteOrigin}/lifecycle)`,
     `- [Coverage and gaps](${siteOrigin}/coverage)`,
@@ -594,6 +603,8 @@ export function buildLlmsText() {
     `- [Compact accounting-agent context](${siteOrigin}/agent-context.md): Core definitions, workflows, controls, architecture, and pilot guidance in Markdown.`,
     `- [Start here](${siteOrigin}/start-here): Five-minute nontechnical orientation, synthetic exception, knowledge check, and five role paths.`,
     `- [Start here in Markdown](${siteOrigin}/start-here.md): Equivalent low-token tutorial with stable lesson, scenario, question, and path IDs.`,
+    `- [Core course](${siteOrigin}/course): Twenty-source bridge course for accounting practitioners, reviewers, builders, and control owners, ending in a fictional governed-workflow transfer brief.`,
+    `- [Core course in Markdown](${siteOrigin}/course.md): Equivalent learning sequence with stable module, reading, lens, capstone, and question IDs.`,
     `- [Public agent instructions](${siteOrigin}/AGENTS.md): Routing, reliance, source-use, and protocol guidance for agents consuming this corpus.`,
     `- [Full context bundle](${siteOrigin}/downloads/context-bundle.md): Complete domain corpus plus all ${agentResources.length} source records in Markdown.`,
     `- [Canonical JSON corpus](${siteOrigin}/downloads/corpus.json): All ${workflowRecords.length} workflows, ${authorityLevels.length} authority levels, the authority decision guide, reviewer field guide, ${sensitiveActions.length} sensitive-action boundaries, ${controlPatterns.length} controls, ${templates.length} templates, ${glossary.length} glossary terms, and source records.`,
@@ -642,6 +653,7 @@ export function buildLlmsText() {
     `- [Agent access guide](${siteOrigin}/machine-access): Endpoint documentation and examples for people integrating agents.`,
     `- [Educational content contract API](${siteOrigin}/api/v1/content-contract): Typed modes, evidence classifications, release gate, measures, and page assignments.`,
     `- [Start here API](${siteOrigin}/api/v1/start-here): Canonical orientation, comparisons, evidence chain, synthetic scenario, knowledge check, role paths, limits, rights, and review status.`,
+    `- [Core course API](${siteOrigin}/api/v1/course): Canonical modules, twenty source readings, evidence weights, limitations, audience lenses, synthetic capstone, knowledge check, limits, rights, and review status.`,
     `- [Reviewer field guide API](${siteOrigin}/api/v1/reviewer-guide): Canonical procedure, dispositions, packet fields, examples, calibration, review-program scaffold, sources, limits, rights, and review status.`,
     `- [Accounting Agent Control Model API](${siteOrigin}/api/v1/control-model): Canonical elements, scenarios, workflow mapping, sources, rights, and review status.`,
     `- [Coverage API](${siteOrigin}/api/v1/coverage): Canonical versioned coverage states, family boundaries, planned work, and exclusions.`,
@@ -650,6 +662,7 @@ export function buildLlmsText() {
     "",
     `- [Overview](${siteOrigin}/): Purpose, operating rule, and scope.`,
     `- [Start here](${siteOrigin}/start-here): Five-minute orientation and first guided synthetic exception.`,
+    `- [Core course](${siteOrigin}/course): Deliberate bridge from professional authority and evidence through agent systems, evaluation, provider claims, and a supervised synthetic design brief.`,
     `- [Agent fundamentals](${siteOrigin}/fundamentals): Agent definition, operating patterns, work loop, and run record.`,
     `- [Accounting lifecycle](${siteOrigin}/lifecycle): Eight core process families with explicitly qualified boundaries.`,
     `- [Coverage and gaps](${siteOrigin}/coverage): What this release treats deeply, at reference level, through sources, as planned, or as out of scope.`,
@@ -695,6 +708,8 @@ export function buildContextBundleMarkdown() {
     shiftMarkdownHeadings(buildAgentContextMarkdown(), 2).trimEnd(),
     "",
     shiftMarkdownHeadings(renderStartHereMarkdown(), 1).trimEnd(),
+    "",
+    shiftMarkdownHeadings(renderCoreCourseMarkdown(), 1).trimEnd(),
     "",
     shiftMarkdownHeadings(renderReviewerGuideMarkdown(), 1).trimEnd(),
     "",

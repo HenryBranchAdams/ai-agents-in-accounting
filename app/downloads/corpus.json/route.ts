@@ -11,6 +11,7 @@ import { accountingAgentControlModel } from "../../control-model";
 import { accountingAgentsCoverageMap } from "../../coverage-map";
 import { accountingAgentsStartHere } from "../../start-here";
 import { accountingAgentReviewerGuide } from "../../reviewer-guide";
+import { accountingAgentsCoreCourse, coreCourseReadings } from "../../core-course";
 
 export async function GET(request: Request) {
   const body = JSON.stringify({
@@ -46,6 +47,11 @@ export async function GET(request: Request) {
       orientation_lessons: 1,
       orientation_questions: accountingAgentsStartHere.knowledge_check.length,
       orientation_audience_paths: accountingAgentsStartHere.audience_paths.length,
+      core_courses: 1,
+      core_course_modules: accountingAgentsCoreCourse.modules.length,
+      core_course_readings: coreCourseReadings.length,
+      core_course_audience_lenses: accountingAgentsCoreCourse.audience_lenses.length,
+      core_course_questions: accountingAgentsCoreCourse.knowledge_check.length,
     },
     process_families: processFamilies.map((record) => normalizeDomainRecord(record, "process-family")),
     workflows: workflowRecords.map((record) => normalizeDomainRecord(record, "workflow")),
@@ -66,6 +72,7 @@ export async function GET(request: Request) {
     control_model: accountingAgentControlModel,
     coverage_map: accountingAgentsCoverageMap,
     start_here: accountingAgentsStartHere,
+    core_course: accountingAgentsCoreCourse,
   }, null, 2);
 
   return publicResponse(request, body, "application/json; charset=utf-8", {

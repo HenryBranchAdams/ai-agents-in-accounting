@@ -95,6 +95,10 @@ export default function OverviewPage() {
             <strong>Learn the foundations</strong>
             <span>Take the five-minute orientation, complete one synthetic exception, and choose the path that fits your role.</span>
           </Link>
+          <Link href="/course">
+            <strong>Take the core course</strong>
+            <span>Follow twenty bounded readings from professional authority through evidence, agent systems, evaluation, and a supervised synthetic transfer brief.</span>
+          </Link>
           <Link href="/workflows">
             <strong>Explore accounting workflows</strong>
             <span>Find objectives, evidence, procedures, checks, authority limits, and review requirements.</span>
@@ -127,6 +131,10 @@ export default function OverviewPage() {
           <Link href="/start-here">
             <strong>Concepts and orientation</strong>
             <span>Understand the governing rule, follow evidence to a decision, and choose an appropriate next route.</span>
+          </Link>
+          <Link href="/course">
+            <strong>Core course and reading canon</strong>
+            <span>Build shared accounting and agent-system vocabulary, then apply it to a fictional governed-workflow brief.</span>
           </Link>
           <Link href="/workflows">
             <strong>Workflow library</strong>

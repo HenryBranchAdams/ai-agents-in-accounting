@@ -20,6 +20,7 @@ import { accountingAgentControlModel } from "../../../control-model";
 import { accountingAgentsCoverageMap } from "../../../coverage-map";
 import { accountingAgentsStartHere } from "../../../start-here";
 import { accountingAgentReviewerGuide } from "../../../reviewer-guide";
+import { accountingAgentsCoreCourse, coreCourseReadings } from "../../../core-course";
 
 export function OPTIONS() {
   return corsOptionsResponse();
@@ -42,6 +43,8 @@ export async function GET(request: Request) {
     coverage_map_review_status: accountingAgentsCoverageMap.review_status,
     start_here_version: accountingAgentsStartHere.version,
     start_here_review_status: accountingAgentsStartHere.review_status,
+    core_course_version: accountingAgentsCoreCourse.version,
+    core_course_review_status: accountingAgentsCoreCourse.review_status,
     authority_decision_guide_version: authorityDecisionGuide.version,
     authority_decision_guide_review_status: authorityDecisionGuide.review_status,
     reviewer_guide_version: accountingAgentReviewerGuide.version,
@@ -81,6 +84,11 @@ export async function GET(request: Request) {
       orientation_lessons: 1,
       orientation_questions: accountingAgentsStartHere.knowledge_check.length,
       orientation_audience_paths: accountingAgentsStartHere.audience_paths.length,
+      core_courses: 1,
+      core_course_modules: accountingAgentsCoreCourse.modules.length,
+      core_course_readings: coreCourseReadings.length,
+      core_course_audience_lenses: accountingAgentsCoreCourse.audience_lenses.length,
+      core_course_questions: accountingAgentsCoreCourse.knowledge_check.length,
     },
     access: {
       authentication: "none",
@@ -140,6 +148,9 @@ export async function GET(request: Request) {
       start_here: `${siteOrigin}/start-here`,
       start_here_markdown: `${siteOrigin}/start-here.md`,
       start_here_api: `${siteOrigin}/api/v1/start-here`,
+      core_course: `${siteOrigin}/course`,
+      core_course_markdown: `${siteOrigin}/course.md`,
+      core_course_api: `${siteOrigin}/api/v1/course`,
       reviewer_guide: `${siteOrigin}/reviewer-guide`,
       reviewer_guide_markdown: `${siteOrigin}/reviewer-guide.md`,
       reviewer_guide_api: `${siteOrigin}/api/v1/reviewer-guide`,

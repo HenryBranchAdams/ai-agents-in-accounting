@@ -13,6 +13,7 @@ export const navGroups: NavGroup[] = [
     label: "Learn",
     items: [
       { href: "/start-here", label: "Start here" },
+      { href: "/course", label: "Core course" },
       { href: "/", label: "Overview" },
       { href: "/fundamentals", label: "Agent fundamentals" },
       { href: "/lifecycle", label: "Accounting lifecycle" },
@@ -87,6 +88,7 @@ export const navGroups: NavGroup[] = [
 
 export const searchItems = [
   { href: "/", title: "Overview", category: "Learn", detail: "Coverage and execution boundary" },
+  { href: "/course", title: "Take the accounting agents core course", category: "Learn", detail: "Twenty-source bridge course for accounting practitioners, reviewers, agent builders, and control owners, ending in a supervised synthetic transfer brief" },
   { href: "/fundamentals#definition", title: "Define an accounting agent", category: "Fundamentals", detail: "Objective, tools, evidence, and limits" },
   { href: "/fundamentals#patterns", title: "Compare operating patterns", category: "Fundamentals", detail: "Chat, copilot, workflow, and agent" },
   { href: "/fundamentals#work-loop", title: "Follow the work loop", category: "Fundamentals", detail: "Objective through review" },

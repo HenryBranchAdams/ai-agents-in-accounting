@@ -59,6 +59,10 @@ export default function MachineAccessPage() {
             <strong>Start here orientation</strong>
             <span>Five-minute human tutorial with equivalent Markdown and JSON, a synthetic exception, knowledge check, and role-based next paths.</span>
           </Link>
+          <Link href="/course">
+            <strong>Core course</strong>
+            <span>Twenty-source bridge course with equivalent Markdown and JSON, explicit evidence weight and limitations, four audience lenses, and a synthetic transfer brief.</span>
+          </Link>
           <Link href="/llms.txt">
             <strong>llms.txt</strong>
             <span>Small discovery map for agents; an emerging community convention.</span>
@@ -185,6 +189,7 @@ export default function MachineAccessPage() {
           <div><dt>/control-model</dt><dd>Nine canonical governance elements, two synthetic scenarios, workflow mappings, sources, and review limits.</dd></div>
           <div><dt>/coverage</dt><dd>Five coverage states, eight process-family boundaries, planned deep treatments, expansion gaps, and explicit exclusions.</dd></div>
           <div><dt>/start-here</dt><dd>Canonical orientation, operating-pattern comparison, evidence chain, synthetic scenario, knowledge check, role paths, limits, rights, and review state.</dd></div>
+          <div><dt>/course</dt><dd>Canonical five-module course, twenty bounded readings, four audience lenses, source weight and limitations, synthetic capstone, knowledge check, limits, rights, and review state.</dd></div>
           <div><dt>/reviewer-guide</dt><dd>Canonical review procedure, dispositions, packet fields, automation-bias traps, synthetic examples, calibration, program states, limits, rights, and review state; no subject-matter or professional review is claimed.</dd></div>
         </dl>
         <p>Prefix each path above with <code>/api/v1</code>.</p>

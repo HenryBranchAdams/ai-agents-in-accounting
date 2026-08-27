@@ -93,6 +93,7 @@ test("content contract is exposed through shared-shell labels and discovery proj
   const staticModeLabels = {
     "/": "Explanation",
     "/start-here": "Tutorial",
+    "/course": "Tutorial",
     "/fundamentals": "Explanation",
     "/lifecycle": "Reference",
     "/authority": "Reference",

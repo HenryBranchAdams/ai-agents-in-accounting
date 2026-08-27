@@ -329,6 +329,7 @@ test("preserves the semantic accessibility contract on representative pages", as
   for (const path of [
     "/",
     "/start-here",
+    "/course",
     "/fundamentals",
     "/controls",
     "/evidence-assurance",
@@ -939,6 +940,6 @@ test("publishes a complete agent-ingestion corpus and discovery contract", async
   assert.match(sitemapText, /\/reading-room/);
   assert.match(sitemapText, /\/packs\/bank-reconciliation/);
   const locations = [...sitemapText.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
-  assert.equal(locations.length, 594);
+  assert.equal(locations.length, 595);
   assert.equal(new Set(locations).size, locations.length);
 });
