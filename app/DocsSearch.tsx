@@ -5,7 +5,7 @@ import { searchItems } from "./content";
 import { authorityLevels } from "./domain-model";
 import { controlPatterns, sensitiveActions } from "./governance-data";
 import { glossary, templates } from "./reference-data";
-import { resources } from "./resources-data";
+import { resourceCurationById, resources, sourceRelationshipProfiles } from "./resources-data";
 import { workflowRecords } from "./workflows-data";
 import { benchmarkCases, packs, releaseNotes } from "./platform-data";
 
@@ -83,11 +83,13 @@ export function DocsSearch() {
       `${item.title} ${item.category} ${item.detail}`.toLowerCase().includes(term),
     );
     const sourceResults: SearchEntry[] = resources
-      .filter((resource) =>
-        `${resource.id} ${resource.title} ${resource.owner} ${resource.topic} ${resource.kind} ${resource.note}`
+      .filter((resource) => {
+        const curation = resourceCurationById[resource.id];
+        const relationshipProfile = sourceRelationshipProfiles[resource.id];
+        return `${resource.id} ${resource.title} ${resource.owner} ${resource.topic} ${resource.kind} ${resource.note} ${curation?.applicability.join(" ") ?? ""} ${curation?.applicability_note ?? ""} ${curation?.temporal_role ?? ""} ${curation?.method ?? ""} ${curation?.transfer_limit ?? ""} ${relationshipProfile?.questions.join(" ") ?? ""} ${relationshipProfile?.claims.map((claim) => claim.text).join(" ") ?? ""} ${relationshipProfile?.contrary_claims.map((claim) => claim.text).join(" ") ?? ""}`
           .toLowerCase()
-          .includes(term),
-      )
+          .includes(term);
+      })
       .map((resource) => ({
         href: `/resources/${resource.id}`,
         title: resource.title,

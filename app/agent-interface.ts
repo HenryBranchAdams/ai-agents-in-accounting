@@ -12,9 +12,17 @@ import {
 } from "./content-contract";
 import {
   resourceKinds,
+  resourceCurationById,
+  resourceIndustryFacets,
+  resourceTimeRoles,
   resources,
   resourceTopics,
+  sourceRelationshipProfiles,
   type Resource,
+  type ResourceIndustry,
+  type ResourceLifecycle,
+  type ResourceTimeRole,
+  type SourceRelationshipProfile,
 } from "./resources-data";
 import { authorityLevels } from "./domain-model";
 import { controlPatterns, sensitiveActions } from "./governance-data";
@@ -25,9 +33,9 @@ import { accountingAgentControlModel, renderControlModelMarkdown } from "./contr
 import { accountingAgentsCoverageMap, renderCoverageMapMarkdown } from "./coverage-map";
 
 export const siteOrigin = "https://accounting-agents.madebyhenry.chatgpt.site";
-export const catalogReviewedAt = "2026-08-23";
-export const catalogModifiedAt = "2026-08-25T00:00:00.000Z";
-export const catalogVersion = "2026-08-25.2";
+export const catalogReviewedAt = "2026-08-27";
+export const catalogModifiedAt = "2026-08-27T00:00:00.000Z";
+export const catalogVersion = "2026-08-27.1";
 export const apiVersion = "1.0";
 export const rightsNotice =
   "Project-created factual metadata is CC0 1.0 and original editorial summaries are CC BY 4.0. External source content remains subject to each publisher's terms.";
@@ -91,6 +99,21 @@ export type AgentResourceRecord = {
   summary: string;
   reviewed_at: string;
   verified_at: string;
+  curation: {
+    review_status: "maintainer-review-pending" | "not-curated";
+    applicability: ResourceIndustry[];
+    applicability_note: string | null;
+    temporal_role: ResourceTimeRole | null;
+    lifecycle: ResourceLifecycle | null;
+    publication_status: string | null;
+    method: string | null;
+    transfer_limit: string | null;
+    commercial_interest: "none identified" | "publisher or author has commercial interest" | "unknown";
+    source_updated_at: string | null;
+    next_review_at: string | null;
+    profile_status: "relationship-profiled" | "curated" | "unclassified";
+  };
+  relationship_profile: SourceRelationshipProfile | null;
   source_license: "unknown";
   source_license_url: null;
   source_rights: {
@@ -140,11 +163,13 @@ export function resourceId(resource: Resource) {
 
 export function toAgentResource(resource: Resource): AgentResourceRecord {
   const id = resourceId(resource);
+  const curation = resourceCurationById[id];
+  const relationshipProfile = sourceRelationshipProfiles[id] ?? null;
 
   return {
     id,
-    record_version: "1",
-    record_updated_at: catalogReviewedAt,
+    record_version: curation ? "2" : "1",
+    record_updated_at: curation?.record_reviewed_at ?? catalogReviewedAt,
     topic: resource.topic,
     source_type: resource.kind,
     owner: resource.owner,
@@ -153,8 +178,27 @@ export function toAgentResource(resource: Resource): AgentResourceRecord {
     jurisdiction: resource.jurisdiction,
     access: resource.access,
     summary: resource.note,
-    reviewed_at: catalogReviewedAt,
-    verified_at: catalogReviewedAt,
+    reviewed_at: curation?.record_reviewed_at ?? catalogReviewedAt,
+    verified_at: curation?.source_verified_at ?? catalogReviewedAt,
+    curation: {
+      review_status: curation?.review_status ?? "not-curated",
+      applicability: curation?.applicability ?? [],
+      applicability_note: curation?.applicability_note ?? null,
+      temporal_role: curation?.temporal_role ?? null,
+      lifecycle: curation?.lifecycle ?? null,
+      publication_status: curation?.publication_status ?? null,
+      method: curation?.method ?? null,
+      transfer_limit: curation?.transfer_limit ?? null,
+      commercial_interest: curation?.commercial_interest ?? "unknown",
+      source_updated_at: curation?.source_updated_at ?? null,
+      next_review_at: curation?.next_review_at ?? null,
+      profile_status: relationshipProfile
+        ? "relationship-profiled"
+        : curation
+          ? "curated"
+          : "unclassified",
+    },
+    relationship_profile: relationshipProfile,
     source_license: "unknown",
     source_license_url: null,
     source_rights: {
@@ -190,20 +234,29 @@ export function toAgentResource(resource: Resource): AgentResourceRecord {
 
 export const agentResources = resources.map(toAgentResource);
 
+export const allowedIndustries = resourceIndustryFacets.map((item) => item.id);
+export const allowedTimeRoles = resourceTimeRoles.map((item) => item.id);
+
 export function searchAgentResources({
   query,
   topic,
   kind,
+  industry,
+  timeRole,
 }: {
   query?: string;
   topic?: string;
   kind?: string;
+  industry?: string;
+  timeRole?: string;
 }) {
   const terms = query?.trim().toLowerCase().split(/\s+/).filter(Boolean) ?? [];
 
   return agentResources.filter((resource) => {
     if (topic && resource.topic !== topic) return false;
     if (kind && resource.source_type !== kind) return false;
+    if (industry && !resource.curation.applicability.includes(industry as ResourceIndustry)) return false;
+    if (timeRole && resource.curation.temporal_role !== timeRole) return false;
 
     const searchable = [
       resource.id,
@@ -215,6 +268,14 @@ export function searchAgentResources({
       resource.jurisdiction,
       resource.access,
       resource.summary,
+      resource.curation.applicability.join(" "),
+      resource.curation.applicability_note ?? "",
+      resource.curation.temporal_role ?? "",
+      resource.curation.lifecycle ?? "",
+      resource.curation.method ?? "",
+      resource.curation.transfer_limit ?? "",
+      resource.relationship_profile?.questions.join(" ") ?? "",
+      resource.relationship_profile?.claims.map((claim) => claim.text).join(" ") ?? "",
     ].join(" ").toLowerCase();
 
     return terms.every((term) => searchable.includes(term));
@@ -264,14 +325,74 @@ export function renderResourcesMarkdown(
         `- Date or status: ${record.published_or_status}`,
         `- Jurisdiction: ${record.jurisdiction}`,
         `- Access: ${record.access}`,
+        `- Profile status: ${record.curation.profile_status}`,
+        `- Curation review status: ${record.curation.review_status}`,
+        `- Applicability: ${record.curation.applicability.length ? record.curation.applicability.join(", ") : "not yet classified"}`,
+        `- Applicability note: ${record.curation.applicability_note ?? "not yet classified"}`,
+        `- Time role: ${record.curation.temporal_role ?? "not yet classified"}`,
+        `- Lifecycle: ${record.curation.lifecycle ?? "not yet classified"}`,
+        `- Publication status: ${record.curation.publication_status ?? "see date or status"}`,
+        `- Method: ${record.curation.method ?? "not yet profiled"}`,
+        `- Transfer limit: ${record.curation.transfer_limit ?? "not yet profiled"}`,
+        `- Commercial interest: ${record.curation.commercial_interest}`,
         `- Source license: ${record.source_license}; check the publisher's terms`,
+        `- Source updated: ${record.curation.source_updated_at ?? "not stated"}`,
         `- Verified: ${record.verified_at}`,
+        `- Next review: ${record.curation.next_review_at ?? "not yet assigned"}`,
         `- Catalog page: ${record.catalog_url}`,
         `- API record: ${record.record_url}`,
         "",
         record.summary,
         "",
       );
+
+      if (record.relationship_profile) {
+        lines.push(
+          `${recordHeading}# Relationship profile`,
+          "",
+          `- Evidence tier: ${record.relationship_profile.evidence_tier}`,
+          `- Importance: ${record.relationship_profile.importance}`,
+          `- Difficulty: ${record.relationship_profile.difficulty}`,
+          `- Estimated reading time: ${record.relationship_profile.estimated_reading_minutes} minutes`,
+          `- Audiences: ${record.relationship_profile.audiences.join(", ")}`,
+          `- Related workflows: ${record.relationship_profile.workflow_ids.join(", ")}`,
+          `- Related sources: ${record.relationship_profile.related_source_ids.join(", ")}`,
+          `- Supersedes: ${record.relationship_profile.supersedes.length ? record.relationship_profile.supersedes.join(", ") : "none recorded"}`,
+          `- Superseded by: ${record.relationship_profile.superseded_by ?? "none recorded"}`,
+          `- Review status: ${record.relationship_profile.review_status}`,
+          "",
+          "Questions this source helps answer:",
+          "",
+          ...record.relationship_profile.questions.map((question) => `- ${question}`),
+          "",
+          "Claims:",
+          "",
+          ...record.relationship_profile.claims.map((claim) => `- ${claim.text} [${claim.evidence_classification}]`),
+          "",
+          "Contrary or limiting evidence:",
+          "",
+          ...record.relationship_profile.contrary_claims.map(
+            (claim) => `- ${claim.text} [${claim.evidence_classification}; sources: ${claim.source_ids.join(", ")}]`,
+          ),
+          "",
+          "Related guide paths:",
+          "",
+          ...record.relationship_profile.related_paths.map((item) => `- [${escapeMarkdown(item.label)}](${siteOrigin}${item.href})`),
+          "",
+          `Prerequisites: ${record.relationship_profile.prerequisites}`,
+          "",
+          `Expected outcome: ${record.relationship_profile.expected_outcome}`,
+          "",
+          `Synthetic example: ${record.relationship_profile.accounting_example.text}`,
+          "",
+          "Limitations:",
+          "",
+          ...record.relationship_profile.limitations.map((limitation) => `- ${limitation}`),
+          "",
+          `Next action: ${record.relationship_profile.next_action}`,
+          "",
+        );
+      }
     }
   }
 
@@ -458,7 +579,7 @@ export function buildLlmsText() {
     `- [Control patterns](${siteOrigin}/controls.md): Reusable control designs.`,
     `- [Templates](${siteOrigin}/templates.md): Practical implementation templates.`,
     `- [Glossary](${siteOrigin}/glossary.md): Controlled accounting-agent terms.`,
-    `- [Source catalog in Markdown](${siteOrigin}/resources.md): Complete source metadata, summaries, status, jurisdiction, and access notes.`,
+    `- [Source catalog in Markdown](${siteOrigin}/resources.md): Complete source metadata, summaries, status, jurisdiction, access, structured applicability, time role, lifecycle, method, and transfer limits.`,
     `- [Curated reading room](${siteOrigin}/reading-room.md): A smaller path through research papers, practitioner essays, professional reports, and disclosed practice examples.`,
     `- [Reading-room JSON](${siteOrigin}/downloads/reading-room.json): The same curated shelves and complete source records as structured JSON.`,
     `- [Workflow packs](${siteOrigin}/packs.md): Six portable specifications with synthetic fixtures and reference outputs.`,
@@ -471,7 +592,7 @@ export function buildLlmsText() {
     "",
     "## API",
     "",
-    `- [Resource API](${siteOrigin}/api/v1/resources): Versioned JSON search and filtering endpoint; request text/markdown for Markdown output.`,
+    `- [Resource API](${siteOrigin}/api/v1/resources): Versioned JSON search by text, topic, type, industry applicability, or time role; request text/markdown for Markdown output.`,
     `- [Workflow API](${siteOrigin}/api/v1/workflows): Search and filter canonical workflows by family and authority.`,
     `- [Authority API](${siteOrigin}/api/v1/authority-levels): Retrieve the authority model.`,
     `- [Sensitive-action API](${siteOrigin}/api/v1/sensitive-actions): Retrieve high-impact action boundaries.`,

@@ -1,21 +1,17 @@
 # AI Agents in Accounting
 
-An open field guide, workflow library, measurement program, conformance suite, and machine-readable corpus for governed AI-agent work in accounting and finance.
+An open educational field guide, source library, workflow library, practical toolkit, and machine-readable corpus for governed AI-agent work in accounting and finance.
 
-The public site is [accounting-agents.madebyhenry.chatgpt.site](https://accounting-agents.madebyhenry.chatgpt.site). It publishes 60 canonical workflows, 433 source records, 153 curated readings across 20 shelves, six portable packs, 30 public conformance cases, LedgerBench program contracts, controlled governance records, Markdown and JSON projections, a versioned read-only API, OpenAPI, JSON Schemas, and small reference clients.
+The public site is [accounting-agents.madebyhenry.chatgpt.site](https://accounting-agents.madebyhenry.chatgpt.site). It publishes 60 canonical workflows, 489 source records, 153 curated readings across 20 shelves, practical templates, six portable packs, controlled governance records, Markdown and JSON projections, a versioned read-only API, OpenAPI, JSON Schemas, small reference clients, and a specialist evaluation lab.
 
 The [versioned coverage and gaps map](https://accounting-agents.madebyhenry.chatgpt.site/coverage) distinguishes deep, canonical-reference, source-library-only, planned, and out-of-scope coverage. It qualifies lifecycle claims and is also available as [Markdown](https://accounting-agents.madebyhenry.chatgpt.site/coverage.md) and [JSON](https://accounting-agents.madebyhenry.chatgpt.site/api/v1/coverage).
 
-## Four ways in
+## Four paths through the hub
 
-- Learn: definitions, lifecycle, authority, controls, evidence, and operations.
-- Build: portable packs with synthetic fixtures and reference outputs.
-- Evaluate: the LedgerBench measurement program and the public Core conformance suite.
-- Integrate: standard HTTP, Markdown, JSON, OpenAPI, feeds, clients, and CLI.
-
-[LedgerBench](https://accounting-agents.madebyhenry.chatgpt.site/ledgerbench) is the Preview-stage measurement program for accounting-agent capability, conformance, field utility, and grader validity. It defines the measurement claim, task universe, products, tracks, divisions, Accepted Work Rate, hard gates, task-admission process, hidden evaluation strategy, verification states, statistical discipline, and independent governance required before an official model ranking is published.
-
-The existing 30-case Accounting Agent Bench remains a public Core conformance asset. It does not by itself define LedgerBench or establish broad accounting competence.
+- Learn: start with agent fundamentals, the accounting lifecycle, authority, controls, and evidence.
+- Explore: browse source-linked workflows, curated readings, and the complete source library.
+- Apply: use templates, synthetic workflow packs, architecture guidance, and a controlled-pilot checklist.
+- Research: inspect the evaluation guide, public conformance suite, and specialist LedgerBench program.
 
 The [open ecosystem map](https://accounting-agents.madebyhenry.chatgpt.site/ecosystem) distinguishes direct web access, AGENTS.md, MCP, A2A, and accounting-domain contracts by role and adoption posture. The repository `AGENTS.md` gives coding agents the build, content, rights, and verification rules for contributing safely.
 
@@ -25,12 +21,18 @@ The [Accounting Agent Control Model](https://accounting-agents.madebyhenry.chatg
 
 Coverage never grants execution authority. Agents may prepare work; accountable people approve conclusions and sensitive external actions.
 
+## Research and evaluation lab
+
+[LedgerBench](https://accounting-agents.madebyhenry.chatgpt.site/ledgerbench) is the Preview-stage specialist research program for accounting-agent capability, conformance, field utility, and grader validity. It documents measurement claims, task admission, hidden evaluation, verification, statistical discipline, and governance required before an official model ranking is published.
+
+The existing 30-case Accounting Agent Bench remains a small public Core conformance asset for development checks. It does not by itself establish broad accounting competence, reliability, field utility, or production readiness.
+
 ## Development
 
-Requires Node.js 22.13 or newer and Linux with `flock`, `curl`, GNU `timeout`, and `zip`.
+Requires Node.js 22.13 or newer. The production build and test wrapper run on macOS and Linux without a separate timeout utility.
 
 ```sh
-npm run install:ci
+npm ci
 npm run generate:platform
 npm run validate:platform
 npm run lint
@@ -38,6 +40,8 @@ npm test
 ```
 
 `npm test` builds the production Worker and runs contract, site-wide quality, mobile, and LedgerBench program suites. See [`TESTING.md`](TESTING.md) for the coverage matrix, focused commands, and release gates.
+
+`npm run install:ci` is the Linux Sites-image installation helper; it additionally requires `flock`, `curl`, GNU `timeout`, and `sha256sum`. Building the source archive requires `zip`.
 
 `data/open-source-platform.mjs` is the canonical source for packs, public conformance cases, and release notes. `data/ledgerbench-program.mjs` is the canonical structured Preview record for the LedgerBench measurement program.
 
@@ -68,7 +72,7 @@ npm run archive:source
 
 The deployed site is public and read-only. It does not use a database, authentication, vector store, runtime scraper, or required agent framework.
 
-## LedgerBench machine surfaces
+## Research lab machine surfaces
 
 - Human guide: `/ledgerbench`
 - Markdown: `/ledgerbench.md`

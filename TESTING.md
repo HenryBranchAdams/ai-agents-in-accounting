@@ -40,4 +40,6 @@ npm run validate:platform
 npm run benchmark:sample
 ```
 
+The production build uses a Node-based deadline runner on macOS and Linux. Override its defaults with `SITES_BUILD_TIMEOUT` and `SITES_BUILD_KILL_AFTER` using duration values such as `90s` or `3m`.
+
 Run `npm run generate:platform` before the release gate when canonical pack, benchmark, or release data changes.

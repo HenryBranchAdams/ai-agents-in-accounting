@@ -2,10 +2,16 @@
 
 import { useEffect, useMemo, useState } from "react";
 import {
+  resourceCurationById,
+  resourceIndustryFacets,
   resourceKinds,
   resources,
+  sourceRelationshipProfiles,
+  resourceTimeRoles,
   resourceTopics,
+  type ResourceIndustry,
   type ResourceKind,
+  type ResourceTimeRole,
   type ResourceTopic,
 } from "./resources-data";
 
@@ -15,31 +21,72 @@ export function ResourceIndex() {
   const [query, setQuery] = useState("");
   const [topic, setTopic] = useState<FilterValue<ResourceTopic>>("All");
   const [kind, setKind] = useState<FilterValue<ResourceKind>>("All");
+  const [industry, setIndustry] = useState<FilterValue<ResourceIndustry>>("All");
+  const [timeRole, setTimeRole] = useState<FilterValue<ResourceTimeRole>>("All");
+  const [filtersInitialized, setFiltersInitialized] = useState(false);
 
   useEffect(() => {
-    const parameters = new URLSearchParams(window.location.search);
-    const initialQuery = parameters.get("query") ?? "";
-    const initialTopic = parameters.get("topic");
-    const initialKind = parameters.get("kind");
+    const readLocation = () => {
+      const parameters = new URLSearchParams(window.location.search);
+      const initialTopic = parameters.get("topic");
+      const initialKind = parameters.get("kind");
+      const initialIndustry = parameters.get("industry");
+      const initialTimeRole = parameters.get("time_role");
 
-    const update = window.setTimeout(() => {
-      setQuery(initialQuery);
-      if (initialTopic && resourceTopics.includes(initialTopic as ResourceTopic)) {
-        setTopic(initialTopic as ResourceTopic);
-      }
-      if (initialKind && resourceKinds.includes(initialKind as ResourceKind)) {
-        setKind(initialKind as ResourceKind);
-      }
-    }, 0);
-    return () => window.clearTimeout(update);
+      setQuery(parameters.get("query") ?? "");
+      setTopic(initialTopic && resourceTopics.includes(initialTopic as ResourceTopic)
+        ? initialTopic as ResourceTopic
+        : "All");
+      setKind(initialKind && resourceKinds.includes(initialKind as ResourceKind)
+        ? initialKind as ResourceKind
+        : "All");
+      setIndustry(initialIndustry && resourceIndustryFacets.some((item) => item.id === initialIndustry)
+        ? initialIndustry as ResourceIndustry
+        : "All");
+      setTimeRole(initialTimeRole && resourceTimeRoles.some((item) => item.id === initialTimeRole)
+        ? initialTimeRole as ResourceTimeRole
+        : "All");
+      setFiltersInitialized(true);
+    };
+
+    readLocation();
+    window.addEventListener("popstate", readLocation);
+    return () => window.removeEventListener("popstate", readLocation);
   }, []);
+
+  useEffect(() => {
+    if (!filtersInitialized) return;
+
+    const parameters = new URLSearchParams(window.location.search);
+    const setOrDelete = (name: string, value: string) => {
+      if (value && value !== "All") parameters.set(name, value);
+      else parameters.delete(name);
+    };
+
+    setOrDelete("query", query);
+    setOrDelete("topic", topic);
+    setOrDelete("kind", kind);
+    setOrDelete("industry", industry);
+    setOrDelete("time_role", timeRole);
+
+    const search = parameters.toString();
+    window.history.replaceState(
+      null,
+      "",
+      `${window.location.pathname}${search ? `?${search}` : ""}${window.location.hash}`,
+    );
+  }, [filtersInitialized, industry, kind, query, timeRole, topic]);
 
   const filtered = useMemo(() => {
     const term = query.trim().toLowerCase();
 
     return resources.filter((resource) => {
+      const curation = resourceCurationById[resource.id];
+      const relationshipProfile = sourceRelationshipProfiles[resource.id];
       const matchesTopic = topic === "All" || resource.topic === topic;
       const matchesKind = kind === "All" || resource.kind === kind;
+      const matchesIndustry = industry === "All" || curation?.applicability.includes(industry);
+      const matchesTimeRole = timeRole === "All" || curation?.temporal_role === timeRole;
       const searchText = [
         resource.title,
         resource.owner,
@@ -47,11 +94,20 @@ export function ResourceIndex() {
         resource.topic,
         resource.kind,
         resource.jurisdiction,
+        curation?.applicability.join(" ") ?? "",
+        curation?.applicability_note ?? "",
+        curation?.temporal_role ?? "",
+        curation?.method ?? "",
+        curation?.transfer_limit ?? "",
+        ...(relationshipProfile?.questions ?? []),
+        ...(relationshipProfile?.claims.map((claim) => claim.text) ?? []),
+        ...(relationshipProfile?.contrary_claims.map((claim) => claim.text) ?? []),
       ].join(" ").toLowerCase();
 
-      return matchesTopic && matchesKind && (!term || searchText.includes(term));
+      return matchesTopic && matchesKind && matchesIndustry && matchesTimeRole
+        && (!term || searchText.includes(term));
     });
-  }, [kind, query, topic]);
+  }, [industry, kind, query, timeRole, topic]);
 
   const grouped = resourceTopics
     .map((resourceTopic) => ({
@@ -60,7 +116,7 @@ export function ResourceIndex() {
     }))
     .filter((group) => group.items.length > 0);
 
-  const hasFilters = query || topic !== "All" || kind !== "All";
+  const hasFilters = query || topic !== "All" || kind !== "All" || industry !== "All" || timeRole !== "All";
 
   return (
     <div className="resource-index">
@@ -94,6 +150,30 @@ export function ResourceIndex() {
             {resourceKinds.map((option) => <option key={option}>{option}</option>)}
           </select>
         </label>
+        <label>
+          <span>Industry</span>
+          <select
+            onChange={(event) => setIndustry(event.target.value as FilterValue<ResourceIndustry>)}
+            value={industry}
+          >
+            <option>All</option>
+            {resourceIndustryFacets.map((option) => (
+              <option key={option.id} value={option.id}>{option.label}</option>
+            ))}
+          </select>
+        </label>
+        <label>
+          <span>Time role</span>
+          <select
+            onChange={(event) => setTimeRole(event.target.value as FilterValue<ResourceTimeRole>)}
+            value={timeRole}
+          >
+            <option>All</option>
+            {resourceTimeRoles.map((option) => (
+              <option key={option.id} value={option.id}>{option.label}</option>
+            ))}
+          </select>
+        </label>
       </div>
 
       <div className="resource-index-status">
@@ -104,6 +184,8 @@ export function ResourceIndex() {
               setQuery("");
               setTopic("All");
               setKind("All");
+              setIndustry("All");
+              setTimeRole("All");
             }}
             type="button"
           >
@@ -124,6 +206,16 @@ export function ResourceIndex() {
                 <div className="source-meta">
                   <span>{resource.kind}</span>
                   <span>{resource.date}</span>
+                  {resourceCurationById[resource.id]?.applicability.map((facet) => (
+                    <span key={facet}>
+                      {resourceIndustryFacets.find((item) => item.id === facet)?.label ?? facet}
+                    </span>
+                  ))}
+                  {resourceCurationById[resource.id]?.temporal_role && (
+                    <span>
+                      {resourceTimeRoles.find((item) => item.id === resourceCurationById[resource.id]?.temporal_role)?.label}
+                    </span>
+                  )}
                 </div>
                 <h4>
                   <a href={resource.href} rel="noreferrer" target="_blank">
@@ -134,6 +226,11 @@ export function ResourceIndex() {
                   {resource.owner} · {resource.jurisdiction} · {resource.access}
                 </p>
                 <p>{resource.note}</p>
+                {resourceCurationById[resource.id]?.applicability_note && (
+                  <p className="source-applicability-note">
+                    <strong>Applicability:</strong> {resourceCurationById[resource.id]?.applicability_note}
+                  </p>
+                )}
                 <p className="source-record-link">
                   <a href={`/resources/${resource.id}`}>Catalog record · {resource.id}</a>
                 </p>
@@ -148,6 +245,8 @@ export function ResourceIndex() {
             setQuery("");
             setTopic("All");
             setKind("All");
+            setIndustry("All");
+            setTimeRole("All");
           }} type="button">Clear filters</button>
         </div>
       )}

@@ -20,7 +20,7 @@ export default function EvaluationPage() {
   return (
     <DocsShell
       active="/evaluation"
-      category="Implement"
+      category="Apply"
       title="Evaluation and testing"
       description={description}
       toc={[

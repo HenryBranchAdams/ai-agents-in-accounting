@@ -87,12 +87,12 @@ export function DocsShell({
       <header className="topbar">
         <Link className="wordmark" href="/" aria-label="Accounting Agents guide home">
           <span>Accounting Agents</span>
-          <small>Open field guide</small>
+          <small>Educational field guide</small>
         </Link>
         <DocsSearch />
         <nav className="top-links" aria-label="Utility navigation">
-          <Link href="/packs">Packs</Link>
-          <a href="/machine-access">Agent access</a>
+          <Link href="/reading-room">Reading room</Link>
+          <Link href="/resources">Source library</Link>
         </nav>
         <details className="mobile-navigation">
           <summary>Menu</summary>

@@ -2,7 +2,7 @@ import { DocsShell } from "../DocsShell";
 import { docsMetadata } from "../docsMetadata";
 import { benchmark, benchmarkCases, packs } from "../platform-data";
 
-const description = "The public Core conformance asset for fast checks of accounting result shape, evidence preservation, review routing, and authority boundaries.";
+const description = "A small public conformance suite for checking result shape, evidence preservation, review routing, and authority boundaries.";
 
 export const metadata = {
   ...docsMetadata("Core conformance suite", description, "/bench"),
@@ -13,38 +13,37 @@ export default function BenchPage() {
   return (
     <DocsShell
       active="/bench"
-      category="Evaluate"
+      category="Lab"
       title="Core conformance suite"
       description={description}
       headerImage={{ src: "/images/editorial/options/17-evaluation-rig.jpg", alt: "A spare evaluation grid with evidence blocks passing through a bounded green test path." }}
       jsonHref="/api/v1/benchmark"
       markdownHref="/bench.md"
       toc={[
-        { href: "#role", label: "Role in LedgerBench" },
+        { href: "#role", label: "Scope" },
         { href: "#method", label: "Method" },
         { href: "#cases", label: "Case design" },
         { href: "#scoring", label: "Scoring" },
         { href: "#run", label: "Run the suite" },
         { href: "#report", label: "Report results" },
       ]}
-      previous={{ href: "/ledgerbench", label: "LedgerBench program" }}
-      next={{ href: "/spec", label: "Public specification" }}
+      previous={{ href: "/evaluation", label: "Evaluation and testing" }}
+      next={{ href: "/ledgerbench", label: "LedgerBench research program" }}
     >
       <section id="role">
-        <h2>A development and conformance asset, not the whole benchmark</h2>
+        <h2>A bounded developer aid</h2>
         <p>
-          This 30-case suite remains useful for fast, public, deterministic
-          checks. It is one Core asset within the broader <a href="/ledgerbench">LedgerBench program</a>.
-          It does not establish broad accounting competence, long-horizon
-          reliability, field utility, or production readiness.
+          This 30-case suite supports fast, public, deterministic checks during
+          development. It does not establish broad accounting competence,
+          long-horizon reliability, field utility, or production readiness.
         </p>
         <div className="note">
-          <p className="note-title">Program boundary</p>
+          <p className="note-title">Keep the claim narrow</p>
           <p>
-            LedgerBench separately defines capability benchmarking, neutral
-            conformance, field-utility studies, GraderBench, task admission,
-            hidden evaluation, statistical reporting, verification, and
-            independent governance.
+            Use the <a href="/evaluation">evaluation guide</a> for practical
+            system testing. The <a href="/ledgerbench">LedgerBench research program</a>
+            {" "}separately documents broader measurement methods, hidden evaluation,
+            statistical reporting, verification, and governance.
           </p>
         </div>
       </section>

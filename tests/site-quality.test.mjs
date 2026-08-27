@@ -43,7 +43,7 @@ test("every canonical sitemap page renders a complete semantic document", async 
   assert.equal(sitemapResponse.status, 200);
   const sitemap = await sitemapResponse.text();
   const locations = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
-  assert.equal(locations.length, 536);
+  assert.equal(locations.length, 592);
   assert.equal(new Set(locations).size, locations.length);
 
   await mapInBatches(locations, 20, async (location) => {
@@ -175,6 +175,21 @@ test("API filters, negotiation, pagination, and problem details cover edge cases
   assert.ok(filteredPayload.items.length > 0);
   assert.ok(filteredPayload.items.every((item) => item.topic === "Audit and assurance" && item.source_type === "Research paper"));
 
+  const industryFiltered = await request("/api/v1/resources?industry=insurance&time_role=foundational&limit=200");
+  const industryPayload = await industryFiltered.json();
+  assert.ok(industryPayload.items.length > 0);
+  assert.deepEqual(industryPayload.filters, {
+    q: null,
+    topic: null,
+    kind: null,
+    industry: "insurance",
+    time_role: "foundational",
+  });
+  assert.ok(industryPayload.items.every((item) => (
+    item.curation.applicability.includes("insurance")
+    && item.curation.temporal_role === "foundational"
+  )));
+
   const first = await request("/api/v1/search?q=agent&limit=3");
   const firstPayload = await first.json();
   assert.equal(firstPayload.items.length, 3);
@@ -188,6 +203,8 @@ test("API filters, negotiation, pagination, and problem details cover edge cases
     ["/api/v1/search?q=agent&type=unknown", 400, "Invalid record type"],
     ["/api/v1/resources?topic=unknown", 400, "Invalid topic"],
     ["/api/v1/resources?kind=unknown", 400, "Invalid source type"],
+    ["/api/v1/resources?industry=unknown", 400, "Invalid industry"],
+    ["/api/v1/resources?time_role=unknown", 400, "Invalid time role"],
     ["/api/v1/workflows?limit=0", 400, "Invalid limit"],
     ["/api/v1/resources/src_missing", 404, "Resource not found"],
     ["/api/v1/workflows/wf-missing", 404, "Workflow not found"],
@@ -206,7 +223,7 @@ test("API filters, negotiation, pagination, and problem details cover edge cases
 
 test("source records are unique, complete, rights-aware, and provenance-linked", async () => {
   const catalog = await (await request("/downloads/resources.json")).json();
-  assert.equal(catalog.items.length, 433);
+  assert.equal(catalog.items.length, 489);
   assert.equal(new Set(catalog.items.map((item) => item.id)).size, catalog.items.length);
   assert.equal(new Set(catalog.items.map((item) => item.canonical_source_url)).size, catalog.items.length);
 
@@ -223,6 +240,88 @@ test("source records are unique, complete, rights-aware, and provenance-linked",
     assert.equal(source.annotation_rights.license_id, "CC-BY-4.0", source.id);
     assert.equal(source.catalog_url, `${siteOrigin}/resources/${source.id}`, source.id);
     assert.equal(source.record_url, `${siteOrigin}/api/v1/resources/${source.id}`, source.id);
+  }
+
+  const newSourceIds = new Set([
+    "src_agenticaudit", "src_auditflow26", "src_finagentbench", "src_nocodeacct25",
+    "src_netsuite26ai", "src_sageclose25", "src_digitsagents25", "src_prophixagents25",
+    "src_ifrsconcept18", "src_ifrsmc2025", "src_ifrss12023", "src_ifrss22023",
+    "src_ifrsstax24", "src_secsab0099", "src_secsab0108", "src_irspub1075",
+    "src_oecdtax30", "src_fasbtax2025", "src_xbrloim10", "src_xbrltaxpkg",
+    "src_iso20022", "src_datasheets21", "src_modelcards19", "src_ibmfactsheets",
+    "src_crfmfoundation", "src_react2023", "src_toolformer23", "src_reflexion23",
+    "src_mllifecycle", "src_trustautomation", "src_humanaiguides", "src_ncuai2026",
+    "src_banktprm23", "src_naicaibull", "src_ifrs17impl", "src_ioscoai2021",
+    "src_ioscoai2025", "src_hipaaba", "src_cmsmcref", "src_aicpacon25",
+    "src_ricsai2025", "src_asu201815", "src_focusv14", "src_fercacct",
+    "src_doeeai2024", "src_nistmfg2", "src_socsupply", "src_pcidss401",
+    "src_irsretail", "src_cfr200grants", "src_gasb0096", "src_asu202308",
+    "src_secsab122", "src_taxpraben26", "src_workiva26agents", "src_irsopr26ai",
+  ]);
+  assert.equal(newSourceIds.size, 56);
+  for (const source of catalog.items.filter((item) => newSourceIds.has(item.id))) {
+    assert.notEqual(source.curation.profile_status, "unclassified", source.id);
+    assert.equal(source.curation.review_status, "maintainer-review-pending", source.id);
+    assert.ok(source.curation.applicability.length > 0, source.id);
+    assert.ok(source.curation.temporal_role, source.id);
+    assert.ok(source.curation.lifecycle, source.id);
+    assert.ok(source.curation.method, source.id);
+    assert.ok(source.curation.transfer_limit, source.id);
+    assert.match(source.curation.next_review_at, /^\d{4}-\d{2}-\d{2}$/, source.id);
+  }
+});
+
+test("source curation taxonomy and pilot relationships stay internally consistent", async () => {
+  const catalog = await (await request("/downloads/resources.json")).json();
+  const taxonomy = await (await request("/api/v1/taxonomy")).json();
+  const sourceIds = new Set(catalog.items.map((item) => item.id));
+  const industryIds = new Set(taxonomy.industries.map((item) => item.value));
+  const timeRoleIds = new Set(taxonomy.time_roles.map((item) => item.value));
+  const lifecycleIds = new Set(taxonomy.lifecycle_states.map((item) => item.value));
+  const evidenceTierIds = new Set(taxonomy.source_evidence_tiers.map((item) => item.value));
+  const workflowIds = new Set(taxonomy.workflows.map((item) => item.value));
+  const evidenceClassificationIds = new Set([
+    "authoritative-requirement", "official-guidance", "editorial-recommendation",
+    "implementation-pattern", "synthetic-example", "empirical-evidence", "unresolved-question",
+  ]);
+
+  assert.equal(industryIds.size, 12);
+  assert.equal(timeRoleIds.size, 4);
+  assert.equal(lifecycleIds.size, 6);
+  assert.equal(evidenceTierIds.size, 5);
+  assert.equal(taxonomy.source_relationship_profile_count, 8);
+  assert.equal(taxonomy.source_curation_contract.status, "pilot");
+  assert.equal(taxonomy.source_curation_contract.curation_review_status, "maintainer-review-pending");
+  assert.equal(taxonomy.source_curation_contract.relationship_profile_review_status, "maintainer-review-pending");
+  assert.equal(taxonomy.source_curation_contract.unclassified_records_are_not_assumed_general, true);
+
+  const profiled = catalog.items.filter((item) => item.relationship_profile);
+  assert.equal(profiled.length, 8);
+  for (const source of catalog.items) {
+    for (const industry of source.curation.applicability) assert.ok(industryIds.has(industry), `${source.id} -> ${industry}`);
+    if (source.curation.temporal_role) assert.ok(timeRoleIds.has(source.curation.temporal_role), source.id);
+    if (source.curation.lifecycle) assert.ok(lifecycleIds.has(source.curation.lifecycle), source.id);
+  }
+  for (const source of profiled) {
+    const profile = source.relationship_profile;
+    assert.ok(evidenceTierIds.has(profile.evidence_tier), source.id);
+    assert.ok(profile.questions.length > 0, source.id);
+    assert.ok(profile.claims.length > 0, source.id);
+    assert.equal(new Set(profile.claims.map((claim) => claim.id)).size, profile.claims.length, source.id);
+    for (const relatedId of profile.related_source_ids) {
+      assert.ok(sourceIds.has(relatedId), `${source.id} -> ${relatedId}`);
+      assert.notEqual(relatedId, source.id, `${source.id} related source self-reference`);
+    }
+    for (const claim of profile.contrary_claims) {
+      assert.ok(evidenceClassificationIds.has(claim.evidence_classification), `${source.id} contrary evidence classification`);
+      for (const relatedId of claim.source_ids) {
+        assert.ok(sourceIds.has(relatedId), `${source.id} -> ${relatedId}`);
+        assert.notEqual(relatedId, source.id, `${source.id} contrary evidence self-reference`);
+      }
+    }
+    for (const workflowId of profile.workflow_ids) assert.ok(workflowIds.has(workflowId), `${source.id} -> ${workflowId}`);
+    assert.equal(profile.review_status, "maintainer-review-pending", source.id);
+    assert.equal(profile.accounting_example.evidence_classification, "synthetic-example", source.id);
   }
 });
 

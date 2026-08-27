@@ -1,6 +1,8 @@
 import {
   agentResources,
+  allowedIndustries,
   allowedKinds,
+  allowedTimeRoles,
   allowedTopics,
   apiVersion,
   catalogVersion,
@@ -9,6 +11,13 @@ import {
   publicResponse,
   topicDescriptions,
 } from "../../../agent-interface";
+import {
+  resourceIndustryFacets,
+  resourceLifecycleStates,
+  resourceTimeRoles,
+  sourceAudienceValues,
+  sourceEvidenceTiers,
+} from "../../../resources-data";
 import { authorityLevels } from "../../../domain-model";
 import { ecosystemLayers } from "../../../ecosystem-data";
 import { processFamilies, workflowRecords } from "../../../workflows-data";
@@ -57,6 +66,42 @@ export async function GET(request: Request) {
       description: kindDescriptions[value],
       record_count: agentResources.filter((resource) => resource.source_type === value).length,
     })),
+    industries: resourceIndustryFacets.map((item) => ({
+      value: item.id,
+      label: item.label,
+      description: item.description,
+      record_count: agentResources.filter((resource) => resource.curation.applicability.includes(item.id)).length,
+    })),
+    time_roles: resourceTimeRoles.map((item) => ({
+      value: item.id,
+      label: item.label,
+      description: item.description,
+      record_count: agentResources.filter((resource) => resource.curation.temporal_role === item.id).length,
+    })),
+    lifecycle_states: resourceLifecycleStates.map((value) => ({
+      value,
+      record_count: agentResources.filter((resource) => resource.curation.lifecycle === value).length,
+    })),
+    source_evidence_tiers: sourceEvidenceTiers.map((item) => ({
+      value: item.id,
+      label: item.label,
+      description: item.description,
+      record_count: agentResources.filter((resource) => resource.relationship_profile?.evidence_tier === item.id).length,
+    })),
+    source_audiences: sourceAudienceValues.map((value) => ({
+      value,
+      record_count: agentResources.filter((resource) => resource.relationship_profile?.audiences.includes(value)).length,
+    })),
+    source_relationship_profile_count: agentResources.filter((resource) => resource.relationship_profile).length,
+    source_curation_contract: {
+      status: "pilot",
+      curation_review_status: "maintainer-review-pending",
+      relationship_profile_review_status: "maintainer-review-pending",
+      unclassified_records_are_not_assumed_general: true,
+      supported_industry_values: allowedIndustries,
+      supported_time_role_values: allowedTimeRoles,
+      human_invariant: "Agents prepare accounting work; accountable people approve conclusions and sensitive external actions.",
+    },
     workflow_packs: packs.map((pack) => ({
       value: pack.id,
       label: pack.title,

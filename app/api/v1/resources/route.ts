@@ -1,6 +1,8 @@
 import {
   agentResources,
+  allowedIndustries,
   allowedKinds,
+  allowedTimeRoles,
   allowedTopics,
   apiVersion,
   catalogReviewedAt,
@@ -30,6 +32,8 @@ export async function GET(request: Request) {
   const query = url.searchParams.get("q")?.trim() || undefined;
   const topic = url.searchParams.get("topic")?.trim() || undefined;
   const kind = url.searchParams.get("kind")?.trim() || undefined;
+  const industry = url.searchParams.get("industry")?.trim() || undefined;
+  const timeRole = url.searchParams.get("time_role")?.trim() || undefined;
   const requestedFormat = url.searchParams.get("format")?.trim().toLowerCase();
   const limit = parseInteger(url.searchParams.get("limit"), 50);
   const cursor = url.searchParams.get("cursor")?.trim() || undefined;
@@ -50,6 +54,18 @@ export async function GET(request: Request) {
     });
   }
 
+  if (industry && !allowedIndustries.includes(industry as (typeof allowedIndustries)[number])) {
+    return problemResponse(request, 400, "Invalid industry", "Use one of the published industry values.", {
+      allowed_values: allowedIndustries,
+    });
+  }
+
+  if (timeRole && !allowedTimeRoles.includes(timeRole as (typeof allowedTimeRoles)[number])) {
+    return problemResponse(request, 400, "Invalid time role", "Use one of the published time_role values.", {
+      allowed_values: allowedTimeRoles,
+    });
+  }
+
   if (requestedFormat && requestedFormat !== "json" && requestedFormat !== "markdown") {
     return problemResponse(request, 400, "Invalid format", "The format parameter must be json or markdown.", {
       allowed_values: ["json", "markdown"],
@@ -66,7 +82,7 @@ export async function GET(request: Request) {
     return problemResponse(request, 400, "Invalid limit", "The limit parameter must be an integer from 1 through 200.");
   }
 
-  const matches = searchAgentResources({ query, topic, kind });
+  const matches = searchAgentResources({ query, topic, kind, industry, timeRole });
   const cursorIndex = cursor
     ? matches.findIndex((resource) => resource.id === cursor)
     : -1;
@@ -118,6 +134,8 @@ export async function GET(request: Request) {
       q: query ?? null,
       topic: topic ?? null,
       kind: kind ?? null,
+      industry: industry ?? null,
+      time_role: timeRole ?? null,
     },
     links: {
       self: canonicalRequest.toString(),

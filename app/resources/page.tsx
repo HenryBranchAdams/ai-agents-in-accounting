@@ -17,7 +17,7 @@ const catalogStructuredData = {
   dataset: {
     "@type": "Dataset",
     name: "AI agents in accounting source catalog",
-    description: `${agentResources.length} curated source records with type, owner, status, jurisdiction, access, and editorial limitations.`,
+    description: `${agentResources.length} source records with type, owner, status, jurisdiction, access, and editorial limitations. Structured applicability and freshness metadata is currently available for a classified subset; other records remain explicitly unclassified.`,
     version: catalogVersion,
     url: `${siteOrigin}/resources`,
     dateModified: catalogReviewedAt,
@@ -56,6 +56,9 @@ export default function ResourcesPage() {
       category="Reference"
       title="Source library"
       description={description}
+      reviewedAt={catalogReviewedAt}
+      reviewStatus="Agent-prepared catalog expansion; maintainer review pending"
+      trustDateLabel="Prepared"
       headerImage={{
         src: "/images/editorial/06-global-practice.jpg",
         alt: "International filing formats arranged on a shared coordinate grid.",
@@ -96,6 +99,12 @@ export default function ResourcesPage() {
           Readers who want a shorter path can start in the <a href="/reading-room">reading room</a>,
           which places publication status and editorial limitations beside a curated set of papers and perspectives.
         </p>
+        <p>
+          Industry and time-role filters are being introduced as structured metadata, not inferred from keywords.
+          A source with no industry profile remains available under All and is not silently treated as general.
+          The first relationship-profiled cohort also records questions, claims, contrary or limiting evidence,
+          workflows, audience, difficulty, reading time, importance, freshness, supersession, and related sources.
+        </p>
         <dl className="term-list resource-method">
           <div><dt>Rule or standard</dt><dd>Law, regulation, auditing standard, or consensus standard from its issuing body.</dd></div>
           <div><dt>Official guidance</dt><dd>Interpretive or implementation material from a regulator, standard setter, government body, or professional organization.</dd></div>
@@ -121,10 +130,12 @@ export default function ResourcesPage() {
           <li>Research papers, benchmarks, and surveys have population, period, model, and method limits.</li>
           <li>Thought pieces clarify arguments and operating patterns. They do not become authority because they are persuasive.</li>
           <li>Practice examples describe what a provider says its product does. They are not assurance reports.</li>
+          <li>Industry tagging identifies a material sector context; it does not make adjacent governance material an accounting standard or validate an accounting agent.</li>
+          <li>Relationship profiles are agent-prepared with maintainer review pending; they are not independent, professional, audited, certified, or assured review.</li>
         </ul>
         <p>
-          The index was reviewed on August 23, 2026. Living documents and laws
-          may change after that date.
+          This expansion was prepared and its source links were checked on August 27, 2026;
+          maintainer review remains pending. Living documents and laws may change after that date.
         </p>
       </section>
     </DocsShell>

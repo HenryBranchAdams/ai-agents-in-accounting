@@ -25,7 +25,7 @@ export const metadata = {
 const jsonExample = `curl '${siteOrigin}/api/v1/workflows?q=reconciliation&family=record-to-report&limit=10'`;
 const markdownExample = `curl -H 'Accept: text/markdown' \\
   '${siteOrigin}/api/v1/controls?q=approval&limit=20'`;
-const researchExample = `curl '${siteOrigin}/api/v1/resources?kind=Research%20paper&limit=50'`;
+const researchExample = `curl '${siteOrigin}/api/v1/resources?industry=insurance&time_role=foundational&limit=50'`;
 const searchExample = `curl '${siteOrigin}/api/v1/search?q=bank%20reconciliation&type=workflow&type=pack'`;
 
 export default function MachineAccessPage() {
@@ -41,6 +41,7 @@ export default function MachineAccessPage() {
         { href: "#contract", label: "Contract and limits" },
         { href: "#accessibility", label: "Accessible by design" },
         { href: "#ecosystem", label: "Open ecosystem" },
+        { href: "#webmcp", label: "WebMCP site tools" },
         { href: "#mcp", label: "When to add MCP" },
       ]}
       previous={{ href: "/reading-room", label: "Reading room" }}
@@ -80,7 +81,7 @@ export default function MachineAccessPage() {
           </Link>
           <Link href="/resources.md">
             <strong>Source catalog in Markdown</strong>
-            <span>All {agentResources.length} records with provenance and limitations.</span>
+            <span>All {agentResources.length} records with provenance, structured applicability, time role, lifecycle, and limitations.</span>
           </Link>
           <Link href="/reading-room.md">
             <strong>Curated reading room in Markdown</strong>
@@ -132,7 +133,7 @@ export default function MachineAccessPage() {
           </Link>
           <Link href="/api/v1/resources">
             <strong>Resource API</strong>
-            <span>Search supporting sources by text, topic, or source type.</span>
+            <span>Search supporting sources by text, topic, source type, structured industry applicability, or time role.</span>
           </Link>
           <Link href="/openapi.json">
             <strong>OpenAPI description</strong>
@@ -167,7 +168,7 @@ export default function MachineAccessPage() {
           <div><dt>/controls</dt><dd>{controlPatterns.length} reusable control patterns.</dd></div>
           <div><dt>/templates</dt><dd>{templates.length} practical implementation structures.</dd></div>
           <div><dt>/glossary</dt><dd>{glossary.length} controlled terms and related concepts.</dd></div>
-          <div><dt>/resources</dt><dd>{agentResources.length} source records with provenance and access notes.</dd></div>
+          <div><dt>/resources</dt><dd>{agentResources.length} source records with provenance, access notes, and pilot curation metadata.</dd></div>
           <div><dt>/search</dt><dd>Ranked search across every public record family with explainable match fields.</dd></div>
           <div><dt>/packs</dt><dd>{packs.length} portable workflow packs.</dd></div>
           <div><dt>/benchmark</dt><dd>{benchmarkCases.length} public synthetic conformance cases.</dd></div>
@@ -184,6 +185,7 @@ export default function MachineAccessPage() {
           <div><dt>family</dt><dd>Workflow process family; values are published in the taxonomy endpoint.</dd></div>
           <div><dt>authority</dt><dd>Workflow authority level from A0 through A4 or human-only.</dd></div>
           <div><dt>topic / kind</dt><dd>Source-catalog topic and source type.</dd></div>
+          <div><dt>industry / time_role</dt><dd>Reviewed source applicability and foundational, evergreen, current-development, or historical-archive role. These facets are not authority scores.</dd></div>
           <div><dt>limit</dt><dd>One through 200 records. The default is 50.</dd></div>
           <div><dt>cursor</dt><dd>The last record ID from the previous page. Reuse the same filters.</dd></div>
           <div><dt>format</dt><dd><code>json</code> or <code>markdown</code>; the Accept header can also select Markdown.</dd></div>
@@ -195,11 +197,11 @@ export default function MachineAccessPage() {
         <h3>Markdown example</h3>
         <pre className="code-block"><code>{markdownExample}</code></pre>
 
-        <h3>Research-paper filter</h3>
+        <h3>Industry and time-role filter</h3>
         <pre className="code-block"><code>{researchExample}</code></pre>
         <p>
-          Use <code>kind=Thought%20piece</code> for independent and practitioner
-          perspectives. Source type is a classification, not an authority score.
+          An industry facet records material applicability, not proof that an accounting agent
+          works in that industry. Unclassified records are not silently treated as general.
         </p>
 
         <h3>Unified search</h3>
@@ -228,7 +230,7 @@ export default function MachineAccessPage() {
           <li>CORS permits public read access from other applications.</li>
           <li>ETag and Last-Modified validators support conditional requests; public cache headers reduce repeated transfer.</li>
           <li>Invalid parameters and unknown IDs return structured problem details.</li>
-          <li><code>/api/v1/meta</code> and <code>/api/v1/taxonomy</code> expose policy, counts, process families, authority levels, and source terms.</li>
+          <li><code>/api/v1/meta</code> and <code>/api/v1/taxonomy</code> expose policy, counts, process families, authority levels, source terms, industries, time roles, lifecycle states, and curation status.</li>
         </ul>
         <h3 id="errors">Problem responses</h3>
         <p>
@@ -289,6 +291,30 @@ export default function MachineAccessPage() {
           Publishing a protocol name is not evidence of maturity. Each record
           states what this service uses, what remains optional, and which
           accounting conclusions the interface cannot establish.
+        </p>
+      </section>
+
+      <section id="webmcp">
+        <h2>Use page-scoped tools with WebMCP</h2>
+        <p>
+          In a compatible ChatGPT or Codex built-in browser, every guide page
+          registers two read-only WebMCP tools. <code>accounting_agents.get_current_page</code>
+          reads the current page&apos;s title, canonical URL, evidence mode, review date,
+          and user-selected text. <code>accounting_agents.search</code> runs the same
+          deterministic, stable-ID search as <code>/api/v1/search</code> and returns
+          canonical human and API URLs.
+        </p>
+        <p>
+          These page tools do not approve an accounting conclusion, change a
+          record, post an entry, send a message, move money, alter permissions,
+          or take another sensitive external action. They return the project&apos;s
+          reliance boundary with each result: agents may prepare accounting work;
+          accountable people approve conclusions and sensitive external actions.
+          Browsers without WebMCP support keep the ordinary HTML, Markdown, JSON,
+          and OpenAPI experience unchanged.
+        </p>
+        <p className="section-sources">
+          Implementation follows OpenAI&apos;s <a href="https://learn.chatgpt.com/docs/webmcp" rel="noreferrer" target="_blank">Site tools guidance</a> and the proposed <a href="https://webmachinelearning.github.io/webmcp/" rel="noreferrer" target="_blank">WebMCP specification</a>.
         </p>
       </section>
 
