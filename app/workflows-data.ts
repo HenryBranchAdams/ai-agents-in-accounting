@@ -4,6 +4,7 @@ import {
   type ProcessFamily,
   type ProcessFamilyId,
   type WorkflowAction,
+  type WorkflowBrief,
   type WorkflowRecord,
   type WorkflowSourceLink,
 } from "./domain-model";
@@ -1047,6 +1048,99 @@ const familyById = new Map(processFamilies.map((family) => [family.id, family]))
 const knownResourceIds = new Set(resources.map((resource) => resource.id));
 const resourceById = new Map(resources.map((resource) => [resource.id, resource]));
 
+const workflowBriefsById: Partial<Record<string, WorkflowBrief>> = {
+  "wf-r2r-bank-reconciliations": {
+    id: "brief-wf-r2r-bank-reconciliations",
+    version: "1",
+    content_mode: "how-to",
+    evidence_classification: "implementation-pattern",
+    intended_audience: "Accounting leaders, cash accountants, reviewers, and implementers screening a supervised bank-reconciliation pilot.",
+    prerequisites: [
+      "Complete bank and ledger evidence for the named account and period",
+      "Approved outstanding-item records and reproducible source totals",
+      "A named owner and reviewer with time to investigate exceptions",
+    ],
+    outcome: "Decide in one minute whether this workflow fits, what evidence it needs, where agent authority stops, and what the reviewer must receive.",
+    why_agentic: "Matching and tie-outs are deterministic; investigating exceptions is adaptive. An agent can prepare an evidence-linked exception register and proposed treatment, but cannot resolve unsupported items or approve the result.",
+    best_fit: [
+      "Complete read-only bank and ledger sources that reproduce to control totals",
+      "Consistent identifiers and a manageable exception population",
+      "A recurring close process with a named reviewer and standard workpaper",
+    ],
+    poor_fit: [
+      "Missing statements, incomplete populations, or unclear account ownership",
+      "Commingled or unmapped accounts requiring policy or legal judgment",
+      "Any expectation of autonomous posting, bank contact, cash movement, or approval",
+    ],
+    default_boundary: "Limit the agent to A1 preparation and A2 recommendation. Posting, bank contact, cash movement, and final approval require separate human authorization.",
+    owner: "Controller or chief accounting officer",
+    reviewer: "Accounting manager, controller, or cash reviewer separate from preparation and posting",
+    top_check: "Adjusted bank equals adjusted book; each reconciling item links once to source IDs, with no duplicates or stale items.",
+    top_failure: "An unsupported item is guessed into a timing category so the reconciliation appears to tie.",
+    expected_artifact: "Versioned reconciliation, source and control totals, exception register, tie-out, proposed adjustments, and attributable reviewer disposition.",
+    pilot_suitability: {
+      rating: "good-supervised-pilot",
+      rationale: "Matching is testable; exceptions create a bounded need for judgment and review.",
+      conditions: [
+        "Keep system access read-only or draft-only",
+        "Use clean-room synthetic data for design and qualification",
+        "Stop on missing, contradictory, or out-of-period evidence",
+      ],
+    },
+    synthetic_example: {
+      id: "example-bank-receipt-without-bank-evidence",
+      title: "Book receipt has no bank-side match",
+      fictional: true,
+      evidence_classification: "synthetic-example",
+      facts: [
+        "Cedar & Pine Services, a fictional company, recorded an $850 customer receipt on June 30.",
+        "The authorized June bank statement contains no matching deposit, and the July statement is not in the approved evidence set.",
+        "Adjusted bank and adjusted book do not tie without assuming the item is a deposit in transit.",
+      ],
+      decision: "Keep the $850 unresolved, stop the conclusion, request bank evidence through the reviewer, and do not propose or post an unsupported adjustment.",
+    },
+    related_material: [
+      { id: "wf-r2r-balance-reconciliations", kind: "workflow", label: "Balance-sheet reconciliation workflow", href: "/workflows/record-to-report/wf-r2r-balance-reconciliations" },
+      { id: "wf-r2r-journal-entry", kind: "workflow", label: "Journal-entry workflow for separately approved adjustments", href: "/workflows/record-to-report/wf-r2r-journal-entry" },
+      { id: "ctrl-deterministic-validation", kind: "control", label: "Deterministic recalculation and tie-outs", href: "/controls#ctrl-deterministic-validation" },
+      { id: "ctrl-exception-routing", kind: "control", label: "Exception routing and stop conditions", href: "/controls#ctrl-exception-routing" },
+      { id: "tpl-reviewer-packet", kind: "template", label: "Workpaper and reviewer-packet template", href: "/templates#tpl-reviewer-packet" },
+      { id: "bank-reconciliation", kind: "case", label: "Synthetic bank-reconciliation pack", href: "/packs/bank-reconciliation" },
+      { id: "reviewer-guide", kind: "guide", label: "Reviewer field guide", href: "/reviewer-guide" },
+      { id: "src_0vf7hhg", kind: "source", label: "PCAOB AS 1105 evidence source record", href: "/resources/src_0vf7hhg" },
+    ],
+    limitations: [
+      "This brief is an educational implementation pattern, not an entity policy, accounting conclusion, audit procedure, or assurance report.",
+      "The named controls do not establish that a particular bank-reconciliation process or agent is effective.",
+      "The linked PCAOB standards bind only within their stated public-company audit scope; their use here is limited to evidence and control-design considerations.",
+      "Entity-specific materiality, account ownership, applicable accounting requirements, banking terms, and review procedures must be established by accountable people.",
+    ],
+    next_action: "If the fit conditions hold, open the full workflow below and define the exact entity, account, period, sources, control totals, exception rules, reviewer, and prohibited actions before preparing a synthetic pilot.",
+    source_basis: [
+      {
+        id: "src_0vf7hhg",
+        evidence_classification: "authoritative-requirement",
+        supports: "Evidence relevance, reliability, sufficiency, and the need to keep contradictory evidence visible.",
+        applicability: "Binding only for PCAOB public-company audits; used here as an evidence-design source, not as a universal bank-reconciliation requirement.",
+      },
+      {
+        id: "src_075usnq",
+        evidence_classification: "authoritative-requirement",
+        supports: "Control design, control evidence, and the effect of workflow changes on internal control over financial reporting.",
+        applicability: "Binding only within the source's PCAOB public-company ICFR audit scope; entity controls and management responsibilities remain fact-specific.",
+      },
+    ],
+    prepared_at: "2026-08-27",
+    review_status: "maintainer-review-pending",
+    review_note: "Automated integrity checks and maintainer editorial review only; practitioner, independent, professional, and assurance review are not claimed.",
+    rights: {
+      editorial_content: "CC-BY-4.0",
+      synthetic_example_and_factual_metadata: "CC0-1.0",
+      external_sources: "record-specific; unknown unless a publisher grant is recorded",
+    },
+  },
+};
+
 const commonWorkflowSourceIds = ["src_0vf7hhg", "src_1l45nk0"];
 
 const familyCoreSourceIds: Record<ProcessFamilyId, string[]> = {
@@ -1330,6 +1424,7 @@ function buildWorkflow(seed: WorkflowSeed): WorkflowRecord {
     control_totals: ["Source record count", "Source amount or balance total", "Excluded-record count and amount", "Output record count and amount"],
     source_ids: sourceIds,
     source_links: sourceLinks,
+    brief: workflowBriefsById[seed.id],
     agent_procedures: seed.procedures,
     deterministic_checks: unique([...family.default_checks, ...seed.checks]),
     read_tools: family.default_read_tools,

@@ -99,7 +99,7 @@ export function DocsSearch() {
 
     const workflowResults: SearchEntry[] = workflowRecords
       .filter((workflow) =>
-        `${workflow.id} ${workflow.name} ${workflow.family_name} ${workflow.summary} ${workflow.accounting_objective}`
+        `${workflow.id} ${workflow.name} ${workflow.family_name} ${workflow.summary} ${workflow.accounting_objective} ${workflow.brief ? `${workflow.brief.pilot_suitability.rating.replaceAll("-", " ")} ${JSON.stringify(workflow.brief)}` : ""}`
           .toLowerCase()
           .includes(term),
       )
@@ -107,7 +107,7 @@ export function DocsSearch() {
         href: `/workflows/${workflow.family}/${workflow.id}`,
         title: workflow.name,
         category: workflow.family_name,
-        detail: `Controlling boundary ${workflow.authority_level} · ${workflow.summary}`,
+        detail: `${workflow.brief ? "One-minute brief · " : ""}Controlling boundary ${workflow.authority_level} · ${workflow.summary}`,
       }));
 
     const glossaryResults: SearchEntry[] = glossary

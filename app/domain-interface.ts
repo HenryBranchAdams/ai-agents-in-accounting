@@ -126,6 +126,61 @@ export function renderWorkflowsMarkdown(records: WorkflowRecord[] = workflowReco
         `- Accountable owner: ${workflow.accountable_owner}`,
         `- Reviewer: ${workflow.reviewer}`,
         "",
+      );
+      if (workflow.brief) {
+        lines.push(
+          `#### One-minute workflow brief`,
+          "",
+          `- Brief ID: \`${workflow.brief.id}\`; version ${workflow.brief.version}`,
+          `- Content mode: ${workflow.brief.content_mode}`,
+          `- Evidence classification: ${workflow.brief.evidence_classification}`,
+          `- Intended audience: ${workflow.brief.intended_audience}`,
+          `- Outcome: ${workflow.brief.outcome}`,
+          `- Default boundary: ${workflow.brief.default_boundary}`,
+          `- Owner: ${workflow.brief.owner}`,
+          `- Reviewer: ${workflow.brief.reviewer}`,
+          `- Top check: ${workflow.brief.top_check}`,
+          `- Top failure: ${workflow.brief.top_failure}`,
+          `- Expected artifact: ${workflow.brief.expected_artifact}`,
+          `- Pilot suitability: ${workflow.brief.pilot_suitability.rating}. ${workflow.brief.pilot_suitability.rationale}`,
+          "",
+          workflow.brief.why_agentic,
+          "",
+        );
+        list(lines, "Prerequisites", workflow.brief.prerequisites);
+        list(lines, "Good fit", workflow.brief.best_fit);
+        list(lines, "Poor fit", workflow.brief.poor_fit);
+        list(lines, "Pilot conditions", workflow.brief.pilot_suitability.conditions);
+        lines.push(
+          `**Synthetic example: ${workflow.brief.synthetic_example.title}**`,
+          "",
+          `- ID: \`${workflow.brief.synthetic_example.id}\``,
+          `- Evidence classification: ${workflow.brief.synthetic_example.evidence_classification}`,
+          `- Fictional: ${workflow.brief.synthetic_example.fictional}`,
+          ...workflow.brief.synthetic_example.facts.map((fact) => `- ${fact}`),
+          `- Safe decision: ${workflow.brief.synthetic_example.decision}`,
+          "",
+        );
+        list(
+          lines,
+          "Related material",
+          workflow.brief.related_material.map((item) => `${item.label} (${item.kind}; \`${item.id}\`) — ${item.href}`),
+        );
+        list(lines, "Limitations", workflow.brief.limitations);
+        lines.push(
+          `**Primary-source basis**`,
+          "",
+          ...workflow.brief.source_basis.map((source) => `- \`${source.id}\` — ${source.evidence_classification}. ${source.supports} Applicability: ${source.applicability}`),
+          "",
+          `- Next action: ${workflow.brief.next_action}`,
+          `- Prepared: ${workflow.brief.prepared_at}`,
+          `- Review status: ${workflow.brief.review_status}`,
+          `- Review note: ${workflow.brief.review_note}`,
+          `- Rights: editorial ${workflow.brief.rights.editorial_content}; synthetic example and factual metadata ${workflow.brief.rights.synthetic_example_and_factual_metadata}; external sources ${workflow.brief.rights.external_sources}.`,
+          "",
+        );
+      }
+      lines.push(
         "**Trigger and scope**",
         "",
         `- Trigger: ${workflow.trigger}`,

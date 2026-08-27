@@ -56,7 +56,22 @@ const documents: SearchDocument[] = [
     authority: item.authority_level,
     topic: null,
     kind: "workflow",
-    keywords: [item.accounting_objective, ...item.outputs],
+    keywords: [
+      item.accounting_objective,
+      ...item.outputs,
+      ...(item.brief ? [
+        item.brief.outcome,
+        item.brief.why_agentic,
+        item.brief.default_boundary,
+        item.brief.top_check,
+        item.brief.top_failure,
+        item.brief.expected_artifact,
+        item.brief.pilot_suitability.rating.replaceAll("-", " "),
+        item.brief.pilot_suitability.rationale,
+        ...item.brief.best_fit,
+        ...item.brief.poor_fit,
+      ] : []),
+    ],
   })),
   ...resources.map((item) => ({
     id: item.id,

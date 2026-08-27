@@ -18,6 +18,7 @@ The test suite treats the built Worker as the public product. It sends requests 
 | Educational tutorials | Start here definition, pattern comparison, evidence-to-decision chain, clean-room synthetic exception, knowledge check, completion boundary, role paths, and human/Markdown/JSON parity. |
 | Authority reference | Action-level decision tree, A3/A4/human-only distinctions, mixed-level synthetic workflow, common misclassifications, segregation-of-duties comparisons, sensitive-action links, and human/Markdown/JSON parity. |
 | Reviewer field guide | Ordered evidence challenge, four dispositions, minimum packet, automation-bias traps, synthetic good/failure/conflict examples, cross-domain calibration, visible review states, and human/Markdown/JSON parity. |
+| Workflow brief pilot | Bank-reconciliation fit, prerequisites, authority, top check and failure, artifact, synthetic stop example, source applicability, related material, and human/Markdown/JSON/OpenAPI parity. |
 | Accounting safety | Benchmark hard gates, empty executed-action sets, approval boundaries, evidence links, and deterministic calculations. |
 
 ## Commands

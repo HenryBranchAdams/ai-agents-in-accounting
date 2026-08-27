@@ -507,6 +507,104 @@ const workflowSourceLinkSchema = {
   },
 } as const;
 
+const workflowBriefSchema = {
+  type: "object",
+  additionalProperties: false,
+  required: [
+    "id", "version", "content_mode", "evidence_classification", "intended_audience",
+    "prerequisites", "outcome", "why_agentic", "best_fit", "poor_fit", "default_boundary",
+    "owner", "reviewer", "top_check", "top_failure", "expected_artifact", "pilot_suitability",
+    "synthetic_example", "related_material", "limitations", "next_action", "source_basis",
+    "prepared_at", "review_status", "review_note", "rights",
+  ],
+  properties: {
+    id: { type: "string", pattern: "^brief-wf-[a-z0-9-]+$" },
+    version: { type: "string", const: "1" },
+    content_mode: { type: "string", const: "how-to" },
+    evidence_classification: { type: "string", const: "implementation-pattern" },
+    intended_audience: { type: "string" },
+    prerequisites: { type: "array", minItems: 3, items: { type: "string" } },
+    outcome: { type: "string" },
+    why_agentic: { type: "string" },
+    best_fit: { type: "array", minItems: 3, items: { type: "string" } },
+    poor_fit: { type: "array", minItems: 3, items: { type: "string" } },
+    default_boundary: { type: "string" },
+    owner: { type: "string" },
+    reviewer: { type: "string" },
+    top_check: { type: "string" },
+    top_failure: { type: "string" },
+    expected_artifact: { type: "string" },
+    pilot_suitability: {
+      type: "object",
+      additionalProperties: false,
+      required: ["rating", "rationale", "conditions"],
+      properties: {
+        rating: { type: "string", enum: ["good-supervised-pilot", "conditional", "poor"] },
+        rationale: { type: "string" },
+        conditions: { type: "array", minItems: 3, items: { type: "string" } },
+      },
+    },
+    synthetic_example: {
+      type: "object",
+      additionalProperties: false,
+      required: ["id", "title", "fictional", "evidence_classification", "facts", "decision"],
+      properties: {
+        id: { type: "string" },
+        title: { type: "string" },
+        fictional: { type: "boolean", const: true },
+        evidence_classification: { type: "string", const: "synthetic-example" },
+        facts: { type: "array", minItems: 3, items: { type: "string" } },
+        decision: { type: "string" },
+      },
+    },
+    related_material: {
+      type: "array",
+      minItems: 6,
+      items: {
+        type: "object",
+        additionalProperties: false,
+        required: ["id", "kind", "label", "href"],
+        properties: {
+          id: { type: "string" },
+          kind: { type: "string", enum: ["workflow", "control", "template", "case", "source", "guide"] },
+          label: { type: "string" },
+          href: { type: "string", pattern: "^/" },
+        },
+      },
+    },
+    limitations: { type: "array", minItems: 4, items: { type: "string" } },
+    next_action: { type: "string" },
+    source_basis: {
+      type: "array",
+      minItems: 2,
+      items: {
+        type: "object",
+        additionalProperties: false,
+        required: ["id", "evidence_classification", "supports", "applicability"],
+        properties: {
+          id: { type: "string", pattern: "^src_" },
+          evidence_classification: { type: "string", const: "authoritative-requirement" },
+          supports: { type: "string" },
+          applicability: { type: "string" },
+        },
+      },
+    },
+    prepared_at: { type: "string", format: "date" },
+    review_status: { type: "string", const: "maintainer-review-pending" },
+    review_note: { type: "string" },
+    rights: {
+      type: "object",
+      additionalProperties: false,
+      required: ["editorial_content", "synthetic_example_and_factual_metadata", "external_sources"],
+      properties: {
+        editorial_content: { type: "string", const: "CC-BY-4.0" },
+        synthetic_example_and_factual_metadata: { type: "string", const: "CC0-1.0" },
+        external_sources: { type: "string" },
+      },
+    },
+  },
+} as const;
+
 const workflowRequired = [
   "id", "version", "family", "family_name", "name", "summary", "accounting_objective",
   "accountable_owner", "reviewer", "trigger", "scope", "entity_scope", "period_scope", "trigger_scope",
@@ -543,6 +641,7 @@ const workflowSchema = {
     control_totals: stringArraySchema,
     source_ids: { type: "array", items: { type: "string", pattern: "^src_" } },
     source_links: { type: "array", items: workflowSourceLinkSchema },
+    brief: workflowBriefSchema,
     agent_procedures: stringArraySchema,
     deterministic_checks: stringArraySchema,
     read_tools: stringArraySchema,

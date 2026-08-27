@@ -319,6 +319,60 @@ export type WorkflowSourceLink = {
   applicability: string;
 };
 
+export type WorkflowBrief = {
+  id: string;
+  version: "1";
+  content_mode: "how-to";
+  evidence_classification: "implementation-pattern";
+  intended_audience: string;
+  prerequisites: string[];
+  outcome: string;
+  why_agentic: string;
+  best_fit: string[];
+  poor_fit: string[];
+  default_boundary: string;
+  owner: string;
+  reviewer: string;
+  top_check: string;
+  top_failure: string;
+  expected_artifact: string;
+  pilot_suitability: {
+    rating: "good-supervised-pilot" | "conditional" | "poor";
+    rationale: string;
+    conditions: string[];
+  };
+  synthetic_example: {
+    id: string;
+    title: string;
+    fictional: true;
+    evidence_classification: "synthetic-example";
+    facts: string[];
+    decision: string;
+  };
+  related_material: Array<{
+    id: string;
+    kind: "workflow" | "control" | "template" | "case" | "source" | "guide";
+    label: string;
+    href: string;
+  }>;
+  limitations: string[];
+  next_action: string;
+  source_basis: Array<{
+    id: string;
+    evidence_classification: "authoritative-requirement";
+    supports: string;
+    applicability: string;
+  }>;
+  prepared_at: string;
+  review_status: "maintainer-review-pending";
+  review_note: string;
+  rights: {
+    editorial_content: "CC-BY-4.0";
+    synthetic_example_and_factual_metadata: "CC0-1.0";
+    external_sources: "record-specific; unknown unless a publisher grant is recorded";
+  };
+};
+
 export type WorkflowRecord = {
   id: string;
   version: "1";
@@ -339,6 +393,7 @@ export type WorkflowRecord = {
   control_totals: string[];
   source_ids: string[];
   source_links: WorkflowSourceLink[];
+  brief?: WorkflowBrief;
   agent_procedures: string[];
   deterministic_checks: string[];
   read_tools: string[];

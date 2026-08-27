@@ -92,6 +92,7 @@ export default async function WorkflowPage({ params }: WorkflowPageProps) {
       markdownHref={`/api/v1/workflows/${workflow.id}?format=markdown`}
       reviewedAt={workflow.reviewed_at}
       toc={[
+        ...(workflow.brief ? [{ href: "#one-minute-brief", label: "One-minute brief" }] : []),
         { href: "#objective", label: "Objective and scope" },
         { href: "#evidence", label: "Evidence and tools" },
         { href: "#procedure", label: "Procedure and checks" },
@@ -112,6 +113,105 @@ export default async function WorkflowPage({ params }: WorkflowPageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }}
         type="application/ld+json"
       />
+      {workflow.brief && (
+        <section className="workflow-brief" data-content-mode={workflow.brief.content_mode} id="one-minute-brief">
+          <div className="workflow-brief-heading">
+            <div>
+              <p className="workflow-brief-kicker">One-minute workflow brief</p>
+              <h2>Should you keep reading?</h2>
+            </div>
+            <span className="evidence-classification" data-evidence-classification={workflow.brief.evidence_classification}>
+              Implementation pattern
+            </span>
+          </div>
+          <p className="workflow-brief-outcome">{workflow.brief.outcome}</p>
+          <p>{workflow.brief.why_agentic}</p>
+
+          <div className="workflow-brief-fit">
+            <article>
+              <h3>Good fit</h3>
+              <BulletList items={workflow.brief.best_fit} />
+            </article>
+            <article>
+              <h3>Poor fit</h3>
+              <BulletList items={workflow.brief.poor_fit} />
+            </article>
+          </div>
+
+          <div className="note note-rule">
+            <p className="note-title">Default authority boundary</p>
+            <p>{workflow.brief.default_boundary}</p>
+          </div>
+
+          <dl className="record-facts workflow-brief-facts">
+            <div><dt>Owner</dt><dd>{workflow.brief.owner}</dd></div>
+            <div><dt>Reviewer</dt><dd>{workflow.brief.reviewer}</dd></div>
+            <div><dt>Top check</dt><dd>{workflow.brief.top_check}</dd></div>
+            <div><dt>Top failure</dt><dd>{workflow.brief.top_failure}</dd></div>
+            <div><dt>Expected artifact</dt><dd>{workflow.brief.expected_artifact}</dd></div>
+            <div>
+              <dt>Pilot suitability</dt>
+              <dd>
+                <strong>{workflow.brief.pilot_suitability.rating === "good-supervised-pilot" ? "Good supervised pilot" : workflow.brief.pilot_suitability.rating}</strong>
+                {` — ${workflow.brief.pilot_suitability.rationale}`}
+              </dd>
+            </div>
+          </dl>
+
+          <details className="workflow-brief-details">
+            <summary>Open prerequisites, example, sources, and transfer limits</summary>
+            <div>
+              <h3>Prerequisites</h3>
+              <BulletList items={workflow.brief.prerequisites} />
+              <h3>Pilot conditions</h3>
+              <BulletList items={workflow.brief.pilot_suitability.conditions} />
+
+              <article className="workflow-brief-example" id={workflow.brief.synthetic_example.id}>
+                <p className="evidence-label" data-evidence-classification={workflow.brief.synthetic_example.evidence_classification}>
+                  Synthetic example · fictional
+                </p>
+                <h3>{workflow.brief.synthetic_example.title}</h3>
+                <BulletList items={workflow.brief.synthetic_example.facts} />
+                <p><strong>Safe decision:</strong> {workflow.brief.synthetic_example.decision}</p>
+              </article>
+
+              <div className="workflow-brief-lower">
+                <article>
+                  <h3>Related material</h3>
+                  <ul>
+                    {workflow.brief.related_material.map((item) => (
+                      <li key={item.id}><Link href={item.href}>{item.label}</Link> <small>({item.kind})</small></li>
+                    ))}
+                  </ul>
+                </article>
+                <article>
+                  <h3>Limits</h3>
+                  <BulletList items={workflow.brief.limitations} />
+                </article>
+              </div>
+
+              <h3>Primary-source basis</h3>
+              <ul className="workflow-brief-sources">
+                {workflow.brief.source_basis.map((source) => (
+                  <li key={source.id}>
+                    <Link href={`/resources/${source.id}`}><code>{source.id}</code></Link>
+                    <span>{source.supports}</span>
+                    <small>{source.applicability}</small>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </details>
+
+          <div className="note">
+            <p className="note-title">Continue only after the fit check</p>
+            <p>{workflow.brief.next_action}</p>
+          </div>
+          <p className="workflow-brief-review">
+            Prepared {workflow.brief.prepared_at} · {workflow.brief.review_note}
+          </p>
+        </section>
+      )}
       <section id="objective">
         <div className="record-heading-row record-heading-intro">
           <h2>Objective and scope</h2>

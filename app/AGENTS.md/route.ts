@@ -16,7 +16,8 @@ const instructions = `# Accounting Agents public access instructions
 8. Use /control-model to structure governed work from objective through retained record; apply all nine elements rather than treating the page as a checklist that grants authority.
 9. Use /authority to classify one observable action at a time; preserve A3, A4, and human-only distinctions and stop when approval, evidence, enforcement, or segregation of duties is missing.
 10. Use the reviewer field guide at /reviewer-guide to challenge evidence-linked work, record approve, modify, reject, or escalate, and stop when support, authority, reviewer competence, or reviewer independence is missing. Do not infer that subject-matter or professional review occurred.
-11. Use /coverage before claiming that the corpus is complete, deep, applicable to an expansion domain, or suitable for a pilot.
+11. Use the one-minute brief on /workflows/record-to-report/wf-r2r-bank-reconciliations to screen fit, authority, evidence, the top check and failure, and supervised-pilot conditions before retrieving the full bank-reconciliation record.
+12. Use /coverage before claiming that the corpus is complete, deep, applicable to an expansion domain, or suitable for a pilot.
 
 ## Non-negotiable boundaries
 
@@ -55,6 +56,8 @@ const instructions = `# Accounting Agents public access instructions
 - /reviewer-guide
 - /reviewer-guide.md
 - /api/v1/reviewer-guide
+- /workflows/record-to-report/wf-r2r-bank-reconciliations
+- /api/v1/workflows/wf-r2r-bank-reconciliations
 - /content-contract
 - /content-contract.md
 - /api/v1/content-contract

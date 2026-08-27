@@ -23,6 +23,7 @@ export async function GET(request: Request) {
     counts: {
       process_families: processFamilies.length,
       workflows: workflowRecords.length,
+      workflow_briefs: workflowRecords.filter((workflow) => workflow.brief).length,
       authority_levels: authorityLevels.length,
       authority_decision_guides: 1,
       reviewer_guides: 1,

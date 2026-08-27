@@ -94,7 +94,7 @@ export const searchItems = [
   { href: "/authority", title: "Authority ladder and decision tree", category: "Learn", detail: "Classify one action across A0–A4 and human-only responsibility, including mixed workflows and segregation of duties" },
   { href: "/reviewer-guide", title: "Review agent-prepared accounting work", category: "Govern", detail: "Evidence challenge, deterministic checks, materiality, dispositions, reviewer packets, bias traps, and calibration" },
   { href: "/workflows", title: "Review the workflow library", category: "Workflows", detail: "Sixty canonical accounting workflows" },
-  { href: "/workflows/record-to-report/wf-r2r-bank-reconciliations", title: "Prepare a bank reconciliation", category: "Workflows", detail: "Inputs, procedures, checks, authority, output, and review" },
+  { href: "/workflows/record-to-report/wf-r2r-bank-reconciliations", title: "Prepare a bank reconciliation", category: "Workflows", detail: "One-minute fit and boundary brief, then inputs, checks, procedure, output, and review" },
   { href: "/controls#support", title: "Separate support and authority", category: "Controls", detail: "Evidence, claims, judgment, and decisions" },
   { href: "/controls#authority", title: "Set the authority boundary", category: "Controls", detail: "Scope, tools, thresholds, actions, and stops" },
   { href: "/controls#control-design", title: "Design an agent-assisted control", category: "Controls", detail: "Performance and assessment" },

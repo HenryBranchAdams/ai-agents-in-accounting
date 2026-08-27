@@ -1241,6 +1241,129 @@ tbody tr:last-child td {
   text-decoration: none;
 }
 
+.workflow-brief {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  padding: 24px;
+}
+
+.workflow-brief-heading {
+  align-items: flex-start;
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.workflow-brief-heading h2 {
+  margin-top: 0;
+}
+
+.workflow-brief-kicker {
+  color: var(--accent) !important;
+  font-size: 10px !important;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  margin: 0 0 5px !important;
+  text-transform: uppercase;
+}
+
+.workflow-brief-outcome {
+  color: var(--text) !important;
+  font-size: 17px !important;
+  font-weight: 610;
+  line-height: 1.55 !important;
+}
+
+.workflow-brief-fit,
+.workflow-brief-lower {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 20px;
+}
+
+.workflow-brief-fit > article,
+.workflow-brief-lower > article {
+  border-top: 1px solid var(--border);
+  min-width: 0;
+  padding-top: 12px;
+}
+
+.workflow-brief-fit h3,
+.workflow-brief-lower h3,
+.workflow-brief-example h3 {
+  margin-top: 0;
+}
+
+.workflow-brief-facts > div {
+  grid-template-columns: 130px 1fr;
+}
+
+.workflow-brief-example {
+  border: 1px solid var(--border);
+  margin: 22px 0;
+  padding: 16px;
+}
+
+.workflow-brief-example > p:last-child {
+  margin-bottom: 0;
+}
+
+.workflow-brief-details {
+  border-bottom: 1px solid var(--border);
+  border-top: 1px solid var(--border);
+  margin: 22px 0;
+}
+
+.workflow-brief-details > summary {
+  color: var(--text);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 650;
+  padding: 13px 2px;
+}
+
+.workflow-brief-details > summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.workflow-brief-details > div {
+  padding: 4px 2px 18px;
+}
+
+.workflow-brief-lower small {
+  color: var(--faint);
+}
+
+.workflow-brief-sources {
+  border-top: 1px solid var(--border);
+  list-style: none;
+  margin: 12px 0 20px !important;
+  padding: 0 !important;
+}
+
+.workflow-brief-sources li {
+  border-bottom: 1px solid var(--border);
+  display: grid;
+  gap: 3px;
+  margin: 0;
+  padding: 10px 0;
+}
+
+.workflow-brief-sources span,
+.workflow-brief-sources small {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.workflow-brief-sources small,
+.workflow-brief-review {
+  color: var(--faint) !important;
+  font-size: 11px !important;
+}
+
 .workflow-list-number {
   color: var(--faint);
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
@@ -2755,6 +2878,21 @@ summary:focus-visible {
 }
 
 @media (max-width: 720px) {
+  .workflow-brief {
+    padding: 18px;
+  }
+
+  .workflow-brief-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .workflow-brief-fit,
+  .workflow-brief-lower {
+    grid-template-columns: 1fr;
+  }
+
   .knowledge-check label,
   .check-feedback {
     margin-left: 0;
