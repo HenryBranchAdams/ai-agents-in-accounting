@@ -142,7 +142,7 @@ test("serves a versioned, filterable resource API", async () => {
 
   const payload = await response.json();
   assert.equal(payload.schema_version, "1.0");
-  assert.equal(payload.catalog_version, "2026-08-25.2");
+  assert.equal(payload.catalog_version, "2026-08-27.1");
   assert.ok(payload.items.length > 0);
   assert.ok(payload.items.every((item) => item.id.startsWith("src_")));
   assert.ok(payload.items.every((item) => item.source_license === "unknown"));
@@ -218,8 +218,8 @@ test("supports cache validators and complete snapshots", async () => {
   const snapshot = await request("/downloads/resources.json");
   assert.equal(snapshot.status, 200);
   const catalog = await snapshot.json();
-  assert.equal(catalog.total_records, 433);
-  assert.equal(new Set(catalog.items.map((item) => item.id)).size, 433);
+  assert.equal(catalog.total_records, 489);
+  assert.equal(new Set(catalog.items.map((item) => item.id)).size, 489);
   assert.ok(catalog.items.some((item) => item.id === "src_ifrs15a"));
   assert.ok(catalog.items.some((item) => item.id === "src_gaogb25"));
   assert.ok(catalog.items.some((item) => item.id === "src_1krui2p"));
@@ -269,9 +269,60 @@ test("gives every indexed source a canonical semantic HTML record", async () => 
   assert.match(html, /"publisher":\{"@type":"Organization","name":"Accounting Agents"\}/);
   assert.match(html, /"isBasedOn":\{"@type":"CreativeWork"/);
   assert.match(html, /\/api\/v1\/resources\/src_ifrs15a/);
+  assert.match(html, /Catalog updated/);
+  assert.match(html, /Catalog record; curation and maintainer review not yet completed/);
+  assert.doesNotMatch(html, /Maintainer-reviewed educational synthesis/);
 
   const unknown = await request("/resources/src_missing", { accept: "text/html" });
   assert.equal(unknown.status, 404);
+});
+
+test("renders industry and time filters plus the relationship-profile pilot", async () => {
+  const library = await request("/resources?industry=insurance&time_role=foundational", { accept: "text/html" });
+  assert.equal(library.status, 200);
+  const libraryHtml = await library.text();
+  assert.match(libraryHtml, />Industry</);
+  assert.match(libraryHtml, />Time role</);
+  assert.match(libraryHtml, /value=["']insurance["']/);
+  assert.match(libraryHtml, /value=["']foundational["']/);
+  assert.match(libraryHtml, /dateTime=["']2026-08-27["']/);
+  assert.match(libraryHtml, />Prepared<!-- -->/);
+  assert.match(libraryHtml, /Agent-prepared catalog expansion; maintainer review pending/);
+  assert.doesNotMatch(libraryHtml, /Maintainer-reviewed educational synthesis/);
+
+  const profile = await request("/resources/src_agenticaudit", { accept: "text/html" });
+  assert.equal(profile.status, 200);
+  const profileHtml = await profile.text();
+  for (const heading of [
+    "Curation profile",
+    "Questions, claims, and relationships",
+    "Contrary or limiting evidence",
+    "Synthetic accounting example",
+    "Related sources and supersession",
+    "Next action",
+  ]) assert.match(profileHtml, new RegExp(heading));
+  assert.match(profileHtml, /Maintainer review pending/);
+  assert.match(profileHtml, /agent-prepared profile is awaiting maintainer review/i);
+  assert.match(profileHtml, /not independent review or assurance/i);
+  assert.match(profileHtml, /Agent-prepared curation; maintainer review pending/);
+  assert.match(profileHtml, /Contrary or limiting evidence[\s\S]*empirical-evidence/);
+  assert.doesNotMatch(profileHtml, /Maintainer-reviewed educational synthesis/);
+
+  const json = await (await request("/api/v1/resources/src_agenticaudit")).json();
+  assert.equal(json.item.curation.profile_status, "relationship-profiled");
+  assert.equal(json.item.curation.review_status, "maintainer-review-pending");
+  assert.equal(json.item.relationship_profile.accounting_example.evidence_classification, "synthetic-example");
+  assert.ok(json.item.relationship_profile.contrary_claims.every((claim) => claim.evidence_classification));
+  assert.ok(json.item.relationship_profile.related_source_ids.length > 0);
+
+  const markdown = await request("/api/v1/resources/src_agenticaudit?format=markdown");
+  const markdownText = await markdown.text();
+  for (const value of [
+    "Profile status:", "Applicability note:", "Source updated:", "Relationship profile",
+    "Review status:", "Contrary or limiting evidence", "Related guide paths:", "Supersedes:",
+    "Synthetic example:",
+  ]) assert.match(markdownText, new RegExp(value));
+  assert.match(markdownText, /\[empirical-evidence; sources: src_/);
 });
 
 test("preserves the semantic accessibility contract on representative pages", async () => {
@@ -360,6 +411,8 @@ test("publishes OpenAPI, robots, and sitemap discovery", async () => {
   assert.ok(contract.paths["/api/v1/ecosystem"]);
   assert.ok(contract.paths["/api/v1/resources"].get.parameters.some((item) => item.name === "cursor"));
   for (const schemaName of [
+    "Resource",
+    "Taxonomy",
     "AuthorityLevel",
     "SensitiveAction",
     "ControlPattern",
@@ -388,7 +441,7 @@ test("publishes OpenAPI, robots, and sitemap discovery", async () => {
   }
   for (const [path, parameterNames] of [
     ["/api/v1/workflows", ["family", "authority"]],
-    ["/api/v1/resources", ["topic", "kind"]],
+    ["/api/v1/resources", ["topic", "kind", "industry", "time_role"]],
   ]) {
     const headParameters = contract.paths[path].head.parameters.map((parameter) => parameter.name);
     for (const parameterName of parameterNames) assert.ok(headParameters.includes(parameterName), `${path} HEAD ${parameterName}`);
@@ -416,6 +469,22 @@ test("publishes OpenAPI, robots, and sitemap discovery", async () => {
     });
   }
 
+  const taxonomyContractPayload = await (await request("/api/v1/taxonomy")).json();
+  assertSchema(taxonomyContractPayload, contract.components.schemas.Taxonomy, contract, "Taxonomy");
+  const completeResourceCatalog = await (await request("/downloads/resources.json")).json();
+  completeResourceCatalog.items.forEach((item, index) => {
+    assertSchema(item, contract.components.schemas.Resource, contract, `CompleteResource[${index}]`);
+  });
+  for (const method of ["get", "head", "options"]) {
+    const idParameter = contract.paths["/api/v1/resources/{id}"][method].parameters
+      .find((parameter) => parameter.name === "id");
+    const idPattern = new RegExp(idParameter.schema.pattern);
+    for (const item of completeResourceCatalog.items) {
+      assert.match(item.id, idPattern, `${method} path parameter rejects ${item.id}`);
+    }
+  }
+  assert.equal((await request("/api/v1/resources/src_aadp")).status, 200);
+
   const apiCatalog = await request("/.well-known/api-catalog");
   assert.equal(apiCatalog.status, 200);
   assert.match(apiCatalog.headers.get("content-type") ?? "", /^application\/linkset\+json\b/i);
@@ -431,7 +500,7 @@ test("publishes OpenAPI, robots, and sitemap discovery", async () => {
   const metadata = await request("/api/v1/meta");
   assert.equal(metadata.status, 200);
   const metaPayload = await metadata.json();
-  assert.equal(metaPayload.total_records, 433);
+  assert.equal(metaPayload.total_records, 489);
   assert.equal(metaPayload.record_counts.workflows, 60);
   assert.equal(metaPayload.record_counts.workflow_packs, 6);
   assert.equal(metaPayload.record_counts.benchmark_cases, 30);
@@ -457,6 +526,18 @@ test("publishes OpenAPI, robots, and sitemap discovery", async () => {
   assert.equal(taxonomyPayload.workflow_packs.length, 6);
   assert.equal(taxonomyPayload.benchmark_case_types.length, 5);
   assert.equal(taxonomyPayload.ecosystem_layers.length, 5);
+  assert.equal(taxonomyPayload.industries.length, 12);
+  assert.ok(taxonomyPayload.industries.some((item) => item.label === "Healthcare or life sciences"));
+  assert.ok(taxonomyPayload.industries.some((item) => item.label === "Construction or real estate"));
+  assert.ok(taxonomyPayload.industries.some((item) => item.label === "Public sector or nonprofit"));
+  assert.equal(taxonomyPayload.time_roles.length, 4);
+  assert.equal(taxonomyPayload.lifecycle_states.length, 6);
+  assert.equal(taxonomyPayload.source_evidence_tiers.length, 5);
+  assert.equal(taxonomyPayload.source_relationship_profile_count, 8);
+  assert.equal(taxonomyPayload.source_curation_contract.status, "pilot");
+  assert.equal(taxonomyPayload.source_curation_contract.curation_review_status, "maintainer-review-pending");
+  assert.equal(taxonomyPayload.source_curation_contract.relationship_profile_review_status, "maintainer-review-pending");
+  assert.equal(taxonomyPayload.source_curation_contract.unclassified_records_are_not_assumed_general, true);
   assert.ok(taxonomyPayload.search_record_types.includes("pack"));
   assert.ok(taxonomyPayload.search_record_types.includes("ecosystem"));
 
@@ -472,6 +553,7 @@ test("publishes OpenAPI, robots, and sitemap discovery", async () => {
   assert.match(sitemapText, /\/packs\/bank-reconciliation/);
   assert.match(sitemapText, /\/open-source/);
   assert.match(sitemapText, /\/ecosystem/);
+  assert.match(sitemapText, /<loc>[^<]*\/resources<\/loc>\s*<lastmod>2026-08-27/);
 });
 
 test("publishes the complete lifecycle and canonical workflow corpus", async () => {
@@ -607,6 +689,7 @@ test("publishes the complete lifecycle and canonical workflow corpus", async () 
 
 test("indexes every canonical record collection in global search", async () => {
   const searchSource = await readFile(new URL("../app/DocsSearch.tsx", import.meta.url), "utf8");
+  const resourceIndexSource = await readFile(new URL("../app/ResourceIndex.tsx", import.meta.url), "utf8");
   for (const resultSet of [
     "authorityResults",
     "workflowResults",
@@ -622,6 +705,12 @@ test("indexes every canonical record collection in global search", async () => {
     assert.match(searchSource, new RegExp(`\\.\\.\\.${resultSet}`));
   }
   assert.match(searchSource, /href: `\/authority#level-\$\{level\.id\}`/);
+  assert.match(searchSource, /sourceRelationshipProfiles/);
+  assert.match(searchSource, /relationshipProfile\?\.claims/);
+  assert.match(resourceIndexSource, /sourceRelationshipProfiles/);
+  assert.match(resourceIndexSource, /relationshipProfile\?\.claims/);
+  assert.match(resourceIndexSource, /window\.history\.replaceState/);
+  assert.match(resourceIndexSource, /popstate/);
 });
 
 test("publishes governance, controls, templates, and terminology in equivalent formats", async () => {
@@ -759,12 +848,12 @@ test("publishes a complete agent-ingestion corpus and discovery contract", async
   assert.equal(corpus.counts.control_patterns, 16);
   assert.equal(corpus.counts.templates, 14);
   assert.equal(corpus.counts.glossary_terms, 47);
-  assert.equal(corpus.counts.source_records, 433);
+  assert.equal(corpus.counts.source_records, 489);
   assert.equal(corpus.counts.workflow_packs, 6);
   assert.equal(corpus.counts.benchmark_cases, 30);
   assert.equal(corpus.counts.ecosystem_layers, 5);
   assert.equal(corpus.workflows.length, 60);
-  assert.equal(corpus.sources.length, 433);
+  assert.equal(corpus.sources.length, 489);
   assert.equal(corpus.workflow_packs.length, 6);
   assert.equal(corpus.benchmark.cases.length, 30);
   assert.equal(corpus.ecosystem_layers.length, 5);
@@ -849,6 +938,6 @@ test("publishes a complete agent-ingestion corpus and discovery contract", async
   assert.match(sitemapText, /\/reading-room/);
   assert.match(sitemapText, /\/packs\/bank-reconciliation/);
   const locations = [...sitemapText.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
-  assert.equal(locations.length, 536);
+  assert.equal(locations.length, 592);
   assert.equal(new Set(locations).size, locations.length);
 });

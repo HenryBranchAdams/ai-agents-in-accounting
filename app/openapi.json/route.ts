@@ -1,6 +1,8 @@
 import {
   agentResources,
+  allowedIndustries,
   allowedKinds,
+  allowedTimeRoles,
   allowedTopics,
   apiVersion,
   catalogReviewedAt,
@@ -13,6 +15,11 @@ import { corpusReviewedAt, corpusVersion } from "../domain-model";
 import { ecosystemLayers } from "../ecosystem-data";
 import { controlPatterns, sensitiveActions } from "../governance-data";
 import { glossary, templates } from "../reference-data";
+import {
+  resourceLifecycleStates,
+  sourceAudienceValues,
+  sourceEvidenceTiers,
+} from "../resources-data";
 import {
   ledgerBenchEpisodeSchema,
   ledgerBenchProgramSchema,
@@ -59,10 +66,10 @@ const resourceSchema = {
   required: [
     "id", "record_version", "record_updated_at", "topic", "source_type", "owner", "title",
     "published_or_status", "jurisdiction", "access", "summary", "reviewed_at", "verified_at",
-    "source_license", "source_license_url", "source_rights", "metadata_rights", "annotation_rights", "canonical_source_url", "catalog_url", "record_url", "provenance",
+    "curation", "relationship_profile", "source_license", "source_license_url", "source_rights", "metadata_rights", "annotation_rights", "canonical_source_url", "catalog_url", "record_url", "provenance",
   ],
   properties: {
-    id: { type: "string", pattern: "^src_[a-z0-9]{7,}$", description: "Stable catalog ID." },
+    id: { type: "string", pattern: "^src_[a-z0-9]{4,}$", description: "Stable catalog ID." },
     record_version: { type: "string" },
     record_updated_at: { type: "string", format: "date" },
     topic: { type: "string", enum: allowedTopics },
@@ -75,6 +82,56 @@ const resourceSchema = {
     summary: { type: "string" },
     reviewed_at: { type: "string", format: "date" },
     verified_at: { type: "string", format: "date" },
+    curation: {
+      type: "object",
+      additionalProperties: false,
+      required: ["review_status", "applicability", "applicability_note", "temporal_role", "lifecycle", "publication_status", "method", "transfer_limit", "commercial_interest", "source_updated_at", "next_review_at", "profile_status"],
+      properties: {
+        review_status: { type: "string", enum: ["maintainer-review-pending", "not-curated"] },
+        applicability: { type: "array", uniqueItems: true, items: { type: "string", enum: allowedIndustries } },
+        applicability_note: { type: ["string", "null"] },
+        temporal_role: { type: ["string", "null"], enum: [...allowedTimeRoles, null] },
+        lifecycle: { type: ["string", "null"], enum: ["current", "amended", "superseded", "draft", "withdrawn", "archival", null] },
+        publication_status: { type: ["string", "null"] },
+        method: { type: ["string", "null"] },
+        transfer_limit: { type: ["string", "null"] },
+        commercial_interest: { type: "string", enum: ["none identified", "publisher or author has commercial interest", "unknown"] },
+        source_updated_at: { type: ["string", "null"], format: "date" },
+        next_review_at: { type: ["string", "null"], format: "date" },
+        profile_status: { type: "string", enum: ["relationship-profiled", "curated", "unclassified"] },
+      },
+    },
+    relationship_profile: {
+      oneOf: [
+        { type: "null" },
+        {
+          type: "object",
+          additionalProperties: false,
+          required: ["evidence_tier", "questions", "claims", "contrary_claims", "workflow_ids", "related_paths", "audiences", "difficulty", "estimated_reading_minutes", "importance", "supersedes", "superseded_by", "related_source_ids", "prerequisites", "expected_outcome", "accounting_example", "limitations", "next_action", "review_status"],
+          properties: {
+            evidence_tier: { type: "string", enum: sourceEvidenceTiers.map((item) => item.id) },
+            questions: { type: "array", minItems: 1, items: { type: "string" } },
+            claims: { type: "array", minItems: 1, items: { type: "object", additionalProperties: false, required: ["id", "text", "evidence_classification"], properties: { id: { type: "string" }, text: { type: "string" }, evidence_classification: { type: "string", enum: evidenceClassificationIds } } } },
+            contrary_claims: { type: "array", minItems: 1, items: { type: "object", additionalProperties: false, required: ["text", "source_ids", "evidence_classification"], properties: { text: { type: "string" }, source_ids: { type: "array", minItems: 1, items: { type: "string", pattern: "^src_" } }, evidence_classification: { type: "string", enum: evidenceClassificationIds } } } },
+            workflow_ids: { type: "array", minItems: 1, items: { type: "string", pattern: "^wf-" } },
+            related_paths: { type: "array", minItems: 1, items: { type: "object", additionalProperties: false, required: ["label", "href"], properties: { label: { type: "string" }, href: { type: "string", pattern: "^/" } } } },
+            audiences: { type: "array", minItems: 1, uniqueItems: true, items: { type: "string", enum: sourceAudienceValues } },
+            difficulty: { type: "string", enum: ["introductory", "intermediate", "advanced"] },
+            estimated_reading_minutes: { type: "integer", minimum: 1 },
+            importance: { type: "string", enum: ["core", "high", "supporting"] },
+            supersedes: { type: "array", items: { type: "string", pattern: "^src_" } },
+            superseded_by: { type: ["string", "null"], pattern: "^src_" },
+            related_source_ids: { type: "array", minItems: 1, items: { type: "string", pattern: "^src_" } },
+            prerequisites: { type: "string" },
+            expected_outcome: { type: "string" },
+            accounting_example: { type: "object", additionalProperties: false, required: ["text", "evidence_classification"], properties: { text: { type: "string" }, evidence_classification: { type: "string", const: "synthetic-example" } } },
+            limitations: { type: "array", minItems: 1, items: { type: "string" } },
+            next_action: { type: "string" },
+            review_status: { type: "string", const: "maintainer-review-pending" },
+          },
+        },
+      ],
+    },
     source_license: { type: "string", enum: ["unknown"] },
     source_license_url: { type: ["string", "null"], format: "uri" },
     source_rights: {
@@ -125,6 +182,125 @@ const resourceSchema = {
         annotation_type: { type: "string", const: "original editorial summary" },
       },
     },
+  },
+} as const;
+
+const taxonomyRecordArraySchema = {
+  type: "array",
+  items: { type: "object", additionalProperties: true },
+} as const;
+
+const taxonomySchema = {
+  type: "object",
+  additionalProperties: false,
+  required: [
+    "schema_version", "catalog_version", "process_families", "authority_levels", "workflows",
+    "topics", "source_types", "industries", "time_roles", "lifecycle_states",
+    "source_evidence_tiers", "source_audiences", "source_relationship_profile_count",
+    "source_curation_contract", "workflow_packs", "benchmark_case_types", "ecosystem_layers",
+    "search_record_types", "content_modes", "evidence_classifications", "control_model_elements",
+    "coverage_states",
+  ],
+  properties: {
+    schema_version: { type: "string", const: apiVersion },
+    catalog_version: { type: "string", const: catalogVersion },
+    process_families: taxonomyRecordArraySchema,
+    authority_levels: taxonomyRecordArraySchema,
+    workflows: taxonomyRecordArraySchema,
+    topics: taxonomyRecordArraySchema,
+    source_types: taxonomyRecordArraySchema,
+    industries: {
+      type: "array",
+      items: {
+        type: "object",
+        additionalProperties: false,
+        required: ["value", "label", "description", "record_count"],
+        properties: {
+          value: { type: "string", enum: allowedIndustries },
+          label: { type: "string" },
+          description: { type: "string" },
+          record_count: { type: "integer", minimum: 0 },
+        },
+      },
+    },
+    time_roles: {
+      type: "array",
+      items: {
+        type: "object",
+        additionalProperties: false,
+        required: ["value", "label", "description", "record_count"],
+        properties: {
+          value: { type: "string", enum: allowedTimeRoles },
+          label: { type: "string" },
+          description: { type: "string" },
+          record_count: { type: "integer", minimum: 0 },
+        },
+      },
+    },
+    lifecycle_states: {
+      type: "array",
+      items: {
+        type: "object",
+        additionalProperties: false,
+        required: ["value", "record_count"],
+        properties: {
+          value: { type: "string", enum: resourceLifecycleStates },
+          record_count: { type: "integer", minimum: 0 },
+        },
+      },
+    },
+    source_evidence_tiers: {
+      type: "array",
+      items: {
+        type: "object",
+        additionalProperties: false,
+        required: ["value", "label", "description", "record_count"],
+        properties: {
+          value: { type: "string", enum: sourceEvidenceTiers.map((item) => item.id) },
+          label: { type: "string" },
+          description: { type: "string" },
+          record_count: { type: "integer", minimum: 0 },
+        },
+      },
+    },
+    source_audiences: {
+      type: "array",
+      items: {
+        type: "object",
+        additionalProperties: false,
+        required: ["value", "record_count"],
+        properties: {
+          value: { type: "string", enum: sourceAudienceValues },
+          record_count: { type: "integer", minimum: 0 },
+        },
+      },
+    },
+    source_relationship_profile_count: { type: "integer", minimum: 0 },
+    source_curation_contract: {
+      type: "object",
+      additionalProperties: false,
+      required: [
+        "status", "curation_review_status", "relationship_profile_review_status", "unclassified_records_are_not_assumed_general",
+        "supported_industry_values", "supported_time_role_values", "human_invariant",
+      ],
+      properties: {
+        status: { type: "string", const: "pilot" },
+        curation_review_status: { type: "string", const: "maintainer-review-pending" },
+        relationship_profile_review_status: { type: "string", const: "maintainer-review-pending" },
+        unclassified_records_are_not_assumed_general: { type: "boolean", const: true },
+        supported_industry_values: { type: "array", uniqueItems: true, items: { type: "string", enum: allowedIndustries } },
+        supported_time_role_values: { type: "array", uniqueItems: true, items: { type: "string", enum: allowedTimeRoles } },
+        human_invariant: { type: "string" },
+      },
+    },
+    workflow_packs: taxonomyRecordArraySchema,
+    benchmark_case_types: { type: "array", items: { type: "string" } },
+    ecosystem_layers: taxonomyRecordArraySchema,
+    search_record_types: { type: "array", items: { type: "string" } },
+    content_modes: taxonomyRecordArraySchema,
+    evidence_classifications: taxonomyRecordArraySchema,
+    control_model_elements: taxonomyRecordArraySchema,
+    coverage_states: taxonomyRecordArraySchema,
   },
 } as const;
 
@@ -566,6 +742,8 @@ const resourceCollectionParameters = [
   ...commonParameters,
   { name: "topic", in: "query", schema: { type: "string", enum: allowedTopics } },
   { name: "kind", in: "query", schema: { type: "string", enum: allowedKinds } },
+  { name: "industry", in: "query", schema: { type: "string", enum: allowedIndustries } },
+  { name: "time_role", in: "query", schema: { type: "string", enum: allowedTimeRoles } },
 ] as const;
 
 function collectionResponses(schemaName: string) {
@@ -766,7 +944,7 @@ const document = {
         summary: "Retrieve one source record",
         tags: ["Resources"],
         parameters: [
-          { name: "id", in: "path", required: true, schema: { type: "string", pattern: "^src_[a-z0-9]{7,}$" } },
+          { name: "id", in: "path", required: true, schema: { type: "string", pattern: "^src_[a-z0-9]{4,}$" } },
           { name: "format", in: "query", schema: { type: "string", enum: ["json", "markdown"] } },
         ],
         responses: {
@@ -782,7 +960,7 @@ const document = {
         summary: "Retrieve source record headers",
         tags: ["Resources"],
         parameters: [
-          { name: "id", in: "path", required: true, schema: { type: "string", pattern: "^src_[a-z0-9]{7,}$" } },
+          { name: "id", in: "path", required: true, schema: { type: "string", pattern: "^src_[a-z0-9]{4,}$" } },
           { name: "format", in: "query", schema: { type: "string", enum: ["json", "markdown"] } },
         ],
         responses: {
@@ -797,7 +975,7 @@ const document = {
         operationId: "getResourceOptions",
         summary: "CORS preflight",
         tags: ["Resources"],
-        parameters: [{ name: "id", in: "path", required: true, schema: { type: "string", pattern: "^src_[a-z0-9]{7,}$" } }],
+        parameters: [{ name: "id", in: "path", required: true, schema: { type: "string", pattern: "^src_[a-z0-9]{4,}$" } }],
         responses: { "204": { description: "Allowed methods and headers." } },
       },
     },
@@ -906,10 +1084,10 @@ const document = {
     "/api/v1/taxonomy": {
       get: {
         operationId: "getCorpusTaxonomy",
-        summary: "Retrieve controlled families, authority levels, topics, and source types",
+        summary: "Retrieve controlled families, authority levels, source facets, lifecycle states, and curation status",
         tags: ["Discovery"],
         responses: {
-          "200": { description: "Corpus taxonomy.", content: { "application/json": { schema: { type: "object" } } } },
+          "200": { description: "Corpus taxonomy.", content: { "application/json": { schema: { $ref: "#/components/schemas/Taxonomy" } } } },
           "304": { description: "The representation has not changed." },
         },
       },
@@ -1000,6 +1178,7 @@ const document = {
   components: {
     schemas: {
       Resource: resourceSchema,
+      Taxonomy: taxonomySchema,
       Workflow: workflowSchema,
       AuthorityLevel: authorityLevelSchema,
       SensitiveAction: sensitiveActionSchema,

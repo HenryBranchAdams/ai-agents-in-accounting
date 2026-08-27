@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { siteOrigin } from "./agent-interface";
+import { catalogModifiedAt, siteOrigin } from "./agent-interface";
 import { resources } from "./resources-data";
 import { processFamilies, workflowRecords } from "./workflows-data";
 import { packs } from "./platform-data";
@@ -39,7 +39,13 @@ const pages = [
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages = pages.map(([path, priority]) => ({
     url: `${siteOrigin}${path}`,
-    lastModified: new Date(path === "/control-model" || path === "/coverage" ? "2026-08-25T00:00:00Z" : "2026-08-23T00:00:00Z"),
+    lastModified: new Date(
+      path === "/resources"
+        ? catalogModifiedAt
+        : path === "/control-model" || path === "/coverage"
+          ? "2026-08-25T00:00:00Z"
+          : "2026-08-23T00:00:00Z",
+    ),
     changeFrequency: "monthly",
     priority,
   }));
@@ -60,7 +66,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const resourcePages: MetadataRoute.Sitemap = resources.map((resource) => ({
     url: `${siteOrigin}/resources/${resource.id}`,
-    lastModified: new Date("2026-08-23T00:00:00Z"),
+    lastModified: new Date(catalogModifiedAt),
     changeFrequency: "monthly",
     priority: 0.6,
   }));

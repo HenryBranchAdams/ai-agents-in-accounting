@@ -144,7 +144,7 @@ test("content contract is exposed through shared-shell labels and discovery proj
 
   const metadata = await (await request("/api/v1/meta")).json();
   assert.equal(metadata.record_counts.workflows, 60);
-  assert.equal(metadata.record_counts.source_records, 433);
+  assert.equal(metadata.record_counts.source_records, 489);
   assert.equal(metadata.record_counts.workflow_packs, 6);
   assert.equal(metadata.record_counts.benchmark_cases, 30);
   assert.match(metadata.links.content_contract_api, /\/api\/v1\/content-contract$/);

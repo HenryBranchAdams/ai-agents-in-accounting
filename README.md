@@ -2,7 +2,7 @@
 
 An open educational field guide, source library, workflow library, practical toolkit, and machine-readable corpus for governed AI-agent work in accounting and finance.
 
-The public site is [accounting-agents.madebyhenry.chatgpt.site](https://accounting-agents.madebyhenry.chatgpt.site). It publishes 60 canonical workflows, 433 source records, 153 curated readings across 20 shelves, practical templates, six portable packs, controlled governance records, Markdown and JSON projections, a versioned read-only API, OpenAPI, JSON Schemas, small reference clients, and a specialist evaluation lab.
+The public site is [accounting-agents.madebyhenry.chatgpt.site](https://accounting-agents.madebyhenry.chatgpt.site). It publishes 60 canonical workflows, 489 source records, 153 curated readings across 20 shelves, practical templates, six portable packs, controlled governance records, Markdown and JSON projections, a versioned read-only API, OpenAPI, JSON Schemas, small reference clients, and a specialist evaluation lab.
 
 The [versioned coverage and gaps map](https://accounting-agents.madebyhenry.chatgpt.site/coverage) distinguishes deep, canonical-reference, source-library-only, planned, and out-of-scope coverage. It qualifies lifecycle claims and is also available as [Markdown](https://accounting-agents.madebyhenry.chatgpt.site/coverage.md) and [JSON](https://accounting-agents.madebyhenry.chatgpt.site/api/v1/coverage).
 

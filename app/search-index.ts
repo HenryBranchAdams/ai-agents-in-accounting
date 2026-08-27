@@ -4,7 +4,11 @@ import { controlPatterns, sensitiveActions } from "./governance-data";
 import { ecosystemLayers } from "./ecosystem-data";
 import { packs, benchmarkCases, releaseNotes } from "./platform-data";
 import { glossary, templates } from "./reference-data";
-import { resources } from "./resources-data";
+import {
+  resourceCurationById,
+  resources,
+  sourceRelationshipProfiles,
+} from "./resources-data";
 import { workflowRecords } from "./workflows-data";
 
 export type SearchDocument = {
@@ -65,7 +69,19 @@ const documents: SearchDocument[] = [
     authority: null,
     topic: item.topic,
     kind: item.kind,
-    keywords: [item.owner, item.jurisdiction, item.date],
+    keywords: [
+      item.owner,
+      item.jurisdiction,
+      item.date,
+      ...(resourceCurationById[item.id]?.applicability ?? []),
+      resourceCurationById[item.id]?.applicability_note ?? "",
+      resourceCurationById[item.id]?.temporal_role ?? "",
+      resourceCurationById[item.id]?.method ?? "",
+      resourceCurationById[item.id]?.transfer_limit ?? "",
+      ...(sourceRelationshipProfiles[item.id]?.questions ?? []),
+      ...(sourceRelationshipProfiles[item.id]?.claims.map((claim) => claim.text) ?? []),
+      ...(sourceRelationshipProfiles[item.id]?.contrary_claims.map((claim) => claim.text) ?? []),
+    ],
   })),
   ...authorityLevels.map((item) => ({
     id: `authority-${item.id}`,
