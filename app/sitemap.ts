@@ -11,6 +11,7 @@ const pages = [
   ["/lifecycle", 0.9],
   ["/coverage", 0.9],
   ["/authority", 0.9],
+  ["/reviewer-guide", 0.9],
   ["/workflows", 0.9],
   ["/control-model", 0.9],
   ["/controls", 0.9],
@@ -43,7 +44,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(
       path === "/resources"
         ? catalogModifiedAt
-        : path === "/start-here" || path === "/authority"
+        : path === "/start-here" || path === "/authority" || path === "/reviewer-guide"
           ? "2026-08-27T00:00:00Z"
         : path === "/control-model" || path === "/coverage"
           ? "2026-08-25T00:00:00Z"

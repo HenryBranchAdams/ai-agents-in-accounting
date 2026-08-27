@@ -8,11 +8,13 @@ New readers can begin with the [five-minute Start here orientation](https://acco
 
 The [authority ladder and decision tree](https://accounting-agents.madebyhenry.chatgpt.site/authority) classifies one action at a time, distinguishes A3 execution after approval from A4 policy execution and human-only responsibility, and includes a mixed-level synthetic workflow. Equivalent machine-readable projections are available as [Markdown](https://accounting-agents.madebyhenry.chatgpt.site/authority-levels.md) and [JSON](https://accounting-agents.madebyhenry.chatgpt.site/api/v1/authority-levels).
 
+The [reviewer field guide](https://accounting-agents.madebyhenry.chatgpt.site/reviewer-guide) shows accountable people how to challenge evidence-linked work, reproduce checks, inspect exceptions and judgment, record approve/modify/reject/escalate dispositions, and avoid unsupported review claims. Equivalent projections are available as [Markdown](https://accounting-agents.madebyhenry.chatgpt.site/reviewer-guide.md) and [JSON](https://accounting-agents.madebyhenry.chatgpt.site/api/v1/reviewer-guide). The guide is maintainer-review-pending and does not claim subject-matter or professional review.
+
 The [versioned coverage and gaps map](https://accounting-agents.madebyhenry.chatgpt.site/coverage) distinguishes deep, canonical-reference, source-library-only, planned, and out-of-scope coverage. It qualifies lifecycle claims and is also available as [Markdown](https://accounting-agents.madebyhenry.chatgpt.site/coverage.md) and [JSON](https://accounting-agents.madebyhenry.chatgpt.site/api/v1/coverage).
 
 ## Four paths through the hub
 
-- Learn: start with the five-minute orientation, then continue into fundamentals, the accounting lifecycle, authority, controls, and evidence.
+- Learn: start with the five-minute orientation, then continue into fundamentals, the accounting lifecycle, authority, accountable review, controls, and evidence.
 - Explore: browse source-linked workflows, curated readings, and the complete source library.
 - Apply: use templates, synthetic workflow packs, architecture guidance, and a controlled-pilot checklist.
 - Research: follow the curated reading room, complete source library, and dated practice developments back to primary sources.

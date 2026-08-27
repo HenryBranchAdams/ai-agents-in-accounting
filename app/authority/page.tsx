@@ -39,7 +39,7 @@ export default function AuthorityPage() {
         { href: "#sources", label: "Source basis" },
       ]}
       previous={{ href: "/coverage", label: "Coverage and gaps" }}
-      next={{ href: "/control-model", label: "Accounting Agent Control Model" }}
+      next={{ href: "/reviewer-guide", label: "Reviewer field guide" }}
     >
       <section id="outcome">
         <h2>Classify one action, not an entire agent</h2>

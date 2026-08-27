@@ -42,6 +42,7 @@ import {
 import { accountingAgentControlModel, controlModelElements } from "../control-model";
 import { accountingAgentsCoverageMap, coverageStates } from "../coverage-map";
 import { accountingAgentsStartHere } from "../start-here";
+import { accountingAgentReviewerGuide, reviewerDispositions } from "../reviewer-guide";
 
 const startHereSchema = {
   type: "object",
@@ -79,6 +80,110 @@ const startHereSchema = {
     next_action: { type: "string" },
     source_basis: { type: "array", minItems: 2, items: { type: "object", required: ["id", "title", "href", "evidence_classification", "scope"] } },
     rights: { type: "object", required: ["editorial_content", "synthetic_example_and_factual_metadata", "external_sources"] },
+  },
+} as const;
+
+const reviewerGuideSchema = {
+  type: "object",
+  required: [
+    "id", "version", "title", "description", "prepared_at", "review_status", "review_note",
+    "primary_mode", "evidence_classification", "intended_audience", "use_when", "prerequisites",
+    "required_inputs", "reader_outcome", "governing_rule", "review_sequence", "disposition_guide",
+    "stop_conditions", "minimum_reviewer_packet", "automation_bias_traps", "worked_examples",
+    "calibration_exercise", "review_program_scaffold", "related_material", "limitations", "next_action",
+    "source_basis", "rights",
+  ],
+  properties: {
+    id: { type: "string", const: accountingAgentReviewerGuide.id },
+    version: { type: "string", const: accountingAgentReviewerGuide.version },
+    title: { type: "string" },
+    description: { type: "string" },
+    prepared_at: { type: "string", format: "date" },
+    review_status: { type: "string", const: accountingAgentReviewerGuide.review_status },
+    review_note: { type: "string" },
+    primary_mode: { type: "string", const: "how-to" },
+    evidence_classification: { type: "string", const: "implementation-pattern" },
+    intended_audience: { type: "string" },
+    use_when: { type: "string" },
+    prerequisites: { type: "array", minItems: 3, items: { type: "string" } },
+    required_inputs: { type: "array", minItems: 6, items: { type: "string" } },
+    reader_outcome: { type: "string" },
+    governing_rule: {
+      type: "object",
+      required: ["id", "text", "evidence_classification", "implication"],
+    },
+    review_sequence: {
+      type: "array",
+      minItems: 8,
+      maxItems: 8,
+      items: {
+        type: "object",
+        required: ["id", "label", "action", "challenge_questions", "proceed_when", "stop_when"],
+      },
+    },
+    disposition_guide: {
+      type: "array",
+      minItems: 4,
+      maxItems: 4,
+      items: {
+        type: "object",
+        required: ["id", "disposition", "use_when", "record"],
+        properties: { disposition: { type: "string", enum: reviewerDispositions } },
+      },
+    },
+    stop_conditions: { type: "array", minItems: 7, items: { type: "string" } },
+    minimum_reviewer_packet: {
+      type: "array",
+      minItems: 12,
+      maxItems: 12,
+      items: { type: "object", required: ["id", "field", "challenge"] },
+    },
+    automation_bias_traps: {
+      type: "array",
+      minItems: 5,
+      items: { type: "object", required: ["id", "trap", "countermeasure"] },
+    },
+    worked_examples: {
+      type: "array",
+      minItems: 4,
+      maxItems: 4,
+      items: {
+        type: "object",
+        required: ["id", "label", "domain", "evidence_classification", "fictional", "facts", "challenge", "disposition", "record", "why"],
+      },
+    },
+    calibration_exercise: {
+      type: "array",
+      minItems: 4,
+      maxItems: 4,
+      items: {
+        type: "object",
+        required: ["id", "domain", "prompt", "options", "correct_option_id", "rationale"],
+      },
+    },
+    review_program_scaffold: {
+      type: "object",
+      required: [
+        "id", "evidence_classification", "approval_status", "claim_boundary", "qualification_fields",
+        "appointment_fields", "conflict_questions", "re_review_triggers", "review_states", "current_project_claim_state",
+      ],
+    },
+    related_material: {
+      type: "array",
+      minItems: 8,
+      items: { type: "object", required: ["id", "kind", "label", "href"] },
+    },
+    limitations: { type: "array", minItems: 4, items: { type: "string" } },
+    next_action: { type: "string" },
+    source_basis: {
+      type: "array",
+      minItems: 7,
+      items: { type: "object", required: ["id", "title", "href", "evidence_classification", "scope"] },
+    },
+    rights: {
+      type: "object",
+      required: ["editorial_content", "synthetic_examples_and_factual_metadata", "external_sources"],
+    },
   },
 } as const;
 
@@ -1285,6 +1390,22 @@ const document = {
       head: { operationId: "getStartHereOrientationHead", summary: "Retrieve Start here orientation headers", tags: ["Content"], responses: { "200": { description: "Orientation headers." }, "304": { description: "The representation has not changed." } } },
       options: { operationId: "getStartHereOrientationOptions", summary: "CORS preflight", tags: ["Content"], responses: { "204": { description: "Allowed methods and headers." } } },
     },
+    "/api/v1/reviewer-guide": {
+      get: {
+        operationId: "getReviewerFieldGuide",
+        summary: "Retrieve the reviewer field guide",
+        tags: ["Governance"],
+        parameters: [{ name: "format", in: "query", description: "Overrides Accept-based content negotiation.", schema: { type: "string", enum: ["json", "markdown"] } }],
+        responses: {
+          "200": { description: "Reviewer field guide in JSON or Markdown.", content: { "application/json": { schema: { type: "object", required: ["schema_version", "collection", "rights_notice", "links", "item"], properties: { schema_version: { type: "string" }, collection: { type: "string", const: "reviewer_field_guide" }, rights_notice: { type: "string" }, links: { type: "object" }, item: { $ref: "#/components/schemas/ReviewerFieldGuide" } } } }, "text/markdown": { schema: { type: "string" } } } },
+          "304": { description: "The representation has not changed." },
+          "400": { description: "Invalid format parameter." },
+          "406": { description: "No acceptable representation was requested." },
+        },
+      },
+      head: { operationId: "getReviewerFieldGuideHead", summary: "Retrieve reviewer field guide headers", tags: ["Governance"], responses: { "200": { description: "Reviewer guide headers." }, "304": { description: "The representation has not changed." } } },
+      options: { operationId: "getReviewerFieldGuideOptions", summary: "CORS preflight", tags: ["Governance"], responses: { "204": { description: "Allowed methods and headers." } } },
+    },
     "/api/v1/control-model": {
       get: {
         operationId: "getAccountingAgentControlModel",
@@ -1329,6 +1450,7 @@ const document = {
       EcosystemLayer: ecosystemLayerSchema,
       ContentContract: contentContractSchema,
       StartHereOrientation: startHereSchema,
+      ReviewerFieldGuide: reviewerGuideSchema,
       AuthorityDecisionGuide: authorityDecisionGuideSchema,
       ControlModel: controlModelSchema,
       CoverageMap: coverageMapSchema,

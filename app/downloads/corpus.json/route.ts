@@ -10,6 +10,7 @@ import { educationalContentContract } from "../../content-contract";
 import { accountingAgentControlModel } from "../../control-model";
 import { accountingAgentsCoverageMap } from "../../coverage-map";
 import { accountingAgentsStartHere } from "../../start-here";
+import { accountingAgentReviewerGuide } from "../../reviewer-guide";
 
 export async function GET(request: Request) {
   const body = JSON.stringify({
@@ -24,6 +25,10 @@ export async function GET(request: Request) {
       workflows: workflowRecords.length,
       authority_levels: authorityLevels.length,
       authority_decision_guides: 1,
+      reviewer_guides: 1,
+      reviewer_packet_fields: accountingAgentReviewerGuide.minimum_reviewer_packet.length,
+      reviewer_calibration_cases: accountingAgentReviewerGuide.calibration_exercise.length,
+      reviewer_program_states: accountingAgentReviewerGuide.review_program_scaffold.review_states.length,
       sensitive_actions: sensitiveActions.length,
       control_patterns: controlPatterns.length,
       templates: templates.length,
@@ -44,6 +49,7 @@ export async function GET(request: Request) {
     workflows: workflowRecords.map((record) => normalizeDomainRecord(record, "workflow")),
     authority_levels: authorityLevels.map((record) => normalizeDomainRecord(record, "authority-level")),
     authority_decision_guide: authorityDecisionGuide,
+    reviewer_guide: accountingAgentReviewerGuide,
     sensitive_actions: sensitiveActions.map((record) => normalizeDomainRecord(record, "sensitive-action")),
     control_patterns: controlPatterns.map((record) => normalizeDomainRecord(record, "control-pattern")),
     templates: templates.map((record) => normalizeDomainRecord(record, "template")),

@@ -32,6 +32,7 @@ import { renderDomainCorpusMarkdown, shiftMarkdownHeadings } from "./domain-inte
 import { accountingAgentControlModel, renderControlModelMarkdown } from "./control-model";
 import { accountingAgentsCoverageMap, renderCoverageMapMarkdown } from "./coverage-map";
 import { accountingAgentsStartHere, renderStartHereMarkdown } from "./start-here";
+import { accountingAgentReviewerGuide, renderReviewerGuideMarkdown } from "./reviewer-guide";
 
 export const siteOrigin = "https://accounting-agents.madebyhenry.chatgpt.site";
 export const catalogReviewedAt = "2026-08-27";
@@ -518,6 +519,15 @@ export function buildAgentContextMarkdown() {
     `- [Start here](${siteOrigin}/start-here): canonical human tutorial with a synthetic exception and knowledge check.`,
     `- [Start here in Markdown](${siteOrigin}/start-here.md): equivalent text projection with stable lesson IDs.`,
     "",
+    "## Reviewer field guide",
+    "",
+    `The ${accountingAgentReviewerGuide.title} guide applies an eight-step evidence challenge, four explicit dispositions, a minimum reviewer packet, automation-bias countermeasures, synthetic good and failure examples, and cross-domain calibration. It is an implementation pattern under maintainer review, not evidence that subject-matter or professional review occurred.`,
+    "",
+    accountingAgentReviewerGuide.governing_rule.text,
+    "",
+    `- [Reviewer field guide](${siteOrigin}/reviewer-guide): canonical human how-to.`,
+    `- [Reviewer field guide in Markdown](${siteOrigin}/reviewer-guide.md): equivalent text projection with stable procedure, packet, example, calibration, and review-state IDs.`,
+    "",
     "## Educational content contract",
     "",
     `The educational content contract (version ${educationalContentContract.version}, prepared ${contentContractPreparedAt}; maintainer review pending) assigns each major page one primary mode: Tutorial, How-to, Explanation, Reference, Case study, Evidence synthesis, or Program documentation. Cross-links may connect modes, but mixed concerns must remain explicit.`,
@@ -550,6 +560,7 @@ export function buildAgentContextMarkdown() {
     `- [Accounting lifecycle](${siteOrigin}/lifecycle)`,
     `- [Coverage and gaps](${siteOrigin}/coverage)`,
     `- [Authority ladder and decision tree](${siteOrigin}/authority)`,
+    `- [Reviewer field guide](${siteOrigin}/reviewer-guide)`,
     `- [Workflow library](${siteOrigin}/workflows)`,
     `- [Accounting Agent Control Model](${siteOrigin}/control-model)`,
     `- [Controls and authority](${siteOrigin}/controls)`,
@@ -585,13 +596,14 @@ export function buildLlmsText() {
     `- [Start here in Markdown](${siteOrigin}/start-here.md): Equivalent low-token tutorial with stable lesson, scenario, question, and path IDs.`,
     `- [Public agent instructions](${siteOrigin}/AGENTS.md): Routing, reliance, source-use, and protocol guidance for agents consuming this corpus.`,
     `- [Full context bundle](${siteOrigin}/downloads/context-bundle.md): Complete domain corpus plus all ${agentResources.length} source records in Markdown.`,
-    `- [Canonical JSON corpus](${siteOrigin}/downloads/corpus.json): All ${workflowRecords.length} workflows, ${authorityLevels.length} authority levels, the authority decision guide, ${sensitiveActions.length} sensitive-action boundaries, ${controlPatterns.length} controls, ${templates.length} templates, ${glossary.length} glossary terms, and source records.`,
+    `- [Canonical JSON corpus](${siteOrigin}/downloads/corpus.json): All ${workflowRecords.length} workflows, ${authorityLevels.length} authority levels, the authority decision guide, reviewer field guide, ${sensitiveActions.length} sensitive-action boundaries, ${controlPatterns.length} controls, ${templates.length} templates, ${glossary.length} glossary terms, and source records.`,
     `- [Workflow corpus](${siteOrigin}/workflows.md): All ${workflowRecords.length} workflow specifications in Markdown.`,
     `- [Accounting Agent Control Model](${siteOrigin}/control-model): Nine elements, two synthetic scenarios, and all-workflow mappings.`,
     `- [Accounting Agent Control Model in Markdown](${siteOrigin}/control-model.md): Equivalent text projection with stable IDs.`,
     `- [Coverage and gaps](${siteOrigin}/coverage): Versioned family boundaries, deep-treatment status, expansion gaps, and exclusions.`,
     `- [Coverage and gaps in Markdown](${siteOrigin}/coverage.md): Equivalent text projection with stable coverage IDs.`,
     `- [Authority model](${siteOrigin}/authority-levels.md): A0–A4 and human-only levels, action decision tree, A3/A4 comparison, mixed-level synthetic workflow, misclassifications, and segregation-of-duties examples.`,
+    `- [Reviewer field guide](${siteOrigin}/reviewer-guide.md): Eight-step review procedure, four dispositions, minimum packet, automation-bias traps, synthetic examples, calibration, and visible review states. Maintainer review is pending; subject-matter and professional review are not claimed.`,
     `- [Sensitive actions](${siteOrigin}/sensitive-actions.md): Approval, execution, rollback, and evidence boundaries.`,
     `- [Control patterns](${siteOrigin}/controls.md): Reusable control designs.`,
     `- [Templates](${siteOrigin}/templates.md): Practical implementation templates.`,
@@ -630,6 +642,7 @@ export function buildLlmsText() {
     `- [Agent access guide](${siteOrigin}/machine-access): Endpoint documentation and examples for people integrating agents.`,
     `- [Educational content contract API](${siteOrigin}/api/v1/content-contract): Typed modes, evidence classifications, release gate, measures, and page assignments.`,
     `- [Start here API](${siteOrigin}/api/v1/start-here): Canonical orientation, comparisons, evidence chain, synthetic scenario, knowledge check, role paths, limits, rights, and review status.`,
+    `- [Reviewer field guide API](${siteOrigin}/api/v1/reviewer-guide): Canonical procedure, dispositions, packet fields, examples, calibration, review-program scaffold, sources, limits, rights, and review status.`,
     `- [Accounting Agent Control Model API](${siteOrigin}/api/v1/control-model): Canonical elements, scenarios, workflow mapping, sources, rights, and review status.`,
     `- [Coverage API](${siteOrigin}/api/v1/coverage): Canonical versioned coverage states, family boundaries, planned work, and exclusions.`,
     "",
@@ -641,6 +654,7 @@ export function buildLlmsText() {
     `- [Accounting lifecycle](${siteOrigin}/lifecycle): Eight core process families with explicitly qualified boundaries.`,
     `- [Coverage and gaps](${siteOrigin}/coverage): What this release treats deeply, at reference level, through sources, as planned, or as out of scope.`,
     `- [Authority ladder and decision tree](${siteOrigin}/authority): Classify one action, distinguish A3 from A4 and human-only responsibility, and test segregation of duties.`,
+    `- [Reviewer field guide](${siteOrigin}/reviewer-guide): Challenge evidence-linked work, record a disposition, and stop on missing support, authority, or reviewer independence.`,
     `- [Workflow library](${siteOrigin}/workflows): All ${workflowRecords.length} canonical workflow specifications.`,
     `- [Accounting Agent Control Model](${siteOrigin}/control-model): Canonical governance reference and printable summary.`,
     `- [Controls and authority](${siteOrigin}/controls): Evidence, authority, control design, and assessment.`,
@@ -681,6 +695,8 @@ export function buildContextBundleMarkdown() {
     shiftMarkdownHeadings(buildAgentContextMarkdown(), 2).trimEnd(),
     "",
     shiftMarkdownHeadings(renderStartHereMarkdown(), 1).trimEnd(),
+    "",
+    shiftMarkdownHeadings(renderReviewerGuideMarkdown(), 1).trimEnd(),
     "",
     "## Educational content contract",
     "",

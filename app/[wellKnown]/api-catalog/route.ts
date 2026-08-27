@@ -23,6 +23,7 @@ const apiEndpoints = [
   `${siteOrigin}/api/v1/control-model`,
   `${siteOrigin}/api/v1/coverage`,
   `${siteOrigin}/api/v1/start-here`,
+  `${siteOrigin}/api/v1/reviewer-guide`,
 ];
 const schemaEndpoints = [
   `${siteOrigin}/schemas/ledgerbench-program.schema.json`,

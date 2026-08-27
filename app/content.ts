@@ -37,6 +37,7 @@ export const navGroups: NavGroup[] = [
   {
     label: "Govern",
     items: [
+      { href: "/reviewer-guide", label: "Reviewer field guide" },
       { href: "/control-model", label: "Accounting Agent Control Model" },
       { href: "/controls", label: "Controls and authority" },
       { href: "/sensitive-actions", label: "Sensitive actions" },
@@ -91,6 +92,7 @@ export const searchItems = [
   { href: "/fundamentals#work-loop", title: "Follow the work loop", category: "Fundamentals", detail: "Objective through review" },
   { href: "/lifecycle", title: "Map the accounting lifecycle", category: "Learn", detail: "Eight process families and sixty workflows" },
   { href: "/authority", title: "Authority ladder and decision tree", category: "Learn", detail: "Classify one action across A0–A4 and human-only responsibility, including mixed workflows and segregation of duties" },
+  { href: "/reviewer-guide", title: "Review agent-prepared accounting work", category: "Govern", detail: "Evidence challenge, deterministic checks, materiality, dispositions, reviewer packets, bias traps, and calibration" },
   { href: "/workflows", title: "Review the workflow library", category: "Workflows", detail: "Sixty canonical accounting workflows" },
   { href: "/workflows/record-to-report/wf-r2r-bank-reconciliations", title: "Prepare a bank reconciliation", category: "Workflows", detail: "Inputs, procedures, checks, authority, output, and review" },
   { href: "/controls#support", title: "Separate support and authority", category: "Controls", detail: "Evidence, claims, judgment, and decisions" },

@@ -134,7 +134,7 @@ export default function OverviewPage() {
           </Link>
           <Link href="/control-model">
             <strong>Governance and controls</strong>
-            <span>Connect objectives, evidence, procedures, checks, authority, review, and records.</span>
+            <span>Connect objectives, evidence, procedures, checks, authority, review, and records, then use the reviewer field guide to challenge prepared work.</span>
           </Link>
           <Link href="/reading-room">
             <strong>Evidence and further reading</strong>

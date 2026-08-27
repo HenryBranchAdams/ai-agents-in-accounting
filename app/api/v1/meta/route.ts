@@ -19,6 +19,7 @@ import { educationalContentContract } from "../../../content-contract";
 import { accountingAgentControlModel } from "../../../control-model";
 import { accountingAgentsCoverageMap } from "../../../coverage-map";
 import { accountingAgentsStartHere } from "../../../start-here";
+import { accountingAgentReviewerGuide } from "../../../reviewer-guide";
 
 export function OPTIONS() {
   return corsOptionsResponse();
@@ -43,6 +44,8 @@ export async function GET(request: Request) {
     start_here_review_status: accountingAgentsStartHere.review_status,
     authority_decision_guide_version: authorityDecisionGuide.version,
     authority_decision_guide_review_status: authorityDecisionGuide.review_status,
+    reviewer_guide_version: accountingAgentReviewerGuide.version,
+    reviewer_guide_review_status: accountingAgentReviewerGuide.review_status,
     title: "Accounting Agents public corpus",
     description: "Canonical workflows, authority boundaries, controls, templates, terminology, and curated sources for governed AI-agent work across the accounting lifecycle.",
     language: "en",
@@ -52,6 +55,10 @@ export async function GET(request: Request) {
       workflows: workflowRecords.length,
       authority_levels: authorityLevels.length,
       authority_decision_guides: 1,
+      reviewer_guides: 1,
+      reviewer_packet_fields: accountingAgentReviewerGuide.minimum_reviewer_packet.length,
+      reviewer_calibration_cases: accountingAgentReviewerGuide.calibration_exercise.length,
+      reviewer_program_states: accountingAgentReviewerGuide.review_program_scaffold.review_states.length,
       sensitive_actions: sensitiveActions.length,
       control_patterns: controlPatterns.length,
       templates: templates.length,
@@ -131,6 +138,9 @@ export async function GET(request: Request) {
       start_here: `${siteOrigin}/start-here`,
       start_here_markdown: `${siteOrigin}/start-here.md`,
       start_here_api: `${siteOrigin}/api/v1/start-here`,
+      reviewer_guide: `${siteOrigin}/reviewer-guide`,
+      reviewer_guide_markdown: `${siteOrigin}/reviewer-guide.md`,
+      reviewer_guide_api: `${siteOrigin}/api/v1/reviewer-guide`,
     },
     platform_release: platformRelease,
   }, null, 2);

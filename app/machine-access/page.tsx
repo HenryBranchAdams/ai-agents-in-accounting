@@ -107,6 +107,10 @@ export default function MachineAccessPage() {
             <strong>Accounting Agent Control Model</strong>
             <span>Nine-element human reference with equivalent Markdown and JSON, two synthetic scenarios, and mappings for every workflow.</span>
           </Link>
+          <Link href="/reviewer-guide">
+            <strong>Reviewer field guide</strong>
+            <span>Eight-step review procedure with equivalent Markdown and JSON, four dispositions, packet fields, examples, calibration, and visible review states; subject-matter and professional review are not claimed.</span>
+          </Link>
           <Link href="/coverage">
             <strong>Coverage and gaps map</strong>
             <span>Versioned deep, canonical-reference, source-only, planned, and out-of-scope boundaries in equivalent human, Markdown, and JSON forms.</span>
@@ -181,6 +185,7 @@ export default function MachineAccessPage() {
           <div><dt>/control-model</dt><dd>Nine canonical governance elements, two synthetic scenarios, workflow mappings, sources, and review limits.</dd></div>
           <div><dt>/coverage</dt><dd>Five coverage states, eight process-family boundaries, planned deep treatments, expansion gaps, and explicit exclusions.</dd></div>
           <div><dt>/start-here</dt><dd>Canonical orientation, operating-pattern comparison, evidence chain, synthetic scenario, knowledge check, role paths, limits, rights, and review state.</dd></div>
+          <div><dt>/reviewer-guide</dt><dd>Canonical review procedure, dispositions, packet fields, automation-bias traps, synthetic examples, calibration, program states, limits, rights, and review state; no subject-matter or professional review is claimed.</dd></div>
         </dl>
         <p>Prefix each path above with <code>/api/v1</code>.</p>
 
