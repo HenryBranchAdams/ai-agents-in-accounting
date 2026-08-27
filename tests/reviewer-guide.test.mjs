@@ -151,7 +151,7 @@ test("reviewer guide is fully discoverable without asserting subject-matter revi
 
   const sitemap = await (await request("/sitemap.xml")).text();
   assert.match(sitemap, /<loc>https:\/\/accounting-agents\.madebyhenry\.chatgpt\.site\/reviewer-guide<\/loc>/);
-  assert.equal((sitemap.match(/<url>/g) ?? []).length, 595);
+  assert.equal((sitemap.match(/<url>/g) ?? []).length, 596);
   for (const path of ["/llms.txt", "/agent-context.md", "/AGENTS.md", "/machine-access"]) {
     const body = await (await request(path)).text();
     assert.match(body, /reviewer field guide/i, path);

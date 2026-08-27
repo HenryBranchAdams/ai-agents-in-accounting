@@ -34,6 +34,7 @@ import { accountingAgentsCoverageMap, renderCoverageMapMarkdown } from "./covera
 import { accountingAgentsStartHere, renderStartHereMarkdown } from "./start-here";
 import { accountingAgentReviewerGuide, renderReviewerGuideMarkdown } from "./reviewer-guide";
 import { accountingAgentsCoreCourse, coreCourseReadings, renderCoreCourseMarkdown } from "./core-course";
+import { bankReconciliationTutorial, renderBankReconciliationTutorialMarkdown } from "./bank-reconciliation-tutorial";
 
 export const siteOrigin = "https://accounting-agents.madebyhenry.chatgpt.site";
 export const catalogReviewedAt = "2026-08-27";
@@ -527,6 +528,15 @@ export function buildAgentContextMarkdown() {
     `- [Core course](${siteOrigin}/course): canonical human tutorial and deliberate reading path.`,
     `- [Core course in Markdown](${siteOrigin}/course.md): equivalent low-token course with stable module, reading, lens, capstone, and question IDs.`,
     "",
+    "## Bank-reconciliation tutorial",
+    "",
+    `The ${bankReconciliationTutorial.title} turns the existing clean-room pack into a complete lesson: three-record evidence register, known-answer tie-out, deliberate missing/wrong-period stop, prepared workpaper, reviewer challenge, two bounded dispositions, knowledge check, and safe reset.`,
+    "",
+    bankReconciliationTutorial.governing_rule.text,
+    "",
+    `- [Bank-reconciliation tutorial](${siteOrigin}/tutorials/bank-reconciliation): canonical guided human lesson.`,
+    `- [Bank-reconciliation tutorial in Markdown](${siteOrigin}/tutorials/bank-reconciliation.md): equivalent low-token lesson with stable step, evidence, artifact, disposition, and question IDs.`,
+    "",
     "## Reviewer field guide",
     "",
     `The ${accountingAgentReviewerGuide.title} guide applies an eight-step evidence challenge, four explicit dispositions, a minimum reviewer packet, automation-bias countermeasures, synthetic good and failure examples, and cross-domain calibration. It is an implementation pattern under maintainer review, not evidence that subject-matter or professional review occurred.`,
@@ -565,6 +575,7 @@ export function buildAgentContextMarkdown() {
     `- [Overview](${siteOrigin}/)` ,
     `- [Start here](${siteOrigin}/start-here)`,
     `- [Core course](${siteOrigin}/course)`,
+    `- [Bank-reconciliation tutorial](${siteOrigin}/tutorials/bank-reconciliation)`,
     `- [Agent fundamentals](${siteOrigin}/fundamentals)`,
     `- [Accounting lifecycle](${siteOrigin}/lifecycle)`,
     `- [Coverage and gaps](${siteOrigin}/coverage)`,
@@ -605,6 +616,8 @@ export function buildLlmsText() {
     `- [Start here in Markdown](${siteOrigin}/start-here.md): Equivalent low-token tutorial with stable lesson, scenario, question, and path IDs.`,
     `- [Core course](${siteOrigin}/course): Twenty-source bridge course for accounting practitioners, reviewers, builders, and control owners, ending in a fictional governed-workflow transfer brief.`,
     `- [Core course in Markdown](${siteOrigin}/course.md): Equivalent learning sequence with stable module, reading, lens, capstone, and question IDs.`,
+    `- [Bank-reconciliation tutorial](${siteOrigin}/tutorials/bank-reconciliation): Complete synthetic lesson from evidence register and known-answer tie-out through a deliberate missing-evidence stop, workpaper, reviewer dispositions, knowledge check, and safe reset.`,
+    `- [Bank-reconciliation tutorial in Markdown](${siteOrigin}/tutorials/bank-reconciliation.md): Equivalent text lesson with stable evidence, step, artifact, disposition, and question IDs.`,
     `- [Public agent instructions](${siteOrigin}/AGENTS.md): Routing, reliance, source-use, and protocol guidance for agents consuming this corpus.`,
     `- [Full context bundle](${siteOrigin}/downloads/context-bundle.md): Complete domain corpus plus all ${agentResources.length} source records in Markdown.`,
     `- [Canonical JSON corpus](${siteOrigin}/downloads/corpus.json): All ${workflowRecords.length} workflows, ${authorityLevels.length} authority levels, the authority decision guide, reviewer field guide, ${sensitiveActions.length} sensitive-action boundaries, ${controlPatterns.length} controls, ${templates.length} templates, ${glossary.length} glossary terms, and source records.`,
@@ -654,6 +667,7 @@ export function buildLlmsText() {
     `- [Educational content contract API](${siteOrigin}/api/v1/content-contract): Typed modes, evidence classifications, release gate, measures, and page assignments.`,
     `- [Start here API](${siteOrigin}/api/v1/start-here): Canonical orientation, comparisons, evidence chain, synthetic scenario, knowledge check, role paths, limits, rights, and review status.`,
     `- [Core course API](${siteOrigin}/api/v1/course): Canonical modules, twenty source readings, evidence weights, limitations, audience lenses, synthetic capstone, knowledge check, limits, rights, and review status.`,
+    `- [Bank-reconciliation tutorial API](${siteOrigin}/api/v1/tutorials/bank-reconciliation): Canonical synthetic environment, evidence register, guided steps, known answer, deliberate stop, workpaper, reviewer packet, knowledge check, transfer limits, sources, rights, and review status.`,
     `- [Reviewer field guide API](${siteOrigin}/api/v1/reviewer-guide): Canonical procedure, dispositions, packet fields, examples, calibration, review-program scaffold, sources, limits, rights, and review status.`,
     `- [Accounting Agent Control Model API](${siteOrigin}/api/v1/control-model): Canonical elements, scenarios, workflow mapping, sources, rights, and review status.`,
     `- [Coverage API](${siteOrigin}/api/v1/coverage): Canonical versioned coverage states, family boundaries, planned work, and exclusions.`,
@@ -663,6 +677,7 @@ export function buildLlmsText() {
     `- [Overview](${siteOrigin}/): Purpose, operating rule, and scope.`,
     `- [Start here](${siteOrigin}/start-here): Five-minute orientation and first guided synthetic exception.`,
     `- [Core course](${siteOrigin}/course): Deliberate bridge from professional authority and evidence through agent systems, evaluation, provider claims, and a supervised synthetic design brief.`,
+    `- [Bank-reconciliation tutorial](${siteOrigin}/tutorials/bank-reconciliation): Prepare and review one complete synthetic bank reconciliation, including the correct stop for missing or wrong-period evidence.`,
     `- [Agent fundamentals](${siteOrigin}/fundamentals): Agent definition, operating patterns, work loop, and run record.`,
     `- [Accounting lifecycle](${siteOrigin}/lifecycle): Eight core process families with explicitly qualified boundaries.`,
     `- [Coverage and gaps](${siteOrigin}/coverage): What this release treats deeply, at reference level, through sources, as planned, or as out of scope.`,
@@ -710,6 +725,8 @@ export function buildContextBundleMarkdown() {
     shiftMarkdownHeadings(renderStartHereMarkdown(), 1).trimEnd(),
     "",
     shiftMarkdownHeadings(renderCoreCourseMarkdown(), 1).trimEnd(),
+    "",
+    shiftMarkdownHeadings(renderBankReconciliationTutorialMarkdown(), 1).trimEnd(),
     "",
     shiftMarkdownHeadings(renderReviewerGuideMarkdown(), 1).trimEnd(),
     "",

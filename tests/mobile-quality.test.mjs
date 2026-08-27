@@ -43,7 +43,7 @@ async function compiledCss() {
 }
 
 const primaryPages = [
-  "/", "/start-here", "/course", "/fundamentals", "/lifecycle", "/authority", "/workflows", "/controls",
+  "/", "/start-here", "/course", "/tutorials/bank-reconciliation", "/fundamentals", "/lifecycle", "/authority", "/workflows", "/controls",
   "/sensitive-actions", "/evidence-assurance", "/security-identity", "/architecture",
   "/ecosystem", "/evaluation", "/pilot", "/operations", "/templates", "/glossary",
   "/resources", "/reading-room", "/machine-access", "/packs", "/bench", "/spec",

@@ -211,6 +211,7 @@ export default function CoreCoursePage() {
           completionTitle={course.completion_artifact.title}
           completionStatements={course.completion_artifact.statements}
           interpretationBoundary={course.completion_artifact.interpretation_boundary}
+          completionLabel="Course check complete."
         />
       </section>
 

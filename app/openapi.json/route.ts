@@ -44,6 +44,7 @@ import { accountingAgentsCoverageMap, coverageStates } from "../coverage-map";
 import { accountingAgentsStartHere } from "../start-here";
 import { accountingAgentReviewerGuide, reviewerDispositions } from "../reviewer-guide";
 import { accountingAgentsCoreCourse, coreCourseLensIds } from "../core-course";
+import { bankReconciliationTutorial } from "../bank-reconciliation-tutorial";
 
 const startHereSchema = {
   type: "object",
@@ -163,6 +164,95 @@ const coreCourseSchema = {
     limitations: { type: "array", minItems: 6, items: { type: "string" } },
     next_action: { type: "string" },
     rights: { type: "object", required: ["editorial_content", "synthetic_example_and_factual_metadata", "external_sources"] },
+  },
+} as const;
+
+const bankReconciliationTutorialSchema = {
+  type: "object",
+  required: [
+    "id", "version", "title", "description", "prepared_at", "review_status", "review_note",
+    "primary_mode", "evidence_classification", "intended_learner", "estimated_minutes",
+    "prerequisites", "learning_objectives", "governing_rule", "environment", "evidence_register",
+    "guided_steps", "known_answer_work", "deliberate_stop", "prepared_workpaper", "reviewer_packet",
+    "knowledge_check", "completion_artifact", "transfer_limits", "limitations", "next_action",
+    "related_material", "source_basis", "rights",
+  ],
+  properties: {
+    id: { type: "string", const: bankReconciliationTutorial.id },
+    version: { type: "string", const: bankReconciliationTutorial.version },
+    title: { type: "string" },
+    description: { type: "string" },
+    prepared_at: { type: "string", format: "date" },
+    review_status: { type: "string", const: bankReconciliationTutorial.review_status },
+    review_note: { type: "string" },
+    primary_mode: { type: "string", const: "tutorial" },
+    evidence_classification: { type: "string", const: "implementation-pattern" },
+    intended_learner: { type: "string" },
+    estimated_minutes: { type: "integer", minimum: 1 },
+    prerequisites: { type: "array", minItems: 3, items: { type: "string" } },
+    learning_objectives: { type: "array", minItems: 5, items: { type: "string" } },
+    governing_rule: { type: "object", required: ["id", "text", "evidence_classification", "implication"] },
+    environment: {
+      type: "object",
+      required: [
+        "fictional", "evidence_classification", "pack_id", "pack_version", "workflow_id",
+        "fixture_path", "reference_output_path", "missing_evidence_case_path", "pack_api_href",
+        "pack_download_href", "scope", "authority_level", "accountable_owner", "safe_reset",
+      ],
+      properties: {
+        fictional: { type: "boolean", const: true },
+        evidence_classification: { type: "string", const: "synthetic-example" },
+        pack_id: { type: "string", const: "bank-reconciliation" },
+        workflow_id: { type: "string", const: "wf-r2r-bank-reconciliations" },
+      },
+    },
+    evidence_register: {
+      type: "array",
+      minItems: 3,
+      maxItems: 3,
+      items: { type: "object", required: ["id", "record", "period", "supports", "required_checks"] },
+    },
+    guided_steps: {
+      type: "array",
+      minItems: 8,
+      maxItems: 8,
+      items: { type: "object", required: ["id", "order", "title", "action", "expected_result", "stop_when"] },
+    },
+    known_answer_work: {
+      type: "object",
+      required: ["id", "evidence_classification", "rows", "equation", "result", "interpretation"],
+      properties: {
+        evidence_classification: { type: "string", const: "synthetic-example" },
+        rows: { type: "array", minItems: 6, maxItems: 6, items: { type: "object", required: ["id", "label", "operator", "amount", "source_id"] } },
+      },
+    },
+    deliberate_stop: {
+      type: "object",
+      required: ["id", "evidence_classification", "mutations", "expected_outcome", "exception_codes", "minimum_evidence_links", "review_required", "executed_actions", "prevented_claims", "learner_record"],
+      properties: {
+        expected_outcome: { type: "string", const: "stop" },
+        exception_codes: { type: "array", minItems: 2, items: { type: "string" } },
+        review_required: { type: "boolean", const: true },
+        executed_actions: { type: "array", maxItems: 0 },
+      },
+    },
+    prepared_workpaper: { type: "object", required: ["id", "version", "status", "evidence_classification", "conclusion_status", "required_sections", "proposed_actions", "executed_actions", "prohibited_actions", "re_review_triggers"] },
+    reviewer_packet: {
+      type: "object",
+      required: ["id", "reviewed_artifact_id", "challenge_questions", "complete_fixture_disposition", "deliberate_stop_disposition"],
+      properties: {
+        complete_fixture_disposition: { type: "object", required: ["disposition", "scope", "rationale", "conditions", "accountable_actor", "separately_authorized_actions"], properties: { disposition: { type: "string", enum: reviewerDispositions } } },
+        deliberate_stop_disposition: { type: "object", required: ["disposition", "scope", "rationale", "conditions", "accountable_actor", "separately_authorized_actions"], properties: { disposition: { type: "string", enum: reviewerDispositions } } },
+      },
+    },
+    knowledge_check: { type: "array", minItems: 4, maxItems: 4, items: { type: "object", required: ["id", "prompt", "options", "correct_option_id", "correct_feedback", "incorrect_feedback"] } },
+    completion_artifact: { type: "object", required: ["id", "title", "statements", "interpretation_boundary"] },
+    transfer_limits: { type: "array", minItems: 5, items: { type: "string" } },
+    limitations: { type: "array", minItems: 5, items: { type: "string" } },
+    next_action: { type: "string" },
+    related_material: { type: "array", minItems: 4, items: { type: "object", required: ["id", "label", "href"] } },
+    source_basis: { type: "array", minItems: 4, items: { type: "object", required: ["id", "title", "href", "evidence_classification", "supports", "applicability"] } },
+    rights: { type: "object", required: ["editorial_content", "synthetic_fixture_and_factual_metadata", "external_sources"] },
   },
 } as const;
 
@@ -1588,6 +1678,22 @@ const document = {
       head: { operationId: "getAccountingAgentsCoreCourseHead", summary: "Retrieve core-course headers", tags: ["Content"], responses: { "200": { description: "Core-course headers." }, "304": { description: "The representation has not changed." } } },
       options: { operationId: "getAccountingAgentsCoreCourseOptions", summary: "CORS preflight", tags: ["Content"], responses: { "204": { description: "Allowed methods and headers." } } },
     },
+    "/api/v1/tutorials/bank-reconciliation": {
+      get: {
+        operationId: "getBankReconciliationTutorial",
+        summary: "Retrieve the synthetic bank-reconciliation tutorial",
+        tags: ["Content"],
+        parameters: [{ name: "format", in: "query", description: "Overrides Accept-based content negotiation.", schema: { type: "string", enum: ["json", "markdown"] } }],
+        responses: {
+          "200": { description: "Bank-reconciliation tutorial in JSON or Markdown.", content: { "application/json": { schema: { type: "object", required: ["schema_version", "collection", "rights_notice", "links", "item"], properties: { schema_version: { type: "string" }, collection: { type: "string", const: "accounting_agents_tutorials" }, rights_notice: { type: "string" }, links: { type: "object" }, item: { $ref: "#/components/schemas/BankReconciliationTutorial" } } } }, "text/markdown": { schema: { type: "string" } } } },
+          "304": { description: "The representation has not changed." },
+          "400": { description: "Invalid format parameter." },
+          "406": { description: "No acceptable representation was requested." },
+        },
+      },
+      head: { operationId: "getBankReconciliationTutorialHead", summary: "Retrieve bank-reconciliation tutorial headers", tags: ["Content"], responses: { "200": { description: "Tutorial headers." }, "304": { description: "The representation has not changed." } } },
+      options: { operationId: "getBankReconciliationTutorialOptions", summary: "CORS preflight", tags: ["Content"], responses: { "204": { description: "Allowed methods and headers." } } },
+    },
     "/api/v1/reviewer-guide": {
       get: {
         operationId: "getReviewerFieldGuide",
@@ -1649,6 +1755,7 @@ const document = {
       ContentContract: contentContractSchema,
       StartHereOrientation: startHereSchema,
       CoreCourse: coreCourseSchema,
+      BankReconciliationTutorial: bankReconciliationTutorialSchema,
       ReviewerFieldGuide: reviewerGuideSchema,
       AuthorityDecisionGuide: authorityDecisionGuideSchema,
       ControlModel: controlModelSchema,

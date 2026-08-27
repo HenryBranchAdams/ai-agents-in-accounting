@@ -12,6 +12,7 @@ import { accountingAgentsCoverageMap } from "../../coverage-map";
 import { accountingAgentsStartHere } from "../../start-here";
 import { accountingAgentReviewerGuide } from "../../reviewer-guide";
 import { accountingAgentsCoreCourse, coreCourseReadings } from "../../core-course";
+import { bankReconciliationTutorial } from "../../bank-reconciliation-tutorial";
 
 export async function GET(request: Request) {
   const body = JSON.stringify({
@@ -52,6 +53,10 @@ export async function GET(request: Request) {
       core_course_readings: coreCourseReadings.length,
       core_course_audience_lenses: accountingAgentsCoreCourse.audience_lenses.length,
       core_course_questions: accountingAgentsCoreCourse.knowledge_check.length,
+      tutorials: 1,
+      tutorial_steps: bankReconciliationTutorial.guided_steps.length,
+      tutorial_evidence_records: bankReconciliationTutorial.evidence_register.length,
+      tutorial_questions: bankReconciliationTutorial.knowledge_check.length,
     },
     process_families: processFamilies.map((record) => normalizeDomainRecord(record, "process-family")),
     workflows: workflowRecords.map((record) => normalizeDomainRecord(record, "workflow")),
@@ -73,6 +78,7 @@ export async function GET(request: Request) {
     coverage_map: accountingAgentsCoverageMap,
     start_here: accountingAgentsStartHere,
     core_course: accountingAgentsCoreCourse,
+    bank_reconciliation_tutorial: bankReconciliationTutorial,
   }, null, 2);
 
   return publicResponse(request, body, "application/json; charset=utf-8", {

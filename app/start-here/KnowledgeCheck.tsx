@@ -9,6 +9,7 @@ type KnowledgeCheckProps = {
   completionTitle: string;
   completionStatements: readonly string[];
   interpretationBoundary: string;
+  completionLabel?: string;
 };
 
 export function KnowledgeCheck({
@@ -17,6 +18,7 @@ export function KnowledgeCheck({
   completionTitle,
   completionStatements,
   interpretationBoundary,
+  completionLabel = "Orientation complete.",
 }: KnowledgeCheckProps) {
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [checked, setChecked] = useState(false);
@@ -80,7 +82,7 @@ export function KnowledgeCheck({
       <div aria-live="polite" className="knowledge-check-result">
         {checked && (
           <>
-            <p><strong>{score} of {questions.length} correct.</strong> {complete ? "Orientation complete." : "Review the feedback and try again."}</p>
+            <p><strong>{score} of {questions.length} correct.</strong> {complete ? completionLabel : "Review the feedback and try again."}</p>
             {complete && (
               <div className="completion-artifact" id={completionId}>
                 <h3>{completionTitle}</h3>

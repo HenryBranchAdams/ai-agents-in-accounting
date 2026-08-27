@@ -24,6 +24,7 @@ const apiEndpoints = [
   `${siteOrigin}/api/v1/coverage`,
   `${siteOrigin}/api/v1/start-here`,
   `${siteOrigin}/api/v1/course`,
+  `${siteOrigin}/api/v1/tutorials/bank-reconciliation`,
   `${siteOrigin}/api/v1/reviewer-guide`,
 ];
 const schemaEndpoints = [

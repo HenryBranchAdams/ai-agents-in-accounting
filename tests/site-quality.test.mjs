@@ -43,7 +43,7 @@ test("every canonical sitemap page renders a complete semantic document", async 
   assert.equal(sitemapResponse.status, 200);
   const sitemap = await sitemapResponse.text();
   const locations = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
-  assert.equal(locations.length, 595);
+  assert.equal(locations.length, 596);
   assert.equal(new Set(locations).size, locations.length);
 
   await mapInBatches(locations, 20, async (location) => {

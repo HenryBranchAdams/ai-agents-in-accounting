@@ -99,6 +99,10 @@ export default function OverviewPage() {
             <strong>Take the core course</strong>
             <span>Follow twenty bounded readings from professional authority through evidence, agent systems, evaluation, and a supervised synthetic transfer brief.</span>
           </Link>
+          <Link href="/tutorials/bank-reconciliation">
+            <strong>Practice a complete accounting lesson</strong>
+            <span>Prepare and review a synthetic bank reconciliation, then stop correctly when required evidence is missing or out of period.</span>
+          </Link>
           <Link href="/workflows">
             <strong>Explore accounting workflows</strong>
             <span>Find objectives, evidence, procedures, checks, authority limits, and review requirements.</span>
@@ -135,6 +139,10 @@ export default function OverviewPage() {
           <Link href="/course">
             <strong>Core course and reading canon</strong>
             <span>Build shared accounting and agent-system vocabulary, then apply it to a fictional governed-workflow brief.</span>
+          </Link>
+          <Link href="/tutorials/bank-reconciliation">
+            <strong>Guided accounting practice</strong>
+            <span>Turn one clean-room pack into an evidence register, tie-out, stopped exception, workpaper, and accountable review record.</span>
           </Link>
           <Link href="/workflows">
             <strong>Workflow library</strong>

@@ -337,6 +337,7 @@ export const contentPageAssignments: readonly ContentPageAssignment[] = [
   { path: "/", primary_mode: "explanation", page_kind: "static" },
   { path: "/start-here", primary_mode: "tutorial", page_kind: "static" },
   { path: "/course", primary_mode: "tutorial", page_kind: "static" },
+  { path: "/tutorials/bank-reconciliation", primary_mode: "tutorial", page_kind: "static" },
   { path: "/fundamentals", primary_mode: "explanation", page_kind: "static" },
   { path: "/lifecycle", primary_mode: "reference", page_kind: "static" },
   { path: "/coverage", primary_mode: "reference", page_kind: "static" },

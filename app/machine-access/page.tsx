@@ -63,6 +63,10 @@ export default function MachineAccessPage() {
             <strong>Core course</strong>
             <span>Twenty-source bridge course with equivalent Markdown and JSON, explicit evidence weight and limitations, four audience lenses, and a synthetic transfer brief.</span>
           </Link>
+          <Link href="/tutorials/bank-reconciliation">
+            <strong>Bank-reconciliation tutorial</strong>
+            <span>Complete clean-room lesson with equivalent Markdown and JSON, a known-answer tie-out, deliberate stop, workpaper, reviewer packet, and knowledge check.</span>
+          </Link>
           <Link href="/llms.txt">
             <strong>llms.txt</strong>
             <span>Small discovery map for agents; an emerging community convention.</span>

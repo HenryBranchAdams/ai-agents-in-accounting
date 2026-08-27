@@ -94,6 +94,7 @@ test("content contract is exposed through shared-shell labels and discovery proj
     "/": "Explanation",
     "/start-here": "Tutorial",
     "/course": "Tutorial",
+    "/tutorials/bank-reconciliation": "Tutorial",
     "/fundamentals": "Explanation",
     "/lifecycle": "Reference",
     "/authority": "Reference",
