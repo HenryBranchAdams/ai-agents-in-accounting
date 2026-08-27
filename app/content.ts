@@ -12,6 +12,7 @@ export const navGroups: NavGroup[] = [
   {
     label: "Learn",
     items: [
+      { href: "/start-here", label: "Start here" },
       { href: "/", label: "Overview" },
       { href: "/fundamentals", label: "Agent fundamentals" },
       { href: "/lifecycle", label: "Accounting lifecycle" },
@@ -122,6 +123,7 @@ export const searchItems = [
   { href: "/control-model", title: "Apply the Accounting Agent Control Model", category: "Govern", detail: "Objective, scope, evidence, procedure, checks, authority, review, action, and record" },
   { href: "/control-model#scenarios", title: "Review complete control-model scenarios", category: "Govern", detail: "Synthetic accrual-entry and payment-release examples with accountable human decisions" },
   { href: "/coverage", title: "Check coverage and gaps", category: "Learn", detail: "Deep, canonical-reference, source-only, planned, and out-of-scope coverage" },
+  { href: "/start-here", title: "Start here with accounting agents", category: "Learn", detail: "Five-minute orientation, synthetic exception, knowledge check, and role-based next paths" },
 ];
 
 export const modes = [

@@ -2,16 +2,18 @@
 
 An open educational field guide, source library, workflow library, practical toolkit, and machine-readable corpus for governed AI-agent work in accounting and finance.
 
-The public site is [accounting-agents.madebyhenry.chatgpt.site](https://accounting-agents.madebyhenry.chatgpt.site). It publishes 60 canonical workflows, 489 source records, 153 curated readings across 20 shelves, practical templates, six portable packs, controlled governance records, Markdown and JSON projections, a versioned read-only API, OpenAPI, JSON Schemas, small reference clients, and a specialist evaluation lab.
+The public site is [accounting-agents.madebyhenry.chatgpt.site](https://accounting-agents.madebyhenry.chatgpt.site). It publishes 60 canonical workflows, 489 source records, 153 curated readings across 20 shelves, practical templates, six portable packs, controlled governance records, Markdown and JSON projections, a versioned read-only API, OpenAPI, JSON Schemas, small reference clients, and existing evaluation assets.
+
+New readers can begin with the [five-minute Start here orientation](https://accounting-agents.madebyhenry.chatgpt.site/start-here), then use its synthetic exception and role-based routes to enter the guide. The same lesson is available as [Markdown](https://accounting-agents.madebyhenry.chatgpt.site/start-here.md) and [JSON](https://accounting-agents.madebyhenry.chatgpt.site/api/v1/start-here).
 
 The [versioned coverage and gaps map](https://accounting-agents.madebyhenry.chatgpt.site/coverage) distinguishes deep, canonical-reference, source-library-only, planned, and out-of-scope coverage. It qualifies lifecycle claims and is also available as [Markdown](https://accounting-agents.madebyhenry.chatgpt.site/coverage.md) and [JSON](https://accounting-agents.madebyhenry.chatgpt.site/api/v1/coverage).
 
 ## Four paths through the hub
 
-- Learn: start with agent fundamentals, the accounting lifecycle, authority, controls, and evidence.
+- Learn: start with the five-minute orientation, then continue into fundamentals, the accounting lifecycle, authority, controls, and evidence.
 - Explore: browse source-linked workflows, curated readings, and the complete source library.
 - Apply: use templates, synthetic workflow packs, architecture guidance, and a controlled-pilot checklist.
-- Research: inspect the evaluation guide, public conformance suite, and specialist LedgerBench program.
+- Research: follow the curated reading room, complete source library, and dated practice developments back to primary sources.
 
 The [open ecosystem map](https://accounting-agents.madebyhenry.chatgpt.site/ecosystem) distinguishes direct web access, AGENTS.md, MCP, A2A, and accounting-domain contracts by role and adoption posture. The repository `AGENTS.md` gives coding agents the build, content, rights, and verification rules for contributing safely.
 
@@ -21,9 +23,11 @@ The [Accounting Agent Control Model](https://accounting-agents.madebyhenry.chatg
 
 Coverage never grants execution authority. Agents may prepare work; accountable people approve conclusions and sensitive external actions.
 
-## Research and evaluation lab
+## Existing evaluation assets
 
 [LedgerBench](https://accounting-agents.madebyhenry.chatgpt.site/ledgerbench) is the Preview-stage specialist research program for accounting-agent capability, conformance, field utility, and grader validity. It documents measurement claims, task admission, hidden evaluation, verification, statistical discipline, and governance required before an official model ranking is published.
+
+Further LedgerBench and benchmark development is deferred. The current program pages and conformance assets remain available for reference and compatibility maintenance, but the active product program is the educational hub, source archive, practice observatory, and resource wiki.
 
 The existing 30-case Accounting Agent Bench remains a small public Core conformance asset for development checks. It does not by itself establish broad accounting competence, reliability, field utility, or production readiness.
 

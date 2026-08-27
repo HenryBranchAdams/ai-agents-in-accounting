@@ -25,7 +25,7 @@ export default function OverviewPage() {
         { href: "#ecosystem", label: "What is here" },
         { href: "#scope", label: "Coverage and execution" },
       ]}
-      next={{ href: "/fundamentals", label: "Agent fundamentals" }}
+      next={{ href: "/start-here", label: "Start here" }}
     >
       <section id="purpose">
         <h2>Purpose</h2>
@@ -91,10 +91,10 @@ export default function OverviewPage() {
       <section id="guide-map">
         <h2>Choose a path</h2>
         <div className="doc-link-list">
-          <a href="/fundamentals">
+          <Link href="/start-here">
             <strong>Learn the foundations</strong>
-            <span>Start with agent fundamentals, the accounting lifecycle, authority, and controls.</span>
-          </a>
+            <span>Take the five-minute orientation, complete one synthetic exception, and choose the path that fits your role.</span>
+          </Link>
           <Link href="/workflows">
             <strong>Explore accounting workflows</strong>
             <span>Find objectives, evidence, procedures, checks, authority limits, and review requirements.</span>
@@ -109,9 +109,9 @@ export default function OverviewPage() {
           </a>
         </div>
         <p>
-          Building or testing a system? Use the <Link href="/packs">workflow packs</Link>,
-          {" "}<Link href="/evaluation">evaluation guide</Link>, and specialist
-          {" "}<Link href="/ledgerbench">LedgerBench lab</Link>.
+          Building or testing a system? Use the <Link href="/packs">workflow packs</Link> and
+          {" "}<Link href="/evaluation">evaluation guide</Link>. Benchmark expansion is deferred while the
+          knowledge hub, source archive, and practical learning paths take priority.
         </p>
       </section>
 
@@ -124,9 +124,9 @@ export default function OverviewPage() {
           accountable people approve conclusions and sensitive actions.
         </p>
         <div className="doc-link-list">
-          <Link href="/fundamentals">
+          <Link href="/start-here">
             <strong>Concepts and orientation</strong>
-            <span>Understand agents, governed work, the accounting lifecycle, and authority.</span>
+            <span>Understand the governing rule, follow evidence to a decision, and choose an appropriate next route.</span>
           </Link>
           <Link href="/workflows">
             <strong>Workflow library</strong>

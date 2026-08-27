@@ -41,6 +41,46 @@ import {
 } from "../content-contract";
 import { accountingAgentControlModel, controlModelElements } from "../control-model";
 import { accountingAgentsCoverageMap, coverageStates } from "../coverage-map";
+import { accountingAgentsStartHere } from "../start-here";
+
+const startHereSchema = {
+  type: "object",
+  required: [
+    "id", "version", "title", "description", "prepared_at", "review_status", "review_note",
+    "primary_mode", "intended_audience", "prerequisites", "learning_objectives", "definition",
+    "comparisons", "governing_rule", "evidence_to_decision_chain", "scenario", "knowledge_check",
+    "completion_artifact", "audience_paths", "limitations", "next_action", "source_basis", "rights",
+  ],
+  properties: {
+    id: { type: "string", const: accountingAgentsStartHere.id },
+    version: { type: "string", const: accountingAgentsStartHere.version },
+    title: { type: "string" },
+    description: { type: "string" },
+    prepared_at: { type: "string", format: "date" },
+    review_status: { type: "string", const: accountingAgentsStartHere.review_status },
+    review_note: { type: "string" },
+    primary_mode: { type: "string", const: "tutorial" },
+    intended_audience: { type: "string" },
+    prerequisites: { type: "array", minItems: 2, items: { type: "string" } },
+    learning_objectives: { type: "array", minItems: 4, items: { type: "string" } },
+    definition: {
+      type: "object",
+      required: ["id", "text", "evidence_classification", "reliance_boundary"],
+      properties: { id: { type: "string" }, text: { type: "string" }, evidence_classification: { type: "string", enum: evidenceClassificationIds }, reliance_boundary: { type: "string" } },
+    },
+    comparisons: { type: "array", minItems: 4, maxItems: 4, items: { type: "object", required: ["id", "label", "controller", "behavior", "accounting_example", "boundary"] } },
+    governing_rule: { type: "object", required: ["id", "text", "evidence_classification", "implication"] },
+    evidence_to_decision_chain: { type: "array", minItems: 6, maxItems: 6, items: { type: "object", required: ["id", "label", "text", "owner"] } },
+    scenario: { type: "object", required: ["id", "title", "evidence_classification", "fictional", "context", "guided_steps", "deliberate_exception", "finished_artifact", "safe_reset"], properties: { fictional: { type: "boolean", const: true }, evidence_classification: { type: "string", const: "synthetic-example" }, guided_steps: { type: "array", minItems: 5, items: { type: "string" } } } },
+    knowledge_check: { type: "array", minItems: 3, maxItems: 3, items: { type: "object", required: ["id", "prompt", "options", "correct_option_id", "correct_feedback", "incorrect_feedback"], properties: { options: { type: "array", minItems: 3, items: { type: "object", required: ["id", "label"] } } } } },
+    completion_artifact: { type: "object", required: ["id", "title", "statements", "interpretation_boundary"] },
+    audience_paths: { type: "array", minItems: 5, maxItems: 5, items: { type: "object", required: ["id", "label", "href", "next", "outcome"] } },
+    limitations: { type: "array", minItems: 4, items: { type: "string" } },
+    next_action: { type: "string" },
+    source_basis: { type: "array", minItems: 2, items: { type: "object", required: ["id", "title", "href", "evidence_classification", "scope"] } },
+    rights: { type: "object", required: ["editorial_content", "synthetic_example_and_factual_metadata", "external_sources"] },
+  },
+} as const;
 
 const coverageMapSchema = {
   type: "object",
@@ -1144,6 +1184,22 @@ const document = {
       },
       options: { operationId: "getContentContractOptions", summary: "CORS preflight", tags: ["Content"], responses: { "204": { description: "Allowed methods and headers." } } },
     },
+    "/api/v1/start-here": {
+      get: {
+        operationId: "getStartHereOrientation",
+        summary: "Retrieve the five-minute Start here orientation",
+        tags: ["Content"],
+        parameters: [{ name: "format", in: "query", description: "Overrides Accept-based content negotiation.", schema: { type: "string", enum: ["json", "markdown"] } }],
+        responses: {
+          "200": { description: "Start here orientation in JSON or Markdown.", content: { "application/json": { schema: { type: "object", required: ["schema_version", "collection", "rights_notice", "links", "item"], properties: { schema_version: { type: "string" }, collection: { type: "string", const: "start_here_orientation" }, rights_notice: { type: "string" }, links: { type: "object" }, item: { $ref: "#/components/schemas/StartHereOrientation" } } } }, "text/markdown": { schema: { type: "string" } } } },
+          "304": { description: "The representation has not changed." },
+          "400": { description: "Invalid format parameter." },
+          "406": { description: "No acceptable representation was requested." },
+        },
+      },
+      head: { operationId: "getStartHereOrientationHead", summary: "Retrieve Start here orientation headers", tags: ["Content"], responses: { "200": { description: "Orientation headers." }, "304": { description: "The representation has not changed." } } },
+      options: { operationId: "getStartHereOrientationOptions", summary: "CORS preflight", tags: ["Content"], responses: { "204": { description: "Allowed methods and headers." } } },
+    },
     "/api/v1/control-model": {
       get: {
         operationId: "getAccountingAgentControlModel",
@@ -1187,6 +1243,7 @@ const document = {
       GlossaryEntry: glossaryEntrySchema,
       EcosystemLayer: ecosystemLayerSchema,
       ContentContract: contentContractSchema,
+      StartHereOrientation: startHereSchema,
       ControlModel: controlModelSchema,
       CoverageMap: coverageMapSchema,
       Pack: packSchema,

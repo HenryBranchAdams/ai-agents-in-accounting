@@ -31,6 +31,7 @@ import { processFamilies, workflowRecords } from "./workflows-data";
 import { renderDomainCorpusMarkdown, shiftMarkdownHeadings } from "./domain-interface";
 import { accountingAgentControlModel, renderControlModelMarkdown } from "./control-model";
 import { accountingAgentsCoverageMap, renderCoverageMapMarkdown } from "./coverage-map";
+import { accountingAgentsStartHere, renderStartHereMarkdown } from "./start-here";
 
 export const siteOrigin = "https://accounting-agents.madebyhenry.chatgpt.site";
 export const catalogReviewedAt = "2026-08-27";
@@ -504,6 +505,17 @@ export function buildAgentContextMarkdown() {
     "",
     "Measure coverage, calculation and classification accuracy, exception quality, traceability, reviewer rework, end-to-end cycle time, and reviewer overrides. Stop when populations do not tie, sources or tools are unauthorized, material results lack support, prohibited actions are attempted, override rates worsen after a change, or the run cannot be reproduced.",
     "",
+    "## Start here orientation",
+    "",
+    accountingAgentsStartHere.definition.text,
+    "",
+    accountingAgentsStartHere.governing_rule.text,
+    "",
+    "The five-minute tutorial compares chat, copilot, fixed workflow, and accounting agent; follows one synthetic cash exception from evidence to an accountable decision; and ends with a knowledge check and five role-based next paths.",
+    "",
+    `- [Start here](${siteOrigin}/start-here): canonical human tutorial with a synthetic exception and knowledge check.`,
+    `- [Start here in Markdown](${siteOrigin}/start-here.md): equivalent text projection with stable lesson IDs.`,
+    "",
     "## Educational content contract",
     "",
     `The educational content contract (version ${educationalContentContract.version}, prepared ${contentContractPreparedAt}; maintainer review pending) assigns each major page one primary mode: Tutorial, How-to, Explanation, Reference, Case study, Evidence synthesis, or Program documentation. Cross-links may connect modes, but mixed concerns must remain explicit.`,
@@ -531,6 +543,7 @@ export function buildAgentContextMarkdown() {
     "## Human-readable guide",
     "",
     `- [Overview](${siteOrigin}/)` ,
+    `- [Start here](${siteOrigin}/start-here)`,
     `- [Agent fundamentals](${siteOrigin}/fundamentals)`,
     `- [Accounting lifecycle](${siteOrigin}/lifecycle)`,
     `- [Coverage and gaps](${siteOrigin}/coverage)`,
@@ -566,6 +579,8 @@ export function buildLlmsText() {
     "## Context",
     "",
     `- [Compact accounting-agent context](${siteOrigin}/agent-context.md): Core definitions, workflows, controls, architecture, and pilot guidance in Markdown.`,
+    `- [Start here](${siteOrigin}/start-here): Five-minute nontechnical orientation, synthetic exception, knowledge check, and five role paths.`,
+    `- [Start here in Markdown](${siteOrigin}/start-here.md): Equivalent low-token tutorial with stable lesson, scenario, question, and path IDs.`,
     `- [Public agent instructions](${siteOrigin}/AGENTS.md): Routing, reliance, source-use, and protocol guidance for agents consuming this corpus.`,
     `- [Full context bundle](${siteOrigin}/downloads/context-bundle.md): Complete domain corpus plus all ${agentResources.length} source records in Markdown.`,
     `- [Canonical JSON corpus](${siteOrigin}/downloads/corpus.json): All ${workflowRecords.length} workflows, ${authorityLevels.length} authority levels, ${sensitiveActions.length} sensitive-action boundaries, ${controlPatterns.length} controls, ${templates.length} templates, ${glossary.length} glossary terms, and source records.`,
@@ -612,12 +627,14 @@ export function buildLlmsText() {
     `- [Standard API catalog](${siteOrigin}/.well-known/api-catalog): RFC 9727 discovery document in Linkset JSON.`,
     `- [Agent access guide](${siteOrigin}/machine-access): Endpoint documentation and examples for people integrating agents.`,
     `- [Educational content contract API](${siteOrigin}/api/v1/content-contract): Typed modes, evidence classifications, release gate, measures, and page assignments.`,
+    `- [Start here API](${siteOrigin}/api/v1/start-here): Canonical orientation, comparisons, evidence chain, synthetic scenario, knowledge check, role paths, limits, rights, and review status.`,
     `- [Accounting Agent Control Model API](${siteOrigin}/api/v1/control-model): Canonical elements, scenarios, workflow mapping, sources, rights, and review status.`,
     `- [Coverage API](${siteOrigin}/api/v1/coverage): Canonical versioned coverage states, family boundaries, planned work, and exclusions.`,
     "",
     "## Human-readable guide",
     "",
     `- [Overview](${siteOrigin}/): Purpose, operating rule, and scope.`,
+    `- [Start here](${siteOrigin}/start-here): Five-minute orientation and first guided synthetic exception.`,
     `- [Agent fundamentals](${siteOrigin}/fundamentals): Agent definition, operating patterns, work loop, and run record.`,
     `- [Accounting lifecycle](${siteOrigin}/lifecycle): Eight core process families with explicitly qualified boundaries.`,
     `- [Coverage and gaps](${siteOrigin}/coverage): What this release treats deeply, at reference level, through sources, as planned, or as out of scope.`,
@@ -660,6 +677,8 @@ export function buildContextBundleMarkdown() {
     "## Compact guide",
     "",
     shiftMarkdownHeadings(buildAgentContextMarkdown(), 2).trimEnd(),
+    "",
+    shiftMarkdownHeadings(renderStartHereMarkdown(), 1).trimEnd(),
     "",
     "## Educational content contract",
     "",

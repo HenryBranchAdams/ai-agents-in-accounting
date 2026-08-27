@@ -7,13 +7,14 @@ const instructions = `# Accounting Agents public access instructions
 ## Start here
 
 1. Load /agent-context.md for compact domain context.
-2. Use /api/v1/search for deterministic cross-corpus discovery.
-3. Retrieve focused records from /api/v1/workflows, /api/v1/resources, /api/v1/packs, or /api/v1/benchmark.
-4. Preserve stable IDs, versions, review dates, source IDs, and rights fields in the work record.
-5. Follow canonical source links when the task requires current authoritative support.
-6. Use /content-contract to identify each page's primary mode and the evidence classification before reusing educational material.
-7. Use /control-model to structure governed work from objective through retained record; apply all nine elements rather than treating the page as a checklist that grants authority.
-8. Use /coverage before claiming that the corpus is complete, deep, applicable to an expansion domain, or suitable for a pilot.
+2. Use /start-here for the bounded definition, governing rule, synthetic exception, and role-based next routes.
+3. Use /api/v1/search for deterministic cross-corpus discovery.
+4. Retrieve focused records from /api/v1/workflows, /api/v1/resources, or /api/v1/packs.
+5. Preserve stable IDs, versions, review dates, source IDs, and rights fields in the work record.
+6. Follow canonical source links when the task requires current authoritative support.
+7. Use /content-contract to identify each page's primary mode and the evidence classification before reusing educational material.
+8. Use /control-model to structure governed work from objective through retained record; apply all nine elements rather than treating the page as a checklist that grants authority.
+9. Use /coverage before claiming that the corpus is complete, deep, applicable to an expansion domain, or suitable for a pilot.
 
 ## Non-negotiable boundaries
 
@@ -46,6 +47,9 @@ const instructions = `# Accounting Agents public access instructions
 - /downloads/context-bundle.md
 - /downloads/corpus.json
 - /api/v1/search
+- /start-here
+- /start-here.md
+- /api/v1/start-here
 - /content-contract
 - /content-contract.md
 - /api/v1/content-contract

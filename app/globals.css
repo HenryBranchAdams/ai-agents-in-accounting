@@ -2362,6 +2362,161 @@ summary:focus-visible {
   }
 }
 
+.orientation-definition {
+  color: var(--text);
+  font-size: 1.2rem !important;
+  font-weight: 620;
+  line-height: 1.55 !important;
+  max-width: 42rem;
+}
+
+.evidence-label {
+  color: var(--faint) !important;
+  font-size: 0.72rem !important;
+  font-weight: 650;
+  letter-spacing: 0.035em;
+  text-transform: uppercase;
+}
+
+.evidence-chain small {
+  color: var(--faint);
+  display: block;
+  font-size: 0.7rem;
+  margin-top: 0.3rem;
+}
+
+.knowledge-check {
+  border-top: 1px solid var(--border-strong);
+  margin-top: 1.25rem;
+}
+
+.knowledge-check fieldset {
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  margin: 0;
+  padding: 1.15rem 0;
+}
+
+.knowledge-check legend {
+  color: var(--text);
+  display: grid;
+  font-size: 0.9rem;
+  font-weight: 650;
+  gap: 0.8rem;
+  grid-template-columns: 1.8rem 1fr;
+  line-height: 1.45;
+  margin-bottom: 0.75rem;
+  padding: 0;
+  width: 100%;
+}
+
+.knowledge-check legend > span {
+  color: var(--faint);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.68rem;
+  padding-top: 0.15rem;
+}
+
+.knowledge-check label {
+  align-items: start;
+  color: var(--muted);
+  cursor: pointer;
+  display: grid;
+  font-size: 0.82rem;
+  gap: 0.65rem;
+  grid-template-columns: 1rem 1fr;
+  line-height: 1.5;
+  margin-left: 2.6rem;
+  padding: 0.35rem 0;
+}
+
+.knowledge-check input {
+  accent-color: var(--accent);
+  margin: 0.18rem 0 0;
+}
+
+.knowledge-check label:has(input:focus-visible) {
+  color: var(--text);
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.knowledge-check-actions {
+  display: flex;
+  gap: 0.65rem;
+  padding: 1rem 0 0;
+}
+
+.knowledge-check-actions button {
+  background: var(--background);
+  border: 1px solid var(--border-strong);
+  border-radius: 4px;
+  color: var(--text);
+  cursor: pointer;
+  font-size: 0.78rem;
+  font-weight: 650;
+  padding: 0.6rem 0.9rem;
+}
+
+.knowledge-check-actions button:first-child {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+}
+
+.knowledge-check-actions button:hover,
+.knowledge-check-actions button:focus-visible {
+  border-color: var(--accent);
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.check-feedback {
+  color: var(--warning) !important;
+  font-size: 0.78rem !important;
+  margin: 0.55rem 0 0 2.6rem !important;
+}
+
+.check-feedback-correct {
+  color: var(--accent) !important;
+}
+
+.knowledge-check-result {
+  min-height: 1.5rem;
+}
+
+.completion-artifact {
+  border-left: 3px solid var(--accent);
+  margin-top: 1rem;
+  padding: 0.15rem 0 0.15rem 1rem;
+}
+
+.completion-artifact h3 {
+  margin-top: 0;
+}
+
+.completion-artifact p {
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+@media (max-width: 720px) {
+  .knowledge-check label,
+  .check-feedback {
+    margin-left: 0;
+  }
+
+  .knowledge-check-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .knowledge-check-actions button {
+    min-height: 2.75rem;
+    width: 100%;
+  }
+}
+
 @media print {
   .topbar,
   .sidebar,

@@ -18,6 +18,7 @@ import { benchmarkCases, packs, platformRelease } from "../../../platform-data";
 import { educationalContentContract } from "../../../content-contract";
 import { accountingAgentControlModel } from "../../../control-model";
 import { accountingAgentsCoverageMap } from "../../../coverage-map";
+import { accountingAgentsStartHere } from "../../../start-here";
 
 export function OPTIONS() {
   return corsOptionsResponse();
@@ -38,6 +39,8 @@ export async function GET(request: Request) {
     control_model_review_status: accountingAgentControlModel.review_status,
     coverage_map_version: accountingAgentsCoverageMap.version,
     coverage_map_review_status: accountingAgentsCoverageMap.review_status,
+    start_here_version: accountingAgentsStartHere.version,
+    start_here_review_status: accountingAgentsStartHere.review_status,
     title: "Accounting Agents public corpus",
     description: "Canonical workflows, authority boundaries, controls, templates, terminology, and curated sources for governed AI-agent work across the accounting lifecycle.",
     language: "en",
@@ -63,6 +66,9 @@ export async function GET(request: Request) {
       coverage_family_boundaries: accountingAgentsCoverageMap.family_coverage.length,
       coverage_expansion_domains: accountingAgentsCoverageMap.expansion_coverage.length,
       coverage_out_of_scope_boundaries: accountingAgentsCoverageMap.out_of_scope.length,
+      orientation_lessons: 1,
+      orientation_questions: accountingAgentsStartHere.knowledge_check.length,
+      orientation_audience_paths: accountingAgentsStartHere.audience_paths.length,
     },
     access: {
       authentication: "none",
@@ -119,6 +125,9 @@ export async function GET(request: Request) {
       coverage: `${siteOrigin}/coverage`,
       coverage_markdown: `${siteOrigin}/coverage.md`,
       coverage_api: `${siteOrigin}/api/v1/coverage`,
+      start_here: `${siteOrigin}/start-here`,
+      start_here_markdown: `${siteOrigin}/start-here.md`,
+      start_here_api: `${siteOrigin}/api/v1/start-here`,
     },
     platform_release: platformRelease,
   }, null, 2);

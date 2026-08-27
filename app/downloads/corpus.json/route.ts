@@ -9,6 +9,7 @@ import { benchmark, benchmarkCases, packs, platformRelease, releaseNotes } from 
 import { educationalContentContract } from "../../content-contract";
 import { accountingAgentControlModel } from "../../control-model";
 import { accountingAgentsCoverageMap } from "../../coverage-map";
+import { accountingAgentsStartHere } from "../../start-here";
 
 export async function GET(request: Request) {
   const body = JSON.stringify({
@@ -34,6 +35,9 @@ export async function GET(request: Request) {
       control_model_scenarios: accountingAgentControlModel.scenarios.length,
       coverage_states: accountingAgentsCoverageMap.state_definitions.length,
       coverage_family_boundaries: accountingAgentsCoverageMap.family_coverage.length,
+      orientation_lessons: 1,
+      orientation_questions: accountingAgentsStartHere.knowledge_check.length,
+      orientation_audience_paths: accountingAgentsStartHere.audience_paths.length,
     },
     process_families: processFamilies.map((record) => normalizeDomainRecord(record, "process-family")),
     workflows: workflowRecords.map((record) => normalizeDomainRecord(record, "workflow")),
@@ -51,6 +55,7 @@ export async function GET(request: Request) {
     content_contract: educationalContentContract,
     control_model: accountingAgentControlModel,
     coverage_map: accountingAgentsCoverageMap,
+    start_here: accountingAgentsStartHere,
   }, null, 2);
 
   return publicResponse(request, body, "application/json; charset=utf-8", {

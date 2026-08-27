@@ -92,6 +92,7 @@ test("human, Markdown, and JSON content-contract surfaces preserve canonical mea
 test("content contract is exposed through shared-shell labels and discovery projections", async () => {
   const staticModeLabels = {
     "/": "Explanation",
+    "/start-here": "Tutorial",
     "/fundamentals": "Explanation",
     "/lifecycle": "Reference",
     "/authority": "Reference",

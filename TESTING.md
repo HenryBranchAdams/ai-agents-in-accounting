@@ -15,6 +15,7 @@ The test suite treats the built Worker as the public product. It sends requests 
 | Machine access | OpenAPI, API catalog, `llms.txt`, `AGENTS.md`, Markdown, JSON snapshots, feeds, schemas, and release manifests. |
 | Corpus integrity | Unique identifiers and valid references across workflows, sources, controls, templates, packs, benchmark cases, reading-room shelves, and ecosystem layers. |
 | Content quality | Required metadata, valid HTTPS source URLs, rights boundaries, source provenance, and prohibited placeholder or promotional language. |
+| Educational tutorials | Start here definition, pattern comparison, evidence-to-decision chain, clean-room synthetic exception, knowledge check, completion boundary, role paths, and human/Markdown/JSON parity. |
 | Accounting safety | Benchmark hard gates, empty executed-action sets, approval boundaries, evidence links, and deterministic calculations. |
 
 ## Commands

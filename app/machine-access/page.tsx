@@ -55,6 +55,10 @@ export default function MachineAccessPage() {
           machine-readable surface is public, read-only, and requires no API key.
         </p>
         <div className="doc-link-list machine-links">
+          <Link href="/start-here">
+            <strong>Start here orientation</strong>
+            <span>Five-minute human tutorial with equivalent Markdown and JSON, a synthetic exception, knowledge check, and role-based next paths.</span>
+          </Link>
           <Link href="/llms.txt">
             <strong>llms.txt</strong>
             <span>Small discovery map for agents; an emerging community convention.</span>
@@ -176,6 +180,7 @@ export default function MachineAccessPage() {
           <div><dt>/content-contract</dt><dd>Primary educational modes, evidence classifications, release gate, and proposed success measures.</dd></div>
           <div><dt>/control-model</dt><dd>Nine canonical governance elements, two synthetic scenarios, workflow mappings, sources, and review limits.</dd></div>
           <div><dt>/coverage</dt><dd>Five coverage states, eight process-family boundaries, planned deep treatments, expansion gaps, and explicit exclusions.</dd></div>
+          <div><dt>/start-here</dt><dd>Canonical orientation, operating-pattern comparison, evidence chain, synthetic scenario, knowledge check, role paths, limits, rights, and review state.</dd></div>
         </dl>
         <p>Prefix each path above with <code>/api/v1</code>.</p>
 

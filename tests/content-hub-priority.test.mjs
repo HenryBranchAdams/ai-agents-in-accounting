@@ -42,7 +42,9 @@ test("the homepage leads with education, workflows, and source-backed learning",
   assert.match(html, /Research the field/);
   assert.doesNotMatch(html, /benchmark cases/i);
 
-  const firstLearningPath = html.indexOf('href="/fundamentals"');
+  assert.match(html, /href="\/start-here"/);
+  assert.match(html, /Benchmark expansion is deferred/);
+  const firstLearningPath = html.indexOf('href="/start-here"');
   const firstLedgerBenchLink = html.indexOf('href="/ledgerbench"');
   assert.ok(firstLearningPath >= 0);
   assert.ok(firstLedgerBenchLink > firstLearningPath);
