@@ -45,6 +45,10 @@ import { accountingAgentsStartHere } from "../start-here";
 import { accountingAgentReviewerGuide, reviewerDispositions } from "../reviewer-guide";
 import { accountingAgentsCoreCourse, coreCourseLensIds } from "../core-course";
 import { bankReconciliationTutorial } from "../bank-reconciliation-tutorial";
+import {
+  accountingAgentsPracticeObservatory,
+  practiceObservatoryLaneIds,
+} from "../practice-observatory";
 
 const startHereSchema = {
   type: "object",
@@ -164,6 +168,81 @@ const coreCourseSchema = {
     limitations: { type: "array", minItems: 6, items: { type: "string" } },
     next_action: { type: "string" },
     rights: { type: "object", required: ["editorial_content", "synthetic_example_and_factual_metadata", "external_sources"] },
+  },
+} as const;
+
+const practiceObservatorySchema = {
+  type: "object",
+  required: [
+    "id", "version", "title", "description", "prepared_at", "snapshot_as_of",
+    "review_status", "review_note", "primary_mode", "evidence_classification",
+    "governing_rule", "scope", "freshness", "counts", "lanes", "items",
+    "limitations", "next_action", "rights",
+  ],
+  properties: {
+    id: { type: "string", const: accountingAgentsPracticeObservatory.id },
+    version: { type: "string", const: accountingAgentsPracticeObservatory.version },
+    title: { type: "string" },
+    description: { type: "string" },
+    prepared_at: { type: "string", format: "date" },
+    snapshot_as_of: { type: "string", format: "date" },
+    review_status: { type: "string", const: "maintainer-review-pending" },
+    review_note: { type: "string" },
+    primary_mode: { type: "string", const: "evidence-synthesis" },
+    evidence_classification: { type: "string", const: "editorial-recommendation" },
+    governing_rule: { type: "object", required: ["id", "text", "evidence_classification", "implication"] },
+    scope: { type: "object", required: ["question", "admission_rules", "exclusions"] },
+    freshness: { type: "object", required: ["ordering", "source_date_boundary", "monitoring_boundary"] },
+    counts: {
+      type: "object",
+      required: ["records", "lanes", "lane_records", "relationship_profiled_records", "general_applicability_records", "industry_specific_applicability_records"],
+      properties: {
+        records: { type: "integer", minimum: 1 },
+        lanes: { type: "integer", const: practiceObservatoryLaneIds.length },
+        lane_records: { type: "object" },
+        relationship_profiled_records: { type: "integer", minimum: 0 },
+      },
+    },
+    lanes: {
+      type: "array",
+      minItems: practiceObservatoryLaneIds.length,
+      maxItems: practiceObservatoryLaneIds.length,
+      items: {
+        type: "object",
+        required: ["id", "label", "description"],
+        properties: { id: { type: "string", enum: practiceObservatoryLaneIds } },
+      },
+    },
+    items: {
+      type: "array",
+      minItems: 1,
+      items: {
+        type: "object",
+        required: [
+          "id", "resource_id", "lane_id", "title", "publisher", "source_type", "topic",
+          "published_or_status", "jurisdiction", "access", "summary", "catalog_href",
+          "original_source_href", "source_updated_at", "record_reviewed_at", "source_verified_at",
+          "next_review_at", "lifecycle", "publication_status", "applicability", "applicability_note",
+          "method", "transfer_limit", "commercial_interest", "evidence_tier",
+          "evidence_tier_label", "relationship_profiled", "review_status", "reading_room_shelf",
+        ],
+        properties: {
+          id: { type: "string", pattern: "^observatory-src_[a-z0-9]+$" },
+          resource_id: { type: "string", pattern: "^src_[a-z0-9]+$" },
+          lane_id: { type: "string", enum: practiceObservatoryLaneIds },
+          catalog_href: { type: "string", pattern: "^/resources/src_[a-z0-9]+$" },
+          original_source_href: { type: "string", format: "uri" },
+          source_updated_at: { type: ["string", "null"], format: "date" },
+          evidence_tier: { type: ["string", "null"] },
+          relationship_profiled: { type: "boolean" },
+          applicability: { type: "array", minItems: 1, items: { type: "object", required: ["id", "label"] } },
+          reading_room_shelf: { type: ["object", "null"] },
+        },
+      },
+    },
+    limitations: { type: "array", minItems: 5, items: { type: "string" } },
+    next_action: { type: "string" },
+    rights: { type: "object", required: ["editorial_content", "factual_metadata", "external_sources"] },
   },
 } as const;
 
@@ -1678,6 +1757,22 @@ const document = {
       head: { operationId: "getAccountingAgentsCoreCourseHead", summary: "Retrieve core-course headers", tags: ["Content"], responses: { "200": { description: "Core-course headers." }, "304": { description: "The representation has not changed." } } },
       options: { operationId: "getAccountingAgentsCoreCourseOptions", summary: "CORS preflight", tags: ["Content"], responses: { "204": { description: "Allowed methods and headers." } } },
     },
+    "/api/v1/observatory": {
+      get: {
+        operationId: "getAccountingAgentsPracticeObservatory",
+        summary: "Retrieve the dated practice-observatory snapshot",
+        tags: ["Content"],
+        parameters: [{ name: "format", in: "query", description: "Overrides Accept-based content negotiation.", schema: { type: "string", enum: ["json", "markdown"] } }],
+        responses: {
+          "200": { description: "Practice observatory in JSON or Markdown.", content: { "application/json": { schema: { type: "object", required: ["schema_version", "collection", "rights_notice", "links", "item"], properties: { schema_version: { type: "string" }, collection: { type: "string", const: "accounting_agents_practice_observatory" }, rights_notice: { type: "string" }, links: { type: "object" }, item: { $ref: "#/components/schemas/PracticeObservatory" } } } }, "text/markdown": { schema: { type: "string" } } } },
+          "304": { description: "The representation has not changed." },
+          "400": { description: "Invalid format parameter." },
+          "406": { description: "No acceptable representation was requested." },
+        },
+      },
+      head: { operationId: "getAccountingAgentsPracticeObservatoryHead", summary: "Retrieve practice-observatory headers", tags: ["Content"], responses: { "200": { description: "Practice-observatory headers." }, "304": { description: "The representation has not changed." } } },
+      options: { operationId: "getAccountingAgentsPracticeObservatoryOptions", summary: "CORS preflight", tags: ["Content"], responses: { "204": { description: "Allowed methods and headers." } } },
+    },
     "/api/v1/tutorials/bank-reconciliation": {
       get: {
         operationId: "getBankReconciliationTutorial",
@@ -1755,6 +1850,7 @@ const document = {
       ContentContract: contentContractSchema,
       StartHereOrientation: startHereSchema,
       CoreCourse: coreCourseSchema,
+      PracticeObservatory: practiceObservatorySchema,
       BankReconciliationTutorial: bankReconciliationTutorialSchema,
       ReviewerFieldGuide: reviewerGuideSchema,
       AuthorityDecisionGuide: authorityDecisionGuideSchema,

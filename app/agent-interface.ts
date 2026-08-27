@@ -35,6 +35,10 @@ import { accountingAgentsStartHere, renderStartHereMarkdown } from "./start-here
 import { accountingAgentReviewerGuide, renderReviewerGuideMarkdown } from "./reviewer-guide";
 import { accountingAgentsCoreCourse, coreCourseReadings, renderCoreCourseMarkdown } from "./core-course";
 import { bankReconciliationTutorial, renderBankReconciliationTutorialMarkdown } from "./bank-reconciliation-tutorial";
+import {
+  accountingAgentsPracticeObservatory,
+  renderPracticeObservatoryMarkdown,
+} from "./practice-observatory";
 
 export const siteOrigin = "https://accounting-agents.madebyhenry.chatgpt.site";
 export const catalogReviewedAt = "2026-08-27";
@@ -528,6 +532,13 @@ export function buildAgentContextMarkdown() {
     `- [Core course](${siteOrigin}/course): canonical human tutorial and deliberate reading path.`,
     `- [Core course in Markdown](${siteOrigin}/course.md): equivalent low-token course with stable module, reading, lens, capstone, and question IDs.`,
     "",
+    "## Practice observatory",
+    "",
+    `The ${accountingAgentsPracticeObservatory.title} is a dated evidence-synthesis index over ${accountingAgentsPracticeObservatory.counts.records} catalog records explicitly marked current-development. It separates official and standards material, research, products, disclosed practice, and technical developments while preserving industry applicability, method, commercial interest, freshness, and transfer limits. It is not a ranking, adoption dashboard, or automatic news monitor.`,
+    "",
+    `- [Practice observatory](${siteOrigin}/observatory): canonical filterable human index.`,
+    `- [Practice observatory in Markdown](${siteOrigin}/observatory.md): equivalent source-linked snapshot with stable record and lane IDs.`,
+    "",
     "## Bank-reconciliation tutorial",
     "",
     `The ${bankReconciliationTutorial.title} turns the existing clean-room pack into a complete lesson: three-record evidence register, known-answer tie-out, deliberate missing/wrong-period stop, prepared workpaper, reviewer challenge, two bounded dispositions, knowledge check, and safe reset.`,
@@ -596,6 +607,7 @@ export function buildAgentContextMarkdown() {
     `- [Glossary](${siteOrigin}/glossary)`,
     `- [Source library](${siteOrigin}/resources)`,
     `- [Reading room](${siteOrigin}/reading-room)`,
+    `- [Practice observatory](${siteOrigin}/observatory)`,
     `- [Agent access](${siteOrigin}/machine-access)`,
     "",
   ].join("\n");
@@ -618,6 +630,8 @@ export function buildLlmsText() {
     `- [Core course in Markdown](${siteOrigin}/course.md): Equivalent learning sequence with stable module, reading, lens, capstone, and question IDs.`,
     `- [Bank-reconciliation tutorial](${siteOrigin}/tutorials/bank-reconciliation): Complete synthetic lesson from evidence register and known-answer tie-out through a deliberate missing-evidence stop, workpaper, reviewer dispositions, knowledge check, and safe reset.`,
     `- [Bank-reconciliation tutorial in Markdown](${siteOrigin}/tutorials/bank-reconciliation.md): Equivalent text lesson with stable evidence, step, artifact, disposition, and question IDs.`,
+    `- [Practice observatory](${siteOrigin}/observatory): Dated, filterable index of current official developments, research, products, technical work, and disclosed practice with explicit evidence and transfer boundaries.`,
+    `- [Practice observatory in Markdown](${siteOrigin}/observatory.md): Equivalent source-linked snapshot with stable lane and record IDs.`,
     `- [Public agent instructions](${siteOrigin}/AGENTS.md): Routing, reliance, source-use, and protocol guidance for agents consuming this corpus.`,
     `- [Full context bundle](${siteOrigin}/downloads/context-bundle.md): Complete domain corpus plus all ${agentResources.length} source records in Markdown.`,
     `- [Canonical JSON corpus](${siteOrigin}/downloads/corpus.json): All ${workflowRecords.length} workflows, ${authorityLevels.length} authority levels, the authority decision guide, reviewer field guide, ${sensitiveActions.length} sensitive-action boundaries, ${controlPatterns.length} controls, ${templates.length} templates, ${glossary.length} glossary terms, and source records.`,
@@ -668,6 +682,7 @@ export function buildLlmsText() {
     `- [Start here API](${siteOrigin}/api/v1/start-here): Canonical orientation, comparisons, evidence chain, synthetic scenario, knowledge check, role paths, limits, rights, and review status.`,
     `- [Core course API](${siteOrigin}/api/v1/course): Canonical modules, twenty source readings, evidence weights, limitations, audience lenses, synthetic capstone, knowledge check, limits, rights, and review status.`,
     `- [Bank-reconciliation tutorial API](${siteOrigin}/api/v1/tutorials/bank-reconciliation): Canonical synthetic environment, evidence register, guided steps, known answer, deliberate stop, workpaper, reviewer packet, knowledge check, transfer limits, sources, rights, and review status.`,
+    `- [Practice observatory API](${siteOrigin}/api/v1/observatory): Canonical current-development snapshot, lane definitions, exact industry applicability, methods, freshness, commercial-interest notes, evidence-profile status, and transfer limits.`,
     `- [Reviewer field guide API](${siteOrigin}/api/v1/reviewer-guide): Canonical procedure, dispositions, packet fields, examples, calibration, review-program scaffold, sources, limits, rights, and review status.`,
     `- [Accounting Agent Control Model API](${siteOrigin}/api/v1/control-model): Canonical elements, scenarios, workflow mapping, sources, rights, and review status.`,
     `- [Coverage API](${siteOrigin}/api/v1/coverage): Canonical versioned coverage states, family boundaries, planned work, and exclusions.`,
@@ -698,6 +713,7 @@ export function buildLlmsText() {
     `- [Glossary](${siteOrigin}/glossary): Controlled terms.`,
     `- [Source library](${siteOrigin}/resources): Searchable human interface to the source catalog.`,
     `- [Reading room](${siteOrigin}/reading-room): Curated papers and perspectives with source status and limitations beside each item.`,
+    `- [Practice observatory](${siteOrigin}/observatory): Current developments from the maintained source catalog, separated by source type and industry applicability without rankings or adoption claims.`,
     `- [Workflow packs](${siteOrigin}/packs): Synthetic, portable workflow specimens.`,
     `- [Accounting Agent Bench](${siteOrigin}/bench): Deterministic and expert-review evaluation method.`,
     `- [LedgerBench](${siteOrigin}/ledgerbench): Preview benchmark program for consequential accounting-agent work.`,
@@ -725,6 +741,8 @@ export function buildContextBundleMarkdown() {
     shiftMarkdownHeadings(renderStartHereMarkdown(), 1).trimEnd(),
     "",
     shiftMarkdownHeadings(renderCoreCourseMarkdown(), 1).trimEnd(),
+    "",
+    shiftMarkdownHeadings(renderPracticeObservatoryMarkdown(siteOrigin), 1).trimEnd(),
     "",
     shiftMarkdownHeadings(renderBankReconciliationTutorialMarkdown(), 1).trimEnd(),
     "",

@@ -358,6 +358,7 @@ export const contentPageAssignments: readonly ContentPageAssignment[] = [
   { path: "/glossary", primary_mode: "reference", page_kind: "static" },
   { path: "/resources", primary_mode: "reference", page_kind: "static" },
   { path: "/reading-room", primary_mode: "evidence-synthesis", page_kind: "static" },
+  { path: "/observatory", primary_mode: "evidence-synthesis", page_kind: "static" },
   { path: "/machine-access", primary_mode: "program-documentation", page_kind: "static" },
   { path: "/packs", primary_mode: "reference", page_kind: "static" },
   { path: "/bench", primary_mode: "program-documentation", page_kind: "static" },

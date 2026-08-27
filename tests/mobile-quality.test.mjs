@@ -46,7 +46,7 @@ const primaryPages = [
   "/", "/start-here", "/course", "/tutorials/bank-reconciliation", "/fundamentals", "/lifecycle", "/authority", "/workflows", "/controls",
   "/sensitive-actions", "/evidence-assurance", "/security-identity", "/architecture",
   "/ecosystem", "/evaluation", "/pilot", "/operations", "/templates", "/glossary",
-  "/resources", "/reading-room", "/machine-access", "/packs", "/bench", "/spec",
+  "/resources", "/reading-room", "/observatory", "/machine-access", "/packs", "/bench", "/spec",
   "/methodology", "/changes", "/open-source", "/content-contract", "/control-model", "/coverage",
 ];
 

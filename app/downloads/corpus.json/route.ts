@@ -13,6 +13,7 @@ import { accountingAgentsStartHere } from "../../start-here";
 import { accountingAgentReviewerGuide } from "../../reviewer-guide";
 import { accountingAgentsCoreCourse, coreCourseReadings } from "../../core-course";
 import { bankReconciliationTutorial } from "../../bank-reconciliation-tutorial";
+import { accountingAgentsPracticeObservatory } from "../../practice-observatory";
 
 export async function GET(request: Request) {
   const body = JSON.stringify({
@@ -57,6 +58,10 @@ export async function GET(request: Request) {
       tutorial_steps: bankReconciliationTutorial.guided_steps.length,
       tutorial_evidence_records: bankReconciliationTutorial.evidence_register.length,
       tutorial_questions: bankReconciliationTutorial.knowledge_check.length,
+      practice_observatories: 1,
+      practice_observatory_records: accountingAgentsPracticeObservatory.items.length,
+      practice_observatory_lanes: accountingAgentsPracticeObservatory.lanes.length,
+      practice_observatory_profiled_records: accountingAgentsPracticeObservatory.counts.relationship_profiled_records,
     },
     process_families: processFamilies.map((record) => normalizeDomainRecord(record, "process-family")),
     workflows: workflowRecords.map((record) => normalizeDomainRecord(record, "workflow")),
@@ -79,6 +84,7 @@ export async function GET(request: Request) {
     start_here: accountingAgentsStartHere,
     core_course: accountingAgentsCoreCourse,
     bank_reconciliation_tutorial: bankReconciliationTutorial,
+    practice_observatory: accountingAgentsPracticeObservatory,
   }, null, 2);
 
   return publicResponse(request, body, "application/json; charset=utf-8", {

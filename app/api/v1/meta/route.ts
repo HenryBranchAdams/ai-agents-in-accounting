@@ -22,6 +22,7 @@ import { accountingAgentsStartHere } from "../../../start-here";
 import { accountingAgentReviewerGuide } from "../../../reviewer-guide";
 import { accountingAgentsCoreCourse, coreCourseReadings } from "../../../core-course";
 import { bankReconciliationTutorial } from "../../../bank-reconciliation-tutorial";
+import { accountingAgentsPracticeObservatory } from "../../../practice-observatory";
 
 export function OPTIONS() {
   return corsOptionsResponse();
@@ -48,6 +49,8 @@ export async function GET(request: Request) {
     core_course_review_status: accountingAgentsCoreCourse.review_status,
     bank_reconciliation_tutorial_version: bankReconciliationTutorial.version,
     bank_reconciliation_tutorial_review_status: bankReconciliationTutorial.review_status,
+    practice_observatory_version: accountingAgentsPracticeObservatory.version,
+    practice_observatory_review_status: accountingAgentsPracticeObservatory.review_status,
     authority_decision_guide_version: authorityDecisionGuide.version,
     authority_decision_guide_review_status: authorityDecisionGuide.review_status,
     reviewer_guide_version: accountingAgentReviewerGuide.version,
@@ -96,6 +99,10 @@ export async function GET(request: Request) {
       tutorial_steps: bankReconciliationTutorial.guided_steps.length,
       tutorial_evidence_records: bankReconciliationTutorial.evidence_register.length,
       tutorial_questions: bankReconciliationTutorial.knowledge_check.length,
+      practice_observatories: 1,
+      practice_observatory_records: accountingAgentsPracticeObservatory.items.length,
+      practice_observatory_lanes: accountingAgentsPracticeObservatory.lanes.length,
+      practice_observatory_profiled_records: accountingAgentsPracticeObservatory.counts.relationship_profiled_records,
     },
     access: {
       authentication: "none",
@@ -161,6 +168,9 @@ export async function GET(request: Request) {
       bank_reconciliation_tutorial: `${siteOrigin}/tutorials/bank-reconciliation`,
       bank_reconciliation_tutorial_markdown: `${siteOrigin}/tutorials/bank-reconciliation.md`,
       bank_reconciliation_tutorial_api: `${siteOrigin}/api/v1/tutorials/bank-reconciliation`,
+      practice_observatory: `${siteOrigin}/observatory`,
+      practice_observatory_markdown: `${siteOrigin}/observatory.md`,
+      practice_observatory_api: `${siteOrigin}/api/v1/observatory`,
       reviewer_guide: `${siteOrigin}/reviewer-guide`,
       reviewer_guide_markdown: `${siteOrigin}/reviewer-guide.md`,
       reviewer_guide_api: `${siteOrigin}/api/v1/reviewer-guide`,

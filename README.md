@@ -8,6 +8,8 @@ New readers can begin with the [five-minute Start here orientation](https://acco
 
 The [core course](https://accounting-agents.madebyhenry.chatgpt.site/course) sequences 20 primary, original-research, official, and first-party practice sources across professional authority, evidence and documentation, agent systems, evaluation, and supervised pilots. Equivalent [Markdown](https://accounting-agents.madebyhenry.chatgpt.site/course.md) and [JSON](https://accounting-agents.madebyhenry.chatgpt.site/api/v1/course) preserve the same reading IDs, evidence weight, limitations, learning outcomes, synthetic capstone, and accountable-human boundary.
 
+The [practice observatory](https://accounting-agents.madebyhenry.chatgpt.site/observatory) is a dated, filterable index of 31 catalog records reviewed as current developments. It separates official and standards material, research, products, disclosed practice, and technical developments while preserving industry applicability, method, commercial interest, freshness, evidence-profile status, and transfer limits. Equivalent [Markdown](https://accounting-agents.madebyhenry.chatgpt.site/observatory.md) and [JSON](https://accounting-agents.madebyhenry.chatgpt.site/api/v1/observatory) are available. It is not a ranking, adoption dashboard, or automatic news monitor.
+
 The [synthetic bank-reconciliation tutorial](https://accounting-agents.madebyhenry.chatgpt.site/tutorials/bank-reconciliation) turns the existing clean-room pack into a complete guided lesson: evidence register, known-answer tie-out, deliberate missing/wrong-period stop, prepared workpaper, reviewer challenge and dispositions, knowledge check, and safe reset. Equivalent [Markdown](https://accounting-agents.madebyhenry.chatgpt.site/tutorials/bank-reconciliation.md) and [JSON](https://accounting-agents.madebyhenry.chatgpt.site/api/v1/tutorials/bank-reconciliation) preserve the same stable IDs and transfer limits.
 
 The [authority ladder and decision tree](https://accounting-agents.madebyhenry.chatgpt.site/authority) classifies one action at a time, distinguishes A3 execution after approval from A4 policy execution and human-only responsibility, and includes a mixed-level synthetic workflow. Equivalent machine-readable projections are available as [Markdown](https://accounting-agents.madebyhenry.chatgpt.site/authority-levels.md) and [JSON](https://accounting-agents.madebyhenry.chatgpt.site/api/v1/authority-levels).
@@ -23,7 +25,7 @@ The source library now gives 14 representative records a deeper relationship pro
 ## Four paths through the hub
 
 - Learn: start with the five-minute orientation, then continue into fundamentals, the accounting lifecycle, authority, accountable review, controls, and evidence.
-- Explore: browse source-linked workflows, curated readings, and the complete source library.
+- Explore: browse source-linked workflows, curated readings, current developments, and the complete source library.
 - Apply: use templates, synthetic workflow packs, architecture guidance, and a controlled-pilot checklist.
 - Research: follow the curated reading room, complete source library, and dated practice developments back to primary sources.
 

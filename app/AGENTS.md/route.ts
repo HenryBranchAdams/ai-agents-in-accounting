@@ -10,16 +10,17 @@ const instructions = `# Accounting Agents public access instructions
 2. Use /start-here for the bounded definition, governing rule, synthetic exception, and role-based next routes.
 3. Use /course for the deliberate twenty-source bridge from professional authority and evidence through agent systems, evaluation, product claims, and a supervised synthetic transfer brief.
 4. Use /tutorials/bank-reconciliation for a complete clean-room lesson: evidence register, known-answer tie-out, deliberate missing-evidence stop, prepared workpaper, reviewer dispositions, knowledge check, and safe reset.
-5. Use /api/v1/search for deterministic cross-corpus discovery.
-6. Retrieve focused records from /api/v1/workflows, /api/v1/resources, or /api/v1/packs.
-7. Preserve stable IDs, versions, review dates, source IDs, and rights fields in the work record.
-8. Follow canonical source links when the task requires current authoritative support.
-9. Use /content-contract to identify each page's primary mode and the evidence classification before reusing educational material.
-10. Use /control-model to structure governed work from objective through retained record; apply all nine elements rather than treating the page as a checklist that grants authority.
-11. Use /authority to classify one observable action at a time; preserve A3, A4, and human-only distinctions and stop when approval, evidence, enforcement, or segregation of duties is missing.
-12. Use the reviewer field guide at /reviewer-guide to challenge evidence-linked work, record approve, modify, reject, or escalate, and stop when support, authority, reviewer competence, or reviewer independence is missing. Do not infer that subject-matter or professional review occurred.
-13. Use the one-minute brief on /workflows/record-to-report/wf-r2r-bank-reconciliations to screen fit, authority, evidence, the top check and failure, and supervised-pilot conditions before retrieving the full bank-reconciliation record.
-14. Use /coverage before claiming that the corpus is complete, deep, applicable to an expansion domain, or suitable for a pilot.
+5. Use /observatory for a dated view of current official developments, research, products, technical work, and disclosed practice. Preserve its source-type, freshness, commercial-interest, industry, evidence-profile, and transfer boundaries; do not infer rankings, adoption, or effectiveness.
+6. Use /api/v1/search for deterministic cross-corpus discovery.
+7. Retrieve focused records from /api/v1/workflows, /api/v1/resources, or /api/v1/packs.
+8. Preserve stable IDs, versions, review dates, source IDs, and rights fields in the work record.
+9. Follow canonical source links when the task requires current authoritative support.
+10. Use /content-contract to identify each page's primary mode and the evidence classification before reusing educational material.
+11. Use /control-model to structure governed work from objective through retained record; apply all nine elements rather than treating the page as a checklist that grants authority.
+12. Use /authority to classify one observable action at a time; preserve A3, A4, and human-only distinctions and stop when approval, evidence, enforcement, or segregation of duties is missing.
+13. Use the reviewer field guide at /reviewer-guide to challenge evidence-linked work, record approve, modify, reject, or escalate, and stop when support, authority, reviewer competence, or reviewer independence is missing. Do not infer that subject-matter or professional review occurred.
+14. Use the one-minute brief on /workflows/record-to-report/wf-r2r-bank-reconciliations to screen fit, authority, evidence, the top check and failure, and supervised-pilot conditions before retrieving the full bank-reconciliation record.
+15. Use /coverage before claiming that the corpus is complete, deep, applicable to an expansion domain, or suitable for a pilot.
 
 ## Non-negotiable boundaries
 
@@ -61,6 +62,9 @@ const instructions = `# Accounting Agents public access instructions
 - /tutorials/bank-reconciliation
 - /tutorials/bank-reconciliation.md
 - /api/v1/tutorials/bank-reconciliation
+- /observatory
+- /observatory.md
+- /api/v1/observatory
 - /reviewer-guide
 - /reviewer-guide.md
 - /api/v1/reviewer-guide

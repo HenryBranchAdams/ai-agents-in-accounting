@@ -128,7 +128,7 @@ test("bank-reconciliation tutorial is discoverable across the knowledge hub and 
 
   const sitemap = await (await request("/sitemap.xml")).text();
   assert.match(sitemap, /<loc>[^<]*\/tutorials\/bank-reconciliation<\/loc>/);
-  assert.equal((sitemap.match(/<url>/g) ?? []).length, 596);
+  assert.equal((sitemap.match(/<url>/g) ?? []).length, 597);
 
   const llms = await (await request("/llms.txt")).text();
   for (const path of ["/tutorials/bank-reconciliation", "/tutorials/bank-reconciliation.md", "/api/v1/tutorials/bank-reconciliation"]) {

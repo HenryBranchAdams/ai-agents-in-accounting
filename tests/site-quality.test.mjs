@@ -43,7 +43,7 @@ test("every canonical sitemap page renders a complete semantic document", async 
   assert.equal(sitemapResponse.status, 200);
   const sitemap = await sitemapResponse.text();
   const locations = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
-  assert.equal(locations.length, 596);
+  assert.equal(locations.length, 597);
   assert.equal(new Set(locations).size, locations.length);
 
   await mapInBatches(locations, 20, async (location) => {
@@ -67,7 +67,7 @@ test("primary documentation links and fragment targets resolve", async () => {
     "/", "/start-here", "/course", "/fundamentals", "/lifecycle", "/authority", "/workflows", "/controls",
     "/sensitive-actions", "/evidence-assurance", "/security-identity", "/architecture",
     "/ecosystem", "/evaluation", "/pilot", "/operations", "/templates", "/glossary",
-    "/resources", "/reading-room", "/machine-access", "/packs", "/bench", "/spec",
+    "/resources", "/reading-room", "/observatory", "/machine-access", "/packs", "/bench", "/spec",
     "/methodology", "/changes", "/open-source", "/content-contract", "/control-model", "/coverage",
   ];
   const targets = new Map();
@@ -134,7 +134,7 @@ test("public API surfaces honor HTTP, CORS, and caching contracts", async () => 
     "/api/v1/templates?limit=1", "/api/v1/glossary?limit=1",
     "/api/v1/packs?limit=1", "/api/v1/benchmark?limit=1",
     "/api/v1/ecosystem?limit=1", "/api/v1/search?q=accounting&limit=1",
-    "/api/v1/content-contract", "/api/v1/control-model", "/api/v1/coverage", "/api/v1/start-here", "/api/v1/course",
+    "/api/v1/content-contract", "/api/v1/control-model", "/api/v1/coverage", "/api/v1/start-here", "/api/v1/course", "/api/v1/observatory",
   ];
 
   for (const endpoint of endpoints) {

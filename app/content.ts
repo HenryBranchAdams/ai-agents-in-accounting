@@ -62,6 +62,7 @@ export const navGroups: NavGroup[] = [
     label: "Library",
     items: [
       { href: "/reading-room", label: "Reading room" },
+      { href: "/observatory", label: "Practice observatory" },
       { href: "/resources", label: "Source library" },
       { href: "/templates", label: "Templates and checklists" },
       { href: "/glossary", label: "Glossary" },
@@ -117,6 +118,7 @@ export const searchItems = [
   { href: "/glossary", title: "Read the glossary", category: "Library", detail: "Accounting-agent operating vocabulary" },
   { href: "/resources", title: "Browse the source library", category: "Library", detail: "Search standards, guidance, research, and implementations" },
   { href: "/reading-room", title: "Enter the reading room", category: "Library", detail: "Curated papers, essays, reports, and practice perspectives" },
+  { href: "/observatory", title: "Follow current accounting-agent developments", category: "Library", detail: "Dated source-linked index of official developments, research, products, technical work, and disclosed practice with industry and evidence boundaries" },
   { href: "/machine-access", title: "Connect an agent", category: "Library", detail: "Agent instructions, Markdown context, resource API, and OpenAPI contract" },
   { href: "/packs", title: "Use a workflow pack", category: "Apply", detail: "Synthetic fixtures, reference outputs, and hard gates" },
   { href: "/bench", title: "Run the Core conformance suite", category: "Lab", detail: "Thirty public cases across six synthetic workflow packs" },

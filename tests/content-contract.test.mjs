@@ -112,6 +112,7 @@ test("content contract is exposed through shared-shell labels and discovery proj
     "/glossary": "Reference",
     "/resources": "Reference",
     "/reading-room": "Evidence synthesis",
+    "/observatory": "Evidence synthesis",
     "/machine-access": "Program documentation",
     "/packs": "Reference",
     "/bench": "Program documentation",

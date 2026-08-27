@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { DocsShell } from "./DocsShell";
 import { packs, releaseNotes } from "./platform-data";
+import { practiceObservatoryItems } from "./practice-observatory";
 import { readingRoomResources } from "./reading-room-data";
 import { templates } from "./reference-data";
 import { resources } from "./resources-data";
@@ -58,6 +59,10 @@ export default function OverviewPage() {
       <section id="current">
         <h2>Current signal</h2>
         <div className="doc-link-list">
+          <Link href="/observatory">
+            <strong>Practice observatory · {practiceObservatoryItems.length} current developments</strong>
+            <span>Follow dated official material, research, products, technical work, and disclosed practice without rankings or adoption claims.</span>
+          </Link>
           <Link href={`/changes#release-${releaseNotes[0].id}`}>
             <strong>Current release · {releaseNotes[0].id}</strong>
             <span>{releaseNotes[0].summary}</span>
@@ -113,7 +118,7 @@ export default function OverviewPage() {
           </Link>
           <a href="/reading-room">
             <strong>Research the field</strong>
-            <span>Follow curated reading paths or search the complete source catalog.</span>
+            <span>Follow curated reading paths, scan current developments, or search the complete source catalog.</span>
           </a>
         </div>
         <p>
@@ -154,7 +159,7 @@ export default function OverviewPage() {
           </Link>
           <Link href="/reading-room">
             <strong>Evidence and further reading</strong>
-            <span>Follow curated learning paths, then inspect the complete source catalog.</span>
+            <span>Follow curated learning paths, use the practice observatory for current developments, then inspect the complete source catalog.</span>
           </Link>
         </div>
         <p>

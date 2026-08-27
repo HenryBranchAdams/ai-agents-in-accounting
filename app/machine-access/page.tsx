@@ -7,6 +7,7 @@ import { glossary, templates } from "../reference-data";
 import { workflowRecords } from "../workflows-data";
 import { benchmarkCases, packs } from "../platform-data";
 import { ecosystemLayers } from "../ecosystem-data";
+import { accountingAgentsPracticeObservatory } from "../practice-observatory";
 
 const description = "Give agents stable access to the guide through clean Markdown, a complete JSON corpus, and versioned read-only APIs.";
 
@@ -44,7 +45,7 @@ export default function MachineAccessPage() {
         { href: "#webmcp", label: "WebMCP site tools" },
         { href: "#mcp", label: "When to add MCP" },
       ]}
-      previous={{ href: "/reading-room", label: "Reading room" }}
+      previous={{ href: "/observatory", label: "Practice observatory" }}
     >
       <section id="surfaces">
         <h2>Choose the smallest useful surface</h2>
@@ -103,6 +104,10 @@ export default function MachineAccessPage() {
             <strong>Curated reading room in JSON</strong>
             <span>Topic shelves, stable source IDs, source-type counts, provenance, and complete records.</span>
           </Link>
+          <Link href="/observatory">
+            <strong>Practice observatory</strong>
+            <span>{accountingAgentsPracticeObservatory.items.length} current developments with equivalent Markdown and JSON, exact industry applicability, freshness, evidence-profile status, and transfer limits.</span>
+          </Link>
           <Link href="/downloads/resources.json">
             <strong>Source JSON snapshot</strong>
             <span>The complete versioned source catalog for local indexing or offline ingestion.</span>
@@ -151,6 +156,10 @@ export default function MachineAccessPage() {
             <strong>Resource API</strong>
             <span>Search supporting sources by text, topic, source type, structured industry applicability, or time role.</span>
           </Link>
+          <Link href="/api/v1/observatory">
+            <strong>Practice observatory API</strong>
+            <span>A bounded current-development snapshot across five source lanes; no ranking, adoption metric, or automatic monitoring claim.</span>
+          </Link>
           <Link href="/openapi.json">
             <strong>OpenAPI description</strong>
             <span>A machine-readable contract for generating clients or agent tools.</span>
@@ -185,6 +194,7 @@ export default function MachineAccessPage() {
           <div><dt>/templates</dt><dd>{templates.length} practical implementation structures.</dd></div>
           <div><dt>/glossary</dt><dd>{glossary.length} controlled terms and related concepts.</dd></div>
           <div><dt>/resources</dt><dd>{agentResources.length} source records with provenance, access notes, and pilot curation metadata.</dd></div>
+          <div><dt>/observatory</dt><dd>{accountingAgentsPracticeObservatory.items.length} current-development records across official, research, product, disclosed-practice, and technical lanes.</dd></div>
           <div><dt>/search</dt><dd>Ranked search across every public record family with explainable match fields.</dd></div>
           <div><dt>/packs</dt><dd>{packs.length} portable workflow packs.</dd></div>
           <div><dt>/benchmark</dt><dd>{benchmarkCases.length} public synthetic conformance cases.</dd></div>

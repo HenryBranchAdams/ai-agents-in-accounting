@@ -29,6 +29,7 @@ const pages = [
   ["/glossary", 0.8],
   ["/resources", 0.9],
   ["/reading-room", 0.8],
+  ["/observatory", 0.9],
   ["/machine-access", 0.7],
   ["/packs", 0.9],
   ["/bench", 0.9],
@@ -46,7 +47,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(
       path === "/resources"
         ? catalogModifiedAt
-        : path === "/start-here" || path === "/course" || path === "/tutorials/bank-reconciliation" || path === "/authority" || path === "/reviewer-guide"
+        : path === "/start-here" || path === "/course" || path === "/tutorials/bank-reconciliation" || path === "/observatory" || path === "/authority" || path === "/reviewer-guide"
           ? "2026-08-27T00:00:00Z"
         : path === "/control-model" || path === "/coverage"
           ? "2026-08-25T00:00:00Z"
