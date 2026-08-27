@@ -75,9 +75,33 @@ const startHereSchema = {
       required: ["id", "text", "evidence_classification", "reliance_boundary"],
       properties: { id: { type: "string" }, text: { type: "string" }, evidence_classification: { type: "string", enum: evidenceClassificationIds }, reliance_boundary: { type: "string" } },
     },
-    comparisons: { type: "array", minItems: 4, maxItems: 4, items: { type: "object", required: ["id", "label", "controller", "behavior", "accounting_example", "boundary"] } },
+    comparisons: {
+      type: "array",
+      minItems: 4,
+      maxItems: 4,
+      items: {
+        type: "object",
+        required: ["id", "label", "evidence_classification", "accounting_example_classification", "controller", "behavior", "accounting_example", "boundary"],
+        properties: {
+          evidence_classification: { type: "string", const: "implementation-pattern" },
+          accounting_example_classification: { type: "string", const: "synthetic-example" },
+        },
+      },
+    },
     governing_rule: { type: "object", required: ["id", "text", "evidence_classification", "implication"] },
-    evidence_to_decision_chain: { type: "array", minItems: 6, maxItems: 6, items: { type: "object", required: ["id", "label", "text", "owner"] } },
+    evidence_to_decision_chain: {
+      type: "array",
+      minItems: 6,
+      maxItems: 6,
+      items: {
+        type: "object",
+        required: ["id", "label", "evidence_classification", "application_classification", "text", "owner"],
+        properties: {
+          evidence_classification: { type: "string", const: "implementation-pattern" },
+          application_classification: { type: "string", const: "synthetic-example" },
+        },
+      },
+    },
     scenario: { type: "object", required: ["id", "title", "evidence_classification", "fictional", "context", "guided_steps", "deliberate_exception", "finished_artifact", "safe_reset"], properties: { fictional: { type: "boolean", const: true }, evidence_classification: { type: "string", const: "synthetic-example" }, guided_steps: { type: "array", minItems: 5, items: { type: "string" } } } },
     knowledge_check: { type: "array", minItems: 3, maxItems: 3, items: { type: "object", required: ["id", "prompt", "options", "correct_option_id", "correct_feedback", "incorrect_feedback"], properties: { options: { type: "array", minItems: 3, items: { type: "object", required: ["id", "label"] } } } } },
     completion_artifact: { type: "object", required: ["id", "title", "statements", "interpretation_boundary"] },
@@ -1031,7 +1055,19 @@ const authorityDecisionGuideSchema = {
       },
     },
     stop_conditions: { type: "array", minItems: 7, items: { type: "string" } },
-    execution_comparison: { type: "array", minItems: 3, maxItems: 3, items: { type: "object", required: ["id", "level_id", "entry_condition", "decision_owner", "permitted_effect", "accounting_example", "stop_when"] } },
+    execution_comparison: {
+      type: "array",
+      minItems: 3,
+      maxItems: 3,
+      items: {
+        type: "object",
+        required: ["id", "level_id", "evidence_classification", "accounting_example_classification", "entry_condition", "decision_owner", "permitted_effect", "accounting_example", "stop_when"],
+        properties: {
+          evidence_classification: { type: "string", const: "implementation-pattern" },
+          accounting_example_classification: { type: "string", const: "synthetic-example" },
+        },
+      },
+    },
     mixed_level_workflow: { type: "object", required: ["id", "title", "fictional", "evidence_classification", "context", "actions", "finished_artifact"], properties: { fictional: { type: "boolean", const: true }, evidence_classification: { type: "string", const: "synthetic-example" }, actions: { type: "array", minItems: 7, items: { type: "object", required: ["id", "action", "level_id", "why", "accountable_person"] } } } },
     common_misclassifications: { type: "array", minItems: 6, items: { type: "object", required: ["id", "mistaken_claim", "correction"] } },
     segregation_of_duties_examples: { type: "array", minItems: 4, items: { type: "object", required: ["id", "unsafe_combination", "safer_design", "principle"] } },

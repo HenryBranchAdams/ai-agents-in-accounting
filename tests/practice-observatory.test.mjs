@@ -66,6 +66,10 @@ test("practice observatory is exactly the reviewed current-development cohort", 
   assert.equal(items.filter((item) => item.relationship_profiled).length, 7);
   assert.ok(items.some((item) => item.applicability.some((facet) => facet.id === "general")));
   assert.ok(items.some((item) => item.applicability.some((facet) => facet.id !== "general")));
+  assert.equal(
+    items.find((item) => item.resource_id === "src_sageclose25")?.source_updated_at,
+    "2025-08-08",
+  );
 
   for (const item of items) {
     assert.equal(item.catalog_href, `/resources/${item.resource_id}`);
@@ -108,6 +112,8 @@ test("human, Markdown, and JSON observatory surfaces preserve provenance and lim
   assert.match(html, /A dated field index, not a leaderboard/);
   assert.match(html, /Industry applicability/);
   assert.match(html, /Method, freshness, and transfer limit/);
+  assert.equal((html.match(/data-source-evidence-tier=/g) ?? []).length, 31);
+  assert.match(html, /The tier assignment is an editorial recommendation/);
   assert.equal((html.match(/class="observatory-card"/g) ?? []).length, 31);
   for (const lane of observatory.lanes) assert.match(html, new RegExp(`id="lane-${lane.id}"`), lane.id);
   for (const item of observatory.items) assert.match(html, new RegExp(`id="${item.id}"`), item.id);
@@ -122,6 +128,7 @@ test("human, Markdown, and JSON observatory surfaces preserve provenance and lim
   assert.match(markdownText, /## Official and standards developments \(15\)/);
   assert.match(markdownText, /## Disclosed practice \(1\)/);
   assert.match(markdownText, /Not assigned · relationship profile pending/);
+  for (const item of observatory.items) assert.ok(markdownText.includes(`- Applicability note: ${item.applicability_note}`), item.resource_id);
   assert.match(markdownText, /Original source: https:\/\//);
 
   const apiMarkdown = await request("/api/v1/observatory", { accept: "text/markdown" });

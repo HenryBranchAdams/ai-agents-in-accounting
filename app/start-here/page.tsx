@@ -80,6 +80,9 @@ export default function StartHerePage() {
           who or what chooses the steps, which tools are available, and where the
           authority boundary is enforced.
         </p>
+        <p className="evidence-label" data-evidence-classification="implementation-pattern">
+          Evidence classification: the comparison model is an implementation pattern; every accounting example is synthetic.
+        </p>
         <div className="table-wrap">
           <table>
             <caption>Chat, copilot, fixed workflow, and accounting agent</caption>
@@ -120,6 +123,10 @@ export default function StartHerePage() {
         <p>
           Each step has a different owner. Keeping the steps separate prevents a
           supported observation from silently becoming an approved conclusion.
+        </p>
+        <p className="evidence-label" data-evidence-classification="implementation-pattern">
+          Evidence classification: the chain is an implementation pattern; each lesson application is
+          {" "}<span data-evidence-classification="synthetic-example">synthetic</span>.
         </p>
         <ol className="evidence-chain">
           {lesson.evidence_to_decision_chain.map((item, index) => (

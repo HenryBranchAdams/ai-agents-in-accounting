@@ -3733,7 +3733,7 @@ export const resourceCurationById: Partial<Record<string, ResourceCuration>> = {
     method: "Provider release documentation with permissions, dependencies, and regional availability.",
     transfer_limit: "Product documentation is not an outcome evaluation and does not establish autonomous authority, accuracy, or suitability for a specific control.",
     commercial_interest: "publisher or author has commercial interest",
-    source_updated_at: "2025-08-01",
+    source_updated_at: "2025-08-08",
     next_review_at: "2026-11-27",
   }),
   src_digitsagents25: curate({

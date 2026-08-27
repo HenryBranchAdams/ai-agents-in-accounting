@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { DocsShell } from "../DocsShell";
 import { AuthorityTag, BulletList, SourceReferences } from "../DomainRecords";
-import { authorityDecisionGuide, authorityLevels, corpusReviewedAt } from "../domain-model";
+import { authorityDecisionGuide, authorityLevels } from "../domain-model";
 import { docsMetadata } from "../docsMetadata";
 
 const guide = authorityDecisionGuide;
@@ -117,6 +117,10 @@ export default function AuthorityPage() {
 
       <section id="execution-boundary">
         <h2>A3, A4, and human-only are different boundaries</h2>
+        <p className="evidence-label" data-evidence-classification={guide.evidence_classification}>
+          Evidence classification: the comparison criteria are implementation patterns; the accounting examples are
+          {" "}<span data-evidence-classification="synthetic-example">synthetic examples</span>.
+        </p>
         <div className="table-wrap">
           <table>
             <caption>Constrained execution, policy execution, and human-owned responsibility</caption>
@@ -223,14 +227,17 @@ export default function AuthorityPage() {
       <section id="sources">
         <h2>Limitations, source basis, and next action</h2>
         <ul>{guide.limitations.map((item) => <li key={item}>{item}</li>)}</ul>
-        <p className="evidence-label" data-evidence-classification="authoritative-requirement">
-          Evidence classification: Authoritative requirements with explicit applicability boundaries
+        <p className="evidence-label" data-evidence-classification={guide.evidence_classification}>
+          Evidence classification: Editorial implementation pattern supported by primary authority with explicit applicability boundaries
         </p>
         <p>
-          The A0–A4 labels are an Accounting Agents editorial model, reviewed
-          {" "}{corpusReviewedAt}. They translate established control, authorization,
-          evidence, and accountability principles into an implementation aid;
+          The A0–A4 labels are an Accounting Agents editorial implementation pattern prepared
+          {" "}{guide.prepared_at}; maintainer review is pending. They translate established control,
+          authorization, evidence, and accountability principles into an implementation aid;
           no cited organization has adopted these labels as a standard.
+        </p>
+        <p className="evidence-label" data-evidence-classification="authoritative-requirement">
+          Source-basis classification: the cited control and audit requirements are authoritative only within their stated applicability; they do not make the A0–A4 labels authoritative.
         </p>
         <SourceReferences ids={["src_075usnq", "src_1v1zwt5", "src_gaogb25", "src_0pywo86"]} />
         <p>{guide.next_action}</p>

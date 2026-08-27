@@ -295,6 +295,7 @@ export function renderPracticeObservatoryMarkdown(origin = "") {
         `- Catalog reviewed / source verified / next review: ${item.record_reviewed_at} / ${item.source_verified_at} / ${item.next_review_at}`,
         `- Lifecycle / publication status: ${item.lifecycle} / ${item.publication_status}`,
         `- Industry applicability: ${item.applicability.map((industry) => `${industry.label} (\`${industry.id}\`)`).join(", ")}`,
+        `- Applicability note: ${item.applicability_note}`,
         `- Evidence tier: ${item.evidence_tier_label}`,
         `- Commercial interest: ${item.commercial_interest}`,
         `- Method: ${item.method}`,

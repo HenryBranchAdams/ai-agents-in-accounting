@@ -46,6 +46,8 @@ test("authority decision guide classifies actions without granting approval auth
   }
 
   assert.deepEqual(guide.execution_comparison.map((item) => item.level_id), ["A3", "A4", "human-only"]);
+  assert.ok(guide.execution_comparison.every((item) => item.evidence_classification === "implementation-pattern"));
+  assert.ok(guide.execution_comparison.every((item) => item.accounting_example_classification === "synthetic-example"));
   assert.match(guide.execution_comparison[0].entry_condition, /approved the exact action or immutable payload/i);
   assert.match(guide.execution_comparison[1].decision_owner, /policy engine, not the model/i);
   assert.match(guide.execution_comparison[2].permitted_effect, /may not click, sign, attest, certify, approve, or impersonate/i);
@@ -77,6 +79,8 @@ test("authority HTML, Markdown, and JSON preserve the canonical decision guide",
   assert.match(html, /Content mode: <strong>Reference<\/strong>/);
   assert.match(html, /authority-decision-guide/);
   assert.match(html, /Constrained execution, policy execution, and human-owned responsibility/);
+  assert.match(html, /comparison criteria are implementation patterns; the accounting examples are[\s\S]*synthetic examples/i);
+  assert.match(html, /editorial implementation pattern prepared[\s\S]*maintainer review is pending/i);
   assert.match(html, /Claims that overstate or blur agent authority/);
   assert.match(html, /data-evidence-classification="editorial-recommendation"/);
   assert.match(html, /data-evidence-classification="synthetic-example"/);
@@ -96,6 +100,8 @@ test("authority HTML, Markdown, and JSON preserve the canonical decision guide",
   assert.match(markdownText, /^# Authority ladder and decision tree/m);
   assert.match(markdownText, /## Decision tree/);
   assert.match(markdownText, /## A3, A4, and human-only/);
+  assert.match(markdownText, /Pattern classification[\s\S]*Example classification/);
+  assert.doesNotMatch(markdownText, /The A0–A4 labels[^\n]*reviewed/i);
   assert.match(markdownText, /## Synthetic scenario: Synthetic accrual entry and close-task walkthrough/);
   assert.match(markdownText, /## Common misclassifications/);
   assert.match(markdownText, /## Segregation-of-duties comparisons/);

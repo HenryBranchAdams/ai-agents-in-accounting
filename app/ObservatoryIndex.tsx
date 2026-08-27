@@ -168,8 +168,9 @@ export function ObservatoryIndex({
                 <h3><a href={item.catalog_href}>{item.title}</a></h3>
                 <p className="source-owner">{item.publisher} · {item.jurisdiction} · {item.access}</p>
                 <p>{item.summary}</p>
-                <p className="evidence-label" data-evidence-classification="editorial-recommendation">
-                  Evidence weight: {item.evidence_tier_label}
+                <p className="evidence-label" data-source-evidence-tier={item.evidence_tier ?? "unassigned"}>
+                  Source evidence tier: {item.evidence_tier_label}.{" "}
+                  <span data-evidence-classification="editorial-recommendation">The tier assignment is an editorial recommendation.</span>
                 </p>
                 <details className="observatory-details">
                   <summary>Method, freshness, and transfer limit</summary>

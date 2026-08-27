@@ -192,6 +192,8 @@ export const authorityDecisionGuide = {
     {
       id: "compare-a3",
       level_id: "A3",
+      evidence_classification: "implementation-pattern",
+      accounting_example_classification: "synthetic-example",
       entry_condition: "A named person has approved the exact action or immutable payload.",
       decision_owner: "The person owns the conclusion and approval; deterministic controls authorize only the matching execution call.",
       permitted_effect: "One constrained, idempotent action within approved entity, period, accounts, amount, recipient, and time limits.",
@@ -201,6 +203,8 @@ export const authorityDecisionGuide = {
     {
       id: "compare-a4",
       level_id: "A4",
+      evidence_classification: "implementation-pattern",
+      accounting_example_classification: "synthetic-example",
       entry_condition: "A deterministic policy permits a low-risk, reversible, non-accounting effect without a new case-specific approval.",
       decision_owner: "The policy owner defines the rule; the policy engine, not the model, allows or rejects the action.",
       permitted_effect: "Only the reversible operational effect named by policy, with monitoring and exception routing.",
@@ -210,6 +214,8 @@ export const authorityDecisionGuide = {
     {
       id: "compare-human-only",
       level_id: "human-only",
+      evidence_classification: "implementation-pattern",
+      accounting_example_classification: "synthetic-example",
       entry_condition: "The act carries accounting, legal, fiduciary, control, professional, or external accountability.",
       decision_owner: "An identified and authorized person directly reviews the current evidence and performs the act.",
       permitted_effect: "The agent may prepare a decision packet; it may not click, sign, attest, certify, approve, or impersonate the person.",

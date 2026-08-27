@@ -36,8 +36,12 @@ test("Start here is a bounded five-minute tutorial record", async () => {
   assert.deepEqual(lesson.comparisons.map((item) => item.id), [
     "comparison-chat", "comparison-copilot", "comparison-fixed-workflow", "comparison-accounting-agent",
   ]);
+  assert.ok(lesson.comparisons.every((item) => item.evidence_classification === "implementation-pattern"));
+  assert.ok(lesson.comparisons.every((item) => item.accounting_example_classification === "synthetic-example"));
   assert.equal(lesson.evidence_to_decision_chain.length, 6);
   assert.equal(lesson.evidence_to_decision_chain.at(-1).label, "Action and record");
+  assert.ok(lesson.evidence_to_decision_chain.every((item) => item.evidence_classification === "implementation-pattern"));
+  assert.ok(lesson.evidence_to_decision_chain.every((item) => item.application_classification === "synthetic-example"));
   assert.equal(lesson.scenario.fictional, true);
   assert.equal(lesson.scenario.evidence_classification, "synthetic-example");
   assert.match(lesson.scenario.deliberate_exception, /missing/i);
@@ -77,6 +81,8 @@ test("human, Markdown, and JSON Start here surfaces preserve material meaning", 
   assert.match(html, /<button type="button">Reset<\/button>/);
   assert.match(html, /aria-live="polite"/);
   assert.match(html, /<caption>Chat, copilot, fixed workflow, and accounting agent<\/caption>/);
+  assert.match(html, /comparison model is an implementation pattern; every accounting example is synthetic/i);
+  assert.match(html, /chain is an implementation pattern; each lesson application is[\s\S]*synthetic/i);
   assert.match(html, /href="\/packs\/bank-reconciliation"/);
   assert.doesNotMatch(html, /href="\/ledgerbench"[^>]*>[^<]*(?:next|continue|start)/i);
 
@@ -86,7 +92,9 @@ test("human, Markdown, and JSON Start here surfaces preserve material meaning", 
   const markdownText = await markdown.text();
   assert.match(markdownText, /^# Start here: accounting agents in five minutes/m);
   assert.match(markdownText, /## Chat, copilot, fixed workflow, and accounting agent/);
+  assert.match(markdownText, /Pattern classification[\s\S]*Example classification/);
   assert.match(markdownText, /## Evidence-to-decision chain/);
+  assert.match(markdownText, /Pattern classification[\s\S]*Application classification/);
   assert.match(markdownText, /## Two-minute knowledge check/);
   assert.match(markdownText, /## Choose your next path/);
   assert.match(markdownText, /synthetic-example/);

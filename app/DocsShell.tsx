@@ -103,7 +103,7 @@ export function DocsShell({
       <div className="docs-layout">
         <aside className="sidebar">
           <Navigation active={active} />
-          <p className="sidebar-note">Reviewed {displayDate(corpusReviewedAt)}</p>
+          <p className="sidebar-note">Corpus snapshot {displayDate(corpusReviewedAt)}</p>
         </aside>
 
         <main className="main-column" id="main-content">
