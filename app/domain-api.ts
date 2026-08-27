@@ -29,6 +29,7 @@ export async function domainCollectionResponse<T extends IdentifiedRecord>({
   collection,
   filters,
   markdownPath,
+  additionalFields,
 }: {
   request: Request;
   allRecords: T[];
@@ -37,6 +38,7 @@ export async function domainCollectionResponse<T extends IdentifiedRecord>({
   collection: string;
   filters: Record<string, string | null>;
   markdownPath: string;
+  additionalFields?: Record<string, unknown>;
 }) {
   const url = new URL(request.url);
   const query = url.searchParams.get("q")?.trim() || undefined;
@@ -101,6 +103,7 @@ export async function domainCollectionResponse<T extends IdentifiedRecord>({
     cursor: cursor ?? null,
     next_cursor: nextCursor,
     filters,
+    ...additionalFields,
     links: {
       self: canonicalRequest.toString(),
       next: nextUrl?.toString() ?? null,

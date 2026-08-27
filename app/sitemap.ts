@@ -43,7 +43,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(
       path === "/resources"
         ? catalogModifiedAt
-        : path === "/start-here"
+        : path === "/start-here" || path === "/authority"
           ? "2026-08-27T00:00:00Z"
         : path === "/control-model" || path === "/coverage"
           ? "2026-08-25T00:00:00Z"

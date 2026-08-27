@@ -28,7 +28,7 @@ export default function WorkflowsPage() {
         { href: "#catalog", label: "Workflow catalog" },
         { href: "#use", label: "How to use a record" },
       ]}
-      previous={{ href: "/authority", label: "Authority levels" }}
+      previous={{ href: "/authority", label: "Authority ladder" }}
       next={{ href: "/workflows/record-to-report", label: "Record to report" }}
     >
       <section id="coverage">

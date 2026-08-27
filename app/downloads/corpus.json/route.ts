@@ -1,5 +1,5 @@
 import { agentResources, publicResponse, rightsNotice } from "../../agent-interface";
-import { authorityLevels, corpusReviewedAt, corpusVersion, domainSchemaVersion } from "../../domain-model";
+import { authorityDecisionGuide, authorityLevels, corpusReviewedAt, corpusVersion, domainSchemaVersion } from "../../domain-model";
 import { controlPatterns, sensitiveActions } from "../../governance-data";
 import { ecosystemLayers } from "../../ecosystem-data";
 import { domainRightsNotice, normalizeDomainRecord } from "../../domain-interface";
@@ -23,6 +23,7 @@ export async function GET(request: Request) {
       process_families: processFamilies.length,
       workflows: workflowRecords.length,
       authority_levels: authorityLevels.length,
+      authority_decision_guides: 1,
       sensitive_actions: sensitiveActions.length,
       control_patterns: controlPatterns.length,
       templates: templates.length,
@@ -42,6 +43,7 @@ export async function GET(request: Request) {
     process_families: processFamilies.map((record) => normalizeDomainRecord(record, "process-family")),
     workflows: workflowRecords.map((record) => normalizeDomainRecord(record, "workflow")),
     authority_levels: authorityLevels.map((record) => normalizeDomainRecord(record, "authority-level")),
+    authority_decision_guide: authorityDecisionGuide,
     sensitive_actions: sensitiveActions.map((record) => normalizeDomainRecord(record, "sensitive-action")),
     control_patterns: controlPatterns.map((record) => normalizeDomainRecord(record, "control-pattern")),
     templates: templates.map((record) => normalizeDomainRecord(record, "template")),

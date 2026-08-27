@@ -141,7 +141,7 @@ export function DocsSearch() {
       .map((level) => ({
         href: `/authority#level-${level.id}`,
         title: `${level.id === "human-only" ? "Human-only" : level.id} · ${level.label}`,
-        category: "Authority levels",
+        category: "Authority ladder",
         detail: level.boundary,
       }));
 

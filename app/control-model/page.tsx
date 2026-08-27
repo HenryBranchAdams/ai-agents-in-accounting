@@ -47,7 +47,7 @@ export default function ControlModelPage() {
         { href: "#print-reference", label: "Printable reference" },
         { href: "#sources", label: "Source basis" },
       ]}
-      previous={{ href: "/authority", label: "Authority levels" }}
+      previous={{ href: "/authority", label: "Authority ladder" }}
       next={{ href: "/controls", label: "Controls and authority" }}
     >
       <section id="use">

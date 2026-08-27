@@ -169,7 +169,7 @@ export default function OverviewPage() {
           Check the <a href="/coverage">versioned coverage and gaps map</a> before treating this core map as complete.
         </p>
         <p>
-          Use <a href="/authority">Authority levels</a> to classify each action
+          Use <a href="/authority">the authority ladder</a> to classify each action
           and <a href="/sensitive-actions">Sensitive actions</a> to design the
           approval, identity, payload, rollback, and logging boundary.
         </p>

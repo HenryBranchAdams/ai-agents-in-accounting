@@ -24,7 +24,7 @@ import {
   type ResourceTimeRole,
   type SourceRelationshipProfile,
 } from "./resources-data";
-import { authorityLevels } from "./domain-model";
+import { authorityDecisionGuide, authorityLevels } from "./domain-model";
 import { controlPatterns, sensitiveActions } from "./governance-data";
 import { glossary, templates } from "./reference-data";
 import { processFamilies, workflowRecords } from "./workflows-data";
@@ -487,6 +487,8 @@ export function buildAgentContextMarkdown() {
       authorityLevels.map((level) => [level.id, level.agent_role, level.execution_rule]),
     ),
     "",
+    `The authority decision guide (${authorityDecisionGuide.id} v${authorityDecisionGuide.version}) classifies one action at a time, distinguishes A3 from A4 and human-only responsibility, and stops when approval, evidence, deterministic limits, or segregation of duties are missing. See /authority or /authority-levels.md for the decision tree, mixed-level synthetic workflow, misclassifications, and sensitive-action mappings.`,
+    "",
     "A control that relies on an agent needs an owner, objective, population, procedure, precision, evidence requirement, exception path, and review standard. Separate control performance from the final assessment of whether the control operated effectively.",
     "",
     "## System architecture",
@@ -547,7 +549,7 @@ export function buildAgentContextMarkdown() {
     `- [Agent fundamentals](${siteOrigin}/fundamentals)`,
     `- [Accounting lifecycle](${siteOrigin}/lifecycle)`,
     `- [Coverage and gaps](${siteOrigin}/coverage)`,
-    `- [Authority levels](${siteOrigin}/authority)`,
+    `- [Authority ladder and decision tree](${siteOrigin}/authority)`,
     `- [Workflow library](${siteOrigin}/workflows)`,
     `- [Accounting Agent Control Model](${siteOrigin}/control-model)`,
     `- [Controls and authority](${siteOrigin}/controls)`,
@@ -583,13 +585,13 @@ export function buildLlmsText() {
     `- [Start here in Markdown](${siteOrigin}/start-here.md): Equivalent low-token tutorial with stable lesson, scenario, question, and path IDs.`,
     `- [Public agent instructions](${siteOrigin}/AGENTS.md): Routing, reliance, source-use, and protocol guidance for agents consuming this corpus.`,
     `- [Full context bundle](${siteOrigin}/downloads/context-bundle.md): Complete domain corpus plus all ${agentResources.length} source records in Markdown.`,
-    `- [Canonical JSON corpus](${siteOrigin}/downloads/corpus.json): All ${workflowRecords.length} workflows, ${authorityLevels.length} authority levels, ${sensitiveActions.length} sensitive-action boundaries, ${controlPatterns.length} controls, ${templates.length} templates, ${glossary.length} glossary terms, and source records.`,
+    `- [Canonical JSON corpus](${siteOrigin}/downloads/corpus.json): All ${workflowRecords.length} workflows, ${authorityLevels.length} authority levels, the authority decision guide, ${sensitiveActions.length} sensitive-action boundaries, ${controlPatterns.length} controls, ${templates.length} templates, ${glossary.length} glossary terms, and source records.`,
     `- [Workflow corpus](${siteOrigin}/workflows.md): All ${workflowRecords.length} workflow specifications in Markdown.`,
     `- [Accounting Agent Control Model](${siteOrigin}/control-model): Nine elements, two synthetic scenarios, and all-workflow mappings.`,
     `- [Accounting Agent Control Model in Markdown](${siteOrigin}/control-model.md): Equivalent text projection with stable IDs.`,
     `- [Coverage and gaps](${siteOrigin}/coverage): Versioned family boundaries, deep-treatment status, expansion gaps, and exclusions.`,
     `- [Coverage and gaps in Markdown](${siteOrigin}/coverage.md): Equivalent text projection with stable coverage IDs.`,
-    `- [Authority model](${siteOrigin}/authority-levels.md): The A0–A4 and human-only authority levels in Markdown.`,
+    `- [Authority model](${siteOrigin}/authority-levels.md): A0–A4 and human-only levels, action decision tree, A3/A4 comparison, mixed-level synthetic workflow, misclassifications, and segregation-of-duties examples.`,
     `- [Sensitive actions](${siteOrigin}/sensitive-actions.md): Approval, execution, rollback, and evidence boundaries.`,
     `- [Control patterns](${siteOrigin}/controls.md): Reusable control designs.`,
     `- [Templates](${siteOrigin}/templates.md): Practical implementation templates.`,
@@ -609,7 +611,7 @@ export function buildLlmsText() {
     "",
     `- [Resource API](${siteOrigin}/api/v1/resources): Versioned JSON search by text, topic, type, industry applicability, or time role; request text/markdown for Markdown output.`,
     `- [Workflow API](${siteOrigin}/api/v1/workflows): Search and filter canonical workflows by family and authority.`,
-    `- [Authority API](${siteOrigin}/api/v1/authority-levels): Retrieve the authority model.`,
+    `- [Authority API](${siteOrigin}/api/v1/authority-levels): Retrieve the authority levels and canonical decision guide.`,
     `- [Sensitive-action API](${siteOrigin}/api/v1/sensitive-actions): Retrieve high-impact action boundaries.`,
     `- [Control API](${siteOrigin}/api/v1/controls): Retrieve reusable control patterns.`,
     `- [Template API](${siteOrigin}/api/v1/templates): Retrieve implementation templates.`,
@@ -638,7 +640,7 @@ export function buildLlmsText() {
     `- [Agent fundamentals](${siteOrigin}/fundamentals): Agent definition, operating patterns, work loop, and run record.`,
     `- [Accounting lifecycle](${siteOrigin}/lifecycle): Eight core process families with explicitly qualified boundaries.`,
     `- [Coverage and gaps](${siteOrigin}/coverage): What this release treats deeply, at reference level, through sources, as planned, or as out of scope.`,
-    `- [Authority levels](${siteOrigin}/authority): A0–A4 and human-only boundaries.`,
+    `- [Authority ladder and decision tree](${siteOrigin}/authority): Classify one action, distinguish A3 from A4 and human-only responsibility, and test segregation of duties.`,
     `- [Workflow library](${siteOrigin}/workflows): All ${workflowRecords.length} canonical workflow specifications.`,
     `- [Accounting Agent Control Model](${siteOrigin}/control-model): Canonical governance reference and printable summary.`,
     `- [Controls and authority](${siteOrigin}/controls): Evidence, authority, control design, and assessment.`,

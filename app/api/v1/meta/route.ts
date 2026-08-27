@@ -9,7 +9,7 @@ import {
   rightsNotice,
   siteOrigin,
 } from "../../../agent-interface";
-import { authorityLevels, corpusModifiedAt, corpusReviewedAt, corpusVersion } from "../../../domain-model";
+import { authorityDecisionGuide, authorityLevels, corpusModifiedAt, corpusReviewedAt, corpusVersion } from "../../../domain-model";
 import { ecosystemLayers } from "../../../ecosystem-data";
 import { controlPatterns, sensitiveActions } from "../../../governance-data";
 import { glossary, templates } from "../../../reference-data";
@@ -41,6 +41,8 @@ export async function GET(request: Request) {
     coverage_map_review_status: accountingAgentsCoverageMap.review_status,
     start_here_version: accountingAgentsStartHere.version,
     start_here_review_status: accountingAgentsStartHere.review_status,
+    authority_decision_guide_version: authorityDecisionGuide.version,
+    authority_decision_guide_review_status: authorityDecisionGuide.review_status,
     title: "Accounting Agents public corpus",
     description: "Canonical workflows, authority boundaries, controls, templates, terminology, and curated sources for governed AI-agent work across the accounting lifecycle.",
     language: "en",
@@ -49,6 +51,7 @@ export async function GET(request: Request) {
       process_families: processFamilies.length,
       workflows: workflowRecords.length,
       authority_levels: authorityLevels.length,
+      authority_decision_guides: 1,
       sensitive_actions: sensitiveActions.length,
       control_patterns: controlPatterns.length,
       templates: templates.length,

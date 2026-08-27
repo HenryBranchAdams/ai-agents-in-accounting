@@ -17,7 +17,7 @@ export const navGroups: NavGroup[] = [
       { href: "/fundamentals", label: "Agent fundamentals" },
       { href: "/lifecycle", label: "Accounting lifecycle" },
       { href: "/coverage", label: "Coverage and gaps" },
-      { href: "/authority", label: "Authority levels" },
+      { href: "/authority", label: "Authority ladder" },
     ],
   },
   {
@@ -90,7 +90,7 @@ export const searchItems = [
   { href: "/fundamentals#patterns", title: "Compare operating patterns", category: "Fundamentals", detail: "Chat, copilot, workflow, and agent" },
   { href: "/fundamentals#work-loop", title: "Follow the work loop", category: "Fundamentals", detail: "Objective through review" },
   { href: "/lifecycle", title: "Map the accounting lifecycle", category: "Learn", detail: "Eight process families and sixty workflows" },
-  { href: "/authority", title: "Set an authority level", category: "Learn", detail: "Explain, prepare, recommend, constrained execution, or human-only" },
+  { href: "/authority", title: "Authority ladder and decision tree", category: "Learn", detail: "Classify one action across A0–A4 and human-only responsibility, including mixed workflows and segregation of duties" },
   { href: "/workflows", title: "Review the workflow library", category: "Workflows", detail: "Sixty canonical accounting workflows" },
   { href: "/workflows/record-to-report/wf-r2r-bank-reconciliations", title: "Prepare a bank reconciliation", category: "Workflows", detail: "Inputs, procedures, checks, authority, output, and review" },
   { href: "/controls#support", title: "Separate support and authority", category: "Controls", detail: "Evidence, claims, judgment, and decisions" },

@@ -32,7 +32,7 @@ export default function CoveragePage() {
         { href: "#out-of-scope", label: "Out of scope" },
       ]}
       previous={{ href: "/lifecycle", label: "Accounting lifecycle" }}
-      next={{ href: "/authority", label: "Authority levels" }}
+      next={{ href: "/authority", label: "Authority ladder" }}
     >
       <section id="use">
         <h2>Use a coverage claim that this release can support</h2>

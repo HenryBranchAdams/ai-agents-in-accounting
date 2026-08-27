@@ -167,7 +167,7 @@ export default function MachineAccessPage() {
         </p>
         <dl className="term-list">
           <div><dt>/workflows</dt><dd>{workflowRecords.length} workflow records; filter with <code>family</code> and <code>authority</code>.</dd></div>
-          <div><dt>/authority-levels</dt><dd>A0–A4 plus the human-only boundary.</dd></div>
+          <div><dt>/authority-levels</dt><dd>A0–A4, the human-only boundary, and the canonical action decision guide with mixed-level and segregation-of-duties examples.</dd></div>
           <div><dt>/sensitive-actions</dt><dd>{sensitiveActions.length} high-impact action boundaries.</dd></div>
           <div><dt>/controls</dt><dd>{controlPatterns.length} reusable control patterns.</dd></div>
           <div><dt>/templates</dt><dd>{templates.length} practical implementation structures.</dd></div>

@@ -11,7 +11,7 @@ import {
   siteOrigin,
 } from "../agent-interface";
 import { allowedAuthorityLevels, allowedFamilies } from "../domain-interface";
-import { corpusReviewedAt, corpusVersion } from "../domain-model";
+import { authorityDecisionGuide, corpusReviewedAt, corpusVersion } from "../domain-model";
 import { ecosystemLayers } from "../ecosystem-data";
 import { controlPatterns, sensitiveActions } from "../governance-data";
 import { glossary, templates } from "../reference-data";
@@ -515,6 +515,78 @@ const normalizedRecordProperties = {
   provenance: provenanceSchema,
 } as const;
 
+const authorityDecisionOutcomeSchema = {
+  type: "object",
+  additionalProperties: false,
+  required: ["kind", "target", "label"],
+  properties: {
+    kind: { type: "string", enum: ["step", "authority", "stop"] },
+    target: { type: "string" },
+    label: { type: "string" },
+  },
+} as const;
+
+const authorityDecisionGuideSchema = {
+  type: "object",
+  additionalProperties: false,
+  required: [
+    "id", "version", "prepared_at", "review_status", "review_note", "primary_mode",
+    "evidence_classification", "intended_audience", "prerequisites", "expected_outcome",
+    "operating_rule", "decision_steps", "stop_conditions", "execution_comparison",
+    "mixed_level_workflow", "common_misclassifications", "segregation_of_duties_examples",
+    "sensitive_action_mappings", "limitations", "next_action", "source_basis", "rights",
+  ],
+  properties: {
+    id: { type: "string", const: authorityDecisionGuide.id },
+    version: { type: "string", const: authorityDecisionGuide.version },
+    prepared_at: { type: "string", format: "date" },
+    review_status: { type: "string", const: authorityDecisionGuide.review_status },
+    review_note: { type: "string" },
+    primary_mode: { type: "string", const: "reference" },
+    evidence_classification: { type: "string", const: "implementation-pattern" },
+    intended_audience: { type: "string" },
+    prerequisites: { type: "array", minItems: 2, items: { type: "string" } },
+    expected_outcome: { type: "string" },
+    operating_rule: {
+      type: "object",
+      additionalProperties: false,
+      required: ["id", "text", "evidence_classification"],
+      properties: {
+        id: { type: "string" },
+        text: { type: "string" },
+        evidence_classification: { type: "string", const: "editorial-recommendation" },
+      },
+    },
+    decision_steps: {
+      type: "array",
+      minItems: 7,
+      maxItems: 7,
+      items: {
+        type: "object",
+        additionalProperties: false,
+        required: ["id", "question", "why_it_matters", "yes", "no"],
+        properties: {
+          id: { type: "string" },
+          question: { type: "string" },
+          why_it_matters: { type: "string" },
+          yes: authorityDecisionOutcomeSchema,
+          no: authorityDecisionOutcomeSchema,
+        },
+      },
+    },
+    stop_conditions: { type: "array", minItems: 7, items: { type: "string" } },
+    execution_comparison: { type: "array", minItems: 3, maxItems: 3, items: { type: "object", required: ["id", "level_id", "entry_condition", "decision_owner", "permitted_effect", "accounting_example", "stop_when"] } },
+    mixed_level_workflow: { type: "object", required: ["id", "title", "fictional", "evidence_classification", "context", "actions", "finished_artifact"], properties: { fictional: { type: "boolean", const: true }, evidence_classification: { type: "string", const: "synthetic-example" }, actions: { type: "array", minItems: 7, items: { type: "object", required: ["id", "action", "level_id", "why", "accountable_person"] } } } },
+    common_misclassifications: { type: "array", minItems: 6, items: { type: "object", required: ["id", "mistaken_claim", "correction"] } },
+    segregation_of_duties_examples: { type: "array", minItems: 4, items: { type: "object", required: ["id", "unsafe_combination", "safer_design", "principle"] } },
+    sensitive_action_mappings: { type: "array", minItems: 5, items: { type: "object", required: ["id", "sensitive_action_id", "href", "rule"] } },
+    limitations: { type: "array", minItems: 4, items: { type: "string" } },
+    next_action: { type: "string" },
+    source_basis: { type: "array", minItems: 4, items: { type: "object", required: ["id", "evidence_classification", "scope"] } },
+    rights: { type: "object", required: ["editorial_content", "synthetic_examples_and_factual_metadata", "external_sources"] },
+  },
+} as const;
+
 const authorityLevelSchema = {
   type: "object",
   additionalProperties: false,
@@ -786,7 +858,7 @@ const resourceCollectionParameters = [
   { name: "time_role", in: "query", schema: { type: "string", enum: allowedTimeRoles } },
 ] as const;
 
-function collectionResponses(schemaName: string) {
+function collectionResponses(schemaName: string, additionalProperties: Record<string, unknown> = {}) {
   return {
     "200": {
       description: "Matching records in JSON or Markdown.",
@@ -820,6 +892,7 @@ function collectionResponses(schemaName: string) {
               filters: { type: "object", additionalProperties: true },
               links: { type: "object", additionalProperties: true },
               items: { type: "array", items: { $ref: `#/components/schemas/${schemaName}` } },
+              ...additionalProperties,
             },
             additionalProperties: true,
           },
@@ -833,14 +906,20 @@ function collectionResponses(schemaName: string) {
   };
 }
 
-function collectionPath(operationId: string, summary: string, tag: string, schemaName: string) {
+function collectionPath(
+  operationId: string,
+  summary: string,
+  tag: string,
+  schemaName: string,
+  additionalResponseProperties: Record<string, unknown> = {},
+) {
   return {
     get: {
       operationId,
       summary,
       tags: [tag],
       parameters: commonParameters,
-      responses: collectionResponses(schemaName),
+      responses: collectionResponses(schemaName, additionalResponseProperties),
     },
     head: {
       operationId: `${operationId}Head`,
@@ -875,7 +954,7 @@ const document = {
   security: [],
   tags: [
     { name: "Workflows", description: `${workflowRecords.length} canonical workflow specifications across eight accounting process families.` },
-    { name: "Authority", description: "A0–A4 and human-only authority boundaries." },
+    { name: "Authority", description: "A0–A4 and human-only boundaries plus the canonical action decision guide." },
     { name: "Governance", description: `${sensitiveActions.length} sensitive-action boundaries and ${controlPatterns.length} control patterns.` },
     { name: "Reference", description: `${templates.length} implementation templates and ${glossary.length} controlled terms.` },
     { name: "Resources", description: `${agentResources.length} standards, guidance, technical references, evidence, and practice examples.` },
@@ -950,7 +1029,13 @@ const document = {
         responses: { "204": { description: "Allowed methods and headers." } },
       },
     },
-    "/api/v1/authority-levels": collectionPath("listAuthorityLevels", "Search authority levels", "Authority", "AuthorityLevel"),
+    "/api/v1/authority-levels": collectionPath(
+      "listAuthorityLevels",
+      "Search authority levels and retrieve the action decision guide",
+      "Authority",
+      "AuthorityLevel",
+      { decision_guide: { $ref: "#/components/schemas/AuthorityDecisionGuide" } },
+    ),
     "/api/v1/sensitive-actions": collectionPath("listSensitiveActions", "Search sensitive-action boundaries", "Governance", "SensitiveAction"),
     "/api/v1/controls": collectionPath("listControls", "Search control patterns", "Governance", "ControlPattern"),
     "/api/v1/templates": collectionPath("listTemplates", "Search implementation templates", "Reference", "Template"),
@@ -1244,6 +1329,7 @@ const document = {
       EcosystemLayer: ecosystemLayerSchema,
       ContentContract: contentContractSchema,
       StartHereOrientation: startHereSchema,
+      AuthorityDecisionGuide: authorityDecisionGuideSchema,
       ControlModel: controlModelSchema,
       CoverageMap: coverageMapSchema,
       Pack: packSchema,

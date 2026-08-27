@@ -2500,6 +2500,101 @@ summary:focus-visible {
   font-size: 0.78rem;
 }
 
+.authority-decision-tree,
+.authority-mixed-workflow {
+  border-top: 1px solid var(--border);
+  list-style: none;
+  margin: 1.25rem 0 !important;
+  padding: 0 !important;
+}
+
+.authority-decision-tree > li,
+.authority-mixed-workflow > li {
+  border-bottom: 1px solid var(--border);
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 2rem 1fr;
+  margin: 0;
+  padding: 1rem 0;
+}
+
+.authority-decision-tree h3,
+.authority-mixed-workflow h3 {
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.authority-decision-tree p,
+.authority-mixed-workflow p {
+  color: var(--muted);
+  font-size: 0.8rem;
+  margin: 0.45rem 0;
+}
+
+.authority-branches {
+  display: grid;
+  gap: 0.7rem;
+  grid-template-columns: 1fr 1fr;
+  margin: 0.8rem 0 0;
+}
+
+.authority-branches > div {
+  border-left: 2px solid var(--border-strong);
+  padding: 0.15rem 0 0.15rem 0.7rem;
+}
+
+.authority-branches > div[data-outcome-kind="authority"] {
+  border-color: var(--accent);
+}
+
+.authority-branches > div[data-outcome-kind="stop"] {
+  border-color: var(--warning);
+}
+
+.authority-branches dt {
+  color: var(--faint);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.authority-branches dd {
+  color: var(--text);
+  font-size: 0.76rem;
+  line-height: 1.5;
+  margin: 0.15rem 0 0;
+}
+
+.authority-mixed-workflow small,
+.authority-sod-grid small {
+  color: var(--faint);
+  display: block;
+  font-size: 0.7rem;
+  line-height: 1.5;
+}
+
+.authority-sod-grid > article {
+  border-top: 1px solid var(--border);
+  padding: 0.9rem 0 0.3rem;
+}
+
+.authority-sod-grid h3,
+.authority-sod-grid h4 {
+  font-size: 0.82rem;
+  margin: 0 0 0.45rem;
+}
+
+.authority-sod-grid h4 {
+  margin-top: 0.8rem;
+}
+
+.authority-sod-grid p {
+  color: var(--muted);
+  font-size: 0.78rem;
+  margin: 0;
+}
+
 @media (max-width: 720px) {
   .knowledge-check label,
   .check-feedback {
@@ -2514,6 +2609,10 @@ summary:focus-visible {
   .knowledge-check-actions button {
     min-height: 2.75rem;
     width: 100%;
+  }
+
+  .authority-branches {
+    grid-template-columns: 1fr;
   }
 }
 

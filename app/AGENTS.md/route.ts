@@ -14,7 +14,8 @@ const instructions = `# Accounting Agents public access instructions
 6. Follow canonical source links when the task requires current authoritative support.
 7. Use /content-contract to identify each page's primary mode and the evidence classification before reusing educational material.
 8. Use /control-model to structure governed work from objective through retained record; apply all nine elements rather than treating the page as a checklist that grants authority.
-9. Use /coverage before claiming that the corpus is complete, deep, applicable to an expansion domain, or suitable for a pilot.
+9. Use /authority to classify one observable action at a time; preserve A3, A4, and human-only distinctions and stop when approval, evidence, enforcement, or segregation of duties is missing.
+10. Use /coverage before claiming that the corpus is complete, deep, applicable to an expansion domain, or suitable for a pilot.
 
 ## Non-negotiable boundaries
 

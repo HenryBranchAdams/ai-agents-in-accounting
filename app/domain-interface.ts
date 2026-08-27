@@ -1,4 +1,5 @@
 import {
+  authorityDecisionGuide,
   authorityLevels,
   corpusReviewedAt,
   type AuthorityLevel,
@@ -83,6 +84,10 @@ export function searchRecords<T>({
 
 function list(lines: string[], label: string, items: string[]) {
   lines.push(`**${label}**`, "", ...items.map((item) => `- ${item}`), "");
+}
+
+function tableCell(value: string) {
+  return value.replace(/\|/g, "\\|").replace(/\n/g, " ");
 }
 
 function markdownHeader(title: string, summary: string, count: number) {
@@ -198,14 +203,35 @@ export function renderWorkflowsMarkdown(records: WorkflowRecord[] = workflowReco
 }
 
 export function renderAuthorityLevelsMarkdown(records: AuthorityLevel[] = authorityLevels) {
+  const guide = authorityDecisionGuide;
   const lines = markdownHeader(
-    "Authority levels",
-    "A graduated model for explaining, preparing, recommending, and constrained execution.",
+    "Authority ladder and decision tree",
+    "Classify one action from explanation through constrained execution or human-only responsibility.",
     records.length,
+  );
+  lines.push(
+    `- Guide ID: \`${guide.id}\`; version ${guide.version}`,
+    `- Prepared: ${guide.prepared_at}`,
+    `- Review status: ${guide.review_status}`,
+    `- Primary mode: Reference`,
+    `- Evidence classification: ${guide.evidence_classification}`,
+    "",
+    "## Reader outcome",
+    "",
+    `- Intended audience: ${guide.intended_audience}`,
+    ...guide.prerequisites.map((item) => `- Prerequisite: ${item}`),
+    `- Expected outcome: ${guide.expected_outcome}`,
+    "",
+    `**${guide.operating_rule.text}**`,
+    "",
+    `Evidence classification: ${guide.operating_rule.evidence_classification}.`,
+    "",
+    "## Authority ladder",
+    "",
   );
   for (const record of records) {
     lines.push(
-      `## ${record.id === "human-only" ? "Human-only" : record.id}: ${record.label}`,
+      `### ${record.id === "human-only" ? "Human-only" : record.id}: ${record.label}`,
       "",
       record.agent_role,
       "",
@@ -216,6 +242,72 @@ export function renderAuthorityLevelsMarkdown(records: AuthorityLevel[] = author
     );
     list(lines, "Required controls", record.required_controls);
   }
+
+  lines.push("## Decision tree", "");
+  for (const [index, step] of guide.decision_steps.entries()) {
+    lines.push(
+      `### ${index + 1}. ${step.question}`,
+      "",
+      `- Stable ID: \`${step.id}\``,
+      `- Why it matters: ${step.why_it_matters}`,
+      `- Yes (${step.yes.kind}, \`${step.yes.target}\`): ${step.yes.label}`,
+      `- No (${step.no.kind}, \`${step.no.target}\`): ${step.no.label}`,
+      "",
+    );
+  }
+  list(lines, "Stop instead of guessing", [...guide.stop_conditions]);
+
+  lines.push(
+    "## A3, A4, and human-only",
+    "",
+    "| Stable ID | Level | Entry condition | Decision owner | Permitted effect | Accounting example | Stop when |",
+    "|---|---|---|---|---|---|---|",
+    ...guide.execution_comparison.map((item) => `| \`${item.id}\` | ${item.level_id} | ${tableCell(item.entry_condition)} | ${tableCell(item.decision_owner)} | ${tableCell(item.permitted_effect)} | ${tableCell(item.accounting_example)} | ${tableCell(item.stop_when)} |`),
+    "",
+    `## Synthetic scenario: ${guide.mixed_level_workflow.title}`,
+    "",
+    `- Scenario ID: \`${guide.mixed_level_workflow.id}\``,
+    `- Fictional: ${guide.mixed_level_workflow.fictional}`,
+    `- Evidence classification: ${guide.mixed_level_workflow.evidence_classification}`,
+    `- Context: ${guide.mixed_level_workflow.context}`,
+    "",
+    "| Stable action ID | Action | Level | Why | Accountable person |",
+    "|---|---|---|---|---|",
+    ...guide.mixed_level_workflow.actions.map((item) => `| \`${item.id}\` | ${tableCell(item.action)} | ${item.level_id} | ${tableCell(item.why)} | ${tableCell(item.accountable_person)} |`),
+    "",
+    `Finished artifact: ${guide.mixed_level_workflow.finished_artifact}`,
+    "",
+    "## Common misclassifications",
+    "",
+    "| Stable ID | Mistaken claim | Correction |",
+    "|---|---|---|",
+    ...guide.common_misclassifications.map((item) => `| \`${item.id}\` | ${tableCell(item.mistaken_claim)} | ${tableCell(item.correction)} |`),
+    "",
+    "## Segregation-of-duties comparisons",
+    "",
+    "| Stable ID | Unsafe combination | Safer design | Principle |",
+    "|---|---|---|---|",
+    ...guide.segregation_of_duties_examples.map((item) => `| \`${item.id}\` | ${tableCell(item.unsafe_combination)} | ${tableCell(item.safer_design)} | ${tableCell(item.principle)} |`),
+    "",
+    "## Sensitive-action mappings",
+    "",
+    ...guide.sensitive_action_mappings.map((item) => `- \`${item.id}\`: [${item.sensitive_action_id}](${item.href}) — ${item.rule}`),
+    "",
+  );
+  list(lines, "Limitations", [...guide.limitations]);
+  lines.push(
+    "## Source basis, rights, and review",
+    "",
+    ...guide.source_basis.map((source) => `- [${source.id}](/resources/${source.id}) (${source.evidence_classification}) — ${source.scope}`),
+    "",
+    `Next action: ${guide.next_action}`,
+    "",
+    `- ${guide.review_note}`,
+    `- Original editorial content: ${guide.rights.editorial_content}`,
+    `- Project-created synthetic examples and factual metadata: ${guide.rights.synthetic_examples_and_factual_metadata}`,
+    `- External sources: ${guide.rights.external_sources}`,
+    "",
+  );
   return lines.join("\n").trimEnd() + "\n";
 }
 

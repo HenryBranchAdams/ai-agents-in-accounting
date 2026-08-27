@@ -1,6 +1,6 @@
 import { domainCollectionResponse, domainOptionsResponse } from "../../../domain-api";
 import { renderAuthorityLevelsMarkdown, searchRecords } from "../../../domain-interface";
-import { authorityLevels } from "../../../domain-model";
+import { authorityDecisionGuide, authorityLevels } from "../../../domain-model";
 
 export function OPTIONS() {
   return domainOptionsResponse();
@@ -16,6 +16,7 @@ export async function GET(request: Request) {
     collection: "authority-levels",
     filters: { q: query ?? null },
     markdownPath: "/authority-levels.md",
+    additionalFields: { decision_guide: authorityDecisionGuide },
   });
 }
 

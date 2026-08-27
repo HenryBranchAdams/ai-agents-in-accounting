@@ -9,7 +9,7 @@ const description = "See where open agent protocols fit, where accounting-specif
 const trustTracks = [
   { title: "Accuracy and reliability", detail: "Known-answer cases, repeat runs, regression, and hard authority gates.", href: "/evaluation", companionLabel: "Accounting Agent Bench" },
   { title: "Governance, risk, and regulation", detail: "Source applicability, control design, review states, and correction policy.", href: "/controls", companionLabel: "Methodology" },
-  { title: "Identity and trust", detail: "Least privilege, attributable actors, segregation of duties, and action authority.", href: "/security-identity", companionLabel: "Authority levels" },
+  { title: "Identity and trust", detail: "Least privilege, attributable actors, segregation of duties, and action authority.", href: "/security-identity", companionLabel: "Authority ladder" },
   { title: "Observability and traceability", detail: "Evidence chains, work records, monitoring, incidents, and recovery.", href: "/evidence-assurance", companionLabel: "Production operations" },
   { title: "Workflow integration", detail: "Canonical work definitions paired with portable synthetic specimens.", href: "/workflows", companionLabel: "Workflow packs" },
   { title: "Taxonomy and interoperability", detail: "Controlled terms, stable IDs, machine-readable records, and interface contracts.", href: "/glossary", companionLabel: "Taxonomy API" },

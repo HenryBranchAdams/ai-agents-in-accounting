@@ -6,6 +6,8 @@ The public site is [accounting-agents.madebyhenry.chatgpt.site](https://accounti
 
 New readers can begin with the [five-minute Start here orientation](https://accounting-agents.madebyhenry.chatgpt.site/start-here), then use its synthetic exception and role-based routes to enter the guide. The same lesson is available as [Markdown](https://accounting-agents.madebyhenry.chatgpt.site/start-here.md) and [JSON](https://accounting-agents.madebyhenry.chatgpt.site/api/v1/start-here).
 
+The [authority ladder and decision tree](https://accounting-agents.madebyhenry.chatgpt.site/authority) classifies one action at a time, distinguishes A3 execution after approval from A4 policy execution and human-only responsibility, and includes a mixed-level synthetic workflow. Equivalent machine-readable projections are available as [Markdown](https://accounting-agents.madebyhenry.chatgpt.site/authority-levels.md) and [JSON](https://accounting-agents.madebyhenry.chatgpt.site/api/v1/authority-levels).
+
 The [versioned coverage and gaps map](https://accounting-agents.madebyhenry.chatgpt.site/coverage) distinguishes deep, canonical-reference, source-library-only, planned, and out-of-scope coverage. It qualifies lifecycle claims and is also available as [Markdown](https://accounting-agents.madebyhenry.chatgpt.site/coverage.md) and [JSON](https://accounting-agents.madebyhenry.chatgpt.site/api/v1/coverage).
 
 ## Four paths through the hub
