@@ -29,10 +29,10 @@ The existing 30-case Accounting Agent Bench remains a small public Core conforma
 
 ## Development
 
-Requires Node.js 22.13 or newer and Linux with `flock`, `curl`, GNU `timeout`, and `zip`.
+Requires Node.js 22.13 or newer. The production build and test wrapper run on macOS and Linux without a separate timeout utility.
 
 ```sh
-npm run install:ci
+npm ci
 npm run generate:platform
 npm run validate:platform
 npm run lint
@@ -40,6 +40,8 @@ npm test
 ```
 
 `npm test` builds the production Worker and runs contract, site-wide quality, mobile, and LedgerBench program suites. See [`TESTING.md`](TESTING.md) for the coverage matrix, focused commands, and release gates.
+
+`npm run install:ci` is the Linux Sites-image installation helper; it additionally requires `flock`, `curl`, GNU `timeout`, and `sha256sum`. Building the source archive requires `zip`.
 
 `data/open-source-platform.mjs` is the canonical source for packs, public conformance cases, and release notes. `data/ledgerbench-program.mjs` is the canonical structured Preview record for the LedgerBench measurement program.
 
