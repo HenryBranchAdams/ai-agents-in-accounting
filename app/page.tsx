@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { DocsShell } from "./DocsShell";
-import { benchmarkCases, packs, releaseNotes } from "./platform-data";
+import { packs, releaseNotes } from "./platform-data";
+import { readingRoomResources } from "./reading-room-data";
+import { templates } from "./reference-data";
 import { resources } from "./resources-data";
 import { workflowRecords } from "./workflows-data";
 
@@ -10,7 +12,7 @@ export default function OverviewPage() {
       active="/"
       category="Overview"
       title="AI agents in accounting"
-      description="An open, source-linked field guide, workflow-pack library, and benchmark for governed AI agents in accounting and finance."
+      description="An open educational hub for learning how governed AI agents can prepare accounting and finance work."
       headerImage={{
         src: "/images/editorial/01-ledger-topology.jpg",
         alt: "Layered paper ledgers connected by a restrained green review path.",
@@ -19,8 +21,8 @@ export default function OverviewPage() {
         { href: "#purpose", label: "Purpose" },
         { href: "#current", label: "Current signal" },
         { href: "#operating-rule", label: "Operating rule" },
-        { href: "#guide-map", label: "Guide map" },
-        { href: "#ecosystem", label: "Open ecosystem" },
+        { href: "#guide-map", label: "Choose a path" },
+        { href: "#ecosystem", label: "What is here" },
         { href: "#scope", label: "Coverage and execution" },
       ]}
       next={{ href: "/fundamentals", label: "Agent fundamentals" }}
@@ -40,15 +42,16 @@ export default function OverviewPage() {
           modes, and retained record an implementation needs.
         </p>
         <p>
-          Six portable packs turn representative workflows into synthetic,
-          runnable specimens. Accounting Agent Bench tests thirty normal, edge,
-          adversarial, and authority-boundary cases without using production data.
+          The reading room curates {readingRoomResources.length} research papers,
+          professional reports, guidance documents, and disclosed practice examples.
+          Templates and {packs.length} synthetic workflow packs help readers turn
+          the guidance into reviewable practice without using production data.
         </p>
         <div className="corpus-summary" role="list" aria-label="Public corpus coverage">
           <div role="listitem"><strong>{workflowRecords.length}</strong><span>workflows</span></div>
           <div role="listitem"><strong>{resources.length}</strong><span>source records</span></div>
-          <div role="listitem"><strong>{packs.length}</strong><span>workflow packs</span></div>
-          <div role="listitem"><strong>{benchmarkCases.length}</strong><span>benchmark cases</span></div>
+          <div role="listitem"><strong>{readingRoomResources.length}</strong><span>curated readings</span></div>
+          <div role="listitem"><strong>{templates.length}</strong><span>practical templates</span></div>
         </div>
       </section>
 
@@ -63,9 +66,9 @@ export default function OverviewPage() {
             <strong>Expanded reading room · 153 readings</strong>
             <span>Financial supervision, model risk, structured reporting data, field deployments, and continuous assurance.</span>
           </Link>
-          <Link href="/ecosystem">
-            <strong>Standards posture</strong>
-            <span>See what is adopted, optional, or deferred—and what each interface cannot prove.</span>
+          <Link href="/coverage">
+            <strong>Coverage and gaps</strong>
+            <span>See what the guide covers deeply, references, plans to expand, or keeps out of scope.</span>
           </Link>
         </div>
       </section>
@@ -86,58 +89,63 @@ export default function OverviewPage() {
       </section>
 
       <section id="guide-map">
-        <h2>Choose the job you are here to do</h2>
+        <h2>Choose a path</h2>
         <div className="doc-link-list">
           <a href="/fundamentals">
-            <strong>Learn</strong>
+            <strong>Learn the foundations</strong>
             <span>Start with agent fundamentals, the accounting lifecycle, authority, and controls.</span>
           </a>
-          <Link href="/packs">
-            <strong>Build</strong>
-            <span>Use portable workflow packs, system architecture, pilot guidance, and the public specification.</span>
+          <Link href="/workflows">
+            <strong>Explore accounting workflows</strong>
+            <span>Find objectives, evidence, procedures, checks, authority limits, and review requirements.</span>
           </Link>
-          <Link href="/bench">
-            <strong>Evaluate</strong>
-            <span>Run synthetic conformance cases with deterministic checks and hard authority gates.</span>
+          <Link href="/templates">
+            <strong>Put the guidance to work</strong>
+            <span>Use practical templates, synthetic workflow packs, and a controlled-pilot checklist.</span>
           </Link>
-          <a href="/machine-access">
-            <strong>Integrate</strong>
-            <span>Use standard HTTP, Markdown, JSON, OpenAPI, schemas, feeds, clients, and a CLI.</span>
+          <a href="/reading-room">
+            <strong>Research the field</strong>
+            <span>Follow curated reading paths or search the complete source catalog.</span>
           </a>
         </div>
         <p>
-          Or browse the <Link href="/workflows">workflow library</Link>, <Link href="/resources">source catalog</Link>,
-          and <Link href="/reading-room">reading room</Link> directly.
+          Building or testing a system? Use the <Link href="/packs">workflow packs</Link>,
+          {" "}<Link href="/evaluation">evaluation guide</Link>, and specialist
+          {" "}<Link href="/ledgerbench">LedgerBench lab</Link>.
         </p>
       </section>
 
       <section id="ecosystem">
-        <h2>Open standards, accounting-specific constraints</h2>
+        <h2>A guide, library, and practical toolkit</h2>
         <p>
-          Interoperability and domain control are different layers. Open web
-          formats make the corpus easy to retrieve; AGENTS.md can guide coding
-          agents; MCP can connect tools and data; A2A can coordinate independent
-          agents. None of those standards decides whether an accounting action
-          is supported, approved, or within authority.
+          Learn the concepts, find an accounting workflow, apply a control model,
+          inspect practical templates, and trace claims back to their sources.
+          The same operating rule runs through every path: agents prepare work;
+          accountable people approve conclusions and sensitive actions.
         </p>
         <div className="doc-link-list">
-          <Link href="/ecosystem">
-            <strong>Open agent ecosystem</strong>
-            <span>See the role, adoption posture, and accounting boundary for each interface.</span>
+          <Link href="/fundamentals">
+            <strong>Concepts and orientation</strong>
+            <span>Understand agents, governed work, the accounting lifecycle, and authority.</span>
           </Link>
-          <Link href="/AGENTS.md">
-            <strong>Public agent instructions</strong>
-            <span>Give an agent compact routing, source-use, reliance, and protocol guidance.</span>
+          <Link href="/workflows">
+            <strong>Workflow library</strong>
+            <span>Explore sixty source-linked specifications across eight accounting families.</span>
           </Link>
-          <Link href="/machine-access">
-            <strong>Direct machine access</strong>
-            <span>Use Markdown, JSON, deterministic search, OpenAPI, schemas, and feeds.</span>
+          <Link href="/control-model">
+            <strong>Governance and controls</strong>
+            <span>Connect objectives, evidence, procedures, checks, authority, review, and records.</span>
           </Link>
-          <Link href="/open-source">
-            <strong>Trust and participation</strong>
-            <span>Review rights, governance, contribution rules, release records, and source archive.</span>
+          <Link href="/reading-room">
+            <strong>Evidence and further reading</strong>
+            <span>Follow curated learning paths, then inspect the complete source catalog.</span>
           </Link>
         </div>
+        <p>
+          For builders, the hub also publishes <Link href="/machine-access">machine-readable access</Link>,
+          {" "}<Link href="/ecosystem">open-interface guidance</Link>, and
+          {" "}<Link href="/open-source">reusable source and governance records</Link>.
+        </p>
       </section>
 
       <section id="scope">

@@ -5,10 +5,10 @@ import { LedgerBenchFoundations } from "./LedgerBenchFoundations";
 import { LedgerBenchOperations } from "./LedgerBenchOperations";
 import { LedgerBenchScoring } from "./LedgerBenchScoring";
 
-const description = "A living measurement program for accounting-agent capability, conformance, field utility, and grader validity.";
+const description = "A specialist research program for accounting-agent capability, conformance, field utility, and grader validity.";
 
 export const metadata = {
-  ...docsMetadata("LedgerBench", description, "/ledgerbench"),
+  ...docsMetadata("LedgerBench research program", description, "/ledgerbench"),
   alternates: {
     canonical: "/ledgerbench",
     types: {
@@ -22,8 +22,8 @@ export default function LedgerBenchPage() {
   return (
     <DocsShell
       active="/ledgerbench"
-      category="Evaluate"
-      title="LedgerBench"
+      category="Lab"
+      title="LedgerBench research program"
       description={description}
       headerImage={{
         src: "/images/editorial/options/17-evaluation-rig.jpg",
@@ -44,8 +44,8 @@ export default function LedgerBenchPage() {
         { href: "#precedents", label: "Precedents" },
         { href: "#machine", label: "Machine contracts" },
       ]}
-      previous={{ href: "/evaluation", label: "Evaluation and testing" }}
-      next={{ href: "/bench", label: "Core conformance suite" }}
+      previous={{ href: "/bench", label: "Core conformance suite" }}
+      next={{ href: "/spec", label: "Public specification" }}
       reviewedAt={ledgerBenchProgram.reviewed_at}
     >
       <LedgerBenchFoundations />

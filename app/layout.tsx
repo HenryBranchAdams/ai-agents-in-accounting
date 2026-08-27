@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://accounting-agents.madebyhenry.chatgpt.site"),
   title: "Accounting Agents",
   description:
-    "Methods, workflow examples, control guidance, and primary sources for accounting teams using AI agents.",
+    "Open educational hub and source-linked field guide for governed AI agents in accounting and finance.",
   alternates: {
     canonical: "/",
   },
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Accounting Agents",
-    description: "Field guide to AI agents in accounting.",
+    description: "Educational field guide to governed AI agents in accounting.",
     type: "website",
     images: [
       {
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Accounting Agents",
-    description: "Field guide to AI agents in accounting.",
+    description: "Educational field guide to governed AI agents in accounting.",
     images: ["/og.png"],
   },
 };
