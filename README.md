@@ -14,6 +14,8 @@ The [bank-reconciliation workflow](https://accounting-agents.madebyhenry.chatgpt
 
 The [versioned coverage and gaps map](https://accounting-agents.madebyhenry.chatgpt.site/coverage) distinguishes deep, canonical-reference, source-library-only, planned, and out-of-scope coverage. It qualifies lifecycle claims and is also available as [Markdown](https://accounting-agents.madebyhenry.chatgpt.site/coverage.md) and [JSON](https://accounting-agents.madebyhenry.chatgpt.site/api/v1/coverage).
 
+The source library now gives 14 representative records a deeper relationship profile. The core-authority cohort covers FASB and IFRS accounting literature, PCAOB evidence, documentation, and ICFR standards, the COSO internal-control framework, and the AICPA professional-conduct code. Each profile separates direct source claims from editorial interpretation, records applicability and freshness limits, links workflows and related sources, and remains maintainer-review-pending.
+
 ## Four paths through the hub
 
 - Learn: start with the five-minute orientation, then continue into fundamentals, the accounting lifecycle, authority, accountable review, controls, and evidence.

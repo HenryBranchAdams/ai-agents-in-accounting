@@ -65,6 +65,7 @@ export async function GET(request: Request) {
       templates: templates.length,
       glossary_terms: glossary.length,
       source_records: agentResources.length,
+      source_relationship_profiles: agentResources.filter((resource) => resource.relationship_profile).length,
       workflow_packs: packs.length,
       benchmark_cases: benchmarkCases.length,
       ecosystem_layers: ecosystemLayers.length,

@@ -608,7 +608,7 @@ export function buildLlmsText() {
     `- [Control patterns](${siteOrigin}/controls.md): Reusable control designs.`,
     `- [Templates](${siteOrigin}/templates.md): Practical implementation templates.`,
     `- [Glossary](${siteOrigin}/glossary.md): Controlled accounting-agent terms.`,
-    `- [Source catalog in Markdown](${siteOrigin}/resources.md): Complete source metadata, summaries, status, jurisdiction, access, structured applicability, time role, lifecycle, method, and transfer limits.`,
+    `- [Source catalog in Markdown](${siteOrigin}/resources.md): Complete source metadata plus ${agentResources.filter((resource) => resource.relationship_profile).length} relationship profiles with questions, claims, limitations, workflows, freshness, and related sources.`,
     `- [Curated reading room](${siteOrigin}/reading-room.md): A smaller path through research papers, practitioner essays, professional reports, and disclosed practice examples.`,
     `- [Reading-room JSON](${siteOrigin}/downloads/reading-room.json): The same curated shelves and complete source records as structured JSON.`,
     `- [Workflow packs](${siteOrigin}/packs.md): Six portable specifications with synthetic fixtures and reference outputs.`,

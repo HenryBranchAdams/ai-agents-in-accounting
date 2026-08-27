@@ -97,11 +97,17 @@ export function ResourceIndex() {
         curation?.applicability.join(" ") ?? "",
         curation?.applicability_note ?? "",
         curation?.temporal_role ?? "",
+        curation?.lifecycle ?? "",
+        curation?.publication_status ?? "",
         curation?.method ?? "",
         curation?.transfer_limit ?? "",
+        curation?.source_updated_at ?? "",
+        curation?.next_review_at ?? "",
         ...(relationshipProfile?.questions ?? []),
         ...(relationshipProfile?.claims.map((claim) => claim.text) ?? []),
         ...(relationshipProfile?.contrary_claims.map((claim) => claim.text) ?? []),
+        ...(relationshipProfile?.limitations ?? []),
+        relationshipProfile?.next_action ?? "",
       ].join(" ").toLowerCase();
 
       return matchesTopic && matchesKind && matchesIndustry && matchesTimeRole

@@ -4,6 +4,7 @@ import { agentResources, catalogReviewedAt, catalogVersion, siteOrigin } from ".
 import { docsMetadata } from "../docsMetadata";
 
 const description = "A searchable index of standards, regulatory guidance, technical references, research, and documented accounting-agent practice.";
+const relationshipProfileCount = agentResources.filter((resource) => resource.relationship_profile).length;
 
 const catalogStructuredData = {
   "@context": "https://schema.org",
@@ -102,7 +103,8 @@ export default function ResourcesPage() {
         <p>
           Industry and time-role filters are being introduced as structured metadata, not inferred from keywords.
           A source with no industry profile remains available under All and is not silently treated as general.
-          The first relationship-profiled cohort also records questions, claims, contrary or limiting evidence,
+          The {relationshipProfileCount} relationship-profiled sources include six core authorities used throughout the guide.
+          Those profiles record questions, claims, contrary or limiting evidence,
           workflows, audience, difficulty, reading time, importance, freshness, supersession, and related sources.
         </p>
         <dl className="term-list resource-method">

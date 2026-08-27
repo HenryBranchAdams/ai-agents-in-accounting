@@ -289,14 +289,14 @@ test("source curation taxonomy and pilot relationships stay internally consisten
   assert.equal(timeRoleIds.size, 4);
   assert.equal(lifecycleIds.size, 6);
   assert.equal(evidenceTierIds.size, 5);
-  assert.equal(taxonomy.source_relationship_profile_count, 8);
+  assert.equal(taxonomy.source_relationship_profile_count, 14);
   assert.equal(taxonomy.source_curation_contract.status, "pilot");
   assert.equal(taxonomy.source_curation_contract.curation_review_status, "maintainer-review-pending");
   assert.equal(taxonomy.source_curation_contract.relationship_profile_review_status, "maintainer-review-pending");
   assert.equal(taxonomy.source_curation_contract.unclassified_records_are_not_assumed_general, true);
 
   const profiled = catalog.items.filter((item) => item.relationship_profile);
-  assert.equal(profiled.length, 8);
+  assert.equal(profiled.length, 14);
   for (const source of catalog.items) {
     for (const industry of source.curation.applicability) assert.ok(industryIds.has(industry), `${source.id} -> ${industry}`);
     if (source.curation.temporal_role) assert.ok(timeRoleIds.has(source.curation.temporal_role), source.id);

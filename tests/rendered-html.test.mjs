@@ -534,7 +534,7 @@ test("publishes OpenAPI, robots, and sitemap discovery", async () => {
   assert.equal(taxonomyPayload.time_roles.length, 4);
   assert.equal(taxonomyPayload.lifecycle_states.length, 6);
   assert.equal(taxonomyPayload.source_evidence_tiers.length, 5);
-  assert.equal(taxonomyPayload.source_relationship_profile_count, 8);
+  assert.equal(taxonomyPayload.source_relationship_profile_count, 14);
   assert.equal(taxonomyPayload.source_curation_contract.status, "pilot");
   assert.equal(taxonomyPayload.source_curation_contract.curation_review_status, "maintainer-review-pending");
   assert.equal(taxonomyPayload.source_curation_contract.relationship_profile_review_status, "maintainer-review-pending");

@@ -86,7 +86,7 @@ export function DocsSearch() {
       .filter((resource) => {
         const curation = resourceCurationById[resource.id];
         const relationshipProfile = sourceRelationshipProfiles[resource.id];
-        return `${resource.id} ${resource.title} ${resource.owner} ${resource.topic} ${resource.kind} ${resource.note} ${curation?.applicability.join(" ") ?? ""} ${curation?.applicability_note ?? ""} ${curation?.temporal_role ?? ""} ${curation?.method ?? ""} ${curation?.transfer_limit ?? ""} ${relationshipProfile?.questions.join(" ") ?? ""} ${relationshipProfile?.claims.map((claim) => claim.text).join(" ") ?? ""} ${relationshipProfile?.contrary_claims.map((claim) => claim.text).join(" ") ?? ""}`
+        return `${resource.id} ${resource.title} ${resource.owner} ${resource.topic} ${resource.kind} ${resource.note} ${curation?.applicability.join(" ") ?? ""} ${curation?.applicability_note ?? ""} ${curation?.temporal_role ?? ""} ${curation?.lifecycle ?? ""} ${curation?.publication_status ?? ""} ${curation?.method ?? ""} ${curation?.transfer_limit ?? ""} ${curation?.source_updated_at ?? ""} ${curation?.next_review_at ?? ""} ${relationshipProfile?.questions.join(" ") ?? ""} ${relationshipProfile?.claims.map((claim) => claim.text).join(" ") ?? ""} ${relationshipProfile?.contrary_claims.map((claim) => claim.text).join(" ") ?? ""} ${relationshipProfile?.limitations.join(" ") ?? ""} ${relationshipProfile?.next_action ?? ""}`
           .toLowerCase()
           .includes(term);
       })
