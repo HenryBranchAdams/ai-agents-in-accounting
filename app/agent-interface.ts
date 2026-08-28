@@ -39,6 +39,7 @@ import {
   accountingAgentsPracticeObservatory,
   renderPracticeObservatoryMarkdown,
 } from "./practice-observatory";
+import { accountingAgentsAtlas, renderAtlasMarkdown } from "./atlas-data";
 
 export const siteOrigin = "https://accounting-agents.madebyhenry.chatgpt.site";
 export const catalogReviewedAt = "2026-08-27";
@@ -539,6 +540,14 @@ export function buildAgentContextMarkdown() {
     `- [Practice observatory](${siteOrigin}/observatory): canonical filterable human index.`,
     `- [Practice observatory in Markdown](${siteOrigin}/observatory.md): equivalent source-linked snapshot with stable record and lane IDs.`,
     "",
+    "## Living Atlas",
+    "",
+    `The Living Atlas v${accountingAgentsAtlas.version} is a curated reference projection with ${accountingAgentsAtlas.full_graph.counts.nodes} nodes and ${accountingAgentsAtlas.full_graph.counts.edges} relationships between accounting work, controls and risks, agent capabilities, primary sources, and industry context. It is a dated navigation aid, not an importance, effectiveness, adoption, authority, or prevalence ranking.`,
+    "",
+    `- [Living Atlas](${siteOrigin}/atlas): interactive map with a linear fallback, industry lenses, and foundational/current-development filters.`,
+    `- [Living Atlas in Markdown](${siteOrigin}/atlas.md): equivalent source-linked projection with stable node, relationship, provenance, and limitation fields.`,
+    `- [Living Atlas API](${siteOrigin}/api/v1/atlas): deterministic JSON or Markdown view with industry and time-layer filters.`,
+    "",
     "## Bank-reconciliation tutorial",
     "",
     `The ${bankReconciliationTutorial.title} turns the existing clean-room pack into a complete lesson: three-record evidence register, known-answer tie-out, deliberate missing/wrong-period stop, prepared workpaper, reviewer challenge, two bounded dispositions, knowledge check, and safe reset.`,
@@ -632,6 +641,8 @@ export function buildLlmsText() {
     `- [Bank-reconciliation tutorial in Markdown](${siteOrigin}/tutorials/bank-reconciliation.md): Equivalent text lesson with stable evidence, step, artifact, disposition, and question IDs.`,
     `- [Practice observatory](${siteOrigin}/observatory): Dated, filterable index of current official developments, research, products, technical work, and disclosed practice with explicit evidence and transfer boundaries.`,
     `- [Practice observatory in Markdown](${siteOrigin}/observatory.md): Equivalent source-linked snapshot with stable lane and record IDs.`,
+    `- [Living Atlas](${siteOrigin}/atlas): Curated knowledge map connecting accounting work, controls and risks, agent capabilities, primary sources, and industry lenses; node position and path order are editorial navigation choices, not rankings.`,
+    `- [Living Atlas in Markdown](${siteOrigin}/atlas.md): Equivalent source-linked projection with stable node, relationship, provenance, and limitation fields.`,
     `- [Public agent instructions](${siteOrigin}/AGENTS.md): Routing, reliance, source-use, and protocol guidance for agents consuming this corpus.`,
     `- [Full context bundle](${siteOrigin}/downloads/context-bundle.md): Complete domain corpus plus all ${agentResources.length} source records in Markdown.`,
     `- [Canonical JSON corpus](${siteOrigin}/downloads/corpus.json): All ${workflowRecords.length} workflows, ${authorityLevels.length} authority levels, the authority decision guide, reviewer field guide, ${sensitiveActions.length} sensitive-action boundaries, ${controlPatterns.length} controls, ${templates.length} templates, ${glossary.length} glossary terms, and source records.`,
@@ -686,6 +697,7 @@ export function buildLlmsText() {
     `- [Reviewer field guide API](${siteOrigin}/api/v1/reviewer-guide): Canonical procedure, dispositions, packet fields, examples, calibration, review-program scaffold, sources, limits, rights, and review status.`,
     `- [Accounting Agent Control Model API](${siteOrigin}/api/v1/control-model): Canonical elements, scenarios, workflow mapping, sources, rights, and review status.`,
     `- [Coverage API](${siteOrigin}/api/v1/coverage): Canonical versioned coverage states, family boundaries, planned work, and exclusions.`,
+    `- [Living Atlas API](${siteOrigin}/api/v1/atlas): Canonical graph projection with stable nodes, relationships, industry lenses, time layers, provenance, and limitations.`,
     "",
     "## Human-readable guide",
     "",
@@ -714,6 +726,7 @@ export function buildLlmsText() {
     `- [Source library](${siteOrigin}/resources): Searchable human interface to the source catalog.`,
     `- [Reading room](${siteOrigin}/reading-room): Curated papers and perspectives with source status and limitations beside each item.`,
     `- [Practice observatory](${siteOrigin}/observatory): Current developments from the maintained source catalog, separated by source type and industry applicability without rankings or adoption claims.`,
+    `- [Living Atlas](${siteOrigin}/atlas): Curated map from accounting work through evidence, controls, capabilities, primary sources, and industry context.`,
     `- [Workflow packs](${siteOrigin}/packs): Synthetic, portable workflow specimens.`,
     `- [Accounting Agent Bench](${siteOrigin}/bench): Deterministic and expert-review evaluation method.`,
     `- [LedgerBench](${siteOrigin}/ledgerbench): Preview benchmark program for consequential accounting-agent work.`,
@@ -743,6 +756,8 @@ export function buildContextBundleMarkdown() {
     shiftMarkdownHeadings(renderCoreCourseMarkdown(), 1).trimEnd(),
     "",
     shiftMarkdownHeadings(renderPracticeObservatoryMarkdown(siteOrigin), 1).trimEnd(),
+    "",
+    shiftMarkdownHeadings(renderAtlasMarkdown(siteOrigin), 1).trimEnd(),
     "",
     shiftMarkdownHeadings(renderBankReconciliationTutorialMarkdown(), 1).trimEnd(),
     "",

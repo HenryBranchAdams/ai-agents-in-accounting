@@ -27,6 +27,7 @@ const apiEndpoints = [
   `${siteOrigin}/api/v1/tutorials/bank-reconciliation`,
   `${siteOrigin}/api/v1/observatory`,
   `${siteOrigin}/api/v1/reviewer-guide`,
+  `${siteOrigin}/api/v1/atlas`,
 ];
 const schemaEndpoints = [
   `${siteOrigin}/schemas/ledgerbench-program.schema.json`,

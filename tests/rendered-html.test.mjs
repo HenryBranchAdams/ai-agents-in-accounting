@@ -328,6 +328,7 @@ test("renders industry and time filters plus the relationship-profile pilot", as
 test("preserves the semantic accessibility contract on representative pages", async () => {
   for (const path of [
     "/",
+    "/atlas",
     "/start-here",
     "/course",
     "/tutorials/bank-reconciliation",
@@ -934,6 +935,7 @@ test("publishes a complete agent-ingestion corpus and discovery contract", async
     "/api/v1/ledgerbench",
     "/api/v1/ecosystem",
     "/api/v1/observatory",
+    "/api/v1/atlas",
   ]) {
     assert.ok(contract.paths[path], path);
   }
@@ -951,6 +953,6 @@ test("publishes a complete agent-ingestion corpus and discovery contract", async
   assert.match(sitemapText, /\/observatory/);
   assert.match(sitemapText, /\/packs\/bank-reconciliation/);
   const locations = [...sitemapText.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
-  assert.equal(locations.length, 597);
+  assert.equal(locations.length, 598);
   assert.equal(new Set(locations).size, locations.length);
 });

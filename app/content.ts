@@ -12,6 +12,7 @@ export const navGroups: NavGroup[] = [
   {
     label: "Learn",
     items: [
+      { href: "/atlas", label: "Living Atlas" },
       { href: "/start-here", label: "Start here" },
       { href: "/course", label: "Core course" },
       { href: "/tutorials/bank-reconciliation", label: "Bank reconciliation tutorial" },
@@ -90,6 +91,7 @@ export const navGroups: NavGroup[] = [
 
 export const searchItems = [
   { href: "/", title: "Overview", category: "Learn", detail: "Coverage and execution boundary" },
+  { href: "/atlas", title: "Explore the Living Atlas", category: "Learn", detail: "Source-linked map of accounting work, controls, agent capabilities, evidence, industries, and the human approval boundary" },
   { href: "/course", title: "Take the accounting agents core course", category: "Learn", detail: "Twenty-source bridge course for accounting practitioners, reviewers, agent builders, and control owners, ending in a supervised synthetic transfer brief" },
   { href: "/tutorials/bank-reconciliation", title: "Prepare and review a synthetic bank reconciliation", category: "Learn", detail: "Guided evidence register, known-answer tie-out, deliberate missing-evidence stop, prepared workpaper, reviewer dispositions, and safe reset" },
   { href: "/fundamentals#definition", title: "Define an accounting agent", category: "Fundamentals", detail: "Objective, tools, evidence, and limits" },

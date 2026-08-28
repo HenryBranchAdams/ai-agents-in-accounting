@@ -3,6 +3,7 @@ import { DocsSearch } from "./DocsSearch";
 import { navGroups } from "./content";
 
 const learningLinks = [
+  { href: "/atlas", label: "Atlas" },
   { href: "/start-here", label: "Learn" },
   { href: "/tutorials/bank-reconciliation", label: "Practice" },
   { href: "/control-model", label: "Govern" },

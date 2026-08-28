@@ -152,7 +152,7 @@ test("practice observatory is discoverable across the knowledge hub and canonica
 
   const sitemap = await (await request("/sitemap.xml")).text();
   assert.match(sitemap, /<loc>[^<]*\/observatory<\/loc>/);
-  assert.equal((sitemap.match(/<url>/g) ?? []).length, 597);
+  assert.equal((sitemap.match(/<url>/g) ?? []).length, 598);
 
   const llms = await (await request("/llms.txt")).text();
   for (const path of ["/observatory", "/observatory.md", "/api/v1/observatory"]) assert.ok(llms.includes(path), path);

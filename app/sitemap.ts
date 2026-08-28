@@ -6,6 +6,7 @@ import { packs } from "./platform-data";
 
 const pages = [
   ["/", 1],
+  ["/atlas", 1],
   ["/start-here", 1],
   ["/course", 1],
   ["/tutorials/bank-reconciliation", 1],
@@ -47,6 +48,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(
       path === "/resources"
         ? catalogModifiedAt
+        : path === "/atlas"
+          ? "2026-08-28T00:00:00Z"
         : path === "/start-here" || path === "/course" || path === "/tutorials/bank-reconciliation" || path === "/observatory" || path === "/authority" || path === "/reviewer-guide"
           ? "2026-08-27T00:00:00Z"
         : path === "/control-model" || path === "/coverage"

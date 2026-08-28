@@ -8,6 +8,7 @@ import { workflowRecords } from "../workflows-data";
 import { benchmarkCases, packs } from "../platform-data";
 import { ecosystemLayers } from "../ecosystem-data";
 import { accountingAgentsPracticeObservatory } from "../practice-observatory";
+import { accountingAgentsAtlas } from "../atlas-data";
 
 const description = "Give agents stable access to the guide through clean Markdown, a complete JSON corpus, and versioned read-only APIs.";
 
@@ -108,6 +109,10 @@ export default function MachineAccessPage() {
             <strong>Practice observatory</strong>
             <span>{accountingAgentsPracticeObservatory.items.length} current developments with equivalent Markdown and JSON, exact industry applicability, freshness, evidence-profile status, and transfer limits.</span>
           </Link>
+          <Link href="/atlas">
+            <strong>Living Atlas</strong>
+            <span>{accountingAgentsAtlas.full_graph.counts.nodes} connected nodes across accounting work, controls and risks, agent capabilities, primary sources, and industry context, with equivalent Markdown and JSON projections.</span>
+          </Link>
           <Link href="/downloads/resources.json">
             <strong>Source JSON snapshot</strong>
             <span>The complete versioned source catalog for local indexing or offline ingestion.</span>
@@ -195,6 +200,7 @@ export default function MachineAccessPage() {
           <div><dt>/glossary</dt><dd>{glossary.length} controlled terms and related concepts.</dd></div>
           <div><dt>/resources</dt><dd>{agentResources.length} source records with provenance, access notes, and pilot curation metadata.</dd></div>
           <div><dt>/observatory</dt><dd>{accountingAgentsPracticeObservatory.items.length} current-development records across official, research, product, disclosed-practice, and technical lanes.</dd></div>
+          <div><dt>/atlas</dt><dd>{accountingAgentsAtlas.full_graph.counts.nodes} curated nodes and {accountingAgentsAtlas.full_graph.counts.edges} relationships; filter with <code>industry</code> and <code>time_layer</code>.</dd></div>
           <div><dt>/search</dt><dd>Ranked search across every public record family with explainable match fields.</dd></div>
           <div><dt>/packs</dt><dd>{packs.length} portable workflow packs.</dd></div>
           <div><dt>/benchmark</dt><dd>{benchmarkCases.length} public synthetic conformance cases.</dd></div>

@@ -45,6 +45,11 @@ export default function OverviewPage() {
             Learn how governed agents can prepare accounting work while accountable
             people approve conclusions and sensitive actions.
           </p>
+          <Link className="learning-atlas-link" href="/atlas">
+            Explore the Living Atlas
+            <span>Trace one workflow through evidence, controls, sources, and accountable review.</span>
+            <InlineArrow />
+          </Link>
         </header>
 
         <LearningPathExplorer

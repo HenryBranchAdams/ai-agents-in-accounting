@@ -43,7 +43,7 @@ async function compiledCss() {
 }
 
 const primaryPages = [
-  "/", "/start-here", "/course", "/tutorials/bank-reconciliation", "/fundamentals", "/lifecycle", "/authority", "/workflows", "/controls",
+  "/", "/atlas", "/start-here", "/course", "/tutorials/bank-reconciliation", "/fundamentals", "/lifecycle", "/authority", "/workflows", "/controls",
   "/sensitive-actions", "/evidence-assurance", "/security-identity", "/architecture",
   "/ecosystem", "/evaluation", "/pilot", "/operations", "/templates", "/glossary",
   "/resources", "/reading-room", "/observatory", "/machine-access", "/packs", "/bench", "/spec",
@@ -68,13 +68,13 @@ test("primary pages expose a complete mobile navigation contract", async () => {
     assert.match(mobile, /<summary>Menu<\/summary>/i, `${path} menu control`);
 
     const mobileLinks = attributeValues(mobile, "href");
-    if (path === "/") {
-      assert.equal(desktop, undefined, "homepage may omit the desktop documentation sidebar");
-      assert.deepEqual(mobileLinks, referenceLinks, "homepage mobile navigation remains complete");
+    if (path === "/" || path === "/atlas") {
+      assert.equal(desktop, undefined, `${path} may omit the desktop documentation sidebar`);
+      assert.deepEqual(mobileLinks, referenceLinks, `${path} mobile navigation remains complete`);
       assert.match(
         mobile,
-        /<a(?=[^>]*\bhref=["']\/["'])(?=[^>]*\baria-current=["']page["'])[^>]*>/i,
-        "homepage root navigation item is active",
+        new RegExp(`<a(?=[^>]*\\bhref=["']${path === "/" ? "\\/" : "\\/atlas"}["'])(?=[^>]*\\baria-current=["']page["'])[^>]*>`, "i"),
+        `${path} navigation item is active`,
       );
     } else {
       assert.ok(desktop, `${path} desktop navigation`);

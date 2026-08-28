@@ -39,6 +39,13 @@ import {
   educationalContentContract,
   evidenceClassificationIds,
 } from "../content-contract";
+import {
+  accountingAgentsAtlas,
+  atlasClusterIds,
+  atlasIndustryIds,
+  atlasNodeKinds,
+  atlasTimeLayerIds,
+} from "../atlas-data";
 import { accountingAgentControlModel, controlModelElements } from "../control-model";
 import { accountingAgentsCoverageMap, coverageStates } from "../coverage-map";
 import { accountingAgentsStartHere } from "../start-here";
@@ -1317,6 +1324,258 @@ const contentContractSchema = {
   },
 } as const;
 
+const atlasSourceSchema = {
+  type: "object",
+  additionalProperties: false,
+  required: [
+    "publisher", "published_or_status", "source_type", "original_href", "method",
+    "transfer_limit", "lifecycle",
+  ],
+  properties: {
+    publisher: { type: "string" },
+    published_or_status: { type: "string" },
+    source_type: { type: "string" },
+    original_href: { type: "string", format: "uri" },
+    method: { type: "string" },
+    transfer_limit: { type: "string" },
+    lifecycle: { type: "string", enum: resourceLifecycleStates },
+  },
+} as const;
+
+const atlasExampleSchema = {
+  type: "object",
+  additionalProperties: false,
+  required: ["title", "text", "evidence_classification"],
+  properties: {
+    title: { type: "string" },
+    text: { type: "string" },
+    evidence_classification: { type: "string", const: "synthetic-example" },
+  },
+} as const;
+
+const atlasGuideSchema = {
+  type: "object",
+  additionalProperties: false,
+  required: ["prompt", "questions", "next_href", "next_label"],
+  properties: {
+    prompt: { type: "string" },
+    questions: { type: "array", minItems: 1, items: { type: "string" } },
+    next_href: { type: ["string", "null"], pattern: "^/" },
+    next_label: { type: ["string", "null"] },
+  },
+} as const;
+
+const atlasNodeSchema = {
+  type: "object",
+  additionalProperties: false,
+  required: [
+    "id", "canonical_record_id", "kind", "cluster", "label", "short_label", "summary", "detail",
+    "evidence_classification", "industries", "temporal_role", "href", "reviewed_at", "review_status",
+    "mobile_priority", "position", "provenance", "source", "example", "guide",
+  ],
+  properties: {
+    id: { type: "string", pattern: "^([a-z0-9]+[-_])?[a-z0-9][a-z0-9-_]*$" },
+    canonical_record_id: { type: ["string", "null"] },
+    kind: { type: "string", enum: atlasNodeKinds },
+    cluster: { type: "string", enum: atlasClusterIds },
+    label: { type: "string" },
+    short_label: { type: "string" },
+    summary: { type: "string" },
+    detail: { type: "string" },
+    evidence_classification: { type: "string", enum: evidenceClassificationIds },
+    industries: { type: "array", minItems: 1, items: { type: "string", enum: allowedIndustries } },
+    temporal_role: { type: ["string", "null"], enum: [...allowedTimeRoles, null] },
+    href: { type: ["string", "null"], pattern: "^/" },
+    reviewed_at: { type: "string", format: "date" },
+    review_status: { type: "string" },
+    mobile_priority: { type: "string", enum: ["core", "context", "extended"] },
+    position: {
+      type: "object",
+      additionalProperties: false,
+      required: ["x", "y"],
+      properties: {
+        x: { type: "number" },
+        y: { type: "number" },
+      },
+    },
+    provenance: {
+      type: "object",
+      additionalProperties: false,
+      required: ["source_file", "source_record_id", "derivation"],
+      properties: {
+        source_file: { type: "string" },
+        source_record_id: { type: ["string", "null"] },
+        derivation: { type: "string" },
+      },
+    },
+    source: { anyOf: [{ $ref: "#/components/schemas/AtlasSource" }, { type: "null" }] },
+    example: { anyOf: [{ $ref: "#/components/schemas/AtlasExample" }, { type: "null" }] },
+    guide: { anyOf: [{ $ref: "#/components/schemas/AtlasGuide" }, { type: "null" }] },
+  },
+} as const;
+
+const atlasEdgeSchema = {
+  type: "object",
+  additionalProperties: false,
+  required: ["id", "source", "target", "relationship", "label", "evidence_classification", "path_edge"],
+  properties: {
+    id: { type: "string" },
+    source: { type: "string" },
+    target: { type: "string" },
+    relationship: { type: "string" },
+    label: { type: "string" },
+    evidence_classification: { type: "string", enum: ["editorial-recommendation", "implementation-pattern"] },
+    path_edge: { type: "boolean" },
+  },
+} as const;
+
+const atlasViewSchema = {
+  type: "object",
+  additionalProperties: false,
+  required: ["industry", "time_layer", "nodes", "edges", "counts"],
+  properties: {
+    industry: { type: "string", enum: atlasIndustryIds },
+    time_layer: { type: "string", enum: atlasTimeLayerIds },
+    nodes: { type: "array", items: { $ref: "#/components/schemas/AtlasNode" } },
+    edges: { type: "array", items: { $ref: "#/components/schemas/AtlasEdge" } },
+    counts: {
+      type: "object",
+      additionalProperties: false,
+      required: ["nodes", "edges", "source_nodes"],
+      properties: {
+        nodes: { type: "integer", minimum: 0 },
+        edges: { type: "integer", minimum: 0 },
+        source_nodes: { type: "integer", minimum: 0 },
+      },
+    },
+  },
+} as const;
+
+const atlasIndustryLensSchema = {
+  type: "object",
+  additionalProperties: false,
+  required: ["id", "label", "description"],
+  properties: {
+    id: { type: "string", enum: atlasIndustryIds },
+    label: { type: "string" },
+    description: { type: "string" },
+  },
+} as const;
+
+const atlasTimeLayerSchema = {
+  type: "object",
+  additionalProperties: false,
+  required: ["id", "label", "description"],
+  properties: {
+    id: { type: "string", enum: atlasTimeLayerIds },
+    label: { type: "string" },
+    description: { type: "string" },
+  },
+} as const;
+
+const atlasRecordSchema = {
+  type: "object",
+  additionalProperties: false,
+  required: [
+    "id", "version", "title", "description", "prepared_at", "snapshot_as_of", "review_status", "review_note",
+    "primary_mode", "evidence_classification", "operating_rule", "path", "industry_lenses", "time_layers",
+    "default_state", "full_graph", "limitations", "view",
+  ],
+  properties: {
+    id: { type: "string", const: accountingAgentsAtlas.id },
+    version: { type: "string", const: accountingAgentsAtlas.version },
+    title: { type: "string" },
+    description: { type: "string" },
+    prepared_at: { type: "string", format: "date" },
+    snapshot_as_of: { type: "string", format: "date" },
+    review_status: { type: "string", const: accountingAgentsAtlas.review_status },
+    review_note: { type: "string" },
+    primary_mode: { type: "string", const: accountingAgentsAtlas.primary_mode },
+    evidence_classification: { type: "string", const: accountingAgentsAtlas.evidence_classification },
+    operating_rule: {
+      type: "object",
+      additionalProperties: false,
+      required: ["text", "evidence_classification"],
+      properties: {
+        text: { type: "string" },
+        evidence_classification: { type: "string", const: "editorial-recommendation" },
+      },
+    },
+    path: {
+      type: "object",
+      additionalProperties: false,
+      required: ["id", "label", "node_ids", "evidence_classification", "reason"],
+      properties: {
+        id: { type: "string" },
+        label: { type: "string" },
+        node_ids: { type: "array", minItems: 1, items: { type: "string" } },
+        evidence_classification: { type: "string", const: "editorial-recommendation" },
+        reason: { type: "string" },
+      },
+    },
+    industry_lenses: { type: "array", minItems: 1, items: { $ref: "#/components/schemas/AtlasIndustryLens" } },
+    time_layers: { type: "array", minItems: 1, items: { $ref: "#/components/schemas/AtlasTimeLayer" } },
+    default_state: {
+      type: "object",
+      additionalProperties: false,
+      required: ["node_id", "industry", "time_layer", "view"],
+      properties: {
+        node_id: { type: "string" },
+        industry: { type: "string", enum: atlasIndustryIds },
+        time_layer: { type: "string", enum: atlasTimeLayerIds },
+        view: { type: "string", enum: ["map", "list"] },
+      },
+    },
+    full_graph: {
+      type: "object",
+      additionalProperties: false,
+      required: ["nodes", "edges", "counts"],
+      properties: {
+        nodes: { type: "array", items: { $ref: "#/components/schemas/AtlasNode" } },
+        edges: { type: "array", items: { $ref: "#/components/schemas/AtlasEdge" } },
+        counts: {
+          type: "object",
+          additionalProperties: false,
+          required: ["nodes", "edges", "path_nodes", "source_nodes", "industries"],
+          properties: {
+            nodes: { type: "integer", minimum: 0 },
+            edges: { type: "integer", minimum: 0 },
+            path_nodes: { type: "integer", minimum: 0 },
+            source_nodes: { type: "integer", minimum: 0 },
+            industries: { type: "integer", minimum: 0 },
+          },
+        },
+      },
+    },
+    limitations: { type: "array", minItems: 1, items: { type: "string" } },
+    view: { $ref: "#/components/schemas/AtlasView" },
+  },
+} as const;
+
+const atlasPayloadSchema = {
+  type: "object",
+  additionalProperties: false,
+  required: ["schema_version", "collection", "rights_notice", "links", "item"],
+  properties: {
+    schema_version: { type: "string", const: apiVersion },
+    collection: { type: "string", const: "accounting_agents_living_atlas" },
+    rights_notice: { type: "string" },
+    links: {
+      type: "object",
+      additionalProperties: false,
+      required: ["self", "human", "markdown", "source_library", "practice_observatory"],
+      properties: {
+        self: { type: "string", format: "uri" },
+        human: { type: "string", format: "uri" },
+        markdown: { type: "string", format: "uri" },
+        source_library: { type: "string", format: "uri" },
+        practice_observatory: { type: "string", format: "uri" },
+      },
+    },
+    item: { $ref: "#/components/schemas/AtlasRecord" },
+  },
+} as const;
+
 const problemSchema = {
   type: "object",
   required: ["type", "title", "status", "detail"],
@@ -1455,6 +1714,7 @@ const document = {
     { name: "LedgerBench", description: "Preview benchmark program, episode, result, and submission contracts." },
     { name: "Ecosystem", description: `${ecosystemLayers.length} role-based interface and standards layers.` },
     { name: "Content", description: `${educationalContentContract.modes.length} educational modes and ${educationalContentContract.evidence_classifications.length} visible evidence classifications.` },
+    { name: "Atlas", description: "The Living Atlas projection connecting accounting work, controls, capabilities, primary sources, and industry context." },
     { name: "Discovery", description: "Corpus metadata and controlled taxonomies." },
   ],
   paths: {
@@ -1825,6 +2085,47 @@ const document = {
       head: { operationId: "getBankReconciliationTutorialHead", summary: "Retrieve bank-reconciliation tutorial headers", tags: ["Content"], responses: { "200": { description: "Tutorial headers." }, "304": { description: "The representation has not changed." } } },
       options: { operationId: "getBankReconciliationTutorialOptions", summary: "CORS preflight", tags: ["Content"], responses: { "204": { description: "Allowed methods and headers." } } },
     },
+    "/api/v1/atlas": {
+      get: {
+        operationId: "getLivingAtlas",
+        summary: "Retrieve the Living Atlas graph and filtered learning view",
+        tags: ["Atlas"],
+        parameters: [
+          { name: "format", in: "query", description: "Overrides Accept-based content negotiation.", schema: { type: "string", enum: ["json", "markdown"] } },
+          { name: "industry", in: "query", description: "Published industry lens used to filter source nodes and relationships.", schema: { type: "string", enum: atlasIndustryIds, default: "general" } },
+          { name: "time_layer", in: "query", description: "Temporal layer used to filter source nodes and relationships.", schema: { type: "string", enum: atlasTimeLayerIds, default: "all" } },
+        ],
+        responses: {
+          "200": {
+            description: "Living Atlas record in JSON or Markdown, with rights and provenance metadata in the JSON representation.",
+            content: {
+              "application/json": { schema: { $ref: "#/components/schemas/AtlasPayload" } },
+              "text/markdown": { schema: { type: "string" } },
+            },
+          },
+          "304": { description: "The representation has not changed." },
+          "400": { description: "Invalid format, industry, or time_layer parameter.", content: { "application/problem+json": { schema: { $ref: "#/components/schemas/Problem" } } } },
+          "406": { description: "No acceptable JSON or Markdown representation was requested.", content: { "application/problem+json": { schema: { $ref: "#/components/schemas/Problem" } } } },
+        },
+      },
+      head: {
+        operationId: "getLivingAtlasHead",
+        summary: "Retrieve Living Atlas headers",
+        tags: ["Atlas"],
+        parameters: [
+          { name: "format", in: "query", description: "Overrides Accept-based content negotiation.", schema: { type: "string", enum: ["json", "markdown"] } },
+          { name: "industry", in: "query", description: "Published industry lens used to filter source nodes and relationships.", schema: { type: "string", enum: atlasIndustryIds, default: "general" } },
+          { name: "time_layer", in: "query", description: "Temporal layer used to filter source nodes and relationships.", schema: { type: "string", enum: atlasTimeLayerIds, default: "all" } },
+        ],
+        responses: {
+          "200": { description: "Living Atlas headers." },
+          "304": { description: "The representation has not changed." },
+          "400": { description: "Invalid format, industry, or time_layer parameter." },
+          "406": { description: "No acceptable JSON or Markdown representation was requested." },
+        },
+      },
+      options: { operationId: "getLivingAtlasOptions", summary: "CORS preflight", tags: ["Atlas"], responses: { "204": { description: "Allowed methods and headers." } } },
+    },
     "/api/v1/reviewer-guide": {
       get: {
         operationId: "getReviewerFieldGuide",
@@ -1892,6 +2193,16 @@ const document = {
       AuthorityDecisionGuide: authorityDecisionGuideSchema,
       ControlModel: controlModelSchema,
       CoverageMap: coverageMapSchema,
+      AtlasSource: atlasSourceSchema,
+      AtlasExample: atlasExampleSchema,
+      AtlasGuide: atlasGuideSchema,
+      AtlasNode: atlasNodeSchema,
+      AtlasEdge: atlasEdgeSchema,
+      AtlasView: atlasViewSchema,
+      AtlasIndustryLens: atlasIndustryLensSchema,
+      AtlasTimeLayer: atlasTimeLayerSchema,
+      AtlasRecord: atlasRecordSchema,
+      AtlasPayload: atlasPayloadSchema,
       Pack: packSchema,
       BenchmarkCase: benchmarkCaseSchema,
       LedgerBenchProgram: ledgerBenchProgramSchema,

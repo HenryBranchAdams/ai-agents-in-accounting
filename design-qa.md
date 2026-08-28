@@ -1,71 +1,54 @@
-# Design QA — fan-out learning homepage
+# Living Atlas design QA
 
-## Comparison target
+Date: 2026-08-28
+Result: **passed**
 
-- Source visual truth: `/Users/henryadams/.codex/generated_images/01a03a73-ac39-71f3-bc61-185d25d1783a/exec-271f99fa-b5c8-4b25-83c8-6f85d68f0525.png`
-- Rendered implementation: `http://localhost:4173/`
-- Final desktop capture: `/private/tmp/accounting-agents-fanout-home-desktop-final-verify.png`
-- Final mobile capture: `/private/tmp/accounting-agents-fanout-home-mobile-final-verify.png`
-- Final combined comparison: `/private/tmp/accounting-agents-fanout-comparison-final.png`
+## Visual truth and implementation evidence
 
-## Normalization and state
+| Surface | Visual truth | Implementation capture | Comparison | Viewport and normalization |
+| --- | --- | --- | --- | --- |
+| Desktop | `/Users/henryadams/.codex/generated_images/01a03a73-ac39-71f3-bc61-185d25d1783a/exec-ded72834-b47b-4af1-b4e5-c2c08aa5cc89.png` | `/private/tmp/accounting-atlas-desktop-final-1487x1058.jpg` | `/private/tmp/accounting-atlas-desktop-final-comparison.png` | Source 1487×1058 px; implementation 1487×1058 px; 1487×1058 CSS px at 1× density. |
+| Portrait | `/Users/henryadams/.codex/generated_images/01a03a73-ac39-71f3-bc61-185d25d1783a/exec-5383729d-e4e6-4ee2-816e-9a5d73e2d262.png` | `/private/tmp/accounting-atlas-portrait-final-390x844.jpg` | `/private/tmp/accounting-atlas-portrait-final-comparison.png` | Source 853×1844 px normalized to 390×844; implementation 390×844 px; 390×844 CSS px at 1× density. |
+| Compact landscape | `/Users/henryadams/.codex/generated_images/01a03a73-ac39-71f3-bc61-185d25d1783a/exec-2bb8bb73-2f5c-4cc4-9be6-4ba08dab43e7.png` | `/private/tmp/accounting-atlas-landscape-final-844x390.jpg` | `/private/tmp/accounting-atlas-landscape-final-comparison.png` | Source 1846×852 px normalized to 844×390; implementation 844×390 px; 844×390 CSS px at 1× density. |
 
-- Source pixels: 1487 × 1058.
-- Desktop implementation pixels and CSS viewport: 1440 × 1024.
-- Mobile implementation pixels and CSS viewport: 390 × 844.
-- The browser reported `devicePixelRatio: 2`; its screenshot service normalized each capture to one output pixel per requested CSS pixel.
-- For the combined comparison, the source was normalized to 1440 × 1024 and placed beside the 1440 × 1024 implementation with a 16-pixel neutral divider. Both sides show the default role, general-accounting industry context, light theme, and homepage route.
+The compared state is the General accounting lens, all time layers, Map view, with `Exception handling` selected at step 3 of the canonical four-step path.
 
-## Full-view comparison evidence
+## Comparison findings
 
-The final combined comparison shows the same primary composition as the selected concept: a quiet four-part learning header, role and industry controls, four colored learning branches, the accountable-person rule at the center, two actions, a trust boundary, and a current-signal rail. The implementation keeps the project’s true source counts and actual current-development records instead of the illustrative titles and dates in the concept.
+The same-size, side-by-side comparisons establish the full-view layout at all three approved breakpoints. Focused crops were not needed for final acceptance because the remaining concerns were global relationships—map fit, inspector order, path centering, control placement, and first-viewport action visibility—and are legible at native comparison size. Earlier focused browser inspection was used while correcting node labels, the selected path, source metadata, and action cards.
 
-Five fidelity surfaces were checked:
+- Desktop preserves the approved map-plus-persistent-inspector composition. The canonical four-step path replaces the illustrative seven-step concept, and all surrounding nodes are real repository records rather than mock content.
+- Portrait keeps the selected path centered in a graph-first stage without horizontal overflow. The inspector follows the map below the first viewport, as required by the approved implementation contract.
+- Compact landscape keeps the map and evidence inspector side by side. The selected path, primary source, and the first learning actions remain visible without drag-only navigation.
+- Typography, spacing, borders, radii, shadows, and color tokens remain consistent with the existing Accounting Agents system. The generated contour image is quiet, correctly fitted, and does not carry meaning.
+- Copy preserves sourced fact, implementation pattern, synthetic-example, and limitation distinctions. The four-step path and AS 1105 source replace illustrative mock records.
+- Phosphor and React Flow supply icons and graph primitives. No placeholder image, fake icon, handcrafted SVG, CSS drawing, or benchmark/ranking content was introduced.
+- Visible focus, semantic fallback content, 44×44 touch controls, reduced-motion behavior, and forced-color handling are retained.
 
-- Fonts and typography: both use a restrained system sans-serif hierarchy. The implementation preserves the concept’s large but non-promotional heading, compact control labels, and readable small metadata without truncation.
-- Spacing and layout rhythm: the hero, controls, fan-out map, trust line, and current signal retain the concept’s desktop ordering and proportions. At 390 pixels, the map becomes a deliberate single-column sequence with no horizontal overflow.
-- Colors and tokens: true white, charcoal, muted gray, and restrained blue, orange, plum, and green accents match the concept while reusing the project’s existing green trust token.
-- Image quality: the generated 1800 × 700 synthetic-ledger raster is sharp at its rendered size, has a true-white center, preserves the concept’s physical-ledger edges and colored paths, and contains no embedded UI copy or real accounting data.
-- Copy and content: the hero and central rule match the selected concept’s meaning. Branch destinations, counts, trust metadata, and current-signal cards use canonical repository records; no efficacy, adoption, ranking, or execution-authority claim was added.
-
-No separate focused crop was needed. At the original 2896 × 1024 combined resolution, the complete header, controls, icons, branch labels, central rule, actions, trust row, and current cards are readable in one input. The 390 × 844 mobile capture separately verifies the only materially different responsive state.
+Intentional differences from the concept board are accepted product constraints: the path is the canonical four-step sequence; labels, records, counts, and sources are repository-backed; benchmark and ranking material is excluded; and the existing site shell remains intact.
 
 ## Comparison history
 
-1. First comparison: `/private/tmp/accounting-agents-fanout-comparison.png`.
-   - P2: the heading was oversized, the selectors sat on a separate lower row, boxed branch cards felt heavier than the concept, and the current signal did not enter the first desktop viewport.
-   - Fixes: reduced the hero scale, aligned selectors alongside the hero, removed generic card borders and shadows, added circular Phosphor icon treatments, tightened the map, and promoted the real current-signal rail.
-   - Post-fix evidence: `/private/tmp/accounting-agents-fanout-comparison-2.png`.
-2. Second comparison and compacting pass.
-   - P2: the current-signal rail remained too low relative to the concept.
-   - P1 caught during the fix: moving the fan-out upward temporarily allowed its white raster and live role sentence to collide with the hero copy.
-   - Fixes: separated the raster from the hero, kept the role update available to assistive technology but visually removed the redundant desktop sentence, restored a stable map offset, and shortened the hero to the selected concept’s source-matching language.
-   - Post-fix evidence: `/private/tmp/accounting-agents-fanout-comparison-final.png`; the hero and first branch no longer overlap, and all three real current-signal cards begin in the first desktop viewport.
-3. Independent code and responsive review.
-   - P2: corpus links overrode their native link semantics with `role="listitem"`; learning branches lacked headings; the map could clip between 761 and 900 pixels; the default General accounting label did not pass its filter; and two research links had the same visible label.
-   - Fixes: used a semantic list with linked items, promoted branch titles to headings, added an explicit tablet map layout and compact header breakpoint, passed `industry=general`, and renamed the catalog action.
-   - Post-fix evidence: the refreshed combined comparison above plus 761 × 900 browser metrics. No P0, P1, or P2 finding remains.
+1. **Iteration 1 — development-runtime blocker:** the Vite development client rendered a blank hydrated map because `process` was undefined. QA moved to the repository's successful production build, where the map rendered and the console stayed clean. This is a development-runtime limitation, not a production-rendering defect.
+2. **Iteration 2 — P2 responsive structure:** the desktop inspector did not remain persistently aligned with the map; portrait and landscape graph fitting was fragile; React Flow controls were undersized; and relationship labels were generic. The layout grid, responsive refit, 44×44 controls, and relationship names were corrected.
+3. **Iteration 3 — P2 portrait and landscape composition:** the map and inspector stacked in the wrong order, the selected node could be tiny or offscreen, cluster labels overlapped, and learning actions fell outside the compact landscape view. Explicit grid placement, compact deterministic positions, post-filter refitting, label anchors, and compact source/action layout resolved the issues.
+4. **Interaction correction:** the time slider's `onChange` handler did not update state in the built Vinext runtime. It now uses `onInput`; selecting Current developments updates both the URL and the visible layer description.
+5. **Independent review correction:** map nodes accepted pointer selection but not Enter or Space, and a selected source node could fall back to AS 1105 in the source card. Map nodes are now native buttons with capture-level keyboard activation, and source nodes resolve their own metadata before related-source fallback. Built-browser checks confirmed Enter, Space, source ID, title, URL, and original-source link fidelity.
 
-## Interaction, responsive, and accessibility evidence
+## Interaction and runtime checks
 
-- Role selection changed to “Risk, controls, and assurance” and exposed the canonical `/control-model` next step.
-- Industry selection changed to “Banking and credit unions” and updated links to `/observatory?industry=banking-credit-unions` and `/resources?industry=banking-credit-unions`.
-- Mobile navigation opened, retained the complete documentation navigation, and marked only Overview as current.
-- Search opened its dialog and closed with Escape after the header rearrangement.
-- At 390 × 844, document width equaled viewport width (390 pixels), the map resolved to one column, and controls/actions retained touch-sized targets.
-- At 761 × 900, document width equaled viewport width (761 pixels); the map stayed fully inside its 689-pixel container as two 329.5-pixel columns with a 14-pixel gap.
-- Desktop and mobile browser console checks returned no warnings or errors.
-- Default General accounting links resolve to `/resources?industry=general` and `/observatory?industry=general`.
-- The central rule, visible boundary copy, semantic list and headings, native selects, focus rules, reduced-motion behavior, and descriptive image alternative text remain present.
+Verified in the built local application at `http://localhost:4191/atlas`:
 
-## Findings
+- Map/List equivalence.
+- Previous and next path navigation.
+- Direct graph-node selection.
+- Enter and Space activation for focused graph nodes.
+- General, banking, healthcare, and manufacturing industry lenses.
+- All, foundational archive, and current-development time layers.
+- Guide and synthetic-case learning actions.
+- Shareable `node`, `industry`, `time_layer`, and `view` URL state.
+- WebMCP inventory and a harmless `accounting_agents.get_current_page` call.
+- No warnings or errors in the production-page console.
+- Selected source nodes preserve their own title, source ID, record link, and original-source link in the inspector.
 
-- No actionable P0, P1, or P2 findings remain.
-- Accepted product constraint: the current-signal cards use real canonical source records and longer publisher titles, so their density differs from the concept’s illustrative cards.
-- P3: some 10–11 pixel metadata is optically smaller than the concept at 1440 pixels. It remains legible and is consistent with the existing knowledge-hub shell.
-
-## Verification boundary
-
-This report covers the local rendered homepage and its primary responsive interactions. It does not qualify a hosted build, publication, production deployment, third-party review, subject-matter review, or independent accessibility audit.
-
-final result: passed
+This QA qualifies local rendering and interaction fidelity only. It does not establish hosted behavior, deployment, independent review, professional review, control effectiveness, learning efficacy, or production release.

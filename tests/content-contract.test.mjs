@@ -92,6 +92,7 @@ test("human, Markdown, and JSON content-contract surfaces preserve canonical mea
 test("content contract is exposed through shared-shell labels and discovery projections", async () => {
   const staticModeLabels = {
     "/": "Explanation",
+    "/atlas": "Reference",
     "/start-here": "Tutorial",
     "/course": "Tutorial",
     "/tutorials/bank-reconciliation": "Tutorial",
@@ -127,8 +128,13 @@ test("content contract is exposed through shared-shell labels and discovery proj
   };
   for (const [path, mode] of Object.entries(staticModeLabels)) {
     const html = await (await request(path, { accept: "text/html" })).text();
-    assert.match(html, /class=["']content-mode["']/i, path);
-    assert.match(html, new RegExp(`Content mode: <strong>${mode}<\\/strong>`), path);
+    if (path === "/atlas") {
+      assert.match(html, /data-content-mode=["']reference["']/i, path);
+      assert.match(html, new RegExp(`Content mode:[\\s\\S]*${mode}`), path);
+    } else {
+      assert.match(html, /class=["']content-mode["']/i, path);
+      assert.match(html, new RegExp(`Content mode: <strong>${mode}<\\/strong>`), path);
+    }
   }
   for (const path of [
     "/workflows/record-to-report", "/workflows/record-to-report/wf-r2r-bank-reconciliations",

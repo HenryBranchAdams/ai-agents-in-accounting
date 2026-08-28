@@ -23,6 +23,7 @@ import { accountingAgentReviewerGuide } from "../../../reviewer-guide";
 import { accountingAgentsCoreCourse, coreCourseReadings } from "../../../core-course";
 import { bankReconciliationTutorial } from "../../../bank-reconciliation-tutorial";
 import { accountingAgentsPracticeObservatory } from "../../../practice-observatory";
+import { accountingAgentsAtlas } from "../../../atlas-data";
 
 export function OPTIONS() {
   return corsOptionsResponse();
@@ -51,6 +52,8 @@ export async function GET(request: Request) {
     bank_reconciliation_tutorial_review_status: bankReconciliationTutorial.review_status,
     practice_observatory_version: accountingAgentsPracticeObservatory.version,
     practice_observatory_review_status: accountingAgentsPracticeObservatory.review_status,
+    atlas_version: accountingAgentsAtlas.version,
+    atlas_review_status: accountingAgentsAtlas.review_status,
     authority_decision_guide_version: authorityDecisionGuide.version,
     authority_decision_guide_review_status: authorityDecisionGuide.review_status,
     reviewer_guide_version: accountingAgentReviewerGuide.version,
@@ -103,6 +106,13 @@ export async function GET(request: Request) {
       practice_observatory_records: accountingAgentsPracticeObservatory.items.length,
       practice_observatory_lanes: accountingAgentsPracticeObservatory.lanes.length,
       practice_observatory_profiled_records: accountingAgentsPracticeObservatory.counts.relationship_profiled_records,
+      atlases: 1,
+      atlas_nodes: accountingAgentsAtlas.full_graph.counts.nodes,
+      atlas_edges: accountingAgentsAtlas.full_graph.counts.edges,
+      atlas_path_nodes: accountingAgentsAtlas.full_graph.counts.path_nodes,
+      atlas_source_nodes: accountingAgentsAtlas.full_graph.counts.source_nodes,
+      atlas_industry_lenses: accountingAgentsAtlas.industry_lenses.length,
+      atlas_time_layers: accountingAgentsAtlas.time_layers.length,
     },
     access: {
       authentication: "none",
@@ -174,6 +184,9 @@ export async function GET(request: Request) {
       reviewer_guide: `${siteOrigin}/reviewer-guide`,
       reviewer_guide_markdown: `${siteOrigin}/reviewer-guide.md`,
       reviewer_guide_api: `${siteOrigin}/api/v1/reviewer-guide`,
+      atlas: `${siteOrigin}/atlas`,
+      atlas_markdown: `${siteOrigin}/atlas.md`,
+      atlas_api: `${siteOrigin}/api/v1/atlas`,
     },
     platform_release: platformRelease,
   }, null, 2);

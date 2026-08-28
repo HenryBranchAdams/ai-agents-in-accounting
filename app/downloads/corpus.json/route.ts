@@ -14,6 +14,7 @@ import { accountingAgentReviewerGuide } from "../../reviewer-guide";
 import { accountingAgentsCoreCourse, coreCourseReadings } from "../../core-course";
 import { bankReconciliationTutorial } from "../../bank-reconciliation-tutorial";
 import { accountingAgentsPracticeObservatory } from "../../practice-observatory";
+import { accountingAgentsAtlas } from "../../atlas-data";
 
 export async function GET(request: Request) {
   const body = JSON.stringify({
@@ -62,6 +63,13 @@ export async function GET(request: Request) {
       practice_observatory_records: accountingAgentsPracticeObservatory.items.length,
       practice_observatory_lanes: accountingAgentsPracticeObservatory.lanes.length,
       practice_observatory_profiled_records: accountingAgentsPracticeObservatory.counts.relationship_profiled_records,
+      atlases: 1,
+      atlas_nodes: accountingAgentsAtlas.full_graph.counts.nodes,
+      atlas_edges: accountingAgentsAtlas.full_graph.counts.edges,
+      atlas_path_nodes: accountingAgentsAtlas.full_graph.counts.path_nodes,
+      atlas_source_nodes: accountingAgentsAtlas.full_graph.counts.source_nodes,
+      atlas_industry_lenses: accountingAgentsAtlas.industry_lenses.length,
+      atlas_time_layers: accountingAgentsAtlas.time_layers.length,
     },
     process_families: processFamilies.map((record) => normalizeDomainRecord(record, "process-family")),
     workflows: workflowRecords.map((record) => normalizeDomainRecord(record, "workflow")),
@@ -85,6 +93,7 @@ export async function GET(request: Request) {
     core_course: accountingAgentsCoreCourse,
     bank_reconciliation_tutorial: bankReconciliationTutorial,
     practice_observatory: accountingAgentsPracticeObservatory,
+    atlas: accountingAgentsAtlas,
   }, null, 2);
 
   return publicResponse(request, body, "application/json; charset=utf-8", {
