@@ -4,14 +4,16 @@ const instructions = `# Accounting Agents public access instructions
 
 > Routing, reliance, and citation guidance for agents using the public Accounting Agents corpus.
 
+Use the Living Atlas as the primary map through this knowledge hub and resource wiki. Benchmark and LedgerBench product development is fully deferred; retained benchmark surfaces are compatibility and reference assets, not an active evaluation or submission program.
+
 ## Start here
 
 1. Load /agent-context.md for compact domain context.
 2. Use /start-here for the bounded definition, governing rule, synthetic exception, and role-based next routes.
 3. Use /course for the deliberate twenty-source bridge from professional authority and evidence through agent systems, evaluation, product claims, and a supervised synthetic transfer brief.
 4. Use /tutorials/bank-reconciliation for a complete clean-room lesson: evidence register, known-answer tie-out, deliberate missing-evidence stop, prepared workpaper, reviewer dispositions, knowledge check, and safe reset.
-5. Use /observatory for a dated view of current official developments, research, products, technical work, and disclosed practice. Preserve its source-type, freshness, commercial-interest, industry, evidence-profile, and transfer boundaries; do not infer rankings, adoption, or effectiveness.
-6. Use /atlas to navigate the curated relationships between accounting work, controls and risks, agent capabilities, primary sources, and industry context. Treat node position and path order as editorial navigation choices, not rankings.
+5. Use /atlas to navigate the curated relationships between accounting work, controls and risks, agent capabilities, primary sources, and industry context. Treat node position and path order as editorial navigation choices, not rankings.
+6. Use /observatory for a dated view of current official developments, research, products, technical work, and disclosed practice. Preserve its source-type, freshness, commercial-interest, industry, evidence-profile, and transfer boundaries; do not infer rankings, adoption, or effectiveness.
 7. Use /api/v1/search for deterministic cross-corpus discovery.
 8. Retrieve focused records from /api/v1/workflows, /api/v1/resources, or /api/v1/packs.
 9. Preserve stable IDs, versions, review dates, source IDs, and rights fields in the work record.
@@ -63,12 +65,12 @@ const instructions = `# Accounting Agents public access instructions
 - /tutorials/bank-reconciliation
 - /tutorials/bank-reconciliation.md
 - /api/v1/tutorials/bank-reconciliation
-- /observatory
-- /observatory.md
-- /api/v1/observatory
 - /atlas
 - /atlas.md
 - /api/v1/atlas
+- /observatory
+- /observatory.md
+- /api/v1/observatory
 - /reviewer-guide
 - /reviewer-guide.md
 - /api/v1/reviewer-guide

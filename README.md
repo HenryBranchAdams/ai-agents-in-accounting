@@ -1,16 +1,16 @@
 # AI Agents in Accounting
 
-An open educational field guide, source library, workflow library, practical toolkit, and machine-readable corpus for governed AI-agent work in accounting and finance.
+An open educational knowledge hub and resource wiki led by the Living Atlas, with a source library, workflow library, practical toolkit, and machine-readable corpus for governed AI-agent work in accounting and finance.
 
-The public site is [accounting-agents.madebyhenry.chatgpt.site](https://accounting-agents.madebyhenry.chatgpt.site). It publishes 60 canonical workflows, 489 source records, 153 curated readings across 20 shelves, practical templates, six portable packs, controlled governance records, Markdown and JSON projections, a versioned read-only API, OpenAPI, JSON Schemas, small reference clients, and existing evaluation assets.
+The public site is [accounting-agents.madebyhenry.chatgpt.site](https://accounting-agents.madebyhenry.chatgpt.site). It publishes 60 canonical workflows, 489 source records, 153 curated readings across 20 shelves, practical templates, six portable packs, controlled governance records, Markdown and JSON projections, a versioned read-only API, OpenAPI, JSON Schemas, small reference clients, and deferred benchmark/reference assets.
 
 New readers can begin with the [five-minute Start here orientation](https://accounting-agents.madebyhenry.chatgpt.site/start-here), then use its synthetic exception and role-based routes to enter the guide. The same lesson is available as [Markdown](https://accounting-agents.madebyhenry.chatgpt.site/start-here.md) and [JSON](https://accounting-agents.madebyhenry.chatgpt.site/api/v1/start-here).
 
 The [core course](https://accounting-agents.madebyhenry.chatgpt.site/course) sequences 20 primary, original-research, official, and first-party practice sources across professional authority, evidence and documentation, agent systems, evaluation, and supervised pilots. Equivalent [Markdown](https://accounting-agents.madebyhenry.chatgpt.site/course.md) and [JSON](https://accounting-agents.madebyhenry.chatgpt.site/api/v1/course) preserve the same reading IDs, evidence weight, limitations, learning outcomes, synthetic capstone, and accountable-human boundary.
 
-The [practice observatory](https://accounting-agents.madebyhenry.chatgpt.site/observatory) is a dated, filterable index of 31 catalog records reviewed as current developments. It separates official and standards material, research, products, disclosed practice, and technical developments while preserving industry applicability, method, commercial interest, freshness, evidence-profile status, and transfer limits. Equivalent [Markdown](https://accounting-agents.madebyhenry.chatgpt.site/observatory.md) and [JSON](https://accounting-agents.madebyhenry.chatgpt.site/api/v1/observatory) are available. It is not a ranking, adoption dashboard, or automatic news monitor.
-
 The [Living Atlas](https://accounting-agents.madebyhenry.chatgpt.site/atlas) is a curated reference map connecting accounting work, controls and risks, agent capabilities, primary sources, and industry context. Its guided path moves from bank reconciliation and evidence matching through exception handling to reviewer approval, with [Markdown](https://accounting-agents.madebyhenry.chatgpt.site/atlas.md) and [JSON](https://accounting-agents.madebyhenry.chatgpt.site/api/v1/atlas) projections. Node position and path order are editorial navigation choices, not rankings or evidence of effectiveness.
+
+The [practice observatory](https://accounting-agents.madebyhenry.chatgpt.site/observatory) is a dated, filterable index of 31 catalog records reviewed as current developments. It separates official and standards material, research, products, disclosed practice, and technical developments while preserving industry applicability, method, commercial interest, freshness, evidence-profile status, and transfer limits. Equivalent [Markdown](https://accounting-agents.madebyhenry.chatgpt.site/observatory.md) and [JSON](https://accounting-agents.madebyhenry.chatgpt.site/api/v1/observatory) are available. It is not a ranking, adoption dashboard, or automatic news monitor.
 
 The [synthetic bank-reconciliation tutorial](https://accounting-agents.madebyhenry.chatgpt.site/tutorials/bank-reconciliation) turns the existing clean-room pack into a complete guided lesson: evidence register, known-answer tie-out, deliberate missing/wrong-period stop, prepared workpaper, reviewer challenge and dispositions, knowledge check, and safe reset. Equivalent [Markdown](https://accounting-agents.madebyhenry.chatgpt.site/tutorials/bank-reconciliation.md) and [JSON](https://accounting-agents.madebyhenry.chatgpt.site/api/v1/tutorials/bank-reconciliation) preserve the same stable IDs and transfer limits.
 
@@ -39,13 +39,15 @@ The [Accounting Agent Control Model](https://accounting-agents.madebyhenry.chatg
 
 Coverage never grants execution authority. Agents may prepare work; accountable people approve conclusions and sensitive external actions.
 
-## Existing evaluation assets
+## Deferred benchmark and LedgerBench compatibility assets
 
-[LedgerBench](https://accounting-agents.madebyhenry.chatgpt.site/ledgerbench) is the Preview-stage specialist research program for accounting-agent capability, conformance, field utility, and grader validity. It documents measurement claims, task admission, hidden evaluation, verification, statistical discipline, and governance required before an official model ranking is published.
+[Accounting Agent Bench](https://accounting-agents.madebyhenry.chatgpt.site/bench) is the retained Core conformance reference suite. Its human guide, [Markdown](https://accounting-agents.madebyhenry.chatgpt.site/bench.md), [JSON download](https://accounting-agents.madebyhenry.chatgpt.site/downloads/accounting-agent-bench.json), and [case schema](https://accounting-agents.madebyhenry.chatgpt.site/schemas/benchmark-case.schema.json) remain available for compatibility and reference.
 
-Further LedgerBench and benchmark development is deferred. The current program pages and conformance assets remain available for reference and compatibility maintenance, but the active product program is the educational hub, source archive, practice observatory, and resource wiki.
+[LedgerBench](https://accounting-agents.madebyhenry.chatgpt.site/ledgerbench) is a retained Preview-stage program record for accounting-agent capability, conformance, field utility, and grader validity. Its program page, API, schemas, and related reference material remain available for compatibility and reference; they are not an active product track.
 
-The existing 30-case Accounting Agent Bench remains a small public Core conformance asset for development checks. It does not by itself establish broad accounting competence, reliability, field utility, or production readiness.
+Further benchmark and LedgerBench product development is fully deferred. Existing routes, APIs, stable IDs, schemas, downloads, and reference assets remain available for compatibility maintenance. The active program is the Living Atlas-led educational hub, source archive, practice observatory, and resource wiki.
+
+The existing 30-case Accounting Agent Bench remains a small public Core conformance asset for development checks and reference. It does not by itself establish broad accounting competence, reliability, field utility, or production readiness.
 
 ## Development
 
@@ -59,11 +61,11 @@ npm run lint
 npm test
 ```
 
-`npm test` builds the production Worker and runs contract, site-wide quality, mobile, and LedgerBench program suites. See [`TESTING.md`](TESTING.md) for the coverage matrix, focused commands, and release gates.
+`npm test` builds the production Worker and runs contract, site-wide quality, mobile, and retained LedgerBench compatibility suites. See [`TESTING.md`](TESTING.md) for the coverage matrix, focused commands, and release gates.
 
 `npm run install:ci` is the Linux Sites-image installation helper; it additionally requires `flock`, `curl`, GNU `timeout`, and `sha256sum`. Building the source archive requires `zip`.
 
-`data/open-source-platform.mjs` is the canonical source for packs, public conformance cases, and release notes. `data/ledgerbench-program.mjs` is the canonical structured Preview record for the LedgerBench measurement program.
+`data/open-source-platform.mjs` is the canonical source for packs, public conformance reference cases, and release notes. `data/ledgerbench-program.mjs` is the canonical structured Preview record retained for LedgerBench compatibility.
 
 Run the deterministic Core reference harness:
 
@@ -80,11 +82,11 @@ npm run archive:source
 ## Project structure
 
 - `app/`: semantic HTML pages, Markdown projections, API routes, feeds, schemas, and shared records
-- `data/open-source-platform.mjs`: canonical portable packs, Core conformance cases, and changes
-- `data/ledgerbench-program.mjs`: canonical LedgerBench program record
-- `docs/ledgerbench/`: program constitution, task admission, statistical analysis, governance, and submission rules
+- `data/open-source-platform.mjs`: canonical portable packs, Core conformance reference cases, and changes
+- `data/ledgerbench-program.mjs`: canonical LedgerBench compatibility record
+- `docs/ledgerbench/`: retained program constitution, task admission, statistical analysis, governance, and submission reference rules
 - `packs/`: generated portable pack directories
-- `benchmark/`: current Core candidate-result contract and reference-shape sample
+- `benchmark/`: retained Core candidate-result contract and reference-shape sample
 - `clients/`: zero-dependency JavaScript and Python clients
 - `bin/`: reference CLI
 - `docs/strategy/`: research and product rationale
@@ -92,17 +94,17 @@ npm run archive:source
 
 The deployed site is public and read-only. It does not use a database, authentication, vector store, runtime scraper, or required agent framework.
 
-## Research lab machine surfaces
+## Deferred benchmark compatibility surfaces
 
-- Human guide: `/ledgerbench`
-- Markdown: `/ledgerbench.md`
-- Program API: `/api/v1/ledgerbench`
-- Program schema: `/schemas/ledgerbench-program.schema.json`
-- Episode schema: `/schemas/ledgerbench-episode.schema.json`
-- Candidate-result schema: `/schemas/ledgerbench-result.schema.json`
-- Submission schema: `/schemas/ledgerbench-submission.schema.json`
+- Human guide: `/ledgerbench` (retained reference)
+- Markdown: `/ledgerbench.md` (retained reference)
+- Program API: `/api/v1/ledgerbench` (compatibility)
+- Program schema: `/schemas/ledgerbench-program.schema.json` (compatibility)
+- Episode schema: `/schemas/ledgerbench-episode.schema.json` (compatibility)
+- Candidate-result schema: `/schemas/ledgerbench-result.schema.json` (compatibility)
+- Submission schema: `/schemas/ledgerbench-submission.schema.json` (compatibility)
 
-The Preview does not yet publish an official hidden item bank, independently validated automated judge, verified submission round, or model ranking.
+No further benchmark or LedgerBench product development is planned in the current direction. The Preview does not publish an official hidden item bank, independently validated automated judge, verified submission round, or model ranking.
 
 ## Rights
 
@@ -115,6 +117,6 @@ This is a mixed-rights repository. See `LICENSE_POLICY.md`, `NOTICE.md`, and rec
 
 ## Contributing and governance
 
-Read `CONTRIBUTING.md`, `EDITORIAL_POLICY.md`, `GOVERNANCE.md`, `SECURITY.md`, `CORRECTIONS.md`, `BENCHMARK_SUBMISSIONS.md`, `docs/ledgerbench/`, and `CODE_OF_CONDUCT.md`.
+Read `CONTRIBUTING.md`, `EDITORIAL_POLICY.md`, `GOVERNANCE.md`, `SECURITY.md`, `CORRECTIONS.md`, `BENCHMARK_SUBMISSIONS.md` (retained benchmark reference policy), `docs/ledgerbench/`, and `CODE_OF_CONDUCT.md`.
 
 Use synthetic data only. Never submit client, employer, engagement, bank, employee, vendor, or taxpayer records.

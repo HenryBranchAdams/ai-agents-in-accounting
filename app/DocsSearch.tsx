@@ -2,27 +2,104 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { searchItems } from "./content";
-import { authorityLevels } from "./domain-model";
-import { controlPatterns, sensitiveActions } from "./governance-data";
-import { glossary, templates } from "./reference-data";
-import { resourceCurationById, resources, sourceRelationshipProfiles } from "./resources-data";
-import { workflowRecords } from "./workflows-data";
-import { benchmarkCases, packs, releaseNotes } from "./platform-data";
 
 type SearchEntry = (typeof searchItems)[number];
 
-function searchRank(item: SearchEntry, term: string) {
-  const title = item.title.toLowerCase();
-  const hrefTail = item.href.split(/[\/#]/).filter(Boolean).at(-1)?.toLowerCase() ?? "";
-  if (title === term || hrefTail === term) return 0;
-  if (title.startsWith(term) || hrefTail.startsWith(term)) return 1;
-  if (title.includes(term)) return 2;
-  return 3;
+type SearchApiItem = {
+  id: string;
+  record_type: string;
+  title: string;
+  summary: string;
+  canonical_path: string;
+  kind: string | null;
+};
+
+type SearchApiResponse = {
+  total_matching_records: number;
+  items: SearchApiItem[];
+};
+
+type RemoteSearchResult = {
+  query: string;
+  items: SearchEntry[];
+  total: number;
+};
+
+type SearchStatus = "idle" | "loading" | "error";
+
+const SEARCH_DEBOUNCE_MS = 200;
+const SEARCH_ERROR_MESSAGE = "Search is unavailable. Please try again.";
+
+function isSearchApiItem(value: unknown): value is SearchApiItem {
+  if (!value || typeof value !== "object") return false;
+  const item = value as Record<string, unknown>;
+  return typeof item.id === "string"
+    && typeof item.record_type === "string"
+    && typeof item.title === "string"
+    && typeof item.summary === "string"
+    && typeof item.canonical_path === "string"
+    && (item.kind === null || typeof item.kind === "string");
+}
+
+function isSearchApiResponse(value: unknown): value is SearchApiResponse {
+  if (!value || typeof value !== "object") return false;
+  const response = value as Record<string, unknown>;
+  return Number.isInteger(response.total_matching_records)
+    && Number(response.total_matching_records) >= 0
+    && Array.isArray(response.items)
+    && response.items.every(isSearchApiItem);
+}
+
+function categoryForRecord(item: SearchApiItem) {
+  switch (item.record_type) {
+    case "page":
+      return item.kind || "Documentation";
+    case "workflow":
+      return "Workflows";
+    case "resource":
+      return "Source library";
+    case "authority":
+      return "Authority ladder";
+    case "control":
+      return "Control patterns";
+    case "sensitive-action":
+      return "Sensitive actions";
+    case "template":
+      return "Templates";
+    case "glossary":
+      return "Glossary";
+    case "pack":
+      return "Workflow packs";
+    case "benchmark":
+      return "Deferred lab/reference";
+    case "change":
+      return "Changes";
+    case "ecosystem":
+      return "Ecosystem";
+    default:
+      return "Reference";
+  }
+}
+
+function toSearchEntry(item: SearchApiItem): SearchEntry {
+  const category = categoryForRecord(item);
+  const detail = item.record_type === "benchmark"
+    ? `Deferred lab/reference · ${item.kind || "Benchmark case"} · ${item.summary}`
+    : item.summary;
+  return {
+    href: item.canonical_path,
+    title: item.title,
+    category,
+    detail,
+  };
 }
 
 export function DocsSearch() {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
+  const [remoteResult, setRemoteResult] = useState<RemoteSearchResult>({ query: "", items: [], total: 0 });
+  const [searchStatus, setSearchStatus] = useState<SearchStatus>("idle");
+  const [searchError, setSearchError] = useState<string | null>(null);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
@@ -36,7 +113,17 @@ export function DocsSearch() {
 
   const closeSearch = useCallback(() => {
     setOpen(false);
+    setRemoteResult({ query: "", items: [], total: 0 });
+    setSearchStatus("idle");
+    setSearchError(null);
     window.setTimeout(() => previousFocusRef.current?.focus(), 0);
+  }, []);
+
+  const updateQuery = useCallback((value: string) => {
+    setQuery(value);
+    setRemoteResult({ query: "", items: [], total: 0 });
+    setSearchStatus("idle");
+    setSearchError(null);
   }, []);
 
   useEffect(() => {
@@ -76,144 +163,57 @@ export function DocsSearch() {
     };
   }, [open]);
 
+  useEffect(() => {
+    const term = query.trim();
+    if (!open || !term) return;
+
+    const controller = new AbortController();
+    let cancelled = false;
+
+    const timeoutId = window.setTimeout(() => {
+      setSearchStatus("loading");
+      setSearchError(null);
+      void (async () => {
+        try {
+          const params = new URLSearchParams({ q: term, limit: "100" });
+          const response = await fetch(`/api/v1/search?${params.toString()}`, {
+            headers: { Accept: "application/json" },
+            signal: controller.signal,
+          });
+          if (!response.ok) throw new Error(SEARCH_ERROR_MESSAGE);
+          const payload: unknown = await response.json();
+          if (!isSearchApiResponse(payload)) throw new Error(SEARCH_ERROR_MESSAGE);
+          if (cancelled) return;
+          setRemoteResult({
+            query: term,
+            items: payload.items.map(toSearchEntry),
+            total: payload.total_matching_records,
+          });
+          setSearchStatus("idle");
+        } catch {
+          if (cancelled || controller.signal.aborted) return;
+          setRemoteResult({ query: term, items: [], total: 0 });
+          setSearchStatus("error");
+          setSearchError(SEARCH_ERROR_MESSAGE);
+        }
+      })();
+    }, SEARCH_DEBOUNCE_MS);
+
+    return () => {
+      cancelled = true;
+      window.clearTimeout(timeoutId);
+      controller.abort();
+    };
+  }, [open, query]);
+
   const searchResult = useMemo(() => {
-    const term = query.trim().toLowerCase();
+    const term = query.trim();
     if (!term) return { items: searchItems, total: searchItems.length };
-    const pageResults = searchItems.filter((item) =>
-      `${item.title} ${item.category} ${item.detail}`.toLowerCase().includes(term),
-    );
-    const sourceResults: SearchEntry[] = resources
-      .filter((resource) => {
-        const curation = resourceCurationById[resource.id];
-        const relationshipProfile = sourceRelationshipProfiles[resource.id];
-        return `${resource.id} ${resource.title} ${resource.owner} ${resource.topic} ${resource.kind} ${resource.note} ${curation?.applicability.join(" ") ?? ""} ${curation?.applicability_note ?? ""} ${curation?.temporal_role ?? ""} ${curation?.lifecycle ?? ""} ${curation?.publication_status ?? ""} ${curation?.method ?? ""} ${curation?.transfer_limit ?? ""} ${curation?.source_updated_at ?? ""} ${curation?.next_review_at ?? ""} ${relationshipProfile?.questions.join(" ") ?? ""} ${relationshipProfile?.claims.map((claim) => claim.text).join(" ") ?? ""} ${relationshipProfile?.contrary_claims.map((claim) => claim.text).join(" ") ?? ""} ${relationshipProfile?.limitations.join(" ") ?? ""} ${relationshipProfile?.next_action ?? ""}`
-          .toLowerCase()
-          .includes(term);
-      })
-      .map((resource) => ({
-        href: `/resources/${resource.id}`,
-        title: resource.title,
-        category: "Source library",
-        detail: `${resource.owner} · ${resource.kind}`,
-      }));
-
-    const workflowResults: SearchEntry[] = workflowRecords
-      .filter((workflow) =>
-        `${workflow.id} ${workflow.name} ${workflow.family_name} ${workflow.summary} ${workflow.accounting_objective} ${workflow.brief ? `${workflow.brief.pilot_suitability.rating.replaceAll("-", " ")} ${JSON.stringify(workflow.brief)}` : ""}`
-          .toLowerCase()
-          .includes(term),
-      )
-      .map((workflow) => ({
-        href: `/workflows/${workflow.family}/${workflow.id}`,
-        title: workflow.name,
-        category: workflow.family_name,
-        detail: `${workflow.brief ? "One-minute brief · " : ""}Controlling boundary ${workflow.authority_level} · ${workflow.summary}`,
-      }));
-
-    const glossaryResults: SearchEntry[] = glossary
-      .filter((entry) => `${entry.id} ${entry.term} ${entry.definition} ${entry.related.join(" ")}`.toLowerCase().includes(term))
-      .map((entry) => ({
-        href: `/glossary#${entry.id}`,
-        title: entry.term,
-        category: "Glossary",
-        detail: entry.definition,
-      }));
-
-    const controlResults: SearchEntry[] = controlPatterns
-      .filter((control) =>
-        `${control.id} ${control.name} ${control.risk} ${control.objective} ${control.procedure.join(" ")} ${control.evidence.join(" ")} ${control.exceptions.join(" ")}`
-          .toLowerCase()
-          .includes(term),
-      )
-      .map((control) => ({
-        href: `/controls#${control.id}`,
-        title: control.name,
-        category: "Control patterns",
-        detail: control.objective,
-      }));
-
-    const authorityResults: SearchEntry[] = authorityLevels
-      .filter((level) =>
-        `${level.id} ${level.label} ${level.agent_role} ${level.execution_rule} ${level.required_controls.join(" ")} ${level.accounting_example} ${level.boundary}`
-          .toLowerCase()
-          .includes(term),
-      )
-      .map((level) => ({
-        href: `/authority#level-${level.id}`,
-        title: `${level.id === "human-only" ? "Human-only" : level.id} · ${level.label}`,
-        category: "Authority ladder",
-        detail: level.boundary,
-      }));
-
-    const sensitiveActionResults: SearchEntry[] = sensitiveActions
-      .filter((action) =>
-        `${action.id} ${action.name} ${action.summary} ${action.default_authority} ${action.agent_may_prepare.join(" ")} ${action.agent_may_execute.join(" ")} ${action.human_only_conditions.join(" ")} ${action.identity_and_sod.join(" ")} ${action.limits.join(" ")} ${action.approval_evidence.join(" ")} ${action.pre_execution_checks.join(" ")} ${action.rollback_or_compensation.join(" ")} ${action.logging_and_review.join(" ")}`
-          .toLowerCase()
-          .includes(term),
-      )
-      .map((action) => ({
-        href: `/sensitive-actions#${action.id}`,
-        title: action.name,
-        category: "Sensitive actions",
-        detail: `Default ${action.default_authority} · ${action.summary}`,
-      }));
-
-    const templateResults: SearchEntry[] = templates
-      .filter((template) =>
-        `${template.id} ${template.name} ${template.purpose} ${template.use_when} ${template.sections.map((section) => `${section.heading} ${section.prompt}`).join(" ")}`
-          .toLowerCase()
-          .includes(term),
-      )
-      .map((template) => ({
-        href: `/templates#${template.id}`,
-        title: template.name,
-        category: "Templates",
-        detail: template.purpose,
-      }));
-
-    const packResults: SearchEntry[] = packs
-      .filter((pack) => JSON.stringify(pack).toLowerCase().includes(term))
-      .map((pack) => ({
-        href: `/packs/${pack.id}`,
-        title: pack.title,
-        category: "Workflow packs",
-        detail: `${pack.process_family} · ${pack.authority_level} · ${pack.summary}`,
-      }));
-
-    const benchmarkResults: SearchEntry[] = benchmarkCases
-      .filter((item) => JSON.stringify(item).toLowerCase().includes(term))
-      .map((item) => ({
-        href: `/bench#${item.id}`,
-        title: item.title,
-        category: "Accounting Agent Bench",
-        detail: `${item.case_type} · expected ${item.expected.outcome}`,
-      }));
-
-    const changeResults: SearchEntry[] = releaseNotes
-      .filter((item) => JSON.stringify(item).toLowerCase().includes(term))
-      .map((item) => ({
-        href: `/changes#release-${item.id}`,
-        title: item.title,
-        category: "Changes",
-        detail: `${item.id} · ${item.summary}`,
-      }));
-
-    const matches = [
-      ...pageResults,
-      ...workflowResults,
-      ...authorityResults,
-      ...controlResults,
-      ...sensitiveActionResults,
-      ...templateResults,
-      ...glossaryResults,
-      ...sourceResults,
-      ...packResults,
-      ...benchmarkResults,
-      ...changeResults,
-    ].sort((left, right) => searchRank(left, term) - searchRank(right, term));
-    return { items: matches.slice(0, 100), total: matches.length };
-  }, [query]);
+    if (remoteResult.query !== term) return { items: [], total: 0 };
+    return { items: remoteResult.items, total: remoteResult.total };
+  }, [query, remoteResult]);
   const results = searchResult.items;
+  const isLoading = Boolean(query.trim()) && (remoteResult.query !== query.trim() || searchStatus === "loading");
   const groups = useMemo(() => {
     const grouped = new Map<string, typeof results>();
     for (const result of results) {
@@ -273,7 +273,7 @@ export function DocsSearch() {
               <span className="search-icon" aria-hidden="true">⌕</span>
               <input
                 aria-label="Search documentation"
-                onChange={(event) => setQuery(event.target.value)}
+                onChange={(event) => updateQuery(event.target.value)}
                 placeholder="Search documentation"
                 ref={inputRef}
                 type="search"
@@ -284,10 +284,18 @@ export function DocsSearch() {
               </button>
             </div>
             <p aria-live="polite" className="sr-only">
-              {searchResult.total} search results{searchResult.total > results.length ? `; showing the first ${results.length}` : ""}
+              {isLoading
+                ? "Searching documentation…"
+                : query.trim() && searchStatus === "error"
+                  ? searchError ?? SEARCH_ERROR_MESSAGE
+                  : `${searchResult.total} search results${searchResult.total > results.length ? `; showing the first ${results.length}` : ""}`}
             </p>
-            <div className="search-results">
-              {results.length ? (
+            <div aria-busy={isLoading ? "true" : undefined} className="search-results">
+              {isLoading ? (
+                <p aria-live="polite" className="search-empty" role="status">Searching documentation…</p>
+              ) : query.trim() && searchStatus === "error" ? (
+                <p aria-live="assertive" className="search-empty" role="alert">{searchError ?? SEARCH_ERROR_MESSAGE}</p>
+              ) : results.length ? (
                 groups.map(([category, items], index) => (
                   <section aria-labelledby={`search-group-${index}`} className="search-result-group" key={category}>
                     <h3 id={`search-group-${index}`}>{category}</h3>
@@ -300,7 +308,7 @@ export function DocsSearch() {
                   </section>
                 ))
               ) : (
-                <p className="search-empty">No pages match “{query}”.</p>
+                <p className="search-empty">No documentation matches “{query}”.</p>
               )}
             </div>
           </dialog>

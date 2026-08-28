@@ -2,7 +2,7 @@
 
 ## Project purpose
 
-Accounting Agents is a public, read-only field guide, source catalog, workflow-pack library, and benchmark for governed AI-agent work in accounting and finance.
+Accounting Agents is a public, read-only knowledge hub and resource wiki led by the Living Atlas for governed AI-agent work in accounting and finance. Workflow packs remain practical educational specimens. Existing Accounting Agent Bench and LedgerBench surfaces remain compatibility and reference assets; further benchmark product development is fully deferred.
 
 The operating invariant is: agents may prepare accounting work; accountable people approve conclusions and sensitive external actions. Do not weaken that boundary in copy, examples, fixtures, APIs, or tests.
 
@@ -10,8 +10,8 @@ The operating invariant is: agents may prepare accounting work; accountable peop
 
 - `app/resources-data.ts` plus the three `app/resources-reading-room-*.ts` files define source records.
 - `app/workflows-data.ts`, `app/domain-model.ts`, `app/governance-data.ts`, and `app/reference-data.ts` define the domain corpus.
-- `data/open-source-platform.mjs` defines packs, benchmark cases, releases, and release notes.
-- Generated `packs/`, benchmark samples, and pack downloads must be refreshed with `npm run generate:platform`; do not edit generated pack artifacts by hand.
+- `data/open-source-platform.mjs` defines packs, benchmark reference cases, releases, and release notes.
+- Generated `packs/`, benchmark reference samples, and pack downloads must be refreshed with `npm run generate:platform`; do not edit generated pack artifacts by hand.
 
 ## Build and verification
 
@@ -25,6 +25,8 @@ npm run lint
 npm test
 npm run archive:source
 ```
+
+The retained benchmark sample command checks compatibility of the reference harness; it does not reopen benchmark or LedgerBench product development.
 
 Run the archive command only after all source and generated artifacts are current. The committed source archive, checksums, and digest metadata must agree.
 

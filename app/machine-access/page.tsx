@@ -10,7 +10,7 @@ import { ecosystemLayers } from "../ecosystem-data";
 import { accountingAgentsPracticeObservatory } from "../practice-observatory";
 import { accountingAgentsAtlas } from "../atlas-data";
 
-const description = "Give agents stable access to the guide through clean Markdown, a complete JSON corpus, and versioned read-only APIs.";
+const description = "Give agents stable access to the Living Atlas-led knowledge hub and resource wiki through clean Markdown, a complete JSON corpus, and versioned read-only APIs.";
 
 export const metadata = {
   ...docsMetadata("Agent access", description, "/machine-access"),
@@ -46,7 +46,7 @@ export default function MachineAccessPage() {
         { href: "#webmcp", label: "WebMCP site tools" },
         { href: "#mcp", label: "When to add MCP" },
       ]}
-      previous={{ href: "/observatory", label: "Practice observatory" }}
+      previous={{ href: "/atlas", label: "Living Atlas" }}
     >
       <section id="surfaces">
         <h2>Choose the smallest useful surface</h2>
@@ -55,6 +55,12 @@ export default function MachineAccessPage() {
           collection for the task, then query source records when the work needs
           standards, guidance, research, or implementation evidence. Every
           machine-readable surface is public, read-only, and requires no API key.
+        </p>
+        <p>
+          Start discovery with the Living Atlas. Benchmark and LedgerBench surfaces
+          remain fully deferred compatibility and reference assets: their routes,
+          APIs, stable IDs, schemas, downloads, and reference contracts remain
+          available without reopening product development.
         </p>
         <div className="doc-link-list machine-links">
           <Link href="/start-here">
@@ -105,13 +111,13 @@ export default function MachineAccessPage() {
             <strong>Curated reading room in JSON</strong>
             <span>Topic shelves, stable source IDs, source-type counts, provenance, and complete records.</span>
           </Link>
-          <Link href="/observatory">
-            <strong>Practice observatory</strong>
-            <span>{accountingAgentsPracticeObservatory.items.length} current developments with equivalent Markdown and JSON, exact industry applicability, freshness, evidence-profile status, and transfer limits.</span>
-          </Link>
           <Link href="/atlas">
             <strong>Living Atlas</strong>
             <span>{accountingAgentsAtlas.full_graph.counts.nodes} connected nodes across accounting work, controls and risks, agent capabilities, primary sources, and industry context, with equivalent Markdown and JSON projections.</span>
+          </Link>
+          <Link href="/observatory">
+            <strong>Practice observatory</strong>
+            <span>{accountingAgentsPracticeObservatory.items.length} current developments with equivalent Markdown and JSON, exact industry applicability, freshness, evidence-profile status, and transfer limits.</span>
           </Link>
           <Link href="/downloads/resources.json">
             <strong>Source JSON snapshot</strong>
@@ -143,7 +149,7 @@ export default function MachineAccessPage() {
           </Link>
           <Link href="/api/v1/benchmark">
             <strong>Benchmark API</strong>
-            <span>{benchmarkCases.length} cases for correctness, evidence handling, and authority.</span>
+            <span>Deferred compatibility/reference API for {benchmarkCases.length} public synthetic cases covering correctness, evidence handling, and authority.</span>
           </Link>
           <Link href="/api/v1/ecosystem">
             <strong>Open ecosystem API</strong>
@@ -160,6 +166,10 @@ export default function MachineAccessPage() {
           <Link href="/api/v1/resources">
             <strong>Resource API</strong>
             <span>Search supporting sources by text, topic, source type, structured industry applicability, or time role.</span>
+          </Link>
+          <Link href="/api/v1/atlas">
+            <strong>Living Atlas API</strong>
+            <span>Canonical graph projection with stable nodes, relationships, industry lenses, time layers, provenance, and limitations.</span>
           </Link>
           <Link href="/api/v1/observatory">
             <strong>Practice observatory API</strong>
@@ -199,11 +209,12 @@ export default function MachineAccessPage() {
           <div><dt>/templates</dt><dd>{templates.length} practical implementation structures.</dd></div>
           <div><dt>/glossary</dt><dd>{glossary.length} controlled terms and related concepts.</dd></div>
           <div><dt>/resources</dt><dd>{agentResources.length} source records with provenance, access notes, and pilot curation metadata.</dd></div>
-          <div><dt>/observatory</dt><dd>{accountingAgentsPracticeObservatory.items.length} current-development records across official, research, product, disclosed-practice, and technical lanes.</dd></div>
           <div><dt>/atlas</dt><dd>{accountingAgentsAtlas.full_graph.counts.nodes} curated nodes and {accountingAgentsAtlas.full_graph.counts.edges} relationships; filter with <code>industry</code> and <code>time_layer</code>.</dd></div>
+          <div><dt>/observatory</dt><dd>{accountingAgentsPracticeObservatory.items.length} current-development records across official, research, product, disclosed-practice, and technical lanes.</dd></div>
           <div><dt>/search</dt><dd>Ranked search across every public record family with explainable match fields.</dd></div>
           <div><dt>/packs</dt><dd>{packs.length} portable workflow packs.</dd></div>
-          <div><dt>/benchmark</dt><dd>{benchmarkCases.length} public synthetic conformance cases.</dd></div>
+          <div><dt>/benchmark</dt><dd>{benchmarkCases.length} public synthetic conformance cases retained as a deferred compatibility/reference asset.</dd></div>
+          <div><dt>/ledgerbench</dt><dd>Deferred compatibility/reference program with stable Markdown, API, and schema surfaces.</dd></div>
           <div><dt>/ecosystem</dt><dd>{ecosystemLayers.length} interface and standards layers with explicit adoption posture and boundaries.</dd></div>
           <div><dt>/content-contract</dt><dd>Primary educational modes, evidence classifications, release gate, and proposed success measures.</dd></div>
           <div><dt>/control-model</dt><dd>Nine canonical governance elements, two synthetic scenarios, workflow mappings, sources, and review limits.</dd></div>

@@ -4,10 +4,10 @@ import { docsMetadata } from "../docsMetadata";
 import { ecosystemLayers } from "../ecosystem-data";
 import { processFamilies, workflowRecords } from "../workflows-data";
 
-const description = "See where open agent protocols fit, where accounting-specific contracts begin, and how to participate without confusing interoperability with authority.";
+const description = "See where open agent protocols fit, where accounting-specific contracts begin, and how to contribute primary-source knowledge-hub updates without confusing interoperability with authority.";
 
 const trustTracks = [
-  { title: "Accuracy and reliability", detail: "Known-answer cases, repeat runs, regression, and hard authority gates.", href: "/evaluation", companionLabel: "Accounting Agent Bench" },
+  { title: "Accuracy and reliability", detail: "Known-answer cases, repeat runs, regression, and hard authority gates.", href: "/evaluation", companionLabel: "Deferred benchmark reference" },
   { title: "Governance, risk, and regulation", detail: "Source applicability, control design, review states, and correction policy.", href: "/controls", companionLabel: "Methodology" },
   { title: "Identity and trust", detail: "Least privilege, attributable actors, segregation of duties, and action authority.", href: "/security-identity", companionLabel: "Authority ladder" },
   { title: "Observability and traceability", detail: "Evidence chains, work records, monitoring, incidents, and recovery.", href: "/evidence-assurance", companionLabel: "Production operations" },
@@ -68,6 +68,12 @@ export default function EcosystemPage() {
             communicate externally.
           </p>
         </div>
+        <p>
+          The active product is a read-only knowledge hub and resource wiki led
+          by the <Link href="/atlas">Living Atlas</Link>. Benchmark and LedgerBench
+          surfaces remain deferred compatibility and reference assets; they do
+          not represent an active product or submission program.
+        </p>
       </section>
 
       <section id="map">
@@ -137,6 +143,8 @@ export default function EcosystemPage() {
       <section id="trust">
         <h2>Trust surfaces stay separate</h2>
         <div className="doc-link-list">
+          <Link href="/atlas"><strong>Living Atlas</strong><span>Primary map of accounting work, controls, capabilities, primary sources, and industry context.</span></Link>
+          <Link href="/observatory"><strong>Practice observatory</strong><span>Dated current-development index with source type, applicability, freshness, and transfer boundaries.</span></Link>
           <Link href="/methodology"><strong>Methodology</strong><span>How sources are selected, classified, reviewed, and limited.</span></Link>
           <Link href="/changes"><strong>Changes and feeds</strong><span>Immutable release notes, Atom, JSON Feed, and current manifest.</span></Link>
           <Link href="/open-source"><strong>Rights and governance</strong><span>Licenses, review roles, contribution rules, and source archive.</span></Link>
@@ -149,13 +157,15 @@ export default function EcosystemPage() {
         <ol>
           <li><strong>Correct a source record.</strong> Name the stable ID, provide the primary source, and explain the applicability change.</li>
           <li><strong>Extend a workflow pack.</strong> Use clean-room synthetic fixtures, explicit authority limits, and reproducible checks.</li>
-          <li><strong>Submit a benchmark case.</strong> Define the expected outcome, evidence requirements, and any hard authority gate.</li>
+          <li><strong>Contribute a knowledge-hub update.</strong> Propose a primary-source-backed resource, workflow, or Atlas relationship with a stable ID, applicability, and limitation.</li>
         </ol>
         <p>
           The current source archive contains the contribution, correction,
-          editorial, governance, and benchmark-submission policies. A public
-          contribution forge is not yet configured, so the site does not imply
-          that a submission channel exists before one is available.
+          editorial, governance, and deferred benchmark-reference policies. Use
+          primary sources and clean-room synthetic examples when preparing a
+          knowledge-hub contribution. A public contribution forge is not yet
+          configured, so the site does not imply that a submission channel
+          exists before one is available.
         </p>
       </section>
     </DocsShell>

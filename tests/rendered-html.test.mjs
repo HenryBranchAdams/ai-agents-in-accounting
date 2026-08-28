@@ -699,30 +699,54 @@ test("publishes the complete lifecycle and canonical workflow corpus", async () 
   }
 });
 
-test("indexes every canonical record collection in global search", async () => {
+test("global search delegates non-empty queries to the read-only API", async () => {
   const searchSource = await readFile(new URL("../app/DocsSearch.tsx", import.meta.url), "utf8");
-  const resourceIndexSource = await readFile(new URL("../app/ResourceIndex.tsx", import.meta.url), "utf8");
-  for (const resultSet of [
-    "authorityResults",
-    "workflowResults",
-    "controlResults",
-    "sensitiveActionResults",
-    "templateResults",
-    "glossaryResults",
-    "sourceResults",
-    "packResults",
-    "benchmarkResults",
-    "changeResults",
+  assert.match(searchSource, /fetch\(`\/api\/v1\/search\?/);
+  assert.match(searchSource, /new AbortController\(\)/);
+  assert.match(searchSource, /SEARCH_DEBOUNCE_MS/);
+  assert.match(searchSource, /window\.clearTimeout/);
+  assert.match(searchSource, /Deferred lab\/reference/);
+  for (const moduleName of [
+    "domain-model",
+    "governance-data",
+    "reference-data",
+    "resources-data",
+    "workflows-data",
+    "platform-data",
   ]) {
-    assert.match(searchSource, new RegExp(`\\.\\.\\.${resultSet}`));
+    assert.doesNotMatch(searchSource, new RegExp(`from ["']\\./${moduleName}["']`), `${moduleName} stays server-side`);
   }
-  assert.match(searchSource, /href: `\/authority#level-\$\{level\.id\}`/);
-  assert.match(searchSource, /sourceRelationshipProfiles/);
-  assert.match(searchSource, /relationshipProfile\?\.claims/);
-  assert.match(resourceIndexSource, /sourceRelationshipProfiles/);
-  assert.match(resourceIndexSource, /relationshipProfile\?\.claims/);
-  assert.match(resourceIndexSource, /window\.history\.replaceState/);
-  assert.match(resourceIndexSource, /popstate/);
+
+  const [authorityResponse, reconciliationResponse] = await Promise.all([
+    request("/api/v1/search?q=authority&limit=100"),
+    request("/api/v1/search?q=bank%20reconciliation&limit=100"),
+  ]);
+  assert.equal(authorityResponse.status, 200);
+  assert.equal(reconciliationResponse.status, 200);
+  const [authorityPayload, reconciliationPayload] = await Promise.all([
+    authorityResponse.json(),
+    reconciliationResponse.json(),
+  ]);
+  const items = [...authorityPayload.items, ...reconciliationPayload.items];
+  const recordTypes = new Set(items.map((item) => item.record_type));
+  for (const recordType of [
+    "page",
+    "workflow",
+    "resource",
+    "authority",
+    "control",
+    "sensitive-action",
+    "template",
+    "glossary",
+    "pack",
+    "benchmark",
+    "change",
+    "ecosystem",
+  ]) {
+    assert.ok(recordTypes.has(recordType), `${recordType} remains searchable through the API`);
+  }
+  assert.ok(items.some((item) => item.record_type === "benchmark" && item.canonical_path.startsWith("/bench#")));
+  assert.ok(items.some((item) => item.record_type === "resource" && item.canonical_path.startsWith("/resources/")));
 });
 
 test("publishes governance, controls, templates, and terminology in equivalent formats", async () => {

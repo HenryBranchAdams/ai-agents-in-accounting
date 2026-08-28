@@ -157,6 +157,6 @@ test("Start here remains responsive and the active program is knowledge-hub firs
 
   const readme = await readFile(new URL("../README.md", import.meta.url), "utf8");
   assert.match(readme, /five-minute Start here orientation/);
-  assert.match(readme, /Further LedgerBench and benchmark development is deferred/);
-  assert.match(readme, /active product program is the educational hub, source archive, practice observatory, and resource wiki/);
+  assert.match(readme, /Further benchmark and LedgerBench product development is fully deferred/);
+  assert.match(readme, /active program is the Living Atlas-led educational hub, source archive, practice observatory, and resource wiki/);
 });

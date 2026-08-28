@@ -110,6 +110,8 @@ test("the navigation keeps LedgerBench in a secondary lab", async () => {
   assert.doesNotMatch(searchSource, /category: "(?:Build|Evaluate|Implement|Implementation|Reference)"/);
   assert.match(searchSource, /title: "Enter the reading room", category: "Library"/);
   assert.match(searchSource, /title: "Inspect the LedgerBench research program", category: "Lab"/);
+  assert.match(searchSource, /href: "\/bench"[\s\S]*detail: "Deferred compatibility reference/);
+  assert.match(searchSource, /href: "\/ledgerbench"[\s\S]*detail: "Deferred compatibility reference/);
 });
 
 test("evaluation pages state their bounded roles without removing the lab", async () => {
@@ -127,4 +129,30 @@ test("evaluation pages state their bounded roles without removing the lab", asyn
   const ledgerBenchHtml = await ledgerBenchResponse.text();
   assert.match(ledgerBenchHtml, /LedgerBench research program/);
   assert.match(ledgerBenchHtml, /specialist research program/);
+});
+
+test("agent discovery leads with the Atlas and keeps benchmark surfaces secondary", async () => {
+  const [instructionsResponse, machineResponse, sitemapResponse] = await Promise.all([
+    request("/AGENTS.md"),
+    request("/machine-access"),
+    request("/sitemap.xml"),
+  ]);
+  const [instructions, machineHtml, sitemap] = await Promise.all([
+    instructionsResponse.text(),
+    machineResponse.text(),
+    sitemapResponse.text(),
+  ]);
+
+  assert.match(instructions, /Living Atlas as the primary map/);
+  assert.match(instructions, /Benchmark and LedgerBench product development is fully deferred/);
+  assert.ok(instructions.indexOf("Use /atlas") < instructions.indexOf("Use /observatory"));
+  assert.match(machineHtml, /Start discovery with the Living Atlas/);
+  assert.match(machineHtml, /fully deferred compatibility and reference assets/);
+  for (const path of ["bench", "ledgerbench"]) {
+    assert.match(
+      sitemap,
+      new RegExp(`<loc>[^<]+/${path}<\\/loc>[\\s\\S]*?<priority>0\\.4<\\/priority>`),
+      `${path} remains discoverable at secondary priority`,
+    );
+  }
 });
