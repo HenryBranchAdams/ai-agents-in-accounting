@@ -32,17 +32,35 @@ test("the homepage leads with education, workflows, and source-backed learning",
   assert.equal(response.status, 200);
   const html = await response.text();
 
+  const learningMap = html.match(/<section[^>]+data-learning-path-map[^>]*>([\s\S]*?)<\/section>/i)?.[1];
+  assert.ok(learningMap, "homepage learning path map should render as a semantic section");
+  assert.match(
+    html,
+    /<section(?=[^>]*data-learning-path-map)(?=[^>]*aria-labelledby=["']learning-map-title["'])[^>]*>/i,
+  );
+
   assert.match(html, /An open educational hub/);
   assert.match(html, /Educational field guide/);
   assert.match(html, /curated readings/);
   assert.match(html, /practical templates/);
-  assert.match(html, /Learn the foundations/);
-  assert.match(html, /Explore accounting workflows/);
-  assert.match(html, /Put the guidance to work/);
-  assert.match(html, /Research the field/);
   assert.doesNotMatch(html, /benchmark cases/i);
 
-  assert.match(html, /href="\/start-here"/);
+  for (const [href, label] of [
+    ["/start-here", "Learn the foundations"],
+    ["/course", "Take the core course"],
+    ["/tutorials/bank-reconciliation", "Practice a complete accounting lesson"],
+    ["/workflows", "Explore accounting workflows"],
+    ["/templates", "Put the guidance to work"],
+    ["/reading-room", "Research the field"],
+  ]) {
+    assert.match(learningMap, new RegExp(`href=["']${href.replaceAll("/", "\\/")}["']`), `${href} learning destination`);
+    assert.match(learningMap, new RegExp(label), `${href} learning label`);
+  }
+
+  assert.match(learningMap, /href=["']\/resources\?industry=general["']/);
+  assert.match(learningMap, /Browse the source catalog/);
+  assert.match(learningMap, /<h3>Learn the foundations<\/h3>/);
+
   assert.match(html, /Benchmark expansion is deferred/);
   const firstLearningPath = html.indexOf('href="/start-here"');
   const firstLedgerBenchLink = html.indexOf('href="/ledgerbench"');
@@ -50,14 +68,29 @@ test("the homepage leads with education, workflows, and source-backed learning",
   assert.ok(firstLedgerBenchLink > firstLearningPath);
 });
 
-test("utility navigation favors the reading and source libraries", async () => {
+test("the app shell exposes learning navigation and a current-signal utility link", async () => {
   const response = await request("/");
   const html = await response.text();
+  const learningNavigation = html.match(/<nav[^>]+class=["']learning-nav["'][^>]*>([\s\S]*?)<\/nav>/i)?.[1];
   const utilityNavigation = html.match(/<nav class="top-links"[^>]*>([\s\S]*?)<\/nav>/)?.[1];
 
+  assert.ok(learningNavigation, "learning navigation should render");
+  for (const [href, label] of [
+    ["/start-here", "Learn"],
+    ["/tutorials/bank-reconciliation", "Practice"],
+    ["/control-model", "Govern"],
+    ["/reading-room", "Research"],
+  ]) {
+    assert.match(learningNavigation, new RegExp(`href=["']${href.replaceAll("/", "\\/")}["']`), `${href} learning navigation destination`);
+    assert.match(learningNavigation, new RegExp(`>${label}<`), `${label} learning navigation label`);
+  }
+
   assert.ok(utilityNavigation, "utility navigation should render");
-  assert.match(utilityNavigation, /href="\/reading-room"/);
-  assert.match(utilityNavigation, /href="\/resources"/);
+  assert.match(utilityNavigation, /href="\/observatory"/);
+  assert.match(utilityNavigation, /Current signal/);
+  assert.match(utilityNavigation, /class="signal-dot"/);
+  assert.doesNotMatch(utilityNavigation, /href="\/reading-room"/);
+  assert.doesNotMatch(utilityNavigation, /href="\/resources"/);
   assert.doesNotMatch(utilityNavigation, /href="\/packs"/);
   assert.doesNotMatch(utilityNavigation, /href="\/machine-access"/);
 });

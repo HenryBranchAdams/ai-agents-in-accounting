@@ -377,7 +377,7 @@ test("preserves the semantic accessibility contract on representative pages", as
 
 test("uses accessible editorial headers without embedding page copy in the artwork", async () => {
   for (const [path, asset] of [
-    ["/", "/images/editorial/01-ledger-topology.jpg"],
+    ["/", "/images/editorial/07-learning-path-ledger-edges.png"],
     ["/reading-room", "/images/editorial/02-evidence-archive.jpg"],
     ["/architecture", "/images/editorial/03-agent-architecture.jpg"],
     ["/controls", "/images/editorial/04-control-boundary.jpg"],
@@ -395,7 +395,15 @@ test("uses accessible editorial headers without embedding page copy in the artwo
     assert.equal(response.status, 200, path);
     const html = await response.text();
     assert.ok(html.includes(asset), `${path} should use ${asset}`);
-    assert.match(html, /<figure[^>]*class=["']doc-header-art["'][^>]*>.*?<img(?=[^>]*\balt=["'][^"']+["'])[^>]*>/is, path);
+    if (path === "/") {
+      assert.match(
+        html,
+        /<img(?=[^>]*\bsrc=["']\/images\/editorial\/07-learning-path-ledger-edges\.png["'])(?=[^>]*\balt=["'][^"']*\S[^"']*["'])[^>]*>/i,
+        "homepage learning-path artwork has a nonempty alt",
+      );
+    } else {
+      assert.match(html, /<figure[^>]*class=["']doc-header-art["'][^>]*>.*?<img(?=[^>]*\balt=["'][^"']+["'])[^>]*>/is, path);
+    }
   }
 });
 

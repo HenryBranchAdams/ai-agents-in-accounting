@@ -51,6 +51,11 @@ const primaryPages = [
 ];
 
 test("primary pages expose a complete mobile navigation contract", async () => {
+  const referenceInterior = await (await request("/start-here")).text();
+  const referenceDesktop = referenceInterior.match(/<aside[^>]+class=["']sidebar["'][^>]*>[\s\S]*?<nav[^>]+aria-label=["']Documentation["'][^>]*>([\s\S]*?)<\/nav>/i)?.[1];
+  assert.ok(referenceDesktop, "interior desktop navigation reference");
+  const referenceLinks = attributeValues(referenceDesktop, "href");
+
   for (const path of primaryPages) {
     const response = await request(path);
     assert.equal(response.status, 200, path);
@@ -60,12 +65,22 @@ test("primary pages expose a complete mobile navigation contract", async () => {
     const mobile = html.match(/<details[^>]+class=["']mobile-navigation["'][^>]*>([\s\S]*?)<\/details>/i)?.[1];
     const desktop = html.match(/<aside[^>]+class=["']sidebar["'][^>]*>[\s\S]*?<nav[^>]+aria-label=["']Documentation["'][^>]*>([\s\S]*?)<\/nav>/i)?.[1];
     assert.ok(mobile, `${path} mobile navigation`);
-    assert.ok(desktop, `${path} desktop navigation`);
     assert.match(mobile, /<summary>Menu<\/summary>/i, `${path} menu control`);
 
     const mobileLinks = attributeValues(mobile, "href");
-    const desktopLinks = attributeValues(desktop, "href");
-    assert.deepEqual(mobileLinks, desktopLinks, `${path} navigation parity`);
+    if (path === "/") {
+      assert.equal(desktop, undefined, "homepage may omit the desktop documentation sidebar");
+      assert.deepEqual(mobileLinks, referenceLinks, "homepage mobile navigation remains complete");
+      assert.match(
+        mobile,
+        /<a(?=[^>]*\bhref=["']\/["'])(?=[^>]*\baria-current=["']page["'])[^>]*>/i,
+        "homepage root navigation item is active",
+      );
+    } else {
+      assert.ok(desktop, `${path} desktop navigation`);
+      const desktopLinks = attributeValues(desktop, "href");
+      assert.deepEqual(mobileLinks, desktopLinks, `${path} navigation parity`);
+    }
     assert.equal((mobile.match(/aria-current=["']page["']/gi) ?? []).length, 1, `${path} active mobile item`);
   }
 });
@@ -86,7 +101,7 @@ test("source and compiled CSS preserve the mobile breakpoint contract", async ()
 
   for (const [label, pattern] of [
     ["single-column document", /\.docs-layout\s*\{[^}]*display:\s*block/s],
-    ["desktop sidebar hidden", /\.wordmark small,\s*\.top-links,\s*\.sidebar\s*\{[^}]*display:\s*none/s],
+    ["desktop sidebar hidden", /\.wordmark small,\s*\.learning-nav,\s*\.top-links,\s*\.sidebar\s*\{[^}]*display:\s*none/s],
     ["mobile navigation shown", /\.mobile-navigation\s*\{[^}]*display:\s*block/s],
     ["search trigger touch target", /\.search-trigger\s*\{[^}]*min-height:\s*44px/s],
     ["menu touch target", /\.mobile-navigation summary\s*\{[^}]*min-height:\s*44px/s],
@@ -101,6 +116,9 @@ test("source and compiled CSS preserve the mobile breakpoint contract", async ()
     ["two-column corpus summary", /\.corpus-summary\s*\{[^}]*grid-template-columns:\s*repeat\(2, minmax\(0, 1fr\)\)/s],
     ["corpus row divider", /\.corpus-summary > div:nth-child\(n \+ 3\)\s*\{[^}]*border-top:/s],
     ["single-column resource filters", /\.resource-controls\s*\{[^}]*grid-template-columns:\s*1fr/s],
+    ["single-column learning map", /\.learning-map-canvas\s*\{[^}]*grid-template-columns:\s*1fr/s],
+    ["primary learning path touch target", /\.learning-branch-primary\s*\{[^}]*min-height:\s*76px/s],
+    ["secondary learning path touch target", /\.learning-branch-secondary\s*\{[^}]*min-height:\s*44px/s],
   ]) assert.match(mobile, pattern, label);
 
   assert.match(source, /\.table-wrap\s*\{[^}]*overflow-x:\s*auto/s, "table horizontal scrolling");

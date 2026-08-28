@@ -1,200 +1,193 @@
 import Link from "next/link";
-import { DocsShell } from "./DocsShell";
-import { packs, releaseNotes } from "./platform-data";
-import { practiceObservatoryItems } from "./practice-observatory";
+import { CorpusIcon, InlineArrow } from "./LearningHomeIcons";
+import { LearningPathExplorer } from "./LearningPathExplorer";
+import { SiteHeader } from "./SiteHeader";
+import { contentModeForPath } from "./content-contract";
+import { corpusReviewedAt } from "./domain-model";
+import { packs } from "./platform-data";
+import {
+  practiceObservatoryItems,
+  practiceObservatoryLanes,
+} from "./practice-observatory";
 import { readingRoomResources } from "./reading-room-data";
 import { templates } from "./reference-data";
-import { resources } from "./resources-data";
+import { resourceIndustryFacets, resources } from "./resources-data";
+import { accountingAgentsStartHere } from "./start-here";
 import { workflowRecords } from "./workflows-data";
 
+const currentSignals = practiceObservatoryItems.slice(0, 3);
+const laneLabels = new Map(practiceObservatoryLanes.map((lane) => [lane.id, lane.label]));
+
+function displayDate(value: string) {
+  const date = new Date(`${value}T00:00:00Z`);
+  if (Number.isNaN(date.valueOf())) return value;
+  return new Intl.DateTimeFormat("en", {
+    day: "numeric",
+    month: "short",
+    timeZone: "UTC",
+    year: "numeric",
+  }).format(date);
+}
+
 export default function OverviewPage() {
+  const primaryMode = contentModeForPath("/");
+
   return (
-    <DocsShell
-      active="/"
-      category="Overview"
-      title="AI agents in accounting"
-      description="An open educational hub for learning how governed AI agents can prepare accounting and finance work."
-      headerImage={{
-        src: "/images/editorial/01-ledger-topology.jpg",
-        alt: "Layered paper ledgers connected by a restrained green review path.",
-      }}
-      toc={[
-        { href: "#purpose", label: "Purpose" },
-        { href: "#current", label: "Current signal" },
-        { href: "#operating-rule", label: "Operating rule" },
-        { href: "#guide-map", label: "Choose a path" },
-        { href: "#ecosystem", label: "What is here" },
-        { href: "#scope", label: "Coverage and execution" },
-      ]}
-      next={{ href: "/start-here", label: "Start here" }}
-    >
-      <section id="purpose">
-        <h2>Purpose</h2>
-        <p>
-          Accounting teams can use agents to collect evidence, run procedures,
-          investigate exceptions, and prepare review materials. The same
-          flexibility creates new questions about access, accuracy,
-          documentation, and approval.
-        </p>
-        <p>
-          This open guide describes the work in accounting terms. Sixty workflow
-          records across eight process families name the objective, evidence,
-          procedures, deterministic checks, authority, human decisions, failure
-          modes, and retained record an implementation needs.
-        </p>
-        <p>
-          The reading room curates {readingRoomResources.length} research papers,
-          professional reports, guidance documents, and disclosed practice examples.
-          Templates and {packs.length} synthetic workflow packs help readers turn
-          the guidance into reviewable practice without using production data.
-        </p>
-        <div className="corpus-summary" role="list" aria-label="Public corpus coverage">
-          <div role="listitem"><strong>{workflowRecords.length}</strong><span>workflows</span></div>
-          <div role="listitem"><strong>{resources.length}</strong><span>source records</span></div>
-          <div role="listitem"><strong>{readingRoomResources.length}</strong><span>curated readings</span></div>
-          <div role="listitem"><strong>{templates.length}</strong><span>practical templates</span></div>
-        </div>
-      </section>
+    <>
+      <a className="skip-link" href="#main-content">Skip to content</a>
+      <SiteHeader active="/" />
 
-      <section id="current">
-        <h2>Current signal</h2>
-        <div className="doc-link-list">
-          <Link href="/observatory">
-            <strong>Practice observatory · {practiceObservatoryItems.length} current developments</strong>
-            <span>Follow dated official material, research, products, technical work, and disclosed practice without rankings or adoption claims.</span>
-          </Link>
-          <Link href={`/changes#release-${releaseNotes[0].id}`}>
-            <strong>Current release · {releaseNotes[0].id}</strong>
-            <span>{releaseNotes[0].summary}</span>
-          </Link>
-          <Link href="/reading-room#financial-services-supervision">
-            <strong>Expanded reading room · 153 readings</strong>
-            <span>Financial supervision, model risk, structured reporting data, field deployments, and continuous assurance.</span>
-          </Link>
-          <Link href="/coverage">
-            <strong>Coverage and gaps</strong>
-            <span>See what the guide covers deeply, references, plans to expand, or keeps out of scope.</span>
-          </Link>
-        </div>
-      </section>
-
-      <section id="operating-rule">
-        <h2>Operating rule</h2>
-        <div className="note note-rule">
+      <main className="learning-home" id="main-content">
+        <header className="learning-hero" id="purpose">
+          <p className="learning-eyebrow">Educational field guide</p>
+          <h1>AI agents in accounting</h1>
           <p>
-            Agents may prepare accounting work. Accountable people approve
-            conclusions and external actions.
+            Learn how governed agents can prepare accounting work while accountable
+            people approve conclusions and sensitive actions.
           </p>
-        </div>
-        <p>
-          Apply this rule to journal entries, payments, filings, policy choices,
-          control assessments, and communications made in the company&apos;s name.
-          The controls page explains how to write these boundaries before a run.
-        </p>
-      </section>
+        </header>
 
-      <section id="guide-map">
-        <h2>Choose a path</h2>
-        <div className="doc-link-list">
-          <Link href="/start-here">
-            <strong>Learn the foundations</strong>
-            <span>Take the five-minute orientation, complete one synthetic exception, and choose the path that fits your role.</span>
-          </Link>
-          <Link href="/course">
-            <strong>Take the core course</strong>
-            <span>Follow twenty bounded readings from professional authority through evidence, agent systems, evaluation, and a supervised synthetic transfer brief.</span>
-          </Link>
-          <Link href="/tutorials/bank-reconciliation">
-            <strong>Practice a complete accounting lesson</strong>
-            <span>Prepare and review a synthetic bank reconciliation, then stop correctly when required evidence is missing or out of period.</span>
-          </Link>
-          <Link href="/workflows">
-            <strong>Explore accounting workflows</strong>
-            <span>Find objectives, evidence, procedures, checks, authority limits, and review requirements.</span>
-          </Link>
-          <Link href="/templates">
-            <strong>Put the guidance to work</strong>
-            <span>Use practical templates, synthetic workflow packs, and a controlled-pilot checklist.</span>
-          </Link>
-          <a href="/reading-room">
-            <strong>Research the field</strong>
-            <span>Follow curated reading paths, scan current developments, or search the complete source catalog.</span>
-          </a>
-        </div>
-        <p>
-          Building or testing a system? Use the <Link href="/packs">workflow packs</Link> and
-          {" "}<Link href="/evaluation">evaluation guide</Link>. Benchmark expansion is deferred while the
-          knowledge hub, source archive, and practical learning paths take priority.
-        </p>
-      </section>
+        <LearningPathExplorer
+          industries={resourceIndustryFacets}
+          rolePaths={accountingAgentsStartHere.audience_paths}
+          sourceCount={resources.length}
+          templateCount={templates.length}
+          workflowCount={workflowRecords.length}
+        />
 
-      <section id="ecosystem">
-        <h2>A guide, library, and practical toolkit</h2>
-        <p>
-          Learn the concepts, find an accounting workflow, apply a control model,
-          inspect practical templates, and trace claims back to their sources.
-          The same operating rule runs through every path: agents prepare work;
-          accountable people approve conclusions and sensitive actions.
-        </p>
-        <div className="doc-link-list">
-          <Link href="/start-here">
-            <strong>Concepts and orientation</strong>
-            <span>Understand the governing rule, follow evidence to a decision, and choose an appropriate next route.</span>
-          </Link>
-          <Link href="/course">
-            <strong>Core course and reading canon</strong>
-            <span>Build shared accounting and agent-system vocabulary, then apply it to a fictional governed-workflow brief.</span>
-          </Link>
-          <Link href="/tutorials/bank-reconciliation">
-            <strong>Guided accounting practice</strong>
-            <span>Turn one clean-room pack into an evidence register, tie-out, stopped exception, workpaper, and accountable review record.</span>
-          </Link>
-          <Link href="/workflows">
-            <strong>Workflow library</strong>
-            <span>Explore sixty source-linked specifications across eight accounting families.</span>
-          </Link>
-          <Link href="/control-model">
-            <strong>Governance and controls</strong>
-            <span>Connect objectives, evidence, procedures, checks, authority, review, and records, then use the reviewer field guide to challenge prepared work.</span>
-          </Link>
-          <Link href="/reading-room">
-            <strong>Evidence and further reading</strong>
-            <span>Follow curated learning paths, use the practice observatory for current developments, then inspect the complete source catalog.</span>
-          </Link>
+        <div aria-label="Page trust and formats" className="learning-trust-row" role="group">
+          <span>
+            <time dateTime={corpusReviewedAt}>Reviewed {displayDate(corpusReviewedAt)}</time>
+          </span>
+          <span>Maintainer-reviewed educational synthesis</span>
+          <span
+            aria-label={`Primary content mode: ${primaryMode.label}`}
+            className="content-mode"
+            data-content-mode={primaryMode.id}
+            data-primary-mode={primaryMode.id}
+          >
+            Content mode: <strong>{primaryMode.label}</strong>
+          </span>
+          <Link href="/resources#method">Source method</Link>
         </div>
-        <p>
-          For builders, the hub also publishes <Link href="/machine-access">machine-readable access</Link>,
-          {" "}<Link href="/ecosystem">open-interface guidance</Link>, and
-          {" "}<Link href="/open-source">reusable source and governance records</Link>.
-        </p>
-      </section>
 
-      <section id="scope">
-        <h2>Coverage and execution boundary</h2>
-        <p>
-          The guide maps a broad core of the accounting lifecycle, including posting,
-          payments, filings, master-data changes, deletion, close operations,
-          control assessment, and certification. Coverage explains how to
-          specify and govern the work; it does not grant execution authority.
-        </p>
-        <div className="note note-rule">
-          <p className="note-title">Execution remains risk-tiered</p>
+        <section className="learning-current" id="current">
+          <div className="learning-section-heading">
+            <div>
+              <p className="learning-kicker">Freshness is visible</p>
+              <h2>Current signal</h2>
+              <p>
+                Official material, research, products, technical work, and disclosed
+                practice—dated and bounded, never ranked.
+              </p>
+            </div>
+            <Link className="learning-section-link" href="/observatory">
+              Practice observatory · {practiceObservatoryItems.length} current developments
+              <InlineArrow />
+            </Link>
+          </div>
+
+          <div className="signal-card-grid">
+            {currentSignals.map((item) => (
+              <article className="signal-card" key={item.id}>
+                <div className="signal-card-meta">
+                  <span>{laneLabels.get(item.lane_id)}</span>
+                  <time dateTime={item.source_updated_at ?? item.published_or_status}>
+                    {item.source_updated_at ? displayDate(item.source_updated_at) : item.published_or_status}
+                  </time>
+                </div>
+                <h3><Link href={item.catalog_href}>{item.title}</Link></h3>
+                <p>{item.publisher}</p>
+                <Link className="signal-card-link" href={item.catalog_href}>
+                  Inspect source record
+                  <InlineArrow size={14} />
+                </Link>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="learning-library" id="ecosystem">
+          <div className="learning-section-heading">
+            <div>
+              <p className="learning-kicker">A durable archive behind every path</p>
+              <h2>Learn, practice, and trace the evidence</h2>
+              <p>
+                An open educational hub for governed agent work, with foundational
+                material separated from the dated current signal.
+              </p>
+            </div>
+          </div>
+
+          <ul aria-label="Public corpus coverage" className="learning-corpus">
+            <li>
+              <Link href="/workflows">
+                <CorpusIcon type="workflow" />
+                <strong>{workflowRecords.length}</strong>
+                <span>workflow records</span>
+              </Link>
+            </li>
+            <li>
+              <Link href="/resources">
+                <CorpusIcon type="record" />
+                <strong>{resources.length}</strong>
+                <span>source records</span>
+              </Link>
+            </li>
+            <li>
+              <Link href="/reading-room">
+                <CorpusIcon type="archive" />
+                <strong>{readingRoomResources.length}</strong>
+                <span>curated readings</span>
+              </Link>
+            </li>
+            <li>
+              <Link href="/templates">
+                <CorpusIcon type="template" />
+                <strong>{templates.length}</strong>
+                <span>practical templates</span>
+              </Link>
+            </li>
+          </ul>
+
+          <div className="builder-strip">
+            <p>
+              Building or testing a system? Use the <Link href="/packs">{packs.length} synthetic workflow packs</Link>,
+              {" "}<Link href="/evaluation">evaluation guide</Link>, and
+              {" "}<Link href="/machine-access">read-only machine interfaces</Link>.
+            </p>
+            <p>
+              Benchmark expansion is deferred while the knowledge hub, source archive,
+              and practical learning paths take priority.
+            </p>
+          </div>
+        </section>
+
+        <section className="learning-scope" id="scope">
+          <div>
+            <p className="learning-kicker">Execution boundary</p>
+            <h2>Preparation is not approval</h2>
+          </div>
           <p>
-            Read, preparation, recommendation, approval-gated execution, and
-            low-risk reversible action use distinct authority levels. Final
-            approval, legal attestation, fiduciary authority, and ICFR or
-            professional certification remain human-owned.
+            The guide can help teams specify objectives, evidence, procedures, checks,
+            exceptions, authority, review, and retained records. It does not grant an
+            agent authority to post, pay, file, certify, attest, or communicate externally.
           </p>
-        </div>
-        <p>
-          Check the <a href="/coverage">versioned coverage and gaps map</a> before treating this core map as complete.
-        </p>
-        <p>
-          Use <a href="/authority">the authority ladder</a> to classify each action
-          and <a href="/sensitive-actions">Sensitive actions</a> to design the
-          approval, identity, payload, rollback, and logging boundary.
-        </p>
-      </section>
-    </DocsShell>
+          <div className="learning-scope-links">
+            <Link href="/authority">Authority ladder</Link>
+            <Link href="/sensitive-actions">Sensitive actions</Link>
+            <Link href="/coverage">Coverage and gaps</Link>
+          </div>
+        </section>
+
+        <footer className="learning-footer">
+          <p>
+            Educational material. Original content CC BY 4.0; project metadata and
+            synthetic fixtures CC0 1.0; software MIT. External publisher terms apply.
+          </p>
+          <Link href="/open-source">Open source and reuse</Link>
+        </footer>
+      </main>
+    </>
   );
 }

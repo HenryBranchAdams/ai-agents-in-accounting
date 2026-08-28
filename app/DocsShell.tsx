@@ -1,9 +1,9 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
-import { DocsSearch } from "./DocsSearch";
-import { navGroups, type NavItem } from "./content";
+import type { NavItem } from "./content";
 import { contentModeForPath } from "./content-contract";
 import { corpusReviewedAt } from "./domain-model";
+import { DocumentationNavigation, SiteHeader } from "./SiteHeader";
 
 type TocItem = {
   href: string;
@@ -41,27 +41,6 @@ function displayDate(value: string) {
   }).format(date);
 }
 
-function Navigation({ active, mobile = false }: { active: string; mobile?: boolean }) {
-  return (
-    <nav aria-label={mobile ? "Mobile documentation" : "Documentation"} className="docs-navigation">
-      {navGroups.map((group) => (
-        <div className="nav-group" key={group.label}>
-          <p>{group.label}</p>
-          {group.items.map((item) => (
-            <a
-              aria-current={item.href === active ? "page" : undefined}
-              href={item.href}
-              key={item.href}
-            >
-              {item.label}
-            </a>
-          ))}
-        </div>
-      ))}
-    </nav>
-  );
-}
-
 export function DocsShell({
   active,
   category,
@@ -83,26 +62,11 @@ export function DocsShell({
   return (
     <>
       <a className="skip-link" href="#main-content">Skip to content</a>
-
-      <header className="topbar">
-        <Link className="wordmark" href="/" aria-label="Accounting Agents guide home">
-          <span>Accounting Agents</span>
-          <small>Educational field guide</small>
-        </Link>
-        <DocsSearch />
-        <nav className="top-links" aria-label="Utility navigation">
-          <Link href="/reading-room">Reading room</Link>
-          <Link href="/resources">Source library</Link>
-        </nav>
-        <details className="mobile-navigation">
-          <summary>Menu</summary>
-          <Navigation active={active} mobile />
-        </details>
-      </header>
+      <SiteHeader active={active} />
 
       <div className="docs-layout">
         <aside className="sidebar">
-          <Navigation active={active} />
+          <DocumentationNavigation active={active} />
           <p className="sidebar-note">Corpus snapshot {displayDate(corpusReviewedAt)}</p>
         </aside>
 
