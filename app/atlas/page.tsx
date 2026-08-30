@@ -30,7 +30,7 @@ export default function LivingAtlasPage() {
     <>
       <a className="skip-link" href="#main-content">Skip to Atlas</a>
       <SiteHeader active="/atlas" />
-      <main className="atlas-page" id="main-content">
+      <main aria-labelledby="atlas-explorer-title" className="atlas-page" id="main-content">
         <AtlasExplorer
           defaultNodeId={atlasDefaultNodeId}
           edges={[...accountingAgentsAtlas.full_graph.edges]}

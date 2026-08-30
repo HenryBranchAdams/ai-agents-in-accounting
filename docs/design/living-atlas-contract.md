@@ -1,6 +1,7 @@
 # Living Atlas implementation contract
 
-Status: approved for implementation on 2026-08-28.
+Status: responsive and data contract retained; visual prescription superseded
+by `designcode-quality-direction.md` on 2026-08-29.
 
 ## Learning objective
 
@@ -15,21 +16,21 @@ The initial guided path is:
 
 The path preserves the project invariant: agents may prepare accounting work; accountable people approve conclusions and sensitive external actions.
 
-## Approved responsive composition
+## Responsive behavior
 
-- Desktop: a large map workspace beside a persistent evidence inspector.
-- Portrait: the map remains visible in the first viewport; the selected-node inspector follows directly below it.
-- Landscape: the map uses roughly two thirds of the viewport and the compact inspector uses the remaining third.
-- Below 900 CSS pixels, the inspector moves below the map. Below 720 CSS pixels, the graph reduces to the selected path and its nearest evidence, control, and industry neighbors.
+- Desktop provides a coordinated map workspace and evidence inspector.
+- Portrait and compact layouts prioritize the semantic list while preserving an
+  explicit map option and selected-node inspector.
+- Responsive composition may change as needed to protect reading order,
+  legibility, and useful first-viewport actions.
 - Map and semantic-list views are equivalent. Previous and next controls provide a non-drag path through the guided sequence.
 - Controls use at least 44 by 44 CSS-pixel targets. Focus, reduced motion, forced colors, keyboard selection, and zoom remain supported.
 
 ## Visual system
 
-- Warm off-white paper field with a faint generated topographic-contour texture.
-- Deep ink typography, forest green for the active path, restrained blue, violet, amber, and teal for graph categories.
-- White cards, hairline borders, compact shadows, rounded corners, and no gradients.
-- Phosphor icons and React Flow provide the visible icon and graph primitives; the implementation does not recreate them as handcrafted SVG or CSS art.
+Visual direction is owned by `designcode-quality-direction.md`. This contract
+does not lock a palette, texture, component library, icon source, radius,
+shadow, gradient policy, or site-shell composition.
 
 ## Data and interaction contract
 

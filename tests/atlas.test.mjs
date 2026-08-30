@@ -373,4 +373,7 @@ test("Atlas responsive, keyboard, reduced-motion, and semantic-list contracts ar
   assert.match(explorer, /selectedNode\.kind === "source"[\s\S]*\? selectedNode[\s\S]*: relatedEdges/);
   assert.match(explorer, /edgesFocusable/);
   assert.match(explorer, /aria-label="Living Atlas knowledge graph/);
+  assert.match(explorer, /Guided sequence/);
+  assert.doesNotMatch(explorer, /data-complete/);
+  assert.doesNotMatch(explorer, /Your path/);
 });

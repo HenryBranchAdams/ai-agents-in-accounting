@@ -1,16 +1,17 @@
 "use client";
 
-import { useId, useState, type ComponentType } from "react";
+import {
+  ArrowRightIcon,
+  BinocularsIcon,
+  BookOpenIcon,
+  BuildingsIcon,
+  CheckIcon,
+  FlowArrowIcon,
+  ShieldCheckIcon,
+} from "@phosphor-icons/react";
 import Link from "next/link";
-import { ArrowRightIcon } from "@phosphor-icons/react/ArrowRight";
-import { BinocularsIcon } from "@phosphor-icons/react/Binoculars";
-import { BookOpenIcon } from "@phosphor-icons/react/BookOpen";
-import { BuildingsIcon } from "@phosphor-icons/react/Buildings";
-import { CheckIcon } from "@phosphor-icons/react/Check";
-import { FlowArrowIcon } from "@phosphor-icons/react/FlowArrow";
-import { ShieldCheckIcon } from "@phosphor-icons/react/ShieldCheck";
-import { UserIcon } from "@phosphor-icons/react/User";
-import { UsersThreeIcon } from "@phosphor-icons/react/UsersThree";
+import { useId, useState } from "react";
+import type { PracticeObservatoryItem } from "./practice-observatory";
 
 type RolePath = {
   id: string;
@@ -25,50 +26,16 @@ type Industry = {
   label: string;
 };
 
-type BranchProps = {
-  accent: "blue" | "orange" | "plum" | "green";
-  align: "left" | "right";
+type PathItem = {
+  title: string;
   description: string;
   href: string;
-  icon: ComponentType<{ "aria-hidden"?: boolean; size?: number; weight?: "regular" | "bold" }>;
+  secondaryHref: string;
+  secondaryLabel: string;
+  icon: typeof BookOpenIcon;
   meta: string;
-  secondaryHref?: string;
-  secondaryLabel?: string;
-  title: string;
+  accent: string;
 };
-
-function Branch({
-  accent,
-  align,
-  description,
-  href,
-  icon: Icon,
-  meta,
-  secondaryHref,
-  secondaryLabel,
-  title,
-}: BranchProps) {
-  return (
-    <article className={`learning-branch learning-branch-${align} learning-branch-${accent}`}>
-      <Link className="learning-branch-primary" href={href}>
-        <span aria-hidden="true" className="learning-branch-icon">
-          <Icon size={27} weight="regular" />
-        </span>
-        <span className="learning-branch-copy">
-          <h3>{title}</h3>
-          <span>{description}</span>
-          <small>{meta}</small>
-        </span>
-      </Link>
-      {secondaryHref && secondaryLabel ? (
-        <Link className="learning-branch-secondary" href={secondaryHref}>
-          {secondaryLabel}
-          <ArrowRightIcon aria-hidden="true" size={13} weight="bold" />
-        </Link>
-      ) : null}
-    </article>
-  );
-}
 
 export function LearningPathExplorer({
   industries,
@@ -76,21 +43,68 @@ export function LearningPathExplorer({
   sourceCount,
   templateCount,
   workflowCount,
+  currentSignals,
+  currentSignalCount,
+  laneLabels,
 }: {
   industries: readonly Industry[];
   rolePaths: readonly RolePath[];
   sourceCount: number;
   templateCount: number;
   workflowCount: number;
+  currentSignals: readonly PracticeObservatoryItem[];
+  currentSignalCount: number;
+  laneLabels: ReadonlyMap<string, string>;
 }) {
   const roleControlId = useId();
   const industryControlId = useId();
   const [roleId, setRoleId] = useState(rolePaths[0]?.id ?? "");
   const [industryId, setIndustryId] = useState("general");
-
   const selectedRole = rolePaths.find((path) => path.id === roleId) ?? rolePaths[0];
   const selectedIndustry = industries.find((industry) => industry.id === industryId) ?? industries[0];
   const industryQuery = industryId ? `?industry=${encodeURIComponent(industryId)}` : "";
+  const pathItems: PathItem[] = [
+    {
+      accent: "blue",
+      title: "Learn the foundations",
+      description: "Orientation and core course",
+      href: "/start-here",
+      secondaryHref: "/course",
+      secondaryLabel: "Take the core course",
+      icon: BookOpenIcon,
+      meta: `${workflowCount} workflows`,
+    },
+    {
+      accent: "orange",
+      title: "Practice a complete accounting lesson",
+      description: "Synthetic lessons and templates",
+      href: "/tutorials/bank-reconciliation",
+      secondaryHref: "/workflows",
+      secondaryLabel: "Explore accounting workflows",
+      icon: FlowArrowIcon,
+      meta: `${templateCount} templates`,
+    },
+    {
+      accent: "plum",
+      title: "Govern the work",
+      description: "Authority, controls, and reviewer guides",
+      href: "/templates",
+      secondaryHref: "/control-model",
+      secondaryLabel: "Put the guidance to work",
+      icon: ShieldCheckIcon,
+      meta: `${templateCount} practical templates`,
+    },
+    {
+      accent: "green",
+      title: "Research the field",
+      description: "Reading room, observatory, and sources",
+      href: "/reading-room",
+      secondaryHref: `/resources${industryQuery}`,
+      secondaryLabel: "Browse the source catalog",
+      icon: BinocularsIcon,
+      meta: `${sourceCount} source records`,
+    },
+  ];
 
   return (
     <section
@@ -99,123 +113,125 @@ export function LearningPathExplorer({
       data-learning-path-map
       id="guide-map"
     >
-      <div className="learning-path-controls">
-        <label htmlFor={roleControlId}>
-          <span>I am a</span>
-          <span className="select-control">
-            <UserIcon aria-hidden="true" size={22} weight="regular" />
-            <select id={roleControlId} onChange={(event) => setRoleId(event.target.value)} value={roleId}>
-              {rolePaths.map((path) => (
-                <option key={path.id} value={path.id}>{path.label}</option>
-              ))}
-            </select>
-          </span>
-        </label>
-
-        <label htmlFor={industryControlId}>
-          <span>Industry context</span>
-          <span className="select-control">
-            <BuildingsIcon aria-hidden="true" size={22} weight="regular" />
-            <select id={industryControlId} onChange={(event) => setIndustryId(event.target.value)} value={industryId}>
-              {industries.map((industry) => (
-                <option key={industry.id} value={industry.id}>{industry.label}</option>
-              ))}
-            </select>
-          </span>
-        </label>
+      <div className="learning-path-heading">
+        <div>
+          <p className="learning-kicker">Find your path</p>
+          <h2 id="learning-map-title">Find your path</h2>
+        </div>
+        <div className="learning-path-controls">
+          <label htmlFor={roleControlId}>
+            <span>I am a</span>
+            <span className="select-control">
+              <select id={roleControlId} onChange={(event) => setRoleId(event.target.value)} value={roleId}>
+                {rolePaths.map((path) => <option key={path.id} value={path.id}>{path.label}</option>)}
+              </select>
+            </span>
+          </label>
+          <label htmlFor={industryControlId}>
+            <span>Industry context</span>
+            <span className="select-control">
+              <BuildingsIcon aria-hidden="true" size={20} />
+              <select id={industryControlId} onChange={(event) => setIndustryId(event.target.value)} value={industryId}>
+                {industries.map((industry) => <option key={industry.id} value={industry.id}>{industry.label}</option>)}
+              </select>
+            </span>
+          </label>
+        </div>
       </div>
 
-      <h2 id="learning-map-title">Find your path</h2>
       <p aria-live="polite" className="learning-path-selection">
         <strong>{selectedRole?.label}</strong>
         <span aria-hidden="true"> · </span>
         {selectedRole?.next}. Industry material is filtered to {selectedIndustry?.label ?? "General accounting"} where applicable.
       </p>
 
-      {/* This raster contains only synthetic ledger textures; all map content remains code-native. */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        alt="Two synthetic ledger sheets frame the learning-path map."
-        className="learning-map-backdrop"
-        decoding="async"
-        height="700"
-        loading="eager"
-        src="/images/editorial/07-learning-path-ledger-edges.png"
-        width="1800"
-      />
-
-      <div className="learning-map-canvas">
-        <Branch
-          accent="blue"
-          align="left"
-          description="Orientation and core course"
-          href="/start-here"
-          icon={BookOpenIcon}
-          meta={`${workflowCount} workflows`}
-          secondaryHref="/course"
-          secondaryLabel="Take the core course"
-          title="Learn the foundations"
-        />
-        <Branch
-          accent="orange"
-          align="right"
-          description="Synthetic lessons and templates"
-          href="/tutorials/bank-reconciliation"
-          icon={FlowArrowIcon}
-          meta={`${templateCount} templates`}
-          secondaryHref="/workflows"
-          secondaryLabel="Explore accounting workflows"
-          title="Practice a complete accounting lesson"
-        />
-
-        <div className="learning-rule-node" id="operating-rule">
-          <UsersThreeIcon aria-hidden="true" size={31} weight="regular" />
-          <strong>Agents prepare work</strong>
-          <span aria-hidden="true" />
-          <strong>People approve conclusions</strong>
-          <span aria-hidden="true" className="learning-rule-check">
-            <CheckIcon size={19} weight="bold" />
-          </span>
+      <div className="learning-path-body">
+        <div className="learning-path-main">
+          {/* This raster contains only synthetic ledger textures; all map content remains code-native. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            alt="Two synthetic ledger sheets frame the learning-path map."
+            className="learning-map-backdrop"
+            decoding="async"
+            height="700"
+            loading="eager"
+            src="/images/editorial/07-learning-path-ledger-edges.png"
+            width="1800"
+          />
+          <ol className="learning-path-rail">
+            {pathItems.map((item, index) => {
+              const Icon = item.icon;
+              return (
+                <li className={`learning-path-step learning-path-step-${item.accent}`} key={item.title}>
+                  <span aria-hidden="true" className="learning-path-step-marker">
+                    {index === 0 ? <CheckIcon size={16} weight="bold" /> : index + 1}
+                  </span>
+                  <article>
+                    <Link className="learning-branch-primary" href={item.href}>
+                      <span aria-hidden="true" className="learning-branch-icon"><Icon size={23} /></span>
+                      <span className="learning-branch-copy">
+                        <span className="learning-path-step-number">0{index + 1}</span>
+                        <h3>{item.title}</h3>
+                        <span>{item.description}</span>
+                        <small>{item.meta}</small>
+                      </span>
+                      <ArrowRightIcon aria-hidden="true" size={18} />
+                    </Link>
+                    <Link className="learning-branch-secondary" href={item.secondaryHref}>
+                      {item.secondaryLabel}
+                      <ArrowRightIcon aria-hidden="true" size={13} />
+                    </Link>
+                  </article>
+                </li>
+              );
+            })}
+          </ol>
+          <div className="learning-rule-node" id="operating-rule">
+            <strong>Agents prepare work</strong>
+            <span aria-hidden="true" />
+            <strong>People approve conclusions</strong>
+          </div>
+          <div className="learning-path-actions">
+            <Link className="button button-primary" href="/reviewer-guide">
+              Run a reviewer-led session <ArrowRightIcon aria-hidden="true" size={17} />
+            </Link>
+            <Link className="button button-secondary" href={`/observatory${industryQuery}`}>
+              Browse current developments
+            </Link>
+          </div>
+          <p className="learning-path-boundary">
+            These are deterministic starting paths, not rankings or conclusions. The selected role continues to{" "}
+            <Link href={selectedRole?.href ?? "/start-here"}>{selectedRole?.next ?? "Start here"}</Link>.
+          </p>
         </div>
 
-        <Branch
-          accent="plum"
-          align="left"
-          description="Authority, controls, and reviewer guides"
-          href="/templates"
-          icon={ShieldCheckIcon}
-          meta={`${templateCount} practical templates`}
-          secondaryHref="/control-model"
-          secondaryLabel="Put the guidance to work"
-          title="Govern the work"
-        />
-        <Branch
-          accent="green"
-          align="right"
-          description="Reading room, observatory, and sources"
-          href="/reading-room"
-          icon={BinocularsIcon}
-          meta={`${sourceCount} source records`}
-          secondaryHref={`/resources${industryQuery}`}
-          secondaryLabel="Browse the source catalog"
-          title="Research the field"
-        />
+        <aside aria-labelledby="learning-current-title" className="learning-current-rail">
+          <p className="learning-kicker">Current signal</p>
+          <h2 id="learning-current-title">Current signal</h2>
+          {currentSignals.map((item) => (
+            <article className="learning-current-item" key={item.id}>
+              <div>
+                <span>{laneLabels.get(item.lane_id)}</span>
+                <time dateTime={item.source_updated_at ?? item.published_or_status}>
+                  {item.source_updated_at ?? item.published_or_status}
+                </time>
+              </div>
+              <h3><Link href={item.catalog_href}>{item.title}</Link></h3>
+              <Link href={item.catalog_href}>
+                Inspect source record <ArrowRightIcon aria-hidden="true" size={14} />
+              </Link>
+            </article>
+          ))}
+          <Link className="learning-section-link" href="/observatory">
+            Practice observatory · {currentSignalCount} current developments <ArrowRightIcon aria-hidden="true" size={14} />
+          </Link>
+          <div className="learning-source-method">
+            <p className="learning-kicker">Source method</p>
+            <p>Source records are dated, classified, and linked to their original publishers.</p>
+            <Link href="/resources#method">Read the source method</Link>
+          </div>
+        </aside>
       </div>
-
-      <div className="learning-path-actions">
-        <Link className="button button-primary" href="/reviewer-guide">
-          Run a reviewer-led session
-          <ArrowRightIcon aria-hidden="true" size={17} weight="bold" />
-        </Link>
-        <Link className="button button-secondary" href={`/observatory${industryQuery}`}>
-          Browse current developments
-        </Link>
-      </div>
-
-      <p className="learning-path-boundary">
-        These are deterministic starting paths, not rankings or conclusions. The selected role continues to{" "}
-        <Link href={selectedRole?.href ?? "/start-here"}>{selectedRole?.next ?? "Start here"}</Link>.
-      </p>
     </section>
   );
 }

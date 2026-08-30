@@ -1,4 +1,10 @@
-# Design QA — fan-out learning homepage
+# Design QA — fan-out learning homepage historical baseline
+
+Status: superseded by `designcode-quality-direction.md`.
+
+This report records a previously accepted render. Its composition, shell,
+palette, type scale, and responsive treatment are comparison evidence, not
+requirements for subsequent design work.
 
 ## Comparison target
 
@@ -61,7 +67,9 @@ No separate focused crop was needed. At the original 2896 × 1024 combined resol
 ## Findings
 
 - No actionable P0, P1, or P2 findings remain.
-- Accepted product constraint: the current-signal cards use real canonical source records and longer publisher titles, so their density differs from the concept’s illustrative cards.
+- Historical implementation note: that render used maintained source records
+  with longer publisher titles, so its density differed from the illustrative
+  concept.
 - P3: some 10–11 pixel metadata is optically smaller than the concept at 1440 pixels. It remains legible and is consistent with the existing knowledge-hub shell.
 
 ## Verification boundary

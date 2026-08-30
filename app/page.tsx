@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CorpusIcon, InlineArrow } from "./LearningHomeIcons";
+import { CorpusIcon, InlineArrow, InstrumentIcon } from "./LearningHomeIcons";
 import { LearningPathExplorer } from "./LearningPathExplorer";
 import { SiteHeader } from "./SiteHeader";
 import { contentModeForPath } from "./content-contract";
@@ -40,16 +40,35 @@ export default function OverviewPage() {
       <main className="learning-home" id="main-content">
         <header className="learning-hero" id="purpose">
           <p className="learning-eyebrow">Educational field guide</p>
-          <h1>AI agents in accounting</h1>
-          <p>
-            Learn how governed agents can prepare accounting work while accountable
-            people approve conclusions and sensitive actions.
-          </p>
-          <Link className="learning-atlas-link" href="/atlas">
-            Explore the Living Atlas
-            <span>Trace one workflow through evidence, controls, sources, and accountable review.</span>
-            <InlineArrow />
-          </Link>
+          <div className="learning-hero-copy">
+            <div className="learning-reviewed">Reviewed {displayDate(corpusReviewedAt)}</div>
+            <h1><span>AI agents</span>{" "}<span>in accounting</span></h1>
+            <p>
+              Learn how governed agents can prepare accounting work while accountable
+              people approve conclusions and sensitive actions.
+            </p>
+            <Link className="learning-atlas-link" href="/atlas">
+              <span className="learning-atlas-link-label">Explore the Living Atlas</span>
+              <InlineArrow />
+            </Link>
+            <p className="learning-atlas-caption">
+              <span aria-hidden="true" className="learning-caption-icon"><InlineArrow size={15} /></span>
+              Trace one workflow through evidence, controls, sources, and accountable review.
+            </p>
+          </div>
+          <div aria-label="Public corpus instrument" className="learning-hero-instrument" role="img">
+            <div className="learning-instrument-core"><InstrumentIcon size={26} type="people" /></div>
+            <span className="learning-instrument-label learning-instrument-top">Govern</span>
+            <span className="learning-instrument-label learning-instrument-left">Evidence</span>
+            <span className="learning-instrument-label learning-instrument-right">Sources</span>
+            <span className="learning-instrument-label learning-instrument-bottom">Controls</span>
+            <ul className="learning-instrument-legend" aria-label="Public corpus contents">
+              <li><InstrumentIcon type="record" /> <span>{resources.length} source records</span></li>
+              <li><InstrumentIcon type="workflow" /> <span>{workflowRecords.length} workflow records</span></li>
+              <li><InstrumentIcon type="template" /> <span>{templates.length} practical templates</span></li>
+              <li><span aria-hidden="true" className="learning-legend-code">&lt;/&gt;</span> <span>Open source</span></li>
+            </ul>
+          </div>
         </header>
 
         <LearningPathExplorer
@@ -58,6 +77,9 @@ export default function OverviewPage() {
           sourceCount={resources.length}
           templateCount={templates.length}
           workflowCount={workflowRecords.length}
+          currentSignals={currentSignals}
+          currentSignalCount={practiceObservatoryItems.length}
+          laneLabels={laneLabels}
         />
 
         <div aria-label="Page trust and formats" className="learning-trust-row" role="group">
@@ -75,42 +97,6 @@ export default function OverviewPage() {
           </span>
           <Link href="/resources#method">Source method</Link>
         </div>
-
-        <section className="learning-current" id="current">
-          <div className="learning-section-heading">
-            <div>
-              <p className="learning-kicker">Freshness is visible</p>
-              <h2>Current signal</h2>
-              <p>
-                Official material, research, products, technical work, and disclosed
-                practice—dated and bounded, never ranked.
-              </p>
-            </div>
-            <Link className="learning-section-link" href="/observatory">
-              Practice observatory · {practiceObservatoryItems.length} current developments
-              <InlineArrow />
-            </Link>
-          </div>
-
-          <div className="signal-card-grid">
-            {currentSignals.map((item) => (
-              <article className="signal-card" key={item.id}>
-                <div className="signal-card-meta">
-                  <span>{laneLabels.get(item.lane_id)}</span>
-                  <time dateTime={item.source_updated_at ?? item.published_or_status}>
-                    {item.source_updated_at ? displayDate(item.source_updated_at) : item.published_or_status}
-                  </time>
-                </div>
-                <h3><Link href={item.catalog_href}>{item.title}</Link></h3>
-                <p>{item.publisher}</p>
-                <Link className="signal-card-link" href={item.catalog_href}>
-                  Inspect source record
-                  <InlineArrow size={14} />
-                </Link>
-              </article>
-            ))}
-          </div>
-        </section>
 
         <section className="learning-library" id="ecosystem">
           <div className="learning-section-heading">

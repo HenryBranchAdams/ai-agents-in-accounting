@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "./field-instrument.css";
 import { WebMcpTools } from "./WebMcpTools";
 
 export const metadata: Metadata = {

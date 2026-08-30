@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { NavItem } from "./content";
 import { contentModeForPath } from "./content-contract";
 import { corpusReviewedAt } from "./domain-model";
+import { navGroups } from "./content";
 import { DocumentationNavigation, SiteHeader } from "./SiteHeader";
 
 type TocItem = {
@@ -58,6 +59,8 @@ export function DocsShell({
   headerImage,
 }: DocsShellProps) {
   const primaryMode = contentModeForPath(active);
+  const activeGroup = navGroups.find((group) => group.items.some((item) => item.href === active));
+  const contextualLinks = activeGroup?.items.filter((item) => item.href !== active).slice(0, 5) ?? [];
 
   return (
     <>
@@ -132,6 +135,17 @@ export function DocsShell({
         </main>
 
         <aside className="page-toc">
+          {activeGroup && (
+            <div aria-label={`${activeGroup.label} section context`} className="contextual-rail">
+              <p className="contextual-rail-label">{activeGroup.label}</p>
+              <p className="contextual-rail-title">{title}</p>
+              {contextualLinks.length > 0 && (
+                <nav aria-label={`${activeGroup.label} pages`}>
+                  {contextualLinks.map((item) => <a href={item.href} key={item.href}>{item.label}</a>)}
+                </nav>
+              )}
+            </div>
+          )}
           <p>On this page</p>
           <nav aria-label="On this page">
             {toc.map((item) => (

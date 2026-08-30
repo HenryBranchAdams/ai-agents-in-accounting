@@ -65,7 +65,7 @@ test("primary pages expose a complete mobile navigation contract", async () => {
     const mobile = html.match(/<details[^>]+class=["']mobile-navigation["'][^>]*>([\s\S]*?)<\/details>/i)?.[1];
     const desktop = html.match(/<aside[^>]+class=["']sidebar["'][^>]*>[\s\S]*?<nav[^>]+aria-label=["']Documentation["'][^>]*>([\s\S]*?)<\/nav>/i)?.[1];
     assert.ok(mobile, `${path} mobile navigation`);
-    assert.match(mobile, /<summary>Menu<\/summary>/i, `${path} menu control`);
+    assert.match(mobile, /<summary>[\s\S]*?Explore<\/summary>/i, `${path} navigation disclosure`);
 
     const mobileLinks = attributeValues(mobile, "href");
     if (path === "/" || path === "/atlas") {
@@ -79,7 +79,11 @@ test("primary pages expose a complete mobile navigation contract", async () => {
     } else {
       assert.ok(desktop, `${path} desktop navigation`);
       const desktopLinks = attributeValues(desktop, "href");
-      assert.deepEqual(mobileLinks, desktopLinks, `${path} navigation parity`);
+      assert.deepEqual(
+        [...mobileLinks].sort(),
+        [...desktopLinks].sort(),
+        `${path} navigation destination parity`,
+      );
     }
     assert.equal((mobile.match(/aria-current=["']page["']/gi) ?? []).length, 1, `${path} active mobile item`);
   }

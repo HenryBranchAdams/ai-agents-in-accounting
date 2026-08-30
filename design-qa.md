@@ -1,7 +1,12 @@
-# Living Atlas design QA
+# Living Atlas design QA — historical baseline
 
 Date: 2026-08-28
-Result: **passed**
+Result at capture: **passed**
+Current status: **superseded by `docs/design/designcode-quality-direction.md`**
+
+This file preserves evidence for the previous implementation. It is not a
+design constraint on the current site shell, palette, layout, imagery, motion,
+or interaction model.
 
 ## Visual truth and implementation evidence
 
@@ -25,7 +30,9 @@ The same-size, side-by-side comparisons establish the full-view layout at all th
 - Phosphor and React Flow supply icons and graph primitives. No placeholder image, fake icon, handcrafted SVG, CSS drawing, or benchmark/ranking content was introduced.
 - Visible focus, semantic fallback content, 44×44 touch controls, reduced-motion behavior, and forced-color handling are retained.
 
-Intentional differences from the concept board are accepted product constraints: the path is the canonical four-step sequence; labels, records, counts, and sources are repository-backed; benchmark and ranking material is excluded; and the existing site shell remains intact.
+Those differences document the compared implementation only. The maintained
+records and four-step learning sequence remain factual inputs; the former site
+shell and its visual treatment are not protected requirements.
 
 ## Comparison history
 

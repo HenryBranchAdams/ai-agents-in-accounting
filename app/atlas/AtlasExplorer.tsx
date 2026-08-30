@@ -10,7 +10,6 @@ import {
   Buildings,
   CaretLeft,
   CaretRight,
-  Check,
   Compass,
   FileText,
   ListBullets,
@@ -141,6 +140,11 @@ function isViewMode(value: string | null): value is ViewMode {
   return value === "map" || value === "list";
 }
 
+function defaultViewMode(requestedView: string | null) {
+  if (isViewMode(requestedView)) return requestedView;
+  return window.matchMedia("(max-width: 720px)").matches ? "list" : "map";
+}
+
 function AtlasMap({
   compact,
   edges,
@@ -235,6 +239,7 @@ export function AtlasExplorer({
   const [industry, setIndustry] = useState<ResourceIndustry>("general");
   const [timeLayer, setTimeLayer] = useState<AtlasTimeLayerId>("all");
   const [viewMode, setViewMode] = useState<ViewMode>("map");
+  const [viewIsExplicit, setViewIsExplicit] = useState(false);
   const [filtersInitialized, setFiltersInitialized] = useState(false);
   const [compactMap, setCompactMap] = useState(false);
   const [guideOpen, setGuideOpen] = useState(false);
@@ -253,7 +258,8 @@ export function AtlasExplorer({
       setSelectedNodeId(requestedNode && nodeById.has(requestedNode) ? requestedNode : defaultNodeId);
       setIndustry(isIndustry(requestedIndustry, industryLenses) ? requestedIndustry : "general");
       setTimeLayer(isTimeLayer(requestedTimeLayer, timeLayers) ? requestedTimeLayer : "all");
-      setViewMode(isViewMode(requestedView) ? requestedView : "map");
+      setViewMode(defaultViewMode(requestedView));
+      setViewIsExplicit(isViewMode(requestedView));
       setFiltersInitialized(true);
     };
 
@@ -264,11 +270,19 @@ export function AtlasExplorer({
 
   useEffect(() => {
     const media = window.matchMedia("(max-width: 720px), (min-width: 700px) and (max-height: 600px)");
-    const update = () => setCompactMap(media.matches);
+    const narrowMedia = window.matchMedia("(max-width: 720px)");
+    const update = () => {
+      setCompactMap(media.matches);
+      if (!viewIsExplicit) setViewMode(narrowMedia.matches ? "list" : "map");
+    };
     update();
     media.addEventListener("change", update);
-    return () => media.removeEventListener("change", update);
-  }, []);
+    narrowMedia.addEventListener("change", update);
+    return () => {
+      media.removeEventListener("change", update);
+      narrowMedia.removeEventListener("change", update);
+    };
+  }, [viewIsExplicit]);
 
   useEffect(() => {
     if (!filtersInitialized) return;
@@ -276,9 +290,10 @@ export function AtlasExplorer({
     parameters.set("node", selectedNodeId);
     parameters.set("industry", industry);
     parameters.set("time_layer", timeLayer);
-    parameters.set("view", viewMode);
+    if (viewIsExplicit) parameters.set("view", viewMode);
+    else parameters.delete("view");
     window.history.replaceState(null, "", `${window.location.pathname}?${parameters}${window.location.hash}`);
-  }, [filtersInitialized, industry, selectedNodeId, timeLayer, viewMode]);
+  }, [filtersInitialized, industry, selectedNodeId, timeLayer, viewIsExplicit, viewMode]);
 
   const filteredNodes = useMemo(() => {
     const byLens = nodes.filter((node) => {
@@ -323,6 +338,11 @@ export function AtlasExplorer({
     setSelectedNodeId(id);
     setGuideOpen(false);
     setIndustryPanelOpen(false);
+  }, []);
+
+  const selectViewMode = useCallback((nextView: ViewMode) => {
+    setViewMode(nextView);
+    setViewIsExplicit(true);
   }, []);
 
   const changeIndustry = (nextIndustry: ResourceIndustry) => {
@@ -394,17 +414,17 @@ export function AtlasExplorer({
     animated: false,
     markerEnd: {
       type: MarkerType.ArrowClosed,
-      color: record.path_edge ? "#176b4d" : "#94a3b8",
+      color: record.path_edge ? "#4f46d9" : "#9b9ead",
       height: record.path_edge ? 16 : 12,
       width: record.path_edge ? 16 : 12,
     },
     style: {
-      stroke: record.path_edge ? "#176b4d" : "#a9b7c5",
+      stroke: record.path_edge ? "#4f46d9" : "#afb1bd",
       strokeDasharray: record.path_edge ? undefined : "5 6",
       strokeWidth: record.path_edge ? 2.5 : 1.25,
     },
-    labelStyle: { fill: "#176b4d", fontSize: 11, fontWeight: 650 },
-    labelBgStyle: { fill: "#fffdf9", fillOpacity: 0.94 },
+    labelStyle: { fill: "#3b39ad", fontSize: 11, fontWeight: 650 },
+    labelBgStyle: { fill: "#ffffff", fillOpacity: 0.94 },
     labelBgPadding: [5, 3],
     labelBgBorderRadius: 5,
   })), [compactMap, filteredEdges, nodeById]);
@@ -437,69 +457,67 @@ export function AtlasExplorer({
 
   return (
     <section aria-labelledby="atlas-explorer-title" className="atlas-explorer">
-      <div className="atlas-lens-row">
-        <span>Industry lens</span>
-        <div aria-label="Industry lens" className="atlas-lens-scroller" role="radiogroup">
-          {industryLenses.map((lens) => (
-            <button
-              aria-checked={industry === lens.id}
-              className="atlas-lens-button"
-              data-active={industry === lens.id ? "true" : undefined}
-              key={lens.id}
-              onClick={() => changeIndustry(lens.id)}
-              role="radio"
-              title={lens.description}
-              type="button"
-            >
-              {lens.id === "general" ? <Buildings aria-hidden="true" /> : lens.id === "banking-credit-unions" ? <Bank aria-hidden="true" /> : <Buildings aria-hidden="true" />}
-              {lens.label.replace(" and credit unions", "").replace(" or life sciences", "")}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      <div className="atlas-intro">
+      <header className="atlas-intro">
         <p className="atlas-eyebrow">Source-linked learning map</p>
         <h1 id="atlas-explorer-title">The Living Atlas</h1>
         <p>
           Explore how accounting work, controls, agent capabilities, primary sources,
           and industry context connect across time.
         </p>
-      </div>
+      </header>
 
-      <nav aria-label="Guided Atlas path" className="atlas-path-progress">
-        <p>Your path <span>{selectedPathIndex === null ? "Explore" : `${selectedPathIndex + 1} of ${pathNodeIds.length}`}</span></p>
-        <ol>
-          {pathNodeIds.map((id, index) => {
-            const node = nodeById.get(id);
-            if (!node) return null;
-            const complete = selectedPathIndex !== null && index < selectedPathIndex;
-            return (
-              <li key={id}>
+      <section aria-label="Atlas filters and view controls" className="atlas-instrument-rail">
+        <div className="atlas-filter-rail">
+          <div className="atlas-lens-row">
+            <span id="atlas-industry-lens-label">Industry lens</span>
+            <div aria-labelledby="atlas-industry-lens-label" className="atlas-lens-scroller" role="radiogroup">
+              {industryLenses.map((lens) => (
                 <button
-                  aria-current={id === selectedNode.id ? "step" : undefined}
-                  aria-label={`Step ${index + 1}: ${node.label}`}
-                  data-complete={complete ? "true" : undefined}
-                  data-current={id === selectedNode.id ? "true" : undefined}
-                  onClick={() => selectNode(id)}
+                  aria-checked={industry === lens.id}
+                  className="atlas-lens-button"
+                  data-active={industry === lens.id ? "true" : undefined}
+                  key={lens.id}
+                  onClick={() => changeIndustry(lens.id)}
+                  role="radio"
+                  title={lens.description}
                   type="button"
                 >
-                  {complete ? <Check aria-hidden="true" weight="bold" /> : index + 1}
+                  {lens.id === "general" ? <Buildings aria-hidden="true" /> : lens.id === "banking-credit-unions" ? <Bank aria-hidden="true" /> : <Buildings aria-hidden="true" />}
+                  {lens.label.replace(" and credit unions", "").replace(" or life sciences", "")}
                 </button>
-              </li>
-            );
-          })}
-        </ol>
-      </nav>
+              ))}
+            </div>
+          </div>
 
-      <div className="atlas-workspace">
-        <div className="atlas-map-pane">
+          <fieldset className="atlas-time-layer atlas-time-layer-rail">
+            <legend>Time layer</legend>
+            <div>
+              <span>Foundational archive</span>
+              <span>Current developments</span>
+            </div>
+            <label>
+              <span className="sr-only">Time layer</span>
+              <input
+                aria-valuetext={timeLayers.find((layer) => layer.id === timeLayer)?.label}
+                max={2}
+                min={0}
+                onInput={(event) => changeTimeLayer(timeLayers[Number(event.currentTarget.value)]?.id ?? "all")}
+                step={1}
+                type="range"
+                value={timeLayers.findIndex((layer) => layer.id === timeLayer)}
+              />
+            </label>
+            <p>{timeLayers.find((layer) => layer.id === timeLayer)?.description}</p>
+          </fieldset>
+        </div>
+
+        <div className="atlas-rail-actions">
           <div className="atlas-view-controls">
             <div aria-label="Atlas view" role="group">
               <button
                 aria-pressed={viewMode === "map"}
                 data-active={viewMode === "map" ? "true" : undefined}
-                onClick={() => setViewMode("map")}
+                onClick={() => selectViewMode("map")}
                 type="button"
               >
                 <MapTrifold aria-hidden="true" /> Map
@@ -507,7 +525,7 @@ export function AtlasExplorer({
               <button
                 aria-pressed={viewMode === "list"}
                 data-active={viewMode === "list" ? "true" : undefined}
-                onClick={() => setViewMode("list")}
+                onClick={() => selectViewMode("list")}
                 type="button"
               >
                 <ListBullets aria-hidden="true" /> List
@@ -518,7 +536,34 @@ export function AtlasExplorer({
               <button aria-label="Next path step" onClick={() => movePath(1)} type="button"><CaretRight aria-hidden="true" /></button>
             </div>
           </div>
+        </div>
+      </section>
 
+      <nav aria-label="Guided Atlas path" className="atlas-path-progress">
+        <p>Guided sequence <span>{selectedPathIndex === null ? "Explore" : `Step ${selectedPathIndex + 1} of ${pathNodeIds.length}`}</span></p>
+        <ol>
+          {pathNodeIds.map((id, index) => {
+            const node = nodeById.get(id);
+            if (!node) return null;
+            return (
+              <li key={id}>
+                <button
+                  aria-current={id === selectedNode.id ? "step" : undefined}
+                  aria-label={`Step ${index + 1}: ${node.label}`}
+                  data-current={id === selectedNode.id ? "true" : undefined}
+                  onClick={() => selectNode(id)}
+                  type="button"
+                >
+                  {index + 1}
+                </button>
+              </li>
+            );
+          })}
+        </ol>
+      </nav>
+
+      <div className="atlas-workspace">
+        <div className="atlas-map-pane">
           {viewMode === "map" ? (
             <ReactFlowProvider>
               <AtlasMap compact={compactMap} edges={flowEdges} nodes={flowNodes} onSelect={selectNode} />
@@ -552,7 +597,7 @@ export function AtlasExplorer({
         <aside aria-label={`Selected Atlas node: ${selectedNode.label}`} className="atlas-inspector" id={`atlas-inspector-${selectedNode.id}`}>
           <div className="atlas-inspector-heading">
             <div>
-              <p>{selectedPathIndex === null ? clusterLabels[selectedNode.cluster] : `Your path · Step ${selectedPathIndex + 1} of ${pathNodeIds.length}`}</p>
+              <p>{selectedPathIndex === null ? clusterLabels[selectedNode.cluster] : `Guided sequence · Step ${selectedPathIndex + 1} of ${pathNodeIds.length}`}</p>
               <h2>{selectedNode.label}</h2>
             </div>
             <span className="atlas-selection-glyph" data-cluster={selectedNode.cluster}><NodeGlyph record={selectedNode} /></span>
@@ -660,26 +705,6 @@ export function AtlasExplorer({
               </div>
             </section>
           )}
-
-          <section className="atlas-time-layer">
-            <div>
-              <span>Foundational archive</span>
-              <span>Current developments</span>
-            </div>
-            <label>
-              <span className="sr-only">Time layer</span>
-              <input
-                aria-valuetext={timeLayers.find((layer) => layer.id === timeLayer)?.label}
-                max={2}
-                min={0}
-                onInput={(event) => changeTimeLayer(timeLayers[Number(event.currentTarget.value)]?.id ?? "all")}
-                step={1}
-                type="range"
-                value={timeLayers.findIndex((layer) => layer.id === timeLayer)}
-              />
-            </label>
-            <p>{timeLayers.find((layer) => layer.id === timeLayer)?.description}</p>
-          </section>
 
           <div className="atlas-provenance">
             <span>Stable node <code>{selectedNode.id}</code></span>
