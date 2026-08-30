@@ -3,6 +3,8 @@ import { bankReconciliationTutorial } from "../../bank-reconciliation-tutorial";
 import { DocsShell } from "../../DocsShell";
 import { docsMetadata } from "../../docsMetadata";
 import { KnowledgeCheck } from "../../start-here/KnowledgeCheck";
+import { BankReconciliationLab } from "../../learning/BankReconciliationLab";
+import { LessonProgress } from "../../learning/LessonProgress";
 
 const tutorial = bankReconciliationTutorial;
 const money = new Intl.NumberFormat("en-US", {
@@ -26,6 +28,7 @@ export default function BankReconciliationTutorialPage() {
   return (
     <DocsShell
       active="/tutorials/bank-reconciliation"
+      immersive
       category="Learn"
       title={tutorial.title}
       description={tutorial.description}
@@ -49,6 +52,15 @@ export default function BankReconciliationTutorialPage() {
       previous={{ href: "/course", label: "Core course" }}
       next={{ href: "/reviewer-guide", label: "Reviewer field guide" }}
     >
+      <section className="aa2-tutorial-intro" aria-labelledby="tutorial-canvas-title">
+        <div>
+          <p className="aa2-kicker">Applied case · synthetic fixture</p>
+          <h1 id="tutorial-canvas-title">Build the reviewer-ready exception, not a forced tie-out.</h1>
+          <p>Work a fictional cash difference from evidence register through the exact point where a person needs to decide.</p>
+        </div>
+        <LessonProgress lessonId={tutorial.id} />
+      </section>
+      <BankReconciliationLab />
       <section id="before-you-begin">
         <h2>Before you begin</h2>
         <p>{tutorial.intended_learner}</p>

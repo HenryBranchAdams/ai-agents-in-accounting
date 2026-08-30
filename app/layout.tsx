@@ -1,13 +1,17 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import "./field-instrument.css";
+import "./edtech-shell.css";
+import "./edtech-home.css";
+import "./edtech-lessons.css";
+import "./edtech-atlas.css";
 import { WebMcpTools } from "./WebMcpTools";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://accounting-agents.madebyhenry.chatgpt.site"),
   title: "Accounting Agents",
   description:
-    "Open educational hub and source-linked field guide for governed AI agents in accounting and finance.",
+    "Learn to design, practice, and review governed accounting-agent workflows through source-linked lessons and synthetic cases.",
   alternates: {
     canonical: "/",
   },
@@ -24,26 +28,26 @@ export const metadata: Metadata = {
     follow: true,
   },
   icons: {
-    icon: "/favicon.svg",
-    shortcut: "/favicon.svg",
+    icon: "/brand-mark.png",
+    shortcut: "/brand-mark.png",
   },
   openGraph: {
     title: "Accounting Agents",
-    description: "Educational field guide to governed AI agents in accounting.",
+    description: "A practical learning path for governed AI agents in accounting.",
     type: "website",
     images: [
       {
         url: "/og.png",
         width: 1200,
         height: 630,
-        alt: "Accounting Agents field guide",
+        alt: "Accounting Agents learning experience",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Accounting Agents",
-    description: "Educational field guide to governed AI agents in accounting.",
+    description: "A practical learning path for governed AI agents in accounting.",
     images: ["/og.png"],
   },
 };

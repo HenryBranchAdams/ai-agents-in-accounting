@@ -69,7 +69,7 @@ test("human, Markdown, and JSON core-course surfaces preserve the same deliberat
   assert.equal(page.status, 200);
   const html = await page.text();
 
-  assert.match(html, /<h1>Core course: accounting agents from evidence to governed work<\/h1>/);
+  assert.match(html, /<h1[^>]*>Evidence before action<\/h1>/);
   assert.match(html, /Content mode: <strong>Tutorial<\/strong>/);
   assert.match(html, /accounting-agents-core-course/);
   assert.match(html, /Why these twenty sources/);
@@ -109,7 +109,8 @@ test("human, Markdown, and JSON core-course surfaces preserve the same deliberat
 test("core course is discoverable and projected into the canonical corpus without a dashboard", async () => {
   const homepage = await (await request("/")).text();
   assert.match(homepage, /href="\/course"/);
-  assert.match(homepage, /Take the core course/);
+  assert.match(homepage, /Core course/);
+  assert.match(homepage, /Start learning/);
 
   const contentContract = (await (await request("/api/v1/content-contract")).json()).item;
   assert.ok(contentContract.page_assignments.some((assignment) => assignment.path === "/course" && assignment.primary_mode === "tutorial"));
@@ -150,15 +151,17 @@ test("core course is discoverable and projected into the canonical corpus withou
   }
 });
 
-test("core course has responsive reading cards and explicit qualification boundaries", async () => {
+test("core course has responsive reading cards and an immersive learner canvas", async () => {
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
   assert.match(css, /\.course-bridge-grid[\s\S]*grid-template-columns:\s*1fr 1fr/);
   assert.match(css, /\.course-reading-details > summary:focus-visible[\s\S]*outline:/);
   assert.match(css, /@media \(max-width: 720px\)[\s\S]*\.course-bridge-grid[\s\S]*grid-template-columns:\s*1fr/);
   assert.match(css, /@media \(max-width: 720px\)[\s\S]*\.course-reading-details dl > div[\s\S]*grid-template-columns:\s*1fr/);
 
-  const readme = await readFile(new URL("../README.md", import.meta.url), "utf8");
-  assert.match(readme, /core course/);
-  assert.match(readme, /20 primary, original-research, official, and first-party practice sources/);
-  assert.match(readme, /accountable-human boundary/);
+  const lessonCss = await readFile(new URL("../app/edtech-lessons.css", import.meta.url), "utf8");
+  assert.match(lessonCss, /\.aa2-course-route/);
+  assert.match(lessonCss, /@media \(max-width: 760px\)/);
+  const html = await (await request("/course")).text();
+  assert.match(html, /class="aa2-lesson-hero aa2-course-hero"/);
+  assert.match(html, /Accountable people approve conclusions and sensitive external actions/);
 });

@@ -1,6 +1,8 @@
+import { ArrowRightIcon, ArrowSquareOutIcon } from "@phosphor-icons/react/ssr";
 import Link from "next/link";
 import { DocsShell } from "../DocsShell";
 import { KnowledgeCheck } from "../start-here/KnowledgeCheck";
+import { LessonProgress } from "../learning/LessonProgress";
 import {
   accountingAgentsCoreCourse,
   coreCourseEstimatedMinutes,
@@ -31,6 +33,7 @@ export default function CoreCoursePage() {
   return (
     <DocsShell
       active="/course"
+      immersive
       category="Learn"
       title={course.title}
       description={course.description}
@@ -51,6 +54,34 @@ export default function CoreCoursePage() {
       previous={{ href: "/start-here", label: "Start here" }}
       next={{ href: "/workflows/record-to-report/wf-r2r-bank-reconciliations", label: "Bank-reconciliation workflow brief" }}
     >
+      <section className="aa2-lesson-hero aa2-course-hero" aria-labelledby="course-canvas-title">
+        <div className="aa2-course-route" aria-label="Core course modules">
+          <p>From evidence to governed work</p>
+          <ol>
+            {course.modules.map((module) => (
+              <li className={module.order === 2 ? "is-active" : ""} key={module.id}>
+                <span>{String(module.order).padStart(2, "0")}</span>
+                <a href={`#${module.id}`}>{module.title}</a>
+              </li>
+            ))}
+          </ol>
+        </div>
+        <div className="aa2-lesson-hero-copy">
+          <p className="aa2-kicker">Lesson 2 of 5</p>
+          <h1 id="course-canvas-title">Evidence before action</h1>
+          <p>A governed agent starts with the objective, source record, and reviewer’s decision—not with a model response.</p>
+          <div className="aa2-hero-actions">
+            <a className="aa2-primary-action" href={`#${course.modules[2]?.id ?? "module-agent-systems"}`}>Continue to systems <ArrowRightIcon aria-hidden="true" size={18} /></a>
+            <Link className="aa2-outline-action" href="/atlas">Open in the Atlas <ArrowSquareOutIcon aria-hidden="true" size={18} /></Link>
+          </div>
+          <ol className="aa2-evidence-arc">
+            <li><span>01</span><strong>Source evidence</strong><p>Raw records from trusted systems.</p></li>
+            <li className="is-active"><span>02</span><strong>Prepared work</strong><p>Agent draft aligned to objective and evidence.</p></li>
+            <li><span>03</span><strong>Reviewer decision</strong><p>Human approval, rejection, or request for change.</p></li>
+          </ol>
+        </div>
+        <LessonProgress label="Mark course reviewed" lessonId={course.id} />
+      </section>
       <section id="before-you-begin">
         <h2>Before you begin</h2>
         <p>{course.intended_audience}</p>

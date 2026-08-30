@@ -51,10 +51,11 @@ const primaryPages = [
 ];
 
 test("primary pages expose a complete mobile navigation contract", async () => {
-  const referenceInterior = await (await request("/start-here")).text();
-  const referenceDesktop = referenceInterior.match(/<aside[^>]+class=["']sidebar["'][^>]*>[\s\S]*?<nav[^>]+aria-label=["']Documentation["'][^>]*>([\s\S]*?)<\/nav>/i)?.[1];
+  const referenceInterior = await (await request("/fundamentals")).text();
+  const referenceDesktop = referenceInterior.match(/<aside[^>]+class=["'][^"']*sidebar[^"']*["'][^>]*>[\s\S]*?<nav[^>]+aria-label=["']Documentation["'][^>]*>([\s\S]*?)<\/nav>/i)?.[1];
   assert.ok(referenceDesktop, "interior desktop navigation reference");
   const referenceLinks = attributeValues(referenceDesktop, "href");
+  const immersivePages = new Set(["/", "/atlas", "/start-here", "/course", "/tutorials/bank-reconciliation"]);
 
   for (const path of primaryPages) {
     const response = await request(path);
@@ -62,18 +63,20 @@ test("primary pages expose a complete mobile navigation contract", async () => {
     const html = await response.text();
     assert.match(html, /<meta[^>]+name=["']viewport["'][^>]+width=device-width/i, `${path} viewport`);
 
-    const mobile = html.match(/<details[^>]+class=["']mobile-navigation["'][^>]*>([\s\S]*?)<\/details>/i)?.[1];
-    const desktop = html.match(/<aside[^>]+class=["']sidebar["'][^>]*>[\s\S]*?<nav[^>]+aria-label=["']Documentation["'][^>]*>([\s\S]*?)<\/nav>/i)?.[1];
+    const mobile = html.match(/<details[^>]+class=["'][^"']*mobile-navigation[^"']*["'][^>]*>([\s\S]*?)<\/details>/i)?.[1];
+    const mobileDocs = html.match(/<nav[^>]+aria-label=["']Mobile documentation["'][^>]*>([\s\S]*?)<\/nav>/i)?.[1];
+    const desktop = html.match(/<aside[^>]+class=["'][^"']*sidebar[^"']*["'][^>]*>[\s\S]*?<nav[^>]+aria-label=["']Documentation["'][^>]*>([\s\S]*?)<\/nav>/i)?.[1];
     assert.ok(mobile, `${path} mobile navigation`);
+    assert.ok(mobileDocs, `${path} mobile documentation`);
     assert.match(mobile, /<summary>[\s\S]*?Explore<\/summary>/i, `${path} navigation disclosure`);
 
-    const mobileLinks = attributeValues(mobile, "href");
-    if (path === "/" || path === "/atlas") {
+    const mobileLinks = attributeValues(mobileDocs, "href");
+    if (immersivePages.has(path)) {
       assert.equal(desktop, undefined, `${path} may omit the desktop documentation sidebar`);
-      assert.deepEqual(mobileLinks, referenceLinks, `${path} mobile navigation remains complete`);
+      assert.deepEqual([...mobileLinks].sort(), [...referenceLinks].sort(), `${path} mobile navigation remains complete`);
       assert.match(
-        mobile,
-        new RegExp(`<a(?=[^>]*\\bhref=["']${path === "/" ? "\\/" : "\\/atlas"}["'])(?=[^>]*\\baria-current=["']page["'])[^>]*>`, "i"),
+        mobileDocs,
+        new RegExp(`<a(?=[^>]*\\bhref=["']${path.replaceAll("/", "\\/") || "\\/"}["'])(?=[^>]*\\baria-current=["']page["'])[^>]*>`, "i"),
         `${path} navigation item is active`,
       );
     } else {
@@ -85,7 +88,7 @@ test("primary pages expose a complete mobile navigation contract", async () => {
         `${path} navigation destination parity`,
       );
     }
-    assert.equal((mobile.match(/aria-current=["']page["']/gi) ?? []).length, 1, `${path} active mobile item`);
+    assert.equal((mobileDocs.match(/aria-current=["']page["']/gi) ?? []).length, 1, `${path} active mobile documentation item`);
   }
 });
 

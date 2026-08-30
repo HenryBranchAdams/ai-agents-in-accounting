@@ -1,61 +1,68 @@
-# Living Atlas design QA — historical baseline
+# Living Cartography design QA
 
-Date: 2026-08-28
-Result at capture: **passed**
-Current status: **superseded by `docs/design/designcode-quality-direction.md`**
+Date: 2026-08-30
+Branch: `codex/edtech-living-cartography`
+Target: a modern, practice-first EdTech experience at the quality bar established by the selected Living Cartography direction.
 
-This file preserves evidence for the previous implementation. It is not a
-design constraint on the current site shell, palette, layout, imagery, motion,
-or interaction model.
+## Source and render comparison
 
-## Visual truth and implementation evidence
+The selected source concepts and final browser renders were opened together and judged in the same comparison pass.
 
-| Surface | Visual truth | Implementation capture | Comparison | Viewport and normalization |
-| --- | --- | --- | --- | --- |
-| Desktop | `/Users/henryadams/.codex/generated_images/01a03a73-ac39-71f3-bc61-185d25d1783a/exec-ded72834-b47b-4af1-b4e5-c2c08aa5cc89.png` | `/private/tmp/accounting-atlas-desktop-final-1487x1058.jpg` | `/private/tmp/accounting-atlas-desktop-final-comparison.png` | Source 1487×1058 px; implementation 1487×1058 px; 1487×1058 CSS px at 1× density. |
-| Portrait | `/Users/henryadams/.codex/generated_images/01a03a73-ac39-71f3-bc61-185d25d1783a/exec-5383729d-e4e6-4ee2-816e-9a5d73e2d262.png` | `/private/tmp/accounting-atlas-portrait-final-390x844.jpg` | `/private/tmp/accounting-atlas-portrait-final-comparison.png` | Source 853×1844 px normalized to 390×844; implementation 390×844 px; 390×844 CSS px at 1× density. |
-| Compact landscape | `/Users/henryadams/.codex/generated_images/01a03a73-ac39-71f3-bc61-185d25d1783a/exec-2bb8bb73-2f5c-4cc4-9be6-4ba08dab43e7.png` | `/private/tmp/accounting-atlas-landscape-final-844x390.jpg` | `/private/tmp/accounting-atlas-landscape-final-comparison.png` | Source 1846×852 px normalized to 844×390; implementation 844×390 px; 844×390 CSS px at 1× density. |
+| Surface | Source concept | Final browser evidence | Viewport |
+| --- | --- | --- | --- |
+| Learning home | `docs/design/concepts/edtech-v2/living-cartography-home.png` | `/private/tmp/aa2-home-1440-viewport-final.png` | 1440 × 1024 |
+| Core course | `docs/design/concepts/edtech-v2/living-cartography-course.png` | `/private/tmp/aa2-course-1440-viewport-final.png` | 1440 × 1024 |
+| Practice lab | `docs/design/concepts/edtech-v2/living-cartography-practice.png` | `/private/tmp/aa2-practice-1440-viewport-final.png` | 1440 × 1024 |
+| Living Atlas | `docs/design/concepts/edtech-v2/living-cartography-atlas.png` | `/private/tmp/aa2-atlas-1440-viewport-final.png` | 1440 × 1024 |
+| Mobile home | `docs/design/concepts/edtech-v2/living-cartography-mobile.png` | `/private/tmp/aa2-home-390-top-viewport-final.png`, `/private/tmp/aa2-home-390-map-viewport-final.png`, `/private/tmp/aa2-home-390-evidence-viewport-final.png`, `/private/tmp/aa2-home-390-paths-viewport-final.png` | 390 × 844 |
 
-The compared state is the General accounting lens, all time layers, Map view, with `Exception handling` selected at step 3 of the canonical four-step path.
+## Fidelity ledger
 
-## Comparison findings
+1. **Visual grammar — matched.** The final build uses the source direction’s white paper field, black editorial typography, cobalt-to-violet path, moss approval state, amber exception state, fine gray rules, and restrained contour texture.
+2. **Learning-home hierarchy — matched.** The exact hero promise, two primary actions, Evidence → Prepare → Review → Approve journey, selected-step card, role paths, and Atlas continuation all survive in the final build.
+3. **Course shell — matched in intent and quality.** The final course uses a persistent route rail, focused lesson canvas, three-part evidence arc, and private device-local progress surface. The full source-backed course continues below the initial learner canvas instead of being reduced to mock content.
+4. **Practice workspace — matched in intent and quality.** The final lab exposes evidence, tie-out, exception, reviewer packet, and decision stages with a real synthetic discrepancy and a dedicated exception inspector. The full tutorial remains available below the interactive workspace.
+5. **Atlas — matched.** The final graph preserves the source direction’s category colors, main governed-work spine, related controls/capabilities/sources, filter controls, map/list equivalence, and selected-node inspector.
+6. **Interaction language — strengthened.** Visible state changes are explicit through `aria-pressed`, live response regions, selected tabs, active stages, and device-local lesson markers; no completion or certification state is invented.
+7. **Mobile composition — matched after refinement.** The mobile sequence preserves the source concept’s editorial hero and vertical cartography while adapting the preview card and role paths to a true 390 px viewport.
+8. **Accountability boundary — correctly scoped.** The site is visually expressive and interactive. Human approval remains a content and production-agent boundary, not a restriction on the site experience.
 
-The same-size, side-by-side comparisons establish the full-view layout at all three approved breakpoints. Focused crops were not needed for final acceptance because the remaining concerns were global relationships—map fit, inspector order, path centering, control placement, and first-viewport action visibility—and are legible at native comparison size. Earlier focused browser inspection was used while correcting node labels, the selected path, source metadata, and action cards.
+## Defects found and resolved
 
-- Desktop preserves the approved map-plus-persistent-inspector composition. The canonical four-step path replaces the illustrative seven-step concept, and all surrounding nodes are real repository records rather than mock content.
-- Portrait keeps the selected path centered in a graph-first stage without horizontal overflow. The inspector follows the map below the first viewport, as required by the approved implementation contract.
-- Compact landscape keeps the map and evidence inspector side by side. The selected path, primary source, and the first learning actions remain visible without drag-only navigation.
-- Typography, spacing, borders, radii, shadows, and color tokens remain consistent with the existing Accounting Agents system. The generated contour image is quiet, correctly fitted, and does not carry meaning.
-- Copy preserves sourced fact, implementation pattern, synthetic-example, and limitation distinctions. The four-step path and AS 1105 source replace illustrative mock records.
-- Phosphor and React Flow supply icons and graph primitives. No placeholder image, fake icon, handcrafted SVG, CSS drawing, or benchmark/ranking content was introduced.
-- Visible focus, semantic fallback content, 44×44 touch controls, reduced-motion behavior, and forced-color handling are retained.
+- Removed legacy shell clipping on the immersive course and practice canvases.
+- Replaced the malformed social image and placeholder brand tile with production-ready raster assets.
+- Restored pointer access to map nodes that were overlapped by the transparent hero copy layer.
+- Separated the mobile CTA and Approve node.
+- Separated the mobile Evidence node and workflow preview card, then reconnected all visible path segments.
+- Added a semantic caption and explicit overflow wrapper to the practice tie-out table.
+- Preserved a complete mobile documentation menu while allowing immersive learner routes to omit the desktop sidebar.
+- Replaced obsolete README and old-homepage assertions with runtime contracts for the new learner experience.
+- Split the Atlas graph into an on-demand map chunk and render a stable semantic list first on narrow screens.
 
-Those differences document the compared implementation only. The maintained
-records and four-step learning sequence remain factual inputs; the former site
-shell and its visual treatment are not protected requirements.
+No unresolved P0, P1, or P2 visual defects remain.
 
-## Comparison history
+## Interaction evidence
 
-1. **Iteration 1 — development-runtime blocker:** the Vite development client rendered a blank hydrated map because `process` was undefined. QA moved to the repository's successful production build, where the map rendered and the console stayed clean. This is a development-runtime limitation, not a production-rendering defect.
-2. **Iteration 2 — P2 responsive structure:** the desktop inspector did not remain persistently aligned with the map; portrait and landscape graph fitting was fragile; React Flow controls were undersized; and relationship labels were generic. The layout grid, responsive refit, 44×44 controls, and relationship names were corrected.
-3. **Iteration 3 — P2 portrait and landscape composition:** the map and inspector stacked in the wrong order, the selected node could be tiny or offscreen, cluster labels overlapped, and learning actions fell outside the compact landscape view. Explicit grid placement, compact deterministic positions, post-filter refitting, label anchors, and compact source/action layout resolved the issues.
-4. **Interaction correction:** the time slider's `onChange` handler did not update state in the built Vinext runtime. It now uses `onInput`; selecting Current developments updates both the URL and the visible layer description.
-5. **Independent review correction:** map nodes accepted pointer selection but not Enter or Space, and a selected source node could fall back to AS 1105 in the source card. Map nodes are now native buttons with capture-level keyboard activation, and source nodes resolve their own metadata before related-source fallback. Built-browser checks confirmed Enter, Space, source ID, title, URL, and original-source link fidelity.
+- Homepage Evidence node becomes selected and exposes the stage 1 evidence preview.
+- Role-based path selection changes the focused outcome and destination.
+- Practice `Request evidence` returns a no-conclusion/no-posting boundary message.
+- Practice `Prepare reviewer packet` confirms that a reviewer still decides the disposition.
+- Atlas Map and List controls both become pressed and expose equivalent discovery paths.
+- Mobile Explore exposes Learn, Practice, Atlas, Library, Start learning, and the complete documentation index.
 
-## Interaction and runtime checks
+## Acceptance evidence
 
-Verified in the built local application at `http://localhost:4191/atlas`:
+- Production build: passed.
+- Lint: passed.
+- Clean-clone redesign release suite: 97 passed, 0 failed.
+- Integrated working-tree suite, including concurrent additions: 102 passed, 0 failed.
+- Desktop widths: all four primary surfaces render at 1440 CSS px with 1440 px document width.
+- Mobile widths: home, course, practice, and Atlas render at 390 CSS px with 390 px document width.
+- Mobile collision checks: CTA/Approve and Evidence/preview both report no overlap.
+- Semantic checks: one H1 per page, table captions, keyboard-search shortcut, mobile navigation parity, local-image existence, and alt/decorative-image contracts all pass.
 
-- Map/List equivalence.
-- Previous and next path navigation.
-- Direct graph-node selection.
-- Enter and Space activation for focused graph nodes.
-- General, banking, healthcare, and manufacturing industry lenses.
-- All, foundational archive, and current-development time layers.
-- Guide and synthetic-case learning actions.
-- Shareable `node`, `industry`, `time_layer`, and `view` URL state.
-- WebMCP inventory and a harmless `accounting_agents.get_current_page` call.
-- No warnings or errors in the production-page console.
-- Selected source nodes preserve their own title, source ID, record link, and original-source link in the inspector.
+## Release boundary
 
-This QA qualifies local rendering and interaction fidelity only. It does not establish hosted behavior, deployment, independent review, professional review, control effectiveness, learning efficacy, or production release.
+The verified local preview is the release candidate. Production was not changed during this QA pass.
+
+final result: passed

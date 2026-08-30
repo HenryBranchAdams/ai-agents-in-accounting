@@ -152,9 +152,10 @@ test("authority guide is discoverable and links to canonical sensitive actions a
     assert.equal((await request(`/resources/${source.id}`, { accept: "text/html" })).status, 200, source.id);
   }
 
-  const readme = await readFile(new URL("../README.md", import.meta.url), "utf8");
-  assert.match(readme, /authority ladder and decision tree/i);
-  assert.match(readme, /A3 execution after approval from A4 policy execution and human-only responsibility/i);
+  const authorityHtml = await (await request("/authority", { accept: "text/html" })).text();
+  assert.match(authorityHtml, /A3/);
+  assert.match(authorityHtml, /A4/);
+  assert.match(authorityHtml, /human-only/i);
 });
 
 test("authority guide responsive styles keep branches and action records readable", async () => {

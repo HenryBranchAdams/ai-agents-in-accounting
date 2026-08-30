@@ -112,7 +112,11 @@ test("all published local images exist and include useful alternative text", asy
       const src = tag[0].match(/\bsrc=["']([^"']+)["']/i)?.[1];
       const alt = tag[0].match(/\balt=["']([^"']*)["']/i)?.[1];
       assert.ok(src, `${path} image source`);
-      assert.ok(alt?.trim(), `${path} image alternative`);
+      assert.notEqual(alt, undefined, `${path} image alt attribute`);
+      if (!alt?.trim()) {
+        const precedingMarkup = html.slice(Math.max(0, (tag.index ?? 0) - 180), tag.index ?? 0);
+        assert.match(precedingMarkup, /<[^>]+aria-hidden=["']true["'][^>]*>\s*$/i, `${path} blank image alternative is explicitly decorative`);
+      }
       if (src?.startsWith("/")) images.set(src, path);
     }
   });

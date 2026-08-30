@@ -1,0 +1,287 @@
+/* Living Cartography: lesson and practice canvases. Imported after the legacy field styles. */
+:root {
+  --aa2-ink: #111318;
+  --aa2-muted: #5e667b;
+  --aa2-line: #e5e7ef;
+  --aa2-cobalt: #2424df;
+  --aa2-violet: #6246e8;
+  --aa2-moss: #2d7c48;
+  --aa2-amber: #ed6b25;
+  --aa2-paper: #fff;
+}
+
+.doc-body > .aa2-lesson-hero,
+.doc-body > .aa2-tutorial-intro,
+.doc-body > .aa2-lab {
+  margin-left: calc(min(6vw, 4.5rem) * -1);
+  margin-right: calc(min(6vw, 4.5rem) * -1);
+}
+
+.aa2-kicker,
+.aa2-stage-count {
+  color: var(--aa2-cobalt);
+  font-size: .78rem;
+  font-weight: 750;
+  letter-spacing: .04em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.aa2-lesson-hero,
+.aa2-tutorial-intro {
+  background: linear-gradient(134deg, #fff 46%, rgba(98, 70, 232, .05)), url("/images/atlas/topographic-contours.webp") right center / 52% auto no-repeat;
+  border-bottom: 1px solid var(--aa2-line);
+  border-top: 1px solid var(--aa2-line);
+  display: grid;
+  gap: clamp(1.5rem, 4vw, 4rem);
+  grid-template-columns: minmax(12rem, .64fr) minmax(24rem, 1.65fr) minmax(13rem, .7fr);
+  min-height: 31rem;
+}
+
+.aa2-lesson-hero-copy {
+  align-self: center;
+  padding: clamp(2rem, 5vw, 5.5rem) 0;
+}
+
+.aa2-lesson-hero-copy h1,
+.aa2-tutorial-intro h1 {
+  color: var(--aa2-ink);
+  font-size: clamp(2.25rem, 4.25vw, 5rem);
+  letter-spacing: -.065em;
+  line-height: .95;
+  margin: .85rem 0 1.2rem;
+  max-width: 14ch;
+}
+
+.aa2-lesson-hero-copy > p:not(.aa2-kicker),
+.aa2-tutorial-intro > div > p:not(.aa2-kicker) {
+  color: var(--aa2-muted);
+  font-size: 1.08rem;
+  line-height: 1.58;
+  max-width: 42rem;
+}
+
+.aa2-course-route,
+.aa2-device-progress {
+  border-right: 1px solid var(--aa2-line);
+  padding: clamp(1.4rem, 2.5vw, 2.5rem);
+}
+
+.aa2-course-route > p {
+  color: var(--aa2-ink);
+  font-size: 1.27rem;
+  font-weight: 720;
+  line-height: 1.1;
+  margin: 0 0 2.2rem;
+  max-width: 12ch;
+}
+
+.aa2-course-route ol,
+.aa2-stage-list,
+.aa2-evidence-arc,
+.aa2-lab-flow {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.aa2-course-route li {
+  align-items: center;
+  display: grid;
+  gap: .8rem;
+  grid-template-columns: 2.2rem 1fr;
+  margin: .12rem 0;
+  position: relative;
+}
+
+.aa2-course-route li::before {
+  background: #d4d8e3;
+  content: "";
+  height: calc(100% + .15rem);
+  left: 1rem;
+  position: absolute;
+  top: 2.2rem;
+  width: 1px;
+}
+
+.aa2-course-route li:last-child::before { display: none; }
+.aa2-course-route li span {
+  align-items: center;
+  background: #fff;
+  border: 1px solid #cfd4e1;
+  border-radius: 50%;
+  color: var(--aa2-ink);
+  display: inline-flex;
+  font-size: .75rem;
+  height: 2rem;
+  justify-content: center;
+  position: relative;
+  width: 2rem;
+  z-index: 1;
+}
+.aa2-course-route li.is-active span { border: 2px solid var(--aa2-cobalt); box-shadow: 0 0 0 4px #e8e8ff; color: var(--aa2-cobalt); }
+.aa2-course-route a { color: var(--aa2-ink); font-size: .88rem; font-weight: 650; text-decoration: none; }
+.aa2-course-route li.is-active a { color: var(--aa2-cobalt); }
+
+.aa2-hero-actions,
+.aa2-lab-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+  margin: 1.7rem 0 2.5rem;
+}
+
+.aa2-primary-action,
+.aa2-outline-action,
+.aa2-quiet-button {
+  align-items: center;
+  border-radius: .4rem;
+  display: inline-flex;
+  font: inherit;
+  font-size: .89rem;
+  font-weight: 700;
+  gap: .75rem;
+  justify-content: space-between;
+  min-height: 2.85rem;
+  padding: .65rem 1rem;
+  text-decoration: none;
+}
+.aa2-primary-action { background: var(--aa2-cobalt); border: 1px solid var(--aa2-cobalt); color: #fff; }
+.aa2-primary-action:hover { background: #1313be; color: #fff; }
+.aa2-outline-action { background: #fff; border: 1px solid #b9c0ff; color: var(--aa2-cobalt); }
+.aa2-outline-action:hover { border-color: var(--aa2-cobalt); color: var(--aa2-cobalt); }
+
+.aa2-evidence-arc {
+  display: grid;
+  gap: .5rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.aa2-evidence-arc li { border-top: 2px solid #ccd1df; padding: .85rem .35rem 0 0; position: relative; }
+.aa2-evidence-arc li::before { background: #fff; border: 2px solid var(--aa2-cobalt); border-radius: 50%; content: ""; height: .52rem; left: 0; position: absolute; top: -.35rem; width: .52rem; }
+.aa2-evidence-arc li.is-active { border-color: var(--aa2-violet); }
+.aa2-evidence-arc li.is-active::before { background: var(--aa2-violet); box-shadow: 0 0 0 4px #e7e3ff; }
+.aa2-evidence-arc span { color: var(--aa2-cobalt); display: block; font-size: .68rem; font-weight: 780; margin-bottom: .25rem; }
+.aa2-evidence-arc strong { color: var(--aa2-ink); display: block; font-size: .86rem; }
+.aa2-evidence-arc p { color: var(--aa2-muted); font-size: .74rem; line-height: 1.35; margin: .25rem 0 0; }
+
+.aa2-device-progress { align-self: stretch; border-left: 1px solid var(--aa2-line); border-right: 0; display: flex; flex-direction: column; justify-content: flex-start; }
+.aa2-device-progress-heading { align-items: center; display: flex; justify-content: space-between; gap: .6rem; }
+.aa2-device-progress h2 { color: var(--aa2-ink); font-size: .95rem; margin: 0; }
+.aa2-device-progress > p { color: var(--aa2-muted); font-size: .76rem; line-height: 1.5; margin: .55rem 0 1.2rem; }
+.aa2-progress-toggle { align-items: center; color: var(--aa2-ink); cursor: pointer; display: flex; font-size: .83rem; gap: .7rem; margin-bottom: 1.15rem; }
+.aa2-progress-toggle input { accent-color: var(--aa2-cobalt); block-size: 1.1rem; inline-size: 1.1rem; }
+.aa2-progress-confirmation { align-items: center; color: var(--aa2-moss) !important; display: flex; gap: .38rem; }
+.aa2-quiet-button { background: transparent; border: 0; border-top: 1px solid var(--aa2-line); color: #4f5770; cursor: pointer; padding: 1rem 0 0; text-align: left; }
+
+.aa2-start-hero { grid-template-columns: minmax(0, 1fr) minmax(13rem, .35fr); padding-left: clamp(1.5rem, 5vw, 5rem); }
+.aa2-start-hero .aa2-lesson-hero-copy { max-width: 52rem; }
+.aa2-start-hero .aa2-lesson-hero-copy h1 { max-width: 15ch; }
+.aa2-orientation-arc { grid-template-columns: repeat(4, minmax(0, 1fr)); max-width: 48rem; }
+
+.aa2-tutorial-intro { align-items: stretch; grid-template-columns: minmax(0, 1fr) minmax(14rem, .34fr); min-height: auto; padding-left: clamp(1.5rem, 5vw, 5rem); }
+.aa2-tutorial-intro > div:first-child { align-self: center; padding: clamp(2rem, 4vw, 4rem) 0; }
+.aa2-tutorial-intro h1 { max-width: 17ch; }
+
+.aa2-lab {
+  background: #fff;
+  border-bottom: 1px solid var(--aa2-line);
+  display: grid;
+  grid-template-columns: minmax(13rem, .65fr) minmax(34rem, 2.05fr) minmax(16rem, .85fr);
+}
+.aa2-lab-rail, .aa2-lab-inspector { border-right: 1px solid var(--aa2-line); padding: clamp(1.3rem, 2.4vw, 2.5rem); }
+.aa2-lab-inspector { border-left: 1px solid var(--aa2-line); border-right: 0; }
+.aa2-stage-list { margin-top: 1.6rem; }
+.aa2-stage-list li { align-items: center; display: grid; gap: .62rem; grid-template-columns: 2.1rem 1.1rem 1fr; margin: .3rem 0; min-height: 4rem; position: relative; }
+.aa2-stage-list li:not(:last-child)::after { border-left: 2px dashed #d4d8e3; content: ""; height: 2rem; left: 1rem; position: absolute; top: 3rem; }
+.aa2-stage-list li > span { align-items: center; background: #fff; border: 1px solid #cfd3dd; border-radius: 50%; color: #60697e; display: flex; height: 2rem; justify-content: center; width: 2rem; z-index: 1; }
+.aa2-stage-list li strong { color: var(--aa2-ink); font-size: .83rem; }
+.aa2-stage-list li p { color: #505972; font-size: .83rem; margin: 0; }
+.aa2-stage-list li.is-complete > span { border-color: var(--aa2-cobalt); color: var(--aa2-cobalt); }
+.aa2-stage-list li.is-current > span { background: #fff5ee; border: 2px solid var(--aa2-amber); box-shadow: 0 0 0 4px #ffe5d5; color: var(--aa2-amber); }
+.aa2-stage-list li.is-current p { color: var(--aa2-ink); font-weight: 700; }
+.aa2-lab-workspace { min-width: 0; padding: clamp(1.5rem, 3vw, 3.5rem); }
+.aa2-lab-intro h2 { color: var(--aa2-ink); font-size: clamp(2rem, 3.2vw, 4rem); letter-spacing: -.06em; line-height: .95; margin: .55rem 0 .95rem; }
+.aa2-lab-intro > p:last-child { color: var(--aa2-muted); font-size: 1rem; line-height: 1.55; max-width: 41rem; }
+.aa2-lab-evidence { margin-top: 1.6rem; max-width: 14rem; }
+.aa2-lab-evidence h3, .aa2-tieout h3, .aa2-lab-inspector h3 { color: var(--aa2-ink); font-size: .88rem; margin: 0 0 .65rem; }
+.aa2-lab-evidence article { align-items: center; border: 1px solid var(--aa2-line); border-radius: .4rem; color: var(--aa2-cobalt); display: grid; gap: .6rem; grid-template-columns: 1.5rem 1fr 1rem; margin-top: .38rem; padding: .55rem .65rem; }
+.aa2-lab-evidence article span { color: var(--aa2-ink); font-size: .72rem; line-height: 1.25; }
+.aa2-lab-evidence article svg:last-child { color: var(--aa2-moss); }
+.aa2-lab-flow { align-items: start; display: grid; gap: .25rem; grid-template-columns: repeat(5, 1fr); margin: 1.3rem 0 2rem; }
+.aa2-lab-flow li { color: #778096; min-width: 0; position: relative; text-align: center; }
+.aa2-lab-flow li:not(:last-child)::after { border-top: 2px dashed #d6dbe8; content: ""; left: 60%; position: absolute; right: -43%; top: 1.25rem; z-index: 0; }
+.aa2-lab-flow li > span { align-items: center; background: #fff; border: 1px solid #ccd1dc; border-radius: 50%; display: inline-flex; height: 2.5rem; justify-content: center; position: relative; width: 2.5rem; z-index: 1; }
+.aa2-lab-flow strong, .aa2-lab-flow small { display: block; }
+.aa2-lab-flow strong { color: var(--aa2-ink); font-size: .72rem; margin-top: .42rem; }
+.aa2-lab-flow small { color: #768097; font-size: .64rem; line-height: 1.22; margin: .22rem auto; max-width: 10ch; }
+.aa2-lab-flow li.is-complete > span { border-color: var(--aa2-cobalt); color: var(--aa2-cobalt); }
+.aa2-lab-flow li.is-current > span { background: #fff3eb; border: 2px solid var(--aa2-amber); box-shadow: 0 0 0 4px #ffe1d0; color: var(--aa2-amber); }
+.aa2-tieout { margin-top: 1rem; }
+.aa2-tieout h3 span { color: #737c91; font-weight: 500; }
+.aa2-tieout-scroll { border: 1px solid var(--aa2-line); border-radius: .45rem; overflow: auto; }
+.aa2-tieout table { border-collapse: collapse; font-size: .7rem; min-width: 44rem; width: 100%; }
+.aa2-tieout th, .aa2-tieout td { border-bottom: 1px solid var(--aa2-line); border-right: 1px solid var(--aa2-line); padding: .55rem .45rem; text-align: left; white-space: nowrap; }
+.aa2-tieout thead tr:first-child th { background: #fbfbfd; color: var(--aa2-ink); font-size: .75rem; }
+.aa2-tieout thead tr:last-child th { color: #5b6378; font-size: .63rem; font-weight: 650; }
+.aa2-tieout .aa2-exception-row td { background: #fff8f4; color: #d94b15; }
+.aa2-difference { align-items: center; color: #e24c16; display: flex; font-size: .78rem; gap: .45rem; margin: .85rem 0 0; }
+.aa2-exception-card { align-items: flex-start; background: #fffaf6; border: 1px solid #ffcba9; border-radius: .6rem; color: var(--aa2-amber); display: flex; gap: .8rem; margin: 1rem 0 1.5rem; padding: 1rem; }
+.aa2-exception-card strong, .aa2-exception-card span { display: block; }
+.aa2-exception-card strong { font-size: .82rem; }
+.aa2-exception-card span { color: #687086; font-size: .74rem; margin-top: .25rem; }
+.aa2-lab-inspector > p:not(.aa2-kicker), .aa2-lab-inspector li { color: var(--aa2-muted); font-size: .82rem; line-height: 1.55; }
+.aa2-lab-inspector ul { padding-left: 1rem; }
+.aa2-lab-actions { display: grid; margin-bottom: .7rem; }
+.aa2-lab-actions .aa2-primary-action, .aa2-lab-actions .aa2-outline-action { cursor: pointer; width: 100%; }
+.aa2-lab-response { color: var(--aa2-moss); font-size: .78rem; line-height: 1.45; min-height: 2.5rem; }
+.aa2-lab-source { border-top: 1px solid var(--aa2-line); margin-top: 1rem; padding-top: 1.1rem; }
+.aa2-lab-source p { color: var(--aa2-ink) !important; font-size: .72rem !important; font-weight: 750; margin: 0 0 .35rem; text-transform: uppercase; }
+.aa2-lab-source a { align-items: center; color: var(--aa2-cobalt); display: inline-flex; font-size: .82rem; font-weight: 700; gap: .4rem; text-decoration: none; }
+
+@media (max-width: 1080px) {
+  .aa2-lesson-hero { grid-template-columns: minmax(10rem, .55fr) minmax(20rem, 1.55fr) minmax(12rem, .65fr); }
+  .aa2-lab { grid-template-columns: minmax(11rem, .55fr) minmax(28rem, 1.65fr); }
+  .aa2-lab-inspector { border-left: 0; border-top: 1px solid var(--aa2-line); grid-column: 1 / -1; }
+  .aa2-lab-inspector h3, .aa2-lab-inspector > p:not(.aa2-kicker), .aa2-lab-inspector ul, .aa2-exception-card, .aa2-lab-actions, .aa2-lab-response, .aa2-lab-source { max-width: 39rem; }
+}
+
+@media (max-width: 760px) {
+  .doc-body > .aa2-lesson-hero, .doc-body > .aa2-tutorial-intro, .doc-body > .aa2-lab { margin-left: -1.25rem; margin-right: -1.25rem; }
+  .aa2-lesson-hero, .aa2-tutorial-intro, .aa2-start-hero { background-size: 95% auto; display: block; padding-left: 1.25rem; }
+  .aa2-course-route { border-bottom: 1px solid var(--aa2-line); border-right: 0; padding: 1.35rem 1.25rem; }
+  .aa2-course-route > p { margin-bottom: 1rem; max-width: none; }
+  .aa2-course-route ol { display: flex; gap: .75rem; overflow-x: auto; padding-bottom: .3rem; }
+  .aa2-course-route li { flex: 0 0 auto; grid-template-columns: 1.8rem auto; }
+  .aa2-course-route li::before { display: none; }
+  .aa2-course-route li span { height: 1.7rem; width: 1.7rem; }
+  .aa2-lesson-hero-copy { padding: 2.2rem 1.25rem; }
+  .aa2-lesson-hero-copy h1, .aa2-tutorial-intro h1 { font-size: clamp(2.3rem, 12vw, 3.8rem); }
+  .aa2-evidence-arc, .aa2-orientation-arc { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .aa2-device-progress { border-left: 0; border-top: 1px solid var(--aa2-line); padding: 1.25rem; }
+  .aa2-tutorial-intro > div:first-child { padding: 2.25rem 1.25rem; }
+  .aa2-lab { display: block; }
+  .aa2-lab-rail { border-bottom: 1px solid var(--aa2-line); border-right: 0; padding: 1.25rem; }
+  .aa2-stage-list { display: flex; gap: .65rem; overflow-x: auto; margin-top: 1rem; }
+  .aa2-stage-list li { flex: 0 0 7rem; grid-template-columns: 1.8rem 1fr; min-height: 2.1rem; }
+  .aa2-stage-list li:not(:last-child)::after, .aa2-stage-list li strong { display: none; }
+  .aa2-stage-list li p { font-size: .72rem; }
+  .aa2-stage-list li > span { height: 1.8rem; width: 1.8rem; }
+  .aa2-lab-workspace, .aa2-lab-inspector { padding: 1.25rem; }
+  .aa2-lab-flow { gap: .7rem; grid-template-columns: repeat(5, minmax(4.2rem, 1fr)); overflow-x: auto; padding-bottom: .35rem; }
+  .aa2-lab-flow li { min-width: 4.2rem; }
+  .aa2-lab-flow li:not(:last-child)::after { right: -55%; }
+  .aa2-lab-inspector { border-left: 0; }
+}
+
+/* Immersive learning routes intentionally escape the legacy documentation measure. */
+.aa2-immersive-body > .aa2-lesson-hero,
+.aa2-immersive-body > .aa2-tutorial-intro,
+.aa2-immersive-body > .aa2-lab {
+  margin: 0;
+}
+
+.aa2-immersive-body .aa2-primary-action,
+.aa2-immersive-body .aa2-primary-action:hover,
+.aa2-immersive-body .aa2-primary-action:focus-visible {
+  color: #fff;
+}

@@ -128,7 +128,10 @@ test("content contract is exposed through shared-shell labels and discovery proj
   };
   for (const [path, mode] of Object.entries(staticModeLabels)) {
     const html = await (await request(path, { accept: "text/html" })).text();
-    if (path === "/atlas") {
+    if (path === "/") {
+      assert.match(html, /Build your first governed accounting agent/);
+      assert.match(html, /Agents prepare work\. People approve conclusions and sensitive actions\./);
+    } else if (path === "/atlas") {
       assert.match(html, /data-content-mode=["']reference["']/i, path);
       assert.match(html, new RegExp(`Content mode:[\\s\\S]*${mode}`), path);
     } else {

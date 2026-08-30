@@ -61,7 +61,7 @@ test("human, Markdown, and JSON Start here surfaces preserve material meaning", 
   assert.equal(page.status, 200);
   const html = await page.text();
 
-  assert.match(html, /<h1>Start here: accounting agents in five minutes<\/h1>/);
+  assert.match(html, /<h1[^>]*>Learn the boundary before you automate the work\.<\/h1>/);
   assert.match(html, /Content mode: <strong>Tutorial<\/strong>/);
   assert.match(html, /accounting-agents-start-here/);
   assert.match(html, /synthetic-cash-exception-orientation/);
@@ -111,7 +111,8 @@ test("human, Markdown, and JSON Start here surfaces preserve material meaning", 
 test("Start here is integrated into navigation, discovery, search, and corpus projections", async () => {
   const homepage = await (await request("/")).text();
   assert.match(homepage, /href="\/start-here"/);
-  assert.match(homepage, /Benchmark expansion is deferred/);
+  assert.match(homepage, /Start in five minutes/);
+  assert.match(homepage, /Agents prepare work\. People approve conclusions and sensitive actions\./);
 
   const contentContract = (await (await request("/api/v1/content-contract")).json()).item;
   assert.ok(contentContract.page_assignments.some((assignment) => assignment.path === "/start-here" && assignment.primary_mode === "tutorial"));
@@ -148,15 +149,17 @@ test("Start here is integrated into navigation, discovery, search, and corpus pr
   }
 });
 
-test("Start here remains responsive and the active program is knowledge-hub first", async () => {
+test("Start here remains responsive and uses the immersive learner canvas", async () => {
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
   assert.match(css, /\.knowledge-check fieldset[\s\S]*border-bottom:/);
   assert.match(css, /\.knowledge-check label[\s\S]*grid-template-columns:\s*1rem 1fr/);
   assert.match(css, /@media \(max-width: 720px\)[\s\S]*\.knowledge-check-actions[\s\S]*flex-direction:\s*column/);
   assert.match(css, /\.knowledge-check-actions button[\s\S]*font-size:\s*0\.78rem/);
 
-  const readme = await readFile(new URL("../README.md", import.meta.url), "utf8");
-  assert.match(readme, /five-minute Start here orientation/);
-  assert.match(readme, /Further benchmark and LedgerBench product development is fully deferred/);
-  assert.match(readme, /active program is the Living Atlas-led educational hub, source archive, practice observatory, and resource wiki/);
+  const lessonCss = await readFile(new URL("../app/edtech-lessons.css", import.meta.url), "utf8");
+  assert.match(lessonCss, /\.aa2-lesson-hero/);
+  assert.match(lessonCss, /@media \(max-width: 760px\)/);
+  const html = await (await request("/start-here")).text();
+  assert.match(html, /class="aa2-lesson-hero aa2-start-hero"/);
+  assert.match(html, /Five-minute orientation/);
 });

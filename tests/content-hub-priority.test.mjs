@@ -27,72 +27,47 @@ async function request(path) {
   );
 }
 
-test("the homepage leads with education, workflows, and source-backed learning", async () => {
+test("the homepage leads with an interactive governed-work learning path", async () => {
   const response = await request("/");
   assert.equal(response.status, 200);
   const html = await response.text();
 
-  const learningMap = html.match(/<section[^>]+data-learning-path-map[^>]*>([\s\S]*?)<\/section>/i)?.[1];
+  assert.match(html, /<h1[^>]*>Build your first governed accounting agent\.<\/h1>/);
+  assert.match(html, /Learn the boundary\. Work a synthetic case\. Leave with a reviewer-ready plan\./);
+  assert.match(html, /href="\/start-here"[^>]*>Start in five minutes/);
+  assert.match(html, /href="\/tutorials\/bank-reconciliation"[^>]*>Practice bank reconciliation/);
+  assert.match(html, /Agents prepare work\. People approve conclusions and sensitive actions\./);
+
+  const learningMap = html.match(/<section[^>]+aria-label=["']Evidence to approval learning path["'][^>]*>([\s\S]*?)<\/section>/i)?.[1];
   assert.ok(learningMap, "homepage learning path map should render as a semantic section");
-  assert.match(
-    html,
-    /<section(?=[^>]*data-learning-path-map)(?=[^>]*aria-labelledby=["']learning-map-title["'])[^>]*>/i,
-  );
-
-  assert.match(html, /An open educational hub/);
-  assert.match(html, /Educational field guide/);
-  assert.match(html, /curated readings/);
-  assert.match(html, /practical templates/);
-  assert.doesNotMatch(html, /benchmark cases/i);
-
-  for (const [href, label] of [
-    ["/start-here", "Learn the foundations"],
-    ["/course", "Take the core course"],
-    ["/tutorials/bank-reconciliation", "Practice a complete accounting lesson"],
-    ["/workflows", "Explore accounting workflows"],
-    ["/templates", "Put the guidance to work"],
-    ["/reading-room", "Research the field"],
-  ]) {
-    assert.match(learningMap, new RegExp(`href=["']${href.replaceAll("/", "\\/")}["']`), `${href} learning destination`);
-    assert.match(learningMap, new RegExp(label), `${href} learning label`);
+  for (const label of ["Evidence", "Prepare", "Review", "Approve"]) {
+    assert.match(learningMap, new RegExp(`>${label}<`), `${label} learning stage`);
   }
-
-  assert.match(learningMap, /href=["']\/resources\?industry=general["']/);
-  assert.match(learningMap, /Browse the source catalog/);
-  assert.match(learningMap, /<h3>Learn the foundations<\/h3>/);
-
-  assert.match(html, /Benchmark expansion is deferred/);
-  const firstLearningPath = html.indexOf('href="/start-here"');
-  const firstLedgerBenchLink = html.indexOf('href="/ledgerbench"');
-  assert.ok(firstLearningPath >= 0);
-  assert.ok(firstLedgerBenchLink > firstLearningPath);
+  assert.match(learningMap, /aria-pressed="true"/);
+  assert.match(html, /Role-based paths/);
+  assert.match(html, /Accounting practitioner/);
+  assert.match(html, /Finance transformation leader/);
 });
 
-test("the app shell exposes learning navigation and a current-signal utility link", async () => {
+test("the app shell exposes the modern learning navigation and a direct start action", async () => {
   const response = await request("/");
   const html = await response.text();
-  const learningNavigation = html.match(/<nav[^>]+class=["']learning-nav["'][^>]*>([\s\S]*?)<\/nav>/i)?.[1];
-  const utilityNavigation = html.match(/<nav class="top-links"[^>]*>([\s\S]*?)<\/nav>/)?.[1];
+  const learningNavigation = html.match(/<nav[^>]+class=["'][^"']*learning-nav[^"']*["'][^>]*>([\s\S]*?)<\/nav>/i)?.[1];
 
   assert.ok(learningNavigation, "learning navigation should render");
   for (const [href, label] of [
     ["/start-here", "Learn"],
     ["/tutorials/bank-reconciliation", "Practice"],
-    ["/control-model", "Govern"],
-    ["/reading-room", "Research"],
+    ["/atlas", "Atlas"],
+    ["/resources", "Library"],
   ]) {
     assert.match(learningNavigation, new RegExp(`href=["']${href.replaceAll("/", "\\/")}["']`), `${href} learning navigation destination`);
     assert.match(learningNavigation, new RegExp(`>${label}<`), `${label} learning navigation label`);
   }
 
-  assert.ok(utilityNavigation, "utility navigation should render");
-  assert.match(utilityNavigation, /href="\/observatory"/);
-  assert.match(utilityNavigation, /Current signal/);
-  assert.match(utilityNavigation, /class="signal-dot"/);
-  assert.doesNotMatch(utilityNavigation, /href="\/reading-room"/);
-  assert.doesNotMatch(utilityNavigation, /href="\/resources"/);
-  assert.doesNotMatch(utilityNavigation, /href="\/packs"/);
-  assert.doesNotMatch(utilityNavigation, /href="\/machine-access"/);
+  assert.match(html, /<a(?=[^>]*class="aa2-start-action")(?=[^>]*href="\/start-here")[^>]*>/);
+  assert.match(html, /Start learning/);
+  assert.match(html, /aria-label="Mobile learning paths"/);
 });
 
 test("the navigation keeps LedgerBench in a secondary lab", async () => {

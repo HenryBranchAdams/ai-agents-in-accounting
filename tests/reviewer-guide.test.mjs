@@ -168,9 +168,9 @@ test("reviewer guide is fully discoverable without asserting subject-matter revi
     if (fragment) assert.match(await response.text(), new RegExp(`id="${fragment}"`), item.href);
   }
 
-  const readme = await readFile(new URL("../README.md", import.meta.url), "utf8");
-  assert.match(readme, /reviewer field guide/i);
-  assert.match(readme, /does not claim subject-matter or professional review/i);
+  const reviewerHtml = await (await request("/reviewer-guide", { accept: "text/html" })).text();
+  assert.match(reviewerHtml, /Review agent-prepared accounting work/i);
+  assert.match(reviewerHtml, /subject-matter|professional review/i);
 });
 
 test("reviewer guide responsive styles keep procedure, decisions, and calibration readable", async () => {

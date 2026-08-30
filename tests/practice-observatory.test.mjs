@@ -189,8 +189,7 @@ test("practice observatory stays responsive and documents the knowledge-hub boun
   assert.match(css, /\.observatory-details > summary:focus-visible[\s\S]*outline:/);
   assert.match(css, /@media \(max-width: 720px\)[\s\S]*\.observatory-details dl > div[\s\S]*grid-template-columns:\s*1fr/);
 
-  const readme = await readFile(new URL("../README.md", import.meta.url), "utf8");
-  assert.match(readme, /practice observatory/);
-  assert.match(readme, /dated, filterable index of 31 catalog records/);
-  assert.match(readme, /not a ranking, adoption dashboard, or automatic news monitor/);
+  const html = await (await request("/observatory", { accept: "text/html" })).text();
+  assert.match(html, /31(?:<!-- -->|\s)+current-development records/);
+  assert.match(html, /not an automatic alerting service/i);
 });

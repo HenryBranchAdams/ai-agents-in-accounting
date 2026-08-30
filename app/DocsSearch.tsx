@@ -1,5 +1,6 @@
 "use client";
 
+import { MagnifyingGlassIcon } from "@phosphor-icons/react/MagnifyingGlass";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { searchItems } from "./content";
 
@@ -68,6 +69,8 @@ function categoryForRecord(item: SearchApiItem) {
       return "Templates";
     case "glossary":
       return "Glossary";
+    case "agent":
+      return "Specialized agents";
     case "pack":
       return "Workflow packs";
     case "benchmark":
@@ -234,7 +237,7 @@ export function DocsSearch() {
         type="button"
         onClick={openSearch}
       >
-        <span className="search-icon" aria-hidden="true">⌕</span>
+        <MagnifyingGlassIcon aria-hidden="true" className="search-icon" size={20} />
         <span>Search documentation</span>
         <kbd>⌘/Ctrl K</kbd>
       </button>
@@ -270,7 +273,7 @@ export function DocsSearch() {
           >
             <h2 className="sr-only" id="docs-search-title">Search documentation</h2>
             <div className="search-input-row">
-              <span className="search-icon" aria-hidden="true">⌕</span>
+              <MagnifyingGlassIcon aria-hidden="true" className="search-icon" size={20} />
               <input
                 aria-label="Search documentation"
                 onChange={(event) => updateQuery(event.target.value)}

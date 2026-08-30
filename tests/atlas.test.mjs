@@ -359,6 +359,8 @@ test("Atlas responsive, keyboard, reduced-motion, and semantic-list contracts ar
   assert.match(css, /@media \(forced-colors: active\)[\s\S]*\.atlas-node-orb/);
 
   const explorer = await readFile(new URL("../app/atlas/AtlasExplorer.tsx", import.meta.url), "utf8");
+  const flowMap = await readFile(new URL("../app/atlas/AtlasFlowMap.tsx", import.meta.url), "utf8");
+  const atlasClientSource = `${explorer}\n${flowMap}`;
   assert.match(explorer, /new URLSearchParams\(window\.location\.search\)/);
   assert.match(explorer, /window\.addEventListener\("popstate"/);
   assert.match(explorer, /window\.history\.replaceState/);
@@ -367,12 +369,16 @@ test("Atlas responsive, keyboard, reduced-motion, and semantic-list contracts ar
   assert.match(explorer, /aria-pressed=/);
   assert.match(explorer, /aria-live="polite"/);
   assert.match(explorer, /data-atlas-list/);
-  assert.match(explorer, /nodesFocusable=\{false\}/);
-  assert.match(explorer, /<button[\s\S]*className="atlas-node-card nodrag nopan"[\s\S]*onSelect\(record\.id\)[\s\S]*type="button"/);
-  assert.match(explorer, /onKeyDownCapture=\{\(event\) => \{[\s\S]*event\.key !== "Enter" && event\.key !== " "[\s\S]*onSelect\(nodeId\)/);
+  assert.match(explorer, /lazy\(\(\) => import\("\.\/AtlasFlowMap"\)\)/);
+  assert.match(explorer, /useState<ViewMode>\("list"\)/);
+  assert.match(explorer, /filtersInitialized && viewMode === "map"/);
+  assert.doesNotMatch(explorer, /from "@xyflow\/react"/);
+  assert.match(atlasClientSource, /nodesFocusable=\{false\}/);
+  assert.match(atlasClientSource, /<button[\s\S]*className="atlas-node-card nodrag nopan"[\s\S]*onSelect\(record\.id\)[\s\S]*type="button"/);
+  assert.match(atlasClientSource, /onKeyDownCapture=\{\(event\) => \{[\s\S]*event\.key !== "Enter" && event\.key !== " "[\s\S]*onSelect\(nodeId\)/);
   assert.match(explorer, /selectedNode\.kind === "source"[\s\S]*\? selectedNode[\s\S]*: relatedEdges/);
-  assert.match(explorer, /edgesFocusable/);
-  assert.match(explorer, /aria-label="Living Atlas knowledge graph/);
+  assert.match(atlasClientSource, /edgesFocusable/);
+  assert.match(atlasClientSource, /aria-label="Living Atlas knowledge graph/);
   assert.match(explorer, /Guided sequence/);
   assert.doesNotMatch(explorer, /data-complete/);
   assert.doesNotMatch(explorer, /Your path/);

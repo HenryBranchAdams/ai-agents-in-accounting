@@ -71,7 +71,7 @@ test("human, Markdown, and JSON tutorial surfaces preserve the guided lesson and
   assert.equal(page.status, 200);
   const html = await page.text();
 
-  assert.match(html, /<h1>Tutorial: prepare and review a synthetic bank reconciliation<\/h1>/);
+  assert.match(html, /<h1[^>]*>Build the reviewer-ready exception, not a forced tie-out\.<\/h1>/);
   assert.match(html, /Content mode: <strong>Tutorial<\/strong>/);
   assert.match(html, /bank-reconciliation-guided-lesson/);
   assert.match(html, /Evidence register/);
@@ -121,7 +121,7 @@ test("human, Markdown, and JSON tutorial surfaces preserve the guided lesson and
 test("bank-reconciliation tutorial is discoverable across the knowledge hub and machine corpus", async () => {
   const homepage = await (await request("/")).text();
   assert.match(homepage, /href="\/tutorials\/bank-reconciliation"/);
-  assert.match(homepage, /Practice a complete accounting lesson/);
+  assert.match(homepage, /Practice bank reconciliation/);
 
   const contentContract = (await (await request("/api/v1/content-contract")).json()).item;
   assert.ok(contentContract.page_assignments.some((assignment) => assignment.path === "/tutorials/bank-reconciliation" && assignment.primary_mode === "tutorial"));
@@ -162,10 +162,11 @@ test("bank-reconciliation tutorial is discoverable across the knowledge hub and 
 });
 
 test("tutorial documentation names the local, educational, and review boundaries", async () => {
-  const readme = await readFile(new URL("../README.md", import.meta.url), "utf8");
   const testing = await readFile(new URL("../TESTING.md", import.meta.url), "utf8");
-  assert.match(readme, /synthetic bank-reconciliation tutorial/);
-  assert.match(readme, /deliberate missing\/wrong-period stop/);
+  const html = await (await request("/tutorials/bank-reconciliation")).text();
+  assert.match(html, /Synthetic practice/);
+  assert.match(html, /Deliberate missing-evidence stop/);
+  assert.match(html, /Accountable people approve conclusions and sensitive external actions/);
   assert.match(testing, /Bank-reconciliation tutorial/);
   assert.match(testing, /\$436,800 known answer/);
 });

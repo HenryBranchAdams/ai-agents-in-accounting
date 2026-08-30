@@ -1,8 +1,10 @@
+import { ArrowRightIcon, ArrowSquareOutIcon } from "@phosphor-icons/react/ssr";
 import Link from "next/link";
 import { DocsShell } from "../DocsShell";
 import { docsMetadata } from "../docsMetadata";
 import { accountingAgentsStartHere } from "../start-here";
 import { KnowledgeCheck } from "./KnowledgeCheck";
+import { LessonProgress } from "../learning/LessonProgress";
 
 const lesson = accountingAgentsStartHere;
 
@@ -28,6 +30,7 @@ export default function StartHerePage() {
   return (
     <DocsShell
       active="/start-here"
+      immersive
       category="Learn"
       title={lesson.title}
       description={lesson.description}
@@ -49,6 +52,24 @@ export default function StartHerePage() {
       previous={{ href: "/", label: "Overview" }}
       next={{ href: "/packs/bank-reconciliation", label: "Synthetic bank-reconciliation pack" }}
     >
+      <section className="aa2-lesson-hero aa2-start-hero" aria-labelledby="orientation-canvas-title">
+        <div className="aa2-lesson-hero-copy">
+          <p className="aa2-kicker">Five-minute orientation</p>
+          <h1 id="orientation-canvas-title">Learn the boundary before you automate the work.</h1>
+          <p>Trace a synthetic exception from source evidence to a human decision, then choose the next practice path for your role.</p>
+          <div className="aa2-hero-actions">
+            <a className="aa2-primary-action" href="#evidence-chain">Follow the evidence path <ArrowRightIcon aria-hidden="true" size={18} /></a>
+            <Link className="aa2-outline-action" href="/tutorials/bank-reconciliation">Practice the case <ArrowSquareOutIcon aria-hidden="true" size={18} /></Link>
+          </div>
+          <ol className="aa2-evidence-arc aa2-orientation-arc">
+            <li><span>01</span><strong>Evidence</strong><p>Traceable records.</p></li>
+            <li><span>02</span><strong>Prepare</strong><p>Bounded agent work.</p></li>
+            <li><span>03</span><strong>Review</strong><p>Challenge the packet.</p></li>
+            <li><span>04</span><strong>Approve</strong><p>Accountable decision.</p></li>
+          </ol>
+        </div>
+        <LessonProgress lessonId={lesson.id} />
+      </section>
       <section id="before-you-begin">
         <h2>Before you begin</h2>
         <p>{lesson.intended_audience}</p>

@@ -1,7 +1,5 @@
 "use client";
 
-import "@xyflow/react/dist/style.css";
-
 import {
   ArrowRight,
   ArrowSquareOut,
@@ -10,36 +8,27 @@ import {
   Buildings,
   CaretLeft,
   CaretRight,
+  ClockCountdown,
   Compass,
   FileText,
+  Funnel,
   ListBullets,
   MapTrifold,
   Question,
-  Robot,
-  Scales,
-  ShieldCheck,
   WarningDiamond,
+  X,
 } from "@phosphor-icons/react";
-import {
-  Controls,
-  Handle,
-  MarkerType,
-  Position,
-  ReactFlow,
-  ReactFlowProvider,
-  useReactFlow,
-  type Edge,
-  type Node,
-  type NodeProps,
-} from "@xyflow/react";
 import Link from "next/link";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { lazy, Suspense, useCallback, useEffect, useMemo, useState } from "react";
 import type {
   AtlasEdge,
   AtlasNode,
   AtlasTimeLayerId,
 } from "../atlas-data";
 import type { ResourceIndustry } from "../resources-data";
+import { AtlasNodeGlyph } from "./AtlasNodeGlyph";
+
+const AtlasFlowMap = lazy(() => import("./AtlasFlowMap"));
 
 type AtlasIndustryLens = {
   id: ResourceIndustry;
@@ -54,15 +43,6 @@ type AtlasTimeLayer = {
 };
 
 type ViewMode = "map" | "list";
-
-type AtlasFlowData = {
-  onSelect: (id: string) => void;
-  record: AtlasNode;
-  pathIndex: number | null;
-  selected: boolean;
-};
-
-type AtlasFlowNode = Node<AtlasFlowData, "atlasNode">;
 
 const clusterLabels = {
   "accounting-work": "Accounting work",
@@ -82,52 +62,6 @@ const evidenceLabels: Record<AtlasNode["evidence_classification"], string> = {
   "unresolved-question": "Unresolved question",
 };
 
-function NodeGlyph({ record }: { record: AtlasNode }) {
-  if (record.kind === "workflow") return <Bank aria-hidden="true" />;
-  if (record.kind === "human-gate") return <Scales aria-hidden="true" />;
-  if (record.kind === "control") return <ShieldCheck aria-hidden="true" />;
-  if (record.kind === "capability") return <Robot aria-hidden="true" />;
-  if (record.kind === "source") return <BookOpen aria-hidden="true" />;
-  if (record.kind === "industry") return <Buildings aria-hidden="true" />;
-  return <WarningDiamond aria-hidden="true" />;
-}
-
-function AtlasNodeCard({ data }: NodeProps<AtlasFlowNode>) {
-  const { onSelect, record, pathIndex, selected } = data;
-  return (
-    <>
-      <Handle className="atlas-handle" position={Position.Left} type="target" />
-      <button
-        aria-current={selected ? "step" : undefined}
-        className="atlas-node-card nodrag nopan"
-        data-cluster={record.cluster}
-        data-kind={record.kind}
-        data-node-id={record.id}
-        data-path-node={pathIndex === null ? undefined : "true"}
-        data-selected={selected ? "true" : undefined}
-        onClick={(event) => {
-          event.stopPropagation();
-          onSelect(record.id);
-        }}
-        type="button"
-      >
-        <span aria-hidden="true" className="atlas-node-orb">
-          <NodeGlyph record={record} />
-        </span>
-        <span className="atlas-node-label">{record.short_label}</span>
-        {pathIndex !== null && (
-          <span aria-label={`Path step ${pathIndex + 1}`} className="atlas-node-step">
-            {pathIndex + 1}
-          </span>
-        )}
-      </button>
-      <Handle className="atlas-handle" position={Position.Right} type="source" />
-    </>
-  );
-}
-
-const nodeTypes = { atlasNode: AtlasNodeCard };
-
 function isIndustry(value: string | null, lenses: readonly AtlasIndustryLens[]): value is ResourceIndustry {
   return Boolean(value && lenses.some((lens) => lens.id === value));
 }
@@ -143,81 +77,6 @@ function isViewMode(value: string | null): value is ViewMode {
 function defaultViewMode(requestedView: string | null) {
   if (isViewMode(requestedView)) return requestedView;
   return window.matchMedia("(max-width: 720px)").matches ? "list" : "map";
-}
-
-function AtlasMap({
-  compact,
-  edges,
-  nodes,
-  onSelect,
-}: {
-  compact: boolean;
-  edges: Edge[];
-  nodes: AtlasFlowNode[];
-  onSelect: (id: string) => void;
-}) {
-  const { fitView } = useReactFlow<AtlasFlowNode>();
-  const layoutKey = nodes
-    .map((node) => `${node.id}:${node.position.x}:${node.position.y}`)
-    .join("|");
-
-  useEffect(() => {
-    const frame = window.requestAnimationFrame(() => {
-      void fitView({ maxZoom: 1.08, minZoom: 0.24, padding: compact ? 0.08 : 0.16 });
-    });
-    return () => window.cancelAnimationFrame(frame);
-  }, [compact, fitView, layoutKey]);
-
-  return (
-    <div
-      className="atlas-map"
-      data-atlas-map
-      onKeyDownCapture={(event) => {
-        if (event.key !== "Enter" && event.key !== " ") return;
-        const nodeButton = (event.target as Element).closest<HTMLButtonElement>("button.atlas-node-card[data-node-id]");
-        const nodeId = nodeButton?.dataset.nodeId;
-        if (!nodeId) return;
-        event.preventDefault();
-        event.stopPropagation();
-        onSelect(nodeId);
-      }}
-    >
-      <div aria-hidden="true" className="atlas-cluster-labels">
-        <span data-cluster="accounting-work"><FileText /> Accounting work</span>
-        <span data-cluster="controls-risks"><ShieldCheck /> Controls &amp; risks</span>
-        <span data-cluster="agent-capabilities"><Robot /> Agent capabilities</span>
-        <span data-cluster="primary-sources"><BookOpen /> Primary sources</span>
-        <span data-cluster="industries"><Buildings /> Industries</span>
-      </div>
-      <ReactFlow
-        aria-label="Living Atlas knowledge graph. Use Tab to move through nodes or switch to list view for a linear equivalent."
-        colorMode="light"
-        connectOnClick={false}
-        deleteKeyCode={null}
-        edges={edges}
-        edgesFocusable
-        edgesReconnectable={false}
-        elementsSelectable
-        fitView
-        fitViewOptions={{ maxZoom: 1.08, minZoom: 0.24, padding: compact ? 0.08 : 0.16 }}
-        maxZoom={1.8}
-        minZoom={0.22}
-        nodeTypes={nodeTypes}
-        nodes={nodes}
-        nodesConnectable={false}
-        nodesDraggable={false}
-        nodesFocusable={false}
-        onNodeClick={(_, node) => onSelect(node.id)}
-        panOnDrag
-        proOptions={{ hideAttribution: false }}
-        zoomOnDoubleClick={false}
-        zoomOnPinch
-        zoomOnScroll={false}
-      >
-        <Controls position="top-right" showInteractive={false} />
-      </ReactFlow>
-    </div>
-  );
 }
 
 export function AtlasExplorer({
@@ -238,7 +97,7 @@ export function AtlasExplorer({
   const [selectedNodeId, setSelectedNodeId] = useState(defaultNodeId);
   const [industry, setIndustry] = useState<ResourceIndustry>("general");
   const [timeLayer, setTimeLayer] = useState<AtlasTimeLayerId>("all");
-  const [viewMode, setViewMode] = useState<ViewMode>("map");
+  const [viewMode, setViewMode] = useState<ViewMode>("list");
   const [viewIsExplicit, setViewIsExplicit] = useState(false);
   const [filtersInitialized, setFiltersInitialized] = useState(false);
   const [compactMap, setCompactMap] = useState(false);
@@ -358,77 +217,6 @@ export function AtlasExplorer({
     setGuideOpen(false);
   };
 
-  const compactPositions = useMemo(() => {
-    const positions = new Map<string, { x: number; y: number }>();
-    pathNodeIds.forEach((id, index) => positions.set(id, { x: index * 165, y: 230 }));
-
-    const contextByCluster = new Map<AtlasNode["cluster"], AtlasNode[]>();
-    filteredNodes.filter((node) => !pathIndexById.has(node.id)).forEach((node) => {
-      const group = contextByCluster.get(node.cluster) ?? [];
-      group.push(node);
-      contextByCluster.set(node.cluster, group);
-    });
-
-    const anchors: Record<AtlasNode["cluster"], { x: number; y: number; step: number }> = {
-      "accounting-work": { x: 20, y: 35, step: 130 },
-      "controls-risks": { x: 175, y: 35, step: 135 },
-      "agent-capabilities": { x: 60, y: 420, step: 135 },
-      "primary-sources": { x: 310, y: 420, step: 130 },
-      industries: { x: 495, y: 420, step: 120 },
-    };
-
-    contextByCluster.forEach((group, cluster) => {
-      const anchor = anchors[cluster];
-      group.forEach((node, index) => positions.set(node.id, {
-        x: anchor.x + index * anchor.step,
-        y: anchor.y,
-      }));
-    });
-    return positions;
-  }, [filteredNodes, pathIndexById, pathNodeIds]);
-
-  const flowNodes: AtlasFlowNode[] = useMemo(() => filteredNodes.map((record) => ({
-    id: record.id,
-    type: "atlasNode",
-    position: compactMap ? compactPositions.get(record.id) ?? record.position : record.position,
-    data: {
-      onSelect: selectNode,
-      record,
-      pathIndex: pathIndexById.get(record.id) ?? null,
-      selected: record.id === resolvedSelectedNodeId,
-    },
-    ariaLabel: `${record.label}. ${record.summary}`,
-    className: "atlas-flow-node",
-    draggable: false,
-    selectable: true,
-  })), [compactMap, compactPositions, filteredNodes, pathIndexById, resolvedSelectedNodeId, selectNode]);
-
-  const flowEdges: Edge[] = useMemo(() => filteredEdges.map((record) => ({
-    id: record.id,
-    source: record.source,
-    target: record.target,
-    type: record.path_edge ? "smoothstep" : "default",
-    label: compactMap || !record.path_edge ? undefined : record.label,
-    ariaLabel: `${nodeById.get(record.source)?.label ?? record.source} ${record.label} ${nodeById.get(record.target)?.label ?? record.target}`,
-    focusable: true,
-    animated: false,
-    markerEnd: {
-      type: MarkerType.ArrowClosed,
-      color: record.path_edge ? "#4f46d9" : "#9b9ead",
-      height: record.path_edge ? 16 : 12,
-      width: record.path_edge ? 16 : 12,
-    },
-    style: {
-      stroke: record.path_edge ? "#4f46d9" : "#afb1bd",
-      strokeDasharray: record.path_edge ? undefined : "5 6",
-      strokeWidth: record.path_edge ? 2.5 : 1.25,
-    },
-    labelStyle: { fill: "#3b39ad", fontSize: 11, fontWeight: 650 },
-    labelBgStyle: { fill: "#ffffff", fillOpacity: 0.94 },
-    labelBgPadding: [5, 3],
-    labelBgBorderRadius: 5,
-  })), [compactMap, filteredEdges, nodeById]);
-
   const selectedNode = nodeById.get(resolvedSelectedNodeId) ?? nodeById.get(defaultNodeId)!;
   const selectedPathIndex = pathIndexById.get(selectedNode.id) ?? null;
   const relatedEdges = edges.filter((edge) => edge.source === selectedNode.id || edge.target === selectedNode.id);
@@ -456,20 +244,20 @@ export function AtlasExplorer({
   })).filter((group) => group.nodes.length), [filteredNodes]);
 
   return (
-    <section aria-labelledby="atlas-explorer-title" className="atlas-explorer">
-      <header className="atlas-intro">
-        <p className="atlas-eyebrow">Source-linked learning map</p>
+    <section aria-labelledby="atlas-explorer-title" className="atlas-explorer aa2-atlas-explorer">
+      <header className="atlas-intro aa2-atlas-intro">
         <h1 id="atlas-explorer-title">The Living Atlas</h1>
         <p>
-          Explore how accounting work, controls, agent capabilities, primary sources,
-          and industry context connect across time.
+          Trace one accounting workflow through evidence, controls, agent capabilities,
+          sources, and accountable review.
         </p>
       </header>
 
-      <section aria-label="Atlas filters and view controls" className="atlas-instrument-rail">
-        <div className="atlas-filter-rail">
+      <section aria-label="Atlas filters and view controls" className="atlas-instrument-rail aa2-atlas-instrument-rail">
+        <div className="atlas-filter-rail aa2-atlas-filter-rail">
           <div className="atlas-lens-row">
-            <span id="atlas-industry-lens-label">Industry lens</span>
+            <span className="aa2-atlas-filter-icon" aria-hidden="true"><Funnel /></span>
+            <span id="atlas-industry-lens-label" className="sr-only">Industry lens</span>
             <div aria-labelledby="atlas-industry-lens-label" className="atlas-lens-scroller" role="radiogroup">
               {industryLenses.map((lens) => (
                 <button
@@ -483,14 +271,14 @@ export function AtlasExplorer({
                   type="button"
                 >
                   {lens.id === "general" ? <Buildings aria-hidden="true" /> : lens.id === "banking-credit-unions" ? <Bank aria-hidden="true" /> : <Buildings aria-hidden="true" />}
-                  {lens.label.replace(" and credit unions", "").replace(" or life sciences", "")}
+                  {lens.id === "general" ? "Industry" : lens.label.replace(" and credit unions", "").replace(" or life sciences", "")}
                 </button>
               ))}
             </div>
           </div>
 
           <fieldset className="atlas-time-layer atlas-time-layer-rail">
-            <legend>Time layer</legend>
+            <legend><ClockCountdown aria-hidden="true" /> Time layer</legend>
             <div>
               <span>Foundational archive</span>
               <span>Current developments</span>
@@ -511,7 +299,7 @@ export function AtlasExplorer({
           </fieldset>
         </div>
 
-        <div className="atlas-rail-actions">
+        <div className="atlas-rail-actions aa2-atlas-rail-actions">
           <div className="atlas-view-controls">
             <div aria-label="Atlas view" role="group">
               <button
@@ -539,8 +327,8 @@ export function AtlasExplorer({
         </div>
       </section>
 
-      <nav aria-label="Guided Atlas path" className="atlas-path-progress">
-        <p>Guided sequence <span>{selectedPathIndex === null ? "Explore" : `Step ${selectedPathIndex + 1} of ${pathNodeIds.length}`}</span></p>
+      <nav aria-label="Guided Atlas path" className="atlas-path-progress aa2-atlas-path-progress">
+        <p>Selected workflow <span>{selectedPathIndex === null ? "Explore" : `Step ${selectedPathIndex + 1} of ${pathNodeIds.length}`}</span></p>
         <ol>
           {pathNodeIds.map((id, index) => {
             const node = nodeById.get(id);
@@ -562,12 +350,31 @@ export function AtlasExplorer({
         </ol>
       </nav>
 
-      <div className="atlas-workspace">
-        <div className="atlas-map-pane">
-          {viewMode === "map" ? (
-            <ReactFlowProvider>
-              <AtlasMap compact={compactMap} edges={flowEdges} nodes={flowNodes} onSelect={selectNode} />
-            </ReactFlowProvider>
+      <div className="atlas-workspace aa2-atlas-workspace">
+        <div className="atlas-map-pane aa2-atlas-map-pane">
+          <div aria-label="Atlas legend" className="aa2-atlas-legend">
+            {Object.entries(clusterLabels).map(([cluster, label]) => (
+              <span data-cluster={cluster} key={cluster}><i aria-hidden="true" />{label}</span>
+            ))}
+          </div>
+          {filtersInitialized && viewMode === "map" ? (
+            <Suspense
+              fallback={(
+                <div aria-live="polite" className="aa2-atlas-loading" role="status">
+                  <span aria-hidden="true" />
+                  <p>Drawing the knowledge map…</p>
+                </div>
+              )}
+            >
+              <AtlasFlowMap
+                compact={compactMap}
+                edges={filteredEdges}
+                nodes={filteredNodes}
+                onSelect={selectNode}
+                pathNodeIds={pathNodeIds}
+                selectedNodeId={resolvedSelectedNodeId}
+              />
+            </Suspense>
           ) : (
             <div className="atlas-list-view" data-atlas-list>
               {groupedNodes.map((group) => (
@@ -581,7 +388,7 @@ export function AtlasExplorer({
                           onClick={() => selectNode(node.id)}
                           type="button"
                         >
-                          <span className="atlas-list-glyph" data-cluster={node.cluster}><NodeGlyph record={node} /></span>
+                          <span className="atlas-list-glyph" data-cluster={node.cluster}><AtlasNodeGlyph record={node} /></span>
                           <span><strong>{node.label}</strong><small>{node.summary}</small></span>
                           <ArrowRight aria-hidden="true" />
                         </button>
@@ -594,13 +401,13 @@ export function AtlasExplorer({
           )}
         </div>
 
-        <aside aria-label={`Selected Atlas node: ${selectedNode.label}`} className="atlas-inspector" id={`atlas-inspector-${selectedNode.id}`}>
+        <aside aria-label={`Selected Atlas node: ${selectedNode.label}`} className="atlas-inspector aa2-atlas-inspector" id={`atlas-inspector-${selectedNode.id}`}>
           <div className="atlas-inspector-heading">
             <div>
-              <p>{selectedPathIndex === null ? clusterLabels[selectedNode.cluster] : `Guided sequence · Step ${selectedPathIndex + 1} of ${pathNodeIds.length}`}</p>
-              <h2>{selectedNode.label}</h2>
+              <p>{selectedNode.id === "atlas-path-bank-reconciliation" ? "Workflow brief" : selectedPathIndex === null ? clusterLabels[selectedNode.cluster] : `Guided sequence · Step ${selectedPathIndex + 1} of ${pathNodeIds.length}`}</p>
+              <h2>{selectedNode.id === "atlas-path-bank-reconciliation" ? "Bank reconciliations" : selectedNode.label}</h2>
             </div>
-            <span className="atlas-selection-glyph" data-cluster={selectedNode.cluster}><NodeGlyph record={selectedNode} /></span>
+            <button aria-label="Close selected node details" className="aa2-atlas-close" onClick={() => selectNode(defaultNodeId)} type="button"><X aria-hidden="true" /></button>
           </div>
 
           <p className="atlas-inspector-summary">{selectedNode.summary}</p>
@@ -652,11 +459,15 @@ export function AtlasExplorer({
             </section>
           )}
 
-          <div className="atlas-learning-actions">
-            <Link href="/tutorials/bank-reconciliation">
+          <div className="atlas-learning-actions aa2-atlas-learning-actions">
+            <Link className="aa2-atlas-primary-action" href={selectedNode.href ?? "/workflows/record-to-report/wf-r2r-bank-reconciliations"}>
               <span><FileText aria-hidden="true" /></span>
-              <span><strong>Try a case</strong><small>Work a short synthetic scenario with guided feedback</small></span>
-              <ArrowRight aria-hidden="true" />
+              <span><strong>Open the workflow brief</strong><small>Read the context and design constraints behind this map.</small></span>
+              <ArrowSquareOut aria-hidden="true" />
+            </Link>
+            <Link className="aa2-atlas-return-action" href="/tutorials/bank-reconciliation">
+              <CaretLeft aria-hidden="true" />
+              <span>Return to the lesson</span>
             </Link>
             <button aria-expanded={guideOpen} onClick={() => setGuideOpen((open) => !open)} type="button">
               <span><Compass aria-hidden="true" /></span>

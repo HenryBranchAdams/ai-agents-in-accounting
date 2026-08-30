@@ -1,33 +1,17 @@
+import { ArrowRightIcon, CompassIcon } from "@phosphor-icons/react/ssr";
 import Link from "next/link";
 import { DocsSearch } from "./DocsSearch";
 import { navGroups } from "./content";
 
 const learningLinks = [
-  { href: "/atlas", label: "Atlas" },
-  { href: "/start-here", label: "Learn" },
-  { href: "/tutorials/bank-reconciliation", label: "Practice" },
-  { href: "/control-model", label: "Govern" },
-  { href: "/reading-room", label: "Research" },
+  { href: "/start-here", label: "Learn", matches: ["/start-here", "/course"] },
+  { href: "/tutorials/bank-reconciliation", label: "Practice", matches: ["/tutorials", "/workflows"] },
+  { href: "/atlas", label: "Atlas", matches: ["/atlas"] },
+  { href: "/resources", label: "Library", matches: ["/resources", "/reading-room", "/templates", "/glossary"] },
 ] as const;
 
-function BrandMark() {
-  return (
-    <svg aria-hidden="true" viewBox="0 0 32 32">
-      <path d="M16 3 29 27h-7.1L16 15.9 10.1 27H3L16 3Z" fill="currentColor" />
-      <path d="m16 15.9 5.9 11.1h-4.2L16 23.8 14.3 27h-4.2L16 15.9Z" fill="white" opacity="0.92" />
-      <circle cx="16" cy="20.2" fill="currentColor" r="2.2" stroke="white" strokeWidth="1.4" />
-    </svg>
-  );
-}
-
-function ExploreMark() {
-  return (
-    <svg aria-hidden="true" className="explore-mark" viewBox="0 0 20 20">
-      <circle cx="10" cy="10" fill="none" r="8" stroke="currentColor" strokeWidth="1.4" />
-      <path d="m12.9 6.6-1.8 4.5-4.3 2.2 1.8-4.5 4.3-2.2Z" fill="currentColor" />
-      <circle cx="10" cy="10" fill="white" r="1" />
-    </svg>
-  );
+function isLearningSectionActive(active: string, matches: readonly string[]) {
+  return matches.some((prefix) => active === prefix || active.startsWith(`${prefix}/`));
 }
 
 export function DocumentationNavigation({
@@ -71,22 +55,23 @@ export function DocumentationNavigation({
 }
 
 export function SiteHeader({ active }: { active: string }) {
-  const activeGroup = navGroups.find((group) => group.items.some((item) => item.href === active));
-  const activeItem = activeGroup?.items.find((item) => item.href === active);
-
   return (
-    <header className="topbar">
-      <div className="topbar-primary">
-        <Link className="wordmark" href="/" aria-label="Accounting Agents knowledge hub home">
-          <span aria-hidden="true" className="brand-mark"><BrandMark /></span>
+    <header className="topbar aa2-topbar">
+      <div className="topbar-primary aa2-topbar-primary">
+        <Link className="wordmark aa2-wordmark" href="/" aria-label="Accounting Agents home">
+          <span aria-hidden="true" className="brand-mark aa2-brand-mark">
+            {/* A shipped brand asset keeps the mark crisp without adding a bespoke UI glyph. */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img alt="" height="36" src="/brand-mark.png" width="36" />
+          </span>
           <span>Accounting Agents</span>
-          <small>Educational knowledge hub</small>
+          <small>Learn governed work</small>
         </Link>
 
-        <nav aria-label="Learning paths" className="learning-nav">
+        <nav aria-label="Learning paths" className="learning-nav aa2-learning-nav">
           {learningLinks.map((item) => (
             <Link
-              aria-current={item.href === active ? "page" : undefined}
+              aria-current={isLearningSectionActive(active, item.matches) ? "page" : undefined}
               href={item.href}
               key={item.href}
             >
@@ -95,25 +80,32 @@ export function SiteHeader({ active }: { active: string }) {
           ))}
         </nav>
 
-        <DocsSearch />
-
-        <nav className="top-links" aria-label="Current material">
-          <Link href="/observatory">
-            <span aria-hidden="true" className="signal-dot" />
-            Current signal
+        <div className="aa2-header-actions top-links">
+          <DocsSearch />
+          <Link className="aa2-start-action" href="/start-here">
+            <span>Start learning</span>
+            <ArrowRightIcon aria-hidden="true" size={18} weight="bold" />
           </Link>
-        </nav>
+        </div>
 
-        <details className="mobile-navigation">
-          <summary><ExploreMark /> Explore</summary>
-          <DocumentationNavigation active={active} mobile />
+        <details className="mobile-navigation aa2-mobile-navigation">
+          <summary><CompassIcon aria-hidden="true" size={18} weight="regular" /> Explore</summary>
+          <div className="aa2-mobile-menu">
+            <nav aria-label="Mobile learning paths" className="aa2-mobile-learning-nav">
+              {learningLinks.map((item) => (
+                <Link
+                  aria-current={isLearningSectionActive(active, item.matches) ? "page" : undefined}
+                  href={item.href}
+                  key={item.href}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </nav>
+            <Link className="aa2-mobile-start" href="/start-here">Start learning <ArrowRightIcon aria-hidden="true" size={17} weight="bold" /></Link>
+            <DocumentationNavigation active={active} mobile />
+          </div>
         </details>
-      </div>
-
-      <div aria-label="Site context" className="site-context-rail" role="group">
-        <span>Public knowledge hub</span>
-        <span>{activeGroup?.label ?? "Guide"} / {activeItem?.label ?? "Overview"}</span>
-        <span>Read-only / Source-linked</span>
       </div>
     </header>
   );
