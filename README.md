@@ -4,7 +4,7 @@ A public, read-only research corpus that helps people and agents find, understan
 
 The corpus brings original source references together with accounting workflows, controls, design references, terminology, and synthetic examples. Search, citations, source relationships, and portable downloads are the product.
 
-The September 7, 2026 migration contains **716 records**: 489 source references, 60 workflows, 24 design references, 21 reading collections, and 122 other accounting and technical references. All records were inherited from the existing project. Coverage is uneven; this migration does not claim new source verification or exhaustive completeness. See [mission and coverage](data/catalog.json).
+The corpus contains **749 records**: 517 source references, 60 workflows, 24 design references, 26 reading collections, and 122 other accounting and technical references. The September 7 research expansion adds 28 sources with scoped, AI-assisted publisher checks and five collections covering electronic invoicing, ledger/data interfaces, public-sector and charity accounting, payroll reporting, and financial-reasoning research. The 716 inherited records retain their earlier migration status. Source checks are not professional verification or exhaustive coverage. See [mission and coverage](data/catalog.json).
 
 ## Run locally
 
