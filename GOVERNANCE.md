@@ -1,24 +1,9 @@
-# Governance
+# Corpus governance
 
-Accounting Agents is an open educational and technical commons. Maintainers steward releases, compatibility, rights, and review quality. Subject-matter reviewers assess material accounting, audit, tax, treasury, control, and regulatory changes within their stated competence.
+Maintainers steward one public research corpus: its scope, source quality, retrieval compatibility, rights, corrections, and releases. Routine source and implementation changes receive maintainer review before publication. Material accounting, audit, tax, treasury, or regulatory claims need appropriate domain review before being labeled professionally reviewed.
 
-## Decisions
+Review evidence should identify the reviewer, source, scope, date, and outcome. Automated integrity checks do not constitute independent or professional review. Disclose material vendor, financial, employment, or authorship interests.
 
-- Routine corrections and compatible additions require one maintainer review.
-- Material domain changes require a maintainer and a designated subject-matter reviewer.
-- Breaking API, schema, identifier, license, or governance changes require a written proposal, migration notes, and a major version.
-- Security reports follow `SECURITY.md` and may be handled privately until a safe release is available.
+Changes to schema, stable IDs, licensing, or public routes need a written compatibility note. Use `docs/migration.md` for the current transition and `RELEASES.md` for version and artifact practices. Maintain the rights already granted in prior releases.
 
-No reviewer approval represents an audit opinion, legal conclusion, certification, or authorization for a real entity.
-
-## Releases
-
-Releases are immutable once published. Corrections ship as a new release with a manifest, digest, compatibility note, and change entry. Stable IDs are not reassigned. Removed records remain addressable through release archives when the hosting platform supports them.
-
-## Conflicts and appeals
-
-Reviewers disclose relevant financial, employment, vendor, authorship, and professional conflicts. A conflicted reviewer may provide evidence but should not be the sole approver. A contributor may request reconsideration with new evidence or a narrower claim; maintainers document the resulting decision.
-
-## Project succession
-
-If the current maintainer cannot continue, stewardship should pass to active contributors who can preserve the licenses, public history, stable identifiers, and professional-review boundary. The corpus must remain available under the licenses already granted.
+Disputes and corrections should identify the record and supporting evidence. Maintain the distinction between project synthesis and source authority. No project approval grants authority to perform accounting actions for a real entity.

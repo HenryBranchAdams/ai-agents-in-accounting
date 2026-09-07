@@ -1,7 +1,7 @@
 # Editorial policy
 
-Claims should be useful, bounded, and traceable. Prefer primary accounting, audit, regulatory, standards, security, and interface sources. Separate facts, observations, claims, judgments, and decisions. State jurisdiction, period, effective date, access limits, and contrary evidence when they affect applicability.
+The detailed intake, record, evidence, review, and coverage policy is [docs/corpus-policy.md](docs/corpus-policy.md). Keep it the single operational source for corpus maintenance.
 
-Admission to the source catalog does not imply authority or endorsement. Editorial summaries are original and do not substitute for the source. Automated integrity checks may verify identifiers and structure; “independent review” is not claimed unless a distinct reviewer and review evidence are recorded.
+Claims should be useful, bounded, and traceable. Prefer primary accounting, audit, regulatory, technical, and research sources. Record applicability, effective dates, limitations, contrary evidence, and commercial interests when known. Catalog inclusion is not endorsement. Project summaries do not replace the original publication.
 
-AI tools may assist with research, drafting, transformation, and testing. A maintainer remains accountable for publication. Material domain changes require a designated subject-matter review before they are described as professionally reviewed.
+AI tools may assist with research and drafting. Preserve the evidence and label uncertainty. Only substantiated review receives a review date or professional-review claim.

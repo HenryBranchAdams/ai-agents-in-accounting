@@ -1,7 +1,7 @@
-# Data and fixture license
+# Project data license
 
-Purely factual project-created metadata and clean-room synthetic fixtures in the workflow packs and benchmark are dedicated to the public domain under [CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/), unless a record says otherwise.
+Project-created factual metadata and clean-room synthetic fixture values are dedicated under [CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/), unless a record says otherwise.
 
-CC0 applies to fields such as stable identifiers, dates, classifications, counts, synthetic amounts, case mutations, and expected deterministic assertions. Original explanations and editorial summaries remain under CC BY 4.0. Software remains under MIT.
+CC0 applies to stable identifiers, project classifications, counts, dates, synthetic amounts, and reference values. Original explanations and editorial summaries remain under CC BY 4.0. Software remains under MIT. A record may combine these components.
 
-External source content is not included in this dedication. A source ID or citation does not transfer rights in the underlying publication. Where a field mixes fact and original explanation, treat the explanatory portion as CC BY 4.0.
+External source content is excluded. A citation does not transfer rights in the publication or its underlying dataset. When a field mixes factual metadata and original explanation, treat the explanatory portion as CC BY 4.0.

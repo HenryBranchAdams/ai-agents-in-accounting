@@ -1,7 +1,9 @@
-# Releases
+# Corpus releases
 
-Each public release has an immutable ID, publication time, compatibility note, record counts, rights summary, asset list, corpus digest, change entry, and machine-readable manifest. Stable IDs persist across compatible releases. Breaking API or schema changes require a new major version and migration notes.
+The canonical version is `data/catalog.json:corpus_version`. Use a dated version such as `2026-09-07.1` and increment it when publishing changed corpus content. Schema changes use semantic versions independently; the refactored record schema is 2.0.0.
 
-Patch releases correct text, links, metadata, fixtures, or code without intentionally breaking consumers. Minor releases add compatible records or fields. Major releases may change required schemas, authority semantics, or identifier contracts.
+Every build generates JSON, JSONL, Markdown, and a complete source ZIP from the current working files. The manifest records version, record count, file sizes, and SHA-256 hashes. Generated downloads are the latest build and are not themselves a version-addressed archive.
 
-Release gates include schema validation, generated-artifact parity, source-link integrity, benchmark hard-gate validation, accessibility checks, lint, rendered-route tests, rights review, and source-archive checksums.
+Before publication, run `npm run check`, inspect the reading surface on desktop and mobile, review rights and substantive evidence changes, and record compatibility changes. Preserve exact released artifacts if immutable replay is required. Published versions should not be silently overwritten under the same version identifier.
+
+Source IDs remain stable. The September 2026 schema and retired routes are documented in `docs/migration.md`. Public deployment, remote Git updates, and release archival are explicit maintainer actions; a local build does not perform them.

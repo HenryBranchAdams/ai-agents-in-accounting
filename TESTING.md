@@ -1,54 +1,9 @@
-# Testing
+# Verification
 
-The test suite treats the built Worker as the public product. It sends requests through the same `fetch` interface used in production and checks both human-facing and agent-facing surfaces.
+Run `npm ci` and `npm run check` with Node.js 22.13 or later. The check typechecks the Worker, validates canonical data, generates the website and exports, and tests the external retrieval contract. CI runs this check on every pull request and main-branch push.
 
-## Coverage matrix
+Data checks cover the public schema, unique IDs, valid references, required source URLs, rights boundaries, review provenance, and migrated examples. Retrieval tests cover search, filtering, pagination, record and bibliography parity, HTML and Markdown routes, read-only methods, retired routes, security headers, escaping, and downloads. Source packaging is checked against the actual working files, including new files before staging.
 
-| Surface | Coverage |
-| --- | --- |
-| Canonical pages | Every sitemap URL returns semantic HTML with one heading, a main landmark, a title, and no framework error output. |
-| Navigation | Internal links from primary documentation pages resolve; fragment targets exist on the destination page. |
-| Media | Every local image referenced by a canonical page exists in the published asset tree and has alternative text. |
-| Accessibility | Language, skip link, landmarks, heading structure, table captions, search labels, keyboard shortcuts, and editorial-image alternatives. |
-| Mobile layout | Phone viewport metadata, mobile-navigation parity, active-page state, touch-target sizing, safe-area spacing, dynamic viewport units, responsive search, and overflow containment. |
-| Public API | GET, HEAD, OPTIONS, CORS, content negotiation, pagination, filters, cache validators, and problem-detail errors. |
-| Machine access | OpenAPI, API catalog, `llms.txt`, `AGENTS.md`, Markdown, JSON snapshots, feeds, schemas, and release manifests. |
-| Corpus integrity | Unique identifiers and valid references across workflows, sources, controls, templates, packs, benchmark cases, reading-room shelves, and ecosystem layers. |
-| Content quality | Required metadata, valid HTTPS source URLs, rights boundaries, source provenance, and prohibited placeholder or promotional language. |
-| Educational tutorials | Start here definition, pattern comparison, evidence-to-decision chain, clean-room synthetic exception, knowledge check, completion boundary, role paths, and human/Markdown/JSON parity. |
-| Core course | Twenty unique source records across five ordered modules; four audience lenses; source weight, status, contribution, limitation, workflow relation, reading time, and learning outcome; synthetic transfer brief; knowledge check; and human/Markdown/JSON/discovery parity. |
-| Practice observatory | Exactly the current-development source cohort; five reviewed source lanes; descending normalized source dates with nulls last; exact industry applicability; explicit evidence-profile status, commercial interest, freshness, method, and transfer limits; and human/Markdown/JSON/search/discovery parity without rankings or adoption claims. |
-| Living Atlas | Stable node and relationship IDs, resolvable destinations, guided-path and human-approval boundaries, industry/time-layer projections, provenance, limitations, and human/Markdown/JSON/discovery parity. |
-| Bank-reconciliation tutorial | Canonical pack-value parity; three-record synthetic evidence register; eight-step lesson; $436,800 known answer; missing/wrong-period stop; prepared workpaper; bounded approve/reject dispositions; knowledge check; safe reset; and human/Markdown/JSON/discovery parity. |
-| Authority reference | Action-level decision tree, A3/A4/human-only distinctions, mixed-level synthetic workflow, common misclassifications, segregation-of-duties comparisons, sensitive-action links, and human/Markdown/JSON parity. |
-| Reviewer field guide | Ordered evidence challenge, four dispositions, minimum packet, automation-bias traps, synthetic good/failure/conflict examples, cross-domain calibration, visible review states, and human/Markdown/JSON parity. |
-| Workflow brief pilot | Bank-reconciliation fit, prerequisites, authority, top check and failure, artifact, synthetic stop example, source applicability, related material, and human/Markdown/JSON/OpenAPI parity. |
-| Authoritative source core | Six high-use authority profiles, current or amended status, future effective dates, jurisdiction and transfer limits, stable claim and relationship IDs, source links, and human/Markdown/JSON/search parity. |
-| Accounting safety | Benchmark hard gates, empty executed-action sets, approval boundaries, evidence links, and deterministic calculations. |
+For visual changes, start the built server and inspect desktop and narrow mobile layouts. Verify navigation, search, filters, pagination, a source page, a workflow, a collection, keyboard focus, and download links. Check horizontal overflow, console errors, and failed requests. Keep screenshots and temporary browser scripts under ignored `outputs/` or a temporary directory.
 
-## Commands
-
-```sh
-# Complete release gate: production build plus every test
-npm test
-
-# Existing rendered/API contract suite against an already-built Worker
-npm run test:contracts
-
-# Site-wide crawl and integrity suite against an already-built Worker
-npm run test:quality
-
-# Mobile semantics and compiled responsive-style contracts
-npm run test:mobile
-
-# Static analysis and generated-platform validation
-npm run lint
-npm run validate:platform
-
-# Deterministic accounting-agent benchmark
-npm run benchmark:sample
-```
-
-The production build uses a Node-based deadline runner on macOS and Linux. Override its defaults with `SITES_BUILD_TIMEOUT` and `SITES_BUILD_KILL_AFTER` using duration values such as `90s` or `3m`.
-
-Run `npm run generate:platform` before the release gate when canonical pack, benchmark, or release data changes.
+These checks establish local content integrity and retrieval behavior. They do not reverify publishers, establish accounting correctness, run accounting agents, prove deployed behavior, or constitute a benchmark.

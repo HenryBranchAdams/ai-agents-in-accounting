@@ -1,7 +1,7 @@
 # Corrections and withdrawals
 
-Report a correction with the affected stable ID or URL, the disputed claim or field, supporting evidence, and the requested disposition. Do not send confidential accounting records.
+Report the affected stable ID or URL, disputed field or claim, supporting evidence, and requested correction. Do not submit confidential accounting records.
 
-Minor spelling and link repairs may ship in a patch release. Substantive factual, rights, schema, or professional-boundary corrections ship as a new immutable release with a change entry. Stable IDs are not reassigned. A record may be marked corrected, superseded, withdrawn, or access-limited; the reason and replacement remain visible when legally and safely possible.
+Correct the canonical record, preserve its ID, record the change and evidence in provenance, and publish a new corpus version. Use a replacement link and explanation for superseded or withdrawn records when legally and safely possible. Do not silently change a previously published version identifier.
 
-Urgent security, privacy, legal, or rights complaints may be handled privately and temporarily removed while assessed. Removal does not change licenses already validly granted for prior project-owned material.
+Urgent privacy, security, or rights complaints may require temporary removal while assessed. Follow `SECURITY.md` for private reports. Removal does not revoke valid rights previously granted for project-owned material. Retain exact prior artifacts privately where lawful; public archive availability must not be assumed.

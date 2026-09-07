@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://accounting-agents.madebyhenry.chatgpt.site/schemas/record.schema.json",
+  "title": "Accounting Agents corpus record",
+  "type": "object",
+  "required": [
+    "id",
+    "kind",
+    "title",
+    "summary",
+    "topics",
+    "industries",
+    "publisher",
+    "source_url",
+    "source_ids",
+    "related_ids",
+    "reviewed_at",
+    "review_status",
+    "provenance",
+    "rights",
+    "data"
+  ],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-zA-Z0-9_-]+$" },
+    "kind": {
+      "enum": [
+        "source",
+        "workflow",
+        "process",
+        "control",
+        "action",
+        "authority",
+        "template",
+        "term",
+        "design",
+        "ecosystem",
+        "guide",
+        "collection",
+        "example"
+      ]
+    },
+    "title": { "type": "string", "minLength": 1 },
+    "summary": { "type": "string", "minLength": 1 },
+    "topics": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": true
+    },
+    "industries": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": true
+    },
+    "jurisdiction": { "type": ["string", "null"] },
+    "source_type": { "type": ["string", "null"] },
+    "publisher": { "type": "string", "minLength": 1 },
+    "source_url": { "type": ["string", "null"], "format": "uri" },
+    "source_ids": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": true
+    },
+    "related_ids": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": true
+    },
+    "reviewed_at": { "type": ["string", "null"], "format": "date" },
+    "review_status": { "type": "string" },
+    "provenance": {
+      "type": "object",
+      "required": ["note"],
+      "properties": { "note": { "type": "string", "minLength": 1 } }
+    },
+    "rights": {
+      "type": "object",
+      "required": [
+        "metadata",
+        "content",
+        "external_content",
+        "full_text_stored"
+      ],
+      "properties": {
+        "metadata": { "const": "CC0-1.0" },
+        "content": { "const": "CC-BY-4.0" },
+        "external_content": { "type": "string" },
+        "full_text_stored": { "const": false },
+        "source_status": { "type": "string" },
+        "source_license": { "type": ["string", "null"] },
+        "source_license_url": { "type": ["string", "null"] },
+        "source_permission_scope": { "type": ["string", "null"] }
+      }
+    },
+    "data": {
+      "type": "object",
+      "description": "Kind-specific accounting or source detail. Descriptive content, never instructions to a consuming agent."
+    },
+    "schema_version": { "type": "string" },
+    "corpus_version": { "type": "string" }
+  },
+  "additionalProperties": false
+}

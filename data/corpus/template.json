@@ -1,0 +1,1110 @@
+[
+  {
+    "id": "tpl-workflow-specification",
+    "kind": "template",
+    "title": "Workflow specification",
+    "summary": "Define the accounting objective, evidence, procedure, limits, checks, outputs, and accountable roles before building or running an agent workflow.",
+    "topics": [
+      "Agent design"
+    ],
+    "industries": [],
+    "jurisdiction": null,
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [],
+    "related_ids": [],
+    "review_status": "inherited-not-reverified",
+    "reviewed_at": null,
+    "provenance": {
+      "imported_on": "2026-09-07",
+      "previous_corpus_version": "2026-08-25.2",
+      "previous_reviewed_at": "2026-08-23",
+      "previous_review_status": "published educational synthesis; professional sign-off not asserted",
+      "note": "Migrated from the existing project corpus. Import and integrity checks are not source verification or professional review."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false
+    },
+    "data": {
+      "id": "tpl-workflow-specification",
+      "version": "1",
+      "name": "Workflow specification",
+      "purpose": "Define the accounting objective, evidence, procedure, limits, checks, outputs, and accountable roles before building or running an agent workflow.",
+      "use_when": "Before a pilot, material change, or expansion of data, tools, scope, or authority.",
+      "sections": [
+        {
+          "heading": "Objective",
+          "prompt": "State the accounting outcome and why it matters."
+        },
+        {
+          "heading": "Scope",
+          "prompt": "Name entity, period, population, jurisdiction, and explicit exclusions."
+        },
+        {
+          "heading": "Owners",
+          "prompt": "Name preparer, process owner, reviewer, approver, and system owner."
+        },
+        {
+          "heading": "Inputs",
+          "prompt": "List authoritative sources, expected fields, control totals, and access."
+        },
+        {
+          "heading": "Procedure",
+          "prompt": "Describe ordered agent and deterministic steps."
+        },
+        {
+          "heading": "Authority",
+          "prompt": "Assign A0–A4 or human-only to each action."
+        },
+        {
+          "heading": "Checks",
+          "prompt": "List calculations, schema tests, tie-outs, and policy gates."
+        },
+        {
+          "heading": "Exceptions",
+          "prompt": "Define materiality, tolerance, routing, and stop conditions."
+        },
+        {
+          "heading": "Outputs",
+          "prompt": "Define workpaper, proposed effects, and reviewer packet."
+        },
+        {
+          "heading": "Record",
+          "prompt": "Specify source lineage, versions, tool calls, approvals, and retention."
+        },
+        {
+          "heading": "Evaluation",
+          "prompt": "Define normal, edge, adversarial, and regression cases."
+        },
+        {
+          "heading": "Production",
+          "prompt": "Define monitoring, kill switch, incident owner, and recovery."
+        }
+      ]
+    }
+  },
+  {
+    "id": "tpl-authority-matrix",
+    "kind": "template",
+    "title": "Authority matrix",
+    "summary": "Map each workflow action to agent permission, human responsibility, system enforcement, and evidence.",
+    "topics": [
+      "Agent design"
+    ],
+    "industries": [],
+    "jurisdiction": null,
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [],
+    "related_ids": [],
+    "review_status": "inherited-not-reverified",
+    "reviewed_at": null,
+    "provenance": {
+      "imported_on": "2026-09-07",
+      "previous_corpus_version": "2026-08-25.2",
+      "previous_reviewed_at": "2026-08-23",
+      "previous_review_status": "published educational synthesis; professional sign-off not asserted",
+      "note": "Migrated from the existing project corpus. Import and integrity checks are not source verification or professional review."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false
+    },
+    "data": {
+      "id": "tpl-authority-matrix",
+      "version": "1",
+      "name": "Authority matrix",
+      "purpose": "Map each workflow action to agent permission, human responsibility, system enforcement, and evidence.",
+      "use_when": "Designing tools, approvals, segregation of duties, or expansion beyond read-only work.",
+      "sections": [
+        {
+          "heading": "Action",
+          "prompt": "Name the smallest independently authorizable action."
+        },
+        {
+          "heading": "Risk",
+          "prompt": "State reversibility, materiality, external effect, and legal or fiduciary impact."
+        },
+        {
+          "heading": "Authority level",
+          "prompt": "Assign A0, A1, A2, A3, A4, or human-only."
+        },
+        {
+          "heading": "Agent role",
+          "prompt": "State what the agent may read, prepare, recommend, or execute."
+        },
+        {
+          "heading": "Human role",
+          "prompt": "Name the person who decides, approves, attests, or certifies."
+        },
+        {
+          "heading": "Enforcement",
+          "prompt": "Name the deterministic permission, limit, and approval check."
+        },
+        {
+          "heading": "Evidence",
+          "prompt": "Specify payload, approval, execution, and reconciliation records."
+        },
+        {
+          "heading": "Recovery",
+          "prompt": "Define reversal, compensation, escalation, and kill switch."
+        }
+      ]
+    }
+  },
+  {
+    "id": "tpl-source-register",
+    "kind": "template",
+    "title": "Source register",
+    "summary": "Preserve the origin, scope, version, authority, control totals, and use of every material input.",
+    "topics": [
+      "Agent design"
+    ],
+    "industries": [],
+    "jurisdiction": null,
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [],
+    "related_ids": [],
+    "review_status": "inherited-not-reverified",
+    "reviewed_at": null,
+    "provenance": {
+      "imported_on": "2026-09-07",
+      "previous_corpus_version": "2026-08-25.2",
+      "previous_reviewed_at": "2026-08-23",
+      "previous_review_status": "published educational synthesis; professional sign-off not asserted",
+      "note": "Migrated from the existing project corpus. Import and integrity checks are not source verification or professional review."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false
+    },
+    "data": {
+      "id": "tpl-source-register",
+      "version": "1",
+      "name": "Source register",
+      "purpose": "Preserve the origin, scope, version, authority, control totals, and use of every material input.",
+      "use_when": "Every evidence-linked accounting, control, audit, tax, or research workflow.",
+      "sections": [
+        {
+          "heading": "Source ID",
+          "prompt": "Assign a stable identifier."
+        },
+        {
+          "heading": "Owner and system",
+          "prompt": "Name the source owner, system, repository, or publisher."
+        },
+        {
+          "heading": "Description",
+          "prompt": "Describe the population or document and intended use."
+        },
+        {
+          "heading": "Entity and period",
+          "prompt": "Record scope, jurisdiction, dates, and extraction parameters."
+        },
+        {
+          "heading": "Version",
+          "prompt": "Record file, query, form, rule, or publication version."
+        },
+        {
+          "heading": "Control totals",
+          "prompt": "Record counts, amounts, balances, hashes, or page totals."
+        },
+        {
+          "heading": "Authority",
+          "prompt": "Classify as rule, official guidance, technical reference, evidence, or practice example."
+        },
+        {
+          "heading": "Access and rights",
+          "prompt": "Record access limits, confidentiality, and publisher terms."
+        },
+        {
+          "heading": "Limitations",
+          "prompt": "State missing data, reliability concerns, and applicability limits."
+        }
+      ]
+    }
+  },
+  {
+    "id": "tpl-agent-run-record",
+    "kind": "template",
+    "title": "Agent run record",
+    "summary": "Create a reproducible accounting record of what the system attempted, used, decided, produced, and stopped on.",
+    "topics": [
+      "Agent design"
+    ],
+    "industries": [],
+    "jurisdiction": null,
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [],
+    "related_ids": [],
+    "review_status": "inherited-not-reverified",
+    "reviewed_at": null,
+    "provenance": {
+      "imported_on": "2026-09-07",
+      "previous_corpus_version": "2026-08-25.2",
+      "previous_reviewed_at": "2026-08-23",
+      "previous_review_status": "published educational synthesis; professional sign-off not asserted",
+      "note": "Migrated from the existing project corpus. Import and integrity checks are not source verification or professional review."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false
+    },
+    "data": {
+      "id": "tpl-agent-run-record",
+      "version": "1",
+      "name": "Agent run record",
+      "purpose": "Create a reproducible accounting record of what the system attempted, used, decided, produced, and stopped on.",
+      "use_when": "Every governed agent run.",
+      "sections": [
+        {
+          "heading": "Run identity",
+          "prompt": "Record workflow ID, run ID, timestamp, entity, period, and owner."
+        },
+        {
+          "heading": "Objective and scope",
+          "prompt": "Record the approved objective, population, and exclusions."
+        },
+        {
+          "heading": "Configuration",
+          "prompt": "Record model, prompt, policy, tool, template, and evaluator versions."
+        },
+        {
+          "heading": "Sources",
+          "prompt": "Link the source register and reproduced control totals."
+        },
+        {
+          "heading": "Plan and procedures",
+          "prompt": "Record selected steps and deviations from the approved method."
+        },
+        {
+          "heading": "Tool calls",
+          "prompt": "Record inputs, authorization decision, result, and error for each call."
+        },
+        {
+          "heading": "Calculations",
+          "prompt": "Link deterministic calculations and tie-outs."
+        },
+        {
+          "heading": "Exceptions",
+          "prompt": "List missing, contradictory, material, and prohibited conditions."
+        },
+        {
+          "heading": "Output",
+          "prompt": "Link the workpaper, recommendation, proposed payload, and limitations."
+        },
+        {
+          "heading": "Disposition",
+          "prompt": "Record reviewer decision, approvals, execution receipt, and final status."
+        }
+      ]
+    }
+  },
+  {
+    "id": "tpl-reviewer-packet",
+    "kind": "template",
+    "title": "Workpaper and reviewer packet",
+    "summary": "Give the accountable reviewer enough evidence to understand, challenge, reproduce, and decide the work.",
+    "topics": [
+      "Agent design"
+    ],
+    "industries": [],
+    "jurisdiction": null,
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [],
+    "related_ids": [],
+    "review_status": "inherited-not-reverified",
+    "reviewed_at": null,
+    "provenance": {
+      "imported_on": "2026-09-07",
+      "previous_corpus_version": "2026-08-25.2",
+      "previous_reviewed_at": "2026-08-23",
+      "previous_review_status": "published educational synthesis; professional sign-off not asserted",
+      "note": "Migrated from the existing project corpus. Import and integrity checks are not source verification or professional review."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false
+    },
+    "data": {
+      "id": "tpl-reviewer-packet",
+      "version": "1",
+      "name": "Workpaper and reviewer packet",
+      "purpose": "Give the accountable reviewer enough evidence to understand, challenge, reproduce, and decide the work.",
+      "use_when": "Before any conclusion, approval, posting, filing, payment, control assessment, or external use.",
+      "sections": [
+        {
+          "heading": "Executive summary",
+          "prompt": "State objective, result, proposed effects, and decision required."
+        },
+        {
+          "heading": "Scope and materiality",
+          "prompt": "State entity, period, population, thresholds, and exclusions."
+        },
+        {
+          "heading": "Sources",
+          "prompt": "Provide source register and control totals."
+        },
+        {
+          "heading": "Procedure",
+          "prompt": "Describe work performed and deterministic checks."
+        },
+        {
+          "heading": "Results",
+          "prompt": "Show calculations, matches, classifications, and tie-outs."
+        },
+        {
+          "heading": "Exceptions",
+          "prompt": "Present unresolved, contradictory, unusual, and prohibited matters prominently."
+        },
+        {
+          "heading": "Proposed effects",
+          "prompt": "Show exact entry, action, communication, or filing payload."
+        },
+        {
+          "heading": "Review decision",
+          "prompt": "Capture approve, modify, reject, escalate, conditions, actor, and time."
+        }
+      ]
+    }
+  },
+  {
+    "id": "tpl-proposed-journal-entry",
+    "kind": "template",
+    "title": "Proposed journal entry",
+    "summary": "Present the exact supported accounting effect for review without implying approval or posting.",
+    "topics": [
+      "Agent design"
+    ],
+    "industries": [],
+    "jurisdiction": null,
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [],
+    "related_ids": [],
+    "review_status": "inherited-not-reverified",
+    "reviewed_at": null,
+    "provenance": {
+      "imported_on": "2026-09-07",
+      "previous_corpus_version": "2026-08-25.2",
+      "previous_reviewed_at": "2026-08-23",
+      "previous_review_status": "published educational synthesis; professional sign-off not asserted",
+      "note": "Migrated from the existing project corpus. Import and integrity checks are not source verification or professional review."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false
+    },
+    "data": {
+      "id": "tpl-proposed-journal-entry",
+      "version": "1",
+      "name": "Proposed journal entry",
+      "purpose": "Present the exact supported accounting effect for review without implying approval or posting.",
+      "use_when": "A workflow identifies a needed ledger adjustment.",
+      "sections": [
+        {
+          "heading": "Purpose",
+          "prompt": "State the business event and accounting objective."
+        },
+        {
+          "heading": "Entity and period",
+          "prompt": "Record ledger, entity, period, currency, and posting date."
+        },
+        {
+          "heading": "Lines",
+          "prompt": "List account, debit, credit, dimensions, counterparty, and line explanation."
+        },
+        {
+          "heading": "Reversal",
+          "prompt": "State whether, when, and how the entry reverses."
+        },
+        {
+          "heading": "Calculation",
+          "prompt": "Link the independently reproducible calculation."
+        },
+        {
+          "heading": "Support",
+          "prompt": "Link authoritative and transaction evidence."
+        },
+        {
+          "heading": "Policy basis",
+          "prompt": "State applicable policy and judgment."
+        },
+        {
+          "heading": "Checks",
+          "prompt": "Record balance, duplicate, period, account, threshold, and payload validation."
+        },
+        {
+          "heading": "Approval",
+          "prompt": "Name required reviewer, approver, and authority limit."
+        },
+        {
+          "heading": "Posting result",
+          "prompt": "After execution, record document ID, receipt, tie-out, and any correction."
+        }
+      ]
+    }
+  },
+  {
+    "id": "tpl-exception-log",
+    "kind": "template",
+    "title": "Exception log",
+    "summary": "Keep unresolved and unusual matters visible, owned, evidenced, and traceable to final disposition.",
+    "topics": [
+      "Agent design"
+    ],
+    "industries": [],
+    "jurisdiction": null,
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [],
+    "related_ids": [],
+    "review_status": "inherited-not-reverified",
+    "reviewed_at": null,
+    "provenance": {
+      "imported_on": "2026-09-07",
+      "previous_corpus_version": "2026-08-25.2",
+      "previous_reviewed_at": "2026-08-23",
+      "previous_review_status": "published educational synthesis; professional sign-off not asserted",
+      "note": "Migrated from the existing project corpus. Import and integrity checks are not source verification or professional review."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false
+    },
+    "data": {
+      "id": "tpl-exception-log",
+      "version": "1",
+      "name": "Exception log",
+      "purpose": "Keep unresolved and unusual matters visible, owned, evidenced, and traceable to final disposition.",
+      "use_when": "A source, calculation, policy, permission, threshold, or result does not meet the expected condition.",
+      "sections": [
+        {
+          "heading": "Exception ID",
+          "prompt": "Assign stable ID and link affected workflow and run."
+        },
+        {
+          "heading": "Condition",
+          "prompt": "State the observed fact, expected condition, and difference."
+        },
+        {
+          "heading": "Population impact",
+          "prompt": "Quantify affected records, amount, entities, periods, and downstream outputs."
+        },
+        {
+          "heading": "Evidence",
+          "prompt": "Link source and contradictory evidence."
+        },
+        {
+          "heading": "Risk",
+          "prompt": "State accounting, control, security, legal, tax, or operational effect."
+        },
+        {
+          "heading": "Severity",
+          "prompt": "Apply approved materiality and escalation criteria."
+        },
+        {
+          "heading": "Owner",
+          "prompt": "Name accountable resolver and due date."
+        },
+        {
+          "heading": "Action",
+          "prompt": "Record hold, investigate, correct, compensate, or accept."
+        },
+        {
+          "heading": "Resolution",
+          "prompt": "Link evidence, approval, correction, and retest."
+        },
+        {
+          "heading": "Status",
+          "prompt": "Record open, contained, resolved, accepted, or superseded with timestamp."
+        }
+      ]
+    }
+  },
+  {
+    "id": "tpl-evaluation-plan",
+    "kind": "template",
+    "title": "Evaluation plan",
+    "summary": "Define how the workflow will be tested before release and after material change.",
+    "topics": [
+      "Agent design"
+    ],
+    "industries": [],
+    "jurisdiction": null,
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [],
+    "related_ids": [],
+    "review_status": "inherited-not-reverified",
+    "reviewed_at": null,
+    "provenance": {
+      "imported_on": "2026-09-07",
+      "previous_corpus_version": "2026-08-25.2",
+      "previous_reviewed_at": "2026-08-23",
+      "previous_review_status": "published educational synthesis; professional sign-off not asserted",
+      "note": "Migrated from the existing project corpus. Import and integrity checks are not source verification or professional review."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false
+    },
+    "data": {
+      "id": "tpl-evaluation-plan",
+      "version": "1",
+      "name": "Evaluation plan",
+      "purpose": "Define how the workflow will be tested before release and after material change.",
+      "use_when": "Building, changing, or expanding an agent workflow.",
+      "sections": [
+        {
+          "heading": "Decision",
+          "prompt": "State the release or expansion decision the evaluation informs."
+        },
+        {
+          "heading": "Tasks",
+          "prompt": "Define end-to-end objectives and public interfaces under test."
+        },
+        {
+          "heading": "Risks",
+          "prompt": "Rank material, irreversible, rare, adversarial, and control-bypass failures."
+        },
+        {
+          "heading": "Cases",
+          "prompt": "Specify normal, edge, contradictory, malicious, and stop-condition cases."
+        },
+        {
+          "heading": "Source of truth",
+          "prompt": "State independent expected results and provenance."
+        },
+        {
+          "heading": "Evaluators",
+          "prompt": "Define deterministic and human scoring criteria."
+        },
+        {
+          "heading": "Metrics",
+          "prompt": "Set per-risk thresholds, not only average scores."
+        },
+        {
+          "heading": "Regression",
+          "prompt": "Identify fixed cases that every version must continue to pass."
+        },
+        {
+          "heading": "Failure review",
+          "prompt": "Require root cause, affected scope, and remediation."
+        },
+        {
+          "heading": "Release decision",
+          "prompt": "Record approver, conditions, residual risk, and monitoring."
+        }
+      ]
+    }
+  },
+  {
+    "id": "tpl-pilot-scorecard",
+    "kind": "template",
+    "title": "Pilot scorecard",
+    "summary": "Compare the agent-assisted workflow with the approved baseline and decide whether to stop, continue, or expand.",
+    "topics": [
+      "Agent design"
+    ],
+    "industries": [],
+    "jurisdiction": null,
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [],
+    "related_ids": [],
+    "review_status": "inherited-not-reverified",
+    "reviewed_at": null,
+    "provenance": {
+      "imported_on": "2026-09-07",
+      "previous_corpus_version": "2026-08-25.2",
+      "previous_reviewed_at": "2026-08-23",
+      "previous_review_status": "published educational synthesis; professional sign-off not asserted",
+      "note": "Migrated from the existing project corpus. Import and integrity checks are not source verification or professional review."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false
+    },
+    "data": {
+      "id": "tpl-pilot-scorecard",
+      "version": "1",
+      "name": "Pilot scorecard",
+      "purpose": "Compare the agent-assisted workflow with the approved baseline and decide whether to stop, continue, or expand.",
+      "use_when": "During shadow, draft-only, supervised, and limited-production stages.",
+      "sections": [
+        {
+          "heading": "Scope",
+          "prompt": "Record workflow version, population, period, users, and authority."
+        },
+        {
+          "heading": "Coverage",
+          "prompt": "Measure processed, excluded, unresolved, and failed items."
+        },
+        {
+          "heading": "Quality",
+          "prompt": "Measure calculation, classification, citation, and exception accuracy."
+        },
+        {
+          "heading": "Control",
+          "prompt": "Measure tie-outs, stops, denied actions, and approval integrity."
+        },
+        {
+          "heading": "Review",
+          "prompt": "Measure reviewer rework, overrides, disagreement, and time."
+        },
+        {
+          "heading": "Operations",
+          "prompt": "Measure cycle time, latency, tool errors, and cost."
+        },
+        {
+          "heading": "Incidents",
+          "prompt": "Record material errors, near misses, security events, and downstream corrections."
+        },
+        {
+          "heading": "Decision",
+          "prompt": "Record stop, continue, remediate, or expand with owner and conditions."
+        }
+      ]
+    }
+  },
+  {
+    "id": "tpl-production-change",
+    "kind": "template",
+    "title": "Production change record",
+    "summary": "Make every material model, prompt, policy, tool, source, template, or evaluator change attributable and reversible.",
+    "topics": [
+      "Agent design"
+    ],
+    "industries": [],
+    "jurisdiction": null,
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [],
+    "related_ids": [],
+    "review_status": "inherited-not-reverified",
+    "reviewed_at": null,
+    "provenance": {
+      "imported_on": "2026-09-07",
+      "previous_corpus_version": "2026-08-25.2",
+      "previous_reviewed_at": "2026-08-23",
+      "previous_review_status": "published educational synthesis; professional sign-off not asserted",
+      "note": "Migrated from the existing project corpus. Import and integrity checks are not source verification or professional review."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false
+    },
+    "data": {
+      "id": "tpl-production-change",
+      "version": "1",
+      "name": "Production change record",
+      "purpose": "Make every material model, prompt, policy, tool, source, template, or evaluator change attributable and reversible.",
+      "use_when": "Before changing a production workflow or its dependency.",
+      "sections": [
+        {
+          "heading": "Change",
+          "prompt": "Identify old and new artifact, version, owner, and reason."
+        },
+        {
+          "heading": "Affected scope",
+          "prompt": "List workflows, data, tools, entities, users, and controls."
+        },
+        {
+          "heading": "Risk",
+          "prompt": "Describe changed behavior and worst credible failure."
+        },
+        {
+          "heading": "Testing",
+          "prompt": "Link unit, integration, regression, and adversarial results."
+        },
+        {
+          "heading": "Data",
+          "prompt": "Record new data use, rights, privacy, retention, and migration."
+        },
+        {
+          "heading": "Authority",
+          "prompt": "Confirm permission and approval behavior is unchanged or separately approved."
+        },
+        {
+          "heading": "Deployment",
+          "prompt": "State rollout, canary, monitoring, and pause thresholds."
+        },
+        {
+          "heading": "Rollback",
+          "prompt": "Name prior version, rollback steps, and data reconciliation."
+        },
+        {
+          "heading": "Approval",
+          "prompt": "Record accounting, control, security, and system approvals."
+        },
+        {
+          "heading": "Post-change review",
+          "prompt": "Record actual metrics, incidents, and final acceptance."
+        }
+      ]
+    }
+  },
+  {
+    "id": "tpl-incident-report",
+    "kind": "template",
+    "title": "Incident report",
+    "summary": "Contain impact, preserve evidence, correct accounting records, and prevent recurrence.",
+    "topics": [
+      "Agent design"
+    ],
+    "industries": [],
+    "jurisdiction": null,
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [],
+    "related_ids": [],
+    "review_status": "inherited-not-reverified",
+    "reviewed_at": null,
+    "provenance": {
+      "imported_on": "2026-09-07",
+      "previous_corpus_version": "2026-08-25.2",
+      "previous_reviewed_at": "2026-08-23",
+      "previous_review_status": "published educational synthesis; professional sign-off not asserted",
+      "note": "Migrated from the existing project corpus. Import and integrity checks are not source verification or professional review."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false
+    },
+    "data": {
+      "id": "tpl-incident-report",
+      "version": "1",
+      "name": "Incident report",
+      "purpose": "Contain impact, preserve evidence, correct accounting records, and prevent recurrence.",
+      "use_when": "A workflow performs or attempts an unauthorized, erroneous, misleading, insecure, or unreproducible action.",
+      "sections": [
+        {
+          "heading": "Detection",
+          "prompt": "Record time, reporter, alert, and observed condition."
+        },
+        {
+          "heading": "Containment",
+          "prompt": "Record tools, credentials, workflows, or versions paused."
+        },
+        {
+          "heading": "Scope",
+          "prompt": "Identify affected runs, records, entities, periods, users, and external parties."
+        },
+        {
+          "heading": "Timeline",
+          "prompt": "Record source, model, tool, approval, execution, and response events."
+        },
+        {
+          "heading": "Evidence",
+          "prompt": "Preserve traces, workpapers, approvals, payloads, system logs, and communications."
+        },
+        {
+          "heading": "Accounting impact",
+          "prompt": "Quantify entries, balances, reports, controls, filings, payments, and disclosures."
+        },
+        {
+          "heading": "Correction",
+          "prompt": "Record reversal, compensation, restatement, notification, and validation."
+        },
+        {
+          "heading": "Root cause",
+          "prompt": "Separate model, data, prompt, policy, tool, authorization, process, and review causes."
+        },
+        {
+          "heading": "Remediation",
+          "prompt": "Assign changes, tests, owners, due dates, and residual risk."
+        },
+        {
+          "heading": "Resume decision",
+          "prompt": "Record retest, approval, monitoring, and conditions for restoration."
+        }
+      ]
+    }
+  },
+  {
+    "id": "tpl-control-design",
+    "kind": "template",
+    "title": "Control design and walkthrough",
+    "summary": "Document the risk, control objective, population, procedure, precision, evidence, ownership, and system dependencies.",
+    "topics": [
+      "Agent design"
+    ],
+    "industries": [],
+    "jurisdiction": null,
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [],
+    "related_ids": [],
+    "review_status": "inherited-not-reverified",
+    "reviewed_at": null,
+    "provenance": {
+      "imported_on": "2026-09-07",
+      "previous_corpus_version": "2026-08-25.2",
+      "previous_reviewed_at": "2026-08-23",
+      "previous_review_status": "published educational synthesis; professional sign-off not asserted",
+      "note": "Migrated from the existing project corpus. Import and integrity checks are not source verification or professional review."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false
+    },
+    "data": {
+      "id": "tpl-control-design",
+      "version": "1",
+      "name": "Control design and walkthrough",
+      "purpose": "Document the risk, control objective, population, procedure, precision, evidence, ownership, and system dependencies.",
+      "use_when": "Designing or changing an agent-assisted control or a control that depends on agent output.",
+      "sections": [
+        {
+          "heading": "Risk",
+          "prompt": "State the risk of material misstatement or other controlled risk."
+        },
+        {
+          "heading": "Objective",
+          "prompt": "State what the control prevents or detects."
+        },
+        {
+          "heading": "Owner",
+          "prompt": "Name performer, reviewer, assessor, and system owner."
+        },
+        {
+          "heading": "Frequency",
+          "prompt": "State trigger and timing."
+        },
+        {
+          "heading": "Population",
+          "prompt": "Define source, completeness, scope, and control totals."
+        },
+        {
+          "heading": "Procedure",
+          "prompt": "Describe human, agent, tool, and deterministic steps."
+        },
+        {
+          "heading": "Precision",
+          "prompt": "State threshold, expectation, and level of aggregation."
+        },
+        {
+          "heading": "Evidence",
+          "prompt": "Define workpaper, source, review, approval, and retention."
+        },
+        {
+          "heading": "Exceptions",
+          "prompt": "Define identification, routing, resolution, and escalation."
+        },
+        {
+          "heading": "Dependencies",
+          "prompt": "List reports, models, prompts, policies, tools, access, and dependent controls."
+        },
+        {
+          "heading": "Walkthrough",
+          "prompt": "Trace a representative transaction and confirm current operation."
+        },
+        {
+          "heading": "Assessment",
+          "prompt": "Keep performance evidence separate from final design or effectiveness assessment."
+        }
+      ]
+    }
+  },
+  {
+    "id": "tpl-control-test",
+    "kind": "template",
+    "title": "Control test",
+    "summary": "Test specified control attributes against an approved population and plan without allowing the system to assess itself.",
+    "topics": [
+      "Agent design"
+    ],
+    "industries": [],
+    "jurisdiction": null,
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [],
+    "related_ids": [],
+    "review_status": "inherited-not-reverified",
+    "reviewed_at": null,
+    "provenance": {
+      "imported_on": "2026-09-07",
+      "previous_corpus_version": "2026-08-25.2",
+      "previous_reviewed_at": "2026-08-23",
+      "previous_review_status": "published educational synthesis; professional sign-off not asserted",
+      "note": "Migrated from the existing project corpus. Import and integrity checks are not source verification or professional review."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false
+    },
+    "data": {
+      "id": "tpl-control-test",
+      "version": "1",
+      "name": "Control test",
+      "purpose": "Test specified control attributes against an approved population and plan without allowing the system to assess itself.",
+      "use_when": "Management, internal audit, or an auditor tests control performance.",
+      "sections": [
+        {
+          "heading": "Control and objective",
+          "prompt": "Identify control version, risk, assertion, and owner."
+        },
+        {
+          "heading": "Period and population",
+          "prompt": "Record source, parameters, control totals, and completeness evidence."
+        },
+        {
+          "heading": "Test plan",
+          "prompt": "State nature, timing, extent, sample, and attributes."
+        },
+        {
+          "heading": "Selection",
+          "prompt": "Document independently reproducible sample or full-population logic."
+        },
+        {
+          "heading": "Procedure",
+          "prompt": "Record work performed for each attribute."
+        },
+        {
+          "heading": "Evidence",
+          "prompt": "Link source evidence for each item and result."
+        },
+        {
+          "heading": "Exceptions",
+          "prompt": "State fact, criterion, population effect, and owner response."
+        },
+        {
+          "heading": "Additional procedures",
+          "prompt": "Record expansion, corroboration, or retest."
+        },
+        {
+          "heading": "Result",
+          "prompt": "Summarize results without making an unassigned assurance conclusion."
+        },
+        {
+          "heading": "Review",
+          "prompt": "Capture attributable tester and reviewer sign-off."
+        }
+      ]
+    }
+  },
+  {
+    "id": "tpl-technical-memo",
+    "kind": "template",
+    "title": "Technical-accounting memo",
+    "summary": "Document a fact-specific, source-linked accounting analysis and accountable conclusion.",
+    "topics": [
+      "Agent design"
+    ],
+    "industries": [],
+    "jurisdiction": null,
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [],
+    "related_ids": [],
+    "review_status": "inherited-not-reverified",
+    "reviewed_at": null,
+    "provenance": {
+      "imported_on": "2026-09-07",
+      "previous_corpus_version": "2026-08-25.2",
+      "previous_reviewed_at": "2026-08-23",
+      "previous_review_status": "published educational synthesis; professional sign-off not asserted",
+      "note": "Migrated from the existing project corpus. Import and integrity checks are not source verification or professional review."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false
+    },
+    "data": {
+      "id": "tpl-technical-memo",
+      "version": "1",
+      "name": "Technical-accounting memo",
+      "purpose": "Document a fact-specific, source-linked accounting analysis and accountable conclusion.",
+      "use_when": "A transaction or policy question requires authoritative research and material judgment.",
+      "sections": [
+        {
+          "heading": "Issue",
+          "prompt": "State the accounting question and requested decision."
+        },
+        {
+          "heading": "Scope",
+          "prompt": "State entity, transaction, period, framework, jurisdiction, and exclusions."
+        },
+        {
+          "heading": "Facts",
+          "prompt": "Present verified facts separately from assumptions and unknowns."
+        },
+        {
+          "heading": "Literature",
+          "prompt": "Cite current authoritative requirements and applicability."
+        },
+        {
+          "heading": "Analysis",
+          "prompt": "Apply facts to requirements step by step."
+        },
+        {
+          "heading": "Alternatives",
+          "prompt": "Present reasonable alternatives and contrary evidence."
+        },
+        {
+          "heading": "Conclusion",
+          "prompt": "State the approved conclusion, significant judgments, and uncertainty."
+        },
+        {
+          "heading": "Accounting effects",
+          "prompt": "Show recognition, measurement, presentation, disclosure, and entries."
+        },
+        {
+          "heading": "Controls and follow-up",
+          "prompt": "State evidence, monitoring, reassessment, and policy implications."
+        },
+        {
+          "heading": "Approval",
+          "prompt": "Capture preparer, technical reviewer, accountable approver, version, and date."
+        }
+      ]
+    }
+  }
+]
