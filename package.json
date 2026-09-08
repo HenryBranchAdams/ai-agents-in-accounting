@@ -1,10 +1,12 @@
 {
   "name": "accounting-agents-corpus",
   "displayName": "Accounting Agents",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "type": "module",
-  "engines": { "node": ">=22.13.0" },
+  "engines": {
+    "node": ">=22.13.0"
+  },
   "scripts": {
     "dev": "npm run build && node --watch scripts/serve.mjs",
     "build": "node scripts/build.mjs",
@@ -13,11 +15,24 @@
     "typecheck": "tsc --noEmit",
     "lint": "npm run typecheck && npm run validate",
     "test": "npm run build && node --test tests/*.test.mjs",
-    "check": "npm run typecheck && npm test"
+    "check": "npm run typecheck && npm test",
+    "cli": "node scripts/corpus.mjs",
+    "mcp": "node scripts/mcp.mjs",
+    "mcp:http": "node scripts/mcp.mjs --transport http"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "5.20260907.1",
+    "@modelcontextprotocol/client": "2.0.0",
     "esbuild": "0.28.2",
     "typescript": "5.9.3"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/node": "2.0.0",
+    "@modelcontextprotocol/server": "2.0.0",
+    "zod": "4.3.6"
+  },
+  "bin": {
+    "accounting-corpus": "scripts/corpus.mjs",
+    "accounting-corpus-mcp": "scripts/mcp.mjs"
   }
 }

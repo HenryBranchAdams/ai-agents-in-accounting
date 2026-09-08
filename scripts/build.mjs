@@ -18,8 +18,28 @@ await build({
   platform: "neutral",
   target: "es2023",
 });
-const { meta, records, corpusExport, corpusMarkdown } =
-  await import("../dist/internal/corpus.mjs");
+const { meta, records, corpusExport, corpusMarkdown } = await import(
+  "../dist/internal/corpus.mjs"
+);
+await build({
+  entryPoints: ["src/agent.ts"],
+  outfile: "dist/internal/agent.mjs",
+  bundle: true,
+  format: "esm",
+  platform: "neutral",
+  target: "es2023",
+});
+await build({
+  entryPoints: ["src/agent-contract.ts"],
+  outfile: "dist/internal/agent-contract.mjs",
+  bundle: true,
+  format: "esm",
+  platform: "neutral",
+  target: "es2023",
+});
+const { agentIndexRows, agentPassageRows, agentJsonSchema } = await import(
+  "../dist/internal/agent.mjs"
+);
 fs.cpSync("public", "dist/client", { recursive: true });
 const write = (file, body) =>
   fs.writeFileSync(path.join("dist/client", file), body);
@@ -37,6 +57,18 @@ write(
     .join("\n") + "\n",
 );
 write("downloads/corpus.md", corpusMarkdown());
+write(
+  "downloads/agent-index.jsonl",
+  [...agentIndexRows()].map((r) => JSON.stringify(r)).join("\n") + "\n",
+);
+write(
+  "downloads/agent-passages.jsonl",
+  [...agentPassageRows()].map((r) => JSON.stringify(r)).join("\n") + "\n",
+);
+write(
+  "downloads/agent.schema.json",
+  JSON.stringify(agentJsonSchema, null, 2) + "\n",
+);
 const sourceFiles = writeSourceArchive(
   "dist/client/downloads/accounting-agents-source.zip",
 );
@@ -58,6 +90,8 @@ write(
       schema_version: meta.schema_version,
       corpus_version: meta.corpus_version,
       record_count: records.length,
+      agent_schema_version: agentJsonSchema.agent_schema_version,
+      agent_passage_count: [...agentPassageRows()].length,
       rights_note: meta.rights_note,
       files: entries,
       source_archive_file_count: sourceFiles.length,

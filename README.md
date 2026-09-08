@@ -18,16 +18,32 @@ npm run dev
 
 Open `http://127.0.0.1:5177`. Rebuild with `npm run build` after editing data, source, or assets; the development server restarts when its imported bundle changes. `npm start` serves an existing build. Use `PORT` to choose another local port.
 
-The runtime has no application dependencies, database, account system, or client JavaScript. A small Fetch handler serves HTML and a read-only API. The build produces a Cloudflare Worker and static assets, plus a Node adapter for local use. Building does not publish the site.
+The site has no database, account system, or client JavaScript. A Fetch handler serves HTML and a read-only API. Shared schemas use Zod; the separate MCP adapter uses the official MCP TypeScript SDK. The build produces a Cloudflare Worker and static assets, plus Node adapters for local use. Building does not publish the site.
+
+## Connect an agent
+
+The API, CLI and MCP share four operations: `describe`, `search`, `get`, and `context`. Search returns compact cards; get returns citable passages with canonical source pointers; context enforces a character budget and reports omitted material. Every response carries corpus and retrieval schema versions. Rights and review provenance remain attached.
+
+```sh
+node scripts/corpus.mjs search --q "bank reconciliation" --kind workflow
+node scripts/corpus.mjs get wf-r2r-bank-reconciliations
+node scripts/corpus.mjs context --q "audit evidence" --max-chars 12000
+node scripts/mcp.mjs
+```
+
+The MCP command serves stdio. Use `--transport http --port 5178` for Streamable HTTP at `/mcp`. Both connectors default to the local snapshot; `--base-url ORIGIN` connects to a deployed agent API. See [setup, contracts and limits](docs/agent-access.md). Public deployment and registration in an MCP client are separate steps.
 
 ## Retrieve and reuse
 
 - `/api/v1/records?q=bank+reconciliation`: search full records.
+- `/api/v1/agent/describe`: discover agent capabilities and filters.
+- `/api/v1/agent/search`, `/get`, `/context`: compact search, passages and bounded context (all under `/api/v1/agent/`).
 - `/api/v1/records?kind=workflow&page=1&limit=20`: filter and paginate.
 - `/api/v1/records/{id}`: retrieve a stable record.
 - `/records/{id}.md`: retrieve a Markdown record.
 - `/api/v1/collections/{id}`: retrieve a bibliography with its source records.
 - `/downloads/corpus.json`, `.jsonl`, `.md`: download the complete snapshot.
+- `/downloads/agent-index.jsonl`, `/downloads/agent-passages.jsonl`: ingest normalized headers and citable passages with provenance and rights.
 - `/downloads/manifest.json`: verify sizes and SHA-256 hashes.
 - `/openapi.json`, `/llms.txt`, `/AGENTS.md`: discover the interface.
 
