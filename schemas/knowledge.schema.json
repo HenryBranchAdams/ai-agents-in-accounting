@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Accounting Agents knowledge export",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "corpus_version",
+    "profiles",
+    "relationships"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "corpus_version": {
+      "type": "string"
+    },
+    "profiles": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "scope",
+          "evidence"
+        ],
+        "properties": {
+          "scope": {
+            "type": "object",
+            "required": [
+              "jurisdictions",
+              "frameworks",
+              "entities",
+              "products",
+              "period",
+              "basis"
+            ]
+          },
+          "evidence": {
+            "type": "object",
+            "required": [
+              "claims",
+              "limitations",
+              "review",
+              "rights"
+            ]
+          }
+        }
+      }
+    },
+    "relationships": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "from",
+          "to",
+          "type",
+          "provenance"
+        ],
+        "properties": {
+          "from": {
+            "type": "string"
+          },
+          "to": {
+            "type": "string"
+          },
+          "type": {
+            "enum": [
+              "cites",
+              "cited_by",
+              "supports",
+              "qualifies",
+              "contradicts",
+              "supersedes",
+              "related"
+            ]
+          },
+          "provenance": {
+            "type": "object",
+            "required": [
+              "source_ids",
+              "pointers",
+              "reason"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const agentSchemaVersion = "1.0.0";
+export const agentSchemaVersion = "1.1.0";
 const id = z
   .string()
   .regex(/^[a-zA-Z0-9_-]{1,160}$/)
@@ -50,6 +50,10 @@ const filters = {
     .describe(
       "Exact recorded jurisdiction/scope from describe.filters.jurisdictions. These include qualified scopes, not just country names.",
     ),
+  framework: z.string().max(160).optional().describe("Normalized accounting framework."),
+  entity: z.string().max(160).optional().describe("Normalized entity scope."),
+  product: z.string().max(160).optional().describe("Normalized product or system."),
+  as_of: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional().describe("Include records effective on this date where a date is recorded."),
   source_type: z
     .string()
     .max(160)
@@ -85,6 +89,9 @@ export const inputSchemas = {
   }),
   get: z.strictObject({
     id,
+    include_relations: z.boolean().default(false).describe("Opt in to bounded one-hop typed relationships."),
+    relation_direction: z.enum(["out", "in", "both"]).default("both"),
+    relation_types: z.array(z.enum(["cites", "cited_by", "supports", "qualifies", "contradicts", "supersedes", "related"])).max(7).optional(),
     section: z
       .string()
       .max(160)
@@ -159,6 +166,10 @@ const card = z.object({
   publisher: z.string(),
   source_type: z.string().nullable(),
   jurisdiction: z.string().nullable(),
+  knowledge: z.object({
+    jurisdictions: z.array(z.string()), frameworks: z.array(z.string()), entities: z.array(z.string()), products: z.array(z.string()),
+    period: extra, basis: extra,
+  }),
   topics: z.array(z.string()),
   industries: z.array(z.string()),
   review_status: z.string(),
@@ -197,6 +208,10 @@ const record = card.extend({
     markdown: z.string(),
     agent: z.string(),
   }),
+  evidence: extra,
+  relations: z.array(extra),
+  relations_total: z.int(),
+  relations_truncated: z.boolean(),
 });
 export const outputSchemas = {
   describe: z.object({

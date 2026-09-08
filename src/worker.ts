@@ -11,6 +11,7 @@ import {
 } from "./corpus";
 import {
   browse,
+  briefsPage,
   recordPage,
   collectionsPage,
   aboutPage,
@@ -18,6 +19,7 @@ import {
   errorPage,
   esc,
 } from "./render";
+import { changesPage, historyPage, maintenancePage, publication } from "./publication";
 import redirects from "../data/redirects.json";
 import schema from "../schemas/record.schema.json";
 import {
@@ -158,7 +160,7 @@ function openapi() {
     "topic",
     "source_type",
     "industry",
-    "jurisdiction",
+    "jurisdiction", "framework", "entity", "product", "as_of",
     "collection",
   ].map((name) => ({
     name,
@@ -166,7 +168,7 @@ function openapi() {
     schema: { type: "string" },
     description:
       name === "q"
-        ? "All words must match. Maximum 240 characters."
+        ? "Accounting aliases expand search terms; quoted phrases remain literal. Maximum 240 characters."
         : "Exact value from /api/v1/taxonomy; kind also accepts context.",
   }));
   return {
@@ -367,6 +369,12 @@ async function route(request: Request, env: Env) {
   if (alias)
     return new Response(null, { status: 308, headers: { Location: alias } });
   if (path === "/") return html(browse(url.searchParams));
+  if (path === "/briefs") return html(briefsPage());
+  if (path === "/changes") return html(changesPage());
+  if (path === "/maintenance") return html(maintenancePage(url.searchParams));
+  if (path === "/api/v1/changes") return json({ corpus_version: meta.corpus_version, previous_version: publication.previous_version, changes: publication.changes });
+  const historyMatch = path.match(/^\/records\/([a-zA-Z0-9_-]+)\/history$/);
+  if (historyMatch && getRecord(historyMatch[1])) return html(historyPage(historyMatch[1]));
   if (path === "/collections") return html(collectionsPage());
   if (path === "/about") return html(aboutPage());
   if (path === "/use") return html(usePage());
@@ -458,7 +466,7 @@ async function route(request: Request, env: Env) {
   }
   if (path === "/sitemap.xml")
     return plain(
-      `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${["/", "/collections", "/about", "/use", ...records.map((r) => `/records/${r.id}`)].map((p) => `<url><loc>${esc(meta.site_url + p)}</loc><lastmod>${meta.updated_at}</lastmod></url>`).join("")}</urlset>`,
+      `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${["/", "/collections", "/briefs", "/changes", "/maintenance", "/about", "/use", ...records.map((r) => `/records/${r.id}`)].map((p) => `<url><loc>${esc(meta.site_url + p)}</loc><lastmod>${meta.updated_at}</lastmod></url>`).join("")}</urlset>`,
       "application/xml",
     );
   if (path === "/robots.txt")
@@ -474,7 +482,7 @@ async function route(request: Request, env: Env) {
     );
   if (
     env.ASSETS &&
-    /^\/(downloads\/[^/]+|style\.css|favicon\.svg|AGENTS\.md)$/.test(path)
+    /^\/(downloads\/[^/]+|releases\/\d{4}-\d{2}-\d{2}\.\d+\/(?:corpus\.json(?:\.gz|l)?|manifest\.json|changes\.json|record-history\.jsonl)|releases\/index\.json|style\.css|favicon\.svg|AGENTS\.md)$/.test(path)
   )
     return env.ASSETS.fetch(new Request(request.url, { method: "GET" }));
   return path.startsWith("/api/")

@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Maintenance observations",
+  "type": "object",
+  "required": ["schema_version", "observations"],
+  "properties": {
+    "schema_version": { "type": "string" },
+    "generated_at": { "type": ["string", "null"] },
+    "observations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["record_id", "url", "checked_at", "reachable", "access"],
+        "properties": {
+          "record_id": { "type": "string" },
+          "url": { "type": "string", "format": "uri" },
+          "checked_at": { "type": "string", "format": "date-time" },
+          "reachable": { "type": "boolean" },
+          "access": { "type": "string", "enum": ["public", "broken", "blocked", "indeterminate", "access-restricted"] },
+          "status": { "type": ["integer", "null"] },
+          "redirected_to": { "type": ["string", "null"] },
+          "etag": { "type": ["string", "null"] },
+          "last_modified": { "type": ["string", "null"] },
+          "title": { "type": ["string", "null"] },
+          "content_fingerprint": { "type": ["string", "null"] },
+          "version_change_hint": { "type": ["string", "null"] },
+          "next_review_at": { "type": ["string", "null"], "format": "date-time" },
+          "error": { "type": ["string", "null"] }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

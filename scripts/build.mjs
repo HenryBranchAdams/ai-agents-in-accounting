@@ -1,5 +1,8 @@
 import fs from "node:fs";
 import path from "node:path";
+import { gunzipSync } from "node:zlib";
+import { preparePublication, writeReleaseArtifacts } from "./release-history.mjs";
+import { loadObservations } from "./maintenance.mjs";
 import { createHash } from "node:crypto";
 import { build } from "esbuild";
 import { validateCorpus } from "./validate.mjs";
@@ -18,7 +21,7 @@ await build({
   platform: "neutral",
   target: "es2023",
 });
-const { meta, records, corpusExport, corpusMarkdown } = await import(
+const { meta, records, corpusExport, corpusMarkdown, knowledge } = await import(
   "../dist/internal/corpus.mjs"
 );
 await build({
@@ -41,6 +44,13 @@ const { agentIndexRows, agentPassageRows, agentJsonSchema } = await import(
   "../dist/internal/agent.mjs"
 );
 fs.cpSync("public", "dist/client", { recursive: true });
+const previousVersion = "2026-09-07.3";
+const previous = JSON.parse(gunzipSync(fs.readFileSync(`data/releases/${previousVersion}/corpus.json.gz`)));
+const prepared = preparePublication(records, previous, loadObservations());
+const publication = { previous_version: previousVersion, versions: [previousVersion, meta.corpus_version], changes: prepared.changes, queue: prepared.queue };
+fs.cpSync("data/releases", "dist/client/releases", { recursive: true });
+writeReleaseArtifacts(corpusExport(), "dist/client/releases", { previousExport: previous });
+
 const write = (file, body) =>
   fs.writeFileSync(path.join("dist/client", file), body);
 write("downloads/corpus.json", JSON.stringify(corpusExport(), null, 2) + "\n");
@@ -57,6 +67,11 @@ write(
     .join("\n") + "\n",
 );
 write("downloads/corpus.md", corpusMarkdown());
+write("downloads/maintenance.json", JSON.stringify({ corpus_version: meta.corpus_version, ...publication }, null, 2) + "\n");
+write("downloads/knowledge.json", JSON.stringify({ corpus_version: meta.corpus_version, schema_version: "1.0.0", profiles: Object.fromEntries(knowledge.profiles), relationships: records.flatMap(r => knowledge.relations(r.id, { direction: "out" })) }, null, 2) + "\n");
+write("downloads/vocabulary.json", fs.readFileSync("data/vocabulary.json"));
+write("downloads/knowledge.schema.json", fs.readFileSync("schemas/knowledge.schema.json"));
+
 write(
   "downloads/agent-index.jsonl",
   [...agentIndexRows()].map((r) => JSON.stringify(r)).join("\n") + "\n",
@@ -107,6 +122,7 @@ write(
 );
 await build({
   entryPoints: ["src/worker.ts"],
+  define: { PUBLICATION_DATA: JSON.stringify(publication) },
   outfile: "dist/server/index.js",
   bundle: true,
   format: "esm",

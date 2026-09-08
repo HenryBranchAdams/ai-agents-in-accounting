@@ -5,7 +5,9 @@ import {
   meta,
   type CorpusRecord,
   type Json,
+  knowledge,
 } from "./corpus";
+import { expandQuery, expandIndexedText, normalizeJurisdiction } from "./knowledge";
 import {
   agentSchemaVersion,
   inputSchemas,
@@ -65,6 +67,7 @@ const card = (r: CorpusRecord) => ({
   publisher: r.publisher,
   source_type: r.source_type,
   jurisdiction: r.jurisdiction,
+  knowledge: knowledge.profile(r.id)?.scope || { jurisdictions: [], frameworks: [], entities: [], products: [], period: { published_at: null, effective_from: null, effective_to: null, effective_note: null }, basis: {} },
   topics: r.topics,
   industries: r.industries,
   review_status: r.review_status,
@@ -94,6 +97,10 @@ function header(r: CorpusRecord) {
       markdown: `${base}/records/${r.id}.md`,
       agent: `${base}/api/v1/agent/get?id=${r.id}`,
     },
+    evidence: knowledge.profile(r.id)?.evidence || { claims: [], limitations: [], review: {}, rights: r.rights },
+    relations: [],
+    relations_total: 0,
+    relations_truncated: false,
   };
 }
 interface Passage {
@@ -204,8 +211,8 @@ const index = records.map((record) => {
   return {
     record,
     passages,
-    title: normalize(record.title),
-    summary: normalize(record.summary),
+    title: expandIndexedText(record.title),
+    summary: expandIndexedText(record.summary),
     facets: normalize(
       [
         record.publisher,
@@ -213,9 +220,13 @@ const index = records.map((record) => {
         ...record.industries,
         record.source_type,
         record.jurisdiction,
+        ...(knowledge.profile(record.id)?.scope.jurisdictions || []),
+        ...(knowledge.profile(record.id)?.scope.frameworks || []),
+        ...(knowledge.profile(record.id)?.scope.entities || []),
+        ...(knowledge.profile(record.id)?.scope.products || []),
       ].join(" "),
     ),
-    text: normalize(
+    text: expandIndexedText(
       [
         record.id,
         record.title,
@@ -234,6 +245,10 @@ const filterNames = [
   "topic",
   "industry",
   "jurisdiction",
+  "framework",
+  "entity",
+  "product",
+  "as_of",
   "source_type",
   "review_status",
   "collection",
@@ -245,24 +260,24 @@ function verifyFilters(input: QueryInput) {
     kind: Object.keys(taxonomy.kinds),
     topic: taxonomy.topics,
     industry: taxonomy.industries,
-    jurisdiction: taxonomy.jurisdictions,
+    jurisdiction: [...taxonomy.jurisdictions, ...taxonomy.normalized_jurisdictions],
+    framework: taxonomy.frameworks,
+    entity: taxonomy.entities,
+    product: taxonomy.products,
+    as_of: [],
     source_type: taxonomy.source_types,
     review_status: reviewStatuses,
     collection: records.filter((r) => r.kind === "collection").map((r) => r.id),
   };
   for (const key of filterNames)
-    if (input[key] !== undefined && !values[key].includes(input[key]!))
+    if (input[key] !== undefined && key !== "as_of" && !values[key].includes(input[key]!))
       throw new AgentError(
         "INVALID_FILTER",
         `Unknown ${key}: ${input[key]}. Read describe for exact filter values.`,
       );
 }
 function termsFor(q: string) {
-  if ((q.match(/"/g) || []).length % 2)
-    throw new AgentError("INVALID_QUERY", "Close every quoted phrase.");
-  return [...normalize(q).matchAll(/"([^"]+)"|([^\s"]+)/g)]
-    .map((match) => (match[1] || match[2]).trim())
-    .filter(Boolean);
+  try { return expandQuery(q); } catch { throw new AgentError("INVALID_QUERY", "Close every quoted phrase."); }
 }
 function find(input: QueryInput) {
   verifyFilters(input);
@@ -274,7 +289,11 @@ function find(input: QueryInput) {
         (!input.kind || r.kind === input.kind) &&
         (!input.topic || r.topics.includes(input.topic)) &&
         (!input.industry || r.industries.includes(input.industry)) &&
-        (!input.jurisdiction || r.jurisdiction === input.jurisdiction) &&
+        (!input.jurisdiction || r.jurisdiction === input.jurisdiction || knowledge.profile(r.id)?.scope.jurisdictions.includes(normalizeJurisdiction(input.jurisdiction))) &&
+        (!input.framework || knowledge.profile(r.id)?.scope.frameworks.includes(input.framework)) &&
+        (!input.entity || knowledge.profile(r.id)?.scope.entities.includes(input.entity)) &&
+        (!input.product || knowledge.profile(r.id)?.scope.products.includes(input.product)) &&
+        (!input.as_of || (() => { const p = knowledge.profile(r.id)?.scope.period; const full = (v: string | null) => !!v && /^\d{4}-\d{2}-\d{2}$/.test(v); return !!p && full(p.effective_from) && p.effective_from! <= input.as_of && (!p.effective_to || (full(p.effective_to) && p.effective_to >= input.as_of)); })()) &&
         (!input.source_type || r.source_type === input.source_type) &&
         (!input.review_status || r.review_status === input.review_status) &&
         (!collection ||
@@ -429,6 +448,10 @@ export function describeCorpus() {
       topics: taxonomy.topics,
       industries: taxonomy.industries,
       jurisdictions: taxonomy.jurisdictions,
+      normalized_jurisdictions: taxonomy.normalized_jurisdictions,
+      frameworks: taxonomy.frameworks,
+      entities: taxonomy.entities,
+      products: taxonomy.products,
       source_types: taxonomy.source_types,
       review_statuses: reviewStatuses,
       collections: records
@@ -528,9 +551,10 @@ function readRecord(args: ReturnType<typeof inputSchemas.get.parse>) {
     passages.length,
   );
   const selected = passages.slice(offset, offset + args.limit);
+  const relations = args.include_relations ? knowledge.relations(args.id, { direction: args.relation_direction, types: args.relation_types }) : [];
   return {
     ...envelope,
-    record: header(item.record),
+    record: { ...header(item.record), relations: relations.slice(0, 50), relations_total: relations.length, relations_truncated: relations.length > 50 },
     sections,
     selected_section: args.section ?? null,
     ...pagination("get", args, passages.length, offset, selected.length),
@@ -685,7 +709,7 @@ export function parseAgentQuery(
       ? /^\d+$/.test(value)
         ? Number(value)
         : value
-      : key === "include_sources" && ["true", "false"].includes(value)
+      : ["include_sources", "include_relations"].includes(key) && ["true", "false"].includes(value)
         ? value === "true"
         : value;
   }

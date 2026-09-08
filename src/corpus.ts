@@ -12,6 +12,8 @@ import ecosystems from "../data/corpus/ecosystem.json";
 import guides from "../data/corpus/guide.json";
 import collections from "../data/corpus/collection.json";
 import examples from "../data/corpus/example.json";
+import { createKnowledgeIndex, expandQuery, expandIndexedText, normalizeJurisdiction, type Profile } from "./knowledge";
+export { expandQuery } from "./knowledge";
 
 export type Json =
   string | number | boolean | null | Json[] | { [key: string]: Json };
@@ -75,6 +77,7 @@ export const meta = {
   ),
   methods: ["GET", "HEAD", "OPTIONS"],
 };
+export const knowledge = createKnowledgeIndex(records);
 const byId = new Map(records.map((r) => [r.id, r]));
 const normalize = (s: string) =>
   s
@@ -83,9 +86,9 @@ const normalize = (s: string) =>
     .toLowerCase();
 const indexed = records.map((r) => ({
   r,
-  title: normalize(r.title),
-  summary: normalize(r.summary),
-  text: normalize(JSON.stringify(r)),
+  title: expandIndexedText(r.title),
+  summary: expandIndexedText(r.summary),
+  text: expandIndexedText(JSON.stringify(r)),
 }));
 const values = (fn: (r: CorpusRecord) => string[]) =>
   [...new Set(records.flatMap(fn))]
@@ -96,7 +99,11 @@ export const taxonomy = {
   topics: values((r) => r.topics),
   industries: values((r) => r.industries),
   jurisdictions: values((r) => (r.jurisdiction ? [r.jurisdiction] : [])),
+  normalized_jurisdictions: values((r) => knowledge.profile(r.id)?.scope.jurisdictions || []),
   source_types: values((r) => (r.source_type ? [r.source_type] : [])),
+  frameworks: values((r) => knowledge.profile(r.id)?.scope.frameworks || []),
+  entities: values((r) => knowledge.profile(r.id)?.scope.entities || []),
+  products: values((r) => knowledge.profile(r.id)?.scope.products || []),
 };
 export function getRecord(id: string) {
   return byId.get(id);
@@ -131,11 +138,18 @@ export function search(params: URLSearchParams) {
   };
   const page = number("page", 1, 100000);
   const limit = number("limit", 20, 100);
-  const terms = normalize(q).split(/\s+/).filter(Boolean);
+  let terms: string[] = [];
+  try { terms = q ? expandQuery(q) : []; } catch { throw new QueryError("Close every quoted phrase."); }
   const topic = params.get("topic");
   const industry = params.get("industry");
   const sourceType = params.get("source_type");
   const jurisdiction = params.get("jurisdiction");
+  const normalizedJurisdiction = jurisdiction ? normalizeJurisdiction(jurisdiction) : null;
+  const framework = params.get("framework");
+  const entity = params.get("entity");
+  const product = params.get("product");
+  const asOf = params.get("as_of");
+  if (asOf && (!/^\d{4}-\d{2}-\d{2}$/.test(asOf) || !Number.isFinite(Date.parse(asOf)) || new Date(asOf).toISOString().slice(0,10) !== asOf)) throw new QueryError("as_of must be a valid YYYY-MM-DD date.");
   const matches = indexed
     .filter(
       ({ r, text }) =>
@@ -146,7 +160,11 @@ export function search(params: URLSearchParams) {
         (!topic || r.topics.includes(topic)) &&
         (!industry || r.industries.includes(industry)) &&
         (!sourceType || r.source_type === sourceType) &&
-        (!jurisdiction || r.jurisdiction === jurisdiction) &&
+        (!jurisdiction || r.jurisdiction === jurisdiction || knowledge.profile(r.id)?.scope.jurisdictions.includes(normalizedJurisdiction!)) &&
+        (!framework || knowledge.profile(r.id)?.scope.frameworks.includes(framework)) &&
+        (!entity || knowledge.profile(r.id)?.scope.entities.includes(entity)) &&
+        (!product || knowledge.profile(r.id)?.scope.products.includes(product)) &&
+        (!asOf || (() => { const p = knowledge.profile(r.id)?.scope.period; const full = (v: string | null) => !!v && /^\d{4}-\d{2}-\d{2}$/.test(v); return !!p && full(p.effective_from) && p.effective_from! <= asOf && (!p.effective_to || (full(p.effective_to) && p.effective_to >= asOf)); })()) &&
         (!collection || collection.source_ids.includes(r.id)) &&
         terms.every((t) => text.includes(t)),
     )

@@ -4,7 +4,7 @@ A public, read-only research corpus that helps people and agents find, understan
 
 The corpus brings original source references together with accounting workflows, controls, design references, terminology, and synthetic examples. Search, citations, source relationships, and portable downloads are the product.
 
-The corpus contains **749 records**: 517 source references, 60 workflows, 24 design references, 26 reading collections, and 122 other accounting and technical references. The September 7 research expansion adds 28 sources with scoped, AI-assisted publisher checks and five collections covering electronic invoicing, ledger/data interfaces, public-sector and charity accounting, payroll reporting, and financial-reasoning research. The 716 inherited records retain their earlier migration status. Source checks are not professional verification or exhaustive coverage. See [mission and coverage](data/catalog.json).
+The corpus contains **779 records**: 540 source references, 60 workflows, 24 design references, 30 reading collections, and 125 other accounting and technical references. Two September 7 research rounds add 51 sources with scoped, AI-assisted checks and nine collections. The latest round adds industry reporting authorities, ERP extraction boundaries, empirical accounting and tax findings, and financial datasets with explicit provenance and rights limits. The 716 inherited records retain their earlier migration status. Source checks are not professional verification or exhaustive coverage. See [mission and coverage](data/catalog.json).
 
 ## Run locally
 
@@ -56,3 +56,9 @@ See [CONTRIBUTING.md](CONTRIBUTING.md), the [record policy](docs/corpus-policy.m
 Courses, interactive training, labs, maps, and benchmark programs have been retired. Useful bibliographies, editorial references, and synthetic scenarios were retained. See the [migration](docs/migration.md).
 
 Software is MIT; project metadata and synthetic values are CC0; original editorial content is CC BY 4.0. **External source content is not redistributed or licensed by this project.** Free access does not imply permission to train on or redistribute a publication. See [LICENSE_POLICY.md](LICENSE_POLICY.md).
+
+## Evidence, retrieval and maintenance
+
+The current release adds three source-linked research briefs at `/briefs`, structured source evidence and applicability, controlled scope filters, and typed relationships. Raw source metadata and rights remain canonical; inferred scope retains field-level basis. The additive agent schema is 1.1.0.
+
+`/changes` links versioned snapshots; `/records/{id}/history` identifies canonical changes against the preserved 2026-09-07.3 baseline. `/maintenance` exposes unresolved reviews, rights and source observations. Run `npm run maintenance` to inspect the queue; live checks are explicit and never upgrade source review status. See [maintenance](docs/maintenance.md) and [retrieval regression coverage](docs/research-questions.md).

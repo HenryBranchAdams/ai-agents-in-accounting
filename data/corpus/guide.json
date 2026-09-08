@@ -1877,4 +1877,151 @@
       ]
     }
   }
+  ,{
+    "id": "guide-journal-extraction-completeness",
+    "kind": "guide",
+    "title": "What establishes journal-extraction completeness?",
+    "summary": "A bounded synthesis of endpoint-specific paging, ordering, changing-population, and journal-view evidence for evaluating whether an accounting extraction is complete.",
+    "topics": ["Agent engineering", "Accounting and reporting", "Data and interoperability"],
+    "industries": [],
+    "jurisdiction": null,
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": ["src_xero_journals_completeness", "src_xero_efficient_retrieval", "src_xero_bank_statement_boundary", "src_oracle_collection_paging_25d", "src_sap_journal_entry_views_2608"],
+    "related_ids": ["wf-audit-population-evidence", "wf-r2r-balance-reconciliations", "wf-r2r-journal-entry"],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-07",
+    "provenance": {
+      "editor": "Accounting Agents contributors",
+      "review_scope": "Cross-source synthesis of the linked record annotations and their stated limitations.",
+      "evidence_urls": ["https://developer.xero.com/documentation/api/accounting/journals", "https://docs.oracle.com/en/cloud/saas/financials/25d/fafic/op-journalbatches-get.html", "https://help.sap.com/docs/SAP_S4HANA_CLOUD/"],
+      "note": "Editorial synthesis reviewed 2026-09-07. It is not professional accounting advice, a live extraction test, or proof that any population is complete."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false
+    },
+    "data": {
+      "id": "guide-journal-extraction-completeness",
+      "version": "1.0.0",
+      "title": "What establishes journal-extraction completeness?",
+      "description": "A bounded cross-source synthesis for designing and reviewing accounting journal extraction evidence.",
+      "prepared_at": "2026-09-07",
+      "evidence_classification": "editorial-synthesis",
+      "intended_audience": "Accounting data engineers, reviewers, and agent builders evaluating extraction evidence.",
+      "editorial_brief": {
+        "question": "What establishes journal-extraction completeness?",
+        "answer": "The checked sources support an endpoint-specific extraction protocol with a documented cursor or ordering rule, a termination condition, and reconciliation evidence. Paging mechanics alone do not establish completeness: Oracle warns that an updating population can change between requests, Xero withholds unreconciled bank-statement lines from public APIs, and SAP describes entry-view compression for some large documents. The result is a reviewable method and set of limitations, not a universal completeness guarantee.",
+        "findings": [
+          {"claim": "Xero's journal endpoint documents a bounded page size, JournalNumber continuation, and continuation through an empty response even after a short page.", "source_ids": ["src_xero_journals_completeness"], "qualification": "This is publisher documentation; no tenant extraction or reconciliation was performed.", "classification": "editorial-synthesis"},
+          {"claim": "A completeness review must preserve endpoint-specific ordering and filtering assumptions rather than applying one generic incremental-retrieval rule.", "source_ids": ["src_xero_journals_completeness", "src_xero_efficient_retrieval"], "qualification": "Xero's general retrieval advice distinguishes Journals from other endpoints; the sources do not prove a complete live population.", "classification": "editorial-synthesis"},
+          {"claim": "A changing source population can invalidate a simple page count or offset traversal as evidence of a stable snapshot.", "source_ids": ["src_oracle_collection_paging_25d"], "qualification": "The Oracle contract is a general collection contract and does not establish the permissions or completeness of a particular financial resource.", "classification": "editorial-synthesis"},
+          {"claim": "A journal response cannot be treated as the complete unreconciled bank-statement population when the publisher says that data is not exposed through public APIs.", "source_ids": ["src_xero_bank_statement_boundary"], "qualification": "The documented product boundary may change and was not tested against an authenticated integration.", "classification": "editorial-synthesis"},
+          {"claim": "Journal-entry and ledger views may represent different detail, including compression of specified item types for documents over 999 line items.", "source_ids": ["src_sap_journal_entry_views_2608"], "qualification": "This is a SAP posting-model description, not a universal extraction ceiling or a tested read-path reconciliation.", "classification": "editorial-synthesis"}
+        ],
+        "disagreements": [
+          {"claim": "Offset traversal is prescribed for Xero Journals, while Oracle's general offset contract warns that updates between requests can change displayed records; these are different endpoint contracts rather than a resolved universal rule.", "source_ids": ["src_xero_journals_completeness", "src_oracle_collection_paging_25d"], "qualification": "The sources do not establish which strategy is appropriate for an unexamined endpoint."}
+        ],
+        "unknowns": ["Whether a particular tenant extraction is complete without control totals, a stable snapshot, or a source-supported reconciliation.", "Whether current product limits, permissions, and endpoint behavior match the checked documentation."],
+        "reading_order": ["src_xero_journals_completeness", "src_oracle_collection_paging_25d", "src_xero_efficient_retrieval", "src_xero_bank_statement_boundary", "src_sap_journal_entry_views_2608"]
+      }
+    }
+  },
+  {
+    "id": "guide-accounting-llm-benchmark-claims",
+    "kind": "guide",
+    "title": "What do accounting LLM benchmarks demonstrate?",
+    "summary": "A bounded synthesis separating task and model results from evidence about dependable accounting workflows, professional judgment, or current deployment reliability.",
+    "topics": ["Agent design", "Accounting and reporting", "Research methods"],
+    "industries": [],
+    "jurisdiction": null,
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": ["src_leitner_accounting_assistant", "src_nay_llm_tax_attorneys", "src_antinozzi_taxpayer_accuracy_2025", "src_faith_financial_hallucinations_2025", "src_edinet_bench_2026"],
+    "related_ids": ["collection-financial-reasoning-research"],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-07",
+    "provenance": {
+      "editor": "Accounting Agents contributors",
+      "review_scope": "Cross-source synthesis of the linked empirical and benchmark record annotations.",
+      "evidence_urls": [],
+      "note": "Editorial synthesis reviewed 2026-09-07. It does not establish professional validation, current model reliability, or deployment safety."
+    },
+    "rights": {"metadata": "CC0-1.0", "content": "CC-BY-4.0", "external_content": "Not included; publisher terms apply", "full_text_stored": false},
+    "data": {
+      "id": "guide-accounting-llm-benchmark-claims",
+      "version": "1.0.0",
+      "title": "What do accounting LLM benchmarks demonstrate?",
+      "description": "A bounded synthesis for interpreting accounting and financial-language-model benchmark evidence.",
+      "prepared_at": "2026-09-07",
+      "evidence_classification": "editorial-synthesis",
+      "intended_audience": "Researchers, accounting-agent builders, and reviewers interpreting benchmark results.",
+      "editorial_brief": {
+        "question": "What do accounting LLM benchmarks demonstrate?",
+        "answer": "The checked studies demonstrate performance on their named tasks, datasets, prompts, models, and grading procedures. They provide comparative evidence and useful failure modes, such as calculation errors, hallucination, label uncertainty, and information ceilings. They do not by themselves demonstrate dependable accounting workflows, professional judgment, live-system reliability, or transfer to current models and unseen populations.",
+        "findings": [
+          {"claim": "A focused accounting-assistant experiment reports different results for case-based calculations and decisions, and associates calculation errors with misapplied accounting principles.", "source_ids": ["src_leitner_accounting_assistant"], "qualification": "The observations are across model variants and prompts, not 480 independent tasks; older models and a curated experiment limit transfer.", "classification": "editorial-synthesis"},
+          {"claim": "Tax-question experiments report effects from relevant legal text and few-shot prompting that vary by model and setting.", "source_ids": ["src_nay_llm_tax_attorneys"], "qualification": "The questions are generated multiple-choice items, grading uses known answers and model-based procedures, and no professional-lawyer baseline is established.", "classification": "editorial-synthesis"},
+          {"claim": "Financial-report hallucination assessment can measure masked-span recovery and answerability within a defined corpus, but that metric is narrower than autonomous accounting reliability.", "source_ids": ["src_faith_financial_hallucinations_2025"], "qualification": "The project uses answerability checks and a pilot human audit; no independent replication was performed and filing rights remain separate.", "classification": "editorial-synthesis"},
+          {"claim": "A financial benchmark's reported comparison can be constrained by its information ceiling and possible label errors.", "source_ids": ["src_edinet_bench_2026"], "qualification": "The claim is limited to the evaluated binary tasks, models, dataset card warnings, and setup.", "classification": "editorial-synthesis"}
+        ],
+        "disagreements": [
+          {"claim": "The checked studies use different task designs, datasets, graders, and metrics, so their numerical results are not directly comparable as one ranking of accounting ability.", "source_ids": ["src_leitner_accounting_assistant", "src_nay_llm_tax_attorneys", "src_faith_financial_hallucinations_2025", "src_edinet_bench_2026"], "qualification": "This is a scope mismatch across study designs, not evidence that one study is wrong."}
+        ],
+        "unknowns": ["Whether any result transfers to a current production model, a particular accounting entity, or a controlled workflow.", "How results change with independent professional grading, private tests, retrieval, tool use, and reviewer intervention."],
+        "reading_order": ["src_leitner_accounting_assistant", "src_nay_llm_tax_attorneys", "src_faith_financial_hallucinations_2025", "src_edinet_bench_2026", "src_antinozzi_taxpayer_accuracy_2025"]
+      }
+    }
+  },
+  {
+    "id": "guide-financial-dataset-selection",
+    "kind": "guide",
+    "title": "How should financial datasets be chosen under provenance and rights limits?",
+    "summary": "A source-linked synthesis for separating simulated, administrative, application, review and transaction data before using a dataset for accounting-agent research.",
+    "topics": ["Data and interoperability", "Agent design", "Controls and governance"],
+    "industries": [],
+    "jurisdiction": null,
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": ["src_ibm_aml_synthetic_transactions", "src_ibm_tabformer_card_data", "src_baf_bank_account_fraud_2022", "src_fifar_alert_review_2025", "src_usaspending_transaction_guide", "src_cms_hcris_cost_reports_2026"],
+    "related_ids": ["collection-financial-dataset-provenance"],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-07",
+    "provenance": {
+      "editor": "Accounting Agents contributors",
+      "review_scope": "Cross-source synthesis of the linked dataset descriptions, rights annotations, and limitations.",
+      "evidence_urls": [],
+      "note": "Editorial synthesis reviewed 2026-09-07. Dataset suitability, rights, and professional use require source-specific verification."
+    },
+    "rights": {"metadata": "CC0-1.0", "content": "CC-BY-4.0", "external_content": "Not included; publisher terms apply", "full_text_stored": false},
+    "data": {
+      "id": "guide-financial-dataset-selection",
+      "version": "1.0.0",
+      "title": "How should financial datasets be chosen under provenance and rights limits?",
+      "description": "A bounded dataset-selection brief for accounting-agent research.",
+      "prepared_at": "2026-09-07",
+      "evidence_classification": "editorial-synthesis",
+      "intended_audience": "Accounting researchers and agent builders selecting data for evaluation, prototyping, or reproducibility work.",
+      "editorial_brief": {
+        "question": "How should financial datasets be chosen under provenance and rights limits?",
+        "answer": "Start by naming the evidence object and the behavior the dataset can support: simulated transactions, application records, synthetic reviewer decisions, administrative reports, or award actions are not interchangeable with observed ledger or payment data. Then record generation or reporting provenance, labels and their limitations, population and time coverage, and the dataset-specific license. Repository code terms do not automatically grant rights to externally hosted data, and public availability does not prove representativeness or live accounting validity.",
+        "findings": [
+          {"claim": "The IBM AML repository describes simulated payments, transfers, and purchases and separately identifies repository and dataset licenses.", "source_ids": ["src_ibm_aml_synthetic_transactions"], "qualification": "Simulated laundering labels are not independently observed banking outcomes; license terms must be read separately.", "classification": "editorial-synthesis"},
+          {"claim": "Synthetic card data can provide scale for research while leaving representativeness and dataset-specific permission unresolved.", "source_ids": ["src_ibm_tabformer_card_data"], "qualification": "The checked external download documentation did not resolve a separate dataset permission grant.", "classification": "editorial-synthesis"},
+          {"claim": "Bank-account-fraud application datasets and synthetic-alert review resources describe different populations and different observation status.", "source_ids": ["src_baf_bank_account_fraud_2022", "src_fifar_alert_review_2025"], "qualification": "The reviewed reviewer decisions are simulated, and the upstream and derivative rights interaction was not resolved.", "classification": "editorial-synthesis"},
+          {"claim": "CMS cost reports and USAspending award transactions are administrative reporting or award-action data with defined fields and boundaries, not complete general ledgers or bank payments.", "source_ids": ["src_cms_hcris_cost_reports_2026", "src_usaspending_transaction_guide"], "qualification": "Both sources retain publisher and reporting limitations; no download was independently reconciled.", "classification": "editorial-synthesis"}
+        ],
+        "disagreements": [
+          {"claim": "A dataset may be useful for controlled task testing while being unsuitable as evidence of real-world financial behavior; usefulness and representativeness must be assessed separately.", "source_ids": ["src_ibm_aml_synthetic_transactions", "src_baf_bank_account_fraud_2022", "src_fifar_alert_review_2025", "src_cms_hcris_cost_reports_2026"], "qualification": "The sources describe different data-generating processes and cannot be collapsed into one evidence tier."}
+        ],
+        "unknowns": ["Whether a selected dataset is current, complete, legally reusable for the intended purpose, or representative of the target workflow.", "Whether labels reflect expert decisions, source-reported fields, simulated rules, or downstream annotation errors in the exact release used."],
+        "reading_order": ["src_ibm_aml_synthetic_transactions", "src_baf_bank_account_fraud_2022", "src_fifar_alert_review_2025", "src_cms_hcris_cost_reports_2026", "src_usaspending_transaction_guide", "src_ibm_tabformer_card_data"]
+      }
+    }
+  }
 ]

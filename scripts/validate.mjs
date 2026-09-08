@@ -116,6 +116,19 @@ export function validateCorpus() {
       );
     }
   }
+  const relationships = read("data/relationships.json");
+  for (const e of relationships.edges) {
+    assert.ok(ids.has(e.from) && ids.has(e.to), "Unresolved typed relationship");
+    assert.ok(["supports", "qualifies", "contradicts", "supersedes", "related"].includes(e.type), "Unknown relationship type");
+    assert.ok(e.provenance.reason && e.provenance.source_ids.length, "Missing relationship provenance");
+    e.provenance.source_ids.forEach(id => assert.ok(ids.has(id), "Unresolved relationship provenance"));
+  }
+  const observations = read("data/source-observations.json");
+  for (const o of observations.observations) {
+    assert.ok(ids.has(o.record_id), "Unresolved source observation");
+    assert.ok(Number.isFinite(Date.parse(o.checked_at)), "Invalid observation date");
+    assert.ok(["public", "broken", "blocked", "indeterminate", "access-restricted"].includes(o.access), "Unknown access observation");
+  }
   return {
     records: all.length,
     sources: all.filter((r) => r.kind === "source").length,

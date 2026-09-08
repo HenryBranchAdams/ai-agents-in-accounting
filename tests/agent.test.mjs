@@ -150,7 +150,12 @@ test("agent search ranks meaningful matches, supports phrases and filters, and s
     review_status: "source-checked",
     limit: 25,
   });
-  assert.equal(checked.total, 28);
+  assert.equal(
+    checked.total,
+    canonical.filter(
+      (record) => record.kind === "source" && record.review_status === "source-checked",
+    ).length,
+  );
   assert.equal(checked.results.length, 25);
   assert.ok(
     checked.results.every(

@@ -20,7 +20,7 @@ The replacement uses a small Fetch handler with server-rendered HTML, canonical 
 
 Stable record pages use `/records/{id}`. Source, workflow, design, and selected reference page URLs redirect through `data/redirects.json`. Former experimental surfaces return 410, with a route back to the corpus. Former specialized API families are retired; clients should use `/api/v1/records`, its filters, and `/api/v1/collections/{id}`. `/api/v1/meta` describes the current contract. `/openapi.json` is authoritative for the replacement retrieval API.
 
-Downloads use a consistent schema and are regenerated with every build. They are the latest snapshot, not permanent version-addressed hosting. Preserve downloaded files and their manifest if you need immutable evidence. Publication and retained release hosting are separate maintainer actions.
+Downloads use a consistent schema and are regenerated with every build. Beginning with 2026-09-07.4, `/changes` serves corpus release history rather than redirecting to `/about`; `/releases/{version}/` exposes preserved snapshots and manifests. The first retained baseline is 2026-09-07.3. Publication and retained release hosting remain separate maintainer actions.
 
 ## Recovery and local cleanup
 

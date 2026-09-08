@@ -1,0 +1,28 @@
+name: Source health observation
+
+on:
+  schedule:
+    - cron: "17 7 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  observe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: cp data/source-observations.json source-health.json
+      - run: node scripts/maintenance.mjs --check
+        env:
+          MAINTENANCE_LIMIT: 10
+          MAINTENANCE_OBSERVATIONS: source-health.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: source-health-observation
+          path: source-health.json

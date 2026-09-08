@@ -86,7 +86,7 @@ test("search ranks title matches and combines exact facets", async () => {
       (r) =>
         r.kind === "source" &&
         r.topics.includes("Controls and governance") &&
-        r.jurisdiction === "United States",
+        (r.jurisdiction === "United States" || /United States|US GAAP|U\.S\./i.test(r.jurisdiction || "")),
     ),
   );
   const none = await read("/api/v1/records?q=unfindable_zqx_908771");
@@ -180,7 +180,7 @@ test("all public record pages render and their internal links resolve", async ()
 });
 
 test("query text is escaped in visible text and attribute contexts", async () => {
-  const payload = '"><img src=x onerror=alert(1)>';
+  const payload = '"><img src=x onerror=alert(1)>"';
   const response = await request("/?q=" + encodeURIComponent(payload));
   const text = await response.text();
   assert.equal(response.status, 200);
@@ -255,7 +255,7 @@ test("machine-readable discovery exposes only retrieval operations", async () =>
   const llms = await (await request("/llms.txt")).text();
   assert.match(llms, /downloads\/corpus.jsonl/);
   const sitemap = await (await request("/sitemap.xml")).text();
-  assert.equal((sitemap.match(/<url>/g) || []).length, records.length + 4);
+  assert.equal((sitemap.match(/<url>/g) || []).length, records.length + 7);
   assert.doesNotMatch(sitemap, /<loc>[^<]*\/(course|atlas|ledgerbench)</);
 });
 
