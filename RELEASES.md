@@ -1,5 +1,7 @@
 # Corpus releases
 
+The [September 10 local checkpoint](docs/checkpoint-2026-09-10.md) consolidates the current implementation and reading-interface updates. Corpus content remains version `2026-09-07.4`; this checkpoint does not claim publication or hosted CI acceptance.
+
 The canonical version is `data/catalog.json:corpus_version`. Use a dated version such as `2026-09-07.1` and increment it when publishing changed corpus content. Schema changes use semantic versions independently; the refactored record schema is 2.0.0.
 
 Every build generates JSON, JSONL, Markdown, and a complete source ZIP from the current working files. The manifest records version, record count, file sizes, and SHA-256 hashes. Generated downloads are the latest build and are not themselves a version-addressed archive.

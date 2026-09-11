@@ -4,7 +4,7 @@ The project has one mission: a public, read-only research corpus for building ac
 
 ## Retained information
 
-All 489 source IDs and 60 workflow IDs were retained. The corpus also contains 24 design references, 16 controls, 10 sensitive actions, six authority levels, 14 templates, 47 glossary entries, eight accounting processes, five interoperability references, ten guides, 21 bibliographies, and six synthetic example sets. The six examples retain 30 static scenarios and reference expectations without scoring or execution.
+At the initial migration, all 489 source IDs and 60 workflow IDs were retained. That snapshot also contained 24 design references, 16 controls, 10 sensitive actions, six authority levels, 14 templates, 47 glossary entries, eight accounting processes, five interoperability references, ten guides, 21 bibliographies, and six synthetic example sets. The six examples retained 30 static scenarios and reference expectations without scoring or execution. These are historical migration counts; use `data/catalog.json` and the canonical records for current coverage.
 
 Twenty course readings became the foundations bibliography. Reading-room selections became topic collections. Seven rendered editorial guides were extracted as text and references. Rich source, workflow, and design data remains machine-readable. `data/migration.json` records the inventory.
 
@@ -14,7 +14,7 @@ Migration did not reverify sources. Earlier review dates and statuses remain his
 
 The React, Next, Vinext, course, quiz, tutorial, lab, Atlas, practice-observatory interface, benchmark runner, LedgerBench program, database examples, old clients, and associated design and backlog plans were removed from the active project. Useful source references about education or evaluation remain ordinary research records.
 
-The replacement uses a small Fetch handler with server-rendered HTML, canonical JSON data, and static exports. It has no database or runtime packages. CI checks every pull request and main-branch push, without the former benchmark-specific path filter.
+The replacement uses a small Fetch handler with server-rendered HTML, canonical JSON data, and static exports. It has no database or client JavaScript. Shared contracts now use Zod, and the separate MCP adapter uses the official MCP TypeScript SDK; `package.json` records the dependencies. CI is configured to check every pull request and main-branch push, without the former benchmark-specific path filter. Configuration does not establish that the current local changes have run in hosted CI.
 
 ## Compatibility
 

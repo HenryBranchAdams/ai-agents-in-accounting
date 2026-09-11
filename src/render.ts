@@ -21,13 +21,24 @@ export const esc = (value: unknown) =>
       ]!,
   );
 const fieldLabels: Record<string, string> = {
+  "record-summary": "Source overview",
+  "official-dataset-description": "Publisher description",
+  "official-technical-documentation": "Publisher documentation",
+  "vendor-documented-behavior": "Documented product behavior",
+  "authoritative-requirement": "Accounting authority",
+  "editorial-recommendation": "Editorial interpretation",
+  "editorial-synthesis": "Editorial synthesis",
+  "empirical-finding": "Research finding",
+  "source-checked": "AI-assisted source check",
+  "editorially-reviewed": "Editorial review",
+  "inherited-not-reverified": "Inherited · not reverified",
   published_or_status: "Publication and status",
   relationship_profile: "Evidence and relationships",
   source_links: "How sources support this reference",
   source_basis: "Source basis and applicability",
 };
 const label = (s: string) =>
-  fieldLabels[s] || s.replace(/_/g, " ").replace(/^./, (c) => c.toUpperCase());
+  fieldLabels[s] || s.replace(/[_-]/g, " ").replace(/^./, (c) => c.toUpperCase());
 function link(url: string, title: string) {
   if (!/^(https?:\/\/|\/(?!\/))/.test(url)) return esc(title);
   return `<a href="${esc(url)}"${url.startsWith("http") ? ' rel="noreferrer"' : ""}>${esc(title)}</a>`;
@@ -61,8 +72,7 @@ export function shell(
               >Accounting Agents<small>Public research corpus</small></span
             ></a
           >
-          <nav aria-label="Main navigation">
-            ${[
+          <nav class="desktop-nav" aria-label="Main navigation">${[
               ["/?kind=source", "Sources", "sources"],
               ["/?kind=context", "Accounting context", "context"],
               ["/collections", "Collections", "collections"],
@@ -73,8 +83,19 @@ export function shell(
                 ([href, text, key]) =>
                   `<a href="${href}"${active === key ? ' aria-current="page"' : ""}>${text}</a>`,
               )
-              .join("")}
-          </nav>
+              .join("")}</nav>
+          <details class="mobile-nav"><summary>Menu</summary><nav aria-label="Mobile navigation">${[
+              ["/?kind=source", "Sources", "sources"],
+              ["/?kind=context", "Accounting context", "context"],
+              ["/collections", "Collections", "collections"],
+              ["/briefs", "Research briefs", "briefs"],
+              ["/use", "Use the corpus", "use"],
+            ]
+              .map(
+                ([href, text, key]) =>
+                  `<a href="${href}"${active === key ? ' aria-current="page"' : ""}>${text}</a>`,
+              )
+              .join("")}</nav></details>
         </header>
         <main id="main">${body}</main>
         <footer>
@@ -107,7 +128,7 @@ const queryLink = (
   return `/?${p.toString()}`;
 };
 function row(r: CorpusRecord) {
-  return `<article class="result"><div class="eyebrow">${esc(r.kind === "source" ? r.source_type : kinds[r.kind])}<span>${esc(r.kind === "source" ? r.publisher : r.topics[0] || "Accounting Agents")}</span></div><h3><a href="/records/${r.id}">${esc(r.title)}<span aria-hidden="true"> →</span></a></h3><p>${esc(r.summary)}</p><div class="row-meta">${r.kind === "source" ? `${esc(r.jurisdiction || "Scope varies")}<span aria-hidden="true">·</span>${esc(r.data.published_or_status || "Publication date not recorded")}<span aria-hidden="true">·</span>${esc(r.review_status === "source-checked" ? "AI-assisted source check" : "Not reverified")}` : `${r.source_ids.length} cited sources<span aria-hidden="true">·</span>${esc(r.id)}`}</div></article>`;
+  return `<article class="result"><div class="eyebrow"><span class="record-type">${esc(r.kind === "source" ? r.source_type : kinds[r.kind])}</span><span>${esc(r.kind === "source" ? r.publisher : r.topics[0] || "Accounting Agents")}</span></div><h3><a href="/records/${r.id}">${esc(r.title)}<span aria-hidden="true"> →</span></a></h3><p>${esc(r.summary)}</p><div class="row-meta">${r.kind === "source" ? `${esc(r.jurisdiction || "Scope varies")}<span aria-hidden="true">·</span>${esc(r.data.published_or_status || "Publication date not recorded")}<span aria-hidden="true">·</span>${esc(r.review_status === "source-checked" ? "AI-assisted source check" : "Not reverified")}` : `${r.source_ids.length} cited sources<span aria-hidden="true">·</span>${esc(r.id)}`}</div></article>`;
 }
 function select(
   name: string,
@@ -120,143 +141,41 @@ function select(
 export function browse(params: URLSearchParams) {
   const result = search(params);
   const kind = params.get("kind") || "";
-  const hasFilters = params.size > 0;
-  const title =
-    kind === "context"
-      ? "Accounting context"
-      : kinds[kind] || "Explore the corpus";
-  const categoryLinks = [
-    ["", "All records", meta.record_count],
-    ...Object.entries(kinds).map(([k, v]) => [k, v, meta.counts[k]]),
+  const filterNames = ["kind", "topic", "source_type", "industry", "jurisdiction", "framework", "entity", "product", "as_of", "collection"];
+  const activeFilters = filterNames.filter(key => params.get(key));
+  const hasFilters = !!result.query || activeFilters.length > 0 || result.page > 1;
+  const title = kind === "context" ? "Accounting context" : kinds[kind] || "Explore the corpus";
+  const commonKinds = ["", "source", "workflow", "guide", "collection"];
+  const category = (key: string) => `<a href="${esc(queryLink(params, { kind: key, collection: "" }))}"${kind === key ? ' aria-current="page"' : ""}><span>${esc(key ? kinds[key] : "All records")}</span><span class="count">${key ? meta.counts[key] : meta.record_count}</span></a>`;
+  const chipValue = (key: string) => key === "kind" ? (kinds[kind] || "Accounting context") : key === "collection" ? getRecord(params.get(key)!)?.title || params.get(key) : params.get(key);
+  const startingPoints = [
+    ["/records/collection-foundations", "Start with the foundations", "A reading collection connecting accounting evidence, controls and agent design."],
+    ["/briefs", "Read a research brief", "Cited answers about journal extraction, accounting benchmarks and financial datasets."],
+    ["/?kind=workflow", "Explore accounting workflows", "Find the evidence, controls and context behind common accounting tasks."],
   ];
-  const body = /* HTML */ `<section
-      class="intro${hasFilters ? " compact" : ""}"
-    >
-      <p class="eyebrow">A shared research base</p>
-      <h1>
-        ${hasFilters
-          ? esc(result.query ? "Search the corpus" : title)
-          : "The research corpus<br>for accounting agents."}
-      </h1>
-      <p class="lede">
-        Sources, research, and accounting context for building agents. Read
-        online or retrieve the corpus for your own tools.
-      </p>
-      <div class="corpus-stats">
-        <span><strong>${meta.counts.source}</strong> sources</span
-        ><span><strong>${meta.counts.workflow}</strong> workflows</span
-        ><span><strong>${meta.counts.collection}</strong> collections</span
-        ><a href="/use"
-          >Download the corpus <span aria-hidden="true">→</span></a
-        >
-      </div>
-    </section>
-    <form action="/" method="get" class="catalog-form" role="search">
-      <div class="search-bar">
-        <label class="sr-only" for="q">Search the corpus</label
-        ><span aria-hidden="true">⌕</span
-        ><input
-          id="q"
-          name="q"
-          type="search"
-          maxlength="240"
-          value="${esc(params.get("q") || "")}"
-          placeholder="Search a topic, accounting task, standard, or source…"
-        /><button type="submit">Search</button>
-      </div>
-      ${kind
-        ? `<input type="hidden" name="kind" value="${esc(kind)}">`
-        : ""}${params.get("collection")
-        ? `<input type="hidden" name="collection" value="${esc(params.get("collection"))}">`
-        : ""}
-      <div class="catalog">
-        <aside class="filters">
-          <h2>Browse by type</h2>
-          <nav aria-label="Record types">
-            ${categoryLinks
-              .map(
-                ([key, text, count]) =>
-                  `<a href="${esc(queryLink(params, { kind: String(key), collection: "" }))}"${kind === key ? ' aria-current="page"' : ""}><span>${text}</span><span class="count">${count}</span></a>`,
-              )
-              .join("")}
-          </nav>
-          <details class="facet-panel">
-            <summary>
-              Refine
-              results${[
-                "topic",
-                "source_type",
-                "industry",
-                "jurisdiction", "framework", "entity", "product", "as_of",
-              ].some((key) => params.get(key))
-                ? " · filters applied"
-                : ""}
-            </summary>
-            ${select("topic", "Topics", taxonomy.topics, params)}${select(
-              "source_type",
-              "Source types",
-              taxonomy.source_types,
-              params,
-            )}${select(
-              "industry",
-              "Industries",
-              taxonomy.industries,
-              params,
-            )}${select(
-              "jurisdiction",
-              "Jurisdictions",
-              taxonomy.normalized_jurisdictions,
-              params,
-            )}${select("framework", "Frameworks", taxonomy.frameworks, params)}${select("entity", "Entities", taxonomy.entities, params)}${select("product", "Products", taxonomy.products, params)}<label class="filter-label" for="filter-as-of">Effective on (known dates only)</label><input id="filter-as-of" type="date" name="as_of" value="${esc(params.get("as_of") || "")}"><button class="secondary" type="submit">Apply filters</button>
-          </details>
-          ${hasFilters ? '<a class="clear" href="/">Clear all filters</a>' : ""}
-        </aside>
-        <section class="results" aria-labelledby="results-heading">
-          <div class="result-heading">
-            <h2 id="results-heading">
-              ${result.query
-                ? `Results for “${esc(result.query)}”`
-                : esc(title)}
-            </h2>
-            <span>${result.total.toLocaleString()} records</span>
-          </div>
-          ${!hasFilters
-            ? '<p class="start-note">New to the field? <a href="/records/collection-foundations">Start with the foundations collection →</a></p>'
-            : ""}${result.records.map(row).join("") ||
-          '<div class="empty"><h3>No records match these filters.</h3><p>Try fewer words or broaden the topic and source filters.</p><a href="/">Browse all records →</a></div>'}
-          <nav class="pagination" aria-label="Results pages">
-            ${result.page > 1
-              ? `<a href="${esc(queryLink(params, { page: String(result.page - 1) }))}">← Previous</a>`
-              : "<span></span>"}<span
-              >Page ${result.page} of ${Math.max(1, result.pages)}</span
-            >${result.page < result.pages
-              ? `<a href="${esc(queryLink(params, { page: String(result.page + 1) }))}">Next →</a>`
-              : "<span></span>"}
-          </nav>
-          <p class="catalog-note">
-            Coverage is broad and still uneven. Imported records have not been
-            reverified for this release.
-            <a href="/about#coverage">See coverage and review status.</a>
-          </p>
-          <p class="catalog-note">
-            This page as
-            <a href="/api/v1/records?${esc(params.toString())}">JSON</a> ·
-            <a
-              href="/api/v1/records?${esc(params.toString())}${params.size
-                ? "&amp;"
-                : ""}format=markdown"
-              >Markdown</a
-            >
-          </p>
-        </section>
-      </div>
-    </form>`;
-  return shell(
-    title,
-    meta.mission,
-    body,
-    kind === "source" ? "sources" : kind === "context" ? "context" : "",
-  );
+  const body = `<section class="intro ${hasFilters ? "compact" : "home-intro"}">
+    ${!hasFilters ? '<p class="eyebrow">A shared research base</p>' : ""}
+    <h1>${hasFilters ? esc(result.query ? "Search the corpus" : title) : "The research corpus for accounting agents."}</h1>
+    ${!hasFilters ? '<p class="lede">Find sources, understand the evidence, and follow it into accounting practice.</p>' : ""}
+  </section>
+  <form action="/" method="get" class="catalog-form" role="search">
+    <div class="search-bar"><label class="sr-only" for="q">Search the corpus</label><input id="q" name="q" type="search" maxlength="240" value="${esc(params.get("q") || "")}" placeholder="Search a topic, task, standard, or source…"><button type="submit">Search</button></div>
+    ${kind ? `<input type="hidden" name="kind" value="${esc(kind)}">` : ""}${params.get("collection") ? `<input type="hidden" name="collection" value="${esc(params.get("collection"))}">` : ""}
+    ${!hasFilters ? `<section class="discovery" aria-labelledby="discovery-heading"><div class="discovery-heading"><h2 id="discovery-heading">Find a place to start</h2><span>${meta.counts.source} sources · ${meta.counts.workflow} workflows · ${meta.counts.collection} collections</span></div><div class="starting-points">${startingPoints.map(([href,t,description]) => `<article><h3><a href="${href}">${t} <span aria-hidden="true">→</span></a></h3><p>${description}</p></article>`).join("")}</div></section>` : ""}
+    <div class="catalog"><aside class="filters"><h2>Browse by type</h2><nav aria-label="Record types">${commonKinds.map(category).join("")}</nav>
+    <details class="facet-panel"><summary>Filter by topic and scope${activeFilters.some(k => !["kind", "collection"].includes(k)) ? " · applied" : ""}</summary>
+      ${select("topic", "Topics", taxonomy.topics, params)}${select("jurisdiction", "Jurisdictions", [...new Set([...taxonomy.normalized_jurisdictions, ...(params.get("jurisdiction") ? [params.get("jurisdiction")!] : [])])], params)}${select("source_type", "Source types", taxonomy.source_types, params)}${select("industry", "Industries", taxonomy.industries, params)}${select("framework", "Frameworks", taxonomy.frameworks, params)}${select("entity", "Entities", taxonomy.entities, params)}${select("product", "Products", taxonomy.products, params)}
+      <label class="filter-label" for="filter-as-of">Effective on (known dates only)</label><input id="filter-as-of" type="date" name="as_of" value="${esc(params.get("as_of") || "")}"><button class="secondary" type="submit">Apply filters</button>
+    </details>
+    <details class="more-types"${kind && !commonKinds.includes(kind) ? " open" : ""}><summary>More record types</summary><nav aria-label="More record types">${Object.keys(kinds).filter(k => !commonKinds.includes(k)).map(category).join("")}</nav></details></aside>
+    <section class="results" aria-labelledby="results-heading"><div class="result-heading"><h2 id="results-heading">${result.query ? `Results for “${esc(result.query)}”` : hasFilters ? esc(title) : "All records"}</h2><span>${result.total.toLocaleString()} records</span></div>
+    ${activeFilters.length ? `<nav class="active-filters" aria-label="Active filters">${activeFilters.map(key => `<a href="${esc(queryLink(params,{[key]:""}))}" aria-label="${esc(`Remove ${label(key)}: ${chipValue(key)}`)}">${esc(chipValue(key))}<span aria-hidden="true"> ×</span></a>`).join("")}<a class="clear-filters" href="${esc(queryLink(params,Object.fromEntries(filterNames.map(k=>[k,""]))))}">Clear filters</a></nav>` : ""}
+    ${result.records.map(row).join("") || '<div class="empty"><h3>No records match these filters.</h3><p>Try fewer words or broaden the topic and source filters.</p><a href="/">Browse all records →</a></div>'}
+    <nav class="pagination" aria-label="Results pages">${result.page > 1 ? `<a href="${esc(queryLink(params,{page:String(result.page-1)}))}">← Previous</a>` : '<span></span>'}<span>Page ${result.page} of ${Math.max(1,result.pages)}</span>${result.page < result.pages ? `<a href="${esc(queryLink(params,{page:String(result.page+1)}))}">Next →</a>` : '<span></span>'}</nav>
+    <p class="catalog-note">Coverage is broad and still uneven. Imported records have not been reverified for this release. <a href="/about#coverage">See coverage and review status.</a></p>
+    <p class="catalog-note">This page as <a href="/api/v1/records?${esc(params.toString())}">JSON</a> · <a href="/api/v1/records?${esc(params.toString())}${params.size ? "&amp;" : ""}format=markdown">Markdown</a> · <a href="/use">Download the corpus</a></p>
+    </section></div></form>`;
+  return shell(title, meta.mission, body, kind === "source" ? "sources" : kind === "context" ? "context" : "");
 }
 const skippedKeys = new Set([
   "id",
@@ -315,15 +234,34 @@ function structured(value: Json, depth = 0): string {
     )
     .join("")}</dl>`;
 }
+function sourceEvidence(r: CorpusRecord) {
+  const profile = knowledge.profile(r.id)!;
+  const claims = profile.evidence.claims.filter(c => c.classification !== "record-summary");
+  const urls = [...new Set(claims.map(c => c.source_url).filter((u): u is string => !!u))];
+  const fields = ["jurisdictions", "frameworks", "entities", "products"] as const;
+  const known = fields.filter(k => profile.scope[k].length);
+  const unknown = fields.filter(k => !profile.scope[k].length).map(label);
+  const period = profile.scope.period;
+  const dates = Object.entries(period).filter(([,v]) => !!v);
+  return `<section id="evidence"><h2>What this source establishes</h2>${claims.length ? `<ul class="claims">${claims.map(c => `<li><span class="eyebrow">${esc(label(c.classification))}</span><p>${esc(c.text)}</p>${urls.length > 1 && c.source_url ? link(c.source_url,"View supporting source ↗") : ""}</li>`).join("")}</ul>${urls.length === 1 ? `<p class="evidence-link">${link(urls[0],"Read the supporting publisher material ↗")}</p>` : ""}` : '<p>No separate findings have been annotated. The overview above is editorial metadata; consult the original source before relying on it.</p>'}<p class="evidence-note">These are recorded annotations. ${r.review_status.startsWith("inherited") ? "Inherited claims have not been reverified." : "The recorded review scope applies; this is not professional verification."}</p></section>
+  <section id="applicability"><h2>Applicability</h2><dl class="scope-grid">${known.map(k => `<div><dt>${label(k)}</dt><dd>${profile.scope[k].map(esc).join(" · ")}</dd></div>`).join("")}${dates.map(([k,v]) => `<div><dt>${esc(label(k))}</dt><dd>${esc(v)}</dd></div>`).join("")}</dl>${unknown.length ? `<p class="scope-unknown"><strong>Unknown / not recorded:</strong> ${esc(unknown.join(", "))}${!dates.length ? "; publication and effective period" : ""}. Unknown does not mean not applicable.</p>` : !dates.length ? '<p>Publication and effective period: not recorded.</p>' : ""}<details><summary>How scope was derived</summary><dl class="structured">${Object.entries(profile.scope.basis).map(([field,b]) => `<div><dt>${esc(label(field))}</dt><dd>${esc(b.status)} · ${b.pointers.map(p => `<code>${esc(p)}</code>`).join(", ") || "No recorded basis"}</dd></div>`).join("")}</dl></details></section>
+  <section id="limitations"><h2>Limitations and unknowns</h2>${profile.evidence.limitations.length ? `<ul>${profile.evidence.limitations.map(v => `<li>${esc(v)}</li>`).join("")}</ul>` : '<p>No specific limitations have been recorded. This is a coverage gap, not evidence of unrestricted applicability.</p>'}</section>`;
+}
+
 export function recordPage(r: CorpusRecord) {
   const cited = references(r),
     inbound = citedBy(r);
   const fields = Object.entries(r.data).filter(
     ([key]) => !skippedKeys.has(key),
   );
-  const profile = knowledge.profile(r.id)!;
   const brief = r.data.editorial_brief;
   const edges = knowledge.relations(r.id).filter(e => !["cites", "cited_by"].includes(e.type));
+  const contents = `<nav aria-label="Record sections">${[
+    ...(r.kind === "source" ? [["evidence", "Findings"], ["applicability", "Applicability"], ["limitations", "Limitations"]] : brief ? [["answer", "Answer in context"], ["findings", "Findings"], ["qualifications", "Qualifications"], ["unknowns", "Unknowns"]] : [["record-content", "Reference details"]]),
+    ...(cited.length && r.kind !== "collection" ? [["sources", "Cited sources"]] : []),
+    ...(edges.length ? [["relationships", "Relationships"]] : []),
+    ["citation", "Citation"], ["record-information", "Record information"], ["rights", "Rights and provenance"]
+  ].map(([id,title]) => `<a href="#${id}">${title}</a>`).join("")}</nav>`;
   const citation = `Accounting Agents contributors. “${r.title}.” Accounting Agents research corpus, version ${meta.corpus_version}. ${meta.site_url}/records/${r.id}`;
   const body = /* HTML */ `<div class="record-layout">
     <article class="record">
@@ -343,17 +281,16 @@ export function recordPage(r: CorpusRecord) {
           : ""}
       </div>
       <section class="evidence-status" aria-label="Review and rights">
-        <p><strong>${esc(r.review_status === "inherited-not-reverified" ? "Inherited · not reverified" : label(r.review_status))}</strong>${r.reviewed_at ? ` · ${esc(r.reviewed_at)}` : " · Review date unknown"}</p>
-        <p>${esc(r.provenance.scope || r.provenance.review_scope || r.provenance.note || "Review scope not recorded.")}</p>
-        ${r.provenance.reviewer ? `<p>Reviewer: ${esc(r.provenance.reviewer)}</p>` : ""}
-        <p>Source rights: <strong>${esc(r.rights.source_status || (r.kind === "source" ? "unknown" : "external publisher terms apply"))}</strong>${r.rights.source_license ? ` · ${esc(r.rights.source_license)}` : ""}. Project metadata: ${esc(r.rights.metadata)}; editorial content: ${esc(r.rights.content)}. External full text is not included.</p>
+        <div class="status-line"><span><strong>${esc(label(r.review_status))}</strong>${r.reviewed_at ? ` · ${esc(r.reviewed_at)}` : " · Review date unknown"}</span><span>Source rights: <strong>${esc(r.rights.source_status || (r.kind === "source" ? "unknown" : "publisher terms apply"))}</strong>${r.rights.source_license ? ` · ${esc(r.rights.source_license)}` : ""}</span></div>
+        <details><summary>Review scope and reuse details</summary><p>${esc(r.provenance.scope || r.provenance.review_scope || r.provenance.note || "Review scope not recorded.")}</p>${r.provenance.reviewer ? `<p>Reviewer: ${esc(r.provenance.reviewer)}</p>` : ""}<p>${esc(r.provenance.outcome || "")}</p><p>Project metadata: ${esc(r.rights.metadata)}; editorial content: ${esc(r.rights.content)}. External full text is not included.</p></details>
       </section>
-      ${r.kind === "source" ? `<section id="evidence"><h2>What this source establishes</h2><p class="muted">Recorded claims and their classifications; inherited claims retain their review status.</p><ul class="claims">${profile.evidence.claims.map(c => `<li><span class="eyebrow">${esc(label(c.classification))}</span><p>${esc(c.text)}</p>${c.source_url ? link(c.source_url, "Publisher evidence ↗") : ""}</li>`).join("")}</ul></section><section id="applicability"><h2>Applicability</h2><dl class="structured">${Object.entries(profile.scope).filter(([k]) => !["basis", "period"].includes(k)).map(([k,v]) => `<div><dt>${esc(label(k))}</dt><dd>${Array.isArray(v) && v.length ? v.map(esc).join(" · ") : "Unknown / not recorded"}</dd></div>`).join("")}<div><dt>Publication and effective period</dt><dd>${structured(profile.scope.period)}</dd></div></dl><details><summary>How scope was derived</summary><dl class="structured">${Object.entries(profile.scope.basis).map(([field,b]) => `<div><dt>${esc(label(field))}</dt><dd>${esc(b.status)} · ${b.pointers.map(p => `<code>${esc(p)}</code>`).join(", ") || "No recorded basis"}</dd></div>`).join("")}</dl></details></section><section id="limitations"><h2>Limitations and unknowns</h2>${profile.evidence.limitations.length ? `<ul>${profile.evidence.limitations.map(v => `<li>${esc(v)}</li>`).join("")}</ul>` : "<p>No specific limitations have been recorded. This is a coverage gap, not evidence of unrestricted applicability.</p>"}</section>` : ""}
+      <details class="mobile-contents"><summary>On this page</summary>${contents}</details>
+      ${r.kind === "source" ? sourceEvidence(r) : ""}
       ${brief ? renderBrief(brief) : ""}
       ${r.kind === "collection"
         ? `<section><h2>In this collection</h2>${cited.map(row).join("")}</section>`
         : ""}
-      <div class="record-content">
+      <div class="record-content" id="record-content">
         ${r.kind === "source" || brief ? '<details><summary>Complete record details</summary>' : ""}
         ${fields
           .map(([key, value]) =>
@@ -364,7 +301,7 @@ export function recordPage(r: CorpusRecord) {
           .join("")}
         ${r.kind === "source" || brief ? "</details>" : ""}
       </div>
-      ${edges.length ? `<section><h2>Evidence relationships</h2><p>Typed editorial links with a recorded reason. A link is not independent verification.</p><ul>${edges.slice(0,24).map(e => `<li><strong>${esc(label(e.type))}</strong> · ${link(`/records/${e.from === r.id ? e.to : e.from}`, getRecord(e.from === r.id ? e.to : e.from)?.title || e.to)}${e.to === r.id ? " (inbound)" : ""}<p>${esc(e.provenance.reason)}</p></li>`).join("")}</ul>${edges.length > 24 ? `<p>${edges.length - 24} further links available through agent get with include_relations=true.</p>` : ""}</section>` : ""}
+      ${edges.length ? `<section id="relationships"><h2>Evidence relationships</h2><p>Typed editorial links with a recorded reason. A link is not independent verification.</p><ul>${edges.slice(0,24).map(e => `<li><strong>${esc(label(e.type))}</strong> · ${link(`/records/${e.from === r.id ? e.to : e.from}`, getRecord(e.from === r.id ? e.to : e.from)?.title || e.to)}${e.to === r.id ? " (inbound)" : ""}<p>${esc(e.provenance.reason)}</p></li>`).join("")}</ul>${edges.length > 24 ? `<p>${edges.length - 24} further links available through agent get with include_relations=true.</p>` : ""}</section>` : ""}
       ${cited.length && r.kind !== "collection"
         ? `<section id="sources"><h2>Cited sources</h2><p>Follow the source record to assess its scope, evidence, and rights.</p>${cited.map(row).join("")}</section>`
         : ""}
@@ -376,6 +313,7 @@ export function recordPage(r: CorpusRecord) {
           publisher separately when relying on its work.
         </p>
       </section>
+      <section id="record-information"><h2>Record information</h2><p><a href="/records/${r.id}/history">Record history →</a></p><details><summary>Identifier, version and recorded scope</summary><dl class="structured"><div><dt>Stable ID</dt><dd><code>${esc(r.id)}</code></dd></div><div><dt>Publisher</dt><dd>${esc(r.publisher)}</dd></div><div><dt>Corpus version</dt><dd>${meta.corpus_version}</dd></div><div><dt>Recorded scope (original)</dt><dd>${esc(r.jurisdiction || "Not recorded")}</dd></div><div><dt>Topics</dt><dd>${r.topics.map(t => link(`/?topic=${encodeURIComponent(t)}`,t)).join(" · ")}</dd></div></dl></details></section>
       <section id="rights">
         <h2>Rights and provenance</h2>
         <p>${esc(meta.rights_note)}</p>
@@ -392,31 +330,7 @@ export function recordPage(r: CorpusRecord) {
         ? `<section><h2>Referenced by ${inbound.length} records</h2><details><summary>Explore related context and collections</summary><ul>${inbound.map((x) => `<li><a href="/records/${x.id}">${esc(x.title)}</a></li>`).join("")}</ul></details></section>`
         : ""}
     </article>
-    <aside class="record-aside">
-      <h2>Record details</h2>
-      <dl>
-        <dt>Publisher</dt>
-        <dd>${esc(r.publisher)}</dd>
-        <dt>Stable ID</dt>
-        <dd><code>${r.id}</code></dd>
-        <dt>Corpus version</dt>
-        <dd>${meta.corpus_version}</dd>
-        ${r.jurisdiction
-          ? `<dt>Recorded scope (original)</dt><dd>${esc(r.jurisdiction)}</dd>`
-          : ""}
-        <dt>Topics</dt>
-        <dd>
-          ${r.topics
-            .map(
-              (t) => `<a href="/?topic=${encodeURIComponent(t)}">${esc(t)}</a>`,
-            )
-            .join("<br>") || "Not assigned"}
-        </dd>
-      </dl>
-      <a href="/records/${r.id}/history">Record history →</a><a href="#citation">Citation ↓</a
-      ><a href="#rights">Rights &amp; provenance ↓</a
-      ><a href="/use">Use in your own research ↗</a>
-    </aside>
+    <aside class="record-aside"><h2>On this page</h2>${contents}<p class="aside-publisher">${esc(r.publisher)}</p><a href="/records/${r.id}/history">Record history →</a></aside>
   </div>`;
   return shell(
     r.title,
@@ -437,10 +351,10 @@ function renderBrief(value: Json) {
     const f = item as { [key: string]: Json };
     return `<article class="brief-finding"><p>${esc(f.claim)}</p><p class="muted">${esc(f.qualification)}</p><p>${Array.isArray(f.source_ids) ? f.source_ids.map(id => link(`/records/${id}`, getRecord(String(id))?.title || String(id))).join(" · ") : ""}</p></article>`;
   }).join("") : "";
-  return `<section class="brief-answer"><h2>Answer in context</h2><p>${esc(b.answer)}</p></section><section><h2>Findings across sources</h2>${findings(b.findings)}</section><section><h2>Differences and qualifications</h2><p>Differences in scope or evidence do not necessarily mean the authors disagree.</p>${findings(b.disagreements)}</section><section><h2>What remains unknown</h2>${structured(b.unknowns)}</section><section><h2>Suggested reading order</h2>${structured(b.reading_order)}</section>`;
+  return `<section id="answer" class="brief-answer"><h2>Answer in context</h2><p>${esc(b.answer)}</p></section><section id="findings"><h2>Findings across sources</h2>${findings(b.findings)}</section><section id="qualifications"><h2>Differences and qualifications</h2><p>Differences in scope or evidence do not necessarily mean the authors disagree.</p>${findings(b.disagreements)}</section><section id="unknowns"><h2>What remains unknown</h2>${structured(b.unknowns)}</section><section><h2>Suggested reading order</h2>${structured(b.reading_order)}</section>`;
 }
 export function briefsPage() {
-  return shell("Research briefs", "Source-linked answers with qualifications and explicit unknowns.", `<section class="page-intro"><p class="eyebrow">Read across sources</p><h1>Research briefs</h1><p class="lede">Accounting questions answered through cited sources, with evidence boundaries and unresolved questions kept in view.</p></section><section class="brief-list">${records.filter(r => r.data.editorial_brief).map(row).join("")}</section>`, "briefs", "/briefs");
+  return shell("Research briefs", "Source-linked answers with qualifications and explicit unknowns.", `<section class="page-intro"><p class="eyebrow">Read across sources</p><h1>Research briefs</h1><p class="lede">Accounting questions answered through cited sources, with evidence boundaries and unresolved questions kept in view.</p></section><section class="brief-list">${records.filter(r => r.data.editorial_brief).map(r => `<article class="brief-card"><span class="eyebrow">Research brief · ${r.source_ids.length} sources</span><h2><a href="/records/${r.id}">${esc(r.title)} <span aria-hidden="true">→</span></a></h2><p>${esc(r.summary)}</p><a class="brief-link" href="/records/${r.id}" aria-label="${esc(`Read brief: ${r.title}`)}">Read brief →</a></article>`).join("")}</section>`, "briefs", "/briefs");
 }
 
 export function collectionsPage() {

@@ -4,6 +4,8 @@ A public, read-only research corpus that helps people and agents find, understan
 
 The corpus brings original source references together with accounting workflows, controls, design references, terminology, and synthetic examples. Search, citations, source relationships, and portable downloads are the product.
 
+For the latest local handoff, validation evidence, and publication boundary, start with [the September 10 checkpoint](docs/checkpoint-2026-09-10.md). Historical migration inventories and retired product plans are not the current backlog.
+
 The corpus contains **779 records**: 540 source references, 60 workflows, 24 design references, 30 reading collections, and 125 other accounting and technical references. Two September 7 research rounds add 51 sources with scoped, AI-assisted checks and nine collections. The latest round adds industry reporting authorities, ERP extraction boundaries, empirical accounting and tax findings, and financial datasets with explicit provenance and rights limits. The 716 inherited records retain their earlier migration status. Source checks are not professional verification or exhaustive coverage. See [mission and coverage](data/catalog.json).
 
 ## Run locally
@@ -60,5 +62,7 @@ Software is MIT; project metadata and synthetic values are CC0; original editori
 ## Evidence, retrieval and maintenance
 
 The current release adds three source-linked research briefs at `/briefs`, structured source evidence and applicability, controlled scope filters, and typed relationships. Raw source metadata and rights remain canonical; inferred scope retains field-level basis. The additive agent schema is 1.1.0.
+
+The reading surface puts search and three starting paths on the homepage, keeps filtered results compact with removable filter links, and provides source findings, applicability, limitations, citation, and provenance navigation. Review scope and unknown rights remain visible. Mobile navigation and research brief cards use the same server-rendered pages without client JavaScript.
 
 `/changes` links versioned snapshots; `/records/{id}/history` identifies canonical changes against the preserved 2026-09-07.3 baseline. `/maintenance` exposes unresolved reviews, rights and source observations. Run `npm run maintenance` to inspect the queue; live checks are explicit and never upgrade source review status. See [maintenance](docs/maintenance.md) and [retrieval regression coverage](docs/research-questions.md).
