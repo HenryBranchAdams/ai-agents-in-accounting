@@ -1,6 +1,8 @@
 # Corpus releases
 
-The [September 10 local checkpoint](docs/checkpoint-2026-09-10.md) consolidates the current implementation and reading-interface updates. Corpus content remains version `2026-09-07.4`; this checkpoint does not claim publication or hosted CI acceptance.
+The [September 11 construction checkpoint](docs/checkpoint-2026-09-11.md) records local corpus version `2026-09-11.1`: 37 new source records, 13 construction workflow maps, five collections, four briefs, and a scoped recheck of one inherited source. The [research report](docs/research/construction-accounting-coverage-2026-09-11.md) details coverage and unresolved gaps. The outgoing `2026-09-07.4` snapshot is preserved. This is local work; publication and hosted CI acceptance are not asserted.
+
+The [September 10 checkpoint](docs/checkpoint-2026-09-10.md) remains the historical implementation and reading-interface checkpoint for corpus `2026-09-07.4`.
 
 The canonical version is `data/catalog.json:corpus_version`. Use a dated version such as `2026-09-07.1` and increment it when publishing changed corpus content. Schema changes use semantic versions independently; the refactored record schema is 2.0.0.
 

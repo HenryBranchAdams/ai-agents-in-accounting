@@ -1042,3 +1042,92 @@ section[id] { scroll-margin-top: 24px; }
   .brief-card h2 { font-size: 26px; }
   .brief-link { min-height: 44px; display: inline-flex; align-items: center; font-size: 15px; }
 }
+
+.coverage-page { padding: 56px 0 72px; }
+.coverage-hero { max-width: 840px; }
+.coverage-hero h1 { font-size: 68px; margin-bottom: 22px; }
+.coverage-muted { color: var(--muted); font-size: 14px; }
+.coverage-stats { display: grid; grid-template-columns: repeat(4,1fr); margin: 35px 0 22px; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--line); }
+.coverage-stats > div { padding: 24px 22px; border-right: 1px solid var(--line); }
+.coverage-stats > div:first-child { padding-left: 0; }
+.coverage-stats > div:last-child { border-right: 0; }
+.coverage-stats strong { display: block; font: 46px/1.1 var(--serif); margin-bottom: 10px; color: var(--green); }
+.coverage-stats strong span { color: var(--muted); font-size: 24px; }
+.coverage-stats p { font-size: 15px; line-height: 1.4; margin: 0 0 7px; }
+.coverage-stats small { color: var(--muted); line-height: 1.4; display: block; }
+.coverage-stats a { text-decoration: none; }
+.coverage-stats a:hover p { text-decoration: underline; }
+.coverage-note { padding: 18px 22px; background: var(--soft); font-size: 15px; max-width: 100%; }
+.coverage-baseline-label { font-size: 12px; color: var(--muted); margin: 28px 0 0; }
+.coverage-stats { margin-top: 10px; }
+.coverage-definitions { font-size: 14px; margin: 0 0 36px; }
+.coverage-definitions summary { cursor: pointer; }
+.coverage-definitions dl > div { margin: 16px 0; }
+.coverage-definitions dt { font-weight: 600; }
+.coverage-definitions dd { margin: 5px 0 0; }
+.coverage-page > section { margin-bottom: 48px; }
+.coverage-section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 18px; }
+.coverage-section-head > span { color: var(--muted); }
+.coverage-filters { display: grid; grid-template-columns: 1.1fr 1.2fr 1fr auto; align-items: end; gap: 14px; margin: 22px 0; }
+.coverage-filters label, .coverage-mapping-filter label { display: grid; gap: 8px; font-size: 13px; font-weight: 600; min-width: 0; }
+.coverage-filters select, .coverage-mapping-filter select { width: 100%; min-width: 0; color: var(--ink); background: var(--paper); border: 1px solid #aab7ad; border-radius: 3px; padding: 11px 28px 11px 10px; min-height: 48px; }
+.coverage-tabs { display: flex; gap: 28px; border-bottom: 1px solid var(--line); margin: 20px 0 24px; }
+.coverage-tabs a { text-decoration: none; padding: 12px 2px; border-bottom: 3px solid transparent; }
+.coverage-tabs a[aria-current] { border-bottom-color: var(--green); font-weight: 600; }
+.coverage-selection { margin: 24px 0; }
+.coverage-selection h3 { font: 30px/1.2 var(--serif); }
+.coverage-selection p { margin-bottom: 8px; }
+.coverage-prompt { background: var(--soft); padding: 14px 20px; margin-bottom: 22px; }
+.coverage-prompt summary { cursor: pointer; }
+.coverage-prompt p { margin: 14px 0 0; }
+.coverage-table-wrap { overflow-x: auto; margin-bottom: 16px; }
+.coverage-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.coverage-table caption { text-align: left; color: var(--muted); font-size: 13px; padding: 0 0 14px; }
+.coverage-table th, .coverage-table td { padding: 16px 14px; border-bottom: 1px solid var(--line); text-align: right; vertical-align: top; }
+.coverage-table th:first-child, .coverage-table td:first-child { text-align: left; padding-left: 0; }
+.coverage-table thead th { color: var(--muted); font-size: 12px; font-weight: 500; border-top: 1px solid var(--line); white-space: normal; }
+.coverage-table tbody th { font-weight: 500; max-width: 520px; }
+.coverage-table tbody th a { text-decoration: none; }
+.coverage-table tbody th a:hover { text-decoration: underline; }
+.coverage-table tbody tr:hover { background: #f2f4ed; }
+.coverage-table small { display: block; color: var(--muted); margin-top: 5px; }
+.coverage-code { display: inline-block; min-width: 65px; color: var(--muted); font: 13px ui-monospace, monospace; }
+.coverage-assessment { padding: 26px 30px; border: 1px solid var(--line); border-left: 3px solid var(--green); }
+.coverage-assessment h3 { font-family: var(--serif); font-size: 29px; }
+.coverage-dimensions { display: grid; grid-template-columns: repeat(2,1fr); gap: 0 30px; font-size: 14px; }
+.coverage-dimensions div { display: flex; justify-content: space-between; gap: 20px; border-top: 1px solid var(--line); padding: 10px 0; }
+.coverage-dimensions dd { margin: 0; white-space: nowrap; color: var(--green); }
+.coverage-mapping-filter { display: flex; gap: 14px; align-items: end; margin: 18px 0; }
+.coverage-record { display: flex; gap: 30px; justify-content: space-between; padding: 23px 0; border-bottom: 1px solid var(--line); }
+.coverage-record h3 { font-size: 20px; margin: 5px 0 9px; }
+.coverage-record p { font-size: 14px; max-width: 800px; margin: 0; }
+.coverage-record small, .coverage-record > span { color: var(--muted); font-size: 12px; }
+.coverage-record > span { flex: 0 0 100px; text-align: right; }
+.coverage-method { border-top: 1px solid var(--line); padding-top: 22px; }
+.coverage-method summary { cursor: pointer; margin-bottom: 18px; }
+@media (max-width: 1150px) {
+  .site-header .desktop-nav { display: none; }
+  .mobile-nav { display: block; }
+}
+@media (max-width: 850px) {
+  .coverage-filters { grid-template-columns: 1fr 1fr; }
+  .coverage-stats { grid-template-columns: 1fr 1fr; }
+  .coverage-stats > div { padding: 20px 12px; border-bottom: 1px solid var(--line); }
+  .coverage-stats > div:nth-child(odd) { padding-left: 0; }
+  .coverage-stats > div:nth-child(even) { border-right: 0; }
+  .coverage-hero h1 { font-size: 52px; }
+  .coverage-dimensions { grid-template-columns: 1fr; }
+}
+@media (max-width: 550px) {
+  .coverage-page { padding-top: 28px; }
+  .coverage-hero h1 { font-size: 42px; }
+  .coverage-stats strong { font-size: 38px; }
+  .coverage-filters { grid-template-columns: 1fr; }
+  .coverage-table { min-width: 590px; }
+  .coverage-assessment { padding: 22px 16px; }
+  .coverage-record { display: block; }
+  .coverage-record > span { display: block; text-align: left; margin-top: 10px; }
+  .coverage-mapping-filter { flex-direction: column; align-items: stretch; }
+  .coverage-section-head { flex-wrap: wrap; gap: 0; }
+  .coverage-dimensions div { gap: 12px; }
+}

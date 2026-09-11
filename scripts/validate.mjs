@@ -1,4 +1,5 @@
 import fs from "node:fs";
+import { validateCoverage } from "./validate-coverage.mjs";
 import assert from "node:assert/strict";
 import { pathToFileURL } from "node:url";
 
@@ -129,6 +130,7 @@ export function validateCorpus() {
     assert.ok(Number.isFinite(Date.parse(o.checked_at)), "Invalid observation date");
     assert.ok(["public", "broken", "blocked", "indeterminate", "access-restricted"].includes(o.access), "Unknown access observation");
   }
+  validateCoverage(all);
   return {
     records: all.length,
     sources: all.filter((r) => r.kind === "source").length,

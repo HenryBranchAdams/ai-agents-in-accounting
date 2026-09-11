@@ -24,6 +24,8 @@ Downloads use a consistent schema and are regenerated with every build. Beginnin
 
 ## Recovery and local cleanup
 
+The September 11 coverage integration restores `/coverage` as a read-only research coverage view, replacing its redirect to `/about#coverage`. It exposes proposed mappings and scoped assessments, not any retired execution or benchmark feature. Coverage snapshots are separate from corpus release history and begin with measured local baselines.
+
 Before deletion, a verified Git bundle, a complete source ZIP including uncommitted files, file hashes, branch/worktree inventories, and the prior corpus were saved under `outputs/recovery/2026-09-07-pre-corpus/`. The prior September 1 ZIP was moved into that recovery directory. Recovery files are ignored and are not distributed in the public source archive.
 
 Superseded local topic branches can be recovered from the bundle; the source ZIP preserves the prior uncommitted state. Cleanup removed 15 superseded local topic branches, the nonexistent worktree entry, and five obsolete remote topic branches. Local branches are `main` and `codex/research-corpus`; GitHub retains `main`. Every removed tip was checked against the recovery bundle, and remote deletions were atomic and guarded against concurrent changes. The two old hardening branches contained superseded patch-staging work and remain recoverable from the bundle. The published site and remote main were not changed by this cleanup.

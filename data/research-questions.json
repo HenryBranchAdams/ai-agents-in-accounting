@@ -64,7 +64,7 @@
     "user_question": "Which records explain a controlled record-to-report close?",
     "search_query": "close",
     "kind": "workflow",
-    "filters": {},
+    "filters": {"topic": "Record to report"},
     "expected_ids": ["wf-r2r-close-orchestration", "wf-r2r-accruals-cutoff"],
     "excluded_ids": [],
     "expected_scope": "Close preparation, journal-entry review, reconciliations, and evidence retention.",
@@ -238,5 +238,73 @@
     "expected_scope": "Generation process and observation status of selected financial datasets.",
     "required_citations": 3,
     "claims_assert_only_supported": ["Synthetic behavior and labels must not be presented as independently observed banking outcomes.", "Simulated reviewer decisions do not establish live human-AI effectiveness."]
+  },
+  {
+    "id": "rq-construction-wip-workflow",
+    "user_question": "What belongs in a construction WIP close?",
+    "search_query": "WIP",
+    "kind": "workflow",
+    "filters": {},
+    "expected_ids": [
+      "wf-construction-wip-close"
+    ],
+    "excluded_ids": [],
+    "expected_scope": "A job-cost, estimate, revenue and billing bridge with financial-reporting judgments kept explicit.",
+    "required_citations": 3,
+    "claims_assert_only_supported": [
+      "A cost-based percentage is conditional on contract eligibility and a faithful progress measure.",
+      "Earned revenue, billing and cash must not be treated as identical."
+    ]
+  },
+  {
+    "id": "rq-construction-wip-brief",
+    "user_question": "How does a construction WIP schedule explain revenue and billing differences?",
+    "search_query": "WIP",
+    "kind": "guide",
+    "filters": {},
+    "expected_ids": [
+      "guide-construction-wip"
+    ],
+    "excluded_ids": [],
+    "expected_scope": "Construction WIP interpretation with source-specific qualifications and unresolved contract facts.",
+    "required_citations": 3,
+    "claims_assert_only_supported": [
+      "Payment applications do not establish earned revenue.",
+      "No professional verification or posting authority is implied."
+    ]
+  },
+  {
+    "id": "rq-construction-tax-transition",
+    "user_question": "How do the 2025 construction tax changes affect contract cohorts?",
+    "search_query": "construction tax",
+    "kind": "guide",
+    "filters": {},
+    "expected_ids": [
+      "guide-construction-tax-transitions"
+    ],
+    "excluded_ids": [],
+    "expected_scope": "Statutory taxable-year transition, method-change procedures and the apparent Form 8697 inconsistency.",
+    "required_citations": 3,
+    "claims_assert_only_supported": [
+      "Keep the apparent inconsistency in the Form 8697 instructions visible.",
+      "Do not assert a blanket three-year exemption for all construction contracts."
+    ]
+  },
+  {
+    "id": "rq-construction-multistate",
+    "user_question": "Why do construction tax and payroll questions require separate state analysis?",
+    "search_query": "multistate construction",
+    "kind": "guide",
+    "filters": {},
+    "expected_ids": [
+      "guide-construction-multistate"
+    ],
+    "excluded_ids": [],
+    "expected_scope": "Selected state comparisons with current Florida guidance and other states unresolved.",
+    "required_citations": 3,
+    "claims_assert_only_supported": [
+      "The MTC model is not a nationwide enacted rule.",
+      "Four general state tax references and one historical Florida case do not establish 50-state coverage."
+    ]
   }
 ]

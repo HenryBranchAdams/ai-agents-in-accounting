@@ -255,7 +255,8 @@ test("machine-readable discovery exposes only retrieval operations", async () =>
   const llms = await (await request("/llms.txt")).text();
   assert.match(llms, /downloads\/corpus.jsonl/);
   const sitemap = await (await request("/sitemap.xml")).text();
-  assert.equal((sitemap.match(/<url>/g) || []).length, records.length + 7);
+  assert.equal((sitemap.match(/<url>/g) || []).length, records.length + 8);
+  assert.ok(sitemap.includes(`${catalog.site_url}/coverage</loc>`));
   assert.doesNotMatch(sitemap, /<loc>[^<]*\/(course|atlas|ledgerbench)</);
 });
 

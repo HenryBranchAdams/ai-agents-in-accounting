@@ -1876,26 +1876,44 @@
         }
       ]
     }
-  }
-  ,{
+  },
+  {
     "id": "guide-journal-extraction-completeness",
     "kind": "guide",
     "title": "What establishes journal-extraction completeness?",
     "summary": "A bounded synthesis of endpoint-specific paging, ordering, changing-population, and journal-view evidence for evaluating whether an accounting extraction is complete.",
-    "topics": ["Agent engineering", "Accounting and reporting", "Data and interoperability"],
+    "topics": [
+      "Agent engineering",
+      "Accounting and reporting",
+      "Data and interoperability"
+    ],
     "industries": [],
     "jurisdiction": null,
     "source_type": null,
     "publisher": "Accounting Agents contributors",
     "source_url": null,
-    "source_ids": ["src_xero_journals_completeness", "src_xero_efficient_retrieval", "src_xero_bank_statement_boundary", "src_oracle_collection_paging_25d", "src_sap_journal_entry_views_2608"],
-    "related_ids": ["wf-audit-population-evidence", "wf-r2r-balance-reconciliations", "wf-r2r-journal-entry"],
+    "source_ids": [
+      "src_xero_journals_completeness",
+      "src_xero_efficient_retrieval",
+      "src_xero_bank_statement_boundary",
+      "src_oracle_collection_paging_25d",
+      "src_sap_journal_entry_views_2608"
+    ],
+    "related_ids": [
+      "wf-audit-population-evidence",
+      "wf-r2r-balance-reconciliations",
+      "wf-r2r-journal-entry"
+    ],
     "review_status": "editorially-reviewed",
     "reviewed_at": "2026-09-07",
     "provenance": {
       "editor": "Accounting Agents contributors",
       "review_scope": "Cross-source synthesis of the linked record annotations and their stated limitations.",
-      "evidence_urls": ["https://developer.xero.com/documentation/api/accounting/journals", "https://docs.oracle.com/en/cloud/saas/financials/25d/fafic/op-journalbatches-get.html", "https://help.sap.com/docs/SAP_S4HANA_CLOUD/"],
+      "evidence_urls": [
+        "https://developer.xero.com/documentation/api/accounting/journals",
+        "https://docs.oracle.com/en/cloud/saas/financials/25d/fafic/op-journalbatches-get.html",
+        "https://help.sap.com/docs/SAP_S4HANA_CLOUD/"
+      ],
       "note": "Editorial synthesis reviewed 2026-09-07. It is not professional accounting advice, a live extraction test, or proof that any population is complete."
     },
     "rights": {
@@ -1916,17 +1934,69 @@
         "question": "What establishes journal-extraction completeness?",
         "answer": "The checked sources support an endpoint-specific extraction protocol with a documented cursor or ordering rule, a termination condition, and reconciliation evidence. Paging mechanics alone do not establish completeness: Oracle warns that an updating population can change between requests, Xero withholds unreconciled bank-statement lines from public APIs, and SAP describes entry-view compression for some large documents. The result is a reviewable method and set of limitations, not a universal completeness guarantee.",
         "findings": [
-          {"claim": "Xero's journal endpoint documents a bounded page size, JournalNumber continuation, and continuation through an empty response even after a short page.", "source_ids": ["src_xero_journals_completeness"], "qualification": "This is publisher documentation; no tenant extraction or reconciliation was performed.", "classification": "editorial-synthesis"},
-          {"claim": "A completeness review must preserve endpoint-specific ordering and filtering assumptions rather than applying one generic incremental-retrieval rule.", "source_ids": ["src_xero_journals_completeness", "src_xero_efficient_retrieval"], "qualification": "Xero's general retrieval advice distinguishes Journals from other endpoints; the sources do not prove a complete live population.", "classification": "editorial-synthesis"},
-          {"claim": "A changing source population can invalidate a simple page count or offset traversal as evidence of a stable snapshot.", "source_ids": ["src_oracle_collection_paging_25d"], "qualification": "The Oracle contract is a general collection contract and does not establish the permissions or completeness of a particular financial resource.", "classification": "editorial-synthesis"},
-          {"claim": "A journal response cannot be treated as the complete unreconciled bank-statement population when the publisher says that data is not exposed through public APIs.", "source_ids": ["src_xero_bank_statement_boundary"], "qualification": "The documented product boundary may change and was not tested against an authenticated integration.", "classification": "editorial-synthesis"},
-          {"claim": "Journal-entry and ledger views may represent different detail, including compression of specified item types for documents over 999 line items.", "source_ids": ["src_sap_journal_entry_views_2608"], "qualification": "This is a SAP posting-model description, not a universal extraction ceiling or a tested read-path reconciliation.", "classification": "editorial-synthesis"}
+          {
+            "claim": "Xero's journal endpoint documents a bounded page size, JournalNumber continuation, and continuation through an empty response even after a short page.",
+            "source_ids": [
+              "src_xero_journals_completeness"
+            ],
+            "qualification": "This is publisher documentation; no tenant extraction or reconciliation was performed.",
+            "classification": "editorial-synthesis"
+          },
+          {
+            "claim": "A completeness review must preserve endpoint-specific ordering and filtering assumptions rather than applying one generic incremental-retrieval rule.",
+            "source_ids": [
+              "src_xero_journals_completeness",
+              "src_xero_efficient_retrieval"
+            ],
+            "qualification": "Xero's general retrieval advice distinguishes Journals from other endpoints; the sources do not prove a complete live population.",
+            "classification": "editorial-synthesis"
+          },
+          {
+            "claim": "A changing source population can invalidate a simple page count or offset traversal as evidence of a stable snapshot.",
+            "source_ids": [
+              "src_oracle_collection_paging_25d"
+            ],
+            "qualification": "The Oracle contract is a general collection contract and does not establish the permissions or completeness of a particular financial resource.",
+            "classification": "editorial-synthesis"
+          },
+          {
+            "claim": "A journal response cannot be treated as the complete unreconciled bank-statement population when the publisher says that data is not exposed through public APIs.",
+            "source_ids": [
+              "src_xero_bank_statement_boundary"
+            ],
+            "qualification": "The documented product boundary may change and was not tested against an authenticated integration.",
+            "classification": "editorial-synthesis"
+          },
+          {
+            "claim": "Journal-entry and ledger views may represent different detail, including compression of specified item types for documents over 999 line items.",
+            "source_ids": [
+              "src_sap_journal_entry_views_2608"
+            ],
+            "qualification": "This is a SAP posting-model description, not a universal extraction ceiling or a tested read-path reconciliation.",
+            "classification": "editorial-synthesis"
+          }
         ],
         "disagreements": [
-          {"claim": "Offset traversal is prescribed for Xero Journals, while Oracle's general offset contract warns that updates between requests can change displayed records; these are different endpoint contracts rather than a resolved universal rule.", "source_ids": ["src_xero_journals_completeness", "src_oracle_collection_paging_25d"], "qualification": "The sources do not establish which strategy is appropriate for an unexamined endpoint."}
+          {
+            "claim": "Offset traversal is prescribed for Xero Journals, while Oracle's general offset contract warns that updates between requests can change displayed records; these are different endpoint contracts rather than a resolved universal rule.",
+            "source_ids": [
+              "src_xero_journals_completeness",
+              "src_oracle_collection_paging_25d"
+            ],
+            "qualification": "The sources do not establish which strategy is appropriate for an unexamined endpoint."
+          }
         ],
-        "unknowns": ["Whether a particular tenant extraction is complete without control totals, a stable snapshot, or a source-supported reconciliation.", "Whether current product limits, permissions, and endpoint behavior match the checked documentation."],
-        "reading_order": ["src_xero_journals_completeness", "src_oracle_collection_paging_25d", "src_xero_efficient_retrieval", "src_xero_bank_statement_boundary", "src_sap_journal_entry_views_2608"]
+        "unknowns": [
+          "Whether a particular tenant extraction is complete without control totals, a stable snapshot, or a source-supported reconciliation.",
+          "Whether current product limits, permissions, and endpoint behavior match the checked documentation."
+        ],
+        "reading_order": [
+          "src_xero_journals_completeness",
+          "src_oracle_collection_paging_25d",
+          "src_xero_efficient_retrieval",
+          "src_xero_bank_statement_boundary",
+          "src_sap_journal_entry_views_2608"
+        ]
       }
     }
   },
@@ -1935,14 +2005,26 @@
     "kind": "guide",
     "title": "What do accounting LLM benchmarks demonstrate?",
     "summary": "A bounded synthesis separating task and model results from evidence about dependable accounting workflows, professional judgment, or current deployment reliability.",
-    "topics": ["Agent design", "Accounting and reporting", "Research methods"],
+    "topics": [
+      "Agent design",
+      "Accounting and reporting",
+      "Research methods"
+    ],
     "industries": [],
     "jurisdiction": null,
     "source_type": null,
     "publisher": "Accounting Agents contributors",
     "source_url": null,
-    "source_ids": ["src_leitner_accounting_assistant", "src_nay_llm_tax_attorneys", "src_antinozzi_taxpayer_accuracy_2025", "src_faith_financial_hallucinations_2025", "src_edinet_bench_2026"],
-    "related_ids": ["collection-financial-reasoning-research"],
+    "source_ids": [
+      "src_leitner_accounting_assistant",
+      "src_nay_llm_tax_attorneys",
+      "src_antinozzi_taxpayer_accuracy_2025",
+      "src_faith_financial_hallucinations_2025",
+      "src_edinet_bench_2026"
+    ],
+    "related_ids": [
+      "collection-financial-reasoning-research"
+    ],
     "review_status": "editorially-reviewed",
     "reviewed_at": "2026-09-07",
     "provenance": {
@@ -1951,7 +2033,12 @@
       "evidence_urls": [],
       "note": "Editorial synthesis reviewed 2026-09-07. It does not establish professional validation, current model reliability, or deployment safety."
     },
-    "rights": {"metadata": "CC0-1.0", "content": "CC-BY-4.0", "external_content": "Not included; publisher terms apply", "full_text_stored": false},
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false
+    },
     "data": {
       "id": "guide-accounting-llm-benchmark-claims",
       "version": "1.0.0",
@@ -1964,16 +2051,62 @@
         "question": "What do accounting LLM benchmarks demonstrate?",
         "answer": "The checked studies demonstrate performance on their named tasks, datasets, prompts, models, and grading procedures. They provide comparative evidence and useful failure modes, such as calculation errors, hallucination, label uncertainty, and information ceilings. They do not by themselves demonstrate dependable accounting workflows, professional judgment, live-system reliability, or transfer to current models and unseen populations.",
         "findings": [
-          {"claim": "A focused accounting-assistant experiment reports different results for case-based calculations and decisions, and associates calculation errors with misapplied accounting principles.", "source_ids": ["src_leitner_accounting_assistant"], "qualification": "The observations are across model variants and prompts, not 480 independent tasks; older models and a curated experiment limit transfer.", "classification": "editorial-synthesis"},
-          {"claim": "Tax-question experiments report effects from relevant legal text and few-shot prompting that vary by model and setting.", "source_ids": ["src_nay_llm_tax_attorneys"], "qualification": "The questions are generated multiple-choice items, grading uses known answers and model-based procedures, and no professional-lawyer baseline is established.", "classification": "editorial-synthesis"},
-          {"claim": "Financial-report hallucination assessment can measure masked-span recovery and answerability within a defined corpus, but that metric is narrower than autonomous accounting reliability.", "source_ids": ["src_faith_financial_hallucinations_2025"], "qualification": "The project uses answerability checks and a pilot human audit; no independent replication was performed and filing rights remain separate.", "classification": "editorial-synthesis"},
-          {"claim": "A financial benchmark's reported comparison can be constrained by its information ceiling and possible label errors.", "source_ids": ["src_edinet_bench_2026"], "qualification": "The claim is limited to the evaluated binary tasks, models, dataset card warnings, and setup.", "classification": "editorial-synthesis"}
+          {
+            "claim": "A focused accounting-assistant experiment reports different results for case-based calculations and decisions, and associates calculation errors with misapplied accounting principles.",
+            "source_ids": [
+              "src_leitner_accounting_assistant"
+            ],
+            "qualification": "The observations are across model variants and prompts, not 480 independent tasks; older models and a curated experiment limit transfer.",
+            "classification": "editorial-synthesis"
+          },
+          {
+            "claim": "Tax-question experiments report effects from relevant legal text and few-shot prompting that vary by model and setting.",
+            "source_ids": [
+              "src_nay_llm_tax_attorneys"
+            ],
+            "qualification": "The questions are generated multiple-choice items, grading uses known answers and model-based procedures, and no professional-lawyer baseline is established.",
+            "classification": "editorial-synthesis"
+          },
+          {
+            "claim": "Financial-report hallucination assessment can measure masked-span recovery and answerability within a defined corpus, but that metric is narrower than autonomous accounting reliability.",
+            "source_ids": [
+              "src_faith_financial_hallucinations_2025"
+            ],
+            "qualification": "The project uses answerability checks and a pilot human audit; no independent replication was performed and filing rights remain separate.",
+            "classification": "editorial-synthesis"
+          },
+          {
+            "claim": "A financial benchmark's reported comparison can be constrained by its information ceiling and possible label errors.",
+            "source_ids": [
+              "src_edinet_bench_2026"
+            ],
+            "qualification": "The claim is limited to the evaluated binary tasks, models, dataset card warnings, and setup.",
+            "classification": "editorial-synthesis"
+          }
         ],
         "disagreements": [
-          {"claim": "The checked studies use different task designs, datasets, graders, and metrics, so their numerical results are not directly comparable as one ranking of accounting ability.", "source_ids": ["src_leitner_accounting_assistant", "src_nay_llm_tax_attorneys", "src_faith_financial_hallucinations_2025", "src_edinet_bench_2026"], "qualification": "This is a scope mismatch across study designs, not evidence that one study is wrong."}
+          {
+            "claim": "The checked studies use different task designs, datasets, graders, and metrics, so their numerical results are not directly comparable as one ranking of accounting ability.",
+            "source_ids": [
+              "src_leitner_accounting_assistant",
+              "src_nay_llm_tax_attorneys",
+              "src_faith_financial_hallucinations_2025",
+              "src_edinet_bench_2026"
+            ],
+            "qualification": "This is a scope mismatch across study designs, not evidence that one study is wrong."
+          }
         ],
-        "unknowns": ["Whether any result transfers to a current production model, a particular accounting entity, or a controlled workflow.", "How results change with independent professional grading, private tests, retrieval, tool use, and reviewer intervention."],
-        "reading_order": ["src_leitner_accounting_assistant", "src_nay_llm_tax_attorneys", "src_faith_financial_hallucinations_2025", "src_edinet_bench_2026", "src_antinozzi_taxpayer_accuracy_2025"]
+        "unknowns": [
+          "Whether any result transfers to a current production model, a particular accounting entity, or a controlled workflow.",
+          "How results change with independent professional grading, private tests, retrieval, tool use, and reviewer intervention."
+        ],
+        "reading_order": [
+          "src_leitner_accounting_assistant",
+          "src_nay_llm_tax_attorneys",
+          "src_faith_financial_hallucinations_2025",
+          "src_edinet_bench_2026",
+          "src_antinozzi_taxpayer_accuracy_2025"
+        ]
       }
     }
   },
@@ -1982,14 +2115,27 @@
     "kind": "guide",
     "title": "How should financial datasets be chosen under provenance and rights limits?",
     "summary": "A source-linked synthesis for separating simulated, administrative, application, review and transaction data before using a dataset for accounting-agent research.",
-    "topics": ["Data and interoperability", "Agent design", "Controls and governance"],
+    "topics": [
+      "Data and interoperability",
+      "Agent design",
+      "Controls and governance"
+    ],
     "industries": [],
     "jurisdiction": null,
     "source_type": null,
     "publisher": "Accounting Agents contributors",
     "source_url": null,
-    "source_ids": ["src_ibm_aml_synthetic_transactions", "src_ibm_tabformer_card_data", "src_baf_bank_account_fraud_2022", "src_fifar_alert_review_2025", "src_usaspending_transaction_guide", "src_cms_hcris_cost_reports_2026"],
-    "related_ids": ["collection-financial-dataset-provenance"],
+    "source_ids": [
+      "src_ibm_aml_synthetic_transactions",
+      "src_ibm_tabformer_card_data",
+      "src_baf_bank_account_fraud_2022",
+      "src_fifar_alert_review_2025",
+      "src_usaspending_transaction_guide",
+      "src_cms_hcris_cost_reports_2026"
+    ],
+    "related_ids": [
+      "collection-financial-dataset-provenance"
+    ],
     "review_status": "editorially-reviewed",
     "reviewed_at": "2026-09-07",
     "provenance": {
@@ -1998,7 +2144,12 @@
       "evidence_urls": [],
       "note": "Editorial synthesis reviewed 2026-09-07. Dataset suitability, rights, and professional use require source-specific verification."
     },
-    "rights": {"metadata": "CC0-1.0", "content": "CC-BY-4.0", "external_content": "Not included; publisher terms apply", "full_text_stored": false},
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false
+    },
     "data": {
       "id": "guide-financial-dataset-selection",
       "version": "1.0.0",
@@ -2011,16 +2162,550 @@
         "question": "How should financial datasets be chosen under provenance and rights limits?",
         "answer": "Start by naming the evidence object and the behavior the dataset can support: simulated transactions, application records, synthetic reviewer decisions, administrative reports, or award actions are not interchangeable with observed ledger or payment data. Then record generation or reporting provenance, labels and their limitations, population and time coverage, and the dataset-specific license. Repository code terms do not automatically grant rights to externally hosted data, and public availability does not prove representativeness or live accounting validity.",
         "findings": [
-          {"claim": "The IBM AML repository describes simulated payments, transfers, and purchases and separately identifies repository and dataset licenses.", "source_ids": ["src_ibm_aml_synthetic_transactions"], "qualification": "Simulated laundering labels are not independently observed banking outcomes; license terms must be read separately.", "classification": "editorial-synthesis"},
-          {"claim": "Synthetic card data can provide scale for research while leaving representativeness and dataset-specific permission unresolved.", "source_ids": ["src_ibm_tabformer_card_data"], "qualification": "The checked external download documentation did not resolve a separate dataset permission grant.", "classification": "editorial-synthesis"},
-          {"claim": "Bank-account-fraud application datasets and synthetic-alert review resources describe different populations and different observation status.", "source_ids": ["src_baf_bank_account_fraud_2022", "src_fifar_alert_review_2025"], "qualification": "The reviewed reviewer decisions are simulated, and the upstream and derivative rights interaction was not resolved.", "classification": "editorial-synthesis"},
-          {"claim": "CMS cost reports and USAspending award transactions are administrative reporting or award-action data with defined fields and boundaries, not complete general ledgers or bank payments.", "source_ids": ["src_cms_hcris_cost_reports_2026", "src_usaspending_transaction_guide"], "qualification": "Both sources retain publisher and reporting limitations; no download was independently reconciled.", "classification": "editorial-synthesis"}
+          {
+            "claim": "The IBM AML repository describes simulated payments, transfers, and purchases and separately identifies repository and dataset licenses.",
+            "source_ids": [
+              "src_ibm_aml_synthetic_transactions"
+            ],
+            "qualification": "Simulated laundering labels are not independently observed banking outcomes; license terms must be read separately.",
+            "classification": "editorial-synthesis"
+          },
+          {
+            "claim": "Synthetic card data can provide scale for research while leaving representativeness and dataset-specific permission unresolved.",
+            "source_ids": [
+              "src_ibm_tabformer_card_data"
+            ],
+            "qualification": "The checked external download documentation did not resolve a separate dataset permission grant.",
+            "classification": "editorial-synthesis"
+          },
+          {
+            "claim": "Bank-account-fraud application datasets and synthetic-alert review resources describe different populations and different observation status.",
+            "source_ids": [
+              "src_baf_bank_account_fraud_2022",
+              "src_fifar_alert_review_2025"
+            ],
+            "qualification": "The reviewed reviewer decisions are simulated, and the upstream and derivative rights interaction was not resolved.",
+            "classification": "editorial-synthesis"
+          },
+          {
+            "claim": "CMS cost reports and USAspending award transactions are administrative reporting or award-action data with defined fields and boundaries, not complete general ledgers or bank payments.",
+            "source_ids": [
+              "src_cms_hcris_cost_reports_2026",
+              "src_usaspending_transaction_guide"
+            ],
+            "qualification": "Both sources retain publisher and reporting limitations; no download was independently reconciled.",
+            "classification": "editorial-synthesis"
+          }
         ],
         "disagreements": [
-          {"claim": "A dataset may be useful for controlled task testing while being unsuitable as evidence of real-world financial behavior; usefulness and representativeness must be assessed separately.", "source_ids": ["src_ibm_aml_synthetic_transactions", "src_baf_bank_account_fraud_2022", "src_fifar_alert_review_2025", "src_cms_hcris_cost_reports_2026"], "qualification": "The sources describe different data-generating processes and cannot be collapsed into one evidence tier."}
+          {
+            "claim": "A dataset may be useful for controlled task testing while being unsuitable as evidence of real-world financial behavior; usefulness and representativeness must be assessed separately.",
+            "source_ids": [
+              "src_ibm_aml_synthetic_transactions",
+              "src_baf_bank_account_fraud_2022",
+              "src_fifar_alert_review_2025",
+              "src_cms_hcris_cost_reports_2026"
+            ],
+            "qualification": "The sources describe different data-generating processes and cannot be collapsed into one evidence tier."
+          }
         ],
-        "unknowns": ["Whether a selected dataset is current, complete, legally reusable for the intended purpose, or representative of the target workflow.", "Whether labels reflect expert decisions, source-reported fields, simulated rules, or downstream annotation errors in the exact release used."],
-        "reading_order": ["src_ibm_aml_synthetic_transactions", "src_baf_bank_account_fraud_2022", "src_fifar_alert_review_2025", "src_cms_hcris_cost_reports_2026", "src_usaspending_transaction_guide", "src_ibm_tabformer_card_data"]
+        "unknowns": [
+          "Whether a selected dataset is current, complete, legally reusable for the intended purpose, or representative of the target workflow.",
+          "Whether labels reflect expert decisions, source-reported fields, simulated rules, or downstream annotation errors in the exact release used."
+        ],
+        "reading_order": [
+          "src_ibm_aml_synthetic_transactions",
+          "src_baf_bank_account_fraud_2022",
+          "src_fifar_alert_review_2025",
+          "src_cms_hcris_cost_reports_2026",
+          "src_usaspending_transaction_guide",
+          "src_ibm_tabformer_card_data"
+        ]
+      }
+    }
+  },
+  {
+    "id": "guide-construction-wip",
+    "kind": "guide",
+    "title": "What does a construction WIP schedule need to explain?",
+    "summary": "A source-linked explanation of estimates, earned revenue, billing, retainage and cash.",
+    "topics": [
+      "Accounting and reporting"
+    ],
+    "industries": [
+      "construction-real-estate"
+    ],
+    "jurisdiction": "United States; state and contract applicability varies",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_construction_aicpa_wip",
+      "src_construction_fasb_2014_09",
+      "src_construction_aicpa_revenue_issues",
+      "src_construction_ey_engineering_revenue",
+      "src_construction_aia_g702",
+      "src_construction_fasb_202505"
+    ],
+    "related_ids": [
+      "collection-construction-wip-revenue",
+      "wf-construction-wip-close",
+      "wf-construction-job-cost-estimates",
+      "wf-construction-billing-retainage"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-11",
+    "provenance": {
+      "added_on": "2026-09-11",
+      "reviewer": "Codex (AI-assisted editorial synthesis)",
+      "scope": "Original construction accounting research synthesis checked against linked source records.",
+      "evidence_record_ids": [
+        "src_construction_aicpa_wip",
+        "src_construction_fasb_2014_09",
+        "src_construction_aicpa_revenue_issues",
+        "src_construction_ey_engineering_revenue",
+        "src_construction_aia_g702",
+        "src_construction_fasb_202505"
+      ],
+      "outcome": "References and qualifications reviewed; no professional sign-off or execution evidence.",
+      "note": "Research reference for corpus 2026-09-11.1; descriptive content, not an execution tool."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false
+    },
+    "data": {
+      "version": "1.0.0",
+      "prepared_at": "2026-09-11",
+      "evidence_classification": "editorial-synthesis",
+      "intended_audience": "People and agents researching US construction accounting.",
+      "editorial_brief": {
+        "question": "What does a construction WIP schedule need to explain?",
+        "answer": "A useful WIP schedule is a bridge from contract assumptions and job-cost evidence to the financial statements. It must explain changes in estimated profit and reconcile commercial billing with recognized performance. Cash collection is a further bridge, not a measure of completion.",
+        "findings": [
+          {
+            "claim": "Apply a progress method only after identifying the contract promises and over-time basis.",
+            "source_ids": [
+              "src_construction_fasb_2014_09",
+              "src_construction_aicpa_revenue_issues"
+            ],
+            "qualification": "Construction labels do not decide accounting eligibility.",
+            "classification": "editorial-synthesis"
+          },
+          {
+            "claim": "Keep forecast revisions, change status, cost cutoff and billing differences visible.",
+            "source_ids": [
+              "src_construction_aicpa_wip",
+              "src_construction_ey_engineering_revenue"
+            ],
+            "qualification": "The source interpretations are introductory or dated and require current framework review.",
+            "classification": "editorial-synthesis"
+          },
+          {
+            "claim": "Investigate retained and unbilled amounts according to payment conditions and credit risk.",
+            "source_ids": [
+              "src_construction_aia_g702",
+              "src_construction_ey_engineering_revenue",
+              "src_construction_fasb_202505"
+            ],
+            "qualification": "Do not classify every retainage amount identically.",
+            "classification": "editorial-synthesis"
+          }
+        ],
+        "disagreements": [
+          {
+            "claim": "A payment certificate and a revenue calculation answer different questions.",
+            "source_ids": [
+              "src_construction_aia_g702",
+              "src_construction_fasb_2014_09"
+            ],
+            "qualification": "Contract administration and financial reporting must be reconciled, not substituted."
+          }
+        ],
+        "unknowns": [
+          "Actual contract rights, reliable estimates and complete job costs.",
+          "Current consolidated accounting requirements and professional review of proposed treatment."
+        ],
+        "reading_order": [
+          "src_construction_aicpa_wip",
+          "src_construction_fasb_2014_09",
+          "src_construction_aicpa_revenue_issues",
+          "src_construction_ey_engineering_revenue",
+          "src_construction_aia_g702",
+          "src_construction_fasb_202505"
+        ]
+      }
+    }
+  },
+  {
+    "id": "guide-construction-tax-transitions",
+    "kind": "guide",
+    "title": "How should construction tax research handle the 2025–2026 transition?",
+    "summary": "Contract cohorts and a documented source conflict prevent overbroad method and look-back conclusions.",
+    "topics": [
+      "Accounting and reporting"
+    ],
+    "industries": [
+      "construction-real-estate"
+    ],
+    "jurisdiction": "United States; state and contract applicability varies",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_construction_pl11921_70430",
+      "src_construction_irs_rp202632",
+      "src_construction_irs_8697",
+      "src_construction_irs_5522"
+    ],
+    "related_ids": [
+      "collection-construction-tax",
+      "wf-construction-long-term-contract-tax"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-11",
+    "provenance": {
+      "added_on": "2026-09-11",
+      "reviewer": "Codex (AI-assisted editorial synthesis)",
+      "scope": "Original construction accounting research synthesis checked against linked source records.",
+      "evidence_record_ids": [
+        "src_construction_pl11921_70430",
+        "src_construction_irs_rp202632",
+        "src_construction_irs_8697",
+        "src_construction_irs_5522"
+      ],
+      "outcome": "References and qualifications reviewed; no professional sign-off or execution evidence.",
+      "note": "Research reference for corpus 2026-09-11.1; descriptive content, not an execution tool."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false
+    },
+    "data": {
+      "version": "1.0.0",
+      "prepared_at": "2026-09-11",
+      "evidence_classification": "editorial-synthesis",
+      "intended_audience": "People and agents researching US construction accounting.",
+      "editorial_brief": {
+        "question": "How should construction tax research handle the 2025–2026 transition?",
+        "answer": "Separate book WIP from tax methods, then determine the contract category and taxable-year cohort. Read the enacted amendment together with method-change procedures. The checked IRS form introduction contains broader language than the statute supports, so its summary should not become an automatic exemption rule.",
+        "findings": [
+          {
+            "claim": "The statute’s transition is tied to taxable years beginning after July 4, 2025.",
+            "source_ids": [
+              "src_construction_pl11921_70430",
+              "src_construction_irs_rp202632"
+            ],
+            "qualification": "For a calendar-year taxpayer this points to the 2026 cohort; fiscal years require their own analysis.",
+            "classification": "editorial-synthesis"
+          },
+          {
+            "claim": "Method adoption, method change and look-back interest are separate research questions.",
+            "source_ids": [
+              "src_construction_irs_rp202632",
+              "src_construction_irs_8697"
+            ],
+            "qualification": "Gross-receipts aggregation, contract category and filing history remain necessary.",
+            "classification": "editorial-synthesis"
+          }
+        ],
+        "disagreements": [
+          {
+            "claim": "The Form 8697 introduction describes a broader date and three-year exception than the checked statutory section.",
+            "source_ids": [
+              "src_construction_irs_8697",
+              "src_construction_pl11921_70430"
+            ],
+            "qualification": "This is a documented apparent inconsistency; no blanket three-year exemption is asserted."
+          }
+        ],
+        "unknowns": [
+          "Whether IRS instructions will be corrected or clarified.",
+          "Entity-specific method eligibility and current inflation-adjusted thresholds.",
+          "State conformity, tax-shelter status and consequences for income-tax provisions."
+        ],
+        "reading_order": [
+          "src_construction_pl11921_70430",
+          "src_construction_irs_rp202632",
+          "src_construction_irs_8697",
+          "src_construction_irs_5522"
+        ]
+      }
+    }
+  },
+  {
+    "id": "guide-construction-multistate",
+    "kind": "guide",
+    "title": "Why does construction accounting need a state-by-state fact pattern?",
+    "summary": "A comparison of contractor consumption, retail sales, public works and income apportionment boundaries.",
+    "topics": [
+      "Accounting and reporting"
+    ],
+    "industries": [
+      "construction-real-estate"
+    ],
+    "jurisdiction": "United States; state and contract applicability varies",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_construction_texas_sales_tax",
+      "src_construction_california_pub9",
+      "src_construction_washington_wac170",
+      "src_construction_new_york_contractors",
+      "src_construction_florida_taa_22a015",
+      "src_construction_mtc_apportionment",
+      "src_construction_dol_wh347",
+      "src_construction_california_certified_payroll"
+    ],
+    "related_ids": [
+      "collection-construction-tax",
+      "collection-construction-public-works",
+      "wf-construction-multistate-tax",
+      "wf-construction-prevailing-wage-payroll"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-11",
+    "provenance": {
+      "added_on": "2026-09-11",
+      "reviewer": "Codex (AI-assisted editorial synthesis)",
+      "scope": "Original construction accounting research synthesis checked against linked source records.",
+      "evidence_record_ids": [
+        "src_construction_texas_sales_tax",
+        "src_construction_california_pub9",
+        "src_construction_washington_wac170",
+        "src_construction_new_york_contractors",
+        "src_construction_florida_taa_22a015",
+        "src_construction_mtc_apportionment",
+        "src_construction_dol_wh347",
+        "src_construction_california_certified_payroll"
+      ],
+      "outcome": "References and qualifications reviewed; no professional sign-off or execution evidence.",
+      "note": "Research reference for corpus 2026-09-11.1; descriptive content, not an execution tool."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false
+    },
+    "data": {
+      "version": "1.0.0",
+      "prepared_at": "2026-09-11",
+      "evidence_classification": "editorial-synthesis",
+      "intended_audience": "People and agents researching US construction accounting.",
+      "editorial_brief": {
+        "question": "Why does construction accounting need a state-by-state fact pattern?",
+        "answer": "The relevant rule follows project location, work type, property classification, contract form, purchaser and funding. One nationwide contractor tax or payroll rule would discard facts that the sources treat differently.",
+        "findings": [
+          {
+            "claim": "Texas, California, Washington and New York organize contractor sales-tax analysis around different distinctions.",
+            "source_ids": [
+              "src_construction_texas_sales_tax",
+              "src_construction_california_pub9",
+              "src_construction_washington_wac170",
+              "src_construction_new_york_contractors"
+            ],
+            "qualification": "These selected sources provide starting points, not a full multistate filing matrix.",
+            "classification": "editorial-synthesis"
+          },
+          {
+            "claim": "Federal and California certified-payroll obligations require separate coverage checks.",
+            "source_ids": [
+              "src_construction_dol_wh347",
+              "src_construction_california_certified_payroll"
+            ],
+            "qualification": "Neither source establishes every state’s wage or payroll-tax duties.",
+            "classification": "editorial-synthesis"
+          },
+          {
+            "claim": "Historical Florida advice and the MTC model demonstrate research questions without resolving current statewide rules.",
+            "source_ids": [
+              "src_construction_florida_taa_22a015",
+              "src_construction_mtc_apportionment"
+            ],
+            "qualification": "The Florida guide was inaccessible and MTC state adoption was not checked.",
+            "classification": "editorial-synthesis"
+          }
+        ],
+        "disagreements": [
+          {
+            "claim": "A tax-exempt or government customer does not by itself determine the contractor’s purchase-tax treatment.",
+            "source_ids": [
+              "src_construction_texas_sales_tax",
+              "src_construction_california_pub9",
+              "src_construction_new_york_contractors"
+            ],
+            "qualification": "Read the particular exemption and procurement arrangement."
+          }
+        ],
+        "unknowns": [
+          "All unsampled states, local tax jurisdictions and current Florida general guidance.",
+          "Current apportionment, nexus, state conformity and employee mobility rules for the actual footprint."
+        ],
+        "reading_order": [
+          "src_construction_texas_sales_tax",
+          "src_construction_california_pub9",
+          "src_construction_washington_wac170",
+          "src_construction_new_york_contractors",
+          "src_construction_florida_taa_22a015",
+          "src_construction_mtc_apportionment",
+          "src_construction_dol_wh347",
+          "src_construction_california_certified_payroll"
+        ]
+      }
+    }
+  },
+  {
+    "id": "guide-construction-coverage",
+    "kind": "guide",
+    "title": "Which accounting topics does a general construction contractor need beyond WIP?",
+    "summary": "An overview linking thirteen construction workflow maps and five reading collections.",
+    "topics": [
+      "Accounting and reporting"
+    ],
+    "industries": [
+      "construction-real-estate"
+    ],
+    "jurisdiction": "United States; state and contract applicability varies",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_construction_aicpa_wip",
+      "src_construction_aicpa_revenue_issues",
+      "src_construction_aia_g702",
+      "src_construction_dcaa_accounting_system",
+      "src_construction_dol_wh347",
+      "src_construction_texas_sales_tax",
+      "src_construction_sba_994f",
+      "src_construction_kpmg_contingencies",
+      "src_construction_fasb_202305",
+      "src_construction_fasb_202301",
+      "src_construction_pl11921_70430"
+    ],
+    "related_ids": [
+      "collection-construction-wip-revenue",
+      "collection-construction-public-works",
+      "collection-construction-payments-risk",
+      "collection-construction-tax",
+      "collection-construction-assets-entities",
+      "wf-construction-contract-intake",
+      "wf-construction-wip-close",
+      "wf-construction-job-cost-estimates",
+      "wf-construction-change-orders-claims",
+      "wf-construction-billing-retainage",
+      "wf-construction-subcontractor-payables",
+      "wf-construction-prevailing-wage-payroll",
+      "wf-construction-long-term-contract-tax",
+      "wf-construction-multistate-tax",
+      "wf-construction-equipment-leases",
+      "wf-construction-insurance-contingencies",
+      "wf-construction-joint-ventures",
+      "wf-construction-cash-surety-closeout"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-11",
+    "provenance": {
+      "added_on": "2026-09-11",
+      "reviewer": "Codex (AI-assisted editorial synthesis)",
+      "scope": "Original construction accounting research synthesis checked against linked source records.",
+      "evidence_record_ids": [
+        "src_construction_aicpa_wip",
+        "src_construction_aicpa_revenue_issues",
+        "src_construction_aia_g702",
+        "src_construction_dcaa_accounting_system",
+        "src_construction_dol_wh347",
+        "src_construction_texas_sales_tax",
+        "src_construction_sba_994f",
+        "src_construction_kpmg_contingencies",
+        "src_construction_fasb_202305",
+        "src_construction_fasb_202301",
+        "src_construction_pl11921_70430"
+      ],
+      "outcome": "References and qualifications reviewed; no professional sign-off or execution evidence.",
+      "note": "Research reference for corpus 2026-09-11.1; descriptive content, not an execution tool."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false
+    },
+    "data": {
+      "version": "1.0.0",
+      "prepared_at": "2026-09-11",
+      "evidence_classification": "editorial-synthesis",
+      "intended_audience": "People and agents researching US construction accounting.",
+      "editorial_brief": {
+        "question": "Which accounting topics does a general construction contractor need beyond WIP?",
+        "answer": "WIP is the central reporting bridge, but its reliability depends on upstream contract and cost evidence and downstream billing, labor, tax, cash and legal obligations. Coverage should follow a project from bid and contract intake to final costs and releases, then reconcile that project view to the reporting entity.",
+        "findings": [
+          {
+            "claim": "The highest-priority project cycle joins contract intake, cost completeness, estimate revision, changes, WIP and billing.",
+            "source_ids": [
+              "src_construction_aicpa_wip",
+              "src_construction_aicpa_revenue_issues",
+              "src_construction_aia_g702",
+              "src_construction_dcaa_accounting_system"
+            ],
+            "qualification": "This prioritization is editorial, not a claim about one contractor’s actual weaknesses.",
+            "classification": "editorial-synthesis"
+          },
+          {
+            "claim": "Public works and multistate operations introduce distinct payroll, tax and payment evidence.",
+            "source_ids": [
+              "src_construction_dol_wh347",
+              "src_construction_texas_sales_tax",
+              "src_construction_pl11921_70430"
+            ],
+            "qualification": "Applicability depends on jurisdiction, funding and contract terms.",
+            "classification": "editorial-synthesis"
+          },
+          {
+            "claim": "Cash, surety, contingencies, equipment and entity structure require additional reporting views.",
+            "source_ids": [
+              "src_construction_sba_994f",
+              "src_construction_kpmg_contingencies",
+              "src_construction_fasb_202305",
+              "src_construction_fasb_202301"
+            ],
+            "qualification": "Commercial documentation is not accounting authority or independent deployment proof.",
+            "classification": "editorial-synthesis"
+          }
+        ],
+        "disagreements": [
+          {
+            "claim": "Generic AP, revenue and close records remain useful but do not resolve construction-specific questions.",
+            "source_ids": [
+              "src_construction_aicpa_revenue_issues",
+              "src_construction_dcaa_accounting_system"
+            ],
+            "qualification": "Existing inherited records retain their separate review limitations."
+          }
+        ],
+        "unknowns": [
+          "Professional validation, current consolidated GAAP and a complete state footprint.",
+          "Real reconciled job-cost/WIP datasets with reuse permission.",
+          "Construction ERP extraction and correction behavior tested against actual systems."
+        ],
+        "reading_order": [
+          "src_construction_aicpa_wip",
+          "src_construction_aicpa_revenue_issues",
+          "src_construction_aia_g702",
+          "src_construction_dcaa_accounting_system",
+          "src_construction_dol_wh347",
+          "src_construction_texas_sales_tax",
+          "src_construction_sba_994f",
+          "src_construction_kpmg_contingencies",
+          "src_construction_fasb_202305",
+          "src_construction_fasb_202301",
+          "src_construction_pl11921_70430"
+        ]
       }
     }
   }

@@ -17,17 +17,25 @@ test('new reading surfaces preserve evidence and publication boundaries', async 
   for(const heading of ['Findings across sources','Differences and qualifications','What remains unknown','Suggested reading order']) assert.ok(brief.includes(heading));
 });
 test('current release and downloads contain the same canonical records and preserved baseline',()=>{
-  const previous=JSON.parse(gunzipSync(fs.readFileSync('data/releases/2026-09-07.3/corpus.json.gz')));
+  const queue=JSON.parse(fs.readFileSync('dist/client/downloads/maintenance.json'));
+  assert.equal(queue.previous_version,'2026-09-07.4');
+  const previous=JSON.parse(gunzipSync(fs.readFileSync(`data/releases/${queue.previous_version}/corpus.json.gz`)));
   const current=JSON.parse(fs.readFileSync('dist/client/downloads/corpus.json'));
   const archived=JSON.parse(gunzipSync(fs.readFileSync(`dist/client/releases/${meta.corpus_version}/corpus.json.gz`)));
   assert.deepEqual(archived,current);
   const byId=new Map(records.map(r=>[r.id,r]));
-  for(const r of previous.records) assert.deepEqual(byId.get(r.id),r,`Preserve baseline record ${r.id}`);
-  assert.equal(records.length-previous.records.length,3);
+  for(const r of previous.records) {
+    if(r.id==='src_aicpacon25') {
+      assert.equal(byId.get(r.id).reviewed_at,'2026-09-11');
+      assert.equal(byId.get(r.id).provenance.previous_reviewed_at,r.provenance.previous_reviewed_at);
+    } else assert.deepEqual(byId.get(r.id),r,`Preserve baseline record ${r.id}`);
+  }
+  assert.equal(records.length-previous.records.length,59);
   const knowledge=JSON.parse(fs.readFileSync('dist/client/downloads/knowledge.json'));
   assert.equal(Object.keys(knowledge.profiles).length,records.length);
   assert.equal(knowledge.corpus_version,meta.corpus_version);
-  const queue=JSON.parse(fs.readFileSync('dist/client/downloads/maintenance.json'));
   assert.ok(queue.queue.length>0);
-  assert.equal(queue.changes.length,3);
+  assert.equal(queue.changes.filter(c=>c.change==='added').length,59);
+  assert.deepEqual(queue.changes.filter(c=>c.change==='modified').map(c=>c.id),['src_aicpacon25']);
+  assert.deepEqual(queue.versions,['2026-09-07.3','2026-09-07.4',meta.corpus_version]);
 });

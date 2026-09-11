@@ -8,6 +8,7 @@ import {
   references,
   citedBy,
   knowledge,
+  coverage,
   type CorpusRecord,
   type Json,
 } from "./corpus";
@@ -77,6 +78,7 @@ export function shell(
               ["/?kind=context", "Accounting context", "context"],
               ["/collections", "Collections", "collections"],
               ["/briefs", "Research briefs", "briefs"],
+              ["/coverage", "Coverage", "coverage"],
               ["/use", "Use the corpus", "use"],
             ]
               .map(
@@ -89,6 +91,7 @@ export function shell(
               ["/?kind=context", "Accounting context", "context"],
               ["/collections", "Collections", "collections"],
               ["/briefs", "Research briefs", "briefs"],
+              ["/coverage", "Coverage", "coverage"],
               ["/use", "Use the corpus", "use"],
             ]
               .map(
@@ -150,7 +153,7 @@ export function browse(params: URLSearchParams) {
   const chipValue = (key: string) => key === "kind" ? (kinds[kind] || "Accounting context") : key === "collection" ? getRecord(params.get(key)!)?.title || params.get(key) : params.get(key);
   const startingPoints = [
     ["/records/collection-foundations", "Start with the foundations", "A reading collection connecting accounting evidence, controls and agent design."],
-    ["/briefs", "Read a research brief", "Cited answers about journal extraction, accounting benchmarks and financial datasets."],
+    ["/briefs", "Read a research brief", "Cited answers to accounting, data and agent-research questions."],
     ["/?kind=workflow", "Explore accounting workflows", "Find the evidence, controls and context behind common accounting tasks."],
   ];
   const body = `<section class="intro ${hasFilters ? "compact" : "home-intro"}">
@@ -172,7 +175,7 @@ export function browse(params: URLSearchParams) {
     ${activeFilters.length ? `<nav class="active-filters" aria-label="Active filters">${activeFilters.map(key => `<a href="${esc(queryLink(params,{[key]:""}))}" aria-label="${esc(`Remove ${label(key)}: ${chipValue(key)}`)}">${esc(chipValue(key))}<span aria-hidden="true"> ×</span></a>`).join("")}<a class="clear-filters" href="${esc(queryLink(params,Object.fromEntries(filterNames.map(k=>[k,""]))))}">Clear filters</a></nav>` : ""}
     ${result.records.map(row).join("") || '<div class="empty"><h3>No records match these filters.</h3><p>Try fewer words or broaden the topic and source filters.</p><a href="/">Browse all records →</a></div>'}
     <nav class="pagination" aria-label="Results pages">${result.page > 1 ? `<a href="${esc(queryLink(params,{page:String(result.page-1)}))}">← Previous</a>` : '<span></span>'}<span>Page ${result.page} of ${Math.max(1,result.pages)}</span>${result.page < result.pages ? `<a href="${esc(queryLink(params,{page:String(result.page+1)}))}">Next →</a>` : '<span></span>'}</nav>
-    <p class="catalog-note">Coverage is broad and still uneven. Imported records have not been reverified for this release. <a href="/about#coverage">See coverage and review status.</a></p>
+    <p class="catalog-note">Coverage is broad and still uneven. Review depth and source currency vary by record. <a href="/about#coverage">See coverage and review status.</a></p>
     <p class="catalog-note">This page as <a href="/api/v1/records?${esc(params.toString())}">JSON</a> · <a href="/api/v1/records?${esc(params.toString())}${params.size ? "&amp;" : ""}format=markdown">Markdown</a> · <a href="/use">Download the corpus</a></p>
     </section></div></form>`;
   return shell(title, meta.mission, body, kind === "source" ? "sources" : kind === "context" ? "context" : "");
@@ -260,7 +263,7 @@ export function recordPage(r: CorpusRecord) {
     ...(r.kind === "source" ? [["evidence", "Findings"], ["applicability", "Applicability"], ["limitations", "Limitations"]] : brief ? [["answer", "Answer in context"], ["findings", "Findings"], ["qualifications", "Qualifications"], ["unknowns", "Unknowns"]] : [["record-content", "Reference details"]]),
     ...(cited.length && r.kind !== "collection" ? [["sources", "Cited sources"]] : []),
     ...(edges.length ? [["relationships", "Relationships"]] : []),
-    ["citation", "Citation"], ["record-information", "Record information"], ["rights", "Rights and provenance"]
+    ["coverage", "Coverage mapping"], ["citation", "Citation"], ["record-information", "Record information"], ["rights", "Rights and provenance"]
   ].map(([id,title]) => `<a href="#${id}">${title}</a>`).join("")}</nav>`;
   const citation = `Accounting Agents contributors. “${r.title}.” Accounting Agents research corpus, version ${meta.corpus_version}. ${meta.site_url}/records/${r.id}`;
   const body = /* HTML */ `<div class="record-layout">
@@ -305,6 +308,10 @@ export function recordPage(r: CorpusRecord) {
       ${cited.length && r.kind !== "collection"
         ? `<section id="sources"><h2>Cited sources</h2><p>Follow the source record to assess its scope, evidence, and rights.</p>${cited.map(row).join("")}</section>`
         : ""}
+      <section id="coverage"><h2>Coverage mapping</h2><p>Proposed associations with the research topology. These links do not assess whether this record answers the question.</p>${(() => {
+        const profile = coverage.profiles.get(r.id)!;
+        return `<dl class="structured"><div><dt>Question families</dt><dd>${profile.question_mappings.length ? profile.question_mappings.map(q => link(`/coverage?view=questions&question=${q.question_id}`, coverage.questionById.get(q.question_id)?.title || q.question_id)).join(" · ") : "Not yet assigned"}</dd></div><div><dt>Industry scope</dt><dd>${profile.industry_mappings.length ? profile.industry_mappings.map(i => link(`/coverage?industry=${i.industry_code}`, `${i.industry_code} · ${coverage.nodeByCode.get(i.industry_code)?.title}`)).join(" · ") : esc(profile.industry_scope.replaceAll("-", " "))}</dd></div></dl><p><a href="/api/v1/coverage/records/${esc(r.id)}">Mapping fields and provenance (JSON)</a></p>`;
+      })()}</section>
       <section id="citation">
         <h2>Cite this record</h2>
         <p class="citation">${esc(citation)}</p>

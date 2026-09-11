@@ -13,6 +13,7 @@ import guides from "../data/corpus/guide.json";
 import collections from "../data/corpus/collection.json";
 import examples from "../data/corpus/example.json";
 import { createKnowledgeIndex, expandQuery, expandIndexedText, normalizeJurisdiction, type Profile } from "./knowledge";
+import { createCoverageIndex } from "./coverage";
 export { expandQuery } from "./knowledge";
 
 export type Json =
@@ -78,6 +79,7 @@ export const meta = {
   methods: ["GET", "HEAD", "OPTIONS"],
 };
 export const knowledge = createKnowledgeIndex(records);
+export const coverage = createCoverageIndex(records);
 const byId = new Map(records.map((r) => [r.id, r]));
 const normalize = (s: string) =>
   s

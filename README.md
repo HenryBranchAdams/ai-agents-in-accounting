@@ -4,9 +4,9 @@ A public, read-only research corpus that helps people and agents find, understan
 
 The corpus brings original source references together with accounting workflows, controls, design references, terminology, and synthetic examples. Search, citations, source relationships, and portable downloads are the product.
 
-For the latest local handoff, validation evidence, and publication boundary, start with [the September 10 checkpoint](docs/checkpoint-2026-09-10.md). Historical migration inventories and retired product plans are not the current backlog.
+For the latest research, local validation and publication boundary, start with [the September 11 construction checkpoint](docs/checkpoint-2026-09-11.md). The [September 10 checkpoint](docs/checkpoint-2026-09-10.md) preserves the preceding implementation state. Historical migration inventories and retired product plans are not the current backlog.
 
-The corpus contains **779 records**: 540 source references, 60 workflows, 24 design references, 30 reading collections, and 125 other accounting and technical references. Two September 7 research rounds add 51 sources with scoped, AI-assisted checks and nine collections. The latest round adds industry reporting authorities, ERP extraction boundaries, empirical accounting and tax findings, and financial datasets with explicit provenance and rights limits. The 716 inherited records retain their earlier migration status. Source checks are not professional verification or exhaustive coverage. See [mission and coverage](data/catalog.json).
+The corpus contains **838 records**: 577 source references, 73 workflows, 24 design references, 35 reading collections, and 129 other accounting and technical references. September 11 construction research adds 37 sources, 13 workflow maps, five collections and four briefs, and rechecks one inherited AICPA guide landing page. The other 715 inherited records retain their migration review status. Earlier September 7 research remains in the corpus. Source checks are scoped and AI-assisted; they are not professional verification or exhaustive coverage. See [the construction gap report](docs/research/construction-accounting-coverage-2026-09-11.md) and [mission and coverage](data/catalog.json).
 
 ## Run locally
 
@@ -61,8 +61,10 @@ Software is MIT; project metadata and synthetic values are CC0; original editori
 
 ## Evidence, retrieval and maintenance
 
-The current release adds three source-linked research briefs at `/briefs`, structured source evidence and applicability, controlled scope filters, and typed relationships. Raw source metadata and rights remain canonical; inferred scope retains field-level basis. The additive agent schema is 1.1.0.
+The `/coverage` view joins every record to versioned industry and accounting-question metadata. It includes the complete NAICS-US 2022 hierarchy, 62 question families, proposed record associations, scoped evidence assessments and measured coverage history. Broader-industry and shared context remain separate from direct material. Download the analytics, mapping JSONL, full topology or 96-by-62 screening CSV, and follow [the coverage model](docs/coverage-model.md) to update the baseline.
+
+Research briefs at `/briefs` now include construction WIP, tax transitions, multistate boundaries and lifecycle coverage alongside the three earlier cross-source briefs. The site also exposes structured source evidence and applicability, controlled scope filters, and typed relationships. Raw source metadata and rights remain canonical; inferred scope retains field-level basis. The additive agent schema is 1.1.0.
 
 The reading surface puts search and three starting paths on the homepage, keeps filtered results compact with removable filter links, and provides source findings, applicability, limitations, citation, and provenance navigation. Review scope and unknown rights remain visible. Mobile navigation and research brief cards use the same server-rendered pages without client JavaScript.
 
-`/changes` links versioned snapshots; `/records/{id}/history` identifies canonical changes against the preserved 2026-09-07.3 baseline. `/maintenance` exposes unresolved reviews, rights and source observations. Run `npm run maintenance` to inspect the queue; live checks are explicit and never upgrade source review status. See [maintenance](docs/maintenance.md) and [retrieval regression coverage](docs/research-questions.md).
+`/changes` links versioned snapshots; `/records/{id}/history` identifies canonical changes against the newest preserved predecessor (currently 2026-09-07.4). `/maintenance` exposes unresolved reviews, rights and source observations. Run `npm run maintenance` to inspect the queue; live checks are explicit and never upgrade source review status. See [maintenance](docs/maintenance.md) and [retrieval regression coverage](docs/research-questions.md).
