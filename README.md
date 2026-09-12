@@ -4,9 +4,11 @@ A public, read-only research corpus that helps people and agents find, understan
 
 The corpus brings original source references together with accounting workflows, controls, design references, terminology, and synthetic examples. Search, citations, source relationships, and portable downloads are the product.
 
-For the latest research, local validation and publication boundary, start with [the September 11 construction checkpoint](docs/checkpoint-2026-09-11.md). The [September 10 checkpoint](docs/checkpoint-2026-09-10.md) preserves the preceding implementation state. Historical migration inventories and retired product plans are not the current backlog.
+The [roadmap](docs/roadmap.md) now records the delivered local expansion and remaining evidence work. Read the [roadmap handoff](docs/checkpoint-roadmap-2026-09-12.md) for counts, reading paths, validation and publication boundaries. Earlier checkpoints preserve historical states; retired product plans are not the current backlog.
 
-The corpus contains **838 records**: 577 source references, 73 workflows, 24 design references, 35 reading collections, and 129 other accounting and technical references. September 11 construction research adds 37 sources, 13 workflow maps, five collections and four briefs, and rechecks one inherited AICPA guide landing page. The other 715 inherited records retain their migration review status. Earlier September 7 research remains in the corpus. Source checks are scoped and AI-assisted; they are not professional verification or exhaustive coverage. See [the construction gap report](docs/research/construction-accounting-coverage-2026-09-11.md) and [mission and coverage](data/catalog.json).
+The local corpus contains **1,061 records**, including **630 source references, 186 guides, 73 workflows, 35 collections and 7 examples**. All 715 inherited records have documented review dispositions; this does not mean every source received a substantive full-text review. The expansion provides 178 named research questions across all 62 families, connected construction examples, four contrasting industry packages and four selected jurisdiction packages. Coverage includes 96 subsector profiles, 5,952 applicability screenings and 1,012 individual industry exception reviews.
+
+**176 named questions remain partial and 2 are evidence gaps. No entire family, subsector or detailed industry is assessed sufficient.** Scoped AI-assisted source checks, classification review and software validation do not establish professional accounting verification or production effectiveness. The last observed public edition remains `2026-09-11.1`; this local edition is `2026-09-11.2` and has not been published. See [mission and coverage](data/catalog.json).
 
 ## Run locally
 

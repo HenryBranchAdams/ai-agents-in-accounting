@@ -142,7 +142,7 @@ test("HTML and Markdown preserve stable citations and rights", async () => {
   const html = await (await request("/records/src_1os761s")).text();
   assert.match(html, /FASB Accounting Standards Codification/);
   assert.match(html, /https:\/\/asc.fasb.org\//);
-  assert.match(html, /not reverified/);
+  assert.ok(html.includes("AI-assisted source check"));
   assert.match(html, /Cite this record/);
   assert.doesNotMatch(html, /<script\b/);
   const md = await request("/records/wf-r2r-bank-reconciliations.md");

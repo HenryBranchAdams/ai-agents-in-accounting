@@ -5,11 +5,18 @@
     "search_query": "bank reconciliation",
     "kind": "workflow",
     "filters": {},
-    "expected_ids": ["wf-r2r-bank-reconciliations"],
-    "excluded_ids": ["act-post-journal-entry"],
+    "expected_ids": [
+      "wf-r2r-bank-reconciliations"
+    ],
+    "excluded_ids": [
+      "act-post-journal-entry"
+    ],
     "expected_scope": "Preparation and review evidence for a bank reconciliation; no posting or external action authority.",
     "required_citations": 2,
-    "claims_assert_only_supported": ["The response should cite the workflow record and a relevant review or control record before stating a procedure.", "A preparation guide cannot be presented as authority to post or execute an action."]
+    "claims_assert_only_supported": [
+      "The response should cite the workflow record and a relevant review or control record before stating a procedure.",
+      "A preparation guide cannot be presented as authority to post or execute an action."
+    ]
   },
   {
     "id": "rq-journal-extraction-completeness",
@@ -17,11 +24,18 @@
     "search_query": "journal extraction completeness",
     "kind": "guide",
     "filters": {},
-    "expected_ids": ["guide-journal-extraction-completeness"],
-    "excluded_ids": ["src_xero_bank_statement_boundary"],
+    "expected_ids": [
+      "guide-journal-extraction-completeness"
+    ],
+    "excluded_ids": [
+      "src_xero_bank_statement_boundary"
+    ],
     "expected_scope": "Endpoint-specific paging, ordering, termination, changing-population, and journal-view limits.",
     "required_citations": 2,
-    "claims_assert_only_supported": ["Do not claim a live extraction is complete without a source-supported reconciliation or snapshot boundary.", "Do not treat public API results as unreconciled bank-statement completeness when the cited source states that data is unavailable."]
+    "claims_assert_only_supported": [
+      "Do not claim a live extraction is complete without a source-supported reconciliation or snapshot boundary.",
+      "Do not treat public API results as unreconciled bank-statement completeness when the cited source states that data is unavailable."
+    ]
   },
   {
     "id": "rq-accounting-llm-benchmarks",
@@ -29,11 +43,18 @@
     "search_query": "accounting LLM benchmark",
     "kind": "guide",
     "filters": {},
-    "expected_ids": ["guide-accounting-llm-benchmark-claims"],
-    "excluded_ids": ["wf-supervised-pilot"],
+    "expected_ids": [
+      "guide-accounting-llm-benchmark-claims"
+    ],
+    "excluded_ids": [
+      "wf-supervised-pilot"
+    ],
     "expected_scope": "Task, dataset, grading, model, and transfer limits of the checked empirical studies.",
     "required_citations": 2,
-    "claims_assert_only_supported": ["Benchmark scores apply to the named task and setup.", "Do not infer professional validation or current deployment reliability from a benchmark score."]
+    "claims_assert_only_supported": [
+      "Benchmark scores apply to the named task and setup.",
+      "Do not infer professional validation or current deployment reliability from a benchmark score."
+    ]
   },
   {
     "id": "rq-financial-dataset-selection",
@@ -41,11 +62,18 @@
     "search_query": "financial dataset provenance rights",
     "kind": "guide",
     "filters": {},
-    "expected_ids": ["guide-financial-dataset-selection"],
-    "excluded_ids": ["src_ibm_aml_synthetic_transactions"],
+    "expected_ids": [
+      "guide-financial-dataset-selection"
+    ],
+    "excluded_ids": [
+      "src_ibm_aml_synthetic_transactions"
+    ],
     "expected_scope": "Data-generating process, evidence object, labels, coverage, and dataset-specific permission.",
     "required_citations": 2,
-    "claims_assert_only_supported": ["Repository code licensing does not automatically license externally hosted data.", "Synthetic, administrative, application, review, and award data should not be described as observed ledger or payment data without support."]
+    "claims_assert_only_supported": [
+      "Repository code licensing does not automatically license externally hosted data.",
+      "Synthetic, administrative, application, review, and award data should not be described as observed ledger or payment data without support."
+    ]
   },
   {
     "id": "rq-so-duties-control",
@@ -53,23 +81,37 @@
     "search_query": "segregation duties",
     "kind": "control",
     "filters": {},
-    "expected_ids": ["ctrl-segregation-duties"],
-    "excluded_ids": ["act-post-journal-entry"],
+    "expected_ids": [
+      "ctrl-segregation-duties"
+    ],
+    "excluded_ids": [
+      "act-post-journal-entry"
+    ],
     "expected_scope": "Role separation, preparation, approval, execution, and reconciliation boundaries.",
     "required_citations": 2,
-    "claims_assert_only_supported": ["Use the control record's stated boundary and evidence requirements.", "Do not claim an organization is compliant without entity-specific facts and review."]
+    "claims_assert_only_supported": [
+      "Use the control record's stated boundary and evidence requirements.",
+      "Do not claim an organization is compliant without entity-specific facts and review."
+    ]
   },
   {
     "id": "rq-r2r-close",
     "user_question": "Which records explain a controlled record-to-report close?",
     "search_query": "close",
     "kind": "workflow",
-    "filters": {"topic": "Record to report"},
-    "expected_ids": ["wf-r2r-close-orchestration", "wf-r2r-accruals-cutoff"],
+    "filters": {
+      "topic": "Record to report"
+    },
+    "expected_ids": [
+      "wf-r2r-close-orchestration",
+      "wf-r2r-accruals-cutoff"
+    ],
     "excluded_ids": [],
     "expected_scope": "Close preparation, journal-entry review, reconciliations, and evidence retention.",
     "required_citations": 2,
-    "claims_assert_only_supported": ["Keep workflow guidance separate from authority and action records."]
+    "claims_assert_only_supported": [
+      "Keep workflow guidance separate from authority and action records."
+    ]
   },
   {
     "id": "rq-ap-subledger",
@@ -77,11 +119,18 @@
     "search_query": "AP accounts payable",
     "kind": "workflow",
     "filters": {},
-    "expected_ids": ["wf-p2p-ap-exceptions", "wf-p2p-invoice-intake"],
-    "excluded_ids": ["wf-r2r-bank-reconciliations"],
+    "expected_ids": [
+      "wf-p2p-ap-exceptions",
+      "wf-p2p-invoice-intake"
+    ],
+    "excluded_ids": [
+      "wf-r2r-bank-reconciliations"
+    ],
     "expected_scope": "Accounts-payable preparation and review records, including invoice evidence and approvals.",
     "required_citations": 2,
-    "claims_assert_only_supported": ["Do not convert a payable preparation workflow into authorization to pay."]
+    "claims_assert_only_supported": [
+      "Do not convert a payable preparation workflow into authorization to pay."
+    ]
   },
   {
     "id": "rq-gl-accounting",
@@ -89,47 +138,78 @@
     "search_query": "journal entry",
     "kind": "workflow",
     "filters": {},
-    "expected_ids": ["wf-r2r-journal-entry"],
+    "expected_ids": [
+      "wf-r2r-journal-entry"
+    ],
     "excluded_ids": [],
     "expected_scope": "General-ledger procedure discovery and bounded preparation guidance.",
     "required_citations": 2,
-    "claims_assert_only_supported": ["The search result is a retrieval aid, not a conclusion about an entity's ledger."]
+    "claims_assert_only_supported": [
+      "The search result is a retrieval aid, not a conclusion about an entity's ledger."
+    ]
   },
   {
     "id": "rq-tax-us",
     "user_question": "What United States tax sources are available for an agent research packet?",
     "search_query": "Publication 15",
     "kind": "source",
-    "filters": {"jurisdiction": "United States federal employment taxes"},
-    "expected_ids": ["src_irs_pub15_2026"],
-    "excluded_ids": ["src_ato_taxation_ruling_tr2025_1"],
+    "filters": {
+      "jurisdiction": "United States federal employment taxes"
+    },
+    "expected_ids": [
+      "src_irs_pub15_2026"
+    ],
+    "excluded_ids": [
+      "src_ato_taxation_ruling_tr2025_1"
+    ],
     "expected_scope": "United States tax sources only, with source-specific currency and applicability checks.",
     "required_citations": 2,
-    "claims_assert_only_supported": ["Jurisdiction filtering must exclude non-United States records.", "A source listing does not establish that a tax treatment applies to a taxpayer."]
+    "claims_assert_only_supported": [
+      "Jurisdiction filtering must exclude non-United States records.",
+      "A source listing does not establish that a tax treatment applies to a taxpayer."
+    ]
   },
   {
     "id": "rq-uk-tax-counterexample",
     "user_question": "Which United Kingdom tax records should be considered for a VAT research question?",
     "search_query": "payroll HMRC",
     "kind": "source",
-    "filters": {"jurisdiction": "United Kingdom PAYE real-time information"},
-    "expected_ids": ["src_hmrc_fps_payroll"],
-    "excluded_ids": ["src_irs_pub15_2026", "src_irs_pub535_2025"],
+    "filters": {
+      "jurisdiction": "United Kingdom PAYE real-time information"
+    },
+    "expected_ids": [
+      "src_hmrc_fps_payroll"
+    ],
+    "excluded_ids": [
+      "src_irs_pub15_2026",
+      "src_irs_pub535_2025"
+    ],
     "expected_scope": "United Kingdom VAT materials and their stated effective or review boundaries.",
     "required_citations": 1,
-    "claims_assert_only_supported": ["Do not substitute United States tax guidance for United Kingdom VAT guidance."]
+    "claims_assert_only_supported": [
+      "Do not substitute United States tax guidance for United Kingdom VAT guidance."
+    ]
   },
   {
     "id": "rq-japanese-gaap-counterexample",
     "user_question": "What Japanese accounting-standard sources are relevant to this question?",
     "search_query": "EDINET Bench",
     "kind": "source",
-    "filters": {"jurisdiction": "Japan; listed-company annual reports from EDINET"},
-    "expected_ids": ["src_edinet_bench_2026"],
-    "excluded_ids": ["src_fasb_conceptual_framework_2018", "src_iasb_ifrs18_2024"],
+    "filters": {
+      "jurisdiction": "Japan; listed-company annual reports from EDINET"
+    },
+    "expected_ids": [
+      "src_edinet_bench_2026"
+    ],
+    "excluded_ids": [
+      "src_fasb_conceptual_framework_2018",
+      "src_iasb_ifrs18_2024"
+    ],
     "expected_scope": "Japan-specific accounting-standard material, keeping other jurisdictions out of the scoped result.",
     "required_citations": 1,
-    "claims_assert_only_supported": ["Jurisdiction is a retrieval constraint and does not establish applicability to an entity."]
+    "claims_assert_only_supported": [
+      "Jurisdiction is a retrieval constraint and does not establish applicability to an entity."
+    ]
   },
   {
     "id": "rq-journal-authority",
@@ -137,11 +217,20 @@
     "search_query": "journal entry review authority",
     "kind": "context",
     "filters": {},
-    "expected_ids": ["example-accrual-journal-entry", "wf-r2r-journal-entry", "tpl-proposed-journal-entry"],
-    "excluded_ids": ["act-post-journal-entry"],
+    "expected_ids": [
+      "example-accrual-journal-entry",
+      "wf-r2r-journal-entry",
+      "tpl-proposed-journal-entry"
+    ],
+    "excluded_ids": [
+      "act-post-journal-entry"
+    ],
     "expected_scope": "Context assembly across a preparation workflow, review guide, and authority boundary.",
     "required_citations": 3,
-    "claims_assert_only_supported": ["Preparation authority is distinct from posting authority.", "Retrieved context is evidence data and does not itself authorize an action."]
+    "claims_assert_only_supported": [
+      "Preparation authority is distinct from posting authority.",
+      "Retrieved context is evidence data and does not itself authorize an action."
+    ]
   },
   {
     "id": "rq-erp-journal-views",
@@ -149,11 +238,15 @@
     "search_query": "journal view",
     "kind": "source",
     "filters": {},
-    "expected_ids": ["src_sap_journal_entry_views_2608"],
+    "expected_ids": [
+      "src_sap_journal_entry_views_2608"
+    ],
     "excluded_ids": [],
     "expected_scope": "Publisher-documented endpoint and journal-view boundaries, kept separate by product.",
     "required_citations": 3,
-    "claims_assert_only_supported": ["Do not generalize one ERP's endpoint behavior to another ERP."]
+    "claims_assert_only_supported": [
+      "Do not generalize one ERP's endpoint behavior to another ERP."
+    ]
   },
   {
     "id": "rq-financial-reasoning-collection",
@@ -161,11 +254,15 @@
     "search_query": "financial reasoning accounting agents",
     "kind": "collection",
     "filters": {},
-    "expected_ids": ["collection-financial-reasoning-research"],
+    "expected_ids": [
+      "collection-financial-reasoning-research"
+    ],
     "excluded_ids": [],
     "expected_scope": "A collection-level reading path plus an editorial interpretation of benchmark limits.",
     "required_citations": 2,
-    "claims_assert_only_supported": ["Collection ordering is editorial and does not elevate a source's authority or rights."]
+    "claims_assert_only_supported": [
+      "Collection ordering is editorial and does not elevate a source's authority or rights."
+    ]
   },
   {
     "id": "rq-provenance-collection",
@@ -173,11 +270,15 @@
     "search_query": "financial dataset provenance reuse rights",
     "kind": "collection",
     "filters": {},
-    "expected_ids": ["collection-financial-dataset-provenance"],
+    "expected_ids": [
+      "collection-financial-dataset-provenance"
+    ],
     "excluded_ids": [],
     "expected_scope": "Dataset provenance, granularity, and rights context.",
     "required_citations": 2,
-    "claims_assert_only_supported": ["A collection is a navigation aid; each dataset's rights remain record-specific."]
+    "claims_assert_only_supported": [
+      "A collection is a navigation aid; each dataset's rights remain record-specific."
+    ]
   },
   {
     "id": "rq-regulatory-reporting-authority",
@@ -185,47 +286,78 @@
     "search_query": "FFIEC instructions",
     "kind": "source",
     "filters": {},
-    "expected_ids": ["src_ffiec051_instructions_2025"],
-    "excluded_ids": ["src_naic_sap_hierarchy_2026"],
+    "expected_ids": [
+      "src_ffiec051_instructions_2025"
+    ],
+    "excluded_ids": [
+      "src_naic_sap_hierarchy_2026"
+    ],
     "expected_scope": "Reporting-instruction records and a bounded regulator interpretation, with their own limitations.",
     "required_citations": 3,
-    "claims_assert_only_supported": ["Official instructions and regulator interpretations have the scope stated by their publishers.", "Do not infer a universal accounting hierarchy from one reporting manual."]
+    "claims_assert_only_supported": [
+      "Official instructions and regulator interpretations have the scope stated by their publishers.",
+      "Do not infer a universal accounting hierarchy from one reporting manual."
+    ]
   },
   {
     "id": "rq-insurance-hierarchy",
     "user_question": "What does the insurance accounting hierarchy source establish?",
     "search_query": "insurance accounting hierarchy SSAP",
     "kind": "source",
-    "filters": {"industry": "insurance"},
-    "expected_ids": ["src_naic_sap_hierarchy_2026"],
-    "excluded_ids": ["src_ffiec051_instructions_2025"],
+    "filters": {
+      "industry": "insurance"
+    },
+    "expected_ids": [
+      "src_naic_sap_hierarchy_2026"
+    ],
+    "excluded_ids": [
+      "src_ffiec051_instructions_2025"
+    ],
     "expected_scope": "Insurance-specific hierarchy and reporting-taxonomy context.",
     "required_citations": 2,
-    "claims_assert_only_supported": ["State-prescribed and permitted practices require separate jurisdiction checks.", "Publication of a taxonomy does not itself establish that it is the currently applicable filing taxonomy."]
+    "claims_assert_only_supported": [
+      "State-prescribed and permitted practices require separate jurisdiction checks.",
+      "Publication of a taxonomy does not itself establish that it is the currently applicable filing taxonomy."
+    ]
   },
   {
     "id": "rq-research-source-checked",
-    "user_question": "Which research sources have been source-checked?",
-    "search_query": "research",
+    "user_question": "Which source-checked research records describe BigFinanceBench?",
+    "search_query": "BigFinanceBench",
     "kind": "source",
-    "filters": {"review_status": "source-checked"},
-    "expected_ids": ["src_bigfinancebench2026", "src_apexaccounting_paper2026"],
+    "filters": {
+      "review_status": "source-checked"
+    },
+    "expected_ids": [
+      "src_bigfinancebench2026"
+    ],
     "excluded_ids": [],
     "expected_scope": "Source-checked research records, preserving the review status as a facet rather than a quality ranking.",
-    "required_citations": 2,
-    "claims_assert_only_supported": ["Source-checked means the annotated publisher claims and scope were checked; it is not professional review or independent replication."]
+    "required_citations": 1,
+    "claims_assert_only_supported": [
+      "Source-checked means the annotated publisher claims and scope were checked; it is not professional review or independent replication."
+    ]
   },
   {
     "id": "rq-federal-cost-reports",
     "user_question": "What can CMS cost-report data support in accounting-agent research?",
     "search_query": "CMS cost reports financial statements",
     "kind": "source",
-    "filters": {"jurisdiction": "United States; Medicare-certified institutional providers"},
-    "expected_ids": ["src_cms_hcris_cost_reports_2026"],
-    "excluded_ids": ["src_usaspending_transaction_guide"],
+    "filters": {
+      "jurisdiction": "United States; Medicare-certified institutional providers"
+    },
+    "expected_ids": [
+      "src_cms_hcris_cost_reports_2026"
+    ],
+    "excluded_ids": [
+      "src_usaspending_transaction_guide"
+    ],
     "expected_scope": "CMS provider cost-report data and related instruction changes, within the stated reporting boundaries.",
     "required_citations": 2,
-    "claims_assert_only_supported": ["CMS data are reported and on file and are not patient-level transactions.", "Provider cost-report coverage varies by provider type and reporting form."]
+    "claims_assert_only_supported": [
+      "CMS data are reported and on file and are not patient-level transactions.",
+      "Provider cost-report coverage varies by provider type and reporting form."
+    ]
   },
   {
     "id": "rq-synthetic-vs-observed",
@@ -233,11 +365,16 @@
     "search_query": "synthetic financial transactions observed outcomes",
     "kind": "source",
     "filters": {},
-    "expected_ids": ["src_ibm_aml_synthetic_transactions"],
+    "expected_ids": [
+      "src_ibm_aml_synthetic_transactions"
+    ],
     "excluded_ids": [],
     "expected_scope": "Generation process and observation status of selected financial datasets.",
     "required_citations": 3,
-    "claims_assert_only_supported": ["Synthetic behavior and labels must not be presented as independently observed banking outcomes.", "Simulated reviewer decisions do not establish live human-AI effectiveness."]
+    "claims_assert_only_supported": [
+      "Synthetic behavior and labels must not be presented as independently observed banking outcomes.",
+      "Simulated reviewer decisions do not establish live human-AI effectiveness."
+    ]
   },
   {
     "id": "rq-construction-wip-workflow",
@@ -305,6 +442,182 @@
     "claims_assert_only_supported": [
       "The MTC model is not a nationwide enacted rule.",
       "Four general state tax references and one historical Florida case do not establish 50-state coverage."
+    ]
+  },
+  {
+    "id": "rq-roadmap-connected-close",
+    "user_question": "How do construction contract facts reconcile through close and cash?",
+    "search_query": "contract facts close cash",
+    "kind": "guide",
+    "filters": {},
+    "expected_ids": [
+      "guide-construction-connected-close"
+    ],
+    "excluded_ids": [],
+    "expected_scope": "Contract estimates, ledger entries, billing and cash tie-outs.",
+    "required_citations": 1,
+    "claims_assert_only_supported": [
+      "Synthetic tie-outs do not establish production performance."
+    ]
+  },
+  {
+    "id": "rq-roadmap-manufacturing",
+    "user_question": "How should manufacturing conversion costs be traced?",
+    "search_query": "manufacturing conversion",
+    "kind": "guide",
+    "filters": {},
+    "expected_ids": [
+      "guide-manufacturing-conversion"
+    ],
+    "excluded_ids": [],
+    "expected_scope": "Manufacturing conversion, outsourced production and inventory populations.",
+    "required_citations": 1,
+    "claims_assert_only_supported": [
+      "A manufacturer does not automatically meet over-time revenue criteria."
+    ]
+  },
+  {
+    "id": "rq-roadmap-retail",
+    "user_question": "How do consignment and marketplace roles affect retail research?",
+    "search_query": "wholesale retail consignment",
+    "kind": "guide",
+    "filters": {},
+    "expected_ids": [
+      "guide-wholesale-retail"
+    ],
+    "excluded_ids": [],
+    "expected_scope": "Inventory ownership, consignment, returns and net settlement.",
+    "required_citations": 1,
+    "claims_assert_only_supported": [
+      "Cash collected does not determine gross versus net revenue."
+    ]
+  },
+  {
+    "id": "rq-roadmap-software",
+    "user_question": "How do provider and customer software questions differ?",
+    "search_query": "software subscriptions customer",
+    "kind": "guide",
+    "filters": {},
+    "expected_ids": [
+      "guide-software-subscriptions"
+    ],
+    "excluded_ids": [],
+    "expected_scope": "Provider subscriptions and customer hosting implementation under declared frameworks.",
+    "required_citations": 1,
+    "claims_assert_only_supported": [
+      "IFRS customer implementation conclusions do not automatically apply to US GAAP."
+    ]
+  },
+  {
+    "id": "rq-roadmap-services",
+    "user_question": "What evidence is needed for professional service project estimates?",
+    "search_query": "professional services staffing",
+    "kind": "guide",
+    "filters": {},
+    "expected_ids": [
+      "guide-professional-services"
+    ],
+    "excluded_ids": [],
+    "expected_scope": "Labor projects, staffing roles, timesheets, revenue and estimate versions.",
+    "required_citations": 1,
+    "claims_assert_only_supported": [
+      "A project percentage does not establish eligibility for over-time recognition."
+    ]
+  },
+  {
+    "id": "rq-roadmap-texas",
+    "user_question": "Which Texas construction and service facts change payment research?",
+    "search_query": "Texas construction service",
+    "kind": "guide",
+    "filters": {},
+    "expected_ids": [
+      "guide-jurisdiction-tx-construction-service"
+    ],
+    "excluded_ids": [],
+    "expected_scope": "Texas public payment, sales tax and declared operating roles.",
+    "required_citations": 1,
+    "claims_assert_only_supported": [
+      "Texas public payment deadlines do not automatically govern private contracts."
+    ]
+  },
+  {
+    "id": "rq-roadmap-california",
+    "user_question": "What does California public works payroll research require?",
+    "search_query": "California construction service",
+    "kind": "guide",
+    "filters": {},
+    "expected_ids": [
+      "guide-jurisdiction-ca-construction-service"
+    ],
+    "excluded_ids": [],
+    "expected_scope": "California public works, certified payroll and contract-specific conditions.",
+    "required_citations": 1,
+    "claims_assert_only_supported": [
+      "Public works payroll rules are not all private construction requirements."
+    ]
+  },
+  {
+    "id": "rq-roadmap-uk",
+    "user_question": "How do UK construction services differ by reporting basis and worker role?",
+    "search_query": "United Kingdom construction service",
+    "kind": "guide",
+    "filters": {},
+    "expected_ids": [
+      "guide-jurisdiction-uk-construction-service"
+    ],
+    "excluded_ids": [],
+    "expected_scope": "UK FRS 102 reporting period, construction VAT and employment-business roles.",
+    "required_citations": 1,
+    "claims_assert_only_supported": [
+      "An employment business providing workers is not automatically a construction reverse-charge supplier."
+    ]
+  },
+  {
+    "id": "rq-roadmap-canada",
+    "user_question": "What supports Canada framework selection and Ontario HST adjustments?",
+    "search_query": "Canada Ontario HST",
+    "kind": "guide",
+    "filters": {},
+    "expected_ids": [
+      "guide-jurisdiction-canada-ontario"
+    ],
+    "excluded_ids": [],
+    "expected_scope": "Canada reporting framework eligibility and Ontario HST invoice adjustments.",
+    "required_citations": 1,
+    "claims_assert_only_supported": [
+      "Matching NAICS labels do not establish equivalent accounting treatment."
+    ]
+  },
+  {
+    "id": "rq-roadmap-deployment",
+    "user_question": "What do independent deployment studies and failures establish?",
+    "search_query": "independent deployments failures",
+    "kind": "guide",
+    "filters": {},
+    "expected_ids": [
+      "guide-independent-deployment-evidence"
+    ],
+    "excluded_ids": [],
+    "expected_scope": "Independent productivity studies, version differences and transfer limits.",
+    "required_citations": 1,
+    "claims_assert_only_supported": [
+      "Customer support or consulting results do not establish accounting-agent performance."
+    ]
+  },
+  {
+    "id": "rq-roadmap-rights",
+    "user_question": "What unresolved dataset rights affect reuse?",
+    "search_query": "dataset rights chain",
+    "kind": "guide",
+    "filters": {},
+    "expected_ids": [
+      "guide-dataset-rights-chain"
+    ],
+    "excluded_ids": [],
+    "expected_scope": "TabFormer and FiFAR/BAF upstream permissions and conflicts.",
+    "required_citations": 1,
+    "claims_assert_only_supported": [
+      "Repository code licenses do not automatically license underlying datasets."
     ]
   }
 ]

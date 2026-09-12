@@ -82,13 +82,16 @@ write("downloads/coverage-records.jsonl", [...coverage.profiles.values()].map(m 
 write("downloads/coverage-assessments.json", fs.readFileSync("data/coverage/assessments.json"));
 write("downloads/coverage-history.json", fs.readFileSync("data/coverage/snapshots.json"));
 write("downloads/coverage.schema.json", fs.readFileSync("schemas/coverage.schema.json"));
+for (const name of ['research-questions','research-criteria','subsector-profiles','subsector-screening','industry-exception-reviews','classification-relationships']) write(`downloads/${name}.json`,fs.readFileSync(`data/coverage/${name}.json`));
+for (const name of ['source-reviews','editorial-reviews']) write(`downloads/${name}.json`,fs.readFileSync(`data/reviews/${name}.json`));
+write('downloads/research.schema.json',fs.readFileSync('schemas/research.schema.json'));
 const coverageTopology = JSON.parse(fs.readFileSync("data/coverage/topology.json"));
 const cellRows = coverageTopology.industry_backbone.nodes.filter(n => n.level === "subsector").flatMap(n => coverageTopology.question_families.map(q => {
   const cell = coverage.cell(n.code,q.id);
-  return [meta.corpus_version, coverage.versions.topology_version, coverage.versions.mapping_version, coverage.versions.assessment_version, n.code,n.title,q.id,q.title,cell.direct_records,cell.narrower_records,cell.broader_context_records,cell.shared_context_records,cell.assessments.length,cell.assessment_status];
+  return [meta.corpus_version, coverage.versions.topology_version, coverage.versions.mapping_version, coverage.versions.assessment_version, n.code,n.title,q.id,q.title,cell.direct_records,cell.narrower_records,cell.broader_context_records,cell.shared_context_records,cell.assessments.length,cell.assessment_status,cell.screening?.applicability,cell.screening?.evidence_outcome,cell.screening?.rationale,cell.screening?.named_question_ids.join(';')];
 }));
 const csvField = value => `"${String(value).replaceAll('"','""')}"`;
-write("downloads/coverage-cells.csv", ["corpus_version,topology_version,mapping_version,assessment_version,industry_code,industry_title,question_id,question_title,direct_records,narrower_records,broader_context_records,shared_context_records,scoped_assessments,assessment_status", ...cellRows.map(row => row.map(csvField).join(","))].join("\n") + "\n");
+write("downloads/coverage-cells.csv", ["corpus_version,topology_version,mapping_version,assessment_version,industry_code,industry_title,question_id,question_title,direct_records,narrower_records,broader_context_records,shared_context_records,scoped_assessments,assessment_status,applicability,evidence_outcome,rationale,named_question_ids", ...cellRows.map(row => row.map(csvField).join(","))].join("\n") + "\n");
 
 write(
   "downloads/agent-index.jsonl",

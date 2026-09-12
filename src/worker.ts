@@ -13,6 +13,7 @@ import {
 import { coveragePage } from "./coverage-view";
 import { CoverageQueryError, coverageTopology, coverageHistory } from "./coverage";
 import coverageSchema from "../schemas/coverage.schema.json";
+import researchSchema from '../schemas/research.schema.json';
 import {
   browse,
   briefsPage,
@@ -165,7 +166,7 @@ function openapi() {
     "source_type",
     "industry",
     "jurisdiction", "framework", "entity", "product", "as_of",
-    "collection",
+    "collection", "naics", "question_family",
   ].map((name) => ({
     name,
     in: "query",
@@ -173,6 +174,8 @@ function openapi() {
     description:
       name === "q"
         ? "Accounting aliases expand search terms; quoted phrases remain literal. Maximum 240 characters."
+        : name === "naics" ? "Exact NAICS-US 2022 code from /api/v1/coverage/topology; no ancestor or descendant inheritance."
+        : name === "question_family" ? "Exact accounting-question family ID from /api/v1/coverage/topology; association does not establish adequacy."
         : "Exact value from /api/v1/taxonomy; kind also accepts context.",
   }));
   return {
@@ -386,6 +389,7 @@ async function route(request: Request, env: Env) {
   if (path === "/briefs") return html(briefsPage());
   if (path === "/coverage") return html(coveragePage(url.searchParams));
   if (path === "/schemas/coverage.schema.json") return json(coverageSchema);
+  if (path === '/schemas/research.schema.json') return json(researchSchema);
   if (path === "/api/v1/coverage/topology") return json(coverageTopology);
   if (path === "/api/v1/coverage/history") return json(coverageHistory);
   if (path === "/api/v1/coverage") {

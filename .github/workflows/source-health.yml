@@ -11,7 +11,7 @@ permissions:
 jobs:
   observe:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -20,7 +20,8 @@ jobs:
       - run: cp data/source-observations.json source-health.json
       - run: node scripts/maintenance.mjs --check
         env:
-          MAINTENANCE_LIMIT: 10
+          MAINTENANCE_LIMIT: 40
+          MAINTENANCE_ROTATE_WEEKLY: 'true'
           MAINTENANCE_OBSERVATIONS: source-health.json
       - uses: actions/upload-artifact@v4
         with:

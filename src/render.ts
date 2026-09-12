@@ -144,7 +144,7 @@ function select(
 export function browse(params: URLSearchParams) {
   const result = search(params);
   const kind = params.get("kind") || "";
-  const filterNames = ["kind", "topic", "source_type", "industry", "jurisdiction", "framework", "entity", "product", "as_of", "collection"];
+  const filterNames = ["naics", "question_family", "kind", "topic", "source_type", "industry", "jurisdiction", "framework", "entity", "product", "as_of", "collection"];
   const activeFilters = filterNames.filter(key => params.get(key));
   const hasFilters = !!result.query || activeFilters.length > 0 || result.page > 1;
   const title = kind === "context" ? "Accounting context" : kinds[kind] || "Explore the corpus";
@@ -168,6 +168,7 @@ export function browse(params: URLSearchParams) {
     <div class="catalog"><aside class="filters"><h2>Browse by type</h2><nav aria-label="Record types">${commonKinds.map(category).join("")}</nav>
     <details class="facet-panel"><summary>Filter by topic and scope${activeFilters.some(k => !["kind", "collection"].includes(k)) ? " · applied" : ""}</summary>
       ${select("topic", "Topics", taxonomy.topics, params)}${select("jurisdiction", "Jurisdictions", [...new Set([...taxonomy.normalized_jurisdictions, ...(params.get("jurisdiction") ? [params.get("jurisdiction")!] : [])])], params)}${select("source_type", "Source types", taxonomy.source_types, params)}${select("industry", "Industries", taxonomy.industries, params)}${select("framework", "Frameworks", taxonomy.frameworks, params)}${select("entity", "Entities", taxonomy.entities, params)}${select("product", "Products", taxonomy.products, params)}
+      <label class="filter-label" for="filter-naics">Exact NAICS-US 2022 code</label><input id="filter-naics" name="naics" inputmode="numeric" value="${esc(params.get("naics") || "")}" placeholder="e.g. 236"><label class="filter-label" for="filter-question-family">Question family</label><select id="filter-question-family" name="question_family"><option value="">All question families</option>${[...coverage.questionById.values()].map(q=>`<option value="${esc(q.id)}"${params.get("question_family")===q.id?" selected":""}>${esc(q.title)}</option>`).join("")}</select>
       <label class="filter-label" for="filter-as-of">Effective on (known dates only)</label><input id="filter-as-of" type="date" name="as_of" value="${esc(params.get("as_of") || "")}"><button class="secondary" type="submit">Apply filters</button>
     </details>
     <details class="more-types"${kind && !commonKinds.includes(kind) ? " open" : ""}><summary>More record types</summary><nav aria-label="More record types">${Object.keys(kinds).filter(k => !commonKinds.includes(k)).map(category).join("")}</nav></details></aside>
@@ -212,7 +213,7 @@ function structured(value: Json, depth = 0): string {
   if (typeof value === "string") {
     const r = getRecord(value);
     if (r) return link(`/records/${r.id}`, r.title);
-    if (/^(https?:\/\/|\/(?!\/))/.test(value)) return link(value, value);
+    if (/^https?:\/\//.test(value) || /^\/(?:records|api|downloads|coverage|schemas|releases)(?:[/?#]|$)/.test(value)) return link(value, value);
     return esc(value).replace(/\n/g, "<br>");
   }
   if (typeof value !== "object") return esc(value);
@@ -258,9 +259,11 @@ export function recordPage(r: CorpusRecord) {
     ([key]) => !skippedKeys.has(key),
   );
   const brief = r.data.editorial_brief;
+  const researchQuestions = Array.isArray(r.data.research_questions) ? r.data.research_questions : [];
   const edges = knowledge.relations(r.id).filter(e => !["cites", "cited_by"].includes(e.type));
   const contents = `<nav aria-label="Record sections">${[
-    ...(r.kind === "source" ? [["evidence", "Findings"], ["applicability", "Applicability"], ["limitations", "Limitations"]] : brief ? [["answer", "Answer in context"], ["findings", "Findings"], ["qualifications", "Qualifications"], ["unknowns", "Unknowns"]] : [["record-content", "Reference details"]]),
+    ...(researchQuestions.length ? [["research-questions", "Research questions"]] : []),
+    ...(r.kind === "source" ? [["evidence", "Findings"], ["applicability", "Applicability"], ["limitations", "Limitations"]] : researchQuestions.length ? [] : brief ? [["answer", "Answer in context"], ["findings", "Findings"], ["qualifications", "Qualifications"], ["unknowns", "Unknowns"]] : [["record-content", "Reference details"]]),
     ...(cited.length && r.kind !== "collection" ? [["sources", "Cited sources"]] : []),
     ...(edges.length ? [["relationships", "Relationships"]] : []),
     ["coverage", "Coverage mapping"], ["citation", "Citation"], ["record-information", "Record information"], ["rights", "Rights and provenance"]
@@ -289,7 +292,8 @@ export function recordPage(r: CorpusRecord) {
       </section>
       <details class="mobile-contents"><summary>On this page</summary>${contents}</details>
       ${r.kind === "source" ? sourceEvidence(r) : ""}
-      ${brief ? renderBrief(brief) : ""}
+      ${r.data.source_review || r.data.supplemental_reviews ? `<details><summary>Source access, editions and review locators</summary>${r.data.source_review ? structured(r.data.source_review) : ""}${r.data.supplemental_reviews ? structured(r.data.supplemental_reviews) : ""}</details>` : ""}
+      ${researchQuestions.length ? `<section id="research-questions"><h2>Research questions</h2><p>Answers apply only to their stated scope. Controls and worked material may be original proposals; no professional sign-off is implied.</p>${researchQuestions.map(value=>{const q=value as Record<string,Json>;return `<article class="research-question" id="${esc(q.id)}"><h3>${esc(q.question)}</h3><p class="research-status">${esc(q.answer_status || 'Bounded research answer')}</p><p>${esc(q.answer)}</p><p><strong>Scope:</strong> ${esc(q.scope || r.data.scope || r.summary)}</p>${q.source_ids?`<div><strong>Sources:</strong> ${structured(q.source_ids)}</div>`:''}<details><summary>Evidence, inputs, controls and remaining gaps</summary>${structured(Object.fromEntries(Object.entries(q).filter(([k])=>!['id','question','answer','scope','source_ids'].includes(k))))}</details></article>`;}).join('')}</section>${r.data.worked_examples?`<section><h2>Original worked material</h2>${structured(r.data.worked_examples)}</section>`:''}${r.data.worked_record_id?`<p>Connected worked reference: ${structured(r.data.worked_record_id)}</p>`:''}` : brief ? renderBrief(brief) : ""}
       ${r.kind === "collection"
         ? `<section><h2>In this collection</h2>${cited.map(row).join("")}</section>`
         : ""}

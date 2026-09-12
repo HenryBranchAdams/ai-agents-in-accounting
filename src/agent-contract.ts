@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const agentSchemaVersion = "1.1.0";
+export const agentSchemaVersion = "1.2.0";
 const id = z
   .string()
   .regex(/^[a-zA-Z0-9_-]{1,160}$/)
@@ -20,6 +20,8 @@ const cursor = z
     "Opaque next_cursor from the previous page. Reuse every other argument unchanged.",
   );
 const filters = {
+  naics: z.string().max(6).optional().describe('Exact NAICS-US 2022 code. Matches recorded associations only; no automatic descendant coverage.'),
+  question_family: z.string().max(100).optional().describe('Exact versioned question-family ID from describe. A mapping is a discovery association, not evidence sufficiency.'),
   q: z
     .string()
     .trim()
@@ -175,6 +177,7 @@ const card = z.object({
   review_status: z.string(),
   reviewed_at: z.string().nullable(),
   rights: extra,
+  research: extra,
   citation,
 });
 const passage = z.object({
@@ -209,6 +212,7 @@ const record = card.extend({
     agent: z.string(),
   }),
   evidence: extra,
+  research_review: extra,
   relations: z.array(extra),
   relations_total: z.int(),
   relations_truncated: z.boolean(),

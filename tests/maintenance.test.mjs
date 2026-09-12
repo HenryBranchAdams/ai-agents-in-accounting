@@ -25,7 +25,7 @@ test("queue uses latest observation and surfaces due and stale checks", async ()
     { record_id: "s", checked_at: "2025-01-01T00:00:00Z", access: "broken", reachable: false, next_review_at: "2025-02-01T00:00:00Z" },
     { record_id: "s", checked_at: "2026-09-01T00:00:00Z", access: "public", reachable: true, next_review_at: "2026-09-02T00:00:00Z" },
   ] }, { now: new Date("2026-09-07T00:00:00Z") });
-  assert.deepEqual(rows[0].reasons, ["review-due", "citation-use-gap"]);
+  assert.deepEqual(rows[0].reasons, ["substantive-review-due", "review-due", "citation-use-gap"]);
 });
 
 test("source checker rejects private destinations and stores bounded metadata", async () => {

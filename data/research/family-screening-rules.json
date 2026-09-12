@@ -1,0 +1,1000 @@
+{
+  "schema_version": "1.0.0",
+  "rule_version": "2026-09-11.1",
+  "reviewed_at": "2026-09-11",
+  "scope": "Reusable family triggers applied to all 96 individually authored business profiles. Exclusions concern the stated operating role and must be reopened when entity or transaction facts differ.",
+  "rules": [
+    {
+      "family_id": "q-reporting-basis",
+      "applicability_trigger": "An entity must select a reporting basis before recording transactions or presenting statements.",
+      "exclusion_condition": "A NAICS activity alone does not determine GAAP, IFRS, GASB, FASAB or tax basis.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "legal entity, provider/administrator/owner role, control relationship",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "business_roles",
+      "scope_counterexample": "A public hospital provider is not a governmental reporting entity merely because it serves Medicare patients.",
+      "classification": "entity-conditional"
+    },
+    {
+      "family_id": "q-ledger-close",
+      "applicability_trigger": "The entity has period-end postings, reconciliations or cut-off tasks.",
+      "exclusion_condition": "A subsector label without a ledger, reporting period or close event is insufficient.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "transaction type, counterparty/payer, completion or settlement status",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "primary_transactions",
+      "scope_counterexample": "A museum admission profile does not establish which ledger balances exist or who approves close.",
+      "classification": "core-research-context"
+    },
+    {
+      "family_id": "q-estimates",
+      "applicability_trigger": "A transaction includes uncertainty in amount, timing, collectability, useful life or obligation.",
+      "exclusion_condition": "Routine fixed-price cash settlement with no estimate population does not trigger estimate analysis.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "customer or payer, promised output, service/occupancy/claim status and consideration",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "revenue_pattern",
+      "scope_counterexample": "A clinic claim denial reserve is conditional on payer evidence; a cash ticket sale may not be.",
+      "classification": "transaction-conditional"
+    },
+    {
+      "family_id": "q-presentation",
+      "applicability_trigger": "The entity is preparing statements, disclosures or digital filing for a specified reporting framework.",
+      "exclusion_condition": "A business activity classification cannot select statement format or disclosure requirements.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "identified asset/right, control, useful life and restriction",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "asset_pattern",
+      "scope_counterexample": "A city regulator and a private regulator have different reporting authority despite similar inspection work.",
+      "classification": "entity-conditional"
+    },
+    {
+      "family_id": "q-foreign-currency",
+      "applicability_trigger": "The entity has a foreign-currency transaction, balance or foreign operation.",
+      "exclusion_condition": "Domestic transactions settled entirely in functional currency do not trigger foreign-currency analysis.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "transaction type, counterparty/payer, completion or settlement status",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "primary_transactions",
+      "scope_counterexample": "A Texas restaurant serving foreign tourists has no foreign operation solely from customer nationality.",
+      "classification": "transaction-conditional"
+    },
+    {
+      "family_id": "q-policy-changes-errors",
+      "applicability_trigger": "A policy, estimate, standard adoption or prior-period error affects a specified reporting period.",
+      "exclusion_condition": "A new activity without a changed policy, adoption event or error evidence is not enough.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "regulator/contract, eligibility or restriction, compliance event and effective text",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "regulated_conditions",
+      "scope_counterexample": "A new hospital department is not automatically an accounting-policy change.",
+      "classification": "transaction-conditional"
+    },
+    {
+      "family_id": "q-events-going-concern",
+      "applicability_trigger": "Events after period end or liquidity/operating facts raise going-concern or subsequent-event questions.",
+      "exclusion_condition": "A stable operation with no post-period event or financial-distress indicator does not trigger the specialized analysis.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "customer or payer, promised output, service/occupancy/claim status and consideration",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "revenue_pattern",
+      "scope_counterexample": "A grant restriction is not itself a going-concern conclusion.",
+      "classification": "transaction-conditional"
+    },
+    {
+      "family_id": "q-consolidation",
+      "applicability_trigger": "The entity controls, is controlled by, or has a reporting-perimeter relationship with another legal entity.",
+      "exclusion_condition": "Shared customers, referrals or a management contract without control evidence do not establish consolidation.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "legal entity, provider/administrator/owner role, control relationship",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "business_roles",
+      "scope_counterexample": "A hotel manager supplying staff may operate the facility but need not own or control the property entity.",
+      "classification": "role-specific"
+    },
+    {
+      "family_id": "q-revenue",
+      "applicability_trigger": "The entity transfers goods, services, access, tickets, lodging, care or other promised outputs to a customer or payer.",
+      "exclusion_condition": "Appropriations, donor gifts or custodial receipts are not automatically customer revenue.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "customer or payer, promised output, service/occupancy/claim status and consideration",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "revenue_pattern",
+      "scope_counterexample": "A shelter per-diem claim and a donor-restricted gift require different source and condition analysis.",
+      "classification": "transaction-conditional"
+    },
+    {
+      "family_id": "q-project-wip",
+      "applicability_trigger": "A contract has uncompleted construction, engineering, software, research or other deliverables with accumulated costs.",
+      "exclusion_condition": "A completed point-of-sale service or pure agency commission without project costs does not create WIP.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "transaction type, counterparty/payer, completion or settlement status",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "primary_transactions",
+      "scope_counterexample": "A repair work order with no material unperformed obligation may remain ordinary service revenue.",
+      "classification": "transaction-conditional"
+    },
+    {
+      "family_id": "q-purchasing-payables",
+      "applicability_trigger": "The entity acquires goods or services and owes vendors or subcontractors.",
+      "exclusion_condition": "Customer-owned goods held for repair are not provider purchases or payables merely because they are on premises.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "title/ownership, custody location, unit/lot and valuation evidence",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "inventory_pattern",
+      "scope_counterexample": "A clinic implant consumed for a patient is a clinical inventory issue; a vendor invoice still requires separate evidence.",
+      "classification": "transaction-conditional"
+    },
+    {
+      "family_id": "q-receivables-credit",
+      "applicability_trigger": "The entity has billed or contractually collectible amounts exposed to denial, default, refund or credit risk.",
+      "exclusion_condition": "Cash-only transactions with no receivable or contract claim do not trigger credit-loss analysis.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "customer or payer, promised output, service/occupancy/claim status and consideration",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "revenue_pattern",
+      "scope_counterexample": "A government appropriation is not a trade receivable absent an enforceable claim.",
+      "classification": "transaction-conditional"
+    },
+    {
+      "family_id": "q-cash-settlement",
+      "applicability_trigger": "The operation receives, holds, deposits or disburses cash, card, platform, wager or trust settlement.",
+      "exclusion_condition": "Noncash accrual with no payment or custody event does not trigger settlement controls.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "transaction type, counterparty/payer, completion or settlement status",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "primary_transactions",
+      "scope_counterexample": "Casino chips and hospital patient remittances are different settlement populations.",
+      "classification": "transaction-conditional"
+    },
+    {
+      "family_id": "q-inventory",
+      "applicability_trigger": "The entity owns goods for sale, production, consumption or distribution, or holds goods requiring inventory-like controls.",
+      "exclusion_condition": "Customer-owned repair goods, museum collections and wagers are not provider inventory without ownership facts.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "title/ownership, custody location, unit/lot and valuation evidence",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "inventory_pattern",
+      "scope_counterexample": "A laundry holds customer garments in custody; detergent stock is its inventory.",
+      "classification": "role-specific"
+    },
+    {
+      "family_id": "q-capital-assets",
+      "applicability_trigger": "The entity controls long-lived tangible assets or construction in progress used in operations or stewardship.",
+      "exclusion_condition": "A leased or customer-owned asset without control is not automatically the entity’s capital asset.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "identified asset/right, control, useful life and restriction",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "asset_pattern",
+      "scope_counterexample": "A hospital’s patient implant is not its capital asset; imaging equipment may be.",
+      "classification": "transaction-conditional"
+    },
+    {
+      "family_id": "q-leases",
+      "applicability_trigger": "The entity has an identified asset conveyed for use or provides a controlled property/right-of-use arrangement.",
+      "exclusion_condition": "A service contract without an identified controlled asset is not automatically a lease.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "identified asset/right, control, useful life and restriction",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "asset_pattern",
+      "scope_counterexample": "A hotel management agreement may be a service arrangement; the hotel lease requires separate control facts.",
+      "classification": "role-specific"
+    },
+    {
+      "family_id": "q-intangibles-software",
+      "applicability_trigger": "The entity acquires, develops or controls identifiable software, technology, IP or research outputs.",
+      "exclusion_condition": "General know-how, customer data access or a licensed right without control does not automatically create an owned intangible.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "identified asset/right, control, useful life and restriction",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "asset_pattern",
+      "scope_counterexample": "A 533 software publisher’s licensed code differs from a clinic’s subscription access.",
+      "classification": "role-specific"
+    },
+    {
+      "family_id": "q-payroll",
+      "applicability_trigger": "The entity employs or directs workers and incurs wages, withholding, benefits or job/program labor cost.",
+      "exclusion_condition": "A customer’s staff or independent vendor labor is not the entity’s payroll without employer/control facts.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "legal employer, worker classification, time/benefit population and cost object",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "labor_pattern",
+      "scope_counterexample": "A school contractor that only manages without operating staff is not classified like a staffed school.",
+      "classification": "role-specific"
+    },
+    {
+      "family_id": "q-benefits",
+      "applicability_trigger": "The entity promises or contributes employee retirement, leave, health or termination benefits.",
+      "exclusion_condition": "A vendor invoice or volunteer relationship does not create employee-benefit accounting absent employer facts.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "legal employer, worker classification, time/benefit population and cost object",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "labor_pattern",
+      "scope_counterexample": "A nonprofit volunteer is not automatically an employee benefit population.",
+      "classification": "entity-conditional"
+    },
+    {
+      "family_id": "q-debt",
+      "applicability_trigger": "The entity borrows, issues, guarantees or modifies financing with principal, interest or covenant terms.",
+      "exclusion_condition": "Trade payables without financing terms do not become debt solely from delayed payment.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "transaction type, counterparty/payer, completion or settlement status",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "primary_transactions",
+      "scope_counterexample": "A grant repayment clause is not debt without financing or enforceable borrowing terms.",
+      "classification": "transaction-conditional"
+    },
+    {
+      "family_id": "q-equity",
+      "applicability_trigger": "An entity issues, repurchases or modifies ownership interests or complex capital instruments.",
+      "exclusion_condition": "Government appropriations, donor restrictions and customer deposits are not equity interests.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "legal entity, provider/administrator/owner role, control relationship",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "business_roles",
+      "scope_counterexample": "A nonprofit membership payment is not equity merely because members vote.",
+      "classification": "entity-conditional"
+    },
+    {
+      "family_id": "q-share-compensation",
+      "applicability_trigger": "The entity grants equity or equity-linked awards for employee or service-provider work.",
+      "exclusion_condition": "Cash wages, vendor discounts and public grants without an equity instrument do not trigger this family.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "legal employer, worker classification, time/benefit population and cost object",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "labor_pattern",
+      "scope_counterexample": "A freelance artist commission is not share compensation absent an award.",
+      "classification": "transaction-conditional"
+    },
+    {
+      "family_id": "q-investments",
+      "applicability_trigger": "The entity holds financial assets or investments outside ordinary operating receivables.",
+      "exclusion_condition": "A patient receivable, inventory or customer deposit is not an investment solely because it earns a balance.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "identified asset/right, control, useful life and restriction",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "asset_pattern",
+      "scope_counterexample": "A university endowment and a hospital claim receivable require different classification facts.",
+      "classification": "entity-conditional"
+    },
+    {
+      "family_id": "q-derivatives",
+      "applicability_trigger": "A contract’s value changes with an underlying rate, price, index, currency or other variable and requires settlement analysis.",
+      "exclusion_condition": "A fixed-price purchase order without an underlying-variable feature is not a derivative merely because it has a future date.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "transaction type, counterparty/payer, completion or settlement status",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "primary_transactions",
+      "scope_counterexample": "A catering volume commitment is not a derivative absent an underlying-variable net-settlement feature.",
+      "classification": "transaction-conditional"
+    },
+    {
+      "family_id": "q-valuation-impairment",
+      "applicability_trigger": "An asset or liability requires fair-value measurement or impairment testing because of a market, use, credit or recoverability event.",
+      "exclusion_condition": "NAICS title, management intent or a price estimate alone does not establish fair-value or impairment scope.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "identified asset/right, control, useful life and restriction",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "asset_pattern",
+      "scope_counterexample": "A museum collection stewardship issue differs from hotel property impairment.",
+      "classification": "transaction-conditional"
+    },
+    {
+      "family_id": "q-digital-assets",
+      "applicability_trigger": "The entity controls or holds a token, cryptocurrency or tokenized right with identifiable contractual and custody facts.",
+      "exclusion_condition": "A conventional bank balance, loyalty point or ordinary database record is not a digital asset without token/right evidence.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "identified asset/right, control, useful life and restriction",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "asset_pattern",
+      "scope_counterexample": "Customer crypto held in custody does not become provider-owned asset from private-key access alone.",
+      "classification": "role-specific"
+    },
+    {
+      "family_id": "q-income-tax",
+      "applicability_trigger": "The entity has current/deferred income-tax consequences under a specified tax jurisdiction and reporting basis.",
+      "exclusion_condition": "Sales tax, payroll withholding and donor restrictions are not income-tax provision evidence.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "regulator/contract, eligibility or restriction, compliance event and effective text",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "regulated_conditions",
+      "scope_counterexample": "A nonprofit exemption claim still requires jurisdiction and legal-entity evidence.",
+      "classification": "entity-conditional"
+    },
+    {
+      "family_id": "q-indirect-tax",
+      "applicability_trigger": "A sale, use, VAT, excise or customs event has a taxable place, item/service classification and effective regime.",
+      "exclusion_condition": "A non-taxable transfer or transaction outside the selected jurisdiction/regime does not trigger the family.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "transaction type, counterparty/payer, completion or settlement status",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "primary_transactions",
+      "scope_counterexample": "Texas prepared-food tax and UK VAT registration are jurisdiction-specific, not universal restaurant rules.",
+      "classification": "transaction-conditional"
+    },
+    {
+      "family_id": "q-tax-returns",
+      "applicability_trigger": "The entity or individual has a filing, information-return or authorization obligation for a specified jurisdiction and period.",
+      "exclusion_condition": "A transaction record without a filing obligation or correct taxpayer identity does not trigger a return workflow.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "regulator/contract, eligibility or restriction, compliance event and effective text",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "regulated_conditions",
+      "scope_counterexample": "A hospital payer remittance is not itself an income-tax return.",
+      "classification": "entity-conditional"
+    },
+    {
+      "family_id": "q-international-tax",
+      "applicability_trigger": "The entity has cross-border related-party, permanent-establishment, withholding or transfer-pricing facts.",
+      "exclusion_condition": "Domestic dealings with no cross-border element do not trigger international tax analysis.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "legal entity, provider/administrator/owner role, control relationship",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "business_roles",
+      "scope_counterexample": "A UK hotel serving foreign guests has no transfer-pricing issue solely from guest nationality.",
+      "classification": "transaction-conditional"
+    },
+    {
+      "family_id": "q-tax-methods",
+      "applicability_trigger": "The entity changes or selects a tax accounting method, period, consent procedure or book-tax treatment.",
+      "exclusion_condition": "A book policy change with no tax-method consequence does not trigger this family.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "regulator/contract, eligibility or restriction, compliance event and effective text",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "regulated_conditions",
+      "scope_counterexample": "Changing IFRS revenue presentation is not a U.S. tax accounting-method change by itself.",
+      "classification": "entity-conditional"
+    },
+    {
+      "family_id": "q-business-combinations",
+      "applicability_trigger": "One entity obtains control of a business or combines with another business or joint venture.",
+      "exclusion_condition": "A vendor contract, asset purchase without a business, or ordinary management agreement does not establish a combination.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "legal entity, provider/administrator/owner role, control relationship",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "business_roles",
+      "scope_counterexample": "A hotel property acquisition may be an asset purchase rather than a business combination.",
+      "classification": "transaction-conditional"
+    },
+    {
+      "family_id": "q-related-parties",
+      "applicability_trigger": "A transaction or balance involves a related person/entity, common control, key management or close family relationship.",
+      "exclusion_condition": "Common industry, referral or customer relationships without the applicable relationship facts are not related parties.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "legal entity, provider/administrator/owner role, control relationship",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "business_roles",
+      "scope_counterexample": "A hospital and insurer contract is not related-party merely because both participate in care payment.",
+      "classification": "role-specific"
+    },
+    {
+      "family_id": "q-provisions",
+      "applicability_trigger": "A present legal or constructive obligation from a claim, warranty, restoration, safety or contract fact has uncertain amount/timing.",
+      "exclusion_condition": "Future operating costs or remote possibilities without a present obligation do not trigger a provision.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "regulator/contract, eligibility or restriction, compliance event and effective text",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "regulated_conditions",
+      "scope_counterexample": "A future hotel renovation budget is not a provision absent a present obligation.",
+      "classification": "transaction-conditional"
+    },
+    {
+      "family_id": "q-insurance-policyholder",
+      "applicability_trigger": "A non-insurer policyholder has a provision and an insurance reimbursement claim requiring IAS 37 analysis.",
+      "exclusion_condition": "An insurer measuring issued/reinsurance contracts belongs to IFRS 17 scope; an ordinary uninsured loss has no reimbursement asset.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "regulator/contract, eligibility or restriction, compliance event and effective text",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "regulated_conditions",
+      "scope_counterexample": "A clinic’s malpractice reserve and an insurer’s policy liability are different roles.",
+      "classification": "role-specific"
+    },
+    {
+      "family_id": "q-restructuring-distress",
+      "applicability_trigger": "A disposal, restructuring plan, insolvency, covenant breach or distress event creates a specified reporting consequence.",
+      "exclusion_condition": "A budget reduction or ordinary hiring freeze without a present obligation/decision does not establish restructuring accounting.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "legal entity, provider/administrator/owner role, control relationship",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "business_roles",
+      "scope_counterexample": "A public agency’s appropriation cut is not private insolvency evidence.",
+      "classification": "transaction-conditional"
+    },
+    {
+      "family_id": "q-environmental",
+      "applicability_trigger": "Operations create restoration, remediation, emissions, environmental-credit or contaminated-site obligations/assets.",
+      "exclusion_condition": "An ordinary office service with no environmental obligation or instrument does not trigger the family.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "regulator/contract, eligibility or restriction, compliance event and effective text",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "regulated_conditions",
+      "scope_counterexample": "A 924 environmental regulator administers a program; a 811 repairer’s waste handling may be a narrower compliance cost.",
+      "classification": "transaction-conditional"
+    },
+    {
+      "family_id": "q-grants-contributions",
+      "applicability_trigger": "The entity receives a government grant, donor contribution or restricted resource with conditions or purpose limitations.",
+      "exclusion_condition": "Customer consideration, unrestricted commercial borrowing and ordinary appropriations without grant/contribution facts require different analysis.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "regulator/contract, eligibility or restriction, compliance event and effective text",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "regulated_conditions",
+      "scope_counterexample": "IAS 20 government grants do not answer U.S. nonprofit contribution or governmental-fund treatment.",
+      "classification": "entity-conditional"
+    },
+    {
+      "family_id": "q-government-funds",
+      "applicability_trigger": "A state/local/tribal governmental reporting entity records appropriations, fund restrictions, budget authority or interfund activity.",
+      "exclusion_condition": "A private hospital, nonprofit shelter or government-operated commercial service is not assigned governmental-fund accounting from NAICS alone.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "legal entity, provider/administrator/owner role, control relationship",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "business_roles",
+      "scope_counterexample": "A state health administrator in 923 differs from a private 621 clinic delivering reimbursed care.",
+      "classification": "entity-conditional"
+    },
+    {
+      "family_id": "q-federal-sovereign",
+      "applicability_trigger": "A U.S. federal reporting entity has appropriations, federal stewardship, component reporting or sovereign budget/accrual requirements.",
+      "exclusion_condition": "State/local, private and foreign entities do not enter federal GAAP from public funding alone.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "legal entity, provider/administrator/owner role, control relationship",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "business_roles",
+      "scope_counterexample": "A city police department and a federal national-security agency require different authority evidence.",
+      "classification": "entity-conditional"
+    },
+    {
+      "family_id": "q-insurer",
+      "applicability_trigger": "An entity issues insurance or reinsurance contracts and assumes insurance risk as an insurer.",
+      "exclusion_condition": "A policyholder, broker, administrator or healthcare provider does not apply issuer accounting without risk-transfer/issuer facts.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "legal entity, provider/administrator/owner role, control relationship",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "business_roles",
+      "scope_counterexample": "A hospital’s purchased malpractice policy is policyholder accounting, not IFRS 17 issuer accounting.",
+      "classification": "role-specific"
+    },
+    {
+      "family_id": "q-credit-intermediation",
+      "applicability_trigger": "The entity lends, accepts deposits, services loans or manages credit exposure as principal/intermediary.",
+      "exclusion_condition": "An ordinary trade receivable or grant advance is not lending/deposit intermediation without contract and balance-sheet role facts.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "transaction type, counterparty/payer, completion or settlement status",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "primary_transactions",
+      "scope_counterexample": "An HMO capitation receivable is not a deposit solely because cash is collected in advance.",
+      "classification": "role-specific"
+    },
+    {
+      "family_id": "q-funds-custody",
+      "applicability_trigger": "The entity holds client, patient, resident, wager or fiduciary funds/securities or has authority to obtain possession.",
+      "exclusion_condition": "A provider’s own cash or ordinary customer prepayment is not fiduciary custody without ownership/authority evidence.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "legal entity, provider/administrator/owner role, control relationship",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "business_roles",
+      "scope_counterexample": "SEC adviser custody and a casino cage are distinct regimes; neither imports IFRS 9 segregation automatically.",
+      "classification": "role-specific"
+    },
+    {
+      "family_id": "q-rate-regulation",
+      "applicability_trigger": "A regulator permits recovery of specified costs/revenues through rates and the entity is an eligible regulated operator.",
+      "exclusion_condition": "A licensed business or government regulator without rate-setting/recovery facts does not trigger rate-regulated accounting.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "regulator/contract, eligibility or restriction, compliance event and effective text",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "regulated_conditions",
+      "scope_counterexample": "A 926 utility regulator is not the regulated utility recognizing rate adjustments.",
+      "classification": "role-specific"
+    },
+    {
+      "family_id": "q-natural-resources",
+      "applicability_trigger": "The entity controls, develops or extracts mineral, oil/gas, timber or biological resources.",
+      "exclusion_condition": "A service provider to an extractor without resource control does not apply resource accounting solely from customer industry.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "identified asset/right, control, useful life and restriction",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "asset_pattern",
+      "scope_counterexample": "A fuel distributor’s inventory is not an extractive reserve.",
+      "classification": "transaction-conditional"
+    },
+    {
+      "family_id": "q-reimbursement",
+      "applicability_trigger": "A payer reimburses an entity for eligible care, grant, cost, student aid or contractual program spending.",
+      "exclusion_condition": "Ordinary customer consideration or a donation with no reimbursement condition does not trigger reimbursement analysis.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "customer or payer, promised output, service/occupancy/claim status and consideration",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "revenue_pattern",
+      "scope_counterexample": "Medicare episode reimbursement and a donor-restricted grant differ in payer rights and conditions.",
+      "classification": "role-specific"
+    },
+    {
+      "family_id": "q-licensed-content",
+      "applicability_trigger": "The entity licenses, owns, exploits or pays for copyrighted, patented, branded or other protected content rights.",
+      "exclusion_condition": "A noncopyright software service, customer-owned garment or ordinary tangible inventory does not trigger licensed-content analysis.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "identified asset/right, control, useful life and restriction",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "asset_pattern",
+      "scope_counterexample": "A 533 publisher’s license portfolio differs from a 722 restaurant’s recipe and menu operations.",
+      "classification": "role-specific"
+    },
+    {
+      "family_id": "q-cost-allocation",
+      "applicability_trigger": "Shared labor, facilities, technology or overhead must be assigned to projects, programs, products, grants or funds.",
+      "exclusion_condition": "A single-purpose transaction with no shared cost object does not require allocation methodology.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "legal employer, worker classification, time/benefit population and cost object",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "labor_pattern",
+      "scope_counterexample": "A public grant allocation and a restaurant recipe cost are different cost-object designs.",
+      "classification": "transaction-conditional"
+    },
+    {
+      "family_id": "q-planning",
+      "applicability_trigger": "Management or a public body prepares budgets, forecasts, scenarios or resource plans for a specified decision.",
+      "exclusion_condition": "A historical ledger close is not a forecast merely because it includes estimates.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "transaction type, counterparty/payer, completion or settlement status",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "primary_transactions",
+      "scope_counterexample": "A government appropriation budget and a hotel occupancy forecast need different decision owners.",
+      "classification": "core-research-context"
+    },
+    {
+      "family_id": "q-performance",
+      "applicability_trigger": "The entity measures margin, utilization, yield, service-line, program or other performance outcomes.",
+      "exclusion_condition": "A metric without defined numerator, denominator, period and decision use is not a reliable performance measure.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "customer or payer, promised output, service/occupancy/claim status and consideration",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "revenue_pattern",
+      "scope_counterexample": "Patient encounter volume is not hospital profitability without payer and cost attribution.",
+      "classification": "core-research-context"
+    },
+    {
+      "family_id": "q-audit-assertions",
+      "applicability_trigger": "A reviewer tests existence, completeness, accuracy, cutoff, rights or obligations for a specified assertion population.",
+      "exclusion_condition": "A source citation or classification label alone is not audit evidence for an assertion.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "transaction type, counterparty/payer, completion or settlement status",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "primary_transactions",
+      "scope_counterexample": "A ticket settlement completeness test differs from a museum collection-rights test.",
+      "classification": "core-research-context"
+    },
+    {
+      "family_id": "q-controls-fraud",
+      "applicability_trigger": "The workflow handles assets, payments, access, estimates or incentives with risk of error or fraud.",
+      "exclusion_condition": "A low-risk informational lookup with no transaction, asset or authorization path does not establish a control/fraud population.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "regulator/contract, eligibility or restriction, compliance event and effective text",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "regulated_conditions",
+      "scope_counterexample": "A casino cage and a school tuition ledger need different fraud scenarios and approvals.",
+      "classification": "core-research-context"
+    },
+    {
+      "family_id": "q-compliance-assurance",
+      "applicability_trigger": "A contract, regulator, grant, license, tax regime or special-purpose assurance requirement sets compliance criteria.",
+      "exclusion_condition": "General good practice without a named criterion, responsible authority and period is not compliance assurance.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "regulator/contract, eligibility or restriction, compliance event and effective text",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "regulated_conditions",
+      "scope_counterexample": "A child-care subsidy audit and an SEC custody examination use different criteria.",
+      "classification": "entity-conditional"
+    },
+    {
+      "family_id": "q-professional-governance",
+      "applicability_trigger": "A professional or regulated engagement has independence, competence, confidentiality, documentation or action-authority duties.",
+      "exclusion_condition": "Internal bookkeeping without a professional engagement or regulated duty does not automatically invoke professional-governance requirements.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "legal entity, provider/administrator/owner role, control relationship",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "business_roles",
+      "scope_counterexample": "A freelance artist and a licensed auditor have different governance obligations.",
+      "classification": "role-specific"
+    },
+    {
+      "family_id": "q-data-lineage",
+      "applicability_trigger": "A decision depends on traceable source-to-ledger, claim, filing or report transformations.",
+      "exclusion_condition": "An unrepeatable narrative or unsupported spreadsheet value cannot satisfy lineage merely because it has a URL.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "transaction type, counterparty/payer, completion or settlement status",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "primary_transactions",
+      "scope_counterexample": "A hospital claim lineage needs encounter-to-remittance links; a hotel POS lineage needs ticket/order-to-bank links.",
+      "classification": "core-research-context"
+    },
+    {
+      "family_id": "q-interfaces",
+      "applicability_trigger": "Documents, APIs, spreadsheets or systems exchange data that affects a transaction, control or reporting output.",
+      "exclusion_condition": "A static source read with no data transfer or downstream decision does not create an interface requirement.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "transaction type, counterparty/payer, completion or settlement status",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "primary_transactions",
+      "scope_counterexample": "An invoice EDI interface and an arXiv research citation have different interface controls.",
+      "classification": "core-research-context"
+    },
+    {
+      "family_id": "q-security",
+      "applicability_trigger": "The workflow processes confidential patient, employee, financial, classified, client or credential data.",
+      "exclusion_condition": "Public aggregate data with no identity, access or secret does not trigger the same security scope.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "regulator/contract, eligibility or restriction, compliance event and effective text",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "regulated_conditions",
+      "scope_counterexample": "A 928 classified program and a public museum ticket count require different access controls.",
+      "classification": "role-specific"
+    },
+    {
+      "family_id": "q-agent-design",
+      "applicability_trigger": "An agent is being designed to retrieve, reason over or act on accounting evidence for a defined workflow.",
+      "exclusion_condition": "Industry classification alone does not prove an agent architecture, tool boundary or production suitability.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "transaction type, counterparty/payer, completion or settlement status",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "primary_transactions",
+      "scope_counterexample": "A healthcare provider profile does not establish a safe agent action authority.",
+      "classification": "core-research-context"
+    },
+    {
+      "family_id": "q-human-authority",
+      "applicability_trigger": "A person must review, approve, override or authorize a consequential accounting, payment, filing or disclosure action.",
+      "exclusion_condition": "Informational retrieval with no consequential action does not require an approval gate.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "legal entity, provider/administrator/owner role, control relationship",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "business_roles",
+      "scope_counterexample": "A vendor invoice draft and a government payment release have different approval owners.",
+      "classification": "role-specific"
+    },
+    {
+      "family_id": "q-evaluation",
+      "applicability_trigger": "An accounting agent or workflow is evaluated against a defined task, reference, metric and transfer boundary.",
+      "exclusion_condition": "A source count or demo success without a benchmark task and independent evidence is not evaluation evidence.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "transaction type, counterparty/payer, completion or settlement status",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "primary_transactions",
+      "scope_counterexample": "A spreadsheet benchmark cannot establish clinical-claim or tax-return accuracy.",
+      "classification": "core-research-context"
+    },
+    {
+      "family_id": "q-deployment-evidence",
+      "applicability_trigger": "A tool or agent is deployed or operated and has incidents, logs, release checks or independent runtime evidence.",
+      "exclusion_condition": "A design document or local prototype without deployment evidence does not establish operational behavior.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "regulator/contract, eligibility or restriction, compliance event and effective text",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "regulated_conditions",
+      "scope_counterexample": "A passing local test does not prove a hosted payroll or payment workflow.",
+      "classification": "core-research-context"
+    },
+    {
+      "family_id": "q-reuse-rights",
+      "applicability_trigger": "The corpus or agent reuses source text, data, images, code or annotations under identified rights and provenance.",
+      "exclusion_condition": "Public accessibility or a URL alone does not grant reuse permission.",
+      "required_facts": [
+        "legal entity and role",
+        "accounting/reporting framework",
+        "jurisdiction",
+        "transaction and reporting period",
+        "regulator/contract, eligibility or restriction, compliance event and effective text",
+        "source/contract/effective-date evidence"
+      ],
+      "relevant_profile_field": "regulated_conditions",
+      "scope_counterexample": "Licensed publisher content needs terms evidence; a 533 noncopyright business fact does not become licensed content solely from its source URL.",
+      "classification": "core-research-context"
+    }
+  ]
+}

@@ -6,6 +6,7 @@ import {
   type CorpusRecord,
   type Json,
   knowledge,
+  coverage,
 } from "./corpus";
 import { expandQuery, expandIndexedText, normalizeJurisdiction } from "./knowledge";
 import {
@@ -72,7 +73,13 @@ const card = (r: CorpusRecord) => ({
   industries: r.industries,
   review_status: r.review_status,
   reviewed_at: r.reviewed_at,
-  rights: r.rights,
+    rights: r.rights,
+    research: {
+      question_family_ids: coverage.profiles.get(r.id)?.question_mappings.map(m=>m.question_id) || [],
+      naics_codes: coverage.profiles.get(r.id)?.industry_mappings.map(m=>m.industry_code) || [],
+      industry_scope: coverage.profiles.get(r.id)?.industry_scope || 'unassigned',
+      limitation: 'Discovery associations only. Read named questions and coverage screening; shared or parent context is not a direct industry answer.',
+    },
   citation: citation(r),
 });
 const object = (v: Json | undefined): Record<string, Json> =>
@@ -98,6 +105,7 @@ function header(r: CorpusRecord) {
       agent: `${base}/api/v1/agent/get?id=${r.id}`,
     },
     evidence: knowledge.profile(r.id)?.evidence || { claims: [], limitations: [], review: {}, rights: r.rights },
+    research_review: { source_access: object(r.data.source_review).review_level ?? null, question_count: Array.isArray(r.data.research_questions) ? r.data.research_questions.length : 0, supplemental_review_count: Array.isArray(r.data.supplemental_reviews) ? r.data.supplemental_reviews.length : 0, professional_review:'not-performed-by-retrieval', details:'Use get section data.source_review, data.supplemental_reviews or data.research_questions when present. Preserve their stated limits.' },
     relations: [],
     relations_total: 0,
     relations_truncated: false,
@@ -161,6 +169,9 @@ function makePassages(r: CorpusRecord): Passage[] {
   }
   const priority = [
     "summary",
+    "data.research_questions",
+    "data.source_review",
+    "data.supplemental_reviews",
     "data.editorial_accounting_relevance",
     "data.accounting_objective",
     "data.evidence",
@@ -234,13 +245,15 @@ const index = records.map((record) => {
         ...passages
           .filter((p) => !/^data\.(rights|provenance)$/.test(p.section))
           .map((p) => p.text),
-      ].join("\n"),
+      ].join("\n").replace(/\b(?:source-checked|editorially-reviewed|inherited(?:-[a-z]+)*-not-reverified)\b/g, ""),
     ),
   };
 });
 const indexedById = new Map(index.map((item) => [item.record.id, item]));
 const reviewStatuses = [...new Set(records.map((r) => r.review_status))].sort();
 const filterNames = [
+  "naics",
+  "question_family",
   "kind",
   "topic",
   "industry",
@@ -257,6 +270,8 @@ type SearchInput = ReturnType<typeof inputSchemas.search.parse>;
 type QueryInput = Pick<SearchInput, "q" | (typeof filterNames)[number]>;
 function verifyFilters(input: QueryInput) {
   const values = {
+    naics: [...coverage.nodeByCode.keys()],
+    question_family: [...coverage.questionById.keys()],
     kind: Object.keys(taxonomy.kinds),
     topic: taxonomy.topics,
     industry: taxonomy.industries,
@@ -287,6 +302,8 @@ function find(input: QueryInput) {
     .filter(
       ({ record: r, text, facets }) =>
         (!input.kind || r.kind === input.kind) &&
+        (!input.naics || coverage.profiles.get(r.id)?.industry_mappings.some(m=>m.industry_code===input.naics)) &&
+        (!input.question_family || coverage.profiles.get(r.id)?.question_mappings.some(m=>m.question_id===input.question_family)) &&
         (!input.topic || r.topics.includes(input.topic)) &&
         (!input.industry || r.industries.includes(input.industry)) &&
         (!input.jurisdiction || r.jurisdiction === input.jurisdiction || knowledge.profile(r.id)?.scope.jurisdictions.includes(normalizeJurisdiction(input.jurisdiction))) &&
@@ -444,6 +461,8 @@ export function describeCorpus() {
       ]),
     ),
     filters: {
+      naics: [...coverage.nodeByCode.values()].map(n=>({code:n.code,title:n.title,level:n.level})),
+      question_families: [...coverage.questionById.values()].map(q=>({id:q.id,title:q.title})),
       kinds: taxonomy.kinds,
       topics: taxonomy.topics,
       industries: taxonomy.industries,
@@ -487,6 +506,10 @@ export function describeCorpus() {
       index: `${base}/downloads/agent-index.jsonl`,
       passages: `${base}/downloads/agent-passages.jsonl`,
       source: `${base}/downloads/accounting-agents-source.zip`,
+      coverage: `${base}/api/v1/coverage`,
+      research_questions: `${base}/downloads/research-questions.json`,
+      industry_screening: `${base}/downloads/subsector-screening.json`,
+      leaf_reviews: `${base}/downloads/industry-exception-reviews.json`,
     },
     examples: [
       {

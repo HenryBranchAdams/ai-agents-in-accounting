@@ -21,7 +21,7 @@ export function loadObservations(file = OBSERVATIONS_FILE) {
 function rightsUnknown(record) {
   const rights = record.rights || {};
   return [rights.source_status, rights.external_content, rights.metadata, rights.content]
-    .some((v) => typeof v === "string" && /unknown|undetermined|not recorded/i.test(v));
+    .some((v) => typeof v === "string" && /unknown|unresolved|conflict|undetermined|not recorded/i.test(v));
 }
 
 export function buildReviewQueue(records, observationDocument = { observations: [] }, { now = new Date(), staleAfterDays = 90 } = {}) {
@@ -38,6 +38,11 @@ export function buildReviewQueue(records, observationDocument = { observations: 
     const observation = byId.get(record.id);
     const inherited = typeof record.review_status === "string" && record.review_status.startsWith("inherited");
     if (inherited) reasons.push("inherited-review-needs-source-check");
+    const review = record.data?.source_review;
+    if (review?.review_level === 'attempted-unresolved') reasons.push('source-access-indeterminate');
+    if (review?.review_level === 'abstract-or-landing') reasons.push('substantive-source-review-needed');
+    if (record.kind === 'source' && record.reviewed_at && now.getTime() - new Date(record.reviewed_at).getTime() > staleAfterDays * 86400000) reasons.push('substantive-review-due');
+    if (/conflict|inconsisten/i.test(JSON.stringify([review?.limitations,record.data?.rights_review,record.data?.source_conflicts]))) reasons.push('source-conflict-review');
     if (observation?.reachable === false || ["broken", "access-indeterminate", "access-restricted", "blocked", "indeterminate"].includes(observation?.access))
       reasons.push(observation.access === "broken" ? "source-unreachable" : "source-access-indeterminate");
     if (observation?.version_change_hint) reasons.push("edition-change-alert");
@@ -128,7 +133,8 @@ export async function checkSources(records, options = {}) {
     const tb = byId.get(b.id)?.checked_at || "";
     return ta.localeCompare(tb) || a.id.localeCompare(b.id);
   });
-  const sources = due.slice(0, limit);
+  const offset = options.rotateWeekly && due.length ? (Math.floor(now.getTime() / (7 * 86400000)) * limit) % due.length : 0;
+  const sources = [...due.slice(offset),...due.slice(0,offset)].slice(0, limit);
   const rows = [];
   for (const record of sources) {
     const row = { record_id: record.id, ...(await checkSourceUrl(record.source_url, options)) };
@@ -145,7 +151,7 @@ function main() {
   const records = loadCorpusRecords();
   if (args.has("--check")) {
     const previous = loadObservations(process.env.MAINTENANCE_OBSERVATIONS || OBSERVATIONS_FILE);
-    return checkSources(records, { limit: Number(process.env.MAINTENANCE_LIMIT || 10), observations: previous, now: new Date() }).then((observations) => {
+    return checkSources(records, { limit: Number(process.env.MAINTENANCE_LIMIT || 10), observations: previous, now: new Date(), rotateWeekly: process.env.MAINTENANCE_ROTATE_WEEKLY === 'true' }).then((observations) => {
     const out = { schema_version: "1.0.0", generated_at: new Date().toISOString(), observations: [...previous.observations, ...observations] };
     if (process.env.MAINTENANCE_OBSERVATIONS) fs.writeFileSync(process.env.MAINTENANCE_OBSERVATIONS, JSON.stringify(out, null, 2) + "\n");
     else process.stdout.write(JSON.stringify(out, null, 2) + "\n");

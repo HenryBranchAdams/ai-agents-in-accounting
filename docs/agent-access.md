@@ -67,7 +67,7 @@ Use IDs returned by search; an unknown ID returns 404. Repeat `ids` for arrays. 
 | `get`      | Metadata, provenance, dates, section directory and passages    | Default 6, maximum 20 passages; 1,600 characters per passage             |
 | `context`  | Selected records and passages with omission accounting         | Default 12,000, maximum 40,000 compact JSON characters; up to 8 seed IDs |
 
-Search matches all words and quoted phrases, ignoring case and accents. Facets are exact `kind`, `topic`, `industry`, `jurisdiction`, `source_type`, `review_status`, and `collection`; values come from `describe`. Collection membership includes source and related IDs. Ranking weights title, summary, metadata and body; the score expresses lexical relevance, not evidence strength. The search index excludes canonical provenance/rights boilerplate from query text and includes substantive annotations. It does not use embeddings, an LLM, hidden synonym expansion, or an external service.
+Search matches all words and quoted phrases, ignoring case and accents. Facets are exact `kind`, `topic`, `industry`, `jurisdiction`, `source_type`, `review_status`, `collection`, `naics`, and `question_family`; values come from `describe`. Collection membership includes source and related IDs. Ranking weights title, summary, metadata and body; the score expresses lexical relevance, not evidence strength. The search index excludes canonical provenance/rights boilerplate from query text and includes substantive annotations. It does not use embeddings, an LLM, hidden synonym expansion, or an external service.
 
 Follow `next_url` in HTTP or pass `next_cursor` with the same arguments in CLI/MCP until null. Changing arguments invalidates a cursor. Pin `corpus_version` for a consistent reading session; version mismatch and stale cursors return 409. Cursor tokens are pagination state, not authentication. Corpus versions must change when canonical data changes; retrieval schema versions must change when passage identity or representation changes.
 
@@ -91,3 +91,18 @@ Chunks repeat rights and provenance so they remain interpretable outside a paren
 ## Implementation boundaries
 
 `src/agent.ts` owns preparation and retrieval; `src/agent-contract.ts` owns shared schemas and descriptions. `src/worker.ts`, `scripts/corpus.mjs`, and `scripts/mcp-server.mjs` adapt this interface. `scripts/agent-client.mjs` selects local data or a configured HTTP origin. No connector mutates the corpus or operates an accounting system. Validation covers canonical parity, passage provenance, budgets, pagination, CLI/API agreement, and actual MCP client exchanges over stdio and HTTP.
+
+## Research scope and citation traversal
+
+Retrieval schema `1.2.0` adds exact `naics` and `question_family` filters and research-review metadata. Use the declared topology IDs, with no parent/child inheritance. Shared accounting authorities can be relevant without carrying an exact industry association. Read a scoped guide first, then follow its source IDs:
+
+```sh
+node scripts/corpus.mjs search --q "construction" --kind guide --naics 236 --question-family q-project-wip
+node scripts/corpus.mjs get guide-construction-connected-close --section data.research_questions --limit 20
+node scripts/corpus.mjs get guide-software-subscriptions --section data.worked_examples --limit 20
+node scripts/corpus.mjs get src_asu201815
+```
+
+The corresponding HTTP query uses `question_family=q-project-wip`. Use `next_cursor` with identical arguments when the selected section continues. Inspect `rights`, `citation`, `research_review`, `source_ids`, passage `source_pointers`, and limitations; a bounded page may omit an answer's later qualifications. `/api/v1/coverage?industry=236&question=q-project-wip` returns screening evidence and named-answer links. A leaf query such as `industry=524210` returns that leaf's review and explicitly labels broader screening as parent context.
+
+The research schema and six linked coverage downloads represent the declared question population, applicability, leaf exceptions, limited classification correspondences and unresolved evidence. They do not replace canonical records. Source-review and editorial-review ledgers retain all 715 inherited dispositions, including unsuccessful access. The API, CLI, MCP, human pages and exports use the same local build; no new public deployment is implied.

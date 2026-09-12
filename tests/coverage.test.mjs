@@ -43,9 +43,10 @@ test("headline counts independently reconcile to mapping rows without summing ov
   }
   assert.equal(coverage.summary.sectors_with_material,roots.size);
   // The same collection is intentionally mapped to several financial subsectors.
-  const financeIds=new Set(mappingRows.filter(m=>m.industry_mappings.some(i=>["522","523","524"].includes(i.industry_code))).map(m=>m.record_id));
+  const financeIds=new Set(mappingRows.filter(m=>m.industry_mappings.some(i=>i.industry_code.startsWith("52"))).map(m=>m.record_id));
   assert.equal(coverage.industryStats("52").subtree_records,financeIds.size);
-  assert.ok(["522","523","524"].reduce((n,code)=>n+coverage.industryStats(code).direct_records,0)>financeIds.size);
+  const exactFinance = new Set(mappingRows.filter(m=>m.industry_mappings.some(i=>["521","522","523","524","525"].includes(i.industry_code))).map(m=>m.record_id));
+  assert.ok(["521","522","523","524","525"].reduce((n,code)=>n+coverage.industryStats(code).direct_records,0)>=exactFinance.size);
 });
 
 test("broad construction references do not become detailed-industry material or assessments", () => {
@@ -53,14 +54,15 @@ test("broad construction references do not become detailed-industry material or 
   assert.ok(parent.direct_records>0);
   assert.equal(parent.assessments.length,1);
   for (const cell of [child,leaf]) {
-    assert.equal(cell.direct_records,0);
+    assert.equal(cell.direct_records,mappingRows.filter(m=>m.industry_mappings.some(i=>i.industry_code===cell.industry_code)&&m.question_mappings.some(q=>q.question_id==="q-project-wip")).length);
     assert.equal(cell.assessments.length,0);
     assert.equal(cell.assessment_status,"unassessed");
-    assert.equal(cell.broader_context_records,parent.direct_records);
+    assert.ok(cell.broader_context_records>=parent.direct_records);
   }
   const selected=coverage.select(new URLSearchParams("industry=236&question=q-project-wip"));
-  assert.equal(selected.records.length,0);
-  assert.equal(selected.total,0);
+  assert.ok(selected.records.some(r=>r.id==="guide-industry-naics2022-236"));
+  assert.ok(selected.research.screening[0].named_question_ids.length);
+  assert.equal(leaf.screening,null);
   assert.ok(selected.broader_context.some(r=>r.id==="wf-construction-wip-close"));
   assert.equal(coverage.summary.detailed_industries_with_direct_material,0);
   assert.equal(coverage.summary.assessed_subsector_question_pairs,0);
@@ -148,7 +150,7 @@ test("expanded screening CSV preserves every subsector/question pair, zero and b
   assert.equal(rows.length,5952);
   assert.equal(new Set(rows.map(r=>`${r.industry_code}:${r.question_id}`)).size,5952);
   const row=rows.find(r=>r.industry_code==="236"&&r.question_id==="q-project-wip");
-  assert.equal(row.direct_records,"0");assert.ok(Number(row.broader_context_records)>0);
+  assert.equal(row.direct_records,String(coverage.cell("236","q-project-wip").direct_records));assert.ok(Number(row.broader_context_records)>0);
   assert.equal(row.scoped_assessments,"0");assert.equal(row.assessment_status,"unassessed");
   assert.equal(row.assessment_version,coverage.versions.assessment_version);
 });

@@ -144,6 +144,9 @@ export function search(params: URLSearchParams) {
   try { terms = q ? expandQuery(q) : []; } catch { throw new QueryError("Close every quoted phrase."); }
   const topic = params.get("topic");
   const industry = params.get("industry");
+  const naics = params.get('naics'), questionFamily = params.get('question_family');
+  if (naics && !coverage.nodeByCode.has(naics)) throw new QueryError('Unknown NAICS-US 2022 code.');
+  if (questionFamily && !coverage.questionById.has(questionFamily)) throw new QueryError('Unknown question family.');
   const sourceType = params.get("source_type");
   const jurisdiction = params.get("jurisdiction");
   const normalizedJurisdiction = jurisdiction ? normalizeJurisdiction(jurisdiction) : null;
@@ -161,6 +164,8 @@ export function search(params: URLSearchParams) {
             : r.kind === kind)) &&
         (!topic || r.topics.includes(topic)) &&
         (!industry || r.industries.includes(industry)) &&
+        (!naics || coverage.profiles.get(r.id)?.industry_mappings.some(m=>m.industry_code===naics)) &&
+        (!questionFamily || coverage.profiles.get(r.id)?.question_mappings.some(m=>m.question_id===questionFamily)) &&
         (!sourceType || r.source_type === sourceType) &&
         (!jurisdiction || r.jurisdiction === jurisdiction || knowledge.profile(r.id)?.scope.jurisdictions.includes(normalizedJurisdiction!)) &&
         (!framework || knowledge.profile(r.id)?.scope.frameworks.includes(framework)) &&

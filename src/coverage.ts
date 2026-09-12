@@ -4,11 +4,13 @@ import assessmentData from "../data/coverage/assessments.json";
 import historyData from "../data/coverage/snapshots.json";
 import metricData from "../data/coverage/metrics.json";
 import type { CorpusRecord } from "./corpus";
+import { researchCell, researchSummary, researchView } from './research';
 
 export const coverageTopology = topologyData;
 export const coverageMappings = mappingData;
 export const coverageAssessments = assessmentData;
-export const coverageHistory = historyData;
+// History spans prior schema shapes; avoid a giant inferred union of every snapshot cell.
+export const coverageHistory = historyData as unknown as { snapshots: Array<{id:string;recorded_at:string;corpus_version:string;topology_version:string;mapping_version:string;summary:{record_count:number;question_families_with_material:number;question_families:number;scoped_assessments:number}}> };
 export const coverageMetrics = metricData;
 export type Industry = typeof topologyData.industry_backbone.nodes[number];
 export type CoverageMapping = typeof mappingData.mappings[number];
@@ -53,6 +55,7 @@ export function createCoverageIndex(records: CorpusRecord[]) {
     shared_context_records: intersectQuestion(sharedIds, question).size,
     assessments: applicableAssessments(code, question).map(a => ({ id: a.id, status: a.status })),
     assessment_status: applicableAssessments(code, question).length ? "scoped-assessment-present" : "unassessed",
+    screening: researchCell(code,question),
   });
   const industryStats = (code: string, question = "") => {
     const exact = intersectQuestion(direct.get(code)!, question);
@@ -75,6 +78,7 @@ export function createCoverageIndex(records: CorpusRecord[]) {
     unassessed_industry_scopes: industry ? (applicableAssessments(industry, question).length ? 0 : 1) : nodes.length - new Set(assessments.filter(a => a.question_id === question).map(a => a.industry_code)).size,
   });
   const summary = {
+    research: researchSummary,
     record_count: records.length,
     question_mapped_records: mappingData.mappings.filter(m => m.question_mappings.length).length,
     question_unassigned_records: mappingData.mappings.filter(m => !m.question_mappings.length).length,
@@ -136,6 +140,7 @@ export function createCoverageIndex(records: CorpusRecord[]) {
     return {
       ...versions, summary, notes: coverageNotes, metric_definitions: metricData,
       filters: { industry, question, view, show, mapping },
+      research: researchView(industry,question),
       selected_industry: industry ? industryStats(industry, question) : null,
       selected_question: question ? questionById.get(question)! : null,
       ancestors: industry ? ancestors(industry) : [],

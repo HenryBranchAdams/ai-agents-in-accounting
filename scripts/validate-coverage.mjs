@@ -1,12 +1,14 @@
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import { read, generateMappings, hash } from "./coverage-mappings.mjs";
+import { validateResearch } from './validate-research.mjs';
 
 export function coverageInputs() {
-  return Object.fromEntries(["data/coverage/topology.json", "data/coverage/record-mappings.json", "data/coverage/assessments.json", "data/coverage/metrics.json", "src/coverage.ts"].map(file => [file, hash(fs.readFileSync(file))]));
+  return Object.fromEntries(["data/coverage/topology.json", "data/coverage/record-mappings.json", "data/coverage/assessments.json", "data/coverage/metrics.json", "src/coverage.ts", "src/research.ts", "data/coverage/research-questions.json", "data/coverage/subsector-profiles.json", "data/coverage/subsector-screening.json", "data/coverage/industry-exception-reviews.json", "data/coverage/research-criteria.json", "data/coverage/classification-relationships.json"].map(file => [file, hash(fs.readFileSync(file))]));
 }
 
 export function validateCoverage(records) {
+  validateResearch(records);
   const topology = read("data/coverage/topology.json"), mappings = read("data/coverage/record-mappings.json"), assessmentData = read("data/coverage/assessments.json");
   const ids = new Set(records.map(r => r.id)), recordMap = new Map(records.map(r => [r.id,r]));
   const nodes = new Map(topology.industry_backbone.nodes.map(n => [n.code,n]));

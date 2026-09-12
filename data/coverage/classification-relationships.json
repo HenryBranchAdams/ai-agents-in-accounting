@@ -1,0 +1,126 @@
+{
+  "schema_version": "1.0.0",
+  "relationship_version": "2026-09-11.1",
+  "corpus_version": "2026-09-11.2",
+  "reviewed_at": "2026-09-11",
+  "scope": "Two narrowly stated classification relationships in data/research/jurisdictions.json: UK SIC 2007 41.10 versus NACE Rev.2 41.10, and NAICS Canada 2022 111110 versus US NAICS 2022 111110. This review does not establish a complete concordance or accounting equivalence.",
+  "relationships": [
+    {
+      "relationship_id": "uk_sic2007_41_10_to_nace_rev2_41_10",
+      "status": "verified-four-digit-identity-only",
+      "relationship_type": "parallel four-digit class identity under the stated editions",
+      "left": {
+        "system": "UK SIC",
+        "edition": "UK SIC 2007",
+        "code": "41.10",
+        "title": "Development of building projects",
+        "effective_period": "UK SIC 2007 effective 2008-01-01"
+      },
+      "right": {
+        "system": "NACE",
+        "edition": "NACE Rev.2",
+        "code": "41.10",
+        "title": "Development of building projects",
+        "effective_period": null
+      },
+      "verified_facts": [
+        "ONS Operation 2007 states UK SIC 2007 was effective 1 January 2008 and was revised in conjunction with NACE.",
+        "The same ONS page states the two systems remain identical down to and including the four-digit class level.",
+        "The ONS SIC 2007 manual's structure summary lists 41.10 as Development of building projects, and its explanatory note describes bringing together financial, technical and physical means for residential and non-residential projects for later sale.",
+        "The ONS explanatory note excludes building construction (41.20), architectural/engineering activity and project management (71.1), so the code match does not erase the activity boundaries."
+      ],
+      "source_records": [
+        {
+          "source_id": "src_roadmap_class_sicnace",
+          "url": "https://www.ons.gov.uk/methodology/classificationsandstandards/ukstandardindustrialclassificationofeconomicactivities/operation2007",
+          "publisher": "UK Office for National Statistics",
+          "edition": "UK SIC 2007 / NACE revision process",
+          "locator": "Operation 2007 page, paragraphs stating UK SIC 2007 effective 1 January 2008 and identity through the four-digit class level (page lines 59-66 in the reviewed rendering)",
+          "evidence_ref": "turn309view0",
+          "material_read": true
+        },
+        {
+          "source_id": "src_roadmap_class_sicnace",
+          "url": "https://www.ons.gov.uk/file?uri=%2Fmethodology%2Fclassificationsandstandards%2Fukstandardindustrialclassificationofeconomicactivities%2Fuksic2007%2Fuksic2007webamend8531.pdf",
+          "publisher": "UK Office for National Statistics",
+          "edition": "UK SIC 2007",
+          "locator": "Summary of Structure, PDF page 42: Section F, division 41, group 41.1 and class 41.10; Explanatory Notes, PDF page 152: 41.10 includes development for later sale and excludes 41.20 and 71.1",
+          "evidence_ref": "turn309view1",
+          "material_read": true
+        }
+      ],
+      "limits": [
+        "No claim is made for NACE Rev.2.1, later NACE editions, UK five-digit subclasses, or a six-digit/deeper crosswalk.",
+        "A classification identity says how an establishment activity is coded; it does not select an accounting framework, tax treatment or reporting policy.",
+        "Rights to reproduce publisher text remain unresolved/publisher-terms; only original short synthesis is retained here."
+      ],
+      "source_ids": [
+        "src_roadmap_class_sicnace"
+      ]
+    },
+    {
+      "relationship_id": "canada_naics2022_111110_to_us_naics2022_111110",
+      "status": "verified-single-pair-with-definition-difference",
+      "relationship_type": "single six-digit code/name alignment; not a Canada-US crosswalk",
+      "left": {
+        "system": "NAICS Canada",
+        "edition": "NAICS Canada 2022 Version 1.0",
+        "code": "111110",
+        "title": "Soybean farming",
+        "effective_period": "NAICS Canada 2022 reference edition"
+      },
+      "right": {
+        "system": "US NAICS",
+        "edition": "2022 NAICS United States",
+        "code": "111110",
+        "title": "Soybean Farming",
+        "effective_period": "NAICS-US 2022 reference edition"
+      },
+      "verified_facts": [
+        "Statistics Canada’s official NAICS Canada 2022 to ISIC Rev.4 table lists Canada 111110 Soybean farming and maps it to ISIC Rev.4 A0111*; the asterisk and table notes demonstrate why a correspondence table is not a complete equivalence claim.",
+        "The US Census 2022 manual marks the 111110 heading with T (Canadian, Mexican and US industries are comparable) and defines the US industry as growing soybeans and/or producing soybean seeds.",
+        "The Canada leaf inspected through the Statistics Canada 2022 classification display is 111110 Soybean farming and describes establishments primarily engaged in growing soybeans. The matching number/title and comparable marker support this one named pair, while the wording difference means the pair should not be represented as text-identical or as a full crosswalk.",
+        "The US manual cross-reference routes soybean/grain combinations that do not have one crop accounting for one-half of production to 111191, which is a material boundary for applying the US leaf and cannot be inferred for Canadian classification from the shared code alone."
+      ],
+      "source_records": [
+        {
+          "source_id": "src_roadmap_class_naics",
+          "url": "https://www.statcan.gc.ca/en/statistical-programs/document/naics-2022-isic4",
+          "publisher": "Statistics Canada",
+          "edition": "NAICS Canada 2022 Version 1.0 / ISIC Rev.4 correspondence",
+          "locator": "Official table rows 24-27: row for 111110 Soybean farming -> A0111* Growing of cereals (except rice), leguminous crops and oil seeds; explanatory note Soybean farming",
+          "evidence_ref": "turn311view1",
+          "material_read": true
+        },
+        {
+          "source_id": "src_roadmap_class_naics",
+          "url": "https://www23.statcan.gc.ca/imdb/p3VD.pl?CLV=3&CPV=111110&CST=27012022&CVD=1370970&D=1&Function=getVD&MLV=5&TVD=1369825",
+          "publisher": "Statistics Canada",
+          "edition": "NAICS Canada 2022 Version 1.0",
+          "locator": "NAICS Canada 2022 hierarchy and 111110 leaf display; Canadian industry description for soybean farming (page last modified 2024-10-23)",
+          "evidence_ref": "turn308search1",
+          "material_read": true
+        },
+        {
+          "source_id": "src_roadmap_naics2022_manual",
+          "url": "https://www.census.gov/naics/reference_files_tools/2022_NAICS_Manual.pdf",
+          "publisher": "US Census Bureau",
+          "edition": "2022 NAICS United States manual",
+          "locator": "Part II Agriculture, Forestry, Fishing and Hunting, PDF page 79: 111110 heading with T comparable marker, definition, and soybean/grain combination cross-reference",
+          "evidence_ref": "turn310view0",
+          "material_read": true
+        }
+      ],
+      "limits": [
+        "Verified only for the named 111110 soybean-farming pair; no claim is made for all six-digit industries, all versions, or a bilateral concordance.",
+        "Statistics Canada evidence is a Canada-to-ISIC table, not a US-to-Canada crosswalk. The US T marker is a comparability signal, not an accounting or legal equivalence finding.",
+        "NAICS classification does not determine accounting framework, ownership/control, tax, reimbursement or regulatory treatment.",
+        "Rights to reproduce publisher text remain unresolved/publisher-terms; only original short synthesis is retained here."
+      ],
+      "source_ids": [
+        "src_roadmap_class_naics",
+        "src_roadmap_naics2022_manual"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://accounting-agents.madebyhenry.chatgpt.site/schemas/research.schema.json",
+  "title": "Accounting Agents scoped research, screening and exception review",
+  "description": "Version 1.0.0. These units and statuses are separate; screening applicability is not accounting sufficiency. Canonical references and full topology populations are additionally checked by validate-research.mjs.",
+  "type": "object",
+  "required": ["schema_version"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "corpus_version": {"type": "string"},
+    "question_set_version": {"type": "string"},
+    "screening_version": {"type": "string"},
+    "review_version": {"type": "string"},
+    "questions": {"type": "array", "items": {"$ref": "#/$defs/question"}},
+    "profiles": {"type": "array", "items": {"$ref": "#/$defs/profile"}},
+    "cells": {"type": "array", "items": {"$ref": "#/$defs/screening"}},
+    "reviews": {"type": "array", "items": {"$ref": "#/$defs/leaf"}}
+  },
+  "$defs": {
+    "strings": {"type": "array", "items": {"type": "string"}},
+    "question": {
+      "type": "object", "required": ["id", "record_id", "pointer", "family_ids", "question", "scope", "source_ids", "assessment_status", "dimensions", "remaining_gaps"],
+      "properties": {"id": {"type": "string"}, "record_id": {"type": "string"}, "pointer": {"type": "string", "pattern": "^/data/research_questions/[0-9]+$"}, "family_ids": {"$ref": "#/$defs/strings"}, "question": {"type": "string"}, "scope": {"type": "string"}, "source_ids": {"$ref": "#/$defs/strings"}, "assessment_status": {"enum": ["partial", "evidence-gap", "sufficient-for-stated-scope", "not-applicable"]}, "remaining_gaps": {"$ref": "#/$defs/strings"}, "dimensions": {"type": "object", "required": ["scope", "accounting-question", "evidence-inputs", "workflow", "controls", "worked-material", "empirical-support"], "additionalProperties": {"enum": ["present", "partial", "missing", "not-assessed", "not-applicable"]}}}
+    },
+    "profile": {"type": "object", "required": ["code", "guide_id", "business_roles", "primary_transactions", "priority_questions", "source_locator", "leaf_review_ids"], "properties": {"code": {"type": "string", "pattern": "^[0-9]{3}$"}, "guide_id": {"type": "string"}, "source_ids": {"$ref": "#/$defs/strings"}, "leaf_review_ids": {"$ref": "#/$defs/strings"}}},
+    "screening": {"type": "object", "required": ["id", "industry_code", "family_id", "profile_id", "rule_id", "applicability", "rationale", "required_facts", "evidence_outcome", "named_question_ids", "accounting_adequacy", "source_currency", "professional_review", "empirical_support", "reuse_rights"], "properties": {"applicability": {"enum": ["applicable-to-profile", "conditional", "excluded-for-stated-role"]}, "named_question_ids": {"$ref": "#/$defs/strings"}, "required_facts": {"$ref": "#/$defs/strings"}, "open_question": {"type": ["string", "null"]}, "exclusion_reopen_trigger": {"type": ["string", "null"]}}},
+    "leaf": {"type": "object", "required": ["id", "industry_code", "subsector_code", "definition_locator", "classification_facts", "exception_outcome", "rationale", "additional_questions", "evidence_record_ids", "remaining_gaps"], "properties": {"industry_code": {"type": "string", "pattern": "^[0-9]{6}$"}, "exception_outcome": {"enum": ["shared-treatment-justified", "additional-research-required", "unresolved-exception"]}, "additional_questions": {"$ref": "#/$defs/strings"}, "evidence_record_ids": {"$ref": "#/$defs/strings"}}}
+  }
+}

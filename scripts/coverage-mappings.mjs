@@ -101,6 +101,9 @@ export function generateMappings(records = corpusRecords()) {
     }
     record.topics.forEach((topic, index) => (topicRules[topic] || []).forEach(id => add(id, `/topics/${index}`, topic, "topic-association")));
     const override = overrides.records[record.id];
+    // An individually reviewed scope can replace all keyword suggestions,
+    // including with an explicitly reasoned empty set.
+    if (override?.replace_question_ids === true) questions.clear();
     for (const id of override?.question_ids || []) add(id, override.basis_field, override.reason, "editorial-association");
     for (const id of override?.exclude_question_ids || []) questions.delete(id);
     for (const id of override?.reviewed_question_ids || []) {
@@ -129,7 +132,7 @@ export function generateMappings(records = corpusRecords()) {
       question_mappings: [...questions.values()].sort((a,b) => a.question_id.localeCompare(b.question_id)),
       industry_scope: industries.length ? "specific" : shared ? "shared-context" : "unassigned",
       industry_mappings: industries,
-      note: industries.length ? "Candidate association with this industry scope; applicability and depth are not inferred." : shared ? "Shared context; no industry-specific coverage credit." : "Industry scope has not been assigned. This is not evidence of irrelevance.",
+      note: override?.review_note || (industries.length ? "Candidate association with this industry scope; applicability and depth are not inferred." : shared ? "Shared context; no industry-specific coverage credit." : "Industry scope has not been assigned. This is not evidence of irrelevance."),
     };
   }).sort((a,b) => a.record_id.localeCompare(b.record_id));
   return {
