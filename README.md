@@ -22,7 +22,7 @@ npm run dev
 
 Open `http://127.0.0.1:5177`. Rebuild with `npm run build` after editing data, source, or assets; the development server restarts when its imported bundle changes. `npm start` serves an existing build. Use `PORT` to choose another local port.
 
-The site has no database or account system. React renders crawlable HTML on the server; a small client island hydrates desktop navigation and the mobile Sheet, with native navigation available without JavaScript. Search and filters use GET forms. A Fetch handler serves the pages and a read-only API. Shared schemas use Zod; the separate MCP adapter uses the official MCP TypeScript SDK. The build produces a Cloudflare Worker and static assets, plus Node adapters for local use. Building does not publish the site.
+The site has no database or account system. React renders crawlable HTML on the server; a small client island hydrates desktop navigation and the mobile Sheet, with native navigation available without JavaScript. Search and filters use GET forms. A Fetch handler serves the pages and a read-only API. Shared schemas use Zod; the separate MCP adapter uses the official MCP TypeScript SDK. The build produces a Cloudflare Worker and static assets, plus Node adapters for local use. A small entry module loads the immutable corpus application on first request to stay within the host’s startup budget. Deploy the complete generated server directory, including its module chunk. Building does not publish the site.
 
 ## Public interface
 

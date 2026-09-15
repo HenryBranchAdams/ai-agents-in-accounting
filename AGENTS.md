@@ -15,6 +15,7 @@ Improve source coverage, evidence, accounting context, retrieval, provenance, ri
 - `src/render.ts`: stable rendering exports; `src/pages/` and `src/components/`: server-rendered TSX reading surface.
 - `src/client/navigation.tsx`: the hydrated React navigation island; all corpus content remains server-rendered.
 - `public/style.css`: Tailwind input and standard shadcn semantic tokens using Slate. Read `docs/design-system.md` for component variants, lint rules, and narrow exceptions.
+- `src/entry.ts`: small hosting entrypoint; loads the immutable application on first request.
 - `src/worker.ts`: GET, HEAD, and OPTIONS routes. Use no write bindings or request-global mutable state.
 - `scripts/`: validation, build, source packaging, and local serving.
 - `public/AGENTS.md`: guidance for corpus consumers, separate from these repository instructions.

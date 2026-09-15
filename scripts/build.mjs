@@ -311,7 +311,7 @@ write(
     "\n",
 );
 await build({
-  entryPoints: ["src/worker.ts"],
+  entryPoints: { index: "src/entry.ts" },
   mainFields: ["module", "main"],
   conditions: ["browser"],
   define: {
@@ -326,7 +326,9 @@ await build({
         .slice(0, 12),
     ),
   },
-  outfile: "dist/server/index.js",
+  outdir: "dist/server",
+  splitting: true,
+  chunkNames: "application-[hash]",
   bundle: true,
   format: "esm",
   platform: "neutral",
