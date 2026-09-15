@@ -333,3 +333,24 @@ test("source archive includes every current source byte and no recovery files", 
   assert.ok(archived.has("data/corpus/source.json"));
   assert.ok(archived.has("tests/corpus.test.mjs"));
 });
+
+
+test("oversized download storage stays within host limits and preserves streaming HTTP semantics", async () => {
+  const file = (await read("/downloads/manifest.json")).files.find((f) => f.path === "/downloads/agent-passages.jsonl");
+  assert.ok(file.bytes > 25 * 1024 * 1024);
+  assert.equal(fs.existsSync(`dist/client${file.path}`), false);
+  assert.ok(fs.statSync("dist/client/assets/downloads/agent-passages.jsonl.gz").size <= 25 * 1024 * 1024);
+  let fetched = false;
+  const noFetch = { ASSETS: { fetch() { fetched = true; throw new Error("Unexpected body read"); } } };
+  const head = await worker.fetch(new Request(`https://corpus.test${file.path}`, { method: "HEAD" }), noFetch);
+  assert.equal(head.status, 200);
+  assert.equal(head.headers.get("Content-Length"), String(file.bytes));
+  assert.equal(head.headers.get("Content-Type"), "application/x-ndjson; charset=utf-8");
+  assert.equal(await head.text(), "");
+  const cached = await worker.fetch(new Request(`https://corpus.test${file.path}`, { headers: { "If-None-Match": head.headers.get("ETag") } }), noFetch);
+  assert.equal(cached.status, 304);
+  assert.equal(fetched, false);
+  const unavailable = await worker.fetch(new Request(`https://corpus.test${file.path}`), { ASSETS: { fetch: async () => new Response(null, {status:404}) } });
+  assert.equal(unavailable.status, 503);
+  assert.equal((await request("/assets/downloads/agent-passages.jsonl.gz")).status, 404);
+});

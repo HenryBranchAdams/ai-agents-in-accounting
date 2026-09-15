@@ -1,7 +1,7 @@
 import { execFileSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
-import { gunzipSync } from "node:zlib";
+import { gunzipSync, gzipSync } from "node:zlib";
 import {
   preparePublication,
   writeReleaseArtifacts,
@@ -266,6 +266,28 @@ const entries = fs
       sha256: createHash("sha256").update(body).digest("hex"),
     };
   });
+// Keep logical download bytes and hashes stable while respecting the host's
+// 25 MiB static-asset limit. Oversized downloads are streamed from gzip storage.
+const packagedDownloads = {};
+for (const entry of entries) {
+  if (entry.bytes <= 25 * 1024 * 1024) continue;
+  const source = `dist/client${entry.path}`;
+  const asset = `/assets/downloads/${path.basename(entry.path)}.gz`;
+  const compressed = gzipSync(fs.readFileSync(source), { level: 9 });
+  if (compressed.length > 25 * 1024 * 1024)
+    throw new Error(`Download exceeds hosting limit even after compression: ${entry.path}`);
+  fs.mkdirSync(path.dirname(`dist/client${asset}`), { recursive: true });
+  write(asset.slice(1), compressed);
+  fs.unlinkSync(source);
+  packagedDownloads[entry.path] = {
+    asset,
+    bytes: entry.bytes,
+    sha256: entry.sha256,
+    contentType: entry.path.endsWith(".jsonl")
+      ? "application/x-ndjson; charset=utf-8"
+      : "application/octet-stream",
+  };
+}
 write(
   "downloads/manifest.json",
   JSON.stringify(
@@ -295,6 +317,7 @@ await build({
   define: {
     "process.env.NODE_ENV": '"production"',
     NAVIGATION_SCRIPT: JSON.stringify(navigationScript),
+    PACKAGED_DOWNLOADS: JSON.stringify(packagedDownloads),
     PUBLICATION_DATA: JSON.stringify(publication),
     STYLE_VERSION: JSON.stringify(
       createHash("sha256")

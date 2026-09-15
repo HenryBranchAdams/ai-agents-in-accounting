@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
+import { gunzipSync } from "node:zlib";
 import path from "node:path";
 import http from "node:http";
 import { spawn } from "node:child_process";
@@ -464,8 +465,9 @@ test("remote connector validates HTTP responses, version pinning and transport f
 
 test("generated agent downloads match runtime rows and manifest counts", () => {
   const read = (name) =>
-    fs
-      .readFileSync(`dist/client/downloads/${name}`, "utf8")
+    (fs.existsSync(`dist/client/downloads/${name}`)
+      ? fs.readFileSync(`dist/client/downloads/${name}`, "utf8")
+      : gunzipSync(fs.readFileSync(`dist/client/assets/downloads/${name}.gz`)).toString("utf8"))
       .trim()
       .split("\n")
       .map((line) => JSON.parse(line));

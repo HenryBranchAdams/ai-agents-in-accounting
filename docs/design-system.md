@@ -81,3 +81,5 @@ References: [shadcn theming](https://ui.shadcn.com/docs/theming), [Slate palette
 ## Maintaining this system
 
 Follow [the interface contribution workflow](../CONTRIBUTING.md#interface-changes) for registry selection, documentation lookup, dry runs, diffs, composition and verification. Keep this guide synchronized with `components.json`, installed UI source, `public/style.css`, `eslint.config.mjs` and the lint probes whenever those contracts change. Read [TESTING.md](../TESTING.md) for release acceptance and [RELEASES.md](../RELEASES.md) for the distinction between source/deployment revisions and corpus versions.
+
+Oversized downloads are stored as gzip assets below the host’s 25 MiB per-file limit. The Worker streams the original uncompressed bytes at the existing public URL, using the manifest hash as its ETag. HEAD and conditional requests avoid reading the body. The manifest describes the logical download, not internal compressed storage; tests verify byte-for-byte parity and HTTP behavior. Downloads and the source ZIP still come from one build.
