@@ -12,9 +12,9 @@ Migration did not reverify sources. Earlier review dates and statuses remain his
 
 ## Retired surfaces
 
-The React, Next, Vinext, course, quiz, tutorial, lab, Atlas, practice-observatory interface, benchmark runner, LedgerBench program, database examples, old clients, and associated design and backlog plans were removed from the active project. Useful source references about education or evaluation remain ordinary research records.
+The former React/Next/Vinext application, course, quiz, tutorial, lab, Atlas, practice-observatory interface, benchmark runner, LedgerBench program, database examples, old clients, and associated design and backlog plans were removed from the active project. Useful source references about education or evaluation remain ordinary research records.
 
-The replacement uses a small Fetch handler with server-rendered HTML, canonical JSON data, and static exports. It has no database or client JavaScript. Shared contracts now use Zod, and the separate MCP adapter uses the official MCP TypeScript SDK; `package.json` records the dependencies. CI is configured to check every pull request and main-branch push, without the former benchmark-specific path filter. Configuration does not establish that the current local changes have run in hosted CI.
+At that September 7 checkpoint, the replacement used a small Fetch handler with server-rendered HTML, canonical JSON data, and static exports. It had no database or client JavaScript. The September 14 presentation update below supersedes the rendering implementation. Shared contracts now use Zod, and the separate MCP adapter uses the official MCP TypeScript SDK; `package.json` records the dependencies. CI is configured to check every pull request and main-branch push, without the former benchmark-specific path filter. Configuration does not establish that the current local changes have run in hosted CI.
 
 ## Compatibility
 
@@ -29,3 +29,11 @@ The September 11 coverage integration restores `/coverage` as a read-only resear
 Before deletion, a verified Git bundle, a complete source ZIP including uncommitted files, file hashes, branch/worktree inventories, and the prior corpus were saved under `outputs/recovery/2026-09-07-pre-corpus/`. The prior September 1 ZIP was moved into that recovery directory. Recovery files are ignored and are not distributed in the public source archive.
 
 Superseded local topic branches can be recovered from the bundle; the source ZIP preserves the prior uncommitted state. Cleanup removed 15 superseded local topic branches, the nonexistent worktree entry, and five obsolete remote topic branches. Local branches are `main` and `codex/research-corpus`; GitHub retains `main`. Every removed tip was checked against the recovery bundle, and remote deletions were atomic and guarded against concurrent changes. The two old hardening branches contained superseded patch-staging work and remain recoverable from the bundle. The published site and remote main were not changed by this cleanup.
+
+## September 14, 2026: shadcn reading surface
+
+The public interface now uses server-rendered React TSX, official shadcn/ui registry components, Tailwind v4 and a standard Slate semantic theme. This replaces HTML-string presentation and the intermediate Preact/custom-component implementation. React is used for the read-only corpus, not a restoration of the retired Next/Vinext product experiments.
+
+Only navigation hydrates, including the accessible mobile Sheet. Native details/links provide a no-JavaScript fallback; search, filters and pagination remain GET forms and links. Stable rendering exports remain in `src/render.ts`, with page and component source split into TSX modules. The Worker serves the hashed navigation asset as well as existing pages, API and downloads. No canonical record, ID, rights, agent operation or public URL is changed by this presentation migration.
+
+See [the design system](design-system.md), [contributor requirements](../CONTRIBUTING.md#interface-changes) and [verification](../TESTING.md) for the current implementation. Earlier checkpoint counts, rendering descriptions and publication statements describe their dates, not the current deployment.

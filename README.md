@@ -4,11 +4,11 @@ A public, read-only research corpus that helps people and agents find, understan
 
 The corpus brings original source references together with accounting workflows, controls, design references, terminology, and synthetic examples. Search, citations, source relationships, and portable downloads are the product.
 
-The [roadmap](docs/roadmap.md) now records the delivered local expansion and remaining evidence work. Read the [roadmap handoff](docs/checkpoint-roadmap-2026-09-12.md) for counts, reading paths, validation and publication boundaries. Earlier checkpoints preserve historical states; retired product plans are not the current backlog.
+The [roadmap](docs/roadmap.md) records the research expansion and remaining evidence work. Read the [roadmap handoff](docs/checkpoint-roadmap-2026-09-12.md) for counts, reading paths, validation and publication boundaries. Earlier checkpoints preserve historical states; retired product plans are not the current backlog.
 
-The local corpus contains **1,061 records**, including **630 source references, 186 guides, 73 workflows, 35 collections and 7 examples**. All 715 inherited records have documented review dispositions; this does not mean every source received a substantive full-text review. The expansion provides 178 named research questions across all 62 families, connected construction examples, four contrasting industry packages and four selected jurisdiction packages. Coverage includes 96 subsector profiles, 5,952 applicability screenings and 1,012 individual industry exception reviews.
+The corpus contains **1,061 records**, including **630 source references, 186 guides, 73 workflows, 35 collections and 7 examples**. All 715 inherited records have documented review dispositions; this does not mean every source received a substantive full-text review. The expansion provides 178 named research questions across all 62 families, connected construction examples, four contrasting industry packages and four selected jurisdiction packages. Coverage includes 96 subsector profiles, 5,952 applicability screenings and 1,012 individual industry exception reviews.
 
-**176 named questions remain partial and 2 are evidence gaps. No entire family, subsector or detailed industry is assessed sufficient.** Scoped AI-assisted source checks, classification review and software validation do not establish professional accounting verification or production effectiveness. The last observed public edition remains `2026-09-11.1`; this local edition is `2026-09-11.2` and has not been published. See [mission and coverage](data/catalog.json).
+**176 named questions remain partial and 2 are evidence gaps. No entire family, subsector or detailed industry is assessed sufficient.** Scoped AI-assisted source checks, classification review and software validation do not establish professional accounting verification or production effectiveness. The canonical edition is `2026-09-11.2`. The [live site](https://accounting-agents.madebyhenry.chatgpt.site) exposes its served edition at `/api/v1/meta`; deployment and corpus versions are separate. See [mission and coverage](data/catalog.json).
 
 ## Run locally
 
@@ -22,7 +22,13 @@ npm run dev
 
 Open `http://127.0.0.1:5177`. Rebuild with `npm run build` after editing data, source, or assets; the development server restarts when its imported bundle changes. `npm start` serves an existing build. Use `PORT` to choose another local port.
 
-The site has no database, account system, or client JavaScript. A Fetch handler serves HTML and a read-only API. Shared schemas use Zod; the separate MCP adapter uses the official MCP TypeScript SDK. The build produces a Cloudflare Worker and static assets, plus Node adapters for local use. Building does not publish the site.
+The site has no database or account system. React renders crawlable HTML on the server; a small client island hydrates desktop navigation and the mobile Sheet, with native navigation available without JavaScript. Search and filters use GET forms. A Fetch handler serves the pages and a read-only API. Shared schemas use Zod; the separate MCP adapter uses the official MCP TypeScript SDK. The build produces a Cloudflare Worker and static assets, plus Node adapters for local use. Building does not publish the site.
+
+## Public interface
+
+The interface uses Tailwind v4, official shadcn/ui source components, Radix, and Lucide. `public/style.css` owns the standard semantic theme plus explicit typography and layout extensions. `src/components/ui/` holds registry primitives; application components and `src/pages/` compose them. Keep native semantic markup for corpus prose.
+
+Read the [design system](docs/design-system.md) before changing the interface. Use registry components, built-in variants and sizes, semantic colors, and layout-only caller classes. `@shadcn/lint` runs in both `npm run lint` and `npm run check`, including deliberate violation probes. Follow the [contributor workflow](CONTRIBUTING.md#interface-changes) and [verification requirements](TESTING.md).
 
 ## Connect an agent
 
@@ -67,6 +73,6 @@ The `/coverage` view joins every record to versioned industry and accounting-que
 
 Research briefs at `/briefs` now include construction WIP, tax transitions, multistate boundaries and lifecycle coverage alongside the three earlier cross-source briefs. The site also exposes structured source evidence and applicability, controlled scope filters, and typed relationships. Raw source metadata and rights remain canonical; inferred scope retains field-level basis. The additive agent schema is 1.1.0.
 
-The reading surface puts search and three starting paths on the homepage, keeps filtered results compact with removable filter links, and provides source findings, applicability, limitations, citation, and provenance navigation. Review scope and unknown rights remain visible. Mobile navigation and research brief cards use the same server-rendered pages without client JavaScript.
+The reading surface puts search and three starting paths on the homepage, keeps filtered results compact with removable filter links, and provides source findings, applicability, limitations, citation, and provenance navigation. Review scope and unknown rights remain visible. Official shadcn/ui components use shared Slate semantic tokens. Research brief cards and corpus content are server-rendered; only navigation hydrates.
 
-`/changes` links versioned snapshots; `/records/{id}/history` identifies canonical changes against the newest preserved predecessor (currently 2026-09-07.4). `/maintenance` exposes unresolved reviews, rights and source observations. Run `npm run maintenance` to inspect the queue; live checks are explicit and never upgrade source review status. See [maintenance](docs/maintenance.md) and [retrieval regression coverage](docs/research-questions.md).
+`/changes` links versioned snapshots; `/records/{id}/history` identifies canonical changes against the newest preserved predecessor (currently 2026-09-11.1). `/maintenance` exposes unresolved reviews, rights and source observations. Run `npm run maintenance` to inspect the queue; live checks are explicit and never upgrade source review status. See [maintenance](docs/maintenance.md) and [retrieval regression coverage](docs/research-questions.md).

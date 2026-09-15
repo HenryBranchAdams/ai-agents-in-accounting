@@ -7,3 +7,5 @@ Linked standards, regulations, papers, articles, reports, documentation, dataset
 The reference examples contain fictional entities, transactions, controls, amounts, and identifiers. They do not contain client or production accounting records. They illustrate research concepts and do not demonstrate real agent performance.
 
 The corpus is provided without warranty. Its references do not provide a professional opinion or authority to act for a real entity.
+
+The public interface includes official shadcn/ui source under MIT, copyright 2023 shadcn. Preserve [its license notice](LICENSES/shadcn-ui.txt) when redistributing those components. Other dependency notices remain governed by their packages.

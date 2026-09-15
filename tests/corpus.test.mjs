@@ -86,7 +86,8 @@ test("search ranks title matches and combines exact facets", async () => {
       (r) =>
         r.kind === "source" &&
         r.topics.includes("Controls and governance") &&
-        (r.jurisdiction === "United States" || /United States|US GAAP|U\.S\./i.test(r.jurisdiction || "")),
+        (r.jurisdiction === "United States" ||
+          /United States|US GAAP|U\.S\./i.test(r.jurisdiction || "")),
     ),
   );
   const none = await read("/api/v1/records?q=unfindable_zqx_908771");
@@ -144,7 +145,10 @@ test("HTML and Markdown preserve stable citations and rights", async () => {
   assert.match(html, /https:\/\/asc.fasb.org\//);
   assert.ok(html.includes("AI-assisted source check"));
   assert.match(html, /Cite this record/);
-  assert.doesNotMatch(html, /<script\b/);
+  assert.doesNotMatch(
+    html,
+    /<script\b(?! type="module" src="\/assets\/navigation-[A-Z0-9]{8}\.js"><\/script>)/,
+  );
   const md = await request("/records/wf-r2r-bank-reconciliations.md");
   assert.match(md.headers.get("Content-Type"), /text\/markdown/);
   const text = await md.text();
@@ -166,7 +170,10 @@ test("all public record pages render and their internal links resolve", async ()
     assert.equal(response.status, 200, route);
     const text = await response.text();
     assert.equal((text.match(/<h1[ >]/g) || []).length, 1, route);
-    assert.doesNotMatch(text, /<script\b/);
+    assert.doesNotMatch(
+      text,
+      /<script\b(?! type="module" src="\/assets\/navigation-[A-Z0-9]{8}\.js"><\/script>)/,
+    );
     for (const match of text.matchAll(/href="(\/[^"#]*)(?:#[^"]*)?"/g))
       links.add(match[1].replaceAll("&amp;", "&"));
   }
@@ -186,7 +193,10 @@ test("query text is escaped in visible text and attribute contexts", async () =>
   assert.equal(response.status, 200);
   assert.ok(text.includes("&lt;img"));
   assert.doesNotMatch(text, /<img src=x/);
-  assert.doesNotMatch(text, /<script\b/);
+  assert.doesNotMatch(
+    text,
+    /<script\b(?! type="module" src="\/assets\/navigation-[A-Z0-9]{8}\.js"><\/script>)/,
+  );
 });
 
 test("all routes reject mutation methods before serving data or assets", async () => {

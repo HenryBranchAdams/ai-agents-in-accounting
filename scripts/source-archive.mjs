@@ -18,6 +18,8 @@ const rootFiles = [
   "package.json",
   "package-lock.json",
   "tsconfig.json",
+  "eslint.config.mjs",
+  "components.json",
   ".gitignore",
   "LICENSE",
 ];

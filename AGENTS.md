@@ -12,12 +12,18 @@ Improve source coverage, evidence, accounting context, retrieval, provenance, ri
 - `data/catalog.json`: mission, corpus version, review and coverage statements.
 - `schemas/record.schema.json`: shared record contract.
 - `src/corpus.ts`: retrieval, search, taxonomy, and export rendering.
-- `src/render.ts`, `public/style.css`: server-rendered reading surface.
+- `src/render.ts`: stable rendering exports; `src/pages/` and `src/components/`: server-rendered TSX reading surface.
+- `src/client/navigation.tsx`: the hydrated React navigation island; all corpus content remains server-rendered.
+- `public/style.css`: Tailwind input and standard shadcn semantic tokens using Slate. Read `docs/design-system.md` for component variants, lint rules, and narrow exceptions.
 - `src/worker.ts`: GET, HEAD, and OPTIONS routes. Use no write bindings or request-global mutable state.
 - `scripts/`: validation, build, source packaging, and local serving.
 - `public/AGENTS.md`: guidance for corpus consumers, separate from these repository instructions.
 
 Read `docs/corpus-policy.md` before adding or materially revising records. Read `docs/migration.md` when handling former URLs or removed features. Existing licenses and external source rights remain in force.
+
+## Interface requirements
+
+Read `docs/design-system.md` and follow `CONTRIBUTING.md#interface-changes` before presentation changes. Use the shadcn skill and CLI to inspect installed components, search, read component docs, and review dry runs/diffs before replacing source. Prefer official registry primitives; preserve their license and narrowly documented adaptations. Use semantic Slate tokens, supported variants/sizes, layout-only caller classes, FieldGroup/Field forms, and proper component composition. Keep native corpus prose and GET navigation. Hydrate interactive components and verify their keyboard behavior. Keep `@shadcn/lint` and its violation probes in `npm run lint` and `npm run check`; do not broadly suppress rules.
 
 ## Evidence and completion
 

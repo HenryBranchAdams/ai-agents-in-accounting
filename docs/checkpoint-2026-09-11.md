@@ -1,5 +1,7 @@
 # September 11 construction research checkpoint
 
+Historical checkpoint: implementation and publication statements below describe this checkpoint date. For current interface requirements, read [the design system](design-system.md); see [release guidance](../RELEASES.md) for later changes.
+
 This is the latest local content checkpoint. The [September 10 checkpoint](checkpoint-2026-09-10.md) remains the historical implementation checkpoint for corpus `2026-09-07.4`.
 
 ## Current content

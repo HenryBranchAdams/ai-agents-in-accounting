@@ -1,7 +1,11 @@
+import { execFileSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import { gunzipSync } from "node:zlib";
-import { preparePublication, writeReleaseArtifacts } from "./release-history.mjs";
+import {
+  preparePublication,
+  writeReleaseArtifacts,
+} from "./release-history.mjs";
 import { loadObservations } from "./maintenance.mjs";
 import { createHash } from "node:crypto";
 import { build } from "esbuild";
@@ -21,9 +25,8 @@ await build({
   platform: "neutral",
   target: "es2023",
 });
-const { meta, records, corpusExport, corpusMarkdown, knowledge, coverage } = await import(
-  "../dist/internal/corpus.mjs"
-);
+const { meta, records, corpusExport, corpusMarkdown, knowledge, coverage } =
+  await import("../dist/internal/corpus.mjs");
 await build({
   entryPoints: ["src/agent.ts"],
   outfile: "dist/internal/agent.mjs",
@@ -40,21 +43,75 @@ await build({
   platform: "neutral",
   target: "es2023",
 });
-const { agentIndexRows, agentPassageRows, agentJsonSchema } = await import(
-  "../dist/internal/agent.mjs"
-);
+const { agentIndexRows, agentPassageRows, agentJsonSchema } =
+  await import("../dist/internal/agent.mjs");
 fs.cpSync("public", "dist/client", { recursive: true });
-const preservedVersions = fs.readdirSync("data/releases", { withFileTypes: true })
-  .filter(entry => entry.isDirectory() && /^\d{4}-\d{2}-\d{2}\.\d+$/.test(entry.name))
-  .map(entry => entry.name)
+execFileSync(
+  process.execPath,
+  [
+    "node_modules/@tailwindcss/cli/dist/index.mjs",
+    "-i",
+    "public/style.css",
+    "-o",
+    "dist/client/style.css",
+    "--minify",
+  ],
+  { stdio: "inherit" },
+);
+const clientBuild = await build({
+  entryPoints: { navigation: "src/client/navigation.tsx" },
+  outdir: "dist/client/assets",
+  entryNames: "[name]-[hash]",
+  bundle: true,
+  format: "esm",
+  platform: "browser",
+  target: "es2022",
+  minify: true,
+  metafile: true,
+  legalComments: "eof",
+  define: { "process.env.NODE_ENV": '"production"' },
+});
+const navigationScript =
+  "/assets/" +
+  path.basename(
+    Object.keys(clientBuild.metafile.outputs).find((file) =>
+      file.endsWith(".js"),
+    ),
+  );
+const preservedVersions = fs
+  .readdirSync("data/releases", { withFileTypes: true })
+  .filter(
+    (entry) =>
+      entry.isDirectory() && /^\d{4}-\d{2}-\d{2}\.\d+$/.test(entry.name),
+  )
+  .map((entry) => entry.name)
   .sort((a, b) => a.localeCompare(b, "en", { numeric: true }));
-const previousVersion = preservedVersions.filter(version => version.localeCompare(meta.corpus_version, "en", { numeric: true }) < 0).at(-1);
-if (!previousVersion) throw new Error("A preserved predecessor is required for corpus release history");
-const previous = JSON.parse(gunzipSync(fs.readFileSync(`data/releases/${previousVersion}/corpus.json.gz`)));
+const previousVersion = preservedVersions
+  .filter(
+    (version) =>
+      version.localeCompare(meta.corpus_version, "en", { numeric: true }) < 0,
+  )
+  .at(-1);
+if (!previousVersion)
+  throw new Error(
+    "A preserved predecessor is required for corpus release history",
+  );
+const previous = JSON.parse(
+  gunzipSync(
+    fs.readFileSync(`data/releases/${previousVersion}/corpus.json.gz`),
+  ),
+);
 const prepared = preparePublication(records, previous, loadObservations());
-const publication = { previous_version: previousVersion, versions: [...new Set([...preservedVersions, meta.corpus_version])], changes: prepared.changes, queue: prepared.queue };
+const publication = {
+  previous_version: previousVersion,
+  versions: [...new Set([...preservedVersions, meta.corpus_version])],
+  changes: prepared.changes,
+  queue: prepared.queue,
+};
 fs.cpSync("data/releases", "dist/client/releases", { recursive: true });
-writeReleaseArtifacts(corpusExport(), "dist/client/releases", { previousExport: previous });
+writeReleaseArtifacts(corpusExport(), "dist/client/releases", {
+  previousExport: previous,
+});
 
 const write = (file, body) =>
   fs.writeFileSync(path.join("dist/client", file), body);
@@ -72,26 +129,116 @@ write(
     .join("\n") + "\n",
 );
 write("downloads/corpus.md", corpusMarkdown());
-write("downloads/maintenance.json", JSON.stringify({ corpus_version: meta.corpus_version, ...publication }, null, 2) + "\n");
-write("downloads/knowledge.json", JSON.stringify({ corpus_version: meta.corpus_version, schema_version: "1.0.0", profiles: Object.fromEntries(knowledge.profiles), relationships: records.flatMap(r => knowledge.relations(r.id, { direction: "out" })) }, null, 2) + "\n");
+write(
+  "downloads/maintenance.json",
+  JSON.stringify(
+    { corpus_version: meta.corpus_version, ...publication },
+    null,
+    2,
+  ) + "\n",
+);
+write(
+  "downloads/knowledge.json",
+  JSON.stringify(
+    {
+      corpus_version: meta.corpus_version,
+      schema_version: "1.0.0",
+      profiles: Object.fromEntries(knowledge.profiles),
+      relationships: records.flatMap((r) =>
+        knowledge.relations(r.id, { direction: "out" }),
+      ),
+    },
+    null,
+    2,
+  ) + "\n",
+);
 write("downloads/vocabulary.json", fs.readFileSync("data/vocabulary.json"));
-write("downloads/knowledge.schema.json", fs.readFileSync("schemas/knowledge.schema.json"));
-write("downloads/coverage.json", JSON.stringify(coverage.analytics(), null, 2) + "\n");
-write("downloads/coverage-topology.json", fs.readFileSync("data/coverage/topology.json"));
-write("downloads/coverage-records.jsonl", [...coverage.profiles.values()].map(m => JSON.stringify({ ...coverage.versions, ...m })).join("\n") + "\n");
-write("downloads/coverage-assessments.json", fs.readFileSync("data/coverage/assessments.json"));
-write("downloads/coverage-history.json", fs.readFileSync("data/coverage/snapshots.json"));
-write("downloads/coverage.schema.json", fs.readFileSync("schemas/coverage.schema.json"));
-for (const name of ['research-questions','research-criteria','subsector-profiles','subsector-screening','industry-exception-reviews','classification-relationships']) write(`downloads/${name}.json`,fs.readFileSync(`data/coverage/${name}.json`));
-for (const name of ['source-reviews','editorial-reviews']) write(`downloads/${name}.json`,fs.readFileSync(`data/reviews/${name}.json`));
-write('downloads/research.schema.json',fs.readFileSync('schemas/research.schema.json'));
-const coverageTopology = JSON.parse(fs.readFileSync("data/coverage/topology.json"));
-const cellRows = coverageTopology.industry_backbone.nodes.filter(n => n.level === "subsector").flatMap(n => coverageTopology.question_families.map(q => {
-  const cell = coverage.cell(n.code,q.id);
-  return [meta.corpus_version, coverage.versions.topology_version, coverage.versions.mapping_version, coverage.versions.assessment_version, n.code,n.title,q.id,q.title,cell.direct_records,cell.narrower_records,cell.broader_context_records,cell.shared_context_records,cell.assessments.length,cell.assessment_status,cell.screening?.applicability,cell.screening?.evidence_outcome,cell.screening?.rationale,cell.screening?.named_question_ids.join(';')];
-}));
-const csvField = value => `"${String(value).replaceAll('"','""')}"`;
-write("downloads/coverage-cells.csv", ["corpus_version,topology_version,mapping_version,assessment_version,industry_code,industry_title,question_id,question_title,direct_records,narrower_records,broader_context_records,shared_context_records,scoped_assessments,assessment_status,applicability,evidence_outcome,rationale,named_question_ids", ...cellRows.map(row => row.map(csvField).join(","))].join("\n") + "\n");
+write(
+  "downloads/knowledge.schema.json",
+  fs.readFileSync("schemas/knowledge.schema.json"),
+);
+write(
+  "downloads/coverage.json",
+  JSON.stringify(coverage.analytics(), null, 2) + "\n",
+);
+write(
+  "downloads/coverage-topology.json",
+  fs.readFileSync("data/coverage/topology.json"),
+);
+write(
+  "downloads/coverage-records.jsonl",
+  [...coverage.profiles.values()]
+    .map((m) => JSON.stringify({ ...coverage.versions, ...m }))
+    .join("\n") + "\n",
+);
+write(
+  "downloads/coverage-assessments.json",
+  fs.readFileSync("data/coverage/assessments.json"),
+);
+write(
+  "downloads/coverage-history.json",
+  fs.readFileSync("data/coverage/snapshots.json"),
+);
+write(
+  "downloads/coverage.schema.json",
+  fs.readFileSync("schemas/coverage.schema.json"),
+);
+for (const name of [
+  "research-questions",
+  "research-criteria",
+  "subsector-profiles",
+  "subsector-screening",
+  "industry-exception-reviews",
+  "classification-relationships",
+])
+  write(
+    `downloads/${name}.json`,
+    fs.readFileSync(`data/coverage/${name}.json`),
+  );
+for (const name of ["source-reviews", "editorial-reviews"])
+  write(`downloads/${name}.json`, fs.readFileSync(`data/reviews/${name}.json`));
+write(
+  "downloads/research.schema.json",
+  fs.readFileSync("schemas/research.schema.json"),
+);
+const coverageTopology = JSON.parse(
+  fs.readFileSync("data/coverage/topology.json"),
+);
+const cellRows = coverageTopology.industry_backbone.nodes
+  .filter((n) => n.level === "subsector")
+  .flatMap((n) =>
+    coverageTopology.question_families.map((q) => {
+      const cell = coverage.cell(n.code, q.id);
+      return [
+        meta.corpus_version,
+        coverage.versions.topology_version,
+        coverage.versions.mapping_version,
+        coverage.versions.assessment_version,
+        n.code,
+        n.title,
+        q.id,
+        q.title,
+        cell.direct_records,
+        cell.narrower_records,
+        cell.broader_context_records,
+        cell.shared_context_records,
+        cell.assessments.length,
+        cell.assessment_status,
+        cell.screening?.applicability,
+        cell.screening?.evidence_outcome,
+        cell.screening?.rationale,
+        cell.screening?.named_question_ids.join(";"),
+      ];
+    }),
+  );
+const csvField = (value) => `"${String(value).replaceAll('"', '""')}"`;
+write(
+  "downloads/coverage-cells.csv",
+  [
+    "corpus_version,topology_version,mapping_version,assessment_version,industry_code,industry_title,question_id,question_title,direct_records,narrower_records,broader_context_records,shared_context_records,scoped_assessments,assessment_status,applicability,evidence_outcome,rationale,named_question_ids",
+    ...cellRows.map((row) => row.map(csvField).join(",")),
+  ].join("\n") + "\n",
+);
 
 write(
   "downloads/agent-index.jsonl",
@@ -143,14 +290,26 @@ write(
 );
 await build({
   entryPoints: ["src/worker.ts"],
-  define: { PUBLICATION_DATA: JSON.stringify(publication) },
+  mainFields: ["module", "main"],
+  conditions: ["browser"],
+  define: {
+    "process.env.NODE_ENV": '"production"',
+    NAVIGATION_SCRIPT: JSON.stringify(navigationScript),
+    PUBLICATION_DATA: JSON.stringify(publication),
+    STYLE_VERSION: JSON.stringify(
+      createHash("sha256")
+        .update(fs.readFileSync("dist/client/style.css"))
+        .digest("hex")
+        .slice(0, 12),
+    ),
+  },
   outfile: "dist/server/index.js",
   bundle: true,
   format: "esm",
   platform: "neutral",
   target: "es2023",
   minify: true,
-  legalComments: "none",
+  legalComments: "eof",
 });
 fs.writeFileSync(
   "dist/server/wrangler.json",

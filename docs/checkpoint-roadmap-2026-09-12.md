@@ -1,5 +1,7 @@
 # Five-phase roadmap: local research handoff
 
+Historical checkpoint: implementation and publication statements below describe this checkpoint date. For current interface requirements, read [the design system](design-system.md); see [release guidance](../RELEASES.md) for later changes.
+
 Checkpoint: September 12, 2026. Workspace: `/Users/henryadams/Documents/ai-agents-in-accounting`; branch `main`; starting HEAD `84140fadf9be8c8f7abe6599e9fc8879c6dd5da8`. Work remains local and uncommitted. Existing work and stable record IDs were preserved. This assignment did not publish, push, change remote branches, contact outside parties, purchase access or operate an accounting system.
 
 The local edition is **2026-09-11.2**. The last observed published edition remains **2026-09-11.1**; the earlier public baseline was verified during roadmap preparation. Public accessibility is not evidence that this new edition is deployed. Its outgoing 838-record snapshot is preserved under `data/releases/2026-09-11.1/`.

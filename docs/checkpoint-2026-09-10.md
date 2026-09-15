@@ -1,5 +1,7 @@
 # Local checkpoint — September 10, 2026
 
+Historical checkpoint: implementation and publication statements below describe this checkpoint date. For current interface requirements, read [the design system](design-system.md); see [release guidance](../RELEASES.md) for later changes.
+
 This checkpoint consolidates the read-only research corpus, agent access, evidence-aware retrieval, research expansion, and reading-interface improvements on local `main`. It is a local handoff, not a public release announcement. Recheck Git status before resuming; this dated document does not guarantee future branch or deployment state.
 
 ## Current product and source of truth

@@ -1,6 +1,6 @@
 # Accounting Agents roadmap
 
-Local outcome checkpoint: September 12, 2026. The five-phase research assignment has been implemented as corpus **2026-09-11.2**, with explicit partial answers and unresolved evidence. It remains local and uncommitted. The last observed published edition is **2026-09-11.1**. The [handoff](checkpoint-roadmap-2026-09-12.md) records reading paths, checks and limitations.
+Research outcome checkpoint: September 12, 2026. The five-phase research assignment has been implemented as corpus **2026-09-11.2**, with explicit partial answers and unresolved evidence. The expansion was committed as `94b94ab`. Current deployment status is separate from this research checkpoint; inspect the live `/api/v1/meta` and release evidence. The [handoff](checkpoint-roadmap-2026-09-12.md) records reading paths, checks and limitations.
 
 ## Delivered scope
 
@@ -146,3 +146,7 @@ The recommended next release combines the review standard and priority mapping c
 - [Mission and coverage priorities](../data/catalog.json), [record policy](corpus-policy.md), [coverage model](coverage-model.md), and [measured snapshots](../data/coverage/snapshots.json).
 - [Industry topology research](research/accounting-coverage-topology-2026-09-11.md) and [complete subsector worklist](research/accounting-coverage-topology-worklist-2026-09-11.md).
 - [Construction findings and gaps](research/construction-accounting-coverage-2026-09-11.md), [retrieval checks](research-questions.md), [agent access](agent-access.md) and [maintenance](maintenance.md).
+
+## Interface maintenance
+
+The September 14 reading surface uses official shadcn/ui components, the Slate semantic theme and a narrowly hydrated React navigation island. Follow [the design system](design-system.md) and [contributor requirements](../CONTRIBUTING.md#interface-changes). Keep interface work focused on discovery, evidence assessment and reading; preserve the open research questions above.

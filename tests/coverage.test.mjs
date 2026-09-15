@@ -117,7 +117,7 @@ test("rendered coverage routes expose sources, explicit scope and schema-linked 
   const page=await fetchPage("/coverage");assert.equal(page.status,200,"The former redirect must not shadow the new route");
   const html=await page.text();
   for(const phrase of ["Entire corpus snapshot","Metric definitions and source data","Mapping method","unassessed","coverage-records.jsonl","Exploration filters above do not narrow"]) assert.ok(html.includes(phrase),phrase);
-  assert.doesNotMatch(html,/<script/i);
+  assert.doesNotMatch(html,/<script\b(?! type="module" src="\/assets\/navigation-[A-Z0-9]{8}\.js"><\/script>)/i);
   const detail=await (await fetchPage("/records/wf-construction-wip-close")).text();
   assert.ok(detail.includes('id="coverage"'));
   assert.ok(detail.includes('/api/v1/coverage/records/wf-construction-wip-close'));

@@ -43,7 +43,7 @@ const commonHeaders = {
   "X-Content-Type-Options": "nosniff",
   "Referrer-Policy": "strict-origin-when-cross-origin",
   "Content-Security-Policy":
-    "default-src 'none'; style-src 'self'; img-src 'self'; form-action 'self'; base-uri 'none'; frame-ancestors 'none'",
+    "default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; form-action 'self'; base-uri 'none'; frame-ancestors 'none'",
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Methods": "GET, HEAD, OPTIONS",
   "Access-Control-Allow-Headers": "Accept, If-None-Match",
@@ -519,7 +519,7 @@ async function route(request: Request, env: Env) {
     );
   if (
     env.ASSETS &&
-    /^\/(downloads\/[^/]+|releases\/\d{4}-\d{2}-\d{2}\.\d+\/(?:corpus\.json(?:\.gz|l)?|manifest\.json|changes\.json|record-history\.jsonl)|releases\/index\.json|style\.css|favicon\.svg|AGENTS\.md)$/.test(path)
+    /^\/(downloads\/[^/]+|releases\/\d{4}-\d{2}-\d{2}\.\d+\/(?:corpus\.json(?:\.gz|l)?|manifest\.json|changes\.json|record-history\.jsonl)|releases\/index\.json|assets\/navigation-[A-Z0-9]{8}\.js|style\.css|favicon\.svg|AGENTS\.md)$/.test(path)
   )
     return env.ASSETS.fetch(new Request(request.url, { method: "GET" }));
   return path.startsWith("/api/")

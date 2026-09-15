@@ -6,6 +6,7 @@ import worker from "../dist/server/index.js";
 
 const root = path.resolve("dist/client");
 const contentTypes = {
+  ".js": "text/javascript; charset=utf-8",
   ".css": "text/css; charset=utf-8",
   ".svg": "image/svg+xml",
   ".json": "application/json; charset=utf-8",
