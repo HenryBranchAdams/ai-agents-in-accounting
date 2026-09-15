@@ -2364,7 +2364,7 @@
     "id": "example-construction-contract-ledger",
     "kind": "example",
     "title": "Construction contract: two closes from estimate to cash",
-    "summary": "An original USD example reconciles contract versions, job costs, billing, revenue, journals and cash, then tests five material exceptions.",
+    "summary": "Original two-period construction ledger with correction, cutoff, estimate and retainage branches. GAO aggregates and ASBCA same-job reported facts remain separate from the synthetic journals and incomplete operational population.",
     "topics": [
       "Accounting and reporting",
       "Construction research"
@@ -2379,7 +2379,14 @@
     "source_ids": [
       "src_construction_fasb_2014_09",
       "src_roadmap_ey_revenue_2026",
-      "src_roadmap_kpmg_revenue_2025"
+      "src_roadmap_kpmg_revenue_2025",
+      "src_construction_fasb_retainage_staff",
+      "src_construction_gao_25107258",
+      "src_construction_gsa184_2025",
+      "src_construction_gsa184a_2015",
+      "src_construction_far_522325",
+      "src_construction_asbca_51759",
+      "src_construction_fasb_codification_access"
     ],
     "related_ids": [
       "wf-construction-contract-intake",
@@ -2391,7 +2398,7 @@
       "wf-construction-cash-surety-closeout"
     ],
     "review_status": "editorially-reviewed",
-    "reviewed_at": "2026-09-11",
+    "reviewed_at": "2026-09-14",
     "provenance": {
       "added_on": "2026-09-11",
       "reviewer": "Codex (AI-assisted research and original synthesis)",
@@ -2401,7 +2408,29 @@
         "src_roadmap_ey_revenue_2026",
         "src_roadmap_kpmg_revenue_2025"
       ],
-      "note": "Original research material for the local roadmap expansion. Publisher full text is not included; synthetic material is not empirical evidence."
+      "note": "Original research material for the local roadmap expansion. Publisher full text is not included; synthetic material is not empirical evidence.",
+      "revision_history": [
+        {
+          "date": "2026-09-14",
+          "scope": "Construction evidence closure; original provenance and source rights retained.",
+          "reviewer": "Codex, AI-assisted editorial research",
+          "professional_review": "not-performed"
+        },
+        {
+          "date": "2026-09-14",
+          "corpus_version": "2026-09-14.2",
+          "scope": "Four-gap follow-through: same-job reported facts, exact authority requests, separate IRS questions and unsent professional review packet.",
+          "reviewer": "Codex, AI-assisted editorial research",
+          "professional_review": "not-performed"
+        },
+        {
+          "date": "2026-09-14",
+          "corpus_version": "2026-09-14.3",
+          "scope": "Local consistency and traceability review against existing evidence. No new publisher review, changed synthetic values or professional sign-off.",
+          "reviewer": "Codex, AI-assisted editorial review",
+          "professional_review": "not-performed"
+        }
+      ]
     },
     "rights": {
       "metadata": "CC0-1.0",
@@ -2410,7 +2439,7 @@
       "full_text_stored": false
     },
     "data": {
-      "version": "1.0.0",
+      "version": "1.2.1",
       "prepared_at": "2026-09-11",
       "origin": "Original synthetic project-authored example; no publisher scenario or customer data reproduced.",
       "scope": "Synthetic private US GAAP contractor with one enforceable customer contract and one performance obligation that qualifies for over-time recognition; no claim that all construction qualifies. Cost-to-cost is assumed to depict performance for the base case. Estimates include the complete expected qualifying cost population. All amounts are USD; costs are expensed as performance occurs. Base billings become unconditional when issued. There is no sales tax, income tax, financing, credit loss, depreciation or other activity in this deliberately isolated example. These exclusions are not general accounting conclusions. The modification is approved and adds non-distinct work to the existing partially satisfied performance obligation. Figures at each close are cumulative unless explicitly labeled current period.",
@@ -2611,7 +2640,7 @@
             "opening_cash": 100000,
             "cash_paid": 210000
           },
-          "calculation": "270,000 / 900,000 = 30%; revenue = 1,200,000 \u00d7 30% = 360,000. Profit = 360,000 \u2212 270,000 = 90,000. Contract asset = 360,000 \u2212 300,000 = 60,000. AR = 300,000 \u2212 240,000 = 60,000. Cash = 100,000 + 240,000 \u2212 210,000 = 130,000.",
+          "calculation": "270,000 / 900,000 = 30%; revenue = 1,200,000 × 30% = 360,000. Profit = 360,000 − 270,000 = 90,000. Contract asset = 360,000 − 300,000 = 60,000. AR = 300,000 − 240,000 = 60,000. Cash = 100,000 + 240,000 − 210,000 = 130,000.",
           "result": {
             "progress": 0.3,
             "cumulative_revenue": 360000,
@@ -2627,7 +2656,7 @@
             "liabilities": 60000,
             "capital_and_profit": 190000
           },
-          "review": "Three job-cost source groups totaling 270,000 tie to J01\u2013J03; the cash receipts and disbursements tie to J06\u2013J08. All evidence IDs are unique."
+          "review": "Three job-cost source groups totaling 270,000 tie to J01–J03; the cash receipts and disbursements tie to J06–J08. All evidence IDs are unique."
         },
         {
           "id": "construction-close-two",
@@ -2642,7 +2671,7 @@
             "current_cost": 230000,
             "current_cash_paid": 240000
           },
-          "calculation": "500,000 / 1,000,000 = 50%; cumulative revenue = 650,000; current revenue = 650,000 \u2212 360,000 = 290,000. Cumulative profit = 150,000; current profit = 60,000. Billings exceed revenue by 10,000; present a contract liability for this contract. AR = 660,000 \u2212 550,000 = 110,000. Cash = 130,000 + 310,000 \u2212 240,000 = 200,000.",
+          "calculation": "500,000 / 1,000,000 = 50%; cumulative revenue = 650,000; current revenue = 650,000 − 360,000 = 290,000. Cumulative profit = 150,000; current profit = 60,000. Billings exceed revenue by 10,000; present a contract liability for this contract. AR = 660,000 − 550,000 = 110,000. Cash = 130,000 + 310,000 − 240,000 = 200,000.",
           "result": {
             "progress": 0.5,
             "cumulative_revenue": 650000,
@@ -2678,7 +2707,7 @@
             "Customer control of the pumps transfers significantly before installation; the pump cost is significant.",
             "Pumps are bought from a third party, with no significant contractor design/manufacturing involvement, and the contractor is principal. All ASC 606-10-55-21(b) conditions are assumed satisfied."
           ],
-          "calculation": "Adjusted progress = 300,000 / 1,500,000 = 20%. Revenue = 900,000 + 20% \u00d7 (3,000,000 \u2212 900,000) = 1,320,000. Cost = 1,200,000; profit = 120,000. Naive cost-to-cost revenue = 1,200,000 / 2,400,000 \u00d7 3,000,000 = 1,500,000, overstating this branch by 180,000.",
+          "calculation": "Adjusted progress = 300,000 / 1,500,000 = 20%. Revenue = 900,000 + 20% × (3,000,000 − 900,000) = 1,320,000. Cost = 1,200,000; profit = 120,000. Naive cost-to-cost revenue = 1,200,000 / 2,400,000 × 3,000,000 = 1,500,000, overstating this branch by 180,000.",
           "result": {
             "progress": 0.2,
             "revenue": 1320000,
@@ -2699,9 +2728,10 @@
           },
           "conditions": [
             "The customer-specification construction contract is within ASC 605-35; contract-level loss policy applies.",
-            "No variable consideration, credit-risk adjustment or other contract asset impairment changes the isolated loss calculation."
+            "No variable consideration, credit-risk adjustment or other contract asset impairment changes the isolated loss calculation.",
+            "Fixed consideration only, no credit-risk adjustment or capitalized contract-cost asset, one loss-assessment unit. ASC 605-35-25-46A does not apply the ASC 606 revenue constraint when measuring expected consideration for the loss test; do not mechanically reuse a constrained claim amount."
           ],
-          "calculation": "Progress = 580,000 / 1,450,000 = 40%; revenue = 520,000. Normal cumulative loss = 60,000. Entire expected loss = 150,000. Additional provision = 150,000 \u2212 60,000 = 90,000; debit contract cost and credit loss provision 90,000.",
+          "calculation": "Progress = 580,000 / 1,450,000 = 40%; revenue = 520,000. Normal cumulative loss = 60,000. Entire expected loss = 150,000. Additional provision = 150,000 − 60,000 = 90,000; debit contract cost and credit loss provision 90,000.",
           "result": {
             "progress": 0.4,
             "revenue": 520000,
@@ -2710,7 +2740,14 @@
             "additional_provision": 90000,
             "total_recognized_cost": 670000
           },
-          "review": "Accruing an additional 150,000 would double count the 60,000 loss already recognized. The scope must be assessed separately from over-time revenue."
+          "review": "Accruing an additional 150,000 would double count the 60,000 loss already recognized. The scope must be assessed separately from over-time revenue.",
+          "journals": [
+            {
+              "debit": "job_cost",
+              "credit": "loss_provision",
+              "amount": 90000
+            }
+          ]
         },
         {
           "id": "construction-retainage",
@@ -2763,6 +2800,122 @@
             "executed_entries": 0
           },
           "review": "Retain the original close, invoice service dates, prior available information, estimate approval and discovery timestamp. Determine whether facts indicate an error, new estimate information or already accrued liability; avoid duplicate cost on reopening."
+        },
+        {
+          "id": "construction-estimate-revision",
+          "title": "Estimate-only revision, without new work or billing",
+          "origin": "Original synthetic alternative to July base, not additive to other branches",
+          "input": {
+            "price": 1200000,
+            "cost": 270000,
+            "old_estimate": 900000,
+            "new_estimate": 1000000,
+            "prior_revenue": 360000
+          },
+          "calculation": "Updated cumulative revenue = 270,000 / 1,000,000 × 1,200,000 = 324,000. Catch-up = 324,000 - 360,000 = -36,000.",
+          "result": {
+            "progress": 0.27,
+            "cumulative_revenue": 324000,
+            "catch_up": -36000,
+            "profit": 54000,
+            "contract_asset": 24000
+          },
+          "journals": [
+            {
+              "debit": "revenue",
+              "credit": "contract_asset",
+              "amount": 36000
+            }
+          ],
+          "review": "New estimate information is assumed, not correction of known prior facts. Period remeasurement follows ASC 606-10-25-35; a negative catch-up is possible without a loss-making contract."
+        },
+        {
+          "id": "construction-corrected-population",
+          "title": "Reopened July workpaper: approved credit and omitted July service",
+          "origin": "Original synthetic alternative management workpaper; base history retained",
+          "conditions": [
+            "July service was incurred, recoverable performance cost, not previously accrued; 5,000 credit corrects the earlier quantity.",
+            "900,000 total expected cost already included this work and remains approved; no new contract price or cash/billing event.",
+            "These facts illustrate a corrected workpaper. ASC 250 materiality, issuance dates, prior-period error treatment and disclosures require separate review."
+          ],
+          "input": {
+            "base_cost": 270000,
+            "corrected_cost": 280000,
+            "price": 1200000,
+            "estimated_total_cost": 900000,
+            "prior_revenue": 360000,
+            "billings": 300000,
+            "cash_collected": 240000
+          },
+          "calculation": "Cost 270,000 - 5,000 + 15,000 = 280,000. Revenue rounded to cents = 280,000 / 900,000 × 1,200,000 = 373,333.33. Revenue adjustment = 13,333.33.",
+          "journals": [
+            {
+              "debit": "ap",
+              "credit": "job_cost",
+              "amount": 5000,
+              "evidence_id": "SUB-JUL-v2"
+            },
+            {
+              "debit": "job_cost",
+              "credit": "ap",
+              "amount": 15000,
+              "evidence_id": "LATE-JUL-v1"
+            },
+            {
+              "debit": "contract_asset",
+              "credit": "revenue",
+              "amount": 13333.33,
+              "evidence_id": "REOPEN-JUL-WORKPAPER"
+            }
+          ],
+          "result": {
+            "cumulative_cost": 280000,
+            "cumulative_revenue": 373333.33,
+            "cumulative_profit": 93333.33,
+            "cash": 130000,
+            "ar": 60000,
+            "contract_asset": 73333.33,
+            "ap": 40000,
+            "payroll_payable": 30000,
+            "assets": 263333.33,
+            "liabilities": 70000,
+            "capital_and_profit": 193333.33
+          },
+          "review": "If the 15,000 was already accrued, invoice arrival reclassifies the accrual to AP and adds zero cost/revenue. If it is a new September service, leave July untouched. Carry corrected cumulative balances forward before recomputing August; never add this branch to the original August close unchanged."
+        },
+        {
+          "id": "construction-retainage-liability",
+          "title": "Conditional retainage offsets the same contract liability",
+          "origin": "Original synthetic standalone branch, not an alteration of base unconditional billing assumptions",
+          "input": {
+            "revenue": 650000,
+            "unconditional_billed_rights": 690000,
+            "cash_collected": 550000,
+            "conditional_retainage": 30000,
+            "other_advance_position": 70000
+          },
+          "calculation": "AR = 690,000 - 550,000 = 140,000. Net contract liability = 690,000 - 650,000 = 40,000, also 70,000 advance less 30,000 conditional retainage.",
+          "result": {
+            "ar": 140000,
+            "contract_asset": 0,
+            "contract_liability": 40000,
+            "separate_conditional_retainage_asset": 0
+          },
+          "review": "Conditional retainage is part of the one net contract position, not a second asset against a gross 70,000 liability. Do not offset a different contract or separate unconditional AR. FASB staff paper paragraphs 5-7 and 12."
+        },
+        {
+          "id": "construction-uninstalled-not-transferred",
+          "title": "Stored material without customer control",
+          "origin": "Original synthetic counterexample to the uninstalled-goods branch",
+          "input": {
+            "stored_equipment": 900000,
+            "other_cost_incurred": 300000
+          },
+          "result": {
+            "equipment_revenue": 0,
+            "equipment_in_progress_numerator": 0
+          },
+          "review": "Storage location, payment certification or an invoice alone does not establish customer control. Test control before any no-margin revenue; evaluate inventory/cost-asset treatment separately. No full alternate revenue calculation without an approved remaining-performance estimate."
         }
       ],
       "evidence_controls": [
@@ -2790,7 +2943,7 @@
       "source_locators": [
         {
           "source_id": "src_construction_fasb_2014_09",
-          "locator": "ASC 606-10-25-27, 25-31\u201325-37 and 45-1\u201345-4, original issued amendments; current interpretation cross-check below."
+          "locator": "ASC 606-10-25-27, 25-31–25-37 and 45-1–45-4, original issued amendments; current interpretation cross-check below."
         },
         {
           "source_id": "src_roadmap_ey_revenue_2026",
@@ -2798,14 +2951,309 @@
         },
         {
           "source_id": "src_roadmap_kpmg_revenue_2025",
-          "locator": "Chapter 13.4, printed pp.897\u2013901; ASC 605-35 loss scope and additional cost."
+          "locator": "Chapter 13.4, printed pp.897–901; ASC 605-35 loss scope and additional cost."
+        },
+        {
+          "source_id": "src_construction_fasb_retainage_staff",
+          "locator": "Paragraphs 4-13, four-page staff educational paper."
+        },
+        {
+          "source_id": "src_construction_gao_25107258",
+          "locator": "Methodology, Figure 5 discussion and Change of Scope, report September 9, 2025."
+        },
+        {
+          "source_id": "src_construction_gsa184_2025",
+          "locator": "Rev.9/2025 pp.1-2, lines 1-15; blank form only."
+        },
+        {
+          "source_id": "src_construction_asbca_51759",
+          "locator": "Decision August 27, 2002, printed pp.2-8 and 11-12; findings 2-4, 8, 11-22, 26-29 and decision II. Same-job observations retain specific findings and R4 exhibit locators; the underlying exhibits were not obtained."
         }
       ],
       "limitations": [
-        "Synthetic original project values only; no customer, production or licensed publisher example data.",
+        "Synthetic project values are used in the original journals, numerical branches and transaction-event fixture. GAO aggregate observations and ASBCA same-job reported facts are separately attributed; their editorial calculations do not validate the synthetic examples or a complete operational ledger.",
         "Arithmetic and internal consistency can be verified; no professional sign-off, legal enforceability assessment or empirical accounting-agent validation was performed.",
         "The declared exclusions and branch assumptions limit every calculated result; this is not a complete construction accounting policy."
-      ]
+      ],
+      "transaction_evidence": {
+        "classification": "original-synthetic",
+        "contract_id": "CONTRACT-J01",
+        "base_close": "construction-close-one",
+        "boundary": "Illustrative event history supporting a reopened July management workpaper. No real ERP extraction, posted journal or financial-statement restatement is established.",
+        "identity": "Entity + source system + source ID + version identifies content; delivery_id identifies transport. Repeated version must have identical payload. A tombstone is a deletion event, not a zero-cost invoice.",
+        "events": [
+          {
+            "delivery_id": "D01",
+            "entity": "CONTRACTOR-SYNTHETIC",
+            "system": "job-cost-fixture",
+            "source_id": "LAB-JUL",
+            "version": 1,
+            "job_id": "J01",
+            "operation": "upsert",
+            "amount": 120000,
+            "effective_period": "2026-07",
+            "received_at": "2026-07-31",
+            "evidence": "Approved time batch, base journal J01"
+          },
+          {
+            "delivery_id": "D02",
+            "entity": "CONTRACTOR-SYNTHETIC",
+            "system": "job-cost-fixture",
+            "source_id": "SUB-JUL",
+            "version": 1,
+            "job_id": "J01",
+            "operation": "upsert",
+            "amount": 100000,
+            "effective_period": "2026-07",
+            "received_at": "2026-07-31",
+            "evidence": "Supplier invoice, base journal J02"
+          },
+          {
+            "delivery_id": "D03",
+            "entity": "CONTRACTOR-SYNTHETIC",
+            "system": "job-cost-fixture",
+            "source_id": "MAT-JUL",
+            "version": 1,
+            "job_id": "J01",
+            "operation": "upsert",
+            "amount": 50000,
+            "effective_period": "2026-07",
+            "received_at": "2026-07-31",
+            "evidence": "Receiving and invoice, base journal J03"
+          },
+          {
+            "delivery_id": "D04",
+            "entity": "CONTRACTOR-SYNTHETIC",
+            "system": "job-cost-fixture",
+            "source_id": "SUB-JUL",
+            "version": 1,
+            "job_id": "J01",
+            "operation": "upsert",
+            "amount": 100000,
+            "effective_period": "2026-07",
+            "received_at": "2026-07-31",
+            "evidence": "Supplier invoice, base journal J02"
+          },
+          {
+            "delivery_id": "D05",
+            "entity": "CONTRACTOR-SYNTHETIC",
+            "system": "job-cost-fixture",
+            "source_id": "SUB-JUL",
+            "version": 2,
+            "job_id": "J01",
+            "operation": "upsert",
+            "amount": 95000,
+            "effective_period": "2026-07",
+            "received_at": "2026-09-03",
+            "evidence": "Approved 5,000 credit correcting quantity, supersedes version 1"
+          },
+          {
+            "delivery_id": "D06",
+            "entity": "CONTRACTOR-SYNTHETIC",
+            "system": "job-cost-fixture",
+            "source_id": "DRAFT-COST",
+            "version": 1,
+            "job_id": "J01",
+            "operation": "upsert",
+            "amount": 7000,
+            "effective_period": "2026-07",
+            "received_at": "2026-09-03",
+            "evidence": "Unposted staging estimate, never incurred or in GL"
+          },
+          {
+            "delivery_id": "D07",
+            "entity": "CONTRACTOR-SYNTHETIC",
+            "system": "job-cost-fixture",
+            "source_id": "DRAFT-COST",
+            "version": 2,
+            "job_id": "J01",
+            "operation": "delete",
+            "amount": null,
+            "effective_period": "2026-07",
+            "received_at": "2026-09-04",
+            "evidence": "Approved cancellation; retain version 1 history, no GL reversal because never posted"
+          },
+          {
+            "delivery_id": "D08",
+            "entity": "CONTRACTOR-SYNTHETIC",
+            "system": "job-cost-fixture",
+            "source_id": "LATE-JUL",
+            "version": 1,
+            "job_id": "J01",
+            "operation": "upsert",
+            "amount": 15000,
+            "effective_period": "2026-07",
+            "received_at": "2026-09-05",
+            "evidence": "July receipt and supplier statement establish previously omitted service; not accrued"
+          },
+          {
+            "delivery_id": "D09",
+            "entity": "CONTRACTOR-SYNTHETIC",
+            "system": "job-cost-fixture",
+            "source_id": "OTHER-JOB",
+            "version": 1,
+            "job_id": "J02",
+            "operation": "upsert",
+            "amount": 15000,
+            "effective_period": "2026-07",
+            "received_at": "2026-09-05",
+            "evidence": "Separate job authorization; same amount does not make this J01 evidence"
+          }
+        ],
+        "expected_active_july_ids": [
+          "LAB-JUL",
+          "SUB-JUL",
+          "MAT-JUL",
+          "LATE-JUL"
+        ],
+        "expected_active_july_cost": 280000,
+        "independent_population_manifest": {
+          "origin": "Original synthetic independent receiving, payroll and supplier statement manifest",
+          "expected_ids": [
+            "LAB-JUL",
+            "SUB-JUL",
+            "MAT-JUL",
+            "LATE-JUL"
+          ],
+          "expected_count": 4,
+          "expected_amount": 280000
+        },
+        "counterexample": {
+          "description": "A bad extract substitutes OTHER-JOB for missing LATE-JUL. Count and amount still match, but identities and job scope fail.",
+          "ids": [
+            "LAB-JUL",
+            "SUB-JUL",
+            "MAT-JUL",
+            "OTHER-JOB"
+          ],
+          "count": 4,
+          "amount": 280000
+        },
+        "population_bridge": {
+          "base_cost": 270000,
+          "credit_correction": -5000,
+          "omitted_service": 15000,
+          "transport_duplicate": 0,
+          "unposted_tombstone": 0,
+          "other_job": 0,
+          "corrected_cost": 280000
+        },
+        "limits": [
+          "Manifest is synthetic, not independently observed. Real closure requires signed extraction scope, pagination/watermarks, deletion semantics, source counts, payroll/receiving/vendor evidence and GL/bank exports.",
+          "Delete of a posted liability requires an approved correcting entry; deletion alone does not extinguish an obligation."
+        ],
+        "job_id": "J01",
+        "estimate_id": "EST-J01-V1",
+        "source_to_ledger": [
+          {
+            "source_id": "LAB-JUL",
+            "base_evidence_id": "TIMESHEETS-J01-P1",
+            "base_journal_id": "J01"
+          },
+          {
+            "source_id": "SUB-JUL",
+            "base_evidence_id": "SUB-INV-001",
+            "base_journal_id": "J02"
+          },
+          {
+            "source_id": "MAT-JUL",
+            "base_evidence_id": "MAT-INV-001",
+            "base_journal_id": "J03"
+          }
+        ]
+      },
+      "observed_evidence": [
+        {
+          "source_id": "src_construction_gao_25107258",
+          "origin": "Observed aggregate findings reported by GAO, not corpus observation of underlying records",
+          "period": "Subcontracts completed in federal FY2023",
+          "population": 252,
+          "initial_to_final_increase_usd": 37500000,
+          "post_award_increase_usd": 35600000,
+          "scope_example": "GAO Change of Scope: unnamed project award approximately 3.2 million, final 5.5 million, including over 1 million additional utility scope. Rounded published amounts; no journal can be inferred.",
+          "inference": "Version initial estimate, award, modification and final cost separately; a final overrun alone cannot identify the cause or revenue treatment.",
+          "limitation": "No raw population or link to the synthetic J01. Excluded low-value projects and management-fee overhead limit inference."
+        }
+      ],
+      "same_job_case": {
+        "version": "1.0.0",
+        "source_id": "src_construction_asbca_51759",
+        "classification": "publisher-reported transaction facts, not a raw operational dataset",
+        "case": "ASBCA 51759, decision 2002-08-27",
+        "population": "Selected reported events for Martech contract N68378-93-C-8677 and job 93-7089 / accounting label 937089, 1992-1995. Surety takeover N68378-94-C-5830 is a separate actor/contract identity, not an interchangeable ledger.",
+        "observations": [
+          {
+            "locator": "Findings 2, 12; R4 tabs 1, 19, 20",
+            "event": "1992-12-28 award and July 1993 modifications P00003/P00002",
+            "original_price": 1969345,
+            "modified_price": 2196991
+          },
+          {
+            "locator": "Findings 13, 16; R4 tabs 22, 28, 31",
+            "event": "1993-07-21 lumber order; invoice 2 paid 1993-09-01",
+            "order": 558817,
+            "invoice": 549521,
+            "cash": 550121.9,
+            "interest": 600.9
+          },
+          {
+            "locator": "Findings 17, 19; R4 tabs 30, 36",
+            "event": "1993-08-31 invoice 3; paid 1993-09-22",
+            "invoice": 841547,
+            "cash": 757392,
+            "reported_retention_rate": 0.1
+          },
+          {
+            "locator": "Findings 20, 29; R4 tab 37 and tab 113 p.112; exhibit A-113",
+            "event": "1993-09-27 Martech check 44737; additional payments reported in 1995 supplier letter",
+            "contractor_check": 94636.1,
+            "surety_related_checks": [
+              351262,
+              129433
+            ],
+            "reported_total": 575331.1
+          }
+        ],
+        "publisher_conclusions": "Finding 29 leaves total payments above the lumber order unexplained. Decision II denies the appeal and accepts the contracting officer’s exercise of discretion under the incorporated payment terms; it does not decide ASC 606 revenue.",
+        "editorial_calculations": {
+          "price_change": 227646,
+          "invoice_2_cash_less_invoice": 600.9,
+          "invoice_3_implied_withholding": 84155,
+          "invoice_3_exact_ten_percent": 84154.7,
+          "invoice_3_rounding_difference": 0.3,
+          "supplier_checks_total": 575331.1,
+          "checks_less_initial_order_unexplained": 16514.1
+        },
+        "analysis": "The 0.30 withholding difference is consistent with whole-dollar reporting, not proof of error. Do not plug the 16,514.10 order/payment difference into job cost. Surety payments in a later letter are not contractor cash in September 1993. Repeated check 44737 references identify the same reported payment, not two payments. No deletion conclusion, duplicate-population test or period GL tie-out is possible from a selected opinion.",
+        "missing_links": [
+          {
+            "link": "Contract and forecast versions",
+            "available": "Award/modification identities and selected prices",
+            "needed": "Complete executed clauses, approvals and estimate-at-completion versions; R4 tabs 1, 19, 20, 22 are identified, not obtained."
+          },
+          {
+            "link": "Billing and retainage",
+            "available": "Invoices 2/3 and reported payment dates",
+            "needed": "All pay applications, revisions, releases, opening/closing AR and contract balances; R4 tabs 24, 28, 30, 31, 36 plus full population."
+          },
+          {
+            "link": "AP, payroll and job costs",
+            "available": "One job-coded check and supplier report",
+            "needed": "Supplier invoices, credits, receiving, all AP settlements and accruals, payroll/time records, cost-code detail and full GL. R4 tab 113 p.112 and A-113 are not the complete accounts."
+          },
+          {
+            "link": "Cash and completeness",
+            "available": "Board-reported payments",
+            "needed": "Bank statements and cleared instruments, reconciliation, extraction counts/IDs/date bounds, revision/deletion audit history and exclusion register."
+          },
+          {
+            "link": "Reuse",
+            "available": "Attributed facts and original calculations stored; no publisher full text",
+            "needed": "Affirmative permission for a complete redacted same-job operational package; do not infer rights to private exhibits from a public opinion."
+          }
+        ],
+        "transfer_limit": "Historical federal contractor payment evidence. Not developer/owner accounting, current GAAP authority, a validated ERP population or professional review."
+      }
     }
   }
 ]

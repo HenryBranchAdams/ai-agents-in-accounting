@@ -299,7 +299,7 @@ export function browse(params: URLSearchParams) {
                     : "All records"}
               </h2>
               <span className="text-sm text-muted-foreground">
-                {result.total.toLocaleString()} records
+                {result.total.toLocaleString()} {result.total === 1 ? "record" : "records"}
               </span>
             </div>
             {activeFilters.length > 0 && (

@@ -52,7 +52,7 @@ test("headline counts independently reconcile to mapping rows without summing ov
 test("broad construction references do not become detailed-industry material or assessments", () => {
   const parent=coverage.cell("23","q-project-wip"), child=coverage.cell("236","q-project-wip"), leaf=coverage.cell("236115","q-project-wip");
   assert.ok(parent.direct_records>0);
-  assert.equal(parent.assessments.length,1);
+  assert.deepEqual(parent.assessments.map(a=>a.id).sort(),["coverage-construction-connected-2026-09-14","coverage-construction-four-gaps-2026-09-14","coverage-construction-local-2026-09-14","coverage-construction-wip-2026-09-11"]);
   for (const cell of [child,leaf]) {
     assert.equal(cell.direct_records,mappingRows.filter(m=>m.industry_mappings.some(i=>i.industry_code===cell.industry_code)&&m.question_mappings.some(q=>q.question_id==="q-project-wip")).length);
     assert.equal(cell.assessments.length,0);
@@ -76,7 +76,7 @@ test("metadata queues and sparse cells retain unknowns instead of inventing abse
   const analytics=coverage.analytics();
   const assessments=read("data/coverage/assessments.json").assessments;
   assert.equal(analytics.summary.scoped_assessments,new Set(assessments.map(a=>a.id)).size);
-  assert.equal(analytics.summary.assessment_status_counts.partial,1);
+  assert.equal(analytics.summary.assessment_status_counts.partial,assessments.filter(a=>a.status==="partial").length);
   assert.equal(analytics.summary.assessment_status_counts["sufficient-for-stated-scope"],0);
   assert.equal(assessments[0].source_currency,"not-reverified-for-this-assessment");
   assert.equal(assessments[0].dimensions["worked-material"],"missing");
@@ -127,7 +127,7 @@ test("rendered coverage routes expose sources, explicit scope and schema-linked 
   for(const path of ["/api/v1/coverage","/api/v1/coverage/topology","/api/v1/coverage/history","/api/v1/coverage/records/{id}"]) assert.ok(spec.paths[path]?.get);
 });
 
-test("portable mappings meet their public schema and analytics match the same hashed build", () => {
+test("portable mappings meet their public schema and analytics match the same hashed build", async () => {
   const schema=read("schemas/coverage.schema.json");
   const resolve=value=>Array.isArray(value)?value.map(resolve):value&&typeof value==="object"?(value.$ref?resolve(schema.$defs[value.$ref.split("/").at(-1)]):Object.fromEntries(Object.entries(value).filter(([key])=>key!=="$defs").map(([key,v])=>[key,resolve(v)]))):value;
   const rows=fs.readFileSync("dist/client/downloads/coverage-records.jsonl","utf8").trim().split("\n").map(JSON.parse);
@@ -137,7 +137,12 @@ test("portable mappings meet their public schema and analytics match the same ha
   assert.deepEqual(read("dist/client/downloads/coverage-topology.json"),topology);
   const manifest=read("dist/client/downloads/manifest.json");
   for(const entry of manifest.files.filter(f=>f.path.includes("coverage"))) {
-    const bytes=fs.readFileSync(`dist/client${entry.path}`);
+    const response=await worker.fetch(new Request(`https://corpus.test${entry.path}`), {ASSETS:{fetch:async request=>{
+      const file=`dist/client${new URL(request.url).pathname}`;
+      return fs.existsSync(file)?new Response(fs.readFileSync(file)):new Response(null,{status:404});
+    }}});
+    assert.equal(response.status,200,entry.path);
+    const bytes=Buffer.from(await response.arrayBuffer());
     assert.equal(createHash("sha256").update(bytes).digest("hex"),entry.sha256);
   }
   assert.equal(manifest.files.filter(f=>f.path.includes("coverage")).length,7);

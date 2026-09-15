@@ -71,7 +71,7 @@ export function coveragePage(params: URLSearchParams) {
                 <TableHead scope="col">{"Industry"}</TableHead>
                 <TableHead scope="col">{"At this scope"}</TableHead>
                 <TableHead scope="col">{"In narrower industries"}</TableHead>
-                <TableHead scope="col">{"Earlier WIP assessments"}</TableHead>
+                <TableHead scope="col">{"Scoped assessments"}</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -146,7 +146,7 @@ export function coveragePage(params: URLSearchParams) {
                 ) : (
                   ""
                 )}
-                <TableHead scope="col">{"Earlier WIP assessments"}</TableHead>
+                <TableHead scope="col">{"Scoped assessments"}</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -508,7 +508,7 @@ export function coveragePage(params: URLSearchParams) {
                 </p>
                 <p>
                   {selected.scoped_assessments
-                    ? `${selected.scoped_assessments} scoped assessment; its boundaries are shown below.`
+                    ? `${selected.scoped_assessments} scoped assessment(s); boundaries are shown below.`
                     : "Current applicability and named-question reviews appear below; no earlier WIP assessment at this exact scope."}
                 </p>
               </div>

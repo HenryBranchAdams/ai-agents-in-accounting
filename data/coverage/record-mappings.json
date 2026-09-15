@@ -1,12 +1,12 @@
 {
   "schema_version": "1.0.0",
-  "mapping_version": "2026-09-11.3",
+  "mapping_version": "2026-09-14.1",
   "topology_version": "2026-09-11.1",
-  "corpus_version": "2026-09-11.2",
-  "generated_at": "2026-09-11",
-  "corpus_sha256": "73d194195fb791631c725addcbe4371dcf3279ba5d0d4ef511701f8a28099656",
+  "corpus_version": "2026-09-14.3",
+  "generated_at": "2026-09-14",
+  "corpus_sha256": "8985453b963c3e3480e7d92b5d2ee993fd7b1477f68cebb15f4b5b4d57a9ce1b",
   "rules_sha256": "550b2bb485399af996bac6ed34542d7a91170d4b31b5e5026e0e9c2c32068b9d",
-  "overrides_sha256": "e7cdd21e8f2992bb791db366e735ffc6cc2f18c5f35d5e64cd983d91ff9a541c",
+  "overrides_sha256": "58c260bd73dc007b736af147ccaf83286405f88dacaab376d969b6bf60ed4cb4",
   "method": "Deterministic title/topic associations, conservative industry crosswalk, and explicit editorial additions. All initial links are candidates; source review status is unchanged.",
   "mappings": [
     {
@@ -32215,6 +32215,70 @@
       "note": "Question-level citation association reviewed; no industry descendant or sufficiency credit."
     },
     {
+      "record_id": "src_construction_asbca_51759",
+      "question_mappings": [
+        {
+          "question_id": "q-cash-settlement",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "payment",
+              "rule": "title:cash-settlement"
+            }
+          ]
+        },
+        {
+          "question_id": "q-controls-fraud",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Controls and governance",
+              "rule": "topic-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-receivables-credit",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "retainage",
+              "rule": "title:receivables-credit"
+            }
+          ]
+        },
+        {
+          "question_id": "q-revenue",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "billing",
+              "rule": "title:revenue"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "23",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/industries/0",
+              "matched": "construction-real-estate",
+              "rule": "legacy-tag-crosswalk"
+            }
+          ]
+        }
+      ],
+      "note": "Candidate association with this industry scope; applicability and depth are not inferred."
+    },
+    {
       "record_id": "src_construction_california_certified_payroll",
       "question_mappings": [
         {
@@ -32867,6 +32931,112 @@
       "note": "Candidate association with this industry scope; applicability and depth are not inferred."
     },
     {
+      "record_id": "src_construction_fasb_codification_access",
+      "question_mappings": [
+        {
+          "question_id": "q-consolidation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "consolidat",
+              "rule": "title:consolidation"
+            }
+          ]
+        },
+        {
+          "question_id": "q-controls-fraud",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Controls and governance",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "23",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/industries/0",
+              "matched": "construction-real-estate",
+              "rule": "legacy-tag-crosswalk"
+            }
+          ]
+        }
+      ],
+      "note": "Candidate association with this industry scope; applicability and depth are not inferred."
+    },
+    {
+      "record_id": "src_construction_fasb_retainage_staff",
+      "question_mappings": [
+        {
+          "question_id": "q-controls-fraud",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Controls and governance",
+              "rule": "topic-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-project-wip",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Selected construction evidence closure; association only, scope and rights remain in source record.",
+              "rule": "editorial-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-receivables-credit",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "retainage",
+              "rule": "title:receivables-credit"
+            }
+          ]
+        },
+        {
+          "question_id": "q-revenue",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Selected construction evidence closure; association only, scope and rights remain in source record.",
+              "rule": "editorial-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "23",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/industries/0",
+              "matched": "construction-real-estate",
+              "rule": "legacy-tag-crosswalk"
+            }
+          ]
+        }
+      ],
+      "note": "Candidate association with this industry scope; applicability and depth are not inferred."
+    },
+    {
       "record_id": "src_construction_fasb_revenue_qa",
       "question_mappings": [
         {
@@ -32900,6 +33070,192 @@
     {
       "record_id": "src_construction_florida_taa_22a015",
       "question_mappings": [],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "23",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/industries/0",
+              "matched": "construction-real-estate",
+              "rule": "legacy-tag-crosswalk"
+            }
+          ]
+        }
+      ],
+      "note": "Candidate association with this industry scope; applicability and depth are not inferred."
+    },
+    {
+      "record_id": "src_construction_gao_25107258",
+      "question_mappings": [
+        {
+          "question_id": "q-controls-fraud",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Controls and governance",
+              "rule": "topic-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-cost-allocation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "construction estimate and final-cost",
+              "rule": "title:cost-allocation"
+            }
+          ]
+        },
+        {
+          "question_id": "q-estimates",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "estimat",
+              "rule": "title:estimates"
+            },
+            {
+              "field": "/data",
+              "matched": "Selected construction evidence closure; association only, scope and rights remain in source record.",
+              "rule": "editorial-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-project-wip",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Selected construction evidence closure; association only, scope and rights remain in source record.",
+              "rule": "editorial-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "23",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/industries/0",
+              "matched": "construction-real-estate",
+              "rule": "legacy-tag-crosswalk"
+            }
+          ]
+        }
+      ],
+      "note": "Candidate association with this industry scope; applicability and depth are not inferred."
+    },
+    {
+      "record_id": "src_construction_gsa184_2025",
+      "question_mappings": [
+        {
+          "question_id": "q-cash-settlement",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "payment",
+              "rule": "title:cash-settlement"
+            }
+          ]
+        },
+        {
+          "question_id": "q-controls-fraud",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Controls and governance",
+              "rule": "topic-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-project-wip",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Selected construction evidence closure; association only, scope and rights remain in source record.",
+              "rule": "editorial-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-receivables-credit",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Selected construction evidence closure; association only, scope and rights remain in source record.",
+              "rule": "editorial-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "23",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/industries/0",
+              "matched": "construction-real-estate",
+              "rule": "legacy-tag-crosswalk"
+            }
+          ]
+        }
+      ],
+      "note": "Candidate association with this industry scope; applicability and depth are not inferred."
+    },
+    {
+      "record_id": "src_construction_gsa184a_2015",
+      "question_mappings": [
+        {
+          "question_id": "q-controls-fraud",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Controls and governance",
+              "rule": "topic-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-cost-allocation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Selected construction evidence closure; association only, scope and rights remain in source record.",
+              "rule": "editorial-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-project-wip",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Selected construction evidence closure; association only, scope and rights remain in source record.",
+              "rule": "editorial-association"
+            }
+          ]
+        }
+      ],
       "industry_scope": "specific",
       "industry_mappings": [
         {

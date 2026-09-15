@@ -1,10 +1,183 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "edges": [
-    {"from":"src_1os761s","to":"src_netsuite26ai","type":"qualifies","provenance":{"source_ids":["src_1os761s","src_netsuite26ai"],"pointers":["/data/curation/transfer_limit","/data/relationship_profile/claims"],"reason":"The applicable US GAAP authority bounds how a product release description may be interpreted; it cannot replace recognition or disclosure requirements."}},
-    {"from":"src_1os761s","to":"src_sageclose25","type":"qualifies","provenance":{"source_ids":["src_1os761s","src_sageclose25"],"pointers":["/data/curation/transfer_limit","/data/relationship_profile/claims"],"reason":"The applicable reporting framework bounds vendor close capabilities and does not treat them as accounting authority."}},
-    {"from":"src_xero_journals_completeness","to":"collection-erp-extraction-completeness","type":"supports","provenance":{"source_ids":["src_xero_journals_completeness","collection-erp-extraction-completeness"],"pointers":["/data/evidence","/source_ids"],"reason":"The collection explicitly includes this endpoint-level extraction boundary."}},
-    {"from":"src_leitner_accounting_assistant","to":"collection-empirical-accounting-limits","type":"supports","provenance":{"source_ids":["src_leitner_accounting_assistant","collection-empirical-accounting-limits"],"pointers":["/data/evidence","/source_ids"],"reason":"The collection bibliography includes this bounded empirical accounting-assistant evaluation."}},
-    {"from":"src_ibm_aml_synthetic_transactions","to":"collection-financial-dataset-provenance","type":"supports","provenance":{"source_ids":["src_ibm_aml_synthetic_transactions","collection-financial-dataset-provenance"],"pointers":["/data/evidence","/source_ids"],"reason":"The collection records this dataset's synthetic transaction provenance and rights boundary."}}
+    {
+      "from": "src_1os761s",
+      "to": "src_netsuite26ai",
+      "type": "qualifies",
+      "provenance": {
+        "source_ids": [
+          "src_1os761s",
+          "src_netsuite26ai"
+        ],
+        "pointers": [
+          "/data/curation/transfer_limit",
+          "/data/relationship_profile/claims"
+        ],
+        "reason": "The applicable US GAAP authority bounds how a product release description may be interpreted; it cannot replace recognition or disclosure requirements."
+      }
+    },
+    {
+      "from": "src_1os761s",
+      "to": "src_sageclose25",
+      "type": "qualifies",
+      "provenance": {
+        "source_ids": [
+          "src_1os761s",
+          "src_sageclose25"
+        ],
+        "pointers": [
+          "/data/curation/transfer_limit",
+          "/data/relationship_profile/claims"
+        ],
+        "reason": "The applicable reporting framework bounds vendor close capabilities and does not treat them as accounting authority."
+      }
+    },
+    {
+      "from": "src_xero_journals_completeness",
+      "to": "collection-erp-extraction-completeness",
+      "type": "supports",
+      "provenance": {
+        "source_ids": [
+          "src_xero_journals_completeness",
+          "collection-erp-extraction-completeness"
+        ],
+        "pointers": [
+          "/data/evidence",
+          "/source_ids"
+        ],
+        "reason": "The collection explicitly includes this endpoint-level extraction boundary."
+      }
+    },
+    {
+      "from": "src_leitner_accounting_assistant",
+      "to": "collection-empirical-accounting-limits",
+      "type": "supports",
+      "provenance": {
+        "source_ids": [
+          "src_leitner_accounting_assistant",
+          "collection-empirical-accounting-limits"
+        ],
+        "pointers": [
+          "/data/evidence",
+          "/source_ids"
+        ],
+        "reason": "The collection bibliography includes this bounded empirical accounting-assistant evaluation."
+      }
+    },
+    {
+      "from": "src_ibm_aml_synthetic_transactions",
+      "to": "collection-financial-dataset-provenance",
+      "type": "supports",
+      "provenance": {
+        "source_ids": [
+          "src_ibm_aml_synthetic_transactions",
+          "collection-financial-dataset-provenance"
+        ],
+        "pointers": [
+          "/data/evidence",
+          "/source_ids"
+        ],
+        "reason": "The collection records this dataset's synthetic transaction provenance and rights boundary."
+      }
+    },
+    {
+      "from": "src_construction_fasb_retainage_staff",
+      "to": "example-construction-contract-ledger",
+      "type": "qualifies",
+      "provenance": {
+        "source_ids": [
+          "src_construction_fasb_retainage_staff"
+        ],
+        "pointers": [
+          "/data"
+        ],
+        "reason": "Staff retainage explanation bounds the original net-presentation example; non-authoritative."
+      }
+    },
+    {
+      "from": "src_construction_gao_25107258",
+      "to": "example-construction-contract-ledger",
+      "type": "qualifies",
+      "provenance": {
+        "source_ids": [
+          "src_construction_gao_25107258"
+        ],
+        "pointers": [
+          "/data"
+        ],
+        "reason": "Actual aggregate estimate findings motivate version history but do not validate synthetic journals."
+      }
+    },
+    {
+      "from": "src_construction_gsa184_2025",
+      "to": "example-construction-contract-ledger",
+      "type": "qualifies",
+      "provenance": {
+        "source_ids": [
+          "src_construction_gsa184_2025"
+        ],
+        "pointers": [
+          "/data"
+        ],
+        "reason": "Blank payment-form definitions do not establish earned GAAP revenue."
+      }
+    },
+    {
+      "from": "src_construction_asbca_51759",
+      "to": "guide-construction-connected-close",
+      "type": "qualifies",
+      "provenance": {
+        "source_ids": [
+          "src_construction_asbca_51759"
+        ],
+        "pointers": [
+          "/data/limitations"
+        ],
+        "reason": "Same-job reported facts support a partial reconciliation but not complete source-population or GAAP validation."
+      }
+    },
+    {
+      "from": "src_construction_asbca_51759",
+      "to": "example-construction-contract-ledger",
+      "type": "qualifies",
+      "provenance": {
+        "source_ids": [
+          "src_construction_asbca_51759"
+        ],
+        "pointers": [
+          "/data/limitations"
+        ],
+        "reason": "Same-job reported facts support a partial reconciliation but not complete source-population or GAAP validation."
+      }
+    },
+    {
+      "from": "src_construction_asbca_51759",
+      "to": "wf-construction-wip-close",
+      "type": "qualifies",
+      "provenance": {
+        "source_ids": [
+          "src_construction_asbca_51759"
+        ],
+        "pointers": [
+          "/data/limitations"
+        ],
+        "reason": "Same-job reported facts support a partial reconciliation but not complete source-population or GAAP validation."
+      }
+    },
+    {
+      "from": "src_construction_fasb_codification_access",
+      "to": "guide-construction-connected-close",
+      "type": "qualifies",
+      "provenance": {
+        "source_ids": [
+          "src_construction_fasb_codification_access"
+        ],
+        "pointers": [
+          "/data/access_note"
+        ],
+        "reason": "Access-only check leaves current consolidated paragraph review unperformed."
+      }
+    }
   ]
 }

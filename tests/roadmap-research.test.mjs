@@ -65,7 +65,7 @@ test('original worked arithmetic and legal cohort examples retain their stated s
  const cases=byId.get('guide-construction-tax-transitions').data.worked_examples[0].cases;
  for(const c of cases){assert.ok(c.contract_date>=c.tax_year_start);assert.equal(c.new_amendment_cohort,c.tax_year_start>'2025-07-04');}
  const tax=byId.get('guide-construction-tax-transitions').data.research_questions;
- assert.match(tax[1].answer,/not a blanket three-year/);assert.match(tax[2].answer,/apparent conflict/);
+ assert.match(tax[1].answer,/not a blanket three-year/);assert.match(tax[2].answer,/do not amount to an IRS correction/);
  const mba=byId.get('src_15oku59');assert.match(mba.title,/MBABench/);assert.match(mba.data.published_or_status,/2026-08-19/);assert.equal(mba.data.source_review.review_level,'abstract-or-landing');
 });
 

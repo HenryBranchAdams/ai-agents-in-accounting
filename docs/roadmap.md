@@ -1,5 +1,10 @@
 # Accounting Agents roadmap
 
+Current local construction reference: **2026-09-14.3**, locally complete with qualified conclusions. The [four-gap closure ledger](research/construction-four-gap-follow-through-2026-09-14.md) records partial same-job adjudicated evidence, unresolved consolidated-GAAP access, four separate IRS discrepancies and a [prepared review packet](research/construction-review-packet-2026-09-14.md). None of the four external evidence gaps is closed. The corpus contains 1,067 records and 636 sources; 178 named questions remain unchanged. The original synthetic journals and all branches are preserved. A fourth partial scoped assessment records local consistency without promoting accounting sufficiency; the three earlier assessments remain historical. No remaining local blocker was identified within the selected reading path. The [earlier handoff](research/construction-evidence-closure-2026-09-14.md) and September 12 checkpoint remain historical.
+
+The September 12 counts and acceptance statements below are retained as historical evidence. They do not describe this supplement's validation or deployment. Local checks and inspection for the supplement are recorded in its handoff; no publication or push is authorized here.
+
+
 Research outcome checkpoint: September 12, 2026. The five-phase research assignment has been implemented as corpus **2026-09-11.2**, with explicit partial answers and unresolved evidence. The expansion was committed as `94b94ab`. Current deployment status is separate from this research checkpoint; inspect the live `/api/v1/meta` and release evidence. The [handoff](checkpoint-roadmap-2026-09-12.md) records reading paths, checks and limitations.
 
 ## Delivered scope

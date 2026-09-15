@@ -280,6 +280,16 @@ export function recordPage(r: CorpusRecord) {
   const researchQuestions = Array.isArray(r.data.research_questions)
     ? r.data.research_questions
     : [];
+  const workedBranches = r.id === "example-construction-contract-ledger" && Array.isArray(r.data.examples)
+    ? r.data.examples as Record<string, Json>[]
+    : [];
+  const constructionSections = r.id === "example-construction-contract-ledger"
+    ? [["journals", "Base journals"], ["examples", "Calculations and branches"], ["same_job_case", "Same-job evidence"], ["transaction_evidence", "Corrections and completeness"], ["observed_evidence", "Aggregate evidence"]]
+    : r.id === "guide-construction-connected-close"
+      ? [["local_completion", "Local completion"], ["four_gap_ledger", "Four-gap outcomes"], ["authority_matrix", "Authority questions"], ["professional_review_packet", "Review packet"], ["evidence_closure", "Earlier gap outcomes"], ["public_evidence_intake", "Public evidence intake"]]
+      : r.id === "guide-construction-tax-transitions"
+        ? [["conflict_resolution", "Source disagreements"], ["method_change_path", "Method-change scope"]]
+        : [];
   const edges = knowledge
     .relations(r.id)
     .filter((e) => !["cites", "cited_by"].includes(e.type));
@@ -309,6 +319,7 @@ export function recordPage(r: CorpusRecord) {
                     ["unknowns", "Unknowns"],
                   ]
                 : [["record-content", "Reference details"]]),
+          ...constructionSections.map(([id, title]) => ["detail-" + id, title]),
           ...(cited.length && r.kind !== "collection"
             ? [["sources", "Cited sources"]]
             : []),
@@ -577,7 +588,21 @@ export function recordPage(r: CorpusRecord) {
               <summary>{"Complete record details"}</summary>
               {"\n        "}
               {fields.map(([key, value]) =>
-                key === "paragraphs" && Array.isArray(value) ? (
+                key === "examples" && workedBranches.length ? (
+                  <section id="detail-examples">
+                    <h2>Calculations and branches</h2>
+                    <p>Each branch states its own assumptions. Follow one branch at a time; the original closes remain separate.</p>
+                    <nav aria-label="Worked branches"><ul>{workedBranches.map((branch) => (
+                      <li><a href={"#" + displayText(branch.id)}>{displayText(branch.title)}</a></li>
+                    ))}</ul></nav>
+                    {workedBranches.map((branch) => (
+                      <section id={displayText(branch.id)}>
+                        <h3>{displayText(branch.title)}</h3>
+                        {structured(Object.fromEntries(Object.entries(branch).filter(([k]) => !["id", "title"].includes(k))))}
+                      </section>
+                    ))}
+                  </section>
+                ) : key === "paragraphs" && Array.isArray(value) ? (
                   <>
                     <section>
                       <h2>{"Reference text"}</h2>
@@ -591,7 +616,7 @@ export function recordPage(r: CorpusRecord) {
                 ) : (
                   <>
                     <section>
-                      <h2>{displayText(label(key))}</h2>
+                      <h2 id={constructionSections.some(([id]) => id === key) ? "detail-" + key : undefined}>{displayText(label(key))}</h2>
                       {structured(value)}
                     </section>
                   </>
