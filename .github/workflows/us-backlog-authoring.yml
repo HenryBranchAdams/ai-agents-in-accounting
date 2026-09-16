@@ -39,6 +39,8 @@ jobs:
           parent = subprocess.check_output(['git', 'rev-parse', 'HEAD^'], text=True).strip()
           if parent != spec['expected_parent']:
               raise SystemExit('Branch parent changed; reconcile before applying this patch.')
+          def allowed(path):
+              return bool(re.fullmatch(r'(?:data|docs|scripts|tests|schemas)/[A-Za-z0-9_./-]+|(?:RELEASES|README|TESTING)\.md', path)) and '..' not in pathlib.PurePosixPath(path).parts
           encoded = pathlib.Path('.github/us-backlog-patch.gz.b64').read_text().strip()
           if len(encoded) > 4000000:
               raise SystemExit('Encoded patch exceeds the bounded transport limit.')
@@ -51,15 +53,41 @@ jobs:
           paths = [line.split('\t', 2)[2] for line in stats.splitlines()]
           if sorted(paths) != sorted(spec['changed_paths']) or len(paths) != len(set(paths)):
               raise SystemExit('Patch paths differ from the explicit manifest.')
-          for path in paths:
-              if not re.fullmatch(r'(?:data|docs|scripts|tests|schemas)/[A-Za-z0-9_./-]+|(?:RELEASES|README|TESTING)\.md', path) or '..' in pathlib.PurePosixPath(path).parts:
-                  raise SystemExit('Path outside the authorized research/verification surface: ' + path)
+          if not all(allowed(path) for path in paths):
+              raise SystemExit('Patch contains a path outside the research/verification surface.')
+          outputs = spec.get('expected_output_sha256', {})
+          if not outputs or not all(allowed(path) and re.fullmatch('[a-f0-9]{64}', digest) for path, digest in outputs.items()):
+              raise SystemExit('Every final output must have an allowed path and SHA-256.')
+          if spec.get('preserve_baseline_release'):
+              if spec['preserve_baseline_release'] != '2026-09-14.3':
+                  raise SystemExit('Only the declared starting edition may be preserved here.')
+              if not pathlib.Path('data/releases/2026-09-14.3/corpus.json').exists():
+                  if json.loads(pathlib.Path('data/catalog.json').read_text())['corpus_version'] != '2026-09-14.3':
+                      raise SystemExit('Original baseline is unavailable; do not reconstruct it from changed records.')
+                  subprocess.run(['npm', 'run', 'build'], check=True)
+                  subprocess.run(['node', 'scripts/release-history.mjs', 'dist/client/downloads/corpus.json', 'data/releases/2026-09-14.2/corpus.json'], check=True)
+                  subprocess.run(['git', 'add', 'data/releases/2026-09-14.3', 'data/releases/index.json'], check=True)
           subprocess.run(['git', 'apply', '--check', '--index', str(target)], check=True)
           subprocess.run(['git', 'apply', '--index', str(target)], check=True)
+          if spec.get('regenerate_mappings'):
+              subprocess.run(['node', 'scripts/coverage-mappings.mjs'], check=True)
+              subprocess.run(['git', 'add', 'data/coverage/record-mappings.json'], check=True)
+          snapshot = spec.get('snapshot_id')
+          if snapshot:
+              if not re.fullmatch(r'2026-09-16\.\d+', snapshot):
+                  raise SystemExit('Invalid snapshot identifier.')
+              subprocess.run(['node', 'scripts/coverage-snapshot.mjs', snapshot], check=True)
+              subprocess.run(['git', 'add', 'data/coverage/snapshots.json'], check=True)
+          for path, digest in outputs.items():
+              if hashlib.sha256(pathlib.Path(path).read_bytes()).hexdigest() != digest:
+                  raise SystemExit('Generated/applied output differs from locally inspected bytes: ' + path)
+          staged = subprocess.check_output(['git', 'diff', '--cached', '--name-only'], text=True).splitlines()
+          if sorted(staged) != sorted(outputs):
+              raise SystemExit('Staged output population differs from the manifest.')
           for entry in subprocess.check_output(['git', 'diff', '--cached', '--raw'], text=True).splitlines():
               if entry.split()[1] not in ('100644', '000000'):
                   raise SystemExit('Only ordinary files are permitted in a corpus patch.')
-          print('Applied batch', spec['batch'], 'to', len(paths), 'explicitly declared files.')
+          print('Applied and hash-verified batch', spec['batch'], 'with', len(paths), 'patch files and', len(outputs), 'total outputs.')
           PY
       - run: git diff --cached --check
       - name: Verify the exact resulting corpus and generated downloads
