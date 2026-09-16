@@ -11,9 +11,21 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+      - name: Preserve the exact verification source
+        run: git archive --format=zip HEAD -o "$RUNNER_TEMP/repository-source.zip"
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
           cache: npm
       - run: npm ci
       - run: npm run check
+      - name: Retain source and generated verification output
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: corpus-verification-${{ github.sha }}
+          path: |
+            ${{ runner.temp }}/repository-source.zip
+            dist/
+          if-no-files-found: error
+          retention-days: 14
