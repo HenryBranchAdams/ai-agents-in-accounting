@@ -1,0 +1,92 @@
+name: Temporary US backlog branch authoring
+on:
+  push:
+    branches: [research/us-backlog-2026-09-16]
+    paths:
+      - .github/workflows/us-backlog-authoring.yml
+      - .github/us-backlog-patch.json
+      - .github/us-backlog-patch.gz.b64
+permissions:
+  contents: write
+concurrency:
+  group: us-backlog-branch-authoring
+  cancel-in-progress: false
+jobs:
+  integrate:
+    if: github.repository == 'HenryBranchAdams/ai-agents-in-accounting' && github.ref == 'refs/heads/research/us-backlog-2026-09-16' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Apply only the declared patch to the expected branch parent
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import base64, gzip, hashlib, json, pathlib, re, subprocess
+          manifest = pathlib.Path('.github/us-backlog-patch.json')
+          if not manifest.exists():
+              print('Bootstrap: no implementation patch supplied.')
+              raise SystemExit(0)
+          spec = json.loads(manifest.read_text())
+          parent = subprocess.check_output(['git', 'rev-parse', 'HEAD^'], text=True).strip()
+          if parent != spec['expected_parent']:
+              raise SystemExit('Branch parent changed; reconcile before applying this patch.')
+          encoded = pathlib.Path('.github/us-backlog-patch.gz.b64').read_text().strip()
+          if len(encoded) > 4000000:
+              raise SystemExit('Encoded patch exceeds the bounded transport limit.')
+          patch = gzip.decompress(base64.b64decode(encoded, validate=True))
+          if len(patch) > 100000000 or hashlib.sha256(patch).hexdigest() != spec['patch_sha256']:
+              raise SystemExit('Patch size or digest differs from the manifest.')
+          target = pathlib.Path('/tmp/us-backlog-implementation.patch')
+          target.write_bytes(patch)
+          stats = subprocess.check_output(['git', 'apply', '--numstat', str(target)], text=True)
+          paths = [line.split('\t', 2)[2] for line in stats.splitlines()]
+          if sorted(paths) != sorted(spec['changed_paths']) or len(paths) != len(set(paths)):
+              raise SystemExit('Patch paths differ from the explicit manifest.')
+          for path in paths:
+              if not re.fullmatch(r'(?:data|docs|scripts|tests|schemas)/[A-Za-z0-9_./-]+|(?:RELEASES|README|TESTING)\.md', path) or '..' in pathlib.PurePosixPath(path).parts:
+                  raise SystemExit('Path outside the authorized research/verification surface: ' + path)
+          subprocess.run(['git', 'apply', '--check', '--index', str(target)], check=True)
+          subprocess.run(['git', 'apply', '--index', str(target)], check=True)
+          for entry in subprocess.check_output(['git', 'diff', '--cached', '--raw'], text=True).splitlines():
+              if entry.split()[1] not in ('100644', '000000'):
+                  raise SystemExit('Only ordinary files are permitted in a corpus patch.')
+          print('Applied batch', spec['batch'], 'to', len(paths), 'explicitly declared files.')
+          PY
+      - run: git diff --cached --check
+      - name: Verify the exact resulting corpus and generated downloads
+        run: npm run check
+      - name: Commit verified canonical files to this work branch only
+        shell: bash
+        run: |
+          if ! git diff --cached --quiet; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m 'Integrate and verify US accounting research batch'
+            git push origin HEAD:refs/heads/research/us-backlog-2026-09-16
+          fi
+      - name: Retain exact source and reusable local verification dependencies
+        if: always()
+        run: |
+          git archive --format=zip HEAD -o "$RUNNER_TEMP/repository-source.zip"
+          git diff --binary --cached > "$RUNNER_TEMP/uncommitted-research.patch"
+          if [ -d node_modules ]; then tar -czf "$RUNNER_TEMP/node_modules.tgz" node_modules; fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: us-backlog-authoring-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/repository-source.zip
+            ${{ runner.temp }}/uncommitted-research.patch
+            ${{ runner.temp }}/node_modules.tgz
+            dist/
+          retention-days: 14
+          if-no-files-found: error
