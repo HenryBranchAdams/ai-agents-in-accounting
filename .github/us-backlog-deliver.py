@@ -72,6 +72,9 @@ run('git', 'merge-base', '--is-ancestor', original['expected_parent'], 'HEAD')
 apply(original, original_parts, 'original')
 verify(original['expected_output_sha256'])
 apply(spec, parts, 'repair')
+# The inspected recovery has one extra EOF blank line; normalize only this file.
+ledger = Path('docs/research/us-backlog-execution-2026-09-16.md')
+ledger.write_text(ledger.read_text().rstrip() + '\n')
 run('node', 'scripts/coverage-mappings.mjs')
 if spec['snapshot_id'] != '2026-09-16.1' or spec['snapshot_recorded_at'] != '2026-09-17':
     raise SystemExit('Unexpected snapshot identity')
