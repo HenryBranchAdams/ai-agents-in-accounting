@@ -3356,6 +3356,7 @@
         "cost-object map",
         "budget approval",
         "actual unit and price population",
+        "Unit A and Unit B revenue and direct-cost ledger by cost object",
         "AR/AP aging and cash activity",
         "forecast revision log",
         "external award or contract terms if applicable"
@@ -3583,17 +3584,80 @@
         }
       },
       "margin_definitions": {
+        "input_basis": {
+          "currency": "USD",
+          "period": "2026-01-01/2026-01-31",
+          "budget_as_of": "2025-12-15",
+          "actual_v1_as_of": "2026-02-02",
+          "assumptions": [
+            "Unit A and Unit B revenue and direct production cost are cost-object views of the same entity ledger population; their sums must equal the entity budget or actual totals.",
+            "Unit A receives the primary $72,000 approved-hour allocation once for the internal operating view; the entity view uses the full $120,000 support pool once.",
+            "One-time restructuring is excluded from gross margin and is not a plug in the unit or entity formulas."
+          ],
+          "budget_v1": {
+            "record_id": "BUDGET-2026-01-v1",
+            "unit_a": {
+              "revenue": 50000,
+              "direct_cost": 10000,
+              "allocated_support": 72000
+            },
+            "unit_b": {
+              "revenue": 50000,
+              "direct_cost": 50000,
+              "allocated_support": 48000
+            },
+            "entity": {
+              "revenue": 100000,
+              "direct_cost": 60000,
+              "support_pool": 120000
+            },
+            "ledger_ties": [
+              "50000 + 50000 = 100000 revenue",
+              "10000 + 50000 = 60000 direct cost",
+              "72000 + 48000 = 120000 support allocation"
+            ]
+          },
+          "actual_v1": {
+            "record_id": "ACTUAL-2026-01-v1",
+            "unit_a": {
+              "revenue": 54000,
+              "direct_cost": 9000,
+              "allocated_support": 72000
+            },
+            "unit_b": {
+              "revenue": 45000,
+              "direct_cost": 45000,
+              "allocated_support": 48000
+            },
+            "entity": {
+              "revenue": 99000,
+              "direct_cost": 54000,
+              "support_pool": 120000
+            },
+            "ledger_ties": [
+              "54000 + 45000 = 99000 revenue",
+              "9000 + 45000 = 54000 direct cost",
+              "72000 + 48000 = 120000 support allocation"
+            ]
+          }
+        },
         "gross_margin": {
           "numerator": "revenue - direct production cost",
           "denominator": "revenue",
           "budget_dollars": 40000,
           "actual_v1_dollars": 45000,
+          "budget_formula": "100000 - 60000 = 40000",
+          "actual_v1_formula": "99000 - 54000 = 45000",
+          "input_refs": [
+            "input_basis.budget_v1.entity",
+            "input_basis.actual_v1.entity"
+          ],
           "excludes": [
             "shared-service allocation",
             "one-time restructuring"
           ],
           "ledger_lines": [
-            "4000 revenue",
+            "4000 revenue by cost object",
             "direct production cost population"
           ]
         },
@@ -3602,7 +3666,18 @@
           "denominator": "Unit A revenue",
           "budget_dollars": -32000,
           "actual_v1_dollars": -27000,
+          "budget_formula": "50000 - 10000 - 72000 = -32000",
+          "actual_v1_formula": "54000 - 9000 - 72000 = -27000",
+          "input_refs": [
+            "input_basis.budget_v1.unit_a",
+            "input_basis.actual_v1.unit_a"
+          ],
           "allocated_support_once": 72000,
+          "ledger_lines": [
+            "4000-UNIT-A revenue",
+            "direct production cost-UNIT-A",
+            "SUPPORT-POOL-2026-01 allocation schedule"
+          ],
           "label": "Internal management view, not a GAAP measure"
         },
         "entity_operating_profit": {
@@ -3610,7 +3685,18 @@
           "denominator": "not a margin in this bridge",
           "budget_dollars": -80000,
           "actual_v1_dollars": -75000,
+          "budget_formula": "100000 - 60000 - 120000 = -80000",
+          "actual_v1_formula": "99000 - 54000 - 120000 = -75000",
+          "input_refs": [
+            "input_basis.budget_v1.entity",
+            "input_basis.actual_v1.entity"
+          ],
           "support_pool_counted": 1,
+          "ledger_lines": [
+            "4000 entity revenue",
+            "entity direct production cost population",
+            "SUPPORT-POOL-2026-01"
+          ],
           "label": "Synthetic entity reconciliation, not an external reporting conclusion"
         },
         "contribution_margin": {
@@ -3741,6 +3827,16 @@
         "1000 * 100 = 100000",
         "900 * 110 = 99000",
         "-10000 + 9000 = -1000",
+        "50000 + 50000 = 100000 revenue",
+        "10000 + 50000 = 60000 direct cost",
+        "54000 + 45000 = 99000 revenue",
+        "9000 + 45000 = 54000 direct cost",
+        "100000 - 60000 = 40000 gross margin",
+        "99000 - 54000 = 45000 gross margin",
+        "50000 - 10000 - 72000 = -32000 Unit A operating margin",
+        "54000 - 9000 - 72000 = -27000 Unit A operating margin",
+        "100000 - 60000 - 120000 = -80000 entity operating profit",
+        "99000 - 54000 - 120000 = -75000 entity operating profit",
         "-1000 + 6000 + 0 = 5000",
         "-80000 - 5000 + 2000 + 0 = -83000",
         "-75000 - 2000 + 1000 + 0 = -76000",

@@ -20,11 +20,27 @@ This is a scoped implementation receipt for issue AA-I125. It records the select
 ## Canonical implementation
 
 - Guides: `guide-q-cost-allocation`, `guide-q-planning`, and `guide-q-performance`.
-- Named questions: the six assigned rows are synchronized across the guides, `data/research/foundations.json`, and `data/coverage/research-questions.json`.
+- Named questions: six direct shared-family rows are synchronized across the guides, `data/research/foundations.json`, and `data/coverage/research-questions.json`. The seventh baseline touchpoint, `rq-mfg-cost`, is explicitly unresolved and deferred to issue #101.
 - Example: `example-us-management-allocation-budget-actual`.
-- Coverage: three sector-scoped partial assessments under assessment version `2026-09-17.125`; mapping overrides and generated mappings are synchronized.
+- Coverage: three sector-scoped partial assessments under assessment version `2026-09-17.1252`; mapping overrides and generated mappings are synchronized.
 - Retrieval fixtures: `rq-aa-i125-allocation` and `rq-aa-i125-budget-actual`.
-- Narrow integration: `scripts/integrate-management-accounting.mjs` applies only this issue packet and refuses an unrelated existing example with the same stable ID.
+- Narrow integration: `scripts/integrate-management-accounting.mjs` applies only this issue packet, refuses an unrelated existing example with the same stable ID, and stops before writing when any canonical top-level version or review date is newer than the packet.
+
+## Baseline and coordination receipt
+
+The baseline was recomputed at commit `afd2aced307628843f8a26677c3a6fb37fa733e3` from the catalog, record mappings, and named-question registry. It contains 51 distinct associated record IDs. The packet records every stable ID under `deepened`, `reused`, or `unresolved_or_deferred`, with no replacements. New scoped records are the original synthetic example and the FAR 31.203 source. The existing `src_cfr200grants` record is explicitly marked as an additional non-baseline source that was deepened.
+
+| Baseline question | Disposition | Boundary |
+| --- | --- | --- |
+| `rq-cost-allocation-allocation-base` | deepen | Selected US shared-service driver, ledger tie, sensitivity, and external-rule boundary |
+| `rq-cost-allocation-unit-cost` | reuse | IAS 2 context retained without presenting it as US authority |
+| `rq-planning-driver-model` | deepen | Versioned US budget-to-actual and profit-to-cash bridge |
+| `rq-planning-uncertainty` | deepen | Forecast revision, known and unknown inputs, missing-driver branch, and restated actual lineage |
+| `rq-performance-margin-definition` | deepen | Dated metric inputs, allocation treatment, and profit-to-cash tie |
+| `rq-performance-materiality` | deepen | SAB 99 remains registrant-only and supplies no percentage rule |
+| `rq-mfg-cost` | unresolved | Manufacturing conversion and normal-capacity application remains with #101 |
+
+Coordination links remain open and are not treated as completed: [#101](https://github.com/HenryBranchAdams/ai-agents-in-accounting/issues/101) owns manufacturing conversion and subsector exceptions; [#109](https://github.com/HenryBranchAdams/ai-agents-in-accounting/issues/109) owns holding-company perimeter, centralized management costs, and consolidation; [#117](https://github.com/HenryBranchAdams/ai-agents-in-accounting/issues/117) owns nonprofit recognition, awards, functional expenses, and disclosures. AA-I125 reuses shared context only.
 
 ## Deterministic reference results
 
@@ -33,6 +49,8 @@ This is a scoped implementation receipt for issue AA-I125. It records the select
 - Independent headcount sensitivity: 30/100 gives $36,000 and 70/100 gives $84,000. Neither driver is asserted to be economically correct.
 - Revenue bridge under the declared sequential volume-then-price convention: budget $100,000, actual $99,000, volume -$10,000, price +$9,000, total -$1,000.
 - Budget-to-actual entity profit: -$80,000 to -$75,000 before the late invoice, then -$76,000 after restatement. The full support pool is counted once; Unit A's $72,000 allocation is not added again.
+- Dated margin inputs: budget Unit A revenue $50,000, direct cost $10,000, and allocated support $72,000 produce `50000 - 10000 - 72000 = -32000`; actual v1 Unit A revenue $54,000, direct cost $9,000, and allocated support $72,000 produce `54000 - 9000 - 72000 = -27000`. Unit A and Unit B inputs tie to the entity revenue and direct-cost totals before any margin is reported.
+- Other displayed measures are reproducible from the same ledger ties: gross margin is $40,000 budget and $45,000 actual v1; entity operating profit is -$80,000 budget and -$75,000 actual v1. Contribution margin remains explicitly unasserted because no validated variable-cost taxonomy is provided.
 - Cash bridge: budget closing cash $217,000; actual v1 and restated v2 closing cash $224,000. The late $1,000 invoice changes AP and restated profit, not cash closing balance.
 
 ## Limits

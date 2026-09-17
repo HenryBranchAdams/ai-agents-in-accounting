@@ -1,7 +1,7 @@
 {
   "issue_id": "AA-I125",
   "reviewed_at": "2026-09-17",
-  "package_version": "2026-09-17.125",
+  "package_version": "2026-09-17.1252",
   "corpus_edition": "2026-09-14.3",
   "selected_scope": {
     "entity_role": "One synthetic privately held domestic US manufacturer with two operating units and a shared-services function; the entity is not assumed to be an SEC registrant, federal-award recipient, or federal contractor unless a counterexample says so.",
@@ -10,6 +10,170 @@
     "population": "Support-pool GL accounts 6100-6120, 1,000 approved service hours, operating units A and B, a 1,000-unit budget versus 900-unit actual revenue population, and linked AR, AP, cash, and source-document records.",
     "jurisdiction": "United States; state and local differences are not expanded. Existing international IAS 2 context is retained without being recast as US authority."
   },
+  "baseline_inventory": {
+    "as_of_commit": "afd2aced307628843f8a26677c3a6fb37fa733e3",
+    "source_records": [
+      "data/catalog.json",
+      "data/coverage/record-mappings.json",
+      "data/coverage/research-questions.json"
+    ],
+    "association_basis": "The base mapping joins 51 distinct record IDs to q-cost-allocation, q-planning, or q-performance. Association is a discovery denominator, not a sufficiency conclusion.",
+    "record_count": 51,
+    "record_dispositions": {
+      "deepened": [
+        "guide-q-cost-allocation",
+        "guide-q-performance",
+        "guide-q-planning",
+        "src_secsab0099"
+      ],
+      "reused": [
+        "agent-assets-inventory-cost",
+        "agent-treasury-liquidity",
+        "collection-construction-public-works",
+        "collection-management-accounting-controllership",
+        "example-cash-forecast-liquidity",
+        "guide-industry-naics2022-112",
+        "guide-industry-naics2022-313",
+        "guide-industry-naics2022-314",
+        "guide-industry-naics2022-315",
+        "guide-industry-naics2022-316",
+        "guide-industry-naics2022-321",
+        "guide-industry-naics2022-322",
+        "guide-industry-naics2022-323",
+        "guide-industry-naics2022-324",
+        "guide-industry-naics2022-326",
+        "guide-industry-naics2022-327",
+        "guide-industry-naics2022-331",
+        "guide-industry-naics2022-332",
+        "guide-industry-naics2022-333",
+        "guide-industry-naics2022-336",
+        "guide-industry-naics2022-337",
+        "guide-industry-naics2022-512",
+        "guide-industry-naics2022-513",
+        "guide-industry-naics2022-522",
+        "guide-industry-naics2022-531",
+        "guide-industry-naics2022-532",
+        "guide-industry-naics2022-541",
+        "guide-industry-naics2022-551",
+        "guide-industry-naics2022-561",
+        "guide-industry-naics2022-562",
+        "guide-industry-naics2022-813",
+        "src_0w2pi9z",
+        "src_0xce2sl",
+        "src_1gp1ika",
+        "src_construction_far_31105",
+        "src_construction_gao_25107258",
+        "src_construction_gsa184a_2015",
+        "src_focusv14",
+        "src_ias02inv",
+        "src_roadmap_kpmg_inventory_2026",
+        "src_roadmap_naics2022_manual",
+        "wf-construction-cash-surety-closeout",
+        "wf-construction-contract-intake",
+        "wf-construction-equipment-leases",
+        "wf-construction-job-cost-estimates",
+        "wf-construction-prevailing-wage-payroll"
+      ],
+      "unresolved_or_deferred": ["guide-manufacturing-conversion"]
+    },
+    "replacement_records": [],
+    "additional_existing_scoped_records": [
+      {
+        "record_id": "src_cfr200grants",
+        "disposition": "deepen",
+        "baseline_member": false,
+        "boundary": "Existing federal-award source reused for conditional external applicability only."
+      }
+    ],
+    "new_scoped_records": [
+      {
+        "record_id": "example-us-management-allocation-budget-actual",
+        "disposition": "new",
+        "boundary": "Original synthetic selected-role fixture; no operational or professional conclusion."
+      },
+      {
+        "record_id": "src_far_31203_indirect_costs",
+        "disposition": "new",
+        "boundary": "Federal-contract counterexample only; contract, CAS, and applicability facts remain open."
+      }
+    ],
+    "question_count": 7,
+    "question_count_basis": "Six direct shared-family rows plus rq-mfg-cost as the named manufacturing application handoff. The seventh row is explicitly unresolved and is not represented as completed by AA-I125.",
+    "question_dispositions": [
+      {
+        "question_id": "rq-cost-allocation-allocation-base",
+        "record_id": "guide-q-cost-allocation",
+        "disposition": "deepen",
+        "boundary": "Selected US shared-service driver, ledger tie, sensitivity, and external-rule boundary."
+      },
+      {
+        "question_id": "rq-cost-allocation-unit-cost",
+        "record_id": "guide-q-cost-allocation",
+        "disposition": "reuse",
+        "boundary": "Retain IAS 2 international context without presenting it as US authority."
+      },
+      {
+        "question_id": "rq-planning-driver-model",
+        "record_id": "guide-q-planning",
+        "disposition": "deepen",
+        "boundary": "Selected US versioned budget-to-actual and profit-to-cash bridge."
+      },
+      {
+        "question_id": "rq-planning-uncertainty",
+        "record_id": "guide-q-planning",
+        "disposition": "deepen",
+        "boundary": "Forecast revision, known and unknown inputs, missing-driver branch, and restated actual lineage."
+      },
+      {
+        "question_id": "rq-performance-margin-definition",
+        "record_id": "guide-q-performance",
+        "disposition": "deepen",
+        "boundary": "Metric dictionary, dated ledger inputs, allocation treatment, and profit-to-cash tie."
+      },
+      {
+        "question_id": "rq-performance-materiality",
+        "record_id": "guide-q-performance",
+        "disposition": "deepen",
+        "boundary": "SAB 99 qualitative-materiality boundary remains registrant-only and does not supply a percentage rule."
+      },
+      {
+        "question_id": "rq-mfg-cost",
+        "record_id": "guide-manufacturing-conversion",
+        "disposition": "unresolved",
+        "coordination_issue": 101,
+        "boundary": "Manufacturing conversion, normal capacity, scrap, outsourced production, and cutoff remain with the industry-specific owner; AA-I125 supplies shared allocation context only."
+      }
+    ]
+  },
+  "coordination": [
+    {
+      "issue_number": 101,
+      "url": "https://github.com/HenryBranchAdams/ai-agents-in-accounting/issues/101",
+      "title": "US industry gap: Manufacturing: extend conversion-cost coverage",
+      "state_at_review": "open",
+      "aa_i125_disposition": "reuse-shared-foundation-and-defer-industry-application",
+      "boundary": "Issue #101 owns manufacturing conversion, normal capacity, scrap or by-products, outsourced production, inventory costing, cutoff, and subsector exceptions. AA-I125 does not duplicate or complete those treatments.",
+      "completion_claimed": false
+    },
+    {
+      "issue_number": 109,
+      "url": "https://github.com/HenryBranchAdams/ai-agents-in-accounting/issues/109",
+      "title": "US industry gap: Holding companies and management entities",
+      "state_at_review": "open",
+      "aa_i125_disposition": "reuse-shared-foundation-and-defer-entity-boundaries",
+      "boundary": "Issue #109 owns reporting perimeter, subsidiaries and investments, intercompany financing or charges, centralized management costs, dividends, and consolidation eliminations. AA-I125 does not conclude a holding-company or management-service-provider treatment.",
+      "completion_claimed": false
+    },
+    {
+      "issue_number": 117,
+      "url": "https://github.com/HenryBranchAdams/ai-agents-in-accounting/issues/117",
+      "title": "US entity-type gap: nonprofit accounting across industries",
+      "state_at_review": "open",
+      "aa_i125_disposition": "defer-nonprofit-boundaries",
+      "boundary": "Issue #117 owns contribution versus exchange, restricted or conditional awards, releases, functional expenses, endowments, donated goods or services, and nonprofit reporting. AA-I125 is a private for-profit manufacturer fixture and does not address those conclusions.",
+      "completion_claimed": false
+    }
+  ],
   "sources": [
     {
       "id": "src_cfr200grants",
@@ -334,7 +498,7 @@
         {"source_id": "src_far_31203_indirect_costs", "locator": "FAR 31.203(b)-(g)"},
         {"source_id": "src_secsab0099", "locator": "SAB 99 Topic 1.M"}
       ],
-      "inputs": ["GL account detail", "approved service-hour log", "headcount roster", "cost-object map", "budget approval", "actual unit and price population", "AR/AP aging and cash activity", "forecast revision log", "external award or contract terms if applicable"],
+      "inputs": ["GL account detail", "approved service-hour log", "headcount roster", "cost-object map", "budget approval", "actual unit and price population", "Unit A and Unit B revenue and direct-cost ledger by cost object", "AR/AP aging and cash activity", "forecast revision log", "external award or contract terms if applicable"],
       "assumptions": [
         "All amounts are USD and project-created.",
         "January 2026 is a closed monthly management period; the budget was approved 2025-12-15.",
@@ -378,9 +542,34 @@
       },
       "variance_bridge": {"convention": "Sequential volume then price", "budget_revenue": 100000, "actual_revenue": 99000, "volume_effect": -10000, "price_effect": 9000, "total_effect": -1000, "unexplained_effect": 0, "formulas": ["(900 - 1000) * 100 = -10000", "900 * (110 - 100) = 9000", "-10000 + 9000 = -1000"], "invalid_alternative": {"name": "price at budget volume", "amount": 10000, "reason": "It uses a different convention and cannot be added to the sequential price effect without double counting."}},
       "margin_definitions": {
-        "gross_margin": {"numerator": "revenue - direct production cost", "denominator": "revenue", "budget_dollars": 40000, "actual_v1_dollars": 45000, "excludes": ["shared-service allocation", "one-time restructuring"], "ledger_lines": ["4000 revenue", "direct production cost population"]},
-        "unit_a_operating_margin": {"numerator": "Unit A revenue - Unit A direct cost - Unit A allocated support", "denominator": "Unit A revenue", "budget_dollars": -32000, "actual_v1_dollars": -27000, "allocated_support_once": 72000, "label": "Internal management view, not a GAAP measure"},
-        "entity_operating_profit": {"numerator": "entity revenue - entity direct cost - full support pool", "denominator": "not a margin in this bridge", "budget_dollars": -80000, "actual_v1_dollars": -75000, "support_pool_counted": 1, "label": "Synthetic entity reconciliation, not an external reporting conclusion"},
+        "input_basis": {
+          "currency": "USD",
+          "period": "2026-01-01/2026-01-31",
+          "budget_as_of": "2025-12-15",
+          "actual_v1_as_of": "2026-02-02",
+          "assumptions": [
+            "Unit A and Unit B revenue and direct production cost are cost-object views of the same entity ledger population; their sums must equal the entity budget or actual totals.",
+            "Unit A receives the primary $72,000 approved-hour allocation once for the internal operating view; the entity view uses the full $120,000 support pool once.",
+            "One-time restructuring is excluded from gross margin and is not a plug in the unit or entity formulas."
+          ],
+          "budget_v1": {
+            "record_id": "BUDGET-2026-01-v1",
+            "unit_a": {"revenue": 50000, "direct_cost": 10000, "allocated_support": 72000},
+            "unit_b": {"revenue": 50000, "direct_cost": 50000, "allocated_support": 48000},
+            "entity": {"revenue": 100000, "direct_cost": 60000, "support_pool": 120000},
+            "ledger_ties": ["50000 + 50000 = 100000 revenue", "10000 + 50000 = 60000 direct cost", "72000 + 48000 = 120000 support allocation"]
+          },
+          "actual_v1": {
+            "record_id": "ACTUAL-2026-01-v1",
+            "unit_a": {"revenue": 54000, "direct_cost": 9000, "allocated_support": 72000},
+            "unit_b": {"revenue": 45000, "direct_cost": 45000, "allocated_support": 48000},
+            "entity": {"revenue": 99000, "direct_cost": 54000, "support_pool": 120000},
+            "ledger_ties": ["54000 + 45000 = 99000 revenue", "9000 + 45000 = 54000 direct cost", "72000 + 48000 = 120000 support allocation"]
+          }
+        },
+        "gross_margin": {"numerator": "revenue - direct production cost", "denominator": "revenue", "budget_dollars": 40000, "actual_v1_dollars": 45000, "budget_formula": "100000 - 60000 = 40000", "actual_v1_formula": "99000 - 54000 = 45000", "input_refs": ["input_basis.budget_v1.entity", "input_basis.actual_v1.entity"], "excludes": ["shared-service allocation", "one-time restructuring"], "ledger_lines": ["4000 revenue by cost object", "direct production cost population"]},
+        "unit_a_operating_margin": {"numerator": "Unit A revenue - Unit A direct cost - Unit A allocated support", "denominator": "Unit A revenue", "budget_dollars": -32000, "actual_v1_dollars": -27000, "budget_formula": "50000 - 10000 - 72000 = -32000", "actual_v1_formula": "54000 - 9000 - 72000 = -27000", "input_refs": ["input_basis.budget_v1.unit_a", "input_basis.actual_v1.unit_a"], "allocated_support_once": 72000, "ledger_lines": ["4000-UNIT-A revenue", "direct production cost-UNIT-A", "SUPPORT-POOL-2026-01 allocation schedule"], "label": "Internal management view, not a GAAP measure"},
+        "entity_operating_profit": {"numerator": "entity revenue - entity direct cost - full support pool", "denominator": "not a margin in this bridge", "budget_dollars": -80000, "actual_v1_dollars": -75000, "budget_formula": "100000 - 60000 - 120000 = -80000", "actual_v1_formula": "99000 - 54000 - 120000 = -75000", "input_refs": ["input_basis.budget_v1.entity", "input_basis.actual_v1.entity"], "support_pool_counted": 1, "ledger_lines": ["4000 entity revenue", "entity direct production cost population", "SUPPORT-POOL-2026-01"], "label": "Synthetic entity reconciliation, not an external reporting conclusion"},
         "contribution_margin": {"status": "not separately asserted", "reason": "The fixture does not provide a validated variable-cost taxonomy beyond direct production cost."}
       },
       "profit_bridge": {"budget_to_actual_v1_change": 5000, "components": [{"name": "revenue volume and price", "amount": -1000}, {"name": "direct-cost change", "amount": 6000}, {"name": "support-pool change", "amount": 0}], "reconciliation": "-1000 + 6000 + 0 = 5000", "restated_actual_change": 4000, "restated_components": [{"name": "revenue volume and price", "amount": -1000}, {"name": "direct-cost change after late invoice", "amount": 5000}, {"name": "support-pool change", "amount": 0}], "no_double_counting_rule": "The entity profit uses the full $120,000 pool once. Unit A's $72,000 allocation is a management view and is not added to entity profit."},
@@ -393,7 +582,7 @@
       ],
       "procedures": ["Identify the entity role, framework, period, and population.", "Freeze and hash the source population and versions.", "Tie the support pool to GL lines and exclude direct or one-off costs.", "Calculate the primary allocation and independent sensitivity.", "Calculate the declared sequential bridge and reject alternate double-counted components.", "Reconcile entity profit to cash through AR, AP, and noncash items.", "Keep restated actuals separate and preserve prior versions.", "Escalate external applicability, missing drivers, and qualitative materiality to the responsible human."],
       "evidence_controls": ["source record IDs and exact locators", "GL account and driver join keys", "version timestamps", "formula and total checks", "restatement reason code", "exception register", "human reviewer and approval field"],
-      "deterministic_checks": ["90000 + 20000 + 10000 = 120000", "72000 + 48000 = 120000", "36000 + 84000 = 120000", "1000 * 100 = 100000", "900 * 110 = 99000", "-10000 + 9000 = -1000", "-1000 + 6000 + 0 = 5000", "-80000 - 5000 + 2000 + 0 = -83000", "-75000 - 2000 + 1000 + 0 = -76000", "restated actual replaces actual v1 and is not additive"],
+      "deterministic_checks": ["90000 + 20000 + 10000 = 120000", "72000 + 48000 = 120000", "36000 + 84000 = 120000", "1000 * 100 = 100000", "900 * 110 = 99000", "-10000 + 9000 = -1000", "50000 + 50000 = 100000 revenue", "10000 + 50000 = 60000 direct cost", "54000 + 45000 = 99000 revenue", "9000 + 45000 = 54000 direct cost", "100000 - 60000 = 40000 gross margin", "99000 - 54000 = 45000 gross margin", "50000 - 10000 - 72000 = -32000 Unit A operating margin", "54000 - 9000 - 72000 = -27000 Unit A operating margin", "100000 - 60000 - 120000 = -80000 entity operating profit", "99000 - 54000 - 120000 = -75000 entity operating profit", "-1000 + 6000 + 0 = 5000", "-80000 - 5000 + 2000 + 0 = -83000", "-75000 - 2000 + 1000 + 0 = -76000", "restated actual replaces actual v1 and is not additive"],
       "expected_artifact": "Versioned allocation schedule, driver sensitivity, budget-to-actual bridge, forecast/restate lineage, margin dictionary, profit-to-cash reconciliation, and external-applicability exception log.",
       "fixture": {"entity_id": "ENTITY-US-MGMT-01", "period": "2026-01", "currency": "USD", "pool_total": 120000, "hours": {"UNIT-A": 600, "UNIT-B": 400}, "headcount": {"UNIT-A": 30, "UNIT-B": 70}, "budget": {"units": 1000, "price": 100}, "actual": {"units": 900, "price": 110}, "budget_version": "BUDGET-2026-01-v1", "actual_version": "ACTUAL-2026-01-v1", "restated_version": "ACTUAL-2026-01-v2"},
       "reference_output": {"outcome": "complete-with-human-review", "primary_allocation": {"UNIT-A": 72000, "UNIT-B": 48000}, "headcount_sensitivity": {"UNIT-A": 36000, "UNIT-B": 84000}, "revenue_bridge": {"volume": -10000, "price": 9000, "total": -1000}, "entity_profit": {"budget": -80000, "actual_v1": -75000, "actual_v2": -76000}, "cash": {"budget_close": 217000, "actual_v1_close": 224000, "actual_v2_close": 224000}, "executed_actions": [], "review_required": true},

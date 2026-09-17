@@ -4,6 +4,34 @@ import assert from "node:assert/strict";
 const read = file => JSON.parse(fs.readFileSync(file, "utf8"));
 const write = (file, value) => fs.writeFileSync(file, JSON.stringify(value, null, 2) + "\n");
 const packet = read("data/research/management-accounting-2026-09-17.json");
+const versionPattern = /^(\d{4}-\d{2}-\d{2})\.(\d+)$/;
+const compareVersion = (left, right) => {
+  const leftMatch = versionPattern.exec(left), rightMatch = versionPattern.exec(right);
+  if (!leftMatch || !rightMatch) throw new Error(`Cannot compare non-canonical version ${left} or ${right}`);
+  return leftMatch[1] === rightMatch[1]
+    ? Number(leftMatch[2]) - Number(rightMatch[2])
+    : leftMatch[1].localeCompare(rightMatch[1]);
+};
+const assertNoNewerCanonicalState = () => {
+  const states = [
+    { file: "data/research/foundations.json", versionField: "question_set_version", dateField: "reviewed_at" },
+    { file: "data/coverage/research-questions.json", versionField: "question_set_version", dateField: "reviewed_at" },
+    { file: "data/coverage/mapping-overrides.json", versionField: "mapping_version", dateField: "updated_at" },
+    { file: "data/coverage/assessments.json", versionField: "assessment_version", dateField: null },
+  ];
+  for (const state of states) {
+    const current = read(state.file);
+    const currentVersion = current[state.versionField];
+    if (currentVersion && compareVersion(currentVersion, packet.package_version) > 0) {
+      throw new Error(`Refusing AA-I125 integration: ${state.file}.${state.versionField}=${currentVersion} is newer than packet ${packet.package_version}`);
+    }
+    const currentDate = state.dateField && current[state.dateField];
+    if (currentDate && currentDate > packet.reviewed_at) {
+      throw new Error(`Refusing AA-I125 integration: ${state.file}.${state.dateField}=${currentDate} is newer than packet review date ${packet.reviewed_at}`);
+    }
+  }
+};
+assertNoNewerCanonicalState();
 const addUnique = (left = [], right = []) => [...new Set([...left, ...right])];
 const byId = (records, id) => {
   const record = records.find(candidate => candidate.id === id);

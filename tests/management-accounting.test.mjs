@@ -1,6 +1,9 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { execFileSync } from "node:child_process";
 import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
 import { executeAgent } from "../dist/internal/agent.mjs";
 
 const read = file => JSON.parse(fs.readFileSync(file, "utf8"));
@@ -43,6 +46,73 @@ test("AA-I125 canonical guides, importer input, registry, and evidence packet st
   }
   assert.equal(read("data/coverage/assessments.json").assessment_version, packet.package_version);
   for (const assessment of packet.assessments) assert.ok(read("data/coverage/assessments.json").assessments.some(candidate => candidate.id === assessment.id));
+  const inventory = packet.baseline_inventory;
+  const dispositionIds = Object.values(inventory.record_dispositions).flat();
+  assert.equal(inventory.record_count, 51);
+  assert.equal(new Set(dispositionIds).size, inventory.record_count);
+  assert.equal(inventory.question_dispositions.length, 7);
+  assert.deepEqual(inventory.question_dispositions.map(question => question.question_id), [
+    "rq-cost-allocation-allocation-base",
+    "rq-cost-allocation-unit-cost",
+    "rq-planning-driver-model",
+    "rq-planning-uncertainty",
+    "rq-performance-margin-definition",
+    "rq-performance-materiality",
+    "rq-mfg-cost",
+  ]);
+  assert.deepEqual(inventory.replacement_records, []);
+  assert.deepEqual(packet.coordination.map(issue => issue.issue_number), [101, 109, 117]);
+  assert.ok(packet.coordination.every(issue => issue.completion_claimed === false));
+});
+
+test("AA-I125 importer refuses newer canonical metadata without rewriting a newer-state harness", () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), "aa-i125-newer-state-"));
+  const files = [
+    "data/research/management-accounting-2026-09-17.json",
+    "data/corpus/source.json",
+    "data/corpus/guide.json",
+    "data/corpus/example.json",
+    "data/research/foundations.json",
+    "data/coverage/research-questions.json",
+    "data/coverage/mapping-overrides.json",
+    "data/coverage/assessments.json",
+    "data/research-questions.json",
+  ];
+  const versionTargets = [
+    ["data/research/foundations.json", "question_set_version"],
+    ["data/coverage/research-questions.json", "question_set_version"],
+    ["data/coverage/mapping-overrides.json", "mapping_version"],
+    ["data/coverage/assessments.json", "assessment_version"],
+  ];
+  try {
+    for (const file of files) {
+      const destination = path.join(root, file);
+      fs.mkdirSync(path.dirname(destination), { recursive: true });
+      fs.copyFileSync(file, destination);
+    }
+    for (const [file, field] of versionTargets) {
+      const destination = path.join(root, file);
+      const value = JSON.parse(fs.readFileSync(destination, "utf8"));
+      value[field] = "2026-09-18.1";
+      fs.writeFileSync(destination, JSON.stringify(value, null, 2) + "\n");
+    }
+    const before = new Map(files.map(file => [file, fs.readFileSync(path.join(root, file))]));
+    let error;
+    try {
+      execFileSync(process.execPath, [path.resolve("scripts/integrate-management-accounting.mjs")], {
+        cwd: root,
+        encoding: "utf8",
+        stdio: ["ignore", "pipe", "pipe"],
+      });
+    } catch (candidate) {
+      error = candidate;
+    }
+    assert.ok(error, "newer canonical state must stop the importer");
+    assert.match(String(error.stderr), /newer than packet/);
+    for (const file of files) assert.deepEqual(fs.readFileSync(path.join(root, file)), before.get(file), file);
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
 });
 
 test("AA-I125 synthetic allocation, variance, restatement, margin, and cash arithmetic reconcile", () => {
@@ -76,6 +146,22 @@ test("AA-I125 synthetic allocation, variance, restatement, margin, and cash arit
   assert.equal(example.cash_bridge.restated_actual_v2.profit - example.cash_bridge.restated_actual_v2.ar_increase + example.cash_bridge.restated_actual_v2.ap_increase + example.cash_bridge.restated_actual_v2.noncash_items, example.cash_bridge.restated_actual_v2.cash_change);
   assert.equal(example.margin_definitions.unit_a_operating_margin.allocated_support_once, 72000);
   assert.equal(example.margin_definitions.entity_operating_profit.support_pool_counted, 1);
+  const margins = example.margin_definitions;
+  const inputs = margins.input_basis;
+  assert.equal(inputs.period, "2026-01-01/2026-01-31");
+  assert.equal(inputs.budget_as_of, "2025-12-15");
+  assert.equal(inputs.actual_v1_as_of, "2026-02-02");
+  assert.equal(inputs.budget_v1.unit_a.revenue + inputs.budget_v1.unit_b.revenue, inputs.budget_v1.entity.revenue);
+  assert.equal(inputs.budget_v1.unit_a.direct_cost + inputs.budget_v1.unit_b.direct_cost, inputs.budget_v1.entity.direct_cost);
+  assert.equal(inputs.actual_v1.unit_a.revenue + inputs.actual_v1.unit_b.revenue, inputs.actual_v1.entity.revenue);
+  assert.equal(inputs.actual_v1.unit_a.direct_cost + inputs.actual_v1.unit_b.direct_cost, inputs.actual_v1.entity.direct_cost);
+  assert.equal(inputs.budget_v1.unit_a.revenue - inputs.budget_v1.unit_a.direct_cost - inputs.budget_v1.unit_a.allocated_support, margins.unit_a_operating_margin.budget_dollars);
+  assert.equal(inputs.actual_v1.unit_a.revenue - inputs.actual_v1.unit_a.direct_cost - inputs.actual_v1.unit_a.allocated_support, margins.unit_a_operating_margin.actual_v1_dollars);
+  assert.equal(inputs.budget_v1.entity.revenue - inputs.budget_v1.entity.direct_cost, margins.gross_margin.budget_dollars);
+  assert.equal(inputs.actual_v1.entity.revenue - inputs.actual_v1.entity.direct_cost, margins.gross_margin.actual_v1_dollars);
+  assert.equal(inputs.budget_v1.entity.revenue - inputs.budget_v1.entity.direct_cost - inputs.budget_v1.entity.support_pool, margins.entity_operating_profit.budget_dollars);
+  assert.equal(inputs.actual_v1.entity.revenue - inputs.actual_v1.entity.direct_cost - inputs.actual_v1.entity.support_pool, margins.entity_operating_profit.actual_v1_dollars);
+  assert.equal(margins.contribution_margin.status, "not separately asserted");
 });
 
 test("AA-I125 retrieval, direct source pointers, counterexample, and rights boundaries hold", () => {
