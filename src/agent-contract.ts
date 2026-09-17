@@ -142,7 +142,7 @@ export const inputSchemas = {
       .boolean()
       .default(true)
       .describe(
-        "Consider linked source_ids after seed records. Excluded candidates appear in omitted; rights and provenance are never removed to fit.",
+        "Consider linked source_ids after seed records. Under a tight budget, a citable source may be returned with metadata and zero passages; use get for its passages. Excluded candidates appear in omitted; rights and provenance are never removed to fit.",
       ),
     corpus_version: version,
   }),

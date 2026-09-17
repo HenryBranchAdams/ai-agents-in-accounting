@@ -55,4 +55,8 @@ The importer-generated discovery mapping changed existing source headers when th
 
 That 48-character `src_1l45nk0` expansion crosses the existing 12,000-character admission threshold. At `max_chars: 12040`, the worker context includes the source again and uses 12,023 characters. The immediate regression is therefore the derived mapping/header expansion, not a baseline failure in the newcomer test or a change to the workflow, source corpus, agent implementation, or test.
 
-No remediation was attempted in this diagnostic receipt. The remaining decision is whether to preserve the new source discovery associations and adjust context admission/compaction, or preserve the 12,000-character behavior through a narrower mapping treatment. Merge, issue closure, deployment, and publication remain out of scope.
+## Resolution
+
+The follow-up runtime fix preserves the new source discovery associations and keeps the 12,000-character limit. When a linked citable source cannot fit with its first passage, context retains that source's citation, rights, review metadata and zero-passage remainder; `get` remains the deterministic continuation for its passages. The worker workflow remains in the packet, and the newcomer regression test now passes. Elevated `npm test` passes all 84 tests. The ordinary sandbox run still reports only the expected localhost `EPERM` for the Streamable HTTP test.
+
+Merge, issue closure, deployment, and publication remain out of scope.

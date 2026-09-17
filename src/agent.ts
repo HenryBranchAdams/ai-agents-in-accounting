@@ -669,6 +669,35 @@ function contextPacket(args: ReturnType<typeof inputSchemas.context.parse>) {
       continue;
     }
   }
+  // Preserve at least one citable linked source when its full first passage
+  // cannot fit. The source header still carries citation, rights and review
+  // metadata; callers can use get for the omitted source passages.
+  if (
+    args.include_sources &&
+    !result.records.some(
+      (entry) =>
+        entry.record.kind === "source" &&
+        !!entry.record.citation.original_source_url,
+    )
+  ) {
+    for (const item of candidates) {
+      if (item.record.kind !== "source" || !item.record.source_url) continue;
+      if (!result.omitted.some((omitted) => omitted.id === item.record.id)) continue;
+      const entry = {
+        record: header(item.record),
+        passages: [] as Passage[],
+        total_passages: item.passages.length,
+        remaining_passages: item.passages.length,
+      };
+      const omitted = result.omitted;
+      result.records.push(entry);
+      result.omitted = result.omitted.filter((o) => o.id !== item.record.id);
+      if (size() <= args.max_chars) break;
+      result.records.pop();
+      result.omitted = omitted;
+      size();
+    }
+  }
   // Give each admitted record a passage before spending the remaining budget on depth.
   for (const entry of result.records) {
     const item = indexedById.get(entry.record.id)!;
