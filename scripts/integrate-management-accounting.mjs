@@ -123,6 +123,31 @@ const sourceReview = (source, update) => ({
   },
 });
 
+const supplementalReview = update => ({
+  batch: packet.issue_id,
+  reviewed_at: packet.reviewed_at,
+  review_level: "substantive-excerpt",
+  checked_url: update.checked_url,
+  locator: update.source_locator,
+  publication_or_edition: update.publication_or_edition,
+  effective_period: update.effective_period,
+  evidence_summary: update.evidence_summary,
+  limitations: update.limitations,
+  checks: [{
+    url: update.checked_url,
+    method: "live page read",
+    outcome: update.check_outcome,
+    material_read: true,
+  }],
+  rights_review: {
+    status: "unresolved",
+    license: null,
+    license_url: null,
+    scope: null,
+    note: "Public accessibility does not establish reuse permission; external content remains under publisher terms.",
+  },
+});
+
 const applySource = (source, update) => {
   source.summary = update.summary;
   source.review_status = "source-checked";
@@ -168,30 +193,7 @@ const applySource = (source, update) => {
   };
   source.data.supplemental_reviews = [
     ...(source.data.supplemental_reviews || []).filter(review => review.batch !== packet.issue_id),
-    {
-      batch: packet.issue_id,
-      reviewed_at: packet.reviewed_at,
-      review_level: "substantive-excerpt",
-      checked_url: update.checked_url,
-      locator: update.source_locator,
-      publication_or_edition: update.publication_or_edition,
-      effective_period: update.effective_period,
-      evidence_summary: update.evidence_summary,
-      limitations: update.limitations,
-      checks: [{
-        url: update.checked_url,
-        method: "live page read",
-        outcome: update.check_outcome,
-        material_read: true,
-      }],
-      rights_review: {
-        status: "unresolved",
-        license: null,
-        license_url: null,
-        scope: null,
-        note: "Public accessibility does not establish reuse permission; external content remains under publisher terms.",
-      },
-    },
+    supplementalReview(update),
   ];
 };
 
@@ -281,6 +283,7 @@ const newSource = update => {
       source_review: sourceReview({ id: update.id, review_status: "source-checked", reviewed_at: packet.reviewed_at, data: {} }, update),
       limitations: update.limitations,
       frameworks: update.frameworks,
+      supplemental_reviews: [supplementalReview(update)],
     },
   };
   return source;
