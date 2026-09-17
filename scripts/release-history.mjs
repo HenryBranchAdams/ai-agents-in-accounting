@@ -2,7 +2,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { createHash } from "node:crypto";
-import { gzipSync } from "node:zlib";
+import { gunzipSync, gzipSync } from "node:zlib";
 import { buildReviewQueue } from "./maintenance.mjs";
 
 const CATEGORY_FIELDS = {
@@ -52,6 +52,14 @@ export function writeReleaseArtifacts(currentExport, destination = "data/release
   const gzip = gzipSync(artifacts["corpus.json"], { level: 9, mtime: 0 });
   const gzipFile = path.join(dir, "corpus.json.gz");
   const generated = { ...artifacts, "corpus.json.gz": gzip };
+  // zlib versions can emit different gzip bytes for the same JSON payload.
+  // Preserve an existing immutable representation only after its decompressed
+  // bytes match the canonical corpus exactly; all other artifact mismatches
+  // remain fatal below.
+  if (fs.existsSync(gzipFile)) {
+    const existingGzip = Buffer.from(fs.readFileSync(gzipFile));
+    if (!existingGzip.equals(gzip) && gunzipSync(existingGzip).equals(artifacts["corpus.json"])) generated["corpus.json.gz"] = existingGzip;
+  }
   const files = Object.keys(generated).sort().map((name) => { const body = generated[name]; return { path: name, bytes: body.length, sha256: createHash("sha256").update(body).digest("hex") }; });
   const manifest = { schema_version: "1.0.0", corpus_version: version, record_count: currentExport.records?.length || 0, files, historical_snapshot: false };
   const manifestBody = Buffer.from(JSON.stringify(manifest, null, 2) + "\n");

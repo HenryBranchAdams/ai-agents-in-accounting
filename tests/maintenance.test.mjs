@@ -5,6 +5,8 @@ import { compareCorpus, preparePublication, writeReleaseArtifacts } from "../scr
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
+import { createHash } from "node:crypto";
+import { gzipSync } from "node:zlib";
 
 test("review queue is deterministic and preserves explicit versus inherited review basis", () => {
   const records = [
@@ -63,6 +65,28 @@ test("release writes preflight all bytes before changing an existing version", (
   const before = fs.readFileSync(path.join(dir, "2026-09-07.4", "corpus.json"));
   assert.throws(() => writeReleaseArtifacts({ ...current, records: [{ ...current.records[0], title: "changed" }] }, dir), /Immutable release artifact differs/);
   assert.deepEqual(fs.readFileSync(path.join(dir, "2026-09-07.4", "corpus.json")), before);
+});
+
+test("release preserves equivalent gzip bytes across zlib representations but rejects payload changes", () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "release-history-gzip-"));
+  const current = { schema_version: "2.0.0", corpus_version: "2026-09-07.4", records: [{ id: "a", kind: "source", title: "A" }] };
+  writeReleaseArtifacts(current, dir);
+  const releaseDir = path.join(dir, "2026-09-07.4");
+  const gzipFile = path.join(releaseDir, "corpus.json.gz");
+  const manifestFile = path.join(releaseDir, "manifest.json");
+  const corpus = fs.readFileSync(path.join(releaseDir, "corpus.json"));
+  const alternate = gzipSync(corpus, { level: 1, mtime: 0 });
+  assert.notDeepEqual(alternate, fs.readFileSync(gzipFile));
+  fs.writeFileSync(gzipFile, alternate);
+  const manifest = JSON.parse(fs.readFileSync(manifestFile, "utf8"));
+  const entry = manifest.files.find(file => file.path === "corpus.json.gz");
+  entry.bytes = alternate.length;
+  entry.sha256 = createHash("sha256").update(alternate).digest("hex");
+  fs.writeFileSync(manifestFile, JSON.stringify(manifest, null, 2) + "\n");
+  writeReleaseArtifacts(current, dir);
+  assert.deepEqual(fs.readFileSync(gzipFile), alternate);
+  fs.writeFileSync(gzipFile, gzipSync(Buffer.from(`${corpus}\n`), { level: 1, mtime: 0 }));
+  assert.throws(() => writeReleaseArtifacts(current, dir), /Immutable release artifact differs/);
 });
 
 test("publication helper returns plain queue, changes, and record history", () => {
