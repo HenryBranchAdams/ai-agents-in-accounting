@@ -64,8 +64,9 @@ test("the baseline inventory maps reuse, deepening, new work and unresolved popu
   assert.ok(inventory.dispositions.unresolved.length >= 6);
   assert.equal(inventory.shared_generator_dependency.source_branch, "codex/aa-i119");
   assert.equal(inventory.shared_generator_dependency.source_commit, "0d447e6033bdc10ecd3ab9a2f5855ae73644807d");
-  assert.match(inventory.shared_generator_dependency.review_state, /pending/);
-  assert.match(inventory.shared_generator_dependency.remaining_scope, /not final until the shared generator revision is integrated and rerun/);
+  assert.equal(inventory.shared_generator_dependency.correction_commit, "f777250e2baf400212d312ba4e9405bd5c358e3d");
+  assert.match(inventory.shared_generator_dependency.review_state, /independent verification pending/);
+  assert.match(inventory.shared_generator_dependency.remaining_scope, /Acceptance remains a gate until AA-R119 independently verifies/);
   const existingQuestionIds = inventory.dispositions.deepen.flatMap((item) => item.existing_question_ids);
   assert.equal(new Set(existingQuestionIds).size, 16);
   for (const item of inventory.dispositions.reuse) assert.equal(byId.get(item.id)?.kind, "source", item.id);
@@ -207,6 +208,67 @@ test("scoped sector-anchor assessments do not propagate to descendants or claim 
 test("generated coverage headers match the catalog", () => {
   assert.equal(read("data/coverage/subsector-profiles.json").corpus_version, catalog.corpus_version);
   assert.equal(read("data/coverage/subsector-screening.json").corpus_version, catalog.corpus_version);
+});
+
+test("coverage generator preserves explicit construction source scope on clean reruns", () => {
+  const generatedFiles = [
+    "data/corpus/guide.json",
+    "data/coverage/mapping-overrides.json",
+    "data/coverage/research-criteria.json",
+    "data/coverage/subsector-profiles.json",
+    "data/coverage/subsector-screening.json",
+  ];
+  const inputFiles = [
+    "data/catalog.json",
+    "data/coverage/topology.json",
+    "data/research/subsector-profiles.json",
+    "data/research/family-screening-rules.json",
+    "data/coverage/research-questions.json",
+    "data/coverage/industry-exception-reviews.json",
+    "data/corpus/source.json",
+    "data/corpus/guide.json",
+    "data/coverage/mapping-overrides.json",
+    "scripts/build-research-coverage.mjs",
+  ];
+  const guideIds = [
+    "guide-industry-naics2022-236",
+    "guide-industry-naics2022-237",
+    "guide-industry-naics2022-238",
+  ];
+  const constructionOnlySourceIds = [
+    "src_construction_fasb_retainage_staff",
+    "src_construction_gao_25107258",
+    "src_construction_asbca_51759",
+  ];
+  const expectedSourceIds = new Map(guideIds.map((id) => [id, guides.find((record) => record.id === id).source_ids]));
+  const temp = fs.mkdtempSync(path.join(os.tmpdir(), "aa-coverage-generator-"));
+  const copy = (file) => {
+    const destination = path.join(temp, file);
+    fs.mkdirSync(path.dirname(destination), { recursive: true });
+    fs.copyFileSync(file, destination);
+  };
+  const snapshot = () => Object.fromEntries(generatedFiles.map((file) => [file, fs.readFileSync(path.join(temp, file), "utf8")]));
+
+  try {
+    for (const file of inputFiles) copy(file);
+    const run = () => execFileSync(process.execPath, ["scripts/build-research-coverage.mjs"], { cwd: temp, encoding: "utf8" });
+    run();
+
+    const generatedGuides = new Map(read(path.join(temp, "data/corpus/guide.json")).map((record) => [record.id, record]));
+    const generatedOverrides = read(path.join(temp, "data/coverage/mapping-overrides.json")).records;
+    for (const id of guideIds) {
+      assert.deepEqual(generatedGuides.get(id).source_ids, expectedSourceIds.get(id), `${id}: source scope broadened`);
+      assert.deepEqual(generatedOverrides[id].source_ids, expectedSourceIds.get(id), `${id}: explicit source scope changed`);
+      for (const sourceId of constructionOnlySourceIds)
+        assert.ok(!generatedGuides.get(id).source_ids.includes(sourceId), `${id}: unrelated construction source ${sourceId}`);
+    }
+
+    const firstRun = snapshot();
+    run();
+    assert.deepEqual(snapshot(), firstRun, "coverage generator changed output on its second run");
+  } finally {
+    fs.rmSync(temp, { recursive: true, force: true });
+  }
 });
 
 test("the applicator refuses a newer unrelated field on a matching canonical record", () => {

@@ -10,10 +10,11 @@
     "repository": "https://github.com/HenryBranchAdams/ai-agents-in-accounting",
     "source_branch": "codex/aa-i119",
     "source_commit": "0d447e6033bdc10ecd3ab9a2f5855ae73644807d",
+    "correction_commit": "f777250e2baf400212d312ba4e9405bd5c358e3d",
     "source_file": "scripts/build-research-coverage.mjs",
-    "reused_scope": "Catalog-driven corpus_version metadata and format assertion only; unrelated AA-I119 corpus changes are excluded.",
-    "review_state": "AA-R119 re-review pending",
-    "remaining_scope": "The generator's first-run construction-association preservation fix and clean-artifact regression remain owned by AA-I119. The current canonical construction records were restored for this branch's artifact, but that manual restoration is not final until the shared generator revision is integrated and rerun."
+    "reused_scope": "Catalog-driven corpus_version metadata and format assertion, plus PR133 source-scope validation/handling, the 236/237/238 mapping-overrides boundary and the clean-artifact rerun test approach; unrelated AA-I119 corpus changes are excluded.",
+    "review_state": "AA-R119 independent verification pending",
+    "remaining_scope": "The PR133 generator correction is integrated and the clean construction artifact is reproducible on local first and second runs. Acceptance remains a gate until AA-R119 independently verifies the correction."
   },
   "baseline": {
     "catalog_corpus_version": "2026-09-14.3",
@@ -646,7 +647,7 @@
       "criterion_id": "5",
       "requirement": "Verify representative retrieval, scope counterexamples and same-build exports or checks.",
       "evidence": ["tests/reporting-foundations.test.mjs", "npm run check", "npm run build", "data/coverage/snapshots.json"],
-      "result": "Retrieval, source pointers, IFRS preservation, fixture arithmetic, non-propagation, rights and export parity are tested locally. The canonical construction association cleanup remains dependent on AA-I119's shared generator preservation fix and clean-artifact regression. CI, deployment and final combined release selection remain separate gates."
+      "result": "Retrieval, source pointers, IFRS preservation, fixture arithmetic, non-propagation, rights and export parity are tested locally. The corrected generator preserves the explicit construction source scope across clean first and second runs. AA-R119 independent verification, CI, deployment and final combined release selection remain separate gates."
     }
   ],
   "limits": [
@@ -654,6 +655,6 @@
     "A reuse disposition preserves a source identity or question context; it does not grant source rights or accounting authority.",
     "A deepen disposition does not revise or replace the retained IFRS question and does not imply family-wide sufficiency.",
     "The selected sector-54 assessment is a schema anchor only and does not establish Professional, Scientific, and Technical Services adequacy.",
-    "Construction source-association cleanup is not complete until AA-I119's generator revision is shared, integrated and rerun; the branch preserves the current clean artifact as an interim state only."
+    "Construction source-association cleanup is reproducible through the integrated PR133 generator correction, but acceptance remains pending AA-R119 independent verification."
   ]
 }
