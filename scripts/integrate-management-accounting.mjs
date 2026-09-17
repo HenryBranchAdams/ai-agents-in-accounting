@@ -81,6 +81,7 @@ assertNoNewerCanonicalState();
 const catalog = integrateIntoNewerCorpus ? read("data/catalog.json") : null;
 const corpusEdition = integrateIntoNewerCorpus ? catalog.corpus_version : packet.corpus_edition;
 if (integrateIntoNewerCorpus) assert.match(corpusEdition, versionPattern, "Integration catalog corpus version must be canonical");
+const foundations = read("data/research/foundations.json");
 const addUnique = (left = [], right = []) => [...new Set([...left, ...right])];
 const byId = (records, id) => {
   const record = records.find(candidate => candidate.id === id);
@@ -148,6 +149,30 @@ const supplementalReview = update => ({
   },
 });
 
+const replaceSupplementalReview = (reviews, incoming) => {
+  const index = reviews.findIndex(review => review.batch === incoming.batch);
+  if (index === -1) return [...reviews, incoming];
+  return reviews.map((review, position) => position === index ? incoming : review);
+};
+
+const foundationSupplementalReview = update => {
+  const foundation = foundations.sources?.find(source => source.id === update.id);
+  if (!foundation) return null;
+  return {
+    batch: "foundations",
+    reviewed_at: foundations.reviewed_at,
+    review_level: foundation.review_level,
+    checked_url: foundation.source_url,
+    locator: foundation.source_locator,
+    publication_or_edition: foundation.publication_or_edition,
+    effective_period: foundation.effective_period,
+    evidence_summary: foundation.evidence_summary,
+    limitations: foundation.limitations,
+    checks: foundation.checks,
+    rights_review: foundation.rights_review,
+  };
+};
+
 const applySource = (source, update) => {
   source.summary = update.summary;
   source.review_status = "source-checked";
@@ -191,10 +216,10 @@ const applySource = (source, update) => {
     source_review: sourceReview(source, update),
     limitations: update.limitations,
   };
-  source.data.supplemental_reviews = [
-    ...(source.data.supplemental_reviews || []).filter(review => review.batch !== packet.issue_id),
+  source.data.supplemental_reviews = replaceSupplementalReview(
+    source.data.supplemental_reviews || [],
     supplementalReview(update),
-  ];
+  );
 };
 
 const newSource = update => {
@@ -283,7 +308,10 @@ const newSource = update => {
       source_review: sourceReview({ id: update.id, review_status: "source-checked", reviewed_at: packet.reviewed_at, data: {} }, update),
       limitations: update.limitations,
       frameworks: update.frameworks,
-      supplemental_reviews: [supplementalReview(update)],
+      supplemental_reviews: [
+        supplementalReview(update),
+        foundationSupplementalReview(update),
+      ].filter(Boolean),
     },
   };
   return source;
@@ -300,6 +328,18 @@ const enrichedQuestion = question => ({
 });
 
 const applyFamily = (guide, family) => {
+  const currentGuideVersion = guide.data?.version;
+  if (
+    integrateIntoNewerCorpus &&
+    currentGuideVersion &&
+    versionPattern.test(currentGuideVersion) &&
+    compareVersion(currentGuideVersion, packet.package_version) >= 0
+  ) {
+    // A newer-corpus replay must not replace an already-current guide snapshot
+    // with the older family payload carried by this packet. Other packet-owned
+    // records, including a genuinely absent source, are still integrated below.
+    return false;
+  }
   const questions = family.research_questions.map(enrichedQuestion);
   guide.title = family.title;
   guide.summary = family.summary;
@@ -342,6 +382,7 @@ const applyFamily = (guide, family) => {
     selected_scope: packet.selected_scope,
     editorial_brief: family.editorial_brief,
   };
+  return true;
 };
 
 const canonicalSources = read("data/corpus/source.json");
@@ -360,7 +401,10 @@ for (const update of packet.sources) {
 }
 
 const canonicalGuides = read("data/corpus/guide.json");
-for (const family of packet.families) applyFamily(byId(canonicalGuides, family.guide_id), family);
+const appliedFamilyIds = new Set();
+for (const family of packet.families) {
+  if (applyFamily(byId(canonicalGuides, family.guide_id), family)) appliedFamilyIds.add(family.family_id);
+}
 
 const exampleRecords = read("data/corpus/example.json");
 const existingExample = exampleRecords.find(record => record.id === packet.example.id);
@@ -371,11 +415,11 @@ if (existingExample) {
   exampleRecords.push(packet.example);
 }
 
-const foundations = read("data/research/foundations.json");
 foundations.question_set_version = preserveOrUseVersion(foundations.question_set_version, packet.package_version);
 foundations.reviewed_at = packet.reviewed_at;
 foundations.reviewer = "Codex AI-assisted original-source and synthetic-fixture review";
 for (const family of packet.families) {
+  if (!appliedFamilyIds.has(family.family_id)) continue;
   const input = foundations.families.find(candidate => candidate.family_id === family.family_id);
   assert.ok(input, `Missing research input family ${family.family_id}`);
   input.title = family.title;
@@ -425,6 +469,7 @@ researchQuestions.question_set_version = preserveOrUseVersion(researchQuestions.
 researchQuestions.corpus_version = corpusEdition;
 researchQuestions.reviewed_at = packet.reviewed_at;
 for (const family of packet.families) {
+  if (!appliedFamilyIds.has(family.family_id)) continue;
   const guide = byId(canonicalGuides, family.guide_id);
   for (const [index, question] of guide.data.research_questions.entries()) {
     const row = byId(researchQuestions.questions, question.id);

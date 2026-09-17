@@ -23,8 +23,9 @@ const rootFiles = [
   ".gitignore",
   "LICENSE",
 ];
-const currentCorpusVersion = JSON.parse(fs.readFileSync("data/catalog.json", "utf8")).corpus_version;
-export function sourceFiles() {
+export const currentCorpusVersion = JSON.parse(fs.readFileSync("data/catalog.json", "utf8")).corpus_version;
+export const currentReleaseGzipPath = `data/releases/${currentCorpusVersion}/corpus.json.gz`;
+export function allSourceFiles() {
   const files = [
     ...rootFiles,
     ...fs.readdirSync(".").filter((f) => /\.(md|cff)$/.test(f)),
@@ -37,13 +38,16 @@ export function sourceFiles() {
       if (e.isSymbolicLink())
         throw new Error(`Source archive disallows symlinks: ${file}`);
       if (e.isDirectory()) walk(file);
-      // The current release gzip is already exposed through the release bundle;
-      // omit only that duplicate so the source package stays under the host limit.
-      else if (e.isFile() && file !== `data/releases/${currentCorpusVersion}/corpus.json.gz`) files.push(file);
+      else if (e.isFile()) files.push(file);
     }
   }
   for (const dir of roots) if (fs.existsSync(dir)) walk(dir);
   return [...new Set(files)].sort();
+}
+export function sourceFiles() {
+  // The current release gzip is already exposed through the release bundle;
+  // omit only that duplicate so the source package stays under the host limit.
+  return allSourceFiles().filter(file => file !== currentReleaseGzipPath);
 }
 const crcTable = Uint32Array.from({ length: 256 }, (_, i) => {
   let n = i;

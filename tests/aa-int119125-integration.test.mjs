@@ -19,6 +19,9 @@ const integrationFiles = [
   "data/coverage/assessments.json",
   "data/research-questions.json",
 ];
+const expectedAcceptedState = new Map(
+  integrationFiles.map(file => [file, read(file)]),
+);
 const makeIntegrationHarness = () => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), "aa-r136-clean-integration-"));
   for (const file of integrationFiles) {
@@ -34,6 +37,15 @@ const makeIntegrationHarness = () => {
     `${JSON.stringify(sourceRecords.filter(record => record.id !== "src_far_31203_indirect_costs"), null, 2)}\n`,
   );
   return root;
+};
+const assertAcceptedState = root => {
+  for (const file of integrationFiles) {
+    assert.deepEqual(
+      read(path.join(root, file)),
+      expectedAcceptedState.get(file),
+      `${file}: first clean integration must preserve the accepted/current state`,
+    );
+  }
 };
 const corpusDirectory = "data/corpus";
 const corpusFiles = fs.readdirSync(corpusDirectory).filter(file => file.endsWith(".json")).sort();
@@ -90,11 +102,14 @@ test("clean AA-I125 integration preserves the new FAR source supplemental review
       "the regression must start with the new FAR source absent",
     );
     execFileSync(process.execPath, [script, "--integrate-into-newer-corpus"], { cwd: root, stdio: "pipe" });
+    assertAcceptedState(root);
     const source = read(path.join(root, "data/corpus/source.json")).find(record => record.id === "src_far_31203_indirect_costs");
     const packet = read(path.join(root, "data/research/management-accounting-2026-09-17.json"));
     const update = packet.sources.find(candidate => candidate.id === "src_far_31203_indirect_costs");
+    const expectedSource = expectedAcceptedState.get("data/corpus/source.json").find(record => record.id === "src_far_31203_indirect_costs");
     assert.ok(source, "clean integration must add the FAR source");
-    assert.deepEqual(source.data.supplemental_reviews, [{
+    assert.deepEqual(source.data.supplemental_reviews, expectedSource.data.supplemental_reviews);
+    assert.deepEqual(source.data.supplemental_reviews.find(review => review.batch === packet.issue_id), {
       batch: packet.issue_id,
       reviewed_at: packet.reviewed_at,
       review_level: "substantive-excerpt",
@@ -112,12 +127,36 @@ test("clean AA-I125 integration preserves the new FAR source supplemental review
         scope: null,
         note: "Public accessibility does not establish reuse permission; external content remains under publisher terms.",
       },
-    }]);
+    });
     const firstReplay = new Map(integrationFiles.map(file => [file, fs.readFileSync(path.join(root, file))]));
     execFileSync(process.execPath, [script, "--integrate-into-newer-corpus"], { cwd: root, stdio: "pipe" });
     for (const [file, bytes] of firstReplay) {
       assert.deepEqual(fs.readFileSync(path.join(root, file)), bytes, `${file}: repeat clean integration must be byte-stable`);
     }
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("clean AA-I125 integration is sensitive to new-source supplemental-review loss", () => {
+  const root = makeIntegrationHarness();
+  try {
+    const script = path.resolve("scripts/integrate-management-accounting.mjs");
+    const mutatedScript = path.join(root, "integrate-management-accounting.mjs");
+    const original = fs.readFileSync(script, "utf8");
+    const mutation = "supplemental_reviews: [\n        supplementalReview(update),\n        foundationSupplementalReview(update),\n      ].filter(Boolean),";
+    assert.equal(original.split(mutation).length - 1, 1, "the mutation probe must target the new-source assignment");
+    fs.writeFileSync(mutatedScript, original.replace(mutation, "supplemental_reviews: [foundationSupplementalReview(update)].filter(Boolean),"));
+    execFileSync(process.execPath, [mutatedScript, "--integrate-into-newer-corpus"], { cwd: root, stdio: "pipe" });
+
+    assert.throws(
+      () => assertAcceptedState(root),
+      /data\/corpus\/source\.json: first clean integration must preserve the accepted\/current state/,
+      "the all-file invariant must fail when new-source supplemental review assignment is removed",
+    );
+    const expectedSource = expectedAcceptedState.get("data/corpus/source.json").find(record => record.id === "src_far_31203_indirect_costs");
+    const mutatedSource = read(path.join(root, "data/corpus/source.json")).find(record => record.id === "src_far_31203_indirect_costs");
+    assert.notDeepEqual(mutatedSource.data.supplemental_reviews, expectedSource.data.supplemental_reviews);
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
   }
