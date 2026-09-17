@@ -1,6 +1,6 @@
 # AA-R125 independent review
 
-This receipt records the initial review of PR135 at exact head `757f0f19623199c7f5da508ba09f729482dc4f2f`, compared with `main` at `afd2aced307628843f8a26677c3a6fb37fa733e3`, and the re-review of author head `db421927ea0f2b7767a46b7f444deff8f7b4f3df`. It was performed on branch `codex/aa-r125-review` in an isolated worktree. The current re-review disposition is changes requested. This receipt does not merge, deploy, or close the issue.
+This receipt records the initial review of PR135 at exact head `757f0f19623199c7f5da508ba09f729482dc4f2f`, the re-review at `db421927ea0f2b7767a46b7f444deff8f7b4f3df`, and the final residual check at `d78b04d1676495740c6e462c40472c044ab2285e`, compared with `main` at `afd2aced307628843f8a26677c3a6fb37fa733e3`. It was performed on branch `codex/aa-r125-review` in an isolated worktree. The final residual check found no remaining findings in the reviewed delta. This receipt does not merge, deploy, or close the issue.
 
 ## Re-review of PR135 at `db421927ea0f2b7767a46b7f444deff8f7b4f3df`
 
@@ -21,6 +21,16 @@ I independently copied the author-head inputs to temporary directories, set `map
 - Baseline reproduction: the packet's 51 disposition IDs matched the 51 baseline mapping IDs exactly, with no missing, extra, or duplicate IDs. The seven named question dispositions include unresolved `rq-mfg-cost`; coordination issues #101, #109, and #117 remain explicitly open with no completion claim.
 - Snapshot reproduction: prior snapshot `2026-09-17.125` is unchanged, and new snapshot `2026-09-17.1252` has no input-hash mismatches.
 - Direct target tests: the four AA-I125 tests pass. The npm test wrapper could not rebuild the target worktree because its generated `dist` directory rejected an unlink with `EPERM`; the direct tests ran against the existing target build.
+
+## Final residual check of PR135 at `d78b04d1676495740c6e462c40472c044ab2285e`
+
+The nested review-date finding from the prior re-review is resolved. The importer now guards every relevant date field it mutates across selected mapping overrides, assessments, guides, source records, source-review attempts, source review records, supplemental reviews, and example editorial review metadata.
+
+- Independent guard harness: 12 relevant top-level and nested cases all rejected before writes, and all nine copied input files remained byte-identical in every case.
+- Independent clean replay: import succeeded and preserved unrelated example, research-family, mapping, and retrieval-fixture content exactly.
+- Direct target tests: all five AA-I125 tests passed.
+- Delta scope: only `scripts/integrate-management-accounting.mjs` and `tests/management-accounting.test.mjs` changed from the prior reviewed head. No corpus, snapshot, catalog, edition, or history file changed in this final delta.
+- The author reports 86/86 full checks. One CI inspection for the exact author head found `verify` SUCCESS; no deployment or final catalog/history integration is implied.
 
 ## Initial review acceptance criteria at `757f0f19623199c7f5da508ba09f729482dc4f2f`
 
