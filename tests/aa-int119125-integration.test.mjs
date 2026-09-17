@@ -19,6 +19,9 @@ const integrationFiles = [
   "data/coverage/assessments.json",
   "data/research-questions.json",
 ];
+const expectedIntegrationState = new Map(
+  integrationFiles.map(file => [file, read(file)]),
+);
 const makeIntegrationHarness = () => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), "aa-r136-clean-integration-"));
   for (const file of integrationFiles) {
@@ -90,7 +93,11 @@ test("clean AA-I125 integration preserves the new FAR source supplemental review
       "the regression must start with the new FAR source absent",
     );
     execFileSync(process.execPath, [script, "--integrate-into-newer-corpus"], { cwd: root, stdio: "pipe" });
-    const source = read(path.join(root, "data/corpus/source.json")).find(record => record.id === "src_far_31203_indirect_costs");
+    const output = new Map(integrationFiles.map(file => [file, read(path.join(root, file))]));
+    for (const file of integrationFiles) {
+      assert.deepEqual(output.get(file), expectedIntegrationState.get(file), `${file}: complete accepted integration state`);
+    }
+    const source = output.get("data/corpus/source.json").find(record => record.id === "src_far_31203_indirect_costs");
     const packet = read(path.join(root, "data/research/management-accounting-2026-09-17.json"));
     const update = packet.sources.find(candidate => candidate.id === "src_far_31203_indirect_costs");
     assert.ok(source, "clean integration must add the FAR source");
