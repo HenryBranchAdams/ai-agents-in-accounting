@@ -2393,23 +2393,23 @@
             "qualification": "The documented product boundary may change and was not tested against an authenticated integration.",
             "classification": "editorial-synthesis"
           },
-        {
-          "claim": "Journal-entry and ledger views may represent different detail, including compression of specified item types for documents over 999 line items.",
-          "source_ids": [
-            "src_sap_journal_entry_views_2608"
-          ],
-          "qualification": "This is a SAP posting-model description, not a universal extraction ceiling or a tested read-path reconciliation.",
-          "classification": "editorial-synthesis"
-        },
-        {
-          "claim": "A source-to-ledger extraction should preserve entity, ledger, period, query, API release, page cursor, extraction time, stable record identity, version history, tombstones, and independent control totals before a reviewer treats the population as complete.",
-          "source_ids": [
-            "src_oracle26b_journal_headers",
-            "src_oracle_collection_paging_25d"
-          ],
-          "qualification": "The fields and version/tombstone controls are an original accounting evidence design tested by example-erp-journal-lineage. Oracle documentation establishes the resource and collection behavior in its stated scope, not tenant completeness or universal correction semantics.",
-          "classification": "original-control-proposal-with-source-limits"
-        }
+          {
+            "claim": "Journal-entry and ledger views may represent different detail, including compression of specified item types for documents over 999 line items.",
+            "source_ids": [
+              "src_sap_journal_entry_views_2608"
+            ],
+            "qualification": "This is a SAP posting-model description, not a universal extraction ceiling or a tested read-path reconciliation.",
+            "classification": "editorial-synthesis"
+          },
+          {
+            "claim": "A source-to-ledger extraction should preserve entity, ledger, period, query, API release, page cursor, extraction time, stable record identity, version history, tombstones, and independent control totals before a reviewer treats the population as complete.",
+            "source_ids": [
+              "src_oracle26b_journal_headers",
+              "src_oracle_collection_paging_25d"
+            ],
+            "qualification": "The fields and version/tombstone controls are an original accounting evidence design tested by example-erp-journal-lineage. Oracle documentation establishes the resource and collection behavior in its stated scope, not tenant completeness or universal correction semantics.",
+            "classification": "original-control-proposal-with-source-limits"
+          }
         ],
         "disagreements": [
           {
@@ -2427,9 +2427,9 @@
         ],
         "reading_order": [
           "src_xero_journals_completeness",
-        "src_oracle_collection_paging_25d",
-        "src_oracle26b_journal_headers",
-        "src_xero_efficient_retrieval",
+          "src_oracle_collection_paging_25d",
+          "src_oracle26b_journal_headers",
+          "src_xero_efficient_retrieval",
           "src_xero_bank_statement_boundary",
           "src_sap_journal_entry_views_2608"
         ]
@@ -4360,8 +4360,8 @@
     "reviewed_at": "2026-09-17",
     "provenance": {
       "reviewer": "Codex (AI-assisted source-notice review)",
-    "scope": "Original publisher repository notices, BAF datasheet and Kaggle card, FiFAR versioned API metadata and authors data-record description, with a 2026-09-17 recheck of the TabFormer and FiFAR repository notices and Creative Commons legal code.",
-    "note": "Original synthesis of observed notices; no external full text or dataset archive is stored. Current review preserves unresolved BAF and FiFAR upstream conflicts and does not obtain new publisher terms."
+      "scope": "Original publisher repository notices, BAF datasheet and Kaggle card, FiFAR versioned API metadata and authors data-record description, with a 2026-09-17 recheck of the TabFormer and FiFAR repository notices and Creative Commons legal code.",
+      "note": "Original synthesis of observed notices; no external full text or dataset archive is stored. Current review preserves unresolved BAF and FiFAR upstream conflicts and does not obtain new publisher terms."
     },
     "rights": {
       "metadata": "CC0-1.0",
@@ -4371,10 +4371,10 @@
     },
     "data": {
       "version": "1.1.0",
-    "prepared_at": "2026-09-17",
+      "prepared_at": "2026-09-17",
       "editorial_brief": {
         "question": "Do these dataset references carry reusable-data permission?",
-      "answer": "The review establishes specific notices and exposes unresolved scope conflicts. TabFormer has a root Apache license and a synthetic-data repository description, but no inspected archive-specific notice. BAF has conflicting share-alike and no-derivatives dataset notices. FiFAR version 1 lists CC BY while incorporating BAF material and processed subsets. CC BY grants only rights within the licensor's authority and does not resolve an upstream conflict. None of these findings changes the corpus policy excluding external full text.",
+        "answer": "The review establishes specific notices and exposes unresolved scope conflicts. TabFormer has a root Apache license and a synthetic-data repository description, but no inspected archive-specific notice. BAF has conflicting share-alike and no-derivatives dataset notices. FiFAR version 1 lists CC BY while incorporating BAF material and processed subsets. CC BY grants only rights within the licensor's authority and does not resolve an upstream conflict. None of these findings changes the corpus policy excluding external full text.",
         "findings": [
           {
             "claim": "TabFormer code and data permissions need a scope boundary.",
@@ -4418,12 +4418,12 @@
           "source_id": "src_ibm_tabformer_card_data",
           "status": "dataset-scope-unresolved",
           "observations": [
-          {
-            "url": "https://github.com/IBM/TabFormer",
-            "locator": "README: Credit Card Transaction Dataset and repository license sections",
-            "notice": "The repository describes a synthetic credit-card transaction dataset with 24M records and 12 fields and points to Git LFS or an IBM Box download for data access.",
-            "scope": "Repository README and access instructions; the external archive's independent data licence was not established."
-          },
+            {
+              "url": "https://github.com/IBM/TabFormer",
+              "locator": "README: Credit Card Transaction Dataset and repository license sections",
+              "notice": "The repository describes a synthetic credit-card transaction dataset with 24M records and 12 fields and points to Git LFS or an IBM Box download for data access.",
+              "scope": "Repository README and access instructions; the external archive's independent data licence was not established."
+            },
             {
               "url": "https://github.com/IBM/TabFormer",
               "locator": "README: repository description and Credit Card Transaction Dataset",
@@ -4488,57 +4488,57 @@
               "notice": "The release includes BAF Base.csv version 1 and processed alert subsets.",
               "scope": "Original authors article documents upstream inclusion; article license does not resolve the data rights chain."
             },
-          {
-            "url": "https://raw.githubusercontent.com/feedzai/fifar-dataset/main/README.md",
-            "locator": "README: dataset components, BAF Base.csv input, and synthetic expert prediction sections",
-            "notice": "The repository points to the 2025 release, identifies BAF Base.csv as input, and describes synthetic analyst predictions for the BAF instances.",
-            "scope": "Version relationship, not a new dataset permission grant."
+            {
+              "url": "https://raw.githubusercontent.com/feedzai/fifar-dataset/main/README.md",
+              "locator": "README: dataset components, BAF Base.csv input, and synthetic expert prediction sections",
+              "notice": "The repository points to the 2025 release, identifies BAF Base.csv as input, and describes synthetic analyst predictions for the BAF instances.",
+              "scope": "Version relationship, not a new dataset permission grant."
             }
           ],
           "outcome": "The 2025 release notice is verified, but the BAF input has conflicting NC-SA and NC-ND notices. A CC BY metadata label alone does not establish a superseding upstream grant.",
-        "dependency": "Clarification covering the included BAF Base.csv, processed subsets and synthetic analyst predictions separately; retain the exact version and intended use. No publisher permission was invented."
-      }
-    ],
-    "release_rights_matrix": [
-      {
-        "release": "TabFormer repository and credit-card archive",
-        "version_or_edition": "Repository state rechecked 2026-09-17; external archive accessed by Git LFS or IBM Box link",
-        "author_or_publisher": "IBM Research / IBM TabFormer repository",
-        "upstream_inputs": "Repository describes synthetic credit-card transaction data; the external archive notice was not established",
-        "code_notice": "Apache-2.0 root repository notice",
-        "data_notice": "Unresolved for the downloadable archive",
-        "incorporated_rights": "Not established beyond the repository notice",
-        "permitted_use_inferred": "Repository code scope only; no training, redistribution, or archive permission inferred",
-        "unresolved_conflicts": "Root code licence and data-directory access instructions do not identify a controlling archive licence"
-      },
-      {
-        "release": "BAF Bank Account Fraud dataset",
-        "version_or_edition": "NeurIPS 2022 dataset release and observed distribution notices",
-        "author_or_publisher": "Feedzai and dataset authors; distribution notices include Kaggle",
-        "upstream_inputs": "Dataset-specific upstream provenance remains part of the publisher release; not replaced by repository code terms",
-        "code_notice": "Apache-2.0 repository code notice is separate from dataset rights",
-        "data_notice": "Conflicting CC BY-NC-SA 4.0 Kaggle card and CC BY-NC-ND 4.0 Feedzai datasheet statement",
-        "incorporated_rights": "Controlling notice not established",
-        "permitted_use_inferred": "No derivative, commercial, training, or redistribution permission inferred",
-        "unresolved_conflicts": "Share-alike and no-derivatives conditions conflict for the observed version and distribution paths"
-      },
-      {
-        "release": "FiFAR alert-review dataset",
-        "version_or_edition": "Figshare version 1 published 2025-04-24 plus repository README rechecked 2026-09-17",
-        "author_or_publisher": "FiFAR authors and Feedzai repository; Figshare release",
-        "upstream_inputs": "BAF Base.csv and processed BAF-derived subsets; synthetic analyst predictions",
-        "code_notice": "Repository and tooling notices are separate from data components",
-        "data_notice": "Figshare metadata labels the release CC BY 4.0",
-        "incorporated_rights": "BAF upstream conflict remains unresolved; a release-level CC BY label does not prove authority over included BAF material",
-        "permitted_use_inferred": "Exact release metadata may be recorded, but no blanket training or redistribution permission is inferred for included upstream components",
-        "unresolved_conflicts": "BAF CC BY-NC-SA versus CC BY-NC-ND notices, included Base.csv, processed subsets, and intended use"
-      }
-    ],
-    "controls": [
-      "Carry resource/version, notice URL, notice scope and unresolved upstream components into retrieval and exports.",
-      "Keep code, article, dataset, generated predictions and project-created summaries distinct.",
-      "A synthetic label does not itself confer reuse permission or establish production performance.",
-      "Apply a licence only within the licensor's established authority and recheck incorporated components before training, redistribution, or derivative use."
+          "dependency": "Clarification covering the included BAF Base.csv, processed subsets and synthetic analyst predictions separately; retain the exact version and intended use. No publisher permission was invented."
+        }
+      ],
+      "release_rights_matrix": [
+        {
+          "release": "TabFormer repository and credit-card archive",
+          "version_or_edition": "Repository state rechecked 2026-09-17; external archive accessed by Git LFS or IBM Box link",
+          "author_or_publisher": "IBM Research / IBM TabFormer repository",
+          "upstream_inputs": "Repository describes synthetic credit-card transaction data; the external archive notice was not established",
+          "code_notice": "Apache-2.0 root repository notice",
+          "data_notice": "Unresolved for the downloadable archive",
+          "incorporated_rights": "Not established beyond the repository notice",
+          "permitted_use_inferred": "Repository code scope only; no training, redistribution, or archive permission inferred",
+          "unresolved_conflicts": "Root code licence and data-directory access instructions do not identify a controlling archive licence"
+        },
+        {
+          "release": "BAF Bank Account Fraud dataset",
+          "version_or_edition": "NeurIPS 2022 dataset release and observed distribution notices",
+          "author_or_publisher": "Feedzai and dataset authors; distribution notices include Kaggle",
+          "upstream_inputs": "Dataset-specific upstream provenance remains part of the publisher release; not replaced by repository code terms",
+          "code_notice": "Apache-2.0 repository code notice is separate from dataset rights",
+          "data_notice": "Conflicting CC BY-NC-SA 4.0 Kaggle card and CC BY-NC-ND 4.0 Feedzai datasheet statement",
+          "incorporated_rights": "Controlling notice not established",
+          "permitted_use_inferred": "No derivative, commercial, training, or redistribution permission inferred",
+          "unresolved_conflicts": "Share-alike and no-derivatives conditions conflict for the observed version and distribution paths"
+        },
+        {
+          "release": "FiFAR alert-review dataset",
+          "version_or_edition": "Figshare version 1 published 2025-04-24 plus repository README rechecked 2026-09-17",
+          "author_or_publisher": "FiFAR authors and Feedzai repository; Figshare release",
+          "upstream_inputs": "BAF Base.csv and processed BAF-derived subsets; synthetic analyst predictions",
+          "code_notice": "Repository and tooling notices are separate from data components",
+          "data_notice": "Figshare metadata labels the release CC BY 4.0",
+          "incorporated_rights": "BAF upstream conflict remains unresolved; a release-level CC BY label does not prove authority over included BAF material",
+          "permitted_use_inferred": "Exact release metadata may be recorded, but no blanket training or redistribution permission is inferred for included upstream components",
+          "unresolved_conflicts": "BAF CC BY-NC-SA versus CC BY-NC-ND notices, included Base.csv, processed subsets, and intended use"
+        }
+      ],
+      "controls": [
+        "Carry resource/version, notice URL, notice scope and unresolved upstream components into retrieval and exports.",
+        "Keep code, article, dataset, generated predictions and project-created summaries distinct.",
+        "A synthetic label does not itself confer reuse permission or establish production performance.",
+        "Apply a licence only within the licensor's established authority and recheck incorporated components before training, redistribution, or derivative use."
       ],
       "professional_review": "not-performed",
       "empirical_support": "not-established"
@@ -24026,7 +24026,9 @@
       "src_06qnpc3",
       "src_finra2409",
       "src_1sbtyzp",
-      "src_1v8cm5i"
+      "src_1v8cm5i",
+      "src_038j28b",
+      "src_0w8mvx4"
     ],
     "related_ids": [],
     "review_status": "editorially-reviewed",
@@ -24075,7 +24077,7 @@
         "The U.S. Venture item is vendor/customer reported and lacks an independent accuracy denominator.",
         "Air Canada official decision remained inaccessible; the incident summary retains that dependency."
       ],
-      "version": "2026-09-17.1",
+      "version": "2026-09-17.1272",
       "research_package": "empirical",
       "research_questions": [
         {
@@ -24432,6 +24434,21 @@
               "source_id": "src_0w8mvx4",
               "locator": "GAO-26-107522 IRS AI governance and information-quality findings, not accounting accuracy",
               "url": "https://www.gao.gov/products/gao-26-107522"
+            },
+            {
+              "source_id": "src_1l0q90c",
+              "locator": "Public author/arXiv version, sections 2.2 Data Firm Background, 2.3 AI System Design, 3.1-3.2 Deployment/Data, 4 Results and 5 Conclusion; customer-support transfer limit",
+              "url": "https://arxiv.org/abs/2304.11771"
+            },
+            {
+              "source_id": "src_1p2g6i1",
+              "locator": "Organization Science published PDF, pp. 2-5 methods and frontier definition, pp. 8 and 11-16 Tables 4-5 and outside-frontier correctness; transfer requires task-specific evaluation",
+              "url": "https://www.hbs.edu/ris/Publication%20Files/dell-acqua-et-al-2026-navigating-the-jagged-technological-frontier_5c589c8c-fbb5-458f-b285-c944746cd717.pdf"
+            },
+            {
+              "source_id": "src_038j28b",
+              "locator": "NIST ARIA Pilot Evaluation Report publisher page: contextual and societal impact evaluation beyond technical accuracy",
+              "url": "https://www.nist.gov/publications/assessing-risks-and-impacts-ai-aria-pilot-evaluation-report"
             }
           ],
           "observed_outcomes": [],
@@ -47493,15 +47510,15 @@
       "src_oracle_collection_paging_25d",
       "src_0pywo86",
       "src_0ao5x0t",
-      "src_0yz56pm",
-      "src_16e5erv",
-      "src_18pyuyd",
       "src_1i38fu6",
       "src_1jqxy83",
+      "src_1l0q90c",
+      "src_1p2g6i1",
       "src_038j28b",
       "src_0w8mvx4",
       "src_1sbtyzp",
       "src_1v8cm5i",
+      "src_1k7its6",
       "src_roadmap_ccby4_legalcode",
       "src_baf_bank_account_fraud_2022",
       "src_fifar_alert_review_2025"
@@ -47558,9 +47575,6 @@
         "src_oracle_collection_paging_25d",
         "src_0pywo86",
         "src_0ao5x0t",
-        "src_0yz56pm",
-        "src_16e5erv",
-        "src_18pyuyd",
         "src_1i38fu6",
         "src_1jqxy83",
         "src_038j28b",
@@ -47599,7 +47613,7 @@
         "Provider, NIST, and GAO materials inform control or governance questions but do not grant legal authority or certify an accounting workflow.",
         "TabFormer, BAF, and FiFAR rights remain version-specific and unresolved where repository, dataset, and upstream notices diverge."
       ],
-      "version": "2026-09-17.1",
+      "version": "2026-09-17.1272",
       "research_package": "manual-aa-i127",
       "manual_research_questions": true,
       "research_questions": [
@@ -47878,6 +47892,21 @@
               "url": "https://www.microsoft.com/en/customers/story/20600-us-venture-microsoft-365-copilot-for-finance"
             },
             {
+              "source_id": "src_1l0q90c",
+              "locator": "Public author/arXiv version, sections 2.2 Data Firm Background, 2.3 AI System Design, 3.1-3.2 Deployment/Data, 4 Results and 5 Conclusion; customer-support deployment evidence, not accounting accuracy",
+              "url": "https://arxiv.org/abs/2304.11771"
+            },
+            {
+              "source_id": "src_1p2g6i1",
+              "locator": "Organization Science published PDF, pp. 2-5 methods and frontier definition, pp. 8 and 11-16 Tables 4-5 and outside-frontier correctness; transfer requires task-specific evaluation",
+              "url": "https://www.hbs.edu/ris/Publication%20Files/dell-acqua-et-al-2026-navigating-the-jagged-technological-frontier_5c589c8c-fbb5-458f-b285-c944746cd717.pdf"
+            },
+            {
+              "source_id": "src_038j28b",
+              "locator": "NIST ARIA Pilot Evaluation Report publisher page: evaluation of technical performance with contextual and societal impacts, not accounting-agent correctness",
+              "url": "https://www.nist.gov/publications/assessing-risks-and-impacts-ai-aria-pilot-evaluation-report"
+            },
+            {
               "source_id": "src_0w8mvx4",
               "locator": "GAO-26-107522 highlights and recommendations on IRS AI inventory, information quality, and governance; not accounting accuracy",
               "url": "https://www.gao.gov/products/gao-26-107522"
@@ -47949,6 +47978,11 @@
               "source_id": "src_fifar_alert_review_2025",
               "locator": "FiFAR version 1 metadata and repository README identifying BAF Base.csv input and processed subsets",
               "url": "https://raw.githubusercontent.com/feedzai/fifar-dataset/main/README.md"
+            },
+            {
+              "source_id": "src_1k7its6",
+              "locator": "ISO and IEC page for ISO/IEC 5259-3:2024 AI data quality management; completeness, accuracy, lineage, representativeness and fitness-for-use scope",
+              "url": "https://www.iso.org/standard/81092.html"
             }
           ],
           "inputs": [

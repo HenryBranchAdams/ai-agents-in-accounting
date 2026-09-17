@@ -225,7 +225,7 @@ export function coveragePage(params: URLSearchParams) {
           <CardTitle role="heading" aria-level={3}>
             {esc(coverage.questionById.get(a.question_id)?.title)}
             {" / "}
-            {esc(coverage.nodeByCode.get(a.industry_code)?.title)}
+            {esc(a.scope_kind === "shared-context" ? "Shared context" : coverage.nodeByCode.get(a.industry_code || "")?.title)}
           </CardTitle>
           <CardDescription>{a.scope}</CardDescription>
         </CardHeader>

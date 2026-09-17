@@ -143,7 +143,7 @@ test('local construction completion preserves evidence boundaries and actionable
  const local=executeAgent('get',{id:'guide-construction-connected-close',section:'data.local_completion',limit:20});
  assert.match(JSON.stringify(local),/not mean accounting sufficiency/);
  assert.match(JSON.stringify(local),/contractor/);
- const a=read('data/coverage/assessments.json').assessments.at(-1);
+ const a=read('data/coverage/assessments.json').assessments.find(x=>x.id==='coverage-construction-local-2026-09-14');
  assert.equal(a.id,'coverage-construction-local-2026-09-14');assert.equal(a.status,'partial');
  assert.equal(a.source_currency,'not-reverified-for-this-assessment');
 });

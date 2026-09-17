@@ -34,9 +34,9 @@
     "dimensionStatus": {"enum": ["present", "partial", "missing", "not-assessed", "not-applicable"]},
     "assessment": {
       "type": "object", "additionalProperties": false,
-      "required": ["id", "industry_code", "question_id", "status", "scope", "jurisdictions", "frameworks", "effective_from", "effective_to", "reviewed_at", "reviewer", "review_basis", "source_currency", "evidence_record_ids", "dimensions", "gaps", "rights"],
+      "required": ["id", "scope_kind", "industry_code", "question_id", "family_ids", "status", "scope", "jurisdictions", "frameworks", "effective_from", "effective_to", "reviewed_at", "reviewer", "review_basis", "source_currency", "evidence_record_ids", "dimensions", "gaps", "rights"],
       "properties": {
-        "id": {"type": "string"}, "industry_code": {"type": "string"}, "question_id": {"type": "string"},
+        "id": {"type": "string"}, "scope_kind": {"enum": ["industry", "shared-context"]}, "industry_code": {"type": ["string", "null"]}, "named_question_id": {"type": "string"}, "question_id": {"type": "string"}, "family_ids": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
         "status": {"enum": ["partial", "sufficient-for-stated-scope", "evidence-gap", "not-applicable"]},
         "scope": {"type": "string", "minLength": 1}, "jurisdictions": {"type": "array", "items": {"type": "string"}}, "frameworks": {"type": "array", "items": {"type": "string"}},
         "effective_from": {"type": ["string", "null"]}, "effective_to": {"type": ["string", "null"]},

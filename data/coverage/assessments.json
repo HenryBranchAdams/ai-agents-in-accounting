@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "assessment_version": "2026-09-14.3",
+  "assessment_version": "2026-09-17.1272",
   "topology_version": "2026-09-11.1",
   "assessments": [
     {
@@ -46,7 +46,11 @@
         "metadata": "CC0-1.0",
         "content": "CC-BY-4.0",
         "external_content": "Not included; linked record rights continue to apply"
-      }
+      },
+      "scope_kind": "industry",
+      "family_ids": [
+        "q-project-wip"
+      ]
     },
     {
       "id": "coverage-construction-connected-2026-09-14",
@@ -93,7 +97,11 @@
         "metadata": "CC0-1.0",
         "content": "CC-BY-4.0",
         "external_content": "Not included; linked record rights continue to apply"
-      }
+      },
+      "scope_kind": "industry",
+      "family_ids": [
+        "q-project-wip"
+      ]
     },
     {
       "id": "coverage-construction-four-gaps-2026-09-14",
@@ -143,7 +151,11 @@
         "metadata": "CC0-1.0",
         "content": "CC-BY-4.0",
         "external_content": "Not included; linked record rights continue to apply"
-      }
+      },
+      "scope_kind": "industry",
+      "family_ids": [
+        "q-project-wip"
+      ]
     },
     {
       "id": "coverage-construction-local-2026-09-14",
@@ -193,6 +205,462 @@
         "metadata": "CC0-1.0",
         "content": "CC-BY-4.0",
         "external_content": "Not included; linked record rights continue to apply"
+      },
+      "scope_kind": "industry",
+      "family_ids": [
+        "q-project-wip"
+      ]
+    },
+    {
+      "id": "coverage-aa-i127-lineage-completeness-2026-09-17.1272",
+      "scope_kind": "shared-context",
+      "industry_code": null,
+      "named_question_id": "rq-aa-i127-lineage-completeness",
+      "question_id": "q-data-lineage",
+      "family_ids": [
+        "q-data-lineage",
+        "q-interfaces",
+        "q-audit-assertions"
+      ],
+      "status": "partial",
+      "scope": "US GAAP, one entity, one primary ledger, one August 2026 Oracle Fusion Cloud Financials 26B journal-header extraction; synthetic worked example only.",
+      "jurisdictions": [
+        "US"
+      ],
+      "frameworks": [
+        "US GAAP"
+      ],
+      "effective_from": null,
+      "effective_to": null,
+      "reviewed_at": "2026-09-17",
+      "reviewer": "Codex (AI-assisted evidence-packet review; no professional sign-off)",
+      "review_basis": "Publisher documentation supplies endpoint and collection limits, while the synthetic fixture supplies explicit controls and counterexamples. No production completeness or professional review is established. Canonical shared-context disposition for rq-aa-i127-lineage-completeness; source and synthetic evidence remain bounded to the stated scope.",
+      "source_currency": "verified-within-stated-scope",
+      "evidence_record_ids": [
+        "guide-us-accounting-agent-evidence-boundaries",
+        "example-erp-journal-lineage",
+        "src_oracle26b_journal_headers",
+        "src_oracle_collection_paging_25d"
+      ],
+      "dimensions": {
+        "scope": "partial",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "partial",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "gaps": [
+        "No live tenant or endpoint-specific completeness test was performed.",
+        "The Oracle collection contract does not establish line-level, subledger, permission, retention, or tenant completeness.",
+        "The synthetic control totals are original project-created values."
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "Not included; source rights and permissions remain record-specific",
+        "full_text_stored": false
+      }
+    },
+    {
+      "id": "coverage-aa-i127-corrections-tombstones-2026-09-17.1272",
+      "scope_kind": "shared-context",
+      "industry_code": null,
+      "named_question_id": "rq-aa-i127-corrections-tombstones",
+      "question_id": "q-data-lineage",
+      "family_ids": [
+        "q-data-lineage",
+        "q-ledger-close",
+        "q-interfaces"
+      ],
+      "status": "partial",
+      "scope": "US GAAP, one entity and one journal batch; version and tombstone behavior is an original synthetic control design, not a universal Oracle contract.",
+      "jurisdictions": [
+        "US"
+      ],
+      "frameworks": [
+        "US GAAP"
+      ],
+      "effective_from": null,
+      "effective_to": null,
+      "reviewed_at": "2026-09-17",
+      "reviewer": "Codex (AI-assisted evidence-packet review; no professional sign-off)",
+      "review_basis": "The version and tombstone design is an original control proposal tested by a synthetic fixture; publisher documentation does not establish universal correction semantics. Canonical shared-context disposition for rq-aa-i127-corrections-tombstones; source and synthetic evidence remain bounded to the stated scope.",
+      "source_currency": "verified-within-stated-scope",
+      "evidence_record_ids": [
+        "guide-us-accounting-agent-evidence-boundaries",
+        "example-erp-journal-lineage",
+        "src_oracle26b_journal_headers",
+        "src_oracle_collection_paging_25d"
+      ],
+      "dimensions": {
+        "scope": "partial",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "partial",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "gaps": [
+        "No current tenant contract or audit-history behavior was reviewed.",
+        "No journal-line, subledger, archive, or deletion-retention conclusion is made."
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "Not included; source rights and permissions remain record-specific",
+        "full_text_stored": false
+      }
+    },
+    {
+      "id": "coverage-aa-i127-security-boundary-2026-09-17.1272",
+      "scope_kind": "shared-context",
+      "industry_code": null,
+      "named_question_id": "rq-aa-i127-security-boundary",
+      "question_id": "q-security",
+      "family_ids": [
+        "q-security",
+        "q-agent-design"
+      ],
+      "status": "partial",
+      "scope": "US information-system control context applied to a read-only accounting retrieval scenario; NIST risk framing is not a penetration test.",
+      "jurisdictions": [
+        "US"
+      ],
+      "frameworks": [
+        "US GAAP"
+      ],
+      "effective_from": null,
+      "effective_to": null,
+      "reviewed_at": "2026-09-17",
+      "reviewer": "Codex (AI-assisted evidence-packet review; no professional sign-off)",
+      "review_basis": "NIST sources provide bounded control and risk framing, while the fixture tests an explicit data-versus-authority boundary. Effectiveness remains untested. Canonical shared-context disposition for rq-aa-i127-security-boundary; source and synthetic evidence remain bounded to the stated scope.",
+      "source_currency": "verified-within-stated-scope",
+      "evidence_record_ids": [
+        "guide-us-accounting-agent-evidence-boundaries",
+        "example-erp-journal-lineage",
+        "src_0pywo86",
+        "src_0ao5x0t"
+      ],
+      "dimensions": {
+        "scope": "partial",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "partial",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "gaps": [
+        "No agent-specific red-team, penetration, tenant-isolation, or exfiltration test was performed.",
+        "Specific legal, contractual, retention, and privacy duties require separate entity review."
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "Not included; source rights and permissions remain record-specific",
+        "full_text_stored": false
+      }
+    },
+    {
+      "id": "coverage-aa-i127-human-authority-2026-09-17.1272",
+      "scope_kind": "shared-context",
+      "industry_code": null,
+      "named_question_id": "rq-aa-i127-human-authority",
+      "question_id": "q-human-authority",
+      "family_ids": [
+        "q-human-authority",
+        "q-agent-design"
+      ],
+      "status": "partial",
+      "scope": "US accounting workflow authority boundary for retrieval, reconciliation, and reviewer preparation; provider guidance is not legal authority or professional sign-off.",
+      "jurisdictions": [
+        "US"
+      ],
+      "frameworks": [
+        "US GAAP"
+      ],
+      "effective_from": null,
+      "effective_to": null,
+      "reviewed_at": "2026-09-17",
+      "reviewer": "Codex (AI-assisted evidence-packet review; no professional sign-off)",
+      "review_basis": "Provider and human-factors material informs a proposed control boundary; the synthetic artifact makes authority explicit but does not establish legal or professional authority. Canonical shared-context disposition for rq-aa-i127-human-authority; source and synthetic evidence remain bounded to the stated scope.",
+      "source_currency": "verified-within-stated-scope",
+      "evidence_record_ids": [
+        "guide-us-accounting-agent-evidence-boundaries",
+        "example-erp-journal-lineage",
+        "src_1i38fu6",
+        "src_1jqxy83"
+      ],
+      "dimensions": {
+        "scope": "partial",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "partial",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "gaps": [
+        "No entity delegation matrix, access configuration, or professional sign-off was reviewed.",
+        "No causal accounting-specific estimate of automation bias or review effectiveness was established."
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "Not included; source rights and permissions remain record-specific",
+        "full_text_stored": false
+      }
+    },
+    {
+      "id": "coverage-aa-i127-evidence-transfer-2026-09-17.1272",
+      "scope_kind": "shared-context",
+      "industry_code": null,
+      "named_question_id": "rq-aa-i127-evidence-transfer",
+      "question_id": "q-deployment-evidence",
+      "family_ids": [
+        "q-deployment-evidence",
+        "q-evaluation",
+        "q-human-authority"
+      ],
+      "status": "partial",
+      "scope": "US accounting-agent evidence classification, with a bounded SME accounting field study, a vendor/customer reconciliation story, general workplace experiments, and federal governance evidence kept separate.",
+      "jurisdictions": [
+        "US"
+      ],
+      "frameworks": [
+        "US GAAP"
+      ],
+      "effective_from": null,
+      "effective_to": null,
+      "reviewed_at": "2026-09-17",
+      "reviewer": "Codex (AI-assisted evidence-packet review; no professional sign-off)",
+      "review_basis": "The reviewed accounting field study is directly relevant but bounded; the other evidence is explicitly classified by setting and transfer limit. No production accounting-agent certification is asserted. Canonical shared-context disposition for rq-aa-i127-evidence-transfer; source and synthetic evidence remain bounded to the stated scope.",
+      "source_currency": "verified-within-stated-scope",
+      "evidence_record_ids": [
+        "guide-us-accounting-agent-evidence-boundaries",
+        "example-erp-journal-lineage",
+        "src_1sbtyzp",
+        "src_1v8cm5i",
+        "src_1l0q90c",
+        "src_1p2g6i1",
+        "src_038j28b",
+        "src_0w8mvx4"
+      ],
+      "dimensions": {
+        "scope": "partial",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "partial",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "partial"
+      },
+      "gaps": [
+        "No public independent end-to-end accounting-agent deployment establishes population completeness, journal correctness, correction handling, or effective review controls.",
+        "The accounting field study was reviewed at abstract level and its proprietary data and methods are not available in this corpus.",
+        "Vendor/customer reported time savings do not provide an independent accuracy denominator."
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "Not included; source rights and permissions remain record-specific",
+        "full_text_stored": false
+      }
+    },
+    {
+      "id": "coverage-aa-i127-rights-provenance-2026-09-17.1272",
+      "scope_kind": "shared-context",
+      "industry_code": null,
+      "named_question_id": "rq-aa-i127-rights-provenance",
+      "question_id": "q-reuse-rights",
+      "family_ids": [
+        "q-reuse-rights",
+        "q-data-lineage"
+      ],
+      "status": "partial",
+      "scope": "US project corpus and reusable-data governance; external dataset notices remain version-specific and are not replaced by a project metadata licence.",
+      "jurisdictions": [
+        "US",
+        "Global"
+      ],
+      "frameworks": [],
+      "effective_from": null,
+      "effective_to": null,
+      "reviewed_at": "2026-09-17",
+      "reviewer": "Codex (AI-assisted evidence-packet review; no professional sign-off)",
+      "review_basis": "Publisher notices and exact component boundaries are recorded, while contradictory or missing permissions remain unresolved. No new permission is inferred. Canonical shared-context disposition for rq-aa-i127-rights-provenance; source and synthetic evidence remain bounded to the stated scope.",
+      "source_currency": "verified-within-stated-scope",
+      "evidence_record_ids": [
+        "guide-us-accounting-agent-evidence-boundaries",
+        "src_roadmap_ccby4_legalcode",
+        "src_baf_bank_account_fraud_2022",
+        "src_fifar_alert_review_2025",
+        "src_1k7its6"
+      ],
+      "dimensions": {
+        "scope": "partial",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "partial",
+        "controls": "present",
+        "worked-material": "partial",
+        "empirical-support": "not-assessed"
+      },
+      "gaps": [
+        "No publisher clarification was obtained for the BAF version, FiFAR included Base.csv, processed subsets, or intended use.",
+        "Rights remain unresolved for external archive or training and redistribution uses."
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "Not included; source rights and permissions remain record-specific",
+        "full_text_stored": false
+      }
+    },
+    {
+      "id": "coverage-rq-deployment-accounting-field-study-2026-09-17.1272",
+      "scope_kind": "shared-context",
+      "industry_code": null,
+      "named_question_id": "rq-deployment-accounting-field-study",
+      "question_id": "q-deployment-evidence",
+      "family_ids": [
+        "q-deployment-evidence",
+        "q-evaluation",
+        "q-human-authority"
+      ],
+      "status": "partial",
+      "scope": "Public Wiley abstract for a Journal of Accounting Research field study involving professional accountants and an AI-enabled accounting platform serving SMEs; accounting-relevant but proprietary and abstract-level.",
+      "jurisdictions": [],
+      "frameworks": [],
+      "effective_from": null,
+      "effective_to": null,
+      "reviewed_at": "2026-09-17",
+      "reviewer": "Codex (AI-assisted evidence-packet review; no professional sign-off)",
+      "review_basis": "Presence and review limits of the directly relevant accounting field study are retained; proprietary methods, rights, correction outcomes, and transfer limits remain explicit. Canonical shared-context disposition for rq-deployment-accounting-field-study; evidence remains limited to the cited source settings.",
+      "source_currency": "verified-within-stated-scope",
+      "evidence_record_ids": [
+        "guide-independent-deployment-evidence",
+        "src_1sbtyzp"
+      ],
+      "dimensions": {
+        "scope": "partial",
+        "accounting-question": "partial",
+        "evidence-inputs": "partial",
+        "workflow": "partial",
+        "controls": "missing",
+        "worked-material": "partial",
+        "empirical-support": "partial"
+      },
+      "gaps": [
+        "Full methods, raw records, comparator construction, confidence thresholds, and correction outcomes were not reviewed.",
+        "No public journal completeness, financial-statement error, void/deletion, or control-effectiveness denominator was established.",
+        "No independent replication, professional sign-off, or permission to redistribute proprietary records was established.",
+        "Transfer to the synthetic Oracle lineage fixture requires a separate task and control evaluation."
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "Not included; source rights and permissions remain record-specific",
+        "full_text_stored": false
+      }
+    },
+    {
+      "id": "coverage-rq-deployment-accounting-customer-story-2026-09-17.1272",
+      "scope_kind": "shared-context",
+      "industry_code": null,
+      "named_question_id": "rq-deployment-accounting-customer-story",
+      "question_id": "q-deployment-evidence",
+      "family_ids": [
+        "q-deployment-evidence",
+        "q-evaluation"
+      ],
+      "status": "partial",
+      "scope": "Microsoft customer story for U.S. Venture and US AutoForce using Copilot for Finance; vendor/customer practice evidence, not independent validation.",
+      "jurisdictions": [],
+      "frameworks": [],
+      "effective_from": null,
+      "effective_to": null,
+      "reviewed_at": "2026-09-17",
+      "reviewer": "Codex (AI-assisted evidence-packet review; no professional sign-off)",
+      "review_basis": "The source is retained as a clearly labeled practice example with vendor/customer attribution and no independent performance claim. Canonical shared-context disposition for rq-deployment-accounting-customer-story; evidence remains limited to the cited source settings.",
+      "source_currency": "verified-within-stated-scope",
+      "evidence_record_ids": [
+        "guide-independent-deployment-evidence",
+        "src_1v8cm5i"
+      ],
+      "dimensions": {
+        "scope": "partial",
+        "accounting-question": "partial",
+        "evidence-inputs": "partial",
+        "workflow": "partial",
+        "controls": "missing",
+        "worked-material": "missing",
+        "empirical-support": "not-assessed"
+      },
+      "gaps": [
+        "No independent accuracy or completeness check was established.",
+        "No full population, exception rate, correction history, or reviewer override data was published.",
+        "Reported savings are not a causal estimate transferable to the synthetic ERP fixture."
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "Not included; source rights and permissions remain record-specific",
+        "full_text_stored": false
+      }
+    },
+    {
+      "id": "coverage-rq-deployment-accounting-evidence-gap-2026-09-17.1272",
+      "scope_kind": "shared-context",
+      "industry_code": null,
+      "named_question_id": "rq-deployment-accounting-evidence-gap",
+      "question_id": "q-deployment-evidence",
+      "family_ids": [
+        "q-deployment-evidence",
+        "q-evaluation",
+        "q-human-authority"
+      ],
+      "status": "evidence-gap",
+      "scope": "Comparison across the accounting field study, vendor/customer story, general workplace experiments, federal governance evidence, and the synthetic ERP fixture.",
+      "jurisdictions": [],
+      "frameworks": [],
+      "effective_from": null,
+      "effective_to": null,
+      "reviewed_at": "2026-09-17",
+      "reviewer": "Codex (AI-assisted evidence-packet review; no professional sign-off)",
+      "review_basis": "The selected sources support a bounded accounting field study and a vendor/customer practice example, but the requested end-to-end deployment evidence remains absent. Canonical shared-context disposition for rq-deployment-accounting-evidence-gap; evidence remains limited to the cited source settings.",
+      "source_currency": "verified-within-stated-scope",
+      "evidence_record_ids": [
+        "guide-independent-deployment-evidence",
+        "src_1sbtyzp",
+        "src_1v8cm5i",
+        "src_1l0q90c",
+        "src_1p2g6i1",
+        "src_038j28b",
+        "src_0w8mvx4"
+      ],
+      "dimensions": {
+        "scope": "partial",
+        "accounting-question": "missing",
+        "evidence-inputs": "partial",
+        "workflow": "partial",
+        "controls": "missing",
+        "worked-material": "partial",
+        "empirical-support": "not-assessed"
+      },
+      "gaps": [
+        "No public independent end-to-end accounting-agent deployment with ledger correctness and control evidence was established.",
+        "No independent replication of the field study or validation of the vendor/customer story was established.",
+        "No live ERP run, reviewer study, incident register, or rights-cleared deployment dataset was obtained."
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "Not included; source rights and permissions remain record-specific",
+        "full_text_stored": false
       }
     }
   ]

@@ -46,7 +46,9 @@ export function createCoverageIndex(records: CorpusRecord[]) {
   const broader = (code: string) => union(...ancestors(code).map(n => direct.get(n.code)!));
   const children = (code = "") => nodes.filter(n => n.parent_code === (code || null));
   const sharedIds = new Set(mappingData.mappings.filter(m => m.industry_scope === "shared-context").map(m => m.record_id));
-  const applicableAssessments = (code: string, question = "") => assessments.filter(a => a.industry_code === code && (!question || a.question_id === question));
+  const industryAssessments = assessments.filter(a => a.scope_kind === "industry");
+  const sharedAssessments = assessments.filter(a => a.scope_kind === "shared-context");
+  const applicableAssessments = (code: string, question = "") => industryAssessments.filter(a => a.industry_code === code && (!question || a.question_id === question));
   const cell = (code: string, question: string) => ({
     industry_code: code, question_id: question,
     direct_records: intersectQuestion(direct.get(code)!, question).size,
@@ -75,7 +77,7 @@ export function createCoverageIndex(records: CorpusRecord[]) {
     broader_context_records: industry ? intersectQuestion(broader(industry), question).size : 0,
     narrower_records: industry ? cell(industry, question).narrower_records : 0,
     scoped_assessments: assessments.filter(a => a.question_id === question && (!industry || a.industry_code === industry)).length,
-    unassessed_industry_scopes: industry ? (applicableAssessments(industry, question).length ? 0 : 1) : nodes.length - new Set(assessments.filter(a => a.question_id === question).map(a => a.industry_code)).size,
+    unassessed_industry_scopes: industry ? (applicableAssessments(industry, question).length ? 0 : 1) : nodes.length - new Set(industryAssessments.filter(a => a.question_id === question).map(a => a.industry_code)).size,
   });
   const summary = {
     research: researchSummary,
@@ -92,10 +94,12 @@ export function createCoverageIndex(records: CorpusRecord[]) {
     subsectors_with_direct_material: nodes.filter(n => n.level === "subsector" && direct.get(n.code)!.size).length,
     detailed_industries_with_direct_material: nodes.filter(n => n.level === "us-industry" && direct.get(n.code)!.size).length,
     scoped_assessments: assessments.length,
+    industry_scoped_assessments: industryAssessments.length,
+    shared_scope_assessments: sharedAssessments.length,
     assessment_status_counts: Object.fromEntries(["partial", "sufficient-for-stated-scope", "evidence-gap", "not-applicable"].map(status => [status, assessments.filter(a => a.status === status).length])),
-    assessed_industry_question_pairs: new Set(assessments.map(a => `${a.industry_code}:${a.question_id}`)).size,
+    assessed_industry_question_pairs: new Set(industryAssessments.map(a => `${a.industry_code}:${a.question_id}`)).size,
     subsector_question_screening_pairs: nodes.filter(n => n.level === "subsector").length * questions.length,
-    assessed_subsector_question_pairs: new Set(assessments.filter(a => nodeByCode.get(a.industry_code)?.level === "subsector").map(a => `${a.industry_code}:${a.question_id}`)).size,
+    assessed_subsector_question_pairs: new Set(industryAssessments.filter(a => a.industry_code !== null && nodeByCode.get(a.industry_code)?.level === "subsector").map(a => `${a.industry_code}:${a.question_id}`)).size,
   };
   const versions = { schema_version: "1.0.0", corpus_version: mappingData.corpus_version, topology_version: topologyData.topology_version, mapping_version: mappingData.mapping_version, assessment_version: assessmentData.assessment_version };
   const analytics = () => ({
