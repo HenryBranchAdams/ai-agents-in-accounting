@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0.0",
-  "question_set_version": "2026-09-11.1",
-  "reviewed_at": "2026-09-11",
-  "reviewer": "Codex AI-assisted research with root semantic/source review",
+  "question_set_version": "2026-09-17.125",
+  "reviewed_at": "2026-09-17",
+  "reviewer": "Codex AI-assisted original-source and synthetic-fixture review",
   "scope": "All62editorialfamilies reviewed;124narrow questions and explicit broader gaps. Reusable foundations do not establish adequate accounting coverage for every industry or framework.",
   "sources": [
     {
@@ -1411,6 +1411,39 @@
         "license_url": "https://creativecommons.org/licenses/by/4.0/legalcode",
         "scope": "Only material actually offered under CC BY 4.0 and within licensor authority",
         "note": "Does not resolve BAF/FiFAR upstream conflict."
+      }
+    },
+    {
+      "id": "src_far_31203_indirect_costs",
+      "title": "FAR 31.203: Indirect costs",
+      "source_url": "https://www.acquisition.gov/far/31.203",
+      "publisher": "Federal Acquisition Regulatory Council",
+      "source_type": "Federal procurement regulation",
+      "jurisdiction": "United States; federal procurement contracts",
+      "evidence_summary": "The official FAR page states that indirect costs remaining after direct charging are allocated to intermediate or final cost objectives, that cost groupings and bases should reflect benefits, that direct and indirect treatment must be consistent, and that the method may require revision after significant business changes.",
+      "review_level": "substantive-excerpt",
+      "source_locator": "FAR 31.203(b)-(g)",
+      "publication_or_edition": "FAR FAC 2026-01; page effective date 2026-03-13; accessed 2026-09-17",
+      "effective_period": "FAR FAC 2026-01 page effective 2026-03-13; confirm contract clauses, CAS coverage, and the applicable contract period.",
+      "frameworks": [
+        "FAR Part 31"
+      ],
+      "limitations": [
+        "FAR 31.203 applies only when the covered federal-contract facts and clauses make it applicable; CAS can take precedence.",
+        "The review did not inspect a contract, cost-accounting disclosure statement, or contractor records.",
+        "Public access does not establish a reuse or training license; external text remains under publisher terms."
+      ],
+      "checks": [
+        {
+          "url": "https://www.acquisition.gov/far/31.203",
+          "method": "web.open",
+          "outcome": "Official Acquisition.gov FAR page opened on 2026-09-17; FAC number, effective date, and paragraphs 31.203(b)-(g) were read.",
+          "material_read": true
+        }
+      ],
+      "rights_review": {
+        "status": "unresolved",
+        "note": "Public access does not establish reuse permission."
       }
     }
   ],
@@ -8907,47 +8940,81 @@
     {
       "family_id": "q-cost-allocation",
       "title": "Cost objects and allocation",
-      "scope": "Foundational questions for cost objects and allocation under Management accounting / IFRS (Global). Only the named questions and accessed editions are assessed; other family branches remain open.",
-      "review_basis": "Question-level source review completed to each locator and bounded public/material scope; accounting or professional conclusions remain conditional and no signoff was performed.",
+      "scope": "Selected US scope: a privately held domestic manufacturer using a January 2026 internal management report and US GAAP external ledger. The allocation case covers one $120,000 shared-services pool, two operating units, 1,000 approved service hours, and a documented headcount sensitivity. 2 CFR Part 200 and FAR 31.203 are external applicability branches only.",
+      "review_basis": "Original US source review of current eCFR §§200.302, 200.403, 200.405 and FAR 31.203, combined with a bounded original synthetic fixture. Internal management choices are separated from federal-award and federal-contract requirements. No current consolidated FASB Codification access, professional sign-off, or operating-effectiveness evidence was obtained.",
       "source_ids": [
-        "src_ias02inv"
+        "src_ias02inv",
+        "src_0xce2sl",
+        "src_cfr200grants",
+        "src_far_31203_indirect_costs"
       ],
       "source_locators": [
         {
+          "source_id": "src_cfr200grants",
+          "locator": "2 CFR §§200.302(b)(3),(5),(7), 200.403(a)-(h), 200.405(a)-(e); §200.101(b)-(c)",
+          "effective_period": "Current eCFR display through 2026-09-15",
+          "access_limit": "Open official HTML; cited sections only",
+          "rights_limit": "External text not stored; publisher terms remain unresolved"
+        },
+        {
+          "source_id": "src_far_31203_indirect_costs",
+          "locator": "FAR 31.203(b)-(g)",
+          "effective_period": "FAC 2026-01 effective 2026-03-13",
+          "access_limit": "Open official HTML; cited paragraphs only",
+          "rights_limit": "External text not stored; publisher terms remain unresolved"
+        },
+        {
           "source_id": "src_ias02inv",
-          "locator": "IAS 2 About, cost and measurement overview"
+          "locator": "IAS 2 publisher overview and cited paragraphs 9-10, 13, 16",
+          "effective_period": "International standard; local adoption varies",
+          "access_limit": "Public overview, not licensed full text",
+          "rights_limit": "External text not stored; publisher terms remain unresolved"
         },
         {
           "source_id": "src_0xce2sl",
-          "locator": "Next-Gen Controllership report, implementation discussion"
+          "locator": "IMA/Deloitte publisher landing page, implementation discussion",
+          "effective_period": "December 2024 report",
+          "access_limit": "Landing-page scope only",
+          "rights_limit": "External text not stored; publisher terms remain unresolved"
         }
       ],
       "source_checks": [
         {
-          "existing_record_id": "src_ias02inv",
-          "scope": "IFRS, inventory",
-          "locator": "IAS 2 About, cost and measurement overview",
+          "existing_record_id": "src_cfr200grants",
+          "scope": "US federal awards",
+          "locator": "2 CFR §§200.302, 200.403, 200.405",
           "checks": [
             {
-              "url": "https://www.ifrs.org/issued-standards/list-of-standards/ias-2-inventories/",
+              "url": "https://www.ecfr.gov/current/title-2/subtitle-A/chapter-II/part-200",
               "method": "web.open",
-              "outcome": "publisher source checked for this family",
-              "evidence_ref": "existing-corpus-source-review",
-              "material_read": "IAS 2 About, cost and measurement overview"
+              "outcome": "Official current eCFR sections read on 2026-09-17",
+              "material_read": true
             }
           ]
         },
         {
-          "existing_record_id": "src_0xce2sl",
-          "scope": "Global management accounting practice",
-          "locator": "Next-Gen Controllership report, implementation discussion",
+          "existing_record_id": "src_far_31203_indirect_costs",
+          "scope": "US federal procurement contracts",
+          "locator": "FAR 31.203(b)-(g)",
           "checks": [
             {
-              "url": "https://www.imanet.org/en/Research-Publications/IMA-Reports/Next-Gen-Controllership-Harnessing-AI-and-Emerging-Technologies-to-Transform-Finance-and-Accounting",
+              "url": "https://www.acquisition.gov/far/31.203",
               "method": "web.open",
-              "outcome": "publisher source checked for this family",
-              "evidence_ref": "existing-corpus-source-review",
-              "material_read": "Next-Gen Controllership report, implementation discussion"
+              "outcome": "Official current FAR page read on 2026-09-17",
+              "material_read": true
+            }
+          ]
+        },
+        {
+          "existing_record_id": "src_ias02inv",
+          "scope": "International IFRS inventory context",
+          "locator": "IAS 2 publisher overview",
+          "checks": [
+            {
+              "url": "https://www.ifrs.org/issued-standards/list-of-standards/ias-2-inventories/",
+              "method": "existing-corpus-review",
+              "outcome": "Retained as international context; not expanded under AA-I125",
+              "material_read": true
             }
           ]
         }
@@ -8956,41 +9023,78 @@
         {
           "id": "rq-cost-allocation-allocation-base",
           "question": "Which allocation base represents resource consumption?",
-          "scope": "Cost objects and allocation",
+          "scope": "Selected US internal management allocation, with separate federal-award and federal-contract boundaries",
           "conditions": [
-            "Apply Management accounting / IFRS in Global and verify the entity's reporting basis, contract or engagement scope before using this answer."
+            "Use for the selected US privately held manufacturer and January 2026 internal report only.",
+            "For a federal award, test relative benefits, consistent treatment, documentation, and award terms under 2 CFR Part 200.",
+            "For a covered federal contract, test FAR 31.203 and any CAS or contract requirements before treating the internal driver as acceptable."
           ],
-          "answer": "Use a causal or benefit-based driver, reconcile allocated cost to the source pool and document why the driver reflects consumption; arbitrary bases distort margins.",
-          "answer_status": "editorial-proposal",
+          "answer": "Start with direct charging, define one shared-services pool, select a driver that reflects the services received, tie driver units and dollars to the ledger, and record approval and sensitivity. In the original synthetic case, $120,000 allocated over 600 and 400 approved service hours produces $72,000 and $48,000. An independent 30/70 headcount branch produces $36,000 and $84,000. Neither branch proves economic correctness. A management allocation is not automatically an external-reporting requirement.",
+          "answer_status": "sourced-answer-bounded",
           "source_ids": [
-            "src_ias02inv"
+            "src_cfr200grants",
+            "src_far_31203_indirect_costs",
+            "src_0xce2sl"
           ],
           "source_locators": [
             {
-              "source_id": "src_ias02inv",
-              "locator": "IAS 2 About, cost and measurement overview"
+              "source_id": "src_cfr200grants",
+              "locator": "2 CFR §§200.403(a),(c),(d),(g) and 200.405(a),(d)"
+            },
+            {
+              "source_id": "src_far_31203_indirect_costs",
+              "locator": "FAR 31.203(b)-(e)"
+            },
+            {
+              "source_id": "src_0xce2sl",
+              "locator": "IMA/Deloitte publisher landing page, implementation discussion"
             }
           ],
           "inputs": [
-            "cost pool",
-            "cost object",
-            "driver units"
+            "GL accounts 6100-6120",
+            "approved service-hour log",
+            "operating-unit cost-object map",
+            "headcount sensitivity population",
+            "direct-charge and excluded-cost register",
+            "applicable award or contract terms"
           ],
           "controls": [
-            "pool-to-GL reconciliation",
-            "driver-change review"
+            "pool-to-GL tie",
+            "driver-total tie",
+            "no orphan or duplicate charge",
+            "documented driver rationale",
+            "independent sensitivity branch",
+            "external applicability review"
           ],
           "exceptions": [
-            "shared services, idle capacity and joint products"
+            "missing or unapproved driver evidence",
+            "mixed direct and indirect treatment",
+            "CAS or award terms",
+            "idle capacity, abnormal waste, or joint services"
           ],
+          "workflow": [
+            "Freeze inputs, classify direct costs, tie the pool, approve the driver, calculate, reconcile, review exceptions, and retain both primary and sensitivity branches."
+          ],
+          "worked_record_id": "example-us-management-allocation-budget-actual",
           "remaining_gaps": [
-            "Management allocation choices are not automatically financial-reporting policy."
+            "No professional or operating validation of the selected driver.",
+            "FAR and 2 CFR applicability cannot be concluded without the actual contract or award.",
+            "Current consolidated US GAAP inventory and overhead requirements were not accessed."
           ],
-          "answer_basis": "Original research/control proposal informed by the listed source, not a quoted requirement or demonstrated effective procedure.",
+          "answer_basis": "Original bounded synthesis supported by the cited current federal rules and existing management-accounting context. The arithmetic and management policy are project-created; no external text is reproduced.",
           "family_id": "q-cost-allocation",
           "assessment": {
             "status": "partial",
-            "basis": "Answer inspected for the declared question; currency, full operative access and entity facts remain separate. No family-wide sufficiency or professional verification.",
+            "dimensions": {
+              "scope": "present",
+              "accounting-question": "partial",
+              "evidence-inputs": "present",
+              "workflow": "present",
+              "controls": "present",
+              "worked-material": "present",
+              "empirical-support": "not-assessed"
+            },
+            "basis": "Presence of the selected source, inputs, workflow, controls, and original synthetic material within the declared scope. Partial does not establish accounting correctness, professional review, empirical support, or external applicability.",
             "professional_review": "not-performed",
             "empirical_support": "not-established"
           }
@@ -8998,11 +9102,11 @@
         {
           "id": "rq-cost-allocation-unit-cost",
           "question": "Which purchase and conversion costs may be included in inventory cost under IAS 2?",
-          "scope": "Cost objects and allocation",
+          "scope": "International IFRS inventory context retained without expansion",
           "conditions": [
-            "Apply Management accounting / IFRS in Global and verify the entity's reporting basis, contract or engagement scope before using this answer."
+            "Apply only where the entity uses the applicable IAS 2 adoption and period; do not substitute this record for US GAAP authority."
           ],
-          "answer": "For inventory, IAS 2 identifies purchase and conversion costs and other costs incurred to bring inventories to their present location and condition; abnormal waste and costs unrelated to that condition are not silently included. The entity must document its allocation basis and test whether the resulting carrying amount remains supportable under its reporting policy.",
+          "answer": "Retain the existing bounded IAS 2 answer: purchase and conversion costs and other costs incurred to bring inventory to its present location and condition are relevant, while abnormal waste and unrelated costs require separate treatment under the applicable policy. The public overview is not the licensed full standard.",
           "answer_status": "sourced-answer-bounded",
           "source_ids": [
             "src_ias02inv"
@@ -9010,7 +9114,7 @@
           "source_locators": [
             {
               "source_id": "src_ias02inv",
-              "locator": "IAS 2 About, cost and measurement overview"
+              "locator": "IAS 2 publisher overview and cited paragraphs 9-10, 13, 16"
             }
           ],
           "inputs": [
@@ -9024,96 +9128,149 @@
             "inventory cutoff"
           ],
           "exceptions": [
-            "abnormal waste and idle capacity"
+            "abnormal waste and idle capacity",
+            "local adoption and effective-period differences"
           ],
           "remaining_gaps": [
-            "The public IAS 2 overview is not the licensed full standard; detailed overhead allocation, abnormal waste and entity policy require the applicable edition and facts."
+            "Retained international context is not a US answer; the public overview is not licensed full text.",
+            "No professional sign-off or production validation."
           ],
+          "answer_basis": "Reuse of the existing international record. AA-I125 does not expand it.",
           "family_id": "q-cost-allocation",
           "assessment": {
             "status": "partial",
-            "basis": "Answer inspected for the declared question; currency, full operative access and entity facts remain separate. No family-wide sufficiency or professional verification.",
+            "dimensions": {
+              "scope": "partial",
+              "accounting-question": "partial",
+              "evidence-inputs": "partial",
+              "workflow": "missing",
+              "controls": "partial",
+              "worked-material": "missing",
+              "empirical-support": "not-assessed"
+            },
+            "basis": "Presence of the selected source, inputs, workflow, controls, and original synthetic material within the declared scope. Partial does not establish accounting correctness, professional review, empirical support, or external applicability.",
             "professional_review": "not-performed",
             "empirical_support": "not-established"
           }
         }
       ],
       "shared_inputs": [
-        "jurisdiction and framework",
-        "source population and ledger tie",
-        "effective dates and contract terms"
+        "cost-pool GL lines",
+        "approved service-hour or headcount population",
+        "cost-object mapping",
+        "direct-charge register",
+        "award or contract terms when applicable",
+        "effective period and source access record"
       ],
       "controls": [
-        "versioned evidence and lineage",
-        "assigned human review",
-        "exception log"
+        "pool-to-GL reconciliation",
+        "approved driver population and join keys",
+        "direct-versus-indirect consistency review",
+        "driver-change approval",
+        "duplicate-charge and orphan-charge check",
+        "human review of external applicability"
       ],
       "exceptions": [
-        "framework and jurisdiction differences",
-        "unknown rights and licensed detail"
+        "idle capacity or abnormal waste",
+        "joint services without reliable causal driver",
+        "federal-award or CAS terms that supersede an internal choice",
+        "unapproved or incomplete time records",
+        "management margin not equal to an external GAAP measure"
       ],
       "coverage_gaps": [
-        "No professional sign-off or independent production validation."
+        "No current consolidated US GAAP Codification review of inventory or overhead allocation was performed.",
+        "No real operating ledger, federal award, federal contract, CAS disclosure statement, or professional review was obtained.",
+        "The synthetic driver sensitivity does not establish that either service hours or headcount is economically correct."
       ],
       "frameworks": [
-        "IAS 2"
+        "US GAAP external ledger",
+        "Internal management-accounting policy",
+        "2 CFR Part 200 only when a federal-award branch applies",
+        "FAR Part 31 only when a covered federal-contract branch applies",
+        "IAS 2 retained as international context only"
       ],
       "jurisdictions": [
-        "Entities applying the stated IFRS framework; local adoption and period must be established"
+        "United States"
       ],
       "professional_review": "not-performed",
       "empirical_support": "not-established",
       "remaining_limits": [
-        "Public or landing-page material does not substitute for licensed full text.",
-        "No professional signoff or production validation.",
-        "Rights, jurisdiction and effective-date applicability require source-specific verification."
+        "Internal management allocation is a documented decision model, not an asserted US GAAP requirement.",
+        "2 CFR Part 200 and FAR 31.203 apply only to their stated external populations and must be checked against current award or contract terms.",
+        "International IAS 2 material remains a separate context record and is not silently reused as US authority.",
+        "Professional review, empirical support, and production operating effectiveness remain not established."
       ]
     },
     {
       "family_id": "q-planning",
       "title": "Budgets, forecasts and decision models",
-      "scope": "Foundational questions for budgets, forecasts and decision models under Management accounting (Global). Only the named questions and accessed editions are assessed; other family branches remain open.",
-      "review_basis": "Question-level source review completed to each locator and bounded public/material scope; accounting or professional conclusions remain conditional and no signoff was performed.",
+      "scope": "Selected US scope: January 2026 budget and actual reporting for the same synthetic privately held manufacturer, with a 2026-02-05 forecast revision and 2026-02-10 restated actual. Internal management forecast choices are separate from the federal-award budget-comparison and allowability requirements in 2 CFR Part 200.",
+      "review_basis": "Original synthetic budget, actual, forecast, restatement, profit bridge, and cash bridge reviewed against the cited management-accounting context and current eCFR budget-record requirements. No forecast operating population or independent empirical deployment evidence was obtained.",
       "source_ids": [
         "src_0xce2sl",
-        "src_0w2pi9z"
+        "src_0w2pi9z",
+        "src_cfr200grants"
       ],
       "source_locators": [
         {
+          "source_id": "src_cfr200grants",
+          "locator": "2 CFR §200.302(b)(2),(3),(5),(7)",
+          "effective_period": "Current eCFR display through 2026-09-15",
+          "access_limit": "Open official HTML; cited section only",
+          "rights_limit": "External text not stored; publisher terms remain unresolved"
+        },
+        {
           "source_id": "src_0xce2sl",
-          "locator": "Next-Gen Controllership report, implementation discussion"
+          "locator": "IMA/Deloitte publisher landing page, implementation discussion",
+          "effective_period": "December 2024 report",
+          "access_limit": "Landing-page scope only",
+          "rights_limit": "External text not stored; publisher terms remain unresolved"
         },
         {
           "source_id": "src_0w2pi9z",
-          "locator": "Productivity J-Curve, empirical findings"
+          "locator": "DOI landing/abstract record for The Productivity J-Curve",
+          "effective_period": "Peer-reviewed 2021 paper",
+          "access_limit": "Abstract/landing-page scope",
+          "rights_limit": "External text not stored; publisher terms remain unresolved"
         }
       ],
       "source_checks": [
         {
+          "existing_record_id": "src_cfr200grants",
+          "scope": "US federal awards",
+          "locator": "2 CFR §200.302(b)",
+          "checks": [
+            {
+              "url": "https://www.ecfr.gov/current/title-2/subtitle-A/chapter-II/part-200",
+              "method": "web.open",
+              "outcome": "Official current eCFR budget-comparison and source-documentation requirements read on 2026-09-17",
+              "material_read": true
+            }
+          ]
+        },
+        {
           "existing_record_id": "src_0xce2sl",
-          "scope": "Global management accounting practice",
-          "locator": "Next-Gen Controllership report, implementation discussion",
+          "scope": "Global controllership and finance context",
+          "locator": "Publisher landing page",
           "checks": [
             {
               "url": "https://www.imanet.org/en/Research-Publications/IMA-Reports/Next-Gen-Controllership-Harnessing-AI-and-Emerging-Technologies-to-Transform-Finance-and-Accounting",
-              "method": "web.open",
-              "outcome": "publisher source checked for this family",
-              "evidence_ref": "existing-corpus-source-review",
-              "material_read": "Next-Gen Controllership report, implementation discussion"
+              "method": "existing-corpus-review",
+              "outcome": "Retained bounded landing-page context",
+              "material_read": true
             }
           ]
         },
         {
           "existing_record_id": "src_0w2pi9z",
-          "scope": "Macroeconomic evidence",
-          "locator": "Productivity J-Curve, empirical findings",
+          "scope": "Macroeconomic and historical evidence",
+          "locator": "DOI landing/abstract",
           "checks": [
             {
               "url": "https://doi.org/10.1257/mac.20180386",
-              "method": "web.open",
-              "outcome": "publisher source checked for this family",
-              "evidence_ref": "existing-corpus-source-review",
-              "material_read": "Productivity J-Curve, empirical findings"
+              "method": "existing-corpus-review",
+              "outcome": "Retained as uncertainty and transfer-limit context",
+              "material_read": true
             }
           ]
         }
@@ -9122,43 +9279,72 @@
         {
           "id": "rq-planning-driver-model",
           "question": "Which drivers explain a budget and cash forecast?",
-          "scope": "Budgets, forecasts and decision models",
+          "scope": "Selected US budget-to-actual and profit-to-cash bridge",
           "conditions": [
-            "Apply Management accounting in Global and verify the entity's reporting basis, contract or engagement scope before using this answer."
+            "Use the January 2026 synthetic entity and population only.",
+            "Declare the bridge convention before calculating effects.",
+            "For a federal award, compare expenditures with the award budget and retain source documentation under the applicable rules."
           ],
-          "answer": "Link volume, price, capacity, labor, material, working capital and timing assumptions to statements and cash, with an owner and sensitivity range for each assumption.",
-          "answer_status": "editorial-proposal",
+          "answer": "Version the budget, actual activity, actual price, direct costs, shared-service allocation, AR, AP, and cash. Under the declared sequential convention, 1,000 budget units at $100 produce $100,000; 900 actual units at $110 produce $99,000; volume is -$10,000, price is +$9,000, and the total revenue effect is -$1,000. The entity profit and cash bridges then reconcile direct cost and working-capital differences without adding the allocated pool a second time.",
+          "answer_status": "sourced-answer-bounded",
           "source_ids": [
-            "src_0xce2sl"
+            "src_0xce2sl",
+            "src_cfr200grants"
           ],
           "source_locators": [
             {
               "source_id": "src_0xce2sl",
-              "locator": "Next-Gen Controllership report, implementation discussion"
+              "locator": "IMA/Deloitte publisher landing page, implementation discussion"
+            },
+            {
+              "source_id": "src_cfr200grants",
+              "locator": "2 CFR §200.302(b)(2),(3),(5),(7)"
             }
           ],
           "inputs": [
-            "actuals",
-            "volume",
-            "price",
-            "capacity",
-            "working capital"
+            "budget units and price",
+            "actual units and price",
+            "direct costs",
+            "support-pool allocation",
+            "AR and AP changes",
+            "cash receipts and payments",
+            "award budget and source documents when applicable"
           ],
           "controls": [
-            "versioned assumptions",
-            "variance analysis"
+            "version IDs and timestamps",
+            "volume-price formula check",
+            "profit-to-cash reconciliation",
+            "no double-counted restatement",
+            "award budget comparison when applicable"
           ],
           "exceptions": [
-            "seasonality, nonlinear capacity and one-time events"
+            "mix, efficiency, scope, and timing effects",
+            "missing or restated actual",
+            "federal award or contract terms"
           ],
+          "workflow": [
+            "Freeze versions, calculate the two-factor bridge, reconcile profit to cash, explain residuals, and retain the source lineage."
+          ],
+          "worked_record_id": "example-us-management-allocation-budget-actual",
           "remaining_gaps": [
-            "No entity-specific forecast model was validated."
+            "No production forecast model or backtest.",
+            "The two-factor synthetic population does not support a general variance taxonomy.",
+            "No federal-award report or external operating evidence was reviewed."
           ],
-          "answer_basis": "Original research/control proposal informed by the listed source, not a quoted requirement or demonstrated effective procedure.",
+          "answer_basis": "Original bounded synthesis using the cited management-accounting context and current eCFR source-documentation and budget-comparison requirements; formulas are project-created.",
           "family_id": "q-planning",
           "assessment": {
             "status": "partial",
-            "basis": "Answer inspected for the declared question; currency, full operative access and entity facts remain separate. No family-wide sufficiency or professional verification.",
+            "dimensions": {
+              "scope": "present",
+              "accounting-question": "partial",
+              "evidence-inputs": "present",
+              "workflow": "present",
+              "controls": "present",
+              "worked-material": "present",
+              "empirical-support": "not-assessed"
+            },
+            "basis": "Presence of the selected source, inputs, workflow, controls, and original synthetic material within the declared scope. Partial does not establish accounting correctness, professional review, empirical support, or external applicability.",
             "professional_review": "not-performed",
             "empirical_support": "not-established"
           }
@@ -9166,122 +9352,171 @@
         {
           "id": "rq-planning-uncertainty",
           "question": "How should an agent communicate forecast uncertainty?",
-          "scope": "Budgets, forecasts and decision models",
+          "scope": "Selected US versioned forecast and restatement history",
           "conditions": [
-            "Apply Management accounting in Global and verify the entity's reporting basis, contract or engagement scope before using this answer."
+            "Separate observed January actuals from the 2026-02-05 forecast revision.",
+            "State known and unknown inputs, sensitivities, and the missing-driver branch.",
+            "Do not present a reconciled synthetic forecast as evidence of deployment accuracy."
           ],
-          "answer": "Use scenarios or ranges, state sensitivities and distinguish observed actuals from modeled estimates; technology benefits may require complementary organizational investment.",
-          "answer_status": "editorial-proposal",
+          "answer": "Keep approved budget, closed actual, revised forecast, and restated actual as separate versioned records. Identify the timestamp, known inputs, unknown inputs, and assumptions for each version. A late invoice can change the restated direct cost from $54,000 to $55,000 without changing the unit-price bridge or the cash closing balance when the invoice remains in AP. Uncertainty is communicated by lineage and scenarios, not hidden by overwriting the original actual.",
+          "answer_status": "sourced-answer-bounded",
           "source_ids": [
-            "src_0w2pi9z"
+            "src_0w2pi9z",
+            "src_0xce2sl"
           ],
           "source_locators": [
             {
               "source_id": "src_0w2pi9z",
-              "locator": "Productivity J-Curve, empirical findings"
+              "locator": "DOI landing/abstract record for The Productivity J-Curve"
+            },
+            {
+              "source_id": "src_0xce2sl",
+              "locator": "IMA/Deloitte publisher landing page, implementation discussion"
             }
           ],
           "inputs": [
-            "scenarios",
-            "ranges",
-            "sensitivities",
-            "forecast history"
+            "budget and actual version IDs",
+            "forecast revision timestamp",
+            "known inputs",
+            "unknown inputs",
+            "scenario ranges",
+            "late-arriving source documents"
           ],
           "controls": [
-            "approval log",
-            "backtesting"
+            "immutable version history",
+            "assumption owner",
+            "restatement reason code",
+            "backtest or review plan",
+            "missing-driver escalation"
           ],
           "exceptions": [
-            "structural breaks and model drift"
+            "structural breaks",
+            "nonlinear capacity",
+            "mix changes",
+            "incomplete source population",
+            "forecast benefits that require complementary process or organizational investment"
           ],
+          "workflow": [
+            "Record the baseline, log revision, distinguish actual from estimate, run independent scenarios, and preserve restatement lineage."
+          ],
+          "worked_record_id": "example-us-management-allocation-budget-actual",
           "remaining_gaps": [
-            "Independent deployment evidence is limited."
+            "No independent deployment study validates this specific forecasting workflow.",
+            "The cited productivity research is not an accounting forecast accuracy study.",
+            "No real historical forecast set was available for backtesting."
           ],
-          "answer_basis": "Original research/control proposal informed by the listed source, not a quoted requirement or demonstrated effective procedure.",
+          "answer_basis": "Bounded original synthesis informed by existing research records; the synthetic version and restatement facts are project-created and not operational evidence.",
           "family_id": "q-planning",
           "assessment": {
             "status": "partial",
-            "basis": "Answer inspected for the declared question; currency, full operative access and entity facts remain separate. No family-wide sufficiency or professional verification.",
+            "dimensions": {
+              "scope": "present",
+              "accounting-question": "partial",
+              "evidence-inputs": "present",
+              "workflow": "present",
+              "controls": "present",
+              "worked-material": "present",
+              "empirical-support": "not-assessed"
+            },
+            "basis": "Presence of the selected source, inputs, workflow, controls, and original synthetic material within the declared scope. Partial does not establish accounting correctness, professional review, empirical support, or external applicability.",
             "professional_review": "not-performed",
             "empirical_support": "not-established"
           }
         }
       ],
       "shared_inputs": [
-        "jurisdiction and framework",
-        "source population and ledger tie",
-        "effective dates and contract terms"
+        "budget version and approval timestamp",
+        "actual unit and price population",
+        "direct-cost and allocation inputs",
+        "AR/AP and cash timing",
+        "forecast revision log",
+        "known and unknown assumptions"
       ],
       "controls": [
-        "versioned evidence and lineage",
-        "assigned human review",
-        "exception log"
+        "immutable budget and actual versions",
+        "sequential bridge convention",
+        "volume-price residual check",
+        "restatement lineage",
+        "working-capital and noncash bridge",
+        "human review of assumptions and exceptions"
       ],
       "exceptions": [
-        "framework and jurisdiction differences",
-        "unknown rights and licensed detail"
+        "mix or efficiency effects outside the two-factor population",
+        "missing driver or late actual",
+        "restated actual must not be added to the original actual",
+        "structural break or nonlinear capacity",
+        "federal-award budget rules may apply only to the award population"
       ],
       "coverage_gaps": [
-        "No professional sign-off or independent production validation."
+        "No operational forecast population or backtesting evidence was reviewed.",
+        "The synthetic case has no mix, efficiency, noncash, or structural-break amount beyond its stated zero assumptions.",
+        "No professional review of a real entity's forecast policy was performed."
       ],
       "frameworks": [
-        "Management accounting"
+        "US GAAP external ledger",
+        "Internal management-accounting planning policy",
+        "2 CFR Part 200 budget and allowability controls only when a federal-award branch applies"
       ],
       "jurisdictions": [
-        "Global"
+        "United States"
       ],
       "professional_review": "not-performed",
       "empirical_support": "not-established",
       "remaining_limits": [
-        "Public or landing-page material does not substitute for licensed full text.",
-        "No professional signoff or production validation.",
-        "Rights, jurisdiction and effective-date applicability require source-specific verification."
+        "The volume-price bridge is a declared sequential convention, not the only valid variance convention.",
+        "Forecast ranges and restatement controls are project-created examples, not evidence of production reliability.",
+        "2 CFR §200.302 does not turn an internal forecast into a federal-award report without the award and recipient facts."
       ]
     },
     {
       "family_id": "q-performance",
       "title": "Profitability and performance measures",
-      "scope": "Foundational questions for profitability and performance measures under US GAAP / SEC guidance (United States registrants). Only the named questions and accessed editions are assessed; other family branches remain open.",
-      "review_basis": "Question-level source review completed to each locator and bounded public/material scope; accounting or professional conclusions remain conditional and no signoff was performed.",
+      "scope": "Selected US scope: the same January 2026 privately held manufacturer and operating-unit A management view. Gross margin, unit operating margin, entity operating profit, and profit-to-cash are separately defined. SEC SAB 99 is used only for the registrant materiality boundary.",
+      "review_basis": "Original synthetic margin definitions and profit-to-cash bridge reviewed against SEC SAB 99's dated staff guidance and existing management-accounting context. No current consolidated US GAAP review, SEC registrant facts, professional materiality conclusion, or operating evidence was obtained.",
       "source_ids": [
-        "src_secsab0099"
+        "src_secsab0099",
+        "src_0xce2sl"
       ],
       "source_locators": [
         {
           "source_id": "src_secsab0099",
-          "locator": "SAB 99, materiality discussion"
+          "locator": "SAB 99 Topic 1.M, quantitative and qualitative factors, aggregation, and intentional misstatements",
+          "effective_period": "Issued 1999-08-12; current SEC staff page accessed 2026-09-17",
+          "access_limit": "Open official SEC HTML; registrant staff-guidance scope",
+          "rights_limit": "External text not stored; publisher terms remain unresolved"
         },
         {
           "source_id": "src_0xce2sl",
-          "locator": "Next-Gen Controllership report, implementation discussion"
+          "locator": "IMA/Deloitte publisher landing page, implementation discussion",
+          "effective_period": "December 2024 report",
+          "access_limit": "Landing-page scope only",
+          "rights_limit": "External text not stored; publisher terms remain unresolved"
         }
       ],
       "source_checks": [
         {
           "existing_record_id": "src_secsab0099",
           "scope": "US SEC registrants",
-          "locator": "SAB 99, materiality discussion",
+          "locator": "SAB 99 Topic 1.M",
           "checks": [
             {
               "url": "https://www.sec.gov/interps/account/sab99.htm",
               "method": "web.open",
-              "outcome": "publisher source checked for this family",
-              "evidence_ref": "existing-corpus-source-review",
-              "material_read": "SAB 99, materiality discussion"
+              "outcome": "Official SEC bulletin and scope disclaimer read on 2026-09-17",
+              "material_read": true
             }
           ]
         },
         {
           "existing_record_id": "src_0xce2sl",
-          "scope": "Global management accounting practice",
-          "locator": "Next-Gen Controllership report, implementation discussion",
+          "scope": "Global controllership context",
+          "locator": "Publisher landing page",
           "checks": [
             {
               "url": "https://www.imanet.org/en/Research-Publications/IMA-Reports/Next-Gen-Controllership-Harnessing-AI-and-Emerging-Technologies-to-Transform-Finance-and-Accounting",
-              "method": "web.open",
-              "outcome": "publisher source checked for this family",
-              "evidence_ref": "existing-corpus-source-review",
-              "material_read": "Next-Gen Controllership report, implementation discussion"
+              "method": "existing-corpus-review",
+              "outcome": "Retained bounded management context",
+              "material_read": true
             }
           ]
         }
@@ -9290,42 +9525,71 @@
         {
           "id": "rq-performance-margin-definition",
           "question": "How should profitability metrics reconcile to financial records?",
-          "scope": "Profitability and performance measures",
+          "scope": "Selected US internal management metrics and entity profit-to-cash bridge",
           "conditions": [
-            "Apply US GAAP / SEC guidance in United States registrants and verify the entity's reporting basis, contract or engagement scope before using this answer."
+            "Use the January 2026 synthetic ledger population and metric dictionary.",
+            "Label each measure as internal management or external financial reporting.",
+            "Do not infer a GAAP conclusion from the internal allocation or synthetic numbers."
           ],
-          "answer": "Define numerator, denominator, period, allocation and exclusions, then reconcile to the GL and disclose material adjustments; silent definition changes break comparability.",
-          "answer_status": "editorial-proposal",
+          "answer": "Define the numerator, denominator, period, allocation, one-offs, and exclusions before calculating. In this fixture, gross margin is revenue less direct production cost; unit operating margin subtracts Unit A's documented $72,000 support allocation; entity operating profit subtracts the full $120,000 support pool once. The budget and actual entity profits then reconcile to cash through AR and AP changes, while the management unit view is not presented as a GAAP measure.",
+          "answer_status": "sourced-answer-bounded",
           "source_ids": [
-            "src_secsab0099"
+            "src_secsab0099",
+            "src_0xce2sl"
           ],
           "source_locators": [
             {
               "source_id": "src_secsab0099",
-              "locator": "SAB 99, materiality discussion"
+              "locator": "SAB 99 Topic 1.M, aggregation and qualitative factors"
+            },
+            {
+              "source_id": "src_0xce2sl",
+              "locator": "IMA/Deloitte publisher landing page, implementation discussion"
             }
           ],
           "inputs": [
-            "GL",
-            "units",
-            "allocation",
-            "adjustment bridge"
+            "revenue",
+            "direct production cost",
+            "support-pool allocation",
+            "one-off register",
+            "AR",
+            "AP",
+            "cash",
+            "metric dictionary"
           ],
           "controls": [
-            "metric dictionary",
-            "reconciliation review"
+            "GL tie",
+            "versioned numerator and denominator",
+            "allocation once-only rule",
+            "profit-to-cash bridge",
+            "external-scope review"
           ],
           "exceptions": [
-            "returns, FX and changing cohorts"
+            "returns, FX, mix, one-offs, covenants, incentives, and segment significance"
           ],
+          "workflow": [
+            "Define, calculate, tie, reconcile, review exclusions, and label the measure's authority boundary."
+          ],
+          "worked_record_id": "example-us-management-allocation-budget-actual",
           "remaining_gaps": [
-            "Management metrics are not automatically GAAP measures."
+            "No professional or current US GAAP review.",
+            "The fixture does not establish a universal contribution-margin convention.",
+            "No operating KPI evidence was reviewed."
           ],
-          "answer_basis": "Original research/control proposal informed by the listed source, not a quoted requirement or demonstrated effective procedure.",
+          "answer_basis": "Original synthetic metric dictionary informed by the cited SEC staff boundary and existing management-accounting context; it is not a GAAP conclusion.",
           "family_id": "q-performance",
           "assessment": {
             "status": "partial",
-            "basis": "Answer inspected for the declared question; currency, full operative access and entity facts remain separate. No family-wide sufficiency or professional verification.",
+            "dimensions": {
+              "scope": "present",
+              "accounting-question": "partial",
+              "evidence-inputs": "present",
+              "workflow": "present",
+              "controls": "present",
+              "worked-material": "present",
+              "empirical-support": "not-assessed"
+            },
+            "basis": "Presence of the selected source, inputs, workflow, controls, and original synthetic material within the declared scope. Partial does not establish accounting correctness, professional review, empirical support, or external applicability.",
             "professional_review": "not-performed",
             "empirical_support": "not-established"
           }
@@ -9333,11 +9597,12 @@
         {
           "id": "rq-performance-materiality",
           "question": "When can a metric or adjustment be qualitatively material?",
-          "scope": "Profitability and performance measures",
+          "scope": "SEC registrant staff-guidance boundary retained for the selected US metric review",
           "conditions": [
-            "Apply US GAAP / SEC guidance in United States registrants and verify the entity's reporting basis, contract or engagement scope before using this answer."
+            "Apply only in the SEC registrant financial-statement preparation and audit context addressed by SAB 99.",
+            "Do not substitute SAB 99 for a professional materiality conclusion or apply a universal percentage threshold."
           ],
-          "answer": "SEC SAB 99 explains that materiality cannot be reduced to a percentage threshold: context, misstatement nature, and likely effect on a reasonable investor matter. The question is bounded to SEC staff guidance for registrants; it does not turn a metric into a GAAP measure or prescribe the project controls listed here.",
+          "answer": "SAB 99 says a registrant may not assume immateriality solely from a percentage threshold. The review must consider quantitative size together with surrounding circumstances, trends, segment significance, regulatory or covenant effects, incentives, aggregation, and intentional misstatement. This does not turn an internal margin into a GAAP measure or prescribe the project's qualitative-escalation control.",
           "answer_status": "sourced-answer-bounded",
           "source_ids": [
             "src_secsab0099"
@@ -9345,63 +9610,97 @@
           "source_locators": [
             {
               "source_id": "src_secsab0099",
-              "locator": "SAB 99, qualitative materiality discussion"
+              "locator": "SAB 99 Topic 1.M, Interpretive Response and sections on qualitative factors, aggregation, and intentional misstatements"
             }
           ],
           "inputs": [
             "amount",
             "trend",
-            "disclosure",
-            "incentives"
+            "financial-statement line",
+            "segment significance",
+            "covenant and incentive context",
+            "aggregation population"
           ],
           "controls": [
-            "qualitative escalation (project control, not an SEC requirement)",
-            "review rationale"
+            "qualitative escalation (project control, not SEC requirement)",
+            "review rationale",
+            "aggregate-error register",
+            "registrant-scope check"
           ],
           "exceptions": [
-            "offsetting errors and covenant-sensitive items"
+            "private entity outside SEC scope",
+            "current applicable GAAP or securities-law changes",
+            "professional judgment and complete facts"
           ],
+          "workflow": [
+            "Check scope, record quantitative amount, identify qualitative factors, aggregate related items, and route to the responsible human reviewer."
+          ],
+          "worked_record_id": "example-us-management-allocation-budget-actual",
           "remaining_gaps": [
-            "SAB 99 is SEC registrant staff guidance."
+            "SAB 99 is SEC staff guidance, not a Commission rule.",
+            "No real registrant, filing, audit, or professional review was examined."
           ],
+          "answer_basis": "Sourced bounded answer from the official SEC page; project controls and fixture facts are clearly separated from the bulletin.",
           "family_id": "q-performance",
           "assessment": {
             "status": "partial",
-            "basis": "Answer inspected for the declared question; currency, full operative access and entity facts remain separate. No family-wide sufficiency or professional verification.",
+            "dimensions": {
+              "scope": "partial",
+              "accounting-question": "partial",
+              "evidence-inputs": "present",
+              "workflow": "present",
+              "controls": "present",
+              "worked-material": "present",
+              "empirical-support": "not-assessed"
+            },
+            "basis": "Presence of the selected source, inputs, workflow, controls, and original synthetic material within the declared scope. Partial does not establish accounting correctness, professional review, empirical support, or external applicability.",
             "professional_review": "not-performed",
             "empirical_support": "not-established"
           }
         }
       ],
       "shared_inputs": [
-        "jurisdiction and framework",
-        "source population and ledger tie",
-        "effective dates and contract terms"
+        "revenue and direct-cost ledger lines",
+        "support-pool allocation schedule",
+        "units and price population",
+        "AR/AP and cash records",
+        "metric dictionary",
+        "one-off and exclusion register"
       ],
       "controls": [
-        "versioned evidence and lineage",
-        "assigned human review",
-        "exception log"
+        "metric numerator and denominator dictionary",
+        "GL-to-metric reconciliation",
+        "allocation version tie",
+        "qualitative escalation",
+        "aggregate and trend review",
+        "separate management and external measures"
       ],
       "exceptions": [
-        "framework and jurisdiction differences",
-        "unknown rights and licensed detail"
+        "returns, FX, changing cohorts, and mix",
+        "one-off restructuring or excluded cost",
+        "covenant or incentive-sensitive item",
+        "SEC registrant versus private-entity scope",
+        "allocated cost is not a GAAP measure by itself"
       ],
       "coverage_gaps": [
-        "No professional sign-off or independent production validation."
+        "No current consolidated US GAAP or SEC filing review was performed.",
+        "No professional materiality conclusion, real financial statement, or operating KPI population was reviewed.",
+        "The synthetic margin definitions do not establish industry-wide conventions."
       ],
       "frameworks": [
-        "SEC SAB 99"
+        "US GAAP external ledger",
+        "Internal management metric definitions",
+        "SEC SAB 99 only for SEC registrant materiality boundary"
       ],
       "jurisdictions": [
-        "United States registrants"
+        "United States"
       ],
       "professional_review": "not-performed",
       "empirical_support": "not-established",
       "remaining_limits": [
-        "Public or landing-page material does not substitute for licensed full text.",
-        "No professional signoff or production validation.",
-        "Rights, jurisdiction and effective-date applicability require source-specific verification."
+        "Gross, contribution, unit operating, and entity operating measures are definitions for this fixture, not universal requirements.",
+        "SAB 99 is SEC staff guidance for registrants and does not prescribe a percentage or a project control.",
+        "No empirical support or professional review is established."
       ]
     },
     {

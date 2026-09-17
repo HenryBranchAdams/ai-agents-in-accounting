@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0.0",
-  "question_set_version": "2026-09-14.2",
-  "corpus_version": "2026-09-14.2",
-  "reviewed_at": "2026-09-14",
+  "question_set_version": "2026-09-17.125",
+  "corpus_version": "2026-09-14.3",
+  "reviewed_at": "2026-09-17",
   "scope": "Versioned named research questions. Broader unresolved family questions and industry applicability are separate denominators, retained in their review files.",
   "questions": [
     {
@@ -2931,27 +2931,31 @@
         "q-cost-allocation"
       ],
       "question": "Which allocation base represents resource consumption?",
-      "scope": "Cost objects and allocation",
-      "answer_status": "editorial-proposal",
+      "scope": "Selected US internal management allocation, with separate federal-award and federal-contract boundaries",
+      "answer_status": "sourced-answer-bounded",
       "assessment_status": "partial",
       "source_ids": [
-        "src_ias02inv"
+        "src_cfr200grants",
+        "src_far_31203_indirect_costs",
+        "src_0xce2sl"
       ],
       "remaining_gaps": [
-        "Management allocation choices are not automatically financial-reporting policy."
+        "No professional or operating validation of the selected driver.",
+        "FAR and 2 CFR applicability cannot be concluded without the actual contract or award.",
+        "Current consolidated US GAAP inventory and overhead requirements were not accessed."
       ],
       "professional_review": "not-performed",
       "empirical_support": "not-established",
       "dimensions": {
-        "scope": "partial",
+        "scope": "present",
         "accounting-question": "partial",
-        "evidence-inputs": "partial",
-        "workflow": "missing",
-        "controls": "partial",
-        "worked-material": "missing",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
         "empirical-support": "not-assessed"
       },
-      "dimension_basis": "Presence and review limits of the linked named question, package workflow and original worked material. Partial does not establish accounting correctness; missing means this question packet lacks that component."
+      "dimension_basis": "Presence of the selected source, inputs, workflow, controls, and original synthetic material within the declared scope. Partial does not establish accounting correctness, professional review, empirical support, or external applicability."
     },
     {
       "id": "rq-cost-allocation-unit-cost",
@@ -2961,14 +2965,15 @@
         "q-cost-allocation"
       ],
       "question": "Which purchase and conversion costs may be included in inventory cost under IAS 2?",
-      "scope": "Cost objects and allocation",
+      "scope": "International IFRS inventory context retained without expansion",
       "answer_status": "sourced-answer-bounded",
       "assessment_status": "partial",
       "source_ids": [
         "src_ias02inv"
       ],
       "remaining_gaps": [
-        "The public IAS 2 overview is not the licensed full standard; detailed overhead allocation, abnormal waste and entity policy require the applicable edition and facts."
+        "Retained international context is not a US answer; the public overview is not licensed full text.",
+        "No professional sign-off or production validation."
       ],
       "professional_review": "not-performed",
       "empirical_support": "not-established",
@@ -2981,7 +2986,7 @@
         "worked-material": "missing",
         "empirical-support": "not-assessed"
       },
-      "dimension_basis": "Presence and review limits of the linked named question, package workflow and original worked material. Partial does not establish accounting correctness; missing means this question packet lacks that component."
+      "dimension_basis": "Presence of the selected source, inputs, workflow, controls, and original synthetic material within the declared scope. Partial does not establish accounting correctness, professional review, empirical support, or external applicability."
     },
     {
       "id": "rq-planning-driver-model",
@@ -2991,27 +2996,30 @@
         "q-planning"
       ],
       "question": "Which drivers explain a budget and cash forecast?",
-      "scope": "Budgets, forecasts and decision models",
-      "answer_status": "editorial-proposal",
+      "scope": "Selected US budget-to-actual and profit-to-cash bridge",
+      "answer_status": "sourced-answer-bounded",
       "assessment_status": "partial",
       "source_ids": [
-        "src_0xce2sl"
+        "src_0xce2sl",
+        "src_cfr200grants"
       ],
       "remaining_gaps": [
-        "No entity-specific forecast model was validated."
+        "No production forecast model or backtest.",
+        "The two-factor synthetic population does not support a general variance taxonomy.",
+        "No federal-award report or external operating evidence was reviewed."
       ],
       "professional_review": "not-performed",
       "empirical_support": "not-established",
       "dimensions": {
-        "scope": "partial",
+        "scope": "present",
         "accounting-question": "partial",
-        "evidence-inputs": "partial",
-        "workflow": "missing",
-        "controls": "partial",
-        "worked-material": "missing",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
         "empirical-support": "not-assessed"
       },
-      "dimension_basis": "Presence and review limits of the linked named question, package workflow and original worked material. Partial does not establish accounting correctness; missing means this question packet lacks that component."
+      "dimension_basis": "Presence of the selected source, inputs, workflow, controls, and original synthetic material within the declared scope. Partial does not establish accounting correctness, professional review, empirical support, or external applicability."
     },
     {
       "id": "rq-planning-uncertainty",
@@ -3021,27 +3029,30 @@
         "q-planning"
       ],
       "question": "How should an agent communicate forecast uncertainty?",
-      "scope": "Budgets, forecasts and decision models",
-      "answer_status": "editorial-proposal",
+      "scope": "Selected US versioned forecast and restatement history",
+      "answer_status": "sourced-answer-bounded",
       "assessment_status": "partial",
       "source_ids": [
-        "src_0w2pi9z"
+        "src_0w2pi9z",
+        "src_0xce2sl"
       ],
       "remaining_gaps": [
-        "Independent deployment evidence is limited."
+        "No independent deployment study validates this specific forecasting workflow.",
+        "The cited productivity research is not an accounting forecast accuracy study.",
+        "No real historical forecast set was available for backtesting."
       ],
       "professional_review": "not-performed",
       "empirical_support": "not-established",
       "dimensions": {
-        "scope": "partial",
+        "scope": "present",
         "accounting-question": "partial",
-        "evidence-inputs": "partial",
-        "workflow": "missing",
-        "controls": "partial",
-        "worked-material": "missing",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
         "empirical-support": "not-assessed"
       },
-      "dimension_basis": "Presence and review limits of the linked named question, package workflow and original worked material. Partial does not establish accounting correctness; missing means this question packet lacks that component."
+      "dimension_basis": "Presence of the selected source, inputs, workflow, controls, and original synthetic material within the declared scope. Partial does not establish accounting correctness, professional review, empirical support, or external applicability."
     },
     {
       "id": "rq-performance-margin-definition",
@@ -3051,27 +3062,30 @@
         "q-performance"
       ],
       "question": "How should profitability metrics reconcile to financial records?",
-      "scope": "Profitability and performance measures",
-      "answer_status": "editorial-proposal",
+      "scope": "Selected US internal management metrics and entity profit-to-cash bridge",
+      "answer_status": "sourced-answer-bounded",
       "assessment_status": "partial",
       "source_ids": [
-        "src_secsab0099"
+        "src_secsab0099",
+        "src_0xce2sl"
       ],
       "remaining_gaps": [
-        "Management metrics are not automatically GAAP measures."
+        "No professional or current US GAAP review.",
+        "The fixture does not establish a universal contribution-margin convention.",
+        "No operating KPI evidence was reviewed."
       ],
       "professional_review": "not-performed",
       "empirical_support": "not-established",
       "dimensions": {
-        "scope": "partial",
+        "scope": "present",
         "accounting-question": "partial",
-        "evidence-inputs": "partial",
-        "workflow": "missing",
-        "controls": "partial",
-        "worked-material": "missing",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
         "empirical-support": "not-assessed"
       },
-      "dimension_basis": "Presence and review limits of the linked named question, package workflow and original worked material. Partial does not establish accounting correctness; missing means this question packet lacks that component."
+      "dimension_basis": "Presence of the selected source, inputs, workflow, controls, and original synthetic material within the declared scope. Partial does not establish accounting correctness, professional review, empirical support, or external applicability."
     },
     {
       "id": "rq-performance-materiality",
@@ -3081,27 +3095,28 @@
         "q-performance"
       ],
       "question": "When can a metric or adjustment be qualitatively material?",
-      "scope": "Profitability and performance measures",
+      "scope": "SEC registrant staff-guidance boundary retained for the selected US metric review",
       "answer_status": "sourced-answer-bounded",
       "assessment_status": "partial",
       "source_ids": [
         "src_secsab0099"
       ],
       "remaining_gaps": [
-        "SAB 99 is SEC registrant staff guidance."
+        "SAB 99 is SEC staff guidance, not a Commission rule.",
+        "No real registrant, filing, audit, or professional review was examined."
       ],
       "professional_review": "not-performed",
       "empirical_support": "not-established",
       "dimensions": {
         "scope": "partial",
         "accounting-question": "partial",
-        "evidence-inputs": "partial",
-        "workflow": "missing",
-        "controls": "partial",
-        "worked-material": "missing",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
         "empirical-support": "not-assessed"
       },
-      "dimension_basis": "Presence and review limits of the linked named question, package workflow and original worked material. Partial does not establish accounting correctness; missing means this question packet lacks that component."
+      "dimension_basis": "Presence of the selected source, inputs, workflow, controls, and original synthetic material within the declared scope. Partial does not establish accounting correctness, professional review, empirical support, or external applicability."
     },
     {
       "id": "rq-audit-assertions-assertion-evidence",

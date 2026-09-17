@@ -700,5 +700,41 @@
       "Identify the absent Rule 4 exhibits and complete AP/payroll/GL/bank population.",
       "Do not treat an unexplained difference or repeated check reference as a proven error or duplicate transaction."
     ]
+  },
+  {
+    "id": "rq-aa-i125-allocation",
+    "user_question": "How should a US management-accounting agent reconcile a shared-service allocation and its driver sensitivity?",
+    "search_query": "allocation driver ledger reconciliation",
+    "kind": "example",
+    "filters": {},
+    "expected_ids": [
+      "example-us-management-allocation-budget-actual"
+    ],
+    "excluded_ids": [
+      "src_ias02inv"
+    ],
+    "expected_scope": "US synthetic shared-service pool, approved service hours, headcount sensitivity, ledger tie, and external applicability boundary.",
+    "required_citations": 2,
+    "claims_assert_only_supported": [
+      "The 600/400 hour and 30/70 headcount branches are sensitivities, not proof of driver correctness.",
+      "An internal allocation is not automatically a federal-award or external-reporting conclusion."
+    ]
+  },
+  {
+    "id": "rq-aa-i125-budget-actual",
+    "user_question": "How should a US agent explain a budget-to-actual price and volume bridge without double counting?",
+    "search_query": "budget actual price volume bridge",
+    "kind": "example",
+    "filters": {},
+    "expected_ids": [
+      "example-us-management-allocation-budget-actual"
+    ],
+    "excluded_ids": [],
+    "expected_scope": "January 2026 budget and actual versions, sequential volume and price effects, restated actual, profit bridge, and cash bridge.",
+    "required_citations": 2,
+    "claims_assert_only_supported": [
+      "Volume is -10000 and price is +9000 under the declared sequential convention.",
+      "A restated actual replaces the original actual and is not additive."
+    ]
   }
 ]

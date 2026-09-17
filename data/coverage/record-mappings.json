@@ -1,12 +1,12 @@
 {
   "schema_version": "1.0.0",
-  "mapping_version": "2026-09-14.1",
+  "mapping_version": "2026-09-17.125",
   "topology_version": "2026-09-11.1",
   "corpus_version": "2026-09-14.3",
-  "generated_at": "2026-09-14",
-  "corpus_sha256": "8985453b963c3e3480e7d92b5d2ee993fd7b1477f68cebb15f4b5b4d57a9ce1b",
+  "generated_at": "2026-09-17",
+  "corpus_sha256": "cf32161f0f2f521f9eb94cb59ecf6cebc0ac6f805ce1d7bd11ed14a98c2b393d",
   "rules_sha256": "550b2bb485399af996bac6ed34542d7a91170d4b31b5e5026e0e9c2c32068b9d",
-  "overrides_sha256": "58c260bd73dc007b736af147ccaf83286405f88dacaab376d969b6bf60ed4cb4",
+  "overrides_sha256": "94429ad644cf8dcf6ccc6a628355236946190df490f2abf715e403863e764812",
   "method": "Deterministic title/topic associations, conservative industry crosswalk, and explicit editorial additions. All initial links are candidates; source review status is unchanged.",
   "mappings": [
     {
@@ -4936,6 +4936,79 @@
       "industry_scope": "shared-context",
       "industry_mappings": [],
       "note": "Reviewed association with the original editorial content. This does not validate accounting treatment or the adequacy of its external references."
+    },
+    {
+      "record_id": "example-us-management-allocation-budget-actual",
+      "question_mappings": [
+        {
+          "question_id": "q-cost-allocation",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/editorial_review",
+              "matched": "Original synthetic selected-role fixture explicitly names the US manufacturing role and three shared families; this is discovery context, not industry-wide accounting sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/editorial_review",
+              "matched": "2026-09-17: AA-I125 synthetic fixture is scoped to one role and one period. It does not establish a conclusion for manufacturing descendants or real entities.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-performance",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/editorial_review",
+              "matched": "Original synthetic selected-role fixture explicitly names the US manufacturing role and three shared families; this is discovery context, not industry-wide accounting sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/editorial_review",
+              "matched": "2026-09-17: AA-I125 synthetic fixture is scoped to one role and one period. It does not establish a conclusion for manufacturing descendants or real entities.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-planning",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/editorial_review",
+              "matched": "Original synthetic selected-role fixture explicitly names the US manufacturing role and three shared families; this is discovery context, not industry-wide accounting sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/editorial_review",
+              "matched": "2026-09-17: AA-I125 synthetic fixture is scoped to one role and one period. It does not establish a conclusion for manufacturing descendants or real entities.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "31-33",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/editorial_review",
+              "matched": "Original synthetic selected-role fixture explicitly names the US manufacturing role and three shared families; this is discovery context, not industry-wide accounting sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/editorial_review",
+              "matched": "2026-09-17: AA-I125 synthetic fixture is scoped to one role and one period. It does not establish a conclusion for manufacturing descendants or real entities.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "note": "AA-I125 synthetic fixture is scoped to one role and one period. It does not establish a conclusion for manufacturing descendants or real entities."
     },
     {
       "record_id": "guide-accounting-llm-benchmark-claims",
@@ -17054,12 +17127,12 @@
           "basis": [
             {
               "field": "/data/research_questions",
-              "matched": "The explicitly scoped research questions and original synthesis support discovery associations only. Detailed-industry adequacy is separately assessed.",
+              "matched": "The explicitly scoped US research questions, source locators, and original synthetic fixture support discovery associations only. Detailed-industry adequacy is separately assessed.",
               "rule": "editorial-association"
             },
             {
               "field": "/data/research_questions",
-              "matched": "2026-09-11: Reviewed discovery relationship to the named questions and explicitly declared industry scope; does not confer accounting adequacy or professional verification.",
+              "matched": "2026-09-17: AA-I125 scope review covers the selected US role and named questions only; it does not confer family-wide adequacy, professional verification, or descendant-industry conclusions.",
               "rule": "editorial-review"
             }
           ]
@@ -17067,7 +17140,7 @@
       ],
       "industry_scope": "shared-context",
       "industry_mappings": [],
-      "note": "Reviewed discovery relationship to the named questions and explicitly declared industry scope; does not confer accounting adequacy or professional verification."
+      "note": "AA-I125 scope review covers the selected US role and named questions only; it does not confer family-wide adequacy, professional verification, or descendant-industry conclusions."
     },
     {
       "record_id": "guide-q-credit-intermediation",
@@ -17822,12 +17895,12 @@
           "basis": [
             {
               "field": "/data/research_questions",
-              "matched": "The explicitly scoped research questions and original synthesis support discovery associations only. Detailed-industry adequacy is separately assessed.",
+              "matched": "The explicitly scoped US research questions, source locators, and original synthetic fixture support discovery associations only. Detailed-industry adequacy is separately assessed.",
               "rule": "editorial-association"
             },
             {
               "field": "/data/research_questions",
-              "matched": "2026-09-11: Reviewed discovery relationship to the named questions and explicitly declared industry scope; does not confer accounting adequacy or professional verification.",
+              "matched": "2026-09-17: AA-I125 scope review covers the selected US role and named questions only; it does not confer family-wide adequacy, professional verification, or descendant-industry conclusions.",
               "rule": "editorial-review"
             }
           ]
@@ -17835,7 +17908,7 @@
       ],
       "industry_scope": "shared-context",
       "industry_mappings": [],
-      "note": "Reviewed discovery relationship to the named questions and explicitly declared industry scope; does not confer accounting adequacy or professional verification."
+      "note": "AA-I125 scope review covers the selected US role and named questions only; it does not confer family-wide adequacy, professional verification, or descendant-industry conclusions."
     },
     {
       "record_id": "guide-q-planning",
@@ -17846,12 +17919,12 @@
           "basis": [
             {
               "field": "/data/research_questions",
-              "matched": "The explicitly scoped research questions and original synthesis support discovery associations only. Detailed-industry adequacy is separately assessed.",
+              "matched": "The explicitly scoped US research questions, source locators, and original synthetic fixture support discovery associations only. Detailed-industry adequacy is separately assessed.",
               "rule": "editorial-association"
             },
             {
               "field": "/data/research_questions",
-              "matched": "2026-09-11: Reviewed discovery relationship to the named questions and explicitly declared industry scope; does not confer accounting adequacy or professional verification.",
+              "matched": "2026-09-17: AA-I125 scope review covers the selected US role and named questions only; it does not confer family-wide adequacy, professional verification, or descendant-industry conclusions.",
               "rule": "editorial-review"
             }
           ]
@@ -17859,7 +17932,7 @@
       ],
       "industry_scope": "shared-context",
       "industry_mappings": [],
-      "note": "Reviewed discovery relationship to the named questions and explicitly declared industry scope; does not confer accounting adequacy or professional verification."
+      "note": "AA-I125 scope review covers the selected US role and named questions only; it does not confer family-wide adequacy, professional verification, or descendant-industry conclusions."
     },
     {
       "record_id": "guide-q-policy-changes-errors",
@@ -31837,12 +31910,12 @@
           "basis": [
             {
               "field": "/data/source_review/mapping_rationale",
-              "matched": "The source concerns 2 cfr part 200, uniform administrative requirements, cost principles, and audit requirements for federal awards across accounting, audit, finance, regulation, or agent infrastructure; no single NAICS-US2022 industry is evidenced, so no specific industry code is assigned.",
+              "matched": "Shared US federal-award context for the selected allocation and budget-control questions; no industry-specific or general-GAAP sufficiency is inferred.",
               "rule": "editorial-association"
             },
             {
               "field": "/data/source_review/mapping_rationale",
-              "matched": "2026-09-11: The source concerns 2 cfr part 200, uniform administrative requirements, cost principles, and audit requirements for federal awards across accounting, audit, finance, regulation, or agent infrastructure; no single NAICS-US2022 industry is evidenced, so no specific industry code is assigned. Association review scope: substantive-excerpt; supported-scope. This does not establish accounting adequacy.",
+              "matched": "2026-09-17: Shared US federal-award context for the selected allocation and budget-control questions; no industry-specific or general-GAAP sufficiency is inferred. Association review covers AA-I125 source locators only; no accounting adequacy is inferred.",
               "rule": "editorial-review"
             }
           ]
@@ -31853,12 +31926,44 @@
           "basis": [
             {
               "field": "/data/source_review/mapping_rationale",
-              "matched": "The source concerns 2 cfr part 200, uniform administrative requirements, cost principles, and audit requirements for federal awards across accounting, audit, finance, regulation, or agent infrastructure; no single NAICS-US2022 industry is evidenced, so no specific industry code is assigned.",
+              "matched": "Shared US federal-award context for the selected allocation and budget-control questions; no industry-specific or general-GAAP sufficiency is inferred.",
               "rule": "editorial-association"
             },
             {
               "field": "/data/source_review/mapping_rationale",
-              "matched": "2026-09-11: The source concerns 2 cfr part 200, uniform administrative requirements, cost principles, and audit requirements for federal awards across accounting, audit, finance, regulation, or agent infrastructure; no single NAICS-US2022 industry is evidenced, so no specific industry code is assigned. Association review scope: substantive-excerpt; supported-scope. This does not establish accounting adequacy.",
+              "matched": "2026-09-17: Shared US federal-award context for the selected allocation and budget-control questions; no industry-specific or general-GAAP sufficiency is inferred. Association review covers AA-I125 source locators only; no accounting adequacy is inferred.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-cost-allocation",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/source_review/mapping_rationale",
+              "matched": "Shared US federal-award context for the selected allocation and budget-control questions; no industry-specific or general-GAAP sufficiency is inferred.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/source_review/mapping_rationale",
+              "matched": "2026-09-17: Shared US federal-award context for the selected allocation and budget-control questions; no industry-specific or general-GAAP sufficiency is inferred. Association review covers AA-I125 source locators only; no accounting adequacy is inferred.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-planning",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/source_review/mapping_rationale",
+              "matched": "Shared US federal-award context for the selected allocation and budget-control questions; no industry-specific or general-GAAP sufficiency is inferred.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/source_review/mapping_rationale",
+              "matched": "2026-09-17: Shared US federal-award context for the selected allocation and budget-control questions; no industry-specific or general-GAAP sufficiency is inferred. Association review covers AA-I125 source locators only; no accounting adequacy is inferred.",
               "rule": "editorial-review"
             }
           ]
@@ -31869,12 +31974,12 @@
           "basis": [
             {
               "field": "/data/source_review/mapping_rationale",
-              "matched": "The source concerns 2 cfr part 200, uniform administrative requirements, cost principles, and audit requirements for federal awards across accounting, audit, finance, regulation, or agent infrastructure; no single NAICS-US2022 industry is evidenced, so no specific industry code is assigned.",
+              "matched": "Shared US federal-award context for the selected allocation and budget-control questions; no industry-specific or general-GAAP sufficiency is inferred.",
               "rule": "editorial-association"
             },
             {
               "field": "/data/source_review/mapping_rationale",
-              "matched": "2026-09-11: The source concerns 2 cfr part 200, uniform administrative requirements, cost principles, and audit requirements for federal awards across accounting, audit, finance, regulation, or agent infrastructure; no single NAICS-US2022 industry is evidenced, so no specific industry code is assigned. Association review scope: substantive-excerpt; supported-scope. This does not establish accounting adequacy.",
+              "matched": "2026-09-17: Shared US federal-award context for the selected allocation and budget-control questions; no industry-specific or general-GAAP sufficiency is inferred. Association review covers AA-I125 source locators only; no accounting adequacy is inferred.",
               "rule": "editorial-review"
             }
           ]
@@ -31882,7 +31987,7 @@
       ],
       "industry_scope": "shared-context",
       "industry_mappings": [],
-      "note": "The source concerns 2 cfr part 200, uniform administrative requirements, cost principles, and audit requirements for federal awards across accounting, audit, finance, regulation, or agent infrastructure; no single NAICS-US2022 industry is evidenced, so no specific industry code is assigned. Association review scope: substantive-excerpt; supported-scope. This does not establish accounting adequacy."
+      "note": "Shared US federal-award context for the selected allocation and budget-control questions; no industry-specific or general-GAAP sufficiency is inferred. Association review covers AA-I125 source locators only; no accounting adequacy is inferred."
     },
     {
       "record_id": "src_cms_hcris_cost_reports_2026",
@@ -34839,6 +34944,30 @@
       "industry_scope": "shared-context",
       "industry_mappings": [],
       "note": "Shared context; no industry-specific coverage credit."
+    },
+    {
+      "record_id": "src_far_31203_indirect_costs",
+      "question_mappings": [
+        {
+          "question_id": "q-cost-allocation",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/source_review/mapping_rationale",
+              "matched": "External federal-contract counterexample for allocation-base consistency and method-change controls; not a general internal-management requirement.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/source_review/mapping_rationale",
+              "matched": "2026-09-17: External federal-contract counterexample for allocation-base consistency and method-change controls; not a general internal-management requirement. Association review covers the cited FAR paragraphs only; no accounting adequacy is inferred.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "External federal-contract counterexample for allocation-base consistency and method-change controls; not a general internal-management requirement. Association review covers the cited FAR paragraphs only; no accounting adequacy is inferred."
     },
     {
       "record_id": "src_far26badadvice",
@@ -41965,7 +42094,7 @@
             },
             {
               "field": "/data",
-              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "matched": "2026-09-17: Shared SEC registrant boundary for qualitative materiality; discovery association only, not a claim that the selected private manufacturer is an SEC registrant. Association review covers AA-I125 source locators only; no accounting adequacy is inferred.",
               "rule": "editorial-review"
             }
           ]
@@ -41981,7 +42110,7 @@
             },
             {
               "field": "/data",
-              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "matched": "2026-09-17: Shared SEC registrant boundary for qualitative materiality; discovery association only, not a claim that the selected private manufacturer is an SEC registrant. Association review covers AA-I125 source locators only; no accounting adequacy is inferred.",
               "rule": "editorial-review"
             }
           ]
@@ -41997,7 +42126,7 @@
             },
             {
               "field": "/data",
-              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "matched": "2026-09-17: Shared SEC registrant boundary for qualitative materiality; discovery association only, not a claim that the selected private manufacturer is an SEC registrant. Association review covers AA-I125 source locators only; no accounting adequacy is inferred.",
               "rule": "editorial-review"
             }
           ]
@@ -42005,7 +42134,7 @@
       ],
       "industry_scope": "shared-context",
       "industry_mappings": [],
-      "note": "Question-level citation association reviewed; no industry descendant or sufficiency credit."
+      "note": "Shared SEC registrant boundary for qualitative materiality; discovery association only, not a claim that the selected private manufacturer is an SEC registrant. Association review covers AA-I125 source locators only; no accounting adequacy is inferred."
     },
     {
       "record_id": "src_secsab0108",
