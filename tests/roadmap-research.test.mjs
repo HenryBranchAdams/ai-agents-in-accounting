@@ -13,7 +13,7 @@ const byId=new Map(records.map(r=>[r.id,r]));
 const request=p=>worker.fetch(new Request('https://corpus.example'+p));
 
 test('declared research population resolves to answers, sources and actual individual reviews',()=>{
- const counts=validateResearch(records);assert.equal(counts.inherited_dispositions,715);assert.equal(counts.named_questions,178);
+ const counts=validateResearch(records);assert.equal(counts.inherited_dispositions,715);assert.equal(counts.named_questions,187);
  const schema=read('schemas/research.schema.json');
  const resolve=v=>Array.isArray(v)?v.map(resolve):v&&typeof v==='object'?(v.$ref?resolve(schema.$defs[v.$ref.split('/').at(-1)]):Object.fromEntries(Object.entries(v).filter(([k])=>k!=='$defs').map(([k,x])=>[k,resolve(x)]))):v;
  for(const file of ['research-questions','subsector-profiles','subsector-screening','industry-exception-reviews'])validateSchema(read(`data/coverage/${file}.json`),resolve(schema));

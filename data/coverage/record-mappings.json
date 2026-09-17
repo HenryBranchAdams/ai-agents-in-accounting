@@ -1,12 +1,12 @@
 {
   "schema_version": "1.0.0",
-  "mapping_version": "2026-09-14.1",
+  "mapping_version": "2026-09-17.1",
   "topology_version": "2026-09-11.1",
   "corpus_version": "2026-09-14.3",
-  "generated_at": "2026-09-14",
-  "corpus_sha256": "8985453b963c3e3480e7d92b5d2ee993fd7b1477f68cebb15f4b5b4d57a9ce1b",
+  "generated_at": "2026-09-17",
+  "corpus_sha256": "97fa5565ad65f8f5667d03925cb041665155c66620261e9cc746cf86a2967522",
   "rules_sha256": "550b2bb485399af996bac6ed34542d7a91170d4b31b5e5026e0e9c2c32068b9d",
-  "overrides_sha256": "58c260bd73dc007b736af147ccaf83286405f88dacaab376d969b6bf60ed4cb4",
+  "overrides_sha256": "6f3af644453de412b55b6d98d599b382a2110d181200f4ad58c0d352493c68b5",
   "method": "Deterministic title/topic associations, conservative industry crosswalk, and explicit editorial additions. All initial links are candidates; source review status is unchanged.",
   "mappings": [
     {
@@ -4800,6 +4800,47 @@
         }
       ],
       "note": "Selected contractor questions and original connected worked material. Developer and owner branches remain distinct; no descendant sufficiency inferred. Association review only; accounting adequacy and source review limits remain separate."
+    },
+    {
+      "record_id": "example-erp-journal-lineage",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Agent engineering",
+              "rule": "topic-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/2",
+              "matched": "Data and interoperability",
+              "rule": "topic-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-security",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/3",
+              "matched": "Security and identity",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
     },
     {
       "record_id": "example-icfr-control-review",
@@ -18477,6 +18518,142 @@
         }
       ],
       "note": "Reviewed discovery relationship to the named questions and explicitly declared industry scope; does not confer accounting adequacy or professional verification."
+    },
+    {
+      "record_id": "guide-us-accounting-agent-evidence-boundaries",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "US-scoped evidence packet with explicit source-to-ledger, security, authority, evaluation, deployment, and rights question families; associations support discovery only and do not confer accounting adequacy or professional verification.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-17: Reviewed the named family association and US shared-context scope. The ERP fixture, source checks, empirical evidence, and rights matrix remain bounded; no industry-specific coverage or accounting conclusion is inferred.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-data-lineage",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "US-scoped evidence packet with explicit source-to-ledger, security, authority, evaluation, deployment, and rights question families; associations support discovery only and do not confer accounting adequacy or professional verification.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-17: Reviewed the named family association and US shared-context scope. The ERP fixture, source checks, empirical evidence, and rights matrix remain bounded; no industry-specific coverage or accounting conclusion is inferred.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-deployment-evidence",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "US-scoped evidence packet with explicit source-to-ledger, security, authority, evaluation, deployment, and rights question families; associations support discovery only and do not confer accounting adequacy or professional verification.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-17: Reviewed the named family association and US shared-context scope. The ERP fixture, source checks, empirical evidence, and rights matrix remain bounded; no industry-specific coverage or accounting conclusion is inferred.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-evaluation",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "US-scoped evidence packet with explicit source-to-ledger, security, authority, evaluation, deployment, and rights question families; associations support discovery only and do not confer accounting adequacy or professional verification.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-17: Reviewed the named family association and US shared-context scope. The ERP fixture, source checks, empirical evidence, and rights matrix remain bounded; no industry-specific coverage or accounting conclusion is inferred.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-human-authority",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "US-scoped evidence packet with explicit source-to-ledger, security, authority, evaluation, deployment, and rights question families; associations support discovery only and do not confer accounting adequacy or professional verification.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-17: Reviewed the named family association and US shared-context scope. The ERP fixture, source checks, empirical evidence, and rights matrix remain bounded; no industry-specific coverage or accounting conclusion is inferred.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-interfaces",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "US-scoped evidence packet with explicit source-to-ledger, security, authority, evaluation, deployment, and rights question families; associations support discovery only and do not confer accounting adequacy or professional verification.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-17: Reviewed the named family association and US shared-context scope. The ERP fixture, source checks, empirical evidence, and rights matrix remain bounded; no industry-specific coverage or accounting conclusion is inferred.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-reuse-rights",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "US-scoped evidence packet with explicit source-to-ledger, security, authority, evaluation, deployment, and rights question families; associations support discovery only and do not confer accounting adequacy or professional verification.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-17: Reviewed the named family association and US shared-context scope. The ERP fixture, source checks, empirical evidence, and rights matrix remain bounded; no industry-specific coverage or accounting conclusion is inferred.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-security",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "US-scoped evidence packet with explicit source-to-ledger, security, authority, evaluation, deployment, and rights question families; associations support discovery only and do not confer accounting adequacy or professional verification.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-17: Reviewed the named family association and US shared-context scope. The ERP fixture, source checks, empirical evidence, and rights matrix remain bounded; no industry-specific coverage or accounting conclusion is inferred.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "Reviewed the named family association and US shared-context scope. The ERP fixture, source checks, empirical evidence, and rights matrix remain bounded; no industry-specific coverage or accounting conclusion is inferred."
     },
     {
       "record_id": "guide-wholesale-retail",
