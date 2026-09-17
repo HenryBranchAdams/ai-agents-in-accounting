@@ -25319,5 +25319,604 @@
         "limits": "Synthetic tie-outs and scoped public sources only; contractor, developer, owner and tax conclusions stay separate."
       }
     }
+  },
+  {
+    "id": "wf-us-event-to-ledger",
+    "kind": "workflow",
+    "title": "US operating event population to proposed ledger",
+    "summary": "Join orders, receipts, shipments, invoices, credits, payments and corrections to a dated, balanced proposed ledger without executing postings.",
+    "topics": [
+      "Accounting and reporting",
+      "Operating transactions"
+    ],
+    "industries": [],
+    "jurisdiction": "United States; nongovernmental US GAAP illustration",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_fasb_concepts8_elements",
+      "src_construction_fasb_2014_09",
+      "src_1os761s"
+    ],
+    "related_ids": [
+      "guide-q-revenue",
+      "guide-q-project-wip",
+      "guide-q-purchasing-payables",
+      "guide-q-receivables-credit",
+      "guide-q-cash-settlement",
+      "guide-q-inventory",
+      "example-us-operating-transactions-ledger",
+      "example-us-project-wip-ledger",
+      "ctrl-us-event-population-completeness"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-17",
+    "provenance": {
+      "added_on": "2026-09-17",
+      "reviewer": "Codex (AI-assisted editorial synthesis)",
+      "scope": "United States nongovernmental seller or buyer moving operating transactions from source populations to a proposed ledger; accrual-basis financial statements and US GAAP; 2026 reporting period. Excludes bank lending, insurer contracts, governmental fund accounting and tax-only conclusions. Entity, contract, policy, jurisdiction, effective period and materiality must be confirmed.",
+      "evidence_record_ids": [
+        "src_fasb_concepts8_elements",
+        "src_construction_fasb_2014_09",
+        "src_1os761s"
+      ],
+      "outcome": "Original read-only workflow or control proposal linked to selected source records; no professional sign-off or execution evidence.",
+      "note": "Descriptive corpus material, not an execution tool or authorization to post, pay or file."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false
+    },
+    "data": {
+      "version": "1.0.0",
+      "family": "operating-transactions",
+      "accounting_objective": "Preserve the source event, reporting period, proposed account effect and unresolved exception for each in-scope transaction.",
+      "scope": "United States nongovernmental seller or buyer moving operating transactions from source populations to a proposed ledger; accrual-basis financial statements and US GAAP; 2026 reporting period. Excludes bank lending, insurer contracts, governmental fund accounting and tax-only conclusions. Entity, contract, policy, jurisdiction, effective period and materiality must be confirmed.",
+      "entity_scope": "One declared US nongovernmental legal entity and its approved operating accounts; no bank, insurer or governmental-fund role is implied.",
+      "period_scope": "One declared reporting period with source date, posting date, cutoff and subsequent-event windows retained.",
+      "inputs": [
+        "Order, contract, receipt, shipment, acceptance, invoice, credit note, return, payment, bank or processor and general-ledger populations",
+        "Entity, account, currency, period, source-system, approval and correction metadata",
+        "Opening balances, prior exceptions, voids, duplicate indicators and source-to-ledger keys"
+      ],
+      "control_totals": [
+        "Source row count and gross amount by population",
+        "Matched, excluded, voided, corrected and unresolved row counts and amounts",
+        "Proposed debit and credit totals plus subledger-to-ledger balance"
+      ],
+      "steps": [
+        "Record entity, framework, period, population boundaries and source extraction evidence.",
+        "Normalize stable event, counterparty, document, source-date and posting-date identifiers without deleting source rows.",
+        "Classify each event as revenue, inventory, cost, payable, receivable, refund, tax, fee, financing or unresolved.",
+        "Prepare balanced proposed journal lines and link each line to the event and supporting evidence.",
+        "Reconcile quantities, subledgers, clearing accounts, cash and debit-credit totals; retain differences as exceptions."
+      ],
+      "outputs": [
+        "Event-to-ledger register",
+        "Proposed journal entries",
+        "Reconciliation totals",
+        "Unresolved and changed-assumption branches"
+      ],
+      "human_judgments": [
+        "Applicable US GAAP Topic and policy",
+        "Control or ownership date",
+        "Principal-versus-agent, return, consignment, tax and credit-loss classification",
+        "Materiality and posting or filing approval"
+      ],
+      "limitations": [
+        "This is a descriptive, read-only workflow; it does not post, pay, file, approve or authorize an action.",
+        "The associated worked records are original synthetic examples and do not establish production completeness or professional accounting correctness."
+      ]
+    }
+  },
+  {
+    "id": "wf-us-contract-revenue-cutoff",
+    "kind": "workflow",
+    "title": "US customer contract revenue and cutoff review",
+    "summary": "Review contract, control-transfer, variable-consideration and contract-balance evidence before preparing a proposed revenue entry.",
+    "topics": [
+      "Accounting and reporting",
+      "Operating transactions"
+    ],
+    "industries": [],
+    "jurisdiction": "United States; nongovernmental US GAAP illustration",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_construction_fasb_2014_09",
+      "src_fasb_asu2016_08_principal_agent",
+      "src_1os761s"
+    ],
+    "related_ids": [
+      "guide-q-revenue",
+      "guide-q-receivables-credit",
+      "guide-q-cash-settlement",
+      "example-us-operating-transactions-ledger",
+      "ctrl-us-revenue-presentation-separation"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-17",
+    "provenance": {
+      "added_on": "2026-09-17",
+      "reviewer": "Codex (AI-assisted editorial synthesis)",
+      "scope": "United States nongovernmental seller evaluating customer contracts, delivery and settlement; accrual-basis financial statements and US GAAP; 2026 reporting period. Excludes bank lending, insurer contracts, governmental fund accounting and tax-only conclusions. Entity, contract, policy, jurisdiction, effective period and materiality must be confirmed.",
+      "evidence_record_ids": [
+        "src_construction_fasb_2014_09",
+        "src_fasb_asu2016_08_principal_agent",
+        "src_1os761s"
+      ],
+      "outcome": "Original read-only workflow or control proposal linked to selected source records; no professional sign-off or execution evidence.",
+      "note": "Descriptive corpus material, not an execution tool or authorization to post, pay or file."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false
+    },
+    "data": {
+      "version": "1.0.0",
+      "family": "order-to-cash",
+      "accounting_objective": "Connect customer contract evidence and control transfer to proposed revenue, contract-balance, refund and receivable populations.",
+      "scope": "United States nongovernmental seller evaluating customer contracts, delivery and settlement; accrual-basis financial statements and US GAAP; 2026 reporting period. Excludes bank lending, insurer contracts, governmental fund accounting and tax-only conclusions. Entity, contract, policy, jurisdiction, effective period and materiality must be confirmed.",
+      "inputs": [
+        "Contract or order, promised goods or services, acceptance, shipment, invoice, return, credit, tax and processor evidence",
+        "Principal-versus-agent facts, payment terms, contract modifications and customer rights",
+        "Contract asset, receivable, refund liability, tax payable, processor clearing and revenue subledgers"
+      ],
+      "steps": [
+        "Confirm entity, contract population and applicable Topic 606 version.",
+        "Identify promises and control-transfer evidence.",
+        "Assess transaction price, variable consideration, third-party amounts and principal-versus-agent presentation.",
+        "Prepare separate proposed entries for revenue, receivable or contract asset, refunds, tax and settlement.",
+        "Reconcile recognized revenue and open balances to source populations and cutoff."
+      ],
+      "control_totals": [
+        "Contract and order count",
+        "Shipped or accepted quantity and gross consideration",
+        "Revenue, tax, refund, receivable, contract asset and clearing totals"
+      ],
+      "outputs": [
+        "Contract evidence matrix",
+        "Proposed entries and contract-balance rollforward",
+        "Exceptions for disputed control, returns, tax, agent and late evidence"
+      ],
+      "human_judgments": [
+        "Whether a contract exists and a promise is distinct",
+        "Control-transfer date and principal-versus-agent conclusion",
+        "Variable-consideration constraint and return or concession estimate"
+      ],
+      "limitations": [
+        "No live customer contract, current consolidated Codification text or professional sign-off was obtained.",
+        "The workflow does not execute billing, collection, refund or journal posting."
+      ]
+    }
+  },
+  {
+    "id": "wf-us-project-wip-close",
+    "kind": "workflow",
+    "title": "US project WIP and contract-cost close",
+    "summary": "Tie a bounded project or service contract's progress, cost-to-complete, contract balances and capitalized contract costs to proposed ledger output.",
+    "topics": [
+      "Accounting and reporting",
+      "Operating transactions"
+    ],
+    "industries": [],
+    "jurisdiction": "United States; nongovernmental US GAAP illustration",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_construction_fasb_2014_09",
+      "src_1os761s",
+      "src_fasb_concepts8_elements"
+    ],
+    "related_ids": [
+      "guide-q-project-wip",
+      "example-us-project-wip-ledger",
+      "ctrl-us-project-wip-estimate",
+      "wf-us-event-to-ledger"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-17",
+    "provenance": {
+      "added_on": "2026-09-17",
+      "reviewer": "Codex (AI-assisted editorial synthesis)",
+      "scope": "United States nongovernmental project or service provider with a possible over-time performance obligation; accrual-basis financial statements and US GAAP; 2026 reporting period. Excludes bank lending, insurer contracts, governmental fund accounting and tax-only conclusions. Entity, contract, policy, jurisdiction, effective period and materiality must be confirmed.",
+      "evidence_record_ids": [
+        "src_construction_fasb_2014_09",
+        "src_1os761s",
+        "src_fasb_concepts8_elements"
+      ],
+      "outcome": "Original read-only workflow or control proposal linked to selected source records; no professional sign-off or execution evidence.",
+      "note": "Descriptive corpus material, not an execution tool or authorization to post, pay or file."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false
+    },
+    "data": {
+      "version": "1.0.0",
+      "family": "project-wip",
+      "accounting_objective": "Support a reporting-date project WIP conclusion with contract, progress, cost and ledger evidence while retaining changed-assumption branches.",
+      "scope": "United States nongovernmental project or service provider with a possible over-time performance obligation; accrual-basis financial statements and US GAAP; 2026 reporting period. Excludes bank lending, insurer contracts, governmental fund accounting and tax-only conclusions. Entity, contract, policy, jurisdiction, effective period and materiality must be confirmed.",
+      "inputs": [
+        "Contract versions, performance obligations, acceptance rights and approved modifications",
+        "Opening WIP or contract balances, current cost or output, estimate-to-complete and progress method",
+        "Billing, cash, contract-cost asset, amortization, revenue, expense and general-ledger populations"
+      ],
+      "steps": [
+        "Establish whether the arrangement qualifies for over-time recognition under the applicable current Topic.",
+        "Lock the close population and estimate version.",
+        "Recalculate progress and identify inputs that do not depict transfer.",
+        "Classify contract acquisition or fulfillment costs under Topic 340-40 or another applicable Topic.",
+        "Prepare balanced proposed entries and reconcile WIP, contract asset or liability, receivable, revenue and costs.",
+        "Document no-over-time, modification, loss, impairment and estimate-change branches."
+      ],
+      "control_totals": [
+        "Contract and estimate versions",
+        "Cost or output population and progress calculation",
+        "Revenue, WIP, contract balance, contract-cost asset and ledger totals"
+      ],
+      "outputs": [
+        "Progress and estimate workpaper",
+        "Proposed journal entries",
+        "Contract-cost rollforward",
+        "Open judgment and changed-assumption register"
+      ],
+      "human_judgments": [
+        "Over-time criterion",
+        "Progress method and exclusions",
+        "Recoverability and amortization of contract costs",
+        "Modification, loss and impairment conclusions"
+      ],
+      "limitations": [
+        "The synthetic example assumes its over-time criterion and method; it is not a construction-specific or industry-sufficient package.",
+        "No live project system, contract file or professional review was performed."
+      ]
+    }
+  },
+  {
+    "id": "wf-us-payables-cutoff",
+    "kind": "workflow",
+    "title": "US purchasing, receipt and payables cutoff",
+    "summary": "Test purchase, receipt, invoice, credit and subsequent-payment populations for period-end obligations and duplicate or unresolved evidence.",
+    "topics": [
+      "Accounting and reporting",
+      "Operating transactions"
+    ],
+    "industries": [],
+    "jurisdiction": "United States; nongovernmental US GAAP illustration",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_fasb_concepts8_elements",
+      "src_1v1zwt5",
+      "src_1os761s"
+    ],
+    "related_ids": [
+      "guide-q-purchasing-payables",
+      "guide-q-inventory",
+      "example-us-operating-transactions-ledger",
+      "ctrl-us-unrecorded-liabilities"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-17",
+    "provenance": {
+      "added_on": "2026-09-17",
+      "reviewer": "Codex (AI-assisted editorial synthesis)",
+      "scope": "United States nongovernmental buyer testing purchasing and payable obligations at period end; accrual-basis financial statements and US GAAP; 2026 reporting period. Excludes bank lending, insurer contracts, governmental fund accounting and tax-only conclusions. Entity, contract, policy, jurisdiction, effective period and materiality must be confirmed.",
+      "evidence_record_ids": [
+        "src_fasb_concepts8_elements",
+        "src_1v1zwt5",
+        "src_1os761s"
+      ],
+      "outcome": "Original read-only workflow or control proposal linked to selected source records; no professional sign-off or execution evidence.",
+      "note": "Descriptive corpus material, not an execution tool or authorization to post, pay or file."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false
+    },
+    "data": {
+      "version": "1.0.0",
+      "family": "procure-to-pay",
+      "accounting_objective": "Identify and propose the correct period treatment for received goods or services and vendor obligations without double counting invoices or credits.",
+      "scope": "United States nongovernmental buyer testing purchasing and payable obligations at period end; accrual-basis financial statements and US GAAP; 2026 reporting period. Excludes bank lending, insurer contracts, governmental fund accounting and tax-only conclusions. Entity, contract, policy, jurisdiction, effective period and materiality must be confirmed.",
+      "inputs": [
+        "Purchase order, receipt, service confirmation, invoice, vendor credit, return, void, correction and payment records",
+        "Subsequent-payment window, opening accruals, entity and period data, receipt and invoice dates",
+        "Inventory, expense, AP, accrued-liability and cash subledgers"
+      ],
+      "steps": [
+        "Define the close population and extract receipt-before-invoice and subsequent-payment records.",
+        "Match order, receipt, invoice and credit identities, retaining unmatched and duplicate rows.",
+        "Determine the proposed period obligation and account class under current policy and applicable Topic.",
+        "Prepare one accrual, invoice match, reversal or correction path with no duplicate entry.",
+        "Reconcile AP, inventory or expense, cash and open exceptions."
+      ],
+      "control_totals": [
+        "Receipt, invoice, credit and payment counts and amounts",
+        "Unmatched, duplicate, void, disputed and late evidence counts",
+        "Accrued-liability, AP, inventory, expense and cash proposed totals"
+      ],
+      "outputs": [
+        "Unrecorded-liability population",
+        "Receipt-to-invoice match report",
+        "Proposed accrual or correction entries",
+        "Exception register"
+      ],
+      "human_judgments": [
+        "Present obligation and receipt or acceptance date",
+        "Inventory versus expense classification",
+        "Vendor credit, return, dispute and tax treatment"
+      ],
+      "limitations": [
+        "Conceptual and control sources do not establish every current recognition rule.",
+        "The workflow is read-only and does not approve invoices, release payments or post entries."
+      ]
+    }
+  },
+  {
+    "id": "wf-us-receivables-credit",
+    "kind": "workflow",
+    "title": "US receivables, contract assets and credit-loss close",
+    "summary": "Separate contract assets, trade receivables, returns and Topic 326 allowances, then reconcile the reporting-date allowance and scoped ASU 2025-05 election.",
+    "topics": [
+      "Accounting and reporting",
+      "Operating transactions"
+    ],
+    "industries": [],
+    "jurisdiction": "United States; nongovernmental US GAAP illustration",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_construction_fasb_2014_09",
+      "src_fasb_asu2016_13_credit_losses",
+      "src_construction_fasb_202505"
+    ],
+    "related_ids": [
+      "guide-q-receivables-credit",
+      "guide-q-revenue",
+      "example-us-operating-transactions-ledger",
+      "ctrl-us-contract-asset-receivable"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-17",
+    "provenance": {
+      "added_on": "2026-09-17",
+      "reviewer": "Codex (AI-assisted editorial synthesis)",
+      "scope": "United States nongovernmental seller assessing trade receivables and eligible contract assets; accrual-basis financial statements and US GAAP; 2026 reporting period. Excludes bank lending, insurer contracts, governmental fund accounting and tax-only conclusions. Entity, contract, policy, jurisdiction, effective period and materiality must be confirmed.",
+      "evidence_record_ids": [
+        "src_construction_fasb_2014_09",
+        "src_fasb_asu2016_13_credit_losses",
+        "src_construction_fasb_202505"
+      ],
+      "outcome": "Original read-only workflow or control proposal linked to selected source records; no professional sign-off or execution evidence.",
+      "note": "Descriptive corpus material, not an execution tool or authorization to post, pay or file."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false
+    },
+    "data": {
+      "version": "1.0.0",
+      "family": "order-to-cash",
+      "accounting_objective": "Reconcile customer rights and credit-loss evidence to proposed receivable, contract-asset, refund and allowance balances.",
+      "scope": "United States nongovernmental seller assessing trade receivables and eligible contract assets; accrual-basis financial statements and US GAAP; 2026 reporting period. Excludes bank lending, insurer contracts, governmental fund accounting and tax-only conclusions. Entity, contract, policy, jurisdiction, effective period and materiality must be confirmed.",
+      "inputs": [
+        "Contract, performance, billing, collection, return, refund, credit-note and writeoff records",
+        "Risk pool, aging, historical loss, current conditions, forecast, collection and allowance evidence",
+        "Public business entity status, ASU 2025-05 election, current-receivable eligibility and reporting date"
+      ],
+      "steps": [
+        "Classify each right as contract asset, receivable, refund or other population based on current evidence.",
+        "Build risk pools and reconcile beginning allowance, provision, writeoffs, recoveries and ending allowance.",
+        "Test relevant historical, current and forecast inputs and document reversion.",
+        "Review any ASU 2025-05 practical expedient or subsequent-collection election for scope and effective period.",
+        "Tie proposed balances to the subledger, ledger and post-period evidence."
+      ],
+      "control_totals": [
+        "Contract asset and receivable counts and balances",
+        "Returns, refunds, credits, cash collections and writeoffs",
+        "Allowance rollforward and unresolved eligibility or election records"
+      ],
+      "outputs": [
+        "Rights and balance classification matrix",
+        "Allowance workpaper and rollforward",
+        "Proposed entries and exceptions"
+      ],
+      "human_judgments": [
+        "Unconditional right, expected loss, risk-pool composition and forecast period",
+        "ASU 2025-05 eligibility and election",
+        "Return or concession versus credit-loss classification"
+      ],
+      "limitations": [
+        "No current consolidated Topic 326 review, election, model validation or live receivables population was performed.",
+        "Bank lending, insurer contracts and governmental fund accounting are outside scope."
+      ]
+    }
+  },
+  {
+    "id": "wf-us-settlement-clearing",
+    "kind": "workflow",
+    "title": "US processor, bank and settlement clearing",
+    "summary": "Reconcile gross operating activity, processor clearing and bank cash while preserving fees, taxes, refunds, returns, chargebacks and timing differences.",
+    "topics": [
+      "Accounting and reporting",
+      "Operating transactions"
+    ],
+    "industries": [],
+    "jurisdiction": "United States; nongovernmental US GAAP illustration",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_fasb_concepts8_elements",
+      "src_construction_fasb_2014_09",
+      "src_bis25cashagents",
+      "src_1v1zwt5"
+    ],
+    "related_ids": [
+      "guide-q-cash-settlement",
+      "guide-q-revenue",
+      "guide-q-receivables-credit",
+      "example-us-operating-transactions-ledger",
+      "ctrl-us-settlement-clearing"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-17",
+    "provenance": {
+      "added_on": "2026-09-17",
+      "reviewer": "Codex (AI-assisted editorial synthesis)",
+      "scope": "United States nongovernmental seller or buyer using bank and processor settlement accounts; accrual-basis financial statements and US GAAP; 2026 reporting period. Excludes bank lending, insurer contracts, governmental fund accounting and tax-only conclusions. Entity, contract, policy, jurisdiction, effective period and materiality must be confirmed.",
+      "evidence_record_ids": [
+        "src_fasb_concepts8_elements",
+        "src_construction_fasb_2014_09",
+        "src_bis25cashagents",
+        "src_1v1zwt5"
+      ],
+      "outcome": "Original read-only workflow or control proposal linked to selected source records; no professional sign-off or execution evidence.",
+      "note": "Descriptive corpus material, not an execution tool or authorization to post, pay or file."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false
+    },
+    "data": {
+      "version": "1.0.0",
+      "family": "treasury-and-settlement",
+      "accounting_objective": "Explain every difference between gross operating events, processor settlements and bank postings without inferring treatment from a net deposit.",
+      "scope": "United States nongovernmental seller or buyer using bank and processor settlement accounts; accrual-basis financial statements and US GAAP; 2026 reporting period. Excludes bank lending, insurer contracts, governmental fund accounting and tax-only conclusions. Entity, contract, policy, jurisdiction, effective period and materiality must be confirmed.",
+      "inputs": [
+        "Order, invoice, tax, refund, fee, chargeback, processor, settlement and bank records",
+        "Source, value, settlement and bank-posting dates, currencies and stable identifiers",
+        "Cash, processor clearing, receivable, revenue, tax, refund, fee and financing ledger balances"
+      ],
+      "steps": [
+        "Bound the bank and processor populations and capture independent control totals.",
+        "Match gross events to processor settlement records and bank postings by stable IDs and dates.",
+        "Classify fee, tax, refund, return, chargeback, reserve, in-transit and financing components.",
+        "Prepare proposed clearing and cash entries with no netting of unrelated populations.",
+        "Reconcile ending clearing and cash balances and retain unresolved differences."
+      ],
+      "control_totals": [
+        "Gross customer activity, taxes, refunds, fees and net settlement",
+        "Processor clearing before and after settlement",
+        "Bank deposits, cash ledger and unmatched or in-transit items"
+      ],
+      "outputs": [
+        "Settlement bridge",
+        "Clearing-account reconciliation",
+        "Proposed entries",
+        "Open timing and exception register"
+      ],
+      "human_judgments": [
+        "Payment intermediary role, refund and chargeback timing, tax population and financing classification",
+        "Materiality, stale in-transit policy and correction disposition"
+      ],
+      "limitations": [
+        "BIS material is contextual payment-control research, not US GAAP or payment-law authority.",
+        "No live bank or processor credentials, statements or payment execution are used."
+      ]
+    }
+  },
+  {
+    "id": "wf-us-inventory-rollforward",
+    "kind": "workflow",
+    "title": "US inventory ownership, cost and rollforward",
+    "summary": "Reconcile inventory quantity and cost from receipt through shipment, return, ownership change and period-end count while separating COGS and settlement populations.",
+    "topics": [
+      "Accounting and reporting",
+      "Operating transactions"
+    ],
+    "industries": [],
+    "jurisdiction": "United States; nongovernmental US GAAP illustration",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_fasb_asu2015_11_inventory",
+      "src_fasb_bmho20241218_topic330",
+      "src_construction_fasb_2014_09"
+    ],
+    "related_ids": [
+      "guide-q-inventory",
+      "guide-q-revenue",
+      "guide-q-purchasing-payables",
+      "example-us-operating-transactions-ledger",
+      "ctrl-us-inventory-rollforward"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-17",
+    "provenance": {
+      "added_on": "2026-09-17",
+      "reviewer": "Codex (AI-assisted editorial synthesis)",
+      "scope": "United States nongovernmental buyer or seller holding inventory under a declared Topic 330 method; accrual-basis financial statements and US GAAP; 2026 reporting period. Excludes bank lending, insurer contracts, governmental fund accounting and tax-only conclusions. Entity, contract, policy, jurisdiction, effective period and materiality must be confirmed.",
+      "evidence_record_ids": [
+        "src_fasb_asu2015_11_inventory",
+        "src_fasb_bmho20241218_topic330",
+        "src_construction_fasb_2014_09"
+      ],
+      "outcome": "Original read-only workflow or control proposal linked to selected source records; no professional sign-off or execution evidence.",
+      "note": "Descriptive corpus material, not an execution tool or authorization to post, pay or file."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false
+    },
+    "data": {
+      "version": "1.0.0",
+      "family": "inventory",
+      "accounting_objective": "Tie owned inventory quantity and cost to receipts, shipments, returns, COGS and the period-end ledger.",
+      "scope": "United States nongovernmental buyer or seller holding inventory under a declared Topic 330 method; accrual-basis financial statements and US GAAP; 2026 reporting period. Excludes bank lending, insurer contracts, governmental fund accounting and tax-only conclusions. Entity, contract, policy, jurisdiction, effective period and materiality must be confirmed.",
+      "inputs": [
+        "Purchase, receipt, freight, shipment, acceptance, return, damage, count and consignment evidence",
+        "Opening inventory quantity and cost, cost-flow method, NRV indicators and location",
+        "Inventory, AP, COGS, revenue, refund and cash ledger populations"
+      ],
+      "steps": [
+        "Confirm ownership or control and cost-flow method for each population.",
+        "Reconcile quantity and cost movements from opening balance through receipt, shipment, return and ending count.",
+        "Classify acquisition cost and subsequent measurement indicators under current Topic 330.",
+        "Prepare proposed COGS, inventory, return, AP and revenue entries for the selected branch.",
+        "Retain consignment or changed-control branches separately."
+      ],
+      "control_totals": [
+        "Units and extended cost received, shipped, returned and ending",
+        "Inventory, COGS, AP, revenue, refund and cash balances",
+        "Cost-flow, NRV, ownership and unresolved count exceptions"
+      ],
+      "outputs": [
+        "Inventory rollforward",
+        "Ownership and control matrix",
+        "Proposed entries",
+        "Valuation and count exception register"
+      ],
+      "human_judgments": [
+        "Eligible acquisition costs, cost-flow method, NRV, control transfer and consignment",
+        "Physical count, obsolescence, abnormal waste and return classification"
+      ],
+      "limitations": [
+        "The FASB board handout is non-authoritative and the ASU is not current consolidated GAAP.",
+        "No physical count, warehouse evidence or professional review was performed."
+      ]
+    }
   }
 ]

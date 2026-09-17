@@ -700,5 +700,61 @@
       "Identify the absent Rule 4 exhibits and complete AP/payroll/GL/bank population.",
       "Do not treat an unexplained difference or repeated check reference as a proven error or duplicate transaction."
     ]
+  },
+  {
+    "id": "rq-us-inventory-landed-cost",
+    "user_question": "How should a US inventory buyer treat landed cost and cutoff?",
+    "search_query": "operating inventory receipt freight sale",
+    "kind": "context",
+    "filters": {},
+    "expected_ids": [
+      "guide-q-inventory",
+      "example-us-operating-transactions-ledger"
+    ],
+    "excluded_ids": [
+      "guide-construction-connected-close"
+    ],
+    "expected_scope": "US nongovernmental inventory buyer; synthetic FIFO or average-cost receipt, freight, shipment and AP cutoff illustration; current Topic 330 review remains open.",
+    "required_citations": 2,
+    "claims_assert_only_supported": [
+      "The worked event population is synthetic.",
+      "Current consolidated US GAAP and professional review remain open."
+    ]
+  },
+  {
+    "id": "rq-us-unrecorded-liability-receipt-invoice",
+    "user_question": "What should a US close test when a receipt precedes the vendor invoice?",
+    "search_query": "US operating receipt invoice vendor credit",
+    "kind": "context",
+    "filters": {},
+    "expected_ids": [
+      "wf-us-payables-cutoff",
+      "example-us-operating-transactions-ledger"
+    ],
+    "excluded_ids": [],
+    "expected_scope": "US nongovernmental buyer; receipt-before-invoice accrual, later invoice match, duplicate and vendor-credit exceptions; no payment is executed.",
+    "required_citations": 1,
+    "claims_assert_only_supported": [
+      "A purchase order alone does not establish the final liability conclusion.",
+      "The example is synthetic and read-only."
+    ]
+  },
+  {
+    "id": "rq-us-settlement-gross-fee-refund",
+    "user_question": "How should gross customer activity reconcile to a processor deposit?",
+    "search_query": "processor settlement gross tax fees refund bank",
+    "kind": "context",
+    "filters": {},
+    "expected_ids": [
+      "wf-us-settlement-clearing",
+      "example-us-operating-transactions-ledger"
+    ],
+    "excluded_ids": [],
+    "expected_scope": "US nongovernmental seller; gross customer consideration, third-party tax, refund, processor fee and bank cash are separate populations.",
+    "required_citations": 1,
+    "claims_assert_only_supported": [
+      "A net bank deposit is not by itself a revenue conclusion.",
+      "The settlement arithmetic is synthetic."
+    ]
   }
 ]

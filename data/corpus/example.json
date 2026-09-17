@@ -3255,5 +3255,665 @@
         "transfer_limit": "Historical federal contractor payment evidence. Not developer/owner accounting, current GAAP authority, a validated ERP population or professional review."
       }
     }
+  },
+  {
+    "id": "example-us-operating-transactions-ledger",
+    "kind": "example",
+    "title": "US operating transactions: receipt to sale, return and settlement",
+    "summary": "Original synthetic event-to-ledger fixture for inventory, payables cutoff, customer revenue, return, processor settlement, consignment and financing branches.",
+    "topics": [
+      "Accounting and reporting",
+      "Operating transactions",
+      "Synthetic examples"
+    ],
+    "industries": [],
+    "jurisdiction": "United States; nongovernmental US GAAP illustration",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_construction_fasb_2014_09",
+      "src_fasb_asu2015_11_inventory",
+      "src_fasb_concepts8_elements",
+      "src_fasb_asu2016_13_credit_losses"
+    ],
+    "related_ids": [
+      "guide-q-revenue",
+      "guide-q-purchasing-payables",
+      "guide-q-receivables-credit",
+      "guide-q-cash-settlement",
+      "guide-q-inventory",
+      "wf-us-event-to-ledger",
+      "wf-us-payables-cutoff",
+      "wf-us-settlement-clearing",
+      "wf-us-inventory-rollforward",
+      "ctrl-us-event-population-completeness",
+      "ctrl-us-unrecorded-liabilities",
+      "ctrl-us-revenue-presentation-separation",
+      "ctrl-us-contract-asset-receivable",
+      "ctrl-us-settlement-clearing",
+      "ctrl-us-inventory-rollforward"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-17",
+    "provenance": {
+      "added_on": "2026-09-17",
+      "reviewer": "Codex (AI-assisted research and original synthesis)",
+      "scope": "Synthetic US operating event population and proposed ledger branches; selected source paragraphs and arithmetic reviewed; professional review not performed.",
+      "evidence_record_ids": [
+        "src_construction_fasb_2014_09",
+        "src_fasb_asu2015_11_inventory",
+        "src_fasb_concepts8_elements"
+      ],
+      "note": "Original synthetic material; no customer, vendor, bank or publisher scenario is reproduced."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false
+    },
+    "data": {
+      "version": "1.0.0",
+      "specification_version": "1.0.0",
+      "example_type": "original-synthetic",
+      "authority_level": "A2",
+      "accountable_owner": "Controller or accounting manager; human review required",
+      "entity_role": "US nongovernmental merchant that buys inventory and sells to a customer; accrual basis",
+      "framework": "US GAAP",
+      "accounting_basis": "Accrual-basis financial statements",
+      "period": "2026-01 reporting period with a 2026-02 invoice and settlement event window",
+      "scope": "United States nongovernmental merchant event population from purchase through customer settlement; accrual-basis financial statements and US GAAP; 2026 reporting period. Excludes bank lending, insurer contracts, governmental fund accounting and tax-only conclusions. Entity, contract, policy, jurisdiction, effective period and materiality must be confirmed.",
+      "assumptions": [
+        "All facts, IDs, dates, prices, tax rate, freight, fees, return terms and journal values are synthetic and stated before the arithmetic.",
+        "Base branch assumes the buyer obtains control of 100 units on receipt, FIFO or average cost is used, $200 inbound freight is eligible acquisition cost, 60 units are accepted by the customer, and no inventory write-down or credit loss exists in the base branch.",
+        "The settlement branch assumes an 8% customer tax collected for a third party, a 3% processor fee on $4,200 of customer consideration, and a separate $140 customer refund. These are presentation assumptions for the fixture, not universal tax or processor conclusions.",
+        "Loan proceeds, vendor credits, customer refunds, processor fees and tax payable are separate from customer revenue. Consignment and changed-control branches are independent and must not be added to the base branch."
+      ],
+      "opening_balances": [
+        {
+          "account": "cash",
+          "amount": 0,
+          "currency": "USD"
+        },
+        {
+          "account": "inventory",
+          "amount": 0,
+          "currency": "USD"
+        },
+        {
+          "account": "accounts_receivable",
+          "amount": 0,
+          "currency": "USD"
+        },
+        {
+          "account": "accounts_payable",
+          "amount": 0,
+          "currency": "USD"
+        },
+        {
+          "account": "processor_clearing",
+          "amount": 0,
+          "currency": "USD"
+        }
+      ],
+      "event_population": [
+        {
+          "event_id": "RECEIPT-1001",
+          "order_id": "PO-1001",
+          "receipt_id": "RCV-1001",
+          "source_date": "2026-01-30",
+          "posting_date": "2026-01-31",
+          "description": "Receive 100 units at $40 plus $200 eligible inbound freight",
+          "quantity": 100,
+          "unit_cost": 40,
+          "freight": 200,
+          "amount": 4200,
+          "treatment": "Inventory and receipt-based AP accrual; vendor invoice arrives after close"
+        },
+        {
+          "event_id": "SHIP-2001",
+          "order_id": "SO-2001",
+          "shipment_id": "SHIP-2001",
+          "acceptance_id": "ACCEPT-2001",
+          "source_date": "2026-01-31",
+          "posting_date": "2026-01-31",
+          "description": "Customer accepts 60 units at $70",
+          "quantity": 60,
+          "unit_price": 70,
+          "amount": 4200,
+          "treatment": "Customer revenue and receivable, subject to contract and control evidence"
+        },
+        {
+          "event_id": "INVOICE-1001",
+          "purchase_order_id": "PO-1001",
+          "invoice_id": "INV-1001",
+          "source_date": "2026-02-03",
+          "posting_date": "2026-02-03",
+          "description": "Vendor invoice matches prior receipt",
+          "amount": 4200,
+          "treatment": "Clear receipt accrual to AP; do not record inventory a second time"
+        },
+        {
+          "event_id": "CREDIT-VENDOR-01",
+          "credit_note_id": "VCN-01",
+          "source_date": "2026-02-04",
+          "posting_date": "2026-02-04",
+          "description": "Illustrative vendor credit kept separate from customer refund",
+          "amount": 200,
+          "treatment": "Exception branch; current policy and facts determine affected cost or payable"
+        },
+        {
+          "event_id": "DUP-INVOICE-1001",
+          "invoice_id": "INV-1001-DUP",
+          "source_date": "2026-02-04",
+          "posting_date": null,
+          "description": "Duplicate invoice reference retained but not posted",
+          "amount": 4200,
+          "treatment": "Exception branch; no second AP or inventory entry"
+        },
+        {
+          "event_id": "VOID-SHIP-2002",
+          "shipment_id": "SHIP-2002",
+          "source_date": "2026-02-05",
+          "posting_date": null,
+          "description": "Voided shipment retained with link to original event",
+          "quantity": 10,
+          "amount": 700,
+          "treatment": "Exception branch; no revenue or COGS entry without valid transfer evidence"
+        }
+      ],
+      "journals": [
+        {
+          "id": "J-REC-01",
+          "event_id": "RECEIPT-1001",
+          "date": "2026-01-31",
+          "debit": "inventory",
+          "credit": "accrued_payables",
+          "amount": 4200,
+          "explanation": "Receipt-based obligation at close under the stated assumptions"
+        },
+        {
+          "id": "J-SALE-01",
+          "event_id": "SHIP-2001",
+          "date": "2026-01-31",
+          "debit": "accounts_receivable",
+          "credit": "customer_revenue",
+          "amount": 4200,
+          "explanation": "60 units accepted at $70"
+        },
+        {
+          "id": "J-SALE-02",
+          "event_id": "SHIP-2001",
+          "date": "2026-01-31",
+          "debit": "cost_of_goods_sold",
+          "credit": "inventory",
+          "amount": 2520,
+          "explanation": "60 units at synthetic unit cost of $42"
+        },
+        {
+          "id": "J-INV-01",
+          "event_id": "INVOICE-1001",
+          "date": "2026-02-03",
+          "debit": "accrued_payables",
+          "credit": "accounts_payable",
+          "amount": 4200,
+          "explanation": "Match later invoice to the prior receipt accrual"
+        }
+      ],
+      "settlement_branch": {
+        "independent_of_base": true,
+        "assumptions": {
+          "customer_consideration": 4200,
+          "third_party_tax": 336,
+          "processor_fee": 126,
+          "customer_refund": 140
+        },
+        "bridge": {
+          "gross_processor_activity": 4536,
+          "less_processor_fee": 126,
+          "less_customer_refund": 140,
+          "bank_cash": 4270
+        },
+        "journals": [
+          {
+            "id": "J-SET-01",
+            "event_id": "SETTLE-01",
+            "date": "2026-01-31",
+            "debit": "processor_clearing",
+            "credit": "customer_revenue",
+            "amount": 4200,
+            "explanation": "Gross customer consideration"
+          },
+          {
+            "id": "J-SET-02",
+            "event_id": "SETTLE-01",
+            "date": "2026-01-31",
+            "debit": "processor_clearing",
+            "credit": "sales_tax_payable",
+            "amount": 336,
+            "explanation": "Synthetic third-party tax population"
+          },
+          {
+            "id": "J-SET-03",
+            "event_id": "RETURN-01",
+            "date": "2026-01-31",
+            "debit": "sales_returns_or_refunds",
+            "credit": "refund_liability",
+            "amount": 140,
+            "explanation": "Separate synthetic customer refund branch"
+          },
+          {
+            "id": "J-SET-04",
+            "event_id": "RETURN-01",
+            "date": "2026-01-31",
+            "debit": "inventory_return_asset",
+            "credit": "cost_of_goods_sold",
+            "amount": 84,
+            "explanation": "Two resalable units returned at $42 cost"
+          },
+          {
+            "id": "J-SET-05",
+            "event_id": "RETURN-01",
+            "date": "2026-02-02",
+            "debit": "refund_liability",
+            "credit": "processor_clearing",
+            "amount": 140,
+            "explanation": "Refund settled through processor"
+          },
+          {
+            "id": "J-SET-06",
+            "event_id": "SETTLE-01",
+            "date": "2026-02-02",
+            "debit": "cash",
+            "credit": "processor_clearing",
+            "amount": 4270,
+            "explanation": "Net bank settlement after refund is separately recorded"
+          },
+          {
+            "id": "J-SET-07",
+            "event_id": "SETTLE-01",
+            "date": "2026-02-02",
+            "debit": "processor_fees_expense",
+            "credit": "processor_clearing",
+            "amount": 126,
+            "explanation": "Separate processor fee"
+          }
+        ]
+      },
+      "branches": [
+        {
+          "id": "return-branch",
+          "independent": true,
+          "changed_assumption": "Two resalable units are returned after the customer sale",
+          "result": {
+            "returned_quantity": 2,
+            "refund_amount": 140,
+            "inventory_reinstated": 84,
+            "net_revenue_after_refund": 4060,
+            "ending_inventory_units_after_return": 42,
+            "ending_inventory_cost_after_return": 1764
+          }
+        },
+        {
+          "id": "consignment-branch",
+          "independent": true,
+          "changed_assumption": "The consignee has physical possession but the seller retains control and the right to recover the goods",
+          "result": {
+            "customer_revenue": 0,
+            "inventory_sale_cost": 0,
+            "offsite_inventory_units": 100,
+            "exception": "No sale or COGS in this branch; current consignment and control guidance must be reviewed"
+          }
+        },
+        {
+          "id": "changed-control-branch",
+          "independent": true,
+          "changed_assumption": "The contract and acceptance evidence instead establish transfer of control to the consignee or customer",
+          "result": {
+            "treatment": "Reassess revenue, receivable, inventory and COGS under current ASC 606 and Topic 330; do not combine with the retained-control branch"
+          }
+        },
+        {
+          "id": "loan-proceeds-branch",
+          "independent": true,
+          "changed_assumption": "The entity receives $10,000 of loan proceeds",
+          "result": {
+            "debit_cash": 10000,
+            "credit_loan_payable": 10000,
+            "customer_revenue": 0,
+            "note": "Separate financing population; current debt guidance required"
+          }
+        }
+      ],
+      "rollforwards": {
+        "inventory_base": {
+          "opening_units": 0,
+          "received_units": 100,
+          "shipped_units": 60,
+          "ending_units": 40,
+          "received_cost": 4200,
+          "cogs": 2520,
+          "ending_cost": 1680,
+          "unit_cost": 42
+        },
+        "payables_cutoff": {
+          "receipt_accrual_at_2026_01_31": 4200,
+          "later_invoice_matched": 4200,
+          "duplicate_invoice_posted": 0,
+          "open_accrual_after_match": 0
+        },
+        "settlement_branch": {
+          "gross_customer_consideration": 4200,
+          "tax_collected": 336,
+          "processor_fee": 126,
+          "refund": 140,
+          "cash_deposit": 4270
+        }
+      },
+      "reconciliations": [
+        {
+          "name": "inventory quantity",
+          "equation": "0 + 100 - 60 = 40 units",
+          "difference": 0
+        },
+        {
+          "name": "inventory cost",
+          "equation": "$4,200 - $2,520 = $1,680",
+          "difference": 0
+        },
+        {
+          "name": "return branch",
+          "equation": "2 returned units x $42 = $84 inventory reinstated; 2 x $70 = $140 refund",
+          "difference": 0
+        },
+        {
+          "name": "settlement branch",
+          "equation": "$4,200 + $336 - $126 - $140 = $4,270 cash",
+          "difference": 0
+        },
+        {
+          "name": "payables cutoff",
+          "equation": "$4,200 receipt accrual - $4,200 matched invoice = $0 open accrual",
+          "difference": 0
+        },
+        {
+          "name": "journal balance",
+          "equation": "Every proposed journal has equal debits and credits",
+          "difference": 0
+        }
+      ],
+      "deterministic_checks": [
+        "All IDs are stable within the fixture and source dates are distinct from posting dates where applicable",
+        "Base inventory units and cost reconcile without a plug",
+        "Settlement gross-to-net bridge reconciles without netting revenue, tax, refund or fee",
+        "Duplicate and void branches produce no second posting",
+        "Independent branches are not combined with the base totals"
+      ],
+      "examples": [
+        {
+          "id": "base-receipt-sale",
+          "title": "Receipt, sale and AP cutoff",
+          "scenario_type": "base_case",
+          "objective": "Tie receipt, inventory, revenue, COGS and later invoice to one balanced proposed ledger."
+        },
+        {
+          "id": "return-settlement",
+          "title": "Return and processor settlement",
+          "scenario_type": "changed_assumption_branch",
+          "objective": "Keep refund, returned inventory, tax, processor fee and cash settlement separate."
+        },
+        {
+          "id": "consignment-control",
+          "title": "Consignment versus changed control",
+          "scenario_type": "scope_counterexample",
+          "objective": "Show why physical possession does not by itself prove a sale or revenue entry."
+        }
+      ],
+      "expected_artifact": "Read-only event-to-ledger register, balanced proposed journals, rollforwards, settlement bridge and exception branches",
+      "reference_output": {
+        "outcome": "complete synthetic fixture; not an accounting conclusion",
+        "debit_credit_difference": 0,
+        "inventory_unit_difference": 0,
+        "inventory_cost_difference": 0,
+        "settlement_difference": 0,
+        "proposed_actions": [],
+        "executed_actions": [],
+        "review_required": true
+      },
+      "limitations": [
+        "Synthetic example: no real customer, vendor, bank, processor or publisher scenario is reproduced.",
+        "The values and treatments are bounded assumptions for retrieval and arithmetic checks, not professional advice, current consolidated GAAP or production validation.",
+        "Current Codification, tax, contract, entity-policy, ownership and professional-review questions remain open."
+      ]
+    }
+  },
+  {
+    "id": "example-us-project-wip-ledger",
+    "kind": "example",
+    "title": "US project WIP: over-time progress to contract asset",
+    "summary": "Original synthetic service-project close showing an assumed over-time criterion, cost-to-cost progress, billing, contract asset and contract-cost branch.",
+    "topics": [
+      "Accounting and reporting",
+      "Project WIP",
+      "Synthetic examples"
+    ],
+    "industries": [],
+    "jurisdiction": "United States; nongovernmental US GAAP illustration",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_construction_fasb_2014_09",
+      "src_fasb_concepts8_elements"
+    ],
+    "related_ids": [
+      "guide-q-project-wip",
+      "wf-us-project-wip-close",
+      "wf-us-event-to-ledger",
+      "ctrl-us-project-wip-estimate"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-17",
+    "provenance": {
+      "added_on": "2026-09-17",
+      "reviewer": "Codex (AI-assisted research and original synthesis)",
+      "scope": "Synthetic service-project WIP schedule and proposed entries; over-time criterion and arithmetic are assumptions; professional review not performed.",
+      "evidence_record_ids": [
+        "src_construction_fasb_2014_09",
+        "src_fasb_concepts8_elements"
+      ],
+      "note": "Original synthetic material; not a construction industry conclusion or empirical case."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false
+    },
+    "data": {
+      "version": "1.0.0",
+      "specification_version": "1.0.0",
+      "example_type": "original-synthetic",
+      "authority_level": "A2",
+      "accountable_owner": "Controller or accounting manager; human review required",
+      "entity_role": "US nongovernmental service provider with a customer implementation project; accrual basis",
+      "framework": "US GAAP",
+      "accounting_basis": "Accrual-basis financial statements",
+      "period": "2026-01 reporting period",
+      "scope": "United States nongovernmental service implementation project with a possible over-time performance obligation; accrual-basis financial statements and US GAAP; 2026 reporting period. Excludes bank lending, insurer contracts, governmental fund accounting and tax-only conclusions. Entity, contract, policy, jurisdiction, effective period and materiality must be confirmed.",
+      "assumptions": [
+        "Synthetic contract PRJ-001 has approved consideration of $120,000, one combined implementation performance obligation, estimated total cost of $90,000 and $36,000 of current-period qualifying cost.",
+        "The base branch assumes, but does not prove, that an ASC 606-10-25-27 over-time criterion is met and that cost-to-cost faithfully depicts transfer; progress is 40% and revenue to date is $48,000.",
+        "The customer is billed $30,000 after the performance entry, so the remaining $18,000 is a contract asset in the base branch. The example does not assert an unconditional receivable or include financing, tax or credit loss.",
+        "A separate contract-cost branch assumes a $6,000 recoverable incremental acquisition cost; it is not part of the base entries and requires current ASC 340-40 review."
+      ],
+      "opening_balances": [
+        {
+          "account": "contract_asset",
+          "amount": 0
+        },
+        {
+          "account": "accounts_receivable",
+          "amount": 0
+        },
+        {
+          "account": "contract_cost_asset",
+          "amount": 0
+        },
+        {
+          "account": "revenue",
+          "amount": 0
+        },
+        {
+          "account": "project_cost",
+          "amount": 0
+        }
+      ],
+      "events": [
+        {
+          "event_id": "COST-PRJ-001",
+          "source_date": "2026-01-15",
+          "posting_date": "2026-01-31",
+          "amount": 36000,
+          "description": "Qualifying project cost incurred",
+          "treatment": "Base branch records cost expense and payable or payroll accrual"
+        },
+        {
+          "event_id": "PROGRESS-PRJ-001",
+          "source_date": "2026-01-31",
+          "posting_date": "2026-01-31",
+          "amount": 48000,
+          "description": "40% cost-to-cost progress on $120,000 contract",
+          "treatment": "Recognize revenue to date under stated over-time assumption"
+        },
+        {
+          "event_id": "BILL-PRJ-001",
+          "source_date": "2026-01-31",
+          "posting_date": "2026-01-31",
+          "amount": 30000,
+          "description": "Customer billing after performance entry",
+          "treatment": "Reclassify part of contract asset to receivable only if the right is unconditional"
+        }
+      ],
+      "journals": [
+        {
+          "id": "J-WIP-01",
+          "event_id": "COST-PRJ-001",
+          "date": "2026-01-31",
+          "debit": "project_cost_expense",
+          "credit": "accrued_payables",
+          "amount": 36000
+        },
+        {
+          "id": "J-WIP-02",
+          "event_id": "PROGRESS-PRJ-001",
+          "date": "2026-01-31",
+          "debit": "contract_asset",
+          "credit": "project_revenue",
+          "amount": 48000
+        },
+        {
+          "id": "J-WIP-03",
+          "event_id": "BILL-PRJ-001",
+          "date": "2026-01-31",
+          "debit": "accounts_receivable",
+          "credit": "contract_asset",
+          "amount": 30000
+        }
+      ],
+      "branches": [
+        {
+          "id": "no-over-time-criterion",
+          "independent": true,
+          "changed_assumption": "No ASC 606-10-25-27 criterion is met",
+          "result": {
+            "treatment": "Do not use the base over-time entry; assess point-in-time control and applicable current guidance"
+          }
+        },
+        {
+          "id": "contract-cost-branch",
+          "independent": true,
+          "changed_assumption": "$6,000 recoverable incremental acquisition cost is identified",
+          "result": {
+            "debit_contract_cost_asset": 6000,
+            "credit_cash_or_payable": 6000,
+            "amortization": "Recognize systematically as transfer occurs under current ASC 340-40; not included in base revenue or WIP arithmetic"
+          }
+        },
+        {
+          "id": "estimate-change",
+          "independent": true,
+          "changed_assumption": "Estimated total cost changes from $90,000 after a documented new estimate",
+          "result": {
+            "treatment": "Recalculate progress and cumulative catch-up under current ASC 606; preserve old and new estimate versions"
+          }
+        }
+      ],
+      "reconciliations": [
+        {
+          "name": "progress",
+          "equation": "$36,000 / $90,000 = 40%",
+          "difference": 0
+        },
+        {
+          "name": "revenue",
+          "equation": "$120,000 x 40% = $48,000",
+          "difference": 0
+        },
+        {
+          "name": "contract asset",
+          "equation": "$48,000 revenue - $30,000 billing = $18,000",
+          "difference": 0
+        },
+        {
+          "name": "cost-to-complete",
+          "equation": "$90,000 estimated total - $36,000 incurred = $54,000",
+          "difference": 0
+        },
+        {
+          "name": "journal balance",
+          "equation": "Each proposed journal has equal debits and credits",
+          "difference": 0
+        }
+      ],
+      "deterministic_checks": [
+        "Estimate, progress, revenue and billing versions are retained",
+        "Base journals balance",
+        "Contract asset is not presented as an unconditional receivable without a separate rights conclusion",
+        "No-over-time and contract-cost branches are independent",
+        "No plug or executed action is included"
+      ],
+      "examples": [
+        {
+          "id": "project-wip-base",
+          "title": "Over-time progress and contract asset",
+          "scenario_type": "base_case",
+          "objective": "Tie cost, progress, revenue, billing and contract asset to a proposed close."
+        },
+        {
+          "id": "project-wip-exceptions",
+          "title": "No criterion, cost asset and estimate change",
+          "scenario_type": "changed_assumption_branch",
+          "objective": "Retain the open judgment branches rather than universalizing the base."
+        }
+      ],
+      "expected_artifact": "Progress workpaper, estimate-to-complete version, proposed WIP and contract-balance entries, and open judgment register",
+      "reference_output": {
+        "outcome": "complete synthetic fixture; not an accounting conclusion",
+        "debit_credit_difference": 0,
+        "progress": 0.4,
+        "revenue_to_date": 48000,
+        "billed_to_date": 30000,
+        "contract_asset": 18000,
+        "executed_actions": [],
+        "review_required": true
+      },
+      "limitations": [
+        "Synthetic example: no actual project, contract, customer or cost population is reproduced.",
+        "The over-time criterion, cost-to-cost depiction and contract-cost branch are assumptions for testing; they are not professional advice or an industry-wide conclusion.",
+        "Current consolidated ASC 606, ASC 340-40, entity policy, effective period and professional review remain open."
+      ]
+    }
   }
 ]

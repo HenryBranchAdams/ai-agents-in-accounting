@@ -1880,5 +1880,529 @@
         }
       }
     }
+  },
+  {
+    "id": "ctrl-us-event-population-completeness",
+    "kind": "control",
+    "title": "US operating-event completeness and identity",
+    "summary": "Preserve source populations, stable identifiers and control totals before proposing a ledger treatment.",
+    "topics": [
+      "Controls and governance",
+      "Accounting and reporting"
+    ],
+    "industries": [],
+    "jurisdiction": "United States; nongovernmental US GAAP illustration",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_fasb_concepts8_elements",
+      "src_1v1zwt5"
+    ],
+    "related_ids": [
+      "wf-us-event-to-ledger",
+      "guide-q-revenue",
+      "guide-q-project-wip",
+      "guide-q-purchasing-payables",
+      "guide-q-receivables-credit",
+      "guide-q-cash-settlement",
+      "guide-q-inventory",
+      "example-us-operating-transactions-ledger"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-17",
+    "provenance": {
+      "added_on": "2026-09-17",
+      "reviewer": "Codex (AI-assisted editorial synthesis)",
+      "scope": "Preserve source populations, stable identifiers and control totals before proposing a ledger treatment.",
+      "evidence_record_ids": [
+        "src_fasb_concepts8_elements",
+        "src_1v1zwt5"
+      ],
+      "outcome": "Original read-only workflow or control proposal linked to selected source records; no professional sign-off or execution evidence.",
+      "note": "Descriptive corpus material, not an execution tool or authorization to post, pay or file."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false
+    },
+    "data": {
+      "version": "1.0.0",
+      "name": "US operating-event completeness and identity",
+      "risk": "A partial, duplicated, stale or wrong-period population produces a plausible but unsupported ledger result.",
+      "objective": "Establish population boundaries and stable source-to-ledger identity before accounting treatment is proposed.",
+      "procedure": [
+        "Record entity, period, source system, query, extraction time and population owner",
+        "Reproduce counts, gross amounts, units and key distributions by event type",
+        "Retain source IDs through normalization, matching, correction and exclusion",
+        "Reconcile transformed populations and stop on unexplained differences"
+      ],
+      "evidence": [
+        "Source register",
+        "Raw and transformed control totals",
+        "Duplicate, void, correction and exclusion log",
+        "Reviewer disposition"
+      ],
+      "exceptions": [
+        "Missing source, changed query, duplicate ID, equal totals with different records, unexplained netting or late evidence"
+      ],
+      "owner": "Controller or workflow owner",
+      "reviewer": "Accounting manager or designated reviewer",
+      "frequency": "Each run",
+      "limitations": [
+        "Read-only control proposal; it does not certify completeness, authorize a posting or execute a close.",
+        "Synthetic examples do not validate an ERP or production population."
+      ]
+    }
+  },
+  {
+    "id": "ctrl-us-project-wip-estimate",
+    "kind": "control",
+    "title": "US project estimate and progress review",
+    "summary": "Reperform the project estimate, progress measure and contract-balance bridge before a WIP close is proposed.",
+    "topics": [
+      "Controls and governance",
+      "Accounting and reporting"
+    ],
+    "industries": [],
+    "jurisdiction": "United States; nongovernmental US GAAP illustration",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_construction_fasb_2014_09",
+      "src_fasb_concepts8_elements"
+    ],
+    "related_ids": [
+      "wf-us-project-wip-close",
+      "guide-q-project-wip",
+      "example-us-project-wip-ledger"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-17",
+    "provenance": {
+      "added_on": "2026-09-17",
+      "reviewer": "Codex (AI-assisted editorial synthesis)",
+      "scope": "Reperform the project estimate, progress measure and contract-balance bridge before a WIP close is proposed.",
+      "evidence_record_ids": [
+        "src_construction_fasb_2014_09",
+        "src_fasb_concepts8_elements"
+      ],
+      "outcome": "Original read-only workflow or control proposal linked to selected source records; no professional sign-off or execution evidence.",
+      "note": "Descriptive corpus material, not an execution tool or authorization to post, pay or file."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false
+    },
+    "data": {
+      "version": "1.0.0",
+      "name": "US project estimate and progress review",
+      "risk": "An unsupported over-time conclusion, stale estimate or incorrect progress measure overstates or understates project revenue, cost or contract balances.",
+      "objective": "Retain the contract version, criterion, estimate-to-complete, progress evidence and proposed bridge for independent review.",
+      "procedure": [
+        "Identify the applicable over-time or point-in-time criterion and retain supporting contract and acceptance evidence",
+        "Recalculate the selected progress method from current incurred cost or output and the approved estimate",
+        "Compare current and prior estimate versions and document changes, exclusions and catch-up effects",
+        "Reconcile revenue, project cost, billing, contract asset or liability and ledger entries",
+        "Escalate unresolved criterion, estimate, loss, modification or acceptance exceptions"
+      ],
+      "evidence": [
+        "Executed contract and performance-obligation memo",
+        "Estimate-to-complete version history",
+        "Progress calculation",
+        "WIP and contract-balance reconciliation",
+        "Reviewer disposition"
+      ],
+      "exceptions": [
+        "No over-time criterion, cost-to-complete change, unapproved modification, claim, loss indicator, nondepictive input or customer acceptance uncertainty"
+      ],
+      "owner": "Project accounting owner",
+      "reviewer": "Controller or financial-reporting reviewer",
+      "frequency": "Each reporting close and estimate change",
+      "limitations": [
+        "The source excerpts and synthetic fixture do not establish a project-specific conclusion, current consolidated guidance or professional sign-off.",
+        "The control is read-only and does not authorize a revenue entry or estimate change."
+      ]
+    }
+  },
+  {
+    "id": "ctrl-us-unrecorded-liabilities",
+    "kind": "control",
+    "title": "US receipt-before-invoice and unrecorded-liability review",
+    "summary": "Use receipt, service and subsequent-payment evidence to identify period-end obligations and prevent duplicate invoice or accrual entries.",
+    "topics": [
+      "Controls and governance",
+      "Accounting and reporting"
+    ],
+    "industries": [],
+    "jurisdiction": "United States; nongovernmental US GAAP illustration",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_fasb_concepts8_elements",
+      "src_1v1zwt5"
+    ],
+    "related_ids": [
+      "wf-us-payables-cutoff",
+      "guide-q-purchasing-payables",
+      "guide-q-inventory",
+      "example-us-operating-transactions-ledger"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-17",
+    "provenance": {
+      "added_on": "2026-09-17",
+      "reviewer": "Codex (AI-assisted editorial synthesis)",
+      "scope": "Use receipt, service and subsequent-payment evidence to identify period-end obligations and prevent duplicate invoice or accrual entries.",
+      "evidence_record_ids": [
+        "src_fasb_concepts8_elements",
+        "src_1v1zwt5"
+      ],
+      "outcome": "Original read-only workflow or control proposal linked to selected source records; no professional sign-off or execution evidence.",
+      "note": "Descriptive corpus material, not an execution tool or authorization to post, pay or file."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false
+    },
+    "data": {
+      "version": "1.0.0",
+      "name": "US receipt-before-invoice and unrecorded-liability review",
+      "risk": "Received goods or services are omitted, or an invoice and receipt-based accrual are both recorded.",
+      "objective": "Identify the reporting-date obligation and match later evidence to one proposed treatment.",
+      "procedure": [
+        "Extract receipts and service confirmations before close, open AP and subsequent payments after close",
+        "Match order, receipt, invoice, credit and payment IDs",
+        "Classify received inventory, expense, dispute, return or unresolved status",
+        "Prepare one accrual, invoice match, reversal or exception disposition",
+        "Reconcile the proposed result to AP, inventory or expense and cash"
+      ],
+      "evidence": [
+        "Receipt and service population",
+        "Subsequent-payment report",
+        "Invoice and credit match",
+        "Accrual schedule and reviewer sign-off"
+      ],
+      "exceptions": [
+        "Consignment, acceptance not complete, disputed amount, duplicate invoice, vendor credit, void, return or missing source"
+      ],
+      "owner": "Procure-to-pay owner",
+      "reviewer": "Controller or accounting manager",
+      "frequency": "Each reporting close",
+      "limitations": [
+        "The conceptual source is non-authoritative and the final recognition rule depends on the applicable current Topic and policy.",
+        "No payment release or posting occurs."
+      ]
+    }
+  },
+  {
+    "id": "ctrl-us-revenue-presentation-separation",
+    "kind": "control",
+    "title": "US revenue, tax, refund and fee separation",
+    "summary": "Prevent customer revenue from being inferred from a net settlement or mixed with tax, refunds, vendor credits, fees or financing.",
+    "topics": [
+      "Controls and governance",
+      "Accounting and reporting"
+    ],
+    "industries": [],
+    "jurisdiction": "United States; nongovernmental US GAAP illustration",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_construction_fasb_2014_09",
+      "src_fasb_concepts8_elements"
+    ],
+    "related_ids": [
+      "wf-us-contract-revenue-cutoff",
+      "wf-us-settlement-clearing",
+      "guide-q-revenue",
+      "guide-q-receivables-credit",
+      "guide-q-cash-settlement",
+      "example-us-operating-transactions-ledger"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-17",
+    "provenance": {
+      "added_on": "2026-09-17",
+      "reviewer": "Codex (AI-assisted editorial synthesis)",
+      "scope": "Prevent customer revenue from being inferred from a net settlement or mixed with tax, refunds, vendor credits, fees or financing.",
+      "evidence_record_ids": [
+        "src_construction_fasb_2014_09",
+        "src_fasb_concepts8_elements"
+      ],
+      "outcome": "Original read-only workflow or control proposal linked to selected source records; no professional sign-off or execution evidence.",
+      "note": "Descriptive corpus material, not an execution tool or authorization to post, pay or file."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false
+    },
+    "data": {
+      "version": "1.0.0",
+      "name": "US revenue, tax, refund and fee separation",
+      "risk": "Gross customer activity is netted with third-party taxes, refunds or processor fees, or loan proceeds are recognized as revenue.",
+      "objective": "Reconcile each economic component to its own source population and proposed account before review.",
+      "procedure": [
+        "Tie customer order and invoice gross amounts to revenue and receivable or contract-asset populations",
+        "Identify amounts collected for third parties and refund or concession evidence",
+        "Match processor fee, settlement and bank postings separately",
+        "Route loan or financing proceeds to a separate unresolved or debt-analysis population",
+        "Reconcile the bridge and retain changed-assumption branches"
+      ],
+      "evidence": [
+        "Contract and invoice",
+        "Tax, refund, credit and fee support",
+        "Processor settlement and bank statement",
+        "Proposed journal and bridge"
+      ],
+      "exceptions": [
+        "Principal-versus-agent uncertainty, sales-tax jurisdiction, return or chargeback timing, fee contract change, financing receipt or net-only source"
+      ],
+      "owner": "Order-to-cash owner",
+      "reviewer": "Controller or financial-reporting reviewer",
+      "frequency": "Each settlement and reporting close",
+      "limitations": [
+        "Presentation and tax conclusions remain fact-specific and need current applicable guidance and professional review.",
+        "No payment or refund is executed."
+      ]
+    }
+  },
+  {
+    "id": "ctrl-us-contract-asset-receivable",
+    "kind": "control",
+    "title": "US contract-asset, receivable and credit-loss classification",
+    "summary": "Keep conditional rights, unconditional receivables, returns or refunds and credit-loss allowances distinct at reporting date.",
+    "topics": [
+      "Controls and governance",
+      "Accounting and reporting"
+    ],
+    "industries": [],
+    "jurisdiction": "United States; nongovernmental US GAAP illustration",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_construction_fasb_2014_09",
+      "src_fasb_asu2016_13_credit_losses",
+      "src_construction_fasb_202505"
+    ],
+    "related_ids": [
+      "wf-us-receivables-credit",
+      "guide-q-receivables-credit",
+      "example-us-operating-transactions-ledger"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-17",
+    "provenance": {
+      "added_on": "2026-09-17",
+      "reviewer": "Codex (AI-assisted editorial synthesis)",
+      "scope": "Keep conditional rights, unconditional receivables, returns or refunds and credit-loss allowances distinct at reporting date.",
+      "evidence_record_ids": [
+        "src_construction_fasb_2014_09",
+        "src_fasb_asu2016_13_credit_losses",
+        "src_construction_fasb_202505"
+      ],
+      "outcome": "Original read-only workflow or control proposal linked to selected source records; no professional sign-off or execution evidence.",
+      "note": "Descriptive corpus material, not an execution tool or authorization to post, pay or file."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false
+    },
+    "data": {
+      "version": "1.0.0",
+      "name": "US contract-asset, receivable and credit-loss classification",
+      "risk": "A conditional contract asset is treated as a receivable, a return is treated as a credit loss, or an ASU 2025-05 election is applied outside its scope.",
+      "objective": "Preserve the right, performance, billing, collection, return and allowance evidence for an explicit classification decision.",
+      "procedure": [
+        "Trace the right to the contract and performance evidence",
+        "Determine whether any condition remains other than passage of time",
+        "Build the Topic 326 population and allowance rollforward",
+        "Test current-receivable eligibility and any ASU 2025-05 election",
+        "Reconcile proposed balances and unresolved exceptions"
+      ],
+      "evidence": [
+        "Contract and billing matrix",
+        "Aging and risk-pool data",
+        "Allowance rollforward",
+        "Election or policy evidence",
+        "Return, refund and collection reports"
+      ],
+      "exceptions": [
+        "Significant financing, disputed acceptance, current-asset eligibility, bank loan, insurer contract, purchased credit deterioration or mixed return and credit-loss facts"
+      ],
+      "owner": "Order-to-cash or credit owner",
+      "reviewer": "Controller and credit-loss reviewer",
+      "frequency": "Each reporting date and election change",
+      "limitations": [
+        "No model validation, current consolidated ASC 326 review or professional sign-off was performed.",
+        "The control does not authorize a writeoff, refund or customer collection."
+      ]
+    }
+  },
+  {
+    "id": "ctrl-us-settlement-clearing",
+    "kind": "control",
+    "title": "US processor and bank settlement clearing",
+    "summary": "Reconcile gross settlement events to processor clearing and bank cash with explicit timing and exception states.",
+    "topics": [
+      "Controls and governance",
+      "Accounting and reporting"
+    ],
+    "industries": [],
+    "jurisdiction": "United States; nongovernmental US GAAP illustration",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_fasb_concepts8_elements",
+      "src_bis25cashagents",
+      "src_1v1zwt5"
+    ],
+    "related_ids": [
+      "wf-us-settlement-clearing",
+      "guide-q-cash-settlement",
+      "guide-q-revenue",
+      "example-us-operating-transactions-ledger"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-17",
+    "provenance": {
+      "added_on": "2026-09-17",
+      "reviewer": "Codex (AI-assisted editorial synthesis)",
+      "scope": "Reconcile gross settlement events to processor clearing and bank cash with explicit timing and exception states.",
+      "evidence_record_ids": [
+        "src_fasb_concepts8_elements",
+        "src_bis25cashagents",
+        "src_1v1zwt5"
+      ],
+      "outcome": "Original read-only workflow or control proposal linked to selected source records; no professional sign-off or execution evidence.",
+      "note": "Descriptive corpus material, not an execution tool or authorization to post, pay or file."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false
+    },
+    "data": {
+      "version": "1.0.0",
+      "name": "US processor and bank settlement clearing",
+      "risk": "A net deposit hides missing, duplicate, returned, fee, tax, refund or in-transit activity.",
+      "objective": "Explain the settlement bridge and ending clearing balance without netting unrelated events.",
+      "procedure": [
+        "Capture bank and processor control totals and stable identifiers",
+        "Match gross events to settlements and bank postings using value and posting dates",
+        "Reconcile fees, taxes, refunds, returns, chargebacks and reserves separately",
+        "Classify timing, duplicate, missing, corrected and unresolved differences",
+        "Obtain reviewer disposition for aged or unexplained items"
+      ],
+      "evidence": [
+        "Bank statement",
+        "Processor statement",
+        "Settlement bridge",
+        "Clearing reconciliation",
+        "Exception log"
+      ],
+      "exceptions": [
+        "Reserve or hold, chargeback, stale in-transit item, multi-currency, bank-account change, third-party settlement or financing receipt"
+      ],
+      "owner": "Treasury or settlement owner",
+      "reviewer": "Controller or treasury reviewer",
+      "frequency": "Each settlement cycle and reporting close",
+      "limitations": [
+        "BIS evidence is contextual only; payment law, tax and current US GAAP remain separate.",
+        "No bank or processor account is accessed and no payment action is authorized."
+      ]
+    }
+  },
+  {
+    "id": "ctrl-us-inventory-rollforward",
+    "kind": "control",
+    "title": "US inventory ownership and quantity-cost rollforward",
+    "summary": "Tie owned inventory units and cost through receipt, shipment, return, COGS and period-end count while retaining consignment exceptions.",
+    "topics": [
+      "Controls and governance",
+      "Accounting and reporting"
+    ],
+    "industries": [],
+    "jurisdiction": "United States; nongovernmental US GAAP illustration",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_fasb_asu2015_11_inventory",
+      "src_fasb_bmho20241218_topic330",
+      "src_construction_fasb_2014_09"
+    ],
+    "related_ids": [
+      "wf-us-inventory-rollforward",
+      "guide-q-inventory",
+      "guide-q-revenue",
+      "example-us-operating-transactions-ledger"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-17",
+    "provenance": {
+      "added_on": "2026-09-17",
+      "reviewer": "Codex (AI-assisted editorial synthesis)",
+      "scope": "Tie owned inventory units and cost through receipt, shipment, return, COGS and period-end count while retaining consignment exceptions.",
+      "evidence_record_ids": [
+        "src_fasb_asu2015_11_inventory",
+        "src_fasb_bmho20241218_topic330",
+        "src_construction_fasb_2014_09"
+      ],
+      "outcome": "Original read-only workflow or control proposal linked to selected source records; no professional sign-off or execution evidence.",
+      "note": "Descriptive corpus material, not an execution tool or authorization to post, pay or file."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false
+    },
+    "data": {
+      "version": "1.0.0",
+      "name": "US inventory ownership and quantity-cost rollforward",
+      "risk": "Inventory quantity or cost is misstated because ownership, freight, return, shipment, cost-flow or count evidence is incomplete.",
+      "objective": "Reconcile the selected inventory population to quantity, cost, ownership and proposed ledger balances.",
+      "procedure": [
+        "Document opening balance, cost-flow method, location and ownership",
+        "Tie receipts and eligible acquisition costs to inventory and AP",
+        "Tie shipments to control-transfer evidence, COGS and revenue branch",
+        "Tie returns, damage, count and NRV exceptions to approved adjustments",
+        "Reconcile ending units and cost; retain consignment or changed-control branches"
+      ],
+      "evidence": [
+        "Receiving and freight records",
+        "Shipment and acceptance records",
+        "Count or location evidence",
+        "Inventory subledger and COGS rollforward",
+        "Ownership or consignment terms"
+      ],
+      "exceptions": [
+        "LIFO or retail method, abnormal waste, consignment, third-party warehouse, return right, damaged or obsolete goods, unexplained count difference"
+      ],
+      "owner": "Inventory or operations accounting owner",
+      "reviewer": "Controller or inventory accounting reviewer",
+      "frequency": "Each reporting close and physical-count cycle",
+      "limitations": [
+        "The board handout is non-authoritative and no physical observation or current ASC 330 review was performed.",
+        "The control does not authorize a write-down, shipment or inventory adjustment."
+      ]
+    }
   }
 ]
