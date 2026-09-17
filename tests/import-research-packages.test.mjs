@@ -68,6 +68,12 @@ function run(root, args, label) {
   return result;
 }
 
+function runFailure(root, args, label) {
+  const result = spawnSync(process.execPath, args, { cwd: root, encoding: "utf8", maxBuffer: 20 * 1024 * 1024 });
+  assert.notEqual(result.status, 0, `${label} unexpectedly succeeded: ${result.stdout}`);
+  return result;
+}
+
 function runImporter(root) {
   const result = run(root, ["scripts/import-research-packages.mjs"], "research package importer");
   return JSON.parse(result.stdout);
@@ -124,7 +130,8 @@ test("research package replay validates the full clean corpus and is idempotent"
     const aliases = read(root, "data/research/source-aliases.json");
     const guide = guides.find((record) => record.id === "guide-independent-deployment-evidence");
 
-    assert.equal(output.preserved_newer_metadata, 0);
+    assert.ok(output.preserved_newer_metadata >= 1);
+    assert.ok(output.conflicts.some((conflict) => conflict.reason === "same-date-reviewed-mapping-preserved-current"));
     assert.deepEqual(output.changes.guide_records, []);
     assert.deepEqual(output.changes.registry_rows, []);
     assert.deepEqual(output.changes.registry_fields, []);
@@ -172,6 +179,9 @@ test("replay preserves nested guide, mapping, registry, undated, and same-date m
   try {
     const guides = read(root, "data/corpus/guide.json");
     const guide = guides.find((record) => record.id === "guide-independent-deployment-evidence");
+    const originalQuestion = JSON.parse(JSON.stringify(guide.data.research_questions[0]));
+    const originalGuideSourceIds = [...guide.source_ids];
+    const originalDataSourceIds = [...guide.data.source_ids];
     guide.data.replay_marker = { owner: "canonical", nested: { keep: true } };
     guide.data.research_questions[0].replay_marker = { question: "keep" };
     write(root, "data/corpus/guide.json", guides);
@@ -187,6 +197,11 @@ test("replay preserves nested guide, mapping, registry, undated, and same-date m
 
     const empirical = read(root, "data/research/empirical.json");
     empirical.version = "2026-09-17.1273";
+    const packageGuide = empirical.packages[0];
+    packageGuide.source_ids = [];
+    for (const question of packageGuide.questions) question.source_ids = [];
+    packageGuide.questions[0].question = `${packageGuide.questions[0].question} Changed in an unreviewed replay fixture.`;
+    packageGuide.questions[0].remaining_gaps = [];
     write(root, "data/research/empirical.json", empirical);
 
     const sources = read(root, "data/corpus/source.json");
@@ -208,8 +223,15 @@ test("replay preserves nested guide, mapping, registry, undated, and same-date m
     const afterSameDate = packageReview(afterSources.find((record) => record.id === sameDate.id), "empirical", sameDateReview.checked_url);
 
     assert.ok(first.preserved_newer_metadata >= 1);
+    assert.ok(first.conflicts.some((conflict) => conflict.reason === "substantive-question-conflict-preserved-current"));
+    assert.ok(first.conflicts.some((conflict) => conflict.reason === "incoming-primitive-array-removal-preserved-current"));
     assert.deepEqual(afterGuide.data.replay_marker, { owner: "canonical", nested: { keep: true } });
     assert.deepEqual(afterGuide.data.research_questions[0].replay_marker, { question: "keep" });
+    assert.equal(afterGuide.data.research_questions[0].question, originalQuestion.question);
+    assert.deepEqual(afterGuide.data.research_questions[0].source_ids, originalQuestion.source_ids);
+    assert.deepEqual(afterGuide.data.research_questions[0].remaining_gaps, originalQuestion.remaining_gaps);
+    assert.deepEqual(afterGuide.source_ids, originalGuideSourceIds);
+    assert.deepEqual(afterGuide.data.source_ids, originalDataSourceIds);
     assert.deepEqual(afterOverrides.records[guide.id].replay_marker, { owner: "mapping", nested: { keep: true } });
     assert.deepEqual(afterRegistry.replay_marker, { owner: "registry", nested: { keep: true } });
     assert.deepEqual(afterRegistry.questions[0].replay_marker, { row: "keep" });
@@ -246,7 +268,17 @@ test("replay preserves newer canonical metadata and reports only bounded conflic
     overrides.records[guide.id].replay_marker = { owner: "newer-mapping" };
     const sourceOverride = overrides.records.src_1sbtyzp;
     sourceOverride.reviewed_at = "2026-09-18";
+    sourceOverride.replace_question_ids = true;
+    sourceOverride.question_ids = ["q-deployment-evidence"];
+    sourceOverride.industry_codes = ["23"];
+    sourceOverride.industry_scope = "specific";
+    sourceOverride.basis_field = "/custom/review_basis";
+    sourceOverride.reason = "Newer mapping policy retained for review.";
+    sourceOverride.reviewed_question_ids = ["q-deployment-evidence"];
+    sourceOverride.reviewed_industry_codes = ["23"];
+    sourceOverride.review_note = "Newer mapping review note retained for review.";
     sourceOverride.replay_marker = { owner: "newer-source-mapping" };
+    const newerSourceMapping = JSON.parse(JSON.stringify(sourceOverride));
     write(root, "data/coverage/mapping-overrides.json", overrides);
 
     const sources = read(root, "data/corpus/source.json");
@@ -275,9 +307,35 @@ test("replay preserves newer canonical metadata and reports only bounded conflic
     assert.deepEqual(afterOverrides.records[guide.id].replay_marker, { owner: "newer-mapping" });
     assert.equal(afterOverrides.records.src_1sbtyzp.reviewed_at, "2026-09-18");
     assert.deepEqual(afterOverrides.records.src_1sbtyzp.replay_marker, { owner: "newer-source-mapping" });
+    assert.deepEqual(afterOverrides.records.src_1sbtyzp, newerSourceMapping);
+    assert.ok(output.conflicts.some((conflict) => conflict.target === "mapping:src_1sbtyzp" && conflict.reason === "incoming-older-reviewed-mapping-preserved-current"));
     assert.equal(afterReview.reviewed_at, "2026-09-18");
     assert.equal(afterReview.preservation_marker, "keep-newer-state");
     assertReviewedMappingsAreSubstantiated(root);
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("replay fails closed on duplicate canonical URLs before mutating outputs", () => {
+  const root = createFixture();
+  try {
+    const sources = read(root, "data/corpus/source.json");
+    sources[1].source_url = sources[0].source_url;
+    write(root, "data/corpus/source.json", sources);
+    const empirical = read(root, "data/research/empirical.json");
+    empirical.sources.push({
+      id: "src_unknown_duplicate_url",
+      title: "Ambiguous duplicate URL fixture",
+      source_url: sources[0].source_url,
+      review_level: "abstract-or-landing",
+    });
+    write(root, "data/research/empirical.json", empirical);
+
+    const before = snapshots(root);
+    const result = runFailure(root, ["scripts/import-research-packages.mjs"], "ambiguous URL importer fixture");
+    assert.match(`${result.stderr}\n${result.stdout}`, /Ambiguous canonical source URL/);
+    assertByteStable(root, before, "Ambiguous URL failure changed mutable outputs");
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
   }
