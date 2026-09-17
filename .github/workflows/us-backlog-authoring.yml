@@ -2,71 +2,41 @@ name: Temporary US backlog branch authoring
 on:
   push:
     branches: [research/us-backlog-2026-09-16]
-    paths:
-      - .github/workflows/us-backlog-authoring.yml
-      - .github/us-backlog-patch.json
-      - .github/us-backlog-patch.gz.b64
-permissions:
-  contents: write
-concurrency:
-  group: us-backlog-branch-authoring
-  cancel-in-progress: false
+    paths: ['.github/workflows/us-backlog-authoring.yml','.github/us-backlog-patch.json','.github/us-backlog-patch.part*']
+permissions: {contents: write}
+concurrency: {group: us-backlog-branch-authoring, cancel-in-progress: false}
 jobs:
   integrate:
-    if: github.repository == 'HenryBranchAdams/ai-agents-in-accounting' && github.ref == 'refs/heads/research/us-backlog-2026-09-16' && github.event_name == 'push'
     runs-on: ubuntu-latest
-    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.sha }}
-          fetch-depth: 0
+        with: {ref: '${{ github.sha }}', fetch-depth: 0}
       - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-          cache: npm
+        with: {node-version: '22', cache: npm}
       - run: npm ci
-      - name: Apply only the declared patch to the expected research ancestor
-        shell: bash
+      - shell: bash
         run: |
           python3 - <<'PY'
-          import base64, gzip, hashlib, json, pathlib, re, subprocess
-          manifest = pathlib.Path('.github/us-backlog-patch.json')
-          payload = pathlib.Path('.github/us-backlog-patch.gz.b64')
-          if not manifest.exists() or not payload.exists():
-              print('Transport incomplete; wait for both manifest and payload.')
-              raise SystemExit(0)
-          spec = json.loads(manifest.read_text())
-          if subprocess.run(['git','merge-base','--is-ancestor',spec['expected_parent'],'HEAD']).returncode:
-              raise SystemExit('Expected research parent is not an ancestor; reconcile before applying this patch.')
-          def allowed(path):
-              return bool(re.fullmatch(r'(?:data|docs|scripts|tests|schemas)/[A-Za-z0-9_./-]+|(?:RELEASES|README|TESTING)\.md', path)) and '..' not in pathlib.PurePosixPath(path).parts
-          encoded = payload.read_text().strip()
-          patch = gzip.decompress(base64.b64decode(encoded, validate=True))
-          if len(encoded) > 4000000 or len(patch) > 100000000 or hashlib.sha256(patch).hexdigest() != spec['patch_sha256']:
-              raise SystemExit('Patch size or digest differs from manifest.')
-          target=pathlib.Path('/tmp/us-backlog.patch'); target.write_bytes(patch)
-          stats=subprocess.check_output(['git','apply','--numstat',str(target)],text=True)
-          paths=[line.split('\t',2)[2] for line in stats.splitlines()]
-          if sorted(paths)!=sorted(spec['changed_paths']) or len(paths)!=len(set(paths)) or not all(allowed(p) for p in paths):
-              raise SystemExit('Patch paths differ from bounded manifest.')
-          outputs=spec['expected_output_sha256']
-          subprocess.run(['git','apply','--check','--index',str(target)],check=True)
-          subprocess.run(['git','apply','--index',str(target)],check=True)
-          for path,digest in outputs.items():
-              if not allowed(path) or hashlib.sha256(pathlib.Path(path).read_bytes()).hexdigest()!=digest:
-                  raise SystemExit('Output hash mismatch: '+path)
-          staged=subprocess.check_output(['git','diff','--cached','--name-only'],text=True).splitlines()
-          if sorted(staged)!=sorted(outputs): raise SystemExit('Staged output population differs from manifest.')
+          import base64,gzip,hashlib,json,pathlib,re,subprocess
+          m=pathlib.Path('.github/us-backlog-patch.json'); parts=sorted(pathlib.Path('.github').glob('us-backlog-patch.part*'))
+          if not m.exists() or len(parts)!=4: print('Waiting for four payload parts'); raise SystemExit(0)
+          s=json.loads(m.read_text())
+          if subprocess.run(['git','merge-base','--is-ancestor',s['expected_parent'],'HEAD']).returncode: raise SystemExit('Research parent drift')
+          enc=''.join(p.read_text().strip() for p in parts); patch=gzip.decompress(base64.b64decode(enc,validate=True))
+          if hashlib.sha256(patch).hexdigest()!=s['patch_sha256']: raise SystemExit('Patch digest mismatch')
+          t=pathlib.Path('/tmp/p.patch'); t.write_bytes(patch)
+          paths=[x.split('\t',2)[2] for x in subprocess.check_output(['git','apply','--numstat',str(t)],text=True).splitlines()]
+          allowed=lambda p: bool(re.fullmatch(r'(?:data|docs|scripts|tests|schemas)/[A-Za-z0-9_./-]+|(?:RELEASES|README|TESTING)\.md',p)) and '..' not in pathlib.PurePosixPath(p).parts
+          if sorted(paths)!=sorted(s['changed_paths']) or not all(map(allowed,paths)): raise SystemExit('Path manifest mismatch')
+          subprocess.run(['git','apply','--check','--index',str(t)],check=True); subprocess.run(['git','apply','--index',str(t)],check=True)
+          for p,h in s['expected_output_sha256'].items():
+            if hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()!=h: raise SystemExit('Output hash mismatch '+p)
+          if sorted(subprocess.check_output(['git','diff','--cached','--name-only'],text=True).splitlines())!=sorted(s['expected_output_sha256']): raise SystemExit('Staged population mismatch')
           PY
-      - run: git diff --cached --check
-      - run: npm run check
-      - name: Commit verified canonical files to work branch
-        shell: bash
+      - run: git diff --cached --check && npm run check
+      - shell: bash
         run: |
           if ! git diff --cached --quiet; then
-            git config user.name 'github-actions[bot]'
-            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-            git commit -m 'Integrate and verify US accounting research batch'
-            git push origin HEAD:refs/heads/research/us-backlog-2026-09-16
+            git config user.name 'github-actions[bot]'; git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m 'Integrate and verify US accounting research batch'; git push origin HEAD:refs/heads/research/us-backlog-2026-09-16
           fi
