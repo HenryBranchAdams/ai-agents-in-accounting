@@ -130,28 +130,42 @@
     },
     "fx_rate_table": {
       "rate_table_id": "FX-RATES-USD-CAD-2026-01",
-      "quote": "USD per CAD",
+      "base_currency": "CAD",
+      "quote_currency": "USD",
+      "pair_notation": "CAD/USD",
+      "quote_convention": "1 CAD = rate USD",
+      "conversion_formula": "USD amount = CAD amount * rate",
+      "inverse_formula": "CAD amount = USD amount / rate",
       "rate_source": "Synthetic approved treasury rate table",
       "rates": [
         {
           "rate_id": "FX-2026-01-20",
           "date": "2026-01-20",
-          "currency_pair": "USD/CAD",
+          "currency_pair": "CAD/USD",
+          "base_currency": "CAD",
+          "quote_currency": "USD",
           "rate": 0.74,
+          "rate_unit": "USD per CAD",
           "source_record_id": "RATE-SOURCE-2026-01-20"
         },
         {
           "rate_id": "FX-2026-01-31",
           "date": "2026-01-31",
-          "currency_pair": "USD/CAD",
+          "currency_pair": "CAD/USD",
+          "base_currency": "CAD",
+          "quote_currency": "USD",
           "rate": 0.75,
+          "rate_unit": "USD per CAD",
           "source_record_id": "RATE-SOURCE-2026-01-31"
         },
         {
           "rate_id": "FX-2026-02-10",
           "date": "2026-02-10",
-          "currency_pair": "USD/CAD",
+          "currency_pair": "CAD/USD",
+          "base_currency": "CAD",
+          "quote_currency": "USD",
           "rate": 0.76,
+          "rate_unit": "USD per CAD",
           "source_record_id": "RATE-SOURCE-2026-02-10"
         }
       ]
@@ -206,6 +220,7 @@
         "accounting_date": "2026-01-20",
         "foreign_amount": 10000,
         "currency": "CAD",
+        "fx_rate_id": "FX-2026-01-20",
         "usd_rate": 0.74,
         "usd_amount": 7400,
         "preparer_id": "PREP-001",
@@ -221,6 +236,7 @@
         "accounting_date": "2026-01-31",
         "foreign_amount": 10000,
         "currency": "CAD",
+        "fx_rate_id": "FX-2026-01-31",
         "usd_rate": 0.75,
         "prior_usd_amount": 7400,
         "usd_amount": 7500,
@@ -400,6 +416,7 @@
         "settlement_date": "2026-02-10",
         "foreign_amount": 10000,
         "currency": "CAD",
+        "fx_rate_id": "FX-2026-02-10",
         "usd_rate": 0.76,
         "usd_settlement_amount": 7600,
         "january_carrying_amount": 7500,

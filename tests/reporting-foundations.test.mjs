@@ -1,11 +1,17 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
+import { execFileSync } from "node:child_process";
 import { coverage, records } from "../dist/internal/corpus.mjs";
 import { executeAgent } from "../dist/internal/agent.mjs";
 
 const read = (file) => JSON.parse(fs.readFileSync(file, "utf8"));
+const write = (file, value) => fs.writeFileSync(file, JSON.stringify(value, null, 2) + "\n");
 const supplement = read("data/research/reporting-foundations.json");
+const inventory = read("data/research/reporting-foundations-inventory.json");
+const catalog = read("data/catalog.json");
 const guides = read("data/corpus/guide.json");
 const byId = new Map(records.map((record) => [record.id, record]));
 
@@ -40,6 +46,39 @@ test("US reporting foundations preserve eight scoped questions and citable sourc
     assert.equal(record.data.source_review.source_locator, source.source_locator);
     assert.ok(record.data.source_review.checks.length);
   }
+  const evidenceGapFamilies = new Set(["q-ledger-close", "q-estimates", "q-presentation", "q-policy-changes-errors"]);
+  for (const family of supplement.families) {
+    const question = byId.get(family.guide_id).data.research_questions.find((candidate) => candidate.id === family.question.id);
+    assert.equal(question.answer_status, evidenceGapFamilies.has(family.family_id) ? "evidence-gap" : "sourced-answer-bounded");
+  }
+  assert.equal(supplement.sources.find((source) => source.id === "src_fasb_201415").effective_period, "Effective for the annual period ending after December 15, 2016, and for annual periods and interim periods thereafter; early application is permitted.");
+});
+
+test("the baseline inventory maps reuse, deepening, new work and unresolved populations", () => {
+  assert.equal(inventory.package_id, supplement.package_id);
+  assert.equal(inventory.baseline.named_question_count, 178);
+  assert.equal(inventory.baseline.selected_existing_question_count, 16);
+  assert.equal(inventory.dispositions.reuse.length, 12);
+  assert.equal(inventory.dispositions.deepen.length, 8);
+  assert.equal(inventory.dispositions.new.filter((item) => item.kind === "question").length, 8);
+  assert.ok(inventory.dispositions.unresolved.length >= 6);
+  assert.equal(inventory.shared_generator_dependency.source_branch, "codex/aa-i119");
+  assert.equal(inventory.shared_generator_dependency.source_commit, "0d447e6033bdc10ecd3ab9a2f5855ae73644807d");
+  assert.match(inventory.shared_generator_dependency.review_state, /pending/);
+  assert.match(inventory.shared_generator_dependency.remaining_scope, /not final until the shared generator revision is integrated and rerun/);
+  const existingQuestionIds = inventory.dispositions.deepen.flatMap((item) => item.existing_question_ids);
+  assert.equal(new Set(existingQuestionIds).size, 16);
+  for (const item of inventory.dispositions.reuse) assert.equal(byId.get(item.id)?.kind, "source", item.id);
+  for (const item of inventory.dispositions.deepen) {
+    assert.equal(byId.get(item.id)?.kind, "guide", item.id);
+    for (const questionId of item.existing_question_ids)
+      assert.ok(byId.get(item.id).data.research_questions.some((question) => question.id === questionId), questionId);
+    assert.ok(item.new_question_id.startsWith("rq-"));
+  }
+  for (const item of inventory.dispositions.new.filter((candidate) => candidate.kind === "question"))
+    assert.ok(byId.get(item.record_id).data.research_questions.some((question) => question.id === item.id), item.id);
+  assert.equal(inventory.original_acceptance_evidence.length, 5);
+  assert.ok(inventory.original_acceptance_evidence.every((item) => item.evidence.length >= 2));
 });
 
 test("US retrieval returns the new answer and source locator without replacing IFRS records", () => {
@@ -108,6 +147,34 @@ test("the synthetic January close balances, ties to statements and keeps actions
   assert.equal(fixture.post_period_events.find((event) => event.event_id === "EVT-2026-02-10-CAD-SETTLEMENT").status, "outside-january-close");
 });
 
+test("the FX fixture states its pair direction and converts CAD into USD independently", () => {
+  const fixture = byId.get("example-us-reporting-foundations-close").data;
+  const table = fixture.fx_rate_table;
+  assert.equal(table.base_currency, "CAD");
+  assert.equal(table.quote_currency, "USD");
+  assert.equal(table.pair_notation, "CAD/USD");
+  assert.equal(table.quote_convention, "1 CAD = rate USD");
+  assert.equal(table.conversion_formula, "USD amount = CAD amount * rate");
+  const rates = new Map(table.rates.map((rate) => [rate.rate_id, rate]));
+  for (const rate of table.rates) {
+    assert.equal(rate.currency_pair, "CAD/USD");
+    assert.equal(rate.base_currency, "CAD");
+    assert.equal(rate.quote_currency, "USD");
+    assert.equal(rate.rate_unit, "USD per CAD");
+  }
+  const cadEvents = [
+    ...fixture.events.filter((event) => event.currency === "CAD"),
+    ...fixture.post_period_events.filter((event) => event.currency === "CAD"),
+  ];
+  for (const event of cadEvents) {
+    const rate = rates.get(event.fx_rate_id);
+    assert.ok(rate, event.event_id);
+    assert.equal(event.usd_rate, rate.rate);
+    const usdAmount = event.usd_amount ?? event.usd_settlement_amount;
+    assert.equal(usdAmount, Math.round(event.foreign_amount * rate.rate * 100) / 100, event.event_id);
+  }
+});
+
 test("estimate, issued-period and missing-date branches preserve their decision boundaries", () => {
   const fixture = byId.get("example-us-reporting-foundations-close").data;
   const branches = new Map(fixture.branches.map((branch) => [branch.branch_id, branch]));
@@ -135,4 +202,67 @@ test("scoped sector-anchor assessments do not propagate to descendants or claim 
   const exampleMapping = coverage.profiles.get("example-us-reporting-foundations-close");
   assert.equal(exampleMapping.industry_scope, "shared-context");
   assert.deepEqual(exampleMapping.industry_mappings, []);
+});
+
+test("generated coverage headers match the catalog", () => {
+  assert.equal(read("data/coverage/subsector-profiles.json").corpus_version, catalog.corpus_version);
+  assert.equal(read("data/coverage/subsector-screening.json").corpus_version, catalog.corpus_version);
+});
+
+test("the applicator refuses a newer unrelated field on a matching canonical record", () => {
+  const script = path.resolve("scripts/apply-reporting-foundations.mjs");
+  const inputs = [
+    "data/catalog.json",
+    "data/corpus/source.json",
+    "data/corpus/guide.json",
+    "data/corpus/example.json",
+    "data/coverage/research-questions.json",
+    "data/coverage/assessments.json",
+    "data/coverage/mapping-overrides.json",
+    "data/coverage/subsector-profiles.json",
+    "data/coverage/subsector-screening.json",
+    "data/research/reporting-foundations.json",
+    "data/research/reporting-foundations-example.json",
+    "data/research/reporting-foundations-assessments.json",
+    "data/research/reporting-foundations-inventory.json",
+  ];
+  const copyRoot = () => {
+    const root = fs.mkdtempSync(path.join(os.tmpdir(), "reporting-foundations-preservation-"));
+    for (const file of inputs) {
+      const destination = path.join(root, file);
+      fs.mkdirSync(path.dirname(destination), { recursive: true });
+      fs.copyFileSync(file, destination);
+    }
+    return root;
+  };
+  const run = (root) => execFileSync(process.execPath, [script], {
+    cwd: root,
+    env: { ...process.env, REPORTING_FOUNDATIONS_ROOT: root },
+    encoding: "utf8",
+    stdio: "pipe",
+  });
+  const exampleRoot = copyRoot();
+  try {
+    const file = path.join(exampleRoot, "data/corpus/example.json");
+    const examples = read(file);
+    const record = examples.find((candidate) => candidate.id === "example-us-reporting-foundations-close");
+    record.data.newer_unrelated_canonical_note = "preserve this field";
+    write(file, examples);
+    assert.throws(() => run(exampleRoot), /example-us-reporting-foundations-close: existing canonical record differs; refusing overwrite/);
+    assert.equal(read(file).find((candidate) => candidate.id === record.id).data.newer_unrelated_canonical_note, "preserve this field");
+  } finally {
+    fs.rmSync(exampleRoot, { recursive: true, force: true });
+  }
+  const questionRoot = copyRoot();
+  try {
+    const file = path.join(questionRoot, "data/corpus/guide.json");
+    const canonicalGuides = read(file);
+    const question = canonicalGuides.find((record) => record.id === "guide-q-estimates").data.research_questions.find((candidate) => candidate.id === "rq-estimates-us-change-or-error");
+    question.newer_unrelated_canonical_note = "preserve this question field";
+    write(file, canonicalGuides);
+    assert.throws(() => run(questionRoot), /rq-estimates-us-change-or-error: existing canonical question differs; refusing overwrite/);
+    assert.equal(read(file).find((record) => record.id === "guide-q-estimates").data.research_questions.find((candidate) => candidate.id === question.id).newer_unrelated_canonical_note, "preserve this question field");
+  } finally {
+    fs.rmSync(questionRoot, { recursive: true, force: true });
+  }
 });

@@ -1,17 +1,21 @@
 import fs from "node:fs";
 import assert from "node:assert/strict";
+import path from "node:path";
 
-const read = (file) => JSON.parse(fs.readFileSync(file, "utf8"));
-const write = (file, value) => fs.writeFileSync(file, JSON.stringify(value, null, 2) + "\n");
+const root = path.resolve(process.env.REPORTING_FOUNDATIONS_ROOT || ".");
+const read = (file) => JSON.parse(fs.readFileSync(path.join(root, file), "utf8"));
+const write = (file, value) => fs.writeFileSync(path.join(root, file), JSON.stringify(value, null, 2) + "\n");
 const union = (...values) => [...new Set(values.flatMap((value) => Array.isArray(value) ? value : []))];
 const mergeObjects = (current, additions) => {
   const seen = new Set(current.map((item) => JSON.stringify(item)));
   return [...current, ...additions.filter((item) => !seen.has(JSON.stringify(item)))];
 };
+const sameIds = (left, right) => Array.isArray(left) && Array.isArray(right) && left.length === right.length && right.every((id) => left.includes(id));
 
 const packageData = read("data/research/reporting-foundations.json");
 const exampleData = read("data/research/reporting-foundations-example.json");
 const assessmentData = read("data/research/reporting-foundations-assessments.json");
+const inventoryData = read(packageData.inventory_file);
 const date = packageData.reviewed_at;
 const sourceRights = {
   metadata: "CC0-1.0",
@@ -36,6 +40,23 @@ const examples = read("data/corpus/example.json");
 const registry = read("data/coverage/research-questions.json");
 const assessments = read("data/coverage/assessments.json");
 const overrides = read("data/coverage/mapping-overrides.json");
+const catalog = read("data/catalog.json");
+const profileCoverage = read("data/coverage/subsector-profiles.json");
+const screeningCoverage = read("data/coverage/subsector-screening.json");
+
+assert.match(catalog.corpus_version, /^\d{4}-\d{2}-\d{2}\.\d+$/, "catalog corpus version missing");
+assert.equal(inventoryData.package_id, packageData.package_id, "inventory package mismatch");
+assert.equal(inventoryData.reviewed_at, date, "inventory review date mismatch");
+for (const [label, current, expected] of [["question registry", registry.question_set_version, packageData.version], ["assessment coverage", assessments.assessment_version, assessmentData.assessment_version], ["mapping overrides", overrides.mapping_version, packageData.version]]) {
+  if (current > expected) throw new Error(`${label}: newer version ${current} would be overwritten by ${expected}`);
+}
+if (registry.reviewed_at > date) throw new Error(`question registry: newer review date ${registry.reviewed_at} would be overwritten by ${date}`);
+if (overrides.updated_at > date) throw new Error(`mapping overrides: newer review date ${overrides.updated_at} would be overwritten by ${date}`);
+for (const [file, coverage] of [["data/coverage/subsector-profiles.json", profileCoverage], ["data/coverage/subsector-screening.json", screeningCoverage]]) {
+  if (coverage.corpus_version > catalog.corpus_version)
+    throw new Error(`${file}: newer corpus version ${coverage.corpus_version} would be overwritten by ${catalog.corpus_version}`);
+  coverage.corpus_version = catalog.corpus_version;
+}
 
 function sourceRecord(source) {
   const sourceReview = {
@@ -130,11 +151,9 @@ function sourceRecord(source) {
 
 for (const source of packageData.sources) {
   const existing = sources.find((record) => record.id === source.id);
-  if (existing) {
-    assert.equal(existing.source_url, source.source_url, `${source.id}: source URL changed`);
-  } else {
-    sources.push(sourceRecord(source));
-  }
+  const expected = sourceRecord(source);
+  if (existing) assert.deepEqual(existing, expected, `${source.id}: existing canonical record differs; refusing overwrite`);
+  else sources.push(expected);
 }
 
 const newQuestionRows = [];
@@ -142,9 +161,10 @@ for (const family of packageData.families) {
   const guide = guides.find((record) => record.id === family.guide_id);
   assert.ok(guide, `${family.guide_id}: guide missing`);
   const question = structuredClone(family.question);
+  const packageSourceIds = new Set(family.source_ids);
   const questionIndex = guide.data.research_questions.findIndex((candidate) => candidate.id === question.id);
   if (questionIndex < 0) guide.data.research_questions.push(question);
-  else guide.data.research_questions[questionIndex] = question;
+  else assert.deepEqual(guide.data.research_questions[questionIndex], question, `${question.id}: existing canonical question differs; refusing overwrite`);
 
   guide.title = family.title;
   guide.summary = family.summary;
@@ -155,6 +175,7 @@ for (const family of packageData.families) {
   guide.provenance = {
     ...guide.provenance,
     supplemental_research_file: "data/research/reporting-foundations.json",
+    supplemental_inventory_file: packageData.inventory_file,
     supplemental_reviewed_at: date,
     supplemental_reviewer: packageData.reviewer,
     supplemental_scope: family.scope,
@@ -164,7 +185,7 @@ for (const family of packageData.families) {
     scope: family.scope,
     review_basis: family.review_basis,
     source_ids: union(guide.data.source_ids, family.source_ids, question.source_ids),
-    source_locators: mergeObjects(guide.data.source_locators || [], family.source_locators),
+    source_locators: mergeObjects((guide.data.source_locators || []).filter((locator) => !packageSourceIds.has(locator.source_id)), family.source_locators),
     frameworks: union(guide.data.frameworks, family.frameworks),
     jurisdictions: union(guide.data.jurisdictions, family.jurisdictions),
     related_ids: union(guide.data.related_ids, family.related_ids),
@@ -175,9 +196,11 @@ for (const family of packageData.families) {
     version: packageData.version,
     supplemental_research_package: packageData.package_id,
     supplemental_research_file: "data/research/reporting-foundations.json",
+    supplemental_inventory_file: packageData.inventory_file,
   };
   const brief = guide.data.editorial_brief || { findings: [], unknowns: [], reading_order: [] };
   const finding = {
+    question_id: question.id,
     claim: question.answer,
     source_ids: question.source_ids,
     classification: question.answer_status,
@@ -186,7 +209,7 @@ for (const family of packageData.families) {
   guide.data.editorial_brief = {
     ...brief,
     answer: family.summary,
-    findings: mergeObjects(brief.findings || [], [finding]),
+    findings: mergeObjects((brief.findings || []).filter((existing) => !(existing.question_id === question.id || (existing.qualification === family.scope && sameIds(existing.source_ids, question.source_ids)))), [finding]),
     unknowns: union(brief.unknowns, family.coverage_gaps),
     reading_order: union(brief.reading_order, family.source_ids),
   };
@@ -242,6 +265,7 @@ const exampleRecord = {
     added_on: date,
     reviewer: packageData.reviewer,
     research_file: "data/research/reporting-foundations-example.json",
+    inventory_file: packageData.inventory_file,
     note: "Fully original synthetic accounting fixture with explicit arithmetic, source identities, control boundaries and unexecuted actions. This is not operational evidence or professional review.",
   },
   rights: projectRights,
@@ -249,7 +273,7 @@ const exampleRecord = {
 };
 const existingExample = examples.findIndex((record) => record.id === exampleRecord.id);
 if (existingExample < 0) examples.push(exampleRecord);
-else examples[existingExample] = exampleRecord;
+else assert.deepEqual(examples[existingExample], exampleRecord, `${exampleRecord.id}: existing canonical record differs; refusing overwrite`);
 
 const exampleQuestionIds = packageData.families.map((family) => family.family_id);
 overrides.records[exampleRecord.id] = {
@@ -268,7 +292,7 @@ overrides.records[exampleRecord.id] = {
 for (const row of newQuestionRows) {
   const at = registry.questions.findIndex((question) => question.id === row.id);
   if (at < 0) registry.questions.push(row);
-  else registry.questions[at] = row;
+  else assert.deepEqual(registry.questions[at], row, `${row.id}: existing registry row differs; refusing overwrite`);
 }
 registry.question_set_version = packageData.version;
 registry.reviewed_at = date;
@@ -298,7 +322,7 @@ for (const item of assessmentData.items) {
   };
   const at = assessments.assessments.findIndex((candidate) => candidate.id === assessment.id);
   if (at < 0) assessments.assessments.push(assessment);
-  else assessments.assessments[at] = assessment;
+  else assert.deepEqual(assessments.assessments[at], assessment, `${assessment.id}: existing assessment differs; refusing overwrite`);
 }
 assessments.assessment_version = assessmentData.assessment_version;
 overrides.mapping_version = packageData.version;
@@ -310,6 +334,8 @@ write("data/corpus/example.json", examples);
 write("data/coverage/research-questions.json", registry);
 write("data/coverage/assessments.json", assessments);
 write("data/coverage/mapping-overrides.json", overrides);
+write("data/coverage/subsector-profiles.json", profileCoverage);
+write("data/coverage/subsector-screening.json", screeningCoverage);
 
 console.log(JSON.stringify({
   added_sources: packageData.sources.length,
