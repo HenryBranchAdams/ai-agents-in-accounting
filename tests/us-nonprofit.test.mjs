@@ -11,7 +11,7 @@ const guideId='guide-us-nonprofit-contributions-close';
 const exampleId='example-us-nonprofit-restricted-award-close';
 const sources=['src_nonprofit_fasb_2018_08','src_nonprofit_fasb_2016_14','src_nonprofit_irs_990_2025'];
 
-test('nonprofit source links preserve publisher identity, locators, access depth and unknown reuse rights',()=>{
+test('nonprofit source links preserve pinned publisher identity, locators, periods, access depth and unknown reuse rights',()=>{
  const guide=byId.get(guideId);
  assert.deepEqual(guide.source_ids,sources);
  for(const id of sources){
@@ -19,6 +19,9 @@ test('nonprofit source links preserve publisher identity, locators, access depth
   assert.equal(source.kind,'source');
   assert.ok(source.source_url.startsWith('https://'));
   assert.ok(source.data.locators.length&&source.provenance.scope&&source.data.access_note);
+  assert.ok(source.data.publication?.edition);
+  assert.ok(source.data.effective_period);
+  assert.ok(source.data.locators.every(locator=>Number.isInteger(locator.page)&&locator.locator&&Object.hasOwn(locator,'paragraph')));
   assert.equal(source.data.review_level,'substantive-excerpt');
   assert.equal(source.rights.full_text_stored,false);
   assert.equal(source.rights.source_status,'unknown');
@@ -28,6 +31,23 @@ test('nonprofit source links preserve publisher identity, locators, access depth
   assert.deepEqual(result.record.rights,source.rights);
   assert.ok(result.passages.every(p=>p.source_pointers.length));
  }
+ const fasb2018=byId.get('src_nonprofit_fasb_2018_08');
+ assert.equal(fasb2018.source_url,'https://storage.fasb.org/ASU%202018-08.pdf');
+ assert.equal(fasb2018.data.effective_period.recipient.all_other_entities.annual_periods_beginning_after,'2018-12-15');
+ assert.equal(fasb2018.data.effective_period.recipient.all_other_entities.interim_periods_within_annual_periods_beginning_after,'2019-12-15');
+ assert.equal(fasb2018.data.effective_period.provider.all_other_entities.annual_periods_beginning_after,'2019-12-15');
+ assert.equal(fasb2018.data.effective_period.provider.all_other_entities.interim_periods_within_annual_periods_beginning_after,'2020-12-15');
+ assert.equal(fasb2018.data.adoption.method,'modified prospective');
+ const fasb2016=byId.get('src_nonprofit_fasb_2016_14');
+ assert.ok(fasb2016.data.locators.some(locator=>locator.page===10&&locator.section.includes('When Will the Amendments Be Effective')));
+ assert.ok(fasb2016.data.locators.some(locator=>locator.paragraph==='958-205-45-2'));
+ assert.ok(fasb2016.data.locators.some(locator=>locator.paragraph==='958-205-45-9'));
+ assert.ok(fasb2016.data.locators.some(locator=>locator.paragraph==='958-720-45-15'));
+ const irs=byId.get('src_nonprofit_irs_990_2025');
+ assert.equal(irs.source_url,'https://www.irs.gov/pub/irs-prior/i990--2025.pdf');
+ assert.equal(irs.data.publication.tax_year,2025);
+ assert.equal(irs.data.effective_period.reporting_period,'2025 tax year');
+ assert.ok(irs.data.locators.some(locator=>locator.page===41&&locator.section==='Part IX. Statement of Functional Expenses'));
  assert.match(guide.provenance.note,/No professional review/);
  assert.match(guide.provenance.note,/current consolidated Codification/);
 });
@@ -46,6 +66,11 @@ test('the nonprofit scoped assessment is partial and does not become constructio
  assert.ok(a);assert.equal(a.status,'partial');
  const canonical=read('data/coverage/assessments.json').assessments.find(row=>row.id===a.id);
  assert.ok(canonical);assert.equal(canonical.status,a.status);
+ assert.equal(canonical.effective_from,'2026-01-01');assert.equal(canonical.effective_to,'2026-12-31');
+ assert.ok(canonical.evidence_record_ids.includes('src_nonprofit_fasb_2018_08'));
+ assert.ok(canonical.evidence_record_ids.includes('src_nonprofit_fasb_2016_14'));
+ assert.ok(canonical.evidence_record_ids.includes('src_nonprofit_irs_990_2025'));
+ assert.match(canonical.review_basis,/recipient\/provider periods/);
  assert.ok(canonical.gaps.some(g=>/endowment/.test(g)));
  assert.ok(canonical.gaps.some(g=>/Professional/.test(g)));
  for(const code of ['23','236','236115','813110']){
@@ -54,6 +79,8 @@ test('the nonprofit scoped assessment is partial and does not become constructio
  assert.equal(coverage.summary.assessment_status_counts['sufficient-for-stated-scope'],0);
  const q=read('data/coverage/research-questions.json').questions.find(q=>q.id==='rq-us-nonprofit-award-close');
  assert.equal(q.record_id,guideId);assert.equal(q.assessment_status,'partial');
+ assert.deepEqual(q.source_locators,byId.get(guideId).data.research_questions[0].source_locators);
+ assert.ok(q.source_locators.every(locator=>locator.period_pointer&&locator.locator_pointers.length));
  assert.equal(q.professional_review,'not-performed');assert.equal(q.empirical_support,'not-established');
  assert.equal(byId.get(guideId).data.research_questions[0].id,q.id);
 });
@@ -75,11 +102,27 @@ test('the original nonprofit arithmetic reconciles the advance, restriction and 
   balances[row.credit]=(balances[row.credit]||0)-row.amount;
  }
  assert.equal(balances.refundable_advance,0);
+ assert.equal(balances.cash,75000);
  assert.equal(Object.values(balances).reduce((a,b)=>a+b,0),0);
+ assert.equal(d.close_period.start,'2026-01-01');
+ assert.equal(d.close_period.cutoff,'2026-12-31');
+ assert.deepEqual(d.events.map(event=>event.date),['2026-01-15','2026-06-30','2026-09-15','2026-09-30']);
+ assert.deepEqual(d.opening_balances,{as_of:'2026-01-01',cash:0,refundable_advance:0,accounts_payable:0,net_assets_with_donor_restrictions:0,net_assets_without_donor_restrictions:0});
+ assert.equal(d.ledger_rollforward.cash.ending,d.ending_balances.cash);
+ assert.equal(d.ledger_rollforward.net_assets_with_donor_restrictions.ending,d.ending_balances.net_assets_with_donor_restrictions);
+ assert.equal(d.ledger_rollforward.accounts_payable.ending,d.ending_balances.accounts_payable);
+ assert.equal(d.ending_balances.cash,120000-45000);
+ assert.equal(d.ending_balances.net_assets_with_donor_restrictions,120000-45000);
+ assert.equal(d.reconciliation.journal_debits,d.reconciliation.journal_credits);
+ assert.match(d.reconciliation.separate_shared_cost_pool,/outside the award rollforward/);
+ assert.match(d.reconciliation.separate_shared_cost_pool,/not a balancing plug/);
+ assert.equal(d.settlement.base_case,'cash');
+ assert.equal(d.settlement.payable_alternative.not_combined_with_base_case,true);
+ assert.equal(d.settlement.payable_alternative.ending_accounts_payable,45000);
  assert.match(d.examples[0].calculation,/separate 20,000 shared-cost pool/);
  assert.ok(d.limitations.some(x=>/not operational evidence/.test(x)));
- // cash_or_payables is an explicit illustrative alternative, not proof of a cash balance.
- assert.equal(d.journals.find(j=>j.id==='N3').credit,'cash_or_payables');
+ assert.ok(d.limitations.some(x=>/No balancing plug/.test(x)));
+ assert.equal(d.journals.find(j=>j.id==='N3').credit,'cash');
 });
 
 test('nonprofit reading pages and exports expose the same record IDs, source links and unfinished research',async()=>{
