@@ -64,8 +64,10 @@ test('a governmental framework counterexample returns GASB sources and cannot in
 test('the nonprofit scoped assessment is partial and does not become construction or descendant sufficiency',()=>{
  const a=coverage.cell('813','q-grants-contributions').assessments.find(a=>a.id==='coverage-us-nonprofit-2026-09-16');
  assert.ok(a);assert.equal(a.status,'partial');
- const canonical=read('data/coverage/assessments.json').assessments.find(row=>row.id===a.id);
+ const assessmentData=read('data/coverage/assessments.json');
+ const canonical=assessmentData.assessments.find(row=>row.id===a.id);
  assert.ok(canonical);assert.equal(canonical.status,a.status);
+ assert.equal(assessmentData.assessment_version,'2026-09-17.1302');
  assert.equal(canonical.effective_from,'2026-01-01');assert.equal(canonical.effective_to,'2026-12-31');
  assert.ok(canonical.evidence_record_ids.includes('src_nonprofit_fasb_2018_08'));
  assert.ok(canonical.evidence_record_ids.includes('src_nonprofit_fasb_2016_14'));
@@ -83,6 +85,13 @@ test('the nonprofit scoped assessment is partial and does not become constructio
  assert.ok(q.source_locators.every(locator=>locator.period_pointer&&locator.locator_pointers.length));
  assert.equal(q.professional_review,'not-performed');assert.equal(q.empirical_support,'not-established');
  assert.equal(byId.get(guideId).data.research_questions[0].id,q.id);
+ const snapshots=read('data/coverage/snapshots.json').snapshots;
+ const prior=snapshots.find(snapshot=>snapshot.id==='2026-09-17.1');
+ const correction=snapshots.find(snapshot=>snapshot.id==='2026-09-17.1302');
+ assert.ok(prior);assert.ok(correction);
+ assert.equal(prior.assessment_version,'2026-09-16.1');
+ assert.equal(correction.assessment_version,assessmentData.assessment_version);
+ assert.notEqual(correction.inputs_sha256['data/coverage/assessments.json'],prior.inputs_sha256['data/coverage/assessments.json']);
 });
 
 test('the original nonprofit arithmetic reconciles the advance, restriction and separate allocation without inventing ledger evidence',()=>{

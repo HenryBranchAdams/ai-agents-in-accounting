@@ -13,6 +13,8 @@ This is a targeted correction on branch `codex/aa-f128-evidence` from PR128 head
 
 The source records continue to contain no external full text and retain unknown publisher reuse rights. The guide, named-question registry and partial assessment point to the same source periods and locator paths. The assessment is scoped to the illustrative 2026 period, remains partial, and does not claim current consolidated Codification access, professional review, operational evidence or empirical agent evidence.
 
+Coverage metadata now uses assessment version `2026-09-17.1302` for this revised assessment. Snapshot `2026-09-17.1` remains preserved as historical evidence; the follow-up correction is recorded in new immutable snapshot `2026-09-17.1302`. The snapshot ID uses the repository script's accepted single numeric suffix while remaining unique to PR130.
+
 ## Implemented source and retrieval paths
 
 | Record | Role in the supplement |
