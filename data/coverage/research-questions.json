@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0.0",
-  "question_set_version": "2026-09-14.2",
-  "corpus_version": "2026-09-14.2",
-  "reviewed_at": "2026-09-14",
+  "question_set_version": "2026-09-11.1",
+  "corpus_version": "2026-09-11.2",
+  "reviewed_at": "2026-09-11",
   "scope": "Versioned named research questions. Broader unresolved family questions and industry applicability are separate denominators, retained in their review files.",
   "questions": [
     {
@@ -3111,14 +3111,20 @@
         "q-audit-assertions"
       ],
       "question": "What evidence supports each material assertion?",
-      "scope": "Audit assertions and substantive evidence",
+      "scope": "Selected revenue/receivable and AP populations in a declared US issuer, nonissuer, or federal-award engagement context; reporting period and entity role must be frozen before procedures.",
       "answer_status": "sourced-answer-bounded",
       "assessment_status": "partial",
       "source_ids": [
-        "src_0vf7hhg"
+        "src_0vf7hhg",
+        "src_04t8hqe",
+        "src_05n7atb",
+        "src_0ukc3p8",
+        "src_cfr200grants"
       ],
       "remaining_gaps": [
-        "Sample design remains engagement-specific."
+        "Sample or full-population design remains engagement-specific and no selected items are sufficient coverage by themselves.",
+        "No professional reviewer evaluated this matrix or the synthetic packet.",
+        "Federal-award compliance criteria and award terms require entity- and program-specific review."
       ],
       "professional_review": "not-performed",
       "empirical_support": "not-established",
@@ -3126,9 +3132,75 @@
         "scope": "partial",
         "accounting-question": "partial",
         "evidence-inputs": "partial",
-        "workflow": "missing",
+        "workflow": "partial",
         "controls": "partial",
-        "worked-material": "missing",
+        "worked-material": "partial",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Presence and review limits of the linked named question, package workflow and original worked material. Partial does not establish accounting correctness; missing means this question packet lacks that component."
+    },
+    {
+      "id": "rq-audit-assertions-recorded-vs-omitted",
+      "record_id": "guide-q-audit-assertions",
+      "pointer": "/data/research_questions/1",
+      "family_ids": [
+        "q-audit-assertions"
+      ],
+      "question": "How should an agent distinguish recorded-item testing from omission testing?",
+      "scope": "The selected revenue/receivable and AP populations in a declared US engagement; the distinction applies to an audit or compliance procedure only after the governing context and objective are approved.",
+      "answer_status": "sourced-answer-bounded",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_0vf7hhg",
+        "src_0gq92vl",
+        "src_04t8hqe",
+        "src_cfr200grants"
+      ],
+      "remaining_gaps": [
+        "The packet does not select or justify an audit sample and does not establish completeness for an operational population."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "partial",
+        "accounting-question": "partial",
+        "evidence-inputs": "partial",
+        "workflow": "partial",
+        "controls": "partial",
+        "worked-material": "partial",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Presence and review limits of the linked named question, package workflow and original worked material. Partial does not establish accounting correctness; missing means this question packet lacks that component."
+    },
+    {
+      "id": "rq-audit-assertions-contradictory-evidence",
+      "record_id": "guide-q-audit-assertions",
+      "pointer": "/data/research_questions/2",
+      "family_ids": [
+        "q-audit-assertions"
+      ],
+      "question": "What happens when evidence conflicts or a source population cannot be reconciled?",
+      "scope": "Contradictory or incomplete evidence in the selected US assurance contexts; applies to the exception record and escalation path, not an automatic accounting adjustment.",
+      "answer_status": "sourced-answer-bounded",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_0vf7hhg",
+        "src_1wj6irw",
+        "src_1l45nk0",
+        "src_0ukc3p8"
+      ],
+      "remaining_gaps": [
+        "No actual engagement escalation or reporting decision was observed."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "partial",
+        "accounting-question": "partial",
+        "evidence-inputs": "partial",
+        "workflow": "partial",
+        "controls": "partial",
+        "worked-material": "partial",
         "empirical-support": "not-assessed"
       },
       "dimension_basis": "Presence and review limits of the linked named question, package workflow and original worked material. Partial does not establish accounting correctness; missing means this question packet lacks that component."
@@ -3136,19 +3208,23 @@
     {
       "id": "rq-audit-assertions-automated-evidence",
       "record_id": "guide-q-audit-assertions",
-      "pointer": "/data/research_questions/1",
+      "pointer": "/data/research_questions/3",
       "family_ids": [
         "q-audit-assertions"
       ],
       "question": "When can system-generated information be audit evidence?",
-      "scope": "Audit assertions and substantive evidence",
+      "scope": "System-generated or electronically supplied information used in the selected PCAOB, AICPA, or federal-award context; the tool's successful computation is not evidence of source reliability.",
       "answer_status": "sourced-answer-bounded",
       "assessment_status": "partial",
       "source_ids": [
-        "src_0rs2kpd"
+        "src_0vf7hhg",
+        "src_0rs2kpd",
+        "src_04t8hqe",
+        "src_05n7atb"
       ],
       "remaining_gaps": [
-        "No AI workpaper sufficiency was independently established."
+        "No AI workpaper sufficiency or operating-system reliability was independently established.",
+        "A full licensed standard review and entity-specific IT control testing remain outside this corpus packet."
       ],
       "professional_review": "not-performed",
       "empirical_support": "not-established",
@@ -3156,9 +3232,9 @@
         "scope": "partial",
         "accounting-question": "partial",
         "evidence-inputs": "partial",
-        "workflow": "missing",
+        "workflow": "partial",
         "controls": "partial",
-        "worked-material": "missing",
+        "worked-material": "partial",
         "empirical-support": "not-assessed"
       },
       "dimension_basis": "Presence and review limits of the linked named question, package workflow and original worked material. Partial does not establish accounting correctness; missing means this question packet lacks that component."
@@ -3171,14 +3247,14 @@
         "q-controls-fraud"
       ],
       "question": "Which control addresses a specific fraud path?",
-      "scope": "Internal control and fraud",
-      "answer_status": "editorial-proposal",
+      "scope": "A named fraud or error path in a declared PCAOB issuer, AICPA AU-C nonissuer, or federal-award control context; Nacha rules are separate network-specific material.",
+      "answer_status": "sourced-answer-bounded",
       "assessment_status": "partial",
       "source_ids": [
         "src_1wj6irw"
       ],
       "remaining_gaps": [
-        "Period-specific evidence and professional evaluation are required."
+        "Period-specific evidence, sample design, and professional evaluation are required."
       ],
       "professional_review": "not-performed",
       "empirical_support": "not-established",
@@ -3186,9 +3262,77 @@
         "scope": "partial",
         "accounting-question": "partial",
         "evidence-inputs": "partial",
-        "workflow": "missing",
+        "workflow": "partial",
         "controls": "partial",
-        "worked-material": "missing",
+        "worked-material": "partial",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Presence and review limits of the linked named question, package workflow and original worked material. Partial does not establish accounting correctness; missing means this question packet lacks that component."
+    },
+    {
+      "id": "rq-controls-fraud-design-operation",
+      "record_id": "guide-q-controls-fraud",
+      "pointer": "/data/research_questions/1",
+      "family_ids": [
+        "q-controls-fraud"
+      ],
+      "question": "How should an agent separate control design, execution, and operating effectiveness?",
+      "scope": "A named revenue, receivable, or AP control in a declared PCAOB issuer, AICPA AU-C nonissuer, or federal-award context; a local software test is a separate engineering result.",
+      "answer_status": "sourced-answer-bounded",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_075usnq",
+        "src_0rs2kpd",
+        "src_05n7atb",
+        "src_gaogb25",
+        "src_cfr200grants"
+      ],
+      "remaining_gaps": [
+        "No live control owner, operating period, sample design, or professional control conclusion was observed."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "partial",
+        "accounting-question": "partial",
+        "evidence-inputs": "partial",
+        "workflow": "partial",
+        "controls": "partial",
+        "worked-material": "partial",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Presence and review limits of the linked named question, package workflow and original worked material. Partial does not establish accounting correctness; missing means this question packet lacks that component."
+    },
+    {
+      "id": "rq-controls-fraud-contradiction-override",
+      "record_id": "guide-q-controls-fraud",
+      "pointer": "/data/research_questions/2",
+      "family_ids": [
+        "q-controls-fraud"
+      ],
+      "question": "How should control testing handle contradictory evidence or management override?",
+      "scope": "Fraud-sensitive control exceptions in the declared US issuer, nonissuer, or federal-award context; this is an escalation and evidence-preservation rule, not an automatic fraud finding.",
+      "answer_status": "sourced-answer-bounded",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_1wj6irw",
+        "src_075usnq",
+        "src_0vf7hhg",
+        "src_gaogb25",
+        "src_cfr200grants"
+      ],
+      "remaining_gaps": [
+        "No live override log, control deficiency evaluation, or fraud investigation was performed."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "partial",
+        "accounting-question": "partial",
+        "evidence-inputs": "partial",
+        "workflow": "partial",
+        "controls": "partial",
+        "worked-material": "partial",
         "empirical-support": "not-assessed"
       },
       "dimension_basis": "Presence and review limits of the linked named question, package workflow and original worked material. Partial does not establish accounting correctness; missing means this question packet lacks that component."
@@ -3196,19 +3340,19 @@
     {
       "id": "rq-controls-fraud-monitoring",
       "record_id": "guide-q-controls-fraud",
-      "pointer": "/data/research_questions/1",
+      "pointer": "/data/research_questions/3",
       "family_ids": [
         "q-controls-fraud"
       ],
       "question": "How should transaction monitoring handle evolving fraud patterns?",
-      "scope": "Internal control and fraud",
-      "answer_status": "editorial-proposal",
+      "scope": "Transaction monitoring for a declared PCAOB issuer, AICPA AU-C nonissuer, federal-award, or Nacha network context; Nacha requirements remain network-specific.",
+      "answer_status": "sourced-answer-bounded",
       "assessment_status": "partial",
       "source_ids": [
         "src_nachafm"
       ],
       "remaining_gaps": [
-        "Independent loss-rate evidence is unavailable."
+        "Independent loss-rate evidence and live operating-effectiveness testing are unavailable."
       ],
       "professional_review": "not-performed",
       "empirical_support": "not-established",
@@ -3216,9 +3360,9 @@
         "scope": "partial",
         "accounting-question": "partial",
         "evidence-inputs": "partial",
-        "workflow": "missing",
+        "workflow": "partial",
         "controls": "partial",
-        "worked-material": "missing",
+        "worked-material": "partial",
         "empirical-support": "not-assessed"
       },
       "dimension_basis": "Presence and review limits of the linked named question, package workflow and original worked material. Partial does not establish accounting correctness; missing means this question packet lacks that component."
@@ -3231,14 +3375,18 @@
         "q-compliance-assurance"
       ],
       "question": "Which criteria and population define special-purpose assurance?",
-      "scope": "Compliance and special-purpose assurance",
+      "scope": "A SOC 2/Trust Services Criteria system description or a federal-award compliance objective in a declared US engagement; these branches must not be blended.",
       "answer_status": "sourced-answer-bounded",
       "assessment_status": "partial",
       "source_ids": [
-        "src_0ww9s76"
+        "src_0ww9s76",
+        "src_1ky30oj",
+        "src_cfr200grants",
+        "src_0ukc3p8",
+        "src_gaogb25"
       ],
       "remaining_gaps": [
-        "Engagement-specific practitioner requirements remain."
+        "Engagement-specific practitioner requirements, award supplements, and intended-user restrictions remain."
       ],
       "professional_review": "not-performed",
       "empirical_support": "not-established",
@@ -3246,9 +3394,75 @@
         "scope": "partial",
         "accounting-question": "partial",
         "evidence-inputs": "partial",
-        "workflow": "missing",
+        "workflow": "partial",
         "controls": "partial",
-        "worked-material": "missing",
+        "worked-material": "partial",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Presence and review limits of the linked named question, package workflow and original worked material. Partial does not establish accounting correctness; missing means this question packet lacks that component."
+    },
+    {
+      "id": "rq-compliance-assurance-federal-award-criteria",
+      "record_id": "guide-q-compliance-assurance",
+      "pointer": "/data/research_questions/1",
+      "family_ids": [
+        "q-compliance-assurance"
+      ],
+      "question": "When does federal-award compliance work require a control and audit scope gate?",
+      "scope": "US federal-award recipients and subrecipients only when the award terms, entity role, period, applicable compliance requirements, and audit trigger are identified.",
+      "answer_status": "sourced-answer-bounded",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_cfr200grants",
+        "src_0ukc3p8",
+        "src_gaogb25",
+        "src_gaofam26"
+      ],
+      "remaining_gaps": [
+        "No federal-award file, program supplement, expenditure population, single-audit determination, or Yellow Book report was reviewed."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "partial",
+        "accounting-question": "partial",
+        "evidence-inputs": "partial",
+        "workflow": "partial",
+        "controls": "partial",
+        "worked-material": "partial",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Presence and review limits of the linked named question, package workflow and original worked material. Partial does not establish accounting correctness; missing means this question packet lacks that component."
+    },
+    {
+      "id": "rq-compliance-assurance-exception-scope",
+      "record_id": "guide-q-compliance-assurance",
+      "pointer": "/data/research_questions/2",
+      "family_ids": [
+        "q-compliance-assurance"
+      ],
+      "question": "How should an agent preserve a compliance exception without overstating its reporting effect?",
+      "scope": "A selected SOC or federal-award exception packet where the criteria, population, period, source reliability, and intended users are known; reporting effect remains a human determination.",
+      "answer_status": "sourced-answer-bounded",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_0ww9s76",
+        "src_1ky30oj",
+        "src_cfr200grants",
+        "src_0ukc3p8"
+      ],
+      "remaining_gaps": [
+        "No practitioner report, intended-user decision, or award-specific compliance conclusion was performed."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "partial",
+        "accounting-question": "partial",
+        "evidence-inputs": "partial",
+        "workflow": "partial",
+        "controls": "partial",
+        "worked-material": "partial",
         "empirical-support": "not-assessed"
       },
       "dimension_basis": "Presence and review limits of the linked named question, package workflow and original worked material. Partial does not establish accounting correctness; missing means this question packet lacks that component."
@@ -3256,19 +3470,23 @@
     {
       "id": "rq-compliance-assurance-evidence-exception",
       "record_id": "guide-q-compliance-assurance",
-      "pointer": "/data/research_questions/1",
+      "pointer": "/data/research_questions/3",
       "family_ids": [
         "q-compliance-assurance"
       ],
       "question": "How should exceptions affect a conclusion?",
-      "scope": "Compliance and special-purpose assurance",
-      "answer_status": "editorial-proposal",
+      "scope": "A deviation, exception, or scope limitation in a declared SOC 2/Trust Services Criteria or federal-award compliance engagement; no branch-specific conclusion is generated here.",
+      "answer_status": "sourced-answer-bounded",
       "assessment_status": "partial",
       "source_ids": [
-        "src_1ky30oj"
+        "src_1ky30oj",
+        "src_0ww9s76",
+        "src_cfr200grants",
+        "src_0ukc3p8",
+        "src_gaogb25"
       ],
       "remaining_gaps": [
-        "This corpus produces no assurance conclusion."
+        "This corpus produces no assurance conclusion, report modification, or federal compliance determination."
       ],
       "professional_review": "not-performed",
       "empirical_support": "not-established",
@@ -3276,9 +3494,9 @@
         "scope": "partial",
         "accounting-question": "partial",
         "evidence-inputs": "partial",
-        "workflow": "missing",
+        "workflow": "partial",
         "controls": "partial",
-        "worked-material": "missing",
+        "worked-material": "partial",
         "empirical-support": "not-assessed"
       },
       "dimension_basis": "Presence and review limits of the linked named question, package workflow and original worked material. Partial does not establish accounting correctness; missing means this question packet lacks that component."
@@ -3291,14 +3509,18 @@
         "q-professional-governance"
       ],
       "question": "Which professional duties apply to AI-assisted work?",
-      "scope": "Professional duties and engagement governance",
+      "scope": "AI-assisted work performed within a declared PCAOB registered-firm, AICPA CPA-firm/nonissuer, or Yellow Book engagement role; firm and engagement boundaries remain separate.",
       "answer_status": "sourced-answer-bounded",
       "assessment_status": "partial",
       "source_ids": [
-        "src_06tnkx2"
+        "src_1qpx6gc",
+        "src_1l42i21",
+        "src_1l45nk0",
+        "src_06tnkx2",
+        "src_0ukc3p8"
       ],
       "remaining_gaps": [
-        "Jurisdiction and engagement type determine controlling rules."
+        "Jurisdiction, firm status, engagement type, and current quality-system adoption determine controlling rules."
       ],
       "professional_review": "not-performed",
       "empirical_support": "not-established",
@@ -3306,9 +3528,78 @@
         "scope": "partial",
         "accounting-question": "partial",
         "evidence-inputs": "partial",
-        "workflow": "missing",
+        "workflow": "partial",
         "controls": "partial",
-        "worked-material": "missing",
+        "worked-material": "partial",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Presence and review limits of the linked named question, package workflow and original worked material. Partial does not establish accounting correctness; missing means this question packet lacks that component."
+    },
+    {
+      "id": "rq-professional-governance-human-boundary",
+      "record_id": "guide-q-professional-governance",
+      "pointer": "/data/research_questions/1",
+      "family_ids": [
+        "q-professional-governance"
+      ],
+      "question": "Which decisions must remain with a named human?",
+      "scope": "Human accountability at sensitive boundaries of AI-assisted PCAOB, AICPA, or Yellow Book assurance work; the agent is a research and workpaper-support component only.",
+      "answer_status": "sourced-answer-bounded",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_1qpx6gc",
+        "src_1l42i21",
+        "src_1l45nk0",
+        "src_06tnkx2",
+        "src_0xkvmih",
+        "src_0ukc3p8"
+      ],
+      "remaining_gaps": [
+        "No named professional, live firm quality system, or engagement signoff was evaluated."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "partial",
+        "accounting-question": "partial",
+        "evidence-inputs": "partial",
+        "workflow": "partial",
+        "controls": "partial",
+        "worked-material": "partial",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Presence and review limits of the linked named question, package workflow and original worked material. Partial does not establish accounting correctness; missing means this question packet lacks that component."
+    },
+    {
+      "id": "rq-professional-governance-context-routing",
+      "record_id": "guide-q-professional-governance",
+      "pointer": "/data/research_questions/2",
+      "family_ids": [
+        "q-professional-governance"
+      ],
+      "question": "How should an agent route the same evidence packet to the correct professional context?",
+      "scope": "Framework and firm-role routing for selected US assurance contexts; routing is a precondition for research retrieval, not a conclusion that an engagement applies.",
+      "answer_status": "sourced-answer-bounded",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_1rr48dm",
+        "src_06tnkx2",
+        "src_0xkvmih",
+        "src_0ukc3p8",
+        "src_cfr200grants"
+      ],
+      "remaining_gaps": [
+        "No live engagement intake or firm acceptance process was reviewed."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "partial",
+        "accounting-question": "partial",
+        "evidence-inputs": "partial",
+        "workflow": "partial",
+        "controls": "partial",
+        "worked-material": "partial",
         "empirical-support": "not-assessed"
       },
       "dimension_basis": "Presence and review limits of the linked named question, package workflow and original worked material. Partial does not establish accounting correctness; missing means this question packet lacks that component."
@@ -3316,19 +3607,23 @@
     {
       "id": "rq-professional-governance-quality-system",
       "record_id": "guide-q-professional-governance",
-      "pointer": "/data/research_questions/1",
+      "pointer": "/data/research_questions/3",
       "family_ids": [
         "q-professional-governance"
       ],
       "question": "How should AI fit within quality management?",
-      "scope": "Professional duties and engagement governance",
+      "scope": "AI tool governance within a declared PCAOB registered-firm or AICPA CPA-firm quality-management system, with Yellow Book organization requirements routed separately where applicable.",
       "answer_status": "sourced-answer-bounded",
       "assessment_status": "partial",
       "source_ids": [
-        "src_0xkvmih"
+        "src_06tnkx2",
+        "src_0xkvmih",
+        "src_1l42i21",
+        "src_1l45nk0",
+        "src_0ukc3p8"
       ],
       "remaining_gaps": [
-        "Adoption status requires current verification."
+        "Firm adoption, implementation, monitoring results, and engagement-level quality evidence require current verification."
       ],
       "professional_review": "not-performed",
       "empirical_support": "not-established",
@@ -3336,9 +3631,9 @@
         "scope": "partial",
         "accounting-question": "partial",
         "evidence-inputs": "partial",
-        "workflow": "missing",
+        "workflow": "partial",
         "controls": "partial",
-        "worked-material": "missing",
+        "worked-material": "partial",
         "empirical-support": "not-assessed"
       },
       "dimension_basis": "Presence and review limits of the linked named question, package workflow and original worked material. Partial does not establish accounting correctness; missing means this question packet lacks that component."
@@ -5342,8 +5637,7 @@
         "worked-material": "partial",
         "empirical-support": "not-assessed"
       },
-      "dimension_basis": "Presence and review limits of the linked named question, package workflow and original worked material. Partial does not establish accounting correctness; missing means this question packet lacks that component.",
-      "reviewed_at": "2026-09-14"
+      "dimension_basis": "Presence and review limits of the linked named question, package workflow and original worked material. Partial does not establish accounting correctness; missing means this question packet lacks that component."
     },
     {
       "id": "rq-construction-tax-duration",
@@ -5374,8 +5668,7 @@
         "worked-material": "partial",
         "empirical-support": "not-assessed"
       },
-      "dimension_basis": "Presence and review limits of the linked named question, package workflow and original worked material. Partial does not establish accounting correctness; missing means this question packet lacks that component.",
-      "reviewed_at": "2026-09-14"
+      "dimension_basis": "Presence and review limits of the linked named question, package workflow and original worked material. Partial does not establish accounting correctness; missing means this question packet lacks that component."
     },
     {
       "id": "rq-construction-tax-source-conflict",
@@ -5409,8 +5702,7 @@
         "worked-material": "partial",
         "empirical-support": "not-assessed"
       },
-      "dimension_basis": "Presence and review limits of the linked named question, package workflow and original worked material. Partial does not establish accounting correctness; missing means this question packet lacks that component.",
-      "reviewed_at": "2026-09-14"
+      "dimension_basis": "Presence and review limits of the linked named question, package workflow and original worked material. Partial does not establish accounting correctness; missing means this question packet lacks that component."
     },
     {
       "id": "rq-construction-connected-facts",
@@ -5446,14 +5738,13 @@
       "dimensions": {
         "scope": "partial",
         "accounting-question": "partial",
-        "evidence-inputs": "present",
+        "evidence-inputs": "partial",
         "workflow": "partial",
-        "controls": "present",
-        "worked-material": "present",
+        "controls": "partial",
+        "worked-material": "partial",
         "empirical-support": "not-assessed"
       },
-      "dimension_basis": "Original numerical branches and explicit input contracts are present; actual source populations, current consolidated authority and professional judgment remain incomplete.",
-      "reviewed_at": "2026-09-14"
+      "dimension_basis": "Presence and review limits of the linked named question, package workflow and original worked material. Partial does not establish accounting correctness; missing means this question packet lacks that component."
     },
     {
       "id": "rq-construction-connected-population",
@@ -5489,14 +5780,13 @@
       "dimensions": {
         "scope": "partial",
         "accounting-question": "partial",
-        "evidence-inputs": "present",
+        "evidence-inputs": "partial",
         "workflow": "partial",
-        "controls": "present",
-        "worked-material": "present",
+        "controls": "partial",
+        "worked-material": "partial",
         "empirical-support": "not-assessed"
       },
-      "dimension_basis": "Original numerical branches and explicit input contracts are present; actual source populations, current consolidated authority and professional judgment remain incomplete.",
-      "reviewed_at": "2026-09-14"
+      "dimension_basis": "Presence and review limits of the linked named question, package workflow and original worked material. Partial does not establish accounting correctness; missing means this question packet lacks that component."
     },
     {
       "id": "rq-construction-connected-progress",
@@ -5531,14 +5821,13 @@
       "dimensions": {
         "scope": "partial",
         "accounting-question": "partial",
-        "evidence-inputs": "present",
+        "evidence-inputs": "partial",
         "workflow": "partial",
-        "controls": "present",
-        "worked-material": "present",
+        "controls": "partial",
+        "worked-material": "partial",
         "empirical-support": "not-assessed"
       },
-      "dimension_basis": "Original numerical branches and explicit input contracts are present; actual source populations, current consolidated authority and professional judgment remain incomplete.",
-      "reviewed_at": "2026-09-14"
+      "dimension_basis": "Presence and review limits of the linked named question, package workflow and original worked material. Partial does not establish accounting correctness; missing means this question packet lacks that component."
     },
     {
       "id": "rq-construction-connected-exceptions",
@@ -5572,14 +5861,13 @@
       "dimensions": {
         "scope": "partial",
         "accounting-question": "partial",
-        "evidence-inputs": "present",
+        "evidence-inputs": "partial",
         "workflow": "partial",
-        "controls": "present",
-        "worked-material": "present",
+        "controls": "partial",
+        "worked-material": "partial",
         "empirical-support": "not-assessed"
       },
-      "dimension_basis": "Original numerical branches and explicit input contracts are present; actual source populations, current consolidated authority and professional judgment remain incomplete.",
-      "reviewed_at": "2026-09-14"
+      "dimension_basis": "Presence and review limits of the linked named question, package workflow and original worked material. Partial does not establish accounting correctness; missing means this question packet lacks that component."
     }
   ]
 }

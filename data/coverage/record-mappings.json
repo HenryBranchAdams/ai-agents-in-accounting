@@ -4,9 +4,9 @@
   "topology_version": "2026-09-11.1",
   "corpus_version": "2026-09-14.3",
   "generated_at": "2026-09-14",
-  "corpus_sha256": "8985453b963c3e3480e7d92b5d2ee993fd7b1477f68cebb15f4b5b4d57a9ce1b",
+  "corpus_sha256": "02f08af15b907c436633c96b026b6dc07d4f7477035051543908249a4c443024",
   "rules_sha256": "550b2bb485399af996bac6ed34542d7a91170d4b31b5e5026e0e9c2c32068b9d",
-  "overrides_sha256": "58c260bd73dc007b736af147ccaf83286405f88dacaab376d969b6bf60ed4cb4",
+  "overrides_sha256": "be68c19c93169100624036f85df0a76bd03a4953e430c05b67b19021fca005ed",
   "method": "Deterministic title/topic associations, conservative industry crosswalk, and explicit editorial additions. All initial links are candidates; source review status is unchanged.",
   "mappings": [
     {
@@ -4503,6 +4503,78 @@
       "industry_scope": "shared-context",
       "industry_mappings": [],
       "note": "Reviewed association with the original editorial content. This does not validate accounting treatment or the adequacy of its external references."
+    },
+    {
+      "record_id": "example-assurance-evidence-packet",
+      "question_mappings": [
+        {
+          "question_id": "q-audit-assertions",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original synthetic assurance packet links the four named assurance families for discovery and counterexample testing. It does not establish industry adequacy, professional review, operating effectiveness, or an assurance conclusion.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-17: Reviewed the synthetic packet's explicit context, arithmetic, exception, control-state, rights, and human-boundary fields; association remains shared-context only.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-compliance-assurance",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original synthetic assurance packet links the four named assurance families for discovery and counterexample testing. It does not establish industry adequacy, professional review, operating effectiveness, or an assurance conclusion.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-17: Reviewed the synthetic packet's explicit context, arithmetic, exception, control-state, rights, and human-boundary fields; association remains shared-context only.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-controls-fraud",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original synthetic assurance packet links the four named assurance families for discovery and counterexample testing. It does not establish industry adequacy, professional review, operating effectiveness, or an assurance conclusion.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-17: Reviewed the synthetic packet's explicit context, arithmetic, exception, control-state, rights, and human-boundary fields; association remains shared-context only.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-professional-governance",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original synthetic assurance packet links the four named assurance families for discovery and counterexample testing. It does not establish industry adequacy, professional review, operating effectiveness, or an assurance conclusion.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-17: Reviewed the synthetic packet's explicit context, arithmetic, exception, control-state, rights, and human-boundary fields; association remains shared-context only.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "Reviewed the synthetic packet's explicit context, arithmetic, exception, control-state, rights, and human-boundary fields; association remains shared-context only."
     },
     {
       "record_id": "example-bank-reconciliation",
@@ -20147,13 +20219,18 @@
           "status": "reviewed",
           "basis": [
             {
-              "field": "/data/source_review/mapping_rationale",
-              "matched": "Mapped specifically to q-audit-assertions because the inspected source addresses modernized evidence concepts, including information sources, relevance, reliability, and automated tools and techniques. The source does not provide evidence for a narrower NAICS-US2022 industry assignment, so mapping remains shared-context.",
+              "field": "/title",
+              "matched": "Audit Evidence",
+              "rule": "title:audit-assertions"
+            },
+            {
+              "field": "/data",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
               "rule": "editorial-association"
             },
             {
-              "field": "/data/source_review/mapping_rationale",
-              "matched": "2026-09-11: Mapped specifically to q-audit-assertions because the inspected source addresses modernized evidence concepts, including information sources, relevance, reliability, and automated tools and techniques. The source does not provide evidence for a narrower NAICS-US2022 industry assignment, so mapping remains shared-context. Association review scope: substantive-excerpt; supported-scope. This does not establish accounting adequacy.",
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
               "rule": "editorial-review"
             }
           ]
@@ -20161,7 +20238,7 @@
       ],
       "industry_scope": "shared-context",
       "industry_mappings": [],
-      "note": "Mapped specifically to q-audit-assertions because the inspected source addresses modernized evidence concepts, including information sources, relevance, reliability, and automated tools and techniques. The source does not provide evidence for a narrower NAICS-US2022 industry assignment, so mapping remains shared-context. Association review scope: substantive-excerpt; supported-scope. This does not establish accounting adequacy."
+      "note": "Question-level citation association reviewed; no industry descendant or sufficiency credit."
     },
     {
       "record_id": "src_04tonzv",
@@ -20278,13 +20355,13 @@
           "status": "reviewed",
           "basis": [
             {
-              "field": "/data/source_review/mapping_rationale",
-              "matched": "Mapped specifically to q-audit-assertions, q-controls-fraud because the inspected source addresses requires understanding it, information processing, and controls that form the risk-assessment base for agent-enabled systems. The source does not provide evidence for a narrower NAICS-US2022 industry assignment, so mapping remains shared-context.",
+              "field": "/data",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
               "rule": "editorial-association"
             },
             {
-              "field": "/data/source_review/mapping_rationale",
-              "matched": "2026-09-11: Mapped specifically to q-audit-assertions, q-controls-fraud because the inspected source addresses requires understanding it, information processing, and controls that form the risk-assessment base for agent-enabled systems. The source does not provide evidence for a narrower NAICS-US2022 industry assignment, so mapping remains shared-context. Association review scope: substantive-excerpt; supported-scope. This does not establish accounting adequacy.",
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
               "rule": "editorial-review"
             }
           ]
@@ -20294,13 +20371,13 @@
           "status": "reviewed",
           "basis": [
             {
-              "field": "/data/source_review/mapping_rationale",
-              "matched": "Mapped specifically to q-audit-assertions, q-controls-fraud because the inspected source addresses requires understanding it, information processing, and controls that form the risk-assessment base for agent-enabled systems. The source does not provide evidence for a narrower NAICS-US2022 industry assignment, so mapping remains shared-context.",
+              "field": "/data",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
               "rule": "editorial-association"
             },
             {
-              "field": "/data/source_review/mapping_rationale",
-              "matched": "2026-09-11: Mapped specifically to q-audit-assertions, q-controls-fraud because the inspected source addresses requires understanding it, information processing, and controls that form the risk-assessment base for agent-enabled systems. The source does not provide evidence for a narrower NAICS-US2022 industry assignment, so mapping remains shared-context. Association review scope: substantive-excerpt; supported-scope. This does not establish accounting adequacy.",
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
               "rule": "editorial-review"
             }
           ]
@@ -20308,7 +20385,7 @@
       ],
       "industry_scope": "shared-context",
       "industry_mappings": [],
-      "note": "Mapped specifically to q-audit-assertions, q-controls-fraud because the inspected source addresses requires understanding it, information processing, and controls that form the risk-assessment base for agent-enabled systems. The source does not provide evidence for a narrower NAICS-US2022 industry assignment, so mapping remains shared-context. Association review scope: substantive-excerpt; supported-scope. This does not establish accounting adequacy."
+      "note": "Question-level citation association reviewed; no industry descendant or sufficiency credit."
     },
     {
       "record_id": "src_05o8995",
@@ -20781,13 +20858,18 @@
           "status": "reviewed",
           "basis": [
             {
-              "field": "/data/source_review/mapping_rationale",
-              "matched": "Mapped specifically to q-controls-fraud because the inspected source addresses core requirements for evaluating whether an agent workflow introduces, changes, or depends on key icfr controls. The source does not provide evidence for a narrower NAICS-US2022 industry assignment, so mapping remains shared-context.",
+              "field": "/title",
+              "matched": "Internal Control",
+              "rule": "title:controls-fraud"
+            },
+            {
+              "field": "/data",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
               "rule": "editorial-association"
             },
             {
-              "field": "/data/source_review/mapping_rationale",
-              "matched": "2026-09-11: Mapped specifically to q-controls-fraud because the inspected source addresses core requirements for evaluating whether an agent workflow introduces, changes, or depends on key icfr controls. The source does not provide evidence for a narrower NAICS-US2022 industry assignment, so mapping remains shared-context. Association review scope: substantive-excerpt; supported-scope. This does not establish accounting adequacy.",
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
               "rule": "editorial-review"
             }
           ]
@@ -20795,7 +20877,7 @@
       ],
       "industry_scope": "shared-context",
       "industry_mappings": [],
-      "note": "Mapped specifically to q-controls-fraud because the inspected source addresses core requirements for evaluating whether an agent workflow introduces, changes, or depends on key icfr controls. The source does not provide evidence for a narrower NAICS-US2022 industry assignment, so mapping remains shared-context. Association review scope: substantive-excerpt; supported-scope. This does not establish accounting adequacy."
+      "note": "Question-level citation association reviewed; no industry descendant or sufficiency credit."
     },
     {
       "record_id": "src_07fas9t",
@@ -22321,13 +22403,13 @@
           "status": "reviewed",
           "basis": [
             {
-              "field": "/data/source_review/mapping_rationale",
-              "matched": "The source addresses as 2301, the auditor's responses to the risks of material misstatement across accounting, audit, finance, tax, or agent governance contexts without evidence for a single NAICS-US2022 industry; the inherited empty industry mapping is retained.",
+              "field": "/data",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
               "rule": "editorial-association"
             },
             {
-              "field": "/data/source_review/mapping_rationale",
-              "matched": "2026-09-11: The source addresses as 2301, the auditor's responses to the risks of material misstatement across accounting, audit, finance, tax, or agent governance contexts without evidence for a single NAICS-US2022 industry; the inherited empty industry mapping is retained. Association review scope: abstract-or-landing; supported-scope. This does not establish accounting adequacy.",
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
               "rule": "editorial-review"
             }
           ]
@@ -22337,13 +22419,13 @@
           "status": "reviewed",
           "basis": [
             {
-              "field": "/data/source_review/mapping_rationale",
-              "matched": "The source addresses as 2301, the auditor's responses to the risks of material misstatement across accounting, audit, finance, tax, or agent governance contexts without evidence for a single NAICS-US2022 industry; the inherited empty industry mapping is retained.",
+              "field": "/data",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
               "rule": "editorial-association"
             },
             {
-              "field": "/data/source_review/mapping_rationale",
-              "matched": "2026-09-11: The source addresses as 2301, the auditor's responses to the risks of material misstatement across accounting, audit, finance, tax, or agent governance contexts without evidence for a single NAICS-US2022 industry; the inherited empty industry mapping is retained. Association review scope: abstract-or-landing; supported-scope. This does not establish accounting adequacy.",
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
               "rule": "editorial-review"
             }
           ]
@@ -22353,13 +22435,13 @@
           "status": "reviewed",
           "basis": [
             {
-              "field": "/data/source_review/mapping_rationale",
-              "matched": "The source addresses as 2301, the auditor's responses to the risks of material misstatement across accounting, audit, finance, tax, or agent governance contexts without evidence for a single NAICS-US2022 industry; the inherited empty industry mapping is retained.",
+              "field": "/data",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
               "rule": "editorial-association"
             },
             {
-              "field": "/data/source_review/mapping_rationale",
-              "matched": "2026-09-11: The source addresses as 2301, the auditor's responses to the risks of material misstatement across accounting, audit, finance, tax, or agent governance contexts without evidence for a single NAICS-US2022 industry; the inherited empty industry mapping is retained. Association review scope: abstract-or-landing; supported-scope. This does not establish accounting adequacy.",
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
               "rule": "editorial-review"
             }
           ]
@@ -22367,7 +22449,7 @@
       ],
       "industry_scope": "shared-context",
       "industry_mappings": [],
-      "note": "The source addresses as 2301, the auditor's responses to the risks of material misstatement across accounting, audit, finance, tax, or agent governance contexts without evidence for a single NAICS-US2022 industry; the inherited empty industry mapping is retained. Association review scope: abstract-or-landing; supported-scope. This does not establish accounting adequacy."
+      "note": "Question-level citation association reviewed; no industry descendant or sufficiency credit."
     },
     {
       "record_id": "src_0h0x1hw",
@@ -24511,13 +24593,13 @@
           "status": "reviewed",
           "basis": [
             {
-              "field": "/data/source_review/mapping_rationale",
-              "matched": "This source is relevant to government auditing standards, 2024 revision within United States; government audits; the reviewed material does not establish an industry-specific accounting treatment, so it remains shared context.",
+              "field": "/data",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
               "rule": "editorial-association"
             },
             {
-              "field": "/data/source_review/mapping_rationale",
-              "matched": "2026-09-11: This source is relevant to government auditing standards, 2024 revision within United States; government audits; the reviewed material does not establish an industry-specific accounting treatment, so it remains shared context. Association review scope: abstract-or-landing; supported-scope. This does not establish accounting adequacy.",
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
               "rule": "editorial-review"
             }
           ]
@@ -24527,13 +24609,29 @@
           "status": "reviewed",
           "basis": [
             {
-              "field": "/data/source_review/mapping_rationale",
-              "matched": "This source is relevant to government auditing standards, 2024 revision within United States; government audits; the reviewed material does not establish an industry-specific accounting treatment, so it remains shared context.",
+              "field": "/data",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
               "rule": "editorial-association"
             },
             {
-              "field": "/data/source_review/mapping_rationale",
-              "matched": "2026-09-11: This source is relevant to government auditing standards, 2024 revision within United States; government audits; the reviewed material does not establish an industry-specific accounting treatment, so it remains shared context. Association review scope: abstract-or-landing; supported-scope. This does not establish accounting adequacy.",
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-professional-governance",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
               "rule": "editorial-review"
             }
           ]
@@ -24541,7 +24639,7 @@
       ],
       "industry_scope": "shared-context",
       "industry_mappings": [],
-      "note": "This source is relevant to government auditing standards, 2024 revision within United States; government audits; the reviewed material does not establish an industry-specific accounting treatment, so it remains shared context. Association review scope: abstract-or-landing; supported-scope. This does not establish accounting adequacy."
+      "note": "Question-level citation association reviewed; no industry descendant or sufficiency credit."
     },
     {
       "record_id": "src_0v7x0m1",
@@ -24595,6 +24693,22 @@
               "matched": "Audit Evidence",
               "rule": "title:audit-assertions"
             },
+            {
+              "field": "/data",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-controls-fraud",
+          "status": "reviewed",
+          "basis": [
             {
               "field": "/data",
               "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
@@ -28609,17 +28723,67 @@
     },
     {
       "record_id": "src_1l42i21",
-      "question_mappings": [],
+      "question_mappings": [
+        {
+          "question_id": "q-professional-governance",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
       "industry_scope": "shared-context",
       "industry_mappings": [],
-      "note": "The reviewed source concerns as 1201, supervision of the audit engagement within United States; public-company audits; no source-specific industry accounting treatment was established, so it remains shared context. Association review scope: substantive-excerpt; supported-scope. This does not establish accounting adequacy."
+      "note": "Question-level citation association reviewed; no industry descendant or sufficiency credit."
     },
     {
       "record_id": "src_1l45nk0",
-      "question_mappings": [],
+      "question_mappings": [
+        {
+          "question_id": "q-audit-assertions",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-professional-governance",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
       "industry_scope": "shared-context",
       "industry_mappings": [],
-      "note": "The reviewed source concerns as 1215, audit documentation within United States; public-company audits; no source-specific industry accounting treatment was established, so it remains shared context. Association review scope: substantive-excerpt; supported-scope. This does not establish accounting adequacy."
+      "note": "Question-level citation association reviewed; no industry descendant or sufficiency credit."
     },
     {
       "record_id": "src_1l9n7s6",
@@ -29390,13 +29554,29 @@
           "status": "reviewed",
           "basis": [
             {
-              "field": "/data/source_review/mapping_rationale",
-              "matched": "The source concerns as 1000, general responsibilities of the auditor in conducting an audit across accounting, audit, finance, regulation, or agent infrastructure; no single NAICS-US2022 industry is evidenced, so no specific industry code is assigned.",
+              "field": "/data",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
               "rule": "editorial-association"
             },
             {
-              "field": "/data/source_review/mapping_rationale",
-              "matched": "2026-09-11: The source concerns as 1000, general responsibilities of the auditor in conducting an audit across accounting, audit, finance, regulation, or agent infrastructure; no single NAICS-US2022 industry is evidenced, so no specific industry code is assigned. Association review scope: substantive-excerpt; supported-scope. This does not establish accounting adequacy.",
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-professional-governance",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
               "rule": "editorial-review"
             }
           ]
@@ -29404,7 +29584,7 @@
       ],
       "industry_scope": "shared-context",
       "industry_mappings": [],
-      "note": "The source concerns as 1000, general responsibilities of the auditor in conducting an audit across accounting, audit, finance, regulation, or agent infrastructure; no single NAICS-US2022 industry is evidenced, so no specific industry code is assigned. Association review scope: substantive-excerpt; supported-scope. This does not establish accounting adequacy."
+      "note": "Question-level citation association reviewed; no industry descendant or sufficiency credit."
     },
     {
       "record_id": "src_1rkbq2u",
@@ -29438,13 +29618,13 @@
           "status": "reviewed",
           "basis": [
             {
-              "field": "/data/source_review/mapping_rationale",
-              "matched": "The source concerns statements on auditing standards: currently effective across accounting, audit, finance, regulation, or agent infrastructure; no single NAICS-US2022 industry is evidenced, so no specific industry code is assigned.",
+              "field": "/data",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
               "rule": "editorial-association"
             },
             {
-              "field": "/data/source_review/mapping_rationale",
-              "matched": "2026-09-11: The source concerns statements on auditing standards: currently effective across accounting, audit, finance, regulation, or agent infrastructure; no single NAICS-US2022 industry is evidenced, so no specific industry code is assigned. Association review scope: substantive-excerpt; supported-scope. This does not establish accounting adequacy.",
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
               "rule": "editorial-review"
             }
           ]
@@ -29454,13 +29634,29 @@
           "status": "reviewed",
           "basis": [
             {
-              "field": "/data/source_review/mapping_rationale",
-              "matched": "The source concerns statements on auditing standards: currently effective across accounting, audit, finance, regulation, or agent infrastructure; no single NAICS-US2022 industry is evidenced, so no specific industry code is assigned.",
+              "field": "/data",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
               "rule": "editorial-association"
             },
             {
-              "field": "/data/source_review/mapping_rationale",
-              "matched": "2026-09-11: The source concerns statements on auditing standards: currently effective across accounting, audit, finance, regulation, or agent infrastructure; no single NAICS-US2022 industry is evidenced, so no specific industry code is assigned. Association review scope: substantive-excerpt; supported-scope. This does not establish accounting adequacy.",
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-professional-governance",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
               "rule": "editorial-review"
             }
           ]
@@ -29468,7 +29664,7 @@
       ],
       "industry_scope": "shared-context",
       "industry_mappings": [],
-      "note": "The source concerns statements on auditing standards: currently effective across accounting, audit, finance, regulation, or agent infrastructure; no single NAICS-US2022 industry is evidenced, so no specific industry code is assigned. Association review scope: substantive-excerpt; supported-scope. This does not establish accounting adequacy."
+      "note": "Question-level citation association reviewed; no industry descendant or sufficiency credit."
     },
     {
       "record_id": "src_1rrurlr",
@@ -31836,13 +32032,29 @@
           "status": "reviewed",
           "basis": [
             {
-              "field": "/data/source_review/mapping_rationale",
-              "matched": "The source concerns 2 cfr part 200, uniform administrative requirements, cost principles, and audit requirements for federal awards across accounting, audit, finance, regulation, or agent infrastructure; no single NAICS-US2022 industry is evidenced, so no specific industry code is assigned.",
+              "field": "/data",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
               "rule": "editorial-association"
             },
             {
-              "field": "/data/source_review/mapping_rationale",
-              "matched": "2026-09-11: The source concerns 2 cfr part 200, uniform administrative requirements, cost principles, and audit requirements for federal awards across accounting, audit, finance, regulation, or agent infrastructure; no single NAICS-US2022 industry is evidenced, so no specific industry code is assigned. Association review scope: substantive-excerpt; supported-scope. This does not establish accounting adequacy.",
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-compliance-assurance",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
               "rule": "editorial-review"
             }
           ]
@@ -31852,13 +32064,51 @@
           "status": "reviewed",
           "basis": [
             {
-              "field": "/data/source_review/mapping_rationale",
-              "matched": "The source concerns 2 cfr part 200, uniform administrative requirements, cost principles, and audit requirements for federal awards across accounting, audit, finance, regulation, or agent infrastructure; no single NAICS-US2022 industry is evidenced, so no specific industry code is assigned.",
+              "field": "/data",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
               "rule": "editorial-association"
             },
             {
-              "field": "/data/source_review/mapping_rationale",
-              "matched": "2026-09-11: The source concerns 2 cfr part 200, uniform administrative requirements, cost principles, and audit requirements for federal awards across accounting, audit, finance, regulation, or agent infrastructure; no single NAICS-US2022 industry is evidenced, so no specific industry code is assigned. Association review scope: substantive-excerpt; supported-scope. This does not establish accounting adequacy.",
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-cost-allocation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Cost Principles",
+              "rule": "title:cost-allocation"
+            }
+          ]
+        },
+        {
+          "question_id": "q-grants-contributions",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Federal Awards",
+              "rule": "title:grants-contributions"
+            }
+          ]
+        },
+        {
+          "question_id": "q-professional-governance",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
               "rule": "editorial-review"
             }
           ]
@@ -31868,13 +32118,13 @@
           "status": "reviewed",
           "basis": [
             {
-              "field": "/data/source_review/mapping_rationale",
-              "matched": "The source concerns 2 cfr part 200, uniform administrative requirements, cost principles, and audit requirements for federal awards across accounting, audit, finance, regulation, or agent infrastructure; no single NAICS-US2022 industry is evidenced, so no specific industry code is assigned.",
+              "field": "/data",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
               "rule": "editorial-association"
             },
             {
-              "field": "/data/source_review/mapping_rationale",
-              "matched": "2026-09-11: The source concerns 2 cfr part 200, uniform administrative requirements, cost principles, and audit requirements for federal awards across accounting, audit, finance, regulation, or agent infrastructure; no single NAICS-US2022 industry is evidenced, so no specific industry code is assigned. Association review scope: substantive-excerpt; supported-scope. This does not establish accounting adequacy.",
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
               "rule": "editorial-review"
             }
           ]
@@ -31882,7 +32132,7 @@
       ],
       "industry_scope": "shared-context",
       "industry_mappings": [],
-      "note": "The source concerns 2 cfr part 200, uniform administrative requirements, cost principles, and audit requirements for federal awards across accounting, audit, finance, regulation, or agent infrastructure; no single NAICS-US2022 industry is evidenced, so no specific industry code is assigned. Association review scope: substantive-excerpt; supported-scope. This does not establish accounting adequacy."
+      "note": "Question-level citation association reviewed; no industry descendant or sufficiency credit."
     },
     {
       "record_id": "src_cms_hcris_cost_reports_2026",
@@ -32240,6 +32490,86 @@
           ]
         },
         {
+          "question_id": "q-data-lineage",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-estimates",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-payroll",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-project-wip",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-purchasing-payables",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
           "question_id": "q-receivables-credit",
           "status": "candidate",
           "basis": [
@@ -32252,31 +32582,29 @@
         },
         {
           "question_id": "q-revenue",
-          "status": "candidate",
+          "status": "reviewed",
           "basis": [
             {
               "field": "/title",
               "matched": "billing",
               "rule": "title:revenue"
-            }
-          ]
-        }
-      ],
-      "industry_scope": "specific",
-      "industry_mappings": [
-        {
-          "industry_code": "23",
-          "status": "candidate",
-          "basis": [
+            },
             {
-              "field": "/industries/0",
-              "matched": "construction-real-estate",
-              "rule": "legacy-tag-crosswalk"
+              "field": "/data",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "rule": "editorial-review"
             }
           ]
         }
       ],
-      "note": "Candidate association with this industry scope; applicability and depth are not inferred."
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "Question-level citation association reviewed; no industry descendant or sufficiency credit."
     },
     {
       "record_id": "src_construction_california_certified_payroll",
@@ -32976,6 +33304,22 @@
       "record_id": "src_construction_fasb_retainage_staff",
       "question_mappings": [
         {
+          "question_id": "q-cash-settlement",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
           "question_id": "q-controls-fraud",
           "status": "candidate",
           "basis": [
@@ -32987,54 +33331,158 @@
           ]
         },
         {
-          "question_id": "q-project-wip",
-          "status": "candidate",
+          "question_id": "q-data-lineage",
+          "status": "reviewed",
           "basis": [
             {
               "field": "/data",
-              "matched": "Selected construction evidence closure; association only, scope and rights remain in source record.",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
               "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-estimates",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-payroll",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-policy-changes-errors",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-project-wip",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-provisions",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-purchasing-payables",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "rule": "editorial-review"
             }
           ]
         },
         {
           "question_id": "q-receivables-credit",
-          "status": "candidate",
+          "status": "reviewed",
           "basis": [
             {
               "field": "/title",
               "matched": "retainage",
               "rule": "title:receivables-credit"
+            },
+            {
+              "field": "/data",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "rule": "editorial-review"
             }
           ]
         },
         {
           "question_id": "q-revenue",
-          "status": "candidate",
+          "status": "reviewed",
           "basis": [
             {
               "field": "/data",
-              "matched": "Selected construction evidence closure; association only, scope and rights remain in source record.",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
               "rule": "editorial-association"
-            }
-          ]
-        }
-      ],
-      "industry_scope": "specific",
-      "industry_mappings": [
-        {
-          "industry_code": "23",
-          "status": "candidate",
-          "basis": [
+            },
             {
-              "field": "/industries/0",
-              "matched": "construction-real-estate",
-              "rule": "legacy-tag-crosswalk"
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "rule": "editorial-review"
             }
           ]
         }
       ],
-      "note": "Candidate association with this industry scope; applicability and depth are not inferred."
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "Question-level citation association reviewed; no industry descendant or sufficiency credit."
     },
     {
       "record_id": "src_construction_fasb_revenue_qa",
@@ -33090,6 +33538,22 @@
       "record_id": "src_construction_gao_25107258",
       "question_mappings": [
         {
+          "question_id": "q-cash-settlement",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
           "question_id": "q-controls-fraud",
           "status": "candidate",
           "basis": [
@@ -33112,8 +33576,24 @@
           ]
         },
         {
+          "question_id": "q-data-lineage",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
           "question_id": "q-estimates",
-          "status": "candidate",
+          "status": "reviewed",
           "basis": [
             {
               "field": "/title",
@@ -33122,38 +33602,132 @@
             },
             {
               "field": "/data",
-              "matched": "Selected construction evidence closure; association only, scope and rights remain in source record.",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
               "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-payroll",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-policy-changes-errors",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "rule": "editorial-review"
             }
           ]
         },
         {
           "question_id": "q-project-wip",
-          "status": "candidate",
+          "status": "reviewed",
           "basis": [
             {
               "field": "/data",
-              "matched": "Selected construction evidence closure; association only, scope and rights remain in source record.",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
               "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "rule": "editorial-review"
             }
           ]
-        }
-      ],
-      "industry_scope": "specific",
-      "industry_mappings": [
+        },
         {
-          "industry_code": "23",
-          "status": "candidate",
+          "question_id": "q-provisions",
+          "status": "reviewed",
           "basis": [
             {
-              "field": "/industries/0",
-              "matched": "construction-real-estate",
-              "rule": "legacy-tag-crosswalk"
+              "field": "/data",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-purchasing-payables",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-receivables-credit",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-revenue",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "rule": "editorial-review"
             }
           ]
         }
       ],
-      "note": "Candidate association with this industry scope; applicability and depth are not inferred."
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "Question-level citation association reviewed; no industry descendant or sufficiency credit."
     },
     {
       "record_id": "src_construction_gsa184_2025",
@@ -35827,13 +36401,29 @@
           "status": "reviewed",
           "basis": [
             {
-              "field": "/data/source_review/mapping_rationale",
-              "matched": "Mapped to q-audit-assertions because GAO’s manual applies to US federal financial audits and government support. The source-specific subject is federal financial-audit methodology and current references. do not generalize its procedures or authority to private entities without an applicable basis.",
+              "field": "/data",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
               "rule": "editorial-association"
             },
             {
-              "field": "/data/source_review/mapping_rationale",
-              "matched": "2026-09-11: Mapped to q-audit-assertions because GAO’s manual applies to US federal financial audits and government support. The source-specific subject is federal financial-audit methodology and current references. do not generalize its procedures or authority to private entities without an applicable basis. Association review scope: substantive-excerpt; supported-scope. This does not establish accounting adequacy.",
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-compliance-assurance",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
               "rule": "editorial-review"
             }
           ]
@@ -35846,35 +36436,61 @@
           "status": "reviewed",
           "basis": [
             {
-              "field": "/data/source_review/mapping_rationale",
-              "matched": "Mapped to q-audit-assertions because GAO’s manual applies to US federal financial audits and government support. The source-specific subject is federal financial-audit methodology and current references. do not generalize its procedures or authority to private entities without an applicable basis.",
+              "field": "/data",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
               "rule": "editorial-association"
             },
             {
-              "field": "/data/source_review/mapping_rationale",
-              "matched": "2026-09-11: Mapped to q-audit-assertions because GAO’s manual applies to US federal financial audits and government support. The source-specific subject is federal financial-audit methodology and current references. do not generalize its procedures or authority to private entities without an applicable basis. Association review scope: substantive-excerpt; supported-scope. This does not establish accounting adequacy.",
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
               "rule": "editorial-review"
             }
           ]
         }
       ],
-      "note": "Mapped to q-audit-assertions because GAO’s manual applies to US federal financial audits and government support. The source-specific subject is federal financial-audit methodology and current references. do not generalize its procedures or authority to private entities without an applicable basis. Association review scope: substantive-excerpt; supported-scope. This does not establish accounting adequacy."
+      "note": "Question-level citation association reviewed; no industry descendant or sufficiency credit."
     },
     {
       "record_id": "src_gaogb25",
       "question_mappings": [
         {
+          "question_id": "q-compliance-assurance",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
           "question_id": "q-controls-fraud",
           "status": "reviewed",
           "basis": [
             {
-              "field": "/data/source_review/mapping_rationale",
-              "matched": "Mapped to q-controls-fraud because The Green Book is the current federal-government internal-control standard. The source-specific subject is current federal internal-control standard covering authority, risk, control activities, information, monitoring, fraud, and remediation. outside federal scope, use it as guidance rather than binding law.",
+              "field": "/title",
+              "matched": "Internal Control",
+              "rule": "title:controls-fraud"
+            },
+            {
+              "field": "/topics/0",
+              "matched": "Controls and governance",
+              "rule": "topic-association"
+            },
+            {
+              "field": "/data",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
               "rule": "editorial-association"
             },
             {
-              "field": "/data/source_review/mapping_rationale",
-              "matched": "2026-09-11: Mapped to q-controls-fraud because The Green Book is the current federal-government internal-control standard. The source-specific subject is current federal internal-control standard covering authority, risk, control activities, information, monitoring, fraud, and remediation. outside federal scope, use it as guidance rather than binding law. Association review scope: substantive-excerpt; supported-scope. This does not establish accounting adequacy.",
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
               "rule": "editorial-review"
             }
           ]
@@ -35887,19 +36503,19 @@
           "status": "reviewed",
           "basis": [
             {
-              "field": "/data/source_review/mapping_rationale",
-              "matched": "Mapped to q-controls-fraud because The Green Book is the current federal-government internal-control standard. The source-specific subject is current federal internal-control standard covering authority, risk, control activities, information, monitoring, fraud, and remediation. outside federal scope, use it as guidance rather than binding law.",
+              "field": "/data",
+              "matched": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
               "rule": "editorial-association"
             },
             {
-              "field": "/data/source_review/mapping_rationale",
-              "matched": "2026-09-11: Mapped to q-controls-fraud because The Green Book is the current federal-government internal-control standard. The source-specific subject is current federal internal-control standard covering authority, risk, control activities, information, monitoring, fraud, and remediation. outside federal scope, use it as guidance rather than binding law. Association review scope: substantive-excerpt; supported-scope. This does not establish accounting adequacy.",
+              "field": "/data",
+              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
               "rule": "editorial-review"
             }
           ]
         }
       ],
-      "note": "Mapped to q-controls-fraud because The Green Book is the current federal-government internal-control standard. The source-specific subject is current federal internal-control standard covering authority, risk, control activities, information, monitoring, fraud, and remediation. outside federal scope, use it as guidance rather than binding law. Association review scope: substantive-excerpt; supported-scope. This does not establish accounting adequacy."
+      "note": "Question-level citation association reviewed; no industry descendant or sufficiency credit."
     },
     {
       "record_id": "src_gasb0096",
