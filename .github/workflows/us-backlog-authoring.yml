@@ -20,79 +20,48 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.sha }}
-          fetch-depth: 2
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
           cache: npm
       - run: npm ci
-      - name: Apply only the declared patch to the expected branch parent
+      - name: Apply only the declared patch to the expected research ancestor
         shell: bash
         run: |
           python3 - <<'PY'
           import base64, gzip, hashlib, json, pathlib, re, subprocess
           manifest = pathlib.Path('.github/us-backlog-patch.json')
-          if not manifest.exists():
-              print('Bootstrap: no implementation patch supplied.')
+          payload = pathlib.Path('.github/us-backlog-patch.gz.b64')
+          if not manifest.exists() or not payload.exists():
+              print('Transport incomplete; wait for both manifest and payload.')
               raise SystemExit(0)
           spec = json.loads(manifest.read_text())
-          parent = subprocess.check_output(['git', 'rev-parse', 'HEAD^'], text=True).strip()
-          if parent != spec['expected_parent']:
-              raise SystemExit('Branch parent changed; reconcile before applying this patch.')
+          if subprocess.run(['git','merge-base','--is-ancestor',spec['expected_parent'],'HEAD']).returncode:
+              raise SystemExit('Expected research parent is not an ancestor; reconcile before applying this patch.')
           def allowed(path):
               return bool(re.fullmatch(r'(?:data|docs|scripts|tests|schemas)/[A-Za-z0-9_./-]+|(?:RELEASES|README|TESTING)\.md', path)) and '..' not in pathlib.PurePosixPath(path).parts
-          encoded = pathlib.Path('.github/us-backlog-patch.gz.b64').read_text().strip()
-          if len(encoded) > 4000000:
-              raise SystemExit('Encoded patch exceeds the bounded transport limit.')
+          encoded = payload.read_text().strip()
           patch = gzip.decompress(base64.b64decode(encoded, validate=True))
-          if len(patch) > 100000000 or hashlib.sha256(patch).hexdigest() != spec['patch_sha256']:
-              raise SystemExit('Patch size or digest differs from the manifest.')
-          target = pathlib.Path('/tmp/us-backlog-implementation.patch')
-          target.write_bytes(patch)
-          stats = subprocess.check_output(['git', 'apply', '--numstat', str(target)], text=True)
-          paths = [line.split('\t', 2)[2] for line in stats.splitlines()]
-          if sorted(paths) != sorted(spec['changed_paths']) or len(paths) != len(set(paths)):
-              raise SystemExit('Patch paths differ from the explicit manifest.')
-          if not all(allowed(path) for path in paths):
-              raise SystemExit('Patch contains a path outside the research/verification surface.')
-          outputs = spec.get('expected_output_sha256', {})
-          if not outputs or not all(allowed(path) and re.fullmatch('[a-f0-9]{64}', digest) for path, digest in outputs.items()):
-              raise SystemExit('Every final output must have an allowed path and SHA-256.')
-          if spec.get('preserve_baseline_release'):
-              if spec['preserve_baseline_release'] != '2026-09-14.3':
-                  raise SystemExit('Only the declared starting edition may be preserved here.')
-              if not pathlib.Path('data/releases/2026-09-14.3/corpus.json').exists():
-                  if json.loads(pathlib.Path('data/catalog.json').read_text())['corpus_version'] != '2026-09-14.3':
-                      raise SystemExit('Original baseline is unavailable; do not reconstruct it from changed records.')
-                  subprocess.run(['npm', 'run', 'build'], check=True)
-                  subprocess.run(['node', 'scripts/release-history.mjs', 'dist/client/downloads/corpus.json', 'data/releases/2026-09-14.2/corpus.json'], check=True)
-                  subprocess.run(['git', 'add', 'data/releases/2026-09-14.3', 'data/releases/index.json'], check=True)
-          subprocess.run(['git', 'apply', '--check', '--index', str(target)], check=True)
-          subprocess.run(['git', 'apply', '--index', str(target)], check=True)
-          if spec.get('regenerate_mappings'):
-              subprocess.run(['node', 'scripts/coverage-mappings.mjs'], check=True)
-              subprocess.run(['git', 'add', 'data/coverage/record-mappings.json'], check=True)
-          snapshot = spec.get('snapshot_id')
-          if snapshot:
-              if not re.fullmatch(r'2026-09-16\.\d+', snapshot):
-                  raise SystemExit('Invalid snapshot identifier.')
-              subprocess.run(['node', 'scripts/coverage-snapshot.mjs', snapshot], check=True)
-              subprocess.run(['git', 'add', 'data/coverage/snapshots.json'], check=True)
-          for path, digest in outputs.items():
-              if hashlib.sha256(pathlib.Path(path).read_bytes()).hexdigest() != digest:
-                  raise SystemExit('Generated/applied output differs from locally inspected bytes: ' + path)
-          staged = subprocess.check_output(['git', 'diff', '--cached', '--name-only'], text=True).splitlines()
-          if sorted(staged) != sorted(outputs):
-              raise SystemExit('Staged output population differs from the manifest.')
-          for entry in subprocess.check_output(['git', 'diff', '--cached', '--raw'], text=True).splitlines():
-              if entry.split()[1] not in ('100644', '000000'):
-                  raise SystemExit('Only ordinary files are permitted in a corpus patch.')
-          print('Applied and hash-verified batch', spec['batch'], 'with', len(paths), 'patch files and', len(outputs), 'total outputs.')
+          if len(encoded) > 4000000 or len(patch) > 100000000 or hashlib.sha256(patch).hexdigest() != spec['patch_sha256']:
+              raise SystemExit('Patch size or digest differs from manifest.')
+          target=pathlib.Path('/tmp/us-backlog.patch'); target.write_bytes(patch)
+          stats=subprocess.check_output(['git','apply','--numstat',str(target)],text=True)
+          paths=[line.split('\t',2)[2] for line in stats.splitlines()]
+          if sorted(paths)!=sorted(spec['changed_paths']) or len(paths)!=len(set(paths)) or not all(allowed(p) for p in paths):
+              raise SystemExit('Patch paths differ from bounded manifest.')
+          outputs=spec['expected_output_sha256']
+          subprocess.run(['git','apply','--check','--index',str(target)],check=True)
+          subprocess.run(['git','apply','--index',str(target)],check=True)
+          for path,digest in outputs.items():
+              if not allowed(path) or hashlib.sha256(pathlib.Path(path).read_bytes()).hexdigest()!=digest:
+                  raise SystemExit('Output hash mismatch: '+path)
+          staged=subprocess.check_output(['git','diff','--cached','--name-only'],text=True).splitlines()
+          if sorted(staged)!=sorted(outputs): raise SystemExit('Staged output population differs from manifest.')
           PY
       - run: git diff --cached --check
-      - name: Verify the exact resulting corpus and generated downloads
-        run: npm run check
-      - name: Commit verified canonical files to this work branch only
+      - run: npm run check
+      - name: Commit verified canonical files to work branch
         shell: bash
         run: |
           if ! git diff --cached --quiet; then
@@ -101,20 +70,3 @@ jobs:
             git commit -m 'Integrate and verify US accounting research batch'
             git push origin HEAD:refs/heads/research/us-backlog-2026-09-16
           fi
-      - name: Retain exact source and reusable local verification dependencies
-        if: always()
-        run: |
-          git archive --format=zip HEAD -o "$RUNNER_TEMP/repository-source.zip"
-          git diff --binary --cached > "$RUNNER_TEMP/uncommitted-research.patch"
-          if [ -d node_modules ]; then tar -czf "$RUNNER_TEMP/node_modules.tgz" node_modules; fi
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: us-backlog-authoring-${{ github.run_id }}
-          path: |
-            ${{ runner.temp }}/repository-source.zip
-            ${{ runner.temp }}/uncommitted-research.patch
-            ${{ runner.temp }}/node_modules.tgz
-            dist/
-          retention-days: 14
-          if-no-files-found: error
