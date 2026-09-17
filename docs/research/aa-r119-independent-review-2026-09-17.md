@@ -71,3 +71,46 @@ Required disposition: retain one dated entry for this change, or replace the rep
 ## Next action
 
 The author or release orchestrator should reconcile the generated version metadata, synchronize source review scopes and effective-period details with every cited locator, and collapse the duplicated guide history entries. After those changes, rerun the full check and preserve a new reconciled snapshot or document the orchestrator-owned release disposition for `2026-09-17.5`.
+
+## Re-review of correction head
+
+Re-review date: 2026-09-17
+
+- Correction head: `0d447e6033bdc10ecd3ab9a2f5855ae73644807d`
+- Correction base: `bcec0a5d344972b664448800d91dca920f17f94c`
+- PR base: `main` at `afd2aced307628843f8a26677c3a6fb37fa733e3`
+- Exact-head validation worktrees: `/private/tmp/aa-r119-rereview-check-0d447e6` and `/private/tmp/aa-r119-rereview-0d447e6`
+
+### Prior findings resolved in the committed correction
+
+- Both generated coverage files now derive `corpus_version` from `data/catalog.json`, validate its date-and-edition format, and report `2026-09-14.3`.
+- The affected source records now document the cited ASU 2014-09, ASU 2025-05 and ASU 2016-08 sections, effective and transition details, substantive-excerpt checks, current-Codification limits, and unresolved reuse rights. The official publisher PDFs were spot-checked during this re-review: [ASU 2014-09 Section A](https://storage.fasb.org/ASU%202014-09_Section%20A.pdf), [ASU 2025-05](https://storage.fasb.org/ASU%202025-05.pdf), and [ASU 2016-08](https://storage.fasb.org/ASU%202016-08.pdf).
+- The six modified family guides now each contain one provenance-history entry. The new test checks the state and rejects duplicate entries.
+- Existing questions in the six family guides remain unchanged relative to `bcec0a5`; there are no added, removed or changed existing questions in the correction commit. Prior snapshots through `2026-09-17.5` are byte-for-byte unchanged.
+
+### [P1] The coverage generator still changes committed construction outputs on a clean rerun
+
+In the fresh detached correction worktree, `node scripts/build-research-coverage.mjs` completed successfully but changed `data/corpus/guide.json`. The only first-run diff was 15 lines, adding these source IDs to each of the following generated industry guides:
+
+- `guide-industry-naics2022-236`
+- `guide-industry-naics2022-237`
+- `guide-industry-naics2022-238`
+
+Added IDs: `src_construction_fasb_retainage_staff`, `src_construction_gao_25107258` and `src_construction_asbca_51759`.
+
+A second generator run produced no additional diff, so the generator reaches a stable result after mutating the committed artifact. It is therefore deterministic after the mutation, but it is not a no-op against the reviewed correction output. This matters because the correction reports construction outputs restored and the review protocol requires actual preservation, not only a passing metadata assertion. The generator's `industryQs` source union at `scripts/build-research-coverage.mjs:19` and `:32` is the path that reintroduces these source IDs.
+
+Required disposition: either commit the intended regenerated construction source associations and reconcile the related mappings, exports and snapshot, or constrain the generator inputs/output to the intended construction source set and add a clean-rerun preservation test. The current test verifies catalog labels and history state, but does not execute the generator and compare its output with the committed artifact.
+
+## Re-review verification
+
+- `npm run check` on a clean exact correction worktree: 85 of 85 tests passed, including the two new correction tests.
+- CI snapshot at correction head: `verify` passed in [GitHub Actions run 35241830613](https://github.com/HenryBranchAdams/ai-agents-in-accounting/actions/runs/35241830613/job/105271933514).
+- Latest snapshot: `2026-09-17.1192`, corpus `2026-09-14.3`, 1,088 records, 1,030 question-mapped records; all 13 input hashes matched.
+- Existing snapshot IDs through `2026-09-17.5` were unchanged; `2026-09-17.1192` was additive.
+- Source review audit: the three corrected source records had `reviewed_at: 2026-09-17`, `review_level: substantive-excerpt`, at least one material-read check, `full_text_stored: false`, and unresolved source rights.
+- No corpus edits, merge, closure, deployment or author-branch mutation was performed. The generator mutation was confined to the temporary detached verification worktree.
+
+### Re-review conclusion
+
+The three prior findings are resolved in the committed correction output. The remaining generator-preservation finding keeps release reconciliation open until the intended construction output is made reproducible and explicitly covered by a clean-rerun check. Catalog and release disposition remain separate orchestrator-owned gates.
