@@ -37,7 +37,7 @@ The source release files and generated `dist/client/releases/` files match these
 - `src_nonprofit_fasb_2018_08`: provenance and source claims
 - `src_nonprofit_irs_990_2025`: provenance and source claims
 
-The final build produced 27 downloads and a 225-file source archive, including the preserved historical release artifacts. Coverage snapshot `2026-09-17.1283` records the final corpus version; assessment version remains `2026-09-17.1302`, mapping version remains `2026-09-16.1`, and prior coverage snapshots remain immutable.
+The final build produced 27 downloads and a 232-file source archive, including the preserved historical release artifacts. Coverage snapshot `2026-09-17.1283` records the final corpus version; assessment version remains `2026-09-17.1302`, mapping version remains `2026-09-16.1`, and prior coverage snapshots remain immutable.
 
 Publication, deployment, merge and issue-state changes remain outside this release-preparation branch.
 
