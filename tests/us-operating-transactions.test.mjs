@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 
 const read = (file) => JSON.parse(fs.readFileSync(file, "utf8"));
+const catalog = read("data/catalog.json");
 const guides = read("data/corpus/guide.json");
 const sources = read("data/corpus/source.json");
 const examples = new Map(read("data/corpus/example.json").map((record) => [record.id, record]));
@@ -65,4 +66,47 @@ test("US synthetic ledgers reconcile without netting unrelated populations", () 
   assert.equal(project.data.reference_output.contract_asset, 18000);
   assert.ok(project.data.reconciliations.every((row) => row.difference === 0));
   assert.ok(project.data.limitations.some((limitation) => limitation.startsWith("Synthetic example:")));
+});
+
+test("generated coverage metadata follows the catalog edition", () => {
+  for (const file of ["data/coverage/subsector-profiles.json", "data/coverage/subsector-screening.json"])
+    assert.equal(read(file).corpus_version, catalog.corpus_version, `${file}: stale corpus version`);
+  const generator = fs.readFileSync("scripts/build-research-coverage.mjs", "utf8");
+  assert.match(generator, /read\('data\/catalog\.json'\)/);
+  assert.doesNotMatch(generator, /corpus_version:'2026-09-11\.2'/);
+});
+
+test("source review scope covers cited US locators and guide history is idempotent", () => {
+  const source = new Map(sources.map((record) => [record.id, record]));
+  const asu2014 = source.get("src_construction_fasb_2014_09");
+  const asu2025 = source.get("src_construction_fasb_202505");
+  const asu2016 = source.get("src_fasb_asu2016_08_principal_agent");
+  for (const [record, locators] of [
+    [asu2014, ["25-1", "32-1", "45-1", "340-40-25-1", "606-10-65-1"]],
+    [asu2025, ["30-10A", "50-12A", "55-40A", "326-10-65-6"]],
+    [asu2016, ["55-36", "55-40", "65-1"]],
+  ]) {
+    assert.equal(record.reviewed_at, "2026-09-17", record.id);
+    assert.equal(record.data.source_review.review_level, "substantive-excerpt", record.id);
+    for (const locator of locators) assert.match(record.data.source_review.source_locator, new RegExp(locator), `${record.id}: ${locator}`);
+    assert.ok(record.data.source_review.checks.some((check) => check.material_read), `${record.id}: missing read evidence`);
+    assert.equal(record.rights.full_text_stored, false);
+  }
+  assert.match(asu2025.data.source_review.effective_period, /prospectively/);
+  assert.match(asu2025.data.source_review.effective_period, /other than public business entities/);
+  assert.match(asu2016.data.source_review.effective_period, /interim periods/);
+  assert.match(asu2016.data.source_review.effective_period, /earlier application/);
+
+  for (const id of [
+    "guide-q-revenue",
+    "guide-q-project-wip",
+    "guide-q-purchasing-payables",
+    "guide-q-receivables-credit",
+    "guide-q-cash-settlement",
+    "guide-q-inventory",
+  ]) {
+    const history = guides.find((record) => record.id === id).provenance.revision_history;
+    assert.equal(history.length, 1, `${id}: duplicate revision history`);
+    assert.equal(new Set(history.map((entry) => JSON.stringify(entry))).size, history.length, `${id}: non-idempotent history`);
+  }
 });
