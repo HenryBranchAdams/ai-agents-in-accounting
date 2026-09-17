@@ -509,7 +509,7 @@ export function coveragePage(params: URLSearchParams) {
                 <p>
                   {selected.scoped_assessments
                     ? `${selected.scoped_assessments} scoped assessment(s); boundaries are shown below.`
-                    : "Current applicability and named-question reviews appear below; no earlier WIP assessment at this exact scope."}
+                    : "Current applicability and named-question reviews appear below; no scoped assessment at this exact scope."}
                 </p>
               </div>
             </>
@@ -562,14 +562,14 @@ export function coveragePage(params: URLSearchParams) {
         {researchPanel(data.research)}
         {"\n    "}
         <section id="assessments">
-          <h2>{"Earlier scoped WIP assessment"}</h2>
+          <h2>{"Scoped assessments"}</h2>
           {assessments.length ? (
             assessments
           ) : (
             <>
               <p>
                 {
-                  "No earlier WIP assessment matches this exact scope. The named-question and applicability reviews appear above."
+                  "No scoped assessment matches this exact scope. The named-question and applicability reviews appear above."
                 }
               </p>
             </>

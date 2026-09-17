@@ -58,6 +58,16 @@ test('named question links, review locators and a leaf review are visible on rea
  const schema=await request('/schemas/research.schema.json');assert.equal(schema.status,200);
 });
 
+test('coverage renders shared-context assessments under a generic scoped heading',async()=>{
+ const response=await request('/coverage');assert.equal(response.status,200);
+ const html=await response.text();
+ assert.ok(html.includes('<h2>Scoped assessments</h2>'));
+ assert.ok(html.includes('Shared context'));
+ assert.ok(html.includes('coverage-aa-i127-security-boundary'));
+ assert.doesNotMatch(html,/Earlier scoped WIP assessment/);
+ assert.doesNotMatch(html,/No earlier WIP assessment matches this exact scope/);
+});
+
 test('original worked arithmetic and legal cohort examples retain their stated scope',()=>{
  const software=byId.get('guide-software-subscriptions').data.worked_examples[0];
  assert.match(JSON.stringify(software),/24-month/);assert.match(JSON.stringify(software),/13,500/);assert.equal(18000-(18000/24)*6,13500);
