@@ -103,7 +103,7 @@ test("AA-I127 derived research denominators agree across criteria, runtime analy
   assert.equal(analytics.summary.research.named_partial_questions, partial);
   assert.equal(analytics.summary.research.named_evidence_gaps, gaps);
   assert.equal(partial + gaps, questions.length);
-  assert.equal(latest.id, "2026-09-17.4");
+  assert.equal(latest.id, "2026-09-17.5");
   assert.deepEqual(latest.summary, analytics.summary);
 });
 

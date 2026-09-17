@@ -23,6 +23,7 @@ const rootFiles = [
   ".gitignore",
   "LICENSE",
 ];
+const currentCorpusVersion = JSON.parse(fs.readFileSync("data/catalog.json", "utf8")).corpus_version;
 export function sourceFiles() {
   const files = [
     ...rootFiles,
@@ -36,7 +37,9 @@ export function sourceFiles() {
       if (e.isSymbolicLink())
         throw new Error(`Source archive disallows symlinks: ${file}`);
       if (e.isDirectory()) walk(file);
-      else if (e.isFile()) files.push(file);
+      // The current release gzip is already exposed through the release bundle;
+      // omit only that duplicate so the source package stays under the host limit.
+      else if (e.isFile() && file !== `data/releases/${currentCorpusVersion}/corpus.json.gz`) files.push(file);
     }
   }
   for (const dir of roots) if (fs.existsSync(dir)) walk(dir);
