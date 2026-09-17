@@ -18,6 +18,47 @@ const byId = id => {
   assert.ok(record, `missing ${id}`);
   return record;
 };
+const integrationFiles = [
+  "data/research/management-accounting-2026-09-17.json",
+  "data/corpus/source.json",
+  "data/corpus/guide.json",
+  "data/corpus/example.json",
+  "data/research/foundations.json",
+  "data/coverage/research-questions.json",
+  "data/coverage/mapping-overrides.json",
+  "data/coverage/assessments.json",
+  "data/research-questions.json",
+];
+const integrationScript = path.resolve("scripts/integrate-management-accounting.mjs");
+const makeIntegrationHarness = mutate => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), "aa-i125-importer-"));
+  for (const file of integrationFiles) {
+    const destination = path.join(root, file);
+    fs.mkdirSync(path.dirname(destination), { recursive: true });
+    fs.copyFileSync(file, destination);
+  }
+  mutate?.(root);
+  return root;
+};
+const editHarnessJson = (root, file, edit) => {
+  const destination = path.join(root, file);
+  const value = JSON.parse(fs.readFileSync(destination, "utf8"));
+  edit(value);
+  fs.writeFileSync(destination, JSON.stringify(value, null, 2) + "\n");
+};
+const snapshotHarnessFiles = root => new Map(integrationFiles.map(file => [file, fs.readFileSync(path.join(root, file))]));
+const runHarnessImporter = root => {
+  try {
+    execFileSync(process.execPath, [integrationScript], {
+      cwd: root,
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "pipe"],
+    });
+    return null;
+  } catch (error) {
+    return error;
+  }
+};
 
 test("AA-I125 canonical guides, importer input, registry, and evidence packet stay synchronized", () => {
   const registry = read("data/coverage/research-questions.json");
@@ -65,51 +106,56 @@ test("AA-I125 canonical guides, importer input, registry, and evidence packet st
   assert.ok(packet.coordination.every(issue => issue.completion_claimed === false));
 });
 
-test("AA-I125 importer refuses newer canonical metadata without rewriting a newer-state harness", () => {
-  const root = fs.mkdtempSync(path.join(os.tmpdir(), "aa-i125-newer-state-"));
-  const files = [
-    "data/research/management-accounting-2026-09-17.json",
-    "data/corpus/source.json",
-    "data/corpus/guide.json",
-    "data/corpus/example.json",
-    "data/research/foundations.json",
-    "data/coverage/research-questions.json",
-    "data/coverage/mapping-overrides.json",
-    "data/coverage/assessments.json",
-    "data/research-questions.json",
+test("AA-I125 importer rejects newer top-level and nested review metadata before writing", () => {
+  const cases = [
+    {
+      label: "top-level version",
+      mutate: root => editHarnessJson(root, "data/research/foundations.json", value => { value.question_set_version = "2026-09-17.1253"; }),
+    },
+    {
+      label: "top-level review date",
+      mutate: root => editHarnessJson(root, "data/research/foundations.json", value => { value.reviewed_at = "2026-09-18"; }),
+    },
+    {
+      label: "mapping override review date",
+      mutate: root => editHarnessJson(root, "data/coverage/mapping-overrides.json", value => { value.records["guide-q-cost-allocation"].reviewed_at = "2026-09-18"; }),
+    },
+    {
+      label: "assessment review date",
+      mutate: root => editHarnessJson(root, "data/coverage/assessments.json", value => {
+        value.assessments.find(assessment => assessment.id === "coverage-management-accounting-cost-allocation-2026-09-17").reviewed_at = "2026-09-18";
+      }),
+    },
   ];
-  const versionTargets = [
-    ["data/research/foundations.json", "question_set_version"],
-    ["data/coverage/research-questions.json", "question_set_version"],
-    ["data/coverage/mapping-overrides.json", "mapping_version"],
-    ["data/coverage/assessments.json", "assessment_version"],
-  ];
-  try {
-    for (const file of files) {
-      const destination = path.join(root, file);
-      fs.mkdirSync(path.dirname(destination), { recursive: true });
-      fs.copyFileSync(file, destination);
-    }
-    for (const [file, field] of versionTargets) {
-      const destination = path.join(root, file);
-      const value = JSON.parse(fs.readFileSync(destination, "utf8"));
-      value[field] = "2026-09-18.1";
-      fs.writeFileSync(destination, JSON.stringify(value, null, 2) + "\n");
-    }
-    const before = new Map(files.map(file => [file, fs.readFileSync(path.join(root, file))]));
-    let error;
+  for (const { label, mutate } of cases) {
+    const root = makeIntegrationHarness(mutate);
     try {
-      execFileSync(process.execPath, [path.resolve("scripts/integrate-management-accounting.mjs")], {
-        cwd: root,
-        encoding: "utf8",
-        stdio: ["ignore", "pipe", "pipe"],
-      });
-    } catch (candidate) {
-      error = candidate;
+      const before = snapshotHarnessFiles(root);
+      const error = runHarnessImporter(root);
+      assert.ok(error, `${label}: newer canonical state must stop the importer`);
+      assert.match(String(error.stderr), /newer than packet/);
+      for (const [file, bytes] of before) assert.deepEqual(fs.readFileSync(path.join(root, file)), bytes, `${label}: ${file}`);
+    } finally {
+      fs.rmSync(root, { recursive: true, force: true });
     }
-    assert.ok(error, "newer canonical state must stop the importer");
-    assert.match(String(error.stderr), /newer than packet/);
-    for (const file of files) assert.deepEqual(fs.readFileSync(path.join(root, file)), before.get(file), file);
+  }
+});
+
+test("AA-I125 importer accepts clean replay and preserves unrelated IDs", () => {
+  const root = makeIntegrationHarness();
+  try {
+    const before = {
+      example: JSON.stringify(read(path.join(root, "data/corpus/example.json")).find(record => record.id === "example-cash-forecast-liquidity")),
+      family: JSON.stringify(read(path.join(root, "data/research/foundations.json")).families.find(family => family.family_id === "q-evaluation")),
+      mapping: JSON.stringify(read(path.join(root, "data/coverage/mapping-overrides.json")).records["guide-manufacturing-conversion"]),
+      fixture: JSON.stringify(read(path.join(root, "data/research-questions.json")).find(fixture => fixture.id === "rq-bank-reconciliation-workflow")),
+    };
+    const error = runHarnessImporter(root);
+    assert.equal(error, null, String(error?.stderr || error?.message));
+    assert.equal(JSON.stringify(read(path.join(root, "data/corpus/example.json")).find(record => record.id === "example-cash-forecast-liquidity")), before.example);
+    assert.equal(JSON.stringify(read(path.join(root, "data/research/foundations.json")).families.find(family => family.family_id === "q-evaluation")), before.family);
+    assert.equal(JSON.stringify(read(path.join(root, "data/coverage/mapping-overrides.json")).records["guide-manufacturing-conversion"]), before.mapping);
+    assert.equal(JSON.stringify(read(path.join(root, "data/research-questions.json")).find(fixture => fixture.id === "rq-bank-reconciliation-workflow")), before.fixture);
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
   }

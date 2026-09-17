@@ -12,6 +12,11 @@ const compareVersion = (left, right) => {
     ? Number(leftMatch[2]) - Number(rightMatch[2])
     : leftMatch[1].localeCompare(rightMatch[1]);
 };
+const assertNotNewerDate = (label, value) => {
+  if (value && value > packet.reviewed_at) {
+    throw new Error(`Refusing AA-I125 integration: ${label}=${value} is newer than packet review date ${packet.reviewed_at}`);
+  }
+};
 const assertNoNewerCanonicalState = () => {
   const states = [
     { file: "data/research/foundations.json", versionField: "question_set_version", dateField: "reviewed_at" },
@@ -25,10 +30,46 @@ const assertNoNewerCanonicalState = () => {
     if (currentVersion && compareVersion(currentVersion, packet.package_version) > 0) {
       throw new Error(`Refusing AA-I125 integration: ${state.file}.${state.versionField}=${currentVersion} is newer than packet ${packet.package_version}`);
     }
-    const currentDate = state.dateField && current[state.dateField];
-    if (currentDate && currentDate > packet.reviewed_at) {
-      throw new Error(`Refusing AA-I125 integration: ${state.file}.${state.dateField}=${currentDate} is newer than packet review date ${packet.reviewed_at}`);
-    }
+    assertNotNewerDate(`${state.file}.${state.dateField}`, state.dateField && current[state.dateField]);
+  }
+
+  const mappingOverrides = read("data/coverage/mapping-overrides.json");
+  const mappingIds = new Set([
+    ...packet.families.map(family => family.guide_id),
+    ...packet.sources.map(source => source.id),
+    packet.example.id,
+  ]);
+  for (const id of mappingIds) assertNotNewerDate(`data/coverage/mapping-overrides.json.records[${id}].reviewed_at`, mappingOverrides.records[id]?.reviewed_at);
+
+  const assessments = read("data/coverage/assessments.json");
+  for (const assessment of packet.assessments) {
+    const current = assessments.assessments.find(candidate => candidate.id === assessment.id);
+    assertNotNewerDate(`data/coverage/assessments.json.assessments[${assessment.id}].reviewed_at`, current?.reviewed_at);
+  }
+
+  const guides = read("data/corpus/guide.json");
+  for (const family of packet.families) {
+    const current = guides.find(candidate => candidate.id === family.guide_id);
+    assertNotNewerDate(`data/corpus/guide.json[${family.guide_id}].reviewed_at`, current?.reviewed_at);
+  }
+
+  const sources = read("data/corpus/source.json");
+  for (const update of packet.sources) {
+    const current = sources.find(candidate => candidate.id === update.id);
+    if (!current) continue;
+    assertNotNewerDate(`data/corpus/source.json[${update.id}].reviewed_at`, current.reviewed_at);
+    assertNotNewerDate(`data/corpus/source.json[${update.id}].provenance.source_review_attempted_at`, current.provenance?.source_review_attempted_at);
+    assertNotNewerDate(`data/corpus/source.json[${update.id}].data.record_updated_at`, current.data?.record_updated_at);
+    assertNotNewerDate(`data/corpus/source.json[${update.id}].data.source_review.reviewed_at`, current.data?.source_review?.reviewed_at);
+    const supplemental = current.data?.supplemental_reviews?.find(review => review.batch === packet.issue_id);
+    assertNotNewerDate(`data/corpus/source.json[${update.id}].data.supplemental_reviews[${packet.issue_id}].reviewed_at`, supplemental?.reviewed_at);
+  }
+
+  const examples = read("data/corpus/example.json");
+  const currentExample = examples.find(record => record.id === packet.example.id);
+  if (currentExample) {
+    assertNotNewerDate(`data/corpus/example.json[${packet.example.id}].reviewed_at`, currentExample.reviewed_at);
+    assertNotNewerDate(`data/corpus/example.json[${packet.example.id}].data.editorial_review.reviewed_at`, currentExample.data?.editorial_review?.reviewed_at);
   }
 };
 assertNoNewerCanonicalState();
