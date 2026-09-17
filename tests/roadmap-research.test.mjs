@@ -13,7 +13,7 @@ const byId=new Map(records.map(r=>[r.id,r]));
 const request=p=>worker.fetch(new Request('https://corpus.example'+p));
 
 test('declared research population resolves to answers, sources and actual individual reviews',()=>{
- const counts=validateResearch(records);assert.equal(counts.inherited_dispositions,715);assert.equal(counts.named_questions,179);
+ const counts=validateResearch(records);assert.equal(counts.inherited_dispositions,715);assert.equal(counts.named_questions,191);
  const declared=read('data/coverage/research-questions.json').questions;
  assert.deepEqual(new Set(declared.map(q=>q.id)),new Set(records.flatMap(r=>(r.data?.research_questions||[]).map(q=>q.id))), 'Every canonical named question must be in the retrieval population');
  const schema=read('schemas/research.schema.json');

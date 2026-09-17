@@ -20,7 +20,8 @@ test('new reading surfaces preserve evidence and publication boundaries', async 
 });
 test('current release and downloads contain the same canonical records and preserved baseline',()=>{
   const queue=JSON.parse(fs.readFileSync('dist/client/downloads/maintenance.json'));
-  assert.equal(queue.previous_version,'2026-09-16.1');
+  const releaseIndex=JSON.parse(fs.readFileSync('data/releases/index.json'));
+  assert.equal(queue.previous_version,releaseIndex.versions.at(-2));
   const previous=JSON.parse(gunzipSync(fs.readFileSync(`data/releases/${queue.previous_version}/corpus.json.gz`)));
   const current=JSON.parse(fs.readFileSync('dist/client/downloads/corpus.json'));
   const archived=JSON.parse(gunzipSync(fs.readFileSync(`dist/client/releases/${meta.corpus_version}/corpus.json.gz`)));
@@ -35,7 +36,7 @@ test('current release and downloads contain the same canonical records and prese
   assert.ok(queue.queue.length>0);
   assert.equal(queue.changes.filter(c=>c.change==='added').length,added.length);
   assert.equal(queue.changes.filter(c=>c.change==='modified').length,modified.length);
-  assert.deepEqual(queue.versions,['2026-09-07.3','2026-09-07.4','2026-09-11.1','2026-09-11.2','2026-09-14.1','2026-09-14.2','2026-09-14.3','2026-09-16.1',meta.corpus_version]);
+  assert.deepEqual(queue.versions,releaseIndex.versions);
 });
 
 test('historical release artifacts preserve exact bytes across source and generated release trees',()=>{

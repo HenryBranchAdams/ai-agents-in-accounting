@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "mapping_version": "2026-09-16.1",
-  "updated_at": "2026-09-16",
+  "mapping_version": "2026-09-17.1252",
+  "updated_at": "2026-09-17",
   "records": {
     "wf-construction-contract-intake": {
       "question_ids": [
@@ -6065,20 +6065,24 @@
       "question_ids": [
         "q-reporting-basis",
         "q-audit-assertions",
-        "q-controls-fraud"
+        "q-controls-fraud",
+        "q-cost-allocation",
+        "q-planning"
       ],
       "industry_codes": [],
       "industry_scope": "shared-context",
       "basis_field": "/data/source_review/mapping_rationale",
-      "reason": "The source concerns 2 cfr part 200, uniform administrative requirements, cost principles, and audit requirements for federal awards across accounting, audit, finance, regulation, or agent infrastructure; no single NAICS-US2022 industry is evidenced, so no specific industry code is assigned.",
+      "reason": "Shared US federal-award context for the selected allocation and budget-control questions; no industry-specific or general-GAAP sufficiency is inferred.",
       "reviewed_question_ids": [
         "q-reporting-basis",
         "q-audit-assertions",
-        "q-controls-fraud"
+        "q-controls-fraud",
+        "q-cost-allocation",
+        "q-planning"
       ],
       "reviewed_industry_codes": [],
-      "reviewed_at": "2026-09-11",
-      "review_note": "The source concerns 2 cfr part 200, uniform administrative requirements, cost principles, and audit requirements for federal awards across accounting, audit, finance, regulation, or agent infrastructure; no single NAICS-US2022 industry is evidenced, so no specific industry code is assigned. Association review scope: substantive-excerpt; supported-scope. This does not establish accounting adequacy."
+      "reviewed_at": "2026-09-17",
+      "review_note": "Shared US federal-award context for the selected allocation and budget-control questions; no industry-specific or general-GAAP sufficiency is inferred. Association review covers AA-I125 source locators only; no accounting adequacy is inferred."
     },
     "src_cmsmcref": {
       "replace_question_ids": true,
@@ -8146,8 +8150,8 @@
         "q-performance"
       ],
       "reviewed_industry_codes": [],
-      "reviewed_at": "2026-09-11",
-      "review_note": "Question-level citation association reviewed; no industry descendant or sufficiency credit."
+      "reviewed_at": "2026-09-17",
+      "review_note": "Shared SEC registrant boundary for qualitative materiality; discovery association only, not a claim that the selected private manufacturer is an SEC registrant. Association review covers AA-I125 source locators only; no accounting adequacy is inferred."
     },
     "src_secsab0108": {
       "replace_question_ids": true,
@@ -13690,13 +13694,13 @@
       "industry_codes": [],
       "industry_scope": "shared-context",
       "basis_field": "/data/research_questions",
-      "reason": "The explicitly scoped research questions and original synthesis support discovery associations only. Detailed-industry adequacy is separately assessed.",
+      "reason": "The explicitly scoped US research questions, source locators, and original synthetic fixture support discovery associations only. Detailed-industry adequacy is separately assessed.",
       "reviewed_question_ids": [
         "q-cost-allocation"
       ],
       "reviewed_industry_codes": [],
-      "reviewed_at": "2026-09-11",
-      "review_note": "Reviewed discovery relationship to the named questions and explicitly declared industry scope; does not confer accounting adequacy or professional verification."
+      "reviewed_at": "2026-09-17",
+      "review_note": "AA-I125 scope review covers the selected US role and named questions only; it does not confer family-wide adequacy, professional verification, or descendant-industry conclusions."
     },
     "guide-q-planning": {
       "replace_question_ids": true,
@@ -13706,13 +13710,13 @@
       "industry_codes": [],
       "industry_scope": "shared-context",
       "basis_field": "/data/research_questions",
-      "reason": "The explicitly scoped research questions and original synthesis support discovery associations only. Detailed-industry adequacy is separately assessed.",
+      "reason": "The explicitly scoped US research questions, source locators, and original synthetic fixture support discovery associations only. Detailed-industry adequacy is separately assessed.",
       "reviewed_question_ids": [
         "q-planning"
       ],
       "reviewed_industry_codes": [],
-      "reviewed_at": "2026-09-11",
-      "review_note": "Reviewed discovery relationship to the named questions and explicitly declared industry scope; does not confer accounting adequacy or professional verification."
+      "reviewed_at": "2026-09-17",
+      "review_note": "AA-I125 scope review covers the selected US role and named questions only; it does not confer family-wide adequacy, professional verification, or descendant-industry conclusions."
     },
     "guide-q-performance": {
       "replace_question_ids": true,
@@ -13722,13 +13726,13 @@
       "industry_codes": [],
       "industry_scope": "shared-context",
       "basis_field": "/data/research_questions",
-      "reason": "The explicitly scoped research questions and original synthesis support discovery associations only. Detailed-industry adequacy is separately assessed.",
+      "reason": "The explicitly scoped US research questions, source locators, and original synthetic fixture support discovery associations only. Detailed-industry adequacy is separately assessed.",
       "reviewed_question_ids": [
         "q-performance"
       ],
       "reviewed_industry_codes": [],
-      "reviewed_at": "2026-09-11",
-      "review_note": "Reviewed discovery relationship to the named questions and explicitly declared industry scope; does not confer accounting adequacy or professional verification."
+      "reviewed_at": "2026-09-17",
+      "review_note": "AA-I125 scope review covers the selected US role and named questions only; it does not confer family-wide adequacy, professional verification, or descendant-industry conclusions."
     },
     "guide-q-audit-assertions": {
       "replace_question_ids": true,
@@ -14458,6 +14462,24 @@
         "q-receivables-credit",
         "q-tax-methods"
       ],
+      "source_ids": [
+        "src_roadmap_naics2022_manual",
+        "src_construction_texas_sales_tax",
+        "src_roadmap_tx_davis",
+        "src_construction_texas_public_prompt_payment",
+        "src_roadmap_ca_sales",
+        "src_roadmap_ca_cpr",
+        "src_roadmap_uk_frs102",
+        "src_roadmap_uk_vat",
+        "src_roadmap_uk_cis",
+        "src_hmrc_fps_payroll",
+        "src_roadmap_class_sicnace",
+        "src_roadmap_uk_frc_frs102_scope_2024",
+        "src_construction_fasb_2014_09",
+        "src_roadmap_ey_revenue_2026",
+        "src_roadmap_kpmg_revenue_2025",
+        "src_construction_aicpa_wip"
+      ],
       "industry_codes": [
         "236"
       ],
@@ -14488,6 +14510,24 @@
         "q-tax-methods",
         "q-inventory"
       ],
+      "source_ids": [
+        "src_roadmap_naics2022_manual",
+        "src_construction_texas_sales_tax",
+        "src_roadmap_tx_davis",
+        "src_construction_texas_public_prompt_payment",
+        "src_roadmap_ca_sales",
+        "src_roadmap_ca_cpr",
+        "src_roadmap_uk_frs102",
+        "src_roadmap_uk_vat",
+        "src_roadmap_uk_cis",
+        "src_hmrc_fps_payroll",
+        "src_roadmap_class_sicnace",
+        "src_roadmap_uk_frc_frs102_scope_2024",
+        "src_construction_fasb_2014_09",
+        "src_roadmap_ey_revenue_2026",
+        "src_roadmap_kpmg_revenue_2025",
+        "src_construction_aicpa_wip"
+      ],
       "industry_codes": [
         "237"
       ],
@@ -14517,6 +14557,24 @@
         "q-revenue",
         "q-receivables-credit",
         "q-indirect-tax"
+      ],
+      "source_ids": [
+        "src_roadmap_naics2022_manual",
+        "src_construction_texas_sales_tax",
+        "src_roadmap_tx_davis",
+        "src_construction_texas_public_prompt_payment",
+        "src_roadmap_ca_sales",
+        "src_roadmap_ca_cpr",
+        "src_roadmap_uk_frs102",
+        "src_roadmap_uk_vat",
+        "src_roadmap_uk_cis",
+        "src_hmrc_fps_payroll",
+        "src_roadmap_class_sicnace",
+        "src_roadmap_uk_frc_frs102_scope_2024",
+        "src_construction_fasb_2014_09",
+        "src_roadmap_ey_revenue_2026",
+        "src_roadmap_kpmg_revenue_2025",
+        "src_construction_aicpa_wip"
       ],
       "industry_codes": [
         "238"
@@ -17901,6 +17959,430 @@
       ],
       "basis_field": "/data",
       "reason": "Issue #117 bounded US nonprofit package; NAICS 813 is a discovery association only and does not limit cross-industry nonprofit applicability."
+    },
+    "src_fasb_asu2016_08_principal_agent": {
+      "replace_question_ids": true,
+      "question_ids": [
+        "q-revenue"
+      ],
+      "industry_codes": [],
+      "industry_scope": "shared-context",
+      "basis_field": "/data",
+      "reason": "Explicit US operating-transaction evidence association; shared context only, not industry-specific sufficiency.",
+      "reviewed_question_ids": [
+        "q-revenue"
+      ],
+      "reviewed_industry_codes": [],
+      "reviewed_at": "2026-09-17",
+      "review_note": "Association reviewed for the named US operating-transaction questions; it does not establish accounting adequacy, industry coverage or professional verification."
+    },
+    "src_fasb_asu2015_11_inventory": {
+      "replace_question_ids": true,
+      "question_ids": [
+        "q-inventory"
+      ],
+      "industry_codes": [],
+      "industry_scope": "shared-context",
+      "basis_field": "/data",
+      "reason": "Explicit US operating-transaction evidence association; shared context only, not industry-specific sufficiency.",
+      "reviewed_question_ids": [
+        "q-inventory"
+      ],
+      "reviewed_industry_codes": [],
+      "reviewed_at": "2026-09-17",
+      "review_note": "Association reviewed for the named US operating-transaction questions; it does not establish accounting adequacy, industry coverage or professional verification."
+    },
+    "src_fasb_asu2016_13_credit_losses": {
+      "replace_question_ids": true,
+      "question_ids": [
+        "q-receivables-credit"
+      ],
+      "industry_codes": [],
+      "industry_scope": "shared-context",
+      "basis_field": "/data",
+      "reason": "Explicit US operating-transaction evidence association; shared context only, not industry-specific sufficiency.",
+      "reviewed_question_ids": [
+        "q-receivables-credit"
+      ],
+      "reviewed_industry_codes": [],
+      "reviewed_at": "2026-09-17",
+      "review_note": "Association reviewed for the named US operating-transaction questions; it does not establish accounting adequacy, industry coverage or professional verification."
+    },
+    "src_fasb_concepts8_elements": {
+      "replace_question_ids": true,
+      "question_ids": [
+        "q-revenue",
+        "q-project-wip",
+        "q-purchasing-payables",
+        "q-cash-settlement"
+      ],
+      "industry_codes": [],
+      "industry_scope": "shared-context",
+      "basis_field": "/data",
+      "reason": "Explicit US operating-transaction evidence association; shared context only, not industry-specific sufficiency.",
+      "reviewed_question_ids": [
+        "q-revenue",
+        "q-project-wip",
+        "q-purchasing-payables",
+        "q-cash-settlement"
+      ],
+      "reviewed_industry_codes": [],
+      "reviewed_at": "2026-09-17",
+      "review_note": "Association reviewed for the named US operating-transaction questions; it does not establish accounting adequacy, industry coverage or professional verification."
+    },
+    "src_fasb_bmho20241218_topic330": {
+      "replace_question_ids": true,
+      "question_ids": [
+        "q-inventory"
+      ],
+      "industry_codes": [],
+      "industry_scope": "shared-context",
+      "basis_field": "/data",
+      "reason": "Explicit US operating-transaction evidence association; shared context only, not industry-specific sufficiency.",
+      "reviewed_question_ids": [
+        "q-inventory"
+      ],
+      "reviewed_industry_codes": [],
+      "reviewed_at": "2026-09-17",
+      "review_note": "Association reviewed for the named US operating-transaction questions; it does not establish accounting adequacy, industry coverage or professional verification."
+    },
+    "wf-us-event-to-ledger": {
+      "replace_question_ids": true,
+      "question_ids": [
+        "q-revenue",
+        "q-project-wip",
+        "q-purchasing-payables",
+        "q-receivables-credit",
+        "q-cash-settlement",
+        "q-inventory"
+      ],
+      "industry_codes": [],
+      "industry_scope": "shared-context",
+      "basis_field": "/data",
+      "reason": "Explicit US operating-transaction evidence association; shared context only, not industry-specific sufficiency.",
+      "reviewed_question_ids": [
+        "q-revenue",
+        "q-project-wip",
+        "q-purchasing-payables",
+        "q-receivables-credit",
+        "q-cash-settlement",
+        "q-inventory"
+      ],
+      "reviewed_industry_codes": [],
+      "reviewed_at": "2026-09-17",
+      "review_note": "Association reviewed for the named US operating-transaction questions; it does not establish accounting adequacy, industry coverage or professional verification."
+    },
+    "wf-us-contract-revenue-cutoff": {
+      "replace_question_ids": true,
+      "question_ids": [
+        "q-revenue"
+      ],
+      "industry_codes": [],
+      "industry_scope": "shared-context",
+      "basis_field": "/data",
+      "reason": "Explicit US operating-transaction evidence association; shared context only, not industry-specific sufficiency.",
+      "reviewed_question_ids": [
+        "q-revenue"
+      ],
+      "reviewed_industry_codes": [],
+      "reviewed_at": "2026-09-17",
+      "review_note": "Association reviewed for the named US operating-transaction questions; it does not establish accounting adequacy, industry coverage or professional verification."
+    },
+    "wf-us-project-wip-close": {
+      "replace_question_ids": true,
+      "question_ids": [
+        "q-project-wip"
+      ],
+      "industry_codes": [],
+      "industry_scope": "shared-context",
+      "basis_field": "/data",
+      "reason": "Explicit US operating-transaction evidence association; shared context only, not industry-specific sufficiency.",
+      "reviewed_question_ids": [
+        "q-project-wip"
+      ],
+      "reviewed_industry_codes": [],
+      "reviewed_at": "2026-09-17",
+      "review_note": "Association reviewed for the named US operating-transaction questions; it does not establish accounting adequacy, industry coverage or professional verification."
+    },
+    "wf-us-payables-cutoff": {
+      "replace_question_ids": true,
+      "question_ids": [
+        "q-purchasing-payables",
+        "q-inventory"
+      ],
+      "industry_codes": [],
+      "industry_scope": "shared-context",
+      "basis_field": "/data",
+      "reason": "Explicit US operating-transaction evidence association; shared context only, not industry-specific sufficiency.",
+      "reviewed_question_ids": [
+        "q-purchasing-payables",
+        "q-inventory"
+      ],
+      "reviewed_industry_codes": [],
+      "reviewed_at": "2026-09-17",
+      "review_note": "Association reviewed for the named US operating-transaction questions; it does not establish accounting adequacy, industry coverage or professional verification."
+    },
+    "wf-us-receivables-credit": {
+      "replace_question_ids": true,
+      "question_ids": [
+        "q-receivables-credit"
+      ],
+      "industry_codes": [],
+      "industry_scope": "shared-context",
+      "basis_field": "/data",
+      "reason": "Explicit US operating-transaction evidence association; shared context only, not industry-specific sufficiency.",
+      "reviewed_question_ids": [
+        "q-receivables-credit"
+      ],
+      "reviewed_industry_codes": [],
+      "reviewed_at": "2026-09-17",
+      "review_note": "Association reviewed for the named US operating-transaction questions; it does not establish accounting adequacy, industry coverage or professional verification."
+    },
+    "wf-us-settlement-clearing": {
+      "replace_question_ids": true,
+      "question_ids": [
+        "q-revenue",
+        "q-receivables-credit",
+        "q-cash-settlement"
+      ],
+      "industry_codes": [],
+      "industry_scope": "shared-context",
+      "basis_field": "/data",
+      "reason": "Explicit US operating-transaction evidence association; shared context only, not industry-specific sufficiency.",
+      "reviewed_question_ids": [
+        "q-revenue",
+        "q-receivables-credit",
+        "q-cash-settlement"
+      ],
+      "reviewed_industry_codes": [],
+      "reviewed_at": "2026-09-17",
+      "review_note": "Association reviewed for the named US operating-transaction questions; it does not establish accounting adequacy, industry coverage or professional verification."
+    },
+    "wf-us-inventory-rollforward": {
+      "replace_question_ids": true,
+      "question_ids": [
+        "q-inventory"
+      ],
+      "industry_codes": [],
+      "industry_scope": "shared-context",
+      "basis_field": "/data",
+      "reason": "Explicit US operating-transaction evidence association; shared context only, not industry-specific sufficiency.",
+      "reviewed_question_ids": [
+        "q-inventory"
+      ],
+      "reviewed_industry_codes": [],
+      "reviewed_at": "2026-09-17",
+      "review_note": "Association reviewed for the named US operating-transaction questions; it does not establish accounting adequacy, industry coverage or professional verification."
+    },
+    "ctrl-us-event-population-completeness": {
+      "replace_question_ids": true,
+      "question_ids": [
+        "q-revenue",
+        "q-project-wip",
+        "q-purchasing-payables",
+        "q-cash-settlement",
+        "q-inventory"
+      ],
+      "industry_codes": [],
+      "industry_scope": "shared-context",
+      "basis_field": "/data",
+      "reason": "Explicit US operating-transaction evidence association; shared context only, not industry-specific sufficiency.",
+      "reviewed_question_ids": [
+        "q-revenue",
+        "q-project-wip",
+        "q-purchasing-payables",
+        "q-cash-settlement",
+        "q-inventory"
+      ],
+      "reviewed_industry_codes": [],
+      "reviewed_at": "2026-09-17",
+      "review_note": "Association reviewed for the named US operating-transaction questions; it does not establish accounting adequacy, industry coverage or professional verification."
+    },
+    "ctrl-us-project-wip-estimate": {
+      "replace_question_ids": true,
+      "question_ids": [
+        "q-project-wip"
+      ],
+      "industry_codes": [],
+      "industry_scope": "shared-context",
+      "basis_field": "/data",
+      "reason": "Explicit US operating-transaction evidence association; shared context only, not industry-specific sufficiency.",
+      "reviewed_question_ids": [
+        "q-project-wip"
+      ],
+      "reviewed_industry_codes": [],
+      "reviewed_at": "2026-09-17",
+      "review_note": "Association reviewed for the named US operating-transaction questions; it does not establish accounting adequacy, industry coverage or professional verification."
+    },
+    "ctrl-us-unrecorded-liabilities": {
+      "replace_question_ids": true,
+      "question_ids": [
+        "q-purchasing-payables",
+        "q-inventory"
+      ],
+      "industry_codes": [],
+      "industry_scope": "shared-context",
+      "basis_field": "/data",
+      "reason": "Explicit US operating-transaction evidence association; shared context only, not industry-specific sufficiency.",
+      "reviewed_question_ids": [
+        "q-purchasing-payables",
+        "q-inventory"
+      ],
+      "reviewed_industry_codes": [],
+      "reviewed_at": "2026-09-17",
+      "review_note": "Association reviewed for the named US operating-transaction questions; it does not establish accounting adequacy, industry coverage or professional verification."
+    },
+    "ctrl-us-revenue-presentation-separation": {
+      "replace_question_ids": true,
+      "question_ids": [
+        "q-revenue",
+        "q-receivables-credit",
+        "q-cash-settlement"
+      ],
+      "industry_codes": [],
+      "industry_scope": "shared-context",
+      "basis_field": "/data",
+      "reason": "Explicit US operating-transaction evidence association; shared context only, not industry-specific sufficiency.",
+      "reviewed_question_ids": [
+        "q-revenue",
+        "q-receivables-credit",
+        "q-cash-settlement"
+      ],
+      "reviewed_industry_codes": [],
+      "reviewed_at": "2026-09-17",
+      "review_note": "Association reviewed for the named US operating-transaction questions; it does not establish accounting adequacy, industry coverage or professional verification."
+    },
+    "ctrl-us-contract-asset-receivable": {
+      "replace_question_ids": true,
+      "question_ids": [
+        "q-receivables-credit"
+      ],
+      "industry_codes": [],
+      "industry_scope": "shared-context",
+      "basis_field": "/data",
+      "reason": "Explicit US operating-transaction evidence association; shared context only, not industry-specific sufficiency.",
+      "reviewed_question_ids": [
+        "q-receivables-credit"
+      ],
+      "reviewed_industry_codes": [],
+      "reviewed_at": "2026-09-17",
+      "review_note": "Association reviewed for the named US operating-transaction questions; it does not establish accounting adequacy, industry coverage or professional verification."
+    },
+    "ctrl-us-settlement-clearing": {
+      "replace_question_ids": true,
+      "question_ids": [
+        "q-revenue",
+        "q-receivables-credit",
+        "q-cash-settlement"
+      ],
+      "industry_codes": [],
+      "industry_scope": "shared-context",
+      "basis_field": "/data",
+      "reason": "Explicit US operating-transaction evidence association; shared context only, not industry-specific sufficiency.",
+      "reviewed_question_ids": [
+        "q-revenue",
+        "q-receivables-credit",
+        "q-cash-settlement"
+      ],
+      "reviewed_industry_codes": [],
+      "reviewed_at": "2026-09-17",
+      "review_note": "Association reviewed for the named US operating-transaction questions; it does not establish accounting adequacy, industry coverage or professional verification."
+    },
+    "ctrl-us-inventory-rollforward": {
+      "replace_question_ids": true,
+      "question_ids": [
+        "q-inventory"
+      ],
+      "industry_codes": [],
+      "industry_scope": "shared-context",
+      "basis_field": "/data",
+      "reason": "Explicit US operating-transaction evidence association; shared context only, not industry-specific sufficiency.",
+      "reviewed_question_ids": [
+        "q-inventory"
+      ],
+      "reviewed_industry_codes": [],
+      "reviewed_at": "2026-09-17",
+      "review_note": "Association reviewed for the named US operating-transaction questions; it does not establish accounting adequacy, industry coverage or professional verification."
+    },
+    "example-us-operating-transactions-ledger": {
+      "replace_question_ids": true,
+      "question_ids": [
+        "q-revenue",
+        "q-purchasing-payables",
+        "q-receivables-credit",
+        "q-cash-settlement",
+        "q-inventory"
+      ],
+      "industry_codes": [],
+      "industry_scope": "shared-context",
+      "basis_field": "/data",
+      "reason": "Explicit US operating-transaction evidence association; shared context only, not industry-specific sufficiency.",
+      "reviewed_question_ids": [
+        "q-revenue",
+        "q-purchasing-payables",
+        "q-receivables-credit",
+        "q-cash-settlement",
+        "q-inventory"
+      ],
+      "reviewed_industry_codes": [],
+      "reviewed_at": "2026-09-17",
+      "review_note": "Association reviewed for the named US operating-transaction questions; it does not establish accounting adequacy, industry coverage or professional verification."
+    },
+    "example-us-project-wip-ledger": {
+      "replace_question_ids": true,
+      "question_ids": [
+        "q-project-wip"
+      ],
+      "industry_codes": [],
+      "industry_scope": "shared-context",
+      "basis_field": "/data",
+      "reason": "Explicit US operating-transaction evidence association; shared context only, not industry-specific sufficiency.",
+      "reviewed_question_ids": [
+        "q-project-wip"
+      ],
+      "reviewed_industry_codes": [],
+      "reviewed_at": "2026-09-17",
+      "review_note": "Association reviewed for the named US operating-transaction questions; it does not establish accounting adequacy, industry coverage or professional verification."
+    },
+    "src_far_31203_indirect_costs": {
+      "replace_question_ids": true,
+      "question_ids": [
+        "q-cost-allocation"
+      ],
+      "industry_codes": [],
+      "industry_scope": "shared-context",
+      "basis_field": "/data/source_review/mapping_rationale",
+      "reason": "External federal-contract counterexample for allocation-base consistency and method-change controls; not a general internal-management requirement.",
+      "reviewed_question_ids": [
+        "q-cost-allocation"
+      ],
+      "reviewed_industry_codes": [],
+      "reviewed_at": "2026-09-17",
+      "review_note": "External federal-contract counterexample for allocation-base consistency and method-change controls; not a general internal-management requirement. Association review covers the cited FAR paragraphs only; no accounting adequacy is inferred."
+    },
+    "example-us-management-allocation-budget-actual": {
+      "replace_question_ids": true,
+      "question_ids": [
+        "q-cost-allocation",
+        "q-planning",
+        "q-performance"
+      ],
+      "industry_codes": [
+        "31-33"
+      ],
+      "industry_scope": "specific",
+      "basis_field": "/data/editorial_review",
+      "reason": "Original synthetic selected-role fixture explicitly names the US manufacturing role and three shared families; this is discovery context, not industry-wide accounting sufficiency.",
+      "reviewed_question_ids": [
+        "q-cost-allocation",
+        "q-planning",
+        "q-performance"
+      ],
+      "reviewed_industry_codes": [
+        "31-33"
+      ],
+      "reviewed_at": "2026-09-17",
+      "review_note": "AA-I125 synthetic fixture is scoped to one role and one period. It does not establish a conclusion for manufacturing descendants or real entities."
     }
   }
 }
