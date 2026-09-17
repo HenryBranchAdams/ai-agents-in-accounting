@@ -4495,27 +4495,38 @@
     "id": "guide-q-reporting-basis",
     "kind": "guide",
     "title": "Reporting basis and accounting policies",
-    "summary": "Shared accounting foundation; entity, framework, jurisdiction and period must be declared. Only the named questions and accessed editions are assessed; other family branches remain open.",
+    "summary": "US reporting-basis routing supplement. Declare entity role, reporting purpose, framework, jurisdiction, period and effective requirements before applying a question. Existing IFRS questions remain separately scoped.",
     "topics": [
       "Scoped research",
       "Reporting basis and accounting policies"
     ],
     "industries": [],
-    "jurisdiction": "Entities applying the stated IFRS framework; local adoption and period must be established",
+    "jurisdiction": "United States; nongovernmental private business; United States; SEC registrants when the filing overlay applies; United States; state and local governmental reporting entities; United States; federal reporting entities",
     "source_type": null,
     "publisher": "Accounting Agents contributors",
     "source_url": null,
     "source_ids": [
-      "src_ias08pol"
+      "src_ias08pol",
+      "src_1os761s",
+      "src_secfrm26",
+      "src_roadmap_gasb34_basis",
+      "src_roadmap_fasab34"
     ],
-    "related_ids": [],
+    "related_ids": [
+      "guide-q-government-funds",
+      "guide-q-federal-sovereign"
+    ],
     "review_status": "editorially-reviewed",
-    "reviewed_at": "2026-09-11",
+    "reviewed_at": "2026-09-17",
     "provenance": {
       "added_on": "2026-09-11",
       "reviewer": "Codex AI-assisted research, with root source-scope and semantic review",
       "note": "Original research synthesis and clearly labeled original examples. Listed source access and currency limits constrain every answer; no professional sign-off or production validation.",
-      "research_file": "data/research/foundations.json"
+      "research_file": "data/research/foundations.json",
+      "supplemental_research_file": "data/research/reporting-foundations.json",
+      "supplemental_reviewed_at": "2026-09-17",
+      "supplemental_reviewer": "Codex AI-assisted research with source-scope review",
+      "supplemental_scope": "US reporting-basis routing for a selected nongovernmental private business, SEC registrant overlay, state/local governmental entity and federal reporting entity. This is a routing foundation, not a conclusion for an entity without its facts."
     },
     "rights": {
       "metadata": "CC0-1.0",
@@ -4526,15 +4537,35 @@
     "data": {
       "family_id": "q-reporting-basis",
       "title": "Reporting basis and accounting policies",
-      "scope": "Shared accounting foundation; entity, framework, jurisdiction and period must be declared. Only the named questions and accessed editions are assessed; other family branches remain open.",
-      "review_basis": "Reviewed-scoped from official public standard material; professional review not performed.",
+      "scope": "US reporting-basis routing for a selected nongovernmental private business, SEC registrant overlay, state/local governmental entity and federal reporting entity. This is a routing foundation, not a conclusion for an entity without its facts.",
+      "review_basis": "Official FASB, SEC, GASB and FASAB public material was inspected within the listed locators. Existing GASB and FASAB records are reused; no nonprofit Topic 958 package is duplicated.",
       "source_ids": [
-        "src_ias08pol"
+        "src_ias08pol",
+        "src_1os761s",
+        "src_secfrm26",
+        "src_roadmap_gasb34_basis",
+        "src_roadmap_fasab34"
       ],
       "source_locators": [
         {
           "source_id": "src_ias08pol",
           "locator": "IAS 8.5, 7-12, 14-27, 34-40 and 42-49; policy selection, changes and prior errors"
+        },
+        {
+          "source_id": "src_1os761s",
+          "locator": "FASB standards and ASC landing pages; ASC is the authoritative nongovernmental US GAAP source, but the applicable topic, effective date and entity scope must be confirmed."
+        },
+        {
+          "source_id": "src_secfrm26",
+          "locator": "SEC Financial Reporting Manual sections 1410 and 4210.5; staff manual is an informal, nonauthoritative SEC reporting locator."
+        },
+        {
+          "source_id": "src_roadmap_gasb34_basis",
+          "locator": "GASB 34 paragraphs 16, 77, 79-82, 85 and 90; printed pp.9-10 and 29-33; historical governmental-fund and government-wide basis distinction."
+        },
+        {
+          "source_id": "src_roadmap_fasab34",
+          "locator": "FASAB Handbook Version 24, paragraphs 4-12, printed/PDF pp.4-7; federal source hierarchy and limited FASB exception."
         }
       ],
       "shared_inputs": [
@@ -4551,17 +4582,29 @@
       ],
       "coverage_gaps": [
         "Questions are bounded foundations, not exhaustive treatment of the family.",
-        "Professional review not performed; empirical performance not established."
+        "Professional review not performed; empirical performance not established.",
+        "No entity-specific framework selection or professional accounting review was performed.",
+        "Nonprofit Topic 958, specialized regulatory bases and local legal requirements remain open.",
+        "The existing state/local and federal records are bounded excerpts, not complete current codifications."
       ],
       "frameworks": [
-        "IFRS Accounting Standards"
+        "IFRS Accounting Standards",
+        "US GAAP / FASB Codification",
+        "SEC reporting rules overlay",
+        "US state and local governmental GAAP",
+        "US federal GAAP",
+        "Tax, statutory and regulatory bases are separate from US GAAP"
       ],
       "jurisdictions": [
-        "Entities applying the stated IFRS framework; local adoption and period must be established"
+        "Entities applying the stated IFRS framework; local adoption and period must be established",
+        "United States; nongovernmental private business",
+        "United States; SEC registrants when the filing overlay applies",
+        "United States; state and local governmental reporting entities",
+        "United States; federal reporting entities"
       ],
       "professional_review": "not-performed",
       "empirical_support": "not-established",
-      "version": "2026-09-11.1",
+      "version": "2026-09-17.1",
       "research_package": "foundations",
       "research_questions": [
         {
@@ -4667,11 +4710,85 @@
               "empirical-support": "not-assessed"
             }
           }
+        },
+        {
+          "id": "rq-reporting-basis-us-framework-routing",
+          "question": "For a US reporting question, how should the entity role and reporting purpose route the analysis among FASB US GAAP, SEC overlays, GASB, FASAB and separate tax or statutory bases?",
+          "scope": "US reporting-basis routing; selected private-business US GAAP close, with SEC, state/local and federal routes retained as explicit counterexamples",
+          "conditions": [
+            "Declare the legal entity, reporting role, purpose, jurisdiction, framework, reporting period and effective requirements before treatment.",
+            "Use FASB ASC for nongovernmental US GAAP, add SEC rules only for an in-scope registrant or filing, and route state/local and federal entities to GASB or FASAB respectively.",
+            "Keep tax, statutory, regulatory and contractual bases separate from US GAAP and escalate unresolved role or authority facts."
+          ],
+          "answer": "Start with entity role and reporting purpose rather than the transaction label. A nongovernmental private business uses the applicable FASB ASC topic; a domestic SEC registrant also evaluates the applicable SEC rules and filing instructions. State or local government reporting routes to GASB, and a US federal reporting entity routes to FASAB. Tax, statutory and other regulatory bases are separate purposes. The route is a bounded research decision, not a complete accounting conclusion without entity facts and current effective text.",
+          "answer_status": "sourced-answer-bounded",
+          "source_ids": [
+            "src_1os761s",
+            "src_secfrm26",
+            "src_roadmap_gasb34_basis",
+            "src_roadmap_fasab34"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_1os761s",
+              "locator": "FASB standards and ASC landing pages; exact ASC topic, effective date and entity scope remain to be confirmed."
+            },
+            {
+              "source_id": "src_secfrm26",
+              "locator": "SEC FRM 1410 and 4210.5; informal SEC staff reporting locator, not authoritative rules."
+            },
+            {
+              "source_id": "src_roadmap_gasb34_basis",
+              "locator": "GASB 34 paragraphs 16, 77, 79-82, 85 and 90; governmental-fund and government-wide reporting distinction."
+            },
+            {
+              "source_id": "src_roadmap_fasab34",
+              "locator": "FASAB Handbook Version 24, paragraphs 4-12; federal hierarchy and limited FASB exception."
+            }
+          ],
+          "inputs": [
+            "Legal entity, operating role and reporting purpose",
+            "Framework, jurisdiction, reporting date, adoption or effective cohort",
+            "SEC registrant or filing status, governmental level, fund or federal component facts",
+            "Tax, statutory, regulatory and contractual overlays"
+          ],
+          "controls": [
+            "Require an accountable reviewer to approve the selected reporting basis before treatment is released.",
+            "Preserve source edition, paragraph locator, effective-date check and entity-scope rationale.",
+            "Prevent an IFRS, tax, GASB or FASAB conclusion from silently propagating to a different entity role."
+          ],
+          "exceptions": [
+            "Nonprofit Topic 958, specialized regulated entities, foreign private issuers, tribal or component entities and local legal mandates require their own package.",
+            "A public source landing page or staff manual cannot replace the applicable current authoritative text.",
+            "Missing entity role, reporting purpose, adoption cohort or decisive source edition."
+          ],
+          "remaining_gaps": [
+            "Current consolidated FASB, GASB and FASAB text was not fully accessed; source records state exact bounded locators and access limits.",
+            "Nonprofit Topic 958 substantive treatment remains open and coordinated with #117 rather than duplicated.",
+            "No professional reviewer accepted a live framework-selection conclusion."
+          ],
+          "family_id": "q-reporting-basis",
+          "worked_record_id": "example-us-reporting-foundations-close",
+          "assessment": {
+            "status": "partial",
+            "basis": "Selected US routing question with source locators, explicit roles, controls and scope counterexamples; not a family-wide or professional sufficiency finding.",
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "dimensions": {
+              "scope": "present",
+              "accounting-question": "partial",
+              "evidence-inputs": "present",
+              "workflow": "present",
+              "controls": "present",
+              "worked-material": "present",
+              "empirical-support": "not-assessed"
+            }
+          }
         }
       ],
       "editorial_brief": {
         "question": "Reporting basis and accounting policies",
-        "answer": "Shared accounting foundation; entity, framework, jurisdiction and period must be declared. Only the named questions and accessed editions are assessed; other family branches remain open.",
+        "answer": "US reporting-basis routing supplement. Declare entity role, reporting purpose, framework, jurisdiction, period and effective requirements before applying a question. Existing IFRS questions remain separately scoped.",
         "findings": [
           {
             "claim": "IAS 8.7-12 requires applying a directly applicable IFRS; absent one, management develops a relevant and reliable policy using related IFRS and the Conceptual Framework.",
@@ -4688,44 +4805,121 @@
             ],
             "classification": "sourced-answer-bounded",
             "qualification": "Reporting basis and accounting policies; entity, framework, jurisdiction and period declared"
+          },
+          {
+            "claim": "Start with entity role and reporting purpose rather than the transaction label. A nongovernmental private business uses the applicable FASB ASC topic; a domestic SEC registrant also evaluates the applicable SEC rules and filing instructions. State or local government reporting routes to GASB, and a US federal reporting entity routes to FASAB. Tax, statutory and other regulatory bases are separate purposes. The route is a bounded research decision, not a complete accounting conclusion without entity facts and current effective text.",
+            "source_ids": [
+              "src_1os761s",
+              "src_secfrm26",
+              "src_roadmap_gasb34_basis",
+              "src_roadmap_fasab34"
+            ],
+            "classification": "sourced-answer-bounded",
+            "qualification": "US reporting-basis routing; selected private-business US GAAP close, with SEC, state/local and federal routes retained as explicit counterexamples"
           }
         ],
         "unknowns": [
           "Questions are bounded foundations, not exhaustive treatment of the family.",
-          "Professional review not performed; empirical performance not established."
+          "Professional review not performed; empirical performance not established.",
+          "No entity-specific framework selection or professional accounting review was performed.",
+          "Nonprofit Topic 958, specialized regulatory bases and local legal requirements remain open.",
+          "The existing state/local and federal records are bounded excerpts, not complete current codifications."
         ],
         "reading_order": [
-          "src_ias08pol"
+          "src_ias08pol",
+          "src_1os761s",
+          "src_secfrm26",
+          "src_roadmap_gasb34_basis",
+          "src_roadmap_fasab34"
         ]
-      }
+      },
+      "related_ids": [
+        "guide-q-government-funds",
+        "guide-q-federal-sovereign"
+      ],
+      "us_scope": {
+        "selected_entity_roles": [
+          "Nongovernmental private business reporting under US GAAP",
+          "Domestic SEC registrant reporting under US GAAP with SEC filing overlays when applicable",
+          "State or local governmental reporting entity using GASB",
+          "US federal reporting entity using FASAB"
+        ],
+        "routing_matrix": [
+          {
+            "entity_role": "Nongovernmental private business",
+            "primary_framework": "US GAAP / FASB Codification",
+            "additional_overlay": "SEC rules only if the entity is an in-scope registrant or filing participant; tax and statutory bases remain separate"
+          },
+          {
+            "entity_role": "Domestic SEC registrant",
+            "primary_framework": "US GAAP / FASB Codification",
+            "additional_overlay": "SEC rules, Regulation S-X and filing-specific instructions"
+          },
+          {
+            "entity_role": "State or local government",
+            "primary_framework": "GASB governmental GAAP",
+            "additional_overlay": "Fund, government-wide, fiduciary or enterprise facts and local legal budget or appropriation requirements"
+          },
+          {
+            "entity_role": "US federal reporting entity",
+            "primary_framework": "FASAB federal GAAP",
+            "additional_overlay": "Federal reporting mandate, component perimeter, budget authority and any documented FASB exception"
+          }
+        ],
+        "open_boundaries": [
+          "Nonprofit Topic 958 treatment is coordinated with the separate open nonprofit package and is not duplicated here.",
+          "Tax, statutory, regulatory and contractual bases require a separately declared purpose and authority.",
+          "IFRS questions remain preserved and must not be silently reused as US authority."
+        ]
+      },
+      "workflows": [
+        "Identify the legal entity, operating role, reporting purpose and reporting users.",
+        "Select the framework and jurisdiction, then record SEC, tax, statutory, budget or other overlays separately.",
+        "Capture the reporting date, effective or adoption cohort and source edition before drafting treatment.",
+        "Route uncertain entity or framework facts to an accountable controller, governmental finance officer or other named reviewer."
+      ],
+      "additional_inputs": [
+        "Legal-entity and reporting-role evidence",
+        "Reporting purpose, period, adoption cohort and applicable filing or budget mandate",
+        "Source edition, effective-date and supersession evidence"
+      ],
+      "supplemental_research_package": "reporting-foundations-us",
+      "supplemental_research_file": "data/research/reporting-foundations.json"
     }
   },
   {
     "id": "guide-q-ledger-close",
     "kind": "guide",
     "title": "Ledger, journals and period close",
-    "summary": "Shared accounting foundation; entity, framework, jurisdiction and period must be declared. Only the named questions and accessed editions are assessed; other family branches remain open.",
+    "summary": "US GAAP month-close supplement with explicit source populations, accruals, reversals, cutoff, foreign-currency remeasurement, balanced proposed journals, statement mapping and human approval gates. It remains a reusable control and research foundation, not a universal close requirement.",
     "topics": [
       "Scoped research",
       "Ledger, journals and period close"
     ],
     "industries": [],
-    "jurisdiction": "United States; nonissuer audits; Global; widely recognized in US ICFR; United States",
+    "jurisdiction": "United States; nongovernmental private business",
     "source_type": null,
     "publisher": "Accounting Agents contributors",
     "source_url": null,
     "source_ids": [
       "src_1og297z",
-      "src_1v1zwt5"
+      "src_1v1zwt5",
+      "src_1os761s"
     ],
-    "related_ids": [],
+    "related_ids": [
+      "guide-q-reporting-basis"
+    ],
     "review_status": "editorially-reviewed",
-    "reviewed_at": "2026-09-11",
+    "reviewed_at": "2026-09-17",
     "provenance": {
       "added_on": "2026-09-11",
       "reviewer": "Codex AI-assisted research, with root source-scope and semantic review",
       "note": "Original research synthesis and clearly labeled original examples. Listed source access and currency limits constrain every answer; no professional sign-off or production validation.",
-      "research_file": "data/research/foundations.json"
+      "research_file": "data/research/foundations.json",
+      "supplemental_research_file": "data/research/reporting-foundations.json",
+      "supplemental_reviewed_at": "2026-09-17",
+      "supplemental_reviewer": "Codex AI-assisted research with source-scope review",
+      "supplemental_scope": "US GAAP month close for a selected private nongovernmental entity. The fixture uses a January 2026 reporting date, explicit event IDs, a reversible prior-period accrual, a scoped CAD payable, an earned-but-unrecorded expense and a balanced proposed close packet."
     },
     "rights": {
       "metadata": "CC0-1.0",
@@ -4736,11 +4930,12 @@
     "data": {
       "family_id": "q-ledger-close",
       "title": "Ledger, journals and period close",
-      "scope": "Shared accounting foundation; entity, framework, jurisdiction and period must be declared. Only the named questions and accessed editions are assessed; other family branches remain open.",
-      "review_basis": "Reviewed-scoped from official public standard material; professional review not performed.",
+      "scope": "US GAAP month close for a selected private nongovernmental entity. The fixture uses a January 2026 reporting date, explicit event IDs, a reversible prior-period accrual, a scoped CAD payable, an earned-but-unrecorded expense and a balanced proposed close packet.",
+      "review_basis": "FASB ASC routing was checked against the existing FASB record; existing editorial close-control records supply population, cutoff and approval design. The arithmetic and branches are original synthetic material.",
       "source_ids": [
         "src_1og297z",
-        "src_1v1zwt5"
+        "src_1v1zwt5",
+        "src_1os761s"
       ],
       "source_locators": [
         {
@@ -4750,6 +4945,18 @@
         {
           "source_id": "src_1v1zwt5",
           "locator": "Editorial evidence-control proposal; subsequent-payment and supplier-credit testing"
+        },
+        {
+          "source_id": "src_1os761s",
+          "locator": "FASB ASC landing page; applicable recognition, measurement, presentation and disclosure topics must be selected for each event."
+        },
+        {
+          "source_id": "src_1og297z",
+          "locator": "Editorial close-control proposal; purchase, receipt, invoice population and cutoff evidence."
+        },
+        {
+          "source_id": "src_1v1zwt5",
+          "locator": "Editorial evidence-control proposal; subsequent-payment, supplier-credit and review evidence."
         }
       ],
       "shared_inputs": [
@@ -4766,19 +4973,25 @@
       ],
       "coverage_gaps": [
         "Questions are bounded foundations, not exhaustive treatment of the family.",
-        "Professional review not performed; empirical performance not established."
+        "Professional review not performed; empirical performance not established.",
+        "The fixture is not a complete ERP population, audit evidence set or current US GAAP interpretation.",
+        "The underlying close controls are original editorial design; no universal statutory close procedure is inferred.",
+        "No independent controller, CPA or auditor sign-off was obtained."
       ],
       "frameworks": [
-        "Editorial control proposal; applicable IFRS selected per transaction"
+        "Editorial control proposal; applicable IFRS selected per transaction",
+        "US GAAP / FASB Codification",
+        "Editorial close-control proposal"
       ],
       "jurisdictions": [
         "United States; nonissuer audits",
         "Global; widely recognized in US ICFR",
-        "United States"
+        "United States",
+        "United States; nongovernmental private business"
       ],
       "professional_review": "not-performed",
       "empirical_support": "not-established",
-      "version": "2026-09-11.1",
+      "version": "2026-09-17.1",
       "research_package": "foundations",
       "research_questions": [
         {
@@ -4894,11 +5107,81 @@
               "empirical-support": "not-assessed"
             }
           }
+        },
+        {
+          "id": "rq-ledger-close-usgaap-month-close",
+          "question": "What inputs, journal controls and reconciliation steps make a proposed US GAAP month close reproducible without treating a later invoice or payment as an automatic prior-period entry?",
+          "scope": "US GAAP January 2026 month close for the selected private nongovernmental entity in the linked synthetic fixture",
+          "conditions": [
+            "Use a declared reporting entity, framework, reporting date, locked source population and account mapping.",
+            "Separate event date, accounting date, invoice date, settlement date and reporting date; do not force an entry from a later document alone.",
+            "Balance every proposed journal, retain source and approval identifiers and tie the adjusted trial balance to statement totals before human approval."
+          ],
+          "answer": "A reproducible close packet starts with the opening trial balance and complete source-event population, then preserves event IDs, accounting dates, cutoff evidence, accrual and reversal links, rate-source evidence, proposed balanced journals, reviewer approvals and statement mapping. A later invoice or settlement is evidence to evaluate, not an automatic prior-period posting. The linked fixture demonstrates a $12,000 earned-but-unrecorded expense, a $3,000 reversal, a CAD payable remeasurement and a balanced adjusted trial balance without a plug.",
+          "answer_status": "sourced-answer-bounded",
+          "source_ids": [
+            "src_1os761s",
+            "src_1og297z",
+            "src_1v1zwt5"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_1os761s",
+              "locator": "FASB ASC landing page; topic-specific recognition and presentation requirements remain to be selected."
+            },
+            {
+              "source_id": "src_1og297z",
+              "locator": "Editorial close-control proposal source; purchase, receipt, invoice population and cutoff."
+            },
+            {
+              "source_id": "src_1v1zwt5",
+              "locator": "Editorial evidence-control proposal; subsequent-payment and supplier-credit testing."
+            }
+          ],
+          "inputs": [
+            "Opening TB, source-event register, account mapping and locked period",
+            "Event, invoice, payment, reversal and approval IDs",
+            "FX rate table, rate-source identity and independent recalculation",
+            "Statement mapping and reviewer disposition"
+          ],
+          "controls": [
+            "Completeness and cutoff reconciliation from source populations to the GL",
+            "One-to-one event and journal joins, duplicate detection and reversal tracking",
+            "Independent recalculation and human approval before posting, payment or filing",
+            "Period lock and explicit exception routing when decisive dates or evidence are missing"
+          ],
+          "exceptions": [
+            "A later invoice can corroborate a prior-period condition but cannot alone establish the period or amount.",
+            "A reversal with a missing original accrual, duplicate source ID or contradictory approval must stop for review.",
+            "Government, nonprofit, SEC, tax and statutory bases require their own perimeter and requirements."
+          ],
+          "remaining_gaps": [
+            "The FASB ASC record was reviewed at landing-page level; the current topic-specific text and entity facts remain unresolved.",
+            "The close-control sources are editorial proposals, not universal accounting or audit requirements.",
+            "The example is synthetic and has no live ERP completeness, production posting or professional review."
+          ],
+          "family_id": "q-ledger-close",
+          "worked_record_id": "example-us-reporting-foundations-close",
+          "assessment": {
+            "status": "partial",
+            "basis": "Selected synthetic close has declared inputs, workflow, controls, balanced journals and statement tie-out; no production or professional sufficiency is asserted.",
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "dimensions": {
+              "scope": "present",
+              "accounting-question": "partial",
+              "evidence-inputs": "present",
+              "workflow": "present",
+              "controls": "present",
+              "worked-material": "present",
+              "empirical-support": "not-assessed"
+            }
+          }
         }
       ],
       "editorial_brief": {
         "question": "Ledger, journals and period close",
-        "answer": "Shared accounting foundation; entity, framework, jurisdiction and period must be declared. Only the named questions and accessed editions are assessed; other family branches remain open.",
+        "answer": "US GAAP month-close supplement with explicit source populations, accruals, reversals, cutoff, foreign-currency remeasurement, balanced proposed journals, statement mapping and human approval gates. It remains a reusable control and research foundation, not a universal close requirement.",
         "findings": [
           {
             "claim": "A close design is an editorial control proposal: define the period population, reconcile subledgers to the GL, investigate reconciling items and retain approval. The cited control sources do not establish a universal accounting close requirement.",
@@ -4917,44 +5200,93 @@
             ],
             "classification": "sourced-answer-bounded",
             "qualification": "Ledger, journals and period close; entity, framework, jurisdiction and period declared"
+          },
+          {
+            "claim": "A reproducible close packet starts with the opening trial balance and complete source-event population, then preserves event IDs, accounting dates, cutoff evidence, accrual and reversal links, rate-source evidence, proposed balanced journals, reviewer approvals and statement mapping. A later invoice or settlement is evidence to evaluate, not an automatic prior-period posting. The linked fixture demonstrates a $12,000 earned-but-unrecorded expense, a $3,000 reversal, a CAD payable remeasurement and a balanced adjusted trial balance without a plug.",
+            "source_ids": [
+              "src_1os761s",
+              "src_1og297z",
+              "src_1v1zwt5"
+            ],
+            "classification": "sourced-answer-bounded",
+            "qualification": "US GAAP January 2026 month close for the selected private nongovernmental entity in the linked synthetic fixture"
           }
         ],
         "unknowns": [
           "Questions are bounded foundations, not exhaustive treatment of the family.",
-          "Professional review not performed; empirical performance not established."
+          "Professional review not performed; empirical performance not established.",
+          "The fixture is not a complete ERP population, audit evidence set or current US GAAP interpretation.",
+          "The underlying close controls are original editorial design; no universal statutory close procedure is inferred.",
+          "No independent controller, CPA or auditor sign-off was obtained."
         ],
         "reading_order": [
           "src_1og297z",
-          "src_1v1zwt5"
+          "src_1v1zwt5",
+          "src_1os761s"
         ]
-      }
+      },
+      "related_ids": [
+        "guide-q-reporting-basis"
+      ],
+      "us_scope": {
+        "selected_entity_role": "Private nongovernmental for-profit entity reporting under US GAAP",
+        "reporting_period": "Calendar month ended 2026-01-31",
+        "close_boundary": "Proposed entries only; no posting, payment or filing is executed",
+        "counterexamples": [
+          "A government fund, federal reporting entity, nonprofit or SEC registrant may require a different framework or filing overlay.",
+          "A source population without event IDs, cutoff dates or approval evidence cannot inherit the fixture's conclusion."
+        ]
+      },
+      "workflows": [
+        "Lock the reporting period and record the opening trial balance with a reproducible source population.",
+        "Join each event to source, preparer, reviewer and approval identifiers; test completeness and cutoff.",
+        "Prepare proposed accrual, reversal and remeasurement journals and independently recalculate every line.",
+        "Tie the adjusted trial balance to statement mapping, retain exceptions and route posting to an accountable human reviewer."
+      ],
+      "additional_inputs": [
+        "Opening trial balance and account mapping",
+        "Complete source-event register with event IDs, dates, amounts, currencies and approvals",
+        "Subsequent invoice and settlement population",
+        "Documented FX rate table and rate-source identity",
+        "Period lock, journal status and reviewer disposition"
+      ],
+      "supplemental_research_package": "reporting-foundations-us",
+      "supplemental_research_file": "data/research/reporting-foundations.json"
     }
   },
   {
     "id": "guide-q-estimates",
     "kind": "guide",
     "title": "Estimates and uncertainty",
-    "summary": "Shared accounting foundation; entity, framework, jurisdiction and period must be declared. Only the named questions and accessed editions are assessed; other family branches remain open.",
+    "summary": "US GAAP estimate-change supplement that separates new information from an error or omitted available information, preserves the decision facts and routes materiality and correction analysis to review.",
     "topics": [
       "Scoped research",
       "Estimates and uncertainty"
     ],
     "industries": [],
-    "jurisdiction": "Entities applying the stated IFRS framework; local adoption and period must be established",
+    "jurisdiction": "United States; nongovernmental private business",
     "source_type": null,
     "publisher": "Accounting Agents contributors",
     "source_url": null,
     "source_ids": [
-      "src_ias08pol"
+      "src_ias08pol",
+      "src_1os761s"
     ],
-    "related_ids": [],
+    "related_ids": [
+      "guide-q-reporting-basis",
+      "guide-q-policy-changes-errors"
+    ],
     "review_status": "editorially-reviewed",
-    "reviewed_at": "2026-09-11",
+    "reviewed_at": "2026-09-17",
     "provenance": {
       "added_on": "2026-09-11",
       "reviewer": "Codex AI-assisted research, with root source-scope and semantic review",
       "note": "Original research synthesis and clearly labeled original examples. Listed source access and currency limits constrain every answer; no professional sign-off or production validation.",
-      "research_file": "data/research/foundations.json"
+      "research_file": "data/research/foundations.json",
+      "supplemental_research_file": "data/research/reporting-foundations.json",
+      "supplemental_reviewed_at": "2026-09-17",
+      "supplemental_reviewer": "Codex AI-assisted research with source-scope review",
+      "supplemental_scope": "US GAAP estimate-change versus error branch for a selected private nongovernmental entity. The linked fixture includes a warranty estimate revision branch with an explicit availability-of-information question."
     },
     "rights": {
       "metadata": "CC0-1.0",
@@ -4965,15 +5297,20 @@
     "data": {
       "family_id": "q-estimates",
       "title": "Estimates and uncertainty",
-      "scope": "Shared accounting foundation; entity, framework, jurisdiction and period must be declared. Only the named questions and accessed editions are assessed; other family branches remain open.",
-      "review_basis": "Reviewed-scoped from official public standard material; professional review not performed.",
+      "scope": "US GAAP estimate-change versus error branch for a selected private nongovernmental entity. The linked fixture includes a warranty estimate revision branch with an explicit availability-of-information question.",
+      "review_basis": "The FASB ASC record and current Topic 250 locators were used as bounded authority references. No complete Codification text, live estimate population or professional estimate review was performed.",
       "source_ids": [
-        "src_ias08pol"
+        "src_ias08pol",
+        "src_1os761s"
       ],
       "source_locators": [
         {
           "source_id": "src_ias08pol",
           "locator": "IAS 8.5, 7-12, 14-27, 34-40 and 42-49; policy selection, changes and prior errors"
+        },
+        {
+          "source_id": "src_1os761s",
+          "locator": "FASB ASC Topic 250, especially ASC 250-10-45-17, 45-18 and 45-27; current consolidated text, materiality and entity-specific application require confirmation."
         }
       ],
       "shared_inputs": [
@@ -4990,17 +5327,22 @@
       ],
       "coverage_gaps": [
         "Questions are bounded foundations, not exhaustive treatment of the family.",
-        "Professional review not performed; empirical performance not established."
+        "Professional review not performed; empirical performance not established.",
+        "Current consolidated ASC 250 text and later amendments were not fully accessed.",
+        "No live estimate population, sensitivity study, back-test or professional review was performed.",
+        "The linked branch intentionally leaves the classification open until availability and materiality facts are supplied."
       ],
       "frameworks": [
-        "IFRS Accounting Standards"
+        "IFRS Accounting Standards",
+        "US GAAP / FASB Codification"
       ],
       "jurisdictions": [
-        "Entities applying the stated IFRS framework; local adoption and period must be established"
+        "Entities applying the stated IFRS framework; local adoption and period must be established",
+        "United States; nongovernmental private business"
       ],
       "professional_review": "not-performed",
       "empirical_support": "not-established",
-      "version": "2026-09-11.1",
+      "version": "2026-09-17.1",
       "research_package": "foundations",
       "research_questions": [
         {
@@ -5108,11 +5450,70 @@
               "empirical-support": "not-assessed"
             }
           }
+        },
+        {
+          "id": "rq-estimates-us-change-or-error",
+          "question": "Under US GAAP, which facts distinguish a change in estimate from an error, and how should the decision be evidenced before a period or comparative is changed?",
+          "scope": "US GAAP Topic 250 estimate-change versus error analysis for the selected private entity",
+          "conditions": [
+            "Separate new information from a mathematical mistake, misapplication or omission of information that was available at the prior reporting date.",
+            "Record the reporting date, issuance or availability date, discovery date, materiality and affected periods.",
+            "Do not choose prospective or retrospective treatment until current ASC 250 text and the entity facts are reviewed."
+          ],
+          "answer": "The key decision fact is not simply when the issue was discovered. A change caused by new information generally follows the estimate-change path in the applicable current ASC 250 text, while a mathematical mistake, misapplication or omission of information available at the prior reporting date may be an error requiring materiality and correction analysis. Preserve the original estimate, new evidence, availability date, affected periods, recalculation and reviewer disposition. The linked warranty branch remains intentionally unresolved until those facts are supplied.",
+          "answer_status": "sourced-answer-bounded",
+          "source_ids": [
+            "src_1os761s"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_1os761s",
+              "locator": "ASC 250-10-45-17, 45-18 and 45-27; current consolidated Codification access and materiality review remain required."
+            }
+          ],
+          "inputs": [
+            "Original estimate, assumptions, approval and source population",
+            "New evidence, discovery date and prior-date availability evidence",
+            "Reporting and issuance or availability dates",
+            "Materiality, comparative, tax and disclosure effects"
+          ],
+          "controls": [
+            "Version original and revised estimate files and preserve the decision facts.",
+            "Require independent recalculation and a named reviewer to classify the change.",
+            "Block automatic restatement or prospective posting when availability, materiality or current authority is unresolved."
+          ],
+          "exceptions": [
+            "Estimate changes tied to contracts, contingencies, taxes, regulated rates or specialized guidance may require another topic.",
+            "A prior-period omission can be immaterial, material or impracticable only after the current rule and entity facts are reviewed.",
+            "No estimate conclusion may be propagated to every industry or reporting basis."
+          ],
+          "remaining_gaps": [
+            "Current ASC 250 consolidated text, later amendments and entity-specific materiality were not fully reviewed.",
+            "No independent accounting reviewer accepted the classification or correction path.",
+            "The synthetic branch has no empirical estimate-performance evidence."
+          ],
+          "family_id": "q-estimates",
+          "worked_record_id": "example-us-reporting-foundations-close",
+          "assessment": {
+            "status": "partial",
+            "basis": "Bounded estimate-versus-error question with decision facts, controls and a deliberate unresolved branch; no live estimate or professional conclusion.",
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "dimensions": {
+              "scope": "present",
+              "accounting-question": "partial",
+              "evidence-inputs": "present",
+              "workflow": "present",
+              "controls": "present",
+              "worked-material": "present",
+              "empirical-support": "not-assessed"
+            }
+          }
         }
       ],
       "editorial_brief": {
         "question": "Estimates and uncertainty",
-        "answer": "Shared accounting foundation; entity, framework, jurisdiction and period must be declared. Only the named questions and accessed editions are assessed; other family branches remain open.",
+        "answer": "US GAAP estimate-change supplement that separates new information from an error or omitted available information, preserves the decision facts and routes materiality and correction analysis to review.",
         "findings": [
           {
             "claim": "New information, developments or experience can lead to an estimate revision; revising an estimate is not by itself correction of an error. Identify what was reasonably available at the earlier reporting date before classifying the change.",
@@ -5129,44 +5530,91 @@
             ],
             "classification": "sourced-answer-bounded",
             "qualification": "Estimates and uncertainty; entity, framework, jurisdiction and period declared"
+          },
+          {
+            "claim": "The key decision fact is not simply when the issue was discovered. A change caused by new information generally follows the estimate-change path in the applicable current ASC 250 text, while a mathematical mistake, misapplication or omission of information available at the prior reporting date may be an error requiring materiality and correction analysis. Preserve the original estimate, new evidence, availability date, affected periods, recalculation and reviewer disposition. The linked warranty branch remains intentionally unresolved until those facts are supplied.",
+            "source_ids": [
+              "src_1os761s"
+            ],
+            "classification": "sourced-answer-bounded",
+            "qualification": "US GAAP Topic 250 estimate-change versus error analysis for the selected private entity"
           }
         ],
         "unknowns": [
           "Questions are bounded foundations, not exhaustive treatment of the family.",
-          "Professional review not performed; empirical performance not established."
+          "Professional review not performed; empirical performance not established.",
+          "Current consolidated ASC 250 text and later amendments were not fully accessed.",
+          "No live estimate population, sensitivity study, back-test or professional review was performed.",
+          "The linked branch intentionally leaves the classification open until availability and materiality facts are supplied."
         ],
         "reading_order": [
-          "src_ias08pol"
+          "src_ias08pol",
+          "src_1os761s"
         ]
-      }
+      },
+      "related_ids": [
+        "guide-q-reporting-basis",
+        "guide-q-policy-changes-errors"
+      ],
+      "us_scope": {
+        "selected_entity_role": "Private nongovernmental for-profit entity reporting under US GAAP",
+        "decision_boundary": "New information generally supports an estimate-change analysis; an omitted or misapplied fact that was available at the prior reporting date may be an error subject to correction analysis.",
+        "counterexamples": [
+          "A change in a tax, statutory or regulatory estimate may use a different basis and must not inherit the US GAAP route.",
+          "A new fact discovered after issuance still requires the prior-period availability and materiality facts; discovery date alone is not the conclusion."
+        ]
+      },
+      "workflows": [
+        "Capture the original estimate, assumptions, evidence date and approval.",
+        "Identify the new information, when it became available and whether it was reasonably available at the prior reporting date.",
+        "Document the estimate-versus-error analysis, materiality, affected periods and proposed entry or disclosure.",
+        "Obtain independent recalculation and accountable human approval before correction or release."
+      ],
+      "additional_inputs": [
+        "Original estimate and approved assumptions",
+        "New evidence with discovery and availability dates",
+        "Prior reporting and issuance or availability dates",
+        "Materiality, comparative-period and disclosure analysis"
+      ],
+      "supplemental_research_package": "reporting-foundations-us",
+      "supplemental_research_file": "data/research/reporting-foundations.json"
     }
   },
   {
     "id": "guide-q-presentation",
     "kind": "guide",
     "title": "Statements, disclosures and digital filing",
-    "summary": "Shared accounting foundation; entity, framework, jurisdiction and period must be declared. Only the named questions and accessed editions are assessed; other family branches remain open.",
+    "summary": "US GAAP presentation supplement with statement mapping, disclosure evidence, SEC filing overlays and explicit limits on private-company and XBRL conclusions.",
     "topics": [
       "Scoped research",
       "Statements, disclosures and digital filing"
     ],
     "industries": [],
-    "jurisdiction": "Entities applying the stated IFRS framework; local adoption and period must be established",
+    "jurisdiction": "United States; nongovernmental private business; United States; SEC registrants when the filing overlay applies",
     "source_type": null,
     "publisher": "Accounting Agents contributors",
     "source_url": null,
     "source_ids": [
       "src_ias1",
-      "src_ifrs18p"
+      "src_ifrs18p",
+      "src_1os761s",
+      "src_secfrm26",
+      "src_sec_regsx"
     ],
-    "related_ids": [],
+    "related_ids": [
+      "guide-q-reporting-basis"
+    ],
     "review_status": "editorially-reviewed",
-    "reviewed_at": "2026-09-11",
+    "reviewed_at": "2026-09-17",
     "provenance": {
       "added_on": "2026-09-11",
       "reviewer": "Codex AI-assisted research, with root source-scope and semantic review",
       "note": "Original research synthesis and clearly labeled original examples. Listed source access and currency limits constrain every answer; no professional sign-off or production validation.",
-      "research_file": "data/research/foundations.json"
+      "research_file": "data/research/foundations.json",
+      "supplemental_research_file": "data/research/reporting-foundations.json",
+      "supplemental_reviewed_at": "2026-09-17",
+      "supplemental_reviewer": "Codex AI-assisted research with source-scope review",
+      "supplemental_scope": "US GAAP statement and disclosure mapping for the selected private nongovernmental entity, with a separate SEC registrant counterexample. This supplement does not duplicate digital filing implementation or XBRL evidence."
     },
     "rights": {
       "metadata": "CC0-1.0",
@@ -5177,11 +5625,14 @@
     "data": {
       "family_id": "q-presentation",
       "title": "Statements, disclosures and digital filing",
-      "scope": "Shared accounting foundation; entity, framework, jurisdiction and period must be declared. Only the named questions and accessed editions are assessed; other family branches remain open.",
-      "review_basis": "Substantive bounded repair from cited official material; professional review not performed.",
+      "scope": "US GAAP statement and disclosure mapping for the selected private nongovernmental entity, with a separate SEC registrant counterexample. This supplement does not duplicate digital filing implementation or XBRL evidence.",
+      "review_basis": "FASB ASC landing-level authority and SEC official rules/index material were reviewed within bounded locators. Current presentation topics, forms, filing requirements and professional disclosure review remain open.",
       "source_ids": [
         "src_ias1",
-        "src_ifrs18p"
+        "src_ifrs18p",
+        "src_1os761s",
+        "src_secfrm26",
+        "src_sec_regsx"
       ],
       "source_locators": [
         {
@@ -5191,6 +5642,18 @@
         {
           "source_id": "src_ifrs18p",
           "locator": "IFRS Foundation standard page, transition/effective-date summary; future presentation standard tracked separately"
+        },
+        {
+          "source_id": "src_1os761s",
+          "locator": "FASB ASC presentation and disclosure topics; exact Topic 205, 210, 220, 230, 275 and 280 requirements depend on entity facts and current access."
+        },
+        {
+          "source_id": "src_secfrm26",
+          "locator": "SEC FRM sections 1410 and 4210.5; informal staff guidance and reporting locator."
+        },
+        {
+          "source_id": "src_sec_regsx",
+          "locator": "SEC rules and regulations index, Regulation S-X and 17 CFR Part 210 entry."
         }
       ],
       "shared_inputs": [
@@ -5207,17 +5670,24 @@
       ],
       "coverage_gaps": [
         "Questions are bounded foundations, not exhaustive treatment of the family.",
-        "Professional review not performed; empirical performance not established."
+        "Professional review not performed; empirical performance not established.",
+        "No complete current presentation topic, Regulation S-X article or form instruction was reviewed.",
+        "No SEC registrant filing, XBRL taxonomy mapping or professional disclosure review was performed.",
+        "The private-business fixture is a statement-mapping example, not filing evidence."
       ],
       "frameworks": [
-        "IFRS Accounting Standards"
+        "IFRS Accounting Standards",
+        "US GAAP / FASB Codification",
+        "SEC reporting rules overlay"
       ],
       "jurisdictions": [
-        "Entities applying the stated IFRS framework; local adoption and period must be established"
+        "Entities applying the stated IFRS framework; local adoption and period must be established",
+        "United States; nongovernmental private business",
+        "United States; SEC registrants when the filing overlay applies"
       ],
       "professional_review": "not-performed",
       "empirical_support": "not-established",
-      "version": "2026-09-11.1",
+      "version": "2026-09-17.1",
       "research_package": "foundations",
       "research_questions": [
         {
@@ -5334,11 +5804,79 @@
               "empirical-support": "not-assessed"
             }
           }
+        },
+        {
+          "id": "rq-presentation-us-statements-disclosures",
+          "question": "How should a US GAAP close map adjusted ledger balances to statements and disclosures while deciding whether an SEC filing overlay applies?",
+          "scope": "US GAAP statement and disclosure mapping for the selected private entity, with SEC registrant routing as a scope counterexample",
+          "conditions": [
+            "Start with the adjusted trial balance, reporting entity, reporting date, comparative periods and current presentation topics.",
+            "Treat SEC Regulation S-X and filing requirements as an additional overlay for in-scope registrants, not a private-company default.",
+            "Keep presentation mapping, disclosure judgment and digital filing or XBRL implementation as separate evidence packages."
+          ],
+          "answer": "Map the adjusted trial balance to statement lines and disclosure schedules, reconcile each total to the ledger, preserve comparative and reporting-date support and document entity-specific classification judgments. A domestic SEC registrant adds the applicable SEC rules, Regulation S-X and form instructions; the SEC Financial Reporting Manual is an informal staff locator rather than authoritative accounting. A private business does not inherit an SEC or XBRL requirement from this fixture.",
+          "answer_status": "sourced-answer-bounded",
+          "source_ids": [
+            "src_1os761s",
+            "src_secfrm26",
+            "src_sec_regsx"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_1os761s",
+              "locator": "FASB ASC presentation and disclosure topics; current topic and entity-scope review required."
+            },
+            {
+              "source_id": "src_secfrm26",
+              "locator": "SEC FRM 1410 and 4210.5; informal SEC staff practice locator."
+            },
+            {
+              "source_id": "src_sec_regsx",
+              "locator": "SEC rules and regulations index, Regulation S-X and 17 CFR Part 210 entry."
+            }
+          ],
+          "inputs": [
+            "Adjusted TB, chart of accounts and statement mapping",
+            "Reporting date, comparatives, disclosure checklist and supporting evidence",
+            "Entity filing status and applicable SEC or other reporting overlay"
+          ],
+          "controls": [
+            "Reconcile statement totals and disclosure amounts to the adjusted TB.",
+            "Require reviewer sign-off for classification, aggregation, omission and filing-scope judgments.",
+            "Keep source, accounting, disclosure and digital filing evidence linked but separately reviewable."
+          ],
+          "exceptions": [
+            "SEC registrant, foreign private issuer, nonprofit, government, regulated entity and statutory reporting roles require separate requirements.",
+            "An account mapping cannot decide a disclosure without materiality, reporting-date and entity facts.",
+            "XBRL or electronic filing implementation evidence is not a substitute for accounting or disclosure review."
+          ],
+          "remaining_gaps": [
+            "Current FASB presentation topics and SEC form-specific rules were not fully accessed.",
+            "No filing, taxonomy, comparative population or professional disclosure review was performed.",
+            "The synthetic output only demonstrates a bounded statement tie-out."
+          ],
+          "family_id": "q-presentation",
+          "worked_record_id": "example-us-reporting-foundations-close",
+          "assessment": {
+            "status": "partial",
+            "basis": "Selected statement-mapping question with SEC scope boundary and synthetic ledger tie-out; not a filing or disclosure sufficiency conclusion.",
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "dimensions": {
+              "scope": "present",
+              "accounting-question": "partial",
+              "evidence-inputs": "present",
+              "workflow": "present",
+              "controls": "present",
+              "worked-material": "present",
+              "empirical-support": "not-assessed"
+            }
+          }
         }
       ],
       "editorial_brief": {
         "question": "Statements, disclosures and digital filing",
-        "answer": "Shared accounting foundation; entity, framework, jurisdiction and period must be declared. Only the named questions and accessed editions are assessed; other family branches remain open.",
+        "answer": "US GAAP presentation supplement with statement mapping, disclosure evidence, SEC filing overlays and explicit limits on private-company and XBRL conclusions.",
         "findings": [
           {
             "claim": "IAS 1 remains the current presentation authority before local IFRS 18 adoption. IAS 1.69-76A assesses current/non-current classification, covenant breach and grace periods at the reporting date; IFRS 18 is a future transition consideration.",
@@ -5357,44 +5895,94 @@
             ],
             "classification": "editorial-proposal",
             "qualification": "Statements, disclosures and digital filing; entity, framework, jurisdiction and period declared"
+          },
+          {
+            "claim": "Map the adjusted trial balance to statement lines and disclosure schedules, reconcile each total to the ledger, preserve comparative and reporting-date support and document entity-specific classification judgments. A domestic SEC registrant adds the applicable SEC rules, Regulation S-X and form instructions; the SEC Financial Reporting Manual is an informal staff locator rather than authoritative accounting. A private business does not inherit an SEC or XBRL requirement from this fixture.",
+            "source_ids": [
+              "src_1os761s",
+              "src_secfrm26",
+              "src_sec_regsx"
+            ],
+            "classification": "sourced-answer-bounded",
+            "qualification": "US GAAP statement and disclosure mapping for the selected private entity, with SEC registrant routing as a scope counterexample"
           }
         ],
         "unknowns": [
           "Questions are bounded foundations, not exhaustive treatment of the family.",
-          "Professional review not performed; empirical performance not established."
+          "Professional review not performed; empirical performance not established.",
+          "No complete current presentation topic, Regulation S-X article or form instruction was reviewed.",
+          "No SEC registrant filing, XBRL taxonomy mapping or professional disclosure review was performed.",
+          "The private-business fixture is a statement-mapping example, not filing evidence."
         ],
         "reading_order": [
           "src_ias1",
-          "src_ifrs18p"
+          "src_ifrs18p",
+          "src_1os761s",
+          "src_secfrm26",
+          "src_sec_regsx"
         ]
-      }
+      },
+      "related_ids": [
+        "guide-q-reporting-basis"
+      ],
+      "us_scope": {
+        "selected_entity_role": "Private nongovernmental for-profit entity reporting under US GAAP",
+        "presentation_boundary": "Map adjusted trial-balance accounts to statements and disclosures; do not infer an SEC filing or XBRL obligation for a private entity.",
+        "counterexamples": [
+          "A domestic SEC registrant requires a separate Regulation S-X and filing-form analysis.",
+          "A government, nonprofit or regulated entity may have specialized statement and disclosure requirements."
+        ]
+      },
+      "workflows": [
+        "Freeze the adjusted trial balance and map every included account to a statement line or disclosure schedule.",
+        "Reconcile statement totals to the ledger and preserve comparative and reporting-date support.",
+        "Determine whether SEC rules, form instructions or other filing overlays apply based on entity role.",
+        "Route unusual classifications and disclosure completeness to an accountable reviewer; keep digital filing implementation separate."
+      ],
+      "additional_inputs": [
+        "Adjusted trial balance and account-to-statement mapping",
+        "Comparative periods, reporting-date support and disclosure checklist",
+        "Entity filing status, form, Regulation S-X/S-K scope and effective filing requirements"
+      ],
+      "supplemental_research_package": "reporting-foundations-us",
+      "supplemental_research_file": "data/research/reporting-foundations.json"
     }
   },
   {
     "id": "guide-q-foreign-currency",
     "kind": "guide",
     "title": "Foreign currency and foreign operations",
-    "summary": "Shared accounting foundation; entity, framework, jurisdiction and period must be declared. Only the named questions and accessed editions are assessed; other family branches remain open.",
+    "summary": "US GAAP foreign-currency supplement with functional-currency, transaction-date, closing-rate and settlement-date inputs. It separates a scoped payable's transaction remeasurement from foreign-operation translation and CTA questions.",
     "topics": [
       "Scoped research",
       "Foreign currency and foreign operations"
     ],
     "industries": [],
-    "jurisdiction": "Entities applying the stated IFRS framework; local adoption and period must be established",
+    "jurisdiction": "United States; nongovernmental private business",
     "source_type": null,
     "publisher": "Accounting Agents contributors",
     "source_url": null,
     "source_ids": [
-      "src_ias21fx"
+      "src_ias21fx",
+      "src_1os761s",
+      "src_fasb_fas52",
+      "src_fasb_201305"
     ],
-    "related_ids": [],
+    "related_ids": [
+      "guide-q-reporting-basis",
+      "guide-q-ledger-close"
+    ],
     "review_status": "editorially-reviewed",
-    "reviewed_at": "2026-09-11",
+    "reviewed_at": "2026-09-17",
     "provenance": {
       "added_on": "2026-09-11",
       "reviewer": "Codex AI-assisted research, with root source-scope and semantic review",
       "note": "Original research synthesis and clearly labeled original examples. Listed source access and currency limits constrain every answer; no professional sign-off or production validation.",
-      "research_file": "data/research/foundations.json"
+      "research_file": "data/research/foundations.json",
+      "supplemental_research_file": "data/research/reporting-foundations.json",
+      "supplemental_reviewed_at": "2026-09-17",
+      "supplemental_reviewer": "Codex AI-assisted research with source-scope review",
+      "supplemental_scope": "US GAAP foreign-currency transaction and translation routing for a selected private entity with a CAD service payable. The fixture uses dated USD-per-CAD rates and keeps the February settlement outside the January closing trial balance."
     },
     "rights": {
       "metadata": "CC0-1.0",
@@ -5405,15 +5993,30 @@
     "data": {
       "family_id": "q-foreign-currency",
       "title": "Foreign currency and foreign operations",
-      "scope": "Shared accounting foundation; entity, framework, jurisdiction and period must be declared. Only the named questions and accessed editions are assessed; other family branches remain open.",
-      "review_basis": "Reviewed-scoped from official public standard material; professional review not performed.",
+      "scope": "US GAAP foreign-currency transaction and translation routing for a selected private entity with a CAD service payable. The fixture uses dated USD-per-CAD rates and keeps the February settlement outside the January closing trial balance.",
+      "review_basis": "Historical FAS 52 and FASB ASU 2013-05 public PDFs were read for bounded mechanics and translation boundaries. Current ASC 830 remains controlling and was not fully accessed.",
       "source_ids": [
-        "src_ias21fx"
+        "src_ias21fx",
+        "src_1os761s",
+        "src_fasb_fas52",
+        "src_fasb_201305"
       ],
       "source_locators": [
         {
           "source_id": "src_ias21fx",
           "locator": "IAS 21.20-22 and 32-39; transaction-date spot, closing-rate monetary remeasurement and foreign-operation translation"
+        },
+        {
+          "source_id": "src_1os761s",
+          "locator": "FASB ASC Topic 830; current functional-currency, transaction and translation requirements must be confirmed."
+        },
+        {
+          "source_id": "src_fasb_fas52",
+          "locator": "FAS 52 paragraph 16(a)-(b), pp.6-7; historical transaction-date measurement and balance-sheet-date adjustment."
+        },
+        {
+          "source_id": "src_fasb_201305",
+          "locator": "ASU 2013-05 pp.6-10; Topic 830 foreign-operation translation and cumulative translation adjustment derecognition boundary."
         }
       ],
       "shared_inputs": [
@@ -5430,17 +6033,22 @@
       ],
       "coverage_gaps": [
         "Questions are bounded foundations, not exhaustive treatment of the family.",
-        "Professional review not performed; empirical performance not established."
+        "Professional review not performed; empirical performance not established.",
+        "Current ASC 830 text and entity-specific functional-currency conclusion were not fully reviewed.",
+        "FAS 52 is historical and ASU 2013-05 is scoped to translation and derecognition, not a complete payable guide.",
+        "No live bank or market-rate source, hedge designation or foreign operation was tested."
       ],
       "frameworks": [
-        "IFRS Accounting Standards"
+        "IFRS Accounting Standards",
+        "US GAAP / FASB Codification"
       ],
       "jurisdictions": [
-        "Entities applying the stated IFRS framework; local adoption and period must be established"
+        "Entities applying the stated IFRS framework; local adoption and period must be established",
+        "United States; nongovernmental private business"
       ],
       "professional_review": "not-performed",
       "empirical_support": "not-established",
-      "version": "2026-09-11.1",
+      "version": "2026-09-17.1",
       "research_package": "foundations",
       "research_questions": [
         {
@@ -5546,11 +6154,80 @@
               "empirical-support": "not-assessed"
             }
           }
+        },
+        {
+          "id": "rq-foreign-currency-us-transaction-remeasurement",
+          "question": "For a US GAAP entity, which dated currency facts keep a foreign-currency payable's transaction remeasurement separate from foreign-operation translation?",
+          "scope": "US GAAP Topic 830 bounded transaction and translation distinction for the selected private entity",
+          "conditions": [
+            "Declare functional currency, transaction currency, recognition date, reporting date, settlement date and rate source.",
+            "Remeasure a foreign-currency monetary balance at the reporting date using the current applicable US GAAP analysis, and keep later settlement effects in the later period unless an adjusting-event analysis supports another result.",
+            "Do not treat a foreign-operation translation adjustment or CTA as the same account or decision as a transaction gain or loss."
+          ],
+          "answer": "A US GAAP FX workpaper should identify functional and reporting currencies, the transaction date, the foreign-currency monetary balance, the reporting date, the settlement date and the dated rate source. The historical FAS 52 paragraph 16 mechanics describe transaction-date functional-currency measurement and balance-sheet-date adjustment, while ASU 2013-05 supplies a bounded foreign-operation translation and CTA derecognition distinction. Current ASC 830, hedging, intercompany and entity-specific facts remain controlling. In the fixture, the CAD payable is $7,400 at 0.74 on January 20, $7,500 at 0.75 on January 31, and its February settlement at 0.76 is not silently pulled into January.",
+          "answer_status": "sourced-answer-bounded",
+          "source_ids": [
+            "src_1os761s",
+            "src_fasb_fas52",
+            "src_fasb_201305"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_1os761s",
+              "locator": "FASB ASC Topic 830; current consolidated text and functional-currency analysis remain required."
+            },
+            {
+              "source_id": "src_fasb_fas52",
+              "locator": "FAS 52 paragraph 16(a)-(b), pp.6-7; historical dated measurement and balance-sheet adjustment mechanics."
+            },
+            {
+              "source_id": "src_fasb_201305",
+              "locator": "ASU 2013-05 pp.6-10; foreign-operation translation and CTA derecognition."
+            }
+          ],
+          "inputs": [
+            "Functional, transaction and reporting currencies",
+            "Recognition, reporting and settlement dates",
+            "Dated rate table and source identity",
+            "Payable, hedge, intercompany and foreign-operation attributes"
+          ],
+          "controls": [
+            "Lock the rate source and independently recalculate each conversion.",
+            "Reconcile the foreign-currency subledger to the GL and preserve transaction, reporting and settlement dates.",
+            "Separate transaction FX from translation or CTA schedules and obtain human approval before posting."
+          ],
+          "exceptions": [
+            "A missing functional currency, rate date or source identity blocks a complete conclusion.",
+            "Derivative, hedge, intercompany, foreign-operation, tax or long-term-investment facts may change classification.",
+            "Historical FAS 52 cannot override current ASC 830."
+          ],
+          "remaining_gaps": [
+            "Current ASC 830 consolidated text and later amendments were not fully accessed.",
+            "No professional reviewer approved the functional-currency or transaction classification.",
+            "The fixture does not establish live market-rate or foreign-operation evidence."
+          ],
+          "family_id": "q-foreign-currency",
+          "worked_record_id": "example-us-reporting-foundations-close",
+          "assessment": {
+            "status": "partial",
+            "basis": "Dated synthetic transaction and settlement schedule with explicit translation counterexample; current ASC 830 and professional review remain open.",
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "dimensions": {
+              "scope": "present",
+              "accounting-question": "partial",
+              "evidence-inputs": "present",
+              "workflow": "present",
+              "controls": "present",
+              "worked-material": "present",
+              "empirical-support": "not-assessed"
+            }
+          }
         }
       ],
       "editorial_brief": {
         "question": "Foreign currency and foreign operations",
-        "answer": "Shared accounting foundation; entity, framework, jurisdiction and period must be declared. Only the named questions and accessed editions are assessed; other family branches remain open.",
+        "answer": "US GAAP foreign-currency supplement with functional-currency, transaction-date, closing-rate and settlement-date inputs. It separates a scoped payable's transaction remeasurement from foreign-operation translation and CTA questions.",
         "findings": [
           {
             "claim": "IAS 21.20-22 requires initial foreign-currency transactions to use the spot rate at transaction date; monetary items are retranslated at closing rate, with specified profit/loss treatment.",
@@ -5567,43 +6244,93 @@
             ],
             "classification": "sourced-answer-bounded",
             "qualification": "Foreign currency and foreign operations; entity, framework, jurisdiction and period declared"
+          },
+          {
+            "claim": "A US GAAP FX workpaper should identify functional and reporting currencies, the transaction date, the foreign-currency monetary balance, the reporting date, the settlement date and the dated rate source. The historical FAS 52 paragraph 16 mechanics describe transaction-date functional-currency measurement and balance-sheet-date adjustment, while ASU 2013-05 supplies a bounded foreign-operation translation and CTA derecognition distinction. Current ASC 830, hedging, intercompany and entity-specific facts remain controlling. In the fixture, the CAD payable is $7,400 at 0.74 on January 20, $7,500 at 0.75 on January 31, and its February settlement at 0.76 is not silently pulled into January.",
+            "source_ids": [
+              "src_1os761s",
+              "src_fasb_fas52",
+              "src_fasb_201305"
+            ],
+            "classification": "sourced-answer-bounded",
+            "qualification": "US GAAP Topic 830 bounded transaction and translation distinction for the selected private entity"
           }
         ],
         "unknowns": [
           "Questions are bounded foundations, not exhaustive treatment of the family.",
-          "Professional review not performed; empirical performance not established."
+          "Professional review not performed; empirical performance not established.",
+          "Current ASC 830 text and entity-specific functional-currency conclusion were not fully reviewed.",
+          "FAS 52 is historical and ASU 2013-05 is scoped to translation and derecognition, not a complete payable guide.",
+          "No live bank or market-rate source, hedge designation or foreign operation was tested."
         ],
         "reading_order": [
-          "src_ias21fx"
+          "src_ias21fx",
+          "src_1os761s",
+          "src_fasb_fas52",
+          "src_fasb_201305"
         ]
-      }
+      },
+      "related_ids": [
+        "guide-q-reporting-basis",
+        "guide-q-ledger-close"
+      ],
+      "us_scope": {
+        "selected_entity_role": "Private nongovernmental for-profit entity reporting under US GAAP",
+        "selected_transaction": "CAD 10,000 service payable recognized 2026-01-20 and remeasured at 2026-01-31",
+        "counterexamples": [
+          "A foreign operation's translation adjustment is not the same as a local payable's transaction remeasurement.",
+          "Hedged, intercompany, long-term-investment, derivative or tax facts reopen the analysis."
+        ]
+      },
+      "workflows": [
+        "Identify functional currency, transaction currency, entity, reporting date and rate source.",
+        "Record the transaction at the dated rate, remeasure monetary balances at the reporting date and document the calculation.",
+        "Separate transaction gain or loss from foreign-operation translation and CTA schedules.",
+        "Reconcile the rate table, journal lines, settlement and reviewer approval without mixing January and February effects."
+      ],
+      "additional_inputs": [
+        "Functional and reporting currency evidence",
+        "Contract, invoice, payable, transaction and settlement dates",
+        "Dated rate table, rate source and independent recalculation",
+        "Foreign-operation, hedging and intercompany flags"
+      ],
+      "supplemental_research_package": "reporting-foundations-us",
+      "supplemental_research_file": "data/research/reporting-foundations.json"
     }
   },
   {
     "id": "guide-q-policy-changes-errors",
     "kind": "guide",
     "title": "Accounting changes, adoption and errors",
-    "summary": "Shared accounting foundation; entity, framework, jurisdiction and period must be declared. Only the named questions and accessed editions are assessed; other family branches remain open.",
+    "summary": "US GAAP Topic 250 supplement for policy, estimate and error distinctions, adoption cohorts, comparative-period evidence and controlled correction decisions.",
     "topics": [
       "Scoped research",
       "Accounting changes, adoption and errors"
     ],
     "industries": [],
-    "jurisdiction": "Entities applying the stated IFRS framework; local adoption and period must be established",
+    "jurisdiction": "United States; nongovernmental private business",
     "source_type": null,
     "publisher": "Accounting Agents contributors",
     "source_url": null,
     "source_ids": [
-      "src_ias08pol"
+      "src_ias08pol",
+      "src_1os761s"
     ],
-    "related_ids": [],
+    "related_ids": [
+      "guide-q-reporting-basis",
+      "guide-q-estimates"
+    ],
     "review_status": "editorially-reviewed",
-    "reviewed_at": "2026-09-11",
+    "reviewed_at": "2026-09-17",
     "provenance": {
       "added_on": "2026-09-11",
       "reviewer": "Codex AI-assisted research, with root source-scope and semantic review",
       "note": "Original research synthesis and clearly labeled original examples. Listed source access and currency limits constrain every answer; no professional sign-off or production validation.",
-      "research_file": "data/research/foundations.json"
+      "research_file": "data/research/foundations.json",
+      "supplemental_research_file": "data/research/reporting-foundations.json",
+      "supplemental_reviewed_at": "2026-09-17",
+      "supplemental_reviewer": "Codex AI-assisted research with source-scope review",
+      "supplemental_scope": "US GAAP accounting-change and error-correction routing for the selected private entity. The linked fixture includes an issued-period error branch that distinguishes information available before issuance from information discovered later."
     },
     "rights": {
       "metadata": "CC0-1.0",
@@ -5614,15 +6341,20 @@
     "data": {
       "family_id": "q-policy-changes-errors",
       "title": "Accounting changes, adoption and errors",
-      "scope": "Shared accounting foundation; entity, framework, jurisdiction and period must be declared. Only the named questions and accessed editions are assessed; other family branches remain open.",
-      "review_basis": "Reviewed-scoped from official public standard material; professional review not performed.",
+      "scope": "US GAAP accounting-change and error-correction routing for the selected private entity. The linked fixture includes an issued-period error branch that distinguishes information available before issuance from information discovered later.",
+      "review_basis": "FASB ASC Topic 250 locators were identified in the existing FASB source record. The supplement preserves the current text and materiality as unresolved where the authorized consolidated text was not accessed.",
       "source_ids": [
-        "src_ias08pol"
+        "src_ias08pol",
+        "src_1os761s"
       ],
       "source_locators": [
         {
           "source_id": "src_ias08pol",
           "locator": "IAS 8.5, 7-12, 14-27, 34-40 and 42-49; policy selection, changes and prior errors"
+        },
+        {
+          "source_id": "src_1os761s",
+          "locator": "FASB ASC Topic 250, including ASC 250-10-45-17, 45-18, 45-23 through 45-27; current consolidated text and materiality remain to be confirmed."
         }
       ],
       "shared_inputs": [
@@ -5639,17 +6371,22 @@
       ],
       "coverage_gaps": [
         "Questions are bounded foundations, not exhaustive treatment of the family.",
-        "Professional review not performed; empirical performance not established."
+        "Professional review not performed; empirical performance not established.",
+        "Current consolidated Topic 250 and all effective transition amendments were not fully accessed.",
+        "No materiality threshold, comparative set or professional correction review was supplied.",
+        "The branch intentionally does not force retrospective treatment without the decisive availability and issuance facts."
       ],
       "frameworks": [
-        "IFRS Accounting Standards"
+        "IFRS Accounting Standards",
+        "US GAAP / FASB Codification"
       ],
       "jurisdictions": [
-        "Entities applying the stated IFRS framework; local adoption and period must be established"
+        "Entities applying the stated IFRS framework; local adoption and period must be established",
+        "United States; nongovernmental private business"
       ],
       "professional_review": "not-performed",
       "empirical_support": "not-established",
-      "version": "2026-09-11.1",
+      "version": "2026-09-17.1",
       "research_package": "foundations",
       "research_questions": [
         {
@@ -5755,11 +6492,69 @@
               "empirical-support": "not-assessed"
             }
           }
+        },
+        {
+          "id": "rq-policy-changes-errors-usgaap",
+          "question": "How should a US GAAP workpaper distinguish a policy change, estimate change and error before deciding whether a comparative or issued period requires correction?",
+          "scope": "US GAAP Topic 250 policy, estimate and error decision for the selected private entity",
+          "conditions": [
+            "Capture what was known or reasonably available at the prior reporting date, when the issue was discovered and whether statements were issued or available to be issued.",
+            "Use current Topic 250 and applicable transition text, then assess materiality and affected comparative periods.",
+            "Separate a proposed correction from an executed restatement or filing action and obtain accountable approval."
+          ],
+          "answer": "The workpaper should first identify whether the change is a policy change, a new-information estimate change or an error such as a mistake, misapplication or omission of available information. It should then preserve the prior-period evidence, availability and discovery dates, issuance status, materiality, affected comparatives and current Topic 250 locator. The fixture's $3,000 issued-period branch intentionally routes to review rather than forcing a retrospective correction because the decisive availability and issuance facts are inputs, not assumptions.",
+          "answer_status": "sourced-answer-bounded",
+          "source_ids": [
+            "src_1os761s"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_1os761s",
+              "locator": "ASC 250-10-45-17, 45-18 and 45-23 through 45-27; current text, materiality and impracticability review remain required."
+            }
+          ],
+          "inputs": [
+            "Original policy, estimate, source evidence and journal",
+            "Prior reporting date, issuance or availability date and discovery date",
+            "Materiality, comparative, tax, SEC and disclosure effects"
+          ],
+          "controls": [
+            "Version and retain the prior and revised workpapers with source identifiers.",
+            "Require independent recalculation and reviewer classification before any comparative or issued-period action.",
+            "Keep proposed correction, restatement and filing actions separate and human-authorized."
+          ],
+          "exceptions": [
+            "Adoption or transition provisions may override the default treatment for a particular standard and cohort.",
+            "Issued-period, SEC, nonprofit, governmental or statutory facts may add requirements.",
+            "Missing availability, issuance or materiality evidence requires escalation."
+          ],
+          "remaining_gaps": [
+            "Current ASC 250 text, later amendments and entity-specific materiality were not fully reviewed.",
+            "No professional reviewer accepted the correction path or comparative presentation.",
+            "No live issued financial statement or restatement package was tested."
+          ],
+          "family_id": "q-policy-changes-errors",
+          "worked_record_id": "example-us-reporting-foundations-close",
+          "assessment": {
+            "status": "partial",
+            "basis": "Bounded Topic 250 decision workflow and deliberately unresolved issued-period branch; no restatement or professional correction conclusion.",
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "dimensions": {
+              "scope": "present",
+              "accounting-question": "partial",
+              "evidence-inputs": "present",
+              "workflow": "present",
+              "controls": "present",
+              "worked-material": "present",
+              "empirical-support": "not-assessed"
+            }
+          }
         }
       ],
       "editorial_brief": {
         "question": "Accounting changes, adoption and errors",
-        "answer": "Shared accounting foundation; entity, framework, jurisdiction and period must be declared. Only the named questions and accessed editions are assessed; other family branches remain open.",
+        "answer": "US GAAP Topic 250 supplement for policy, estimate and error distinctions, adoption cohorts, comparative-period evidence and controlled correction decisions.",
         "findings": [
           {
             "claim": "IAS 8.5 and 34 distinguish policy, estimate and error; a change caused by new information is an estimate change accounted for prospectively.",
@@ -5776,43 +6571,92 @@
             ],
             "classification": "sourced-answer-bounded",
             "qualification": "Accounting changes, adoption and errors; entity, framework, jurisdiction and period declared"
+          },
+          {
+            "claim": "The workpaper should first identify whether the change is a policy change, a new-information estimate change or an error such as a mistake, misapplication or omission of available information. It should then preserve the prior-period evidence, availability and discovery dates, issuance status, materiality, affected comparatives and current Topic 250 locator. The fixture's $3,000 issued-period branch intentionally routes to review rather than forcing a retrospective correction because the decisive availability and issuance facts are inputs, not assumptions.",
+            "source_ids": [
+              "src_1os761s"
+            ],
+            "classification": "sourced-answer-bounded",
+            "qualification": "US GAAP Topic 250 policy, estimate and error decision for the selected private entity"
           }
         ],
         "unknowns": [
           "Questions are bounded foundations, not exhaustive treatment of the family.",
-          "Professional review not performed; empirical performance not established."
+          "Professional review not performed; empirical performance not established.",
+          "Current consolidated Topic 250 and all effective transition amendments were not fully accessed.",
+          "No materiality threshold, comparative set or professional correction review was supplied.",
+          "The branch intentionally does not force retrospective treatment without the decisive availability and issuance facts."
         ],
         "reading_order": [
-          "src_ias08pol"
+          "src_ias08pol",
+          "src_1os761s"
         ]
-      }
+      },
+      "related_ids": [
+        "guide-q-reporting-basis",
+        "guide-q-estimates"
+      ],
+      "us_scope": {
+        "selected_entity_role": "Private nongovernmental for-profit entity reporting under US GAAP",
+        "decision_boundary": "Separate accounting policy change, estimate change and error analysis; then determine materiality, affected periods, issuance status and applicable correction path.",
+        "counterexamples": [
+          "A standard adoption cohort can have transition provisions that differ from a voluntary policy change or an error.",
+          "A tax or statutory correction does not automatically restate US GAAP comparatives."
+        ]
+      },
+      "workflows": [
+        "Identify the original policy, estimate or recorded amount and the reporting periods affected.",
+        "Preserve the source facts available at the prior reporting date and the date the issue was discovered.",
+        "Classify the event, evaluate materiality and issuance status under current Topic 250, and draft the correction or disclosure path.",
+        "Obtain independent recalculation, comparative tie-out and accountable approval before restatement or release."
+      ],
+      "additional_inputs": [
+        "Original accounting policy, estimate or journal and approval",
+        "Prior-period source population and information-availability evidence",
+        "Reporting, issuance or availability dates and comparative statements",
+        "Materiality, tax, SEC and disclosure effects"
+      ],
+      "supplemental_research_package": "reporting-foundations-us",
+      "supplemental_research_file": "data/research/reporting-foundations.json"
     }
   },
   {
     "id": "guide-q-events-going-concern",
     "kind": "guide",
     "title": "Subsequent events and going concern",
-    "summary": "Shared accounting foundation; entity, framework, jurisdiction and period must be declared. Only the named questions and accessed editions are assessed; other family branches remain open.",
+    "summary": "US GAAP subsequent-event and going-concern supplement with separate reporting, event and issuance dates, entity-class boundary, one-year going-concern horizon and explicit missing-date escalation.",
     "topics": [
       "Scoped research",
       "Subsequent events and going concern"
     ],
     "industries": [],
-    "jurisdiction": "Entities applying the stated IFRS framework; local adoption and period must be established",
+    "jurisdiction": "United States; nongovernmental private business; United States; SEC filers or conduit bond obligors when the Topic 855 date boundary applies",
     "source_type": null,
     "publisher": "Accounting Agents contributors",
     "source_url": null,
     "source_ids": [
-      "src_roadmap_ias10_events_after_reporting_period"
+      "src_roadmap_ias10_events_after_reporting_period",
+      "src_1os761s",
+      "src_fasb_201009",
+      "src_fasb_201415"
     ],
-    "related_ids": [],
+    "related_ids": [
+      "guide-q-reporting-basis",
+      "guide-q-ledger-close",
+      "guide-q-estimates"
+    ],
     "review_status": "editorially-reviewed",
-    "reviewed_at": "2026-09-11",
+    "reviewed_at": "2026-09-17",
     "provenance": {
       "added_on": "2026-09-11",
       "reviewer": "Codex AI-assisted research, with root source-scope and semantic review",
       "note": "Original research synthesis and clearly labeled original examples. Listed source access and currency limits constrain every answer; no professional sign-off or production validation.",
-      "research_file": "data/research/foundations.json"
+      "research_file": "data/research/foundations.json",
+      "supplemental_research_file": "data/research/reporting-foundations.json",
+      "supplemental_reviewed_at": "2026-09-17",
+      "supplemental_reviewer": "Codex AI-assisted research with source-scope review",
+      "supplemental_scope": "US GAAP Topic 855 and Topic 205-40 routing for the selected private entity. The linked fixture includes a February invoice, February settlement, estimate branch and missing issuance-date escalation."
     },
     "rights": {
       "metadata": "CC0-1.0",
@@ -5823,15 +6667,30 @@
     "data": {
       "family_id": "q-events-going-concern",
       "title": "Subsequent events and going concern",
-      "scope": "Shared accounting foundation; entity, framework, jurisdiction and period must be declared. Only the named questions and accessed editions are assessed; other family branches remain open.",
-      "review_basis": "Reviewed-scoped from official public standard material; professional review not performed.",
+      "scope": "US GAAP Topic 855 and Topic 205-40 routing for the selected private entity. The linked fixture includes a February invoice, February settlement, estimate branch and missing issuance-date escalation.",
+      "review_basis": "FASB ASU 2010-09 and ASU 2014-15 official PDFs were read at the listed paragraphs. Current consolidated Topics 855 and 205-40, entity classification and professional review remain open.",
       "source_ids": [
-        "src_roadmap_ias10_events_after_reporting_period"
+        "src_roadmap_ias10_events_after_reporting_period",
+        "src_1os761s",
+        "src_fasb_201009",
+        "src_fasb_201415"
       ],
       "source_locators": [
         {
           "source_id": "src_roadmap_ias10_events_after_reporting_period",
           "locator": "IAS 10.3-10; adjusting events provide evidence of reporting-date conditions"
+        },
+        {
+          "source_id": "src_1os761s",
+          "locator": "FASB ASC Topics 855 and 205-40; current consolidated text and entity scope must be confirmed."
+        },
+        {
+          "source_id": "src_fasb_201009",
+          "locator": "ASU 2010-09 pp.1-2; Topic 855-10-25-1A, 25-2, 50-1, 50-4, 50-5 and 65-1."
+        },
+        {
+          "source_id": "src_fasb_201415",
+          "locator": "ASU 2014-15 pp.1 and 6-7; Topic 205-40-05-1 through 05-3, 15-1, 50-1, 50-3, 50-4, 50-6 through 50-14 and 65-1."
         }
       ],
       "shared_inputs": [
@@ -5848,17 +6707,23 @@
       ],
       "coverage_gaps": [
         "Questions are bounded foundations, not exhaustive treatment of the family.",
-        "Professional review not performed; empirical performance not established."
+        "Professional review not performed; empirical performance not established.",
+        "Current consolidated Topics 855 and 205-40 and entity-specific effective requirements were not fully accessed.",
+        "No cash forecast, financing agreement, covenant analysis or professional going-concern review was performed.",
+        "The dates in the fixture are synthetic and do not establish an actual subsequent-event conclusion."
       ],
       "frameworks": [
-        "IFRS Accounting Standards"
+        "IFRS Accounting Standards",
+        "US GAAP / FASB Codification"
       ],
       "jurisdictions": [
-        "Entities applying the stated IFRS framework; local adoption and period must be established"
+        "Entities applying the stated IFRS framework; local adoption and period must be established",
+        "United States; nongovernmental private business",
+        "United States; SEC filers or conduit bond obligors when the Topic 855 date boundary applies"
       ],
       "professional_review": "not-performed",
       "empirical_support": "not-established",
-      "version": "2026-09-11.1",
+      "version": "2026-09-17.1",
       "research_package": "foundations",
       "research_questions": [
         {
@@ -5965,11 +6830,80 @@
               "empirical-support": "not-assessed"
             }
           }
+        },
+        {
+          "id": "rq-events-going-concern-usgaap",
+          "question": "Which US GAAP dates and evidence determine the subsequent-event boundary and the going-concern evaluation horizon?",
+          "scope": "US GAAP Topic 855 and Topic 205-40 date and evidence checklist for the selected private entity",
+          "conditions": [
+            "Record the reporting date, event date, financial-statement issuance or availability date, entity class and period.",
+            "For a private entity, evaluate subsequent events through the date the statements are available to be issued; confirm the applicable boundary for SEC filers or conduit bond obligors.",
+            "Evaluate going concern at each annual or interim period using the one-year horizon after issuance or availability and known or reasonably knowable information, then evaluate supported management plans."
+          ],
+          "answer": "Keep reporting date, event date and financial-statement issuance or availability date as separate fields. Under the bounded ASU 2010-09 text, an SEC filer or conduit bond obligor evaluates through the issuance date, while other entities evaluate through the date the statements are available to be issued. ASU 2014-15 adds a going-concern evaluation at each annual or interim period, using a one-year horizon after issuance or availability and known or reasonably knowable information, with management-plan evidence when relevant. If a decisive date is missing, stop and escalate rather than classify the event.",
+          "answer_status": "sourced-answer-bounded",
+          "source_ids": [
+            "src_1os761s",
+            "src_fasb_201009",
+            "src_fasb_201415"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_1os761s",
+              "locator": "FASB ASC Topics 855 and 205-40; current consolidated requirements remain required."
+            },
+            {
+              "source_id": "src_fasb_201009",
+              "locator": "Topic 855-10-25-1A, 25-2, 50-1, 50-4, 50-5 and 65-1 in ASU 2010-09."
+            },
+            {
+              "source_id": "src_fasb_201415",
+              "locator": "Topic 205-40-50-1, 50-3, 50-4, 50-6 through 50-14 and 65-1 in ASU 2014-15."
+            }
+          ],
+          "inputs": [
+            "Reporting, event and issuance or availability dates",
+            "Entity class and filing status",
+            "Liquidity, financing, covenant and management-plan evidence",
+            "Materiality and disclosure assessment"
+          ],
+          "controls": [
+            "Require a chronology with immutable event identifiers and source links.",
+            "Block classification when any decisive date or entity-class fact is absent.",
+            "Obtain independent review of liquidity forecasts, plan implementation and disclosures before release."
+          ],
+          "exceptions": [
+            "SEC filer, conduit bond obligor, foreign private issuer, nonprofit, government and regulated roles may have different rules or boundaries.",
+            "A settlement after period end does not automatically adjust the prior period; conditions and applicable current guidance must be reviewed.",
+            "Going-concern conclusion cannot be inferred from a cash balance or one later payment alone."
+          ],
+          "remaining_gaps": [
+            "Current consolidated Topics 855 and 205-40 and later amendments were not fully accessed.",
+            "No live issuance process, financing evidence or professional going-concern review was performed.",
+            "The fixture's missing-date branch demonstrates escalation behavior but not a live conclusion."
+          ],
+          "family_id": "q-events-going-concern",
+          "worked_record_id": "example-us-reporting-foundations-close",
+          "assessment": {
+            "status": "partial",
+            "basis": "Bounded ASU date and going-concern evidence packet with entity-class counterexample and missing-date branch; no live conclusion.",
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "dimensions": {
+              "scope": "present",
+              "accounting-question": "partial",
+              "evidence-inputs": "present",
+              "workflow": "present",
+              "controls": "present",
+              "worked-material": "present",
+              "empirical-support": "not-assessed"
+            }
+          }
         }
       ],
       "editorial_brief": {
         "question": "Subsequent events and going concern",
-        "answer": "Shared accounting foundation; entity, framework, jurisdiction and period must be declared. Only the named questions and accessed editions are assessed; other family branches remain open.",
+        "answer": "US GAAP subsequent-event and going-concern supplement with separate reporting, event and issuance dates, entity-class boundary, one-year going-concern horizon and explicit missing-date escalation.",
         "findings": [
           {
             "claim": "IAS 10.3-10 distinguishes adjusting events that provide evidence of conditions at period end from non-adjusting events arising later; update amounts only for the former.",
@@ -5986,43 +6920,96 @@
             ],
             "classification": "editorial-proposal",
             "qualification": "Subsequent events and going concern; entity, framework, jurisdiction and period declared"
+          },
+          {
+            "claim": "Keep reporting date, event date and financial-statement issuance or availability date as separate fields. Under the bounded ASU 2010-09 text, an SEC filer or conduit bond obligor evaluates through the issuance date, while other entities evaluate through the date the statements are available to be issued. ASU 2014-15 adds a going-concern evaluation at each annual or interim period, using a one-year horizon after issuance or availability and known or reasonably knowable information, with management-plan evidence when relevant. If a decisive date is missing, stop and escalate rather than classify the event.",
+            "source_ids": [
+              "src_1os761s",
+              "src_fasb_201009",
+              "src_fasb_201415"
+            ],
+            "classification": "sourced-answer-bounded",
+            "qualification": "US GAAP Topic 855 and Topic 205-40 date and evidence checklist for the selected private entity"
           }
         ],
         "unknowns": [
           "Questions are bounded foundations, not exhaustive treatment of the family.",
-          "Professional review not performed; empirical performance not established."
+          "Professional review not performed; empirical performance not established.",
+          "Current consolidated Topics 855 and 205-40 and entity-specific effective requirements were not fully accessed.",
+          "No cash forecast, financing agreement, covenant analysis or professional going-concern review was performed.",
+          "The dates in the fixture are synthetic and do not establish an actual subsequent-event conclusion."
         ],
         "reading_order": [
-          "src_roadmap_ias10_events_after_reporting_period"
+          "src_roadmap_ias10_events_after_reporting_period",
+          "src_1os761s",
+          "src_fasb_201009",
+          "src_fasb_201415"
         ]
-      }
+      },
+      "related_ids": [
+        "guide-q-reporting-basis",
+        "guide-q-ledger-close",
+        "guide-q-estimates"
+      ],
+      "us_scope": {
+        "selected_entity_role": "Private nongovernmental for-profit entity reporting under US GAAP",
+        "selected_reporting_date": "2026-01-31",
+        "selected_financial_statement_date": "2026-02-20, illustrative available-to-issue date for the selected private entity",
+        "counterexamples": [
+          "A SEC filer or conduit bond obligor has a different Topic 855 evaluation date boundary than the selected private entity.",
+          "A missing event date, reporting date or issuance or availability date prevents a complete classification."
+        ]
+      },
+      "workflows": [
+        "Capture reporting date, event date, invoice or settlement date and financial-statement issuance or availability date.",
+        "Classify whether the later evidence relates to a reporting-date condition or a later condition, preserving the source event.",
+        "For going concern, document the annual or interim evaluation, one-year horizon, known information and management plans.",
+        "Escalate missing dates, entity-class uncertainty, materiality or financing evidence to an accountable reviewer."
+      ],
+      "additional_inputs": [
+        "Reporting date and event chronology",
+        "Financial-statement issued or available-to-issue date and entity class",
+        "Known and reasonably knowable liquidity, financing and covenant information",
+        "Management plans, implementation evidence and disclosure analysis"
+      ],
+      "supplemental_research_package": "reporting-foundations-us",
+      "supplemental_research_file": "data/research/reporting-foundations.json"
     }
   },
   {
     "id": "guide-q-consolidation",
     "kind": "guide",
     "title": "Reporting perimeter and consolidation",
-    "summary": "Shared accounting foundation; entity, framework, jurisdiction and period must be declared. Only the named questions and accessed editions are assessed; other family branches remain open.",
+    "summary": "US GAAP Topic 810 consolidation supplement with voting-interest and VIE routing, control evidence, related-party limits and a non-automatic-consolidation counterexample. Existing parent/subsidiary material remains reusable without duplication.",
     "topics": [
       "Scoped research",
       "Reporting perimeter and consolidation"
     ],
     "industries": [],
-    "jurisdiction": "Entities applying the stated IFRS framework; local adoption and period must be established",
+    "jurisdiction": "United States; nongovernmental private business",
     "source_type": null,
     "publisher": "Accounting Agents contributors",
     "source_url": null,
     "source_ids": [
-      "src_ifrs10a"
+      "src_ifrs10a",
+      "src_1os761s",
+      "src_fasb_201502"
     ],
-    "related_ids": [],
+    "related_ids": [
+      "guide-q-reporting-basis",
+      "guide-q-ledger-close"
+    ],
     "review_status": "editorially-reviewed",
-    "reviewed_at": "2026-09-11",
+    "reviewed_at": "2026-09-17",
     "provenance": {
       "added_on": "2026-09-11",
       "reviewer": "Codex AI-assisted research, with root source-scope and semantic review",
       "note": "Original research synthesis and clearly labeled original examples. Listed source access and currency limits constrain every answer; no professional sign-off or production validation.",
-      "research_file": "data/research/foundations.json"
+      "research_file": "data/research/foundations.json",
+      "supplemental_research_file": "data/research/reporting-foundations.json",
+      "supplemental_reviewed_at": "2026-09-17",
+      "supplemental_reviewer": "Codex AI-assisted research with source-scope review",
+      "supplemental_scope": "US GAAP consolidation-perimeter question for a selected nongovernmental entity. The supplement supplies a reusable control-evidence framework and points to existing parent/subsidiary application material; it does not assert a live consolidation conclusion."
     },
     "rights": {
       "metadata": "CC0-1.0",
@@ -6033,15 +7020,25 @@
     "data": {
       "family_id": "q-consolidation",
       "title": "Reporting perimeter and consolidation",
-      "scope": "Shared accounting foundation; entity, framework, jurisdiction and period must be declared. Only the named questions and accessed editions are assessed; other family branches remain open.",
-      "review_basis": "Reviewed-scoped from official public standard material; professional review not performed.",
+      "scope": "US GAAP consolidation-perimeter question for a selected nongovernmental entity. The supplement supplies a reusable control-evidence framework and points to existing parent/subsidiary application material; it does not assert a live consolidation conclusion.",
+      "review_basis": "FASB ASU 2015-02 official PDF and the existing FASB ASC source were read within bounded Topic 810 locators. Existing industry parent/subsidiary records are not duplicated.",
       "source_ids": [
-        "src_ifrs10a"
+        "src_ifrs10a",
+        "src_1os761s",
+        "src_fasb_201502"
       ],
       "source_locators": [
         {
           "source_id": "src_ifrs10a",
           "locator": "IFRS 10.7-9; power, variable returns and ability to affect returns"
+        },
+        {
+          "source_id": "src_1os761s",
+          "locator": "FASB ASC Topic 810; current control, scope-exception and reporting requirements must be confirmed."
+        },
+        {
+          "source_id": "src_fasb_201502",
+          "locator": "ASU 2015-02 pp.6-10; Topic 810-10-05-2, 05-8, 15-3, 15-8, 15-8A, 15-10, 25-1 and 810-10-65-7."
         }
       ],
       "shared_inputs": [
@@ -6058,17 +7055,22 @@
       ],
       "coverage_gaps": [
         "Questions are bounded foundations, not exhaustive treatment of the family.",
-        "Professional review not performed; empirical performance not established."
+        "Professional review not performed; empirical performance not established.",
+        "Current consolidated Topic 810, private-company alternatives and scope exceptions were not fully accessed.",
+        "No legal-entity population, VIE analysis, elimination schedule or professional control review was performed.",
+        "Existing parent/subsidiary application records remain separately scoped and are not generalized here."
       ],
       "frameworks": [
-        "IFRS Accounting Standards"
+        "IFRS Accounting Standards",
+        "US GAAP / FASB Codification"
       ],
       "jurisdictions": [
-        "Entities applying the stated IFRS framework; local adoption and period must be established"
+        "Entities applying the stated IFRS framework; local adoption and period must be established",
+        "United States; nongovernmental private business"
       ],
       "professional_review": "not-performed",
       "empirical_support": "not-established",
-      "version": "2026-09-11.1",
+      "version": "2026-09-17.1",
       "research_package": "foundations",
       "research_questions": [
         {
@@ -6175,11 +7177,74 @@
               "empirical-support": "not-assessed"
             }
           }
+        },
+        {
+          "id": "rq-consolidation-us-control-models",
+          "question": "Which US GAAP control, voting-interest and VIE facts support the reporting perimeter, and when is a relationship insufficient to require consolidation?",
+          "scope": "US GAAP Topic 810 control and consolidation-perimeter evidence for nongovernmental entities",
+          "conditions": [
+            "Inventory legal entities, voting rights, contractual decision rights, variable interests, related parties and scope exceptions.",
+            "Select the voting-interest or VIE model using current Topic 810 and document power, significant activities, losses and benefits where applicable.",
+            "Do not treat shared services or a management contract alone as proof of control; prepare eliminations and NCI only after the perimeter is approved."
+          ],
+          "answer": "Topic 810 routing begins with the legal-entity population and the applicable model. Voting-interest analysis often starts with majority voting rights but requires its exceptions and rights review. A VIE analysis focuses on power over significant activities and the obligation to absorb losses or right to receive benefits, subject to current scope and related-party guidance. A shared-services or management relationship alone is not a consolidation conclusion. Preserve control evidence, reporting dates, scope exceptions, intragroup schedules and reviewer approval; reuse the existing parent/subsidiary record only within its stated scope.",
+          "answer_status": "sourced-answer-bounded",
+          "source_ids": [
+            "src_1os761s",
+            "src_fasb_201502"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_1os761s",
+              "locator": "FASB ASC Topic 810; current consolidated text and entity-specific scope review remain required."
+            },
+            {
+              "source_id": "src_fasb_201502",
+              "locator": "Topic 810-10-05-2, 05-8, 15-3, 15-8, 15-8A, 15-10, 25-1 and 810-10-65-7 in ASU 2015-02."
+            }
+          ],
+          "inputs": [
+            "Legal entities, ownership, voting rights and decision agreements",
+            "VIE power, economics, related-party and scope-exception evidence",
+            "Reporting dates, intragroup balances, eliminations and NCI schedules"
+          ],
+          "controls": [
+            "Reconcile the legal-entity chart to the consolidation population and retain exclusion reasons.",
+            "Require independent control-model review and approval before consolidation or exclusion.",
+            "Tie intragroup elimination and NCI schedules to source ledgers and statement mapping."
+          ],
+          "exceptions": [
+            "Investment companies, common-control entities, related parties, private-company alternatives, nonprofit and regulated roles may reopen the analysis.",
+            "A management or shared-services contract can affect the analysis but does not by itself prove control.",
+            "No parent/subsidiary or VIE conclusion may be propagated to unrelated industries or entity roles."
+          ],
+          "remaining_gaps": [
+            "Current Topic 810 and later amendments were not fully accessed.",
+            "No legal-entity population, VIE evidence, elimination schedule or professional review was performed.",
+            "Existing #109 parent/subsidiary material remains scoped application evidence, not a universal rule."
+          ],
+          "family_id": "q-consolidation",
+          "worked_record_id": "example-us-reporting-foundations-close",
+          "assessment": {
+            "status": "partial",
+            "basis": "Bounded Topic 810 control-model question with explicit non-automatic-consolidation counterexample; no live perimeter or professional conclusion.",
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "dimensions": {
+              "scope": "present",
+              "accounting-question": "partial",
+              "evidence-inputs": "present",
+              "workflow": "present",
+              "controls": "present",
+              "worked-material": "present",
+              "empirical-support": "not-assessed"
+            }
+          }
         }
       ],
       "editorial_brief": {
         "question": "Reporting perimeter and consolidation",
-        "answer": "Shared accounting foundation; entity, framework, jurisdiction and period must be declared. Only the named questions and accessed editions are assessed; other family branches remain open.",
+        "answer": "US GAAP Topic 810 consolidation supplement with voting-interest and VIE routing, control evidence, related-party limits and a non-automatic-consolidation counterexample. Existing parent/subsidiary material remains reusable without duplication.",
         "findings": [
           {
             "claim": "IFRS 10.7-9 defines control through power, variable returns and ability to use power to affect returns; legal ownership alone is not decisive.",
@@ -6196,16 +7261,56 @@
             ],
             "classification": "editorial-proposal",
             "qualification": "Reporting perimeter and consolidation; entity, framework, jurisdiction and period declared"
+          },
+          {
+            "claim": "Topic 810 routing begins with the legal-entity population and the applicable model. Voting-interest analysis often starts with majority voting rights but requires its exceptions and rights review. A VIE analysis focuses on power over significant activities and the obligation to absorb losses or right to receive benefits, subject to current scope and related-party guidance. A shared-services or management relationship alone is not a consolidation conclusion. Preserve control evidence, reporting dates, scope exceptions, intragroup schedules and reviewer approval; reuse the existing parent/subsidiary record only within its stated scope.",
+            "source_ids": [
+              "src_1os761s",
+              "src_fasb_201502"
+            ],
+            "classification": "sourced-answer-bounded",
+            "qualification": "US GAAP Topic 810 control and consolidation-perimeter evidence for nongovernmental entities"
           }
         ],
         "unknowns": [
           "Questions are bounded foundations, not exhaustive treatment of the family.",
-          "Professional review not performed; empirical performance not established."
+          "Professional review not performed; empirical performance not established.",
+          "Current consolidated Topic 810, private-company alternatives and scope exceptions were not fully accessed.",
+          "No legal-entity population, VIE analysis, elimination schedule or professional control review was performed.",
+          "Existing parent/subsidiary application records remain separately scoped and are not generalized here."
         ],
         "reading_order": [
-          "src_ifrs10a"
+          "src_ifrs10a",
+          "src_1os761s",
+          "src_fasb_201502"
         ]
-      }
+      },
+      "related_ids": [
+        "guide-q-reporting-basis",
+        "guide-q-ledger-close"
+      ],
+      "us_scope": {
+        "selected_entity_role": "Nongovernmental entity reporting under US GAAP",
+        "decision_boundary": "Determine the reporting perimeter from control evidence, model, scope exceptions and reporting-date facts; do not infer consolidation from a service or management relationship alone.",
+        "counterexamples": [
+          "A shared-services or management contract without voting-interest or VIE control evidence does not automatically establish consolidation.",
+          "A parent/subsidiary application may introduce industry-specific facts; reuse the existing scoped record rather than extending it to every entity."
+        ]
+      },
+      "workflows": [
+        "Inventory legal entities, voting interests, contractual rights, related parties and reporting dates.",
+        "Determine whether the voting-interest or VIE model applies and document power, economics and scope exceptions.",
+        "Prepare the consolidation population, intragroup balances, eliminations and NCI evidence when consolidation is required.",
+        "Obtain accountable review of control and completeness before statement mapping or elimination entries."
+      ],
+      "additional_inputs": [
+        "Legal-entity chart, ownership and voting-interest records",
+        "Governing agreements, decision rights, related-party and common-control facts",
+        "Variable-interest economics, reporting dates and scope exceptions",
+        "Intragroup balances, transactions, eliminations and NCI schedules"
+      ],
+      "supplemental_research_package": "reporting-foundations-us",
+      "supplemental_research_file": "data/research/reporting-foundations.json"
     }
   },
   {
@@ -26765,7 +27870,10 @@
       "src_construction_fasb_2014_09",
       "src_roadmap_ey_revenue_2026",
       "src_roadmap_kpmg_revenue_2025",
-      "src_construction_aicpa_wip"
+      "src_construction_aicpa_wip",
+      "src_construction_fasb_retainage_staff",
+      "src_construction_gao_25107258",
+      "src_construction_asbca_51759"
     ],
     "related_ids": [
       "guide-q-project-wip",
@@ -27056,7 +28164,10 @@
       "src_construction_fasb_2014_09",
       "src_roadmap_ey_revenue_2026",
       "src_roadmap_kpmg_revenue_2025",
-      "src_construction_aicpa_wip"
+      "src_construction_aicpa_wip",
+      "src_construction_fasb_retainage_staff",
+      "src_construction_gao_25107258",
+      "src_construction_asbca_51759"
     ],
     "related_ids": [
       "guide-q-project-wip",
@@ -27340,7 +28451,10 @@
       "src_construction_fasb_2014_09",
       "src_roadmap_ey_revenue_2026",
       "src_roadmap_kpmg_revenue_2025",
-      "src_construction_aicpa_wip"
+      "src_construction_aicpa_wip",
+      "src_construction_fasb_retainage_staff",
+      "src_construction_gao_25107258",
+      "src_construction_asbca_51759"
     ],
     "related_ids": [
       "guide-q-project-wip",
