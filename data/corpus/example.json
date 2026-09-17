@@ -3255,5 +3255,156 @@
         "transfer_limit": "Historical federal contractor payment evidence. Not developer/owner accounting, current GAAP authority, a validated ERP population or professional review."
       }
     }
+  },
+  {
+    "id": "example-us-nonprofit-restricted-award-close",
+    "kind": "example",
+    "title": "US nonprofit restricted award: synthetic close example",
+    "summary": "Synthetic award-to-close example separates a condition from a donor restriction, recognizes revenue after the barrier is met, releases the purpose restriction as qualifying expense is incurred, and reconciles functional expenses.",
+    "topics": [
+      "Accounting and reporting",
+      "Synthetic examples",
+      "Public sector and charity"
+    ],
+    "industries": [
+      "public-sector-nonprofit"
+    ],
+    "jurisdiction": "United States; nongovernmental not-for-profit educational fixture",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_nonprofit_fasb_2018_08",
+      "src_nonprofit_fasb_2016_14",
+      "src_nonprofit_irs_990_2025"
+    ],
+    "related_ids": [
+      "guide-us-nonprofit-contributions-close"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-16",
+    "provenance": {
+      "added_on": "2026-09-16",
+      "reviewer": "ChatGPT, AI-assisted research and original synthesis",
+      "note": "Original synthetic numbers only; no operational records. Arithmetic checked programmatically. Professional review not performed."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "No external example content included",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": "Original factual metadata and synthesis only; publisher full text is not stored."
+    },
+    "data": {
+      "version": "1.0.0",
+      "origin": "Original synthetic project-authored example.",
+      "scope": "One $120,000 purpose-restricted grant with a substantive milestone barrier and right of return. Barrier met during 2026; $45,000 qualifying program cost then incurs. No claim of universal treatment.",
+      "frameworks": [
+        "US GAAP"
+      ],
+      "inputs": {
+        "award_amount": 120000,
+        "qualifying_program_expense": 45000,
+        "shared_cost_pool": 20000,
+        "allocation_driver": {
+          "program": 0.7,
+          "management_general": 0.2,
+          "fundraising": 0.1
+        }
+      },
+      "events": [
+        {
+          "event": "cash received before barrier is met",
+          "accounting": "record refundable advance/liability; no contribution revenue in this fixture"
+        },
+        {
+          "event": "milestone barrier met",
+          "accounting": "recognize $120,000 contribution revenue with donor restriction; reclassify advance"
+        },
+        {
+          "event": "$45,000 qualifying purpose expense incurred",
+          "accounting": "record expense and release $45,000 from donor restriction"
+        }
+      ],
+      "journals": [
+        {
+          "id": "N1",
+          "debit": "cash",
+          "credit": "refundable_advance",
+          "amount": 120000
+        },
+        {
+          "id": "N2",
+          "debit": "refundable_advance",
+          "credit": "contribution_revenue_with_donor_restrictions",
+          "amount": 120000
+        },
+        {
+          "id": "N3",
+          "debit": "program_expense",
+          "credit": "cash_or_payables",
+          "amount": 45000
+        },
+        {
+          "id": "N4",
+          "debit": "net_assets_with_donor_restrictions",
+          "credit": "net_assets_without_donor_restrictions_release",
+          "amount": 45000
+        }
+      ],
+      "calculation": {
+        "recognized_contribution": 120000,
+        "restriction_release": 45000,
+        "ending_restricted_net_assets": 75000,
+        "shared_cost_allocation": {
+          "program": 14000,
+          "management_general": 4000,
+          "fundraising": 2000
+        },
+        "allocation_total": 20000
+      },
+      "controls": [
+        "retain executed award and barrier evidence",
+        "approve restriction code and release",
+        "reconcile award subledger to GL",
+        "document allocation driver and verify allocated total equals source pool"
+      ],
+      "limitations": [
+        "Synthetic educational fixture, not operational evidence.",
+        "No contributed services, endowment, exchange transaction, federal award compliance or state-law branch.",
+        "Form 990 presentation is not asserted to equal GAAP presentation."
+      ],
+      "examples": [
+        {
+          "id": "restricted-award-close",
+          "title": "Condition met, then purpose restriction released as qualifying costs are incurred",
+          "input": {
+            "award_amount": 120000,
+            "qualifying_program_expense": 45000,
+            "shared_cost_pool": 20000,
+            "allocation_driver": {
+              "program": 0.7,
+              "management_general": 0.2,
+              "fundraising": 0.1
+            }
+          },
+          "calculation": "120,000 recognized when the stated barrier is met; 45,000 qualifying purpose expense releases 45,000, leaving 75,000 with donor restrictions. A separate 20,000 shared-cost pool allocates 14,000 / 4,000 / 2,000 by the stated 70% / 20% / 10% driver.",
+          "result": {
+            "recognized_contribution": 120000,
+            "restriction_release": 45000,
+            "ending_restricted_net_assets": 75000,
+            "shared_cost_allocation": {
+              "program": 14000,
+              "management_general": 4000,
+              "fundraising": 2000
+            },
+            "allocation_total": 20000
+          }
+        }
+      ]
+    }
   }
 ]

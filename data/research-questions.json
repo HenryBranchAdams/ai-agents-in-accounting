@@ -700,5 +700,48 @@
       "Identify the absent Rule 4 exhibits and complete AP/payroll/GL/bank population.",
       "Do not treat an unexplained difference or repeated check reference as a proven error or duplicate transaction."
     ]
+  },
+  {
+    "id": "us-nonprofit-contribution-routing",
+    "user_question": "How does a nongovernmental US nonprofit distinguish award conditions from donor restrictions?",
+    "search_query": "nonprofit contributions",
+    "kind": "guide",
+    "filters": {
+      "framework": "US GAAP"
+    },
+    "expected_ids": [
+      "guide-us-nonprofit-contributions-close"
+    ],
+    "excluded_ids": [
+      "guide-q-government-funds"
+    ],
+    "required_citations": 3,
+    "expected_scope": "Nongovernmental US nonprofit contribution, conditions and donor-restriction release; not GASB reporting.",
+    "claims_assert_only_supported": [
+      "The selected barrier and right of return are both relevant to a conditional contribution.",
+      "No current consolidated Codification or professional review is established."
+    ]
+  },
+  {
+    "id": "us-nonprofit-restricted-award-example",
+    "user_question": "Where is a synthetic US nonprofit restricted-award close with checked allocation arithmetic?",
+    "search_query": "restricted award",
+    "kind": "example",
+    "filters": {
+      "framework": "US GAAP"
+    },
+    "expected_ids": [
+      "example-us-nonprofit-restricted-award-close"
+    ],
+    "excluded_ids": [
+      "example-construction-contract-ledger"
+    ],
+    "required_citations": 3,
+    "expected_scope": "Original synthetic nongovernmental US nonprofit example; not operational accounting evidence.",
+    "claims_assert_only_supported": [
+      "The example separates recognition from restriction release.",
+      "The separate shared-cost allocation is not another charge to the restricted award.",
+      "No professional or empirical validation is established."
+    ]
   }
 ]
