@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0.0",
   "inventory_id": "reporting-foundations-baseline-dispositions",
-  "inventory_version": "2026-09-17.118",
+  "inventory_version": "2026-09-17.119",
   "package_id": "reporting-foundations-us",
   "reviewed_at": "2026-09-17",
   "reviewer": "Codex AI-assisted baseline inventory and disposition review",
-  "scope": "Baseline inventory for the eight reporting-foundations families selected in the US supplement. It records which existing source and question IDs are reused or deepened, which package artifacts are new, and which populations remain unresolved. It is a research-scope artifact, not a claim that the baseline or selected slice is complete.",
+  "scope": "Baseline inventory for the eight reporting-foundations families selected in the US supplement, plus a dated bounded follow-up research pass. It records which existing source and question IDs are reused or deepened, which package artifacts are new, and which populations remain unresolved. It is a research-scope artifact, not a claim that the baseline or selected slice is complete.",
   "shared_generator_dependency": {
     "repository": "https://github.com/HenryBranchAdams/ai-agents-in-accounting",
     "source_branch": "codex/aa-i119",
@@ -13,8 +13,10 @@
     "correction_commit": "f777250e2baf400212d312ba4e9405bd5c358e3d",
     "source_file": "scripts/build-research-coverage.mjs",
     "reused_scope": "Catalog-driven corpus_version metadata and format assertion, plus PR133 source-scope validation/handling, the 236/237/238 mapping-overrides boundary and the clean-artifact rerun test approach; unrelated AA-I119 corpus changes are excluded.",
-    "review_state": "AA-R119 independent verification pending",
-    "remaining_scope": "The PR133 generator correction is integrated and the clean construction artifact is reproducible on local first and second runs. Acceptance remains a gate until AA-R119 independently verifies the correction."
+    "review_state": "AA-R119 accepted",
+    "review_receipt": "46f4b50",
+    "review_evidence_url": "https://github.com/HenryBranchAdams/ai-agents-in-accounting/pull/133#issuecomment-5717601025",
+    "remaining_scope": "The PR133 generator correction was accepted by AA-R119 at f777250e2baf400212d312ba4e9405bd5c358e3d. The final combined edition still requires snapshot-history reconciliation and release-owner integration."
   },
   "baseline": {
     "catalog_corpus_version": "2026-09-14.3",
@@ -553,7 +555,7 @@
         "entity_roles": ["Selected private entity and other reporting entities require fact-specific review"],
         "reporting_period": "Current effective text and adoption cohort required",
         "population": "Complete current Topics 205-40, 250, 255, 330, 810, 830 and 855 treatment",
-        "reason": "The package uses landing-level routing for four families and bounded historical or amendment text for selected boundaries; it does not claim complete current authority access.",
+        "reason": "The package uses landing-level routing for four families and bounded historical or amendment text for selected boundaries. The follow-up pass adds accessible public ASU and SEC staff references without claiming complete current authority access.",
         "evidence": "Question answer_status and remaining_gaps fields"
       },
       {
@@ -608,28 +610,85 @@
         "kind": "rights",
         "id": "population-publisher-rights-and-automated-access",
         "disposition": "unresolved",
-        "related_ids": ["src_1os761s", "src_fasb_201009", "src_fasb_201415", "src_fasb_201305", "src_fasb_201502", "src_fasb_fas52", "src_sec_regsx"],
+        "related_ids": ["src_1os761s", "src_fasb_201009", "src_fasb_201415", "src_fasb_201305", "src_fasb_201502", "src_fasb_fas52", "src_sec_regsx", "src_fasb_202010", "src_fasb_202511", "src_secsab0099"],
         "frameworks": ["Source-specific publisher terms"],
         "entity_roles": ["Corpus consumers and agents"],
         "reporting_period": "Review date 2026-09-17; terms may change",
         "population": "External source text, automated access and training or redistribution permissions",
-        "reason": "Only project-created metadata and bounded summaries are retained; external text is not stored and rights remain source-specific.",
+        "reason": "Only project-created metadata and bounded summaries are retained; external text is not stored and rights remain source-specific. The follow-up public ASU and SEC references remain unresolved for automated or AI reuse.",
         "evidence": "Source rights_review fields and source archive parity checks"
       }
     ]
+  },
+  "follow_up_research": {
+    "reviewed_at": "2026-09-17",
+    "purpose": "Pursue bounded public FASB and SEC material for the four criterion-2 gaps without accepting publisher terms, bypassing access controls or presenting an update, staff bulletin or index as complete current authority.",
+    "accessible_sources": [
+      {
+        "id": "src_fasb_202010",
+        "disposition": "new-bounded-source",
+        "families": ["q-ledger-close", "q-presentation", "q-policy-changes-errors"],
+        "scope": "Topic 250 error-correction materiality and disclosure placement only",
+        "evidence": "Official ASU PDF read at the cover, effective-date summary, Topic 250-10-45-27, 45-28, 50-7A and 50-12 locators.",
+        "rights_dependency": "Publisher text is not stored or redistributed; public access does not establish permission for automated or AI reuse, training or broad redistribution."
+      },
+      {
+        "id": "src_fasb_202511",
+        "disposition": "new-bounded-source",
+        "families": ["q-estimates", "q-policy-changes-errors"],
+        "scope": "Pending future Topic 250 and Topic 270 interim-disclosure text only",
+        "evidence": "Official ASU PDF read at the effective-date summary and pending Topic 250-10-50-4, 50-7 through 50-9 and Topic 270-10-45-13 through 45-16 locators.",
+        "rights_dependency": "Publisher text is not stored or redistributed; public access does not establish permission for automated or AI reuse, training or broad redistribution."
+      },
+      {
+        "id": "src_secsab0099",
+        "disposition": "supplemental-reuse",
+        "families": ["q-estimates", "q-presentation", "q-policy-changes-errors"],
+        "scope": "SEC registrant materiality overlay only; not private-company authority",
+        "evidence": "Existing source record and official SEC SAB 99 page reviewed for Topic 1.M qualitative materiality and staff-guidance limits.",
+        "rights_dependency": "SEC source text is not stored or redistributed beyond the original URL and project-created summary; source-specific reuse permission remains unresolved."
+      }
+    ],
+    "unresolved_questions": [
+      {
+        "family_id": "q-ledger-close",
+        "question": "Which current topic-specific US GAAP recognition, cutoff and error-correction requirements apply to each live close event, and does later evidence establish a prior-period condition?",
+        "paragraph_or_locator": "Current ASC topic(s) for the event, plus Topic 250-10-45-27 and 50-12 as bounded ASU 2020-10 references",
+        "dependency": "Permitted access to the applicable current Codification text, entity and transaction facts, source population and accountable professional review; ASU 2020-10 does not answer recognition or cutoff."
+      },
+      {
+        "family_id": "q-estimates",
+        "question": "Which current Topic 250 facts and paragraphs distinguish new information from an error and determine the selected private entity's treatment?",
+        "paragraph_or_locator": "Current ASC 250 classification and correction paragraphs; ASU 2025-11 Topic 250-10-50-4 and Topic 270-10-45-13 through 45-16 are pending future interim references; SAB 99 Topic 1.M is registrant-only",
+        "dependency": "Permitted current-text access, entity-specific materiality and adoption facts, full estimate evidence and independent accounting review; no future ASU or SEC staff bulletin supplies a universal private-company conclusion."
+      },
+      {
+        "family_id": "q-presentation",
+        "question": "What current FASB presentation and disclosure requirements and SEC form-specific overlays apply to the selected entity or an in-scope registrant?",
+        "paragraph_or_locator": "Current Topics 205, 210, 220, 230, 275 and 280; Regulation S-X Part 210 and form instructions; ASU 2020-10 Topic 250-10-50-7A and 50-12 are narrow references",
+        "dependency": "Permitted current-text and form-specific access, entity filing status, comparative population, taxonomy requirements and professional disclosure review; the SEC index and SAB 99 do not establish a complete filing answer."
+      },
+      {
+        "family_id": "q-policy-changes-errors",
+        "question": "Which current Topic 250 classification, transition and correction requirements apply before changing a comparative or issued period?",
+        "paragraph_or_locator": "Current ASC 250 text and effective transition paragraphs; ASU 2020-10 Topic 250-10-45-27, 45-28, 50-7A and 50-12; ASU 2025-11 pending Topic 250-10-50-4 and 50-7 through 50-9",
+        "dependency": "Permitted current-text access, information-availability and issuance facts, entity-specific materiality and independent professional review; publisher terms and automated-access limits remain unresolved."
+      }
+    ],
+    "disposition": "Bounded accessible research was added to the package, but all four original evidence-gap questions remain open and no criterion-2 completion or Issue 118 closure is claimed."
   },
   "original_acceptance_evidence": [
     {
       "criterion_id": "1",
       "requirement": "Inventory existing records and questions with explicit roles, frameworks, periods and populations.",
       "evidence": ["baseline", "dispositions.reuse", "dispositions.deepen", "dispositions.unresolved", "data/corpus/guide.json", "data/coverage/research-questions.json"],
-      "result": "Corrected by this durable inventory: 12 existing source IDs are classified for reuse, eight existing guides and 16 existing questions are classified for deepening, eight new questions and six new sources are listed, and unresolved populations are named."
+      "result": "The baseline disposition remains durable: 12 existing source IDs are classified for reuse, eight existing guides and 16 existing questions are classified for deepening, eight new questions and six baseline new sources are listed, and unresolved populations are named. The dated follow-up pass is recorded separately."
     },
     {
       "criterion_id": "2",
       "requirement": "Add original US authority-linked answers with publisher URLs, locators, effective or access metadata and rights state.",
       "evidence": ["dispositions.new", "data/research/reporting-foundations.json", "data/corpus/source.json", "data/corpus/guide.json"],
-      "result": "Bounded evidence is retained with original publisher URLs, locators, effective-period notes, review levels, source checks and unresolved rights. Four answers are explicitly evidence-gap research leads where current FASB text was not accessed."
+      "result": "Bounded evidence is retained with original publisher URLs, locators, effective-period notes, review levels, source checks and unresolved rights. The follow-up adds two public FASB ASU records and a scoped SEC staff reference, while four answers remain explicitly evidence-gap research leads because current FASB text, form-specific rules or entity facts were not fully accessed."
     },
     {
       "criterion_id": "3",
@@ -647,7 +706,7 @@
       "criterion_id": "5",
       "requirement": "Verify representative retrieval, scope counterexamples and same-build exports or checks.",
       "evidence": ["tests/reporting-foundations.test.mjs", "npm run check", "npm run build", "data/coverage/snapshots.json"],
-      "result": "Retrieval, source pointers, IFRS preservation, fixture arithmetic, non-propagation, rights and export parity are tested locally. The corrected generator preserves the explicit construction source scope across clean first and second runs. AA-R119 independent verification, CI, deployment and final combined release selection remain separate gates."
+      "result": "Retrieval, source pointers, IFRS preservation, fixture arithmetic, non-propagation, rights and export parity are tested locally. The corrected generator preserves the explicit construction source scope across clean first and second runs, with AA-R119 acceptance recorded at receipt 46f4b50. CI, deployment and final combined release selection remain separate gates."
     }
   ],
   "limits": [
@@ -655,6 +714,7 @@
     "A reuse disposition preserves a source identity or question context; it does not grant source rights or accounting authority.",
     "A deepen disposition does not revise or replace the retained IFRS question and does not imply family-wide sufficiency.",
     "The selected sector-54 assessment is a schema anchor only and does not establish Professional, Scientific, and Technical Services adequacy.",
-    "Construction source-association cleanup is reproducible through the integrated PR133 generator correction, but acceptance remains pending AA-R119 independent verification."
+    "Construction source-association cleanup is reproducible through the integrated PR133 generator correction, which AA-R119 accepted at receipt 46f4b50.",
+    "The follow-up research pass adds bounded public FASB and SEC evidence for ledger-close, estimates, presentation and policy or error questions while preserving the original unanswered criteria, source-rights dependencies and professional-review gates."
   ]
 }

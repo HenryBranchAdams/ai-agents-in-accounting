@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "assessment_version": "2026-09-17.1",
+  "assessment_version": "2026-09-17.2",
   "topology_version": "2026-09-11.1",
   "assessments": [
     {
@@ -247,7 +247,7 @@
       "industry_code": "54",
       "question_id": "q-ledger-close",
       "status": "partial",
-      "scope": "Cross-industry shared-context assessment anchored to NAICS sector 54 only because the coverage schema requires an industry code. The selected synthetic entity is not a Professional, Scientific, and Technical Services conclusion, and no result propagates to sector descendants or other industries. Inspected the selected January close fixture, opening and adjusted trial balances, six balanced proposed journals, source-event joins, cutoff and reversal controls, statement mapping and human approval gate. Editorial control sources do not establish a universal close requirement.",
+      "scope": "Cross-industry shared-context assessment anchored to NAICS sector 54 only because the coverage schema requires an industry code. The selected synthetic entity is not a Professional, Scientific, and Technical Services conclusion, and no result propagates to sector descendants or other industries. Inspected the selected January close fixture, opening and adjusted trial balances, six balanced proposed journals, source-event joins, cutoff and reversal controls, statement mapping and human approval gate. Read ASU 2020-10 for a bounded Topic 250 error-correction materiality and disclosure reference. Editorial control sources do not establish a universal close requirement.",
       "jurisdictions": [
         "United States; selected synthetic private nongovernmental entity"
       ],
@@ -258,14 +258,15 @@
       "effective_to": "2026-01-31",
       "reviewed_at": "2026-09-17",
       "reviewer": "Codex AI-assisted selected-source, synthetic-fixture and metadata review",
-      "review_basis": "Inspected the selected January close fixture, opening and adjusted trial balances, six balanced proposed journals, source-event joins, cutoff and reversal controls, statement mapping and human approval gate. Editorial control sources do not establish a universal close requirement.",
+      "review_basis": "Inspected the selected January close fixture, opening and adjusted trial balances, six balanced proposed journals, source-event joins, cutoff and reversal controls, statement mapping and human approval gate. Read ASU 2020-10 for a bounded Topic 250 error-correction materiality and disclosure reference. Editorial control sources do not establish a universal close requirement.",
       "source_currency": "verified-within-stated-scope",
       "evidence_record_ids": [
         "guide-q-ledger-close",
         "example-us-reporting-foundations-close",
         "src_1os761s",
         "src_1og297z",
-        "src_1v1zwt5"
+        "src_1v1zwt5",
+        "src_fasb_202010"
       ],
       "dimensions": {
         "scope": "present",
@@ -278,7 +279,7 @@
       },
       "gaps": [
         "No live ERP source population, posting, payment, filing or professional close review.",
-        "Current topic-specific US GAAP text remains to be selected for each live transaction.",
+        "Current topic-specific US GAAP recognition, cutoff and error-correction text remains to be selected for each live transaction; ASU 2020-10 is only a bounded disclosure and materiality reference.",
         "The fixture's later invoice and settlement remain review inputs rather than automatic prior-period entries."
       ],
       "rights": {
@@ -293,7 +294,7 @@
       "industry_code": "54",
       "question_id": "q-estimates",
       "status": "partial",
-      "scope": "Cross-industry shared-context assessment anchored to NAICS sector 54 only because the coverage schema requires an industry code. The selected synthetic entity is not a Professional, Scientific, and Technical Services conclusion, and no result propagates to sector descendants or other industries. Inspected the Topic 250 estimate-versus-error question, availability-of-information inputs, controls and warranty estimate branch. The branch deliberately remains unresolved pending current text, materiality and entity facts.",
+      "scope": "Cross-industry shared-context assessment anchored to NAICS sector 54 only because the coverage schema requires an industry code. The selected synthetic entity is not a Professional, Scientific, and Technical Services conclusion, and no result propagates to sector descendants or other industries. Inspected the Topic 250 estimate-versus-error question, availability-of-information inputs, controls and warranty estimate branch. Read ASU 2025-11 for pending future estimate-disclosure text and SAB 99 for SEC registrant materiality context. The branch deliberately remains unresolved pending current text, materiality and entity facts.",
       "jurisdictions": [
         "United States; selected synthetic private nongovernmental entity"
       ],
@@ -304,12 +305,14 @@
       "effective_to": "2026-01-31",
       "reviewed_at": "2026-09-17",
       "reviewer": "Codex AI-assisted selected-source, synthetic-fixture and metadata review",
-      "review_basis": "Inspected the Topic 250 estimate-versus-error question, availability-of-information inputs, controls and warranty estimate branch. The branch deliberately remains unresolved pending current text, materiality and entity facts.",
+      "review_basis": "Inspected the Topic 250 estimate-versus-error question, availability-of-information inputs, controls and warranty estimate branch. Read ASU 2025-11 for pending future estimate-disclosure text and SAB 99 for SEC registrant materiality context. The branch deliberately remains unresolved pending current text, materiality and entity facts.",
       "source_currency": "verified-within-stated-scope",
       "evidence_record_ids": [
         "guide-q-estimates",
         "example-us-reporting-foundations-close",
-        "src_1os761s"
+        "src_1os761s",
+        "src_fasb_202511",
+        "src_secsab0099"
       ],
       "dimensions": {
         "scope": "present",
@@ -321,7 +324,7 @@
         "empirical-support": "not-assessed"
       },
       "gaps": [
-        "Current consolidated ASC 250, later amendments and entity-specific materiality were not fully accessed.",
+        "Current consolidated ASC 250, effective treatment for the selected private entity and entity-specific materiality were not fully accessed; ASU 2025-11 is pending future interim content and SAB 99 is registrant-only staff guidance.",
         "No live estimate population, sensitivity, back-test or professional review.",
         "No prospective or retrospective conclusion is asserted for the synthetic branch."
       ],
@@ -337,7 +340,7 @@
       "industry_code": "54",
       "question_id": "q-presentation",
       "status": "partial",
-      "scope": "Cross-industry shared-context assessment anchored to NAICS sector 54 only because the coverage schema requires an industry code. The selected synthetic entity is not a Professional, Scientific, and Technical Services conclusion, and no result propagates to sector descendants or other industries. Inspected the US statement-mapping question, adjusted-trial-balance tie-out, SEC registrant counterexample, Regulation S-X routing source and nonauthoritative SEC staff-manual limit. No filing or XBRL conclusion is included.",
+      "scope": "Cross-industry shared-context assessment anchored to NAICS sector 54 only because the coverage schema requires an industry code. The selected synthetic entity is not a Professional, Scientific, and Technical Services conclusion, and no result propagates to sector descendants or other industries. Inspected the US statement-mapping question, adjusted-trial-balance tie-out, SEC registrant counterexample, Regulation S-X routing source and nonauthoritative SEC staff-manual limit. Read ASU 2020-10 and SAB 99 for narrow error-disclosure and registrant-materiality context. No filing or XBRL conclusion is included.",
       "jurisdictions": [
         "United States; selected synthetic private nongovernmental entity"
       ],
@@ -348,14 +351,16 @@
       "effective_to": "2026-01-31",
       "reviewed_at": "2026-09-17",
       "reviewer": "Codex AI-assisted selected-source, synthetic-fixture and metadata review",
-      "review_basis": "Inspected the US statement-mapping question, adjusted-trial-balance tie-out, SEC registrant counterexample, Regulation S-X routing source and nonauthoritative SEC staff-manual limit. No filing or XBRL conclusion is included.",
+      "review_basis": "Inspected the US statement-mapping question, adjusted-trial-balance tie-out, SEC registrant counterexample, Regulation S-X routing source and nonauthoritative SEC staff-manual limit. Read ASU 2020-10 and SAB 99 for narrow error-disclosure and registrant-materiality context. No filing or XBRL conclusion is included.",
       "source_currency": "verified-within-stated-scope",
       "evidence_record_ids": [
         "guide-q-presentation",
         "example-us-reporting-foundations-close",
         "src_1os761s",
         "src_secfrm26",
-        "src_sec_regsx"
+        "src_sec_regsx",
+        "src_fasb_202010",
+        "src_secsab0099"
       ],
       "dimensions": {
         "scope": "present",
@@ -367,7 +372,7 @@
         "empirical-support": "not-assessed"
       },
       "gaps": [
-        "Current FASB presentation topics, SEC forms and Regulation S-X articles were not fully reviewed.",
+        "Current FASB presentation topics, SEC forms and Regulation S-X articles were not fully reviewed; ASU 2020-10 and SAB 99 cover only narrow contexts.",
         "No SEC filing, taxonomy mapping or professional disclosure review.",
         "Private-business statement mapping does not establish an issuer filing obligation."
       ],
@@ -429,7 +434,7 @@
       "industry_code": "54",
       "question_id": "q-policy-changes-errors",
       "status": "partial",
-      "scope": "Cross-industry shared-context assessment anchored to NAICS sector 54 only because the coverage schema requires an industry code. The selected synthetic entity is not a Professional, Scientific, and Technical Services conclusion, and no result propagates to sector descendants or other industries. Inspected the Topic 250 policy, estimate and error routing question and the issued-period branch that changes the information-availability fact. Proposed correction and restatement actions remain separate and unexecuted.",
+      "scope": "Cross-industry shared-context assessment anchored to NAICS sector 54 only because the coverage schema requires an industry code. The selected synthetic entity is not a Professional, Scientific, and Technical Services conclusion, and no result propagates to sector descendants or other industries. Inspected the Topic 250 policy, estimate and error routing question and the issued-period branch that changes the information-availability fact. Read ASU 2020-10 and ASU 2025-11 for bounded error-correction and future interim-disclosure context and SAB 99 for registrant-only materiality context. Proposed correction and restatement actions remain separate and unexecuted.",
       "jurisdictions": [
         "United States; selected synthetic private nongovernmental entity"
       ],
@@ -440,12 +445,15 @@
       "effective_to": "2026-01-31",
       "reviewed_at": "2026-09-17",
       "reviewer": "Codex AI-assisted selected-source, synthetic-fixture and metadata review",
-      "review_basis": "Inspected the Topic 250 policy, estimate and error routing question and the issued-period branch that changes the information-availability fact. Proposed correction and restatement actions remain separate and unexecuted.",
+      "review_basis": "Inspected the Topic 250 policy, estimate and error routing question and the issued-period branch that changes the information-availability fact. Read ASU 2020-10 and ASU 2025-11 for bounded error-correction and future interim-disclosure context and SAB 99 for registrant-only materiality context. Proposed correction and restatement actions remain separate and unexecuted.",
       "source_currency": "verified-within-stated-scope",
       "evidence_record_ids": [
         "guide-q-policy-changes-errors",
         "example-us-reporting-foundations-close",
-        "src_1os761s"
+        "src_1os761s",
+        "src_fasb_202010",
+        "src_fasb_202511",
+        "src_secsab0099"
       ],
       "dimensions": {
         "scope": "present",
@@ -457,7 +465,7 @@
         "empirical-support": "not-assessed"
       },
       "gaps": [
-        "Current consolidated Topic 250, transition amendments and entity-specific materiality were not fully accessed.",
+        "Current consolidated Topic 250, effective transition treatment and entity-specific materiality were not fully accessed; the public ASUs are bounded references and SAB 99 is registrant-only staff guidance.",
         "No live comparative statements, issuance process or professional correction review.",
         "The synthetic branch does not force retrospective treatment."
       ],

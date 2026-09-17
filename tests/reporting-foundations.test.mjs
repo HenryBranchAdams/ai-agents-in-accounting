@@ -52,6 +52,12 @@ test("US reporting foundations preserve eight scoped questions and citable sourc
     assert.equal(question.answer_status, evidenceGapFamilies.has(family.family_id) ? "evidence-gap" : "sourced-answer-bounded");
   }
   assert.equal(supplement.sources.find((source) => source.id === "src_fasb_201415").effective_period, "Effective for the annual period ending after December 15, 2016, and for annual periods and interim periods thereafter; early application is permitted.");
+  assert.equal(supplement.version, "2026-09-17.2");
+  assert.equal(supplement.sources.find((source) => source.id === "src_fasb_202010").source_locator, "ASU printed pp.5, 13-14 and 37-38; Issue 21, Topic 250-10-45-27 and 250-10-50-12; Issue 22, Topic 250-10-45-28 and 50-7A; transition 105-10-65-6");
+  assert.equal(supplement.sources.find((source) => source.id === "src_fasb_202511").effective_period, "Public business entities: interim reporting periods within annual reporting periods beginning after December 15, 2027. Entities other than public business entities: interim reporting periods within annual reporting periods beginning after December 15, 2028. Early adoption is permitted for all entities; the stated prospective or retrospective transition choices apply.");
+  assert.deepEqual(new Set(inventory.follow_up_research.accessible_sources.map((source) => source.id)), new Set(["src_fasb_202010", "src_fasb_202511", "src_secsab0099"]));
+  assert.equal(inventory.follow_up_research.unresolved_questions.length, 4);
+  assert.match(inventory.follow_up_research.disposition, /all four original evidence-gap questions remain open/);
 });
 
 test("the baseline inventory maps reuse, deepening, new work and unresolved populations", () => {
@@ -65,8 +71,9 @@ test("the baseline inventory maps reuse, deepening, new work and unresolved popu
   assert.equal(inventory.shared_generator_dependency.source_branch, "codex/aa-i119");
   assert.equal(inventory.shared_generator_dependency.source_commit, "0d447e6033bdc10ecd3ab9a2f5855ae73644807d");
   assert.equal(inventory.shared_generator_dependency.correction_commit, "f777250e2baf400212d312ba4e9405bd5c358e3d");
-  assert.match(inventory.shared_generator_dependency.review_state, /independent verification pending/);
-  assert.match(inventory.shared_generator_dependency.remaining_scope, /Acceptance remains a gate until AA-R119 independently verifies/);
+  assert.equal(inventory.shared_generator_dependency.review_state, "AA-R119 accepted");
+  assert.equal(inventory.shared_generator_dependency.review_receipt, "46f4b50");
+  assert.match(inventory.shared_generator_dependency.remaining_scope, /final combined edition still requires snapshot-history reconciliation/);
   const existingQuestionIds = inventory.dispositions.deepen.flatMap((item) => item.existing_question_ids);
   assert.equal(new Set(existingQuestionIds).size, 16);
   for (const item of inventory.dispositions.reuse) assert.equal(byId.get(item.id)?.kind, "source", item.id);
@@ -326,5 +333,17 @@ test("the applicator refuses a newer unrelated field on a matching canonical rec
     assert.equal(read(file).find((record) => record.id === "guide-q-estimates").data.research_questions.find((candidate) => candidate.id === question.id).newer_unrelated_canonical_note, "preserve this question field");
   } finally {
     fs.rmSync(questionRoot, { recursive: true, force: true });
+  }
+  const guideRoot = copyRoot();
+  try {
+    const file = path.join(guideRoot, "data/corpus/guide.json");
+    const canonicalGuides = read(file);
+    const guide = canonicalGuides.find((record) => record.id === "guide-q-estimates");
+    guide.summary = `${guide.summary} Newer unrelated guide annotation.`;
+    write(file, canonicalGuides);
+    assert.throws(() => run(guideRoot), /guide-q-estimates: package-owned guide field summary differs; refusing overwrite/);
+    assert.match(read(file).find((record) => record.id === guide.id).summary, /Newer unrelated guide annotation\.$/);
+  } finally {
+    fs.rmSync(guideRoot, { recursive: true, force: true });
   }
 });

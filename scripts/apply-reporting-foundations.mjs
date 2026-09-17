@@ -149,6 +149,31 @@ function sourceRecord(source) {
   };
 }
 
+function assertGuidePackageFields(guide, family) {
+  const expected = {
+    title: family.title,
+    summary: family.summary,
+    jurisdiction: family.jurisdictions.join("; "),
+    reviewed_at: date,
+    "provenance.supplemental_research_file": "data/research/reporting-foundations.json",
+    "provenance.supplemental_inventory_file": packageData.inventory_file,
+    "provenance.supplemental_reviewed_at": date,
+    "provenance.supplemental_reviewer": packageData.reviewer,
+    "provenance.supplemental_scope": family.scope,
+    "data.scope": family.scope,
+    "data.review_basis": family.review_basis,
+    "data.us_scope": family.us_scope,
+    "data.version": packageData.version,
+    "data.supplemental_research_package": packageData.package_id,
+    "data.supplemental_research_file": "data/research/reporting-foundations.json",
+    "data.supplemental_inventory_file": packageData.inventory_file,
+  };
+  for (const [field, value] of Object.entries(expected)) {
+    const actual = field.split(".").reduce((current, key) => current?.[key], guide);
+    assert.deepEqual(actual, value, `${guide.id}: package-owned guide field ${field} differs; refusing overwrite`);
+  }
+}
+
 for (const source of packageData.sources) {
   const existing = sources.find((record) => record.id === source.id);
   const expected = sourceRecord(source);
@@ -160,6 +185,7 @@ const newQuestionRows = [];
 for (const family of packageData.families) {
   const guide = guides.find((record) => record.id === family.guide_id);
   assert.ok(guide, `${family.guide_id}: guide missing`);
+  assertGuidePackageFields(guide, family);
   const question = structuredClone(family.question);
   const packageSourceIds = new Set(family.source_ids);
   const questionIndex = guide.data.research_questions.findIndex((candidate) => candidate.id === question.id);
