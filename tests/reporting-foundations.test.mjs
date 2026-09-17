@@ -347,3 +347,81 @@ test("the applicator refuses a newer unrelated field on a matching canonical rec
     fs.rmSync(guideRoot, { recursive: true, force: true });
   }
 });
+
+test("the applicator applies to the clean base, replays byte-identically, and preserves guide divergence", () => {
+  const script = path.resolve("scripts/apply-reporting-foundations.mjs");
+  const cleanBase = "afd2aced307628843f8a26677c3a6fb37fa733e3";
+  const canonicalInputs = [
+    "data/catalog.json",
+    "data/corpus/source.json",
+    "data/corpus/guide.json",
+    "data/corpus/example.json",
+    "data/coverage/research-questions.json",
+    "data/coverage/assessments.json",
+    "data/coverage/mapping-overrides.json",
+    "data/coverage/subsector-profiles.json",
+    "data/coverage/subsector-screening.json",
+  ];
+  const packageInputs = [
+    "data/research/reporting-foundations.json",
+    "data/research/reporting-foundations-example.json",
+    "data/research/reporting-foundations-assessments.json",
+    "data/research/reporting-foundations-inventory.json",
+  ];
+  const outputs = canonicalInputs.slice(1);
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), "reporting-foundations-clean-base-"));
+  const copy = (file, revision) => {
+    const destination = path.join(root, file);
+    fs.mkdirSync(path.dirname(destination), { recursive: true });
+    const contents = revision
+      ? execFileSync("git", ["show", `${revision}:${file}`], { encoding: "utf8", maxBuffer: 50 * 1024 * 1024 })
+      : fs.readFileSync(file, "utf8");
+    fs.writeFileSync(destination, contents);
+  };
+  const run = () => execFileSync(process.execPath, [script], {
+    cwd: root,
+    env: { ...process.env, REPORTING_FOUNDATIONS_ROOT: root },
+    encoding: "utf8",
+    stdio: "pipe",
+  });
+  const snapshot = () => Object.fromEntries(outputs.map((file) => [file, fs.readFileSync(path.join(root, file), "utf8")]));
+
+  try {
+    for (const file of canonicalInputs) copy(file, cleanBase);
+    for (const file of packageInputs) copy(file);
+
+    const family = supplement.families.find((candidate) => candidate.guide_id === "guide-q-estimates");
+    const before = read(path.join(root, "data/corpus/guide.json")).find((record) => record.id === family.guide_id);
+    assert.equal(before.provenance.supplemental_research_file, undefined);
+    assert.equal(before.data.supplemental_research_package, undefined);
+    assert.notEqual(before.summary, family.summary);
+    const preservedSharedInputs = structuredClone(before.data.shared_inputs);
+
+    run();
+
+    const applied = read(path.join(root, "data/corpus/guide.json")).find((record) => record.id === family.guide_id);
+    assert.equal(applied.summary, family.summary);
+    assert.equal(applied.data.version, supplement.version);
+    assert.equal(applied.data.supplemental_research_package, supplement.package_id);
+    assert.deepEqual(applied.data.shared_inputs, preservedSharedInputs);
+    const firstRun = snapshot();
+    run();
+    assert.deepEqual(snapshot(), firstRun, "applicator changed clean-base output on replay");
+
+    const divergentGuides = read(path.join(root, "data/corpus/guide.json"));
+    const divergent = divergentGuides.find((record) => record.id === family.guide_id);
+    divergent.summary = `${divergent.summary} Newer unrelated guide annotation.`;
+    divergent.provenance.newer_unrelated_canonical_note = "preserve this provenance field";
+    divergent.data.newer_unrelated_canonical_note = "preserve this data field";
+    write(path.join(root, "data/corpus/guide.json"), divergentGuides);
+    const beforeDivergence = snapshot();
+    assert.throws(() => run(), /guide-q-estimates: package-owned guide field summary differs; refusing overwrite/);
+    assert.deepEqual(snapshot(), beforeDivergence, "divergent guide failure wrote files");
+    const preserved = read(path.join(root, "data/corpus/guide.json")).find((record) => record.id === family.guide_id);
+    assert.match(preserved.summary, /Newer unrelated guide annotation\.$/);
+    assert.equal(preserved.provenance.newer_unrelated_canonical_note, "preserve this provenance field");
+    assert.equal(preserved.data.newer_unrelated_canonical_note, "preserve this data field");
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});

@@ -149,6 +149,17 @@ function sourceRecord(source) {
   };
 }
 
+const reportingPackageMarkerFields = [
+  "provenance.supplemental_research_file",
+  "provenance.supplemental_inventory_file",
+  "provenance.supplemental_reviewed_at",
+  "provenance.supplemental_reviewer",
+  "provenance.supplemental_scope",
+  "data.supplemental_research_package",
+  "data.supplemental_research_file",
+  "data.supplemental_inventory_file",
+];
+
 function assertGuidePackageFields(guide, family) {
   const expected = {
     title: family.title,
@@ -168,6 +179,10 @@ function assertGuidePackageFields(guide, family) {
     "data.supplemental_research_file": "data/research/reporting-foundations.json",
     "data.supplemental_inventory_file": packageData.inventory_file,
   };
+  // Pre-package guide values are replaced only when no package marker exists. Once a marker is present,
+  // every package-owned field must match before any canonical file can be written.
+  const hasAppliedPackage = reportingPackageMarkerFields.some((field) => field.split(".").reduce((current, key) => current?.[key], guide) !== undefined);
+  if (!hasAppliedPackage) return;
   for (const [field, value] of Object.entries(expected)) {
     const actual = field.split(".").reduce((current, key) => current?.[key], guide);
     assert.deepEqual(actual, value, `${guide.id}: package-owned guide field ${field} differs; refusing overwrite`);
