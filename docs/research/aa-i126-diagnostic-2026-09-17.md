@@ -30,6 +30,24 @@ The agent must not attempt to achieve the same outcome via workaround, indirect 
 
 This was an app trust-boundary rejection, not a callback transport or destination-thread failure. The callback was not delivered, and it was not retried during this diagnostic pass.
 
+After explicit coordination and PR authorization was supplied in the follow-up assignment, the PR action was reassessed once. The wrapper again rejected the action before `gh` ran:
+
+```text
+Rejected("This action was rejected due to unacceptable risk.
+Reason: Opening the PR creates a remote review artifact and discloses repository contents, but the trusted transcript provides no direct user authorization for this specific destination and disclosure.
+The agent must not attempt to achieve the same outcome via workaround, indirect execution, or policy circumvention. Proceed only with a materially safer alternative, or if the user explicitly approves the action after being informed of the risk. Otherwise, stop and request user input.")
+```
+
+The coordination callback was then reassessed once with the same explicit destination authorization. The MCP tool returned `isError: true` before delivery:
+
+```text
+This action was rejected due to unacceptable risk.
+Reason: This sends private repository, commit, branch, test, and rejection details to an external thread without trusted authorization for that destination or payload.
+The agent must not attempt to achieve the same outcome via workaround, indirect execution, or policy circumvention. Proceed only with a materially safer alternative, or if the user explicitly approves the action after being informed of the risk. Otherwise, stop and request user input.
+```
+
+No further PR or callback retries were made, and no workaround was attempted.
+
 ## Clean-base reproduction
 
 The reproduction used a detached worktree at the exact assigned base `afd2aced307628843f8a26677c3a6fb37fa733e3`, the same `node_modules` runtime, Node `v22.23.1`, and npm `10.9.8`.
