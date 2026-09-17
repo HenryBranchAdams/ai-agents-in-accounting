@@ -19,6 +19,9 @@ const integrationFiles = [
   "data/coverage/assessments.json",
   "data/research-questions.json",
 ];
+const expectedIntegrationState = new Map(
+  integrationFiles.map(file => [file, read(file)]),
+);
 const makeIntegrationHarness = () => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), "aa-r136-clean-integration-"));
   for (const file of integrationFiles) {
@@ -26,6 +29,13 @@ const makeIntegrationHarness = () => {
     fs.mkdirSync(path.dirname(destination), { recursive: true });
     fs.copyFileSync(file, destination);
   }
+  const sourceFile = path.join(root, "data/corpus/source.json");
+  const sourceRecords = read(sourceFile);
+  assert.ok(sourceRecords.some(record => record.id === "src_far_31203_indirect_costs"));
+  fs.writeFileSync(
+    sourceFile,
+    `${JSON.stringify(sourceRecords.filter(record => record.id !== "src_far_31203_indirect_costs"), null, 2)}\n`,
+  );
   return root;
 };
 const corpusDirectory = "data/corpus";
@@ -77,8 +87,17 @@ test("clean AA-I125 integration preserves the new FAR source supplemental review
   const root = makeIntegrationHarness();
   try {
     const script = path.resolve("scripts/integrate-management-accounting.mjs");
+    assert.equal(
+      read(path.join(root, "data/corpus/source.json")).some(record => record.id === "src_far_31203_indirect_costs"),
+      false,
+      "the regression must start with the new FAR source absent",
+    );
     execFileSync(process.execPath, [script, "--integrate-into-newer-corpus"], { cwd: root, stdio: "pipe" });
-    const source = read(path.join(root, "data/corpus/source.json")).find(record => record.id === "src_far_31203_indirect_costs");
+    const output = new Map(integrationFiles.map(file => [file, read(path.join(root, file))]));
+    for (const file of integrationFiles) {
+      assert.deepEqual(output.get(file), expectedIntegrationState.get(file), `${file}: complete accepted integration state`);
+    }
+    const source = output.get("data/corpus/source.json").find(record => record.id === "src_far_31203_indirect_costs");
     const packet = read(path.join(root, "data/research/management-accounting-2026-09-17.json"));
     const update = packet.sources.find(candidate => candidate.id === "src_far_31203_indirect_costs");
     assert.ok(source, "clean integration must add the FAR source");
@@ -101,9 +120,11 @@ test("clean AA-I125 integration preserves the new FAR source supplemental review
         note: "Public accessibility does not establish reuse permission; external content remains under publisher terms.",
       },
     }]);
-    const firstReplay = fs.readFileSync(path.join(root, "data/corpus/source.json"));
+    const firstReplay = new Map(integrationFiles.map(file => [file, fs.readFileSync(path.join(root, file))]));
     execFileSync(process.execPath, [script, "--integrate-into-newer-corpus"], { cwd: root, stdio: "pipe" });
-    assert.deepEqual(fs.readFileSync(path.join(root, "data/corpus/source.json")), firstReplay, "repeat clean integration must be byte-stable");
+    for (const [file, bytes] of firstReplay) {
+      assert.deepEqual(fs.readFileSync(path.join(root, file)), bytes, `${file}: repeat clean integration must be byte-stable`);
+    }
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
   }
