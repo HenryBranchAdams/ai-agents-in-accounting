@@ -1,8 +1,28 @@
 # AA-R125 independent review
 
-This review covers PR135 at exact head `757f0f19623199c7f5da508ba09f729482dc4f2f`, compared with `main` at `afd2aced307628843f8a26677c3a6fb37fa733e3`. It was performed on branch `codex/aa-r125-review` in an isolated worktree. The review disposition is changes requested. This receipt does not merge, deploy, or close the issue.
+This receipt records the initial review of PR135 at exact head `757f0f19623199c7f5da508ba09f729482dc4f2f`, compared with `main` at `afd2aced307628843f8a26677c3a6fb37fa733e3`, and the re-review of author head `db421927ea0f2b7767a46b7f444deff8f7b4f3df`. It was performed on branch `codex/aa-r125-review` in an isolated worktree. The current re-review disposition is changes requested. This receipt does not merge, deploy, or close the issue.
 
-## Acceptance criteria review
+## Re-review of PR135 at `db421927ea0f2b7767a46b7f444deff8f7b4f3df`
+
+The three initial findings are resolved as originally scoped: the top-level importer guard now rejects newer versions and review dates, the Unit A margin inputs and formula checks are present, and the baseline inventory and coordination receipt are now auditable. One related importer preservation defect remains open.
+
+### [P1] Nested review dates remain unguarded
+
+The guard at `scripts/integrate-management-accounting.mjs:15-34` checks only top-level metadata. The importer still overwrites per-record dates at `scripts/integrate-management-accounting.mjs:391-440` and per-assessment dates at `457-465`.
+
+I independently copied the author-head inputs to temporary directories, set `mapping-overrides.json.records[guide-q-cost-allocation].reviewed_at` to `2026-09-18` while leaving its top-level date unchanged, and ran the importer. It completed and rewrote the nested date to `2026-09-17`. The same test against `coverage-management-accounting-cost-allocation-2026-09-17.reviewed_at` in `assessments.json` also completed and rewrote the newer date. Add nested-date checks for every object the importer mutates, and fail before writes while preserving all copied input bytes.
+
+### Re-review evidence
+
+- Top-level version guard: a temporary `2026-09-17.1253` state was rejected before writes; all nine copied inputs remained byte-identical.
+- Top-level review-date guard: a temporary `2026-09-18` state was rejected before writes; all nine copied inputs remained byte-identical.
+- Successful temporary import: unrelated example, retrieval-fixture, and research-family IDs were preserved.
+- Margin and profit reproduction: Unit A `-$32,000` and `-$27,000`, gross margin `$40,000` and `$45,000`, and entity operating profit `-$80,000` and `-$75,000` all recomputed from dated Unit A, Unit B, and entity inputs. The declared input references resolve.
+- Baseline reproduction: the packet's 51 disposition IDs matched the 51 baseline mapping IDs exactly, with no missing, extra, or duplicate IDs. The seven named question dispositions include unresolved `rq-mfg-cost`; coordination issues #101, #109, and #117 remain explicitly open with no completion claim.
+- Snapshot reproduction: prior snapshot `2026-09-17.125` is unchanged, and new snapshot `2026-09-17.1252` has no input-hash mismatches.
+- Direct target tests: the four AA-I125 tests pass. The npm test wrapper could not rebuild the target worktree because its generated `dist` directory rejected an unlink with `EPERM`; the direct tests ran against the existing target build.
+
+## Initial review acceptance criteria at `757f0f19623199c7f5da508ba09f729482dc4f2f`
 
 - Baseline inventory and reuse: partial. The selected role, framework, period, population, and six packet question rows are stated. I could not find an auditable inventory of the baseline 51 records, seven named questions, or dispositions for the existing manufacturing-conversion and professional-services guides. The receipt also does not link the coordination records requested in the plan, including #101, #109, and #117.
 - Source-linked answers: partial. The changed guides and sources include original URLs, locators, scope boundaries, effective dates where known, rights status, and review limits. I independently read Acquisition.gov FAR 31.203 and SEC SAB 99. The repository records an eCFR check, but the eCFR endpoint was bot-gated in this environment and was not independently reopened here.
