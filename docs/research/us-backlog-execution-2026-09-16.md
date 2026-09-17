@@ -188,3 +188,20 @@ Automation `accounting-agents-backlog-orchestration` initiated this turn, demons
 AA-R118 identity resolved: `01a0afd4-2a99-7143-bfda-c7889f6510ed`, local, worktree `/Users/henryadams/.codex/worktrees/247d/ai-agents-in-accounting`, branch `codex/aa-r118-review`, head8d7c018. AA-R128 follow-up receipt `3b77a2b82ed182fe88b8e14272dadc359251a2ad` accepted both original P1 fixes at2e72df5. Remaining P2: bump revised nonprofit assessment version under docs/coverage-model.md and append a new unique snapshot without rewriting old history. AA-F128 owns that follow-up; final corpus edition/release reconciliation remains an orchestrator integration gate.
 
 Dispatched next independent foundation AA-I125 using Luna Max: issue125 shared-service allocation, budget/actual variance and performance definitions. Base `afd2aced307628843f8a26677c3a6fb37fa733e3`, requested branch `codex/aa-i125-management`; setup receipt `client-new-thread:7f0fc4f8-7049-4fe1-909c-44e4e0ab5097`, hostlocal, resolved thread/worktree awaits ACK. Owns only cost-allocation/planning/performance guides and issue-specific canonical evidence/tests/inputs; no edits to other workers' applied packages. Original issue criteria and exact plan5713940716 supplied. Snapshot namespace2026-09-17.125 reserved if needed; shared catalog/releases remain orchestrator-owned. Next: author callback then independent review; hourly next-check and two-hour stale signal. #125 is assigned, not complete. No merger, closure or deployment occurred.
+
+### Heartbeat recovery, 2026-09-17T15:53:14Z
+
+Live PR heads:128 c334a97 (CI pass),1290789725(pass),131b11155e(pass),1328d7c018(pass),1330d447e6(pass),13478ad504(CI failed immutable gzip),135757f0f1(pass). No default-branch integration. PR130 previously merged into PR128 only. Recent detailed callback receipts are in PR129 comments; this checkpoint reconciles ownership below.
+
+| Assignment | Current state | Next action |
+|---|---|---|
+| AA-REL128 / AA-R128 | PR134 release history independently supported; CI gzip mismatch and receipt archive-count discrepancy remain | Existing author fixes root cause; independent final review then integration |
+| AA-I118 / AA-R118 | PR132 held for inventory/source-status/applicator/FX/association corrections | Author corrections; reuse sole AA-I119 generator fix |
+| AA-I119 / AA-R119 | PR133 corrected0d447e6 resolves earlier output findings; real first generator run still mutates construction associations | Author reproducible-preservation fix and clean-artifact regression; re-review |
+| AA-I127 / AA-R127 | PR131 correctedb11155e, CI pass, shared-scope assessment/schema change | Independent re-review in progress |
+| AA-I125 / AA-R125 | PR135 held: importer downgrades newer versions, incomplete Unit A margin inputs, missing baseline dispositions | Author corrections, then re-review |
+| AA-I126 | Missed callback recovered through warranted stale inspection | Resolve reported approval rejection and reproduce remaining test on clean baseline |
+
+AA-I126 worker `01a0afa4-6dd8-74d3-bd64-0611e0e9e148` was idle after pushing branch `codex/aa-i126-assurance` commitba1a3c3. Its final turn reported PR creation rejected by app approval and callback tool failed, so no PR exists. It reports83/84 elevated tests, with newcomer12000-character citation-context failure called pre-existing but baseline reproduction not established. Existing owner was reactivated to provide exact rejection basis/full SHA and independently reproduce on original base. No rejected operation retried and no replacement launched. Other progress is recent; no further worker inspection warranted.
+
+All31 starting issues remain open. Automation remains hourly and active. No deployment. Final catalog/history and conflicting snapshot reconciliation remain orchestrator gates, not permission to alter immutable history.
