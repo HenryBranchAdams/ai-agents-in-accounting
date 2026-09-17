@@ -40,3 +40,7 @@ The source release files and generated `dist/client/releases/` files match these
 The final build produced 27 downloads and a 225-file source archive, including the preserved historical release artifacts. Coverage snapshot `2026-09-17.1283` records the final corpus version; assessment version remains `2026-09-17.1302`, mapping version remains `2026-09-16.1`, and prior coverage snapshots remain immutable.
 
 Publication, deployment, merge and issue-state changes remain outside this release-preparation branch.
+
+## Cross-runtime gzip follow-up
+
+The first hosted verification of commit `78ad504` passed lint and validation but failed during the build on Linux Node `22.23.2` because the existing `2026-09-17.1/corpus.json.gz` bytes differed from a newly emitted gzip representation. The local release tree was built on macOS Node `22.23.1`; its raw `corpus.json` and decompressed gzip payload were identical. The release guard now preserves an existing gzip only after exact decompressed-payload equality, while all other artifact mismatches remain fatal. The regression covers an alternate valid gzip representation and a changed decompressed payload.
