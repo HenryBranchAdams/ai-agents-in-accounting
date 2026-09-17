@@ -15,10 +15,13 @@ export const researchLeaves=leafData.reviews;
 export const classificationRelationships=relationshipData;
 const cellsByKey=new Map(screeningData.cells.map(c=>[`${c.industry_code}:${c.family_id}`,c]));
 export const researchCell=(industry:string,family:string)=>cellsByKey.get(`${industry}:${family}`)||null;
+const namedPartialQuestions=researchQuestions.filter(q=>q.assessment_status==='partial').length;
+const namedEvidenceGaps=researchQuestions.filter(q=>q.assessment_status==='evidence-gap').length;
 export const researchSummary={
   ...criteriaData.population,
-  named_partial_questions:researchQuestions.filter(q=>q.assessment_status==='partial').length,
-  named_evidence_gaps:researchQuestions.filter(q=>q.assessment_status==='evidence-gap').length,
+  named_research_questions:researchQuestions.length,
+  named_partial_questions:namedPartialQuestions,
+  named_evidence_gaps:namedEvidenceGaps,
   subsector_profiles:researchProfiles.length,
   applicability_counts:Object.fromEntries(Object.keys(criteriaData.applicability).map(status=>[status,screeningData.cells.filter(c=>c.applicability===status).length])),
   leaf_outcomes:leafData.counts,

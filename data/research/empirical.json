@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "reviewed_at": "2026-09-11",
+  "reviewed_at": "2026-09-17",
   "sources": [
     {
       "id": "src_1l0q90c",
@@ -191,14 +191,105 @@
         "status": "publisher-terms",
         "note": "FINRA terms apply; bounded summary only."
       }
+    },
+    {
+      "id": "src_1sbtyzp",
+      "title": "Human + AI in Accounting: Early Evidence from the Field",
+      "authors": [
+        "Authors as listed by the Journal of Accounting Research"
+      ],
+      "original_publisher": "Journal of Accounting Research / Wiley",
+      "canonical_urls": {
+        "wiley_abstract": "https://onlinelibrary.wiley.com/doi/abs/10.1111/1475-679x.70052",
+        "doi": "https://doi.org/10.1111/1475-679X.70052"
+      },
+      "edition_distinction": "The public Wiley abstract was read on 2026-09-17. The publisher's full article is openly accessible, but this package performed an abstract-only review; platform raw data were not obtained and no full-text, raw-data or reuse permission is inferred.",
+      "jurisdiction": "SME accounting platform; professional accountants",
+      "review_level": "abstract-or-landing",
+      "review_scope": "abstract-only",
+      "source_locator": "Wiley abstract: field setting and sample, AI-enabled platform, more than 200,000 transaction-level records, productivity and reporting-quality outcomes, selective low-confidence intervention, and non-consensus recommendation error risk",
+      "evidence_summary": "The abstract reports a survey of 277 professional accountants and proprietary field data from an AI-enabled accounting platform serving 79 SMEs and more than 200,000 transaction-level records. It reports productivity gains, more granular ledgers and faster close, selective intervention when confidence was low, and an error risk when recommendations were not consensus.",
+      "limitations": [
+        "Abstract-level review only; the openly accessible full article and methods were not reviewed in this package, and platform raw data were not obtained.",
+        "No public denominator for journal completeness, correction handling, financial-statement error, or control effectiveness was established.",
+        "No independent replication or professional sign-off was established."
+      ],
+      "checks": [
+        {
+          "url": "https://onlinelibrary.wiley.com/doi/abs/10.1111/1475-679x.70052",
+          "method": "live web open",
+          "outcome": "Wiley abstract read; setting, population, task context, outcomes and confidence-dependent intervention claims were recorded without extending beyond the abstract.",
+          "material_read": true
+        },
+        {
+          "url": "https://doi.org/10.1111/1475-679X.70052",
+          "method": "publisher DOI identity check",
+          "outcome": "DOI identity confirmed; no full-text or data-rights grant inferred.",
+          "material_read": false
+        }
+      ],
+      "rights": {
+        "status": "unresolved",
+        "note": "Publisher and article terms apply. Abstract access does not grant reuse of full text, proprietary records, or derived training data."
+      },
+      "source_url": "https://onlinelibrary.wiley.com/doi/abs/10.1111/1475-679x.70052",
+      "publisher": "Journal of Accounting Research / Wiley",
+      "source_type": "Accounting empirical field study",
+      "publication_or_edition": "Wiley abstract for DOI 10.1111/1475-679X.70052; full publication and proprietary field data remain separately bounded",
+      "rights_review": {
+        "status": "unresolved",
+        "note": "No full-text, raw-data, or training permission was established."
+      }
+    },
+    {
+      "id": "src_1v8cm5i",
+      "title": "U.S. Venture uses Copilot for Finance",
+      "authors": [
+        "Microsoft customer-story authors and U.S. Venture customer representatives"
+      ],
+      "original_publisher": "Microsoft customer story",
+      "canonical_urls": {
+        "customer_story": "https://www.microsoft.com/en/customers/story/20600-us-venture-microsoft-365-copilot-for-finance"
+      },
+      "edition_distinction": "Customer story read on 2026-09-17 as a substantive vendor/customer practice example. It is not an independent experiment or accounting accuracy study.",
+      "jurisdiction": "U.S. Venture and US AutoForce, United States; finance reconciliation use case",
+      "review_level": "substantive-excerpt",
+      "review_scope": "substantive-excerpt",
+      "source_locator": "Customer story sections describing Dynamics 365 plus Copilot for Finance, credit-card and bank-statement reconciliation, four-week setup, reported monthly time savings, and customer quote",
+      "evidence_summary": "The story reports use of Dynamics 365 and Copilot for Finance for recurring reconciliations, including credit-card transactions and bank statements, with reported time savings. It does not publish an accuracy denominator, independent comparator, full control population, or correction register.",
+      "limitations": [
+        "Vendor/customer reported practice example, not independent validation.",
+        "Reported time savings do not establish journal correctness, completeness, or control effectiveness.",
+        "No production incident or failure-rate denominator was disclosed in the checked scope."
+      ],
+      "checks": [
+        {
+          "url": "https://www.microsoft.com/en/customers/story/20600-us-venture-microsoft-365-copilot-for-finance",
+          "method": "live web open",
+          "outcome": "Customer and vendor attribution, reconciliation use, implementation timing, and reported savings were read and classified as vendor/customer evidence.",
+          "material_read": true
+        }
+      ],
+      "rights": {
+        "status": "publisher-terms",
+        "note": "Microsoft page terms apply; factual summary only. No customer data or full text is redistributed."
+      },
+      "source_url": "https://www.microsoft.com/en/customers/story/20600-us-venture-microsoft-365-copilot-for-finance",
+      "publisher": "Microsoft",
+      "source_type": "Vendor/customer practice example",
+      "publication_or_edition": "Microsoft customer story accessed 2026-09-17",
+      "rights_review": {
+        "status": "publisher-terms",
+        "note": "Factual summary only; no accuracy or reuse permission beyond page terms is inferred."
+      }
     }
   ],
   "packages": [
     {
       "guide_id": "guide-independent-deployment-evidence",
       "title": "What independent deployments and failures actually show",
-      "summary": "Two workplace studies, a limited-access chatbot incident, SEC settlements and FINRA guidance, with measured outcomes separated from governance expectations.",
-      "scope": "Selected independent AI-assistance evidence, 2023–2026. These settings do not establish accounting-agent performance.",
+      "summary": "Two workplace studies, a limited-access chatbot incident, SEC settlements, FINRA guidance, a bounded accounting field study, and a vendor/customer reconciliation story, with measured outcomes and transfer limits kept separate.",
+      "scope": "Selected independent AI-assistance evidence, accounting field evidence, vendor/customer practice evidence, incidents and governance guidance from 2023–2026. The accounting items are bounded and do not establish end-to-end accounting-agent performance.",
       "question_family_ids": [
         "q-deployment-evidence",
         "q-evaluation",
@@ -368,6 +459,140 @@
             "status": "partial",
             "basis": "Study design, measured population and contrary findings retained; no transfer to accounting-agent reliability is established."
           }
+        },
+        {
+          "id": "rq-deployment-accounting-field-study",
+          "question": "What does the directly relevant accounting field study establish, and what remains unavailable?",
+          "scope": "Public Wiley abstract for a Journal of Accounting Research field study involving professional accountants and an AI-enabled accounting platform serving SMEs; accounting-relevant but proprietary and abstract-level.",
+          "answer": "The abstract reports a survey of 277 professional accountants and proprietary field data from an AI-enabled accounting platform serving 79 SMEs and more than 200,000 transaction-level records. It reports productivity gains, more granular ledgers and faster close, selective intervention when confidence was low, and a risk of error when recommendations were not consensus. The abstract does not expose the full comparator, raw records, journal-population denominator, correction or void behavior, control effectiveness, rights for reuse, or independent replication, so it is relevant field evidence within its stated setting and not a public end-to-end accounting-agent certification.",
+          "answer_status": "sourced-accounting-field-evidence-bounded",
+          "family_ids": [
+            "q-deployment-evidence",
+            "q-evaluation",
+            "q-human-authority"
+          ],
+          "source_ids": [
+            "src_1sbtyzp"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_1sbtyzp",
+              "locator": "Wiley abstract: 277 professional accountants, AI-enabled platform serving 79 SMEs, more than 200,000 transaction-level records, productivity/reporting-quality outcomes, confidence-dependent intervention and non-consensus recommendation error risk",
+              "url": "https://onlinelibrary.wiley.com/doi/abs/10.1111/1475-679x.70052"
+            }
+          ],
+          "observed_outcomes": [
+            "Survey of 277 professional accountants",
+            "Proprietary platform field data from 79 SMEs and more than 200,000 transaction-level records",
+            "Reported productivity gains, more granular ledgers, and faster close",
+            "Accountants selectively intervened when confidence was low",
+            "Non-consensus AI recommendations could increase error risk"
+          ],
+          "evidence_type": "Abstract-level proprietary accounting field study and framed field experiment as described by the publisher abstract",
+          "intervention": "AI-enabled accounting platform and GenAI-assisted transaction classification or accounting work",
+          "population": "Professional accountants and SME accounting-platform records",
+          "comparator": "Accountant behavior and confidence-dependent intervention are described in the abstract; the complete comparator and design are not publicly available in the checked scope",
+          "outcomes": "Productivity, reporting-quality indicators, ledger granularity, close speed, and recommendation error risk as described by the abstract",
+          "funding_or_author_relationship": "The public abstract and checked landing page did not establish a complete funding or author-relationship record; retain that as an unresolved field-study limitation.",
+          "remaining_gaps": [
+            "Full methods, raw records, comparator construction, confidence thresholds, and correction outcomes were not reviewed.",
+            "No public journal completeness, financial-statement error, void/deletion, or control-effectiveness denominator was established.",
+            "No independent replication, professional sign-off, or permission to redistribute proprietary records was established.",
+            "Transfer to the synthetic Oracle lineage fixture requires a separate task and control evaluation."
+          ],
+          "assessment": {
+            "status": "partial",
+            "basis": "Direct accounting relevance and reported population are preserved from the publisher abstract, while access, comparator, rights, correction, and transfer limits remain explicit."
+          }
+        },
+        {
+          "id": "rq-deployment-accounting-customer-story",
+          "question": "How should a vendor/customer reconciliation story be used without turning reported savings into accuracy evidence?",
+          "scope": "Microsoft customer story for U.S. Venture and US AutoForce using Copilot for Finance; vendor/customer practice evidence, not independent validation.",
+          "answer": "The customer story reports Dynamics 365 plus Copilot for Finance use in recurring credit-card and bank-statement reconciliations, a four-week setup, and more than 30 hours per month of reported savings, alongside an 80% customer quote. Those statements are useful as a practice example and implementation lead, but the checked story does not publish an independent comparator, error denominator, source-population control, correction register, or reviewer-effectiveness measure. It should not be labeled independent accounting-agent evidence.",
+          "answer_status": "vendor-customer-practice-example",
+          "family_ids": [
+            "q-deployment-evidence",
+            "q-evaluation"
+          ],
+          "source_ids": [
+            "src_1v8cm5i"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_1v8cm5i",
+              "locator": "Microsoft customer story: U.S. Venture and US AutoForce reconciliation use, four-week setup, more than 30 hours per month reported savings, and customer quote",
+              "url": "https://www.microsoft.com/en/customers/story/20600-us-venture-microsoft-365-copilot-for-finance"
+            }
+          ],
+          "observed_outcomes": [
+            "Recurring credit-card and bank-statement reconciliation use is described",
+            "Four-week implementation is reported",
+            "More than 30 hours per month of reported savings and an 80% customer quote are presented by the vendor/customer story"
+          ],
+          "evidence_type": "Vendor/customer practice example",
+          "intervention": "Dynamics 365 and Copilot for Finance reconciliation workflow",
+          "population": "U.S. Venture and US AutoForce processes as described by the customer story",
+          "comparator": "Manual reconciliation baseline is implied by the story but not independently measured or published",
+          "outcomes": "Reported time savings; no published accuracy, completeness, correction, or control-effectiveness denominator",
+          "funding_or_author_relationship": "Vendor-published customer story with customer attribution; relationship limits are material to interpretation.",
+          "remaining_gaps": [
+            "No independent accuracy or completeness check was established.",
+            "No full population, exception rate, correction history, or reviewer override data was published.",
+            "Reported savings are not a causal estimate transferable to the synthetic ERP fixture."
+          ],
+          "assessment": {
+            "status": "partial",
+            "basis": "The source is retained as a clearly labeled practice example with vendor/customer attribution and no independent performance claim."
+          }
+        },
+        {
+          "id": "rq-deployment-accounting-evidence-gap",
+          "question": "Does the reviewed public evidence establish an independent end-to-end accounting-agent deployment?",
+          "scope": "Comparison across the accounting field study, vendor/customer story, general workplace experiments, federal governance evidence, and the synthetic ERP fixture.",
+          "answer": "No. The accounting field study is directly relevant but abstract-level and proprietary; the customer story is vendor/customer reported; general workplace experiments do not measure ledger correctness; GAO and NIST materials concern governance or evaluation framing; and the ERP fixture is original synthetic data. The evidence gap is itself a required assessment result: a deployment claim needs an accounting task denominator, source-population and correction controls, comparator, reviewer actions, incidents, costs, rights, and independent verification before it can support transfer.",
+          "answer_status": "evidence-gap",
+          "family_ids": [
+            "q-deployment-evidence",
+            "q-evaluation",
+            "q-human-authority"
+          ],
+          "source_ids": [
+            "src_1sbtyzp",
+            "src_1v8cm5i",
+            "src_1l0q90c",
+            "src_1p2g6i1",
+            "src_038j28b",
+            "src_0w8mvx4"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_1sbtyzp",
+              "locator": "Wiley abstract and stated proprietary field setting",
+              "url": "https://onlinelibrary.wiley.com/doi/abs/10.1111/1475-679x.70052"
+            },
+            {
+              "source_id": "src_1v8cm5i",
+              "locator": "Microsoft vendor/customer story and reported reconciliation savings",
+              "url": "https://www.microsoft.com/en/customers/story/20600-us-venture-microsoft-365-copilot-for-finance"
+            },
+            {
+              "source_id": "src_0w8mvx4",
+              "locator": "GAO-26-107522 IRS AI governance and information-quality findings, not accounting accuracy",
+              "url": "https://www.gao.gov/products/gao-26-107522"
+            }
+          ],
+          "observed_outcomes": [],
+          "evidence_type": "Cross-source evidence-gap assessment",
+          "remaining_gaps": [
+            "No public independent end-to-end accounting-agent deployment with ledger correctness and control evidence was established.",
+            "No independent replication of the field study or validation of the vendor/customer story was established.",
+            "No live ERP run, reviewer study, incident register, or rights-cleared deployment dataset was obtained."
+          ],
+          "assessment": {
+            "status": "evidence-gap",
+            "basis": "The selected sources support a bounded accounting field study and a vendor/customer practice example, but the requested end-to-end deployment evidence remains absent."
+          }
         }
       ],
       "source_ids": [
@@ -375,17 +600,24 @@
         "src_1p2g6i1",
         "src_empirical_aircanada_2024",
         "src_empirical_sec_aiwashing_2024",
-        "src_empirical_finra_genai_2024"
+        "src_empirical_finra_genai_2024",
+        "src_1sbtyzp",
+        "src_1v8cm5i"
       ],
       "workflows": [
         "Pin the study edition and measured population before comparing outcomes.",
         "Retain the task denominator, baseline, contrary result, access scope and causal limits.",
-        "For accounting use, request separate ledger correctness, error correction, population completeness, cost and human-review evidence."
+        "For accounting use, request separate ledger correctness, error correction, population completeness, cost and human-review evidence.",
+        "Classify the Human + AI in Accounting abstract as directly relevant but proprietary field evidence, and classify the U.S. Venture story as vendor/customer practice evidence.",
+        "Do not convert general workplace experiments, NIST/GAO governance evidence, benchmarks, or synthetic fixtures into an accounting deployment claim."
       ],
       "coverage_gaps": [
-        "No independent end-to-end accounting-agent deployment is established by these five items.",
+        "No independent end-to-end accounting-agent deployment is established by this packet.",
+        "The accounting field study is available at abstract level with proprietary methods and records.",
+        "The U.S. Venture item is vendor/customer reported and lacks an independent accuracy denominator.",
         "Air Canada official decision remained inaccessible; the incident summary retains that dependency."
       ]
     }
-  ]
+  ],
+  "version": "2026-09-17.1272"
 }

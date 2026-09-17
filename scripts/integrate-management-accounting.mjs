@@ -410,6 +410,12 @@ if (far && !foundations.sources.some(source => source.id === far.id)) {
     rights_review: { status: "unresolved", note: "Public access does not establish reuse permission." },
   });
 }
+foundations.integration_scope = {
+  issue_id: packet.issue_id,
+  family_ids: packet.families.map(family => family.family_id),
+  source_ids: packet.sources.map(source => source.id),
+  note: "Only the listed packet families and sources were refreshed by this integration. Generic package replay must preserve review state for all other foundation records.",
+};
 
 const researchQuestions = read("data/coverage/research-questions.json");
 researchQuestions.question_set_version = preserveOrUseVersion(researchQuestions.question_set_version, packet.package_version);

@@ -13,8 +13,8 @@ const canonical = corpusFiles.flatMap(file => {
 });
 const byId = new Map(canonical.map(record => [record.id, record]));
 
-test("AA-I119 and AA-I125 preserve canonical IDs without collisions or lost nonprofit records", () => {
-  assert.equal(canonical.length, 1095);
+test("AA-I119, AA-I125, and AA-I127 preserve canonical IDs without collisions or lost nonprofit records", () => {
+  assert.equal(canonical.length, 1097);
   assert.equal(byId.size, canonical.length, "canonical record IDs must be globally unique");
 
   for (const id of [
@@ -49,22 +49,23 @@ test("AA-I119 and AA-I125 preserve canonical IDs without collisions or lost nonp
   ]) assert.ok(byId.has(id), `expected accepted integration record ${id}`);
 });
 
-test("2026-09-17.2 release and snapshot match the corrected canonical build", () => {
+test("2026-09-17.3 release and snapshot match the corrected canonical build", () => {
   const index = read("data/releases/index.json");
-  assert.equal(index.current_version, "2026-09-17.2");
-  assert.deepEqual(index.versions.slice(-2), ["2026-09-17.1", "2026-09-17.2"]);
+  assert.equal(index.current_version, "2026-09-17.3");
+  assert.deepEqual(index.versions.slice(-3), ["2026-09-17.1", "2026-09-17.2", "2026-09-17.3"]);
 
-  const currentRelease = "data/releases/2026-09-17.2";
+  const currentRelease = "data/releases/2026-09-17.3";
   const currentBytes = fs.readFileSync(`${currentRelease}/corpus.json`);
   assert.deepEqual(currentBytes, fs.readFileSync("dist/client/downloads/corpus.json"));
   assert.deepEqual(gunzipSync(fs.readFileSync(`${currentRelease}/corpus.json.gz`)), currentBytes);
 
-  const priorRelease = "data/releases/2026-09-17.1";
-  const priorBytes = fs.readFileSync(`${priorRelease}/corpus.json`);
-  assert.deepEqual(gunzipSync(fs.readFileSync(`${priorRelease}/corpus.json.gz`)), priorBytes);
+  for (const priorRelease of ["data/releases/2026-09-17.1", "data/releases/2026-09-17.2"]) {
+    const priorBytes = fs.readFileSync(`${priorRelease}/corpus.json`);
+    assert.deepEqual(gunzipSync(fs.readFileSync(`${priorRelease}/corpus.json.gz`)), priorBytes);
+  }
 
-  const snapshot = read("data/coverage/snapshots.json").snapshots.find(item => item.id === "2026-09-17.2");
+  const snapshot = read("data/coverage/snapshots.json").snapshots.find(item => item.id === "2026-09-17.3");
   assert.ok(snapshot);
-  assert.equal(snapshot.summary.record_count, 1095);
-  assert.equal(snapshot.summary.scoped_assessments, 8);
+  assert.equal(snapshot.summary.record_count, 1097);
+  assert.equal(snapshot.summary.scoped_assessments, 17);
 });
