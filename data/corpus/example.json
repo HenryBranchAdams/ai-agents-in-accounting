@@ -3255,5 +3255,262 @@
         "transfer_limit": "Historical federal contractor payment evidence. Not developer/owner accounting, current GAAP authority, a validated ERP population or professional review."
       }
     }
+  },
+  {
+    "id": "example-us-nonprofit-restricted-award-close",
+    "kind": "example",
+    "title": "US nonprofit restricted award: synthetic close example",
+    "summary": "Synthetic award-to-close example separates a condition from a donor restriction, recognizes revenue after the barrier is met, releases the purpose restriction as qualifying expense is incurred, and reconciles functional expenses.",
+    "topics": [
+      "Accounting and reporting",
+      "Synthetic examples",
+      "Public sector and charity"
+    ],
+    "industries": [
+      "public-sector-nonprofit"
+    ],
+    "jurisdiction": "United States; nongovernmental not-for-profit educational fixture",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_nonprofit_fasb_2018_08",
+      "src_nonprofit_fasb_2016_14",
+      "src_nonprofit_irs_990_2025"
+    ],
+    "related_ids": [
+      "guide-us-nonprofit-contributions-close"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-16",
+    "provenance": {
+      "added_on": "2026-09-16",
+      "reviewer": "ChatGPT, AI-assisted research and original synthesis",
+      "note": "Original synthetic numbers only; no operational records. Arithmetic checked programmatically. Professional review not performed."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "No external example content included",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": "Original factual metadata and synthesis only; publisher full text is not stored."
+    },
+    "data": {
+      "version": "1.0.0",
+      "origin": "Original synthetic project-authored example.",
+      "scope": "One $120,000 purpose-restricted grant with a substantive milestone barrier and right of return. The base case is a calendar-year 2026 close with a cash receipt and a cash-settled $45,000 qualifying cost. A payable settlement is an independent changed-assumption branch, not an additional entry. No claim of universal treatment.",
+      "frameworks": [
+        "US GAAP"
+      ],
+      "close_period": {
+        "start": "2026-01-01",
+        "end": "2026-12-31",
+        "cutoff": "2026-12-31",
+        "basis": "Illustrative calendar-year close; all listed events are recorded on or before the cutoff."
+      },
+      "assumptions": [
+        "Opening balances at 2026-01-01 are zero for the listed award, cash, payable and net-asset accounts.",
+        "The $120,000 receipt is cash received on 2026-01-15, not a promise to give or a receivable.",
+        "The milestone barrier and right of return are evidenced on 2026-06-30; contribution recognition is recorded on that date.",
+        "The $45,000 qualifying program cost is incurred and paid in cash on 2026-09-15; the base case does not record an accounts payable.",
+        "The $45,000 purpose restriction is released on 2026-09-30 after the qualifying cost and restriction evidence are reviewed.",
+        "The separate $20,000 shared-cost pool is allocated for functional reporting and is not added to or deducted from the restricted-award rollforward."
+      ],
+      "opening_balances": {
+        "as_of": "2026-01-01",
+        "cash": 0,
+        "refundable_advance": 0,
+        "accounts_payable": 0,
+        "net_assets_with_donor_restrictions": 0,
+        "net_assets_without_donor_restrictions": 0
+      },
+      "inputs": {
+        "award_amount": 120000,
+        "qualifying_program_expense": 45000,
+        "shared_cost_pool": 20000,
+        "receipt_basis": "cash",
+        "qualifying_cost_settlement": "cash",
+        "allocation_driver": {
+          "program": 0.7,
+          "management_general": 0.2,
+          "fundraising": 0.1
+        }
+      },
+      "events": [
+        {
+          "date": "2026-01-15",
+          "event": "cash received before barrier is met",
+          "evidence": "Synthetic receipt and unfulfilled award condition; not an operational bank record.",
+          "accounting": "record refundable advance/liability; no contribution revenue in this fixture"
+        },
+        {
+          "date": "2026-06-30",
+          "event": "milestone barrier met",
+          "evidence": "Synthetic milestone acceptance and documented right-of-return assessment.",
+          "accounting": "recognize $120,000 contribution revenue with donor restriction; reclassify advance"
+        },
+        {
+          "date": "2026-09-15",
+          "event": "$45,000 qualifying purpose expense incurred and paid",
+          "evidence": "Synthetic qualifying-cost support and cash settlement; not an operational invoice or bank record.",
+          "accounting": "record program expense and credit cash in the base case; an unpaid alternative would credit accounts payable instead"
+        },
+        {
+          "date": "2026-09-30",
+          "event": "$45,000 purpose restriction released",
+          "evidence": "Synthetic restriction-code review tied to the qualifying cost incurred by the release date.",
+          "accounting": "reclassify $45,000 from net assets with donor restrictions to net assets without donor restrictions"
+        }
+      ],
+      "settlement": {
+        "base_case": "cash",
+        "base_case_description": "The 2026-09-15 qualifying cost is paid in cash, so journal N3 credits cash and the base-case ending cash balance is $75,000.",
+        "payable_alternative": {
+          "status": "independent changed-assumption branch",
+          "description": "If the qualifying cost is incurred by the 2026-12-31 cutoff but remains unpaid, replace N3's cash credit with accounts_payable. Do not combine this branch with the cash-paid base case.",
+          "ending_cash": 120000,
+          "ending_accounts_payable": 45000,
+          "ending_net_assets_with_donor_restrictions": 75000,
+          "same_restriction_release": 45000,
+          "not_combined_with_base_case": true
+        }
+      },
+      "journals": [
+        {
+          "id": "N1",
+          "debit": "cash",
+          "credit": "refundable_advance",
+          "amount": 120000
+        },
+        {
+          "id": "N2",
+          "debit": "refundable_advance",
+          "credit": "contribution_revenue_with_donor_restrictions",
+          "amount": 120000
+        },
+        {
+          "id": "N3",
+          "debit": "program_expense",
+          "credit": "cash",
+          "amount": 45000,
+          "settlement_basis": "cash base case"
+        },
+        {
+          "id": "N4",
+          "debit": "net_assets_with_donor_restrictions",
+          "credit": "net_assets_without_donor_restrictions_release",
+          "amount": 45000
+        }
+      ],
+      "ledger_rollforward": {
+        "cash": {
+          "opening": 0,
+          "cash_receipt": 120000,
+          "qualifying_cost_cash_payment": -45000,
+          "ending": 75000
+        },
+        "refundable_advance": {
+          "opening": 0,
+          "receipt_liability": 120000,
+          "recognized_when_barrier_met": -120000,
+          "ending": 0
+        },
+        "net_assets_with_donor_restrictions": {
+          "opening": 0,
+          "recognized_contribution": 120000,
+          "purpose_restriction_release": -45000,
+          "ending": 75000
+        },
+        "net_assets_without_donor_restrictions_activity": {
+          "opening": 0,
+          "restriction_release": 45000,
+          "qualifying_program_expense": -45000,
+          "ending": 0
+        },
+        "accounts_payable": {
+          "opening": 0,
+          "base_case_incurred": 0,
+          "base_case_paid": 0,
+          "ending": 0
+        }
+      },
+      "ending_balances": {
+        "as_of": "2026-12-31",
+        "cash": 75000,
+        "refundable_advance": 0,
+        "accounts_payable": 0,
+        "net_assets_with_donor_restrictions": 75000,
+        "net_assets_without_donor_restrictions": 0
+      },
+      "reconciliation": {
+        "journal_debits": 330000,
+        "journal_credits": 330000,
+        "award_rollforward": "Opening restricted net assets of $0 + $120,000 recognized contribution - $45,000 dated restriction release = $75,000 ending restricted net assets.",
+        "cash_rollforward": "Opening cash of $0 + $120,000 receipt - $45,000 cash-paid qualifying cost = $75,000 ending cash in the base case.",
+        "payable_branch": "The independent unpaid-cost branch ends with $120,000 cash and $45,000 accounts payable; it does not change the $75,000 restricted-net-asset result.",
+        "separate_shared_cost_pool": "The $20,000 pool is outside the award rollforward and allocates 14,000 / 4,000 / 2,000; it is not a balancing plug."
+      },
+      "calculation": {
+        "recognized_contribution": 120000,
+        "restriction_release": 45000,
+        "ending_restricted_net_assets": 75000,
+        "shared_cost_allocation": {
+          "program": 14000,
+          "management_general": 4000,
+          "fundraising": 2000
+        },
+        "allocation_total": 20000
+      },
+      "controls": [
+        "retain executed award and barrier evidence",
+        "approve restriction code and release",
+        "reconcile award subledger to GL",
+        "document allocation driver and verify allocated total equals source pool",
+        "verify event dates fall on or before the close cutoff and tie opening balances to ending balances",
+        "keep the cash-paid and accounts-payable branches independent; do not use a balancing plug"
+      ],
+      "limitations": [
+        "Synthetic educational fixture, not operational evidence.",
+        "No contributed services, endowment, exchange transaction, federal award compliance or state-law branch.",
+        "Form 990 presentation is not asserted to equal GAAP presentation.",
+        "The accounts-payable settlement is an independent changed-assumption branch, not evidence that a payable existed in the cash-paid base case.",
+        "No balancing plug or inferred cash/payable entry is used; an unresolved difference would remain an exception for human review."
+      ],
+      "examples": [
+        {
+          "id": "restricted-award-close",
+          "title": "Condition met, then purpose restriction released as qualifying costs are incurred",
+          "input": {
+            "award_amount": 120000,
+            "qualifying_program_expense": 45000,
+            "shared_cost_pool": 20000,
+            "receipt_basis": "cash",
+            "qualifying_cost_settlement": "cash",
+            "allocation_driver": {
+              "program": 0.7,
+              "management_general": 0.2,
+              "fundraising": 0.1
+            }
+          },
+          "calculation": "120,000 cash received before the barrier is met becomes contribution revenue when the barrier is met; a dated 45,000 cash-paid qualifying purpose expense releases 45,000, leaving 75,000 with donor restrictions at the 2026-12-31 cutoff. A separate 20,000 shared-cost pool allocates 14,000 / 4,000 / 2,000 by the stated 70% / 20% / 10% driver.",
+          "result": {
+            "recognized_contribution": 120000,
+            "restriction_release": 45000,
+            "ending_restricted_net_assets": 75000,
+            "ending_cash": 75000,
+            "ending_accounts_payable": 0,
+            "shared_cost_allocation": {
+              "program": 14000,
+              "management_general": 4000,
+              "fundraising": 2000
+            },
+            "allocation_total": 20000
+          }
+        }
+      ]
+    }
   }
 ]

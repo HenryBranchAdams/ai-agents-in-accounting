@@ -65,7 +65,10 @@ test("broad construction references do not become detailed-industry material or 
   assert.equal(leaf.screening,null);
   assert.ok(selected.broader_context.some(r=>r.id==="wf-construction-wip-close"));
   assert.equal(coverage.summary.detailed_industries_with_direct_material,0);
-  assert.equal(coverage.summary.assessed_subsector_question_pairs,0);
+  const subsectorCodes=new Set(topology.industry_backbone.nodes.filter(n=>n.level==="subsector").map(n=>n.code));
+  const assessedPairs=new Set(read("data/coverage/assessments.json").assessments.filter(a=>subsectorCodes.has(a.industry_code)&&a.question_id).map(a=>`${a.industry_code}:${a.question_id}`));
+  assert.equal(coverage.summary.assessed_subsector_question_pairs,assessedPairs.size);
+  assert.ok(![...assessedPairs].some(pair=>pair.startsWith("236:")),"A separate nonprofit assessment must not assess construction subsectors");
 });
 
 test("metadata queues and sparse cells retain unknowns instead of inventing absence or sufficiency", () => {

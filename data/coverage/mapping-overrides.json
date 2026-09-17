@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "mapping_version": "2026-09-14.1",
-  "updated_at": "2026-09-14",
+  "mapping_version": "2026-09-16.1",
+  "updated_at": "2026-09-16",
   "records": {
     "wf-construction-contract-intake": {
       "question_ids": [
@@ -17843,6 +17843,64 @@
       ],
       "basis_field": "/data",
       "reason": "Selected construction evidence closure; association only, scope and rights remain in source record."
+    },
+    "guide-us-nonprofit-contributions-close": {
+      "question_ids": [
+        "q-grants-contributions",
+        "q-ledger-close",
+        "q-cost-allocation",
+        "q-tax-returns"
+      ],
+      "industry_codes": [
+        "813"
+      ],
+      "basis_field": "/data",
+      "reason": "Issue #117 bounded US nonprofit package; NAICS 813 is a discovery association only and does not limit cross-industry nonprofit applicability."
+    },
+    "example-us-nonprofit-restricted-award-close": {
+      "question_ids": [
+        "q-grants-contributions",
+        "q-ledger-close",
+        "q-cost-allocation"
+      ],
+      "industry_codes": [
+        "813"
+      ],
+      "basis_field": "/data",
+      "reason": "Issue #117 bounded US nonprofit package; NAICS 813 is a discovery association only and does not limit cross-industry nonprofit applicability."
+    },
+    "src_nonprofit_fasb_2018_08": {
+      "question_ids": [
+        "q-grants-contributions"
+      ],
+      "industry_codes": [
+        "813"
+      ],
+      "basis_field": "/data",
+      "reason": "Issue #117 bounded US nonprofit package; NAICS 813 is a discovery association only and does not limit cross-industry nonprofit applicability."
+    },
+    "src_nonprofit_fasb_2016_14": {
+      "question_ids": [
+        "q-grants-contributions",
+        "q-presentation",
+        "q-cost-allocation"
+      ],
+      "industry_codes": [
+        "813"
+      ],
+      "basis_field": "/data",
+      "reason": "Issue #117 bounded US nonprofit package; NAICS 813 is a discovery association only and does not limit cross-industry nonprofit applicability."
+    },
+    "src_nonprofit_irs_990_2025": {
+      "question_ids": [
+        "q-tax-returns",
+        "q-cost-allocation"
+      ],
+      "industry_codes": [
+        "813"
+      ],
+      "basis_field": "/data",
+      "reason": "Issue #117 bounded US nonprofit package; NAICS 813 is a discovery association only and does not limit cross-industry nonprofit applicability."
     }
   }
 }

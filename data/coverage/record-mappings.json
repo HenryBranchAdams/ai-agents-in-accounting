@@ -1,12 +1,12 @@
 {
   "schema_version": "1.0.0",
-  "mapping_version": "2026-09-14.1",
+  "mapping_version": "2026-09-16.1",
   "topology_version": "2026-09-11.1",
-  "corpus_version": "2026-09-14.3",
-  "generated_at": "2026-09-14",
-  "corpus_sha256": "8985453b963c3e3480e7d92b5d2ee993fd7b1477f68cebb15f4b5b4d57a9ce1b",
+  "corpus_version": "2026-09-17.1",
+  "generated_at": "2026-09-16",
+  "corpus_sha256": "786a31b3335d3a2ffdd0f58e5ec5e99ef2a68eed1b014fa946b68c33600b39bb",
   "rules_sha256": "550b2bb485399af996bac6ed34542d7a91170d4b31b5e5026e0e9c2c32068b9d",
-  "overrides_sha256": "58c260bd73dc007b736af147ccaf83286405f88dacaab376d969b6bf60ed4cb4",
+  "overrides_sha256": "2fffe661189d65dbc0afac2c24e92414024403120f0cc0ebc0bae54dff2c3a8f",
   "method": "Deterministic title/topic associations, conservative industry crosswalk, and explicit editorial additions. All initial links are candidates; source review status is unchanged.",
   "mappings": [
     {
@@ -4936,6 +4936,70 @@
       "industry_scope": "shared-context",
       "industry_mappings": [],
       "note": "Reviewed association with the original editorial content. This does not validate accounting treatment or the adequacy of its external references."
+    },
+    {
+      "record_id": "example-us-nonprofit-restricted-award-close",
+      "question_mappings": [
+        {
+          "question_id": "q-cost-allocation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Issue #117 bounded US nonprofit package; NAICS 813 is a discovery association only and does not limit cross-industry nonprofit applicability.",
+              "rule": "editorial-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-evaluation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "synthetic",
+              "rule": "title:evaluation"
+            }
+          ]
+        },
+        {
+          "question_id": "q-grants-contributions",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Issue #117 bounded US nonprofit package; NAICS 813 is a discovery association only and does not limit cross-industry nonprofit applicability.",
+              "rule": "editorial-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-ledger-close",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Issue #117 bounded US nonprofit package; NAICS 813 is a discovery association only and does not limit cross-industry nonprofit applicability.",
+              "rule": "editorial-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "813",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Issue #117 bounded US nonprofit package; NAICS 813 is a discovery association only and does not limit cross-industry nonprofit applicability.",
+              "rule": "editorial-association"
+            }
+          ]
+        }
+      ],
+      "note": "Candidate association with this industry scope; applicability and depth are not inferred."
     },
     {
       "record_id": "guide-accounting-llm-benchmark-claims",
@@ -18477,6 +18541,75 @@
         }
       ],
       "note": "Reviewed discovery relationship to the named questions and explicitly declared industry scope; does not confer accounting adequacy or professional verification."
+    },
+    {
+      "record_id": "guide-us-nonprofit-contributions-close",
+      "question_mappings": [
+        {
+          "question_id": "q-cost-allocation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Issue #117 bounded US nonprofit package; NAICS 813 is a discovery association only and does not limit cross-industry nonprofit applicability.",
+              "rule": "editorial-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-grants-contributions",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "contributions",
+              "rule": "title:grants-contributions"
+            },
+            {
+              "field": "/data",
+              "matched": "Issue #117 bounded US nonprofit package; NAICS 813 is a discovery association only and does not limit cross-industry nonprofit applicability.",
+              "rule": "editorial-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-ledger-close",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Issue #117 bounded US nonprofit package; NAICS 813 is a discovery association only and does not limit cross-industry nonprofit applicability.",
+              "rule": "editorial-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-tax-returns",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Issue #117 bounded US nonprofit package; NAICS 813 is a discovery association only and does not limit cross-industry nonprofit applicability.",
+              "rule": "editorial-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "813",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Issue #117 bounded US nonprofit package; NAICS 813 is a discovery association only and does not limit cross-industry nonprofit applicability.",
+              "rule": "editorial-association"
+            }
+          ]
+        }
+      ],
+      "note": "Candidate association with this industry scope; applicability and depth are not inferred."
     },
     {
       "record_id": "guide-wholesale-retail",
@@ -38743,6 +38876,142 @@
       "industry_scope": "shared-context",
       "industry_mappings": [],
       "note": "The reviewed source concerns ai agents and no-code tools in accounting: a case study in Synthetic income-statement vertical analysis; the material does not establish an industry-specific accounting treatment, so it remains shared context. Association review scope: attempted-unresolved; unresolved-access. This does not establish accounting adequacy."
+    },
+    {
+      "record_id": "src_nonprofit_fasb_2016_14",
+      "question_mappings": [
+        {
+          "question_id": "q-cost-allocation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Issue #117 bounded US nonprofit package; NAICS 813 is a discovery association only and does not limit cross-industry nonprofit applicability.",
+              "rule": "editorial-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-grants-contributions",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Issue #117 bounded US nonprofit package; NAICS 813 is a discovery association only and does not limit cross-industry nonprofit applicability.",
+              "rule": "editorial-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-presentation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Issue #117 bounded US nonprofit package; NAICS 813 is a discovery association only and does not limit cross-industry nonprofit applicability.",
+              "rule": "editorial-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "813",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Issue #117 bounded US nonprofit package; NAICS 813 is a discovery association only and does not limit cross-industry nonprofit applicability.",
+              "rule": "editorial-association"
+            }
+          ]
+        }
+      ],
+      "note": "Candidate association with this industry scope; applicability and depth are not inferred."
+    },
+    {
+      "record_id": "src_nonprofit_fasb_2018_08",
+      "question_mappings": [
+        {
+          "question_id": "q-grants-contributions",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "contributions",
+              "rule": "title:grants-contributions"
+            },
+            {
+              "field": "/data",
+              "matched": "Issue #117 bounded US nonprofit package; NAICS 813 is a discovery association only and does not limit cross-industry nonprofit applicability.",
+              "rule": "editorial-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "813",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Issue #117 bounded US nonprofit package; NAICS 813 is a discovery association only and does not limit cross-industry nonprofit applicability.",
+              "rule": "editorial-association"
+            }
+          ]
+        }
+      ],
+      "note": "Candidate association with this industry scope; applicability and depth are not inferred."
+    },
+    {
+      "record_id": "src_nonprofit_irs_990_2025",
+      "question_mappings": [
+        {
+          "question_id": "q-cost-allocation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Issue #117 bounded US nonprofit package; NAICS 813 is a discovery association only and does not limit cross-industry nonprofit applicability.",
+              "rule": "editorial-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-tax-returns",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Form 990",
+              "rule": "title:tax-returns"
+            },
+            {
+              "field": "/data",
+              "matched": "Issue #117 bounded US nonprofit package; NAICS 813 is a discovery association only and does not limit cross-industry nonprofit applicability.",
+              "rule": "editorial-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "813",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Issue #117 bounded US nonprofit package; NAICS 813 is a discovery association only and does not limit cross-industry nonprofit applicability.",
+              "rule": "editorial-association"
+            }
+          ]
+        }
+      ],
+      "note": "Candidate association with this industry scope; applicability and depth are not inferred."
     },
     {
       "record_id": "src_noro_aapg_2025",

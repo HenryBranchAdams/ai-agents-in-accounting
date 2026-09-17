@@ -47213,5 +47213,244 @@
         ]
       }
     }
+  },
+  {
+    "id": "guide-us-nonprofit-contributions-close",
+    "kind": "guide",
+    "title": "US nonprofit contributions and restricted-award close",
+    "summary": "Bounded US nongovernmental nonprofit guide for contribution-versus-exchange, conditional awards, donor restrictions, releases, functional expenses and Form 990 reconciliation.",
+    "topics": [
+      "Accounting and reporting",
+      "Public sector and charity"
+    ],
+    "industries": [
+      "public-sector-nonprofit"
+    ],
+    "jurisdiction": "United States; nongovernmental not-for-profit entities",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_nonprofit_fasb_2018_08",
+      "src_nonprofit_fasb_2016_14",
+      "src_nonprofit_irs_990_2025"
+    ],
+    "related_ids": [
+      "example-us-nonprofit-restricted-award-close"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-16",
+    "provenance": {
+      "added_on": "2026-09-16",
+      "reviewer": "ChatGPT, AI-assisted research and original synthesis",
+      "note": "Bounded synthesis from selected official FASB and IRS sources. No professional review, operational validation or current consolidated Codification review is asserted."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not stored; original publisher rights apply",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": "Original factual metadata and synthesis only; publisher full text is not stored."
+    },
+    "data": {
+      "version": "1.0.0",
+      "frameworks": [
+        "US GAAP",
+        "US federal tax reporting"
+      ],
+      "business_roles": [
+        "Nongovernmental charitable or membership nonprofit receiving donor or grantor resources and preparing a US GAAP close."
+      ],
+      "scope": "Nongovernmental US NFP under FASB reporting. Selected contribution, restriction, expense-allocation and federal Form 990 questions. Governmental entities and industry-specific operating accounting require separate analysis.",
+      "periods": "Illustrative 2026 calendar-year close; FASB source effective periods and the IRS 2025 tax-year edition are separately recorded on each source record.",
+      "close_period": {
+        "start": "2026-01-01",
+        "end": "2026-12-31",
+        "cutoff": "2026-12-31"
+      },
+      "source_periods": [
+        {
+          "source_id": "src_nonprofit_fasb_2018_08",
+          "edition": "Accounting Standards Update No. 2018-08",
+          "effective_period_pointer": "/data/effective_period",
+          "locator_pointers": [
+            "/data/locators/0",
+            "/data/locators/1",
+            "/data/locators/2",
+            "/data/locators/3"
+          ],
+          "role_note": "Recipient and provider effective periods differ; confirm recipient/provider role and public-business-entity or conduit-bond-obligor status before applying a branch."
+        },
+        {
+          "source_id": "src_nonprofit_fasb_2016_14",
+          "edition": "Accounting Standards Update No. 2016-14",
+          "effective_period_pointer": "/data/effective_period",
+          "locator_pointers": [
+            "/data/locators/0",
+            "/data/locators/1",
+            "/data/locators/2",
+            "/data/locators/3",
+            "/data/locators/4",
+            "/data/locators/5"
+          ],
+          "role_note": "Annual and interim effective periods, early application and retrospective transition are recorded on the source."
+        },
+        {
+          "source_id": "src_nonprofit_irs_990_2025",
+          "edition": "2025 Instructions for Form 990",
+          "tax_year": 2025,
+          "effective_period_pointer": "/data/effective_period",
+          "locator_pointers": [
+            "/data/locators/0"
+          ],
+          "role_note": "Tax-year-specific federal reporting instructions, not a financial-statement recognition authority."
+        }
+      ],
+      "question_population": [
+        "exchange versus contribution",
+        "conditional versus unconditional contribution",
+        "donor restriction and release",
+        "functional expense allocation and Form 990 reconciliation"
+      ],
+      "decision_flow": [
+        {
+          "step": 1,
+          "decision": "Identify legal entity and reporting framework."
+        },
+        {
+          "step": 2,
+          "decision": "Assess commensurate value; reciprocal exchange routes outside contribution guidance.",
+          "source_id": "src_nonprofit_fasb_2018_08"
+        },
+        {
+          "step": 3,
+          "decision": "For a contribution, identify both a barrier and right of return/release before treating it as conditional.",
+          "source_id": "src_nonprofit_fasb_2018_08"
+        },
+        {
+          "step": 4,
+          "decision": "Once unconditional, track donor restrictions separately and release them when time or purpose restrictions expire.",
+          "source_id": "src_nonprofit_fasb_2016_14"
+        },
+        {
+          "step": 5,
+          "decision": "Allocate expenses by function using documented methods and separately reconcile to applicable Form 990 reporting.",
+          "source_id": "src_nonprofit_irs_990_2025"
+        }
+      ],
+      "inputs": [
+        "award agreement",
+        "cash/promise evidence",
+        "barrier evidence",
+        "donor restriction coding",
+        "program/cost-center ledger",
+        "functional-allocation drivers",
+        "Form 990 filing profile"
+      ],
+      "controls": [
+        "identify reporting basis before recognition",
+        "separate conditions from restrictions",
+        "retain versioned award terms and barrier evidence",
+        "reconcile restricted net-asset rollforward to GL",
+        "approve and document allocation drivers",
+        "route governmental entities away from this FASB package"
+      ],
+      "open_questions": [
+        "Current consolidated Codification not reviewed.",
+        "Contributed services, endowment/state-law effects, split-interest arrangements and state charity filings need dedicated evidence.",
+        "No real nonprofit ERP population or measured agent performance.",
+        "Professional review not performed."
+      ],
+      "research_questions": [
+        {
+          "id": "rq-us-nonprofit-award-close",
+          "question": "How should a nongovernmental US nonprofit route an award from agreement through recognition, donor-restriction release and functional-expense reporting?",
+          "family_ids": [
+            "q-grants-contributions",
+            "q-ledger-close",
+            "q-cost-allocation",
+            "q-tax-returns"
+          ],
+          "scope": "Selected FASB NFP contribution/presentation questions plus 2025 federal Form 990 functional-expense reporting for the illustrative 2026 close.",
+          "answer": "Determine exchange versus contribution first; for a contribution, defer recognition while both a barrier and right of return/release make it conditional. After unconditional, track donor restrictions separately and release them when stipulated time or purpose expires. Apply ASU 2018-08's recipient or provider period only after confirming the entity role and status, apply ASU 2016-14's stated adoption period and transition, and use the pinned 2025 Form 990 Part IX instructions for separate federal reporting reconciliation.",
+          "source_ids": [
+            "src_nonprofit_fasb_2018_08",
+            "src_nonprofit_fasb_2016_14",
+            "src_nonprofit_irs_990_2025"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_nonprofit_fasb_2018_08",
+              "locator": "ASU 2018-08 PDF pp. 7-10, Summary sections on affected entities, main provisions and effective dates; Topic 958 paragraphs 958-605-15-5A and 958-605-25-5A through 25-5F",
+              "period_pointer": "/data/effective_period",
+              "locator_pointers": [
+                "/data/locators/0",
+                "/data/locators/1",
+                "/data/locators/2",
+                "/data/locators/3"
+              ]
+            },
+            {
+              "source_id": "src_nonprofit_fasb_2016_14",
+              "locator": "ASU 2016-14 PDF pp. 10-11 for effective dates and transition; Topic 958 paragraphs 958-205-45-2, 958-205-45-9 and 958-720-45-15",
+              "period_pointer": "/data/effective_period",
+              "locator_pointers": [
+                "/data/locators/0",
+                "/data/locators/1",
+                "/data/locators/2",
+                "/data/locators/3",
+                "/data/locators/4",
+                "/data/locators/5"
+              ]
+            },
+            {
+              "source_id": "src_nonprofit_irs_990_2025",
+              "locator": "2025 Instructions for Form 990 PDF p. 41, Part IX. Statement of Functional Expenses",
+              "period_pointer": "/data/effective_period",
+              "locator_pointers": [
+                "/data/locators/0"
+              ]
+            }
+          ],
+          "inputs": [
+            "award terms",
+            "barrier evidence",
+            "restriction coding",
+            "expense ledger and allocation drivers"
+          ],
+          "controls": [
+            "condition/restriction separation",
+            "award subledger-to-GL reconciliation",
+            "documented functional allocation"
+          ],
+          "remaining_gaps": [
+            "No current consolidated Codification review or professional sign-off.",
+            "No operational ERP population or empirical agent evidence."
+          ],
+          "assessment": {
+            "status": "partial",
+            "dimensions": {
+              "scope": "present",
+              "accounting-question": "partial",
+              "evidence-inputs": "present",
+              "workflow": "present",
+              "controls": "present",
+              "worked-material": "present",
+              "empirical-support": "not-assessed"
+            }
+          }
+        }
+      ],
+      "retrieval_checks": {
+        "positive_queries": [
+          "nonprofit conditional contribution barrier right of return donor restriction",
+          "restricted award release functional expenses Form 990"
+        ],
+        "scope_counterexample": "A state university applying GASB should route to governmental reporting records, not this FASB NFP guide."
+      }
+    }
   }
 ]
