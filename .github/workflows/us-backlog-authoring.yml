@@ -2,41 +2,57 @@ name: Temporary US backlog branch authoring
 on:
   push:
     branches: [research/us-backlog-2026-09-16]
-    paths: ['.github/workflows/us-backlog-authoring.yml','.github/us-backlog-patch.json','.github/us-backlog-patch.part*']
-permissions: {contents: write}
-concurrency: {group: us-backlog-branch-authoring, cancel-in-progress: false}
+    paths: ['.github/workflows/us-backlog-authoring.yml', '.github/us-backlog-repair.json']
+permissions:
+  contents: write
+concurrency:
+  group: us-backlog-branch-authoring
+  cancel-in-progress: false
 jobs:
   integrate:
+    if: github.repository == 'HenryBranchAdams/ai-agents-in-accounting' && github.ref == 'refs/heads/research/us-backlog-2026-09-16' && github.event_name == 'push'
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
-        with: {ref: '${{ github.sha }}', fetch-depth: 0}
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
       - uses: actions/setup-node@v4
-        with: {node-version: '22', cache: npm}
+        with:
+          node-version: '22'
+          cache: npm
       - run: npm ci
-      - shell: bash
+      - name: Recover, repair, regenerate and hash-check the declared source
+        run: python3 .github/us-backlog-deliver.py
+      - name: Check the exact resulting source and generated downloads
+        shell: bash
         run: |
-          python3 - <<'PY'
-          import base64,gzip,hashlib,json,pathlib,re,subprocess
-          m=pathlib.Path('.github/us-backlog-patch.json'); parts=sorted(pathlib.Path('.github').glob('us-backlog-patch.part*'))
-          if not m.exists() or len(parts)!=4: print('Waiting for four payload parts'); raise SystemExit(0)
-          s=json.loads(m.read_text())
-          if subprocess.run(['git','merge-base','--is-ancestor',s['expected_parent'],'HEAD']).returncode: raise SystemExit('Research parent drift')
-          enc=''.join(p.read_text().strip() for p in parts); patch=gzip.decompress(base64.b64decode(enc,validate=True))
-          if hashlib.sha256(patch).hexdigest()!=s['patch_sha256']: raise SystemExit('Patch digest mismatch')
-          t=pathlib.Path('/tmp/p.patch'); t.write_bytes(patch)
-          paths=[x.split('\t',2)[2] for x in subprocess.check_output(['git','apply','--numstat',str(t)],text=True).splitlines()]
-          allowed=lambda p: bool(re.fullmatch(r'(?:data|docs|scripts|tests|schemas)/[A-Za-z0-9_./-]+|(?:RELEASES|README|TESTING)\.md',p)) and '..' not in pathlib.PurePosixPath(p).parts
-          if sorted(paths)!=sorted(s['changed_paths']) or not all(map(allowed,paths)): raise SystemExit('Path manifest mismatch')
-          subprocess.run(['git','apply','--check','--index',str(t)],check=True); subprocess.run(['git','apply','--index',str(t)],check=True)
-          for p,h in s['expected_output_sha256'].items():
-            if hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()!=h: raise SystemExit('Output hash mismatch '+p)
-          if sorted(subprocess.check_output(['git','diff','--cached','--name-only'],text=True).splitlines())!=sorted(s['expected_output_sha256']): raise SystemExit('Staged population mismatch')
-          PY
-      - run: git diff --cached --check && npm run check
-      - shell: bash
+          git diff --cached --check
+          set -o pipefail
+          npm run check 2>&1 | tee "$RUNNER_TEMP/nonprofit-check.log"
+      - name: Commit only verified work to the existing research branch
+        shell: bash
         run: |
-          if ! git diff --cached --quiet; then
-            git config user.name 'github-actions[bot]'; git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-            git commit -m 'Integrate and verify US accounting research batch'; git push origin HEAD:refs/heads/research/us-backlog-2026-09-16
-          fi
+          test -n "$(git diff --cached --name-only)"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Integrate nonprofit source records, worked close and verified retrieval'
+          git push origin HEAD:refs/heads/research/us-backlog-2026-09-16
+      - name: Preserve exact source and any uncommitted recovery evidence
+        if: always()
+        shell: bash
+        run: |
+          git archive --format=zip HEAD -o "$RUNNER_TEMP/repository-source.zip"
+          git diff --binary --cached > "$RUNNER_TEMP/uncommitted-research.patch"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: nonprofit-delivery-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/repository-source.zip
+            ${{ runner.temp }}/uncommitted-research.patch
+            ${{ runner.temp }}/nonprofit-check.log
+            dist/
+          if-no-files-found: error
+          retention-days: 14
