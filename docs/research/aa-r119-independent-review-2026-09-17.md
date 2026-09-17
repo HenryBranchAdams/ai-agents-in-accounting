@@ -64,7 +64,7 @@ Required disposition: retain one dated entry for this change, or replace the rep
 - `git diff --check`: pass.
 - Coverage registry audit: 190 guide questions and 190 registry rows; no duplicate IDs, missing pointers or field mismatches.
 - Derived coverage comparison: 5,952 cells before and after; 576 named-question-only changes; zero non-named field changes.
-- Snapshot hash audit: all 13 `2026-09-17.5` input hashes match the reviewed worktree.
+- Snapshot hash audit: all 12 `2026-09-17.5` input hashes match the reviewed worktree.
 - CI snapshot at the reviewed head: `verify` passed in [GitHub Actions run 35237051097](https://github.com/HenryBranchAdams/ai-agents-in-accounting/actions/runs/35237051097/job/105255539417).
 - No deployment, hosted site, default-branch state, merge, closure or author-branch mutation was performed.
 
@@ -106,7 +106,7 @@ Required disposition: either commit the intended regenerated construction source
 
 - `npm run check` on a clean exact correction worktree: 85 of 85 tests passed, including the two new correction tests.
 - CI snapshot at correction head: `verify` passed in [GitHub Actions run 35241830613](https://github.com/HenryBranchAdams/ai-agents-in-accounting/actions/runs/35241830613/job/105271933514).
-- Latest snapshot: `2026-09-17.1192`, corpus `2026-09-14.3`, 1,088 records, 1,030 question-mapped records; all 13 input hashes matched.
+- Latest snapshot: `2026-09-17.1192`, corpus `2026-09-14.3`, 1,088 records, 1,030 question-mapped records; all 12 input hashes matched.
 - Existing snapshot IDs through `2026-09-17.5` were unchanged; `2026-09-17.1192` was additive.
 - Source review audit: the three corrected source records had `reviewed_at: 2026-09-17`, `review_level: substantive-excerpt`, at least one material-read check, `full_text_stored: false`, and unresolved source rights.
 - No corpus edits, merge, closure, deployment or author-branch mutation was performed. The generator mutation was confined to the temporary detached verification worktree.
@@ -114,3 +114,36 @@ Required disposition: either commit the intended regenerated construction source
 ### Re-review conclusion
 
 The three prior findings are resolved in the committed correction output. The remaining generator-preservation finding keeps release reconciliation open until the intended construction output is made reproducible and explicitly covered by a clean-rerun check. Catalog and release disposition remain separate orchestrator-owned gates.
+
+## Final generator re-review of correction head
+
+Re-review date: 2026-09-17
+
+- Correction head: `f777250e2baf400212d312ba4e9405bd5c358e3d`
+- Correction parent: `0d447e6033bdc10ecd3ab9a2f5855ae73644807d`
+- PR base: `main` at `afd2aced307628843f8a26677c3a6fb37fa733e3`
+- Clean exact-head extraction used for generator and full-check validation: `/private/tmp/aa-r119-final-generator-f777`
+
+### Generator finding resolved
+
+The correction adds an explicit `source_ids` scope to the three industry-guide overrides for NAICS 236, 237 and 238. `scripts/build-research-coverage.mjs` now validates that an override is an array, rejects unknown or non-source IDs, de-duplicates the supplied IDs, uses the explicit scope for the generated guide, and carries the existing override fields forward when rewriting the mapping file.
+
+On an untouched extraction of `f777250e`, the first `node scripts/build-research-coverage.mjs` run completed with 96 profiles, 5,952 cells and 1,012 leaves. All five generated files were byte-identical to the untouched correction head after that first run. A second run produced the same result and remained byte-identical. The prior construction sources are absent from the 236, 237 and 238 guide scopes and remain on `guide-construction-connected-close`:
+
+- `src_construction_fasb_retainage_staff`
+- `src_construction_gao_25107258`
+- `src_construction_asbca_51759`
+
+The semantic-boundary comparison against `0d447e6` found no guide source-association changes, no mapping-override record additions or removals, no non-scope changes to the three affected override records, and no record-mapping changes other than the expected override hash. Each explicit industry scope contains 16 existing source records. Temporary invalid-input probes rejected an unknown source ID, a non-array source scope, and a malformed catalog corpus version before changing generated outputs.
+
+### Final verification
+
+- `npm run check` on the exact correction head: pass, 86 of 86 tests, including the clean-rerun regression test.
+- CI snapshot at the final correction head: `verify` passed in [GitHub Actions run 35244204127](https://github.com/HenryBranchAdams/ai-agents-in-accounting/actions/runs/35244204127/job/105280079082). No polling was performed.
+- Latest snapshot: `2026-09-17.1193`, corpus `2026-09-14.3`, 1,088 records and 1,030 question-mapped records. All 12 recorded input hashes match the reviewed bytes.
+- Existing snapshot IDs, including `2026-09-17.5` through `2026-09-17.1192`, are byte-for-byte preserved. `2026-09-17.1193` is additive.
+- No corpus edits, merge, closure, deployment or author-branch mutation were performed. Catalog and final release integration remain separate orchestrator-owned gates.
+
+### Final conclusion
+
+The final generator correction satisfies the requested acceptance target. The prior generator-preservation P1 is closed for this reviewed head. The implementation preserves the intended explicit source boundary, rejects invalid scope inputs, and reproduces the committed canonical state on both the first and second clean runs. Professional source verification, rights disposition, catalog integration and release publication remain outside this generator review.
