@@ -77,12 +77,22 @@ const samePrimitiveMembers = (left, right) => left.length === right.length && le
 const sameValue = (left, right) => Array.isArray(left) && Array.isArray(right)
   ? (left.every(isPrimitive) && right.every(isPrimitive) ? samePrimitiveMembers(left, right) : JSON.stringify(left) === JSON.stringify(right))
   : JSON.stringify(left) === JSON.stringify(right);
-const substantiveQuestionFields = ["question", "answer", "scope", "answer_status", "family_ids", "source_ids", "source_locators", "observed_outcomes", "evidence_type", "remaining_gaps"];
-const questionDifferences = (current, incoming) => substantiveQuestionFields.filter(field => !sameValue(current[field], incoming[field]));
+const preservedQuestionObjects = new WeakSet();
+const substantiveQuestionFields = ["question", "answer", "scope", "answer_status", "family_ids", "source_ids", "observed_outcomes", "evidence_type", "intervention", "population", "comparator", "outcomes", "funding_or_author_relationship", "remaining_gaps", "assessment_status"];
+const sourceLocatorSubstantiveDifference = (current, incoming) => {
+  if (!Array.isArray(current) || !Array.isArray(incoming)) return !sameValue(current,incoming);
+  const currentBySource=new Map(current.map(locator => [locator.source_id,locator]));
+  const incomingBySource=new Map(incoming.map(locator => [locator.source_id,locator]));
+  return [...currentBySource.keys()].some(sourceId => incomingBySource.has(sourceId) && !sameValue(currentBySource.get(sourceId),incomingBySource.get(sourceId)));
+};
+const questionFieldValue = (question, field) => field === "assessment_status" ? question.assessment?.status : question[field];
+const questionDifferences = (current, incoming) => substantiveQuestionFields.filter(field => !sameValue(questionFieldValue(current,field),questionFieldValue(incoming,field)))
+  .concat(sourceLocatorSubstantiveDifference(current.source_locators,incoming.source_locators) ? ["source_locators"] : []);
 const mergeQuestionObject = (current, incoming, target) => {
   const differingFields=questionDifferences(current,incoming);
   if (differingFields.length) {
-    recordConflict(`${target}:substantive`, "substantive-question-conflict-preserved-current", differingFields, differingFields.map(field => ({field, current:current[field], incoming:incoming[field]})));
+    preservedQuestionObjects.add(current);
+    recordConflict(`${target}:substantive`, "substantive-question-conflict-preserved-current", differingFields, differingFields.map(field => ({field, current:questionFieldValue(current,field), incoming:questionFieldValue(incoming,field)})));
     return current;
   }
   return mergeValue(current, incoming, target);
@@ -112,15 +122,17 @@ const mergeValue = (current, incoming, target) => {
       const unmatched = current.filter(item => !incomingKeys.has(arrayIdentity(target, item)));
       if (unmatched.length) {
         recordConflict(target, "unmatched-current-array-items-preserved", unmatched.length, incoming.length);
-        return current;
+        if (!target.endsWith("source_locators")) return current;
       }
-      return incoming.map(item => {
+      const merged=incoming.map(item => {
         const key = arrayIdentity(target, item), prior = currentByKey.get(key);
         if (!prior) return item;
         return target.endsWith("research_questions") || target.endsWith(".questions")
           ? mergeQuestionObject(prior, item, `${target}[${key}]`)
           : mergeValue(prior, item, `${target}[${key}]`);
       });
+      if (unmatched.length) merged.push(...unmatched);
+      return merged;
     }
     if (JSON.stringify(current) === JSON.stringify(incoming)) return current;
     if (!current.length) return incoming;
@@ -200,7 +212,7 @@ const mergeSupplementalReview = (existingReviews, incoming, target) => {
   const currentDate = current.reviewed_at || null, incomingDate = incoming.reviewed_at || null;
   const comparison = currentDate && incomingDate ? compareDates(currentDate, incomingDate) : null;
   const chosen = comparison !== null && comparison > 0
-    ? mergeValue(incoming, current, `${target}.current`)
+    ? current
     : mergeValue(current, incoming, `${target}.incoming`);
   if (comparison !== null && comparison > 0) {
     recordConflict(target, "incoming-older-supplemental-preserved-current", currentDate, incomingDate);
@@ -318,7 +330,7 @@ for(const row of questionRows){
  const g=guides.find(g=>g.id===row.record_id),q=g.data.research_questions[Number(row.pointer.split('/').at(-1))];
  row.dimensions={scope:"partial",'accounting-question':row.assessment_status==='evidence-gap'?"missing":"partial",'evidence-inputs':(q.inputs?.length||q.evidence_inputs?.length)?"partial":"missing",workflow:(q.workflow?.length||g.data.workflows?.length||g.data.connected_workflow)?"partial":"missing",controls:(q.controls?.length||g.data.controls?.length)?"partial":"missing",'worked-material':(q.worked_example||g.data.worked_examples?.length||g.data.worked_record_id)?"partial":"missing",'empirical-support':g.data.research_package==='empirical'?"partial":"not-assessed"};
  row.dimension_basis='Presence and review limits of the linked named question, package workflow and original worked material. Partial does not establish accounting correctness; missing means this question packet lacks that component.';
- if (guidePackageApplied.has(g.id)) q.assessment={...(q.assessment||{}),status:row.assessment_status,dimensions:row.dimensions,basis:row.dimension_basis,professional_review:'not-performed'};
+ if (guidePackageApplied.has(g.id) && !preservedQuestionObjects.has(q)) q.assessment={...(q.assessment||{}),status:row.assessment_status,dimensions:row.dimensions,basis:row.dimension_basis,professional_review:'not-performed'};
 }
 // New source associations follow the exact questions citing them, not every family in a package.
 for(const s of sources){

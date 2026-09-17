@@ -285,7 +285,10 @@ test("replay preserves newer canonical metadata and reports only bounded conflic
     const source = sources.find((record) => record.id === "src_1sbtyzp");
     const currentReview = packageReview(source, "empirical", "https://onlinelibrary.wiley.com/doi/abs/10.1111/1475-679x.70052");
     currentReview.reviewed_at = "2026-09-18";
+    currentReview.limitations = ["Canonical newer limitation replaces the prior package limitations."];
+    currentReview.checks = [{url: currentReview.checked_url, method: "canonical-newer-check", outcome: "Canonical newer check retained."}];
     currentReview.preservation_marker = "keep-newer-state";
+    const newerSupplemental = JSON.parse(JSON.stringify(currentReview));
     write(root, "data/corpus/source.json", sources);
 
     const output = runReplay(root);
@@ -311,7 +314,76 @@ test("replay preserves newer canonical metadata and reports only bounded conflic
     assert.ok(output.conflicts.some((conflict) => conflict.target === "mapping:src_1sbtyzp" && conflict.reason === "incoming-older-reviewed-mapping-preserved-current"));
     assert.equal(afterReview.reviewed_at, "2026-09-18");
     assert.equal(afterReview.preservation_marker, "keep-newer-state");
+    assert.deepEqual(afterReview.limitations, newerSupplemental.limitations);
+    assert.deepEqual(afterReview.checks, newerSupplemental.checks);
+    assert.ok(!afterReview.limitations.some((limitation) => limitation.includes("Abstract-level review only")));
     assertReviewedMappingsAreSubstantiated(root);
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("replay keeps retained locators while applying unrelated keyed question updates", () => {
+  const root = createFixture();
+  try {
+    const guides = read(root, "data/corpus/guide.json");
+    const guide = guides.find((record) => record.id === "guide-independent-deployment-evidence");
+    const question = guide.data.research_questions[0];
+    question.source_locators.push({source_id: "src_1p2g6i1", locator: "Maintained canonical locator unrelated to the package locator."});
+    write(root, "data/corpus/guide.json", guides);
+
+    const empirical = read(root, "data/research/empirical.json");
+    empirical.version = "2026-09-17.1273";
+    empirical.packages[0].questions[0].replay_marker = { update: "applied" };
+    write(root, "data/research/empirical.json", empirical);
+
+    const first = runReplay(root);
+    const afterGuide = read(root, "data/corpus/guide.json").find((record) => record.id === guide.id);
+    const afterQuestion = afterGuide.data.research_questions.find((candidate) => candidate.id === question.id);
+
+    assert.deepEqual(afterQuestion.replay_marker, {update: "applied"});
+    assert.ok(afterQuestion.source_locators.some(locator => locator.source_id === "src_1p2g6i1" && locator.locator.includes("Maintained canonical")));
+    assert.ok(first.conflicts.some((conflict) => conflict.reason === "unmatched-current-array-items-preserved" && conflict.target.endsWith("source_locators")));
+
+    const afterFirstReplay = snapshots(root);
+    runReplay(root);
+    assertByteStable(root, afterFirstReplay, "Locator extension replay changed canonical output on repeat");
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("replay reports empirical study-design and assessment changes under stable IDs", () => {
+  const root = createFixture();
+  try {
+    const guides = read(root, "data/corpus/guide.json");
+    const guide = guides.find((record) => record.id === "guide-independent-deployment-evidence");
+    const question = guide.data.research_questions.find((candidate) => candidate.id === "rq-deployment-accounting-field-study");
+    const original = JSON.parse(JSON.stringify(question));
+
+    const empirical = read(root, "data/research/empirical.json");
+    empirical.version = "2026-09-17.1273";
+    const packageQuestion = empirical.packages[0].questions.find((candidate) => candidate.id === question.id);
+    packageQuestion.population = "Changed population fixture.";
+    packageQuestion.intervention = "Changed intervention fixture.";
+    packageQuestion.comparator = "Changed comparator fixture.";
+    packageQuestion.outcomes = "Changed outcomes fixture.";
+    packageQuestion.funding_or_author_relationship = "Changed funding relationship fixture.";
+    packageQuestion.assessment.status = "evidence-gap";
+    write(root, "data/research/empirical.json", empirical);
+
+    const first = runReplay(root);
+    const afterGuide = read(root, "data/corpus/guide.json").find((record) => record.id === guide.id);
+    const afterQuestion = afterGuide.data.research_questions.find((candidate) => candidate.id === question.id);
+
+    assert.deepEqual(afterQuestion, original);
+    const conflict = first.conflicts.find((candidate) => candidate.reason === "substantive-question-conflict-preserved-current" && candidate.target.includes(question.id));
+    assert.ok(conflict);
+    for (const field of ["population", "intervention", "comparator", "outcomes", "funding_or_author_relationship", "assessment_status"]) assert.ok(conflict.current.includes(field), `Missing conflict field ${field}`);
+
+    const afterFirstReplay = snapshots(root);
+    runReplay(root);
+    assertByteStable(root, afterFirstReplay, "Study-design conflict replay changed canonical output on repeat");
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
   }
