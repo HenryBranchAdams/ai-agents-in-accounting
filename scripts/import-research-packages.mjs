@@ -64,6 +64,54 @@ const newestEdition = (values, target) => values.filter(Boolean).reduce((latest,
   assert.notEqual(comparison, null, `Incomparable package editions for ${target}: ${latest}, ${value}`);
   return comparison >= 0 ? latest : value;
 }, null);
+const arrayIdentity = (path, item) => {
+  if (!item || typeof item !== "object" || Array.isArray(item)) return null;
+  if (path.endsWith("research_questions") || path.endsWith(".questions")) return item.id || null;
+  if (path.endsWith("source_locators")) return item.source_id || null;
+  if (path.endsWith("checks")) return `${item.existing_record_id || item.source_id || item.url || item.checked_url || ""}|${item.method || item.check_type || ""}`;
+  if (path.endsWith("findings")) return item.claim || null;
+  return item.id || item.question_id || null;
+};
+const mergeValue = (current, incoming, target) => {
+  if (incoming === undefined) return current;
+  if (current === undefined) return incoming;
+  if (incoming === null) return current;
+  if (current === null) return incoming;
+  if (Array.isArray(current) && Array.isArray(incoming)) {
+    if (current.every(value => ["string", "number", "boolean"].includes(typeof value)) && incoming.every(value => ["string", "number", "boolean"].includes(typeof value))) {
+      return [...new Set([...current, ...incoming])];
+    }
+    const keyed = incoming.length && incoming.every(item => arrayIdentity(target, item)) && current.every(item => arrayIdentity(target, item));
+    if (keyed) {
+      const currentByKey = new Map(current.map(item => [arrayIdentity(target, item), item]));
+      const incomingKeys = new Set(incoming.map(item => arrayIdentity(target, item)));
+      const merged = incoming.map(item => {
+        const key = arrayIdentity(target, item), prior = currentByKey.get(key);
+        return prior ? mergeValue(prior, item, `${target}[${key}]`) : item;
+      });
+      const unmatched = current.filter(item => !incomingKeys.has(arrayIdentity(target, item)));
+      if (unmatched.length) {
+        recordConflict(target, "unmatched-current-array-items-preserved", unmatched.length, incoming.length);
+        merged.push(...unmatched);
+      }
+      return merged;
+    }
+    if (JSON.stringify(current) === JSON.stringify(incoming)) return current;
+    if (!current.length) return incoming;
+    if (!incoming.length) {
+      recordConflict(target, "incoming-empty-array-preserved-current", current.length, 0);
+      return current;
+    }
+    recordConflict(target, "unkeyed-current-array-preserved", current.length, incoming.length);
+    return current;
+  }
+  if (typeof current === "object" && typeof incoming === "object" && !Array.isArray(current) && !Array.isArray(incoming)) {
+    const merged = {...current};
+    for (const [key, value] of Object.entries(incoming)) merged[key] = mergeValue(current[key], value, `${target}.${key}`);
+    return merged;
+  }
+  return incoming;
+};
 const batchMetadata = new Map(batches.map(batch => {
   const reviewedAt = batch.reviewed_at || newestDate((batch.sources || []).map(source => source.reviewed_at));
   assert.ok(reviewedAt && datePattern.test(reviewedAt), `${batch.name}: package reviewed_at is required and must be YYYY-MM-DD`);
@@ -72,7 +120,14 @@ const batchMetadata = new Map(batches.map(batch => {
 const allBatchDates = [...batchMetadata.values()].map(metadata => metadata.reviewedAt);
 const sources = read("data/corpus/source.json"), guides = read("data/corpus/guide.json"), questionRegistry = read("data/coverage/research-questions.json");
 const overrides = read("data/coverage/mapping-overrides.json");
-const aliases = {src_roadmap_naics2022: "src_roadmap_naics2022_manual", src_roadmap_naics_311: "src_roadmap_naics2022_manual"};
+const aliases = fs.existsSync("data/research/source-aliases.json") ? read("data/research/source-aliases.json") : {};
+const beforeSources = JSON.parse(JSON.stringify(sources));
+const beforeGuides = JSON.parse(JSON.stringify(guides));
+const beforeOverrides = JSON.parse(JSON.stringify(overrides));
+const beforeQuestionRegistry = JSON.parse(JSON.stringify(questionRegistry));
+const beforeAliases = JSON.parse(JSON.stringify(aliases));
+aliases.src_roadmap_naics2022 = "src_roadmap_naics2022_manual";
+aliases.src_roadmap_naics_311 = "src_roadmap_naics2022_manual";
 const sourceById = new Map(sources.map(r => [r.id, r]));
 const byURL = new Map(sources.filter(r => r.source_url).map(r => [r.source_url, r]));
 const rights = {metadata:"CC0-1.0", content:"CC-BY-4.0", external_content:"External text is not included; source terms and unresolved permissions remain separate.", full_text_stored:false};
@@ -81,15 +136,19 @@ const mergeSupplementalReview = (existingReviews, incoming, target) => {
   const matches = existingReviews.filter(review => review.batch === incoming.batch && review.checked_url === incoming.checked_url);
   if (!matches.length) return [...existingReviews, incoming];
   const current = matches.slice().sort((left, right) => (left.reviewed_at || "").localeCompare(right.reviewed_at || "")).at(-1);
-  let chosen = incoming;
-  if (current.reviewed_at && incoming.reviewed_at) {
-    const comparison = compareDates(current.reviewed_at, incoming.reviewed_at);
-    if (comparison > 0) {
-      recordConflict(target, "incoming-older-supplemental-preserved-current", current.reviewed_at, incoming.reviewed_at);
-      chosen = current;
-    }
+  const currentDate = current.reviewed_at || null, incomingDate = incoming.reviewed_at || null;
+  const comparison = currentDate && incomingDate ? compareDates(currentDate, incomingDate) : null;
+  const chosen = comparison !== null && comparison > 0
+    ? mergeValue(incoming, current, `${target}.current`)
+    : mergeValue(current, incoming, `${target}.incoming`);
+  if (comparison !== null && comparison > 0) {
+    recordConflict(target, "incoming-older-supplemental-preserved-current", currentDate, incomingDate);
   }
-  return existingReviews.filter(review => review.batch !== incoming.batch || review.checked_url !== incoming.checked_url).concat(chosen);
+  if (currentDate && incomingDate && comparison === 0) chosen.reviewed_at = incomingDate;
+  const firstMatch = existingReviews.findIndex(review => review.batch === incoming.batch && review.checked_url === incoming.checked_url);
+  const remaining = existingReviews.filter(review => review.batch !== incoming.batch || review.checked_url !== incoming.checked_url);
+  remaining.splice(firstMatch, 0, chosen);
+  return remaining;
 };
 for (const batch of batches) for (const s of batch.sources || []) {
   assert.ok(s.id && s.title && /^https?:\/\//.test(s.source_url), `Invalid source proposal ${s.id}`);
@@ -98,13 +157,12 @@ for (const batch of batches) for (const s of batch.sources || []) {
   const record = existing || {
     id:s.id,kind:"source",title:s.title,summary:s.evidence_summary || s.summary || `Publisher reference for ${s.title}; see the bounded review scope.`,
     topics:["Research foundations"], industries:[],jurisdiction:s.jurisdiction || null,source_type:s.source_type || "Publisher reference",publisher:s.publisher,source_url:s.source_url,
-    source_ids:[],related_ids:[],review_status:s.review_level === "attempted-unresolved" ? "inherited-not-reverified" : "source-checked",reviewed_at:s.review_level === "attempted-unresolved" ? null : metadata.reviewedAt,
+    source_ids:[],related_ids:[],review_status:"inherited-not-reverified",reviewed_at:null,
     provenance:{added_on:metadata.reviewedAt,reviewer:"Codex AI-assisted source research",note:"Original bounded synthesis of the cited public material; not professional review or a licence to external content."},
     rights:{...rights, source_status:s.rights_review?.status || s.rights_status || "unknown",source_license:null,source_license_url:null,source_permission_scope:null},data:{},
   };
-  record.reviewed_at = preserveNewerDate(record.reviewed_at, s.review_level === "attempted-unresolved" ? null : metadata.reviewedAt, `source:${record.id}:reviewed_at`);
   sourceDates.set(record.id, newestDate([sourceDates.get(record.id), metadata.reviewedAt]));
-  aliases[s.id] = record.id;
+  if (record.id !== s.id || Object.hasOwn(aliases, s.id)) aliases[s.id] = record.id;
   const review = {
     batch:batch.name, reviewed_at:metadata.reviewedAt, review_level:s.review_level || "scope-not-specified",
     ...(s.review_scope ? {review_scope:s.review_scope} : {}),
@@ -129,6 +187,7 @@ const checkReferences = (value, where) => {
   }
 };
 const questionRows=[];
+const guidePackageApplied=new Set();
 for (const original of batches) {
   const batch=remap(original);
   const packages=batch.families || batch.packages || batch.guides || [];
@@ -144,6 +203,8 @@ for (const original of batches) {
     const existingGuide=guides.find(g=>g.id===id);
     const packageVersion=batchMetadata.get(batch.name).version;
     const version=preserveNewerEdition(existingGuide?.data?.version,packageVersion,`guide:${id}:data.version`);
+    const comparison=existingGuide?.data?.version && packageVersion ? compareEditions(existingGuide.data.version,packageVersion) : null;
+    const applyPackage=!existingGuide || (Boolean(packageVersion) && (!existingGuide.data?.version || comparison < 0));
     const data={...p,research_package:batch.name,research_questions:qs};
     if (version) data.version=version; else delete data.version;
     delete data.questions;
@@ -151,11 +212,23 @@ for (const original of batches) {
     data.editorial_brief={question:p.title, answer:summary, findings:qs.map(q=>({claim:q.answer,source_ids:[...new Set(q.source_ids || [])],classification:q.answer_status || "scoped-research",qualification:q.scope || p.scope || "Apply only within the question's stated conditions and source access limits."})),unknowns:[...new Set(p.coverage_gaps || p.remaining_limits || ["No family-wide accounting sufficiency or professional review is asserted."])],reading_order:source_ids};
     checkReferences(data,id);
     for (const source of source_ids) assert.ok(sourceById.has(source),`${id}: ${source}`);
-    const record={id,kind:"guide",title:p.title,summary,topics:["Scoped research",...family_ids.map(id=>familyTitles.get(id))],industries:p.industries || [],jurisdiction:p.jurisdiction || p.jurisdictions?.join("; ") || "Declared separately for each question",source_type:null,publisher:"Accounting Agents contributors",source_url:null,source_ids,related_ids,review_status:"editorially-reviewed",reviewed_at:preserveNewerDate(existingGuide?.reviewed_at,batchMetadata.get(batch.name).reviewedAt,`guide:${id}:reviewed_at`),provenance:{added_on:existingGuide?.provenance?.added_on || batchMetadata.get(batch.name).reviewedAt,reviewer:"Codex AI-assisted research, with root source-scope and semantic review",note:"Original research synthesis and clearly labeled original examples. Listed source access and currency limits constrain every answer; no professional sign-off or production validation.",research_file:`data/research/${batch.name}.json`},rights:{...rights},data};
-    const at=guides.findIndex(g=>g.id===id); if(at<0) guides.push(record);else guides[at]=record;known.add(id);
-    const previousOverride=overrides.records[id] || {};
-    overrides.records[id]={replace_question_ids:true,question_ids:family_ids,industry_codes,industry_scope:industry_codes.length?"specific":"shared-context",basis_field:"/data/research_questions",reason:"The explicitly scoped research questions and original synthesis support discovery associations only. Detailed-industry adequacy is separately assessed.",reviewed_question_ids:family_ids,reviewed_industry_codes:industry_codes,reviewed_at:preserveNewerDate(previousOverride.reviewed_at,batchMetadata.get(batch.name).reviewedAt,`mapping:${id}:reviewed_at`),review_note:"Reviewed discovery relationship to the named questions and explicitly declared industry scope; does not confer accounting adequacy or professional verification."};
-    for(const q of qs) questionRows.push({id:q.id,record_id:id,pointer:`/data/research_questions/${qs.indexOf(q)}`,family_ids:q.family_id?[q.family_id]:q.family_ids || family_ids,question:q.question,scope:q.scope || p.scope || summary,answer_status:q.answer_status || "sourced-answer-bounded",assessment_status:q.assessment?.status || "partial",source_ids:[...new Set(q.source_ids || [])],remaining_gaps:q.remaining_gaps || [],professional_review:"not-performed",empirical_support:"not-established"});
+    const generatedRecord={id,kind:"guide",title:p.title,summary,topics:["Scoped research",...family_ids.map(id=>familyTitles.get(id))],industries:p.industries || [],jurisdiction:p.jurisdiction || p.jurisdictions?.join("; ") || "Declared separately for each question",source_type:null,publisher:"Accounting Agents contributors",source_url:null,source_ids,related_ids,review_status:"editorially-reviewed",reviewed_at:batchMetadata.get(batch.name).reviewedAt,provenance:{added_on:batchMetadata.get(batch.name).reviewedAt,reviewer:"Codex AI-assisted research, with root source-scope and semantic review",note:"Original research synthesis and clearly labeled original examples. Listed source access and currency limits constrain every answer; no professional sign-off or production validation.",research_file:`data/research/${batch.name}.json`},rights:{...rights},data};
+    if (applyPackage) {
+      const record=existingGuide ? mergeValue(existingGuide, generatedRecord, `guide:${id}`) : generatedRecord;
+      record.reviewed_at=preserveNewerDate(existingGuide?.reviewed_at,batchMetadata.get(batch.name).reviewedAt,`guide:${id}:reviewed_at`);
+      record.provenance=mergeValue(existingGuide?.provenance || {}, generatedRecord.provenance, `guide:${id}:provenance`);
+      record.provenance.added_on=existingGuide?.provenance?.added_on || batchMetadata.get(batch.name).reviewedAt;
+      record.data.version=version;
+      const at=guides.findIndex(g=>g.id===id); if(at<0) guides.push(record);else guides[at]=record;
+      guidePackageApplied.add(id);
+      const previousOverride=overrides.records[id] || {};
+      const generatedOverride={replace_question_ids:true,question_ids:family_ids,industry_codes,industry_scope:industry_codes.length?"specific":"shared-context",basis_field:"/data/research_questions",reason:"The explicitly scoped research questions and original synthesis support discovery associations only. Detailed-industry adequacy is separately assessed.",reviewed_question_ids:family_ids,reviewed_industry_codes:industry_codes,reviewed_at:batchMetadata.get(batch.name).reviewedAt,review_note:"Reviewed discovery relationship to the named questions and explicitly declared industry scope; does not confer accounting adequacy or professional verification."};
+      overrides.records[id]=mergeValue(previousOverride,generatedOverride,`mapping:${id}`);
+      overrides.records[id].reviewed_at=preserveNewerDate(previousOverride.reviewed_at,batchMetadata.get(batch.name).reviewedAt,`mapping:${id}:reviewed_at`);
+    }
+    known.add(id);
+    const canonicalQuestions=guides.find(g=>g.id===id)?.data?.research_questions || qs;
+    for(const [index,q] of canonicalQuestions.entries()) questionRows.push({id:q.id,record_id:id,pointer:`/data/research_questions/${index}`,family_ids:q.family_id?[q.family_id]:q.family_ids || family_ids,question:q.question,scope:q.scope || p.scope || summary,answer_status:q.answer_status || "sourced-answer-bounded",assessment_status:q.assessment?.status || "partial",source_ids:[...new Set(q.source_ids || [])],remaining_gaps:q.remaining_gaps || [],professional_review:"not-performed",empirical_support:"not-established"});
   }
 }
 for(const g of guides.filter(g=>g.data.manual_research_questions)) for(const [i,q] of g.data.research_questions.entries()) {
@@ -167,20 +240,56 @@ for(const row of questionRows){
  const g=guides.find(g=>g.id===row.record_id),q=g.data.research_questions[Number(row.pointer.split('/').at(-1))];
  row.dimensions={scope:"partial",'accounting-question':row.assessment_status==='evidence-gap'?"missing":"partial",'evidence-inputs':(q.inputs?.length||q.evidence_inputs?.length)?"partial":"missing",workflow:(q.workflow?.length||g.data.workflows?.length||g.data.connected_workflow)?"partial":"missing",controls:(q.controls?.length||g.data.controls?.length)?"partial":"missing",'worked-material':(q.worked_example||g.data.worked_examples?.length||g.data.worked_record_id)?"partial":"missing",'empirical-support':g.data.research_package==='empirical'?"partial":"not-assessed"};
  row.dimension_basis='Presence and review limits of the linked named question, package workflow and original worked material. Partial does not establish accounting correctness; missing means this question packet lacks that component.';
- q.assessment={...(q.assessment||{}),status:row.assessment_status,dimensions:row.dimensions,basis:row.dimension_basis,professional_review:'not-performed'};
+ if (guidePackageApplied.has(g.id)) q.assessment={...(q.assessment||{}),status:row.assessment_status,dimensions:row.dimensions,basis:row.dimension_basis,professional_review:'not-performed'};
 }
 // New source associations follow the exact questions citing them, not every family in a package.
 for(const s of sources){
  const qs=questionRows.filter(q=>q.source_ids.includes(s.id));if(!qs.length)continue;
  const previous=overrides.records[s.id]||{};
+ const incomingDate=sourceDates.get(s.id);
+ if (!incomingDate) continue;
  const families=[...new Set([...(previous.question_ids||[]),...qs.flatMap(q=>q.family_ids)])];
- overrides.records[s.id]={...previous,replace_question_ids:false,question_ids:families,industry_codes:previous.industry_codes||[],industry_scope:previous.industry_scope||'shared-context',basis_field:'/data',reason:'Exact named research questions cite this source within their separate scope limits; discovery relationship only.',reviewed_question_ids:families,reviewed_industry_codes:previous.reviewed_industry_codes||[],reviewed_at:preserveNewerDate(previous.reviewed_at,sourceDates.get(s.id),`mapping:${s.id}:reviewed_at`),review_note:'Question-level citation association reviewed; no industry descendant or sufficiency credit.'};
+ const generatedOverride={replace_question_ids:false,question_ids:families,industry_codes:previous.industry_codes||[],industry_scope:previous.industry_scope||'shared-context',basis_field:'/data',reason:'Exact named research questions cite this source within their separate scope limits; discovery relationship only.',reviewed_question_ids:families,reviewed_industry_codes:previous.reviewed_industry_codes||[],reviewed_at:incomingDate,review_note:'Question-level citation association reviewed; no industry descendant or sufficiency credit.'};
+ overrides.records[s.id]=mergeValue(previous,generatedOverride,`mapping:${s.id}`);
+ overrides.records[s.id].reviewed_at=preserveNewerDate(previous.reviewed_at,incomingDate,`mapping:${s.id}:reviewed_at`);
 }
 assert.equal(new Set(questionRows.map(q=>q.id)).size,questionRows.length,"Duplicate research-question IDs");
 for(const g of guides) for(const id of g.related_ids) assert.ok(known.has(id),`${g.id}: unknown related ${id}`);
-write("data/corpus/source.json",sources);write("data/corpus/guide.json",guides);write("data/coverage/mapping-overrides.json",overrides);
-write("data/research/source-aliases.json",aliases);
+for (const [recordId, override] of Object.entries(overrides.records)) {
+  const reviewed = [...(override.reviewed_question_ids || []), ...(override.reviewed_industry_codes || [])];
+  if (!reviewed.length) continue;
+  assert.ok(override.reviewed_at && datePattern.test(override.reviewed_at), `${recordId}: reviewed mapping requires a valid reviewed_at date`);
+  assert.ok(override.review_note, `${recordId}: reviewed mapping requires a review_note`);
+}
 const incomingQuestionSetVersion=newestEdition([...batchMetadata.values()].map(metadata=>metadata.version),"package:question_set_version");
 const incomingCorpusVersion=newestEdition([...batchMetadata.values()].map(metadata=>metadata.corpusVersion),"package:corpus_version");
-write("data/coverage/research-questions.json",{schema_version:questionRegistry.schema_version,question_set_version:preserveNewerEdition(questionRegistry.question_set_version,incomingQuestionSetVersion,"research-questions:question_set_version"),corpus_version:preserveNewerEdition(questionRegistry.corpus_version,incomingCorpusVersion,"research-questions:corpus_version"),reviewed_at:preserveNewerDate(questionRegistry.reviewed_at,newestDate(allBatchDates),"research-questions:reviewed_at"),scope:questionRegistry.scope,questions:questionRows});
-console.log(JSON.stringify({sources:sources.length,guides:guides.length,named_questions:questionRows.length,preserved_newer_metadata:conflicts.length,conflicts},null,2));
+const questionSetVersion=preserveNewerEdition(questionRegistry.question_set_version,incomingQuestionSetVersion,"research-questions:question_set_version");
+const corpusVersion=preserveNewerEdition(questionRegistry.corpus_version,incomingCorpusVersion,"research-questions:corpus_version");
+const registryComparison=questionRegistry.question_set_version && incomingQuestionSetVersion ? compareEditions(questionRegistry.question_set_version,incomingQuestionSetVersion) : null;
+const applyRegistry=!questionRegistry.question_set_version || (Boolean(incomingQuestionSetVersion) && registryComparison < 0);
+let registryOutput=questionRegistry;
+write("data/corpus/source.json",sources);write("data/corpus/guide.json",guides);write("data/coverage/mapping-overrides.json",overrides);
+write("data/research/source-aliases.json",aliases);
+if (applyRegistry) {
+  const generatedRegistry={schema_version:questionRegistry.schema_version,question_set_version:incomingQuestionSetVersion,corpus_version:incomingCorpusVersion,reviewed_at:newestDate(allBatchDates),scope:questionRegistry.scope,questions:questionRows};
+  const registry=mergeValue(questionRegistry,generatedRegistry,"research-questions");
+  registry.question_set_version=questionSetVersion;
+  registry.corpus_version=corpusVersion;
+  registry.reviewed_at=preserveNewerDate(questionRegistry.reviewed_at,newestDate(allBatchDates),"research-questions:reviewed_at");
+  registryOutput=registry;
+  write("data/coverage/research-questions.json",registryOutput);
+}
+const changedRecordIds=(before, after) => {
+  const allIds=new Set([...before, ...after].map(record=>record.id));
+  return [...allIds].filter(id=>JSON.stringify(before.find(record=>record.id===id)) !== JSON.stringify(after.find(record=>record.id===id)));
+};
+const changedObjectKeys=(before, after) => [...new Set([...Object.keys(before), ...Object.keys(after)])].filter(key=>JSON.stringify(before[key]) !== JSON.stringify(after[key]));
+const changes={
+  source_records:changedRecordIds(beforeSources,sources),
+  guide_records:changedRecordIds(beforeGuides,guides),
+  mapping_records:changedRecordIds(Object.entries(beforeOverrides.records || {}).map(([id,value])=>({id,...value})),Object.entries(overrides.records || {}).map(([id,value])=>({id,...value}))),
+  registry_rows:changedRecordIds(beforeQuestionRegistry.questions || [],registryOutput.questions || []),
+  registry_fields:changedObjectKeys(beforeQuestionRegistry,registryOutput).filter(key=>key!="questions"),
+  source_aliases:changedObjectKeys(beforeAliases,aliases),
+};
+console.log(JSON.stringify({sources:sources.length,guides:guides.length,named_questions:questionRows.length,preserved_newer_metadata:conflicts.length,conflicts,changes},null,2));
