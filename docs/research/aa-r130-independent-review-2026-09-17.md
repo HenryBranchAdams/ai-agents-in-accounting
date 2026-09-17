@@ -3,7 +3,8 @@
 Independent follow-up review of correction PR130 against the original PR128 head.
 
 - Assignment: `AA-R128` follow-up, PR130, issue #117
-- Reviewed PR130 head: `2e72df52cbe71e04b62dbe3123c313f3fc8210f3`
+- Initial PR130 review head: `2e72df52cbe71e04b62dbe3123c313f3fc8210f3`
+- Final narrow-check head: `ec21ffa58a68a19461aad1940f729fde6e337f60`
 - PR130 base and original PR128 head: `75e819205c72d07fe096b84eb33629200830faa6`
 - PR130 author branch: `codex/aa-f128-evidence`
 - Reviewer worker: `01a0afa2-40cc-77a2-8e8d-28159e584ba5`, local host
@@ -14,13 +15,13 @@ Independent follow-up review of correction PR130 against the original PR128 head
 
 Both original P1 findings are accepted as corrected at the supplied PR130 head. The correction is bounded and does not complete issue #117. No corpus record, catalog, implementation branch, merge, deployment or issue state was changed by this reviewer. Issue #117 remains open.
 
-The new coverage snapshot is internally hash-coherent, but one release-metadata follow-up remains before final publication:
+At the initial review, one release-metadata follow-up remained before final publication. The supplied final delta resolves that assessment-version issue and preserves the prior snapshot:
 
-- `data/coverage/assessments.json` changes the nonprofit assessment effective period and review basis but retains `assessment_version: 2026-09-16.1`.
-- The new `2026-09-17.1` snapshot records the changed assessment bytes by hash, but repeats that unchanged assessment version.
-- `docs/coverage-model.md` requires an assessment-version bump when a scoped assessment is revised. The orchestrator should either bump the assessment version and recapture the snapshot, or explicitly document that this is a pre-release correction to the unreleased PR128 edition before final release sequencing.
+- `data/coverage/assessments.json` now uses `assessment_version: 2026-09-17.1302`.
+- Snapshot `2026-09-17.1` remains unchanged, and the new `2026-09-17.1302` snapshot records the revised assessment bytes under the new version.
+- The assessment version, correction snapshot and input hashes are synchronized. Final corpus and release sequencing remains orchestrator-owned.
 
-This is a traceability and release-sequencing follow-up, not a reopening of either P1 evidence correction. The author was told that the orchestrator owns final release sequencing, so no release artifact or corpus-version rewrite is made in this reviewer branch.
+This was a traceability and release-sequencing follow-up, not a reopening of either P1 evidence correction. The author was told that the orchestrator owns final release sequencing, so no release artifact or corpus-version rewrite is made in this reviewer branch.
 
 ## P1 correction review
 
@@ -61,8 +62,17 @@ The four listed journals independently total 330,000 of debits and 330,000 of cr
 - Independent exact-tree checks in a temporary archive passed `npm run build`, `npm run validate` and `node --test tests/us-nonprofit.test.mjs` with 5/5 tests passing.
 - The base branch has no protection rule and no declared required status checks. PR130 has no submitted reviews. These are merge-governance limits, not accounting acceptance evidence.
 
+## Final narrow check
+
+The delta from `2e72df52cbe71e04b62dbe3123c313f3fc8210f3` to `ec21ffa58a68a19461aad1940f729fde6e337f60` is limited to the assessment version, an appended coverage snapshot, delivery documentation and regression assertions. No source record, guide, example, mapping rule or prior snapshot was changed.
+
+- Independent exact-tree checks passed `npm run build`, `npm run validate` and `node --test tests/us-nonprofit.test.mjs` with 5/5 tests passing.
+- Independent recomputation matched the new snapshot's 12 input hashes and corpus mapping hash. Snapshot `2026-09-17.1` has the same object hash before and after the delta; `2026-09-17.1302` has the new assessment hash and matching `assessment_version`.
+- The author reported focused tests and full 86/86 checks for the final head. CI was queued at callback time and was not polled in this review, so final-head CI remains an external unverified gate here.
+- Final narrow-check result: the P2 assessment-version finding is resolved. No further review finding was identified. The correction remains partial work for issue #117.
+
 ## Limits and next action
 
 Current consolidated Codification access, professional NFP review, operational award-to-ledger evidence, measured agent performance, external rights permissions, merge and deployment remain unverified or incomplete. No polling or waiting on running CI was performed.
 
-Next action: the orchestrator should resolve the assessment-version and final corpus-release sequencing, preserve the appropriate outgoing edition, then integrate only within the authorized workflow. Keep issue #117 open.
+Next action: the orchestrator should handle final corpus-release sequencing, preserve the appropriate outgoing edition, then integrate only within the authorized workflow. Keep issue #117 open.
