@@ -39,8 +39,12 @@ const env = {
         : pathname.endsWith(".zip")
           ? "application/zip"
           : "text/plain";
-      return new Response(fs.readFileSync(file), {
-        headers: { "Content-Type": contentType },
+      const body = fs.readFileSync(file);
+      return new Response(body, {
+        headers: {
+          "Content-Type": contentType,
+          "Content-Length": String(body.length),
+        },
       });
     },
   },
@@ -435,6 +439,39 @@ test("source export includes every current source byte and no recovery files", (
   }
 });
 
+
+test("multipart source parts use binary MIME with stable GET, HEAD, and cache headers", async () => {
+  const sourceExport = JSON.parse(
+    fs.readFileSync(`dist/client/downloads/${SOURCE_EXPORT_MANIFEST_NAME}`, "utf8"),
+  );
+  assert.equal(sourceExport.mode, "multipart");
+  const part = sourceExport.parts[0];
+  const expected = fs.readFileSync(`dist/client/downloads/${part.name}`);
+  const get = await request(part.path);
+  assert.equal(get.status, 200);
+  assert.equal(get.headers.get("Content-Type"), "application/octet-stream");
+  assert.equal(get.headers.get("Content-Length"), String(expected.length));
+  const etag = get.headers.get("ETag");
+  assert.ok(etag);
+  assert.deepEqual(Buffer.from(await get.arrayBuffer()), expected);
+
+  const head = await request(part.path, { method: "HEAD" });
+  assert.equal(head.status, 200);
+  assert.equal(head.headers.get("Content-Type"), "application/octet-stream");
+  assert.equal(head.headers.get("Content-Length"), String(expected.length));
+  assert.equal(head.headers.get("ETag"), etag);
+  assert.equal(await head.text(), "");
+
+  const cached = await request(part.path, { headers: { "If-None-Match": etag } });
+  assert.equal(cached.status, 304);
+  assert.equal(cached.headers.get("Content-Type"), "application/octet-stream");
+  assert.equal(cached.headers.get("Content-Length"), String(expected.length));
+  assert.equal(cached.headers.get("ETag"), etag);
+  assert.equal(await cached.text(), "");
+
+  const manifest = await request(`/downloads/${SOURCE_EXPORT_MANIFEST_NAME}`);
+  assert.equal(manifest.headers.get("Content-Type"), "application/json");
+});
 
 test("oversized download storage stays within host limits and preserves streaming HTTP semantics", async () => {
   const file = (await read("/downloads/manifest.json")).files.find((f) => f.path === "/downloads/agent-passages.jsonl");

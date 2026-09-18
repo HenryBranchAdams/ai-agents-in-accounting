@@ -36,6 +36,8 @@ The generated `accounting-agents-source.manifest.json` records the corpus versio
 
 When the deterministic ZIP fits under the host limit, the existing single `accounting-agents-source.zip` output remains available and the same manifest switches to `mode: single`. When it does not, stale source-export parts are removed only from the generated download directory. `scripts/reconstruct-source-archive.mjs` verifies each part, reconstructs the ZIP in order, verifies the archive hash, and checks complete ZIP membership. No host limit was raised, no source content was silently dropped, and no deployment-facing resolution was bypassed.
 
+The exact generated part paths now receive `application/octet-stream` from both the Worker asset fallback and `scripts/serve.mjs`. The override is limited to `/downloads/accounting-agents-source.zip.part-<digits>`, preserves the asset bytes, length and ETag, and leaves JSON, Markdown and arbitrary unknown paths on their existing MIME behavior. GET, HEAD and conditional 304 responses use the same binary headers.
+
 ## Author checks
 
 - Focused integration, mapping and source-export suites: 27/27 passed, including clean-base application, byte-identical replay, current-mainline preservation, exact source-question associations, newer-metadata preservation, conflicting-association rejection, four authority-gap checks, eight partial assessments, mutation sensitivity and snapshot-collision provenance.
@@ -44,6 +46,9 @@ When the deterministic ZIP fits under the host limit, the existing single `accou
 - Immutable release and coverage snapshot generation: passed for `2026-09-17.5` and `2026-09-17.7`; prior `.4` and `.6` artifacts remain unchanged.
 - `npm run build`: passed, generating 29 downloads and a multipart source export with 274 included source files.
 - `node scripts/reconstruct-source-archive.mjs`: passed against the generated manifest and parts.
-- `npm run check`: passed with loopback permission for the existing MCP HTTP integration test, including all 133 tests.
+- Multipart route and header regression: passed in `tests/corpus.test.mjs`, 17/17, including exact bytes, binary MIME, Content-Length, ETag, GET, HEAD, 304 and unchanged JSON MIME.
+- Local `scripts/serve.mjs` harness: passed against a real multipart part, including exact SHA-256, binary MIME, length, ETag, HEAD and 304 behavior; Markdown and JSON MIME remained unchanged.
+- Browser or screenshot validation: not run. This fix changes download routing and local static serving only; no page markup, styling or keyboard interaction changed.
+- `npm run check`: passed with loopback permission for the existing MCP HTTP integration test, including all 134 tests.
 
 No merge, issue closure, deployment, or reviewer-comment rejection bypass was performed.

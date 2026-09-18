@@ -58,6 +58,8 @@ const commonHeaders = {
   "X-Corpus-Version": meta.corpus_version,
   "Cache-Control": "public, max-age=300, must-revalidate",
 };
+const isSourceArchivePartPath = (path: string) =>
+  /^\/downloads\/accounting-agents-source\.zip\.part-\d+$/.test(path);
 const json = (body: unknown, status = 200) =>
   new Response(JSON.stringify(body, null, 2) + "\n", {
     status,
@@ -541,8 +543,19 @@ async function route(request: Request, env: Env) {
   if (
     env.ASSETS &&
     /^\/(downloads\/[^/]+|releases\/\d{4}-\d{2}-\d{2}\.\d+\/(?:corpus\.json(?:\.gz|l)?|manifest\.json|changes\.json|record-history\.jsonl)|releases\/index\.json|assets\/navigation-[A-Z0-9]{8}\.js|style\.css|favicon\.svg|AGENTS\.md)$/.test(path)
-  )
-    return env.ASSETS.fetch(new Request(request.url, { method: "GET" }));
+  ) {
+    const asset = await env.ASSETS.fetch(new Request(request.url, { method: "GET" }));
+    if (asset.status === 200 && isSourceArchivePartPath(path)) {
+      const headers = new Headers(asset.headers);
+      headers.set("Content-Type", "application/octet-stream");
+      return new Response(asset.body, {
+        status: asset.status,
+        statusText: asset.statusText,
+        headers,
+      });
+    }
+    return asset;
+  }
   return path.startsWith("/api/")
     ? json({ error: "Route not found. See /openapi.json." }, 404)
     : html(errorPage(404, "We couldn’t find that record."), 404);
