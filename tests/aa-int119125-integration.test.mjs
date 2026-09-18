@@ -19,7 +19,7 @@ const integrationFiles = [
   "data/coverage/assessments.json",
   "data/research-questions.json",
 ];
-const expectedIntegrationState = new Map(
+const expectedAcceptedState = new Map(
   integrationFiles.map(file => [file, read(file)]),
 );
 const makeIntegrationHarness = () => {
@@ -38,6 +38,15 @@ const makeIntegrationHarness = () => {
   );
   return root;
 };
+const assertAcceptedState = root => {
+  for (const file of integrationFiles) {
+    assert.deepEqual(
+      read(path.join(root, file)),
+      expectedAcceptedState.get(file),
+      `${file}: first clean integration must preserve the accepted/current state`,
+    );
+  }
+};
 const corpusDirectory = "data/corpus";
 const corpusFiles = fs.readdirSync(corpusDirectory).filter(file => file.endsWith(".json")).sort();
 const canonical = corpusFiles.flatMap(file => {
@@ -47,8 +56,8 @@ const canonical = corpusFiles.flatMap(file => {
 });
 const byId = new Map(canonical.map(record => [record.id, record]));
 
-test("AA-I119 and AA-I125 preserve canonical IDs without collisions or lost nonprofit records", () => {
-  assert.equal(canonical.length, 1095);
+test("AA-I119, AA-I125, and AA-I127 preserve canonical IDs without collisions or lost nonprofit records", () => {
+  assert.equal(canonical.length, 1097);
   assert.equal(byId.size, canonical.length, "canonical record IDs must be globally unique");
 
   for (const id of [
@@ -93,15 +102,14 @@ test("clean AA-I125 integration preserves the new FAR source supplemental review
       "the regression must start with the new FAR source absent",
     );
     execFileSync(process.execPath, [script, "--integrate-into-newer-corpus"], { cwd: root, stdio: "pipe" });
-    const output = new Map(integrationFiles.map(file => [file, read(path.join(root, file))]));
-    for (const file of integrationFiles) {
-      assert.deepEqual(output.get(file), expectedIntegrationState.get(file), `${file}: complete accepted integration state`);
-    }
-    const source = output.get("data/corpus/source.json").find(record => record.id === "src_far_31203_indirect_costs");
+    assertAcceptedState(root);
+    const source = read(path.join(root, "data/corpus/source.json")).find(record => record.id === "src_far_31203_indirect_costs");
     const packet = read(path.join(root, "data/research/management-accounting-2026-09-17.json"));
     const update = packet.sources.find(candidate => candidate.id === "src_far_31203_indirect_costs");
+    const expectedSource = expectedAcceptedState.get("data/corpus/source.json").find(record => record.id === "src_far_31203_indirect_costs");
     assert.ok(source, "clean integration must add the FAR source");
-    assert.deepEqual(source.data.supplemental_reviews, [{
+    assert.deepEqual(source.data.supplemental_reviews, expectedSource.data.supplemental_reviews);
+    assert.deepEqual(source.data.supplemental_reviews.find(review => review.batch === packet.issue_id), {
       batch: packet.issue_id,
       reviewed_at: packet.reviewed_at,
       review_level: "substantive-excerpt",
@@ -119,7 +127,7 @@ test("clean AA-I125 integration preserves the new FAR source supplemental review
         scope: null,
         note: "Public accessibility does not establish reuse permission; external content remains under publisher terms.",
       },
-    }]);
+    });
     const firstReplay = new Map(integrationFiles.map(file => [file, fs.readFileSync(path.join(root, file))]));
     execFileSync(process.execPath, [script, "--integrate-into-newer-corpus"], { cwd: root, stdio: "pipe" });
     for (const [file, bytes] of firstReplay) {
@@ -130,22 +138,47 @@ test("clean AA-I125 integration preserves the new FAR source supplemental review
   }
 });
 
-test("2026-09-17.2 release and snapshot match the corrected canonical build", () => {
-  const index = read("data/releases/index.json");
-  assert.equal(index.current_version, "2026-09-17.2");
-  assert.deepEqual(index.versions.slice(-2), ["2026-09-17.1", "2026-09-17.2"]);
+test("clean AA-I125 integration is sensitive to new-source supplemental-review loss", () => {
+  const root = makeIntegrationHarness();
+  try {
+    const script = path.resolve("scripts/integrate-management-accounting.mjs");
+    const mutatedScript = path.join(root, "integrate-management-accounting.mjs");
+    const original = fs.readFileSync(script, "utf8");
+    const mutation = "supplemental_reviews: [\n        supplementalReview(update),\n        foundationSupplementalReview(update),\n      ].filter(Boolean),";
+    assert.equal(original.split(mutation).length - 1, 1, "the mutation probe must target the new-source assignment");
+    fs.writeFileSync(mutatedScript, original.replace(mutation, "supplemental_reviews: [foundationSupplementalReview(update)].filter(Boolean),"));
+    execFileSync(process.execPath, [mutatedScript, "--integrate-into-newer-corpus"], { cwd: root, stdio: "pipe" });
 
-  const currentRelease = "data/releases/2026-09-17.2";
+    assert.throws(
+      () => assertAcceptedState(root),
+      /data\/corpus\/source\.json: first clean integration must preserve the accepted\/current state/,
+      "the all-file invariant must fail when new-source supplemental review assignment is removed",
+    );
+    const expectedSource = expectedAcceptedState.get("data/corpus/source.json").find(record => record.id === "src_far_31203_indirect_costs");
+    const mutatedSource = read(path.join(root, "data/corpus/source.json")).find(record => record.id === "src_far_31203_indirect_costs");
+    assert.notDeepEqual(mutatedSource.data.supplemental_reviews, expectedSource.data.supplemental_reviews);
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("2026-09-17.3 release and snapshot match the corrected canonical build", () => {
+  const index = read("data/releases/index.json");
+  assert.equal(index.current_version, "2026-09-17.3");
+  assert.deepEqual(index.versions.slice(-3), ["2026-09-17.1", "2026-09-17.2", "2026-09-17.3"]);
+
+  const currentRelease = "data/releases/2026-09-17.3";
   const currentBytes = fs.readFileSync(`${currentRelease}/corpus.json`);
   assert.deepEqual(currentBytes, fs.readFileSync("dist/client/downloads/corpus.json"));
   assert.deepEqual(gunzipSync(fs.readFileSync(`${currentRelease}/corpus.json.gz`)), currentBytes);
 
-  const priorRelease = "data/releases/2026-09-17.1";
-  const priorBytes = fs.readFileSync(`${priorRelease}/corpus.json`);
-  assert.deepEqual(gunzipSync(fs.readFileSync(`${priorRelease}/corpus.json.gz`)), priorBytes);
+  for (const priorRelease of ["data/releases/2026-09-17.1", "data/releases/2026-09-17.2"]) {
+    const priorBytes = fs.readFileSync(`${priorRelease}/corpus.json`);
+    assert.deepEqual(gunzipSync(fs.readFileSync(`${priorRelease}/corpus.json.gz`)), priorBytes);
+  }
 
-  const snapshot = read("data/coverage/snapshots.json").snapshots.find(item => item.id === "2026-09-17.2");
+  const snapshot = read("data/coverage/snapshots.json").snapshots.find(item => item.id === "2026-09-17.5");
   assert.ok(snapshot);
-  assert.equal(snapshot.summary.record_count, 1095);
-  assert.equal(snapshot.summary.scoped_assessments, 8);
+  assert.equal(snapshot.summary.record_count, 1097);
+  assert.equal(snapshot.summary.scoped_assessments, 17);
 });

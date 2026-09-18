@@ -4,46 +4,306 @@
   "title": "Accounting Agents linked coverage record",
   "description": "One record-mapping JSONL row or record coverage API response. Join record_id to the canonical corpus. Associations do not establish accounting applicability or sufficient coverage. Assessment and analytics definitions are available in $defs.",
   "type": "object",
-  "required": ["schema_version", "corpus_version", "topology_version", "mapping_version", "assessment_version", "record_id", "question_mappings", "industry_scope", "industry_mappings", "note"],
+  "required": [
+    "schema_version",
+    "corpus_version",
+    "topology_version",
+    "mapping_version",
+    "assessment_version",
+    "record_id",
+    "question_mappings",
+    "industry_scope",
+    "industry_mappings",
+    "note"
+  ],
   "additionalProperties": false,
   "properties": {
-    "schema_version": {"const": "1.0.0"},
-    "corpus_version": {"type": "string"},
-    "topology_version": {"type": "string"},
-    "mapping_version": {"type": "string"},
-    "assessment_version": {"type": "string"},
-    "record_id": {"type": "string"},
-    "industry_scope": {"enum": ["specific", "shared-context", "unassigned"]},
-    "note": {"type": "string"},
-    "question_mappings": {"type": "array", "items": {"$ref": "#/$defs/questionMapping"}},
-    "industry_mappings": {"type": "array", "items": {"$ref": "#/$defs/industryMapping"}}
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "corpus_version": {
+      "type": "string"
+    },
+    "topology_version": {
+      "type": "string"
+    },
+    "mapping_version": {
+      "type": "string"
+    },
+    "assessment_version": {
+      "type": "string"
+    },
+    "record_id": {
+      "type": "string"
+    },
+    "industry_scope": {
+      "enum": [
+        "specific",
+        "shared-context",
+        "unassigned"
+      ]
+    },
+    "note": {
+      "type": "string"
+    },
+    "question_mappings": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/questionMapping"
+      }
+    },
+    "industry_mappings": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/industryMapping"
+      }
+    }
   },
   "$defs": {
     "basis": {
-      "type": "object", "additionalProperties": false, "required": ["field", "matched", "rule"],
-      "properties": {"field": {"type": "string", "pattern": "^/"}, "matched": {"type": "string", "minLength": 1}, "rule": {"type": "string", "minLength": 1}}
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "field",
+        "matched",
+        "rule"
+      ],
+      "properties": {
+        "field": {
+          "type": "string",
+          "pattern": "^/"
+        },
+        "matched": {
+          "type": "string",
+          "minLength": 1
+        },
+        "rule": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
     },
     "questionMapping": {
-      "type": "object", "additionalProperties": false, "required": ["question_id", "status", "basis"],
-      "properties": {"question_id": {"type": "string"}, "status": {"enum": ["candidate", "reviewed"]}, "basis": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/basis"}}}
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "question_id",
+        "status",
+        "basis"
+      ],
+      "properties": {
+        "question_id": {
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "candidate",
+            "reviewed"
+          ]
+        },
+        "basis": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/basis"
+          }
+        }
+      }
     },
     "industryMapping": {
-      "type": "object", "additionalProperties": false, "required": ["industry_code", "status", "basis"],
-      "properties": {"industry_code": {"type": "string"}, "status": {"enum": ["candidate", "reviewed"]}, "basis": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/basis"}}}
-    },
-    "dimensionStatus": {"enum": ["present", "partial", "missing", "not-assessed", "not-applicable"]},
-    "assessment": {
-      "type": "object", "additionalProperties": false,
-      "required": ["id", "industry_code", "question_id", "status", "scope", "jurisdictions", "frameworks", "effective_from", "effective_to", "reviewed_at", "reviewer", "review_basis", "source_currency", "evidence_record_ids", "dimensions", "gaps", "rights"],
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "industry_code",
+        "status",
+        "basis"
+      ],
       "properties": {
-        "id": {"type": "string"}, "industry_code": {"type": "string"}, "question_id": {"type": "string"},
-        "status": {"enum": ["partial", "sufficient-for-stated-scope", "evidence-gap", "not-applicable"]},
-        "scope": {"type": "string", "minLength": 1}, "jurisdictions": {"type": "array", "items": {"type": "string"}}, "frameworks": {"type": "array", "items": {"type": "string"}},
-        "effective_from": {"type": ["string", "null"]}, "effective_to": {"type": ["string", "null"]},
-        "reviewed_at": {"type": "string"}, "reviewer": {"type": "string"}, "review_basis": {"type": "string", "minLength": 1}, "source_currency": {"enum": ["not-reverified-for-this-assessment", "verified-within-stated-scope", "unknown"]},
-        "evidence_record_ids": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
-        "dimensions": {"type": "object", "additionalProperties": false, "required": ["scope", "accounting-question", "evidence-inputs", "workflow", "controls", "worked-material", "empirical-support"], "properties": {"scope": {"$ref": "#/$defs/dimensionStatus"}, "accounting-question": {"$ref": "#/$defs/dimensionStatus"}, "evidence-inputs": {"$ref": "#/$defs/dimensionStatus"}, "workflow": {"$ref": "#/$defs/dimensionStatus"}, "controls": {"$ref": "#/$defs/dimensionStatus"}, "worked-material": {"$ref": "#/$defs/dimensionStatus"}, "empirical-support": {"$ref": "#/$defs/dimensionStatus"}}},
-        "gaps": {"type": "array", "items": {"type": "string"}}, "rights": {"type": "object"}
+        "industry_code": {
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "candidate",
+            "reviewed"
+          ]
+        },
+        "basis": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/basis"
+          }
+        }
+      }
+    },
+    "dimensionStatus": {
+      "enum": [
+        "present",
+        "partial",
+        "missing",
+        "not-assessed",
+        "not-applicable"
+      ]
+    },
+    "assessment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "scope_kind",
+        "industry_code",
+        "question_id",
+        "family_ids",
+        "status",
+        "scope",
+        "jurisdictions",
+        "frameworks",
+        "effective_from",
+        "effective_to",
+        "reviewed_at",
+        "reviewer",
+        "review_basis",
+        "source_currency",
+        "evidence_record_ids",
+        "dimensions",
+        "gaps",
+        "rights"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "scope_kind": {
+          "enum": [
+            "industry",
+            "shared-context"
+          ]
+        },
+        "industry_code": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "named_question_id": {
+          "type": "string"
+        },
+        "question_id": {
+          "type": "string"
+        },
+        "family_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "status": {
+          "enum": [
+            "partial",
+            "sufficient-for-stated-scope",
+            "evidence-gap",
+            "not-applicable"
+          ]
+        },
+        "scope": {
+          "type": "string",
+          "minLength": 1
+        },
+        "jurisdictions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "frameworks": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "effective_from": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "effective_to": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reviewed_at": {
+          "type": "string"
+        },
+        "reviewer": {
+          "type": "string"
+        },
+        "review_basis": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_currency": {
+          "enum": [
+            "not-reverified-for-this-assessment",
+            "verified-within-stated-scope",
+            "unknown"
+          ]
+        },
+        "evidence_record_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "dimensions": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "scope",
+            "accounting-question",
+            "evidence-inputs",
+            "workflow",
+            "controls",
+            "worked-material",
+            "empirical-support"
+          ],
+          "properties": {
+            "scope": {
+              "$ref": "#/$defs/dimensionStatus"
+            },
+            "accounting-question": {
+              "$ref": "#/$defs/dimensionStatus"
+            },
+            "evidence-inputs": {
+              "$ref": "#/$defs/dimensionStatus"
+            },
+            "workflow": {
+              "$ref": "#/$defs/dimensionStatus"
+            },
+            "controls": {
+              "$ref": "#/$defs/dimensionStatus"
+            },
+            "worked-material": {
+              "$ref": "#/$defs/dimensionStatus"
+            },
+            "empirical-support": {
+              "$ref": "#/$defs/dimensionStatus"
+            }
+          }
+        },
+        "gaps": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "rights": {
+          "type": "object"
+        }
       }
     }
   }

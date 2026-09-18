@@ -3,14 +3,19 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
 import { createHash } from "node:crypto";
-import { inflateRawSync } from "node:zlib";
+import { gunzipSync, gzipSync, inflateRawSync } from "node:zlib";
 import worker from "../dist/server/index.js";
 import {
   loadRecords,
   validateCorpus,
   validateSchema,
 } from "../scripts/validate.mjs";
-import { sourceFiles } from "../scripts/source-archive.mjs";
+import {
+  allSourceFiles,
+  currentCorpusVersion,
+  currentReleaseGzipPath,
+  sourceFiles,
+} from "../scripts/source-archive.mjs";
 
 const records = loadRecords(),
   byId = new Map(records.map((r) => [r.id, r]));
@@ -307,9 +312,8 @@ test("exports match canonical records, versions, and manifest hashes", async () 
 });
 
 test("source archive includes every current source byte and no recovery files", () => {
-  const bytes = fs.readFileSync(
-      "dist/client/downloads/accounting-agents-source.zip",
-    ),
+  const archivePath = "dist/client/downloads/accounting-agents-source.zip";
+  const bytes = fs.readFileSync(archivePath),
     archived = new Map();
   let offset = 0;
   while (bytes.readUInt32LE(offset) === 0x04034b50) {
@@ -325,6 +329,9 @@ test("source archive includes every current source byte and no recovery files", 
     archived.set(name, inflateRawSync(bytes.subarray(start, start + size)));
     offset = start + size;
   }
+  const omitted = allSourceFiles().filter(name => !archived.has(name));
+  assert.deepEqual(omitted, [currentReleaseGzipPath], "only the current redundant release gzip may be omitted");
+  assert.equal(archived.has(currentReleaseGzipPath), false);
   assert.deepEqual([...archived.keys()].sort(), sourceFiles());
   for (const [name, body] of archived) {
     assert.deepEqual(body, fs.readFileSync(name), name);
@@ -332,6 +339,34 @@ test("source archive includes every current source byte and no recovery files", 
   }
   assert.ok(archived.has("data/corpus/source.json"));
   assert.ok(archived.has("tests/corpus.test.mjs"));
+
+  const currentReleaseJsonPath = `data/releases/${currentCorpusVersion}/corpus.json`;
+  const currentReleaseManifestPath = `data/releases/${currentCorpusVersion}/manifest.json`;
+  const currentReleaseGzip = fs.readFileSync(currentReleaseGzipPath);
+  const currentReleaseJson = fs.readFileSync(currentReleaseJsonPath);
+  assert.deepEqual(archived.get(currentReleaseJsonPath), currentReleaseJson);
+  assert.deepEqual(gunzipSync(currentReleaseGzip), archived.get(currentReleaseJsonPath));
+  assert.deepEqual(gunzipSync(gzipSync(archived.get(currentReleaseJsonPath), { level: 9, mtime: 0 })), archived.get(currentReleaseJsonPath));
+
+  const currentManifest = JSON.parse(archived.get(currentReleaseManifestPath));
+  const currentGzipEntry = currentManifest.files.find(file => file.path === "corpus.json.gz");
+  assert.ok(currentGzipEntry, "current release manifest must describe the omitted gzip");
+  assert.equal(currentGzipEntry.bytes, currentReleaseGzip.length);
+  assert.equal(currentGzipEntry.sha256, createHash("sha256").update(currentReleaseGzip).digest("hex"));
+
+  for (const entry of fs.readdirSync("data/releases", { withFileTypes: true })) {
+    if (!entry.isDirectory() || entry.name === currentCorpusVersion) continue;
+    const priorGzipPath = `data/releases/${entry.name}/corpus.json.gz`;
+    if (fs.existsSync(priorGzipPath)) {
+      assert.deepEqual(archived.get(priorGzipPath), fs.readFileSync(priorGzipPath), `${priorGzipPath}: prior release gzip must be retained byte-for-byte`);
+    }
+  }
+  const archiveManifest = JSON.parse(fs.readFileSync("dist/client/downloads/manifest.json", "utf8"));
+  const archiveEntry = archiveManifest.files.find(file => file.path === "/downloads/accounting-agents-source.zip");
+  assert.ok(archiveEntry);
+  assert.equal(archiveEntry.bytes, bytes.length);
+  assert.equal(archiveEntry.sha256, createHash("sha256").update(bytes).digest("hex"));
+  assert.ok(bytes.length <= 25 * 1024 * 1024, `${archivePath} must stay within the 25 MiB hosting limit`);
 });
 
 

@@ -1,12 +1,12 @@
 {
   "schema_version": "1.0.0",
-  "mapping_version": "2026-09-17.1252",
+  "mapping_version": "2026-09-17.1272",
   "topology_version": "2026-09-11.1",
-  "corpus_version": "2026-09-17.2",
+  "corpus_version": "2026-09-17.3",
   "generated_at": "2026-09-17",
-  "corpus_sha256": "d93ca14c9398637631a3c80568626a02e9cdc134e38159cc81f1db5028003e1b",
+  "corpus_sha256": "56d1770b155c2dc80566368573ae2955b4c2120f077d78804545615de4880c59",
   "rules_sha256": "550b2bb485399af996bac6ed34542d7a91170d4b31b5e5026e0e9c2c32068b9d",
-  "overrides_sha256": "1b324c559b493c57abf5fe3fd59c5fc3d1d4cf13313916d0ec33a037543e0e52",
+  "overrides_sha256": "44339377cf591deb2c17755228adeb12ef2e98cf39dbc89b1a5cd09576b393c0",
   "method": "Deterministic title/topic associations, conservative industry crosswalk, and explicit editorial additions. All initial links are candidates; source review status is unchanged.",
   "mappings": [
     {
@@ -5112,6 +5112,47 @@
         }
       ],
       "note": "Selected contractor questions and original connected worked material. Developer and owner branches remain distinct; no descendant sufficiency inferred. Association review only; accounting adequacy and source review limits remain separate."
+    },
+    {
+      "record_id": "example-erp-journal-lineage",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Agent engineering",
+              "rule": "topic-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/2",
+              "matched": "Data and interoperability",
+              "rule": "topic-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-security",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/3",
+              "matched": "Security and identity",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
     },
     {
       "record_id": "example-icfr-control-review",
@@ -19040,6 +19081,142 @@
       "note": "Reviewed discovery relationship to the named questions and explicitly declared industry scope; does not confer accounting adequacy or professional verification."
     },
     {
+      "record_id": "guide-us-accounting-agent-evidence-boundaries",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "US-scoped evidence packet with explicit source-to-ledger, security, authority, evaluation, deployment, and rights question families; associations support discovery only and do not confer accounting adequacy or professional verification.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-17: Reviewed the named family association and US shared-context scope. The ERP fixture, source checks, empirical evidence, and rights matrix remain bounded; no industry-specific coverage or accounting conclusion is inferred.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-data-lineage",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "US-scoped evidence packet with explicit source-to-ledger, security, authority, evaluation, deployment, and rights question families; associations support discovery only and do not confer accounting adequacy or professional verification.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-17: Reviewed the named family association and US shared-context scope. The ERP fixture, source checks, empirical evidence, and rights matrix remain bounded; no industry-specific coverage or accounting conclusion is inferred.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-deployment-evidence",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "US-scoped evidence packet with explicit source-to-ledger, security, authority, evaluation, deployment, and rights question families; associations support discovery only and do not confer accounting adequacy or professional verification.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-17: Reviewed the named family association and US shared-context scope. The ERP fixture, source checks, empirical evidence, and rights matrix remain bounded; no industry-specific coverage or accounting conclusion is inferred.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-evaluation",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "US-scoped evidence packet with explicit source-to-ledger, security, authority, evaluation, deployment, and rights question families; associations support discovery only and do not confer accounting adequacy or professional verification.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-17: Reviewed the named family association and US shared-context scope. The ERP fixture, source checks, empirical evidence, and rights matrix remain bounded; no industry-specific coverage or accounting conclusion is inferred.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-human-authority",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "US-scoped evidence packet with explicit source-to-ledger, security, authority, evaluation, deployment, and rights question families; associations support discovery only and do not confer accounting adequacy or professional verification.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-17: Reviewed the named family association and US shared-context scope. The ERP fixture, source checks, empirical evidence, and rights matrix remain bounded; no industry-specific coverage or accounting conclusion is inferred.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-interfaces",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "US-scoped evidence packet with explicit source-to-ledger, security, authority, evaluation, deployment, and rights question families; associations support discovery only and do not confer accounting adequacy or professional verification.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-17: Reviewed the named family association and US shared-context scope. The ERP fixture, source checks, empirical evidence, and rights matrix remain bounded; no industry-specific coverage or accounting conclusion is inferred.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-reuse-rights",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "US-scoped evidence packet with explicit source-to-ledger, security, authority, evaluation, deployment, and rights question families; associations support discovery only and do not confer accounting adequacy or professional verification.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-17: Reviewed the named family association and US shared-context scope. The ERP fixture, source checks, empirical evidence, and rights matrix remain bounded; no industry-specific coverage or accounting conclusion is inferred.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-security",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "US-scoped evidence packet with explicit source-to-ledger, security, authority, evaluation, deployment, and rights question families; associations support discovery only and do not confer accounting adequacy or professional verification.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-17: Reviewed the named family association and US shared-context scope. The ERP fixture, source checks, empirical evidence, and rights matrix remain bounded; no industry-specific coverage or accounting conclusion is inferred.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "Reviewed the named family association and US shared-context scope. The ERP fixture, source checks, empirical evidence, and rights matrix remain bounded; no industry-specific coverage or accounting conclusion is inferred."
+    },
+    {
       "record_id": "guide-us-nonprofit-contributions-close",
       "question_mappings": [
         {
@@ -21211,7 +21388,7 @@
             },
             {
               "field": "/data",
-              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "matched": "2026-09-17: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
               "rule": "editorial-review"
             }
           ]
@@ -21227,7 +21404,7 @@
             },
             {
               "field": "/data",
-              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "matched": "2026-09-17: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
               "rule": "editorial-review"
             }
           ]
@@ -21243,7 +21420,7 @@
             },
             {
               "field": "/data",
-              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "matched": "2026-09-17: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
               "rule": "editorial-review"
             }
           ]
@@ -21259,7 +21436,7 @@
             },
             {
               "field": "/data",
-              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "matched": "2026-09-17: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
               "rule": "editorial-review"
             }
           ]
@@ -29190,7 +29367,7 @@
             },
             {
               "field": "/data",
-              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "matched": "2026-09-17: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
               "rule": "editorial-review"
             }
           ]
@@ -29211,7 +29388,7 @@
             },
             {
               "field": "/data",
-              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "matched": "2026-09-17: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
               "rule": "editorial-review"
             }
           ]
@@ -29227,7 +29404,7 @@
             },
             {
               "field": "/data",
-              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "matched": "2026-09-17: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
               "rule": "editorial-review"
             }
           ]
@@ -29845,7 +30022,7 @@
             },
             {
               "field": "/data",
-              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "matched": "2026-09-17: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
               "rule": "editorial-review"
             }
           ]
@@ -29866,7 +30043,7 @@
             },
             {
               "field": "/data",
-              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "matched": "2026-09-17: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
               "rule": "editorial-review"
             }
           ]
@@ -29882,7 +30059,7 @@
             },
             {
               "field": "/data",
-              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "matched": "2026-09-17: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
               "rule": "editorial-review"
             }
           ]
@@ -30224,33 +30401,49 @@
       "record_id": "src_1sbtyzp",
       "question_mappings": [
         {
-          "question_id": "q-evaluation",
+          "question_id": "q-deployment-evidence",
           "status": "reviewed",
           "basis": [
             {
               "field": "/data/source_review/mapping_rationale",
-              "matched": "The source concerns human + ai in accounting: early evidence from the field across accounting, audit, finance, regulation, or agent infrastructure; no single NAICS-US2022 industry is evidenced, so no specific industry code is assigned.",
+              "matched": "The 2026-09-17 empirical review rechecked this source at its stated scope; it remains shared context and does not establish industry-specific accounting adequacy.",
               "rule": "editorial-association"
             },
             {
               "field": "/data/source_review/mapping_rationale",
-              "matched": "2026-09-11: The source concerns human + ai in accounting: early evidence from the field across accounting, audit, finance, regulation, or agent infrastructure; no single NAICS-US2022 industry is evidenced, so no specific industry code is assigned. Association review scope: abstract-or-landing; supported-scope. This does not establish accounting adequacy.",
+              "matched": "2026-09-17: The 2026-09-17 empirical review rechecked this source at its stated scope; it remains shared context and does not establish industry-specific accounting adequacy. Association review scope: abstract-or-landing; supported-scope. This does not establish accounting adequacy.",
               "rule": "editorial-review"
             }
           ]
         },
         {
-          "question_id": "q-ledger-close",
+          "question_id": "q-evaluation",
           "status": "reviewed",
           "basis": [
             {
               "field": "/data/source_review/mapping_rationale",
-              "matched": "The source concerns human + ai in accounting: early evidence from the field across accounting, audit, finance, regulation, or agent infrastructure; no single NAICS-US2022 industry is evidenced, so no specific industry code is assigned.",
+              "matched": "The 2026-09-17 empirical review rechecked this source at its stated scope; it remains shared context and does not establish industry-specific accounting adequacy.",
               "rule": "editorial-association"
             },
             {
               "field": "/data/source_review/mapping_rationale",
-              "matched": "2026-09-11: The source concerns human + ai in accounting: early evidence from the field across accounting, audit, finance, regulation, or agent infrastructure; no single NAICS-US2022 industry is evidenced, so no specific industry code is assigned. Association review scope: abstract-or-landing; supported-scope. This does not establish accounting adequacy.",
+              "matched": "2026-09-17: The 2026-09-17 empirical review rechecked this source at its stated scope; it remains shared context and does not establish industry-specific accounting adequacy. Association review scope: abstract-or-landing; supported-scope. This does not establish accounting adequacy.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-human-authority",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/source_review/mapping_rationale",
+              "matched": "The 2026-09-17 empirical review rechecked this source at its stated scope; it remains shared context and does not establish industry-specific accounting adequacy.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/source_review/mapping_rationale",
+              "matched": "2026-09-17: The 2026-09-17 empirical review rechecked this source at its stated scope; it remains shared context and does not establish industry-specific accounting adequacy. Association review scope: abstract-or-landing; supported-scope. This does not establish accounting adequacy.",
               "rule": "editorial-review"
             }
           ]
@@ -30258,7 +30451,7 @@
       ],
       "industry_scope": "shared-context",
       "industry_mappings": [],
-      "note": "The source concerns human + ai in accounting: early evidence from the field across accounting, audit, finance, regulation, or agent infrastructure; no single NAICS-US2022 industry is evidenced, so no specific industry code is assigned. Association review scope: abstract-or-landing; supported-scope. This does not establish accounting adequacy."
+      "note": "The 2026-09-17 empirical review rechecked this source at its stated scope; it remains shared context and does not establish industry-specific accounting adequacy. Association review scope: abstract-or-landing; supported-scope. This does not establish accounting adequacy."
     },
     {
       "record_id": "src_1slzieg",
@@ -30778,17 +30971,33 @@
       "record_id": "src_1v8cm5i",
       "question_mappings": [
         {
-          "question_id": "q-ledger-close",
+          "question_id": "q-deployment-evidence",
           "status": "reviewed",
           "basis": [
             {
               "field": "/data/source_review/mapping_rationale",
-              "matched": "The source concerns u.s. venture uses copilot for finance for reconciliation across accounting, audit, finance, regulation, or agent infrastructure; no single NAICS-US2022 industry is evidenced, so no specific industry code is assigned.",
+              "matched": "The 2026-09-17 empirical review rechecked this source at its stated scope; it remains shared context and does not establish industry-specific accounting adequacy.",
               "rule": "editorial-association"
             },
             {
               "field": "/data/source_review/mapping_rationale",
-              "matched": "2026-09-11: The source concerns u.s. venture uses copilot for finance for reconciliation across accounting, audit, finance, regulation, or agent infrastructure; no single NAICS-US2022 industry is evidenced, so no specific industry code is assigned. Association review scope: abstract-or-landing; supported-scope. This does not establish accounting adequacy.",
+              "matched": "2026-09-17: The 2026-09-17 empirical review rechecked this source at its stated scope; it remains shared context and does not establish industry-specific accounting adequacy. Association review scope: substantive-excerpt; supported-scope. This does not establish accounting adequacy.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-evaluation",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/source_review/mapping_rationale",
+              "matched": "The 2026-09-17 empirical review rechecked this source at its stated scope; it remains shared context and does not establish industry-specific accounting adequacy.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/source_review/mapping_rationale",
+              "matched": "2026-09-17: The 2026-09-17 empirical review rechecked this source at its stated scope; it remains shared context and does not establish industry-specific accounting adequacy. Association review scope: substantive-excerpt; supported-scope. This does not establish accounting adequacy.",
               "rule": "editorial-review"
             }
           ]
@@ -30796,7 +31005,7 @@
       ],
       "industry_scope": "shared-context",
       "industry_mappings": [],
-      "note": "The source concerns u.s. venture uses copilot for finance for reconciliation across accounting, audit, finance, regulation, or agent infrastructure; no single NAICS-US2022 industry is evidenced, so no specific industry code is assigned. Association review scope: abstract-or-landing; supported-scope. This does not establish accounting adequacy."
+      "note": "The 2026-09-17 empirical review rechecked this source at its stated scope; it remains shared context and does not establish industry-specific accounting adequacy. Association review scope: substantive-excerpt; supported-scope. This does not establish accounting adequacy."
     },
     {
       "record_id": "src_1vsed7d",
@@ -35272,7 +35481,7 @@
             },
             {
               "field": "/data",
-              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "matched": "2026-09-17: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
               "rule": "editorial-review"
             }
           ]
@@ -35288,7 +35497,7 @@
             },
             {
               "field": "/data",
-              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "matched": "2026-09-17: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
               "rule": "editorial-review"
             }
           ]
@@ -35304,7 +35513,7 @@
             },
             {
               "field": "/data",
-              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "matched": "2026-09-17: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
               "rule": "editorial-review"
             }
           ]
@@ -36367,7 +36576,7 @@
             },
             {
               "field": "/data",
-              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "matched": "2026-09-17: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
               "rule": "editorial-review"
             }
           ]
@@ -36383,7 +36592,7 @@
             },
             {
               "field": "/data",
-              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "matched": "2026-09-17: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
               "rule": "editorial-review"
             }
           ]
@@ -36399,7 +36608,7 @@
             },
             {
               "field": "/data",
-              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "matched": "2026-09-17: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
               "rule": "editorial-review"
             }
           ]
@@ -36415,7 +36624,7 @@
             },
             {
               "field": "/data",
-              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "matched": "2026-09-17: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
               "rule": "editorial-review"
             }
           ]
@@ -36431,7 +36640,7 @@
             },
             {
               "field": "/data",
-              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "matched": "2026-09-17: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
               "rule": "editorial-review"
             }
           ]

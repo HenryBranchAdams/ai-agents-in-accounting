@@ -13,7 +13,7 @@ const byId=new Map(records.map(r=>[r.id,r]));
 const request=p=>worker.fetch(new Request('https://corpus.example'+p));
 
 test('declared research population resolves to answers, sources and actual individual reviews',()=>{
- const counts=validateResearch(records);assert.equal(counts.inherited_dispositions,715);assert.equal(counts.named_questions,191);
+ const counts=validateResearch(records);const questionData=read('data/coverage/research-questions.json');const criteria=read('data/coverage/research-criteria.json');assert.equal(counts.inherited_dispositions,715);assert.equal(counts.named_questions,questionData.questions.length);assert.equal(counts.named_questions,criteria.population.named_research_questions);
  const declared=read('data/coverage/research-questions.json').questions;
  assert.deepEqual(new Set(declared.map(q=>q.id)),new Set(records.flatMap(r=>(r.data?.research_questions||[]).map(q=>q.id))), 'Every canonical named question must be in the retrieval population');
  const schema=read('schemas/research.schema.json');
@@ -58,6 +58,16 @@ test('named question links, review locators and a leaf review are visible on rea
  for(const href of record.matchAll(/href="#([^"]+)"/g))assert.ok(record.includes(`id="${href[1]}"`),`Missing section target ${href[1]}`);
  const leaf=await(await request('/coverage?industry=111110')).text();assert.ok(leaf.includes('shared treatment justified'));assert.ok(leaf.includes('seed-production'));assert.ok(leaf.includes('Parent subsector context only'));
  const schema=await request('/schemas/research.schema.json');assert.equal(schema.status,200);
+});
+
+test('coverage renders shared-context assessments under a generic scoped heading',async()=>{
+ const response=await request('/coverage');assert.equal(response.status,200);
+ const html=await response.text();
+ assert.ok(html.includes('<h2>Scoped assessments</h2>'));
+ assert.ok(html.includes('Shared context'));
+ assert.ok(html.includes('coverage-aa-i127-security-boundary'));
+ assert.doesNotMatch(html,/Earlier scoped WIP assessment/);
+ assert.doesNotMatch(html,/No earlier WIP assessment matches this exact scope/);
 });
 
 test('original worked arithmetic and legal cohort examples retain their stated scope',()=>{
