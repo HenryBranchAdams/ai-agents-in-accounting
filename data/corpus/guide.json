@@ -47255,12 +47255,18 @@
     "publisher": "Accounting Agents contributors",
     "source_url": null,
     "source_ids": [
-      "src_roadmap_naics2022_manual"
+      "src_roadmap_naics2022_manual",
+      "src_construction_fasb_2014_09",
+      "src_nonprofit_fasb_2018_08",
+      "src_education_fsa_2526_withdrawal",
+      "src_education_fsa_2526_disbursement",
+      "src_education_gasb35"
     ],
     "related_ids": [
       "guide-q-revenue",
       "guide-q-grants-contributions",
-      "guide-q-payroll"
+      "guide-q-payroll",
+      "guide-us-education-tuition-aid"
     ],
     "review_status": "editorially-reviewed",
     "reviewed_at": "2026-09-11",
@@ -52510,6 +52516,351 @@
           "src_fifar_alert_review_2025"
         ]
       }
+    }
+  },
+  {
+    "topics": [
+      "Education",
+      "Student aid",
+      "Revenue and customer contracts",
+      "Source data, lineage and reconciliation"
+    ],
+    "industries": [
+      "Educational Services"
+    ],
+    "jurisdiction": "United States; declared entity and reporting framework required",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "related_ids": [
+      "guide-industry-naics2022-611",
+      "guide-us-nonprofit-contributions-close",
+      "example-us-education-tuition-aid-clearing"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-18",
+    "provenance": {
+      "added_on": "2026-09-18",
+      "reviewer": "Codex AI-assisted source-scoped research",
+      "note": "Original synthesis and synthetic evidence only. No professional review or production validation."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "No external full text stored; original publisher rights remain separate.",
+      "full_text_stored": false
+    },
+    "id": "guide-us-education-tuition-aid",
+    "kind": "guide",
+    "title": "US education tuition, student aid and framework boundaries",
+    "summary": "Enrollment-to-ledger and aid-clearing research for a declared 2025-2026 higher-education population, with public/nonprofit/for-profit and withdrawal counterexamples.",
+    "source_ids": [
+      "src_education_fsa_2526_disbursement",
+      "src_education_fsa_2526_withdrawal",
+      "src_education_gasb35",
+      "src_nonprofit_fasb_2018_08",
+      "src_construction_fasb_2014_09",
+      "src_roadmap_gasb34_basis",
+      "src_roadmap_gasb103"
+    ],
+    "data": {
+      "version": "2026-09-18.111",
+      "scope": "Nongovernmental nonprofit higher education instructional term January-April2026; public and for-profit routes separately qualified. Not an institution-wide accounting manual.",
+      "industry_codes": [
+        "611"
+      ],
+      "question_family_ids": [
+        "q-revenue",
+        "q-grants-contributions"
+      ],
+      "roles": [
+        {
+          "role": "nongovernmental nonprofit",
+          "framework": "US GAAP; selected model only",
+          "route": "Tuition exchange separated from donor/award conditions and restrictions."
+        },
+        {
+          "role": "public state/local institution",
+          "framework": "GASB; select actual reporting model",
+          "route": "GASB35/34 and later amendments; do not inherit nonprofit entries or classify appropriations as student revenue."
+        },
+        {
+          "role": "for-profit provider",
+          "framework": "US GAAP; applicable contracts and entity facts",
+          "route": "Tuition recognition needs its own contract/progress evidence; no nonprofit net-asset restriction presentation."
+        }
+      ],
+      "branch_dispositions": [
+        {
+          "branch": "K-12",
+          "disposition": "No Title IV assumption; entity/government and funding model require separate determination."
+        },
+        {
+          "branch": "higher education",
+          "disposition": "Selected eligible nonprofit term/aid case; eligibility is an explicit assumption."
+        },
+        {
+          "branch": "other training",
+          "disposition": "Course contracts and program eligibility differ; not covered by the Title IV fixture."
+        },
+        {
+          "branch": "auxiliary housing/dining",
+          "disposition": "Identify distinct services, terms and price allocation; not included in tuition fixture."
+        },
+        {
+          "branch": "endowments and gifts",
+          "disposition": "Separate donor/recipient/condition/restriction analysis; linked nonprofit package remains partial."
+        },
+        {
+          "branch": "appropriations",
+          "disposition": "Public funding legal terms and GASB eligibility/presentation require separate evidence, not a customer-revenue inference."
+        }
+      ],
+      "workflows": [
+        "Join enrollment changes to signed term contract and invoice IDs; reconcile omitted/duplicate/withdrawn enrollment before billing totals.",
+        "Reconcile gross billing, institutional discount and tuition refund policy separately from third-party payments.",
+        "Support service progress and review deferred/unbilled balances at reporting date.",
+        "Join award year/recipient/disbursement IDs to aid cash and student credits; settle excess separately.",
+        "At withdrawal, retain separate refund-policy memo and R2T4 calculation; bridge both to student and cash balances.",
+        "Reconcile student AR, aid clearing, cash and GL; log timing differences and require human approval."
+      ],
+      "controls": [
+        "Synthetic IDs only, no student personal information",
+        "Cutoff and duplicate event control",
+        "No aid cash automatically recognized as revenue",
+        "Retain source edition, right and authority limitations"
+      ],
+      "research_questions": [
+        {
+          "id": "rq-us-education-tuition-term",
+          "question": "How does a selected nongovernmental education term connect billing to earned and deferred tuition?",
+          "answer": "An instructional contract needs identified promises and progress evidence before revenue timing is selected. The fixture assumes one evenly delivered instructional service over four months; its monthly allocation is a stated model, not a rule that billing or cash establishes revenue. Refunds and institutional discounts change the scoped transaction price separately.",
+          "family_ids": [
+            "q-revenue",
+            "q-grants-contributions"
+          ],
+          "scope": "Selected US nongovernmental nonprofit higher-education term, January-April2026; other roles are explicit counterexamples",
+          "framework_scope": "US GAAP selected tuition illustration; GASB is routing only",
+          "source_ids": [
+            "src_construction_fasb_2014_09"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_construction_fasb_2014_09",
+              "locator": "ASU2014-09 SectionA, 606-10-25-23 through25-27 and25-31 through25-37; historical amendment text"
+            }
+          ],
+          "answer_status": "sourced-answer-bounded",
+          "remaining_gaps": [
+            "Current consolidated FASB/GASB amendments and institution-specific applicability are not verified by the historical amendment sources.",
+            "No real enrollment, student, aid-program or ledger evidence; fixture is synthetic.",
+            "No professional signoff; permitted operational evidence would be needed to establish real completeness.",
+            "2026-2027 Title IV changes, program exceptions and institution refund terms require separate period-specific review."
+          ],
+          "inputs": [
+            "entity/framework",
+            "student/term and invoice IDs",
+            "instructional service periods",
+            "aid recipient/award year",
+            "refund policy and independent R2T4 calculation",
+            "cash and GL control totals"
+          ],
+          "controls": [
+            "Independent source-to-ledger population reconciliation",
+            "Separate tuition, aid-clearing and restricted-resource review",
+            "Human approval of recognition and refund conclusions"
+          ],
+          "assessment": {
+            "status": "partial",
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "dimensions": {
+              "scope": "present",
+              "accounting-question": "partial",
+              "evidence-inputs": "present",
+              "workflow": "present",
+              "controls": "present",
+              "worked-material": "present",
+              "empirical-support": "not-assessed"
+            }
+          }
+        },
+        {
+          "id": "rq-us-education-aid-payment",
+          "question": "Does third-party aid create additional institutional revenue?",
+          "answer": "A grant awarded to an identified student and paid toward that student’s existing tuition obligation is a payment source, not a second revenue stream. Institutional grants, donor gifts and public appropriations require separate recipient and framework analysis.",
+          "family_ids": [
+            "q-revenue",
+            "q-grants-contributions"
+          ],
+          "scope": "Selected US nongovernmental nonprofit higher-education term, January-April2026; other roles are explicit counterexamples",
+          "framework_scope": "US GAAP selected tuition illustration; GASB is routing only",
+          "source_ids": [
+            "src_nonprofit_fasb_2018_08"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_nonprofit_fasb_2018_08",
+              "locator": "ASU2018-08, 958-605-55-14B through14C, University example; PDF pages29-30 one-based"
+            }
+          ],
+          "answer_status": "sourced-answer-bounded",
+          "remaining_gaps": [
+            "Current consolidated FASB/GASB amendments and institution-specific applicability are not verified by the historical amendment sources.",
+            "No real enrollment, student, aid-program or ledger evidence; fixture is synthetic.",
+            "No professional signoff; permitted operational evidence would be needed to establish real completeness.",
+            "2026-2027 Title IV changes, program exceptions and institution refund terms require separate period-specific review."
+          ],
+          "inputs": [
+            "entity/framework",
+            "student/term and invoice IDs",
+            "instructional service periods",
+            "aid recipient/award year",
+            "refund policy and independent R2T4 calculation",
+            "cash and GL control totals"
+          ],
+          "controls": [
+            "Independent source-to-ledger population reconciliation",
+            "Separate tuition, aid-clearing and restricted-resource review",
+            "Human approval of recognition and refund conclusions"
+          ],
+          "assessment": {
+            "status": "partial",
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "dimensions": {
+              "scope": "present",
+              "accounting-question": "partial",
+              "evidence-inputs": "present",
+              "workflow": "present",
+              "controls": "present",
+              "worked-material": "present",
+              "empirical-support": "not-assessed"
+            }
+          }
+        },
+        {
+          "id": "rq-us-education-withdrawal-return",
+          "question": "How are withdrawal, institutional refunds and Title IV returns kept separate?",
+          "answer": "Reconcile the institution’s refund calculation and the program return calculation separately. A student credit balance, a tuition refund and a return to the Department are different events. The fixture takes the program return as an independently supplied synthetic input; it does not calculate statutory R2T4 or infer it from tuition retained.",
+          "family_ids": [
+            "q-revenue",
+            "q-grants-contributions"
+          ],
+          "scope": "Selected US nongovernmental nonprofit higher-education term, January-April2026; other roles are explicit counterexamples",
+          "framework_scope": "US GAAP selected tuition illustration; GASB is routing only",
+          "source_ids": [
+            "src_education_fsa_2526_withdrawal",
+            "src_education_fsa_2526_disbursement"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_education_fsa_2526_withdrawal",
+              "locator": "2025-2026 Volume5 Chapter1: institutional refund policies and credit balances"
+            },
+            {
+              "source_id": "src_education_fsa_2526_disbursement",
+              "locator": "2025-2026 Volume4 Chapter2: Title IV credit balance versus institutional refund"
+            }
+          ],
+          "answer_status": "sourced-answer-bounded",
+          "remaining_gaps": [
+            "Current consolidated FASB/GASB amendments and institution-specific applicability are not verified by the historical amendment sources.",
+            "No real enrollment, student, aid-program or ledger evidence; fixture is synthetic.",
+            "No professional signoff; permitted operational evidence would be needed to establish real completeness.",
+            "2026-2027 Title IV changes, program exceptions and institution refund terms require separate period-specific review."
+          ],
+          "inputs": [
+            "entity/framework",
+            "student/term and invoice IDs",
+            "instructional service periods",
+            "aid recipient/award year",
+            "refund policy and independent R2T4 calculation",
+            "cash and GL control totals"
+          ],
+          "controls": [
+            "Independent source-to-ledger population reconciliation",
+            "Separate tuition, aid-clearing and restricted-resource review",
+            "Human approval of recognition and refund conclusions"
+          ],
+          "assessment": {
+            "status": "partial",
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "dimensions": {
+              "scope": "present",
+              "accounting-question": "partial",
+              "evidence-inputs": "present",
+              "workflow": "present",
+              "controls": "present",
+              "worked-material": "present",
+              "empirical-support": "not-assessed"
+            }
+          }
+        },
+        {
+          "id": "rq-us-education-framework-routing",
+          "question": "Can a public institution inherit the nonprofit tuition and restricted-resource analysis?",
+          "answer": "No. GASB35 brings public colleges into the GASB34 reporting framework; choose the applicable reporting entity and activity model before entries or presentation. Nongovernmental nonprofit and for-profit education routes do not automatically apply to public institutions. K-12 and training providers do not automatically participate in Title IV.",
+          "family_ids": [
+            "q-revenue",
+            "q-grants-contributions"
+          ],
+          "scope": "Selected US nongovernmental nonprofit higher-education term, January-April2026; other roles are explicit counterexamples",
+          "framework_scope": "US GAAP selected tuition illustration; GASB is routing only",
+          "source_ids": [
+            "src_education_gasb35"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_education_gasb35",
+              "locator": "GASB35 paragraphs2-5; historical original with later-amendment limitation"
+            }
+          ],
+          "answer_status": "sourced-answer-bounded",
+          "remaining_gaps": [
+            "Current consolidated FASB/GASB amendments and institution-specific applicability are not verified by the historical amendment sources.",
+            "No real enrollment, student, aid-program or ledger evidence; fixture is synthetic.",
+            "No professional signoff; permitted operational evidence would be needed to establish real completeness.",
+            "2026-2027 Title IV changes, program exceptions and institution refund terms require separate period-specific review."
+          ],
+          "inputs": [
+            "entity/framework",
+            "student/term and invoice IDs",
+            "instructional service periods",
+            "aid recipient/award year",
+            "refund policy and independent R2T4 calculation",
+            "cash and GL control totals"
+          ],
+          "controls": [
+            "Independent source-to-ledger population reconciliation",
+            "Separate tuition, aid-clearing and restricted-resource review",
+            "Human approval of recognition and refund conclusions"
+          ],
+          "assessment": {
+            "status": "partial",
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "dimensions": {
+              "scope": "present",
+              "accounting-question": "partial",
+              "evidence-inputs": "present",
+              "workflow": "present",
+              "controls": "present",
+              "worked-material": "present",
+              "empirical-support": "not-assessed"
+            }
+          }
+        }
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "remaining_gaps": [
+        "Current consolidated FASB/GASB amendments and institution-specific applicability are not verified by the historical amendment sources.",
+        "No real enrollment, student, aid-program or ledger evidence; fixture is synthetic.",
+        "No professional signoff; permitted operational evidence would be needed to establish real completeness.",
+        "2026-2027 Title IV changes, program exceptions and institution refund terms require separate period-specific review."
+      ]
     }
   }
 ]

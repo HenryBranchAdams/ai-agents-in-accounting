@@ -1,12 +1,12 @@
 {
   "schema_version": "1.0.0",
-  "mapping_version": "2026-09-18.1",
+  "mapping_version": "2026-09-18.1111",
   "topology_version": "2026-09-11.1",
-  "corpus_version": "2026-09-18.1",
+  "corpus_version": "2026-09-18.1111",
   "generated_at": "2026-09-18",
-  "corpus_sha256": "e9eed736c146541ea9f8a88b952d1e6dc3e818feaf776f54fb93a06ec4076782",
+  "corpus_sha256": "2b2f2cc67c95321dd33c46cccbab0c3fc31eaeae1ef269f9aeffb686ed6296e0",
   "rules_sha256": "550b2bb485399af996bac6ed34542d7a91170d4b31b5e5026e0e9c2c32068b9d",
-  "overrides_sha256": "2f4842d36202937d1b98d6feb21eacd0fdebf1bad95332c7c9c6950553669c05",
+  "overrides_sha256": "d077271896a2b05e3cfd6aca3e10cd606b4d4b754069b2d15736582a6c9f4397",
   "method": "Deterministic title/topic associations, conservative industry crosswalk, and explicit editorial additions. All initial links are candidates; source review status is unchanged.",
   "mappings": [
     {
@@ -5296,6 +5296,70 @@
       "industry_scope": "shared-context",
       "industry_mappings": [],
       "note": "Reviewed association with the original editorial content. This does not validate accounting treatment or the adequacy of its external references."
+    },
+    {
+      "record_id": "example-us-education-tuition-aid-clearing",
+      "question_mappings": [
+        {
+          "question_id": "q-data-lineage",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "reconcil",
+              "rule": "title:data-lineage"
+            }
+          ]
+        },
+        {
+          "question_id": "q-evaluation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Synthetic",
+              "rule": "title:evaluation"
+            }
+          ]
+        },
+        {
+          "question_id": "q-grants-contributions",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Explicit bounded education package association; no industry-wide sufficiency.",
+              "rule": "editorial-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-revenue",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Explicit bounded education package association; no industry-wide sufficiency.",
+              "rule": "editorial-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "611",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Explicit bounded education package association; no industry-wide sufficiency.",
+              "rule": "editorial-association"
+            }
+          ]
+        }
+      ],
+      "note": "Candidate association with this industry scope; applicability and depth are not inferred."
     },
     {
       "record_id": "example-us-management-allocation-budget-actual",
@@ -19318,6 +19382,48 @@
       "industry_scope": "shared-context",
       "industry_mappings": [],
       "note": "Reviewed the named family association and US shared-context scope. The ERP fixture, source checks, empirical evidence, and rights matrix remain bounded; no industry-specific coverage or accounting conclusion is inferred."
+    },
+    {
+      "record_id": "guide-us-education-tuition-aid",
+      "question_mappings": [
+        {
+          "question_id": "q-grants-contributions",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Explicit bounded education package association; no industry-wide sufficiency.",
+              "rule": "editorial-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-revenue",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Explicit bounded education package association; no industry-wide sufficiency.",
+              "rule": "editorial-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "611",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Explicit bounded education package association; no industry-wide sufficiency.",
+              "rule": "editorial-association"
+            }
+          ]
+        }
+      ],
+      "note": "Candidate association with this industry scope; applicability and depth are not inferred."
     },
     {
       "record_id": "guide-us-nonprofit-contributions-close",
@@ -35465,6 +35571,143 @@
       "industry_scope": "shared-context",
       "industry_mappings": [],
       "note": "Shared context; no industry-specific coverage credit."
+    },
+    {
+      "record_id": "src_education_fsa_2526_disbursement",
+      "question_mappings": [
+        {
+          "question_id": "q-grants-contributions",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Explicit bounded education package association; no industry-wide sufficiency.",
+              "rule": "editorial-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-revenue",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Explicit bounded education package association; no industry-wide sufficiency.",
+              "rule": "editorial-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "611",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Explicit bounded education package association; no industry-wide sufficiency.",
+              "rule": "editorial-association"
+            }
+          ]
+        }
+      ],
+      "note": "Candidate association with this industry scope; applicability and depth are not inferred."
+    },
+    {
+      "record_id": "src_education_fsa_2526_withdrawal",
+      "question_mappings": [
+        {
+          "question_id": "q-grants-contributions",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Explicit bounded education package association; no industry-wide sufficiency.",
+              "rule": "editorial-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-revenue",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Explicit bounded education package association; no industry-wide sufficiency.",
+              "rule": "editorial-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "611",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Explicit bounded education package association; no industry-wide sufficiency.",
+              "rule": "editorial-association"
+            }
+          ]
+        }
+      ],
+      "note": "Candidate association with this industry scope; applicability and depth are not inferred."
+    },
+    {
+      "record_id": "src_education_gasb35",
+      "question_mappings": [
+        {
+          "question_id": "q-government-funds",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "GASB",
+              "rule": "title:government-funds"
+            }
+          ]
+        },
+        {
+          "question_id": "q-grants-contributions",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Explicit bounded education package association; no industry-wide sufficiency.",
+              "rule": "editorial-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-revenue",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Explicit bounded education package association; no industry-wide sufficiency.",
+              "rule": "editorial-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "611",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Explicit bounded education package association; no industry-wide sufficiency.",
+              "rule": "editorial-association"
+            }
+          ]
+        }
+      ],
+      "note": "Candidate association with this industry scope; applicability and depth are not inferred."
     },
     {
       "record_id": "src_eiopa_dpm210_2026",
