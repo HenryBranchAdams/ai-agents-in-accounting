@@ -18,6 +18,7 @@ const integrationFiles = [
   "data/coverage/mapping-overrides.json",
   "data/coverage/assessments.json",
   "data/research-questions.json",
+  "data/releases/2026-09-17.3/corpus.json",
 ];
 const expectedAcceptedState = new Map(
   integrationFiles.map(file => [file, read(file)]),
@@ -57,7 +58,7 @@ const canonical = corpusFiles.flatMap(file => {
 const byId = new Map(canonical.map(record => [record.id, record]));
 
 test("AA-I119, AA-I125, and AA-I127 preserve canonical IDs without collisions or lost nonprofit records", () => {
-  assert.equal(canonical.length, 1097);
+  assert.equal(canonical.length, 1106);
   assert.equal(byId.size, canonical.length, "canonical record IDs must be globally unique");
 
   for (const id of [
@@ -162,23 +163,31 @@ test("clean AA-I125 integration is sensitive to new-source supplemental-review l
   }
 });
 
-test("2026-09-17.3 release and snapshot match the corrected canonical build", () => {
+test("2026-09-17.4 release and snapshot match the bounded reporting-foundations build", () => {
   const index = read("data/releases/index.json");
-  assert.equal(index.current_version, "2026-09-17.3");
-  assert.deepEqual(index.versions.slice(-3), ["2026-09-17.1", "2026-09-17.2", "2026-09-17.3"]);
+  assert.equal(index.current_version, "2026-09-17.4");
+  assert.deepEqual(index.versions.slice(-3), ["2026-09-17.2", "2026-09-17.3", "2026-09-17.4"]);
 
-  const currentRelease = "data/releases/2026-09-17.3";
+  const currentRelease = "data/releases/2026-09-17.4";
   const currentBytes = fs.readFileSync(`${currentRelease}/corpus.json`);
   assert.deepEqual(currentBytes, fs.readFileSync("dist/client/downloads/corpus.json"));
   assert.deepEqual(gunzipSync(fs.readFileSync(`${currentRelease}/corpus.json.gz`)), currentBytes);
 
-  for (const priorRelease of ["data/releases/2026-09-17.1", "data/releases/2026-09-17.2"]) {
+  for (const priorRelease of ["data/releases/2026-09-17.1", "data/releases/2026-09-17.2", "data/releases/2026-09-17.3"]) {
     const priorBytes = fs.readFileSync(`${priorRelease}/corpus.json`);
     assert.deepEqual(gunzipSync(fs.readFileSync(`${priorRelease}/corpus.json.gz`)), priorBytes);
   }
 
-  const snapshot = read("data/coverage/snapshots.json").snapshots.find(item => item.id === "2026-09-17.5");
+  const snapshot = read("data/coverage/snapshots.json").snapshots.find(item => item.id === "2026-09-17.6");
   assert.ok(snapshot);
-  assert.equal(snapshot.summary.record_count, 1097);
-  assert.equal(snapshot.summary.scoped_assessments, 17);
+  assert.equal(snapshot.summary.record_count, 1106);
+  assert.equal(snapshot.summary.scoped_assessments, 25);
+  assert.equal(snapshot.provenance.collision_snapshot_id, "2026-09-17.1");
+  assert.deepEqual(
+    snapshot.provenance.source_receipts.map(receipt => receipt.reviewed_head),
+    [
+      "0de408bf3f00928f41ac90d2c0b5ccde338b58e1",
+      "f294a687ce48d5400daaa5d7a56bb90f6029cff",
+    ],
+  );
 });

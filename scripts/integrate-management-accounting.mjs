@@ -386,6 +386,38 @@ const applyFamily = (guide, family) => {
 };
 
 const canonicalSources = read("data/corpus/source.json");
+const historicalSourcePositions = (() => {
+  if (!integrateIntoNewerCorpus || !fs.existsSync("data/releases")) return new Map();
+  const releases = fs.readdirSync("data/releases", { withFileTypes: true })
+    .filter(entry => entry.isDirectory() && versionPattern.test(entry.name))
+    .map(entry => entry.name)
+    .filter(version => compareVersion(version, catalog.corpus_version) < 0)
+    .sort(compareVersion);
+  const previous = releases.at(-1);
+  if (!previous || !fs.existsSync(`data/releases/${previous}/corpus.json`)) return new Map();
+  return new Map(read(`data/releases/${previous}/corpus.json`).records.map((record, index) => [record.id, index]));
+})();
+const insertNewSource = (records, source) => {
+  const targetPosition = historicalSourcePositions.get(source.id);
+  if (targetPosition === undefined) {
+    records.push(source);
+    return;
+  }
+  const firstLaterHistorical = records.findIndex(record => {
+    const position = historicalSourcePositions.get(record.id);
+    return position !== undefined && position > targetPosition;
+  });
+  if (firstLaterHistorical >= 0) {
+    records.splice(firstLaterHistorical, 0, source);
+    return;
+  }
+  let lastAtOrBeforeTarget = -1;
+  records.forEach((record, index) => {
+    const position = historicalSourcePositions.get(record.id);
+    if (position !== undefined && position <= targetPosition) lastAtOrBeforeTarget = index;
+  });
+  records.splice(lastAtOrBeforeTarget + 1, 0, source);
+};
 for (const update of packet.sources) {
   if (update.new) {
     const existing = canonicalSources.find(source => source.id === update.id);
@@ -393,7 +425,7 @@ for (const update of packet.sources) {
       assert.equal(existing.source_url, update.source_url, `${update.id}: existing source URL differs`);
       applySource(existing, update);
     } else {
-      canonicalSources.push(newSource(update));
+      insertNewSource(canonicalSources, newSource(update));
     }
   } else {
     applySource(byId(canonicalSources, update.id), update);

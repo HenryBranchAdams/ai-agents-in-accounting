@@ -11,6 +11,8 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Preserve the exact verification source
         run: git archive --format=zip HEAD -o "$RUNNER_TEMP/repository-source.zip"
       - uses: actions/setup-node@v4
