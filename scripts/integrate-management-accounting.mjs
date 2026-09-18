@@ -14,7 +14,7 @@ const compareVersion = (left, right) => {
     : leftMatch[1].localeCompare(rightMatch[1]);
 };
 const assertNotNewerDate = (label, value) => {
-  if (value && value > packet.reviewed_at) {
+  if (value && value > packet.reviewed_at && !integrateIntoNewerCorpus) {
     throw new Error(`Refusing AA-I125 integration: ${label}=${value} is newer than packet review date ${packet.reviewed_at}`);
   }
 };
@@ -160,7 +160,7 @@ const foundationSupplementalReview = update => {
   if (!foundation) return null;
   return {
     batch: "foundations",
-    reviewed_at: foundations.reviewed_at,
+    reviewed_at: foundation.reviewed_at || packet.reviewed_at,
     review_level: foundation.review_level,
     checked_url: foundation.source_url,
     locator: foundation.source_locator,
@@ -447,27 +447,29 @@ if (existingExample) {
   exampleRecords.push(packet.example);
 }
 
-foundations.question_set_version = preserveOrUseVersion(foundations.question_set_version, packet.package_version);
-foundations.reviewed_at = packet.reviewed_at;
-foundations.reviewer = "Codex AI-assisted original-source and synthetic-fixture review";
-for (const family of packet.families) {
-  if (!appliedFamilyIds.has(family.family_id)) continue;
-  const input = foundations.families.find(candidate => candidate.family_id === family.family_id);
-  assert.ok(input, `Missing research input family ${family.family_id}`);
-  input.title = family.title;
-  input.scope = family.scope;
-  input.review_basis = family.review_basis;
-  input.source_ids = [...family.source_ids];
-  input.source_locators = family.source_locators;
-  input.source_checks = family.source_checks;
-  input.frameworks = family.frameworks;
-  input.jurisdictions = family.jurisdictions;
-  input.shared_inputs = family.shared_inputs;
-  input.controls = family.controls;
-  input.exceptions = family.exceptions;
-  input.coverage_gaps = family.coverage_gaps;
-  input.remaining_limits = family.remaining_limits;
-  input.questions = family.research_questions.map(enrichedQuestion);
+if (!integrateIntoNewerCorpus || appliedFamilyIds.size) {
+  foundations.question_set_version = preserveOrUseVersion(foundations.question_set_version, packet.package_version);
+  foundations.reviewed_at = preserveDate(foundations.reviewed_at, packet.reviewed_at);
+  foundations.reviewer = "Codex AI-assisted original-source and synthetic-fixture review";
+  for (const family of packet.families) {
+    if (!appliedFamilyIds.has(family.family_id)) continue;
+    const input = foundations.families.find(candidate => candidate.family_id === family.family_id);
+    assert.ok(input, `Missing research input family ${family.family_id}`);
+    input.title = family.title;
+    input.scope = family.scope;
+    input.review_basis = family.review_basis;
+    input.source_ids = [...family.source_ids];
+    input.source_locators = family.source_locators;
+    input.source_checks = family.source_checks;
+    input.frameworks = family.frameworks;
+    input.jurisdictions = family.jurisdictions;
+    input.shared_inputs = family.shared_inputs;
+    input.controls = family.controls;
+    input.exceptions = family.exceptions;
+    input.coverage_gaps = family.coverage_gaps;
+    input.remaining_limits = family.remaining_limits;
+    input.questions = family.research_questions.map(enrichedQuestion);
+  }
 }
 const far = packet.sources.find(source => source.id === "src_far_31203_indirect_costs");
 if (far && !foundations.sources.some(source => source.id === far.id)) {
@@ -489,123 +491,136 @@ if (far && !foundations.sources.some(source => source.id === far.id)) {
     rights_review: { status: "unresolved", note: "Public access does not establish reuse permission." },
   });
 }
-foundations.integration_scope = {
-  issue_id: packet.issue_id,
-  family_ids: packet.families.map(family => family.family_id),
-  source_ids: packet.sources.map(source => source.id),
-  note: "Only the listed packet families and sources were refreshed by this integration. Generic package replay must preserve review state for all other foundation records.",
-};
+if (!integrateIntoNewerCorpus || appliedFamilyIds.size) {
+  foundations.integration_scope = {
+    issue_id: packet.issue_id,
+    family_ids: packet.families.map(family => family.family_id),
+    source_ids: packet.sources.map(source => source.id),
+    note: "Only the listed packet families and sources were refreshed by this integration. Generic package replay must preserve review state for all other foundation records.",
+  };
+}
 
 const researchQuestions = read("data/coverage/research-questions.json");
-researchQuestions.question_set_version = preserveOrUseVersion(researchQuestions.question_set_version, packet.package_version);
-researchQuestions.corpus_version = corpusEdition;
-researchQuestions.reviewed_at = packet.reviewed_at;
-for (const family of packet.families) {
-  if (!appliedFamilyIds.has(family.family_id)) continue;
-  const guide = byId(canonicalGuides, family.guide_id);
-  for (const [index, question] of guide.data.research_questions.entries()) {
-    const row = byId(researchQuestions.questions, question.id);
-    row.record_id = guide.id;
-    row.pointer = `/data/research_questions/${index}`;
-    row.question = question.question;
-    row.scope = question.scope;
-    row.answer_status = question.answer_status;
-    row.assessment_status = question.assessment.status;
-    row.source_ids = [...question.source_ids];
-    row.remaining_gaps = [...question.remaining_gaps];
-    row.professional_review = "not-performed";
-    row.empirical_support = "not-established";
-    row.dimensions = question.assessment.dimensions;
-    row.dimension_basis = question.assessment.basis;
+const registryAtNewerVersion = integrateIntoNewerCorpus && researchQuestions.question_set_version && compareVersion(researchQuestions.question_set_version, packet.package_version) > 0;
+if (!registryAtNewerVersion) {
+  researchQuestions.question_set_version = preserveOrUseVersion(researchQuestions.question_set_version, packet.package_version);
+  researchQuestions.corpus_version = corpusEdition;
+  researchQuestions.reviewed_at = preserveDate(researchQuestions.reviewed_at, packet.reviewed_at);
+  for (const family of packet.families) {
+    if (!appliedFamilyIds.has(family.family_id)) continue;
+    const guide = byId(canonicalGuides, family.guide_id);
+    for (const [index, question] of guide.data.research_questions.entries()) {
+      const row = byId(researchQuestions.questions, question.id);
+      row.record_id = guide.id;
+      row.pointer = `/data/research_questions/${index}`;
+      row.question = question.question;
+      row.scope = question.scope;
+      row.answer_status = question.answer_status;
+      row.assessment_status = question.assessment.status;
+      row.source_ids = [...question.source_ids];
+      row.remaining_gaps = [...question.remaining_gaps];
+      row.professional_review = "not-performed";
+      row.empirical_support = "not-established";
+      row.dimensions = question.assessment.dimensions;
+      row.dimension_basis = question.assessment.basis;
+    }
   }
 }
 
 const mappingOverrides = read("data/coverage/mapping-overrides.json");
 mappingOverrides.mapping_version = preserveOrUseVersion(mappingOverrides.mapping_version, packet.package_version);
-mappingOverrides.updated_at = packet.reviewed_at;
-for (const family of packet.families) {
-  const current = mappingOverrides.records[family.guide_id] || {};
-  mappingOverrides.records[family.guide_id] = {
-    ...current,
+const mappingAtNewerVersion = integrateIntoNewerCorpus && mappingOverrides.mapping_version && compareVersion(mappingOverrides.mapping_version, packet.package_version) > 0;
+if (!mappingAtNewerVersion) {
+  mappingOverrides.updated_at = preserveDate(mappingOverrides.updated_at, packet.reviewed_at);
+  for (const family of packet.families) {
+    const current = mappingOverrides.records[family.guide_id] || {};
+    mappingOverrides.records[family.guide_id] = {
+      ...current,
+      replace_question_ids: true,
+      question_ids: [family.family_id],
+      industry_codes: [],
+      industry_scope: "shared-context",
+      basis_field: "/data/research_questions",
+      reason: "The explicitly scoped US research questions, source locators, and original synthetic fixture support discovery associations only. Detailed-industry adequacy is separately assessed.",
+      reviewed_question_ids: [family.family_id],
+      reviewed_industry_codes: [],
+      reviewed_at: packet.reviewed_at,
+      review_note: "AA-I125 scope review covers the selected US role and named questions only; it does not confer family-wide adequacy, professional verification, or descendant-industry conclusions.",
+    };
+  }
+  const cfrUpdate = packet.sources.find(source => source.id === "src_cfr200grants");
+  const cfrOverride = mappingOverrides.records.src_cfr200grants || {};
+  mappingOverrides.records.src_cfr200grants = {
+    ...cfrOverride,
     replace_question_ids: true,
-    question_ids: [family.family_id],
+    question_ids: addUnique(cfrOverride.question_ids, cfrUpdate.question_ids),
+    reviewed_question_ids: addUnique(cfrOverride.reviewed_question_ids, cfrUpdate.question_ids),
+    reviewed_at: packet.reviewed_at,
+    review_note: `${cfrUpdate.mapping_rationale} Association review covers AA-I125 source locators only; no accounting adequacy is inferred.`,
+    reason: cfrUpdate.mapping_rationale,
+    basis_field: "/data/source_review/mapping_rationale",
+  };
+  const sabUpdate = packet.sources.find(source => source.id === "src_secsab0099");
+  const sabOverride = mappingOverrides.records.src_secsab0099 || {};
+  mappingOverrides.records.src_secsab0099 = {
+    ...sabOverride,
+    question_ids: addUnique(sabOverride.question_ids, sabUpdate.question_ids),
+    reviewed_question_ids: addUnique(sabOverride.reviewed_question_ids, sabUpdate.question_ids),
+    reviewed_at: packet.reviewed_at,
+    review_note: `${sabUpdate.mapping_rationale} Association review covers AA-I125 source locators only; no accounting adequacy is inferred.`,
+  };
+  const farOverride = mappingOverrides.records.src_far_31203_indirect_costs || {};
+  mappingOverrides.records.src_far_31203_indirect_costs = {
+    ...farOverride,
+    replace_question_ids: true,
+    question_ids: far.question_ids,
     industry_codes: [],
     industry_scope: "shared-context",
-    basis_field: "/data/research_questions",
-    reason: "The explicitly scoped US research questions, source locators, and original synthetic fixture support discovery associations only. Detailed-industry adequacy is separately assessed.",
-    reviewed_question_ids: [family.family_id],
+    basis_field: "/data/source_review/mapping_rationale",
+    reason: far.mapping_rationale,
+    reviewed_question_ids: far.question_ids,
     reviewed_industry_codes: [],
     reviewed_at: packet.reviewed_at,
-    review_note: "AA-I125 scope review covers the selected US role and named questions only; it does not confer family-wide adequacy, professional verification, or descendant-industry conclusions.",
+    review_note: `${far.mapping_rationale} Association review covers the cited FAR paragraphs only; no accounting adequacy is inferred.`,
+  };
+  mappingOverrides.records[packet.example.id] = {
+    replace_question_ids: true,
+    question_ids: ["q-cost-allocation", "q-planning", "q-performance"],
+    industry_codes: ["31-33"],
+    industry_scope: "specific",
+    basis_field: "/data/editorial_review",
+    reason: "Original synthetic selected-role fixture explicitly names the US manufacturing role and three shared families; this is discovery context, not industry-wide accounting sufficiency.",
+    reviewed_question_ids: ["q-cost-allocation", "q-planning", "q-performance"],
+    reviewed_industry_codes: ["31-33"],
+    reviewed_at: packet.reviewed_at,
+    review_note: "AA-I125 synthetic fixture is scoped to one role and one period. It does not establish a conclusion for manufacturing descendants or real entities.",
   };
 }
-const cfrUpdate = packet.sources.find(source => source.id === "src_cfr200grants");
-const cfrOverride = mappingOverrides.records.src_cfr200grants || {};
-mappingOverrides.records.src_cfr200grants = {
-  ...cfrOverride,
-  replace_question_ids: true,
-  question_ids: addUnique(cfrOverride.question_ids, cfrUpdate.question_ids),
-  reviewed_question_ids: addUnique(cfrOverride.reviewed_question_ids, cfrUpdate.question_ids),
-  reviewed_at: packet.reviewed_at,
-  review_note: `${cfrUpdate.mapping_rationale} Association review covers AA-I125 source locators only; no accounting adequacy is inferred.`,
-  reason: cfrUpdate.mapping_rationale,
-  basis_field: "/data/source_review/mapping_rationale",
-};
-const sabUpdate = packet.sources.find(source => source.id === "src_secsab0099");
-const sabOverride = mappingOverrides.records.src_secsab0099 || {};
-mappingOverrides.records.src_secsab0099 = {
-  ...sabOverride,
-  question_ids: addUnique(sabOverride.question_ids, sabUpdate.question_ids),
-  reviewed_question_ids: addUnique(sabOverride.reviewed_question_ids, sabUpdate.question_ids),
-  reviewed_at: packet.reviewed_at,
-  review_note: `${sabUpdate.mapping_rationale} Association review covers AA-I125 source locators only; no accounting adequacy is inferred.`,
-};
-const farOverride = mappingOverrides.records.src_far_31203_indirect_costs || {};
-mappingOverrides.records.src_far_31203_indirect_costs = {
-  ...farOverride,
-  replace_question_ids: true,
-  question_ids: far.question_ids,
-  industry_codes: [],
-  industry_scope: "shared-context",
-  basis_field: "/data/source_review/mapping_rationale",
-  reason: far.mapping_rationale,
-  reviewed_question_ids: far.question_ids,
-  reviewed_industry_codes: [],
-  reviewed_at: packet.reviewed_at,
-  review_note: `${far.mapping_rationale} Association review covers the cited FAR paragraphs only; no accounting adequacy is inferred.`,
-};
-mappingOverrides.records[packet.example.id] = {
-  replace_question_ids: true,
-  question_ids: ["q-cost-allocation", "q-planning", "q-performance"],
-  industry_codes: ["31-33"],
-  industry_scope: "specific",
-  basis_field: "/data/editorial_review",
-  reason: "Original synthetic selected-role fixture explicitly names the US manufacturing role and three shared families; this is discovery context, not industry-wide accounting sufficiency.",
-  reviewed_question_ids: ["q-cost-allocation", "q-planning", "q-performance"],
-  reviewed_industry_codes: ["31-33"],
-  reviewed_at: packet.reviewed_at,
-  review_note: "AA-I125 synthetic fixture is scoped to one role and one period. It does not establish a conclusion for manufacturing descendants or real entities.",
-};
 
 const assessments = read("data/coverage/assessments.json");
 assessments.assessment_version = preserveOrUseVersion(assessments.assessment_version, packet.package_version);
-for (const assessment of packet.assessments) {
-  const existing = assessments.assessments.find(candidate => candidate.id === assessment.id);
-  const value = {
-    ...assessment,
-    reviewed_at: packet.reviewed_at,
-    reviewer: "Codex AI-assisted original-source and synthetic-fixture review",
-  };
-  if (existing) Object.assign(existing, value);
-  else assessments.assessments.push(value);
+const assessmentsAtNewerVersion = integrateIntoNewerCorpus && assessments.assessment_version && compareVersion(assessments.assessment_version, packet.package_version) > 0;
+if (!assessmentsAtNewerVersion) {
+  for (const assessment of packet.assessments) {
+    const existing = assessments.assessments.find(candidate => candidate.id === assessment.id);
+    const value = {
+      ...assessment,
+      reviewed_at: packet.reviewed_at,
+      reviewer: "Codex AI-assisted original-source and synthetic-fixture review",
+    };
+    if (existing) Object.assign(existing, value);
+    else assessments.assessments.push(value);
+  }
 }
-const packetAssessmentIds = new Set(packet.assessments.map(assessment => assessment.id));
-const packetAssessments = assessments.assessments.filter(assessment => packetAssessmentIds.has(assessment.id));
-const retainedAssessments = assessments.assessments.filter(assessment => !packetAssessmentIds.has(assessment.id));
-const constructionLocalIndex = retainedAssessments.findIndex(assessment => assessment.id === "coverage-construction-local-2026-09-14");
-if (constructionLocalIndex === -1) retainedAssessments.push(...packetAssessments);
-else retainedAssessments.splice(constructionLocalIndex, 0, ...packetAssessments);
-assessments.assessments = retainedAssessments;
+if (!assessmentsAtNewerVersion) {
+  const packetAssessmentIds = new Set(packet.assessments.map(assessment => assessment.id));
+  const packetAssessments = assessments.assessments.filter(assessment => packetAssessmentIds.has(assessment.id));
+  const retainedAssessments = assessments.assessments.filter(assessment => !packetAssessmentIds.has(assessment.id));
+  const constructionLocalIndex = retainedAssessments.findIndex(assessment => assessment.id === "coverage-construction-local-2026-09-14");
+  if (constructionLocalIndex === -1) retainedAssessments.push(...packetAssessments);
+  else retainedAssessments.splice(constructionLocalIndex, 0, ...packetAssessments);
+  assessments.assessments = retainedAssessments;
+}
 
 const fixtures = read("data/research-questions.json");
 for (const fixture of packet.retrieval_fixtures) {
