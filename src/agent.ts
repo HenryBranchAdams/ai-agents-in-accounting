@@ -505,7 +505,7 @@ export function describeCorpus() {
       manifest: `${base}/downloads/manifest.json`,
       index: `${base}/downloads/agent-index.jsonl`,
       passages: `${base}/downloads/agent-passages.jsonl`,
-      source: `${base}/downloads/accounting-agents-source.zip`,
+      source_export: `${base}/downloads/accounting-agents-source.manifest.json`,
       coverage: `${base}/api/v1/coverage`,
       research_questions: `${base}/downloads/research-questions.json`,
       industry_screening: `${base}/downloads/subsector-screening.json`,

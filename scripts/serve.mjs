@@ -14,6 +14,8 @@ const contentTypes = {
   ".md": "text/markdown; charset=utf-8",
   ".zip": "application/zip",
 };
+const isSourceArchivePartPath = (pathname) =>
+  /^\/downloads\/accounting-agents-source\.zip\.part-\d+$/.test(pathname);
 const env = {
   ASSETS: {
     async fetch(request) {
@@ -32,8 +34,9 @@ const env = {
         const body = await fs.readFile(file);
         return new Response(body, {
           headers: {
-            "Content-Type":
-              contentTypes[path.extname(file)] || "text/plain; charset=utf-8",
+            "Content-Type": isSourceArchivePartPath(new URL(request.url).pathname)
+              ? "application/octet-stream"
+              : contentTypes[path.extname(file)] || "text/plain; charset=utf-8",
             "Content-Length": String(body.length),
           },
         });

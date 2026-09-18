@@ -1,9 +1,9 @@
 {
   "schema_version": "1.0.0",
   "question_set_version": "2026-09-17.1272",
-  "corpus_version": "2026-09-17.3",
+  "corpus_version": "2026-09-17.5",
   "reviewed_at": "2026-09-17",
-  "scope": "Versioned named research questions. Broader unresolved family questions and industry applicability are separate denominators, retained in their review files. The nonprofit question was appended on 2026-09-16; inherited individual review dates and limitations are unchanged.",
+  "scope": "Versioned named research questions. Broader unresolved family questions and industry applicability are separate denominators, retained in their review files. The nonprofit question was appended on 2026-09-16; inherited individual review dates and limitations are unchanged. The reporting-foundations-us supplement adds eight US-scoped named answers while preserving IFRS and other existing framework records.",
   "questions": [
     {
       "id": "rq-reporting-basis-scope-treatment",
@@ -6399,6 +6399,282 @@
         "empirical-support": "not-assessed"
       },
       "dimension_basis": "Publisher notices and exact component boundaries are recorded, while contradictory or missing permissions remain unresolved; no new permission is inferred."
+    },
+    {
+      "id": "rq-reporting-basis-us-framework-routing",
+      "record_id": "guide-q-reporting-basis",
+      "pointer": "/data/research_questions/2",
+      "family_ids": [
+        "q-reporting-basis"
+      ],
+      "question": "For a US reporting question, how should the entity role and reporting purpose route the analysis among FASB US GAAP, SEC overlays, GASB, FASAB and separate tax or statutory bases?",
+      "scope": "US reporting-basis routing; selected private-business US GAAP close, with SEC, state/local and federal routes retained as explicit counterexamples",
+      "answer_status": "sourced-answer-bounded",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_1os761s",
+        "src_secfrm26",
+        "src_roadmap_gasb34_basis",
+        "src_roadmap_fasab34"
+      ],
+      "remaining_gaps": [
+        "Current consolidated FASB, GASB and FASAB text was not fully accessed; source records state exact bounded locators and access limits.",
+        "Nonprofit Topic 958 substantive treatment remains open and coordinated with #117 rather than duplicated.",
+        "No professional reviewer accepted a live framework-selection conclusion."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Selected US routing question with source locators, explicit roles, controls and scope counterexamples; not a family-wide or professional sufficiency finding."
+    },
+    {
+      "id": "rq-ledger-close-usgaap-month-close",
+      "record_id": "guide-q-ledger-close",
+      "pointer": "/data/research_questions/2",
+      "family_ids": [
+        "q-ledger-close"
+      ],
+      "question": "What inputs, journal controls and reconciliation steps make a proposed US GAAP month close reproducible without treating a later invoice or payment as an automatic prior-period entry?",
+      "scope": "US GAAP January 2026 month close for the selected private nongovernmental entity in the linked synthetic fixture",
+      "answer_status": "evidence-gap",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_1os761s",
+        "src_1og297z",
+        "src_1v1zwt5",
+        "src_fasb_202010"
+      ],
+      "remaining_gaps": [
+        "The FASB ASC record was reviewed at landing-page level; current transaction-specific recognition, cutoff and error-correction text and entity facts remain unresolved. ASU 2020-10 is only a bounded disclosure and materiality reference.",
+        "The close-control sources are editorial proposals, not universal accounting or audit requirements.",
+        "The example is synthetic and has no live ERP completeness, production posting or professional review."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Selected synthetic close has declared inputs, workflow, controls, balanced journals and statement tie-out; no production or professional sufficiency is asserted."
+    },
+    {
+      "id": "rq-estimates-us-change-or-error",
+      "record_id": "guide-q-estimates",
+      "pointer": "/data/research_questions/2",
+      "family_ids": [
+        "q-estimates"
+      ],
+      "question": "Under US GAAP, which facts distinguish a change in estimate from an error, and how should the decision be evidenced before a period or comparative is changed?",
+      "scope": "US GAAP Topic 250 estimate-change versus error analysis for the selected private entity",
+      "answer_status": "evidence-gap",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_1os761s",
+        "src_fasb_202511",
+        "src_secsab0099"
+      ],
+      "remaining_gaps": [
+        "Current ASC 250 consolidated text, effective treatment for the selected private entity and entity-specific materiality were not fully reviewed. ASU 2025-11 is pending future interim content, and SAB 99 is registrant-only staff guidance.",
+        "No independent accounting reviewer accepted the classification or correction path.",
+        "The synthetic branch has no empirical estimate-performance evidence."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Bounded estimate-versus-error question with decision facts, controls and a deliberate unresolved branch; no live estimate or professional conclusion."
+    },
+    {
+      "id": "rq-presentation-us-statements-disclosures",
+      "record_id": "guide-q-presentation",
+      "pointer": "/data/research_questions/2",
+      "family_ids": [
+        "q-presentation"
+      ],
+      "question": "How should a US GAAP close map adjusted ledger balances to statements and disclosures while deciding whether an SEC filing overlay applies?",
+      "scope": "US GAAP statement and disclosure mapping for the selected private entity, with SEC registrant routing as a scope counterexample",
+      "answer_status": "evidence-gap",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_1os761s",
+        "src_secfrm26",
+        "src_sec_regsx",
+        "src_fasb_202010",
+        "src_secsab0099"
+      ],
+      "remaining_gaps": [
+        "Current FASB presentation topics and SEC form-specific rules were not fully accessed; ASU 2020-10 and SAB 99 cover only narrow error-disclosure or registrant-materiality contexts.",
+        "No filing, taxonomy, comparative population or professional disclosure review was performed.",
+        "The synthetic output only demonstrates a bounded statement tie-out."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Selected statement-mapping question with SEC scope boundary and synthetic ledger tie-out; not a filing or disclosure sufficiency conclusion."
+    },
+    {
+      "id": "rq-foreign-currency-us-transaction-remeasurement",
+      "record_id": "guide-q-foreign-currency",
+      "pointer": "/data/research_questions/2",
+      "family_ids": [
+        "q-foreign-currency"
+      ],
+      "question": "For a US GAAP entity, which dated currency facts keep a foreign-currency payable's transaction remeasurement separate from foreign-operation translation?",
+      "scope": "US GAAP Topic 830 bounded transaction and translation distinction for the selected private entity",
+      "answer_status": "sourced-answer-bounded",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_1os761s",
+        "src_fasb_fas52",
+        "src_fasb_201305"
+      ],
+      "remaining_gaps": [
+        "Current ASC 830 consolidated text and later amendments were not fully accessed.",
+        "No professional reviewer approved the functional-currency or transaction classification.",
+        "The fixture does not establish live market-rate or foreign-operation evidence."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Dated synthetic transaction and settlement schedule with explicit translation counterexample; current ASC 830 and professional review remain open."
+    },
+    {
+      "id": "rq-policy-changes-errors-usgaap",
+      "record_id": "guide-q-policy-changes-errors",
+      "pointer": "/data/research_questions/2",
+      "family_ids": [
+        "q-policy-changes-errors"
+      ],
+      "question": "How should a US GAAP workpaper distinguish a policy change, estimate change and error before deciding whether a comparative or issued period requires correction?",
+      "scope": "US GAAP Topic 250 policy, estimate and error decision for the selected private entity",
+      "answer_status": "evidence-gap",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_1os761s",
+        "src_fasb_202010",
+        "src_fasb_202511",
+        "src_secsab0099"
+      ],
+      "remaining_gaps": [
+        "Current ASC 250 text, effective transition treatment and entity-specific materiality were not fully reviewed. ASU 2020-10 is a bounded amendment reference, ASU 2025-11 is pending future interim content and SAB 99 is registrant-only staff guidance.",
+        "No professional reviewer accepted the correction path or comparative presentation.",
+        "No live issued financial statement or restatement package was tested."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Bounded Topic 250 decision workflow and deliberately unresolved issued-period branch; no restatement or professional correction conclusion."
+    },
+    {
+      "id": "rq-events-going-concern-usgaap",
+      "record_id": "guide-q-events-going-concern",
+      "pointer": "/data/research_questions/2",
+      "family_ids": [
+        "q-events-going-concern"
+      ],
+      "question": "Which US GAAP dates and evidence determine the subsequent-event boundary and the going-concern evaluation horizon?",
+      "scope": "US GAAP Topic 855 and Topic 205-40 date and evidence checklist for the selected private entity",
+      "answer_status": "sourced-answer-bounded",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_1os761s",
+        "src_fasb_201009",
+        "src_fasb_201415"
+      ],
+      "remaining_gaps": [
+        "Current consolidated Topics 855 and 205-40 and later amendments were not fully accessed.",
+        "No live issuance process, financing evidence or professional going-concern review was performed.",
+        "The fixture's missing-date branch demonstrates escalation behavior but not a live conclusion."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Bounded ASU date and going-concern evidence packet with entity-class counterexample and missing-date branch; no live conclusion."
+    },
+    {
+      "id": "rq-consolidation-us-control-models",
+      "record_id": "guide-q-consolidation",
+      "pointer": "/data/research_questions/2",
+      "family_ids": [
+        "q-consolidation"
+      ],
+      "question": "Which US GAAP control, voting-interest and VIE facts support the reporting perimeter, and when is a relationship insufficient to require consolidation?",
+      "scope": "US GAAP Topic 810 control and consolidation-perimeter evidence for nongovernmental entities",
+      "answer_status": "sourced-answer-bounded",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_1os761s",
+        "src_fasb_201502"
+      ],
+      "remaining_gaps": [
+        "Current Topic 810 and later amendments were not fully accessed.",
+        "No legal-entity population, VIE evidence, elimination schedule or professional review was performed.",
+        "Existing #109 parent/subsidiary material remains scoped application evidence, not a universal rule."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Bounded Topic 810 control-model question with explicit non-automatic-consolidation counterexample; no live perimeter or professional conclusion."
     }
   ]
 }

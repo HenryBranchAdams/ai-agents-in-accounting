@@ -10,7 +10,11 @@ import { loadObservations } from "./maintenance.mjs";
 import { createHash } from "node:crypto";
 import { build } from "esbuild";
 import { validateCorpus } from "./validate.mjs";
-import { writeSourceArchive } from "./source-archive.mjs";
+import {
+  SOURCE_ARCHIVE_NAME,
+  SOURCE_EXPORT_MANIFEST_NAME,
+  writeSourceExport,
+} from "./source-archive.mjs";
 
 console.log("Validated", validateCorpus());
 fs.rmSync("dist", { recursive: true, force: true });
@@ -252,9 +256,7 @@ write(
   "downloads/agent.schema.json",
   JSON.stringify(agentJsonSchema, null, 2) + "\n",
 );
-const sourceFiles = writeSourceArchive(
-  "dist/client/downloads/accounting-agents-source.zip",
-);
+const sourceExport = writeSourceExport("dist/client/downloads");
 const entries = fs
   .readdirSync("dist/client/downloads")
   .sort()
@@ -299,7 +301,19 @@ write(
       agent_passage_count: [...agentPassageRows()].length,
       rights_note: meta.rights_note,
       files: entries,
-      source_archive_file_count: sourceFiles.length,
+      source_archive_file_count: sourceExport.included_source_file_count,
+      source_export: {
+        manifest: `/downloads/${SOURCE_EXPORT_MANIFEST_NAME}`,
+        mode: sourceExport.mode,
+        archive_name: SOURCE_ARCHIVE_NAME,
+        archive_path: sourceExport.archive_path,
+        archive_bytes: sourceExport.archive_bytes,
+        archive_sha256: sourceExport.archive_sha256,
+        part_count: sourceExport.parts.length,
+        source_file_count: sourceExport.source_file_count,
+        included_source_file_count: sourceExport.included_source_file_count,
+        omitted_source_file_count: sourceExport.omitted_source_file_count,
+      },
     },
     null,
     2,
@@ -358,5 +372,5 @@ fs.writeFileSync(
 fs.mkdirSync("dist/.openai", { recursive: true });
 fs.copyFileSync(".openai/hosting.json", "dist/.openai/hosting.json");
 console.log(
-  `Built ${records.length} records, ${entries.length} downloads, and a ${sourceFiles.length}-file source archive.`,
+  `Built ${records.length} records, ${entries.length} downloads, and a ${sourceExport.included_source_file_count}-file ${sourceExport.mode} source export.`,
 );

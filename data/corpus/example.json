@@ -5480,5 +5480,687 @@
         ]
       }
     }
+  },
+  {
+    "id": "example-us-reporting-foundations-close",
+    "kind": "example",
+    "title": "US reporting foundations: synthetic January close",
+    "summary": "A fully original, bounded US GAAP month-close fixture for a private nongovernmental entity. It preserves event identity, approvals, dated FX rates, accrual and reversal branches, proposed balanced journals and an adjusted trial-balance tie-out without executing a posting, payment or filing.",
+    "topics": [
+      "Scoped research",
+      "Reporting foundations",
+      "Synthetic examples"
+    ],
+    "industries": [],
+    "jurisdiction": "United States; selected synthetic private nongovernmental entity",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_1os761s",
+      "src_fasb_fas52",
+      "src_fasb_201009",
+      "src_fasb_201415",
+      "src_fasb_201305",
+      "src_fasb_201502",
+      "src_secfrm26",
+      "src_sec_regsx"
+    ],
+    "related_ids": [
+      "guide-q-reporting-basis",
+      "guide-q-ledger-close",
+      "guide-q-estimates",
+      "guide-q-presentation",
+      "guide-q-foreign-currency",
+      "guide-q-policy-changes-errors",
+      "guide-q-events-going-concern",
+      "guide-q-consolidation"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-17",
+    "provenance": {
+      "added_on": "2026-09-17",
+      "reviewer": "Codex AI-assisted research with source-scope review",
+      "research_file": "data/research/reporting-foundations-example.json",
+      "inventory_file": "data/research/reporting-foundations-inventory.json",
+      "note": "Fully original synthetic accounting fixture with explicit arithmetic, source identities, control boundaries and unexecuted actions. This is not operational evidence or professional review."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "External text is not included; source terms and unresolved permissions remain separate.",
+      "full_text_stored": false
+    },
+    "data": {
+      "id": "us-reporting-foundations-close",
+      "title": "US reporting foundations: synthetic January close",
+      "summary": "One calendar-month close for a selected private nongovernmental for-profit entity reporting under US GAAP. All events, amounts, rates, approvals and journal lines are synthetic and proposed.",
+      "process_family": "record-to-report",
+      "authority_level": "A2",
+      "accountable_owner": "Controller or designated accounting reviewer",
+      "scope": "Selected private nongovernmental entity, USD functional and reporting currency, calendar month ended 2026-01-31, US GAAP routing, no SEC filing overlay, and no executed posting, payment or filing.",
+      "reporting_basis": {
+        "entity_id": "ENTITY-US-PRIVATE-001",
+        "entity_role": "Private nongovernmental for-profit business",
+        "framework": "US GAAP / FASB Codification",
+        "jurisdiction": "United States",
+        "reporting_period": "2026-01-01 through 2026-01-31",
+        "reporting_date": "2026-01-31",
+        "financial_statements_issued_or_available_date": "2026-02-20",
+        "sec_status": "Not an SEC registrant in this fixture",
+        "tax_or_statutory_basis": "Not selected; any tax or statutory reporting is a separate analysis"
+      },
+      "inputs": [
+        "Opening trial balance TB-OPEN-2026-01",
+        "Source-event register with immutable event IDs",
+        "Account mapping and reporting-period lock",
+        "Dated USD-per-CAD rate table",
+        "Invoice, settlement, reversal and approval evidence",
+        "Statement mapping and reviewer disposition"
+      ],
+      "source_population": {
+        "opening_trial_balance_id": "TB-OPEN-2026-01",
+        "event_register_id": "EVENTS-2026-01",
+        "rate_table_id": "FX-RATES-USD-CAD-2026-01",
+        "account_mapping_id": "MAP-USGAAP-2026-01",
+        "period_lock_id": "LOCK-2026-01-31",
+        "population_assertions": [
+          "Every proposed journal line points to one or more source event IDs.",
+          "Every event has an accounting date, source record ID, preparer, reviewer and approval ID.",
+          "No source event is consumed by more than one proposed journal without an explicit link.",
+          "The source population is synthetic and does not establish live ERP completeness."
+        ]
+      },
+      "opening_trial_balance": {
+        "trial_balance_id": "TB-OPEN-2026-01",
+        "as_of": "2025-12-31",
+        "currency": "USD",
+        "total_debits": 200000,
+        "total_credits": 200000,
+        "accounts": [
+          {
+            "account_id": "1000",
+            "account": "Cash",
+            "debit": 100000,
+            "credit": 0,
+            "source_record_id": "GL-OPEN-2026-01"
+          },
+          {
+            "account_id": "1100",
+            "account": "Accounts receivable",
+            "debit": 30000,
+            "credit": 0,
+            "source_record_id": "GL-OPEN-2026-01"
+          },
+          {
+            "account_id": "1500",
+            "account": "Property and equipment",
+            "debit": 70000,
+            "credit": 0,
+            "source_record_id": "GL-OPEN-2026-01"
+          },
+          {
+            "account_id": "2000",
+            "account": "Accounts payable",
+            "debit": 0,
+            "credit": 7000,
+            "source_record_id": "GL-OPEN-2026-01"
+          },
+          {
+            "account_id": "2050",
+            "account": "Prior-period accrual",
+            "debit": 0,
+            "credit": 3000,
+            "source_record_id": "GL-OPEN-2026-01"
+          },
+          {
+            "account_id": "2060",
+            "account": "Accrued compensation",
+            "debit": 0,
+            "credit": 5000,
+            "source_record_id": "GL-OPEN-2026-01"
+          },
+          {
+            "account_id": "3000",
+            "account": "Common stock",
+            "debit": 0,
+            "credit": 100000,
+            "source_record_id": "GL-OPEN-2026-01"
+          },
+          {
+            "account_id": "3100",
+            "account": "Retained earnings",
+            "debit": 0,
+            "credit": 85000,
+            "source_record_id": "GL-OPEN-2026-01"
+          }
+        ]
+      },
+      "fx_rate_table": {
+        "rate_table_id": "FX-RATES-USD-CAD-2026-01",
+        "base_currency": "CAD",
+        "quote_currency": "USD",
+        "pair_notation": "CAD/USD",
+        "quote_convention": "1 CAD = rate USD",
+        "conversion_formula": "USD amount = CAD amount * rate",
+        "inverse_formula": "CAD amount = USD amount / rate",
+        "rate_source": "Synthetic approved treasury rate table",
+        "rates": [
+          {
+            "rate_id": "FX-2026-01-20",
+            "date": "2026-01-20",
+            "currency_pair": "CAD/USD",
+            "base_currency": "CAD",
+            "quote_currency": "USD",
+            "rate": 0.74,
+            "rate_unit": "USD per CAD",
+            "source_record_id": "RATE-SOURCE-2026-01-20"
+          },
+          {
+            "rate_id": "FX-2026-01-31",
+            "date": "2026-01-31",
+            "currency_pair": "CAD/USD",
+            "base_currency": "CAD",
+            "quote_currency": "USD",
+            "rate": 0.75,
+            "rate_unit": "USD per CAD",
+            "source_record_id": "RATE-SOURCE-2026-01-31"
+          },
+          {
+            "rate_id": "FX-2026-02-10",
+            "date": "2026-02-10",
+            "currency_pair": "CAD/USD",
+            "base_currency": "CAD",
+            "quote_currency": "USD",
+            "rate": 0.76,
+            "rate_unit": "USD per CAD",
+            "source_record_id": "RATE-SOURCE-2026-02-10"
+          }
+        ]
+      },
+      "events": [
+        {
+          "event_id": "EVT-2026-01-05-CASH-20000",
+          "source_record_id": "BANK-RECEIPT-2026-01-05-001",
+          "event_type": "customer cash receipt",
+          "observed_at": "2026-01-05",
+          "accounting_date": "2026-01-05",
+          "amount": 20000,
+          "currency": "USD",
+          "preparer_id": "PREP-001",
+          "reviewer_id": "REVIEW-001",
+          "approval_id": "APP-2026-01-05-001",
+          "status": "synthetic-approved-for-fixture"
+        },
+        {
+          "event_id": "EVT-2026-01-12-PAYROLL-15000",
+          "source_record_id": "PAYROLL-2026-01-12-001",
+          "event_type": "payroll cash payment",
+          "observed_at": "2026-01-12",
+          "accounting_date": "2026-01-12",
+          "amount": 15000,
+          "currency": "USD",
+          "preparer_id": "PREP-001",
+          "reviewer_id": "REVIEW-001",
+          "approval_id": "APP-2026-01-12-001",
+          "status": "synthetic-approved-for-fixture"
+        },
+        {
+          "event_id": "EVT-2026-01-15-REVERSAL-3000",
+          "source_record_id": "REVERSAL-2025-12-ACCRUAL-001",
+          "event_type": "reversal of prior-period accrual",
+          "observed_at": "2026-01-15",
+          "accounting_date": "2026-01-15",
+          "amount": 3000,
+          "currency": "USD",
+          "original_accrual_id": "ACCRUAL-2025-12-001",
+          "invoice_expected_date": "2026-02-05",
+          "preparer_id": "PREP-001",
+          "reviewer_id": "REVIEW-001",
+          "approval_id": "APP-2026-01-15-001",
+          "status": "synthetic-approved-for-fixture"
+        },
+        {
+          "event_id": "EVT-2026-01-20-CAD-10000",
+          "source_record_id": "SUPPLIER-INVOICE-CA-2026-01-20-001",
+          "event_type": "CAD service payable recognized",
+          "observed_at": "2026-01-20",
+          "accounting_date": "2026-01-20",
+          "foreign_amount": 10000,
+          "currency": "CAD",
+          "fx_rate_id": "FX-2026-01-20",
+          "usd_rate": 0.74,
+          "usd_amount": 7400,
+          "preparer_id": "PREP-001",
+          "reviewer_id": "REVIEW-001",
+          "approval_id": "APP-2026-01-20-001",
+          "status": "synthetic-approved-for-fixture"
+        },
+        {
+          "event_id": "EVT-2026-01-31-CAD-REMEASURE-100",
+          "source_record_id": "FX-REMEASUREMENT-2026-01-31-001",
+          "event_type": "CAD payable reporting-date remeasurement",
+          "observed_at": "2026-01-31",
+          "accounting_date": "2026-01-31",
+          "foreign_amount": 10000,
+          "currency": "CAD",
+          "fx_rate_id": "FX-2026-01-31",
+          "usd_rate": 0.75,
+          "prior_usd_amount": 7400,
+          "usd_amount": 7500,
+          "fx_loss": 100,
+          "preparer_id": "PREP-001",
+          "reviewer_id": "REVIEW-001",
+          "approval_id": "APP-2026-01-31-001",
+          "status": "synthetic-approved-for-fixture"
+        },
+        {
+          "event_id": "EVT-2026-01-31-EARNED-UNRECORDED-12000",
+          "source_record_id": "SERVICE-COMPLETE-2026-01-31-001",
+          "event_type": "earned-but-unrecorded service expense",
+          "observed_at": "2026-01-31",
+          "accounting_date": "2026-01-31",
+          "amount": 12000,
+          "currency": "USD",
+          "invoice_expected_date": "2026-02-05",
+          "preparer_id": "PREP-001",
+          "reviewer_id": "REVIEW-001",
+          "approval_id": "APP-2026-01-31-002",
+          "status": "synthetic-approved-for-fixture"
+        }
+      ],
+      "proposed_journal_entries": [
+        {
+          "journal_id": "JRN-2026-01-05-RECEIPT",
+          "journal_date": "2026-01-05",
+          "event_ids": [
+            "EVT-2026-01-05-CASH-20000"
+          ],
+          "approval_id": "APP-2026-01-05-001",
+          "status": "proposed-not-posted",
+          "lines": [
+            {
+              "account": "Cash",
+              "debit": 20000,
+              "credit": 0
+            },
+            {
+              "account": "Accounts receivable",
+              "debit": 0,
+              "credit": 20000
+            }
+          ],
+          "balanced": true
+        },
+        {
+          "journal_id": "JRN-2026-01-12-PAYROLL",
+          "journal_date": "2026-01-12",
+          "event_ids": [
+            "EVT-2026-01-12-PAYROLL-15000"
+          ],
+          "approval_id": "APP-2026-01-12-001",
+          "status": "proposed-not-posted",
+          "lines": [
+            {
+              "account": "Wages expense",
+              "debit": 15000,
+              "credit": 0
+            },
+            {
+              "account": "Cash",
+              "debit": 0,
+              "credit": 15000
+            }
+          ],
+          "balanced": true
+        },
+        {
+          "journal_id": "JRN-2026-01-15-REVERSAL",
+          "journal_date": "2026-01-15",
+          "event_ids": [
+            "EVT-2026-01-15-REVERSAL-3000"
+          ],
+          "approval_id": "APP-2026-01-15-001",
+          "status": "proposed-not-posted",
+          "lines": [
+            {
+              "account": "Prior-period accrual",
+              "debit": 3000,
+              "credit": 0
+            },
+            {
+              "account": "Prior-period expense",
+              "debit": 0,
+              "credit": 3000
+            }
+          ],
+          "balanced": true,
+          "exception": "The February invoice is not automatically a January expense. Evaluate the original accrual, service period and available evidence."
+        },
+        {
+          "journal_id": "JRN-2026-01-20-CAD-RECOGNITION",
+          "journal_date": "2026-01-20",
+          "event_ids": [
+            "EVT-2026-01-20-CAD-10000"
+          ],
+          "approval_id": "APP-2026-01-20-001",
+          "status": "proposed-not-posted",
+          "lines": [
+            {
+              "account": "Service expense",
+              "debit": 7400,
+              "credit": 0
+            },
+            {
+              "account": "Foreign-currency accounts payable",
+              "debit": 0,
+              "credit": 7400
+            }
+          ],
+          "balanced": true
+        },
+        {
+          "journal_id": "JRN-2026-01-31-CAD-REMEASUREMENT",
+          "journal_date": "2026-01-31",
+          "event_ids": [
+            "EVT-2026-01-31-CAD-REMEASURE-100"
+          ],
+          "approval_id": "APP-2026-01-31-001",
+          "status": "proposed-not-posted",
+          "lines": [
+            {
+              "account": "Foreign-exchange loss",
+              "debit": 100,
+              "credit": 0
+            },
+            {
+              "account": "Foreign-currency accounts payable",
+              "debit": 0,
+              "credit": 100
+            }
+          ],
+          "balanced": true
+        },
+        {
+          "journal_id": "JRN-2026-01-31-EARNED-UNRECORDED",
+          "journal_date": "2026-01-31",
+          "event_ids": [
+            "EVT-2026-01-31-EARNED-UNRECORDED-12000"
+          ],
+          "approval_id": "APP-2026-01-31-002",
+          "status": "proposed-not-posted",
+          "lines": [
+            {
+              "account": "Service expense",
+              "debit": 12000,
+              "credit": 0
+            },
+            {
+              "account": "Accrued service expense",
+              "debit": 0,
+              "credit": 12000
+            }
+          ],
+          "balanced": true
+        }
+      ],
+      "post_period_events": [
+        {
+          "event_id": "EVT-2026-02-05-INVOICE-3000",
+          "source_record_id": "SUPPLIER-INVOICE-2026-02-05-001",
+          "event_type": "invoice received after close",
+          "event_date": "2026-02-05",
+          "service_period": "Unknown until evidence is reviewed",
+          "amount": 3000,
+          "currency": "USD",
+          "linked_event_id": "EVT-2026-01-15-REVERSAL-3000",
+          "status": "review-required"
+        },
+        {
+          "event_id": "EVT-2026-02-10-CAD-SETTLEMENT",
+          "source_record_id": "BANK-PAYMENT-2026-02-10-001",
+          "event_type": "CAD payable settlement",
+          "event_date": "2026-02-10",
+          "settlement_date": "2026-02-10",
+          "foreign_amount": 10000,
+          "currency": "CAD",
+          "fx_rate_id": "FX-2026-02-10",
+          "usd_rate": 0.76,
+          "usd_settlement_amount": 7600,
+          "january_carrying_amount": 7500,
+          "february_fx_effect": 100,
+          "status": "outside-january-close"
+        }
+      ],
+      "adjusted_trial_balance": {
+        "trial_balance_id": "TB-CLOSE-2026-01",
+        "as_of": "2026-01-31",
+        "currency": "USD",
+        "total_debits": 185000,
+        "total_credits": 185000,
+        "accounts": [
+          {
+            "account": "Cash",
+            "debit": 105000,
+            "credit": 0
+          },
+          {
+            "account": "Accounts receivable",
+            "debit": 10000,
+            "credit": 0
+          },
+          {
+            "account": "Property and equipment",
+            "debit": 70000,
+            "credit": 0
+          },
+          {
+            "account": "Accounts payable",
+            "debit": 0,
+            "credit": 7000
+          },
+          {
+            "account": "Accrued compensation",
+            "debit": 0,
+            "credit": 5000
+          },
+          {
+            "account": "Foreign-currency accounts payable",
+            "debit": 0,
+            "credit": 7500
+          },
+          {
+            "account": "Accrued service expense",
+            "debit": 0,
+            "credit": 12000
+          },
+          {
+            "account": "Common stock",
+            "debit": 0,
+            "credit": 100000
+          },
+          {
+            "account": "Retained earnings",
+            "debit": 0,
+            "credit": 53500
+          }
+        ]
+      },
+      "statement_mapping": {
+        "assets": 185000,
+        "liabilities": 31500,
+        "equity": 153500,
+        "liabilities_plus_equity": 185000,
+        "net_expense": 31500,
+        "retained_earnings_rollforward": "85000 opening retained earnings - 31500 January net expense = 53500 closing retained earnings",
+        "mapping": [
+          {
+            "statement": "Balance sheet",
+            "source_accounts": [
+              "Cash",
+              "Accounts receivable",
+              "Property and equipment",
+              "Accounts payable",
+              "Accrued compensation",
+              "Foreign-currency accounts payable",
+              "Accrued service expense",
+              "Common stock",
+              "Retained earnings"
+            ],
+            "tie_out": true
+          },
+          {
+            "statement": "Income statement",
+            "source_accounts": [
+              "Wages expense",
+              "Prior-period expense reversal",
+              "Service expense",
+              "Foreign-exchange loss"
+            ],
+            "tie_out": true
+          }
+        ]
+      },
+      "workflow": [
+        "Confirm reporting basis, entity role, period lock and opening TB.",
+        "Reconcile the source-event register and preserve event, source, preparer, reviewer and approval IDs.",
+        "Evaluate cutoff, accrual, reversal, estimate, FX and subsequent-event facts.",
+        "Prepare balanced proposed journals and independently recalculate each amount.",
+        "Tie the adjusted TB to statement mapping, retain exceptions and route the packet for human approval."
+      ],
+      "controls": [
+        "Completeness and cutoff reconciliation from source populations to the GL",
+        "Explicit reversal-to-original-accrual link and no automatic invoice-period assumption",
+        "Dated rate-source identity and independent FX recalculation",
+        "Period lock, duplicate-event detection and one-to-one journal joins",
+        "No posting, payment, filing or restatement without accountable human approval"
+      ],
+      "branches": [
+        {
+          "branch_id": "estimate_revision",
+          "scenario": "A prior warranty estimate was 8000 USD at 2026-01-31. On 2026-02-05 new evidence supports 11000 USD.",
+          "facts": {
+            "original_estimate": 8000,
+            "revised_estimate": 11000,
+            "prior_reporting_date": "2026-01-31",
+            "new_evidence_date": "2026-02-05",
+            "decisive_question": "Was the information available or reasonably knowable at the prior reporting date?"
+          },
+          "expected_route": "Estimate-change analysis if genuinely new information; error and correction analysis if available information was omitted or misapplied. Current ASC 250, materiality and entity facts remain required.",
+          "proposed_actions": [],
+          "status": "review-required"
+        },
+        {
+          "branch_id": "issued_period_error",
+          "scenario": "A 3000 USD prior-period service cost is identified around issuance of the January statements.",
+          "facts": {
+            "amount": 3000,
+            "prior_reporting_date": "2026-01-31",
+            "financial_statements_issued_or_available_date": "2026-02-20",
+            "known_before_issuance_case": "The source evidence and service completion were available before 2026-02-20.",
+            "discovered_after_issuance_case": "The decisive evidence was not available until after 2026-02-20."
+          },
+          "expected_route": "Compare the two cases under current Topic 250, materiality and issuance facts. Do not force a correction or restatement from the amount alone.",
+          "proposed_actions": [],
+          "status": "review-required"
+        },
+        {
+          "branch_id": "post_period_event",
+          "scenario": "The February 5 invoice and February 10 CAD settlement are reviewed against the January 31 reporting date.",
+          "facts": {
+            "reporting_date": "2026-01-31",
+            "event_dates": [
+              "2026-02-05",
+              "2026-02-10"
+            ],
+            "financial_statements_issued_or_available_date": "2026-02-20",
+            "decisive_questions": [
+              "Did the event provide evidence about a January 31 condition or create a later condition?",
+              "Which Topic 855 date boundary applies to this entity?"
+            ]
+          },
+          "expected_route": "Classify with the chronology and current Topic 855 text. The February settlement is outside the January TB in this fixture; the invoice is a review input, not an automatic January posting.",
+          "proposed_actions": [],
+          "status": "review-required"
+        },
+        {
+          "branch_id": "missing_decisive_date",
+          "scenario": "Remove the financial-statement issuance or availability date from the post-period event packet.",
+          "facts": {
+            "reporting_date": "2026-01-31",
+            "event_date": "2026-02-10",
+            "financial_statements_issued_or_available_date": null
+          },
+          "expected_route": "Escalate and do not classify the subsequent event or going-concern horizon until the decisive date and entity class are supplied.",
+          "proposed_actions": [],
+          "status": "blocked-on-missing-input"
+        }
+      ],
+      "reference_output": {
+        "outcome": "complete-with-review-required-exceptions",
+        "journal_count": 6,
+        "balanced_journal_count": 6,
+        "adjusted_trial_balance_ties": true,
+        "statement_mapping_ties": true,
+        "net_expense": 31500,
+        "executed_actions": [],
+        "human_review_required": true,
+        "unresolved_exception_count": 4
+      },
+      "limitations": [
+        "Synthetic fixture: all entity, transaction, rate, approval and ledger values are original educational data.",
+        "The fixture demonstrates reproducible arithmetic and control boundaries, not current US GAAP sufficiency, audit evidence or professional sign-off.",
+        "FASB source access and rights remain record-specific; no publisher full text is stored or redistributed.",
+        "No live ERP, bank, invoice, market-rate, filing, payment or restatement action was performed."
+      ],
+      "examples": [
+        {
+          "id": "us-reporting-foundations-close--balanced-journals",
+          "title": "Balanced proposed journals and statement tie-out",
+          "scenario_type": "golden",
+          "objective": "Reproduce the January close arithmetic, preserve source identity and stop before execution.",
+          "input": {
+            "base_fixture": "example-us-reporting-foundations-close",
+            "mutations": []
+          },
+          "reference_expectations": {
+            "outcome": "complete-with-review-required-exceptions",
+            "balanced_journal_count": 6,
+            "adjusted_trial_balance_ties": true,
+            "statement_mapping_ties": true,
+            "executed_actions_must_be_empty": true,
+            "review_required": true
+          },
+          "limitations": [
+            "Synthetic only; no live posting, payment or filing.",
+            "Current authoritative text and professional review remain open."
+          ]
+        },
+        {
+          "id": "us-reporting-foundations-close--missing-issuance-date",
+          "title": "Missing issuance date blocks subsequent-event classification",
+          "scenario_type": "missing_decisive_date",
+          "objective": "Stop when the event chronology lacks the issuance or availability date needed for the applicable boundary.",
+          "input": {
+            "base_fixture": "example-us-reporting-foundations-close",
+            "mutations": [
+              "Set financial_statements_issued_or_available_date to null"
+            ]
+          },
+          "reference_expectations": {
+            "outcome": "stop",
+            "exception_codes": [
+              "MISSING_ISSUANCE_OR_AVAILABILITY_DATE",
+              "EVENT_BOUNDARY_UNRESOLVED"
+            ],
+            "executed_actions_must_be_empty": true,
+            "review_required": true
+          },
+          "limitations": [
+            "Synthetic only; the stop condition does not establish a live subsequent-event conclusion."
+          ]
+        }
+      ]
+    }
   }
 ]

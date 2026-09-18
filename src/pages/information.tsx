@@ -174,18 +174,21 @@ export function usePage() {
             <Card>
               <CardHeader>
                 <CardTitle>
-                  <a href="/downloads/accounting-agents-source.zip" download="" className="inline-flex items-center gap-2">
-                    {"Source ZIP"}
+                  <a href="/downloads/accounting-agents-source.manifest.json" download="" className="inline-flex items-center gap-2">
+                    {"Source export"}
                     <DownloadIcon className="size-4" aria-hidden="true" />
                   </a>
                 </CardTitle>
                 <CardDescription>
-                  {"Editable data, website, documentation, and tests"}
+                  {"ZIP when it fits; verified ordered parts otherwise"}
                 </CardDescription>
               </CardHeader>
             </Card>
           </div>
           <p>
+            {
+              "The source export manifest lists every source path, the one separately published current-release gzip, and the exact ZIP or ordered parts needed for verified reconstruction. "
+            }
             <a href="/downloads/manifest.json">
               {"File sizes and SHA-256 manifest"}
             </a>

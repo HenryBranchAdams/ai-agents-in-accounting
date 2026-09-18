@@ -14,6 +14,10 @@ import {
   allSourceFiles,
   currentCorpusVersion,
   currentReleaseGzipPath,
+  SOURCE_EXPORT_MANIFEST_NAME,
+  SOURCE_HOST_LIMIT_BYTES,
+  SOURCE_PART_LIMIT_BYTES,
+  readSourceArchiveMembers,
   sourceFiles,
 } from "../scripts/source-archive.mjs";
 
@@ -35,8 +39,12 @@ const env = {
         : pathname.endsWith(".zip")
           ? "application/zip"
           : "text/plain";
-      return new Response(fs.readFileSync(file), {
-        headers: { "Content-Type": contentType },
+      const body = fs.readFileSync(file);
+      return new Response(body, {
+        headers: {
+          "Content-Type": contentType,
+          "Content-Length": String(body.length),
+        },
       });
     },
   },
@@ -311,22 +319,68 @@ test("exports match canonical records, versions, and manifest hashes", async () 
   assert.equal((await selected.text()).trim().split("\n").length, 2);
 });
 
-test("source archive includes every current source byte and no recovery files", () => {
+test("source export includes every current source byte and no recovery files", () => {
+  const sourceExport = JSON.parse(
+    fs.readFileSync(`dist/client/downloads/${SOURCE_EXPORT_MANIFEST_NAME}`, "utf8"),
+  );
+  const archive = sourceExport.mode === "single"
+    ? fs.readFileSync("dist/client/downloads/accounting-agents-source.zip")
+    : Buffer.concat(sourceExport.parts.map((part) => fs.readFileSync(`dist/client/downloads/${part.name}`)));
+  assert.equal(sourceExport.source_file_count, allSourceFiles().length);
+  assert.equal(sourceExport.included_source_file_count, sourceFiles().length);
+  assert.equal(sourceExport.omitted_source_file_count, 1);
+  assert.deepEqual(
+    sourceExport.source_membership.map((entry) => entry.path),
+    allSourceFiles(),
+  );
+  assert.deepEqual(
+    sourceExport.source_membership.filter((entry) => entry.included).map((entry) => entry.path),
+    sourceFiles(),
+  );
+  assert.equal(archive.length, sourceExport.archive_bytes);
+  assert.equal(createHash("sha256").update(archive).digest("hex"), sourceExport.archive_sha256);
+  assert.deepEqual(
+    readSourceArchiveMembers(archive),
+    sourceExport.source_membership
+      .filter((entry) => entry.included)
+      .map(({ path: file, bytes, sha256 }) => ({ path: file, bytes, sha256 })),
+  );
+  if (sourceExport.mode === "single") {
+    assert.ok(archive.length <= SOURCE_HOST_LIMIT_BYTES);
+    assert.equal(sourceExport.parts.length, 0);
+  } else {
+    assert.equal(fs.existsSync("dist/client/downloads/accounting-agents-source.zip"), false);
+    assert.ok(sourceExport.parts.length > 1);
+    assert.deepEqual(
+      sourceExport.parts.map((part) => part.order),
+      sourceExport.parts.map((_, index) => index + 1),
+    );
+    assert.equal(sourceExport.parts[0].archive_offset, 0);
+    for (const [index, part] of sourceExport.parts.entries()) {
+      const bytes = fs.readFileSync(`dist/client/downloads/${part.name}`);
+      assert.ok(bytes.length <= SOURCE_PART_LIMIT_BYTES);
+      assert.ok(bytes.length <= SOURCE_HOST_LIMIT_BYTES);
+      assert.equal(bytes.length, part.bytes);
+      assert.equal(part.archive_offset, sourceExport.parts.slice(0, index).reduce((total, previous) => total + previous.bytes, 0));
+      assert.equal(createHash("sha256").update(bytes).digest("hex"), part.sha256);
+    }
+  }
   const archivePath = "dist/client/downloads/accounting-agents-source.zip";
-  const bytes = fs.readFileSync(archivePath),
+  const bytes = sourceExport.mode === "single" ? fs.readFileSync(archivePath) : archive,
     archived = new Map();
+  const archivedBytes = bytes;
   let offset = 0;
-  while (bytes.readUInt32LE(offset) === 0x04034b50) {
-    const method = bytes.readUInt16LE(offset + 8),
-      size = bytes.readUInt32LE(offset + 18),
-      nameLength = bytes.readUInt16LE(offset + 26),
-      extraLength = bytes.readUInt16LE(offset + 28);
-    const name = bytes
+  while (archivedBytes.readUInt32LE(offset) === 0x04034b50) {
+    const method = archivedBytes.readUInt16LE(offset + 8),
+      size = archivedBytes.readUInt32LE(offset + 18),
+      nameLength = archivedBytes.readUInt16LE(offset + 26),
+      extraLength = archivedBytes.readUInt16LE(offset + 28);
+    const name = archivedBytes
       .subarray(offset + 30, offset + 30 + nameLength)
       .toString();
     const start = offset + 30 + nameLength + extraLength;
     assert.equal(method, 8);
-    archived.set(name, inflateRawSync(bytes.subarray(start, start + size)));
+    archived.set(name, inflateRawSync(archivedBytes.subarray(start, start + size)));
     offset = start + size;
   }
   const omitted = allSourceFiles().filter(name => !archived.has(name));
@@ -362,13 +416,62 @@ test("source archive includes every current source byte and no recovery files", 
     }
   }
   const archiveManifest = JSON.parse(fs.readFileSync("dist/client/downloads/manifest.json", "utf8"));
-  const archiveEntry = archiveManifest.files.find(file => file.path === "/downloads/accounting-agents-source.zip");
-  assert.ok(archiveEntry);
-  assert.equal(archiveEntry.bytes, bytes.length);
-  assert.equal(archiveEntry.sha256, createHash("sha256").update(bytes).digest("hex"));
-  assert.ok(bytes.length <= 25 * 1024 * 1024, `${archivePath} must stay within the 25 MiB hosting limit`);
+  const exportEntry = archiveManifest.files.find(file => file.path === `/downloads/${SOURCE_EXPORT_MANIFEST_NAME}`);
+  assert.ok(exportEntry);
+  assert.equal(exportEntry.bytes, fs.statSync(`dist/client/downloads/${SOURCE_EXPORT_MANIFEST_NAME}`).size);
+  assert.deepEqual(archiveManifest.source_export, {
+    manifest: `/downloads/${SOURCE_EXPORT_MANIFEST_NAME}`,
+    mode: sourceExport.mode,
+    archive_name: sourceExport.archive_name,
+    archive_path: sourceExport.archive_path,
+    archive_bytes: sourceExport.archive_bytes,
+    archive_sha256: sourceExport.archive_sha256,
+    part_count: sourceExport.parts.length,
+    source_file_count: sourceExport.source_file_count,
+    included_source_file_count: sourceExport.included_source_file_count,
+    omitted_source_file_count: sourceExport.omitted_source_file_count,
+  });
+  for (const part of sourceExport.parts) {
+    const entry = archiveManifest.files.find((file) => file.path === part.path);
+    assert.ok(entry, part.name);
+    assert.equal(entry.bytes, part.bytes);
+    assert.equal(entry.sha256, part.sha256);
+  }
 });
 
+
+test("multipart source parts use binary MIME with stable GET, HEAD, and cache headers", async () => {
+  const sourceExport = JSON.parse(
+    fs.readFileSync(`dist/client/downloads/${SOURCE_EXPORT_MANIFEST_NAME}`, "utf8"),
+  );
+  assert.equal(sourceExport.mode, "multipart");
+  const part = sourceExport.parts[0];
+  const expected = fs.readFileSync(`dist/client/downloads/${part.name}`);
+  const get = await request(part.path);
+  assert.equal(get.status, 200);
+  assert.equal(get.headers.get("Content-Type"), "application/octet-stream");
+  assert.equal(get.headers.get("Content-Length"), String(expected.length));
+  const etag = get.headers.get("ETag");
+  assert.ok(etag);
+  assert.deepEqual(Buffer.from(await get.arrayBuffer()), expected);
+
+  const head = await request(part.path, { method: "HEAD" });
+  assert.equal(head.status, 200);
+  assert.equal(head.headers.get("Content-Type"), "application/octet-stream");
+  assert.equal(head.headers.get("Content-Length"), String(expected.length));
+  assert.equal(head.headers.get("ETag"), etag);
+  assert.equal(await head.text(), "");
+
+  const cached = await request(part.path, { headers: { "If-None-Match": etag } });
+  assert.equal(cached.status, 304);
+  assert.equal(cached.headers.get("Content-Type"), "application/octet-stream");
+  assert.equal(cached.headers.get("Content-Length"), String(expected.length));
+  assert.equal(cached.headers.get("ETag"), etag);
+  assert.equal(await cached.text(), "");
+
+  const manifest = await request(`/downloads/${SOURCE_EXPORT_MANIFEST_NAME}`);
+  assert.equal(manifest.headers.get("Content-Type"), "application/json");
+});
 
 test("oversized download storage stays within host limits and preserves streaming HTTP semantics", async () => {
   const file = (await read("/downloads/manifest.json")).files.find((f) => f.path === "/downloads/agent-passages.jsonl");

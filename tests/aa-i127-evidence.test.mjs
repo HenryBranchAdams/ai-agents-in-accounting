@@ -79,15 +79,16 @@ test("AA-I127 rights matrix keeps code, data, upstream inputs, and unresolved pe
   assert.equal(rightsGuide.data.empirical_support, "not-established");
 });
 
-test("AA-I127 build exports and source archive include the new canonical records", () => {
+test("AA-I127 build exports and source export include the new canonical records", () => {
   const exported = read("dist/client/downloads/corpus.json");
-  assert.equal(exported.exported_record_count, 1097);
+  assert.equal(exported.exported_record_count, 1106);
   assert.ok(exported.records.some((record) => record.id === "example-erp-journal-lineage"));
   assert.ok(exported.records.some((record) => record.id === "guide-us-accounting-agent-evidence-boundaries"));
   const manifest = read("dist/client/downloads/manifest.json");
-  const archive = manifest.files.find((file) => file.path === "/downloads/accounting-agents-source.zip");
-  assert.ok(archive && archive.bytes > 0);
-  assert.ok(fs.statSync("dist/client/downloads/accounting-agents-source.zip").size === archive.bytes);
+  const sourceExport = read("dist/client/downloads/accounting-agents-source.manifest.json");
+  assert.ok(sourceExport.archive_bytes > 0);
+  assert.ok(manifest.files.some((file) => file.path === "/downloads/accounting-agents-source.manifest.json"));
+  assert.equal(manifest.source_export.archive_sha256, sourceExport.archive_sha256);
 });
 
 test("AA-I127 derived research denominators agree across criteria, runtime analytics, and the latest snapshot", () => {
@@ -103,7 +104,7 @@ test("AA-I127 derived research denominators agree across criteria, runtime analy
   assert.equal(analytics.summary.research.named_partial_questions, partial);
   assert.equal(analytics.summary.research.named_evidence_gaps, gaps);
   assert.equal(partial + gaps, questions.length);
-  assert.equal(latest.id, "2026-09-17.5");
+  assert.equal(latest.id, "2026-09-17.7");
   assert.deepEqual(latest.summary, analytics.summary);
 });
 
