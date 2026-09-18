@@ -5,6 +5,11 @@ const read = f => JSON.parse(fs.readFileSync(f, "utf8"));
 const write = (f, x) => fs.writeFileSync(f, JSON.stringify(x, null, 2) + "\n");
 const names = ["foundations", "industries", "jurisdictions", "empirical"];
 const batches = names.filter(n => fs.existsSync(`data/research/${n}.json`)).map(n => ({name:n, ...read(`data/research/${n}.json`)}));
+const scopedQuestionReplacements = new Set(batches.flatMap(batch => {
+  const ids = batch.integration_scope?.replace_question_ids || [];
+  assert.ok(Array.isArray(ids), `${batch.name}: integration_scope.replace_question_ids must be an array`);
+  return ids;
+}));
 const datePattern = /^\d{4}-\d{2}-\d{2}$/;
 const editionPattern = /^(\d{4}-\d{2}-\d{2})\.(\d+)$/;
 const numericVersionPattern = /^\d+(?:\.\d+)*$/;
@@ -88,9 +93,27 @@ const sourceLocatorSubstantiveDifference = (current, incoming) => {
 const questionFieldValue = (question, field) => field === "assessment_status" ? question.assessment?.status : question[field];
 const questionDifferences = (current, incoming) => substantiveQuestionFields.filter(field => !sameValue(questionFieldValue(current,field),questionFieldValue(incoming,field)))
   .concat(sourceLocatorSubstantiveDifference(current.source_locators,incoming.source_locators) ? ["source_locators"] : []);
+const appliedScopedQuestionReplacements = [];
+const replaceQuestionObject = (current, incoming, target) => {
+  const merged = {...current};
+  for (const [field, value] of Object.entries(incoming)) {
+    if (field === "source_locators" && Array.isArray(current.source_locators) && Array.isArray(value)) {
+      merged[field] = mergeValue(current[field], value, `${target}.${field}`);
+    } else if (field === "assessment" && current.assessment && value && typeof value === "object" && !Array.isArray(value)) {
+      merged[field] = {...current.assessment, ...value};
+    } else {
+      merged[field] = value;
+    }
+  }
+  return merged;
+};
 const mergeQuestionObject = (current, incoming, target) => {
   const differingFields=questionDifferences(current,incoming);
   if (differingFields.length) {
+    if (scopedQuestionReplacements.has(current.id)) {
+      appliedScopedQuestionReplacements.push({target, question_id:current.id, fields:differingFields});
+      return replaceQuestionObject(current, incoming, target);
+    }
     preservedQuestionObjects.add(current);
     recordConflict(`${target}:substantive`, "substantive-question-conflict-preserved-current", differingFields, differingFields.map(field => ({field, current:questionFieldValue(current,field), incoming:questionFieldValue(incoming,field)})));
     return current;
@@ -122,7 +145,7 @@ const mergeValue = (current, incoming, target) => {
       const unmatched = current.filter(item => !incomingKeys.has(arrayIdentity(target, item)));
       if (unmatched.length) {
         recordConflict(target, "unmatched-current-array-items-preserved", unmatched.length, incoming.length);
-        if (!target.endsWith("source_locators")) return current;
+        if (!target.endsWith("source_locators") && target !== "research-questions.questions") return current;
       }
       const merged=incoming.map(item => {
         const key = arrayIdentity(target, item), prior = currentByKey.get(key);
@@ -278,6 +301,8 @@ const checkReferences = (value, where) => {
 };
 const questionRows=[];
 const guidePackageApplied=new Set();
+const currentRegistryRows=new Map((questionRegistry.questions || []).map(row => [row.id, row]));
+const preservedRegistryQuestionIds=new Set();
 for (const original of batches) {
   const batch=remap(original);
   const packages=batch.families || batch.packages || batch.guides || [];
@@ -297,7 +322,10 @@ for (const original of batches) {
     const version=preserveNewerEdition(existingGuide?.data?.version,packageVersion,`guide:${id}:data.version`);
     const comparison=existingGuide?.data?.version && packageVersion ? compareEditions(existingGuide.data.version,packageVersion) : null;
     const applyPackage=packageInScope && (!existingGuide || (Boolean(packageVersion) && (!existingGuide.data?.version || comparison < 0)));
+    const packageHasScopedReplacement=qs.some(question => scopedQuestionReplacements.has(question.id));
+    const reuseCurrentPackage=packageHasScopedReplacement && packageInScope && existingGuide?.data?.research_package === batch.name && comparison === 0;
     const data={...p,research_package:batch.name,research_questions:qs};
+    data.source_ids=source_ids;
     if (version) data.version=version; else delete data.version;
     delete data.questions;
     data.professional_review="not-performed";data.empirical_support=p.empirical_support || "not-established";
@@ -305,6 +333,7 @@ for (const original of batches) {
     checkReferences(data,id);
     for (const source of source_ids) assert.ok(sourceById.has(source),`${id}: ${source}`);
     const generatedRecord={id,kind:"guide",title:p.title,summary,topics:["Scoped research",...family_ids.map(id=>familyTitles.get(id))],industries:p.industries || [],jurisdiction:p.jurisdiction || p.jurisdictions?.join("; ") || "Declared separately for each question",source_type:null,publisher:"Accounting Agents contributors",source_url:null,source_ids,related_ids,review_status:"editorially-reviewed",reviewed_at:batchMetadata.get(batch.name).reviewedAt,provenance:{added_on:batchMetadata.get(batch.name).reviewedAt,reviewer:"Codex AI-assisted research, with root source-scope and semantic review",note:"Original research synthesis and clearly labeled original examples. Listed source access and currency limits constrain every answer; no professional sign-off or production validation.",research_file:`data/research/${batch.name}.json`},rights:{...rights},data};
+    if (reuseCurrentPackage) guidePackageApplied.add(id);
     if (packageInScope && !applyPackage && existingGuide && comparison === 0) {
       const currentQuestions=new Map((existingGuide.data.research_questions || []).map(question => [question.id, question]));
       for (const question of qs) {
@@ -326,15 +355,25 @@ for (const original of batches) {
     }
     known.add(id);
     const canonicalQuestions=guides.find(g=>g.id===id)?.data?.research_questions || qs;
-    for(const [index,q] of canonicalQuestions.entries()) questionRows.push({id:q.id,record_id:id,pointer:`/data/research_questions/${index}`,family_ids:q.family_id?[q.family_id]:q.family_ids || family_ids,question:q.question,scope:q.scope || p.scope || summary,answer_status:q.answer_status || "sourced-answer-bounded",assessment_status:q.assessment?.status || "partial",source_ids:[...new Set(q.source_ids || [])],remaining_gaps:q.remaining_gaps || [],professional_review:"not-performed",empirical_support:"not-established"});
+    for(const [index,q] of canonicalQuestions.entries()) {
+      const generatedRow={id:q.id,record_id:id,pointer:`/data/research_questions/${index}`,family_ids:q.family_id?[q.family_id]:q.family_ids || family_ids,question:q.question,scope:q.scope || p.scope || summary,answer_status:q.answer_status || "sourced-answer-bounded",assessment_status:q.assessment?.status || "partial",source_ids:[...new Set(q.source_ids || [])],remaining_gaps:q.remaining_gaps || [],professional_review:"not-performed",empirical_support:"not-established"};
+      if (!guidePackageApplied.has(id) && currentRegistryRows.has(q.id)) {
+        preservedRegistryQuestionIds.add(q.id);
+        questionRows.push(structuredClone(currentRegistryRows.get(q.id)));
+      } else questionRows.push(generatedRow);
+    }
   }
 }
 for(const g of guides.filter(g=>g.data.manual_research_questions)) for(const [i,q] of g.data.research_questions.entries()) {
   checkReferences(q,g.id);
-  questionRows.push({id:q.id,record_id:g.id,pointer:`/data/research_questions/${i}`,family_ids:q.family_ids,question:q.question,scope:q.scope,answer_status:q.answer_status||"sourced-answer-bounded",assessment_status:"partial",source_ids:q.source_ids,remaining_gaps:q.remaining_gaps,professional_review:"not-performed",empirical_support:"not-established"});
+  if (currentRegistryRows.has(q.id)) {
+    preservedRegistryQuestionIds.add(q.id);
+    questionRows.push(structuredClone(currentRegistryRows.get(q.id)));
+  } else questionRows.push({id:q.id,record_id:g.id,pointer:`/data/research_questions/${i}`,family_ids:q.family_ids,question:q.question,scope:q.scope,answer_status:q.answer_status||"sourced-answer-bounded",assessment_status:"partial",source_ids:q.source_ids,remaining_gaps:q.remaining_gaps,professional_review:"not-performed",empirical_support:"not-established"});
 }
 // A field-presence inventory is not a seven-dimension sufficiency finding.
 for(const row of questionRows){
+ if (preservedRegistryQuestionIds.has(row.id)) continue;
  const g=guides.find(g=>g.id===row.record_id),q=g.data.research_questions[Number(row.pointer.split('/').at(-1))];
  row.dimensions={scope:"partial",'accounting-question':row.assessment_status==='evidence-gap'?"missing":"partial",'evidence-inputs':(q.inputs?.length||q.evidence_inputs?.length)?"partial":"missing",workflow:(q.workflow?.length||g.data.workflows?.length||g.data.connected_workflow)?"partial":"missing",controls:(q.controls?.length||g.data.controls?.length)?"partial":"missing",'worked-material':(q.worked_example||g.data.worked_examples?.length||g.data.worked_record_id)?"partial":"missing",'empirical-support':g.data.research_package==='empirical'?"partial":"not-assessed"};
  row.dimension_basis='Presence and review limits of the linked named question, package workflow and original worked material. Partial does not establish accounting correctness; missing means this question packet lacks that component.';
@@ -389,4 +428,4 @@ const changes={
   registry_fields:changedObjectKeys(beforeQuestionRegistry,registryOutput).filter(key=>key!="questions"),
   source_aliases:changedObjectKeys(beforeAliases,aliases),
 };
-console.log(JSON.stringify({sources:sources.length,guides:guides.length,named_questions:questionRows.length,preserved_newer_metadata:conflicts.length,conflicts,changes},null,2));
+console.log(JSON.stringify({sources:sources.length,guides:guides.length,named_questions:questionRows.length,scoped_question_replacements:appliedScopedQuestionReplacements,preserved_newer_metadata:conflicts.length,conflicts,changes},null,2));

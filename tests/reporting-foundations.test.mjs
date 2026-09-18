@@ -447,7 +447,7 @@ test("the applicator applies to the clean base, replays byte-identically, and pr
 
 test("the bounded package integrates into the accepted mainline without downgrading newer metadata", () => {
   const script = path.resolve("scripts/apply-reporting-foundations.mjs");
-  const currentMain = "7ecd9e31d7035f7a4d38bae6e0bd1fba46343144";
+  const currentMain = "92bfc034183adf7857ed291158a7ba64f50fb8a1";
   const canonicalInputs = [
     "data/catalog.json",
     "data/corpus/source.json",
@@ -485,7 +485,7 @@ test("the bounded package integrates into the accepted mainline without downgrad
   const targetGuideIds = new Set(supplement.families.map((family) => family.guide_id));
   const compareProtectedRecords = (file, ids) => {
     const before = new Map(read(path.join(root, file)).map((record) => [record.id, record]));
-    const expected = new Map(read(file).map((record) => [record.id, record]));
+    const expected = new Map(JSON.parse(execFileSync("git", ["show", `${currentMain}:${file}`], { encoding: "utf8", maxBuffer: 50 * 1024 * 1024 })).map((record) => [record.id, record]));
     for (const id of ids) assert.deepEqual(before.get(id), expected.get(id), `${file}:${id} changed outside the bounded package`);
   };
 
@@ -504,7 +504,7 @@ test("the bounded package integrates into the accepted mainline without downgrad
     assert.equal(guides.length, 188);
     assert.equal(registry.questions.length, 208);
     assert.equal(registry.question_set_version, "2026-09-17.1272");
-    assert.equal(registry.corpus_version, "2026-09-17.5");
+    assert.equal(registry.corpus_version, catalog.corpus_version);
     assert.equal(assessments.assessments.length, 25);
     assert.equal(assessments.assessment_version, "2026-09-17.1302");
     assert.equal(overrides.mapping_version, "2026-09-17.1272");

@@ -122,6 +122,7 @@ test("research package replay validates the full clean corpus and is idempotent"
     const nonPackageReviews = new Map(beforeSources.map((source) => [source.id, (source.data?.supplemental_reviews || [])
       .filter((review) => !packageBatches.has(review.batch))]));
     const empirical = read(root, "data/research/empirical.json");
+    const foundations = read(root, "data/research/foundations.json");
 
     const output = runReplay(root);
     const afterSources = read(root, "data/corpus/source.json");
@@ -137,8 +138,8 @@ test("research package replay validates the full clean corpus and is idempotent"
     assert.deepEqual(output.changes.registry_fields, []);
     assert.ok(Array.isArray(output.changes.source_records));
     assert.ok(Array.isArray(output.changes.mapping_records));
-    assert.equal(registry.question_set_version, empirical.version);
-    assert.equal(registry.reviewed_at, empirical.reviewed_at);
+    assert.equal(registry.question_set_version, foundations.question_set_version);
+    assert.equal(registry.reviewed_at, foundations.reviewed_at);
     assert.equal(guide.data.version, empirical.version);
     assert.equal(aliases.src_roadmap_naics2022, "src_roadmap_naics2022_manual");
     assert.equal(aliases.src_roadmap_naics_311, "src_roadmap_naics2022_manual");
@@ -194,6 +195,46 @@ test("scoped integration replay leaves unrelated foundation review state untouch
     assert.equal(canonicalQuestion.replay_marker, undefined);
     assert.equal(afterGuide.reviewed_at, unrelatedGuide.reviewed_at);
     assert.equal(afterGuide.data.version, foundations.question_set_version);
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("explicit assurance question corrections replace only listed packets and remain replayable", () => {
+  const root = createFixture();
+  try {
+    const guides = read(root, "data/corpus/guide.json");
+    const assuranceGuide = guides.find((record) => record.id === "guide-q-audit-assertions");
+    assuranceGuide.data.version = "2026-09-11.1";
+    assuranceGuide.reviewed_at = "2026-09-11";
+    assuranceGuide.data.research_questions[0].answer = "Legacy assurance packet answer.";
+    assuranceGuide.data.research_questions[0].canonical_marker = "preserve-canonical-marker";
+    const unrelatedGuide = guides.find((record) => record.id === "guide-q-evaluation");
+    unrelatedGuide.data.research_questions[0].canonical_marker = "unrelated-marker";
+    write(root, "data/corpus/guide.json", guides);
+
+    const registry = read(root, "data/coverage/research-questions.json");
+    registry.question_set_version = "2026-09-11.1";
+    registry.corpus_version = "2026-09-11.1";
+    registry.questions = registry.questions.filter((question) => !question.id.includes("assurance") && !question.id.includes("controls-fraud") && !question.id.includes("professional-governance"));
+    write(root, "data/coverage/research-questions.json", registry);
+
+    const first = runImporter(root);
+    const afterGuide = read(root, "data/corpus/guide.json").find((record) => record.id === assuranceGuide.id);
+    const afterUnrelated = read(root, "data/corpus/guide.json").find((record) => record.id === unrelatedGuide.id);
+    const afterRegistry = read(root, "data/coverage/research-questions.json");
+    const corrected = afterGuide.data.research_questions.find((question) => question.id === "rq-audit-assertions-assertion-evidence");
+
+    assert.ok(first.scoped_question_replacements.some((replacement) => replacement.question_id === corrected.id));
+    assert.match(corrected.answer, /assertion-to-evidence matrix/);
+    assert.equal(corrected.canonical_marker, "preserve-canonical-marker");
+    assert.equal(afterUnrelated.data.research_questions[0].canonical_marker, "unrelated-marker");
+    assert.ok(afterGuide.data.research_questions.some((question) => question.id === "rq-audit-assertions-recorded-vs-omitted"));
+    assert.ok(afterRegistry.questions.some((question) => question.id === "rq-audit-assertions-recorded-vs-omitted"));
+
+    const afterFirst = snapshots(root);
+    runImporter(root);
+    assertByteStable(root, afterFirst, "Scoped assurance correction replay changed canonical output");
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
   }
