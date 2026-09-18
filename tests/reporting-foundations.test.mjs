@@ -14,6 +14,16 @@ const inventory = read("data/research/reporting-foundations-inventory.json");
 const catalog = read("data/catalog.json");
 const guides = read("data/corpus/guide.json");
 const byId = new Map(records.map((record) => [record.id, record]));
+const expectedSourceQuestionIds = new Map([
+  ["src_fasb_201009", ["q-events-going-concern"]],
+  ["src_fasb_201415", ["q-events-going-concern"]],
+  ["src_fasb_201305", ["q-foreign-currency"]],
+  ["src_fasb_201502", ["q-consolidation"]],
+  ["src_fasb_fas52", ["q-foreign-currency"]],
+  ["src_sec_regsx", ["q-presentation"]],
+  ["src_fasb_202010", ["q-ledger-close", "q-presentation", "q-policy-changes-errors"]],
+  ["src_fasb_202511", ["q-estimates", "q-policy-changes-errors"]],
+]);
 
 test("US reporting foundations preserve eight scoped questions and citable source reviews", () => {
   assert.equal(supplement.families.length, 8);
@@ -44,6 +54,8 @@ test("US reporting foundations preserve eight scoped questions and citable sourc
     assert.equal(record.rights.source_status, "unknown");
     assert.equal(record.data.source_review.review_level, source.review_level);
     assert.equal(record.data.source_review.source_locator, source.source_locator);
+    assert.deepEqual(record.data.source_review.question_ids, expectedSourceQuestionIds.get(source.id));
+    assert.match(record.data.source_review.mapping_rationale, /Exact named reporting-foundations questions cite this source/);
     assert.ok(record.data.source_review.checks.length);
   }
   const evidenceGapFamilies = new Set(["q-ledger-close", "q-estimates", "q-presentation", "q-policy-changes-errors"]);
@@ -404,6 +416,13 @@ test("the applicator applies to the clean base, replays byte-identically, and pr
     assert.equal(applied.data.version, supplement.version);
     assert.equal(applied.data.supplemental_research_package, supplement.package_id);
     assert.deepEqual(applied.data.shared_inputs, preservedSharedInputs);
+    const appliedSources = new Map(read(path.join(root, "data/corpus/source.json")).map((record) => [record.id, record]));
+    const appliedOverrides = read(path.join(root, "data/coverage/mapping-overrides.json")).records;
+    for (const [sourceId, questionIds] of expectedSourceQuestionIds) {
+      assert.deepEqual(appliedSources.get(sourceId).data.source_review.question_ids, questionIds, `${sourceId}: fresh apply source association`);
+      assert.deepEqual(appliedOverrides[sourceId].question_ids, questionIds, `${sourceId}: fresh apply mapping association`);
+      assert.deepEqual(appliedOverrides[sourceId].reviewed_question_ids, questionIds, `${sourceId}: fresh apply reviewed association`);
+    }
     const firstRun = snapshot();
     run();
     assert.deepEqual(snapshot(), firstRun, "applicator changed clean-base output on replay");
@@ -485,10 +504,17 @@ test("the bounded package integrates into the accepted mainline without downgrad
     assert.equal(guides.length, 188);
     assert.equal(registry.questions.length, 208);
     assert.equal(registry.question_set_version, "2026-09-17.1272");
-    assert.equal(registry.corpus_version, "2026-09-17.4");
+    assert.equal(registry.corpus_version, "2026-09-17.5");
     assert.equal(assessments.assessments.length, 25);
     assert.equal(assessments.assessment_version, "2026-09-17.1302");
     assert.equal(overrides.mapping_version, "2026-09-17.1272");
+    for (const [sourceId, questionIds] of expectedSourceQuestionIds) {
+      const source = sources.find((record) => record.id === sourceId);
+      assert.deepEqual(source.data.source_review.question_ids, questionIds, `${sourceId}: mainline source association`);
+      assert.deepEqual(overrides.records[sourceId].question_ids, questionIds, `${sourceId}: mainline mapping association`);
+      assert.deepEqual(overrides.records[sourceId].reviewed_question_ids, questionIds, `${sourceId}: mainline reviewed association`);
+      assert.equal(overrides.records[sourceId].industry_scope, "shared-context");
+    }
     assert.deepEqual(
       assessments.assessments.filter((assessment) => assessment.id.startsWith("coverage-reporting-foundations-")).map((assessment) => assessment.status),
       Array(8).fill("partial"),
@@ -522,5 +548,81 @@ test("the bounded package integrates into the accepted mainline without downgrad
     assert.throws(() => run(), /guide-q-estimates: package-owned guide field summary differs; refusing overwrite/);
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("the applicator preserves newer source mappings and rejects conflicting associations", () => {
+  const script = path.resolve("scripts/apply-reporting-foundations.mjs");
+  const canonicalInputs = [
+    "data/catalog.json",
+    "data/corpus/source.json",
+    "data/corpus/guide.json",
+    "data/corpus/example.json",
+    "data/coverage/research-questions.json",
+    "data/coverage/assessments.json",
+    "data/coverage/mapping-overrides.json",
+    "data/coverage/subsector-profiles.json",
+    "data/coverage/subsector-screening.json",
+  ];
+  const packageInputs = [
+    "data/research/reporting-foundations.json",
+    "data/research/reporting-foundations-example.json",
+    "data/research/reporting-foundations-assessments.json",
+    "data/research/reporting-foundations-inventory.json",
+  ];
+  const copyRoot = () => {
+    const root = fs.mkdtempSync(path.join(os.tmpdir(), "reporting-foundations-mapping-"));
+    for (const file of [...canonicalInputs, ...packageInputs]) {
+      const destination = path.join(root, file);
+      fs.mkdirSync(path.dirname(destination), { recursive: true });
+      fs.copyFileSync(file, destination);
+    }
+    return root;
+  };
+  const run = (root) => execFileSync(process.execPath, [script, "--integrate-into-newer-corpus"], {
+    cwd: root,
+    env: { ...process.env, REPORTING_FOUNDATIONS_ROOT: root },
+    encoding: "utf8",
+    stdio: "pipe",
+  });
+
+  const newerRoot = copyRoot();
+  try {
+    const mappingFile = path.join(newerRoot, "data/coverage/mapping-overrides.json");
+    const mapping = read(mappingFile);
+    const sourceId = "src_fasb_202010";
+    const questionIds = expectedSourceQuestionIds.get(sourceId);
+    const newer = {
+      question_ids: [...questionIds, "q-newer-reviewed-context"],
+      industry_codes: [],
+      industry_scope: "shared-context",
+      basis_field: "/data/source_review/mapping_rationale",
+      reason: "Newer reviewed mapping retained by the caller.",
+      reviewed_question_ids: [...questionIds, "q-newer-reviewed-context"],
+      reviewed_industry_codes: [],
+      reviewed_at: "2026-09-18",
+      review_note: "Newer reviewed mapping retained by the caller.",
+      newer_unrelated_mapping_note: "preserve this newer mapping metadata",
+    };
+    mapping.records[sourceId] = newer;
+    write(mappingFile, mapping);
+    run(newerRoot);
+    assert.deepEqual(read(mappingFile).records[sourceId], newer, "newer mapping metadata was overwritten");
+  } finally {
+    fs.rmSync(newerRoot, { recursive: true, force: true });
+  }
+
+  const conflictRoot = copyRoot();
+  try {
+    run(conflictRoot);
+    const mappingFile = path.join(conflictRoot, "data/coverage/mapping-overrides.json");
+    const mapping = read(mappingFile);
+    mapping.records["src_fasb_202010"].question_ids = ["q-ledger-close"];
+    write(mappingFile, mapping);
+    const before = fs.readFileSync(mappingFile);
+    assert.throws(() => run(conflictRoot), /src_fasb_202010: existing mapping field question_ids differs; refusing overwrite/);
+    assert.deepEqual(fs.readFileSync(mappingFile), before, "conflicting mapping failure wrote files");
+  } finally {
+    fs.rmSync(conflictRoot, { recursive: true, force: true });
   }
 });

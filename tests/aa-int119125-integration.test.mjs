@@ -19,6 +19,7 @@ const integrationFiles = [
   "data/coverage/assessments.json",
   "data/research-questions.json",
   "data/releases/2026-09-17.3/corpus.json",
+  "data/releases/2026-09-17.4/corpus.json",
 ];
 const expectedAcceptedState = new Map(
   integrationFiles.map(file => [file, read(file)]),
@@ -163,28 +164,30 @@ test("clean AA-I125 integration is sensitive to new-source supplemental-review l
   }
 });
 
-test("2026-09-17.4 release and snapshot match the bounded reporting-foundations build", () => {
+test("2026-09-17.5 release and snapshot match the corrected reporting-foundations build", () => {
   const index = read("data/releases/index.json");
-  assert.equal(index.current_version, "2026-09-17.4");
-  assert.deepEqual(index.versions.slice(-3), ["2026-09-17.2", "2026-09-17.3", "2026-09-17.4"]);
+  assert.equal(index.current_version, "2026-09-17.5");
+  assert.deepEqual(index.versions.slice(-3), ["2026-09-17.3", "2026-09-17.4", "2026-09-17.5"]);
 
-  const currentRelease = "data/releases/2026-09-17.4";
+  const currentRelease = "data/releases/2026-09-17.5";
   const currentBytes = fs.readFileSync(`${currentRelease}/corpus.json`);
   assert.deepEqual(currentBytes, fs.readFileSync("dist/client/downloads/corpus.json"));
   assert.deepEqual(gunzipSync(fs.readFileSync(`${currentRelease}/corpus.json.gz`)), currentBytes);
 
-  for (const priorRelease of ["data/releases/2026-09-17.1", "data/releases/2026-09-17.2", "data/releases/2026-09-17.3"]) {
+  for (const priorRelease of ["data/releases/2026-09-17.1", "data/releases/2026-09-17.2", "data/releases/2026-09-17.3", "data/releases/2026-09-17.4"]) {
     const priorBytes = fs.readFileSync(`${priorRelease}/corpus.json`);
     assert.deepEqual(gunzipSync(fs.readFileSync(`${priorRelease}/corpus.json.gz`)), priorBytes);
   }
 
-  const snapshot = read("data/coverage/snapshots.json").snapshots.find(item => item.id === "2026-09-17.6");
+  const snapshot = read("data/coverage/snapshots.json").snapshots.find(item => item.id === "2026-09-17.7");
   assert.ok(snapshot);
   assert.equal(snapshot.summary.record_count, 1106);
   assert.equal(snapshot.summary.scoped_assessments, 25);
-  assert.equal(snapshot.provenance.collision_snapshot_id, "2026-09-17.1");
+  const collisionSnapshot = read("data/coverage/snapshots.json").snapshots.find(item => item.id === "2026-09-17.6");
+  assert.ok(collisionSnapshot);
+  assert.equal(collisionSnapshot.provenance.collision_snapshot_id, "2026-09-17.1");
   assert.deepEqual(
-    snapshot.provenance.source_receipts.map(receipt => receipt.reviewed_head),
+    collisionSnapshot.provenance.source_receipts.map(receipt => receipt.reviewed_head),
     [
       "0de408bf3f00928f41ac90d2c0b5ccde338b58e1",
       "f294a687ce48d5400daaa5d7a56bb90f6029cff",

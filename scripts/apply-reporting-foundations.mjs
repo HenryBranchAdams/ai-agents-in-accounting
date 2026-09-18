@@ -11,6 +11,7 @@ const mergeObjects = (current, additions) => {
   return [...current, ...additions.filter((item) => !seen.has(JSON.stringify(item)))];
 };
 const sameIds = (left, right) => Array.isArray(left) && Array.isArray(right) && left.length === right.length && right.every((id) => left.includes(id));
+const includesIds = (current, expected) => Array.isArray(current) && Array.isArray(expected) && expected.every((id) => current.includes(id));
 
 const packageData = read("data/research/reporting-foundations.json");
 const exampleData = read("data/research/reporting-foundations-example.json");
@@ -58,6 +59,19 @@ const overrides = read("data/coverage/mapping-overrides.json");
 const catalog = read("data/catalog.json");
 const profileCoverage = read("data/coverage/subsector-profiles.json");
 const screeningCoverage = read("data/coverage/subsector-screening.json");
+const packageSourceIds = new Set(packageData.sources.map((source) => source.id));
+const sourceQuestionIds = new Map();
+for (const family of packageData.families) {
+  for (const sourceId of family.question.source_ids) {
+    if (!packageSourceIds.has(sourceId)) continue;
+    const questionIds = sourceQuestionIds.get(sourceId) || [];
+    if (!questionIds.includes(family.family_id)) questionIds.push(family.family_id);
+    sourceQuestionIds.set(sourceId, questionIds);
+  }
+}
+const sourceMappingRationale = "Exact named reporting-foundations questions cite this source within their bounded US scope; the association supports discovery only and does not establish accounting adequacy, industry coverage or professional verification.";
+const sourceMappingReviewNote = "Question-level citation association reviewed for the bounded reporting-foundations package; shared context only, with no industry descendant or sufficiency credit.";
+const legacySourceMappingRationale = "Shared US reporting-foundations authority; the reviewed material does not establish a specific NAICS industry treatment.";
 
 assert.match(catalog.corpus_version, /^\d{4}-\d{2}-\d{2}\.\d+$/, "catalog corpus version missing");
 assert.equal(inventoryData.package_id, packageData.package_id, "inventory package mismatch");
@@ -90,10 +104,10 @@ function sourceRecord(source) {
     checks: source.checks,
     corrections: {},
     rights_review: source.rights_review,
-    question_ids: [],
+    question_ids: sourceQuestionIds.get(source.id) || [],
     industry_scope: "shared-context",
     industry_codes: [],
-    mapping_rationale: "Shared US reporting-foundations authority; the reviewed material does not establish a specific NAICS industry treatment.",
+    mapping_rationale: sourceMappingRationale,
     reviewed_at: date,
     reviewer: packageData.reviewer,
   };
@@ -207,8 +221,50 @@ function assertGuidePackageFields(guide, family) {
 for (const source of packageData.sources) {
   const existing = sources.find((record) => record.id === source.id);
   const expected = sourceRecord(source);
-  if (existing) assert.deepEqual(existing, expected, `${source.id}: existing canonical record differs; refusing overwrite`);
-  else sources.push(expected);
+  if (!existing) {
+    sources.push(expected);
+    continue;
+  }
+  if (JSON.stringify(existing) === JSON.stringify(expected)) continue;
+  const legacy = structuredClone(expected);
+  legacy.data.source_review.question_ids = [];
+  legacy.data.source_review.mapping_rationale = legacySourceMappingRationale;
+  if (JSON.stringify(existing) === JSON.stringify(legacy)) {
+    existing.data.source_review.question_ids = expected.data.source_review.question_ids;
+    existing.data.source_review.mapping_rationale = expected.data.source_review.mapping_rationale;
+    continue;
+  }
+  assert.deepEqual(existing, expected, `${source.id}: existing canonical record differs; refusing overwrite`);
+}
+
+for (const [sourceId, questionIds] of sourceQuestionIds) {
+  const expected = {
+    replace_question_ids: true,
+    question_ids: questionIds,
+    industry_codes: [],
+    industry_scope: "shared-context",
+    basis_field: "/data/source_review/mapping_rationale",
+    reason: sourceMappingRationale,
+    reviewed_question_ids: questionIds,
+    reviewed_industry_codes: [],
+    reviewed_at: date,
+    review_note: sourceMappingReviewNote,
+  };
+  const existing = overrides.records[sourceId];
+  if (!existing) {
+    overrides.records[sourceId] = expected;
+    continue;
+  }
+  if (existing.reviewed_at && existing.reviewed_at > date) {
+    if (!includesIds(existing.question_ids, questionIds) || !includesIds(existing.reviewed_question_ids, questionIds))
+      throw new Error(`${sourceId}: newer mapping metadata conflicts with package question associations; refusing overwrite`);
+    continue;
+  }
+  for (const [field, value] of Object.entries(expected)) {
+    if (existing[field] !== undefined && JSON.stringify(existing[field]) !== JSON.stringify(value))
+      throw new Error(`${sourceId}: existing mapping field ${field} differs; refusing overwrite`);
+  }
+  overrides.records[sourceId] = { ...existing, ...expected };
 }
 
 const newQuestionRows = [];
