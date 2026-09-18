@@ -146,5 +146,5 @@ test('nonprofit reading pages and exports expose the same record IDs, source lin
  const output=read('dist/client/downloads/corpus.json');assert.equal(output.corpus_version,meta.corpus_version);
  for(const id of [guideId,exampleId,...sources])assert.deepEqual(output.records.find(r=>r.id===id),byId.get(id));
  assert.deepEqual(read('dist/client/downloads/research-questions.json'),read('data/coverage/research-questions.json'));
- assert.ok(read('dist/client/downloads/manifest.json').files.some(f=>f.path==='/downloads/accounting-agents-source.zip'));
+ assert.ok(read('dist/client/downloads/manifest.json').files.some(f=>f.path==='/downloads/accounting-agents-source.manifest.json'));
 });

@@ -1,4 +1,4 @@
-# AA-INT118 bounded reporting-foundations integration receipt
+# AA-INT118 bounded reporting-foundations integration and portable source-export receipt
 
 Date: 2026-09-18
 
@@ -26,20 +26,24 @@ The coherent combined corpus edition is `2026-09-17.4`:
 - four reporting-foundations questions explicitly marked `evidence-gap`
 - release artifacts under `data/releases/2026-09-17.4/`
 
-The current release was generated from the same corpus export used by the build before the source archive size guard stopped completion. Earlier release bytes were not regenerated.
+The current release was generated from the same corpus export used by the build. Earlier release bytes were not regenerated.
 
-## Source archive gate
+## Portable source export
 
-Before this package, the measured source archive was 25,611,935 bytes, or 24.43 MiB. After integrating the package but before adding the new release directory, it was 26,545,676 bytes, or 25.32 MiB. With the coherent `2026-09-17.4` release directory and final receipt sources included, a direct final measurement is above the 25 MiB host limit at 266 of 267 source files. The tested contract still omits exactly the current release `corpus.json.gz`; no additional source or historical artifact was omitted.
+The prior PR138 monolithic source archive measured 28,355,528 bytes, or 27.04 MiB, after integrating the coherent release directory and receipt sources. This follow-up keeps the deterministic ZIP bytes as the reconstruction target and publishes them as ordered raw parts when the single ZIP exceeds the host limit. Each part has a 24 MiB ceiling, leaving 1 MiB of headroom below the 25 MiB host limit.
 
-The build therefore stops with the host-limit error rather than silently dropping source or history. Independent review must choose a resolution before release qualification: raise the actual host asset limit, or introduce a deterministic multi-part source archive that retains every file and updates the public download contract and tests. This author branch does not choose either deployment-facing resolution.
+The generated `accounting-agents-source.manifest.json` records the corpus version, full archive size and hash, ordered part names, offsets, sizes and hashes, and complete source membership. It marks only `data/releases/2026-09-17.4/corpus.json.gz` as separately provided by the release bundle; every other current source path and every historical release gzip remains in the reconstructed ZIP. The standard download manifest cross-checks the source-export summary against the same build.
+
+When the deterministic ZIP fits under the host limit, the existing single `accounting-agents-source.zip` output remains available and the same manifest switches to `mode: single`. When it does not, stale source-export parts are removed only from the generated download directory. `scripts/reconstruct-source-archive.mjs` verifies each part, reconstructs the ZIP in order, verifies the archive hash, and checks complete ZIP membership. No host limit was raised, no source content was silently dropped, and no deployment-facing resolution was bypassed.
 
 ## Author checks
 
 - Reporting-foundations and integration focused suites: 16/16 passed, including clean-base application, byte-identical replay, current-mainline preservation, four authority-gap checks, eight partial assessments, mutation sensitivity and snapshot-collision provenance.
+- Portable source-export suite: 4/4 passed, including clean temporary reconstruction, complete membership, all part and archive hashes, historical release presence, deterministic replay, stale-part cleanup, single-ZIP compatibility, and missing or corrupted part rejection.
 - Coverage mapping and coverage header regeneration: passed, 1,106 mappings and 5,952 screening cells.
 - Immutable release and coverage snapshot generation: passed for `2026-09-17.4` and `2026-09-17.6`.
-- `npm run build`: blocked only at the measured source archive host-limit guard described above; canonical validation and release preparation completed before that guard.
-- `npm run check`: not claimed because the required build cannot complete while the archive exceeds the host limit.
+- `npm run build`: passed, generating 29 downloads and a multipart source export with 268 included source files.
+- `node scripts/reconstruct-source-archive.mjs`: passed against the generated manifest and parts.
+- `npm run check`: passed with loopback permission for the existing MCP HTTP integration test, including all 132 tests.
 
 No merge, issue closure, deployment, or reviewer-comment rejection bypass was performed.

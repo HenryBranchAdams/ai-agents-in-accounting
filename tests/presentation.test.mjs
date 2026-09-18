@@ -44,7 +44,7 @@ test("compiled stylesheet and source configuration are real build artifacts", ()
   const manifest = JSON.parse(
     fs.readFileSync("dist/client/downloads/manifest.json"),
   );
-  assert.ok(JSON.stringify(manifest).includes("accounting-agents-source.zip"));
+  assert.ok(JSON.stringify(manifest).includes("accounting-agents-source.manifest.json"));
 });
 
 test("React documents have titles, a native navigation fallback, and exactly one external hydration entry", async () => {

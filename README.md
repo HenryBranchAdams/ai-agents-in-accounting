@@ -54,10 +54,11 @@ The MCP command serves stdio. Use `--transport http --port 5178` for Streamable 
 - `/api/v1/collections/{id}`: retrieve a bibliography with its source records.
 - `/downloads/corpus.json`, `.jsonl`, `.md`: download the complete snapshot.
 - `/downloads/agent-index.jsonl`, `/downloads/agent-passages.jsonl`: ingest normalized headers and citable passages with provenance and rights.
+- `/downloads/accounting-agents-source.manifest.json`: verify and reconstruct the complete source ZIP or its ordered parts.
 - `/downloads/manifest.json`: verify sizes and SHA-256 hashes.
 - `/openapi.json`, `/llms.txt`, `/AGENTS.md`: discover the interface.
 
-Record data lives in [`data/corpus`](data/corpus). The same records drive the site, search, and exports. Generated artifacts go in `dist/` and are not committed. The source ZIP includes new files even before Git staging.
+Record data lives in [`data/corpus`](data/corpus). The same records drive the site, search, and exports. Generated artifacts go in `dist/` and are not committed. The source export includes new files even before Git staging. Use `node scripts/reconstruct-source-archive.mjs` after downloading the manifest and all listed parts.
 
 ## Contribute
 
