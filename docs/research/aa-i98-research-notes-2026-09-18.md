@@ -1,6 +1,6 @@
 # AA-I98 US extractive industries working evidence
 
-Status: implementation in progress, no acceptance or closure claim. Coordinator owns this branch; other workers retain their assignments.
+Status: bounded research package integrated into PR148; independent acceptance and issue disposition are tracked separately. The sections below preserve the dated research sequence. The September19 completion note supersedes earlier draft and pending-implementation statements.
 
 Original scope includes producer-operator, mineral owner and support contractor; exploration/development, production/royalties, depletion, retirement obligations and joint interests. Hard-rock mining needs an explicit different disposition, not automatic application of oil/gas rules. Inventory is preserved in the adjacent JSON. Existing IFRS resource questions remain separately labeled.
 
@@ -19,3 +19,10 @@ Build the selected producer production-to-cash bridge with explicit interest/qua
 Subsequent original ONRR URL open confirms title page4.5 March18,2026,330pages; exclude earlier cached4.4 locators. Fixed GovInfo2025 section PDF (11pages) avoids moving mostrecent URL. Read210.4-10(b),(c)(1)-(3): successful-efforts points to ASC932; full-cost branch distinguishes eligible acquisition/exploration/development costs and production/overhead. Detailed current applicability remains unverified.
 
 Created data/research/extractive-2026-09-18.json with explicit ownership bases, gross/royalty/transport/partner bridges, cost receivable settlement, reserve sensitivity and suspense/service counterexamples. Ten arithmetic assertions pass. Draft is not canonical corpus integration or accounting acceptance; remaining implementation listed in the JSON.
+
+
+## September19 integrated package and metadata correction
+
+PR148 source head78bf0aa794fa02867d9362e085dda305a5910eee contains the source-qualified production settlement, separate ownership/control recognition, joint costs, depletion sensitivity, retirement, royalty reporting, cost-stage and support-role branches. Five named questions are connected to canonical guides and registry entries. All153 checks passed in both the author and saved independent check logs, and CI35453515709 passed for that exact head. Those checks do not establish independent substantive acceptance.
+
+The follow-up corrects the package draft label and three stale assessment gaps that still described delivered revenue/royalty and cross-role branches as absent. Current consolidated authority, actual entity and contract facts, external rights, professional review and operational evidence remain explicitly limited. The correction requires its own coherent release, checks and independent review; earlier frozen releases and snapshots are preserved.
