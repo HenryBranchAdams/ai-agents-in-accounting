@@ -835,5 +835,107 @@
       "Volume is -10000 and price is +9000 under the declared sequential convention.",
       "A restated actual replaces the original actual and is not additive."
     ]
+  },
+  {
+    "id": "rq-aa-i122-us-book-tax-bridge",
+    "user_question": "How should a US agent structure a federal book-to-tax bridge without inventing classifications?",
+    "search_query": "US federal book tax bridge symbolic rate temporary difference",
+    "kind": "context",
+    "filters": {},
+    "expected_ids": [
+      "guide-q-income-tax",
+      "example-us-tax-foundations-boundary"
+    ],
+    "excluded_ids": [
+      "guide-q-international-tax"
+    ],
+    "required_citations": 2,
+    "expected_scope": "US corporate federal income-tax provision and synthetic book-to-tax bridge with a declared tax year, assumptions, symbolic rate, and deferred-tax boundary.",
+    "claims_assert_only_supported": [
+      "The worked bridge is synthetic.",
+      "The source set does not establish a US GAAP Topic 740 conclusion or a taxpayer rate."
+    ]
+  },
+  {
+    "id": "rq-aa-i122-return-information-reporting",
+    "user_question": "How should an agent separate a US corporate return from withholding information reporting?",
+    "search_query": "Form 1042-S",
+    "kind": "context",
+    "filters": {},
+    "expected_ids": [
+      "src_aa122_irs_i1042s_2026",
+      "guide-q-tax-returns",
+      "src_aa122_irs_i1042_2025"
+    ],
+    "excluded_ids": [
+      "guide-q-indirect-tax"
+    ],
+    "required_citations": 3,
+    "expected_scope": "US corporate Form 1120 and withholding-agent Forms 1042 and 1042-S populations with separate documentation and correction controls.",
+    "claims_assert_only_supported": [
+      "Form 1120 and Form 1042-S are distinct reporting populations.",
+      "Form instructions do not establish a universal withholding rate or taxpayer filing conclusion."
+    ]
+  },
+  {
+    "id": "rq-aa-i122-method-change-bridge",
+    "user_question": "How should an agent route a US tax-method change and section 481 bridge?",
+    "search_query": "US tax method Form 3115 section 481",
+    "kind": "context",
+    "filters": {},
+    "expected_ids": [
+      "src_aa122_usc26_methods",
+      "guide-q-tax-methods",
+      "src_roadmap_irs_form3115_2022"
+    ],
+    "excluded_ids": [
+      "guide-q-income-tax"
+    ],
+    "required_citations": 2,
+    "expected_scope": "US federal method-change routing with requested-year, old-method, proposed-method, Form 3115, and section 481(a) evidence requirements.",
+    "claims_assert_only_supported": [
+      "The historical Form 3115 source has a current-successor gap.",
+      "The synthetic bridge does not establish automatic-change eligibility."
+    ]
+  },
+  {
+    "id": "rq-aa-i122-residence-source-withholding",
+    "user_question": "What evidence is needed before making a US cross-border residence, source, or withholding recommendation?",
+    "search_query": "W-8BEN-E",
+    "kind": "context",
+    "filters": {},
+    "expected_ids": [
+      "src_aa122_irs_w8bene",
+      "guide-q-international-tax"
+    ],
+    "excluded_ids": [
+      "guide-q-indirect-tax"
+    ],
+    "required_citations": 2,
+    "expected_scope": "US cross-border evidence routing for residence, source, withholding, treaty, certificate, and place-of-performance facts; OECD transfer pricing is bounded context.",
+    "claims_assert_only_supported": [
+      "OECD transfer-pricing context does not establish US residence or withholding.",
+      "Missing documentation requires a presumption or human-review branch rather than a universal rate."
+    ]
+  },
+  {
+    "id": "rq-aa-i122-tax-family-boundary",
+    "user_question": "What facts keep federal income tax separate from sales/use and payroll tax?",
+    "search_query": "Publication 15 payroll",
+    "kind": "context",
+    "filters": {},
+    "expected_ids": [
+      "src_irs_pub15_2026",
+      "guide-q-indirect-tax"
+    ],
+    "excluded_ids": [
+      "guide-q-income-tax"
+    ],
+    "required_citations": 2,
+    "expected_scope": "US tax-family routing boundary across federal income tax, selected Texas sales/use tax, and payroll withholding context without a state matrix or universal rate.",
+    "claims_assert_only_supported": [
+      "A federal income-tax source does not answer a sales/use or payroll question.",
+      "The selected Texas and payroll records are bounded examples, not national coverage."
+    ]
   }
 ]

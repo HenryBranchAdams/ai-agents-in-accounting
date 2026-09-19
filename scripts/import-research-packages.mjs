@@ -204,7 +204,11 @@ const mergeReviewedMapping = (current, incoming, target) => {
 const batchMetadata = new Map(batches.map(batch => {
   const reviewedAt = batch.reviewed_at || newestDate((batch.sources || []).map(source => source.reviewed_at));
   assert.ok(reviewedAt && datePattern.test(reviewedAt), `${batch.name}: package reviewed_at is required and must be YYYY-MM-DD`);
-  return [batch.name, {reviewedAt, version:batch.version || batch.question_set_version || null, corpusVersion:batch.corpus_version || null}];
+  return [batch.name, {
+    reviewedAt,
+    version:batch.integration_scope?.replay_version || batch.version || batch.question_set_version || null,
+    corpusVersion:batch.integration_scope?.replay_corpus_version || batch.corpus_version || null,
+  }];
 }));
 const scopedIds = (batch, kind) => {
   const ids = batch.integration_scope?.[`${kind}_ids`];

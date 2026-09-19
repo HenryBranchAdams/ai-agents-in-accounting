@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "assessment_version": "2026-09-18.1",
+  "assessment_version": "2026-09-18.122",
   "topology_version": "2026-09-11.1",
   "assessments": [
     {
@@ -1519,6 +1519,282 @@
         "metadata": "CC0-1.0",
         "content": "CC-BY-4.0",
         "external_content": "Official source records are linked without redistributing publisher text; linked record rights continue to apply."
+      }
+    },
+    {
+      "id": "coverage-aa-i122-q-income-tax-2026-09-18",
+      "scope_kind": "shared-context",
+      "industry_code": null,
+      "named_question_id": "rq-income-tax-us-federal-book-tax-bridge",
+      "question_id": "q-income-tax",
+      "family_ids": [
+        "q-income-tax"
+      ],
+      "status": "partial",
+      "scope": "A US corporation preparing a bounded federal income-tax provision and book-to-tax bridge for a declared tax year. The packet separates financial-reporting basis from tax law, uses assumed synthetic adjustments, and excludes state apportionment, treaty analysis, taxpayer-specific rates, and professional review.",
+      "jurisdictions": [
+        "United States federal tax",
+        "US GAAP reporting context"
+      ],
+      "frameworks": [
+        "US federal corporate income tax",
+        "Form 1120",
+        "US GAAP Topic 740 vocabulary only"
+      ],
+      "effective_from": null,
+      "effective_to": null,
+      "reviewed_at": "2026-09-18",
+      "reviewer": "Codex AI-assisted original-source and synthetic-fixture review",
+      "review_basis": "Current public source anchors, explicit workflow inputs, and a synthetic bridge are present; authoritative financial-reporting text, taxpayer evidence, professional review, and empirical support are not established.",
+      "source_currency": "verified-within-stated-scope",
+      "evidence_record_ids": [
+        "guide-q-income-tax",
+        "example-us-tax-foundations-boundary",
+        "src_aa122_irs_i1120_2025",
+        "src_aa122_usc26_income",
+        "src_aa122_fasb_topic740_2025"
+      ],
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "gaps": [
+        "No current ASC Topic 740 text or professional provision review was available.",
+        "No taxpayer facts, enacted rate, return, temporary-difference schedule, or uncertain-position analysis was available.",
+        "State, local, foreign, and industry-specific tax effects remain outside scope."
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External text is not included; source terms and unresolved permissions remain separate.",
+        "full_text_stored": false
+      }
+    },
+    {
+      "id": "coverage-aa-i122-q-tax-returns-2026-09-18",
+      "scope_kind": "shared-context",
+      "industry_code": null,
+      "named_question_id": "rq-tax-returns-us-corporate-return-and-information-reporting",
+      "question_id": "q-tax-returns",
+      "family_ids": [
+        "q-tax-returns"
+      ],
+      "status": "partial",
+      "scope": "US corporate income-tax return and US-source income information-reporting workflow for a declared tax or reporting year. Entity, recipient, payment character, documentation, correction, and filing facts must be separately established.",
+      "jurisdictions": [
+        "United States federal tax"
+      ],
+      "frameworks": [
+        "Form 1120",
+        "Form 1042",
+        "Form 1042-S",
+        "Forms W-8BEN-E and withholding documentation"
+      ],
+      "effective_from": null,
+      "effective_to": null,
+      "reviewed_at": "2026-09-18",
+      "reviewer": "Codex AI-assisted original-source and synthetic-fixture review",
+      "review_basis": "Current official form instructions and a synthetic routing example are present; taxpayer facts, complete form-year coverage, professional review, and empirical filing evidence are not established.",
+      "source_currency": "verified-within-stated-scope",
+      "evidence_record_ids": [
+        "guide-q-tax-returns",
+        "example-us-tax-foundations-boundary",
+        "src_aa122_irs_i1120_2025",
+        "src_aa122_irs_i1042_2025",
+        "src_aa122_irs_i1042s_2026",
+        "src_aa122_irs_w8bene",
+        "src_aa122_irs_presumption"
+      ],
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "gaps": [
+        "No taxpayer, payee, payment, treaty, certificate, or electronic filing evidence was available.",
+        "No comprehensive current-year form matrix or state filing review was performed.",
+        "No professional review or empirical filing validation was performed."
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External text is not included; source terms and unresolved permissions remain separate.",
+        "full_text_stored": false
+      }
+    },
+    {
+      "id": "coverage-aa-i122-q-tax-methods-2026-09-18",
+      "scope_kind": "shared-context",
+      "industry_code": null,
+      "named_question_id": "rq-tax-methods-us-method-change-and-481-bridge",
+      "question_id": "q-tax-methods",
+      "family_ids": [
+        "q-tax-methods"
+      ],
+      "status": "partial",
+      "scope": "US federal income-tax accounting-method change for a declared requested year. The packet covers method identification, Form 3115 routing, and a section 481(a) bridge, while excluding a taxpayer-specific method, automatic-change eligibility, or adjustment amount.",
+      "jurisdictions": [
+        "United States federal income tax"
+      ],
+      "frameworks": [
+        "Internal Revenue Code §§ 446 and 481",
+        "26 CFR 1.446-1",
+        "Form 3115"
+      ],
+      "effective_from": null,
+      "effective_to": null,
+      "reviewed_at": "2026-09-18",
+      "reviewer": "Codex AI-assisted original-source and synthetic-fixture review",
+      "review_basis": "Current statutory and regulatory anchors, historical Form 3115 context, and a synthetic routing example are present; current procedural eligibility, taxpayer evidence, professional review, and empirical support are not established.",
+      "source_currency": "verified-within-stated-scope",
+      "evidence_record_ids": [
+        "guide-q-tax-methods",
+        "example-us-tax-foundations-boundary",
+        "src_aa122_usc26_methods",
+        "src_aa122_ecfr_methods",
+        "src_roadmap_irs_form3115_2022"
+      ],
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "gaps": [
+        "Current successor Form 3115 instructions and revenue procedures were not established for a taxpayer.",
+        "No old-versus-new method schedule, prior return, or taxpayer eligibility evidence was available.",
+        "No professional tax-method review or empirical filing evidence was performed."
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External text is not included; source terms and unresolved permissions remain separate.",
+        "full_text_stored": false
+      }
+    },
+    {
+      "id": "coverage-aa-i122-q-international-tax-2026-09-18",
+      "scope_kind": "shared-context",
+      "industry_code": null,
+      "named_question_id": "rq-international-tax-us-residence-source-withholding",
+      "question_id": "q-international-tax",
+      "family_ids": [
+        "q-international-tax"
+      ],
+      "status": "evidence-gap",
+      "scope": "Cross-border payment or service facts involving a potential US payer, recipient, or withholding agent. Residence, source, permanent establishment, treaty, beneficial ownership, documentation, and rate conclusions remain evidence-dependent.",
+      "jurisdictions": [
+        "United States federal tax",
+        "Cross-border treaty and domestic-law context"
+      ],
+      "frameworks": [
+        "Internal Revenue Code selected international-tax provisions",
+        "26 CFR selected regulations",
+        "Form W-8BEN-E",
+        "OECD Transfer Pricing Guidelines 2022 as bounded context"
+      ],
+      "effective_from": null,
+      "effective_to": null,
+      "reviewed_at": "2026-09-18",
+      "reviewer": "Codex AI-assisted original-source and synthetic-fixture review",
+      "review_basis": "Selected public authority and an explicit evidence-routing workflow are present, but the facts required for residence, source, treaty, withholding, or rate conclusions are absent.",
+      "source_currency": "verified-within-stated-scope",
+      "evidence_record_ids": [
+        "guide-q-international-tax",
+        "example-us-tax-foundations-boundary",
+        "src_aa122_usc26_residence_source",
+        "src_aa122_ecfr_source",
+        "src_aa122_usc26_withholding",
+        "src_aa122_ecfr_withholding",
+        "src_aa122_irs_w8bene",
+        "src_aa122_irs_presumption",
+        "src_roadmap_oecd_tp"
+      ],
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "gaps": [
+        "No taxpayer-specific treaty, entity, service-location, payment, or certificate evidence was available.",
+        "No complete current treaty, domestic-law, permanent-establishment, or effectively connected income analysis was performed.",
+        "No professional review or empirical cross-border tax evidence was established."
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External text is not included; source terms and unresolved permissions remain separate.",
+        "full_text_stored": false
+      }
+    },
+    {
+      "id": "coverage-aa-i122-q-indirect-tax-2026-09-18",
+      "scope_kind": "shared-context",
+      "industry_code": null,
+      "named_question_id": "rq-indirect-tax-us-federal-boundary",
+      "question_id": "q-indirect-tax",
+      "family_ids": [
+        "q-indirect-tax"
+      ],
+      "status": "partial",
+      "scope": "Boundary routing for a US accounting-agent research task that may mix federal income tax, sales/use tax, and payroll tax. No general state matrix, payroll calculation, rate, nexus conclusion, or sales-tax treatment is asserted.",
+      "jurisdictions": [
+        "United States federal tax",
+        "Texas selected sales and use tax context"
+      ],
+      "frameworks": [
+        "Form 1120",
+        "Texas sales and use tax selected guidance",
+        "Publication 15 payroll context"
+      ],
+      "effective_from": null,
+      "effective_to": null,
+      "reviewed_at": "2026-09-18",
+      "reviewer": "Codex AI-assisted original-source and synthetic-fixture review",
+      "review_basis": "Selected federal, Texas, and payroll-context records plus a synthetic boundary example are present; broad jurisdictional coverage, taxpayer facts, professional review, and empirical support are not established.",
+      "source_currency": "verified-within-stated-scope",
+      "evidence_record_ids": [
+        "guide-q-indirect-tax",
+        "example-us-tax-foundations-boundary",
+        "src_aa122_irs_i1120_2025",
+        "src_construction_texas_sales_tax",
+        "src_irs_pub15_2026"
+      ],
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "gaps": [
+        "No state-by-state sales/use-tax or payroll matrix was researched.",
+        "No taxpayer contract, destination, worker, nexus, exemption, registration, or rate evidence was available.",
+        "No professional review or empirical routing validation was performed."
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External text is not included; source terms and unresolved permissions remain separate.",
+        "full_text_stored": false
       }
     }
   ]

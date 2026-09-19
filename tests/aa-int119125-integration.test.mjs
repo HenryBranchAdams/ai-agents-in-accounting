@@ -59,7 +59,7 @@ const canonical = corpusFiles.flatMap(file => {
 const byId = new Map(canonical.map(record => [record.id, record]));
 
 test("AA-I119, AA-I125, and AA-I127 preserve canonical IDs without collisions or lost nonprofit records", () => {
-  assert.equal(canonical.length, 1107);
+  assert.equal(canonical.length, 1121);
   assert.equal(byId.size, canonical.length, "canonical record IDs must be globally unique");
 
   for (const id of [
@@ -164,12 +164,12 @@ test("clean AA-I125 integration is sensitive to new-source supplemental-review l
   }
 });
 
-test("2026-09-18.1 release and snapshot match the local assurance integration build", () => {
+test("2026-09-19.1 release and snapshot match the local tax-foundations integration build", () => {
   const index = read("data/releases/index.json");
-  assert.equal(index.current_version, "2026-09-18.1");
-  assert.deepEqual(index.versions.slice(-3), ["2026-09-17.4", "2026-09-17.5", "2026-09-18.1"]);
+  assert.equal(index.current_version, "2026-09-19.1");
+  assert.deepEqual(index.versions.slice(-3), ["2026-09-17.5", "2026-09-18.1", "2026-09-19.1"]);
 
-  const currentRelease = "data/releases/2026-09-18.1";
+  const currentRelease = "data/releases/2026-09-19.1";
   const currentBytes = fs.readFileSync(`${currentRelease}/corpus.json`);
   assert.deepEqual(currentBytes, fs.readFileSync("dist/client/downloads/corpus.json"));
   assert.deepEqual(gunzipSync(fs.readFileSync(`${currentRelease}/corpus.json.gz`)), currentBytes);
@@ -179,10 +179,10 @@ test("2026-09-18.1 release and snapshot match the local assurance integration bu
     assert.deepEqual(gunzipSync(fs.readFileSync(`${priorRelease}/corpus.json.gz`)), priorBytes);
   }
 
-  const snapshot = read("data/coverage/snapshots.json").snapshots.find(item => item.id === "2026-09-18.1");
+  const snapshot = read("data/coverage/snapshots.json").snapshots.find(item => item.id === "2026-09-19.3");
   assert.ok(snapshot);
-  assert.equal(snapshot.summary.record_count, 1107);
-  assert.equal(snapshot.summary.scoped_assessments, 29);
+  assert.equal(snapshot.summary.record_count, 1121);
+  assert.equal(snapshot.summary.scoped_assessments, 34);
   const collisionSnapshot = read("data/coverage/snapshots.json").snapshots.find(item => item.id === "2026-09-17.6");
   assert.ok(collisionSnapshot);
   assert.equal(collisionSnapshot.provenance.collision_snapshot_id, "2026-09-17.1");

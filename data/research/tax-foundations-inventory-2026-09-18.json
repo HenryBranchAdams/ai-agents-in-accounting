@@ -1,0 +1,94 @@
+{
+  "package_id": "tax-foundations-us",
+  "issue_id": "AA-I122",
+  "reviewed_at": "2026-09-18",
+  "inventory_scope": "Issue-specific inventory for US tax and filing foundations. It records what was added, what was reused, and what was intentionally left unresolved.",
+  "existing_guides": [
+    {
+      "id": "guide-q-income-tax",
+      "family_id": "q-income-tax",
+      "disposition": "append one US federal book-to-tax question while preserving the existing IAS 12 questions and limits"
+    },
+    {
+      "id": "guide-q-tax-returns",
+      "family_id": "q-tax-returns",
+      "disposition": "append one US corporate-return and withholding-information-reporting question"
+    },
+    {
+      "id": "guide-q-tax-methods",
+      "family_id": "q-tax-methods",
+      "disposition": "append current Code and regulation anchors and one method-change question; preserve the December 2022 Form 3115 source as historical"
+    },
+    {
+      "id": "guide-q-international-tax",
+      "family_id": "q-international-tax",
+      "disposition": "append residence, source, and withholding evidence requirements; preserve OECD transfer-pricing limits"
+    },
+    {
+      "id": "guide-q-indirect-tax",
+      "family_id": "q-indirect-tax",
+      "disposition": "append a federal-to-sales/use/payroll boundary question; do not create a 50-state matrix"
+    }
+  ],
+  "new_named_questions": [
+    "rq-income-tax-us-federal-book-tax-bridge",
+    "rq-tax-returns-us-corporate-return-and-information-reporting",
+    "rq-tax-methods-us-method-change-and-481-bridge",
+    "rq-international-tax-us-residence-source-withholding",
+    "rq-indirect-tax-us-federal-boundary"
+  ],
+  "roles": [
+    "US corporation preparing a federal income-tax provision and Form 1120 return",
+    "Withholding agent reporting US-source payments to foreign persons",
+    "Foreign entity or recipient providing documentation for withholding review",
+    "Tax or accounting reviewer responsible for rate, classification, method, treaty, or filing judgments"
+  ],
+  "reuse_records": [
+    {
+      "id": "src_roadmap_irs_form3115_2022",
+      "reason": "Historical Form 3115 source retained with an explicit current-successor gap"
+    },
+    {
+      "id": "src_roadmap_oecd_tp",
+      "reason": "Transfer-pricing context retained but explicitly excluded as residence, source, or withholding authority"
+    },
+    {
+      "id": "src_construction_texas_sales_tax",
+      "reason": "Selected Texas sales/use counterexample reused without generalizing to a national matrix"
+    },
+    {
+      "id": "src_irs_pub15_2026",
+      "reason": "Payroll withholding and reporting context reused without a rate or worker-classification conclusion"
+    },
+    {
+      "id": "src_irsw9tin",
+      "reason": "Existing US information-reporting identity and TIN context remains available in the corpus"
+    }
+  ],
+  "preserved_boundaries": [
+    {
+      "issue_id": "Issue 100",
+      "records": [
+        "guide-construction-tax-transitions",
+        "src_construction_irs_rp202632",
+        "src_construction_irs_8697",
+        "src_construction_irs_5522"
+      ],
+      "decision": "The guide preserves four independent IRS discrepancy entries in conflict_resolution.irs_instruction_conflicts. No construction conflict record was rewritten or marked resolved. Interpretation remains separate from publisher clarification."
+    }
+  ],
+  "source_dispositions": {
+    "original_public_authority": 12,
+    "nonauthoritative_context": 1,
+    "full_text_stored": false,
+    "rights_status": "Source reuse permissions remain unresolved or publisher-specific; only original metadata and summaries are stored."
+  },
+  "not_added": [
+    "No 50-state sales/use tax matrix",
+    "No payroll-rate or worker-classification conclusion",
+    "No universal withholding percentage",
+    "No treaty or residence conclusion",
+    "No current ASC Topic 740 full-text or professional conclusion",
+    "No live taxpayer filing, submission, payment, or external action"
+  ]
+}
