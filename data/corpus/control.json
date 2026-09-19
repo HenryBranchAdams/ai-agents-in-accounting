@@ -2492,5 +2492,75 @@
         "External reuse rights remain unknown; publisher text is not stored."
       ]
     }
+  },
+  {
+    "id": "ctrl-utilities-source-to-ledger",
+    "kind": "control",
+    "title": "Utility source-to-ledger completeness and authority control",
+    "summary": "Proposed control pattern requiring dated source lineage, independent recalculation, authority classification and human exception disposition for utility close entries.",
+    "topics": [
+      "Source data, lineage and reconciliation",
+      "Controls and governance"
+    ],
+    "industries": [
+      "energy-utilities"
+    ],
+    "jurisdiction": "United States; selected FERC-jurisdictional electric utility",
+    "source_type": "Original control synthesis",
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_aa_i124_ferc101",
+      "src_utilities_ferc_accounting_qa",
+      "src_utilities_ferc_account_555",
+      "src_utilities_fas143_aro"
+    ],
+    "related_ids": [
+      "guide-utilities-us-regulated-close",
+      "wf-utilities-billing-plant-reconciliation",
+      "example-utilities-billing-plant-close"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-19",
+    "provenance": {
+      "added_on": "2026-09-19",
+      "reviewer": "Codex AI-assisted bounded editorial review",
+      "note": "Original proposed control pattern; no design or operating-effectiveness testing was performed."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "External publisher text is not stored; source rights remain unknown.",
+      "full_text_stored": false
+    },
+    "data": {
+      "version": "2026-09-19.utilities.1",
+      "control_type": "preventive and detective",
+      "control_owner": "Controller or utility accounting manager; accountable human review required",
+      "assertions": [
+        "completeness",
+        "cutoff",
+        "classification",
+        "accuracy",
+        "authority",
+        "traceability"
+      ],
+      "evidence": [
+        "immutable source identifiers and timestamps",
+        "meter-to-billing and purchase-to-settlement reconciliations",
+        "plant-record and rate-order references",
+        "exception, correction, deletion and reviewer log"
+      ],
+      "failure_routes": [
+        "hold proposed entry",
+        "preserve conflicting evidence",
+        "route to qualified accounting or legal reviewer",
+        "document disposition and reperform affected reconciliation"
+      ],
+      "limitations": [
+        "A proposed control is not evidence that an entity implemented or operated it effectively.",
+        "No production incident or deployment study is included."
+      ]
+    }
   }
 ]

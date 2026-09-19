@@ -1,0 +1,1803 @@
+{
+  "package_name": "utilities-us-source-only",
+  "package_version": "2026-09-19.utilities.1",
+  "current_corpus_version": "2026-09-19.12404",
+  "status": "source-only-pending-integration",
+  "scope": {
+    "jurisdiction": "United States",
+    "selected_roles": [
+      "FERC-jurisdictional electric public utility or licensee maintaining Part 101 records",
+      "Unregulated merchant generator or utility service provider as a scope counterexample"
+    ],
+    "framework": "FERC Uniform System of Accounts for the selected regulatory population, with a separate US GAAP financial-reporting review required before posting or filing",
+    "period": "Illustrative 2026-12-31 close; source review performed 2026-09-19; future transactions are fictional",
+    "population": "One electric utility billing, purchased-power, construction, regulatory-balance and retirement-obligation packet; gas, water/sewage, municipal and state-specific branches remain outside this package.",
+    "exclusions": [
+      "No 50-state survey or international expansion",
+      "No current consolidated ASC 980 or ASC 410 claim; those texts and entity-specific applicability were not read",
+      "No professional sign-off, operational transaction population, deployment evidence or measured agent performance",
+      "No source-level reuse permission is inferred from public access"
+    ]
+  },
+  "reused_source_ids": [
+    "src_aa_i124_ferc101",
+    "src_fercacct",
+    "src_roadmap_naics2022_manual"
+  ],
+  "sources": [
+    {
+      "id": "src_utilities_ferc_accounting_qa",
+      "kind": "source",
+      "title": "FERC Accounting Questions and Answers",
+      "summary": "FERC staff Q&A page for jurisdictional public utilities, licensees, natural gas companies and oil pipeline companies, including plant-related accounting and limits on the binding force of informal answers.",
+      "topics": [
+        "Accounting and reporting",
+        "Source data, lineage and reconciliation"
+      ],
+      "industries": [
+        "energy-utilities"
+      ],
+      "jurisdiction": "United States; FERC jurisdictional public utilities, licensees, natural gas companies and oil pipeline companies",
+      "source_type": "Official guidance",
+      "publisher": "Federal Energy Regulatory Commission",
+      "source_url": "https://www.ferc.gov/accounting-questions-and-answers",
+      "source_ids": [],
+      "related_ids": [
+        "src_aa_i124_ferc101",
+        "src_fercacct"
+      ],
+      "review_status": "source-checked",
+      "reviewed_at": "2026-09-19",
+      "provenance": {
+        "added_on": "2026-09-19",
+        "reviewer": "Codex AI-assisted bounded source review",
+        "note": "Original publisher page and named Q&A material were read for this source-only package. The record stores summaries and locators, not publisher text; no professional review or operational validation is asserted."
+      },
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "Publisher material is not stored; public access does not establish reuse permission.",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": null
+      },
+      "data": {
+        "edition": "Living FERC web resource; page inspected 2026-09-19",
+        "access": "Open HTML; selected Q&A entries",
+        "locators": [
+          "Page heading: Accounting Questions and Answers; scope paragraph for jurisdictional public utilities and licensees",
+          "Plant Related Accounting > Plant—Construction Projects > Q.1: preliminary costs for a project that does not result in construction",
+          "Account 182.3 and regulatory-asset/liability references in the accounting Q&A index"
+        ],
+        "effective_period": "Current page accessed 2026-09-19; individual answers retain their stated effective dates where provided.",
+        "evidence_summary": "The page says staff Q&As assist with existing accounting regulations and the Uniform System of Accounts, while also stating that the FAQs do not necessarily reflect the Commission itself and are not binding. The plant Q&A supplies a bounded lead for unsuccessful preliminary surveys; it does not settle a US GAAP conclusion.",
+        "limitations": [
+          "Informal staff Q&As are not binding Commission orders.",
+          "The selected page does not establish an entity's FERC jurisdiction, rate order, recoverability or financial-reporting framework.",
+          "No full current Part 101 account text beyond the cited existing source was stored."
+        ],
+        "source_review": {
+          "checked_url": "https://www.ferc.gov/accounting-questions-and-answers",
+          "review_level": "substantive-excerpt",
+          "material_read": true,
+          "outcome": "Publisher page and selected plant/accounting Q&A headings were read; scope and non-binding limitation retained."
+        }
+      }
+    },
+    {
+      "id": "src_utilities_ferc_account_555",
+      "kind": "source",
+      "title": "Accounting for settlement amounts in Account 555, Purchased Power",
+      "summary": "FERC Chief Accountant guidance distinguishing purchased power and eligible net exchange settlements from distinct purchases and sales that must be recorded gross.",
+      "topics": [
+        "Purchasing, payables and expenses",
+        "Accounting and reporting"
+      ],
+      "industries": [
+        "energy-utilities"
+      ],
+      "jurisdiction": "United States; FERC-jurisdictional electric public utilities and licensees",
+      "source_type": "Official guidance",
+      "publisher": "Federal Energy Regulatory Commission",
+      "source_url": "https://www.ferc.gov/enforcement-legal/enforcement/accounting-matters/accounting-settlement-amounts-account-555purchased",
+      "source_ids": [],
+      "related_ids": [
+        "src_aa_i124_ferc101",
+        "src_fercacct"
+      ],
+      "review_status": "source-checked",
+      "reviewed_at": "2026-09-19",
+      "provenance": {
+        "added_on": "2026-09-19",
+        "reviewer": "Codex AI-assisted bounded source review",
+        "note": "Original FERC guidance page was read for the purchased-power distinction in this source-only package. No full text is stored and no professional or entity-specific conclusion is asserted."
+      },
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "Publisher material is not stored; public access does not establish reuse permission.",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": null
+      },
+      "data": {
+        "publication_or_edition": "Chief Accountant guidance; effective January 1, 1991",
+        "access": "Open FERC HTML",
+        "source_locator": "Question and Answer sections under Account 555, Purchased Power: opening quoted account text, distinct purchases and sales, and gross recording for non-barter agreements",
+        "effective_period": "Guidance states effective January 1, 1991; confirm later amendments and the entity's applicable accounting requirements.",
+        "evidence_summary": "The guidance says Account 555 includes purchased electricity and specified net settlements, but distinct purchases and sales are not to be recorded as exchanges merely because a voucher combines debit and credit amounts. It directs gross recording in the appropriate operating revenue account for specified non-barter sales.",
+        "limitations": [
+          "The guidance is specific to FERC Account 555 and does not decide US GAAP presentation outside that regulatory ledger.",
+          "The page does not establish whether a selected entity is FERC-jurisdictional or whether a transaction is barter, exchange or a separate purchase and sale.",
+          "No current consolidated ASC 606 or derivative accounting text was read."
+        ],
+        "source_review": {
+          "checked_url": "https://www.ferc.gov/enforcement-legal/enforcement/accounting-matters/accounting-settlement-amounts-account-555purchased",
+          "review_level": "substantive-excerpt",
+          "material_read": true,
+          "outcome": "Question, answer, stated effective date and scope limitation were read."
+        }
+      }
+    },
+    {
+      "id": "src_utilities_fas143_aro",
+      "kind": "source",
+      "title": "FASB Statement No. 143: Accounting for Asset Retirement Obligations",
+      "summary": "Official FASB superseded-standard summary describing the historical recognition, initial measurement, capitalization, accretion and depreciation model for qualifying legal asset-retirement obligations.",
+      "topics": [
+        "Environmental obligations and related instruments",
+        "Capital assets and construction in progress"
+      ],
+      "industries": [
+        "energy-utilities"
+      ],
+      "jurisdiction": "United States; historical US GAAP source, all-entity scope stated by FASB",
+      "source_type": "Superseded standard summary",
+      "publisher": "Financial Accounting Standards Board",
+      "source_url": "https://fasb.org/page/PageContent?bcpath=tff&pageId=%2Freference-library%2Fsuperseded-standards%2Fsummary-of-statement-no-143.html",
+      "source_ids": [],
+      "related_ids": [
+        "src_aa_i124_ferc101"
+      ],
+      "review_status": "source-checked",
+      "reviewed_at": "2026-09-19",
+      "provenance": {
+        "added_on": "2026-09-19",
+        "reviewer": "Codex AI-assisted bounded source review",
+        "note": "The FASB official superseded-standard summary was read only to frame the retirement-obligation evidence path. It is expressly not a current consolidated ASC conclusion."
+      },
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "Publisher material is not stored; public access does not establish reuse permission.",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": null
+      },
+      "data": {
+        "publication_or_edition": "Statement No. 143, issued June 2001; FASB page labels the material superseded",
+        "access": "Open FASB summary page",
+        "source_locator": "Summary: scope and legal-obligation definition; differences from prior practice; fair-value liability, capitalized asset-retirement cost, accretion, depreciation and disclosure sections",
+        "effective_period": "Original effective date: fiscal years beginning after 2002-06-15; source is historical and superseded.",
+        "evidence_summary": "The summary states that qualifying legal obligations associated with retirement of tangible long-lived assets are recognized when incurred if fair value can be reasonably estimated, with an associated asset-retirement cost capitalized and later depreciated; subsequent accretion and disclosure are described.",
+        "limitations": [
+          "FASB identifies this material as superseded; current ASC 410 and later amendments were not read.",
+          "The summary does not determine whether a utility has a present legal obligation, reasonable estimate, funding arrangement or rate recovery.",
+          "The source is an accounting authority summary, not evidence of this package's synthetic facts or operating controls."
+        ],
+        "source_review": {
+          "checked_url": "https://fasb.org/page/PageContent?bcpath=tff&pageId=%2Freference-library%2Fsuperseded-standards%2Fsummary-of-statement-no-143.html",
+          "review_level": "substantive-excerpt",
+          "material_read": true,
+          "outcome": "FASB summary, superseded label, scope, model and original effective-date section were read."
+        }
+      }
+    }
+  ],
+  "records": [
+    {
+      "id": "guide-utilities-us-regulated-close",
+      "kind": "guide",
+      "title": "US utility billing, regulatory balances and plant close",
+      "summary": "A bounded US electric-utility application connecting rate-regulation eligibility, metered and unbilled billing cutoff, purchased power, plant-cost lineage and retirement-obligation evidence. Source-only pending integration; no whole-subsector sufficiency is asserted.",
+      "topics": [
+        "Scoped research",
+        "Accounting and reporting",
+        "Source data, lineage and reconciliation"
+      ],
+      "industries": [
+        "energy-utilities"
+      ],
+      "jurisdiction": "United States; selected FERC-jurisdictional electric utility role and explicit unregulated counterexample",
+      "source_type": null,
+      "publisher": "Accounting Agents contributors",
+      "source_url": null,
+      "source_ids": [
+        "src_aa_i124_ferc101",
+        "src_fercacct",
+        "src_utilities_ferc_accounting_qa",
+        "src_utilities_ferc_account_555",
+        "src_utilities_fas143_aro",
+        "src_roadmap_naics2022_manual"
+      ],
+      "related_ids": [
+        "guide-q-rate-regulation",
+        "guide-q-revenue",
+        "guide-q-capital-assets",
+        "wf-utilities-billing-plant-reconciliation",
+        "ctrl-utilities-source-to-ledger",
+        "example-utilities-billing-plant-close"
+      ],
+      "review_status": "editorially-reviewed",
+      "reviewed_at": "2026-09-19",
+      "provenance": {
+        "added_on": "2026-09-19",
+        "reviewer": "Codex AI-assisted bounded source and editorial review",
+        "note": "Original synthesis and synthetic arithmetic prepared as a source-only candidate pending coordinator integration. No professional sign-off, operational evidence or publication decision is asserted.",
+        "research_file": "data/research/utilities-2026-09-19.json"
+      },
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External publisher text is not stored; publisher terms and source rights remain separate and unresolved.",
+        "full_text_stored": false
+      },
+      "data": {
+        "version": "2026-09-19.utilities.1",
+        "research_package": "utilities-us-source-only",
+        "authority_level": "A2 bounded source synthesis",
+        "professional_review": "not-performed",
+        "empirical_support": "not-established",
+        "scope": {
+          "roles": [
+            "FERC-jurisdictional electric public utility or licensee maintaining Part 101 records",
+            "Unregulated merchant generator or utility service provider as a scope counterexample"
+          ],
+          "framework": "FERC Uniform System of Accounts for the selected regulatory population; separate US GAAP financial-reporting review required",
+          "period": "Synthetic 2026-12-31 close; future events are fictional",
+          "population": "One electric billing and plant-cost reconciliation with a regulatory-asset/liability branch, purchased-power settlement and retirement-obligation evidence packet."
+        },
+        "workflows": [
+          "Confirm legal entity, operating role, FERC jurisdiction, regulator or rate order, reporting framework and reporting period before selecting an accounting route.",
+          "Pin the source edition and retain meter, billing, tariff, purchase, plant, rate-order, legal-obligation and reviewer evidence with source-to-ledger IDs.",
+          "Reconcile metered and estimated consumption to billed revenue, purchased power to Account 555 treatment, plant additions to continuing-plant records and regulatory balances to the order and recovery/refund schedule.",
+          "Route missing, conflicting, late, deleted or out-of-scope records to a human reviewer; do not post or file from the synthetic proposal."
+        ],
+        "controls": [
+          "Separate the FERC regulatory ledger from the financial-reporting framework and tax or municipal basis.",
+          "Require independent quantity, rate, extension and account recalculation before close approval.",
+          "Require rate-order evidence and a recoverability/refund schedule before a regulatory asset or liability is proposed.",
+          "Keep original source records, corrections, voids and deletion history; preserve a reviewer decision for every exception."
+        ],
+        "coverage_gaps": [
+          "Current consolidated ASC 980 and ASC 410 were not read; no current US GAAP recognition conclusion is provided.",
+          "No actual utility tariff, rate order, FERC filing, customer population, plant register or ARO legal document was reviewed.",
+          "Gas, water/sewage, municipal, state-regulated and non-FERC branches require separate research.",
+          "No operational incident, deployment, agent accuracy or control-effectiveness evidence is included.",
+          "Source rights remain unknown; no publisher full text is stored."
+        ],
+        "research_questions": [
+          {
+            "id": "rq-utilities-role-regulatory-route",
+            "question": "What evidence supports a selected US electric utility's FERC regulatory-accounting route, and when is the same amount outside that route?",
+            "scope": "Selected US FERC-jurisdictional electric public utility or licensee; Part 101 regulatory ledger; illustrative 2026 close; merchant generator and utility service provider are counterexamples.",
+            "answer": "Part 101 applies to public utilities and licensees within its stated Federal Power Act scope, and its definitions describe regulatory assets and liabilities as arising from rate actions where timing differs for authorized rates or refunds are required. The route requires entity-jurisdiction evidence and the specific rate order or tariff; a utility label, an unregulated sale, or a similar dollar amount is insufficient.",
+            "answer_status": "sourced-answer-bounded",
+            "family_ids": [
+              "q-rate-regulation",
+              "q-data-lineage"
+            ],
+            "source_ids": [
+              "src_aa_i124_ferc101",
+              "src_fercacct",
+              "src_utilities_ferc_accounting_qa"
+            ],
+            "source_locators": [
+              {
+                "source_id": "src_aa_i124_ferc101",
+                "url": "https://www.ecfr.gov/current/title-18/chapter-I/subchapter-C/part-101",
+                "locator": "Part 101 applicability and definitions 29-31; General Instructions 1-5",
+                "effective_period": "eCFR Title 18 displayed current through 2026-09-17; specific entity jurisdiction and rate-order period remain required.",
+                "access_limits": "Selected public eCFR sections read; eCFR is authoritative but unofficial; no current consolidated ASC 980 text read."
+              },
+              {
+                "source_id": "src_fercacct",
+                "url": "https://www.ferc.gov/accounting-matters-1",
+                "locator": "Accounting Matters overview and Accounting and Financial Reporting Regulations scope",
+                "effective_period": "Living FERC resource accessed 2026-09-19; page was last updated June 2020 in the page footer while current linked material may change.",
+                "access_limits": "Index and scope page only; linked orders and entity-specific accounting were not fully reviewed; reuse rights unknown."
+              },
+              {
+                "source_id": "src_utilities_ferc_accounting_qa",
+                "url": "https://www.ferc.gov/accounting-questions-and-answers",
+                "locator": "Scope disclaimer and Plant Related Accounting > Plant—Construction Projects > Q.1",
+                "effective_period": "Page accessed 2026-09-19; Q&A effective dates vary.",
+                "access_limits": "Informal staff assistance is not binding Commission action; applicability and rate-order facts remain unresolved."
+              }
+            ],
+            "inputs": [
+              "Legal entity and operating role",
+              "FERC jurisdiction or license evidence",
+              "Applicable Part 101 class and reporting period",
+              "Rate order/tariff, approved recovery or refund terms",
+              "Underlying cost, gain, loss or customer-balance schedule"
+            ],
+            "workflow": [
+              "Route role and jurisdiction first",
+              "Pin Part 101 edition and rate-order effective dates",
+              "Reconcile source event, prescribed account, rate treatment and financial-reporting review",
+              "Escalate absent or contradictory authority"
+            ],
+            "controls": [
+              "No regulatory asset/liability proposal without order and recovery/refund evidence",
+              "Keep FERC and financial-reporting ledgers separately labeled",
+              "Review unregulated and municipal counterexamples"
+            ],
+            "exceptions": [
+              "Unregulated merchant electricity sales do not establish rate-regulated accounting",
+              "Municipal or state-regulated utilities require a separate reporting-basis and authority route",
+              "A staff Q&A is not a binding Commission order"
+            ],
+            "remaining_gaps": [
+              "Current consolidated ASC 980 and entity-specific rate order not reviewed",
+              "No professional review or operational population",
+              "No gas, water/sewage or state-by-state expansion"
+            ],
+            "worked_example": {
+              "record_id": "example-utilities-billing-plant-close",
+              "scope": "Synthetic FERC electric utility case plus unregulated counterexample; not posting authority."
+            },
+            "assessment": {
+              "status": "partial"
+            }
+          },
+          {
+            "id": "rq-utilities-metered-unbilled-cutoff",
+            "question": "How should a selected electric utility reconcile metered, estimated and unbilled consumption at period end without treating a data mismatch as revenue?",
+            "scope": "Selected electric utility billing close; synthetic 2026-12-31 month end; tariff and financial-reporting policy must be established for the entity.",
+            "answer": "The close packet should preserve the last meter read, interval or estimated consumption, tariff version, billing batch, subsequent read and reviewer-approved estimate. Part 101 requires monthly books and supporting detail sufficient to identify, analyze and verify each entry, and permits estimates for known transactions whose amounts cannot be determined with absolute accuracy for major utilities. A mismatch between meter and billing populations remains an exception until reconciled; it is not evidence for an automatic revenue entry.",
+            "answer_status": "sourced-answer-bounded",
+            "family_ids": [
+              "q-revenue",
+              "q-data-lineage",
+              "q-interfaces"
+            ],
+            "source_ids": [
+              "src_aa_i124_ferc101",
+              "src_utilities_ferc_accounting_qa"
+            ],
+            "source_locators": [
+              {
+                "source_id": "src_aa_i124_ferc101",
+                "url": "https://www.ecfr.gov/current/title-18/chapter-I/subchapter-C/part-101",
+                "locator": "General Instruction 2 Records; General Instruction 4 Accounting Period; General Instruction 8 Unaudited Items; prescribed revenue-account structure in Part 101",
+                "effective_period": "eCFR Title 18 displayed current through 2026-09-17; major/nonmajor classification and entity reporting rules must be confirmed.",
+                "access_limits": "Selected public Part 101 text read; no entity tariff, billing code set or current consolidated revenue standard read."
+              },
+              {
+                "source_id": "src_utilities_ferc_accounting_qa",
+                "url": "https://www.ferc.gov/accounting-questions-and-answers",
+                "locator": "Scope disclaimer and accounting Q&A index",
+                "effective_period": "Page accessed 2026-09-19; individual Q&A dates vary.",
+                "access_limits": "The page is a bounded regulatory-accounting aid and does not establish a specific financial-reporting revenue conclusion."
+              }
+            ],
+            "inputs": [
+              "Meter and interval reads with read dates",
+              "Estimated consumption policy and approval",
+              "Tariff/rate version and effective date",
+              "Billing batch and invoice status",
+              "Subsequent meter read, correction and cash evidence"
+            ],
+            "workflow": [
+              "Freeze the population and source timestamps",
+              "Reconcile meter-to-billing quantities and rates",
+              "Calculate a documented unbilled estimate only under the selected policy",
+              "Tie the estimate to subsequent billing and route differences"
+            ],
+            "controls": [
+              "Independent MWh and rate recalculation",
+              "Duplicate, void and late-batch detection",
+              "Reviewer approval for estimates and unresolved differences",
+              "Immutable source-to-ledger lineage"
+            ],
+            "exceptions": [
+              "A service provider's invoice is not the utility's customer-revenue population",
+              "A 50 MWh mismatch is a control exception, not an automatic adjustment",
+              "Part 101 estimates do not replace entity-specific financial-reporting policy"
+            ],
+            "remaining_gaps": [
+              "No actual tariff, meter system, billing interface or customer population reviewed",
+              "Current consolidated ASC 606 and entity policy not read",
+              "No measured completeness or incident evidence"
+            ],
+            "worked_example": {
+              "record_id": "example-utilities-billing-plant-close",
+              "scope": "Synthetic 1,200 MWh unbilled estimate with an independent 50 MWh mismatch branch."
+            },
+            "assessment": {
+              "status": "partial"
+            }
+          },
+          {
+            "id": "rq-utilities-plant-cost-lineage",
+            "question": "What evidence connects utility plant construction costs to continuing plant records and separates an unsuccessful preliminary project?",
+            "scope": "Selected electric utility plant and construction close under Part 101; one synthetic construction project; no conclusion for other utility classes.",
+            "answer": "A plant reconciliation should identify the retirement unit or mass-property category, location, in-service date, cost, plant control account and supporting source entries. The Part 101 definition of continuing plant inventory records supplies those fields, while the FERC Q&A gives a bounded route for preliminary surveys and investigations that do not result in construction. The synthetic packet keeps a successful $600,000 construction project separate from a $25,000 abandoned feasibility study; it does not decide final US GAAP capitalization.",
+            "answer_status": "sourced-answer-bounded",
+            "family_ids": [
+              "q-capital-assets",
+              "q-data-lineage",
+              "q-interfaces"
+            ],
+            "source_ids": [
+              "src_aa_i124_ferc101",
+              "src_utilities_ferc_accounting_qa"
+            ],
+            "source_locators": [
+              {
+                "source_id": "src_aa_i124_ferc101",
+                "url": "https://www.ecfr.gov/current/title-18/chapter-I/subchapter-C/part-101",
+                "locator": "Definition 8 Continuing Plant Inventory Record; General Instruction 2 Records; Plant Instructions 2-3 and electric plant account structure",
+                "effective_period": "eCFR Title 18 displayed current through 2026-09-17; plant classification and reporting period must be confirmed.",
+                "access_limits": "Selected Part 101 text read; no full project file, rate treatment or current consolidated ASC 360 text read."
+              },
+              {
+                "source_id": "src_utilities_ferc_accounting_qa",
+                "url": "https://www.ferc.gov/accounting-questions-and-answers",
+                "locator": "Plant Related Accounting > Plant—Construction Projects > Q.1",
+                "effective_period": "Page accessed 2026-09-19; answer's applicable accounting period must be confirmed.",
+                "access_limits": "Informal staff Q&A, not binding Commission action; it does not establish a final capitalization conclusion."
+              }
+            ],
+            "inputs": [
+              "Project authorization and scope",
+              "Contracts, invoices, labor and materials records",
+              "Location, retirement unit or mass-property identity",
+              "In-service date and plant control account",
+              "Abandoned-project approval and disposition evidence"
+            ],
+            "workflow": [
+              "Create the project population and source IDs",
+              "Recalculate extensions and remove duplicate or void entries",
+              "Tie completed units to continuing plant records",
+              "Separate preliminary unsuccessful work and obtain reviewer disposition"
+            ],
+            "controls": [
+              "Three-way contract/invoice/work-order match",
+              "Independent cost and in-service-date recalculation",
+              "Change log for project scope and account reassignment",
+              "No automatic capitalization from an invoice description alone"
+            ],
+            "exceptions": [
+              "Abandoned feasibility work is not the same population as placed-in-service plant",
+              "Customer-owned or leased assets need separate control analysis",
+              "Merchant generation and non-FERC plant do not inherit Part 101 treatment"
+            ],
+            "remaining_gaps": [
+              "Current consolidated ASC 360, AFUDC and entity capitalization policy not reviewed",
+              "No actual continuing plant register or project population",
+              "No state or municipal plant authority"
+            ],
+            "worked_example": {
+              "record_id": "example-utilities-billing-plant-close",
+              "scope": "Synthetic $600,000 successful project and $25,000 unsuccessful preliminary study."
+            },
+            "assessment": {
+              "status": "partial"
+            }
+          },
+          {
+            "id": "rq-utilities-retirement-obligation-boundary",
+            "question": "Which evidence distinguishes a utility asset-retirement obligation from ordinary removal cost, and what must remain open for current accounting?",
+            "scope": "Selected electric utility asset with a legal decommissioning obligation; historical FASB Statement 143 source used only as a bounded evidence path.",
+            "answer": "The evidence packet should identify the asset, enacted law, permit, contract or other legal basis, obligation-incurrence event, expected cash flows, timing, estimate method and related-asset link. FASB's official Statement 143 summary describes a historical model for qualifying legal obligations, but the source is labeled superseded and current ASC 410 was not read. The example therefore records an illustrative $120,000 proposed obligation with an explicit current-authority review hold; ordinary removal cost and a voluntary future plan are counterexamples requiring separate analysis.",
+            "answer_status": "sourced-answer-bounded",
+            "family_ids": [
+              "q-environmental",
+              "q-capital-assets",
+              "q-data-lineage"
+            ],
+            "source_ids": [
+              "src_utilities_fas143_aro",
+              "src_aa_i124_ferc101"
+            ],
+            "source_locators": [
+              {
+                "source_id": "src_utilities_fas143_aro",
+                "url": "https://fasb.org/page/PageContent?bcpath=tff&pageId=%2Freference-library%2Fsuperseded-standards%2Fsummary-of-statement-no-143.html",
+                "locator": "Summary scope and legal-obligation definition; fair-value liability; capitalized asset-retirement cost; accretion, depreciation and disclosures",
+                "effective_period": "Statement 143 original effective date fiscal years beginning after 2002-06-15; FASB labels source superseded.",
+                "access_limits": "Historical summary only; current ASC 410 and later amendments were not read; no current US GAAP conclusion."
+              },
+              {
+                "source_id": "src_aa_i124_ferc101",
+                "url": "https://www.ecfr.gov/current/title-18/chapter-I/subchapter-C/part-101",
+                "locator": "Definitions 10 Cost of removal and General Instruction 25 asset-retirement-cost boundary",
+                "effective_period": "eCFR Title 18 displayed current through 2026-09-17; entity and obligation period must be confirmed.",
+                "access_limits": "Selected regulatory-accounting text only; no legal opinion, rate-order conclusion or current ASC review."
+              }
+            ],
+            "inputs": [
+              "Asset identity and in-service record",
+              "Law, permit, contract or legal-construction evidence",
+              "Incurrence date and expected settlement cash flows",
+              "Estimate, discount and revision support",
+              "Rate recovery or funding evidence kept separate from obligation evidence"
+            ],
+            "workflow": [
+              "Classify the obligation evidence",
+              "Separate ordinary removal, voluntary plans and legal obligations",
+              "Reperform the estimate and tie the related asset",
+              "Hold the proposal for current-framework and professional review"
+            ],
+            "controls": [
+              "Legal-basis checklist",
+              "Independent estimate and timing review",
+              "Separate obligation, funding and rate-recovery schedules",
+              "Versioned review of changed law, permit, estimate and retirement plan"
+            ],
+            "exceptions": [
+              "Funding or a rate order does not itself prove a legal obligation",
+              "Ordinary cost of removal is not automatically an asset-retirement obligation",
+              "Current consolidated accounting must be reviewed before a real entry or filing"
+            ],
+            "remaining_gaps": [
+              "Current ASC 410 and entity legal documents not reviewed",
+              "No rate recovery or trust/funding evidence",
+              "No professional legal or accounting review"
+            ],
+            "worked_example": {
+              "record_id": "example-utilities-billing-plant-close",
+              "scope": "Synthetic $120,000 legal-obligation proposal held for current-framework review."
+            },
+            "assessment": {
+              "status": "partial"
+            }
+          },
+          {
+            "id": "rq-utilities-purchased-power-settlement",
+            "question": "How should purchased power and related settlement amounts remain distinct from utility sales in the selected regulatory ledger?",
+            "scope": "Selected FERC-jurisdictional electric utility; Account 555 purchased power; synthetic monthly settlement; no current consolidated revenue or derivative conclusion.",
+            "answer": "The FERC Account 555 guidance supports recording purchased electricity and specified eligible net settlements in the purchased-power route while keeping distinct purchases and sales gross where the transaction is not a permitted exchange or barter settlement. The synthetic case posts $72,000 of purchased power separately from $952,000 of customer sales and routes a combined-voucher exception for review rather than netting by convenience.",
+            "answer_status": "sourced-answer-bounded",
+            "family_ids": [
+              "q-purchasing-payables",
+              "q-data-lineage",
+              "q-revenue"
+            ],
+            "source_ids": [
+              "src_utilities_ferc_account_555",
+              "src_aa_i124_ferc101",
+              "src_fercacct"
+            ],
+            "source_locators": [
+              {
+                "source_id": "src_utilities_ferc_account_555",
+                "url": "https://www.ferc.gov/enforcement-legal/enforcement/accounting-matters/accounting-settlement-amounts-account-555purchased",
+                "locator": "Question and Answer: Account 555 text, distinct purchases and sales, and gross treatment for non-barter agreements",
+                "effective_period": "Guidance states effective January 1, 1991; later amendments and entity applicability require confirmation.",
+                "access_limits": "FERC Account 555 guidance only; no current ASC 606, derivatives or contract-specific conclusion."
+              },
+              {
+                "source_id": "src_aa_i124_ferc101",
+                "url": "https://www.ecfr.gov/current/title-18/chapter-I/subchapter-C/part-101",
+                "locator": "Part 101 applicability, account numbering and General Instruction 2 supporting-record requirements",
+                "effective_period": "eCFR Title 18 displayed current through 2026-09-17.",
+                "access_limits": "Selected Part 101 text read; transaction classification and entity jurisdiction remain to be established."
+              },
+              {
+                "source_id": "src_fercacct",
+                "url": "https://www.ferc.gov/accounting-matters-1",
+                "locator": "Accounting Matters > Account 555, Purchased Power index entry",
+                "effective_period": "Living FERC index accessed 2026-09-19.",
+                "access_limits": "Index only; source rights and transaction-specific authority remain unresolved."
+              }
+            ],
+            "inputs": [
+              "Purchase contract and delivery point",
+              "Metered MWh, capacity and settlement statements",
+              "Power-pool or interconnection agreement",
+              "Separate sale invoices and revenue evidence",
+              "Voucher and exception history"
+            ],
+            "workflow": [
+              "Classify purchase, exchange, barter and sale legs",
+              "Match MWh and settlement statements to source contracts",
+              "Post the selected regulatory accounts with gross/net rationale",
+              "Reconcile to customer revenue and resolve combined-voucher exceptions"
+            ],
+            "controls": [
+              "Contract and settlement classification review",
+              "Independent MWh and dollar recalculation",
+              "No netting solely because a voucher combines debits and credits",
+              "Separate purchased-power and customer-sales reconciliations"
+            ],
+            "exceptions": [
+              "A merchant generator or service provider is outside this selected Part 101 route",
+              "Power-pool terminology alone does not prove an eligible net exchange",
+              "Current consolidated financial-reporting presentation remains open"
+            ],
+            "remaining_gaps": [
+              "No actual purchase agreement, market rule, settlement statement or FERC filing",
+              "Current consolidated revenue and derivative guidance not read",
+              "No operational completeness or incident evidence"
+            ],
+            "worked_example": {
+              "record_id": "example-utilities-billing-plant-close",
+              "scope": "Synthetic $72,000 purchased-power and $952,000 customer-sales reconciliation."
+            },
+            "assessment": {
+              "status": "partial"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "wf-utilities-billing-plant-reconciliation",
+      "kind": "workflow",
+      "title": "Utility source-to-ledger billing and plant reconciliation",
+      "summary": "A bounded workflow for a selected FERC electric utility to reconcile meter, tariff, purchased-power, plant, regulatory-balance and retirement evidence before human review.",
+      "topics": [
+        "Source data, lineage and reconciliation",
+        "Accounting and reporting"
+      ],
+      "industries": [
+        "energy-utilities"
+      ],
+      "jurisdiction": "United States; selected FERC-jurisdictional electric utility",
+      "source_type": "Original workflow synthesis",
+      "publisher": "Accounting Agents contributors",
+      "source_url": null,
+      "source_ids": [
+        "src_aa_i124_ferc101",
+        "src_utilities_ferc_accounting_qa",
+        "src_utilities_ferc_account_555",
+        "src_utilities_fas143_aro"
+      ],
+      "related_ids": [
+        "guide-utilities-us-regulated-close",
+        "ctrl-utilities-source-to-ledger",
+        "example-utilities-billing-plant-close"
+      ],
+      "review_status": "editorially-reviewed",
+      "reviewed_at": "2026-09-19",
+      "provenance": {
+        "added_on": "2026-09-19",
+        "reviewer": "Codex AI-assisted bounded editorial review",
+        "note": "Original workflow synthesis for a source-only candidate; not an operating procedure or professional approval."
+      },
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External publisher text is not stored; source rights remain unknown.",
+        "full_text_stored": false
+      },
+      "data": {
+        "version": "2026-09-19.utilities.1",
+        "workflow_type": "source-to-ledger reconciliation",
+        "steps": [
+          "Freeze dated source populations",
+          "Validate role, jurisdiction, framework and period",
+          "Reconcile quantities, rates and account classifications",
+          "Tie corrections and deletions to retained source history",
+          "Prepare exception packet",
+          "Require accountable human approval before posting or filing"
+        ],
+        "inputs": [
+          "Meter and billing extracts",
+          "Tariff and rate-order evidence",
+          "Purchase and settlement records",
+          "Work orders, invoices and plant register",
+          "Legal-obligation and estimate evidence"
+        ],
+        "outputs": [
+          "Reconciled proposed schedule",
+          "Unbilled estimate support",
+          "Plant and regulatory-balance bridge",
+          "Exception and reviewer packet"
+        ],
+        "limitations": [
+          "Synthetic design only; no production system, interface or control-effectiveness evidence.",
+          "Current consolidated US GAAP and entity-specific regulatory applicability remain open."
+        ]
+      }
+    },
+    {
+      "id": "ctrl-utilities-source-to-ledger",
+      "kind": "control",
+      "title": "Utility source-to-ledger completeness and authority control",
+      "summary": "Proposed control pattern requiring dated source lineage, independent recalculation, authority classification and human exception disposition for utility close entries.",
+      "topics": [
+        "Source data, lineage and reconciliation",
+        "Controls and governance"
+      ],
+      "industries": [
+        "energy-utilities"
+      ],
+      "jurisdiction": "United States; selected FERC-jurisdictional electric utility",
+      "source_type": "Original control synthesis",
+      "publisher": "Accounting Agents contributors",
+      "source_url": null,
+      "source_ids": [
+        "src_aa_i124_ferc101",
+        "src_utilities_ferc_accounting_qa",
+        "src_utilities_ferc_account_555",
+        "src_utilities_fas143_aro"
+      ],
+      "related_ids": [
+        "guide-utilities-us-regulated-close",
+        "wf-utilities-billing-plant-reconciliation",
+        "example-utilities-billing-plant-close"
+      ],
+      "review_status": "editorially-reviewed",
+      "reviewed_at": "2026-09-19",
+      "provenance": {
+        "added_on": "2026-09-19",
+        "reviewer": "Codex AI-assisted bounded editorial review",
+        "note": "Original proposed control pattern; no design or operating-effectiveness testing was performed."
+      },
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External publisher text is not stored; source rights remain unknown.",
+        "full_text_stored": false
+      },
+      "data": {
+        "version": "2026-09-19.utilities.1",
+        "control_type": "preventive and detective",
+        "control_owner": "Controller or utility accounting manager; accountable human review required",
+        "assertions": [
+          "completeness",
+          "cutoff",
+          "classification",
+          "accuracy",
+          "authority",
+          "traceability"
+        ],
+        "evidence": [
+          "immutable source identifiers and timestamps",
+          "meter-to-billing and purchase-to-settlement reconciliations",
+          "plant-record and rate-order references",
+          "exception, correction, deletion and reviewer log"
+        ],
+        "failure_routes": [
+          "hold proposed entry",
+          "preserve conflicting evidence",
+          "route to qualified accounting or legal reviewer",
+          "document disposition and reperform affected reconciliation"
+        ],
+        "limitations": [
+          "A proposed control is not evidence that an entity implemented or operated it effectively.",
+          "No production incident or deployment study is included."
+        ]
+      }
+    },
+    {
+      "id": "example-utilities-billing-plant-close",
+      "kind": "example",
+      "title": "Synthetic electric utility billing, purchased power and plant close",
+      "summary": "Original connected synthetic evidence for unbilled revenue, purchased power, plant cost, regulatory balances and a retirement-obligation proposal, with independent numeric and scope counterexamples.",
+      "topics": [
+        "Accounting and reporting",
+        "Source data, lineage and reconciliation"
+      ],
+      "industries": [
+        "energy-utilities"
+      ],
+      "jurisdiction": "United States; synthetic selected FERC-jurisdictional electric utility with unregulated counterexample",
+      "source_type": "Original synthetic example",
+      "publisher": "Accounting Agents contributors",
+      "source_url": null,
+      "source_ids": [
+        "src_aa_i124_ferc101",
+        "src_fercacct",
+        "src_utilities_ferc_accounting_qa",
+        "src_utilities_ferc_account_555",
+        "src_utilities_fas143_aro"
+      ],
+      "related_ids": [
+        "guide-utilities-us-regulated-close",
+        "wf-utilities-billing-plant-reconciliation",
+        "ctrl-utilities-source-to-ledger"
+      ],
+      "review_status": "editorially-reviewed",
+      "reviewed_at": "2026-09-19",
+      "provenance": {
+        "added_on": "2026-09-19",
+        "reviewer": "Codex AI-assisted bounded editorial review",
+        "note": "All facts, dates, amounts and proposed entries are original synthetic data. This example is source-only pending integration and is not operational evidence or posting authorization."
+      },
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External publisher text is not stored; source rights remain unknown.",
+        "full_text_stored": false
+      },
+      "data": {
+        "version": "2026-09-19.utilities.1",
+        "example_type": "original-synthetic",
+        "authority_level": "A2 bounded source synthesis",
+        "accountable_owner": "Controller or utility accounting manager; human review required",
+        "framework": "FERC Part 101 regulatory ledger illustration with separate US GAAP review hold",
+        "period": "Synthetic 2026-12-31 monthly close; all transactions are fictional",
+        "assumptions": [
+          "The base entity is a FERC-jurisdictional electric public utility or licensee and has an approved tariff; this status is assumed only for the illustration.",
+          "The synthetic tariff is $85 per MWh, with 1,200 MWh delivered before year end but not yet billed.",
+          "The utility purchased 1,500 MWh at $48 per MWh under a distinct purchase contract; no permitted exchange or barter is assumed.",
+          "A $600,000 construction project reaches the stated plant-record milestone; a separate $25,000 preliminary feasibility study is abandoned.",
+          "A rate order is assumed to support probable recovery of $80,000 storm restoration cost and refund of a $30,000 overcollection; the order is fictional and must be replaced by real evidence.",
+          "A legal decommissioning fact pattern is assumed to support a $120,000 retirement-obligation estimate under the historical FAS 143 route, subject to current-framework review."
+        ],
+        "events": [
+          {
+            "id": "METER-1200",
+            "date": "2026-12-31",
+            "quantity": 1200,
+            "unit": "MWh",
+            "rate": 85,
+            "amount": 102000,
+            "evidence": [
+              "meter interval extract",
+              "last read timestamp",
+              "tariff version"
+            ],
+            "proposed_route": "unbilled customer revenue or receivable subject to entity policy and review"
+          },
+          {
+            "id": "PURCHASE-1500",
+            "date": "2026-12-30",
+            "quantity": 1500,
+            "unit": "MWh",
+            "rate": 48,
+            "amount": 72000,
+            "evidence": [
+              "purchase contract",
+              "delivery statement",
+              "settlement file"
+            ],
+            "proposed_route": "purchased power; retain separate from customer sales"
+          },
+          {
+            "id": "PLANT-600K",
+            "date": "2026-12-31",
+            "amount": 600000,
+            "evidence": [
+              "work order",
+              "contractor invoices",
+              "materials issue",
+              "plant record"
+            ],
+            "proposed_route": "plant/CWIP bridge subject to account and in-service review"
+          },
+          {
+            "id": "PRELIM-25K",
+            "date": "2026-12-15",
+            "amount": 25000,
+            "evidence": [
+              "feasibility invoices",
+              "abandonment approval"
+            ],
+            "proposed_route": "separate preliminary unsuccessful-project disposition; do not add to successful project by default"
+          },
+          {
+            "id": "REG-ASSET-80K",
+            "date": "2026-12-31",
+            "amount": 80000,
+            "evidence": [
+              "fictional rate order",
+              "storm cost schedule",
+              "recovery forecast"
+            ],
+            "proposed_route": "regulatory-asset proposal only after authority and current-framework review"
+          },
+          {
+            "id": "REG-LIAB-30K",
+            "date": "2026-12-31",
+            "amount": 30000,
+            "evidence": [
+              "fictional rate order",
+              "overcollection schedule",
+              "refund plan"
+            ],
+            "proposed_route": "regulatory-liability proposal only after authority and refund review"
+          },
+          {
+            "id": "ARO-120K",
+            "date": "2026-12-31",
+            "amount": 120000,
+            "evidence": [
+              "fictional permit",
+              "legal obligation memo",
+              "cash-flow estimate"
+            ],
+            "proposed_route": "retirement-obligation proposal held for current ASC and professional review"
+          }
+        ],
+        "reconciliation": {
+          "customer_sales_billed": {
+            "quantity": 10000,
+            "unit": "MWh",
+            "rate": 85,
+            "amount": 850000
+          },
+          "customer_sales_unbilled": {
+            "quantity": 1200,
+            "unit": "MWh",
+            "rate": 85,
+            "amount": 102000
+          },
+          "customer_sales_total": 952000,
+          "purchased_power": 72000,
+          "plant_project": 600000,
+          "abandoned_preliminary_project": 25000,
+          "regulatory_asset_proposal": 80000,
+          "regulatory_liability_proposal": 30000,
+          "retirement_obligation_proposal": 120000,
+          "check": "10,000 x $85 + 1,200 x $85 = $952,000 customer sales; 1,500 x $48 = $72,000 purchased power; the categories remain separate."
+        },
+        "numeric_counterexamples": [
+          {
+            "id": "METER-DIFF-50",
+            "facts": "Billing extract contains 1,150 MWh while the period-end meter population contains 1,200 MWh.",
+            "difference": {
+              "quantity": 50,
+              "unit": "MWh",
+              "amount_at_synthetic_rate": 4250
+            },
+            "treatment": "Hold and investigate the $4,250 difference; do not post it solely because the arithmetic is available."
+          },
+          {
+            "id": "NETTING-DIFF",
+            "facts": "A combined voucher shows $72,000 purchased power and $952,000 customer sales.",
+            "difference": {
+              "gross_sales": 952000,
+              "purchased_power": 72000,
+              "net_if_wrongly_combined": 880000
+            },
+            "treatment": "Do not use $880,000 as a convenience net amount; classify the purchase/exchange/sale legs first and preserve the FERC Account 555 rationale."
+          }
+        ],
+        "scope_counterexamples": [
+          {
+            "id": "UNREG-MERCHANT",
+            "facts": "A merchant generator sells the same 1,200 MWh for $102,000 without the assumed FERC jurisdiction or approved cost-of-service rate order.",
+            "treatment": "The same amount does not establish Part 101 regulatory-asset or unbilled-route applicability; route through the entity's actual framework and contract evidence."
+          },
+          {
+            "id": "SERVICE-PROVIDER",
+            "facts": "A meter-reading service provider invoices the utility $18,000 for labor and software access.",
+            "treatment": "The provider's invoice is a supplier/service population, not customer energy revenue or purchased power; retain separate source and account mappings."
+          }
+        ],
+        "proposed_entries": [
+          {
+            "date": "2026-12-31",
+            "debit": "Unbilled customer receivable (proposal)",
+            "credit": "Customer sales revenue (proposal)",
+            "amount": 102000,
+            "status": "proposed-synthetic; policy and reviewer hold"
+          },
+          {
+            "date": "2026-12-30",
+            "debit": "Purchased power (proposal)",
+            "credit": "Accounts payable or settlement payable (proposal)",
+            "amount": 72000,
+            "status": "proposed-synthetic; Account 555 classification hold"
+          },
+          {
+            "date": "2026-12-31",
+            "debit": "Plant/CWIP (proposal)",
+            "credit": "Construction payable (proposal)",
+            "amount": 600000,
+            "status": "proposed-synthetic; plant and in-service review hold"
+          },
+          {
+            "date": "2026-12-31",
+            "debit": "Regulatory asset (proposal)",
+            "credit": "Storm restoration cost or payable (proposal)",
+            "amount": 80000,
+            "status": "proposed-synthetic; fictional order and current-framework hold"
+          },
+          {
+            "date": "2026-12-31",
+            "debit": "Storm/refund-related balance (proposal)",
+            "credit": "Regulatory liability (proposal)",
+            "amount": 30000,
+            "status": "proposed-synthetic; fictional order and refund hold"
+          },
+          {
+            "date": "2026-12-31",
+            "debit": "Related plant asset-retirement cost (proposal)",
+            "credit": "ARO liability (proposal)",
+            "amount": 120000,
+            "status": "proposed-synthetic; current ASC and professional review hold"
+          }
+        ],
+        "controls": [
+          "Recalculate every quantity, rate and extension independently",
+          "Tie each proposed amount to a dated source ID and authority locator",
+          "Keep regulation, customer billing, supplier settlement, plant and legal-obligation schedules separate",
+          "Preserve mismatches, corrections, voids and deletions with reviewer disposition"
+        ],
+        "limitations": [
+          "Synthetic facts and amounts only.",
+          "No entry is posting authorization.",
+          "Current consolidated ASC 980 and ASC 410 were not read.",
+          "No actual tariff, order, contract, ledger, plant register, ARO memo or operational population was reviewed.",
+          "No professional review, agent performance evidence or control-effectiveness evidence."
+        ],
+        "examples": [
+          {
+            "id": "UTILITY-BILLING-SETTLEMENT",
+            "title": "Synthetic metered customer billing and separate purchased-power settlement",
+            "synthetic": true,
+            "event_ids": [
+              "METER-1200",
+              "PURCHASE-1500"
+            ],
+            "evidence_population": "Separate meter, billing, tariff, purchase-contract and settlement records from the fictional close.",
+            "reconciliation": {
+              "customer_sales_billed": {
+                "quantity": 10000,
+                "unit": "MWh",
+                "rate": 85,
+                "amount": 850000
+              },
+              "customer_sales_unbilled": {
+                "quantity": 1200,
+                "unit": "MWh",
+                "rate": 85,
+                "amount": 102000
+              },
+              "customer_sales_total": 952000,
+              "purchased_power": 72000,
+              "plant_project": 600000,
+              "abandoned_preliminary_project": 25000,
+              "regulatory_asset_proposal": 80000,
+              "regulatory_liability_proposal": 30000,
+              "retirement_obligation_proposal": 120000,
+              "check": "10,000 x $85 + 1,200 x $85 = $952,000 customer sales; 1,500 x $48 = $72,000 purchased power; the categories remain separate."
+            },
+            "numeric_counterexamples": [
+              {
+                "id": "METER-DIFF-50",
+                "facts": "Billing extract contains 1,150 MWh while the period-end meter population contains 1,200 MWh.",
+                "difference": {
+                  "quantity": 50,
+                  "unit": "MWh",
+                  "amount_at_synthetic_rate": 4250
+                },
+                "treatment": "Hold and investigate the $4,250 difference; do not post it solely because the arithmetic is available."
+              },
+              {
+                "id": "NETTING-DIFF",
+                "facts": "A combined voucher shows $72,000 purchased power and $952,000 customer sales.",
+                "difference": {
+                  "gross_sales": 952000,
+                  "purchased_power": 72000,
+                  "net_if_wrongly_combined": 880000
+                },
+                "treatment": "Do not use $880,000 as a convenience net amount; classify the purchase/exchange/sale legs first and preserve the FERC Account 555 rationale."
+              }
+            ],
+            "review_result": "Hold the $4,250 meter mismatch for investigation; preserve gross customer sales and purchased power as separate populations. All entries remain proposed and subject to review."
+          },
+          {
+            "id": "UTILITY-PLANT-REGULATION-RETIREMENT",
+            "title": "Synthetic plant, regulatory-balance and retirement-obligation proposals",
+            "synthetic": true,
+            "event_ids": [
+              "PLANT-600K",
+              "PRELIM-25K",
+              "REG-ASSET-80K",
+              "REG-LIAB-30K",
+              "ARO-120K"
+            ],
+            "evidence_population": "Fictional work orders, abandonment approval, rate order, refund schedule, legal-obligation memo and cash-flow estimate.",
+            "proposals": [
+              {
+                "event_id": "PLANT-600K",
+                "amount": 600000,
+                "proposed_route": "plant/CWIP bridge subject to account and in-service review"
+              },
+              {
+                "event_id": "PRELIM-25K",
+                "amount": 25000,
+                "proposed_route": "separate preliminary unsuccessful-project disposition; do not add to successful project by default"
+              },
+              {
+                "event_id": "REG-ASSET-80K",
+                "amount": 80000,
+                "proposed_route": "regulatory-asset proposal only after authority and current-framework review"
+              },
+              {
+                "event_id": "REG-LIAB-30K",
+                "amount": 30000,
+                "proposed_route": "regulatory-liability proposal only after authority and refund review"
+              },
+              {
+                "event_id": "ARO-120K",
+                "amount": 120000,
+                "proposed_route": "retirement-obligation proposal held for current ASC and professional review"
+              }
+            ],
+            "review_result": "Keep successful and abandoned project costs separate. The assumed order and obligation do not establish an actual recognized balance; current-framework and source-evidence review remain open."
+          },
+          {
+            "id": "UTILITY-ROLE-COUNTEREXAMPLES",
+            "title": "Synthetic merchant generator and service-provider exclusions",
+            "synthetic": true,
+            "counterexamples": [
+              {
+                "id": "UNREG-MERCHANT",
+                "facts": "A merchant generator sells the same 1,200 MWh for $102,000 without the assumed FERC jurisdiction or approved cost-of-service rate order.",
+                "treatment": "The same amount does not establish Part 101 regulatory-asset or unbilled-route applicability; route through the entity's actual framework and contract evidence."
+              },
+              {
+                "id": "SERVICE-PROVIDER",
+                "facts": "A meter-reading service provider invoices the utility $18,000 for labor and software access.",
+                "treatment": "The provider's invoice is a supplier/service population, not customer energy revenue or purchased power; retain separate source and account mappings."
+              }
+            ],
+            "review_result": "The same energy quantity or a utility customer relationship does not establish the assumed regulated utility role."
+          }
+        ]
+      }
+    }
+  ],
+  "question_rows": [
+    {
+      "id": "rq-utilities-role-regulatory-route",
+      "record_id": "guide-utilities-us-regulated-close",
+      "pointer": "/data/research_questions/0",
+      "family_ids": [
+        "q-rate-regulation",
+        "q-data-lineage"
+      ],
+      "question": "What evidence supports a selected US electric utility's FERC regulatory-accounting route, and when is the same amount outside that route?",
+      "scope": "Selected US FERC-jurisdictional electric public utility or licensee; Part 101 regulatory ledger; illustrative 2026 close; merchant generator and utility service provider are counterexamples.",
+      "answer_status": "sourced-answer-bounded",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_aa_i124_ferc101",
+        "src_fercacct",
+        "src_utilities_ferc_accounting_qa"
+      ],
+      "remaining_gaps": [
+        "Current consolidated ASC 980 and entity-specific rate order not reviewed",
+        "No professional review or operational population",
+        "No gas, water/sewage or state-by-state expansion"
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "partial",
+        "accounting-question": "partial",
+        "evidence-inputs": "partial",
+        "workflow": "partial",
+        "controls": "partial",
+        "worked-material": "partial",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Selected public-source answer, linked read-only workflow and control, and original synthetic scenarios provide bounded evidence for this named question. Current consolidated authority, actual entity records and professional review remain open; synthetic examples establish no empirical performance."
+    },
+    {
+      "id": "rq-utilities-metered-unbilled-cutoff",
+      "record_id": "guide-utilities-us-regulated-close",
+      "pointer": "/data/research_questions/1",
+      "family_ids": [
+        "q-revenue",
+        "q-data-lineage",
+        "q-interfaces"
+      ],
+      "question": "How should a selected electric utility reconcile metered, estimated and unbilled consumption at period end without treating a data mismatch as revenue?",
+      "scope": "Selected electric utility billing close; synthetic 2026-12-31 month end; tariff and financial-reporting policy must be established for the entity.",
+      "answer_status": "sourced-answer-bounded",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_aa_i124_ferc101",
+        "src_utilities_ferc_accounting_qa"
+      ],
+      "remaining_gaps": [
+        "No actual tariff, meter system, billing interface or customer population reviewed",
+        "Current consolidated ASC 606 and entity policy not read",
+        "No measured completeness or incident evidence"
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "partial",
+        "accounting-question": "partial",
+        "evidence-inputs": "partial",
+        "workflow": "partial",
+        "controls": "partial",
+        "worked-material": "partial",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Selected public-source answer, linked read-only workflow and control, and original synthetic scenarios provide bounded evidence for this named question. Current consolidated authority, actual entity records and professional review remain open; synthetic examples establish no empirical performance."
+    },
+    {
+      "id": "rq-utilities-plant-cost-lineage",
+      "record_id": "guide-utilities-us-regulated-close",
+      "pointer": "/data/research_questions/2",
+      "family_ids": [
+        "q-capital-assets",
+        "q-data-lineage",
+        "q-interfaces"
+      ],
+      "question": "What evidence connects utility plant construction costs to continuing plant records and separates an unsuccessful preliminary project?",
+      "scope": "Selected electric utility plant and construction close under Part 101; one synthetic construction project; no conclusion for other utility classes.",
+      "answer_status": "sourced-answer-bounded",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_aa_i124_ferc101",
+        "src_utilities_ferc_accounting_qa"
+      ],
+      "remaining_gaps": [
+        "Current consolidated ASC 360, AFUDC and entity capitalization policy not reviewed",
+        "No actual continuing plant register or project population",
+        "No state or municipal plant authority"
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "partial",
+        "accounting-question": "partial",
+        "evidence-inputs": "partial",
+        "workflow": "partial",
+        "controls": "partial",
+        "worked-material": "partial",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Selected public-source answer, linked read-only workflow and control, and original synthetic scenarios provide bounded evidence for this named question. Current consolidated authority, actual entity records and professional review remain open; synthetic examples establish no empirical performance."
+    },
+    {
+      "id": "rq-utilities-retirement-obligation-boundary",
+      "record_id": "guide-utilities-us-regulated-close",
+      "pointer": "/data/research_questions/3",
+      "family_ids": [
+        "q-environmental",
+        "q-capital-assets",
+        "q-data-lineage"
+      ],
+      "question": "Which evidence distinguishes a utility asset-retirement obligation from ordinary removal cost, and what must remain open for current accounting?",
+      "scope": "Selected electric utility asset with a legal decommissioning obligation; historical FASB Statement 143 source used only as a bounded evidence path.",
+      "answer_status": "sourced-answer-bounded",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_utilities_fas143_aro",
+        "src_aa_i124_ferc101"
+      ],
+      "remaining_gaps": [
+        "Current ASC 410 and entity legal documents not reviewed",
+        "No rate recovery or trust/funding evidence",
+        "No professional legal or accounting review"
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "partial",
+        "accounting-question": "partial",
+        "evidence-inputs": "partial",
+        "workflow": "partial",
+        "controls": "partial",
+        "worked-material": "partial",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Selected public-source answer, linked read-only workflow and control, and original synthetic scenarios provide bounded evidence for this named question. Current consolidated authority, actual entity records and professional review remain open; synthetic examples establish no empirical performance."
+    },
+    {
+      "id": "rq-utilities-purchased-power-settlement",
+      "record_id": "guide-utilities-us-regulated-close",
+      "pointer": "/data/research_questions/4",
+      "family_ids": [
+        "q-purchasing-payables",
+        "q-data-lineage",
+        "q-revenue"
+      ],
+      "question": "How should purchased power and related settlement amounts remain distinct from utility sales in the selected regulatory ledger?",
+      "scope": "Selected FERC-jurisdictional electric utility; Account 555 purchased power; synthetic monthly settlement; no current consolidated revenue or derivative conclusion.",
+      "answer_status": "sourced-answer-bounded",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_utilities_ferc_account_555",
+        "src_aa_i124_ferc101",
+        "src_fercacct"
+      ],
+      "remaining_gaps": [
+        "No actual purchase agreement, market rule, settlement statement or FERC filing",
+        "Current consolidated revenue and derivative guidance not read",
+        "No operational completeness or incident evidence"
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "partial",
+        "accounting-question": "partial",
+        "evidence-inputs": "partial",
+        "workflow": "partial",
+        "controls": "partial",
+        "worked-material": "partial",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Selected public-source answer, linked read-only workflow and control, and original synthetic scenarios provide bounded evidence for this named question. Current consolidated authority, actual entity records and professional review remain open; synthetic examples establish no empirical performance."
+    }
+  ],
+  "assessments": [
+    {
+      "id": "coverage-utilities-2211-role",
+      "scope_kind": "industry",
+      "industry_code": "2211",
+      "question_id": "q-rate-regulation",
+      "family_ids": [
+        "q-rate-regulation",
+        "q-data-lineage"
+      ],
+      "status": "partial",
+      "scope": "Selected FERC-jurisdictional electric public utility or licensee; Part 101 regulatory ledger; illustrative 2026 close.",
+      "jurisdictions": [
+        "United States"
+      ],
+      "frameworks": [
+        "FERC Uniform System of Accounts; separate US GAAP review required"
+      ],
+      "effective_from": null,
+      "effective_to": null,
+      "reviewed_at": "2026-09-19",
+      "reviewer": "Codex AI-assisted bounded source review",
+      "review_basis": "Live original-authority excerpts, role-qualified question, synthetic workflow and explicit counterexamples; no professional or operational sufficiency. Selected named question: rq-utilities-role-regulatory-route.",
+      "source_currency": "verified-within-stated-scope",
+      "evidence_record_ids": [
+        "guide-utilities-us-regulated-close",
+        "example-utilities-billing-plant-close",
+        "src_aa_i124_ferc101",
+        "src_fercacct",
+        "src_utilities_ferc_accounting_qa"
+      ],
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "gaps": [
+        "Current ASC 980 and actual rate order not reviewed",
+        "No gas, water/sewage, municipal or state-specific branch",
+        "No professional or empirical evidence"
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External text is not stored; source rights remain unknown.",
+        "full_text_stored": false,
+        "source_status": "unknown"
+      },
+      "professional_review": "not-performed",
+      "empirical_support": "not-established"
+    },
+    {
+      "id": "coverage-utilities-2211-billing",
+      "scope_kind": "industry",
+      "industry_code": "2211",
+      "question_id": "q-revenue",
+      "family_ids": [
+        "q-revenue",
+        "q-data-lineage",
+        "q-interfaces"
+      ],
+      "status": "partial",
+      "scope": "Selected electric utility billing close; synthetic 2026-12-31 month end.",
+      "jurisdictions": [
+        "United States"
+      ],
+      "frameworks": [
+        "FERC Uniform System of Accounts; entity financial-reporting policy required"
+      ],
+      "effective_from": null,
+      "effective_to": null,
+      "reviewed_at": "2026-09-19",
+      "reviewer": "Codex AI-assisted bounded source review",
+      "review_basis": "Part 101 record, monthly-close and estimate excerpts plus original numeric reconciliation; no customer population or production evidence. Selected named question: rq-utilities-metered-unbilled-cutoff.",
+      "source_currency": "verified-within-stated-scope",
+      "evidence_record_ids": [
+        "guide-utilities-us-regulated-close",
+        "example-utilities-billing-plant-close",
+        "src_aa_i124_ferc101",
+        "src_utilities_ferc_accounting_qa"
+      ],
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "gaps": [
+        "No actual tariff, meter or billing interface",
+        "Current ASC 606 and entity policy not read",
+        "No completeness or incident evidence"
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External text is not stored; source rights remain unknown.",
+        "full_text_stored": false,
+        "source_status": "unknown"
+      },
+      "professional_review": "not-performed",
+      "empirical_support": "not-established"
+    },
+    {
+      "id": "coverage-utilities-2211-plant",
+      "scope_kind": "industry",
+      "industry_code": "2211",
+      "question_id": "q-capital-assets",
+      "family_ids": [
+        "q-capital-assets",
+        "q-data-lineage",
+        "q-interfaces"
+      ],
+      "status": "partial",
+      "scope": "Selected electric utility plant and construction close under Part 101; one synthetic project.",
+      "jurisdictions": [
+        "United States"
+      ],
+      "frameworks": [
+        "FERC Uniform System of Accounts; current financial-reporting capitalization policy required"
+      ],
+      "effective_from": null,
+      "effective_to": null,
+      "reviewed_at": "2026-09-19",
+      "reviewer": "Codex AI-assisted bounded source review",
+      "review_basis": "Continuing plant record fields, supporting-record rules, preliminary-project Q&A and original project bridge; no plant register or professional review. Selected named question: rq-utilities-plant-cost-lineage.",
+      "source_currency": "verified-within-stated-scope",
+      "evidence_record_ids": [
+        "guide-utilities-us-regulated-close",
+        "example-utilities-billing-plant-close",
+        "src_aa_i124_ferc101",
+        "src_utilities_ferc_accounting_qa"
+      ],
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "gaps": [
+        "No actual plant register or project population",
+        "Current ASC 360, AFUDC and policy not read",
+        "No state or municipal authority"
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External text is not stored; source rights remain unknown.",
+        "full_text_stored": false,
+        "source_status": "unknown"
+      },
+      "professional_review": "not-performed",
+      "empirical_support": "not-established"
+    },
+    {
+      "id": "coverage-utilities-2211-aro",
+      "scope_kind": "industry",
+      "industry_code": "2211",
+      "question_id": "q-environmental",
+      "family_ids": [
+        "q-environmental",
+        "q-capital-assets",
+        "q-data-lineage"
+      ],
+      "status": "partial",
+      "scope": "Selected electric utility asset with a legal decommissioning obligation; historical FASB source only.",
+      "jurisdictions": [
+        "United States"
+      ],
+      "frameworks": [
+        "Historical FAS 143 evidence path; current ASC 410 review required"
+      ],
+      "effective_from": null,
+      "effective_to": null,
+      "reviewed_at": "2026-09-19",
+      "reviewer": "Codex AI-assisted bounded source review",
+      "review_basis": "Official FASB superseded summary, Part 101 removal boundary and synthetic legal-evidence packet; no current consolidated or legal review. Selected named question: rq-utilities-retirement-obligation-boundary.",
+      "source_currency": "unknown",
+      "evidence_record_ids": [
+        "guide-utilities-us-regulated-close",
+        "example-utilities-billing-plant-close",
+        "src_utilities_fas143_aro",
+        "src_aa_i124_ferc101"
+      ],
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "gaps": [
+        "Current ASC 410 and legal documents not reviewed",
+        "No funding or rate recovery evidence",
+        "No professional review"
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External text is not stored; source rights remain unknown.",
+        "full_text_stored": false,
+        "source_status": "unknown"
+      },
+      "professional_review": "not-performed",
+      "empirical_support": "not-established"
+    },
+    {
+      "id": "coverage-utilities-2211-purchased-power",
+      "scope_kind": "industry",
+      "industry_code": "2211",
+      "question_id": "q-purchasing-payables",
+      "family_ids": [
+        "q-purchasing-payables",
+        "q-data-lineage",
+        "q-revenue"
+      ],
+      "status": "partial",
+      "scope": "Selected FERC-jurisdictional electric utility; Account 555 purchased power; synthetic monthly settlement.",
+      "jurisdictions": [
+        "United States"
+      ],
+      "frameworks": [
+        "FERC Uniform System of Accounts Account 555; separate financial-reporting review required"
+      ],
+      "effective_from": "1991-01-01",
+      "effective_to": null,
+      "reviewed_at": "2026-09-19",
+      "reviewer": "Codex AI-assisted bounded source review",
+      "review_basis": "FERC Account 555 guidance, Part 101 support requirements and original gross/net reconciliation; no actual settlement or current consolidated guidance. Selected named question: rq-utilities-purchased-power-settlement.",
+      "source_currency": "verified-within-stated-scope",
+      "evidence_record_ids": [
+        "guide-utilities-us-regulated-close",
+        "example-utilities-billing-plant-close",
+        "src_utilities_ferc_account_555",
+        "src_aa_i124_ferc101",
+        "src_fercacct"
+      ],
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "gaps": [
+        "No actual purchase agreement or settlement statement",
+        "Current consolidated revenue and derivative guidance not read",
+        "No operational evidence"
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External text is not stored; source rights remain unknown.",
+        "full_text_stored": false,
+        "source_status": "unknown"
+      },
+      "professional_review": "not-performed",
+      "empirical_support": "not-established"
+    }
+  ],
+  "mapping_overrides": {
+    "guide-utilities-us-regulated-close": {
+      "replace_question_ids": true,
+      "question_ids": [
+        "q-rate-regulation",
+        "q-revenue",
+        "q-capital-assets",
+        "q-environmental",
+        "q-purchasing-payables",
+        "q-data-lineage",
+        "q-interfaces"
+      ],
+      "industry_codes": [
+        "2211"
+      ],
+      "industry_scope": "specific",
+      "basis_field": "/data/scope",
+      "reason": "Selected electric utility application with explicit FERC role and scope counterexamples; association does not establish whole-subsector sufficiency.",
+      "reviewed_question_ids": [
+        "q-rate-regulation",
+        "q-revenue",
+        "q-capital-assets",
+        "q-environmental",
+        "q-purchasing-payables",
+        "q-data-lineage",
+        "q-interfaces"
+      ],
+      "reviewed_industry_codes": [
+        "2211"
+      ],
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded source and synthetic application review; no professional verification, current consolidated ASC conclusion or whole-subsector sufficiency."
+    },
+    "wf-utilities-billing-plant-reconciliation": {
+      "replace_question_ids": false,
+      "question_ids": [
+        "q-rate-regulation",
+        "q-revenue",
+        "q-capital-assets",
+        "q-environmental",
+        "q-purchasing-payables",
+        "q-data-lineage",
+        "q-interfaces"
+      ],
+      "industry_codes": [
+        "2211"
+      ],
+      "industry_scope": "specific",
+      "basis_field": "/data/steps",
+      "reason": "Workflow applies to the selected electric utility source-to-ledger population only.",
+      "reviewed_question_ids": [
+        "q-data-lineage",
+        "q-interfaces"
+      ],
+      "reviewed_industry_codes": [
+        "2211"
+      ],
+      "reviewed_at": "2026-09-19",
+      "review_note": "Original workflow proposal; implementation and operating effectiveness remain untested."
+    },
+    "ctrl-utilities-source-to-ledger": {
+      "replace_question_ids": false,
+      "question_ids": [
+        "q-data-lineage",
+        "q-interfaces"
+      ],
+      "industry_codes": [
+        "2211"
+      ],
+      "industry_scope": "specific",
+      "basis_field": "/data/assertions",
+      "reason": "Control proposal is tied to the selected electric utility reconciliation population.",
+      "reviewed_question_ids": [
+        "q-data-lineage",
+        "q-interfaces"
+      ],
+      "reviewed_industry_codes": [
+        "2211"
+      ],
+      "reviewed_at": "2026-09-19",
+      "review_note": "Original control proposal; no design or operating-effectiveness evidence."
+    },
+    "example-utilities-billing-plant-close": {
+      "replace_question_ids": true,
+      "question_ids": [
+        "q-rate-regulation",
+        "q-revenue",
+        "q-capital-assets",
+        "q-environmental",
+        "q-purchasing-payables",
+        "q-data-lineage",
+        "q-interfaces"
+      ],
+      "industry_codes": [
+        "2211"
+      ],
+      "industry_scope": "specific",
+      "basis_field": "/data/examples",
+      "reason": "Synthetic selected electric utility case with unregulated merchant and service-provider counterexamples; not a whole-subsector claim.",
+      "reviewed_question_ids": [
+        "q-rate-regulation",
+        "q-revenue",
+        "q-capital-assets",
+        "q-environmental",
+        "q-purchasing-payables",
+        "q-data-lineage",
+        "q-interfaces"
+      ],
+      "reviewed_industry_codes": [
+        "2211"
+      ],
+      "reviewed_at": "2026-09-19",
+      "review_note": "Original synthetic arithmetic and scope review; not operational evidence or posting authority."
+    },
+    "src_utilities_ferc_accounting_qa": {
+      "replace_question_ids": false,
+      "question_ids": [
+        "q-rate-regulation",
+        "q-capital-assets",
+        "q-data-lineage"
+      ],
+      "industry_codes": [
+        "2211"
+      ],
+      "industry_scope": "specific",
+      "basis_field": "/data/locators",
+      "reason": "FERC staff Q&A is cited for selected electric utility plant and regulatory-accounting questions.",
+      "reviewed_question_ids": [
+        "q-rate-regulation",
+        "q-capital-assets",
+        "q-data-lineage"
+      ],
+      "reviewed_industry_codes": [
+        "2211"
+      ],
+      "reviewed_at": "2026-09-19",
+      "review_note": "Original publisher page reviewed at bounded excerpt level; Q&As are not binding Commission action."
+    },
+    "src_utilities_ferc_account_555": {
+      "replace_question_ids": false,
+      "question_ids": [
+        "q-purchasing-payables",
+        "q-data-lineage",
+        "q-revenue"
+      ],
+      "industry_codes": [
+        "2211"
+      ],
+      "industry_scope": "specific",
+      "basis_field": "/data/source_locator",
+      "reason": "FERC Account 555 guidance is directly cited for the selected electric purchased-power settlement question.",
+      "reviewed_question_ids": [
+        "q-purchasing-payables",
+        "q-data-lineage",
+        "q-revenue"
+      ],
+      "reviewed_industry_codes": [
+        "2211"
+      ],
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded source review; no current consolidated presentation conclusion."
+    },
+    "src_utilities_fas143_aro": {
+      "replace_question_ids": false,
+      "question_ids": [
+        "q-environmental",
+        "q-capital-assets",
+        "q-data-lineage"
+      ],
+      "industry_codes": [],
+      "industry_scope": "shared-context",
+      "basis_field": "/data/source_locator",
+      "reason": "FASB historical ARO summary is shared accounting context applied to the selected utility example; it does not establish industry-specific or current consolidated treatment.",
+      "reviewed_question_ids": [
+        "q-environmental",
+        "q-capital-assets",
+        "q-data-lineage"
+      ],
+      "reviewed_industry_codes": [],
+      "reviewed_at": "2026-09-19",
+      "review_note": "Official superseded summary reviewed; current ASC 410 and professional applicability remain open."
+    }
+  },
+  "common_limits": [
+    "Source-only candidate pending integration; no canonical corpus or release was changed by preparing this package.",
+    "External publisher text is not stored and source rights remain unknown.",
+    "Current consolidated ASC 980, ASC 410, ASC 360 and ASC 606 were not read; no current consolidated claim is made.",
+    "No professional sign-off, operational evidence, production control testing or measured agent performance is established."
+  ],
+  "integration_corrections": [
+    {
+      "reviewed_at": "2026-09-19",
+      "source_commit": "53166a6a6f073149cff7738170dcde2d0fbbf904",
+      "note": "Applied-corpus validation found a missing examples array and case-sensitive Synthetic label. Added three named scenarios using the existing synthetic populations, calculations and role counterexamples; original source proposal remains preserved in its commit. The five question registry rows now include required depth dimensions and their evidence basis; all content dimensions remain partial and empirical support is not assessed. The example mapping now points to its actual scenarios instead of an absent scope field. Industry assessments retain their named-question provenance in the review basis and no longer populate the pointer reserved for shared-context assessments."
+    }
+  ]
+}
