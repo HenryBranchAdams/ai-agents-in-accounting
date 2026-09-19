@@ -9955,9 +9955,14 @@
     "publisher": "Accounting Agents contributors",
     "source_url": null,
     "source_ids": [
-      "src_ias16ppe"
+      "src_ias16ppe",
+      "src_1os761s",
+      "src_i120_fas34_asset_cost",
+      "src_i120_fas144_impairment"
     ],
-    "related_ids": [],
+    "related_ids": [
+      "example-us-assets-workforce-ledger"
+    ],
     "review_status": "editorially-reviewed",
     "reviewed_at": "2026-09-11",
     "provenance": {
@@ -9992,7 +9997,10 @@
       ],
       "controls": [
         "Human approval for consequential accounting conclusions and external filings.",
-        "Access control, segregation of duties, versioned evidence, reconciliation and exception monitoring."
+        "Access control, segregation of duties, versioned evidence, reconciliation and exception monitoring.",
+        "Match invoice and receiving evidence to approved capital authorization and CIP or fixed-asset register.",
+        "Require independent placed-in-service, useful-life, salvage-value and cents-rounding review before depreciation posting.",
+        "Reconcile subledger to GL, preserve impairment and disposal approvals, and route disputed ownership or incomplete evidence to a human reviewer."
       ],
       "exceptions": [
         "Framework adoption and effective-date differences; local tax, payroll, company-law or regulatory overlays.",
@@ -10000,7 +10008,10 @@
       ],
       "coverage_gaps": [
         "Questions are bounded foundations, not exhaustive treatment of the family.",
-        "Professional review not performed; empirical performance not established."
+        "Professional review not performed; empirical performance not established.",
+        "No full Topic 360 treatment, current Codification access, entity policy election or component-accounting review.",
+        "No operational fixed-asset population, independent professional review or empirical agent-performance evidence.",
+        "State, local, foreign, governmental and tax-only branches remain outside scope."
       ],
       "frameworks": [
         "IFRS Accounting Standards"
@@ -10116,6 +10127,106 @@
               "empirical-support": "not-assessed"
             }
           }
+        },
+        {
+          "id": "rq-us-i120-capital-assets-scope-treatment",
+          "question": "How should a US GAAP close distinguish a capital commitment, CIP cost, placed-in-service transfer, depreciation and tax depreciation for equipment?",
+          "answer": "Use the historical FAS34 preparation-cost boundary as a source path for a supported CIP cost population; its interest rule separately requires expenditures, activity and incurred interest and ends at readiness for intended use. In the fictional equipment case, invoice and installation costs and a five-year useful life are explicit assumptions; the proposed transfer and straight-line schedule remain subject to current ASC360 and entity-policy review. An unperformed purchase commitment is retained separately and tax depreciation is a separate population.",
+          "source_ids": [
+            "src_1os761s",
+            "src_i120_fas34_asset_cost"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_1os761s",
+              "locator": "FASB Codification landing and Topic 360 routing; operative ASC paragraphs not accessed."
+            },
+            {
+              "source_id": "src_i120_fas34_asset_cost",
+              "locator": "Statement 34 paragraphs 6 and 9-10, PDF pp. 5-6; paragraphs 17-18, PDF p. 8."
+            }
+          ],
+          "inputs": [
+            "Approved commitment, vendor invoice, receiving and installation evidence, placed-in-service date, useful life, salvage value, currency precision and tax-book flag."
+          ],
+          "controls": [
+            "No-posting commitment status, invoice-to-CIP match, placed-in-service approval, independent depreciation recalculation and book-tax reconciliation."
+          ],
+          "exceptions": [
+            "Incomplete commissioning evidence, componentization, impairment indicator, disputed ownership, grant or tax-only treatment."
+          ],
+          "remaining_gaps": [
+            "Current consolidated ASC 360 text and entity policy were not reviewed; professional review and real fixed-asset evidence remain open.",
+            "The worked values are synthetic and do not establish a universal capitalization or useful-life conclusion."
+          ],
+          "scope": "One privately held nongovernmental US GAAP operating entity, calendar year 2026, with an equipment purchase and construction-in-progress transfer. The named questions address the ledger lifecycle and evidence controls, not every ASC 360 branch.",
+          "answer_status": "sourced-answer-bounded",
+          "family_id": "q-capital-assets",
+          "assessment": {
+            "status": "partial",
+            "basis": "Selected original-source excerpts, scoped evidence workflow, controls and synthetic worked material support a bounded answer. Historical material is not current consolidated authority, and no professional or empirical conclusion is established.",
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "dimensions": {
+              "scope": "partial",
+              "accounting-question": "partial",
+              "evidence-inputs": "partial",
+              "workflow": "partial",
+              "controls": "partial",
+              "worked-material": "partial",
+              "empirical-support": "not-assessed"
+            }
+          }
+        },
+        {
+          "id": "rq-us-i120-capital-assets-evidence-controls",
+          "question": "What evidence and controls support depreciation, impairment and disposal of a US capital asset without confusing book and tax populations?",
+          "answer": "Retain the cost and commissioning trail, fixed-asset register, useful-life support, GL tie and disposal evidence. Historical FAS144 separates an undiscounted recoverability screen from a fair-value impairment measurement; review useful-life estimates and distinguish temporary idling from abandonment. The worked impairment branch and book-tax split are synthetic evidence controls. Current ASC360 and entity facts govern any actual recognition or disposal conclusion.",
+          "source_ids": [
+            "src_1os761s",
+            "src_i120_fas144_impairment"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_1os761s",
+              "locator": "FASB Codification landing and Topic 360 routing; operative ASC paragraphs not accessed."
+            },
+            {
+              "source_id": "src_i120_fas144_impairment",
+              "locator": "Statement144 paragraphs7-10 and15, PDF pp.9-10; paragraphs27-28, PDF pp.13-14. Historical held-for-sale requirements are outside this selected answer."
+            }
+          ],
+          "inputs": [
+            "Fixed-asset register, GL detail, depreciation schedule, impairment indicators, disposal documents, approval evidence and tax schedule kept separately."
+          ],
+          "controls": [
+            "Subledger-to-GL reconciliation, independent cents check, exception queue for missing source evidence, approval segregation and retained versioned support."
+          ],
+          "exceptions": [
+            "Tax-only authority, held-for-sale or abandonment facts, disputed rights, component replacement and impairment measurement uncertainty."
+          ],
+          "remaining_gaps": [
+            "Current consolidated Codification, professional review, operating effectiveness and real evidence populations remain unreviewed.",
+            "No conclusion is made for tax, state property or governmental accounting."
+          ],
+          "scope": "One privately held nongovernmental US GAAP operating entity, calendar year 2026, with an equipment purchase and construction-in-progress transfer. The named questions address the ledger lifecycle and evidence controls, not every ASC 360 branch.",
+          "answer_status": "sourced-answer-bounded",
+          "family_id": "q-capital-assets",
+          "assessment": {
+            "status": "partial",
+            "basis": "Selected original-source excerpts, scoped evidence workflow, controls and synthetic worked material support a bounded answer. Historical material is not current consolidated authority, and no professional or empirical conclusion is established.",
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "dimensions": {
+              "scope": "partial",
+              "accounting-question": "partial",
+              "evidence-inputs": "partial",
+              "workflow": "partial",
+              "controls": "partial",
+              "worked-material": "partial",
+              "empirical-support": "not-assessed"
+            }
+          }
         }
       ],
       "editorial_brief": {
@@ -10146,6 +10257,84 @@
         "reading_order": [
           "src_ias16ppe"
         ]
+      },
+      "workflows": [
+        "Freeze the purchase and CIP population; match invoice, receipt, installation and approval evidence.",
+        "Transfer the supported cost to fixed assets at placed-in-service, independently review useful life and salvage, and calculate cents-rounded depreciation.",
+        "Tie the fixed-asset register to the GL; separately review impairment, disposal and tax-book differences."
+      ],
+      "aa_i120_review": {
+        "issue_id": "AA-I120",
+        "package_version": "2026-09-18.122",
+        "integrated_corpus_version": "2026-09-19.12412",
+        "reviewed_at": "2026-09-19",
+        "selected_scope": {
+          "entity": "One privately held nongovernmental US operating entity that is not an SEC registrant, preparing a calendar-year 2026 external ledger under US GAAP.",
+          "roles": [
+            "employer for federal payroll and employee benefits",
+            "lessee of identified equipment",
+            "customer of a hosted software arrangement"
+          ],
+          "framework": "US GAAP for the ledger; federal IRS and DOL material is payroll and labor evidence, not a substitute for US GAAP accounting literature.",
+          "period": "Calendar year 2026; source reviews and synthetic packet reviewed 2026-09-18.",
+          "jurisdictions": [
+            "United States",
+            "United States federal"
+          ],
+          "population": [
+            "equipment purchase and construction in progress transfer",
+            "lessee commencement and lease modification",
+            "customer hosted-software implementation",
+            "hourly nonexempt payroll and employer FICA",
+            "defined-contribution benefit contribution"
+          ],
+          "out_of_scope": [
+            "50-state, local, international, SEC registrant and governmental reporting conclusions",
+            "worker classification, immigration, wage-hour legal advice and state payroll filings",
+            "defined-benefit actuarial measurement, ERISA legal advice and plan compliance conclusions",
+            "provider or lessor accounting beyond role counterexamples",
+            "current consolidated Codification text access, professional sign-off and empirical agent-performance evidence"
+          ]
+        },
+        "source_ids": [
+          "src_1os761s",
+          "src_i120_fas34_asset_cost",
+          "src_i120_fas144_impairment"
+        ],
+        "source_locators": [
+          {
+            "source_id": "src_1os761s",
+            "locator": "FASB Codification landing and standards index; ASC Topic 360 routing only, operative paragraphs not accessed."
+          },
+          {
+            "source_id": "src_i120_fas34_asset_cost",
+            "locator": "Statement 34 paragraphs 6 and 9-10, PDF pp. 5-6; paragraphs 17-18, PDF p. 8."
+          },
+          {
+            "source_id": "src_i120_fas144_impairment",
+            "locator": "Statement144 paragraphs7-10 and15, PDF pp.9-10; paragraphs27-28, PDF pp.13-14. Historical held-for-sale requirements are outside this selected answer."
+          }
+        ],
+        "review_basis": "Selected historical FAS34 and FAS144 paragraphs provide original evidence for bounded cost, readiness, impairment and disposal distinctions. The Codification index is routing only. Current consolidated text, entity policy and professional review remain open.",
+        "question_ids": [
+          "rq-us-i120-capital-assets-scope-treatment",
+          "rq-us-i120-capital-assets-evidence-controls"
+        ],
+        "shared_inputs": [
+          "Purchase order, vendor invoice, installation evidence, receiving report, CIP ledger, fixed-asset register, placed-in-service approval and disposal or impairment evidence.",
+          "Entity role, reporting framework, effective period, useful life, residual value, componentization policy and materiality.",
+          "Tax depreciation records are a separate population and cannot be used as book depreciation evidence without a documented policy bridge."
+        ],
+        "exceptions": [
+          "Tax depreciation, state property tax, grant funding, component accounting, impairment indicators and disposal terms require separate analysis.",
+          "A tax source is a scope counterexample, not US GAAP book authority.",
+          "No current consolidated Codification paragraph review, professional sign-off or production data is established."
+        ],
+        "remaining_limits": [
+          "Historical paragraphs were read; current consolidated ASC360 and ASC835-20 and later amendments remain unreviewed.",
+          "Synthetic arithmetic does not establish a depreciation policy or impairment conclusion for a real entity.",
+          "Professional review, operating effectiveness, rights clearance and empirical support are not established."
+        ]
       }
     }
   },
@@ -10164,9 +10353,14 @@
     "publisher": "Accounting Agents contributors",
     "source_url": null,
     "source_ids": [
-      "src_ifrs16l"
+      "src_ifrs16l",
+      "src_fasb_asu201602_leases",
+      "src_1os761s",
+      "src_i120_asu202005_lease_dates"
     ],
-    "related_ids": [],
+    "related_ids": [
+      "example-us-assets-workforce-ledger"
+    ],
     "review_status": "editorially-reviewed",
     "reviewed_at": "2026-09-11",
     "provenance": {
@@ -10201,7 +10395,10 @@
       ],
       "controls": [
         "Human approval for consequential accounting conclusions and external filings.",
-        "Access control, segregation of duties, versioned evidence, reconciliation and exception monitoring."
+        "Access control, segregation of duties, versioned evidence, reconciliation and exception monitoring.",
+        "Contract inventory completeness, identified-asset and control-right review, term and option approval and independent present-value recalculation.",
+        "Tie schedule to GL, preserve modification trigger and remeasurement evidence, and reconcile final penny rounding.",
+        "Human approval before posting a lease liability, ROU asset, modification gain/loss or classification conclusion."
       ],
       "exceptions": [
         "Framework adoption and effective-date differences; local tax, payroll, company-law or regulatory overlays.",
@@ -10209,7 +10406,10 @@
       ],
       "coverage_gaps": [
         "Questions are bounded foundations, not exhaustive treatment of the family.",
-        "Professional review not performed; empirical performance not established."
+        "Professional review not performed; empirical performance not established.",
+        "No current consolidated ASC 842 text, full contract population or entity adoption-election review.",
+        "No lessor classification, sale-leaseback, embedded lease or complex modification conclusion.",
+        "No operating-effectiveness, professional or empirical agent-performance evidence."
       ],
       "frameworks": [
         "IFRS Accounting Standards"
@@ -10325,6 +10525,103 @@
               "empirical-support": "not-assessed"
             }
           }
+        },
+        {
+          "id": "rq-us-i120-leases-scope-treatment",
+          "question": "What US contract facts route an arrangement to a lessee Topic 842 analysis, and which role or component boundaries must remain explicit?",
+          "answer": "Start with an identified asset and a contract that conveys the right to control its use for a period in exchange for consideration. Preserve the lessee, lessor and supplier roles, identify nonlease components and options, and do not let a NAICS label or a lessor fact pattern silently produce a lessee ROU conclusion. Record the entity cohort and adoption date; ASU2020-05 supersedes the original nonpublic adoption dates. The original2016 date alone is not the2026 transition basis.",
+          "source_ids": [
+            "src_fasb_asu201602_leases",
+            "src_1os761s",
+            "src_i120_asu202005_lease_dates"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_fasb_asu201602_leases",
+              "locator": "842-10-15-3, 15-6 and 15-20; identified asset, reassessment and right-to-direct-use passages."
+            },
+            {
+              "source_id": "src_i120_asu202005_lease_dates",
+              "locator": "ASU2020-05 printed p. 4 (PDF p. 10), lease summary; 842-10-65-1(a)-(b), printed pp. 7-8 (PDF pp. 13-14)."
+            }
+          ],
+          "inputs": [
+            "Executed contract, identified asset, control and substitution rights, term, options, consideration, components and entity role."
+          ],
+          "controls": [
+            "Contract completeness, role gate, term and option approval, component review and human escalation for disputed enforceability."
+          ],
+          "exceptions": [
+            "Service contract without an identified asset, embedded lease, variable payment, renewal uncertainty, lessor role or later amendment."
+          ],
+          "remaining_gaps": [
+            "Current consolidated ASC 842, contract-law enforceability and professional review remain open.",
+            "The source and example do not establish a universal lease-identification conclusion."
+          ],
+          "scope": "One private nongovernmental US GAAP lessee with a 24-month equipment arrangement, monthly payments in arrears and a period-13 payment modification. Lessor accounting and all contract-specific elections remain open.",
+          "answer_status": "sourced-answer-bounded",
+          "family_id": "q-leases",
+          "assessment": {
+            "status": "partial",
+            "basis": "Selected original-source excerpts, scoped evidence workflow, controls and synthetic worked material support a bounded answer. Historical material is not current consolidated authority, and no professional or empirical conclusion is established.",
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "dimensions": {
+              "scope": "partial",
+              "accounting-question": "partial",
+              "evidence-inputs": "partial",
+              "workflow": "partial",
+              "controls": "partial",
+              "worked-material": "partial",
+              "empirical-support": "not-assessed"
+            }
+          }
+        },
+        {
+          "id": "rq-us-i120-leases-evidence-controls",
+          "question": "How should a US lessee support commencement measurement and a later lease modification with a reviewable cents schedule?",
+          "answer": "At commencement, preserve unpaid payment terms and the discount-rate rationale, calculate the liability present value and ROU inputs, then tie the schedule to the GL. When terms change, document the modification trigger, remeasure the remaining payments using the declared rate and reconcile the adjustment and final penny rounding.",
+          "source_ids": [
+            "src_fasb_asu201602_leases",
+            "src_1os761s"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_fasb_asu201602_leases",
+              "locator": "842-20-30-1, 30-3 and 30-5; 842-20-35-3 through 35-5; 842-10-25-11 through 25-13."
+            }
+          ],
+          "inputs": [
+            "Payment schedule, payment timing, rate evidence, prepayments, incentives, initial direct costs, modification terms, GL balances and reviewer identity."
+          ],
+          "controls": [
+            "Independent PV and schedule recalculation, tie-out of opening and closing liability, modification approval and role-specific review."
+          ],
+          "exceptions": [
+            "Rate unavailable, payment stream incomplete, component allocation unresolved, termination or impairment branch, lessor accounting or rounding difference."
+          ],
+          "remaining_gaps": [
+            "Current Codification, private-company election, contract population and professional review remain open.",
+            "No operating lease population or empirical validation is included."
+          ],
+          "scope": "One private nongovernmental US GAAP lessee with a 24-month equipment arrangement, monthly payments in arrears and a period-13 payment modification. Lessor accounting and all contract-specific elections remain open.",
+          "answer_status": "sourced-answer-bounded",
+          "family_id": "q-leases",
+          "assessment": {
+            "status": "partial",
+            "basis": "Selected original-source excerpts, scoped evidence workflow, controls and synthetic worked material support a bounded answer. Historical material is not current consolidated authority, and no professional or empirical conclusion is established.",
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "dimensions": {
+              "scope": "partial",
+              "accounting-question": "partial",
+              "evidence-inputs": "partial",
+              "workflow": "partial",
+              "controls": "partial",
+              "worked-material": "partial",
+              "empirical-support": "not-assessed"
+            }
+          }
         }
       ],
       "editorial_brief": {
@@ -10355,6 +10652,84 @@
         "reading_order": [
           "src_ifrs16l"
         ]
+      },
+      "workflows": [
+        "Inventory contracts and identify the asset, control right, term, payment stream, components and role.",
+        "Calculate commencement liability and ROU under the declared rate and payment timing; tie to the ledger.",
+        "For a modification, preserve the original schedule, remeasure the remaining stream and post the approved change with a review trail."
+      ],
+      "aa_i120_review": {
+        "issue_id": "AA-I120",
+        "package_version": "2026-09-18.122",
+        "integrated_corpus_version": "2026-09-19.12412",
+        "reviewed_at": "2026-09-19",
+        "selected_scope": {
+          "entity": "One privately held nongovernmental US operating entity that is not an SEC registrant, preparing a calendar-year 2026 external ledger under US GAAP.",
+          "roles": [
+            "employer for federal payroll and employee benefits",
+            "lessee of identified equipment",
+            "customer of a hosted software arrangement"
+          ],
+          "framework": "US GAAP for the ledger; federal IRS and DOL material is payroll and labor evidence, not a substitute for US GAAP accounting literature.",
+          "period": "Calendar year 2026; source reviews and synthetic packet reviewed 2026-09-18.",
+          "jurisdictions": [
+            "United States",
+            "United States federal"
+          ],
+          "population": [
+            "equipment purchase and construction in progress transfer",
+            "lessee commencement and lease modification",
+            "customer hosted-software implementation",
+            "hourly nonexempt payroll and employer FICA",
+            "defined-contribution benefit contribution"
+          ],
+          "out_of_scope": [
+            "50-state, local, international, SEC registrant and governmental reporting conclusions",
+            "worker classification, immigration, wage-hour legal advice and state payroll filings",
+            "defined-benefit actuarial measurement, ERISA legal advice and plan compliance conclusions",
+            "provider or lessor accounting beyond role counterexamples",
+            "current consolidated Codification text access, professional sign-off and empirical agent-performance evidence"
+          ]
+        },
+        "source_ids": [
+          "src_fasb_asu201602_leases",
+          "src_1os761s",
+          "src_i120_asu202005_lease_dates"
+        ],
+        "source_locators": [
+          {
+            "source_id": "src_fasb_asu201602_leases",
+            "locator": "842-10-15-3, 15-6 and 15-20; 842-10-25-11 through 25-13; 842-20-30-1, 30-3, 30-5 and 35-3 through 35-5 at the cited PDF pages."
+          },
+          {
+            "source_id": "src_1os761s",
+            "locator": "FASB Codification landing and Topic 842 routing only; operative consolidated text not accessed."
+          },
+          {
+            "source_id": "src_i120_asu202005_lease_dates",
+            "locator": "ASU2020-05 printed p. 4 (PDF p. 10), lease summary; 842-10-65-1(a)-(b), printed pp. 7-8 (PDF pp. 13-14)."
+          }
+        ],
+        "review_basis": "Selected ASU 2016-02 Topic 842 passages and an original cents-based lease schedule. The issued update is not the current consolidated Codification and no professional lease review was performed.",
+        "question_ids": [
+          "rq-us-i120-leases-scope-treatment",
+          "rq-us-i120-leases-evidence-controls"
+        ],
+        "shared_inputs": [
+          "Executed contract, identified-asset description, commencement date, payment timing, term and renewal or termination options.",
+          "Lease and nonlease component analysis, discount-rate evidence, incentives, prepayments, initial direct costs, modification terms and approval trail.",
+          "Separate lessee and lessor roles; do not infer a lessor result from a lessee ROU schedule."
+        ],
+        "exceptions": [
+          "Short-term or low-value exemptions, private-company rate elections, variable payments, components, incentives, impairment and termination require separate review.",
+          "A lessor or supplier arrangement is a role counterexample, not a lessee ROU entry.",
+          "Current amendments, contract enforceability, professional review and rights remain unresolved."
+        ],
+        "remaining_limits": [
+          "The issued update passages support the selected schedule only within the declared role and assumptions.",
+          "The PV and schedule are original synthetic calculations and require independent review before any real posting.",
+          "Publisher rights, current Codification currency and entity-specific policy remain unresolved."
+        ]
       }
     }
   },
@@ -10373,9 +10748,14 @@
     "publisher": "Accounting Agents contributors",
     "source_url": null,
     "source_ids": [
-      "src_roadmap_ias38_overview"
+      "src_roadmap_ias38_overview",
+      "src_1os761s",
+      "src_asu201815",
+      "src_roadmap_asu202506"
     ],
-    "related_ids": [],
+    "related_ids": [
+      "example-us-assets-workforce-ledger"
+    ],
     "review_status": "editorially-reviewed",
     "reviewed_at": "2026-09-11",
     "provenance": {
@@ -10411,7 +10791,10 @@
       ],
       "controls": [
         "Human approval for consequential accounting conclusions and external filings.",
-        "Access control, segregation of duties, versioned evidence, reconciliation and exception monitoring."
+        "Access control, segregation of duties, versioned evidence, reconciliation and exception monitoring.",
+        "Contract-role and framework gate before classifying a cost, with no inference from an industry code.",
+        "Invoice-to-task and stage evidence, term and renewal review, capitalization approval, impairment or abandonment review and GL tie.",
+        "Human approval for recognition, capitalization, gross/net and adoption conclusions."
       ],
       "exceptions": [
         "Framework adoption and effective-date differences; local tax, payroll, company-law or regulatory overlays.",
@@ -10419,7 +10802,10 @@
       ],
       "coverage_gaps": [
         "Questions are bounded foundations, not exhaustive treatment of the family.",
-        "Professional review not performed; empirical performance not established."
+        "Professional review not performed; empirical performance not established.",
+        "No complete current Codification review or entity adoption memo.",
+        "No operational vendor population, impairment evidence, provider contract or external-use product review.",
+        "No professional sign-off or empirical agent-performance evidence."
       ],
       "frameworks": [
         "IFRS Accounting Standards"
@@ -10536,6 +10922,99 @@
               "empirical-support": "not-assessed"
             }
           }
+        },
+        {
+          "id": "rq-us-i120-intangibles-software-scope-treatment",
+          "question": "How should a US customer distinguish hosted service fees, qualifying implementation costs, training and data conversion, while keeping provider and external-use roles separate?",
+          "answer": "For a hosted service contract, analyze implementation activities under the customer internal-use model: qualifying application-development activity may be capitalized, while preliminary, postimplementation, training and most data-conversion activity is expensed. Keep hosting service expense separate, do not apply customer treatment to a provider or external-use role, and do not infer treatment from a NAICS label.",
+          "source_ids": [
+            "src_asu201815",
+            "src_1os761s"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_asu201815",
+              "locator": "ASU 2018-15 pp. 6-8; customer service-contract scope and implementation-stage treatment."
+            }
+          ],
+          "inputs": [
+            "Hosting contract, role, task-level invoice, project stage, authorization, training/data-conversion evidence, hosting term and renewal support."
+          ],
+          "controls": [
+            "Role gate, task-level invoice review, capitalization approval, term review, hosting-expense tie and human exception review."
+          ],
+          "exceptions": [
+            "Separate license, provider, reseller, external-use software, abandonment, impairment or missing task evidence."
+          ],
+          "remaining_gaps": [
+            "Current consolidated Codification and entity-specific arrangement facts remain open.",
+            "No provider or external-use accounting conclusion is established and no professional review was performed."
+          ],
+          "scope": "One private nongovernmental US GAAP customer of a hosted software arrangement in calendar year 2026. The packet distinguishes provider, customer and external-use roles and does not silently apply ASU 2025-06 before its effective date or an adoption election.",
+          "answer_status": "sourced-answer-bounded",
+          "family_id": "q-intangibles-software",
+          "assessment": {
+            "status": "partial",
+            "basis": "Selected original-source excerpts, scoped evidence workflow, controls and synthetic worked material support a bounded answer. Historical material is not current consolidated authority, and no professional or empirical conclusion is established.",
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "dimensions": {
+              "scope": "partial",
+              "accounting-question": "partial",
+              "evidence-inputs": "partial",
+              "workflow": "partial",
+              "controls": "partial",
+              "worked-material": "partial",
+              "empirical-support": "not-assessed"
+            }
+          }
+        },
+        {
+          "id": "rq-us-i120-intangibles-software-evidence-controls",
+          "question": "What US evidence supports a 2026 internal-use software adoption or capitalization decision when ASU 2025-06 is future-effective?",
+          "answer": "Retain the authorization and committed-funding date, probable completion and use assessment, significant development-uncertainty analysis, task-level costs, adoption election and effective-period memo. For a 2026 packet, keep ASU 2025-06 as a future-effective watch item unless the entity has elected early adoption; retain the current Codification branch separately.",
+          "source_ids": [
+            "src_roadmap_asu202506",
+            "src_asu201815",
+            "src_1os761s"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_roadmap_asu202506",
+              "locator": "ASU 2025-06 p. 5; 350-40-25-12(c) p. 13; BC108 p. 75; BC119 p. 78."
+            }
+          ],
+          "inputs": [
+            "Management authorization, committed funding, probable completion/use, uncertainty, stage costs, adoption election, effective date and current policy."
+          ],
+          "controls": [
+            "Versioned adoption memo, project-cost ledger tie, stage evidence, impairment review and human approval before applying the future update."
+          ],
+          "exceptions": [
+            "External-use software, provider development, early adoption not documented, significant uncertainty, abandonment or current Codification amendment."
+          ],
+          "remaining_gaps": [
+            "Current consolidated text and entity adoption decision were not reviewed.",
+            "No operational project evidence, professional review or empirical validation is included."
+          ],
+          "scope": "One private nongovernmental US GAAP customer of a hosted software arrangement in calendar year 2026. The packet distinguishes provider, customer and external-use roles and does not silently apply ASU 2025-06 before its effective date or an adoption election.",
+          "answer_status": "sourced-answer-bounded",
+          "family_id": "q-intangibles-software",
+          "assessment": {
+            "status": "partial",
+            "basis": "Selected original-source excerpts, scoped evidence workflow, controls and synthetic worked material support a bounded answer. Historical material is not current consolidated authority, and no professional or empirical conclusion is established.",
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "dimensions": {
+              "scope": "partial",
+              "accounting-question": "partial",
+              "evidence-inputs": "partial",
+              "workflow": "partial",
+              "controls": "partial",
+              "worked-material": "partial",
+              "empirical-support": "not-assessed"
+            }
+          }
         }
       ],
       "editorial_brief": {
@@ -10566,7 +11045,85 @@
         "reading_order": [
           "src_roadmap_ias38_overview"
         ]
-      }
+      },
+      "aa_i120_review": {
+        "issue_id": "AA-I120",
+        "package_version": "2026-09-18.122",
+        "integrated_corpus_version": "2026-09-19.12412",
+        "reviewed_at": "2026-09-19",
+        "selected_scope": {
+          "entity": "One privately held nongovernmental US operating entity that is not an SEC registrant, preparing a calendar-year 2026 external ledger under US GAAP.",
+          "roles": [
+            "employer for federal payroll and employee benefits",
+            "lessee of identified equipment",
+            "customer of a hosted software arrangement"
+          ],
+          "framework": "US GAAP for the ledger; federal IRS and DOL material is payroll and labor evidence, not a substitute for US GAAP accounting literature.",
+          "period": "Calendar year 2026; source reviews and synthetic packet reviewed 2026-09-18.",
+          "jurisdictions": [
+            "United States",
+            "United States federal"
+          ],
+          "population": [
+            "equipment purchase and construction in progress transfer",
+            "lessee commencement and lease modification",
+            "customer hosted-software implementation",
+            "hourly nonexempt payroll and employer FICA",
+            "defined-contribution benefit contribution"
+          ],
+          "out_of_scope": [
+            "50-state, local, international, SEC registrant and governmental reporting conclusions",
+            "worker classification, immigration, wage-hour legal advice and state payroll filings",
+            "defined-benefit actuarial measurement, ERISA legal advice and plan compliance conclusions",
+            "provider or lessor accounting beyond role counterexamples",
+            "current consolidated Codification text access, professional sign-off and empirical agent-performance evidence"
+          ]
+        },
+        "source_ids": [
+          "src_1os761s",
+          "src_asu201815",
+          "src_roadmap_asu202506"
+        ],
+        "source_locators": [
+          {
+            "source_id": "src_asu201815",
+            "locator": "ASU 2018-15 pp. 6-8, 15-19; 350-40-30-5 and 350-40-35-11 through 35-17."
+          },
+          {
+            "source_id": "src_roadmap_asu202506",
+            "locator": "ASU 2025-06 p. 5; 350-40-25-12(c) at p. 13; external-use boundary at BC3 p. 44; effective date at BC108 p. 75 and early adoption at BC119 p. 78."
+          },
+          {
+            "source_id": "src_1os761s",
+            "locator": "FASB Codification landing and US GAAP topic routing; operative consolidated text not accessed."
+          }
+        ],
+        "review_basis": "Selected FASB ASU 2018-15 and ASU 2025-06 passages, FASB Codification routing and the preserved software-subscriptions industry guide, combined with an original synthetic implementation schedule.",
+        "question_ids": [
+          "rq-us-i120-intangibles-software-scope-treatment",
+          "rq-us-i120-intangibles-software-evidence-controls"
+        ],
+        "shared_inputs": [
+          "Contract or SOW, provider/customer role, hosting term, renewal evidence, invoices split by activity, project authorization and funding evidence.",
+          "Task-level stage evidence for application development, preliminary work, postimplementation, training, data conversion, testing and abandonment.",
+          "Adoption election and effective period for ASU 2025-06; external-use software remains a separate role branch."
+        ],
+        "exceptions": [
+          "Separate license, internal-use development, external-use software, provider revenue and reseller principal-agent questions require distinct analysis.",
+          "ASU 2025-06 is future-effective for the declared 2026 period unless early adopted under the update's transition rules.",
+          "Current consolidated Codification, enforceability, professional review and publisher rights remain unresolved."
+        ],
+        "remaining_limits": [
+          "ASU 2018-15 and ASU 2025-06 are issued-update passages and do not replace current Codification or fact-specific analysis.",
+          "The implementation schedule is synthetic and only supports the declared customer role and assumptions.",
+          "The existing guide-software-subscriptions questions and industry mappings are preserved as supporting context, not replaced or promoted to sufficiency."
+        ]
+      },
+      "workflows": [
+        "Identify provider, customer, reseller and external-use roles; declare framework and effective period.",
+        "Split the implementation invoice by activity and evidence the application-development stage, term and renewal assumptions.",
+        "Post or expense the proposed branch, tie amortization and hosting expense, and escalate role, adoption or impairment uncertainty."
+      ]
     }
   },
   {
@@ -10585,9 +11142,17 @@
     "source_url": null,
     "source_ids": [
       "src_roadmap_ias19_overview",
-      "src_hmrc_fps_payroll"
+      "src_hmrc_fps_payroll",
+      "src_1os761s",
+      "src_irs_pub15_2026",
+      "src_irs_pub15t_2026",
+      "src_irs_form941_2026",
+      "src_dol_factsheet21_recordkeeping",
+      "src_dol_factsheet23_overtime"
     ],
-    "related_ids": [],
+    "related_ids": [
+      "example-us-assets-workforce-ledger"
+    ],
     "review_status": "editorially-reviewed",
     "reviewed_at": "2026-09-11",
     "provenance": {
@@ -10627,7 +11192,10 @@
       ],
       "controls": [
         "Human approval for consequential accounting conclusions and external filings.",
-        "Access control, segregation of duties, versioned evidence, reconciliation and exception monitoring."
+        "Access control, segregation of duties, versioned evidence, reconciliation and exception monitoring.",
+        "Time approval, payroll-register-to-GL tie, regular/overtime recalculation and duplicate or missing-worker exception review.",
+        "Reconcile employee and employer tax liabilities to the federal filing and payment population, with dates and retention evidence.",
+        "Human review for worker classification, withholding, state or local overlays and any filing or payment action."
       ],
       "exceptions": [
         "Framework adoption and effective-date differences; local tax, payroll, company-law or regulatory overlays.",
@@ -10635,7 +11203,10 @@
       ],
       "coverage_gaps": [
         "Questions are bounded foundations, not exhaustive treatment of the family.",
-        "Professional review not performed; empirical performance not established."
+        "Professional review not performed; empirical performance not established.",
+        "No current complete federal or state payroll filing review, worker classification or legal conclusion.",
+        "No real payroll register, Form 941, deposit record or operating-effectiveness evidence.",
+        "No professional review or empirical agent-performance evidence."
       ],
       "frameworks": [
         "IFRS Accounting Standards"
@@ -10762,6 +11333,100 @@
               "empirical-support": "not-assessed"
             }
           }
+        },
+        {
+          "id": "rq-us-i120-payroll-scope-treatment",
+          "question": "How should a US employer reconcile approved time to regular wages, overtime, federal taxes and the proposed ledger without treating tax guidance as GAAP authority?",
+          "answer": "Start with approved time and an assumed covered nonexempt status, calculate 40 regular hours and hours over 40 at one and one-half times the regular rate, then separately calculate employee withholding, employee FICA, employer FICA and deductions. Tie each population to the GL and federal filing evidence; IRS and DOL guidance informs federal payroll treatment but does not replace the entity's US GAAP accounting policy or legal review.",
+          "source_ids": [
+            "src_dol_factsheet23_overtime",
+            "src_irs_form941_2026",
+            "src_irs_pub15_2026"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_dol_factsheet23_overtime",
+              "locator": "Fact Sheet #23: more than 40 hours in a workweek at not less than one and one-half times the regular rate."
+            }
+          ],
+          "inputs": [
+            "Approved time, worker status, rate, pay frequency, W-4/method, 2026 FICA rates, deductions, GL and filing period."
+          ],
+          "controls": [
+            "Time approval, independent cents recalculation, payroll-register-to-GL tie, tax-liability reconciliation and human review."
+          ],
+          "exceptions": [
+            "Classification, exemption, regular-rate, state/local, garnishment, retro-pay and incomplete W-4 questions."
+          ],
+          "remaining_gaps": [
+            "No actual payroll or filing population, worker-classification analysis, legal conclusion or professional review is included.",
+            "Federal tax guidance does not establish GAAP expense recognition."
+          ],
+          "scope": "One private nongovernmental US employer with an assumed covered nonexempt hourly employee, a 2026 workweek, federal payroll taxes and a read-only close reconciliation. The tax amounts are partly source-backed rates and partly explicit synthetic assumptions.",
+          "answer_status": "sourced-answer-bounded",
+          "family_id": "q-payroll",
+          "assessment": {
+            "status": "partial",
+            "basis": "Selected original-source excerpts, scoped evidence workflow, controls and synthetic worked material support a bounded answer. Historical material is not current consolidated authority, and no professional or empirical conclusion is established.",
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "dimensions": {
+              "scope": "partial",
+              "accounting-question": "partial",
+              "evidence-inputs": "partial",
+              "workflow": "partial",
+              "controls": "partial",
+              "worked-material": "partial",
+              "empirical-support": "not-assessed"
+            }
+          }
+        },
+        {
+          "id": "rq-us-i120-payroll-evidence-controls",
+          "question": "What evidence supports a controlled US payroll close and federal Form 941 tie without executing a filing or payment?",
+          "answer": "Retain approved time, worker and pay-rate evidence, payroll register, withholding method, employee and employer FICA calculations, deduction and benefit support, GL tie, Form 941 population, deposit or remittance dates and reviewer signoff. Keep the read-only reconciliation separate from any filing or payment action.",
+          "source_ids": [
+            "src_dol_factsheet21_recordkeeping",
+            "src_irs_form941_2026",
+            "src_irs_pub15_2026"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_dol_factsheet21_recordkeeping",
+              "locator": "Fact Sheet #21 required payroll and time records, retention and no-required-form summary."
+            }
+          ],
+          "inputs": [
+            "Payroll register, time records, tax calculations, GL detail, filing quarter, deposit dates, evidence versions and reviewer identity."
+          ],
+          "controls": [
+            "Completeness and duplicate checks, employee/employer tax tie, filing-population reconciliation, retention control and segregation of duties."
+          ],
+          "exceptions": [
+            "Late payroll, amended return, deposit timing, missing time approval, disputed status, state tax and benefit-tax evidence."
+          ],
+          "remaining_gaps": [
+            "Underlying regulations, actual Form 941 and operational effectiveness were not reviewed.",
+            "No filing, payment, certification or other external action is authorized by this packet."
+          ],
+          "scope": "One private nongovernmental US employer with an assumed covered nonexempt hourly employee, a 2026 workweek, federal payroll taxes and a read-only close reconciliation. The tax amounts are partly source-backed rates and partly explicit synthetic assumptions.",
+          "answer_status": "sourced-answer-bounded",
+          "family_id": "q-payroll",
+          "assessment": {
+            "status": "partial",
+            "basis": "Selected original-source excerpts, scoped evidence workflow, controls and synthetic worked material support a bounded answer. Historical material is not current consolidated authority, and no professional or empirical conclusion is established.",
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "dimensions": {
+              "scope": "partial",
+              "accounting-question": "partial",
+              "evidence-inputs": "partial",
+              "workflow": "partial",
+              "controls": "partial",
+              "worked-material": "partial",
+              "empirical-support": "not-assessed"
+            }
+          }
         }
       ],
       "editorial_brief": {
@@ -10795,7 +11460,92 @@
           "src_roadmap_ias19_overview",
           "src_hmrc_fps_payroll"
         ]
-      }
+      },
+      "aa_i120_review": {
+        "issue_id": "AA-I120",
+        "package_version": "2026-09-18.122",
+        "integrated_corpus_version": "2026-09-19.12412",
+        "reviewed_at": "2026-09-19",
+        "selected_scope": {
+          "entity": "One privately held nongovernmental US operating entity that is not an SEC registrant, preparing a calendar-year 2026 external ledger under US GAAP.",
+          "roles": [
+            "employer for federal payroll and employee benefits",
+            "lessee of identified equipment",
+            "customer of a hosted software arrangement"
+          ],
+          "framework": "US GAAP for the ledger; federal IRS and DOL material is payroll and labor evidence, not a substitute for US GAAP accounting literature.",
+          "period": "Calendar year 2026; source reviews and synthetic packet reviewed 2026-09-18.",
+          "jurisdictions": [
+            "United States",
+            "United States federal"
+          ],
+          "population": [
+            "equipment purchase and construction in progress transfer",
+            "lessee commencement and lease modification",
+            "customer hosted-software implementation",
+            "hourly nonexempt payroll and employer FICA",
+            "defined-contribution benefit contribution"
+          ],
+          "out_of_scope": [
+            "50-state, local, international, SEC registrant and governmental reporting conclusions",
+            "worker classification, immigration, wage-hour legal advice and state payroll filings",
+            "defined-benefit actuarial measurement, ERISA legal advice and plan compliance conclusions",
+            "provider or lessor accounting beyond role counterexamples",
+            "current consolidated Codification text access, professional sign-off and empirical agent-performance evidence"
+          ]
+        },
+        "source_ids": [
+          "src_1os761s",
+          "src_irs_pub15_2026",
+          "src_irs_pub15t_2026",
+          "src_irs_form941_2026",
+          "src_dol_factsheet21_recordkeeping",
+          "src_dol_factsheet23_overtime"
+        ],
+        "source_locators": [
+          {
+            "source_id": "src_dol_factsheet21_recordkeeping",
+            "locator": "Fact Sheet #21 required payroll and time records plus three-year and two-year retention summary."
+          },
+          {
+            "source_id": "src_dol_factsheet23_overtime",
+            "locator": "Fact Sheet #23 more-than-40-hours, one-and-one-half-times regular rate and workweek summary."
+          },
+          {
+            "source_id": "src_irs_form941_2026",
+            "locator": "Form 941 (2026) instructions; quarterly return and 2026 FICA-rate sections."
+          },
+          {
+            "source_id": "src_irs_pub15t_2026",
+            "locator": "Publication 15-T (2026) withholding-method and table sections; personal result not calculated."
+          }
+        ],
+        "review_basis": "Selected IRS Publication 15, Publication 15-T, Form 941 instructions and DOL Fact Sheets 21 and 23, with FASB Codification routing and an original cents-based payroll packet. No filing, worker classification or legal review was performed.",
+        "question_ids": [
+          "rq-us-i120-payroll-scope-treatment",
+          "rq-us-i120-payroll-evidence-controls"
+        ],
+        "shared_inputs": [
+          "Approved time record, workweek, worker status, pay rate, overtime hours, payroll register, W-4 and withholding method, deductions and benefit contributions.",
+          "2026 FICA rates and wage-base status, Form 941 quarter, deposit and remittance evidence, GL accounts and reviewer identity.",
+          "Federal evidence is distinct from state/local tax, worker classification, immigration, wage-hour legal advice and GAAP expense policy."
+        ],
+        "exceptions": [
+          "Worker classification, exempt status, regular-rate inclusions, state/local withholding, garnishments, retro pay and benefit taxation require separate review.",
+          "The $180 federal income-tax withholding amount is synthetic and not calculated from a complete Form W-4.",
+          "DOL fact sheets are educational summaries and the underlying regulation controls."
+        ],
+        "remaining_limits": [
+          "IRS and DOL sources support period and evidence routing within their stated scope; they do not establish a GAAP payroll entry or legal conclusion.",
+          "The payroll arithmetic is synthetic and partly assumption-driven.",
+          "Rights, state/local rules, worker status and complete source populations remain unresolved."
+        ]
+      },
+      "workflows": [
+        "Freeze approved time and worker-status evidence; calculate regular, overtime and gross wages in cents.",
+        "Apply declared federal rates and explicit withholding assumptions, reconcile employee and employer liabilities and tie to the ledger.",
+        "Map the quarter to Form 941 and retain evidence, but stop before filing, payment or worker-status conclusion without human authority."
+      ]
     }
   },
   {
@@ -10813,9 +11563,16 @@
     "publisher": "Accounting Agents contributors",
     "source_url": null,
     "source_ids": [
-      "src_roadmap_ias19_overview"
+      "src_roadmap_ias19_overview",
+      "src_1os761s",
+      "src_fasb_asu201707_employee_benefits",
+      "src_irs_pub15b_2026",
+      "src_dol_ebsa_reporting_disclosure_guide",
+      "src_i120_fas87_dc_contributions"
     ],
-    "related_ids": [],
+    "related_ids": [
+      "example-us-assets-workforce-ledger"
+    ],
     "review_status": "editorially-reviewed",
     "reviewed_at": "2026-09-11",
     "provenance": {
@@ -10851,7 +11608,10 @@
       ],
       "controls": [
         "Human approval for consequential accounting conclusions and external filings.",
-        "Access control, segregation of duties, versioned evidence, reconciliation and exception monitoring."
+        "Access control, segregation of duties, versioned evidence, reconciliation and exception monitoring.",
+        "Agree eligible payroll to plan census and contribution calculation, then tie remittance and GL balances.",
+        "Retain plan document, SPD/SMM and provider evidence; independently review cutoff, unpaid contribution and tax-reporting treatment.",
+        "Escalate defined-benefit, plan compliance, actuarial, ERISA and disputed eligibility questions to accountable specialists."
       ],
       "exceptions": [
         "Framework adoption and effective-date differences; local tax, payroll, company-law or regulatory overlays.",
@@ -10859,7 +11619,10 @@
       ],
       "coverage_gaps": [
         "Questions are bounded foundations, not exhaustive treatment of the family.",
-        "Professional review not performed; empirical performance not established."
+        "Professional review not performed; empirical performance not established.",
+        "No current consolidated ASC 710 or 715 review, plan-specific accounting policy or actuarial measurement.",
+        "No plan documents, SPD, SMM, Form 5500 or operating benefit population.",
+        "No professional, legal, actuarial or empirical agent-performance evidence."
       ],
       "frameworks": [
         "IFRS Accounting Standards"
@@ -10976,6 +11739,105 @@
               "empirical-support": "not-assessed"
             }
           }
+        },
+        {
+          "id": "rq-us-i120-benefits-scope-treatment",
+          "question": "How should a US employer distinguish a defined-contribution ledger entry, a taxable fringe-benefit question and a defined-benefit actuarial branch?",
+          "answer": "Under the historical FAS87 paragraphs63-66, the contribution required for the period of employee service supplies the defined-contribution cost basis, and hybrid plans require substance analysis. In the fictional case a stated plan formula supports a proposed employer contribution; current ASC715-70, plan terms and later amendments remain unreviewed. Taxable fringes require separate federal-tax evidence, and defined-benefit obligations require actuarial measurement. ASU2017-07 is a presentation boundary only.",
+          "source_ids": [
+            "src_1os761s",
+            "src_irs_pub15b_2026",
+            "src_fasb_asu201707_employee_benefits",
+            "src_i120_fas87_dc_contributions"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_fasb_asu201707_employee_benefits",
+              "locator": "ASU 2017-07 PDF pp. 6-8; service-cost presentation and capitalization boundary; no defined-benefit measurement."
+            },
+            {
+              "source_id": "src_i120_fas87_dc_contributions",
+              "locator": "Statement 87 paragraphs 63-66, PDF pp. 21-22."
+            }
+          ],
+          "inputs": [
+            "Plan type and terms, eligible payroll, contribution formula, provider statement, remittance, tax classification and actuarial report if defined benefit."
+          ],
+          "controls": [
+            "Plan-to-census tie, contribution recalculation, remittance-to-GL tie and specialist escalation for actuarial or ERISA matters."
+          ],
+          "exceptions": [
+            "Defined-benefit, multiemployer, plan amendment, vesting, forfeiture, taxable fringe, missing plan document or disputed eligibility."
+          ],
+          "remaining_gaps": [
+            "No current consolidated ASC 710/715 or plan-specific actuarial review was performed.",
+            "The source set does not establish ERISA compliance or a universal benefit conclusion."
+          ],
+          "scope": "One private nongovernmental US employer with a defined-contribution employer contribution in calendar year 2026. The packet distinguishes the employer ledger, federal tax evidence, plan documents and defined-benefit actuarial branches.",
+          "answer_status": "sourced-answer-bounded",
+          "family_id": "q-benefits",
+          "assessment": {
+            "status": "partial",
+            "basis": "Selected original-source excerpts, scoped evidence workflow, controls and synthetic worked material support a bounded answer. Historical material is not current consolidated authority, and no professional or empirical conclusion is established.",
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "dimensions": {
+              "scope": "partial",
+              "accounting-question": "partial",
+              "evidence-inputs": "partial",
+              "workflow": "partial",
+              "controls": "partial",
+              "worked-material": "partial",
+              "empirical-support": "not-assessed"
+            }
+          }
+        },
+        {
+          "id": "rq-us-i120-benefits-evidence-controls",
+          "question": "What evidence supports a controlled US benefit close while keeping plan disclosure, tax and financial-reporting populations separate?",
+          "answer": "Retain the plan document, census, eligible payroll, contribution formula, provider statement, remittance evidence, GL tie and reviewer signoff. Add SPD/SMM and reporting evidence for plan-document routing, and keep IRS fringe-benefit evidence and any actuarial report in their own populations.",
+          "source_ids": [
+            "src_dol_ebsa_reporting_disclosure_guide",
+            "src_irs_pub15b_2026",
+            "src_1os761s"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_dol_ebsa_reporting_disclosure_guide",
+              "locator": "EBSA guide SPD, SMM and reporting/disclosure timing sections; evidence routing only."
+            }
+          ],
+          "inputs": [
+            "Plan documents, census, payroll, provider/remittance, GL, tax classification, SPD/SMM, reporting evidence and reviewer identity."
+          ],
+          "controls": [
+            "Completeness and eligibility review, contribution and cutoff recalculation, remittance tie, versioned plan evidence and specialist approval."
+          ],
+          "exceptions": [
+            "Actuarial assumptions, plan amendment, late remittance, missing disclosure, taxable fringe, legal dispute or incomplete census."
+          ],
+          "remaining_gaps": [
+            "No plan-specific legal, actuarial, professional or operating-effectiveness review is included.",
+            "No filing, payment, participant communication or other external action is authorized."
+          ],
+          "scope": "One private nongovernmental US employer with a defined-contribution employer contribution in calendar year 2026. The packet distinguishes the employer ledger, federal tax evidence, plan documents and defined-benefit actuarial branches.",
+          "answer_status": "sourced-answer-bounded",
+          "family_id": "q-benefits",
+          "assessment": {
+            "status": "partial",
+            "basis": "Selected original-source excerpts, scoped evidence workflow, controls and synthetic worked material support a bounded answer. Historical material is not current consolidated authority, and no professional or empirical conclusion is established.",
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "dimensions": {
+              "scope": "partial",
+              "accounting-question": "partial",
+              "evidence-inputs": "partial",
+              "workflow": "partial",
+              "controls": "partial",
+              "worked-material": "partial",
+              "empirical-support": "not-assessed"
+            }
+          }
         }
       ],
       "editorial_brief": {
@@ -11006,7 +11868,91 @@
         "reading_order": [
           "src_roadmap_ias19_overview"
         ]
-      }
+      },
+      "aa_i120_review": {
+        "issue_id": "AA-I120",
+        "package_version": "2026-09-18.122",
+        "integrated_corpus_version": "2026-09-19.12412",
+        "reviewed_at": "2026-09-19",
+        "selected_scope": {
+          "entity": "One privately held nongovernmental US operating entity that is not an SEC registrant, preparing a calendar-year 2026 external ledger under US GAAP.",
+          "roles": [
+            "employer for federal payroll and employee benefits",
+            "lessee of identified equipment",
+            "customer of a hosted software arrangement"
+          ],
+          "framework": "US GAAP for the ledger; federal IRS and DOL material is payroll and labor evidence, not a substitute for US GAAP accounting literature.",
+          "period": "Calendar year 2026; source reviews and synthetic packet reviewed 2026-09-18.",
+          "jurisdictions": [
+            "United States",
+            "United States federal"
+          ],
+          "population": [
+            "equipment purchase and construction in progress transfer",
+            "lessee commencement and lease modification",
+            "customer hosted-software implementation",
+            "hourly nonexempt payroll and employer FICA",
+            "defined-contribution benefit contribution"
+          ],
+          "out_of_scope": [
+            "50-state, local, international, SEC registrant and governmental reporting conclusions",
+            "worker classification, immigration, wage-hour legal advice and state payroll filings",
+            "defined-benefit actuarial measurement, ERISA legal advice and plan compliance conclusions",
+            "provider or lessor accounting beyond role counterexamples",
+            "current consolidated Codification text access, professional sign-off and empirical agent-performance evidence"
+          ]
+        },
+        "source_ids": [
+          "src_1os761s",
+          "src_fasb_asu201707_employee_benefits",
+          "src_irs_pub15b_2026",
+          "src_dol_ebsa_reporting_disclosure_guide",
+          "src_i120_fas87_dc_contributions"
+        ],
+        "source_locators": [
+          {
+            "source_id": "src_1os761s",
+            "locator": "FASB Codification landing and Topics 710 and 715 routing only; operative consolidated text not accessed."
+          },
+          {
+            "source_id": "src_fasb_asu201707_employee_benefits",
+            "locator": "ASU 2017-07 PDF pp. 6-8; service-cost and other-component presentation and capitalization boundary."
+          },
+          {
+            "source_id": "src_dol_ebsa_reporting_disclosure_guide",
+            "locator": "EBSA guide SPD, SMM and plan reporting/disclosure sections; plan-evidence boundary only."
+          },
+          {
+            "source_id": "src_i120_fas87_dc_contributions",
+            "locator": "Statement 87 paragraphs 63-66, PDF pp. 21-22."
+          }
+        ],
+        "review_basis": "Selected FASB Codification routing, ASU 2017-07 presentation boundaries, IRS Publication 15-B and DOL EBSA reporting/disclosure evidence routing, plus an original defined-contribution synthetic branch. No plan, legal or actuarial review was performed.",
+        "question_ids": [
+          "rq-us-i120-benefits-scope-treatment",
+          "rq-us-i120-benefits-evidence-controls"
+        ],
+        "shared_inputs": [
+          "Plan document, eligibility and census, employer contribution formula, payroll register, remittance evidence, benefit provider statement, GL accounts and review date.",
+          "Plan type, service period, contribution due date, taxable-fringe status and federal reporting evidence; separate defined-benefit actuarial inputs.",
+          "SPD, SMM and plan reporting evidence are legal and operational inputs, not proof of GAAP measurement."
+        ],
+        "exceptions": [
+          "Defined-benefit obligations, actuarial assumptions, multiemployer plans, vesting, forfeitures, plan amendments and ERISA compliance require separate review.",
+          "Taxable fringe benefit treatment under Publication 15-B is distinct from ASC 710 or 715 recognition.",
+          "ASU 2017-07 presentation is not a universal benefit measurement rule; current Codification and plan facts control."
+        ],
+        "remaining_limits": [
+          "The sources support evidence and presentation routing within declared limits, not a benefit measurement conclusion.",
+          "The defined-contribution contribution is an original synthetic amount and no defined-benefit conclusion is made.",
+          "Rights, plan terms, current Codification currency and professional review remain unresolved."
+        ]
+      },
+      "workflows": [
+        "Identify the plan type and role, freeze plan and census evidence, and calculate the defined-contribution amount.",
+        "Tie payroll, contribution, remittance and GL populations, and retain federal tax and plan-document evidence separately.",
+        "Stop and route for specialist review when the branch is defined benefit, actuarial, ERISA, plan compliance or taxable-fringe specific."
+      ]
     }
   },
   {
@@ -29125,6 +30071,24 @@
           "src_roadmap_asu202506",
           "src_roadmap_ifric2022_reseller"
         ]
+      },
+      "aa_i120_review": {
+        "issue_id": "AA-I120",
+        "package_version": "2026-09-18.122",
+        "reviewed_at": "2026-09-19",
+        "source_ids": [
+          "src_asu201815",
+          "src_roadmap_asu202506"
+        ],
+        "question_ids": [
+          "rq-software-role-boundary",
+          "rq-software-asu2506",
+          "rq-software-cloud-implementation",
+          "rq-software-provider-principal-agent",
+          "rq-software-subscription-timing",
+          "rq-software-controls-agent"
+        ],
+        "note": "Preserve the existing six software-publisher, hosted-subscription and customer-implementation questions and existing industry mappings. Add only an explicit AA-I120 review pointer; do not replace or promote the industry guide to family sufficiency."
       }
     }
   },
