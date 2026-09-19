@@ -61,6 +61,8 @@ test('holding standalone journals and elimination columns independently reconcil
 });
 
 test('holding counterexamples retain outside revenue and reject unmatched or out-of-scope assumptions',()=>{
+  assert.ok(fixture.examples.some(e=>e.synthetic&&e.scenario_type==='positive'));
+  assert.ok(fixture.examples.some(e=>e.synthetic&&e.scenario_type==='negative'));
   const branch=fixture.scope_counterexamples.find(c=>c.id==='OUTSIDE-CUSTOMER');
   const b=trial([...fixture.journals,...fixture.elimination_journals,...branch.entries]);
   assert.equal(b.cash,branch.expected_group_cash_cents);assert.equal(-b.external_revenue-b.external_operating_expense-b.shared_service_cost,branch.expected_group_net_income_cents);
@@ -95,16 +97,21 @@ test('holding applied fixture retrieves the dedicated route and scoped source ci
   const dir=harness();try{
     fs.cpSync('src',path.join(dir,'src'),{recursive:true});
     fs.cpSync('scripts',path.join(dir,'scripts'),{recursive:true});
-    for(const entry of fs.readdirSync('data',{withFileTypes:true})){
-      if(['corpus','research','releases'].includes(entry.name))continue;
-      const target=path.join(dir,'data',entry.name);
-      if(entry.name==='coverage'){
-        for(const e of fs.readdirSync('data/coverage',{withFileTypes:true}))if(!fs.existsSync(path.join(target,e.name))){if(e.isDirectory())fs.symlinkSync(path.join(root,'data/coverage',e.name),path.join(target,e.name));else fs.copyFileSync(path.join(root,'data/coverage',e.name),path.join(target,e.name));}
-      }else fs.cpSync(path.join(root,'data',entry.name),target,{recursive:true});
+    fs.cpSync('schemas',path.join(dir,'schemas'),{recursive:true});
+    const baselineFiles=execFileSync('git',['ls-tree','-r','--name-only',p.base_commit,'data'],{encoding:'utf8'}).trim().split('\n');
+    for(const file of baselineFiles){
+      if(/^data\/(corpus|research|releases)\//.test(file)||file.startsWith('data/coverage/snapshots/'))continue;
+      fs.mkdirSync(path.dirname(path.join(dir,file)),{recursive:true});
+      fs.writeFileSync(path.join(dir,file),execFileSync('git',['show',`${p.base_commit}:${file}`],{maxBuffer:64*1024*1024}));
     }
+    fs.symlinkSync(path.join(root,'data/coverage/snapshots'),path.join(dir,'data/coverage/snapshots'));
     fs.symlinkSync(path.join(root,'node_modules'),path.join(dir,'node_modules'));
     applyToRoot(dir);
+    const criteriaFile='data/coverage/research-criteria.json',criteria=JSON.parse(fs.readFileSync(path.join(dir,criteriaFile)));
+    criteria.population.named_research_questions=JSON.parse(fs.readFileSync(path.join(dir,'data/coverage/research-questions.json'))).questions.length;
+    write(dir,criteriaFile,criteria);
     execFileSync(process.execPath,['scripts/coverage-mappings.mjs'],{cwd:dir,stdio:'pipe'});
+    execFileSync(process.execPath,['scripts/validate.mjs'],{cwd:dir,stdio:'pipe'});
     const bundled=path.join(dir,'agent.mjs');
     execFileSync(path.join(root,'node_modules/.bin/esbuild'),['src/agent.ts','--bundle','--platform=node','--format=esm',`--outfile=${bundled}`],{cwd:dir,stdio:'pipe'});
     const {executeAgent}=await import(pathToFileURL(bundled));

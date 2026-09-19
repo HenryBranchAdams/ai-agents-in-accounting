@@ -5,11 +5,13 @@ import {isDeepStrictEqual} from 'node:util';
 import {pathToFileURL} from 'node:url';
 
 export const packetFile='data/research/holding-management-2026-09-19.json';
-export function applyToRoot(root,{expectedVersion,dryRun=false}={}) {
+export function applyToRoot(root,{expectedVersion,dryRun=false,currentMode=false}={}) {
   const read=file=>JSON.parse(fs.readFileSync(path.join(root,file),'utf8'));
   const packet=read(packetFile),catalog=read('data/catalog.json');
   assert.equal(packet.status,'source-only-pending-integration');
-  assert.equal(catalog.corpus_version,expectedVersion||packet.current_corpus_version,'Refuse unexpected holding integration edition before writes');
+  const version='2026-09-19.12421';
+  if(currentMode)assert.ok(['2026-09-19.12420',version].includes(catalog.corpus_version),'Refuse unexpected holding current integration edition before writes');
+  else assert.equal(catalog.corpus_version,expectedVersion||packet.current_corpus_version,'Refuse unexpected holding integration edition before writes');
   assert.equal(packet.integration_contract.catalog_write,false);
   assert.equal(packet.integration_contract.release_write,false);
   const stage=new Map(), index=new Map();
@@ -45,6 +47,19 @@ export function applyToRoot(root,{expectedVersion,dryRun=false}={}) {
   const file='data/coverage/mapping-overrides.json',mappings=read(file);
   for(const [id,row] of Object.entries(packet.mapping_overrides)){const old=mappings.records[id];assert.ok(!old||isDeepStrictEqual(old,row),`Holding preflight conflict: mapping:${id}`);mappings.records[id]=row;}
   stage.set(file,mappings);
+  if(currentMode){
+    const note=` Edition ${version} adds selected US holding-company and management-service questions with a synthetic entity-to-consolidated reconciliation.`;
+    const review=` Edition ${version} retains dated source limits, separate entity and tax roles, and all earlier source rights and history.`;
+    if(!catalog.coverage_note.includes(note))catalog.coverage_note+=note;
+    if(!catalog.review_note.includes(review))catalog.review_note+=review;
+    catalog.corpus_version=version;stage.set('data/catalog.json',catalog);
+    const registry=stage.get('data/coverage/research-questions.json');registry.question_set_version=version;registry.corpus_version=version;
+    stage.get('data/coverage/assessments.json').assessment_version=version;
+    mappings.mapping_version=version;mappings.updated_at=packet.reviewed_at;
+    const criteria=read('data/coverage/research-criteria.json');criteria.population.named_research_questions=registry.questions.length;stage.set('data/coverage/research-criteria.json',criteria);
+    for(const file of ['data/coverage/subsector-profiles.json','data/coverage/subsector-screening.json']){const value=read(file);value.corpus_version=version;stage.set(file,value);}
+    const file='data/research-questions.json',fixtures=read(file);for(const row of read('data/research/holding-retrieval-2026-09-19.json'))add(fixtures,row,'retrieval');stage.set(file,fixtures);
+  }
   let changed=0;
   for(const [file,value] of stage){
     const original=fs.readFileSync(path.join(root,file),'utf8');if(isDeepStrictEqual(JSON.parse(original),value))continue;
@@ -56,5 +71,5 @@ export function applyToRoot(root,{expectedVersion,dryRun=false}={}) {
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(path.resolve(process.argv[1])).href){
   const value=flag=>{const i=process.argv.indexOf(flag);return i<0?undefined:process.argv[i+1];};
-  console.log(JSON.stringify(applyToRoot(value('--root')||process.cwd(),{expectedVersion:value('--expected-version'),dryRun:process.argv.includes('--dry-run')}),null,2));
+  console.log(JSON.stringify(applyToRoot(value('--root')||process.cwd(),{expectedVersion:value('--expected-version'),dryRun:process.argv.includes('--dry-run'),currentMode:process.argv.includes('--current')}),null,2));
 }

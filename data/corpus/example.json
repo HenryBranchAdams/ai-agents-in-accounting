@@ -12921,5 +12921,865 @@
         }
       ]
     }
+  },
+  {
+    "id": "example-holding-parent-subsidiary-close",
+    "kind": "example",
+    "title": "Synthetic parent/subsidiary standalone-to-consolidated reconciliation",
+    "summary": "Original integer-cents worksheet showing parent and subsidiary journals, intercompany matching, eliminations and retained external activity.",
+    "topics": [
+      "Accounting and reporting",
+      "Reporting perimeter and consolidation",
+      "Related parties and intercompany arrangements"
+    ],
+    "industries": [
+      "holding-companies-management"
+    ],
+    "jurisdiction": "United States; selected entity and reporting roles",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_aa_i109_secsx_3a02_2025",
+      "src_fasb_201502",
+      "src_construction_fasb_201817",
+      "src_aa_i109_arb51_amended",
+      "src_aa_i109_cfr_14829_2025",
+      "src_construction_fasb_2014_09",
+      "src_aa122_irs_i1120_2025"
+    ],
+    "related_ids": [
+      "guide-holding-management-us-close",
+      "wf-holding-entity-to-consolidated",
+      "ctrl-holding-perimeter-and-matches"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-19",
+    "provenance": {
+      "added_on": "2026-09-19",
+      "reviewer": "Codex AI-assisted bounded source and editorial review",
+      "scope": "Selected source locators and original synthetic reconciliation; not professional signoff.",
+      "note": "Public original sources were read on the stated review date. Source-only proposal pending independent acceptance and integration."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "External publisher text is not stored; publisher terms and source rights remain separate and unresolved.",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "fixture_type": "synthetic-original",
+      "currency": "USD",
+      "unit": "integer cents",
+      "period": "2025-01-01 through 2025-12-31",
+      "assumptions": [
+        "P is a domestic SEC registrant; S is wholly owned and controlled throughout the year, with control already established by assumption.",
+        "S is formed for cash equal to stated capital; no goodwill, NCI, preacquisition retained earnings, FX, OCI, income taxes or impairment.",
+        "Parent standalone input is a cost-method bookkeeping worksheet. It is not represented as a complete GAAP standalone financial statement or a universally permitted investment method.",
+        "Shared service is assumed performed and earned; 1000 documented processing units allocate 600 to S and 400 to P. A tax arm's length price or services-cost-method election is not established.",
+        "Loan outstanding for a full year at assumed 6% simple interest; no repayments, fees or capitalization.",
+        "Dividend approval and legal capacity are assumed solely for the synthetic entry.",
+        "No entries are posted to an operational system."
+      ],
+      "accounts": {
+        "cash": "asset",
+        "investment_S": "asset",
+        "loan_receivable_S": "asset",
+        "service_receivable_S": "asset",
+        "interest_receivable_S": "asset",
+        "dividend_receivable_S": "asset",
+        "loan_payable_P": "liability",
+        "service_payable_P": "liability",
+        "interest_payable_P": "liability",
+        "dividend_payable_P": "liability",
+        "parent_capital": "equity",
+        "subsidiary_capital": "equity",
+        "dividends_declared": "distribution",
+        "external_revenue": "revenue",
+        "service_revenue": "revenue",
+        "interest_revenue": "revenue",
+        "dividend_income": "revenue",
+        "external_operating_expense": "expense",
+        "shared_service_cost": "expense",
+        "service_expense": "expense",
+        "interest_expense": "expense"
+      },
+      "journals": [
+        {
+          "id": "P01",
+          "match_id": "CAP-P",
+          "description": "Opening parent cash capital",
+          "status": "proposed-synthetic-workpaper-only",
+          "lines": [
+            {
+              "entity": "P",
+              "account": "cash",
+              "debit_cents": 2500000,
+              "credit_cents": 0
+            },
+            {
+              "entity": "P",
+              "account": "parent_capital",
+              "debit_cents": 0,
+              "credit_cents": 2500000
+            }
+          ]
+        },
+        {
+          "id": "P02",
+          "match_id": "CAP-S",
+          "description": "Form wholly owned S for cash at stated capital",
+          "status": "proposed-synthetic-workpaper-only",
+          "lines": [
+            {
+              "entity": "P",
+              "account": "investment_S",
+              "debit_cents": 1000000,
+              "credit_cents": 0
+            },
+            {
+              "entity": "P",
+              "account": "cash",
+              "debit_cents": 0,
+              "credit_cents": 1000000
+            }
+          ]
+        },
+        {
+          "id": "S01",
+          "match_id": "CAP-S",
+          "description": "Receive parent capital",
+          "status": "proposed-synthetic-workpaper-only",
+          "lines": [
+            {
+              "entity": "S",
+              "account": "cash",
+              "debit_cents": 1000000,
+              "credit_cents": 0
+            },
+            {
+              "entity": "S",
+              "account": "subsidiary_capital",
+              "debit_cents": 0,
+              "credit_cents": 1000000
+            }
+          ]
+        },
+        {
+          "id": "P03",
+          "match_id": "LOAN-1",
+          "description": "Advance loan at start of year",
+          "status": "proposed-synthetic-workpaper-only",
+          "lines": [
+            {
+              "entity": "P",
+              "account": "loan_receivable_S",
+              "debit_cents": 500000,
+              "credit_cents": 0
+            },
+            {
+              "entity": "P",
+              "account": "cash",
+              "debit_cents": 0,
+              "credit_cents": 500000
+            }
+          ]
+        },
+        {
+          "id": "S02",
+          "match_id": "LOAN-1",
+          "description": "Receive parent advance",
+          "status": "proposed-synthetic-workpaper-only",
+          "lines": [
+            {
+              "entity": "S",
+              "account": "cash",
+              "debit_cents": 500000,
+              "credit_cents": 0
+            },
+            {
+              "entity": "S",
+              "account": "loan_payable_P",
+              "debit_cents": 0,
+              "credit_cents": 500000
+            }
+          ]
+        },
+        {
+          "id": "S03",
+          "match_id": "EXT-REV",
+          "description": "Collected external revenue",
+          "status": "proposed-synthetic-workpaper-only",
+          "lines": [
+            {
+              "entity": "S",
+              "account": "cash",
+              "debit_cents": 2000000,
+              "credit_cents": 0
+            },
+            {
+              "entity": "S",
+              "account": "external_revenue",
+              "debit_cents": 0,
+              "credit_cents": 2000000
+            }
+          ]
+        },
+        {
+          "id": "S04",
+          "match_id": "EXT-EXP",
+          "description": "Paid external operating costs",
+          "status": "proposed-synthetic-workpaper-only",
+          "lines": [
+            {
+              "entity": "S",
+              "account": "external_operating_expense",
+              "debit_cents": 1200000,
+              "credit_cents": 0
+            },
+            {
+              "entity": "S",
+              "account": "cash",
+              "debit_cents": 0,
+              "credit_cents": 1200000
+            }
+          ]
+        },
+        {
+          "id": "P04",
+          "match_id": "POOL-1",
+          "description": "Paid external central processing costs",
+          "status": "proposed-synthetic-workpaper-only",
+          "lines": [
+            {
+              "entity": "P",
+              "account": "shared_service_cost",
+              "debit_cents": 200000,
+              "credit_cents": 0
+            },
+            {
+              "entity": "P",
+              "account": "cash",
+              "debit_cents": 0,
+              "credit_cents": 200000
+            }
+          ]
+        },
+        {
+          "id": "P05",
+          "match_id": "SERVICE-1",
+          "description": "Invoice assumed earned processing service",
+          "status": "proposed-synthetic-workpaper-only",
+          "lines": [
+            {
+              "entity": "P",
+              "account": "service_receivable_S",
+              "debit_cents": 120000,
+              "credit_cents": 0
+            },
+            {
+              "entity": "P",
+              "account": "service_revenue",
+              "debit_cents": 0,
+              "credit_cents": 120000
+            }
+          ]
+        },
+        {
+          "id": "S05",
+          "match_id": "SERVICE-1",
+          "description": "Accrue received processing service",
+          "status": "proposed-synthetic-workpaper-only",
+          "lines": [
+            {
+              "entity": "S",
+              "account": "service_expense",
+              "debit_cents": 120000,
+              "credit_cents": 0
+            },
+            {
+              "entity": "S",
+              "account": "service_payable_P",
+              "debit_cents": 0,
+              "credit_cents": 120000
+            }
+          ]
+        },
+        {
+          "id": "P06",
+          "match_id": "INT-1",
+          "description": "One year simple interest",
+          "status": "proposed-synthetic-workpaper-only",
+          "lines": [
+            {
+              "entity": "P",
+              "account": "interest_receivable_S",
+              "debit_cents": 30000,
+              "credit_cents": 0
+            },
+            {
+              "entity": "P",
+              "account": "interest_revenue",
+              "debit_cents": 0,
+              "credit_cents": 30000
+            }
+          ]
+        },
+        {
+          "id": "S06",
+          "match_id": "INT-1",
+          "description": "Accrue reciprocal interest",
+          "status": "proposed-synthetic-workpaper-only",
+          "lines": [
+            {
+              "entity": "S",
+              "account": "interest_expense",
+              "debit_cents": 30000,
+              "credit_cents": 0
+            },
+            {
+              "entity": "S",
+              "account": "interest_payable_P",
+              "debit_cents": 0,
+              "credit_cents": 30000
+            }
+          ]
+        },
+        {
+          "id": "P07",
+          "match_id": "DIV-1",
+          "description": "Parent cost-ledger distribution entry",
+          "status": "proposed-synthetic-workpaper-only",
+          "lines": [
+            {
+              "entity": "P",
+              "account": "dividend_receivable_S",
+              "debit_cents": 100000,
+              "credit_cents": 0
+            },
+            {
+              "entity": "P",
+              "account": "dividend_income",
+              "debit_cents": 0,
+              "credit_cents": 100000
+            }
+          ]
+        },
+        {
+          "id": "S07",
+          "match_id": "DIV-1",
+          "description": "Assumed lawfully approved dividend",
+          "status": "proposed-synthetic-workpaper-only",
+          "lines": [
+            {
+              "entity": "S",
+              "account": "dividends_declared",
+              "debit_cents": 100000,
+              "credit_cents": 0
+            },
+            {
+              "entity": "S",
+              "account": "dividend_payable_P",
+              "debit_cents": 0,
+              "credit_cents": 100000
+            }
+          ]
+        },
+        {
+          "id": "P08",
+          "match_id": "DIV-PAY",
+          "description": "Receive dividend",
+          "status": "proposed-synthetic-workpaper-only",
+          "lines": [
+            {
+              "entity": "P",
+              "account": "cash",
+              "debit_cents": 100000,
+              "credit_cents": 0
+            },
+            {
+              "entity": "P",
+              "account": "dividend_receivable_S",
+              "debit_cents": 0,
+              "credit_cents": 100000
+            }
+          ]
+        },
+        {
+          "id": "S08",
+          "match_id": "DIV-PAY",
+          "description": "Pay dividend",
+          "status": "proposed-synthetic-workpaper-only",
+          "lines": [
+            {
+              "entity": "S",
+              "account": "dividend_payable_P",
+              "debit_cents": 100000,
+              "credit_cents": 0
+            },
+            {
+              "entity": "S",
+              "account": "cash",
+              "debit_cents": 0,
+              "credit_cents": 100000
+            }
+          ]
+        }
+      ],
+      "elimination_journals": [
+        {
+          "id": "E01",
+          "match_id": "CAP-S",
+          "description": "Remove reciprocal inception capital and investment",
+          "status": "proposed-synthetic-consolidation-column-only",
+          "source_locator": {
+            "source_id": "src_aa_i109_arb51_amended",
+            "url": "https://storage.fasb.org/ARB%2051.pdf",
+            "locator": "After FAS 160 paragraph 6, PDF page 7; paragraph 24, PDF page 8",
+            "effective_period": "ARB 51 issued August 1959; selected After FAS 160 text applies after adoption of that statement; FAS 160 effective for fiscal years beginning on or after December 15, 2008.",
+            "access_limits": "Historical pre-Codification text, not current ASC 810. The separate Before FAS 160 passage is not the selected procedure. NCI, acquisition accounting and current applicability require separate review."
+          },
+          "lines": [
+            {
+              "entity": "S",
+              "account": "subsidiary_capital",
+              "debit_cents": 1000000,
+              "credit_cents": 0
+            },
+            {
+              "entity": "P",
+              "account": "investment_S",
+              "debit_cents": 0,
+              "credit_cents": 1000000
+            }
+          ]
+        },
+        {
+          "id": "E02",
+          "match_id": "LOAN-1",
+          "description": "Remove matched loan principal",
+          "status": "proposed-synthetic-consolidation-column-only",
+          "source_locator": {
+            "source_id": "src_aa_i109_arb51_amended",
+            "url": "https://storage.fasb.org/ARB%2051.pdf",
+            "locator": "After FAS 160 paragraph 6, PDF page 7; paragraph 24, PDF page 8",
+            "effective_period": "ARB 51 issued August 1959; selected After FAS 160 text applies after adoption of that statement; FAS 160 effective for fiscal years beginning on or after December 15, 2008.",
+            "access_limits": "Historical pre-Codification text, not current ASC 810. The separate Before FAS 160 passage is not the selected procedure. NCI, acquisition accounting and current applicability require separate review."
+          },
+          "lines": [
+            {
+              "entity": "S",
+              "account": "loan_payable_P",
+              "debit_cents": 500000,
+              "credit_cents": 0
+            },
+            {
+              "entity": "P",
+              "account": "loan_receivable_S",
+              "debit_cents": 0,
+              "credit_cents": 500000
+            }
+          ]
+        },
+        {
+          "id": "E03",
+          "match_id": "SERVICE-1",
+          "description": "Remove reciprocal service balances",
+          "status": "proposed-synthetic-consolidation-column-only",
+          "source_locator": {
+            "source_id": "src_aa_i109_arb51_amended",
+            "url": "https://storage.fasb.org/ARB%2051.pdf",
+            "locator": "After FAS 160 paragraph 6, PDF page 7; paragraph 24, PDF page 8",
+            "effective_period": "ARB 51 issued August 1959; selected After FAS 160 text applies after adoption of that statement; FAS 160 effective for fiscal years beginning on or after December 15, 2008.",
+            "access_limits": "Historical pre-Codification text, not current ASC 810. The separate Before FAS 160 passage is not the selected procedure. NCI, acquisition accounting and current applicability require separate review."
+          },
+          "lines": [
+            {
+              "entity": "S",
+              "account": "service_payable_P",
+              "debit_cents": 120000,
+              "credit_cents": 0
+            },
+            {
+              "entity": "P",
+              "account": "service_receivable_S",
+              "debit_cents": 0,
+              "credit_cents": 120000
+            }
+          ]
+        },
+        {
+          "id": "E04",
+          "match_id": "SERVICE-1",
+          "description": "Remove internal service activity; external pool costs remain",
+          "status": "proposed-synthetic-consolidation-column-only",
+          "source_locator": {
+            "source_id": "src_aa_i109_arb51_amended",
+            "url": "https://storage.fasb.org/ARB%2051.pdf",
+            "locator": "After FAS 160 paragraph 6, PDF page 7; paragraph 24, PDF page 8",
+            "effective_period": "ARB 51 issued August 1959; selected After FAS 160 text applies after adoption of that statement; FAS 160 effective for fiscal years beginning on or after December 15, 2008.",
+            "access_limits": "Historical pre-Codification text, not current ASC 810. The separate Before FAS 160 passage is not the selected procedure. NCI, acquisition accounting and current applicability require separate review."
+          },
+          "lines": [
+            {
+              "entity": "P",
+              "account": "service_revenue",
+              "debit_cents": 120000,
+              "credit_cents": 0
+            },
+            {
+              "entity": "S",
+              "account": "service_expense",
+              "debit_cents": 0,
+              "credit_cents": 120000
+            }
+          ]
+        },
+        {
+          "id": "E05",
+          "match_id": "INT-1",
+          "description": "Remove reciprocal interest balances",
+          "status": "proposed-synthetic-consolidation-column-only",
+          "source_locator": {
+            "source_id": "src_aa_i109_arb51_amended",
+            "url": "https://storage.fasb.org/ARB%2051.pdf",
+            "locator": "After FAS 160 paragraph 6, PDF page 7; paragraph 24, PDF page 8",
+            "effective_period": "ARB 51 issued August 1959; selected After FAS 160 text applies after adoption of that statement; FAS 160 effective for fiscal years beginning on or after December 15, 2008.",
+            "access_limits": "Historical pre-Codification text, not current ASC 810. The separate Before FAS 160 passage is not the selected procedure. NCI, acquisition accounting and current applicability require separate review."
+          },
+          "lines": [
+            {
+              "entity": "S",
+              "account": "interest_payable_P",
+              "debit_cents": 30000,
+              "credit_cents": 0
+            },
+            {
+              "entity": "P",
+              "account": "interest_receivable_S",
+              "debit_cents": 0,
+              "credit_cents": 30000
+            }
+          ]
+        },
+        {
+          "id": "E06",
+          "match_id": "INT-1",
+          "description": "Remove internal interest activity",
+          "status": "proposed-synthetic-consolidation-column-only",
+          "source_locator": {
+            "source_id": "src_aa_i109_arb51_amended",
+            "url": "https://storage.fasb.org/ARB%2051.pdf",
+            "locator": "After FAS 160 paragraph 6, PDF page 7; paragraph 24, PDF page 8",
+            "effective_period": "ARB 51 issued August 1959; selected After FAS 160 text applies after adoption of that statement; FAS 160 effective for fiscal years beginning on or after December 15, 2008.",
+            "access_limits": "Historical pre-Codification text, not current ASC 810. The separate Before FAS 160 passage is not the selected procedure. NCI, acquisition accounting and current applicability require separate review."
+          },
+          "lines": [
+            {
+              "entity": "P",
+              "account": "interest_revenue",
+              "debit_cents": 30000,
+              "credit_cents": 0
+            },
+            {
+              "entity": "S",
+              "account": "interest_expense",
+              "debit_cents": 0,
+              "credit_cents": 30000
+            }
+          ]
+        },
+        {
+          "id": "E07",
+          "match_id": "DIV-1",
+          "description": "Remove internal distribution activity; paid reciprocal receivables/payables already zero",
+          "status": "proposed-synthetic-consolidation-column-only",
+          "source_locator": {
+            "source_id": "src_aa_i109_arb51_amended",
+            "url": "https://storage.fasb.org/ARB%2051.pdf",
+            "locator": "After FAS 160 paragraph 6, PDF page 7; paragraph 24, PDF page 8",
+            "effective_period": "ARB 51 issued August 1959; selected After FAS 160 text applies after adoption of that statement; FAS 160 effective for fiscal years beginning on or after December 15, 2008.",
+            "access_limits": "Historical pre-Codification text, not current ASC 810. The separate Before FAS 160 passage is not the selected procedure. NCI, acquisition accounting and current applicability require separate review."
+          },
+          "lines": [
+            {
+              "entity": "P",
+              "account": "dividend_income",
+              "debit_cents": 100000,
+              "credit_cents": 0
+            },
+            {
+              "entity": "S",
+              "account": "dividends_declared",
+              "debit_cents": 0,
+              "credit_cents": 100000
+            }
+          ]
+        }
+      ],
+      "allocation_case": {
+        "pool_cents": 200000,
+        "processing_units": {
+          "S": 600,
+          "P": 400
+        },
+        "allocated_cents": {
+          "S": 120000,
+          "P": 80000
+        },
+        "source_locator": {
+          "source_id": "src_aa_i109_cfr_14829_2025",
+          "url": "https://www.govinfo.gov/link/cfr/26/1?link-type=pdf&sectionnum=482-9&year=mostrecent",
+          "locator": "1.482-9(j), (k)(1)-(2), (l)(1)-(3)(v), PDF pages 34-37; (b)(7) Example 16, PDF page 9",
+          "effective_period": "The GovInfo mostrecent resolver served the April 1, 2025 CFR edition on 2026-09-19; resolver target may change.",
+          "access_limits": "Federal tax controlled-service rules, not a GAAP allocation mandate. Current eCFR and fixed-year URL were inaccessible; later currency is unknown. Method eligibility, exclusions, comparables and markup require separate review; cost allocation alone does not prove an arm's length price."
+        },
+        "counterexample": "Tax costs or service price cannot be justified solely by ownership or a convenient revenue ratio."
+      },
+      "interest_case": {
+        "principal_cents": 500000,
+        "annual_rate_basis_points": 600,
+        "years": 1,
+        "interest_cents": 30000
+      },
+      "trial_balances": {
+        "parent": {
+          "cash": 900000,
+          "parent_capital": -2500000,
+          "investment_S": 1000000,
+          "loan_receivable_S": 500000,
+          "shared_service_cost": 200000,
+          "service_receivable_S": 120000,
+          "service_revenue": -120000,
+          "interest_receivable_S": 30000,
+          "interest_revenue": -30000,
+          "dividend_income": -100000
+        },
+        "subsidiary": {
+          "cash": 2200000,
+          "subsidiary_capital": -1000000,
+          "loan_payable_P": -500000,
+          "external_revenue": -2000000,
+          "external_operating_expense": 1200000,
+          "service_expense": 120000,
+          "service_payable_P": -120000,
+          "interest_expense": 30000,
+          "interest_payable_P": -30000,
+          "dividends_declared": 100000
+        },
+        "combined": {
+          "cash": 3100000,
+          "parent_capital": -2500000,
+          "investment_S": 1000000,
+          "subsidiary_capital": -1000000,
+          "loan_receivable_S": 500000,
+          "loan_payable_P": -500000,
+          "external_revenue": -2000000,
+          "external_operating_expense": 1200000,
+          "shared_service_cost": 200000,
+          "service_receivable_S": 120000,
+          "service_revenue": -120000,
+          "service_expense": 120000,
+          "service_payable_P": -120000,
+          "interest_receivable_S": 30000,
+          "interest_revenue": -30000,
+          "interest_expense": 30000,
+          "interest_payable_P": -30000,
+          "dividend_income": -100000,
+          "dividends_declared": 100000
+        },
+        "consolidated": {
+          "cash": 3100000,
+          "parent_capital": -2500000,
+          "external_revenue": -2000000,
+          "external_operating_expense": 1200000,
+          "shared_service_cost": 200000
+        }
+      },
+      "reconciliation": {
+        "parent": {
+          "assets_cents": 2550000,
+          "liabilities_cents": 0,
+          "revenue_cents": 250000,
+          "expenses_cents": 200000,
+          "net_income_cents": 50000,
+          "ending_equity_cents": 2550000,
+          "balance_difference_cents": 0,
+          "trial_balance_sum_cents": 0
+        },
+        "subsidiary": {
+          "assets_cents": 2200000,
+          "liabilities_cents": 650000,
+          "revenue_cents": 2000000,
+          "expenses_cents": 1350000,
+          "net_income_cents": 650000,
+          "ending_equity_cents": 1550000,
+          "balance_difference_cents": 0,
+          "trial_balance_sum_cents": 0
+        },
+        "combined": {
+          "assets_cents": 4750000,
+          "liabilities_cents": 650000,
+          "revenue_cents": 2250000,
+          "expenses_cents": 1550000,
+          "net_income_cents": 700000,
+          "ending_equity_cents": 4100000,
+          "balance_difference_cents": 0,
+          "trial_balance_sum_cents": 0
+        },
+        "consolidated": {
+          "assets_cents": 3100000,
+          "liabilities_cents": 0,
+          "revenue_cents": 2000000,
+          "expenses_cents": 1400000,
+          "net_income_cents": 600000,
+          "ending_equity_cents": 3100000,
+          "balance_difference_cents": 0,
+          "trial_balance_sum_cents": 0
+        }
+      },
+      "scope_counterexamples": [
+        {
+          "id": "PASSIVE-HOLDING",
+          "facts": "P only owns shares and provides no identified service.",
+          "outcome": "Do not infer an earned management charge from ownership alone.",
+          "source_locator": {
+            "source_id": "src_aa_i109_cfr_14829_2025",
+            "url": "https://www.govinfo.gov/link/cfr/26/1?link-type=pdf&sectionnum=482-9&year=mostrecent",
+            "locator": "1.482-9(j), (k)(1)-(2), (l)(1)-(3)(v), PDF pages 34-37; (b)(7) Example 16, PDF page 9",
+            "effective_period": "The GovInfo mostrecent resolver served the April 1, 2025 CFR edition on 2026-09-19; resolver target may change.",
+            "access_limits": "Federal tax controlled-service rules, not a GAAP allocation mandate. Current eCFR and fixed-year URL were inaccessible; later currency is unknown. Method eligibility, exclusions, comparables and markup require separate review; cost allocation alone does not prove an arm's length price."
+          }
+        },
+        {
+          "id": "OUTSIDE-CUSTOMER",
+          "facts": "Separate branch: P earns and collects 50000 cents from an outside client.",
+          "entries": [
+            {
+              "id": "P-EXT",
+              "match_id": "EXTERNAL-SERVICE",
+              "description": "Third-party management service",
+              "status": "proposed-synthetic-workpaper-only",
+              "lines": [
+                {
+                  "entity": "P",
+                  "account": "cash",
+                  "debit_cents": 50000,
+                  "credit_cents": 0
+                },
+                {
+                  "entity": "P",
+                  "account": "external_revenue",
+                  "debit_cents": 0,
+                  "credit_cents": 50000
+                }
+              ]
+            }
+          ],
+          "expected_group_cash_cents": 3150000,
+          "expected_group_net_income_cents": 650000,
+          "outcome": "The third-party revenue and cash survive consolidation."
+        },
+        {
+          "id": "UNMATCHED-LOAN",
+          "facts": "P loan receivable is 500000 cents; S loan payable is 480000 cents.",
+          "difference_cents": 20000,
+          "outcome": "Hold elimination and investigate; do not create a plug."
+        },
+        {
+          "id": "MINORITY-INVESTEE",
+          "facts": "P holds 25% voting ownership; other rights and VIE facts are unknown.",
+          "outcome": "Do not conclude consolidation, equity method or fair value from the percentage alone.",
+          "source_locator": {
+            "source_id": "src_aa_i109_secsx_3a02_2025",
+            "url": "https://www.govinfo.gov/content/pkg/CFR-2025-title17-vol3/pdf/CFR-2025-title17-vol3-sec210-3A-02.pdf",
+            "locator": "210.3A-02 introductory text and (a), PDF pages 1-2; 3A-03(b), PDF page 2",
+            "effective_period": "April 1, 2025 CFR edition; 3A-02 amendment citation October 4, 2018; later currency not verified.",
+            "access_limits": "Registrants only. Current eCFR lookup was inaccessible in this review. Dated source is not a current-GAAP substitute and does not itself supply the intercompany-elimination procedure."
+          }
+        },
+        {
+          "id": "BOOK-TAX-PERIMETER",
+          "facts": "A 60%-owned and controlled corporation is in the financial group; tax includibility and other ownership facts are not established.",
+          "outcome": "The stated 80% federal tax ownership threshold is not met by a 60% interest alone; financial consolidation does not establish tax filing eligibility.",
+          "source_locator": {
+            "source_id": "src_aa122_irs_i1120_2025",
+            "url": "https://www.irs.gov/instructions/i1120",
+            "locator": "Item A, Consolidated Return; Schedule C, Consolidated returns; Schedule K, Question 3, Affiliated group",
+            "effective_period": "2025 Form 1120 instructions, selected headings opened on 2026-09-19.",
+            "access_limits": "Selected additional headings read for this package; canonical AA-I122 primary review unchanged. Tax-year instructions do not determine the GAAP perimeter or current tax eligibility."
+          }
+        }
+      ],
+      "limitations": [
+        "Synthetic original worksheet; no operating ledger evidence or professional acceptance.",
+        "Current consolidated ASC, later amendments and entity-specific applicability are not established by these dated public sources.",
+        "No actual group ledgers, governing documents, loan agreements, tax election, professional review or measured agent performance were obtained.",
+        "External source rights remain unknown; publisher full text is not stored.",
+        "Selected US research does not establish whole-industry sufficiency or an international or state-law survey."
+      ],
+      "examples": [
+        {
+          "id": "HOLDING-BASE-CLOSE",
+          "title": "Synthetic standalone ledgers and consolidation column",
+          "synthetic": true,
+          "scenario_type": "positive",
+          "journal_ids": [
+            "P01",
+            "P02",
+            "S01",
+            "P03",
+            "S02",
+            "S03",
+            "S04",
+            "P04",
+            "P05",
+            "S05",
+            "P06",
+            "S06",
+            "P07",
+            "S07",
+            "P08",
+            "S08"
+          ],
+          "elimination_ids": [
+            "E01",
+            "E02",
+            "E03",
+            "E04",
+            "E05",
+            "E06",
+            "E07"
+          ],
+          "reconciliation_pointer": "/data/reconciliation",
+          "review_result": "All four columns balance; group cash is 3100000 cents and profit is 600000 cents under the stated assumptions."
+        },
+        {
+          "id": "HOLDING-OUTSIDE-CUSTOMER",
+          "title": "Synthetic outside-client service survives consolidation",
+          "synthetic": true,
+          "scenario_type": "negative",
+          "counterexample_pointer": "/data/scope_counterexamples/1",
+          "review_result": "External service cash increases the group balance to 3150000 cents and profit to 650000 cents. Do not eliminate this transaction."
+        },
+        {
+          "id": "HOLDING-ROLE-AND-MATCH-EXCEPTIONS",
+          "title": "Synthetic unmatched loan and ownership/tax exceptions",
+          "synthetic": true,
+          "scenario_type": "negative",
+          "counterexample_pointers": [
+            "/data/scope_counterexamples/0",
+            "/data/scope_counterexamples/2",
+            "/data/scope_counterexamples/3",
+            "/data/scope_counterexamples/4"
+          ],
+          "review_result": "Retain service-benefit, 20000-cent loan mismatch, investee-control and financial-versus-tax-perimeter exceptions without inventing facts."
+        }
+      ]
+    }
   }
 ]

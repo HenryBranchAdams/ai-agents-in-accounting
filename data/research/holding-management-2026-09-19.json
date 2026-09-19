@@ -2519,6 +2519,64 @@
           "No actual group ledgers, governing documents, loan agreements, tax election, professional review or measured agent performance were obtained.",
           "External source rights remain unknown; publisher full text is not stored.",
           "Selected US research does not establish whole-industry sufficiency or an international or state-law survey."
+        ],
+        "examples": [
+          {
+            "id": "HOLDING-BASE-CLOSE",
+            "title": "Synthetic standalone ledgers and consolidation column",
+            "synthetic": true,
+            "scenario_type": "positive",
+            "journal_ids": [
+              "P01",
+              "P02",
+              "S01",
+              "P03",
+              "S02",
+              "S03",
+              "S04",
+              "P04",
+              "P05",
+              "S05",
+              "P06",
+              "S06",
+              "P07",
+              "S07",
+              "P08",
+              "S08"
+            ],
+            "elimination_ids": [
+              "E01",
+              "E02",
+              "E03",
+              "E04",
+              "E05",
+              "E06",
+              "E07"
+            ],
+            "reconciliation_pointer": "/data/reconciliation",
+            "review_result": "All four columns balance; group cash is 3100000 cents and profit is 600000 cents under the stated assumptions."
+          },
+          {
+            "id": "HOLDING-OUTSIDE-CUSTOMER",
+            "title": "Synthetic outside-client service survives consolidation",
+            "synthetic": true,
+            "scenario_type": "negative",
+            "counterexample_pointer": "/data/scope_counterexamples/1",
+            "review_result": "External service cash increases the group balance to 3150000 cents and profit to 650000 cents. Do not eliminate this transaction."
+          },
+          {
+            "id": "HOLDING-ROLE-AND-MATCH-EXCEPTIONS",
+            "title": "Synthetic unmatched loan and ownership/tax exceptions",
+            "synthetic": true,
+            "scenario_type": "negative",
+            "counterexample_pointers": [
+              "/data/scope_counterexamples/0",
+              "/data/scope_counterexamples/2",
+              "/data/scope_counterexamples/3",
+              "/data/scope_counterexamples/4"
+            ],
+            "review_result": "Retain service-benefit, 20000-cent loan mismatch, investee-control and financial-versus-tax-perimeter exceptions without inventing facts."
+          }
         ]
       }
     }
@@ -3592,5 +3650,10 @@
     "reuse": "Accepted consolidation, investment, debt, related-party, allocation and tax foundations are linked by stable ID.",
     "add": "Three dated/historical original sources, four original records, six questions and six partial assessments.",
     "defer": "Current consolidated authority, actual control and standalone method, contractual/legal/tax conclusions, professional review and empirical evidence remain open."
+  },
+  "integration_source_amendment": {
+    "original_source_commit": "75441e9f49a66b3489db486594d31f8131886de8",
+    "reviewed_at": "2026-09-19",
+    "change": "Add explicit positive and negative synthetic scenarios linked to the existing journal, reconciliation and counterexample data. No source claim, numeric assumption or ledger line changes."
   }
 }
