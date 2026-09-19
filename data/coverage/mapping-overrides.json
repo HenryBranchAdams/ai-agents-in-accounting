@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "mapping_version": "2026-09-19.12418",
+  "mapping_version": "2026-09-19.12419",
   "updated_at": "2026-09-19",
   "records": {
     "wf-construction-contract-intake": {
@@ -20529,6 +20529,307 @@
       ],
       "reviewed_at": "2026-09-19",
       "review_note": "Source-only package; source currency, rights, professional review and entity applicability remain separate."
+    },
+    "example-aa-i101-manufacturing-conversion": {
+      "replace_question_ids": true,
+      "question_ids": [
+        "q-inventory",
+        "q-cost-allocation",
+        "q-revenue",
+        "q-project-wip",
+        "q-data-lineage"
+      ],
+      "industry_codes": [
+        "31-33"
+      ],
+      "industry_scope": "specific",
+      "basis_field": "/data/examples",
+      "reason": "Selected US manufacturing synthetic quantity/cost/contract cases; discovery only, no whole-industry sufficiency.",
+      "reviewed_question_ids": [
+        "q-inventory",
+        "q-cost-allocation",
+        "q-revenue",
+        "q-project-wip",
+        "q-data-lineage"
+      ],
+      "reviewed_industry_codes": [
+        "31-33"
+      ],
+      "reviewed_at": "2026-09-19",
+      "review_note": "Reviewed issue 101 scope, examples and explicit counterexamples; this association does not establish accounting adequacy."
+    },
+    "src_aa_i101_fas151_inventory": {
+      "replace_question_ids": true,
+      "question_ids": [
+        "q-inventory",
+        "q-cost-allocation"
+      ],
+      "industry_codes": [],
+      "industry_scope": "shared-context",
+      "basis_field": "/data/source_review",
+      "reason": "Historical original inventory costing amendment; current Codification and application remain separate.",
+      "reviewed_question_ids": [
+        "q-inventory",
+        "q-cost-allocation"
+      ],
+      "reviewed_at": "2026-09-19",
+      "review_note": "Source-specific association only; historical amendment and current consolidated GAAP limits remain explicit."
+    },
+    "guide-information-us-provider-customer": {
+      "replace_question_ids": false,
+      "question_ids": [
+        "q-revenue",
+        "q-data-lineage",
+        "q-intangibles-software",
+        "q-licensed-content",
+        "q-cost-allocation",
+        "q-reuse-rights",
+        "q-interfaces"
+      ],
+      "industry_codes": [
+        "512",
+        "513",
+        "516",
+        "517",
+        "518",
+        "519"
+      ],
+      "industry_scope": "specific",
+      "basis_field": "/data/research_questions",
+      "reason": "Selected US information-sector application with explicit provider/customer role boundaries; association does not establish whole-sector sufficiency.",
+      "reviewed_question_ids": [
+        "q-revenue",
+        "q-data-lineage",
+        "q-intangibles-software",
+        "q-licensed-content",
+        "q-cost-allocation",
+        "q-reuse-rights",
+        "q-interfaces"
+      ],
+      "reviewed_industry_codes": [
+        "512",
+        "513",
+        "516",
+        "517",
+        "518",
+        "519"
+      ],
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded source and synthetic application review; no current consolidated ASC conclusion, professional verification, operational evidence or rights upgrade."
+    },
+    "wf-information-contract-to-ledger": {
+      "replace_question_ids": false,
+      "question_ids": [
+        "q-revenue",
+        "q-data-lineage",
+        "q-intangibles-software",
+        "q-licensed-content",
+        "q-cost-allocation",
+        "q-reuse-rights",
+        "q-interfaces"
+      ],
+      "industry_codes": [
+        "512",
+        "513",
+        "516",
+        "517",
+        "518",
+        "519"
+      ],
+      "industry_scope": "specific",
+      "basis_field": "/data/steps",
+      "reason": "Selected US information-sector application with explicit provider/customer role boundaries; association does not establish whole-sector sufficiency.",
+      "reviewed_question_ids": [
+        "q-revenue",
+        "q-data-lineage",
+        "q-intangibles-software",
+        "q-licensed-content",
+        "q-cost-allocation",
+        "q-reuse-rights",
+        "q-interfaces"
+      ],
+      "reviewed_industry_codes": [
+        "512",
+        "513",
+        "516",
+        "517",
+        "518",
+        "519"
+      ],
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded source and synthetic application review; no current consolidated ASC conclusion, professional verification, operational evidence or rights upgrade."
+    },
+    "ctrl-information-role-and-rights": {
+      "replace_question_ids": false,
+      "question_ids": [
+        "q-revenue",
+        "q-data-lineage",
+        "q-intangibles-software",
+        "q-licensed-content",
+        "q-cost-allocation",
+        "q-reuse-rights",
+        "q-interfaces"
+      ],
+      "industry_codes": [
+        "512",
+        "513",
+        "516",
+        "517",
+        "518",
+        "519"
+      ],
+      "industry_scope": "specific",
+      "basis_field": "/data/assertions",
+      "reason": "Selected US information-sector application with explicit provider/customer role boundaries; association does not establish whole-sector sufficiency.",
+      "reviewed_question_ids": [
+        "q-revenue",
+        "q-data-lineage",
+        "q-intangibles-software",
+        "q-licensed-content",
+        "q-cost-allocation",
+        "q-reuse-rights",
+        "q-interfaces"
+      ],
+      "reviewed_industry_codes": [
+        "512",
+        "513",
+        "516",
+        "517",
+        "518",
+        "519"
+      ],
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded source and synthetic application review; no current consolidated ASC conclusion, professional verification, operational evidence or rights upgrade."
+    },
+    "example-information-bundle-close": {
+      "replace_question_ids": false,
+      "question_ids": [
+        "q-revenue",
+        "q-data-lineage",
+        "q-intangibles-software",
+        "q-licensed-content",
+        "q-cost-allocation",
+        "q-reuse-rights",
+        "q-interfaces"
+      ],
+      "industry_codes": [
+        "512",
+        "513",
+        "516",
+        "517",
+        "518",
+        "519"
+      ],
+      "industry_scope": "specific",
+      "basis_field": "/data/examples",
+      "reason": "Selected US information-sector application with explicit provider/customer role boundaries; association does not establish whole-sector sufficiency.",
+      "reviewed_question_ids": [
+        "q-revenue",
+        "q-data-lineage",
+        "q-intangibles-software",
+        "q-licensed-content",
+        "q-cost-allocation",
+        "q-reuse-rights",
+        "q-interfaces"
+      ],
+      "reviewed_industry_codes": [
+        "512",
+        "513",
+        "516",
+        "517",
+        "518",
+        "519"
+      ],
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded source and synthetic application review; no current consolidated ASC conclusion, professional verification, operational evidence or rights upgrade."
+    },
+    "src_aa_i105_fasb_2016_10": {
+      "replace_question_ids": false,
+      "question_ids": [
+        "q-revenue",
+        "q-licensed-content",
+        "q-intangibles-software",
+        "q-data-lineage"
+      ],
+      "industry_codes": [
+        "513",
+        "516",
+        "518"
+      ],
+      "industry_scope": "specific",
+      "basis_field": "/data/locators",
+      "reason": "Selected US information-sector application with explicit provider/customer role boundaries; association does not establish whole-sector sufficiency.",
+      "reviewed_question_ids": [
+        "q-revenue",
+        "q-licensed-content",
+        "q-intangibles-software",
+        "q-data-lineage"
+      ],
+      "reviewed_industry_codes": [
+        "513",
+        "516",
+        "518"
+      ],
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded source and synthetic application review; no current consolidated ASC conclusion, professional verification, operational evidence or rights upgrade."
+    },
+    "src_aa_i105_fcc_part32": {
+      "replace_question_ids": false,
+      "question_ids": [
+        "q-revenue",
+        "q-licensed-content",
+        "q-intangibles-software",
+        "q-data-lineage"
+      ],
+      "industry_codes": [
+        "517"
+      ],
+      "industry_scope": "specific",
+      "basis_field": "/data/locators",
+      "reason": "Selected US information-sector application with explicit provider/customer role boundaries; association does not establish whole-sector sufficiency.",
+      "reviewed_question_ids": [
+        "q-revenue",
+        "q-licensed-content",
+        "q-intangibles-software",
+        "q-data-lineage"
+      ],
+      "reviewed_industry_codes": [
+        "517"
+      ],
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded source and synthetic application review; no current consolidated ASC conclusion, professional verification, operational evidence or rights upgrade."
+    },
+    "src_aa_i105_uscode_copyright": {
+      "replace_question_ids": false,
+      "question_ids": [
+        "q-revenue",
+        "q-licensed-content",
+        "q-intangibles-software",
+        "q-data-lineage"
+      ],
+      "industry_codes": [
+        "512",
+        "513",
+        "516",
+        "519"
+      ],
+      "industry_scope": "specific",
+      "basis_field": "/data/locators",
+      "reason": "Selected US information-sector application with explicit provider/customer role boundaries; association does not establish whole-sector sufficiency.",
+      "reviewed_question_ids": [
+        "q-revenue",
+        "q-licensed-content",
+        "q-intangibles-software",
+        "q-data-lineage"
+      ],
+      "reviewed_industry_codes": [
+        "512",
+        "513",
+        "516",
+        "519"
+      ],
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded source and synthetic application review; no current consolidated ASC conclusion, professional verification, operational evidence or rights upgrade."
     }
   }
 }

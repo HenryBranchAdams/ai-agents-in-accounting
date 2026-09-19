@@ -2655,5 +2655,84 @@
         "src_transport_ecfr_maintenance_3963"
       ]
     }
+  },
+  {
+    "id": "ctrl-information-role-and-rights",
+    "kind": "control",
+    "title": "Information-sector role, rights and source-to-ledger control",
+    "summary": "Proposed preventive and detective controls for role classification, contract population completeness, rights periods, revenue/cost separation and human exception review.",
+    "topics": [
+      "Controls and governance",
+      "Source data, lineage and reconciliation",
+      "Rights, provenance and reusable data"
+    ],
+    "industries": [
+      "information-sector"
+    ],
+    "jurisdiction": "United States; selected NAICS 51 roles",
+    "source_type": "Original control synthesis",
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_roadmap_naics2022_manual",
+      "src_construction_fasb_2014_09",
+      "src_fasb_asu2016_08_principal_agent",
+      "src_asu201815",
+      "src_aa_i105_fasb_2016_10",
+      "src_aa_i105_fcc_part32",
+      "src_aa_i105_uscode_copyright"
+    ],
+    "related_ids": [
+      "guide-information-us-provider-customer",
+      "wf-information-contract-to-ledger",
+      "example-information-bundle-close"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-19",
+    "provenance": {
+      "added_on": "2026-09-19",
+      "reviewer": "Codex AI-assisted bounded source and editorial review",
+      "note": "Original proposed control pattern; no design or operating-effectiveness testing was performed."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "External publisher text is not stored; publisher terms and source rights remain separate and unresolved.",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "version": "2026-09-19.information.1",
+      "control_type": "preventive and detective",
+      "control_owner": "Controller or revenue/accounting manager; accountable human review required",
+      "assertions": [
+        "completeness",
+        "cutoff",
+        "classification",
+        "accuracy",
+        "rights",
+        "traceability"
+      ],
+      "evidence": [
+        "stable contract, source and rights identifiers",
+        "usage-to-invoice and royalty-to-payment reconciliations",
+        "provider/customer gross-to-net bridge",
+        "role and regulated/nonregulated determination",
+        "expiry, exception and reviewer log"
+      ],
+      "failure_routes": [
+        "hold proposed entry",
+        "preserve conflicting or expired evidence",
+        "route to qualified accounting or legal reviewer",
+        "document disposition and reperform affected reconciliation"
+      ],
+      "limitations": [
+        "A proposed control is not evidence of implementation or operating effectiveness.",
+        "No production incident, retrieval benchmark or deployment study is included."
+      ]
+    }
   }
 ]

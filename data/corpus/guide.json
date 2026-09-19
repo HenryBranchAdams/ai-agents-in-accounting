@@ -28506,16 +28506,33 @@
       "src_ias02inv",
       "src_roadmap_kpmg_inventory_2026",
       "src_roadmap_naics2022_manual",
-      "src_ifrs15a"
+      "src_ifrs15a",
+      "src_aa_i101_fas151_inventory",
+      "src_fasb_asu2015_11_inventory",
+      "src_construction_fasb_2014_09",
+      "src_1os761s"
     ],
-    "related_ids": [],
+    "related_ids": [
+      "example-aa-i101-manufacturing-conversion",
+      "guide-q-inventory",
+      "guide-q-cost-allocation",
+      "guide-q-revenue",
+      "guide-q-project-wip",
+      "guide-q-data-lineage"
+    ],
     "review_status": "editorially-reviewed",
     "reviewed_at": "2026-09-11",
     "provenance": {
       "added_on": "2026-09-11",
       "reviewer": "Codex AI-assisted research, with root source-scope and semantic review",
       "note": "Original research synthesis and clearly labeled original examples. Listed source access and currency limits constrain every answer; no professional sign-off or production validation.",
-      "research_file": "data/research/industries.json"
+      "research_file": "data/research/industries.json",
+      "manufacturing_us_supplement": {
+        "research_file": "data/research/manufacturing-conversion-2026-09-18.json",
+        "reviewed_at": "2026-09-19",
+        "scope": "United States, privately held nongovernmental manufacturer using US GAAP and FIFO/weighted-average inventory; March 31, 2026 close, with a separate June 30, 2026 custom-contract branch. Owner-manufacturer, toll processor and customer roles are separate. Excludes LIFO/retail calculations, tax costing, government-contract cost allowability and sector-wide adequacy.",
+        "reviewer": "Codex AI-assisted original-source and synthetic-fixture review"
+      }
     },
     "rights": {
       "metadata": "CC0-1.0",
@@ -28643,7 +28660,8 @@
           "source_ids": [
             "src_ias02inv",
             "src_roadmap_kpmg_inventory_2026",
-            "src_roadmap_naics2022_manual"
+            "src_roadmap_naics2022_manual",
+            "src_aa_i101_fas151_inventory"
           ],
           "source_locators": [
             {
@@ -28715,7 +28733,72 @@
           "family_ids": [
             "q-inventory",
             "q-cost-allocation"
-          ]
+          ],
+          "us_application": {
+            "id": "rq-mfg-cost",
+            "scope": "United States, privately held nongovernmental manufacturer using US GAAP and FIFO/weighted-average inventory; March 31, 2026 close, with a separate June 30, 2026 custom-contract branch. Owner-manufacturer, toll processor and customer roles are separate. Excludes LIFO/retail calculations, tax costing, government-contract cost allowability and sector-wide adequacy.",
+            "answer": "Under the historical original US amendment, fixed overhead uses normal capacity and unallocated overhead is expensed. Apply the documented capacity range, not a mechanical utilization threshold. Process mass balances and discrete equivalent units are separate cost-system illustrations; scrap and joint-output policies remain explicit assumptions.",
+            "source_ids": [
+              "src_aa_i101_fas151_inventory"
+            ],
+            "source_locators": [
+              {
+                "source_id": "src_aa_i101_fas151_inventory",
+                "url": "https://storage.fasb.org/fas151.pdf",
+                "locator": "FAS 151 paragraph 2 (amended ARB 43 chapter 4 paragraphs 5 and 5A), PDF pages 5-6; paragraph 5, PDF page 7",
+                "edition": "November 2004",
+                "effective_period": "Inventory costs incurred in fiscal years beginning after June 15, 2005; prospective; earlier application permitted. Historical pre-Codification text, not current consolidated authority.",
+                "finding": "Normal-capacity fixed-overhead allocation and period expense for unallocated overhead; variable overhead follows actual use. Normal capacity is a range requiring judgment.",
+                "status": "public-original-text-read",
+                "reviewed_at": "2026-09-19",
+                "reviewer": "Codex AI-assisted original-source review",
+                "rights_status": "unknown",
+                "full_text_stored": false
+              }
+            ],
+            "inputs": [
+              "BOM and units produced",
+              "direct labor and variable overhead",
+              "normal capacity and fixed overhead",
+              "waste log and disposition",
+              "lot and event IDs, cost-method policy, title/control terms, normal-capacity range"
+            ],
+            "workflow": [
+              "Lock entity, framework, cost method, reporting date and lot/contract population; preserve prior versions.",
+              "Independently reconcile input/output quantities, WIP stages, loss and scrap; match third-party confirmations and identify missing documents.",
+              "Trace direct costs and approved normal-capacity overhead to the lot; separate idle and abnormal charges; approve scrap/joint-output policy.",
+              "Read ownership and customer-contract terms before selecting inventory or revenue timing; route unknown legal rights for qualified review.",
+              "Test method-specific measurement and dated prices; inspect receipts, shipments and late invoices around close.",
+              "Tie each proposed journal to lot/event evidence, reconcile subledger to GL and review exceptions; an authorized human approves and posts."
+            ],
+            "controls": [
+              "Independent production/count reconciliation",
+              "Normal-capacity range and downtime approval",
+              "Yield, abnormal-loss and recoverable-scrap signoff",
+              "Processor confirmation matched to title/control evidence",
+              "Contract legal-rights and progress-measure review",
+              "Late-invoice accrual key and duplicate prevention",
+              "SKU cost/NRV review and general-ledger tieout"
+            ],
+            "example_ids": [
+              "PROC-0331",
+              "JOB-0331"
+            ],
+            "exceptions": [
+              "idle capacity cannot inflate inventory",
+              "joint products/by-products and scrap need separate allocation",
+              "US GAAP LIFO/market rules differ"
+            ],
+            "remaining_gaps": [
+              "Current consolidated ASC 330 and ASC 606 text was not obtained from asc.fasb.org: the public page returned no paragraph text on 2026-09-19. Issued amendments and historical FAS 151 are bounded original evidence, not verification of all amendments effective in 2026.",
+              "No entity contracts, title terms, processor confirmations, physical counts, production logs or general ledger were supplied. All numerical examples are original synthetic scenarios.",
+              "No professional accounting or legal review, operational effectiveness testing or empirical agent evaluation was performed.",
+              "Scrap/by-product allocation, joint-product policy, abnormal-loss attribution and custom-contract loss guidance require current applicable guidance and entity facts; the illustrated allocation policies are assumptions, not FASB prescriptions.",
+              "External reuse and automated-access permissions remain unknown; no publisher full text is stored."
+            ],
+            "professional_review": "not-performed",
+            "empirical_support": "not-established"
+          }
         },
         {
           "id": "rq-mfg-nrv",
@@ -28724,7 +28807,9 @@
           "source_ids": [
             "src_ias02inv",
             "src_roadmap_kpmg_inventory_2026",
-            "src_roadmap_naics2022_manual"
+            "src_roadmap_naics2022_manual",
+            "src_fasb_asu2015_11_inventory",
+            "src_aa_i101_fas151_inventory"
           ],
           "source_locators": [
             {
@@ -28794,14 +28879,94 @@
           },
           "family_ids": [
             "q-inventory"
-          ]
+          ],
+          "us_application": {
+            "id": "rq-mfg-nrv",
+            "scope": "United States, privately held nongovernmental manufacturer using US GAAP and FIFO/weighted-average inventory; March 31, 2026 close, with a separate June 30, 2026 custom-contract branch. Owner-manufacturer, toll processor and customer roles are separate. Excludes LIFO/retail calculations, tax costing, government-contract cost allowability and sector-wide adequacy.",
+            "answer": "The 2015 amendment separates FIFO/average cost from LIFO/retail measurement. The selected FIFO lot has cost $11,100 and estimated NRV $9,900, producing a $1,200 write-down. Do not transfer IFRS reversal rules to US books.",
+            "source_ids": [
+              "src_fasb_asu2015_11_inventory",
+              "src_aa_i101_fas151_inventory"
+            ],
+            "source_locators": [
+              {
+                "source_id": "src_aa_i101_fas151_inventory",
+                "url": "https://storage.fasb.org/fas151.pdf",
+                "locator": "FAS 151 paragraph 2 (amended ARB 43 chapter 4 paragraphs 5 and 5A), PDF pages 5-6; paragraph 5, PDF page 7",
+                "edition": "November 2004",
+                "effective_period": "Inventory costs incurred in fiscal years beginning after June 15, 2005; prospective; earlier application permitted. Historical pre-Codification text, not current consolidated authority.",
+                "finding": "Normal-capacity fixed-overhead allocation and period expense for unallocated overhead; variable overhead follows actual use. Normal capacity is a range requiring judgment.",
+                "status": "public-original-text-read",
+                "reviewed_at": "2026-09-19",
+                "reviewer": "Codex AI-assisted original-source review",
+                "rights_status": "unknown",
+                "full_text_stored": false
+              },
+              {
+                "source_id": "src_fasb_asu2015_11_inventory",
+                "url": "https://storage.fasb.org/ASU_2015-11.pdf",
+                "locator": "ASC 330-10-35-1A through 35-1C; transition 330-10-65-1",
+                "edition": "July 2015",
+                "effective_period": "Annual periods beginning after December 15, 2016; public interim periods then; other-entity interim periods beginning after December 15, 2017. Prospective, early application permitted.",
+                "finding": "Non-LIFO/non-retail inventory uses lower of cost and NRV; LIFO/retail follow a separate measurement branch.",
+                "status": "public-original-text-read",
+                "reviewed_at": "2026-09-19",
+                "reviewer": "Codex AI-assisted original-source review",
+                "rights_status": "unknown",
+                "full_text_stored": false
+              }
+            ],
+            "inputs": [
+              "SKU cost layers",
+              "selling-price forecast",
+              "completion and selling costs",
+              "framework and costing method",
+              "lot and event IDs, cost-method policy, title/control terms, normal-capacity range"
+            ],
+            "workflow": [
+              "Lock entity, framework, cost method, reporting date and lot/contract population; preserve prior versions.",
+              "Independently reconcile input/output quantities, WIP stages, loss and scrap; match third-party confirmations and identify missing documents.",
+              "Trace direct costs and approved normal-capacity overhead to the lot; separate idle and abnormal charges; approve scrap/joint-output policy.",
+              "Read ownership and customer-contract terms before selecting inventory or revenue timing; route unknown legal rights for qualified review.",
+              "Test method-specific measurement and dated prices; inspect receipts, shipments and late invoices around close.",
+              "Tie each proposed journal to lot/event evidence, reconcile subledger to GL and review exceptions; an authorized human approves and posts."
+            ],
+            "controls": [
+              "Independent production/count reconciliation",
+              "Normal-capacity range and downtime approval",
+              "Yield, abnormal-loss and recoverable-scrap signoff",
+              "Processor confirmation matched to title/control evidence",
+              "Contract legal-rights and progress-measure review",
+              "Late-invoice accrual key and duplicate prevention",
+              "SKU cost/NRV review and general-ledger tieout"
+            ],
+            "example_ids": [
+              "NRV-0331"
+            ],
+            "exceptions": [
+              "commodity broker-trader exception",
+              "foreign-exchange recovery exception under US GAAP",
+              "LIFO layer liquidation"
+            ],
+            "remaining_gaps": [
+              "Current consolidated ASC 330 and ASC 606 text was not obtained from asc.fasb.org: the public page returned no paragraph text on 2026-09-19. Issued amendments and historical FAS 151 are bounded original evidence, not verification of all amendments effective in 2026.",
+              "No entity contracts, title terms, processor confirmations, physical counts, production logs or general ledger were supplied. All numerical examples are original synthetic scenarios.",
+              "No professional accounting or legal review, operational effectiveness testing or empirical agent evaluation was performed.",
+              "Scrap/by-product allocation, joint-product policy, abnormal-loss attribution and custom-contract loss guidance require current applicable guidance and entity facts; the illustrated allocation policies are assumptions, not FASB prescriptions.",
+              "External reuse and automated-access permissions remain unknown; no publisher full text is stored."
+            ],
+            "professional_review": "not-performed",
+            "empirical_support": "not-established"
+          }
         },
         {
           "id": "rq-mfg-outsourced",
           "question": "Who owns materials and work-in-process in outsourced or contract manufacturing?",
           "answer": "Determine whether the manufacturer, customer or processor controls the specified goods or service by contract, title, custody, substantive processing, return rights and payment terms. Delivery to a processor alone does not establish transfer; this is a contract-specific control and ownership analysis.",
           "source_ids": [
-            "src_ifrs15a"
+            "src_ifrs15a",
+            "src_construction_fasb_2014_09",
+            "src_aa_i101_fas151_inventory"
           ],
           "source_locators": [
             {
@@ -28863,14 +29028,94 @@
           "family_ids": [
             "q-inventory",
             "q-purchasing-payables"
-          ]
+          ],
+          "us_application": {
+            "id": "rq-mfg-outsourced",
+            "scope": "United States, privately held nongovernmental manufacturer using US GAAP and FIFO/weighted-average inventory; March 31, 2026 close, with a separate June 30, 2026 custom-contract branch. Owner-manufacturer, toll processor and customer roles are separate. Excludes LIFO/retail calculations, tax costing, government-contract cost allowability and sector-wide adequacy.",
+            "answer": "Reconcile physical custody separately from recognition. The owned-input fixture retains manufacturer inventory at the processor and accrues completed conversion before its invoice; customer-owned or consigned stock needs a different contract/control analysis. ASC 606 control and consignment indicators are sales-side evidence, not a universal inventory title rule.",
+            "source_ids": [
+              "src_construction_fasb_2014_09",
+              "src_aa_i101_fas151_inventory"
+            ],
+            "source_locators": [
+              {
+                "source_id": "src_aa_i101_fas151_inventory",
+                "url": "https://storage.fasb.org/fas151.pdf",
+                "locator": "FAS 151 paragraph 2 (amended ARB 43 chapter 4 paragraphs 5 and 5A), PDF pages 5-6; paragraph 5, PDF page 7",
+                "edition": "November 2004",
+                "effective_period": "Inventory costs incurred in fiscal years beginning after June 15, 2005; prospective; earlier application permitted. Historical pre-Codification text, not current consolidated authority.",
+                "finding": "Normal-capacity fixed-overhead allocation and period expense for unallocated overhead; variable overhead follows actual use. Normal capacity is a range requiring judgment.",
+                "status": "public-original-text-read",
+                "reviewed_at": "2026-09-19",
+                "reviewer": "Codex AI-assisted original-source review",
+                "rights_status": "unknown",
+                "full_text_stored": false
+              },
+              {
+                "source_id": "src_construction_fasb_2014_09",
+                "url": "https://storage.fasb.org/ASU%202014-09_Section%20A.pdf",
+                "locator": "ASC 606-10-25-27(b)-(c), 25-28, 25-29, 25-30; 55-7 through 55-15; 55-79 through 55-80 (consignment)",
+                "edition": "May 2014 issued amendment",
+                "effective_period": "Selected 2026 scenario assumes Topic 606 adoption. Original 2014 transition was deferred; FASB revenue project Effective Dates page reports public periods after December 15, 2017 and nonpublic after December 15, 2018. Later deferrals and current amendments remain entity-specific checks.",
+                "effective_period_url": "https://fasb.org/projects/recently-completed-projects/revenue-recognition-summary",
+                "finding": "Customer control of WIP or no alternative use plus an enforceable right to payment can support over-time recognition. Otherwise assess point-in-time control; possession alone is not decisive.",
+                "status": "public-original-text-read",
+                "reviewed_at": "2026-09-19",
+                "reviewer": "Codex AI-assisted original-source review",
+                "rights_status": "unknown",
+                "full_text_stored": false
+              }
+            ],
+            "inputs": [
+              "processor agreement",
+              "title and risk-of-loss terms",
+              "units at processor and completion status",
+              "return/rework rights",
+              "lot and event IDs, cost-method policy, title/control terms, normal-capacity range"
+            ],
+            "workflow": [
+              "Lock entity, framework, cost method, reporting date and lot/contract population; preserve prior versions.",
+              "Independently reconcile input/output quantities, WIP stages, loss and scrap; match third-party confirmations and identify missing documents.",
+              "Trace direct costs and approved normal-capacity overhead to the lot; separate idle and abnormal charges; approve scrap/joint-output policy.",
+              "Read ownership and customer-contract terms before selecting inventory or revenue timing; route unknown legal rights for qualified review.",
+              "Test method-specific measurement and dated prices; inspect receipts, shipments and late invoices around close.",
+              "Tie each proposed journal to lot/event evidence, reconcile subledger to GL and review exceptions; an authorized human approves and posts."
+            ],
+            "controls": [
+              "Independent production/count reconciliation",
+              "Normal-capacity range and downtime approval",
+              "Yield, abnormal-loss and recoverable-scrap signoff",
+              "Processor confirmation matched to title/control evidence",
+              "Contract legal-rights and progress-measure review",
+              "Late-invoice accrual key and duplicate prevention",
+              "SKU cost/NRV review and general-ledger tieout"
+            ],
+            "example_ids": [
+              "TOLL-0331"
+            ],
+            "exceptions": [
+              "consignment-like arrangements",
+              "customer-owned materials",
+              "bill-and-hold and repurchase terms"
+            ],
+            "remaining_gaps": [
+              "Current consolidated ASC 330 and ASC 606 text was not obtained from asc.fasb.org: the public page returned no paragraph text on 2026-09-19. Issued amendments and historical FAS 151 are bounded original evidence, not verification of all amendments effective in 2026.",
+              "No entity contracts, title terms, processor confirmations, physical counts, production logs or general ledger were supplied. All numerical examples are original synthetic scenarios.",
+              "No professional accounting or legal review, operational effectiveness testing or empirical agent evaluation was performed.",
+              "Scrap/by-product allocation, joint-product policy, abnormal-loss attribution and custom-contract loss guidance require current applicable guidance and entity facts; the illustrated allocation policies are assumptions, not FASB prescriptions.",
+              "External reuse and automated-access permissions remain unknown; no publisher full text is stored."
+            ],
+            "professional_review": "not-performed",
+            "empirical_support": "not-established"
+          }
         },
         {
           "id": "rq-mfg-longterm",
           "question": "Which IFRS 15.35(a), (b) or (c) condition supports over-time recognition for custom goods, and what loss analysis remains unresolved?",
           "answer": "For a custom-goods performance obligation, test each IFRS 15.35 route: (a) the customer simultaneously receives and consumes benefits; (b) the customer controls the asset as created or enhanced; or (c) no alternative use plus an enforceable right to payment for performance completed. If none is met, recognize at a point in time when control transfers. A loss conclusion is not established here; for US GAAP, cross-reference the separate construction/long-term-contract guide for ASC 605-35 scope and verify current Codification before posting.",
           "source_ids": [
-            "src_ifrs15a"
+            "src_ifrs15a",
+            "src_construction_fasb_2014_09"
           ],
           "source_locators": [
             {
@@ -28936,7 +29181,73 @@
             "q-revenue",
             "q-project-wip",
             "q-provisions"
-          ]
+          ],
+          "us_application": {
+            "id": "rq-mfg-longterm",
+            "scope": "United States, privately held nongovernmental manufacturer using US GAAP and FIFO/weighted-average inventory; March 31, 2026 close, with a separate June 30, 2026 custom-contract branch. Owner-manufacturer, toll processor and customer roles are separate. Excludes LIFO/retail calculations, tax costing, government-contract cost allowability and sector-wide adequacy.",
+            "answer": "Custom design, milestones and long cycle time do not establish over-time revenue. Assess customer control of WIP, alternative use and enforceable payment rights under the cited ASC 606 criteria; the explicit qualifying branch supports 50% progress, while the redirectable standard-product counterexample supports no pre-transfer revenue.",
+            "source_ids": [
+              "src_construction_fasb_2014_09"
+            ],
+            "source_locators": [
+              {
+                "source_id": "src_construction_fasb_2014_09",
+                "url": "https://storage.fasb.org/ASU%202014-09_Section%20A.pdf",
+                "locator": "ASC 606-10-25-27(b)-(c), 25-28, 25-29, 25-30; 55-7 through 55-15; 55-79 through 55-80 (consignment)",
+                "edition": "May 2014 issued amendment",
+                "effective_period": "Selected 2026 scenario assumes Topic 606 adoption. Original 2014 transition was deferred; FASB revenue project Effective Dates page reports public periods after December 15, 2017 and nonpublic after December 15, 2018. Later deferrals and current amendments remain entity-specific checks.",
+                "effective_period_url": "https://fasb.org/projects/recently-completed-projects/revenue-recognition-summary",
+                "finding": "Customer control of WIP or no alternative use plus an enforceable right to payment can support over-time recognition. Otherwise assess point-in-time control; possession alone is not decisive.",
+                "status": "public-original-text-read",
+                "reviewed_at": "2026-09-19",
+                "reviewer": "Codex AI-assisted original-source review",
+                "rights_status": "unknown",
+                "full_text_stored": false
+              }
+            ],
+            "inputs": [
+              "contract modification",
+              "customer acceptance and control",
+              "alternative-use analysis",
+              "right-to-payment clause",
+              "cost-to-cost inputs",
+              "lot and event IDs, cost-method policy, title/control terms, normal-capacity range"
+            ],
+            "workflow": [
+              "Lock entity, framework, cost method, reporting date and lot/contract population; preserve prior versions.",
+              "Independently reconcile input/output quantities, WIP stages, loss and scrap; match third-party confirmations and identify missing documents.",
+              "Trace direct costs and approved normal-capacity overhead to the lot; separate idle and abnormal charges; approve scrap/joint-output policy.",
+              "Read ownership and customer-contract terms before selecting inventory or revenue timing; route unknown legal rights for qualified review.",
+              "Test method-specific measurement and dated prices; inspect receipts, shipments and late invoices around close.",
+              "Tie each proposed journal to lot/event evidence, reconcile subledger to GL and review exceptions; an authorized human approves and posts."
+            ],
+            "controls": [
+              "Independent production/count reconciliation",
+              "Normal-capacity range and downtime approval",
+              "Yield, abnormal-loss and recoverable-scrap signoff",
+              "Processor confirmation matched to title/control evidence",
+              "Contract legal-rights and progress-measure review",
+              "Late-invoice accrual key and duplicate prevention",
+              "SKU cost/NRV review and general-ledger tieout"
+            ],
+            "example_ids": [
+              "CUSTOM-0630"
+            ],
+            "exceptions": [
+              "termination clauses can defeat enforceable right to payment",
+              "milestones may be administrative rather than transfer evidence",
+              "US GAAP and IFRS detailed cost guidance can differ"
+            ],
+            "remaining_gaps": [
+              "Current consolidated ASC 330 and ASC 606 text was not obtained from asc.fasb.org: the public page returned no paragraph text on 2026-09-19. Issued amendments and historical FAS 151 are bounded original evidence, not verification of all amendments effective in 2026.",
+              "No entity contracts, title terms, processor confirmations, physical counts, production logs or general ledger were supplied. All numerical examples are original synthetic scenarios.",
+              "No professional accounting or legal review, operational effectiveness testing or empirical agent evaluation was performed.",
+              "Scrap/by-product allocation, joint-product policy, abnormal-loss attribution and custom-contract loss guidance require current applicable guidance and entity facts; the illustrated allocation policies are assumptions, not FASB prescriptions.",
+              "External reuse and automated-access permissions remain unknown; no publisher full text is stored."
+            ],
+            "professional_review": "not-performed",
+            "empirical_support": "not-established"
+          }
         },
         {
           "id": "rq-mfg-completeness",
@@ -28944,7 +29255,9 @@
           "answer": "Editorial control proposal: reconcile production orders, goods movements, receiving, scrap, WIP counts, invoices and the GL, then investigate omissions and cutoff. The Census definition is classification evidence and KPMG is interpretive inventory context; neither mandates this control or proves completeness.",
           "source_ids": [
             "src_roadmap_naics2022_manual",
-            "src_roadmap_kpmg_inventory_2026"
+            "src_roadmap_kpmg_inventory_2026",
+            "src_aa_i101_fas151_inventory",
+            "src_construction_fasb_2014_09"
           ],
           "source_locators": [
             {
@@ -29012,7 +29325,86 @@
             "q-inventory",
             "q-data-lineage",
             "q-ledger-close"
-          ]
+          ],
+          "us_application": {
+            "id": "rq-mfg-completeness",
+            "scope": "United States, privately held nongovernmental manufacturer using US GAAP and FIFO/weighted-average inventory; March 31, 2026 close, with a separate June 30, 2026 custom-contract branch. Owner-manufacturer, toll processor and customer roles are separate. Excludes LIFO/retail calculations, tax costing, government-contract cost allowability and sector-wide adequacy.",
+            "answer": "Trace the complete quantity and cost population through material issues, conversion, counts, scrap, third-party custody and control-transfer dates. The March completion remains inventory when the contract transfers control on an April shipment; a late invoice clears the March service accrual once. These are editorial controls applied to the cited recognition principles.",
+            "source_ids": [
+              "src_aa_i101_fas151_inventory",
+              "src_construction_fasb_2014_09"
+            ],
+            "source_locators": [
+              {
+                "source_id": "src_aa_i101_fas151_inventory",
+                "url": "https://storage.fasb.org/fas151.pdf",
+                "locator": "FAS 151 paragraph 2 (amended ARB 43 chapter 4 paragraphs 5 and 5A), PDF pages 5-6; paragraph 5, PDF page 7",
+                "edition": "November 2004",
+                "effective_period": "Inventory costs incurred in fiscal years beginning after June 15, 2005; prospective; earlier application permitted. Historical pre-Codification text, not current consolidated authority.",
+                "finding": "Normal-capacity fixed-overhead allocation and period expense for unallocated overhead; variable overhead follows actual use. Normal capacity is a range requiring judgment.",
+                "status": "public-original-text-read",
+                "reviewed_at": "2026-09-19",
+                "reviewer": "Codex AI-assisted original-source review",
+                "rights_status": "unknown",
+                "full_text_stored": false
+              },
+              {
+                "source_id": "src_construction_fasb_2014_09",
+                "url": "https://storage.fasb.org/ASU%202014-09_Section%20A.pdf",
+                "locator": "ASC 606-10-25-27(b)-(c), 25-28, 25-29, 25-30; 55-7 through 55-15; 55-79 through 55-80 (consignment)",
+                "edition": "May 2014 issued amendment",
+                "effective_period": "Selected 2026 scenario assumes Topic 606 adoption. Original 2014 transition was deferred; FASB revenue project Effective Dates page reports public periods after December 15, 2017 and nonpublic after December 15, 2018. Later deferrals and current amendments remain entity-specific checks.",
+                "effective_period_url": "https://fasb.org/projects/recently-completed-projects/revenue-recognition-summary",
+                "finding": "Customer control of WIP or no alternative use plus an enforceable right to payment can support over-time recognition. Otherwise assess point-in-time control; possession alone is not decisive.",
+                "status": "public-original-text-read",
+                "reviewed_at": "2026-09-19",
+                "reviewer": "Codex AI-assisted original-source review",
+                "rights_status": "unknown",
+                "full_text_stored": false
+              }
+            ],
+            "inputs": [
+              "production-order population",
+              "GR/IR and shipping reports",
+              "physical counts",
+              "scrap and rework logs",
+              "lot and event IDs, cost-method policy, title/control terms, normal-capacity range"
+            ],
+            "workflow": [
+              "Lock entity, framework, cost method, reporting date and lot/contract population; preserve prior versions.",
+              "Independently reconcile input/output quantities, WIP stages, loss and scrap; match third-party confirmations and identify missing documents.",
+              "Trace direct costs and approved normal-capacity overhead to the lot; separate idle and abnormal charges; approve scrap/joint-output policy.",
+              "Read ownership and customer-contract terms before selecting inventory or revenue timing; route unknown legal rights for qualified review.",
+              "Test method-specific measurement and dated prices; inspect receipts, shipments and late invoices around close.",
+              "Tie each proposed journal to lot/event evidence, reconcile subledger to GL and review exceptions; an authorized human approves and posts."
+            ],
+            "controls": [
+              "Independent production/count reconciliation",
+              "Normal-capacity range and downtime approval",
+              "Yield, abnormal-loss and recoverable-scrap signoff",
+              "Processor confirmation matched to title/control evidence",
+              "Contract legal-rights and progress-measure review",
+              "Late-invoice accrual key and duplicate prevention",
+              "SKU cost/NRV review and general-ledger tieout"
+            ],
+            "example_ids": [
+              "CUT-0331"
+            ],
+            "exceptions": [
+              "manual off-system production",
+              "consigned/third-party inventory",
+              "late invoices and backdated confirmations"
+            ],
+            "remaining_gaps": [
+              "Current consolidated ASC 330 and ASC 606 text was not obtained from asc.fasb.org: the public page returned no paragraph text on 2026-09-19. Issued amendments and historical FAS 151 are bounded original evidence, not verification of all amendments effective in 2026.",
+              "No entity contracts, title terms, processor confirmations, physical counts, production logs or general ledger were supplied. All numerical examples are original synthetic scenarios.",
+              "No professional accounting or legal review, operational effectiveness testing or empirical agent evaluation was performed.",
+              "Scrap/by-product allocation, joint-product policy, abnormal-loss attribution and custom-contract loss guidance require current applicable guidance and entity facts; the illustrated allocation policies are assumptions, not FASB prescriptions.",
+              "External reuse and automated-access permissions remain unknown; no publisher full text is stored."
+            ],
+            "professional_review": "not-performed",
+            "empirical_support": "not-established"
+          }
         }
       ],
       "editorial_brief": {
@@ -29076,6 +29468,567 @@
           "src_roadmap_kpmg_inventory_2026",
           "src_roadmap_naics2022_manual",
           "src_ifrs15a"
+        ]
+      },
+      "us_manufacturing": {
+        "package_version": "2026-09-18.1011",
+        "scope": "United States, privately held nongovernmental manufacturer using US GAAP and FIFO/weighted-average inventory; March 31, 2026 close, with a separate June 30, 2026 custom-contract branch. Owner-manufacturer, toll processor and customer roles are separate. Excludes LIFO/retail calculations, tax costing, government-contract cost allowability and sector-wide adequacy.",
+        "source_checks": [
+          {
+            "source_id": "src_aa_i101_fas151_inventory",
+            "url": "https://storage.fasb.org/fas151.pdf",
+            "locator": "FAS 151 paragraph 2 (amended ARB 43 chapter 4 paragraphs 5 and 5A), PDF pages 5-6; paragraph 5, PDF page 7",
+            "edition": "November 2004",
+            "effective_period": "Inventory costs incurred in fiscal years beginning after June 15, 2005; prospective; earlier application permitted. Historical pre-Codification text, not current consolidated authority.",
+            "finding": "Normal-capacity fixed-overhead allocation and period expense for unallocated overhead; variable overhead follows actual use. Normal capacity is a range requiring judgment.",
+            "status": "public-original-text-read",
+            "reviewed_at": "2026-09-19",
+            "reviewer": "Codex AI-assisted original-source review",
+            "rights_status": "unknown",
+            "full_text_stored": false
+          },
+          {
+            "source_id": "src_fasb_asu2015_11_inventory",
+            "url": "https://storage.fasb.org/ASU_2015-11.pdf",
+            "locator": "ASC 330-10-35-1A through 35-1C; transition 330-10-65-1",
+            "edition": "July 2015",
+            "effective_period": "Annual periods beginning after December 15, 2016; public interim periods then; other-entity interim periods beginning after December 15, 2017. Prospective, early application permitted.",
+            "finding": "Non-LIFO/non-retail inventory uses lower of cost and NRV; LIFO/retail follow a separate measurement branch.",
+            "status": "public-original-text-read",
+            "reviewed_at": "2026-09-19",
+            "reviewer": "Codex AI-assisted original-source review",
+            "rights_status": "unknown",
+            "full_text_stored": false
+          },
+          {
+            "source_id": "src_construction_fasb_2014_09",
+            "url": "https://storage.fasb.org/ASU%202014-09_Section%20A.pdf",
+            "locator": "ASC 606-10-25-27(b)-(c), 25-28, 25-29, 25-30; 55-7 through 55-15; 55-79 through 55-80 (consignment)",
+            "edition": "May 2014 issued amendment",
+            "effective_period": "Selected 2026 scenario assumes Topic 606 adoption. Original 2014 transition was deferred; FASB revenue project Effective Dates page reports public periods after December 15, 2017 and nonpublic after December 15, 2018. Later deferrals and current amendments remain entity-specific checks.",
+            "effective_period_url": "https://fasb.org/projects/recently-completed-projects/revenue-recognition-summary",
+            "finding": "Customer control of WIP or no alternative use plus an enforceable right to payment can support over-time recognition. Otherwise assess point-in-time control; possession alone is not decisive.",
+            "status": "public-original-text-read",
+            "reviewed_at": "2026-09-19",
+            "reviewer": "Codex AI-assisted original-source review",
+            "rights_status": "unknown",
+            "full_text_stored": false
+          },
+          {
+            "source_id": "src_roadmap_naics2022_manual",
+            "url": "https://www.census.gov/naics/reference_files_tools/2022_NAICS_Manual.pdf",
+            "locator": "2022 NAICS structure, sectors 31-33, subsectors 311-316, 321-327, 331-339; corresponding subsector definitions",
+            "edition": "2022 NAICS United States",
+            "effective_period": "2022 classification edition, not a financial-reporting effective period",
+            "finding": "Defines the 21 manufacturing subsectors; accounting implications below are editorial research dispositions.",
+            "status": "public-original-text-read",
+            "reviewed_at": "2026-09-19",
+            "reviewer": "Codex AI-assisted original-source review",
+            "rights_status": "unknown",
+            "full_text_stored": false
+          },
+          {
+            "source_id": "src_1os761s",
+            "url": "https://asc.fasb.org/",
+            "locator": "Public landing page access attempt",
+            "edition": "Current Codification requested",
+            "effective_period": "2026 application not verified",
+            "finding": "No paragraph text returned. No login, CAPTCHA, license or access protection bypass attempted.",
+            "status": "inaccessible-paragraph-text",
+            "reviewed_at": "2026-09-19",
+            "reviewer": "Codex AI-assisted original-source review",
+            "rights_status": "unknown",
+            "full_text_stored": false
+          }
+        ],
+        "workflow": [
+          "Lock entity, framework, cost method, reporting date and lot/contract population; preserve prior versions.",
+          "Independently reconcile input/output quantities, WIP stages, loss and scrap; match third-party confirmations and identify missing documents.",
+          "Trace direct costs and approved normal-capacity overhead to the lot; separate idle and abnormal charges; approve scrap/joint-output policy.",
+          "Read ownership and customer-contract terms before selecting inventory or revenue timing; route unknown legal rights for qualified review.",
+          "Test method-specific measurement and dated prices; inspect receipts, shipments and late invoices around close.",
+          "Tie each proposed journal to lot/event evidence, reconcile subledger to GL and review exceptions; an authorized human approves and posts."
+        ],
+        "controls": [
+          "Independent production/count reconciliation",
+          "Normal-capacity range and downtime approval",
+          "Yield, abnormal-loss and recoverable-scrap signoff",
+          "Processor confirmation matched to title/control evidence",
+          "Contract legal-rights and progress-measure review",
+          "Late-invoice accrual key and duplicate prevention",
+          "SKU cost/NRV review and general-ledger tieout"
+        ],
+        "subsector_dispositions": [
+          {
+            "code": "311",
+            "title": "Food Manufacturing",
+            "model": "process",
+            "disposition": "distinct-cost-or-contract-branch",
+            "branch": "process/yield",
+            "reason": "Food batches, spoilage and shelf life need yield and dated NRV evidence.",
+            "shared_model": "PROC-0331",
+            "required_evidence": [
+              "product and process selection",
+              "cost policy and production stages",
+              "ownership/contract terms",
+              "period-specific current guidance"
+            ],
+            "source_ids": [
+              "src_roadmap_naics2022_manual"
+            ],
+            "classification_locator": "2022 NAICS, subsector 311 definition",
+            "accounting_basis": "Original editorial research implication; Census classification does not prescribe treatment.",
+            "coverage_status": "partial",
+            "remaining_gap": "Product-specific accounting application, entity facts and professional review remain open."
+          },
+          {
+            "code": "312",
+            "title": "Beverage and Tobacco Product Manufacturing",
+            "model": "process",
+            "disposition": "distinct-cost-or-contract-branch",
+            "branch": "process/aging",
+            "reason": "Beverage batches, aging and tobacco processing need stage, yield and recoverability distinctions; excise tax is outside this fixture.",
+            "shared_model": "PROC-0331",
+            "required_evidence": [
+              "product and process selection",
+              "cost policy and production stages",
+              "ownership/contract terms",
+              "period-specific current guidance"
+            ],
+            "source_ids": [
+              "src_roadmap_naics2022_manual"
+            ],
+            "classification_locator": "2022 NAICS, subsector 312 definition",
+            "accounting_basis": "Original editorial research implication; Census classification does not prescribe treatment.",
+            "coverage_status": "partial",
+            "remaining_gap": "Product-specific accounting application, entity facts and professional review remain open."
+          },
+          {
+            "code": "313",
+            "title": "Textile Mills",
+            "model": "process",
+            "disposition": "distinct-cost-or-contract-branch",
+            "branch": "process/yield",
+            "reason": "Fiber, yarn, weaving and finishing stages need separate equivalent units and recoverable waste.",
+            "shared_model": "PROC-0331",
+            "required_evidence": [
+              "product and process selection",
+              "cost policy and production stages",
+              "ownership/contract terms",
+              "period-specific current guidance"
+            ],
+            "source_ids": [
+              "src_roadmap_naics2022_manual"
+            ],
+            "classification_locator": "2022 NAICS, subsector 313 definition",
+            "accounting_basis": "Original editorial research implication; Census classification does not prescribe treatment.",
+            "coverage_status": "partial",
+            "remaining_gap": "Product-specific accounting application, entity facts and professional review remain open."
+          },
+          {
+            "code": "314",
+            "title": "Textile Product Mills",
+            "model": "discrete",
+            "disposition": "distinct-cost-or-contract-branch",
+            "branch": "discrete/batch",
+            "reason": "Cut-and-sew textile products need cut yield, remnants and outsourced stages.",
+            "shared_model": "JOB-0331",
+            "required_evidence": [
+              "product and process selection",
+              "cost policy and production stages",
+              "ownership/contract terms",
+              "period-specific current guidance"
+            ],
+            "source_ids": [
+              "src_roadmap_naics2022_manual"
+            ],
+            "classification_locator": "2022 NAICS, subsector 314 definition",
+            "accounting_basis": "Original editorial research implication; Census classification does not prescribe treatment.",
+            "coverage_status": "partial",
+            "remaining_gap": "Product-specific accounting application, entity facts and professional review remain open."
+          },
+          {
+            "code": "315",
+            "title": "Apparel Manufacturing",
+            "model": "discrete",
+            "disposition": "distinct-cost-or-contract-branch",
+            "branch": "contract/ownership",
+            "reason": "Apparel cut-and-sew and contractors need customer-owned fabric and title/control distinctions.",
+            "shared_model": "JOB-0331",
+            "required_evidence": [
+              "product and process selection",
+              "cost policy and production stages",
+              "ownership/contract terms",
+              "period-specific current guidance"
+            ],
+            "source_ids": [
+              "src_roadmap_naics2022_manual"
+            ],
+            "classification_locator": "2022 NAICS, subsector 315 definition",
+            "accounting_basis": "Original editorial research implication; Census classification does not prescribe treatment.",
+            "coverage_status": "partial",
+            "remaining_gap": "Product-specific accounting application, entity facts and professional review remain open."
+          },
+          {
+            "code": "316",
+            "title": "Leather and Allied Product Manufacturing",
+            "model": "process",
+            "disposition": "distinct-cost-or-contract-branch",
+            "branch": "process/quality",
+            "reason": "Tanning and leather goods need grades, yield and material-versus-conversion stages.",
+            "shared_model": "PROC-0331",
+            "required_evidence": [
+              "product and process selection",
+              "cost policy and production stages",
+              "ownership/contract terms",
+              "period-specific current guidance"
+            ],
+            "source_ids": [
+              "src_roadmap_naics2022_manual"
+            ],
+            "classification_locator": "2022 NAICS, subsector 316 definition",
+            "accounting_basis": "Original editorial research implication; Census classification does not prescribe treatment.",
+            "coverage_status": "partial",
+            "remaining_gap": "Product-specific accounting application, entity facts and professional review remain open."
+          },
+          {
+            "code": "321",
+            "title": "Wood Product Manufacturing",
+            "model": "process",
+            "disposition": "distinct-cost-or-contract-branch",
+            "branch": "joint-output",
+            "reason": "Sawmilling logs into lumber and residual chips needs joint-output and by-product policy; purchased-lumber assembly differs.",
+            "shared_model": "PROC-0331",
+            "required_evidence": [
+              "product and process selection",
+              "cost policy and production stages",
+              "ownership/contract terms",
+              "period-specific current guidance"
+            ],
+            "source_ids": [
+              "src_roadmap_naics2022_manual"
+            ],
+            "classification_locator": "2022 NAICS, subsector 321 definition",
+            "accounting_basis": "Original editorial research implication; Census classification does not prescribe treatment.",
+            "coverage_status": "partial",
+            "remaining_gap": "Product-specific accounting application, entity facts and professional review remain open."
+          },
+          {
+            "code": "322",
+            "title": "Paper Manufacturing",
+            "model": "process",
+            "disposition": "distinct-cost-or-contract-branch",
+            "branch": "joint-output",
+            "reason": "Pulp, paper and converted products require split-off, reprocessing and stage-cost distinctions.",
+            "shared_model": "PROC-0331",
+            "required_evidence": [
+              "product and process selection",
+              "cost policy and production stages",
+              "ownership/contract terms",
+              "period-specific current guidance"
+            ],
+            "source_ids": [
+              "src_roadmap_naics2022_manual"
+            ],
+            "classification_locator": "2022 NAICS, subsector 322 definition",
+            "accounting_basis": "Original editorial research implication; Census classification does not prescribe treatment.",
+            "coverage_status": "partial",
+            "remaining_gap": "Product-specific accounting application, entity facts and professional review remain open."
+          },
+          {
+            "code": "323",
+            "title": "Printing and Related Support Activities",
+            "model": "discrete",
+            "disposition": "distinct-cost-or-contract-branch",
+            "branch": "contract/ownership",
+            "reason": "Custom print jobs need customer stock, proofs/acceptance and alternative-use/payment terms.",
+            "shared_model": "JOB-0331",
+            "required_evidence": [
+              "product and process selection",
+              "cost policy and production stages",
+              "ownership/contract terms",
+              "period-specific current guidance"
+            ],
+            "source_ids": [
+              "src_roadmap_naics2022_manual"
+            ],
+            "classification_locator": "2022 NAICS, subsector 323 definition",
+            "accounting_basis": "Original editorial research implication; Census classification does not prescribe treatment.",
+            "coverage_status": "partial",
+            "remaining_gap": "Product-specific accounting application, entity facts and professional review remain open."
+          },
+          {
+            "code": "324",
+            "title": "Petroleum and Coal Products Manufacturing",
+            "model": "process",
+            "disposition": "distinct-cost-or-contract-branch",
+            "branch": "joint-output",
+            "reason": "Continuous refining needs material balance and joint-product allocation; generic scrap residual is insufficient.",
+            "shared_model": "PROC-0331",
+            "required_evidence": [
+              "product and process selection",
+              "cost policy and production stages",
+              "ownership/contract terms",
+              "period-specific current guidance"
+            ],
+            "source_ids": [
+              "src_roadmap_naics2022_manual"
+            ],
+            "classification_locator": "2022 NAICS, subsector 324 definition",
+            "accounting_basis": "Original editorial research implication; Census classification does not prescribe treatment.",
+            "coverage_status": "partial",
+            "remaining_gap": "Product-specific accounting application, entity facts and professional review remain open."
+          },
+          {
+            "code": "325",
+            "title": "Chemical Manufacturing",
+            "model": "process",
+            "disposition": "distinct-cost-or-contract-branch",
+            "branch": "process/batch",
+            "reason": "Chemical batches need co-products, hazardous disposal, quality holds and yield; loss obligations remain separate.",
+            "shared_model": "PROC-0331",
+            "required_evidence": [
+              "product and process selection",
+              "cost policy and production stages",
+              "ownership/contract terms",
+              "period-specific current guidance"
+            ],
+            "source_ids": [
+              "src_roadmap_naics2022_manual"
+            ],
+            "classification_locator": "2022 NAICS, subsector 325 definition",
+            "accounting_basis": "Original editorial research implication; Census classification does not prescribe treatment.",
+            "coverage_status": "partial",
+            "remaining_gap": "Product-specific accounting application, entity facts and professional review remain open."
+          },
+          {
+            "code": "326",
+            "title": "Plastics and Rubber Products Manufacturing",
+            "model": "process",
+            "disposition": "distinct-cost-or-contract-branch",
+            "branch": "process/rework",
+            "reason": "Molding and rubber processing need regrind/rework quantities and abnormal-versus-normal loss evidence.",
+            "shared_model": "PROC-0331",
+            "required_evidence": [
+              "product and process selection",
+              "cost policy and production stages",
+              "ownership/contract terms",
+              "period-specific current guidance"
+            ],
+            "source_ids": [
+              "src_roadmap_naics2022_manual"
+            ],
+            "classification_locator": "2022 NAICS, subsector 326 definition",
+            "accounting_basis": "Original editorial research implication; Census classification does not prescribe treatment.",
+            "coverage_status": "partial",
+            "remaining_gap": "Product-specific accounting application, entity facts and professional review remain open."
+          },
+          {
+            "code": "327",
+            "title": "Nonmetallic Mineral Product Manufacturing",
+            "model": "process",
+            "disposition": "distinct-cost-or-contract-branch",
+            "branch": "process/yield",
+            "reason": "Glass, cement and ceramics require kiln/batch yield and downtime evidence.",
+            "shared_model": "PROC-0331",
+            "required_evidence": [
+              "product and process selection",
+              "cost policy and production stages",
+              "ownership/contract terms",
+              "period-specific current guidance"
+            ],
+            "source_ids": [
+              "src_roadmap_naics2022_manual"
+            ],
+            "classification_locator": "2022 NAICS, subsector 327 definition",
+            "accounting_basis": "Original editorial research implication; Census classification does not prescribe treatment.",
+            "coverage_status": "partial",
+            "remaining_gap": "Product-specific accounting application, entity facts and professional review remain open."
+          },
+          {
+            "code": "331",
+            "title": "Primary Metal Manufacturing",
+            "model": "process",
+            "disposition": "distinct-cost-or-contract-branch",
+            "branch": "joint-output",
+            "reason": "Smelting and primary metals need purchased scrap, recoverable outputs and joint-cost distinctions.",
+            "shared_model": "PROC-0331",
+            "required_evidence": [
+              "product and process selection",
+              "cost policy and production stages",
+              "ownership/contract terms",
+              "period-specific current guidance"
+            ],
+            "source_ids": [
+              "src_roadmap_naics2022_manual"
+            ],
+            "classification_locator": "2022 NAICS, subsector 331 definition",
+            "accounting_basis": "Original editorial research implication; Census classification does not prescribe treatment.",
+            "coverage_status": "partial",
+            "remaining_gap": "Product-specific accounting application, entity facts and professional review remain open."
+          },
+          {
+            "code": "332",
+            "title": "Fabricated Metal Product Manufacturing",
+            "model": "discrete",
+            "disposition": "distinct-cost-or-contract-branch",
+            "branch": "contract/job",
+            "reason": "Fabricated metal jobs need routing, customer specifications and outsourced finishing ownership.",
+            "shared_model": "JOB-0331",
+            "required_evidence": [
+              "product and process selection",
+              "cost policy and production stages",
+              "ownership/contract terms",
+              "period-specific current guidance"
+            ],
+            "source_ids": [
+              "src_roadmap_naics2022_manual"
+            ],
+            "classification_locator": "2022 NAICS, subsector 332 definition",
+            "accounting_basis": "Original editorial research implication; Census classification does not prescribe treatment.",
+            "coverage_status": "partial",
+            "remaining_gap": "Product-specific accounting application, entity facts and professional review remain open."
+          },
+          {
+            "code": "333",
+            "title": "Machinery Manufacturing",
+            "model": "discrete",
+            "disposition": "distinct-cost-or-contract-branch",
+            "branch": "contract/job",
+            "reason": "Machinery jobs need WIP stages, customization, alternative use and payment rights.",
+            "shared_model": "JOB-0331",
+            "required_evidence": [
+              "product and process selection",
+              "cost policy and production stages",
+              "ownership/contract terms",
+              "period-specific current guidance"
+            ],
+            "source_ids": [
+              "src_roadmap_naics2022_manual"
+            ],
+            "classification_locator": "2022 NAICS, subsector 333 definition",
+            "accounting_basis": "Original editorial research implication; Census classification does not prescribe treatment.",
+            "coverage_status": "partial",
+            "remaining_gap": "Product-specific accounting application, entity facts and professional review remain open."
+          },
+          {
+            "code": "334",
+            "title": "Computer and Electronic Product Manufacturing",
+            "model": "discrete",
+            "disposition": "distinct-cost-or-contract-branch",
+            "branch": "discrete/testing",
+            "reason": "Electronic assembly needs test yield, component obsolescence and rework distinctions.",
+            "shared_model": "JOB-0331",
+            "required_evidence": [
+              "product and process selection",
+              "cost policy and production stages",
+              "ownership/contract terms",
+              "period-specific current guidance"
+            ],
+            "source_ids": [
+              "src_roadmap_naics2022_manual"
+            ],
+            "classification_locator": "2022 NAICS, subsector 334 definition",
+            "accounting_basis": "Original editorial research implication; Census classification does not prescribe treatment.",
+            "coverage_status": "partial",
+            "remaining_gap": "Product-specific accounting application, entity facts and professional review remain open."
+          },
+          {
+            "code": "335",
+            "title": "Electrical Equipment, Appliance, and Component Manufacturing",
+            "model": "discrete",
+            "disposition": "distinct-cost-or-contract-branch",
+            "branch": "discrete/testing",
+            "reason": "Electrical equipment assembly needs component completion, testing and capacity evidence.",
+            "shared_model": "JOB-0331",
+            "required_evidence": [
+              "product and process selection",
+              "cost policy and production stages",
+              "ownership/contract terms",
+              "period-specific current guidance"
+            ],
+            "source_ids": [
+              "src_roadmap_naics2022_manual"
+            ],
+            "classification_locator": "2022 NAICS, subsector 335 definition",
+            "accounting_basis": "Original editorial research implication; Census classification does not prescribe treatment.",
+            "coverage_status": "partial",
+            "remaining_gap": "Product-specific accounting application, entity facts and professional review remain open."
+          },
+          {
+            "code": "336",
+            "title": "Transportation Equipment Manufacturing",
+            "model": "discrete",
+            "disposition": "distinct-cost-or-contract-branch",
+            "branch": "contract/tooling",
+            "reason": "Vehicles and transportation equipment need separate customer tooling, long-cycle contracts and parts populations.",
+            "shared_model": "JOB-0331",
+            "required_evidence": [
+              "product and process selection",
+              "cost policy and production stages",
+              "ownership/contract terms",
+              "period-specific current guidance"
+            ],
+            "source_ids": [
+              "src_roadmap_naics2022_manual"
+            ],
+            "classification_locator": "2022 NAICS, subsector 336 definition",
+            "accounting_basis": "Original editorial research implication; Census classification does not prescribe treatment.",
+            "coverage_status": "partial",
+            "remaining_gap": "Product-specific accounting application, entity facts and professional review remain open."
+          },
+          {
+            "code": "337",
+            "title": "Furniture and Related Product Manufacturing",
+            "model": "discrete",
+            "disposition": "distinct-cost-or-contract-branch",
+            "branch": "discrete/custom",
+            "reason": "Furniture needs cutting/finishing stages, remnants and custom-order contract review.",
+            "shared_model": "JOB-0331",
+            "required_evidence": [
+              "product and process selection",
+              "cost policy and production stages",
+              "ownership/contract terms",
+              "period-specific current guidance"
+            ],
+            "source_ids": [
+              "src_roadmap_naics2022_manual"
+            ],
+            "classification_locator": "2022 NAICS, subsector 337 definition",
+            "accounting_basis": "Original editorial research implication; Census classification does not prescribe treatment.",
+            "coverage_status": "partial",
+            "remaining_gap": "Product-specific accounting application, entity facts and professional review remain open."
+          },
+          {
+            "code": "339",
+            "title": "Miscellaneous Manufacturing",
+            "model": "discrete",
+            "disposition": "unresolved",
+            "branch": "unresolved-product-specific",
+            "reason": "Heterogeneous medical, sporting and other products require product/role selection before choosing a cost or contract branch.",
+            "shared_model": "JOB-0331",
+            "required_evidence": [
+              "product and process selection",
+              "cost policy and production stages",
+              "ownership/contract terms",
+              "period-specific current guidance"
+            ],
+            "source_ids": [
+              "src_roadmap_naics2022_manual"
+            ],
+            "classification_locator": "2022 NAICS, subsector 339 definition",
+            "accounting_basis": "Original editorial research implication; Census classification does not prescribe treatment.",
+            "coverage_status": "partial",
+            "remaining_gap": "Product-specific accounting application, entity facts and professional review remain open."
+          }
+        ],
+        "example_id": "example-aa-i101-manufacturing-conversion",
+        "remaining_gaps": [
+          "Current consolidated ASC 330 and ASC 606 text was not obtained from asc.fasb.org: the public page returned no paragraph text on 2026-09-19. Issued amendments and historical FAS 151 are bounded original evidence, not verification of all amendments effective in 2026.",
+          "No entity contracts, title terms, processor confirmations, physical counts, production logs or general ledger were supplied. All numerical examples are original synthetic scenarios.",
+          "No professional accounting or legal review, operational effectiveness testing or empirical agent evaluation was performed.",
+          "Scrap/by-product allocation, joint-product policy, abnormal-loss attribution and custom-contract loss guidance require current applicable guidance and entity facts; the illustrated allocation policies are assumptions, not FASB prescriptions.",
+          "External reuse and automated-access permissions remain unknown; no publisher full text is stored."
         ]
       }
     }
@@ -61270,6 +62223,599 @@
           "answer": "Separate owned supplies and equipment from the customer custody subledger, storage or handling revenue, receivables, lien or hold status, and claim evidence. A receipt or custody record is not by itself evidence that the custodian owns the goods or recognizes them as inventory; verify the selected state enactment and contract."
         }
       ]
+    }
+  },
+  {
+    "id": "guide-information-us-provider-customer",
+    "kind": "guide",
+    "title": "US information providers, subscriptions, content and rights: bounded source package",
+    "summary": "A source-only US application for selected NAICS 51 provider and customer roles. It separates software/subscription, telecom, publishing, media, hosting and data-service questions without asserting whole-sector sufficiency.",
+    "topics": [
+      "Scoped research",
+      "Accounting and reporting",
+      "Revenue and customer contracts",
+      "Intangibles, software and research expenditure",
+      "Rights, provenance and reusable data",
+      "Source data, lineage and reconciliation"
+    ],
+    "industries": [
+      "information-sector"
+    ],
+    "jurisdiction": "United States; selected nongovernmental information-sector roles and telecom regulatory counterexample",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_roadmap_naics2022_manual",
+      "src_construction_fasb_2014_09",
+      "src_fasb_asu2016_08_principal_agent",
+      "src_asu201815",
+      "src_aa_i105_fasb_2016_10",
+      "src_aa_i105_fcc_part32",
+      "src_aa_i105_uscode_copyright"
+    ],
+    "related_ids": [
+      "guide-software-subscriptions",
+      "guide-industry-naics2022-512",
+      "guide-industry-naics2022-513",
+      "guide-industry-naics2022-516",
+      "guide-industry-naics2022-517",
+      "guide-industry-naics2022-518",
+      "guide-industry-naics2022-519",
+      "wf-information-contract-to-ledger",
+      "ctrl-information-role-and-rights",
+      "example-information-bundle-close"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-19",
+    "provenance": {
+      "added_on": "2026-09-19",
+      "reviewer": "Codex AI-assisted bounded source and editorial review",
+      "note": "Original bounded synthesis and synthetic arithmetic prepared as a source-only candidate pending coordinator integration. Existing guides and shared foundations remain preserved."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "External publisher text is not stored; publisher terms and source rights remain separate and unresolved.",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "version": "2026-09-19.information.1",
+      "research_package": "information-us-source-only",
+      "authority_level": "A2 bounded source synthesis",
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "scope": {
+        "roles": [
+          "US software/subscription provider",
+          "US telecom carrier or noncarrier connectivity provider",
+          "US publisher or media/content producer",
+          "US hosting/data-processing provider",
+          "US information service or data licensor",
+          "Customer purchasing software, hosting or content access as explicit counterrole"
+        ],
+        "framework": "US GAAP accrual-basis provider/customer research; FCC Part 32 only where specified carrier applicability is established; legal rights context is separate",
+        "period": "Synthetic 2026-12-31 close; source review performed 2026-09-19; future transactions are fictional",
+        "population": "Selected contract-to-ledger populations for subscription/usage billing, bundle allocation, content/software costs, royalties and rights periods.",
+        "exclusions": [
+          "No whole-sector sufficiency or complete NAICS leaf review",
+          "No current consolidated ASC claim; current Codification access and later amendments require professional review",
+          "No state-by-state survey or international expansion",
+          "No production system, portfolio, professional signoff or measured agent performance"
+        ]
+      },
+      "workflows": [
+        "Classify the actual provider/customer role and reporting framework before selecting a route.",
+        "Pin source edition, effective period, contract term, rights scope and source URL.",
+        "Reconcile usage or delivery events to invoice, contract balance, royalty or cost schedule.",
+        "Keep provider revenue, customer software expenditure, content costs, royalties and telecom regulated/nonregulated activity in separate populations.",
+        "Route missing, conflicting, expired, superseded or out-of-scope evidence to a qualified human reviewer."
+      ],
+      "controls": [
+        "Contract-to-billing and meter-to-ledger population tie",
+        "Independent quantity, rate, allocation and royalty recomputation",
+        "Stable source IDs, rights metadata and effective-period checks",
+        "Rights-term expiry and renewal review",
+        "Gross-to-net and provider/customer role review",
+        "No automatic posting, filing or reuse permission from the synthetic packet"
+      ],
+      "coverage_gaps": [
+        "Current consolidated ASC text and later amendments were not read; ASUs and public legal/regulatory text support bounded research only.",
+        "No professional review, production billing population, contract portfolio, operational control test or measured agent performance was obtained.",
+        "Source rights and downstream reuse permissions remain unknown; publisher full text is not stored.",
+        "No whole-sector sufficiency, state-by-state survey or international expansion is asserted."
+      ],
+      "selected_role_routes": [
+        "telecom carrier -> FCC Part 32 applicability and regulated/nonregulated route first",
+        "publishing/media -> content rights, license term and production-cost route",
+        "hosting/data -> usage, implementation and customer-owned-data route",
+        "software/subscription -> Topic 606 contract and customer-cost route"
+      ],
+      "research_questions": [
+        {
+          "id": "rq-information-provider-usage-subscription",
+          "record_id": "guide-information-us-provider-customer",
+          "pointer": "/data/research_questions/0",
+          "family_ids": [
+            "q-revenue",
+            "q-data-lineage"
+          ],
+          "question": "How should a selected US information provider separate subscription, usage and setup revenue at the contract and period boundary?",
+          "scope": "US GAAP accrual-basis information provider for a 2026 reporting period; software, hosting, telecom, publishing, media, licensing and data-service provider roles are routed separately.",
+          "answer": "Identify the customer contract, promised access/content/hosting/setup items, billing unit and service period. Reconcile usage meters and renewal terms to invoices and deferred or unbilled balances; do not treat an annual invoice as one-period revenue merely because cash was collected. Topic 606 source material supplies the framework, but the current Codification, contract modifications, refunds and entity policy remain for professional review.",
+          "answer_status": "sourced-answer-and-original-example",
+          "assessment_status": "partial",
+          "source_ids": [
+            "src_construction_fasb_2014_09",
+            "src_aa_i105_fasb_2016_10"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_construction_fasb_2014_09",
+              "url": "https://storage.fasb.org/ASU%202014-09_Section%20A.pdf",
+              "locator": "Topic 606 core principle and 606-10-25 contract/performance-obligation amendments in Section A",
+              "effective_period": "ASU issued May 2014; later effective-date amendments and current Codification require review.",
+              "access_limits": "Accepted shared foundation source; current consolidated Codification and entity adoption not reverified in this package."
+            },
+            {
+              "source_id": "src_aa_i105_fasb_2016_10",
+              "url": "https://storage.fasb.org/ASU%202016-10.pdf",
+              "locator": "606-10-25-19 through 25-22; 606-10-55-56 through 55-64",
+              "effective_period": "Issued March 2016; public after Dec. 15, 2017; other entities after Dec. 15, 2018, subject to 606-10-65-1.",
+              "access_limits": "Amendment text only; no current consolidated ASC or professional review."
+            }
+          ],
+          "inputs": [
+            "Executed order form and amendments",
+            "Subscription term, renewal, usage and refund clauses",
+            "Usage meter or delivery evidence",
+            "Invoice, credit, cash and deferred-revenue schedules",
+            "Entity framework and reporting period"
+          ],
+          "workflow": [
+            "Route role and contract type",
+            "Identify promised services and service periods",
+            "Reconcile meter to invoice to contract balance",
+            "Review cutoff, credits, renewals and exceptions"
+          ],
+          "controls": [
+            "Independent quantity/rate recomputation",
+            "Contract-to-billing population tie",
+            "Duplicate, void and late-event detection",
+            "Human approval of allocation and cutoff exceptions"
+          ],
+          "exceptions": [
+            "A customer purchasing software for internal use is not the provider revenue population",
+            "A one-time setup fee may be a separate service or part of another obligation only after contract review",
+            "Cash collection does not establish earned revenue"
+          ],
+          "remaining_gaps": [
+            "Contract modification and variable consideration examples remain limited."
+          ],
+          "professional_review": "not-performed",
+          "empirical_support": "not-established",
+          "dimensions": {
+            "scope": "present",
+            "accounting-question": "partial",
+            "evidence-inputs": "present",
+            "workflow": "present",
+            "controls": "present",
+            "worked-material": "present",
+            "empirical-support": "not-assessed"
+          },
+          "dimension_basis": "Live selected-source locators, original synthetic scenarios and proposed workflow/control fields provide bounded support. Partial does not establish accounting correctness or sector completeness."
+        },
+        {
+          "id": "rq-information-bundle-principal-customer-expense",
+          "record_id": "guide-information-us-provider-customer",
+          "pointer": "/data/research_questions/1",
+          "family_ids": [
+            "q-revenue",
+            "q-intangibles-software",
+            "q-licensed-content"
+          ],
+          "question": "When a bundle combines software access, hosting, telecom or content, how should provider presentation stay separate from customer software expenditure?",
+          "scope": "Selected US provider and customer roles under US GAAP; bundle includes hosted access, licensed content, connectivity or implementation; reseller/intermediary counterexample included.",
+          "answer": "Decompose the provider bundle using the contract and role evidence, then assess whether the provider controls the promised service before transfer. The provider revenue analysis is separate from the customer’s accounting for acquired software, hosting fees or implementation costs. A reseller invoice is not automatically gross revenue, and a customer’s prepaid or implementation amount is not automatically the provider’s earned revenue.",
+          "answer_status": "sourced-answer-and-original-example",
+          "assessment_status": "partial",
+          "source_ids": [
+            "src_construction_fasb_2014_09",
+            "src_fasb_asu2016_08_principal_agent",
+            "src_aa_i105_fasb_2016_10",
+            "src_asu201815"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_fasb_asu2016_08_principal_agent",
+              "url": "https://storage.fasb.org/ASU%202016-08.pdf",
+              "locator": "606-10-55-36 through 55-40 principal-versus-agent indicators",
+              "effective_period": "Issued March 2016; adoption period follows Topic 606 effective-date amendments.",
+              "access_limits": "Accepted shared foundation source; current Codification and facts of control not independently reverified."
+            },
+            {
+              "source_id": "src_asu201815",
+              "url": "https://storage.fasb.org/ASU_2018-15.pdf",
+              "locator": "350-40-15-4A; 350-40-25-17A through 25-18; 350-40-35-13 through 35-14",
+              "effective_period": "Issued August 2018; public entities fiscal years beginning after Dec. 15, 2019; other entities after Dec. 15, 2020, with interim timing in the ASU.",
+              "access_limits": "Customer implementation-cost amendment; does not decide provider revenue or every software arrangement."
+            }
+          ],
+          "inputs": [
+            "Bundle contract and standalone prices",
+            "Provider control and subcontractor evidence",
+            "Customer purpose and possession/right-to-take-possession facts",
+            "Implementation phase logs",
+            "Invoice and allocation schedule"
+          ],
+          "workflow": [
+            "Separate provider and customer populations",
+            "Identify service components and principal/agent facts",
+            "Assess customer cost phase and service period separately",
+            "Reconcile gross/net presentation and deferred cost schedule"
+          ],
+          "controls": [
+            "Legal/finance review of bundle terms",
+            "Standalone-price allocation review",
+            "Gross-to-net bridge",
+            "Exception log for reseller, pass-through and customer-owned software"
+          ],
+          "exceptions": [
+            "Customer-owned software can be an internal-use cost question while provider books service revenue",
+            "A platform reseller may be agent for content but principal for its own hosting",
+            "A bundle label alone cannot determine one performance obligation"
+          ],
+          "remaining_gaps": [
+            "Current consolidated ASC 350-40 and sector-specific implementation matters remain open."
+          ],
+          "professional_review": "not-performed",
+          "empirical_support": "not-established",
+          "dimensions": {
+            "scope": "present",
+            "accounting-question": "partial",
+            "evidence-inputs": "present",
+            "workflow": "present",
+            "controls": "present",
+            "worked-material": "present",
+            "empirical-support": "not-assessed"
+          },
+          "dimension_basis": "Live selected-source locators, original synthetic scenarios and proposed workflow/control fields provide bounded support. Partial does not establish accounting correctness or sector completeness."
+        },
+        {
+          "id": "rq-information-content-software-costs",
+          "record_id": "guide-information-us-provider-customer",
+          "pointer": "/data/research_questions/2",
+          "family_ids": [
+            "q-cost-allocation",
+            "q-intangibles-software",
+            "q-licensed-content"
+          ],
+          "question": "How should content production, acquired content and software implementation costs remain distinct populations?",
+          "scope": "US publishing, media production, content licensing, hosting and software customer roles; fictional close dated 2026-12-31; no conclusion for film-specific or tax capitalization rules.",
+          "answer": "Preserve production, acquired/license content, internal-use software and hosted-service implementation costs by contract and phase. Source material supports a customer cloud arrangement distinction and a separate provider revenue route, but this package does not claim a universal capitalization policy for all media or software costs. Costs that fail the selected recognition criteria remain exceptions for qualified review rather than being moved to an asset by label.",
+          "answer_status": "sourced-answer-and-original-example",
+          "assessment_status": "partial",
+          "source_ids": [
+            "src_asu201815",
+            "src_aa_i105_fasb_2016_10",
+            "src_construction_fasb_2014_09"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_asu201815",
+              "url": "https://storage.fasb.org/ASU_2018-15.pdf",
+              "locator": "350-40-25-17A through 25-18 and implementation-cost phase guidance",
+              "effective_period": "Issued 2018; effective dates and transition stated in ASU 2018-15.",
+              "access_limits": "Customer cloud service implementation scope only; no media-content standard conclusion."
+            },
+            {
+              "source_id": "src_aa_i105_fasb_2016_10",
+              "url": "https://storage.fasb.org/ASU%202016-10.pdf",
+              "locator": "606-10-55-56 through 55-64 license classification",
+              "effective_period": "Issued March 2016; Topic 606 adoption periods apply.",
+              "access_limits": "License revenue guidance is not a full production-cost or content-cost model."
+            }
+          ],
+          "inputs": [
+            "Content rights and term sheet",
+            "Production cost ledger by project/phase",
+            "Software implementation work orders",
+            "Cloud arrangement possession and service terms",
+            "Amortization or expense policy and review evidence"
+          ],
+          "workflow": [
+            "Classify role and cost population",
+            "Trace work to contract and phase",
+            "Apply selected framework gate",
+            "Reconcile asset, expense and deferred balances",
+            "Escalate ambiguous or abandoned work"
+          ],
+          "controls": [
+            "Project code and phase lock",
+            "Independent cost classification review",
+            "Rights-term and amortization schedule tie",
+            "No capitalization from invoice description alone"
+          ],
+          "exceptions": [
+            "Production labor can serve a licensed work, a commissioned service or owned content",
+            "Implementation work may be customer cost or provider delivery effort",
+            "A content license term is not the same as legal copyright duration"
+          ],
+          "remaining_gaps": [
+            "Film and publishing cost-specific authoritative guidance was not exhaustively researched."
+          ],
+          "professional_review": "not-performed",
+          "empirical_support": "not-established",
+          "dimensions": {
+            "scope": "present",
+            "accounting-question": "partial",
+            "evidence-inputs": "present",
+            "workflow": "present",
+            "controls": "present",
+            "worked-material": "present",
+            "empirical-support": "not-assessed"
+          },
+          "dimension_basis": "Live selected-source locators, original synthetic scenarios and proposed workflow/control fields provide bounded support. Partial does not establish accounting correctness or sector completeness."
+        },
+        {
+          "id": "rq-information-royalty-rights-period",
+          "record_id": "guide-information-us-provider-customer",
+          "pointer": "/data/research_questions/3",
+          "family_ids": [
+            "q-licensed-content",
+            "q-reuse-rights",
+            "q-data-lineage"
+          ],
+          "question": "How should royalties and content-license rights periods be reconciled to usage, contract terms and statutory duration?",
+          "scope": "Selected US content publisher, media producer, licensing platform or information service; rights period is contractual first, with federal copyright duration as legal context.",
+          "answer": "Maintain a rights register with work identity, grant scope, territory, media, term, renewal/termination, royalty base, usage report and counterparty approval. Reconcile royalty expense or participation to the contract’s defined units and report period. 17 USC §§302, 304 and 305 provide statutory duration context, but they do not replace the signed grant or decide revenue recognition, amortization, or corpus reuse permission.",
+          "answer_status": "sourced-answer-and-original-example",
+          "assessment_status": "partial",
+          "source_ids": [
+            "src_aa_i105_uscode_copyright",
+            "src_aa_i105_fasb_2016_10"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_aa_i105_uscode_copyright",
+              "url": "https://uscode.house.gov/view.xhtml?path=/prelim@title17/chapter3",
+              "locator": "17 USC §§302(a)-(c), 304(a), 305",
+              "effective_period": "Preliminary 2026 U.S. Code displayed September 18, 2026.",
+              "access_limits": "Legal duration reference only; actual agreement, termination and ownership facts remain required."
+            },
+            {
+              "source_id": "src_aa_i105_fasb_2016_10",
+              "url": "https://storage.fasb.org/ASU%202016-10.pdf",
+              "locator": "606-10-55-56 through 55-64 licensing, including right-to-use/right-to-access distinctions",
+              "effective_period": "Issued March 2016; Topic 606 adoption periods apply.",
+              "access_limits": "Amendment text only; current consolidated Codification and contract-specific review remain open."
+            }
+          ],
+          "inputs": [
+            "Signed license and amendments",
+            "Work/record identifier and rights chain",
+            "Territory, term, media and renewal dates",
+            "Usage/royalty report and payment evidence",
+            "Copyright status and legal review where relevant"
+          ],
+          "workflow": [
+            "Validate rights chain and contractual term",
+            "Map usage to royalty base",
+            "Test reporting-period cutoff and expiry",
+            "Reconcile payable, expense, revenue or deferred balance",
+            "Escalate conflict between statute and contract"
+          ],
+          "controls": [
+            "Expiry and renewal alerts",
+            "Independent royalty recomputation",
+            "Counterparty statement reconciliation",
+            "Legal review for termination, ownership and infringement claims"
+          ],
+          "exceptions": [
+            "Statutory copyright duration does not grant the provider the right to sublicense",
+            "A perpetual-looking access clause may still be limited by territory or media",
+            "Usage data missing at close is an exception, not an assumed zero royalty"
+          ],
+          "remaining_gaps": [
+            "No individual license portfolio or legal opinion reviewed."
+          ],
+          "professional_review": "not-performed",
+          "empirical_support": "not-established",
+          "dimensions": {
+            "scope": "present",
+            "accounting-question": "partial",
+            "evidence-inputs": "present",
+            "workflow": "present",
+            "controls": "present",
+            "worked-material": "present",
+            "empirical-support": "not-assessed"
+          },
+          "dimension_basis": "Live selected-source locators, original synthetic scenarios and proposed workflow/control fields provide bounded support. Partial does not establish accounting correctness or sector completeness."
+        },
+        {
+          "id": "rq-information-sector-role-route",
+          "record_id": "guide-information-us-provider-customer",
+          "pointer": "/data/research_questions/4",
+          "family_ids": [
+            "q-data-lineage",
+            "q-interfaces",
+            "q-licensed-content"
+          ],
+          "question": "Which role and federal boundary distinguishes telecom, publishing, media, hosting and data services before applying accounting evidence?",
+          "scope": "US NAICS 51 selected roles: telecom carrier, publisher, media/content producer, cloud/hosting/data provider and information service; no whole-sector sufficiency.",
+          "answer": "Use the operating contract and regulated-role evidence before selecting a question route. Census NAICS definitions are discovery context; FCC Part 32 adds a narrower federal telecommunications accounting boundary for specified carriers and regulated/nonregulated activity. Publishing, media, hosting and data services do not inherit Part 32 merely because they use networks or sell digital content.",
+          "answer_status": "sourced-answer-and-original-example",
+          "assessment_status": "partial",
+          "source_ids": [
+            "src_roadmap_naics2022_manual",
+            "src_aa_i105_fcc_part32"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_roadmap_naics2022_manual",
+              "url": "https://www.census.gov/naics/reference_files_tools/2022_NAICS_Manual.pdf",
+              "locator": "Subsectors 512, 513, 516, 517, 518 and 519 definitions and exclusions",
+              "effective_period": "2022 NAICS manual; classification edition and entity activity should be confirmed.",
+              "access_limits": "Industry classification source, not accounting authority; accepted foundation reused."
+            },
+            {
+              "source_id": "src_aa_i105_fcc_part32",
+              "url": "https://www.ecfr.gov/current/title-47/chapter-I/subchapter-B/part-32",
+              "locator": "§§32.11, 32.14, 32.2000 and Part 32 revenue-account subpart",
+              "effective_period": "Current eCFR edition reviewed September 19, 2026.",
+              "access_limits": "Specified-carrier regulatory boundary; not all telecom or information-sector entities."
+            }
+          ],
+          "inputs": [
+            "NAICS activity and actual operating role",
+            "Carrier designation and regulatory status",
+            "Contract populations and customer/payer role",
+            "Content/software/hosting rights",
+            "Entity framework and period"
+          ],
+          "workflow": [
+            "Classify role using activity evidence",
+            "Check telecom regulatory applicability",
+            "Select revenue, cost, rights and data-lineage question set",
+            "Document out-of-scope branch and reviewer route"
+          ],
+          "controls": [
+            "Role-to-source mapping approval",
+            "Regulated/nonregulated ledger separation where applicable",
+            "No inheritance from adjacent NAICS guide",
+            "Counterexample review for customer, reseller and service-provider populations"
+          ],
+          "exceptions": [
+            "A SaaS provider using a telecom carrier is not a Part 32 carrier by that fact",
+            "A publisher selling digital subscriptions is not automatically a telecom service",
+            "A data broker or archive may have rights and privacy constraints outside this package"
+          ],
+          "remaining_gaps": [
+            "No state communications survey, international regime or complete NAICS leaf review."
+          ],
+          "professional_review": "not-performed",
+          "empirical_support": "not-established",
+          "dimensions": {
+            "scope": "present",
+            "accounting-question": "partial",
+            "evidence-inputs": "present",
+            "workflow": "present",
+            "controls": "present",
+            "worked-material": "present",
+            "empirical-support": "not-assessed"
+          },
+          "dimension_basis": "Live selected-source locators, original synthetic scenarios and proposed workflow/control fields provide bounded support. Partial does not establish accounting correctness or sector completeness."
+        },
+        {
+          "id": "rq-information-retrieval-lineage",
+          "record_id": "guide-information-us-provider-customer",
+          "pointer": "/data/research_questions/5",
+          "family_ids": [
+            "q-data-lineage",
+            "q-interfaces"
+          ],
+          "question": "What retrieval and lineage evidence lets a reviewer trace a provider or customer question to the correct source and synthetic example?",
+          "scope": "Read-only corpus retrieval for selected US information roles; representative query and get limits are illustrative and capped at 20 results.",
+          "answer": "Search by role, transaction and source family, then inspect the retrieved record’s locators, effective period, rights and limits before using an answer. The package routes a telecom query to Part 32, a bundle to Topic 606/ASU 2018-15, and a rights-period query to 17 USC and license evidence; a broad “information industry” result is a scope warning rather than a conclusion.",
+          "answer_status": "sourced-answer-and-original-example",
+          "assessment_status": "partial",
+          "source_ids": [
+            "src_aa_i105_fcc_part32",
+            "src_aa_i105_fasb_2016_10",
+            "src_aa_i105_uscode_copyright"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_aa_i105_fcc_part32",
+              "url": "https://www.ecfr.gov/current/title-47/chapter-I/subchapter-B/part-32",
+              "locator": "§§32.11 and 32.14 role and regulated-account boundary",
+              "effective_period": "Current eCFR edition reviewed September 19, 2026.",
+              "access_limits": "Specified carrier boundary only."
+            }
+          ],
+          "inputs": [
+            "Question text and selected role",
+            "Source record IDs and URLs",
+            "Effective period and rights metadata",
+            "Search and get query logs",
+            "Human review disposition"
+          ],
+          "workflow": [
+            "Search with role and transaction terms",
+            "Inspect top bounded results",
+            "Get linked record and source locators",
+            "Record counterexample or unresolved gap",
+            "Do not post or file from retrieval alone"
+          ],
+          "controls": [
+            "Result limit <=20",
+            "Stable ID and source URL checks",
+            "Rights and review metadata visible",
+            "Out-of-scope query logging and human escalation"
+          ],
+          "exceptions": [
+            "A search hit is not evidence of applicability",
+            "A legacy source may be superseded or incomplete",
+            "Current consolidated GAAP access limits can leave the answer partial"
+          ],
+          "remaining_gaps": [
+            "No production retrieval benchmark or user study was run."
+          ],
+          "professional_review": "not-performed",
+          "empirical_support": "not-established",
+          "dimensions": {
+            "scope": "present",
+            "accounting-question": "partial",
+            "evidence-inputs": "present",
+            "workflow": "present",
+            "controls": "present",
+            "worked-material": "present",
+            "empirical-support": "not-assessed"
+          },
+          "dimension_basis": "Live selected-source locators, original synthetic scenarios and proposed workflow/control fields provide bounded support. Partial does not establish accounting correctness or sector completeness."
+        }
+      ],
+      "search_get_fixtures": {
+        "search": [
+          {
+            "query": "US information provider subscription usage revenue bundle content hosting",
+            "limit": 10,
+            "expected_record_ids": [
+              "guide-information-us-provider-customer",
+              "guide-software-subscriptions"
+            ]
+          },
+          {
+            "query": "telecom Part 32 regulated nonregulated accounts",
+            "limit": 5,
+            "expected_record_ids": [
+              "src_aa_i105_fcc_part32"
+            ]
+          }
+        ],
+        "get": [
+          {
+            "id": "guide-information-us-provider-customer",
+            "limit": 1,
+            "expected_source_ids": [
+              "src_aa_i105_fasb_2016_10",
+              "src_aa_i105_fcc_part32",
+              "src_aa_i105_uscode_copyright"
+            ]
+          },
+          {
+            "id": "example-information-bundle-close",
+            "limit": 1,
+            "expected_record_ids": [
+              "example-information-bundle-close"
+            ]
+          }
+        ]
+      }
     }
   }
 ]
