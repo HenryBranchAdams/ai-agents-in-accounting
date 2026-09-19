@@ -1,7 +1,7 @@
 import topologyData from "../data/coverage/topology.json";
 import mappingData from "../data/coverage/record-mappings.json";
 import assessmentData from "../data/coverage/assessments.json";
-import historyData from "../data/coverage/snapshots.json";
+import historyData from "../data/coverage/snapshots.generated";
 import metricData from "../data/coverage/metrics.json";
 import type { CorpusRecord } from "./corpus";
 import { researchCell, researchSummary, researchView } from './research';

@@ -1,3 +1,4 @@
+import { readSnapshotHistory } from "../scripts/snapshot-history.mjs";
 import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
@@ -164,7 +165,7 @@ test("expanded screening CSV preserves every subsector/question pair, zero and b
 });
 
 test("the latest measured snapshot pins current inputs and existing snapshot IDs cannot be rewritten", () => {
-  const history=read("data/coverage/snapshots.json").snapshots, latest=history.at(-1);
+  const history=readSnapshotHistory().snapshots, latest=history.at(-1);
   assert.ok(latest);assert.deepEqual(latest.inputs_sha256,coverageInputs());
   assert.deepEqual(latest.summary,coverage.summary);
   assert.deepEqual(latest.industries,coverage.analytics().industries);
