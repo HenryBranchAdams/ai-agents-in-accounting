@@ -23,6 +23,11 @@ function harness() {
     fs.mkdirSync(path.dirname(path.join(root, file)), { recursive: true });
     fs.copyFileSync(file, path.join(root, file));
   }
+  // This bounded historical applicator intentionally refuses later editions.
+  // Exercise its accepted integration input while retaining all current records.
+  const catalog = read(path.join(root, files[0]));
+  catalog.corpus_version = '2026-09-19.12401';
+  write(root, files[0], catalog);
   return root;
 }
 

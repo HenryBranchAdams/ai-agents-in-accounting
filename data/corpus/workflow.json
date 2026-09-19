@@ -25918,5 +25918,128 @@
         "No physical count, warehouse evidence or professional review was performed."
       ]
     }
+  },
+  {
+    "id": "wf-i97-crop-service-close",
+    "kind": "workflow",
+    "title": "US crop and harvesting service close workflow",
+    "summary": "Connect role, source populations, cost eligibility, harvest custody, service performance, sale cutoff and settlement.",
+    "topics": [
+      "Agriculture research",
+      "Accounting and reporting"
+    ],
+    "industries": [],
+    "jurisdiction": "United States; nongovernmental US GAAP illustration",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_fasb_asu2015_11_inventory",
+      "src_construction_fasb_2014_09",
+      "src_i97_rma_26br"
+    ],
+    "related_ids": [
+      "guide-i97-crop-producer",
+      "guide-i97-harvesting-contractor",
+      "guide-i97-resource-dispositions",
+      "example-i97-crop-support-close",
+      "ctrl-i97-quantity-ownership",
+      "wf-us-inventory-rollforward"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-19",
+    "provenance": {
+      "added_on": "2026-09-19",
+      "reviewer": "Codex AI-assisted editorial research",
+      "note": "Original issue 97 synthesis and synthetic arithmetic; no professional review or operational evidence.",
+      "research_file": "data/research/agriculture-i97.json"
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not stored; original publisher rights remain separate and unknown.",
+      "full_text_stored": false
+    },
+    "data": {
+      "version": "2026-09-18.97",
+      "scope": {
+        "roles": [
+          "US nongovernmental crop producer owning one harvested lot",
+          "Independent harvesting contractor providing a completed acreage service without crop ownership"
+        ],
+        "framework": "Accrual-basis US GAAP; cost-route agricultural inventory assumption; federal insurance/program and tax contexts kept separate.",
+        "period": "Synthetic close 2026-12-31, subsequent events January 2027; evidence reviewed 2026-09-18/19, so future transactions are fictional, not observed.",
+        "population": "One 200-acre producer lot yielding 10,000 standardized bushels, $50,000 eligible assumed production costs, and a separate 200-acre custom-harvest contract. Original named-question population is enumerated in this package.",
+        "exclusions": [
+          "No species-wide manual, international expansion or state survey.",
+          "No operational evidence, professional review or authorization to post."
+        ]
+      },
+      "inputs": [
+        "field log",
+        "scale ticket",
+        "moisture conversion",
+        "custody acknowledgement",
+        "service contract",
+        "machine log",
+        "customer acceptance",
+        "invoice",
+        "sale contract",
+        "delivery ticket",
+        "acceptance",
+        "invoice",
+        "bank receipt",
+        "invoice match",
+        "bank payment",
+        "matched harvest invoice"
+      ],
+      "steps": [
+        {
+          "id": "scope",
+          "action": "Confirm crop owner versus service provider, contract, accounting route and applicable period."
+        },
+        {
+          "id": "cost",
+          "action": "Approve source-based production-cost eligibility and contractor job costs. Cross-match HARVEST-200 without duplicating it."
+        },
+        {
+          "id": "units",
+          "action": "Reconcile gross weights, standardization, harvest, sales, spoilage and ending counts. Preserve original units and conversion evidence."
+        },
+        {
+          "id": "cutoff",
+          "action": "Review completed acreage and crop control-transfer evidence; keep January shipments separate."
+        },
+        {
+          "id": "settlement",
+          "action": "Tie each entity's proposed journals, AR/AP and cash. Match the shared invoice and bank reference."
+        },
+        {
+          "id": "exceptions",
+          "action": "Keep claim and award approval, species, resource-right and current-authority gaps in the exception register."
+        }
+      ],
+      "controls": [
+        "ctrl-i97-quantity-ownership",
+        "ctrl-us-inventory-rollforward"
+      ],
+      "outputs": [
+        "Source-to-journal trace",
+        "Physical/cost rollforwards",
+        "Separate service and crop margins",
+        "AR/AP and bank reconciliation",
+        "Unresolved-policy register"
+      ],
+      "human_judgments": [
+        "Cost eligibility and measurement route",
+        "Contract performance and control",
+        "Species/resource rights and insurance/award book policy"
+      ],
+      "limitations": [
+        "Only the identified passages were reviewed. Current consolidated GAAP and fact-specific applicability require further review.",
+        "No professional sign-off, operational transaction population or measured agent performance is established.",
+        "External reuse rights remain unknown; publisher text is not stored."
+      ]
+    }
   }
 ]

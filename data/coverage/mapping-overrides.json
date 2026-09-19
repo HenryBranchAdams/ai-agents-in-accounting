@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "mapping_version": "2026-09-19.12401",
+  "mapping_version": "2026-09-19.12402",
   "updated_at": "2026-09-19",
   "records": {
     "wf-construction-contract-intake": {
@@ -17722,7 +17722,10 @@
         "q-receivables-credit",
         "q-cash-settlement",
         "q-provisions",
-        "q-policy-changes-errors"
+        "q-policy-changes-errors",
+        "q-inventory",
+        "q-natural-resources",
+        "q-capital-assets"
       ],
       "industry_codes": [],
       "industry_scope": "shared-context",
@@ -17738,10 +17741,13 @@
         "q-receivables-credit",
         "q-cash-settlement",
         "q-provisions",
-        "q-policy-changes-errors"
+        "q-policy-changes-errors",
+        "q-inventory",
+        "q-natural-resources",
+        "q-capital-assets"
       ],
       "reviewed_industry_codes": [],
-      "reviewed_at": "2026-09-11",
+      "reviewed_at": "2026-09-19",
       "review_note": "Question-level citation association reviewed; no industry descendant or sufficiency credit."
     },
     "src_construction_texas_sales_tax": {
@@ -17981,20 +17987,28 @@
       "review_note": "Association reviewed for the named US operating-transaction questions; it does not establish accounting adequacy, industry coverage or professional verification."
     },
     "src_fasb_asu2015_11_inventory": {
-      "replace_question_ids": true,
+      "replace_question_ids": false,
       "question_ids": [
-        "q-inventory"
+        "q-inventory",
+        "q-natural-resources",
+        "q-revenue",
+        "q-data-lineage",
+        "q-capital-assets"
       ],
       "industry_codes": [],
       "industry_scope": "shared-context",
       "basis_field": "/data",
-      "reason": "Explicit US operating-transaction evidence association; shared context only, not industry-specific sufficiency.",
+      "reason": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
       "reviewed_question_ids": [
-        "q-inventory"
+        "q-inventory",
+        "q-natural-resources",
+        "q-revenue",
+        "q-data-lineage",
+        "q-capital-assets"
       ],
       "reviewed_industry_codes": [],
-      "reviewed_at": "2026-09-17",
-      "review_note": "Association reviewed for the named US operating-transaction questions; it does not establish accounting adequacy, industry coverage or professional verification."
+      "reviewed_at": "2026-09-19",
+      "review_note": "Question-level citation association reviewed; no industry descendant or sufficiency credit."
     },
     "src_fasb_asu2016_13_credit_losses": {
       "replace_question_ids": true,
@@ -18899,6 +18913,330 @@
       "reason": "Explicit source/role-scoped extractive research association; historical and current-applicability limits retained.",
       "reviewed_at": "2026-09-18",
       "review_note": "Content association only, not sufficient industry coverage or current accounting verification."
+    },
+    "example-i97-crop-support-close": {
+      "replace_question_ids": true,
+      "question_ids": [
+        "q-inventory",
+        "q-revenue",
+        "q-natural-resources",
+        "q-data-lineage"
+      ],
+      "industry_codes": [
+        "111",
+        "115"
+      ],
+      "industry_scope": "specific",
+      "basis_field": "/data/scope",
+      "reason": "Selected producer and service-provider illustration only; other resource branches are counterexamples.",
+      "reviewed_question_ids": [
+        "q-inventory",
+        "q-revenue",
+        "q-natural-resources",
+        "q-data-lineage"
+      ],
+      "reviewed_industry_codes": [
+        "111",
+        "115"
+      ],
+      "reviewed_at": "2026-09-19",
+      "review_note": "Scoped discovery association; no descendant or whole-industry sufficiency."
+    },
+    "wf-i97-crop-service-close": {
+      "replace_question_ids": true,
+      "question_ids": [
+        "q-inventory",
+        "q-revenue",
+        "q-natural-resources",
+        "q-data-lineage"
+      ],
+      "industry_codes": [
+        "111",
+        "115"
+      ],
+      "industry_scope": "specific",
+      "basis_field": "/data/scope",
+      "reason": "Selected producer and service-provider illustration only; other resource branches are counterexamples.",
+      "reviewed_question_ids": [
+        "q-inventory",
+        "q-revenue",
+        "q-natural-resources",
+        "q-data-lineage"
+      ],
+      "reviewed_industry_codes": [
+        "111",
+        "115"
+      ],
+      "reviewed_at": "2026-09-19",
+      "review_note": "Scoped discovery association; no descendant or whole-industry sufficiency."
+    },
+    "ctrl-i97-quantity-ownership": {
+      "replace_question_ids": true,
+      "question_ids": [
+        "q-inventory",
+        "q-revenue",
+        "q-natural-resources",
+        "q-data-lineage"
+      ],
+      "industry_codes": [
+        "111",
+        "115"
+      ],
+      "industry_scope": "specific",
+      "basis_field": "/data/scope",
+      "reason": "Selected producer and service-provider illustration only; other resource branches are counterexamples.",
+      "reviewed_question_ids": [
+        "q-inventory",
+        "q-revenue",
+        "q-natural-resources",
+        "q-data-lineage"
+      ],
+      "reviewed_industry_codes": [
+        "111",
+        "115"
+      ],
+      "reviewed_at": "2026-09-19",
+      "review_note": "Scoped discovery association; no descendant or whole-industry sufficiency."
+    },
+    "guide-i97-crop-producer": {
+      "replace_question_ids": true,
+      "question_ids": [
+        "q-inventory",
+        "q-natural-resources",
+        "q-revenue",
+        "q-data-lineage",
+        "q-insurance-policyholder",
+        "q-grants-contributions",
+        "q-tax-methods"
+      ],
+      "industry_codes": [
+        "111"
+      ],
+      "industry_scope": "specific",
+      "basis_field": "/data/research_questions",
+      "reason": "The explicitly scoped research questions and original synthesis support discovery associations only. Detailed-industry adequacy is separately assessed.",
+      "reviewed_question_ids": [
+        "q-inventory",
+        "q-natural-resources",
+        "q-revenue",
+        "q-data-lineage",
+        "q-insurance-policyholder",
+        "q-grants-contributions",
+        "q-tax-methods"
+      ],
+      "reviewed_industry_codes": [
+        "111"
+      ],
+      "reviewed_at": "2026-09-19",
+      "review_note": "Reviewed discovery relationship to the named questions and explicitly declared industry scope; does not confer accounting adequacy or professional verification."
+    },
+    "guide-i97-harvesting-contractor": {
+      "replace_question_ids": true,
+      "question_ids": [
+        "q-revenue",
+        "q-project-wip",
+        "q-payroll",
+        "q-data-lineage"
+      ],
+      "industry_codes": [
+        "115"
+      ],
+      "industry_scope": "specific",
+      "basis_field": "/data/research_questions",
+      "reason": "The explicitly scoped research questions and original synthesis support discovery associations only. Detailed-industry adequacy is separately assessed.",
+      "reviewed_question_ids": [
+        "q-revenue",
+        "q-project-wip",
+        "q-payroll",
+        "q-data-lineage"
+      ],
+      "reviewed_industry_codes": [
+        "115"
+      ],
+      "reviewed_at": "2026-09-19",
+      "review_note": "Reviewed discovery relationship to the named questions and explicitly declared industry scope; does not confer accounting adequacy or professional verification."
+    },
+    "guide-i97-resource-dispositions": {
+      "replace_question_ids": true,
+      "question_ids": [
+        "q-natural-resources",
+        "q-capital-assets",
+        "q-inventory",
+        "q-revenue"
+      ],
+      "industry_codes": [
+        "112",
+        "113",
+        "114"
+      ],
+      "industry_scope": "specific",
+      "basis_field": "/data/research_questions",
+      "reason": "The explicitly scoped research questions and original synthesis support discovery associations only. Detailed-industry adequacy is separately assessed.",
+      "reviewed_question_ids": [
+        "q-natural-resources",
+        "q-capital-assets",
+        "q-inventory",
+        "q-revenue"
+      ],
+      "reviewed_industry_codes": [
+        "112",
+        "113",
+        "114"
+      ],
+      "reviewed_at": "2026-09-19",
+      "review_note": "Reviewed discovery relationship to the named questions and explicitly declared industry scope; does not confer accounting adequacy or professional verification."
+    },
+    "src_i97_rma_26br": {
+      "replace_question_ids": false,
+      "question_ids": [
+        "q-inventory",
+        "q-revenue",
+        "q-data-lineage",
+        "q-insurance-policyholder",
+        "q-grants-contributions",
+        "q-tax-methods"
+      ],
+      "industry_codes": [],
+      "industry_scope": "shared-context",
+      "basis_field": "/data",
+      "reason": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
+      "reviewed_question_ids": [
+        "q-inventory",
+        "q-revenue",
+        "q-data-lineage",
+        "q-insurance-policyholder",
+        "q-grants-contributions",
+        "q-tax-methods"
+      ],
+      "reviewed_industry_codes": [],
+      "reviewed_at": "2026-09-19",
+      "review_note": "Question-level citation association reviewed; no industry descendant or sufficiency credit."
+    },
+    "src_i97_irs_p225_2025": {
+      "replace_question_ids": false,
+      "question_ids": [
+        "q-insurance-policyholder",
+        "q-grants-contributions",
+        "q-tax-methods"
+      ],
+      "industry_codes": [],
+      "industry_scope": "shared-context",
+      "basis_field": "/data",
+      "reason": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
+      "reviewed_question_ids": [
+        "q-insurance-policyholder",
+        "q-grants-contributions",
+        "q-tax-methods"
+      ],
+      "reviewed_industry_codes": [],
+      "reviewed_at": "2026-09-19",
+      "review_note": "Question-level citation association reviewed; no industry descendant or sufficiency credit."
+    },
+    "src_i97_fsa_arc_plc": {
+      "replace_question_ids": false,
+      "question_ids": [
+        "q-insurance-policyholder",
+        "q-grants-contributions",
+        "q-tax-methods"
+      ],
+      "industry_codes": [],
+      "industry_scope": "shared-context",
+      "basis_field": "/data",
+      "reason": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
+      "reviewed_question_ids": [
+        "q-insurance-policyholder",
+        "q-grants-contributions",
+        "q-tax-methods"
+      ],
+      "reviewed_industry_codes": [],
+      "reviewed_at": "2026-09-19",
+      "review_note": "Question-level citation association reviewed; no industry descendant or sufficiency credit."
+    },
+    "src_i97_noaa_landings": {
+      "replace_question_ids": false,
+      "question_ids": [
+        "q-natural-resources",
+        "q-inventory",
+        "q-revenue"
+      ],
+      "industry_codes": [],
+      "industry_scope": "shared-context",
+      "basis_field": "/data",
+      "reason": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
+      "reviewed_question_ids": [
+        "q-natural-resources",
+        "q-inventory",
+        "q-revenue"
+      ],
+      "reviewed_industry_codes": [],
+      "reviewed_at": "2026-09-19",
+      "review_note": "Question-level citation association reviewed; no industry descendant or sufficiency credit."
+    },
+    "src_i97_noaa_catch_shares": {
+      "replace_question_ids": false,
+      "question_ids": [
+        "q-natural-resources",
+        "q-inventory",
+        "q-revenue"
+      ],
+      "industry_codes": [],
+      "industry_scope": "shared-context",
+      "basis_field": "/data",
+      "reason": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
+      "reviewed_question_ids": [
+        "q-natural-resources",
+        "q-inventory",
+        "q-revenue"
+      ],
+      "reviewed_industry_codes": [],
+      "reviewed_at": "2026-09-19",
+      "review_note": "Question-level citation association reviewed; no industry descendant or sufficiency credit."
+    },
+    "src_i97_usfs_timber_contract": {
+      "replace_question_ids": false,
+      "question_ids": [
+        "q-natural-resources",
+        "q-capital-assets",
+        "q-revenue"
+      ],
+      "industry_codes": [],
+      "industry_scope": "shared-context",
+      "basis_field": "/data",
+      "reason": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
+      "reviewed_question_ids": [
+        "q-natural-resources",
+        "q-capital-assets",
+        "q-revenue"
+      ],
+      "reviewed_industry_codes": [],
+      "reviewed_at": "2026-09-19",
+      "review_note": "Question-level citation association reviewed; no industry descendant or sufficiency credit."
+    },
+    "src_i97_usda_arms": {
+      "replace_question_ids": false,
+      "question_ids": [
+        "q-inventory",
+        "q-natural-resources",
+        "q-project-wip",
+        "q-payroll",
+        "q-data-lineage",
+        "q-capital-assets"
+      ],
+      "industry_codes": [],
+      "industry_scope": "shared-context",
+      "basis_field": "/data",
+      "reason": "Exact named research questions cite this source within their separate scope limits; discovery relationship only.",
+      "reviewed_question_ids": [
+        "q-inventory",
+        "q-natural-resources",
+        "q-project-wip",
+        "q-payroll",
+        "q-data-lineage",
+        "q-capital-assets"
+      ],
+      "reviewed_industry_codes": [],
+      "reviewed_at": "2026-09-19",
+      "review_note": "Question-level citation association reviewed; no industry descendant or sufficiency credit."
     }
   }
 }
