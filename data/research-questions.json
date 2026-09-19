@@ -993,7 +993,7 @@
   {
     "id": "rq-aa-i122-tax-family-boundary",
     "user_question": "What facts keep federal income tax separate from sales/use and payroll tax?",
-    "search_query": "Publication 15 payroll",
+    "search_query": "Publication 15 payroll tax",
     "kind": "context",
     "filters": {},
     "expected_ids": [
@@ -1008,6 +1008,106 @@
     "claims_assert_only_supported": [
       "A federal income-tax source does not answer a sales/use or payroll question.",
       "The selected Texas and payroll records are bounded examples, not national coverage."
+    ]
+  },
+  {
+    "id": "rq-us-assets-software-implementation",
+    "user_question": "Where is a US SaaS customer implementation example that separates qualifying implementation, hosting and training costs?",
+    "search_query": "customer hosted software implementation",
+    "kind": "context",
+    "filters": {},
+    "expected_ids": [
+      "guide-software-subscriptions",
+      "guide-q-intangibles-software",
+      "example-us-assets-workforce-ledger"
+    ],
+    "excluded_ids": [
+      "guide-q-leases"
+    ],
+    "expected_scope": "US private nongovernmental customer hosted-software implementation; qualifying application-development costs, hosting, training and data conversion; provider and future-effective boundaries.",
+    "required_citations": 3,
+    "claims_assert_only_supported": [
+      "The worked implementation amounts are synthetic.",
+      "Provider accounting and ASU 2025-06 adoption remain separate boundaries."
+    ]
+  },
+  {
+    "id": "rq-us-assets-lease-modification",
+    "user_question": "How should a US lessee evidence a lease modification and remeasure its remaining payment stream?",
+    "search_query": "lease modification lessee",
+    "kind": "context",
+    "filters": {},
+    "expected_ids": [
+      "guide-q-leases",
+      "example-us-assets-workforce-ledger"
+    ],
+    "excluded_ids": [
+      "guide-q-capital-assets"
+    ],
+    "expected_scope": "US private nongovernmental lessee; identified asset, commencement schedule, period-13 payment modification, cents remeasurement and lessor counterexample.",
+    "required_citations": 2,
+    "claims_assert_only_supported": [
+      "The lease schedule is synthetic and requires human review.",
+      "A lessor result is not inferred from the lessee ROU schedule."
+    ]
+  },
+  {
+    "id": "rq-us-assets-placed-in-service",
+    "user_question": "How should a US close tie equipment CIP to placed-in-service depreciation?",
+    "search_query": "asset placed in service",
+    "kind": "context",
+    "filters": {},
+    "expected_ids": [
+      "guide-q-capital-assets",
+      "example-us-assets-workforce-ledger"
+    ],
+    "excluded_ids": [
+      "guide-q-leases"
+    ],
+    "expected_scope": "US private nongovernmental equipment and CIP lifecycle; invoice, installation, placed-in-service transfer, cents depreciation and tax-book separation.",
+    "required_citations": 2,
+    "claims_assert_only_supported": [
+      "Tax depreciation is a separate scope counterexample.",
+      "The arithmetic is synthetic, not a professional depreciation conclusion."
+    ]
+  },
+  {
+    "id": "rq-us-assets-payroll-fica",
+    "user_question": "Where can a US employer reconcile approved time, overtime, employer FICA and federal payroll evidence?",
+    "search_query": "US payroll employer benefits contribution FICA",
+    "kind": "context",
+    "filters": {},
+    "expected_ids": [
+      "guide-q-payroll",
+      "guide-q-benefits",
+      "example-us-assets-workforce-ledger"
+    ],
+    "excluded_ids": [
+      "src_hmrc_fps_payroll"
+    ],
+    "expected_scope": "US federal employer payroll; approved 46-hour workweek, regular and overtime wages, 2026 FICA rates, Form 941 evidence, benefits and read-only controls.",
+    "required_citations": 3,
+    "claims_assert_only_supported": [
+      "The federal income-tax withholding amount is a synthetic assumption.",
+      "No filing or payment is executed."
+    ]
+  },
+  {
+    "id": "rq-us-assets-tax-book",
+    "user_question": "How should an agent keep tax depreciation separate from US GAAP book depreciation?",
+    "search_query": "tax depreciation book depreciation",
+    "kind": "guide",
+    "filters": {},
+    "expected_ids": [
+      "guide-q-capital-assets"
+    ],
+    "excluded_ids": [
+      "src_construction_irs_tangible_property"
+    ],
+    "expected_scope": "US book-accounting capital-asset workflow with a tax-only counterexample; no tax filing conclusion and no universal ASC 360 conclusion.",
+    "required_citations": 1,
+    "claims_assert_only_supported": [
+      "The tax source is excluded from the guide-only retrieval and retained as a scope counterexample in the synthetic packet."
     ]
   }
 ]

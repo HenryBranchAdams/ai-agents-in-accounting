@@ -9551,5 +9551,1048 @@
         }
       ]
     }
+  },
+  {
+    "id": "example-us-assets-workforce-ledger",
+    "kind": "example",
+    "title": "US assets and workforce: synthetic ledger packet",
+    "summary": "Original synthetic cents-based ledger packet connecting capital and CIP, lease commencement and modification, hosted-software implementation, payroll, federal payroll evidence and defined-contribution benefits. It is read-only and requires human review.",
+    "topics": [
+      "Accounting and reporting",
+      "Capital assets",
+      "Leases",
+      "Payroll",
+      "Employee benefits",
+      "Synthetic examples"
+    ],
+    "industries": [],
+    "jurisdiction": "United States; nongovernmental US GAAP and federal payroll evidence illustration",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_1os761s",
+      "src_fasb_asu201602_leases",
+      "src_asu201815",
+      "src_roadmap_asu202506",
+      "src_irs_pub15_2026",
+      "src_irs_pub15t_2026",
+      "src_irs_form941_2026",
+      "src_dol_factsheet21_recordkeeping",
+      "src_dol_factsheet23_overtime",
+      "src_fasb_asu201707_employee_benefits",
+      "src_irs_pub15b_2026",
+      "src_dol_ebsa_reporting_disclosure_guide",
+      "src_construction_irs_tangible_property",
+      "src_i120_fas34_asset_cost",
+      "src_i120_fas144_impairment",
+      "src_i120_fas87_dc_contributions",
+      "src_i120_asu202005_lease_dates"
+    ],
+    "related_ids": [
+      "guide-q-capital-assets",
+      "guide-q-leases",
+      "guide-q-intangibles-software",
+      "guide-q-payroll",
+      "guide-q-benefits",
+      "guide-software-subscriptions"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-19",
+    "provenance": {
+      "added_on": "2026-09-18",
+      "reviewer": "Codex AI-assisted original-source and synthetic-fixture review",
+      "scope": "Original synthetic US GAAP and federal payroll evidence packet for one private nongovernmental employer, lessee and SaaS customer; exact arithmetic and source boundaries reviewed; professional review not performed.",
+      "evidence_record_ids": [
+        "src_1os761s",
+        "src_fasb_asu201602_leases",
+        "src_asu201815",
+        "src_irs_form941_2026",
+        "src_dol_factsheet21_recordkeeping"
+      ],
+      "issue_id": "AA-I120",
+      "package_version": "2026-09-18.122",
+      "note": "Original synthetic material; no customer, vendor, employee, bank, plan or publisher scenario is reproduced.",
+      "original_reviewed_at": "2026-09-18",
+      "integration_amendment": "Added explicitly historical capital impairment and contribution source paths, retained original synthetic schedules, and preserved the original draft/release. Reviewed2026-09-19; no professional or operational validation."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": "Original factual metadata and synthesis only; publisher content is not stored."
+    },
+    "data": {
+      "version": "1.0.0",
+      "origin": "Original synthetic project-authored example.",
+      "example_type": "original-synthetic",
+      "authority_level": "A2",
+      "accountable_owner": "Controller or accounting manager; human review required",
+      "entity_role": "Private nongovernmental US operating entity that is an equipment owner, equipment lessee, hosted-software customer and employer; accrual-basis external ledger.",
+      "framework": "US GAAP",
+      "frameworks": [
+        "US GAAP",
+        "US federal employment tax",
+        "US federal wage and hour evidence"
+      ],
+      "period": "Synthetic calendar-year2026 base ledger, with a separately identified2027-01-01 lease modification and remaining2027 payment schedule.",
+      "scope": "Five connected but separately controlled branches: $120,000 equipment and CIP, 24-month lessee arrangement, $30,000 hosted-software implementation, one 46-hour workweek and a $100 defined-contribution employer contribution. No posting, filing, payment, participant communication or external action is executed.",
+      "assumptions": [
+        "All amounts, dates, IDs, rates other than explicitly cited 2026 FICA rates, journal values and outcomes are synthetic and stated before arithmetic.",
+        "The entity is a private nongovernmental US GAAP reporter, the employee is assumed covered and nonexempt for the overtime branch, and state/local rules are excluded.",
+        "The FASB Codification landing is a routing boundary; issued updates are not current consolidated text and all publisher rights remain unresolved.",
+        "The $180 federal income-tax withholding amount is an explicit assumption and is not a Form W-4 or Publication 15-T calculation.",
+        "The period13 amendment is a2027 subsequent lifecycle illustration, separate from the2026 closing ledger. Benefit contribution and employee deduction formulas are explicit fictional plan inputs."
+      ],
+      "capital_asset_cip": {
+        "commitment": {
+          "id": "PO-ASSET-01",
+          "amount_cents": 12000000,
+          "status": "approved commitment; no posting"
+        },
+        "invoice": {
+          "id": "INV-ASSET-01",
+          "equipment_cents": 10000000,
+          "installation_cents": 2000000,
+          "total_cents": 12000000,
+          "debit_before_placed_in_service": "CIP"
+        },
+        "placed_in_service": {
+          "date": "2026-04-01",
+          "transfer": "CIP to equipment fixed asset",
+          "cost_cents": 12000000
+        },
+        "depreciation": {
+          "salvage_cents": 1000000,
+          "months": 60,
+          "depreciable_basis_cents": 11000000,
+          "first_59_months_cents": 183333,
+          "final_month_cents": 183353,
+          "total_cents": 11000000,
+          "rounding_rule": "Round monthly cents and true up the final month; no plug to an unreviewed total."
+        },
+        "proposed_entries": [
+          {
+            "event": "invoice",
+            "debit": "CIP",
+            "credit": "AP",
+            "amount_cents": 12000000
+          },
+          {
+            "event": "placed-in-service",
+            "debit": "equipment",
+            "credit": "CIP",
+            "amount_cents": 12000000
+          },
+          {
+            "event": "monthly-depreciation",
+            "debit": "depreciation_expense",
+            "credit": "accumulated_depreciation",
+            "amount_cents": 183333,
+            "final_month_true_up_cents": 183353
+          }
+        ],
+        "controls": [
+          "PO-to-invoice-to-receiving match",
+          "commissioning and placed-in-service approval",
+          "fixed-asset-to-GL tie",
+          "independent cents recalculation",
+          "separate tax-book schedule"
+        ],
+        "tax_counterexample": {
+          "source_id": "src_construction_irs_tangible_property",
+          "outcome": "scope-counterexample",
+          "reason": "Tax depreciation guidance is not book depreciation authority; do not use it as a plug or as proof of ASC 360 treatment."
+        }
+      },
+      "lease_commencement": {
+        "role": "lessee",
+        "identified_asset": "Equipment unit LEASE-ASSET-01",
+        "term_months": 24,
+        "payments_in_arrears_cents": 500000,
+        "annual_discount_rate": 0.06,
+        "monthly_rate": 0.005,
+        "prepayments_cents": 0,
+        "incentives_cents": 0,
+        "initial_direct_costs_cents": 0,
+        "opening_liability_cents": 11281433,
+        "opening_rou_asset_cents": 11281433,
+        "single_lease_cost_cents_per_month": 500000,
+        "schedule": [
+          {
+            "period": 1,
+            "opening_cents": 11281433,
+            "interest_cents": 56407,
+            "payment_cents": 500000,
+            "closing_cents": 10837840
+          },
+          {
+            "period": 2,
+            "opening_cents": 10837840,
+            "interest_cents": 54189,
+            "payment_cents": 500000,
+            "closing_cents": 10392029
+          },
+          {
+            "period": 3,
+            "opening_cents": 10392029,
+            "interest_cents": 51960,
+            "payment_cents": 500000,
+            "closing_cents": 9943989
+          },
+          {
+            "period": 4,
+            "opening_cents": 9943989,
+            "interest_cents": 49720,
+            "payment_cents": 500000,
+            "closing_cents": 9493709
+          },
+          {
+            "period": 5,
+            "opening_cents": 9493709,
+            "interest_cents": 47469,
+            "payment_cents": 500000,
+            "closing_cents": 9041178
+          },
+          {
+            "period": 6,
+            "opening_cents": 9041178,
+            "interest_cents": 45206,
+            "payment_cents": 500000,
+            "closing_cents": 8586384
+          },
+          {
+            "period": 7,
+            "opening_cents": 8586384,
+            "interest_cents": 42932,
+            "payment_cents": 500000,
+            "closing_cents": 8129316
+          },
+          {
+            "period": 8,
+            "opening_cents": 8129316,
+            "interest_cents": 40647,
+            "payment_cents": 500000,
+            "closing_cents": 7669963
+          },
+          {
+            "period": 9,
+            "opening_cents": 7669963,
+            "interest_cents": 38350,
+            "payment_cents": 500000,
+            "closing_cents": 7208313
+          },
+          {
+            "period": 10,
+            "opening_cents": 7208313,
+            "interest_cents": 36042,
+            "payment_cents": 500000,
+            "closing_cents": 6744355
+          },
+          {
+            "period": 11,
+            "opening_cents": 6744355,
+            "interest_cents": 33722,
+            "payment_cents": 500000,
+            "closing_cents": 6278077
+          },
+          {
+            "period": 12,
+            "opening_cents": 6278077,
+            "interest_cents": 31390,
+            "payment_cents": 500000,
+            "closing_cents": 5809467
+          },
+          {
+            "period": 13,
+            "opening_cents": 5809467,
+            "interest_cents": 29047,
+            "payment_cents": 500000,
+            "closing_cents": 5338514
+          },
+          {
+            "period": 14,
+            "opening_cents": 5338514,
+            "interest_cents": 26693,
+            "payment_cents": 500000,
+            "closing_cents": 4865207
+          },
+          {
+            "period": 15,
+            "opening_cents": 4865207,
+            "interest_cents": 24326,
+            "payment_cents": 500000,
+            "closing_cents": 4389533
+          },
+          {
+            "period": 16,
+            "opening_cents": 4389533,
+            "interest_cents": 21948,
+            "payment_cents": 500000,
+            "closing_cents": 3911481
+          },
+          {
+            "period": 17,
+            "opening_cents": 3911481,
+            "interest_cents": 19557,
+            "payment_cents": 500000,
+            "closing_cents": 3431038
+          },
+          {
+            "period": 18,
+            "opening_cents": 3431038,
+            "interest_cents": 17155,
+            "payment_cents": 500000,
+            "closing_cents": 2948193
+          },
+          {
+            "period": 19,
+            "opening_cents": 2948193,
+            "interest_cents": 14741,
+            "payment_cents": 500000,
+            "closing_cents": 2462934
+          },
+          {
+            "period": 20,
+            "opening_cents": 2462934,
+            "interest_cents": 12315,
+            "payment_cents": 500000,
+            "closing_cents": 1975249
+          },
+          {
+            "period": 21,
+            "opening_cents": 1975249,
+            "interest_cents": 9876,
+            "payment_cents": 500000,
+            "closing_cents": 1485125
+          },
+          {
+            "period": 22,
+            "opening_cents": 1485125,
+            "interest_cents": 7426,
+            "payment_cents": 500000,
+            "closing_cents": 992551
+          },
+          {
+            "period": 23,
+            "opening_cents": 992551,
+            "interest_cents": 4963,
+            "payment_cents": 500000,
+            "closing_cents": 497514
+          },
+          {
+            "period": 24,
+            "opening_cents": 497514,
+            "interest_cents": 2486,
+            "payment_cents": 500000,
+            "closing_cents": 0,
+            "rounding_adjustment_cents": -2
+          }
+        ],
+        "modification_at_period_13": {
+          "remaining_periods": 12,
+          "new_payment_cents": 520000,
+          "new_pv_cents": 6041845,
+          "old_period_12_closing_cents": 5809467,
+          "remeasurement_increase_cents": 232378,
+          "post_modification_schedule": [
+            {
+              "period": 13,
+              "opening_cents": 6041845,
+              "interest_cents": 30209,
+              "payment_cents": 520000,
+              "closing_cents": 5552054
+            },
+            {
+              "period": 14,
+              "opening_cents": 5552054,
+              "interest_cents": 27760,
+              "payment_cents": 520000,
+              "closing_cents": 5059814
+            },
+            {
+              "period": 15,
+              "opening_cents": 5059814,
+              "interest_cents": 25299,
+              "payment_cents": 520000,
+              "closing_cents": 4565113
+            },
+            {
+              "period": 16,
+              "opening_cents": 4565113,
+              "interest_cents": 22826,
+              "payment_cents": 520000,
+              "closing_cents": 4067939
+            },
+            {
+              "period": 17,
+              "opening_cents": 4067939,
+              "interest_cents": 20340,
+              "payment_cents": 520000,
+              "closing_cents": 3568279
+            },
+            {
+              "period": 18,
+              "opening_cents": 3568279,
+              "interest_cents": 17841,
+              "payment_cents": 520000,
+              "closing_cents": 3066120
+            },
+            {
+              "period": 19,
+              "opening_cents": 3066120,
+              "interest_cents": 15331,
+              "payment_cents": 520000,
+              "closing_cents": 2561451
+            },
+            {
+              "period": 20,
+              "opening_cents": 2561451,
+              "interest_cents": 12807,
+              "payment_cents": 520000,
+              "closing_cents": 2054258
+            },
+            {
+              "period": 21,
+              "opening_cents": 2054258,
+              "interest_cents": 10271,
+              "payment_cents": 520000,
+              "closing_cents": 1544529
+            },
+            {
+              "period": 22,
+              "opening_cents": 1544529,
+              "interest_cents": 7723,
+              "payment_cents": 520000,
+              "closing_cents": 1032252
+            },
+            {
+              "period": 23,
+              "opening_cents": 1032252,
+              "interest_cents": 5161,
+              "payment_cents": 520000,
+              "closing_cents": 517413
+            },
+            {
+              "period": 24,
+              "opening_cents": 517413,
+              "interest_cents": 2587,
+              "payment_cents": 520000,
+              "closing_cents": 0
+            }
+          ],
+          "modification_facts": {
+            "effective_date": "2027-01-01",
+            "original_commencement": "2026-01-01",
+            "trigger": "Both parties sign a payment-only amendment effective at the start of period13, after the twelfth scheduled payment.",
+            "same_identified_asset": true,
+            "additional_right_of_use": false,
+            "scope_reduction": false,
+            "term_change": false,
+            "remaining_term_months": 12,
+            "consideration_change": "Monthly fixed consideration changes from500000 to520000cents.",
+            "separate_contract": false,
+            "separate_contract_reason": "No additional right of use is granted, so the separate-contract conditions are not met; standalone pricing of an added right does not apply.",
+            "classification_after_review": "Operating classification assumed to remain unchanged after reassessment of the same asset, remaining term and contract facts.",
+            "discount_rate_at_modification_annual": 0.06,
+            "discount_rate_at_modification_monthly": 0.005,
+            "discount_rate_basis": "Explicit fictional modification-date rate input, separately re-established at that date; not automatically carried forward from commencement.",
+            "source_locator": "ASU2016-02,842-10-25-8 through25-12;842-20-25-6 and35-3"
+          },
+          "rou_bridge": {
+            "opening_rou_after_period12_cents": 5809467,
+            "liability_remeasurement_increase_cents": 232378,
+            "rou_adjustment_cents": 232378,
+            "remeasured_rou_cents": 6041845,
+            "no_termination_gain_or_loss_cents": 0
+          },
+          "remaining_lease_cost": {
+            "remaining_fixed_payments_cents": 6240000,
+            "remaining_periods": 12,
+            "single_lease_cost_cents_per_month": 520000,
+            "unamortized_incentives_or_prepayments_cents": 0,
+            "initial_direct_costs_cents": 0,
+            "impairment_cents": 0
+          },
+          "operating_rou_schedule": [
+            {
+              "period": 13,
+              "opening_rou_cents": 6041845,
+              "single_lease_cost_cents": 520000,
+              "liability_accretion_cents": 30209,
+              "rou_reduction_cents": 489791,
+              "closing_rou_cents": 5552054
+            },
+            {
+              "period": 14,
+              "opening_rou_cents": 5552054,
+              "single_lease_cost_cents": 520000,
+              "liability_accretion_cents": 27760,
+              "rou_reduction_cents": 492240,
+              "closing_rou_cents": 5059814
+            },
+            {
+              "period": 15,
+              "opening_rou_cents": 5059814,
+              "single_lease_cost_cents": 520000,
+              "liability_accretion_cents": 25299,
+              "rou_reduction_cents": 494701,
+              "closing_rou_cents": 4565113
+            },
+            {
+              "period": 16,
+              "opening_rou_cents": 4565113,
+              "single_lease_cost_cents": 520000,
+              "liability_accretion_cents": 22826,
+              "rou_reduction_cents": 497174,
+              "closing_rou_cents": 4067939
+            },
+            {
+              "period": 17,
+              "opening_rou_cents": 4067939,
+              "single_lease_cost_cents": 520000,
+              "liability_accretion_cents": 20340,
+              "rou_reduction_cents": 499660,
+              "closing_rou_cents": 3568279
+            },
+            {
+              "period": 18,
+              "opening_rou_cents": 3568279,
+              "single_lease_cost_cents": 520000,
+              "liability_accretion_cents": 17841,
+              "rou_reduction_cents": 502159,
+              "closing_rou_cents": 3066120
+            },
+            {
+              "period": 19,
+              "opening_rou_cents": 3066120,
+              "single_lease_cost_cents": 520000,
+              "liability_accretion_cents": 15331,
+              "rou_reduction_cents": 504669,
+              "closing_rou_cents": 2561451
+            },
+            {
+              "period": 20,
+              "opening_rou_cents": 2561451,
+              "single_lease_cost_cents": 520000,
+              "liability_accretion_cents": 12807,
+              "rou_reduction_cents": 507193,
+              "closing_rou_cents": 2054258
+            },
+            {
+              "period": 21,
+              "opening_rou_cents": 2054258,
+              "single_lease_cost_cents": 520000,
+              "liability_accretion_cents": 10271,
+              "rou_reduction_cents": 509729,
+              "closing_rou_cents": 1544529
+            },
+            {
+              "period": 22,
+              "opening_rou_cents": 1544529,
+              "single_lease_cost_cents": 520000,
+              "liability_accretion_cents": 7723,
+              "rou_reduction_cents": 512277,
+              "closing_rou_cents": 1032252
+            },
+            {
+              "period": 23,
+              "opening_rou_cents": 1032252,
+              "single_lease_cost_cents": 520000,
+              "liability_accretion_cents": 5161,
+              "rou_reduction_cents": 514839,
+              "closing_rou_cents": 517413
+            },
+            {
+              "period": 24,
+              "opening_rou_cents": 517413,
+              "single_lease_cost_cents": 520000,
+              "liability_accretion_cents": 2587,
+              "rou_reduction_cents": 517413,
+              "closing_rou_cents": 0
+            }
+          ],
+          "proposed_entry": {
+            "debit": "Operating lease ROU asset",
+            "credit": "Operating lease liability",
+            "amount_cents": 232378,
+            "status": "Synthetic proposal on current-authority and reviewer hold"
+          },
+          "negative_counterexample": {
+            "additional_asset": true,
+            "additional_right_of_use": true,
+            "price_at_standalone": true,
+            "result": "Evaluate separate-contract criteria instead of reusing this payment-only remeasurement."
+          }
+        },
+        "classification": {
+          "classification": "operating",
+          "synthetic_assumptions": [
+            "No transfer of ownership or purchase option.",
+            "The generic equipment is not specialized and has alternative use to the lessor.",
+            "An assumed 120-month remaining economic life and 20000000-cent fair value support the selected 24-month term and11281433-cent liability; major-part and substantially-all judgments remain subject to review.",
+            "No initial or later impairment; no residual-value guarantee, nonlease component, variable payment, extension or termination option."
+          ],
+          "source_locator": "ASU2016-02, 842-10-25-2 through25-3; current classification review remains open"
+        },
+        "rounding_policy": "Nearest-cent monthly interest; the final period adjusts interest by minus2cents to clear accumulated rounding while preserving every contractual500000-cent payment. The adjustment is a synthetic schedule convention for review.",
+        "operating_rou_schedule": [
+          {
+            "period": 1,
+            "opening_rou_cents": 11281433,
+            "single_lease_cost_cents": 500000,
+            "liability_accretion_cents": 56407,
+            "rou_reduction_cents": 443593,
+            "closing_rou_cents": 10837840
+          },
+          {
+            "period": 2,
+            "opening_rou_cents": 10837840,
+            "single_lease_cost_cents": 500000,
+            "liability_accretion_cents": 54189,
+            "rou_reduction_cents": 445811,
+            "closing_rou_cents": 10392029
+          },
+          {
+            "period": 3,
+            "opening_rou_cents": 10392029,
+            "single_lease_cost_cents": 500000,
+            "liability_accretion_cents": 51960,
+            "rou_reduction_cents": 448040,
+            "closing_rou_cents": 9943989
+          },
+          {
+            "period": 4,
+            "opening_rou_cents": 9943989,
+            "single_lease_cost_cents": 500000,
+            "liability_accretion_cents": 49720,
+            "rou_reduction_cents": 450280,
+            "closing_rou_cents": 9493709
+          },
+          {
+            "period": 5,
+            "opening_rou_cents": 9493709,
+            "single_lease_cost_cents": 500000,
+            "liability_accretion_cents": 47469,
+            "rou_reduction_cents": 452531,
+            "closing_rou_cents": 9041178
+          },
+          {
+            "period": 6,
+            "opening_rou_cents": 9041178,
+            "single_lease_cost_cents": 500000,
+            "liability_accretion_cents": 45206,
+            "rou_reduction_cents": 454794,
+            "closing_rou_cents": 8586384
+          },
+          {
+            "period": 7,
+            "opening_rou_cents": 8586384,
+            "single_lease_cost_cents": 500000,
+            "liability_accretion_cents": 42932,
+            "rou_reduction_cents": 457068,
+            "closing_rou_cents": 8129316
+          },
+          {
+            "period": 8,
+            "opening_rou_cents": 8129316,
+            "single_lease_cost_cents": 500000,
+            "liability_accretion_cents": 40647,
+            "rou_reduction_cents": 459353,
+            "closing_rou_cents": 7669963
+          },
+          {
+            "period": 9,
+            "opening_rou_cents": 7669963,
+            "single_lease_cost_cents": 500000,
+            "liability_accretion_cents": 38350,
+            "rou_reduction_cents": 461650,
+            "closing_rou_cents": 7208313
+          },
+          {
+            "period": 10,
+            "opening_rou_cents": 7208313,
+            "single_lease_cost_cents": 500000,
+            "liability_accretion_cents": 36042,
+            "rou_reduction_cents": 463958,
+            "closing_rou_cents": 6744355
+          },
+          {
+            "period": 11,
+            "opening_rou_cents": 6744355,
+            "single_lease_cost_cents": 500000,
+            "liability_accretion_cents": 33722,
+            "rou_reduction_cents": 466278,
+            "closing_rou_cents": 6278077
+          },
+          {
+            "period": 12,
+            "opening_rou_cents": 6278077,
+            "single_lease_cost_cents": 500000,
+            "liability_accretion_cents": 31390,
+            "rou_reduction_cents": 468610,
+            "closing_rou_cents": 5809467
+          },
+          {
+            "period": 13,
+            "opening_rou_cents": 5809467,
+            "single_lease_cost_cents": 500000,
+            "liability_accretion_cents": 29047,
+            "rou_reduction_cents": 470953,
+            "closing_rou_cents": 5338514
+          },
+          {
+            "period": 14,
+            "opening_rou_cents": 5338514,
+            "single_lease_cost_cents": 500000,
+            "liability_accretion_cents": 26693,
+            "rou_reduction_cents": 473307,
+            "closing_rou_cents": 4865207
+          },
+          {
+            "period": 15,
+            "opening_rou_cents": 4865207,
+            "single_lease_cost_cents": 500000,
+            "liability_accretion_cents": 24326,
+            "rou_reduction_cents": 475674,
+            "closing_rou_cents": 4389533
+          },
+          {
+            "period": 16,
+            "opening_rou_cents": 4389533,
+            "single_lease_cost_cents": 500000,
+            "liability_accretion_cents": 21948,
+            "rou_reduction_cents": 478052,
+            "closing_rou_cents": 3911481
+          },
+          {
+            "period": 17,
+            "opening_rou_cents": 3911481,
+            "single_lease_cost_cents": 500000,
+            "liability_accretion_cents": 19557,
+            "rou_reduction_cents": 480443,
+            "closing_rou_cents": 3431038
+          },
+          {
+            "period": 18,
+            "opening_rou_cents": 3431038,
+            "single_lease_cost_cents": 500000,
+            "liability_accretion_cents": 17155,
+            "rou_reduction_cents": 482845,
+            "closing_rou_cents": 2948193
+          },
+          {
+            "period": 19,
+            "opening_rou_cents": 2948193,
+            "single_lease_cost_cents": 500000,
+            "liability_accretion_cents": 14741,
+            "rou_reduction_cents": 485259,
+            "closing_rou_cents": 2462934
+          },
+          {
+            "period": 20,
+            "opening_rou_cents": 2462934,
+            "single_lease_cost_cents": 500000,
+            "liability_accretion_cents": 12315,
+            "rou_reduction_cents": 487685,
+            "closing_rou_cents": 1975249
+          },
+          {
+            "period": 21,
+            "opening_rou_cents": 1975249,
+            "single_lease_cost_cents": 500000,
+            "liability_accretion_cents": 9876,
+            "rou_reduction_cents": 490124,
+            "closing_rou_cents": 1485125
+          },
+          {
+            "period": 22,
+            "opening_rou_cents": 1485125,
+            "single_lease_cost_cents": 500000,
+            "liability_accretion_cents": 7426,
+            "rou_reduction_cents": 492574,
+            "closing_rou_cents": 992551
+          },
+          {
+            "period": 23,
+            "opening_rou_cents": 992551,
+            "single_lease_cost_cents": 500000,
+            "liability_accretion_cents": 4963,
+            "rou_reduction_cents": 495037,
+            "closing_rou_cents": 497514
+          },
+          {
+            "period": 24,
+            "opening_rou_cents": 497514,
+            "single_lease_cost_cents": 500000,
+            "liability_accretion_cents": 2486,
+            "rou_reduction_cents": 497514,
+            "closing_rou_cents": 0
+          }
+        ]
+      },
+      "software_customer_implementation": {
+        "hosting_fee_cents": 12000000,
+        "hosting_months": 12,
+        "implementation_invoice_cents": 3000000,
+        "application_development_qualifying_cents": 1800000,
+        "training_and_data_conversion_expense_cents": 1200000,
+        "term_months_including_reasonably_certain_renewal": 24,
+        "monthly_implementation_amortization_cents": 75000,
+        "asset_after_six_months_cents": 1350000,
+        "entries": [
+          {
+            "debit": "customer_implementation_asset",
+            "amount_cents": 1800000,
+            "debit_2": "implementation_expense",
+            "amount_2_cents": 1200000,
+            "credit": "AP",
+            "credit_cents": 3000000
+          },
+          {
+            "debit": "hosting_service_expense",
+            "amount_cents": 1000000,
+            "credit": "AP_or_cash",
+            "credit_cents": 1000000
+          },
+          {
+            "debit": "implementation_amortization_expense",
+            "amount_cents": 75000,
+            "credit": "accumulated_amortization",
+            "credit_cents": 75000
+          }
+        ],
+        "counterexamples": [
+          {
+            "role": "provider_or_external_use",
+            "outcome": "separate_analysis",
+            "reason": "Do not apply a customer hosted-service implementation schedule to provider revenue or external-use software."
+          },
+          {
+            "role": "ASU_2025_06",
+            "outcome": "future-effective-watch",
+            "reason": "Do not apply by default in the 2026 packet without an early-adoption election and current Codification review."
+          }
+        ]
+      },
+      "payroll_workweek": {
+        "worker_status_assumption": "covered nonexempt hourly employee; legal status not determined by this fixture",
+        "hours": 46,
+        "regular_hours": 40,
+        "overtime_hours": 6,
+        "hourly_rate_cents": 2400,
+        "overtime_rate_cents": 3600,
+        "gross_regular_cents": 96000,
+        "gross_overtime_cents": 21600,
+        "gross_wages_cents": 117600,
+        "employee_federal_income_tax_withholding_cents": 18000,
+        "employee_social_security_cents": 7291,
+        "employee_medicare_cents": 1705,
+        "employee_benefit_deduction_cents": 5000,
+        "net_pay_cents": 85604,
+        "employer_social_security_cents": 7291,
+        "employer_medicare_cents": 1705,
+        "employer_benefit_contribution_cents": 10000,
+        "employer_total_cost_cents": 136596,
+        "rates": {
+          "social_security_each": 0.062,
+          "social_security_wage_base_dollars": 184500,
+          "medicare_each": 0.0145,
+          "federal_income_tax": "synthetic explicit assumption from incomplete facts"
+        },
+        "proposed_entries": [
+          {
+            "debit": "wages_expense",
+            "amount_cents": 117600,
+            "credit": "employee_payroll_liabilities",
+            "amount_2_cents": 117600
+          },
+          {
+            "debit": "employer_payroll_and_benefit_expense",
+            "amount_cents": 18996,
+            "credit": "employer_payroll_liabilities",
+            "amount_2_cents": 18996
+          }
+        ],
+        "control_tie": "117600 - 18000 - 7291 - 1705 - 5000 = 85604 net pay; 117600 + 7291 + 1705 + 10000 = 136596 employer cost; no filing or payment is executed."
+      },
+      "benefits_defined_contribution": {
+        "plan_type": "defined contribution",
+        "eligible_wages_cents": 117600,
+        "employer_contribution_cents": 10000,
+        "employee_deduction_cents": 5000,
+        "entries": [
+          {
+            "debit": "benefits_expense",
+            "amount_cents": 10000,
+            "credit": "benefits_payable",
+            "amount_2_cents": 10000
+          },
+          {
+            "debit": "employee_payroll_liabilities",
+            "amount_cents": 5000,
+            "credit": "benefits_payable",
+            "amount_2_cents": 5000
+          }
+        ],
+        "evidence": [
+          "plan formula",
+          "eligible payroll",
+          "provider statement",
+          "remittance",
+          "GL tie"
+        ],
+        "counterexample": {
+          "plan_type": "defined benefit",
+          "outcome": "stop-and-review",
+          "required_inputs": [
+            "plan terms",
+            "census",
+            "assumptions",
+            "actuarial report"
+          ],
+          "reason": "No defined-benefit obligation or actuarial conclusion can be derived from the defined-contribution branch.",
+          "missing_formula": "Without authenticated plan terms or service/eligibility evidence, contribution amounts remain unknown and the entry remains on hold."
+        },
+        "synthetic_plan_formula": {
+          "service_period": "2026-02-02 through2026-02-08",
+          "participant_count": 1,
+          "eligibility": {
+            "minimum_age_years": 18,
+            "minimum_service_days": 90,
+            "minimum_hours_in_service_week": 40
+          },
+          "participant_facts": {
+            "age_years": 30,
+            "service_days": 180,
+            "approved_hours": 46,
+            "eligible": true
+          },
+          "employer_fixed_contribution_per_eligible_week_cents": 10000,
+          "eligible_service_weeks": 1,
+          "employer_formula": "1 eligible participant x1 eligible service week x10000cents fixed weekly contribution =10000cents. No wage percentage is assumed.",
+          "employee_after_tax_election_per_week_cents": 5000,
+          "employee_elected_weeks": 1,
+          "employee_formula": "1 service week x5000cents voluntary after-tax payroll deduction =5000cents, assumed permitted by the fictional plan and employee election.",
+          "legal_limit": "Entirely fictional terms, eligibility and elections. No ERISA, tax qualification, contribution-limit or plan-compliance conclusion."
+        }
+      },
+      "controls": [
+        "Human approval is required before any consequential entry, filing, payment, participant communication or policy conclusion.",
+        "Each branch has source IDs, exact locators, synthetic assumptions, cents arithmetic and an exception register.",
+        "No external system is called, no action is executed and no record is presented as operational evidence."
+      ],
+      "deterministic_checks": [
+        "10000000 + 2000000 = 12000000 equipment and installation cost",
+        "183333 x 59 + 183353 = 11000000 depreciable basis",
+        "24-period lease schedule closes at 0 cents after the stated interest-rounding adjustment",
+        "6041845 - 5809467 = 232378 lease modification increase",
+        "1800000 + 1200000 = 3000000 implementation invoice split",
+        "1800000 / 24 = 75000 monthly implementation amortization",
+        "40 x 2400 + 6 x 3600 = 117600 gross wages",
+        "117600 - 18000 - 7291 - 1705 - 5000 = 85604 net pay",
+        "117600 + 7291 + 1705 + 10000 = 136596 employer cost",
+        "Defined-benefit branch stops without plan, census and actuarial evidence",
+        "Original and modified operating ROU schedules each close at zero; fixed payments and single cost remain500000 or520000cents as applicable.",
+        "1 eligible service week x10000cents employer contribution =10000cents;1 elected week x5000cents employee deduction =5000cents."
+      ],
+      "examples": [
+        {
+          "id": "capital-cip-and-depreciation",
+          "title": "CIP to placed-in-service and cents depreciation",
+          "scenario_type": "golden",
+          "objective": "Reproduce the invoice, transfer and exact depreciation tie."
+        },
+        {
+          "id": "lease-commencement-and-modification",
+          "title": "Lessee schedule and period-13 modification",
+          "scenario_type": "golden",
+          "objective": "Reproduce payment-only modification classification facts, discounting, ROU adjustment and remaining single-cost schedule; reject the added-right separate-contract counterexample."
+        },
+        {
+          "id": "software-role-and-stage-boundary",
+          "title": "Hosted customer implementation split",
+          "scenario_type": "golden",
+          "objective": "Separate qualifying implementation, hosting, training and provider counterexamples."
+        },
+        {
+          "id": "payroll-and-benefits-close",
+          "title": "Payroll, federal tax evidence and defined contribution",
+          "scenario_type": "golden",
+          "objective": "Reconcile gross wages, withholding assumptions, FICA, employer cost and benefits."
+        },
+        {
+          "id": "asset-workforce-missing-evidence",
+          "title": "Missing approval, plan or time evidence",
+          "scenario_type": "missing_evidence",
+          "objective": "Stop and route for review rather than plug an incomplete population."
+        },
+        {
+          "id": "asset-workforce-role-counterexamples",
+          "title": "Tax, lessor, provider and defined-benefit boundaries",
+          "scenario_type": "scope_counterexample",
+          "objective": "Keep role and authority boundaries separate from the base branch."
+        }
+      ],
+      "expected_artifact": "Read-only source-linked ledger packet with branch-specific evidence, proposed entries, exact cents arithmetic, reconciliations, counterexamples and human-review gates.",
+      "reference_output": {
+        "outcome": "complete synthetic packet within declared scope",
+        "all_arithmetic_differences_cents": 0,
+        "proposed_actions": [],
+        "executed_actions": [],
+        "filings_executed": [],
+        "payments_executed": [],
+        "review_required": true
+      },
+      "limitations": [
+        "Synthetic example: no real customer, vendor, employee, bank, plan or publisher scenario is reproduced.",
+        "The values and treatments are bounded assumptions for retrieval and arithmetic checks, not professional advice, current consolidated GAAP, tax advice, labor-law advice or production validation.",
+        "Current Codification, tax, contract, entity-policy, ownership, worker-status, plan, actuarial and professional-review questions remain open.",
+        "No action, posting, payment, filing, certification, participant communication or issue closure is authorized by this example.",
+        "The added capital-asset and defined-contribution source paths use historical FAS34,FAS144 and FAS87 only. Current consolidated authority remains unreviewed."
+      ],
+      "editorial_review": {
+        "record_id": "example-us-assets-workforce-ledger",
+        "disposition": "supported-scope",
+        "review_summary": "Original synthetic assets-and-workforce packet with source-linked boundaries, exact cents arithmetic, role counterexamples and explicit human-review gates.",
+        "question_ids": [
+          "q-capital-assets",
+          "q-leases",
+          "q-intangibles-software",
+          "q-payroll",
+          "q-benefits"
+        ],
+        "industry_codes": [],
+        "shared": true,
+        "remaining_limits": [
+          "No professional, legal, actuarial or empirical validation.",
+          "No operational records or external action.",
+          "Shared-context discovery only; no industry-wide sufficiency."
+        ],
+        "reviewed_at": "2026-09-18",
+        "reviewer": "Codex AI-assisted original-source and synthetic-fixture review"
+      },
+      "capital_asset_impairment": {
+        "synthetic": true,
+        "source_id": "src_i120_fas144_impairment",
+        "historical_locator": "FAS144 paragraph7",
+        "carrying_amount_cents": 12000000,
+        "undiscounted_cash_flows_cents": 11000000,
+        "fair_value_cents": 9500000,
+        "proposed_loss_cents": 2500000,
+        "check": "The failed recoverability screen uses11000000; the proposed loss is12000000 minus9500000, not the1000000 screen shortfall.",
+        "counterexample": {
+          "undiscounted_cash_flows_cents": 13000000,
+          "fair_value_cents": 9500000,
+          "proposed_loss_cents": 0,
+          "reason": "For this historical held-and-used model the recoverability screen passes; fair value below carrying amount alone does not establish a loss."
+        },
+        "status": "Synthetic historical model only; current-framework and entity review hold"
+      }
+    }
   }
 ]
