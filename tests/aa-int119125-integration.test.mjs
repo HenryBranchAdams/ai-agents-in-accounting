@@ -59,7 +59,7 @@ const canonical = corpusFiles.flatMap(file => {
 const byId = new Map(canonical.map(record => [record.id, record]));
 
 test("AA-I119, AA-I125, and AA-I127 preserve canonical IDs without collisions or lost nonprofit records", () => {
-  assert.equal(canonical.length, 1107);
+  for (const prior of read('data/releases/2026-09-18.1/corpus.json').records) assert.ok(byId.has(prior.id), `Preserve accepted record ${prior.id}`);
   assert.equal(byId.size, canonical.length, "canonical record IDs must be globally unique");
 
   for (const id of [
@@ -164,12 +164,12 @@ test("clean AA-I125 integration is sensitive to new-source supplemental-review l
   }
 });
 
-test("2026-09-18.1 release and snapshot match the local assurance integration build", () => {
+test("current release matches the build and preserves the assurance release and snapshot", () => {
   const index = read("data/releases/index.json");
-  assert.equal(index.current_version, "2026-09-18.1");
-  assert.deepEqual(index.versions.slice(-3), ["2026-09-17.4", "2026-09-17.5", "2026-09-18.1"]);
+  assert.equal(index.current_version, read('data/catalog.json').corpus_version);
+  for (const version of ["2026-09-17.4", "2026-09-17.5", "2026-09-18.1"]) assert.ok(index.versions.includes(version));
 
-  const currentRelease = "data/releases/2026-09-18.1";
+  const currentRelease = `data/releases/${index.current_version}`;
   const currentBytes = fs.readFileSync(`${currentRelease}/corpus.json`);
   assert.deepEqual(currentBytes, fs.readFileSync("dist/client/downloads/corpus.json"));
   assert.deepEqual(gunzipSync(fs.readFileSync(`${currentRelease}/corpus.json.gz`)), currentBytes);

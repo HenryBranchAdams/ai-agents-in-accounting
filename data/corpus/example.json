@@ -6579,5 +6579,278 @@
         "external_sources": "Not redistributed; publisher terms apply"
       }
     }
+  },
+  {
+    "id": "example-aa-i123-entity-events",
+    "kind": "example",
+    "title": "US entity changes and unusual events: synthetic decision and reconciliation packet",
+    "summary": "US business versus asset acquisition, policyholder insurance recovery, and retirement versus remediation with independent role, date and estimate-change counterexamples.",
+    "topics": [
+      "Entity changes and unusual events",
+      "US GAAP"
+    ],
+    "industries": [],
+    "jurisdiction": "United States; nongovernmental US GAAP, role-specific branches",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_aa_i123_201701",
+      "src_construction_fasb_202305",
+      "src_construction_fasb_201817",
+      "src_aa_i123_fas57",
+      "src_aa_i123_fas5",
+      "src_aa_i123_fin45",
+      "src_aa_i123_fas146",
+      "src_aa_i123_201408",
+      "src_aa_i123_fas143",
+      "src_aa_i123_sec5y",
+      "src_aa_i123_epa"
+    ],
+    "related_ids": [],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-19",
+    "provenance": {
+      "added_on": "2026-09-19",
+      "reviewer": "Codex AI-assisted original-source research",
+      "research_file": "data/research/aa-i123-entity-events.json",
+      "note": "Bounded original synthesis and synthetic material; no professional review or operational validation."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "External full text is not stored; publisher rights and permissions remain separate.",
+      "full_text_stored": false
+    },
+    "data": {
+      "scope": "Nongovernmental US GAAP operating company and acquirer, calendar 2026, with separately identified private-company and SEC-registrant branches. Historical FASB pronouncements and issued amendments supply bounded research, not verification of the current consolidated Codification. Seller, investor, insurer, government, bankruptcy and tax conclusions are outside the selected answers.",
+      "examples": [
+        {
+          "id": "acquisition",
+          "date": "2026-06-30",
+          "currency": "USD",
+          "role": "Buyer",
+          "classification": "Assumed business combination for illustration",
+          "facts": "Operating workforce and critical production processes acquired with heterogeneous plant, inventory and customer assets; assume the concentration screen is not met and substantive-process criteria are supported. No NCI, prior interest, tax or measurement exceptions modeled.",
+          "consideration": 1000000,
+          "identifiable_assets": 1200000,
+          "assumed_liabilities": 350000,
+          "residual": 150000,
+          "source_ids": [
+            "src_aa_i123_201701"
+          ],
+          "approval": {
+            "status": "synthetic-assumption-only",
+            "evidence": "SYN-ACQ-MEMO-01; no actual valuation or reviewer signature"
+          },
+          "treatment": "Residual reconciliation only: 1,000,000 - (1,200,000 - 350,000) = 150,000. Goodwill posting requires the unresolved complete ASC 805 analysis.",
+          "counterexample": {
+            "id": "single-asset",
+            "same_cash_price": 1000000,
+            "facts": "Only one identifiable machine and no substantive process acquired; concentration screen satisfied.",
+            "route": "asset-acquisition",
+            "goodwill_from_residual": false
+          }
+        },
+        {
+          "id": "jv",
+          "date": "2026-06-30",
+          "currency": "USD",
+          "role": "Venture own financial statements",
+          "cash_contribution": 1000000,
+          "source_ids": [
+            "src_construction_fasb_202305"
+          ],
+          "treatment": "Assume a qualifying JV; research new-basis formation measurement independently of the buyer case. Cash contribution alone does not measure all venture net assets.",
+          "counterexample": {
+            "formation_date": "2024-06-30",
+            "automatic_2025_model": false,
+            "needed": "Document early/retrospective adoption and sufficient information; investor treatment remains separate."
+          },
+          "approval": {
+            "status": "pending",
+            "evidence": null
+          }
+        },
+        {
+          "id": "related-party",
+          "date": "2026-09-30",
+          "service_charge": 20000,
+          "cash_paid": 5000,
+          "closing_due": 15000,
+          "source_ids": [
+            "src_aa_i123_fas57",
+            "src_construction_fasb_201817"
+          ],
+          "treatment": "Reconcile 20,000 - 5,000 = 15,000 across both counterparties; retain ownership and settlement terms. This does not establish arm's-length pricing or permit elimination in separate statements.",
+          "counterexample": {
+            "public_parent": true,
+            "private_common_control_alternative_eligible": false
+          },
+          "approval": {
+            "status": "pending",
+            "evidence": null
+          }
+        },
+        {
+          "id": "claim",
+          "date": "2026-09-30",
+          "currency": "USD",
+          "source_ids": [
+            "src_aa_i123_fas5",
+            "src_aa_i123_sec5y"
+          ],
+          "liability_assumptions": "For arithmetic only, assume a probable incurred loss reasonably estimated at 100,000 and no acquisition-date scope exception.",
+          "claim_liability": 100000,
+          "potential_recovery": 60000,
+          "recognized_recovery": 0,
+          "net_liability_plug_allowed": false,
+          "recovery_decision": "Insurer disputes coverage; no evidence sufficient to support an asset. SEC branch additionally records footnote 49 presumption; private-company recognition text remains an explicit gap.",
+          "journals": [
+            {
+              "debit": "Claim expense",
+              "credit": "Claim liability",
+              "amount": 100000,
+              "approval": "SYN-CLAIM-01, assumed for illustration only"
+            }
+          ],
+          "independent_revision": {
+            "date": "2026-10-31",
+            "new_claim_estimate": 120000,
+            "additional_expense": 20000,
+            "recognized_recovery": 0,
+            "reason": "New legal estimate; insurer status unchanged",
+            "evidence": "SYN-LEGAL-02; original estimate retained"
+          },
+          "approval": {
+            "status": "synthetic-assumption-only",
+            "evidence": "SYN-CLAIM-01 for liability; recovery proposal rejected in SYN-RECOVERY-01; no actual sign-off"
+          }
+        },
+        {
+          "id": "guarantee",
+          "date": "2026-07-01",
+          "source_ids": [
+            "src_aa_i123_fin45"
+          ],
+          "facts": "Assumed standalone unrelated-party in-scope guarantee, premium received 3,000; no higher contingent-loss measurement assumed.",
+          "premium": 3000,
+          "initial_liability": 3000,
+          "journal": {
+            "debit": "Cash",
+            "credit": "Guarantee liability",
+            "amount": 3000
+          },
+          "counterexample": "A parent guarantee of subsidiary debt must be separately tested against initial-recognition exceptions; do not copy this entry.",
+          "approval": {
+            "status": "synthetic-assumption-only",
+            "evidence": "SYN-GUAR-01; current ASC 460 review pending"
+          }
+        },
+        {
+          "id": "exit",
+          "date": "2026-09-30",
+          "source_ids": [
+            "src_aa_i123_fas146"
+          ],
+          "budget": 50000,
+          "received_relocation_services": 12000,
+          "cash_paid": 7000,
+          "closing_payable": 5000,
+          "unreceived_budget": 38000,
+          "treatment": "Assuming only other exit costs in the selected model: expense received services 12,000; settle 7,000; payable 5,000. Do not accrue the 38,000 unreceived budget.",
+          "counterexample": "Employee termination benefits and lease exits require separate models.",
+          "approval": {
+            "status": "synthetic-assumption-only",
+            "evidence": "SYN-SERVICE-01 and SYN-CASH-01"
+          }
+        },
+        {
+          "id": "disposal",
+          "date": "2026-09-30",
+          "source_ids": [
+            "src_aa_i123_201408"
+          ],
+          "facts": "Plan to sell one routine machine, with no demonstrated major strategic shift; no buyer program documented.",
+          "held_for_sale_supported": false,
+          "discontinued_operation_supported": false,
+          "needed": "Document all applicable criteria and material strategic effect before classification.",
+          "approval": {
+            "status": "pending",
+            "evidence": null
+          }
+        },
+        {
+          "id": "retirement",
+          "date": "2026-12-31",
+          "currency": "USD",
+          "source_ids": [
+            "src_aa_i123_fas143",
+            "src_aa_i123_epa"
+          ],
+          "facts": "Synthetic asset with a legal normal-operation retirement duty, estimable fair value and an already recognized opening obligation. The base isolates subsequent liability arithmetic.",
+          "opening": 100000,
+          "opening_cash_flow": 121550.625,
+          "opening_years": 4,
+          "original_rate": 0.05,
+          "accretion": 5000,
+          "upward_revision": 10000,
+          "revision_timing": "Year-end after accretion",
+          "revision_rate": 0.06,
+          "revision_years": 3,
+          "revision_future_cash_flow": 11910.16,
+          "settlement": 20000,
+          "closing": 95000,
+          "treatment": "Opening 100,000 + accretion 5,000 + separately measured revision 10,000 - settlement 20,000 = 95,000. Revision layer uses its own rate; asset-cost and depreciation effects require a separate asset schedule.",
+          "counterexample": "Improper-operation contamination goes to remediation research; do not apply this discount/accretion model by label alone.",
+          "approval": {
+            "status": "synthetic-assumption-only",
+            "evidence": "SYN-ENGINEERING-01; SYN-RATE-01; SYN-SETTLEMENT-01; no legal or engineering validation"
+          }
+        }
+      ],
+      "workflows": [
+        "Define reporting entity, role, framework, event date, balance date, information cutoff and applicable edition; route exceptions before calculating.",
+        "Collect original agreements, legal/engineering/valuation evidence and counterevidence; reconcile consideration, balances and populations to independent records.",
+        "Prepare separate classification, recognition, measurement and disclosure decisions with precise source locators and unresolved facts.",
+        "Recompute the applicable bridge, preserve prior estimates and reconcile cash and noncash movements without unsupported netting.",
+        "A named authorized accounting reviewer must resolve scope and evidence gaps before any real posting; retain approval, exceptions and disclosure disposition."
+      ],
+      "controls": [
+        {
+          "id": "entity-perimeter",
+          "performer": "Accounting preparer and independent reviewer",
+          "frequency": "Each unusual event and reporting close",
+          "risk": "Wrong entity or accounting model",
+          "evidence": "Signed role/classification memorandum, ownership chart, date and applicable-source version",
+          "failure": "Unresolved role, missing agreement or pre-effective date stops a proposed conclusion."
+        },
+        {
+          "id": "separate-claims",
+          "performer": "Accounting reviewer with legal and insurance specialists as needed",
+          "frequency": "Each claim decision and estimate update",
+          "risk": "Unsupported recovery asset or net liability",
+          "evidence": "Separate liability/recovery decisions, insurer response, estimate version and authorization",
+          "failure": "Contested or unsupported recovery remains an exception; no balancing plug."
+        },
+        {
+          "id": "event-rollforward",
+          "performer": "Independent close reviewer",
+          "frequency": "Each reporting period with an open event",
+          "risk": "Unexplained revisions, missing settlements or budget accrual",
+          "evidence": "Opening balance to closing balance with source-linked movements, rate layers and dated triggers",
+          "failure": "Arithmetic agreement alone cannot resolve unsupported recognition or legal facts."
+        }
+      ],
+      "limitations": [
+        "Synthetic examples use invented facts, inputs and approval references; they are not operational evidence.",
+        "The FASB Codification login returned no readable paragraphs on 2026-09-19. No terms were accepted, CAPTCHA bypassed or current consolidated text verified. Reused access-boundary record preserves the prior displayed-license findings without claiming they were reverified today.",
+        "Historical FASB Statements and Interpretations are superseded as authoritative literature by the Codification. ASUs communicate amendments. Current paragraph wording, later amendments and entity-specific adoption require a permitted current-text review.",
+        "No professional accounting or legal sign-off, actual agreement, valuation, claim file, environmental assessment or operational evidence was obtained. Proposed controls and synthetic approvals do not establish operating effectiveness.",
+        "External full text is not stored. Publisher copyright and unresolved automated-reuse and training permissions remain outside the project licenses."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established"
+    }
   }
 ]
