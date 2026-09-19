@@ -6729,5 +6729,703 @@
         }
       ]
     }
+  },
+  {
+    "topics": [
+      "Extractive resources",
+      "Revenue and customer contracts",
+      "Source data, lineage and reconciliation"
+    ],
+    "industries": [
+      "Mining, oil and gas"
+    ],
+    "jurisdiction": "United States; role and applicable reporting framework required",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_us_extractive_sec_410_2025",
+      "src_us_extractive_fas143_historical",
+      "src_us_extractive_sec_mining_letter_2001",
+      "src_us_extractive_onrr_45"
+    ],
+    "related_ids": [
+      "guide-us-extractive-production-settlement"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-18",
+    "provenance": {
+      "added_on": "2026-09-18",
+      "reviewer": "Codex AI-assisted editorial research",
+      "note": "Original synthesis and synthetic arithmetic; historical authorities explicitly bounded; independent and professional review pending."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "No publisher full text included.",
+      "full_text_stored": false
+    },
+    "id": "example-us-extractive-production-settlement",
+    "kind": "example",
+    "title": "Synthetic production royalty and joint-cost settlement bridge",
+    "summary": "A supplied 1000-barrel contract bridges proceeds, royalty, transport and working-interest settlements; separate reserve sensitivity and service cases prevent role confusion.",
+    "data": {
+      "origin": "Original synthetic example, not actual ledger or reserve evidence",
+      "scope": {
+        "framework": "US accounting research; explicit SEC full-cost branch using dated April 2025 rule; no universal successful-efforts or hard-rock conclusion",
+        "roles": [
+          "producer-operator",
+          "mineral royalty owner",
+          "nonoperating working-interest partner",
+          "support contractor"
+        ],
+        "period": "Synthetic April 2025; later rules require separate review",
+        "professional_review": "not-performed",
+        "empirical_support": "not-established"
+      },
+      "fixture": {
+        "label": "Original synthetic arithmetic, not operational evidence or approved journal entry policy",
+        "production": {
+          "measured_bbl": 1000,
+          "sold_bbl": 1000,
+          "price_cents_per_bbl": 7000,
+          "gross_proceeds_cents": 7000000,
+          "royalty_rate_basis_points": 2000,
+          "royalty_obligation_cents": 1400000,
+          "transport_cents": 200000,
+          "working_interest_pool_cash_cents": 5400000,
+          "operator_working_interest_basis_points": 6000,
+          "partner_working_interest_basis_points": 4000,
+          "operator_distribution_cents": 3240000,
+          "partner_distribution_cents": 2160000,
+          "assumptions": [
+            "One oil product; measured equals sold; no inventory or quality adjustment",
+            "20 percent royalty before transport solely a supplied private-contract assumption, not statutory federal rate",
+            "Operator collects all proceeds as settlement agent; partner amounts are not operator revenue merely because cash received",
+            "Working-interest shares apply after royalty and transport in this synthetic agreement; contract determines actual allocation",
+            "Gross versus net financial-statement revenue is a separate role/control analysis, not inferred from net cash"
+          ]
+        },
+        "joint_cost": {
+          "invoice_cents": 2000000,
+          "operator_cost_cents": 1200000,
+          "partner_receivable_cents": 800000,
+          "partner_paid_cents": 600000,
+          "partner_balance_cents": 200000,
+          "assumptions": [
+            "Operator pays full approved cost invoice",
+            "Partner reimbursement clears receivable, not service revenue",
+            "Capital versus expense classification depends on cost-stage evidence and selected policy"
+          ],
+          "ledger_entries": [
+            {
+              "id": "pay_joint_cost",
+              "debit": {
+                "own_cost_pending_classification": 1200000,
+                "partner_receivable": 800000
+              },
+              "credit": {
+                "cash": 2000000
+              }
+            },
+            {
+              "id": "partner_settles",
+              "debit": {
+                "cash": 600000
+              },
+              "credit": {
+                "partner_receivable": 600000
+              }
+            }
+          ],
+          "classification_branch": {
+            "assumption": "Separate supplied fact: the approved joint invoice is routine maintenance of producing wells, not access to new proved reserves or acquisition/exploration. The original ownership split remains 60/40.",
+            "entry": {
+              "debit": {
+                "own_production_maintenance_expense": 1200000
+              },
+              "credit": {
+                "own_cost_pending_classification": 1200000
+              }
+            },
+            "counterexample": "Without invoice-stage evidence retain pending classification; the ownership percentage alone does not establish expense or capitalization."
+          }
+        },
+        "depletion_sensitivity": {
+          "eligible_cost_base_cents": 100000000,
+          "current_production_bbl": 1000,
+          "proved_reserves_including_current_production_bbl_v1": 100000,
+          "proved_reserves_including_current_production_bbl_v2": 80000,
+          "expense_cents_v1": 1000000,
+          "expense_cents_v2": 1250000,
+          "assumptions": [
+            "Two alternative estimates for same illustrative calculation, not two postings",
+            "Cost base assumed already reconciled to eligible cost center including applicable future-development and abandonment adjustments",
+            "No impairment/ceiling conclusion from this ratio; no double-counting retirement amounts",
+            "Revised reserve evidence needs effective-date and prospective accounting assessment"
+          ]
+        },
+        "suspense": {
+          "disputed_cash_cents": 50000,
+          "released_cents": 0,
+          "unresolved_cents": 50000,
+          "rule": "Unresolved ownership cannot be treated as additional operator revenue; retain reconciliation and require title/contract disposition"
+        },
+        "support": {
+          "hours": 100,
+          "rate_cents": 15000,
+          "fee_cents": 1500000,
+          "production_entitlement_bbl": 0,
+          "assumption": "Service contractor has no mineral or working interest; fee earned only under supplied service-performance facts"
+        },
+        "settlement_ledger": {
+          "scope": "Operator collection-agent clearing subledger only. Producer revenue/cost recognition must be posted separately from supported title/control analysis. No entry treats net cash as revenue.",
+          "entries": [
+            {
+              "id": "collect",
+              "debit": {
+                "cash": 7000000
+              },
+              "credit": {
+                "production_settlement_clearing": 7000000
+              }
+            },
+            {
+              "id": "allocate",
+              "debit": {
+                "production_settlement_clearing": 7000000
+              },
+              "credit": {
+                "royalty_payable": 1400000,
+                "transport_payable": 200000,
+                "partner_payable": 2160000,
+                "own_interest_settlement_clearing": 3240000
+              }
+            },
+            {
+              "id": "pay_external",
+              "debit": {
+                "royalty_payable": 1400000,
+                "transport_payable": 200000,
+                "partner_payable": 2160000
+              },
+              "credit": {
+                "cash": 3760000
+              }
+            }
+          ],
+          "ending_balances_cents": {
+            "cash_debit": 3240000,
+            "own_interest_settlement_clearing_credit": 3240000,
+            "production_settlement_clearing": 0
+          },
+          "open_reconciliation": "Own-interest clearing is deliberately unresolved until separately approved production receivable/revenue/cost entries reconcile; this bridge is not a complete income statement."
+        },
+        "recognition_branch": {
+          "label": "Separate original synthetic recognized-sale branch, not inferred from collection alone",
+          "source_locator": "ASU2016-08 amended606-10-55-36 through55-39A, historical amendment; current consolidated text not verified",
+          "assumptions": [
+            "Supplied private division order gives mineral owner200bbl, operator480bbl and partner320bbl of the1000bbl sold. Each controls its own entitlement before purchaser delivery.",
+            "Valid enforceable customer contracts, fixed $70/bbl transaction price, completed delivery and no remaining performance obligations are supplied scenario facts, not verified real evidence.",
+            "The operator is unpaid collection agent for the other owners and principal only for its480bbl. Royalty is an ownership entitlement in this branch, not an additional operator expense. Different lease terms require a different analysis.",
+            "Transportation occurs after control transfers to the purchaser and is a separate owner cost, $1200operator/$800partner. No bundled shipping promise or variable price deductions.",
+            "This branch reclassifies the completed clearing example; it does not add another receipt. Production costs/depletion remain separate from this sales bridge."
+          ],
+          "roles": [
+            {
+              "role": "producer-operator",
+              "entitlement_bbl": 480,
+              "revenue_cents": 3360000,
+              "transport_expense_cents": 120000,
+              "cash_cents": 3240000
+            },
+            {
+              "role": "working-interest partner",
+              "entitlement_bbl": 320,
+              "revenue_cents": 2240000,
+              "transport_expense_cents": 80000,
+              "cash_cents": 2160000
+            },
+            {
+              "role": "mineral owner",
+              "entitlement_bbl": 200,
+              "revenue_cents": 1400000,
+              "transport_expense_cents": 0,
+              "cash_cents": 1400000
+            }
+          ],
+          "operator_reclassification": {
+            "debit": {
+              "own_interest_settlement_clearing": 3240000,
+              "transport_expense": 120000
+            },
+            "credit": {
+              "own_production_revenue": 3360000
+            }
+          },
+          "counterexample": "If title, control transfer or performance completion is missing, leave the collection-only clearing balance unresolved; collected cash and division arithmetic alone do not prove revenue. No operator revenue for partner/mineral-owner proceeds."
+        },
+        "retirement": {
+          "label": "Original synthetic annual rollforward, separate from April sales totals",
+          "assumptions": [
+            "A normal-use legal well-retirement obligation is incurred at the start of the annual interval; reasonable fair value is supplied as $100,000, not derived from an engineering estimate here.",
+            "Five-percent original credit-adjusted risk-free rate, full year elapsed, no settlements or new obligations before year-end revision.",
+            "A separately supplied upward-revision present value of $20,000 is measured at the current rate after accretion. This is not $20,000 of undiscounted cash flows.",
+            "The retirement asset component uses a separately supplied ten-year straight-line useful life for this illustration. It is excluded from the other depletion-sensitivity cost base so the same retirement cost is not allocated twice."
+          ],
+          "opening_liability_cents": 10000000,
+          "original_rate_basis_points": 500,
+          "accretion_cents": 500000,
+          "upward_revision_present_value_cents": 2000000,
+          "closing_liability_cents": 12500000,
+          "opening_retirement_asset_cents": 10000000,
+          "useful_life_years": 10,
+          "annual_asset_allocation_cents": 1000000,
+          "closing_retirement_asset_net_cents": 11000000,
+          "entries": [
+            {
+              "debit": {
+                "retirement_asset": 10000000
+              },
+              "credit": {
+                "retirement_liability": 10000000
+              }
+            },
+            {
+              "debit": {
+                "accretion_expense": 500000
+              },
+              "credit": {
+                "retirement_liability": 500000
+              }
+            },
+            {
+              "debit": {
+                "retirement_asset": 2000000
+              },
+              "credit": {
+                "retirement_liability": 2000000
+              }
+            },
+            {
+              "debit": {
+                "retirement_asset_allocation_expense": 1000000
+              },
+              "credit": {
+                "accumulated_retirement_asset_allocation": 1000000
+              }
+            }
+          ],
+          "counterexamples": [
+            "A disposal plan alone or improper-operation remediation does not establish this historical retirement model.",
+            "A surety bond is not settlement of the retirement liability; keep funding and obligation records separate.",
+            "Downward revisions do not automatically use the new upward-revision discount rate; preserve historical layers.",
+            "Missing reasonable measurement is a disclosed evidence gap, not an assumed zero liability."
+          ],
+          "source_locators": [
+            "FAS143 paragraphs2-3,11,13-16,22; PDF pages7,9-12 one-based; historical source, not current ASC410 verification"
+          ]
+        },
+        "royalty_reporting": {
+          "scope": "Separate original synthetic handbook-field illustration; no actual federal rate or allowance eligibility established",
+          "sales_value_cents": 5000000,
+          "supplied_lease_rate_basis_points": 1250,
+          "different_division_order_basis_points": 750,
+          "royalty_prior_to_allowances_cents": 625000,
+          "supplied_eligible_royalty_allowance_cents": 25000,
+          "gross_transport_invoice_cents": 200000,
+          "royalty_due_cents": 600000,
+          "counterexample": "Using the division-order percentage produces375000 before allowances, not625000; deducting the entire transport invoice incorrectly produces425000. Verify actual lease, relief and allowable royalty-share inputs before filing."
+        },
+        "cost_stage": {
+          "scope": "Separate synthetic full-cost entity, one US country cost center; dated April 2025 SEC rule. These invoices are not additional amounts in the production settlement or depletion sensitivity.",
+          "items": [
+            {
+              "category": "property acquisition",
+              "cents": 1000000,
+              "capitalized": true
+            },
+            {
+              "category": "own-account exploration",
+              "cents": 300000,
+              "capitalized": true
+            },
+            {
+              "category": "proved-reserve development",
+              "cents": 500000,
+              "capitalized": true
+            },
+            {
+              "category": "production maintenance",
+              "cents": 200000,
+              "capitalized": false
+            },
+            {
+              "category": "general corporate overhead",
+              "cents": 100000,
+              "capitalized": false
+            }
+          ],
+          "capitalized_cents": 1800000,
+          "expense_cents": 300000,
+          "invoice_total_cents": 2100000,
+          "counterexamples": [
+            "Do not place another country in this cost center.",
+            "An exploration dry hole does not remain indefinitely outside the amortization pool.",
+            "This selected full-cost branch does not determine successful-efforts or hard-rock treatment."
+          ],
+          "source_locators": [
+            "210.4-10(a)(1),(7),(12),(20); (c)(1),(2),(3)(ii)(A)(2),(5)"
+          ]
+        }
+      },
+      "limitations": [
+        "Current consolidated ASC932 and ASC410 not verified; historical material is not a current compliance opinion.",
+        "Selected synthetic allocation terms do not establish actual title, entitlement, net/gross revenue presentation or federal royalty rates.",
+        "Hard-rock development and current reserve disclosure require separate source verification.",
+        "No professional signoff or operational validation.",
+        "Synthetic arithmetic only; not actual transactions, reserves or professional evidence."
+      ],
+      "examples": [
+        {
+          "id": "label",
+          "scenario": "label",
+          "data": "Original synthetic arithmetic, not operational evidence or approved journal entry policy"
+        },
+        {
+          "id": "production",
+          "scenario": "production",
+          "data": {
+            "measured_bbl": 1000,
+            "sold_bbl": 1000,
+            "price_cents_per_bbl": 7000,
+            "gross_proceeds_cents": 7000000,
+            "royalty_rate_basis_points": 2000,
+            "royalty_obligation_cents": 1400000,
+            "transport_cents": 200000,
+            "working_interest_pool_cash_cents": 5400000,
+            "operator_working_interest_basis_points": 6000,
+            "partner_working_interest_basis_points": 4000,
+            "operator_distribution_cents": 3240000,
+            "partner_distribution_cents": 2160000,
+            "assumptions": [
+              "One oil product; measured equals sold; no inventory or quality adjustment",
+              "20 percent royalty before transport solely a supplied private-contract assumption, not statutory federal rate",
+              "Operator collects all proceeds as settlement agent; partner amounts are not operator revenue merely because cash received",
+              "Working-interest shares apply after royalty and transport in this synthetic agreement; contract determines actual allocation",
+              "Gross versus net financial-statement revenue is a separate role/control analysis, not inferred from net cash"
+            ]
+          }
+        },
+        {
+          "id": "joint_cost",
+          "scenario": "joint cost",
+          "data": {
+            "invoice_cents": 2000000,
+            "operator_cost_cents": 1200000,
+            "partner_receivable_cents": 800000,
+            "partner_paid_cents": 600000,
+            "partner_balance_cents": 200000,
+            "assumptions": [
+              "Operator pays full approved cost invoice",
+              "Partner reimbursement clears receivable, not service revenue",
+              "Capital versus expense classification depends on cost-stage evidence and selected policy"
+            ],
+            "ledger_entries": [
+              {
+                "id": "pay_joint_cost",
+                "debit": {
+                  "own_cost_pending_classification": 1200000,
+                  "partner_receivable": 800000
+                },
+                "credit": {
+                  "cash": 2000000
+                }
+              },
+              {
+                "id": "partner_settles",
+                "debit": {
+                  "cash": 600000
+                },
+                "credit": {
+                  "partner_receivable": 600000
+                }
+              }
+            ],
+            "classification_branch": {
+              "assumption": "Separate supplied fact: the approved joint invoice is routine maintenance of producing wells, not access to new proved reserves or acquisition/exploration. The original ownership split remains 60/40.",
+              "entry": {
+                "debit": {
+                  "own_production_maintenance_expense": 1200000
+                },
+                "credit": {
+                  "own_cost_pending_classification": 1200000
+                }
+              },
+              "counterexample": "Without invoice-stage evidence retain pending classification; the ownership percentage alone does not establish expense or capitalization."
+            }
+          }
+        },
+        {
+          "id": "depletion_sensitivity",
+          "scenario": "depletion sensitivity",
+          "data": {
+            "eligible_cost_base_cents": 100000000,
+            "current_production_bbl": 1000,
+            "proved_reserves_including_current_production_bbl_v1": 100000,
+            "proved_reserves_including_current_production_bbl_v2": 80000,
+            "expense_cents_v1": 1000000,
+            "expense_cents_v2": 1250000,
+            "assumptions": [
+              "Two alternative estimates for same illustrative calculation, not two postings",
+              "Cost base assumed already reconciled to eligible cost center including applicable future-development and abandonment adjustments",
+              "No impairment/ceiling conclusion from this ratio; no double-counting retirement amounts",
+              "Revised reserve evidence needs effective-date and prospective accounting assessment"
+            ]
+          }
+        },
+        {
+          "id": "suspense",
+          "scenario": "suspense",
+          "data": {
+            "disputed_cash_cents": 50000,
+            "released_cents": 0,
+            "unresolved_cents": 50000,
+            "rule": "Unresolved ownership cannot be treated as additional operator revenue; retain reconciliation and require title/contract disposition"
+          }
+        },
+        {
+          "id": "support",
+          "scenario": "support",
+          "data": {
+            "hours": 100,
+            "rate_cents": 15000,
+            "fee_cents": 1500000,
+            "production_entitlement_bbl": 0,
+            "assumption": "Service contractor has no mineral or working interest; fee earned only under supplied service-performance facts"
+          }
+        },
+        {
+          "id": "settlement_ledger",
+          "scenario": "settlement ledger",
+          "data": {
+            "scope": "Operator collection-agent clearing subledger only. Producer revenue/cost recognition must be posted separately from supported title/control analysis. No entry treats net cash as revenue.",
+            "entries": [
+              {
+                "id": "collect",
+                "debit": {
+                  "cash": 7000000
+                },
+                "credit": {
+                  "production_settlement_clearing": 7000000
+                }
+              },
+              {
+                "id": "allocate",
+                "debit": {
+                  "production_settlement_clearing": 7000000
+                },
+                "credit": {
+                  "royalty_payable": 1400000,
+                  "transport_payable": 200000,
+                  "partner_payable": 2160000,
+                  "own_interest_settlement_clearing": 3240000
+                }
+              },
+              {
+                "id": "pay_external",
+                "debit": {
+                  "royalty_payable": 1400000,
+                  "transport_payable": 200000,
+                  "partner_payable": 2160000
+                },
+                "credit": {
+                  "cash": 3760000
+                }
+              }
+            ],
+            "ending_balances_cents": {
+              "cash_debit": 3240000,
+              "own_interest_settlement_clearing_credit": 3240000,
+              "production_settlement_clearing": 0
+            },
+            "open_reconciliation": "Own-interest clearing is deliberately unresolved until separately approved production receivable/revenue/cost entries reconcile; this bridge is not a complete income statement."
+          }
+        },
+        {
+          "id": "recognition_branch",
+          "scenario": "recognition branch",
+          "data": {
+            "label": "Separate original synthetic recognized-sale branch, not inferred from collection alone",
+            "source_locator": "ASU2016-08 amended606-10-55-36 through55-39A, historical amendment; current consolidated text not verified",
+            "assumptions": [
+              "Supplied private division order gives mineral owner200bbl, operator480bbl and partner320bbl of the1000bbl sold. Each controls its own entitlement before purchaser delivery.",
+              "Valid enforceable customer contracts, fixed $70/bbl transaction price, completed delivery and no remaining performance obligations are supplied scenario facts, not verified real evidence.",
+              "The operator is unpaid collection agent for the other owners and principal only for its480bbl. Royalty is an ownership entitlement in this branch, not an additional operator expense. Different lease terms require a different analysis.",
+              "Transportation occurs after control transfers to the purchaser and is a separate owner cost, $1200operator/$800partner. No bundled shipping promise or variable price deductions.",
+              "This branch reclassifies the completed clearing example; it does not add another receipt. Production costs/depletion remain separate from this sales bridge."
+            ],
+            "roles": [
+              {
+                "role": "producer-operator",
+                "entitlement_bbl": 480,
+                "revenue_cents": 3360000,
+                "transport_expense_cents": 120000,
+                "cash_cents": 3240000
+              },
+              {
+                "role": "working-interest partner",
+                "entitlement_bbl": 320,
+                "revenue_cents": 2240000,
+                "transport_expense_cents": 80000,
+                "cash_cents": 2160000
+              },
+              {
+                "role": "mineral owner",
+                "entitlement_bbl": 200,
+                "revenue_cents": 1400000,
+                "transport_expense_cents": 0,
+                "cash_cents": 1400000
+              }
+            ],
+            "operator_reclassification": {
+              "debit": {
+                "own_interest_settlement_clearing": 3240000,
+                "transport_expense": 120000
+              },
+              "credit": {
+                "own_production_revenue": 3360000
+              }
+            },
+            "counterexample": "If title, control transfer or performance completion is missing, leave the collection-only clearing balance unresolved; collected cash and division arithmetic alone do not prove revenue. No operator revenue for partner/mineral-owner proceeds."
+          }
+        },
+        {
+          "id": "retirement",
+          "scenario": "retirement",
+          "data": {
+            "label": "Original synthetic annual rollforward, separate from April sales totals",
+            "assumptions": [
+              "A normal-use legal well-retirement obligation is incurred at the start of the annual interval; reasonable fair value is supplied as $100,000, not derived from an engineering estimate here.",
+              "Five-percent original credit-adjusted risk-free rate, full year elapsed, no settlements or new obligations before year-end revision.",
+              "A separately supplied upward-revision present value of $20,000 is measured at the current rate after accretion. This is not $20,000 of undiscounted cash flows.",
+              "The retirement asset component uses a separately supplied ten-year straight-line useful life for this illustration. It is excluded from the other depletion-sensitivity cost base so the same retirement cost is not allocated twice."
+            ],
+            "opening_liability_cents": 10000000,
+            "original_rate_basis_points": 500,
+            "accretion_cents": 500000,
+            "upward_revision_present_value_cents": 2000000,
+            "closing_liability_cents": 12500000,
+            "opening_retirement_asset_cents": 10000000,
+            "useful_life_years": 10,
+            "annual_asset_allocation_cents": 1000000,
+            "closing_retirement_asset_net_cents": 11000000,
+            "entries": [
+              {
+                "debit": {
+                  "retirement_asset": 10000000
+                },
+                "credit": {
+                  "retirement_liability": 10000000
+                }
+              },
+              {
+                "debit": {
+                  "accretion_expense": 500000
+                },
+                "credit": {
+                  "retirement_liability": 500000
+                }
+              },
+              {
+                "debit": {
+                  "retirement_asset": 2000000
+                },
+                "credit": {
+                  "retirement_liability": 2000000
+                }
+              },
+              {
+                "debit": {
+                  "retirement_asset_allocation_expense": 1000000
+                },
+                "credit": {
+                  "accumulated_retirement_asset_allocation": 1000000
+                }
+              }
+            ],
+            "counterexamples": [
+              "A disposal plan alone or improper-operation remediation does not establish this historical retirement model.",
+              "A surety bond is not settlement of the retirement liability; keep funding and obligation records separate.",
+              "Downward revisions do not automatically use the new upward-revision discount rate; preserve historical layers.",
+              "Missing reasonable measurement is a disclosed evidence gap, not an assumed zero liability."
+            ],
+            "source_locators": [
+              "FAS143 paragraphs2-3,11,13-16,22; PDF pages7,9-12 one-based; historical source, not current ASC410 verification"
+            ]
+          }
+        },
+        {
+          "id": "royalty_reporting",
+          "scenario": "royalty reporting",
+          "data": {
+            "scope": "Separate original synthetic handbook-field illustration; no actual federal rate or allowance eligibility established",
+            "sales_value_cents": 5000000,
+            "supplied_lease_rate_basis_points": 1250,
+            "different_division_order_basis_points": 750,
+            "royalty_prior_to_allowances_cents": 625000,
+            "supplied_eligible_royalty_allowance_cents": 25000,
+            "gross_transport_invoice_cents": 200000,
+            "royalty_due_cents": 600000,
+            "counterexample": "Using the division-order percentage produces375000 before allowances, not625000; deducting the entire transport invoice incorrectly produces425000. Verify actual lease, relief and allowable royalty-share inputs before filing."
+          }
+        },
+        {
+          "id": "cost_stage",
+          "scenario": "cost stage",
+          "data": {
+            "scope": "Separate synthetic full-cost entity, one US country cost center; dated April 2025 SEC rule. These invoices are not additional amounts in the production settlement or depletion sensitivity.",
+            "items": [
+              {
+                "category": "property acquisition",
+                "cents": 1000000,
+                "capitalized": true
+              },
+              {
+                "category": "own-account exploration",
+                "cents": 300000,
+                "capitalized": true
+              },
+              {
+                "category": "proved-reserve development",
+                "cents": 500000,
+                "capitalized": true
+              },
+              {
+                "category": "production maintenance",
+                "cents": 200000,
+                "capitalized": false
+              },
+              {
+                "category": "general corporate overhead",
+                "cents": 100000,
+                "capitalized": false
+              }
+            ],
+            "capitalized_cents": 1800000,
+            "expense_cents": 300000,
+            "invoice_total_cents": 2100000,
+            "counterexamples": [
+              "Do not place another country in this cost center.",
+              "An exploration dry hole does not remain indefinitely outside the amortization pool.",
+              "This selected full-cost branch does not determine successful-efforts or hard-rock treatment."
+            ],
+            "source_locators": [
+              "210.4-10(a)(1),(7),(12),(20); (c)(1),(2),(3)(ii)(A)(2),(5)"
+            ]
+          }
+        }
+      ]
+    }
   }
 ]
