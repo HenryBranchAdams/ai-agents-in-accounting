@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "mapping_version": "2026-09-19.12410",
+  "mapping_version": "2026-09-19.12411",
   "updated_at": "2026-09-19",
   "records": {
     "wf-construction-contract-intake": {
@@ -19948,6 +19948,187 @@
       "reason": "AA-I121 synthetic example maps to the seven capital-financing families as shared context; it is not professional or production evidence.",
       "reviewed_at": "2026-09-18",
       "review_note": "AA-I121 synthetic example maps to the seven capital-financing families as shared context; it is not professional or production evidence."
+    },
+    "guide-utilities-us-regulated-close": {
+      "replace_question_ids": true,
+      "question_ids": [
+        "q-rate-regulation",
+        "q-revenue",
+        "q-capital-assets",
+        "q-environmental",
+        "q-purchasing-payables",
+        "q-data-lineage",
+        "q-interfaces"
+      ],
+      "industry_codes": [
+        "2211"
+      ],
+      "industry_scope": "specific",
+      "basis_field": "/data/scope",
+      "reason": "Selected electric utility application with explicit FERC role and scope counterexamples; association does not establish whole-subsector sufficiency.",
+      "reviewed_question_ids": [
+        "q-rate-regulation",
+        "q-revenue",
+        "q-capital-assets",
+        "q-environmental",
+        "q-purchasing-payables",
+        "q-data-lineage",
+        "q-interfaces"
+      ],
+      "reviewed_industry_codes": [
+        "2211"
+      ],
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded source and synthetic application review; no professional verification, current consolidated ASC conclusion or whole-subsector sufficiency."
+    },
+    "wf-utilities-billing-plant-reconciliation": {
+      "replace_question_ids": false,
+      "question_ids": [
+        "q-rate-regulation",
+        "q-revenue",
+        "q-capital-assets",
+        "q-environmental",
+        "q-purchasing-payables",
+        "q-data-lineage",
+        "q-interfaces"
+      ],
+      "industry_codes": [
+        "2211"
+      ],
+      "industry_scope": "specific",
+      "basis_field": "/data/steps",
+      "reason": "Workflow applies to the selected electric utility source-to-ledger population only.",
+      "reviewed_question_ids": [
+        "q-data-lineage",
+        "q-interfaces"
+      ],
+      "reviewed_industry_codes": [
+        "2211"
+      ],
+      "reviewed_at": "2026-09-19",
+      "review_note": "Original workflow proposal; implementation and operating effectiveness remain untested."
+    },
+    "ctrl-utilities-source-to-ledger": {
+      "replace_question_ids": false,
+      "question_ids": [
+        "q-data-lineage",
+        "q-interfaces"
+      ],
+      "industry_codes": [
+        "2211"
+      ],
+      "industry_scope": "specific",
+      "basis_field": "/data/assertions",
+      "reason": "Control proposal is tied to the selected electric utility reconciliation population.",
+      "reviewed_question_ids": [
+        "q-data-lineage",
+        "q-interfaces"
+      ],
+      "reviewed_industry_codes": [
+        "2211"
+      ],
+      "reviewed_at": "2026-09-19",
+      "review_note": "Original control proposal; no design or operating-effectiveness evidence."
+    },
+    "example-utilities-billing-plant-close": {
+      "replace_question_ids": true,
+      "question_ids": [
+        "q-rate-regulation",
+        "q-revenue",
+        "q-capital-assets",
+        "q-environmental",
+        "q-purchasing-payables",
+        "q-data-lineage",
+        "q-interfaces"
+      ],
+      "industry_codes": [
+        "2211"
+      ],
+      "industry_scope": "specific",
+      "basis_field": "/data/examples",
+      "reason": "Synthetic selected electric utility case with unregulated merchant and service-provider counterexamples; not a whole-subsector claim.",
+      "reviewed_question_ids": [
+        "q-rate-regulation",
+        "q-revenue",
+        "q-capital-assets",
+        "q-environmental",
+        "q-purchasing-payables",
+        "q-data-lineage",
+        "q-interfaces"
+      ],
+      "reviewed_industry_codes": [
+        "2211"
+      ],
+      "reviewed_at": "2026-09-19",
+      "review_note": "Original synthetic arithmetic and scope review; not operational evidence or posting authority."
+    },
+    "src_utilities_ferc_accounting_qa": {
+      "replace_question_ids": false,
+      "question_ids": [
+        "q-rate-regulation",
+        "q-capital-assets",
+        "q-data-lineage"
+      ],
+      "industry_codes": [
+        "2211"
+      ],
+      "industry_scope": "specific",
+      "basis_field": "/data/locators",
+      "reason": "FERC staff Q&A is cited for selected electric utility plant and regulatory-accounting questions.",
+      "reviewed_question_ids": [
+        "q-rate-regulation",
+        "q-capital-assets",
+        "q-data-lineage"
+      ],
+      "reviewed_industry_codes": [
+        "2211"
+      ],
+      "reviewed_at": "2026-09-19",
+      "review_note": "Original publisher page reviewed at bounded excerpt level; Q&As are not binding Commission action."
+    },
+    "src_utilities_ferc_account_555": {
+      "replace_question_ids": false,
+      "question_ids": [
+        "q-purchasing-payables",
+        "q-data-lineage",
+        "q-revenue"
+      ],
+      "industry_codes": [
+        "2211"
+      ],
+      "industry_scope": "specific",
+      "basis_field": "/data/source_locator",
+      "reason": "FERC Account 555 guidance is directly cited for the selected electric purchased-power settlement question.",
+      "reviewed_question_ids": [
+        "q-purchasing-payables",
+        "q-data-lineage",
+        "q-revenue"
+      ],
+      "reviewed_industry_codes": [
+        "2211"
+      ],
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded source review; no current consolidated presentation conclusion."
+    },
+    "src_utilities_fas143_aro": {
+      "replace_question_ids": false,
+      "question_ids": [
+        "q-environmental",
+        "q-capital-assets",
+        "q-data-lineage"
+      ],
+      "industry_codes": [],
+      "industry_scope": "shared-context",
+      "basis_field": "/data/source_locator",
+      "reason": "FASB historical ARO summary is shared accounting context applied to the selected utility example; it does not establish industry-specific or current consolidated treatment.",
+      "reviewed_question_ids": [
+        "q-environmental",
+        "q-capital-assets",
+        "q-data-lineage"
+      ],
+      "reviewed_industry_codes": [],
+      "reviewed_at": "2026-09-19",
+      "review_note": "Official superseded summary reviewed; current ASC 410 and professional applicability remain open."
     }
   }
 }

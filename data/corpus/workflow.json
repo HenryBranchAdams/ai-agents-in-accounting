@@ -26041,5 +26041,75 @@
         "External reuse rights remain unknown; publisher text is not stored."
       ]
     }
+  },
+  {
+    "id": "wf-utilities-billing-plant-reconciliation",
+    "kind": "workflow",
+    "title": "Utility source-to-ledger billing and plant reconciliation",
+    "summary": "A bounded workflow for a selected FERC electric utility to reconcile meter, tariff, purchased-power, plant, regulatory-balance and retirement evidence before human review.",
+    "topics": [
+      "Source data, lineage and reconciliation",
+      "Accounting and reporting"
+    ],
+    "industries": [
+      "energy-utilities"
+    ],
+    "jurisdiction": "United States; selected FERC-jurisdictional electric utility",
+    "source_type": "Original workflow synthesis",
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_aa_i124_ferc101",
+      "src_utilities_ferc_accounting_qa",
+      "src_utilities_ferc_account_555",
+      "src_utilities_fas143_aro"
+    ],
+    "related_ids": [
+      "guide-utilities-us-regulated-close",
+      "ctrl-utilities-source-to-ledger",
+      "example-utilities-billing-plant-close"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-19",
+    "provenance": {
+      "added_on": "2026-09-19",
+      "reviewer": "Codex AI-assisted bounded editorial review",
+      "note": "Original workflow synthesis for a source-only candidate; not an operating procedure or professional approval."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "External publisher text is not stored; source rights remain unknown.",
+      "full_text_stored": false
+    },
+    "data": {
+      "version": "2026-09-19.utilities.1",
+      "workflow_type": "source-to-ledger reconciliation",
+      "steps": [
+        "Freeze dated source populations",
+        "Validate role, jurisdiction, framework and period",
+        "Reconcile quantities, rates and account classifications",
+        "Tie corrections and deletions to retained source history",
+        "Prepare exception packet",
+        "Require accountable human approval before posting or filing"
+      ],
+      "inputs": [
+        "Meter and billing extracts",
+        "Tariff and rate-order evidence",
+        "Purchase and settlement records",
+        "Work orders, invoices and plant register",
+        "Legal-obligation and estimate evidence"
+      ],
+      "outputs": [
+        "Reconciled proposed schedule",
+        "Unbilled estimate support",
+        "Plant and regulatory-balance bridge",
+        "Exception and reviewer packet"
+      ],
+      "limitations": [
+        "Synthetic design only; no production system, interface or control-effectiveness evidence.",
+        "Current consolidated US GAAP and entity-specific regulatory applicability remain open."
+      ]
+    }
   }
 ]

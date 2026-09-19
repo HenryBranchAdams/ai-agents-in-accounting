@@ -1,12 +1,12 @@
 {
   "schema_version": "1.0.0",
-  "mapping_version": "2026-09-19.12410",
+  "mapping_version": "2026-09-19.12411",
   "topology_version": "2026-09-11.1",
-  "corpus_version": "2026-09-19.12410",
+  "corpus_version": "2026-09-19.12411",
   "generated_at": "2026-09-19",
-  "corpus_sha256": "914649358ba50bd6189a84b8cff0b2dc51bafae4fd79f7a47b519e4d565769d7",
+  "corpus_sha256": "4ddeef5ca67bf09bd2d6ff56c6e4e59c770f5b94b67efb171f9f36eb403f2601",
   "rules_sha256": "550b2bb485399af996bac6ed34542d7a91170d4b31b5e5026e0e9c2c32068b9d",
-  "overrides_sha256": "17014c5a419718fc385ee159add96acec409051ad0323fc7eabdd626fb5eafd9",
+  "overrides_sha256": "3eb1c959524dfd7be513028a881b17480e5b968835eb27ba2a3fafdeca394bc9",
   "method": "Deterministic title/topic associations, conservative industry crosswalk, and explicit editorial additions. All initial links are candidates; source review status is unchanged.",
   "mappings": [
     {
@@ -4786,6 +4786,74 @@
       "note": "Association reviewed for the named US operating-transaction questions; it does not establish accounting adequacy, industry coverage or professional verification."
     },
     {
+      "record_id": "ctrl-utilities-source-to-ledger",
+      "question_mappings": [
+        {
+          "question_id": "q-controls-fraud",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/1",
+              "matched": "Controls and governance",
+              "rule": "topic-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-data-lineage",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/assertions",
+              "matched": "Control proposal is tied to the selected electric utility reconciliation population.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/assertions",
+              "matched": "2026-09-19: Original control proposal; no design or operating-effectiveness evidence.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-interfaces",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/assertions",
+              "matched": "Control proposal is tied to the selected electric utility reconciliation population.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/assertions",
+              "matched": "2026-09-19: Original control proposal; no design or operating-effectiveness evidence.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "2211",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/assertions",
+              "matched": "Control proposal is tied to the selected electric utility reconciliation population.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/assertions",
+              "matched": "2026-09-19: Original control proposal; no design or operating-effectiveness evidence.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "note": "Original control proposal; no design or operating-effectiveness evidence."
+    },
+    {
       "record_id": "ctrl-version-evidence",
       "question_mappings": [
         {
@@ -6547,6 +6615,143 @@
       "industry_scope": "unassigned",
       "industry_mappings": [],
       "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "example-utilities-billing-plant-close",
+      "question_mappings": [
+        {
+          "question_id": "q-capital-assets",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/examples",
+              "matched": "Synthetic selected electric utility case with unregulated merchant and service-provider counterexamples; not a whole-subsector claim.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/examples",
+              "matched": "2026-09-19: Original synthetic arithmetic and scope review; not operational evidence or posting authority.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-data-lineage",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/examples",
+              "matched": "Synthetic selected electric utility case with unregulated merchant and service-provider counterexamples; not a whole-subsector claim.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/examples",
+              "matched": "2026-09-19: Original synthetic arithmetic and scope review; not operational evidence or posting authority.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-environmental",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/examples",
+              "matched": "Synthetic selected electric utility case with unregulated merchant and service-provider counterexamples; not a whole-subsector claim.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/examples",
+              "matched": "2026-09-19: Original synthetic arithmetic and scope review; not operational evidence or posting authority.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-interfaces",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/examples",
+              "matched": "Synthetic selected electric utility case with unregulated merchant and service-provider counterexamples; not a whole-subsector claim.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/examples",
+              "matched": "2026-09-19: Original synthetic arithmetic and scope review; not operational evidence or posting authority.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-purchasing-payables",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/examples",
+              "matched": "Synthetic selected electric utility case with unregulated merchant and service-provider counterexamples; not a whole-subsector claim.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/examples",
+              "matched": "2026-09-19: Original synthetic arithmetic and scope review; not operational evidence or posting authority.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-rate-regulation",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/examples",
+              "matched": "Synthetic selected electric utility case with unregulated merchant and service-provider counterexamples; not a whole-subsector claim.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/examples",
+              "matched": "2026-09-19: Original synthetic arithmetic and scope review; not operational evidence or posting authority.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-revenue",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/examples",
+              "matched": "Synthetic selected electric utility case with unregulated merchant and service-provider counterexamples; not a whole-subsector claim.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/examples",
+              "matched": "2026-09-19: Original synthetic arithmetic and scope review; not operational evidence or posting authority.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "2211",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/examples",
+              "matched": "Synthetic selected electric utility case with unregulated merchant and service-provider counterexamples; not a whole-subsector claim.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/examples",
+              "matched": "2026-09-19: Original synthetic arithmetic and scope review; not operational evidence or posting authority.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "note": "Original synthetic arithmetic and scope review; not operational evidence or posting authority."
     },
     {
       "record_id": "guide-aa-i124-institutional",
@@ -20987,6 +21192,143 @@
         }
       ],
       "note": "Candidate association with this industry scope; applicability and depth are not inferred."
+    },
+    {
+      "record_id": "guide-utilities-us-regulated-close",
+      "question_mappings": [
+        {
+          "question_id": "q-capital-assets",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/scope",
+              "matched": "Selected electric utility application with explicit FERC role and scope counterexamples; association does not establish whole-subsector sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/scope",
+              "matched": "2026-09-19: Bounded source and synthetic application review; no professional verification, current consolidated ASC conclusion or whole-subsector sufficiency.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-data-lineage",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/scope",
+              "matched": "Selected electric utility application with explicit FERC role and scope counterexamples; association does not establish whole-subsector sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/scope",
+              "matched": "2026-09-19: Bounded source and synthetic application review; no professional verification, current consolidated ASC conclusion or whole-subsector sufficiency.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-environmental",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/scope",
+              "matched": "Selected electric utility application with explicit FERC role and scope counterexamples; association does not establish whole-subsector sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/scope",
+              "matched": "2026-09-19: Bounded source and synthetic application review; no professional verification, current consolidated ASC conclusion or whole-subsector sufficiency.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-interfaces",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/scope",
+              "matched": "Selected electric utility application with explicit FERC role and scope counterexamples; association does not establish whole-subsector sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/scope",
+              "matched": "2026-09-19: Bounded source and synthetic application review; no professional verification, current consolidated ASC conclusion or whole-subsector sufficiency.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-purchasing-payables",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/scope",
+              "matched": "Selected electric utility application with explicit FERC role and scope counterexamples; association does not establish whole-subsector sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/scope",
+              "matched": "2026-09-19: Bounded source and synthetic application review; no professional verification, current consolidated ASC conclusion or whole-subsector sufficiency.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-rate-regulation",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/scope",
+              "matched": "Selected electric utility application with explicit FERC role and scope counterexamples; association does not establish whole-subsector sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/scope",
+              "matched": "2026-09-19: Bounded source and synthetic application review; no professional verification, current consolidated ASC conclusion or whole-subsector sufficiency.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-revenue",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/scope",
+              "matched": "Selected electric utility application with explicit FERC role and scope counterexamples; association does not establish whole-subsector sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/scope",
+              "matched": "2026-09-19: Bounded source and synthetic application review; no professional verification, current consolidated ASC conclusion or whole-subsector sufficiency.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "2211",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/scope",
+              "matched": "Selected electric utility application with explicit FERC role and scope counterexamples; association does not establish whole-subsector sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/scope",
+              "matched": "2026-09-19: Bounded source and synthetic application review; no professional verification, current consolidated ASC conclusion or whole-subsector sufficiency.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "note": "Bounded source and synthetic application review; no professional verification, current consolidated ASC conclusion or whole-subsector sufficiency."
     },
     {
       "record_id": "guide-wholesale-retail",
@@ -47999,6 +48341,218 @@
       "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
     },
     {
+      "record_id": "src_utilities_fas143_aro",
+      "question_mappings": [
+        {
+          "question_id": "q-capital-assets",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/source_locator",
+              "matched": "FASB historical ARO summary is shared accounting context applied to the selected utility example; it does not establish industry-specific or current consolidated treatment.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/source_locator",
+              "matched": "2026-09-19: Official superseded summary reviewed; current ASC 410 and professional applicability remain open.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-data-lineage",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/source_locator",
+              "matched": "FASB historical ARO summary is shared accounting context applied to the selected utility example; it does not establish industry-specific or current consolidated treatment.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/source_locator",
+              "matched": "2026-09-19: Official superseded summary reviewed; current ASC 410 and professional applicability remain open.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-environmental",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Asset Retirement",
+              "rule": "title:environmental"
+            },
+            {
+              "field": "/data/source_locator",
+              "matched": "FASB historical ARO summary is shared accounting context applied to the selected utility example; it does not establish industry-specific or current consolidated treatment.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/source_locator",
+              "matched": "2026-09-19: Official superseded summary reviewed; current ASC 410 and professional applicability remain open.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "Official superseded summary reviewed; current ASC 410 and professional applicability remain open."
+    },
+    {
+      "record_id": "src_utilities_ferc_account_555",
+      "question_mappings": [
+        {
+          "question_id": "q-data-lineage",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/source_locator",
+              "matched": "FERC Account 555 guidance is directly cited for the selected electric purchased-power settlement question.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/source_locator",
+              "matched": "2026-09-19: Bounded source review; no current consolidated presentation conclusion.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-purchasing-payables",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/source_locator",
+              "matched": "FERC Account 555 guidance is directly cited for the selected electric purchased-power settlement question.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/source_locator",
+              "matched": "2026-09-19: Bounded source review; no current consolidated presentation conclusion.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-revenue",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/source_locator",
+              "matched": "FERC Account 555 guidance is directly cited for the selected electric purchased-power settlement question.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/source_locator",
+              "matched": "2026-09-19: Bounded source review; no current consolidated presentation conclusion.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "2211",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/source_locator",
+              "matched": "FERC Account 555 guidance is directly cited for the selected electric purchased-power settlement question.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/source_locator",
+              "matched": "2026-09-19: Bounded source review; no current consolidated presentation conclusion.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "note": "Bounded source review; no current consolidated presentation conclusion."
+    },
+    {
+      "record_id": "src_utilities_ferc_accounting_qa",
+      "question_mappings": [
+        {
+          "question_id": "q-capital-assets",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/locators",
+              "matched": "FERC staff Q&A is cited for selected electric utility plant and regulatory-accounting questions.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/locators",
+              "matched": "2026-09-19: Original publisher page reviewed at bounded excerpt level; Q&As are not binding Commission action.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-data-lineage",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/locators",
+              "matched": "FERC staff Q&A is cited for selected electric utility plant and regulatory-accounting questions.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/locators",
+              "matched": "2026-09-19: Original publisher page reviewed at bounded excerpt level; Q&As are not binding Commission action.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-rate-regulation",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "FERC",
+              "rule": "title:rate-regulation"
+            },
+            {
+              "field": "/data/locators",
+              "matched": "FERC staff Q&A is cited for selected electric utility plant and regulatory-accounting questions.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/locators",
+              "matched": "2026-09-19: Original publisher page reviewed at bounded excerpt level; Q&As are not binding Commission action.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "2211",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/locators",
+              "matched": "FERC staff Q&A is cited for selected electric utility plant and regulatory-accounting questions.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/locators",
+              "matched": "2026-09-19: Original publisher page reviewed at bounded excerpt level; Q&As are not binding Commission action.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "note": "Original publisher page reviewed at bounded excerpt level; Q&As are not binding Commission action."
+    },
+    {
       "record_id": "src_workiva26agents",
       "question_mappings": [],
       "industry_scope": "shared-context",
@@ -54251,6 +54805,128 @@
       "industry_scope": "shared-context",
       "industry_mappings": [],
       "note": "Association reviewed for the named US operating-transaction questions; it does not establish accounting adequacy, industry coverage or professional verification."
+    },
+    {
+      "record_id": "wf-utilities-billing-plant-reconciliation",
+      "question_mappings": [
+        {
+          "question_id": "q-capital-assets",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data/steps",
+              "matched": "Workflow applies to the selected electric utility source-to-ledger population only.",
+              "rule": "editorial-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-data-lineage",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "reconcil",
+              "rule": "title:data-lineage"
+            },
+            {
+              "field": "/data/steps",
+              "matched": "Workflow applies to the selected electric utility source-to-ledger population only.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/steps",
+              "matched": "2026-09-19: Original workflow proposal; implementation and operating effectiveness remain untested.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-environmental",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data/steps",
+              "matched": "Workflow applies to the selected electric utility source-to-ledger population only.",
+              "rule": "editorial-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-interfaces",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/steps",
+              "matched": "Workflow applies to the selected electric utility source-to-ledger population only.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/steps",
+              "matched": "2026-09-19: Original workflow proposal; implementation and operating effectiveness remain untested.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-purchasing-payables",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data/steps",
+              "matched": "Workflow applies to the selected electric utility source-to-ledger population only.",
+              "rule": "editorial-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-rate-regulation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data/steps",
+              "matched": "Workflow applies to the selected electric utility source-to-ledger population only.",
+              "rule": "editorial-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-revenue",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "billing",
+              "rule": "title:revenue"
+            },
+            {
+              "field": "/data/steps",
+              "matched": "Workflow applies to the selected electric utility source-to-ledger population only.",
+              "rule": "editorial-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "2211",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/steps",
+              "matched": "Workflow applies to the selected electric utility source-to-ledger population only.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/steps",
+              "matched": "2026-09-19: Original workflow proposal; implementation and operating effectiveness remain untested.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "note": "Original workflow proposal; implementation and operating effectiveness remain untested."
     }
   ]
 }
