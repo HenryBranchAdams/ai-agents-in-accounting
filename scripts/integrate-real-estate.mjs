@@ -1,87 +1,103 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
+import { isDeepStrictEqual } from 'node:util';
+import { pathToFileURL } from 'node:url';
 
-const root = process.env.AA_REAL_ESTATE_ROOT || process.cwd();
-const resolve = relative => path.join(root, relative);
-const read = relative => JSON.parse(fs.readFileSync(resolve(relative), 'utf8'));
-const writeBody = value => JSON.stringify(value, null, 2) + '\n';
-const packet = read('data/research/real-estate-2026-09-19.json');
-const dryRun = process.argv.includes('--dry-run');
-const applyFixture = process.argv.includes('--apply-source-fixture');
-
-assert.equal(packet.status, 'source-only-pending-integration');
-assert.equal(packet.integration_contract.source_only, true);
-assert.equal(packet.integration_contract.catalog_write, false);
-assert.equal(packet.integration_contract.release_write, false);
-assert.equal(packet.integration_contract.snapshot_write, false);
-assert.equal(packet.integration_contract.archive_write, false);
-assert.notEqual(packet.package_version, packet.current_corpus_version);
-if (!dryRun && !applyFixture) throw new Error('Refusing to write: use --dry-run or --apply-source-fixture in a disposable fixture.');
-
+export const packetFile = 'data/research/real-estate-2026-09-19.json';
 const files = {
   source: 'data/corpus/source.json', guide: 'data/corpus/guide.json', workflow: 'data/corpus/workflow.json',
   control: 'data/corpus/control.json', example: 'data/corpus/example.json',
   questions: 'data/coverage/research-questions.json', assessments: 'data/coverage/assessments.json', mappings: 'data/coverage/mapping-overrides.json',
 };
-for (const file of Object.values(files)) assert.ok(fs.existsSync(resolve(file)), `Missing integration target ${file}`);
-const corpus = Object.fromEntries(Object.entries(files).filter(([kind]) => ['source','guide','workflow','control','example'].includes(kind)).map(([kind,file]) => [kind, read(file)]));
-const questions = read(files.questions);
-const assessments = read(files.assessments);
-const mappings = read(files.mappings);
-const same = (a,b) => JSON.stringify(a) === JSON.stringify(b);
-const conflicts = [];
-const conflict = (target, reason, current, incoming) => conflicts.push({target, reason, current, incoming});
-const index = new Map();
-for (const [kind, rows] of Object.entries(corpus)) for (const row of rows) {
-  if (index.has(row.id)) conflict(`record:${row.id}`, 'duplicate-existing-stable-id', index.get(row.id), kind);
-  index.set(row.id, {kind, row});
-}
-const sourceUrls = new Map(corpus.source.filter(row => row.source_url).map(row => [row.source_url, row.id]));
-for (const source of packet.sources) {
-  assert.equal(source.kind, 'source');
-  const prior = sourceUrls.get(source.source_url);
-  if (prior && prior !== source.id) conflict(`source-url:${source.source_url}`, 'different-stable-id-for-source-url', prior, source.id);
-  const current = index.get(source.id)?.row;
-  if (current && !same(current, source)) conflict(`source:${source.id}`, 'existing-record-differs', current, source);
-  if (!current) { corpus.source.push(structuredClone(source)); index.set(source.id, {kind:'source', row:source}); sourceUrls.set(source.source_url, source.id); }
-}
-const knownSources = new Set(corpus.source.map(row => row.id));
-const sourceUrlById = new Map(corpus.source.filter(row => row.source_url).map(row => [row.id, row.source_url]));
-for (const source of packet.sources) for (const locator of source.data?.locators || []) if (locator.url) assert.equal(locator.url, source.source_url, `${source.id}: locator URL mismatch`);
-for (const row of packet.question_rows) {
-  for (const sourceId of row.source_ids || []) assert.ok(knownSources.has(sourceId), `${row.id}: unknown source ${sourceId}`);
-  for (const locator of row.source_locators || []) {
-    assert.ok(knownSources.has(locator.source_id), `${row.id}: unknown locator source ${locator.source_id}`);
-    if (locator.url) assert.equal(locator.url, sourceUrlById.get(locator.source_id), `${row.id}: locator URL mismatch`);
+const readFrom = root => file => JSON.parse(fs.readFileSync(path.join(root, file), 'utf8'));
+
+export function applyToRoot(root, { expectedVersion, dryRun = false } = {}) {
+  const read = readFrom(root);
+  const packet = read(packetFile);
+  const catalog = read('data/catalog.json');
+  assert.equal(packet.status, 'source-only-pending-integration');
+  assert.equal(packet.integration_contract.source_only, true);
+  assert.equal(packet.integration_contract.catalog_write, false);
+  assert.equal(packet.integration_contract.release_write, false);
+  assert.equal(packet.integration_contract.snapshot_write, false);
+  assert.equal(packet.integration_contract.archive_write, false);
+  assert.equal(catalog.corpus_version, expectedVersion || packet.current_corpus_version, 'Refuse unexpected real-estate integration edition before writes');
+  for (const file of Object.values(files)) assert.ok(fs.existsSync(path.join(root, file)), `Missing integration target ${file}`);
+
+  const stage = new Map();
+  const index = new Map();
+  const corpus = {};
+  for (const [kind, file] of Object.entries(files)) {
+    if (!['source', 'guide', 'workflow', 'control', 'example'].includes(kind)) continue;
+    corpus[kind] = read(file);
+    stage.set(file, corpus[kind]);
+    for (const row of corpus[kind]) {
+      assert.ok(!index.has(row.id), `Duplicate stable record ${row.id}`);
+      index.set(row.id, row);
+    }
   }
+  const urls = new Map([...index.values()].filter(row => row.kind === 'source' && row.source_url).map(row => [row.source_url, row.id]));
+  const addRecord = (rows, incoming, target) => {
+    const current = rows.find(row => row.id === incoming.id);
+    assert.ok(!current || isDeepStrictEqual(current, incoming), `Real-estate preflight conflict: ${target}:${incoming.id}`);
+    if (!current) rows.push(structuredClone(incoming));
+  };
+  for (const incoming of [...packet.sources, ...packet.records]) {
+    assert.ok(corpus[incoming.kind], `Unsupported record kind ${incoming.kind}`);
+    const current = index.get(incoming.id);
+    assert.ok(!current || isDeepStrictEqual(current, incoming), `Real-estate preflight conflict: record:${incoming.id}`);
+    if (incoming.kind === 'source') {
+      assert.ok(!urls.has(incoming.source_url) || urls.get(incoming.source_url) === incoming.id, `Real-estate source URL identity conflict: ${incoming.id}`);
+      urls.set(incoming.source_url, incoming.id);
+      for (const locator of incoming.data?.locators || []) if (locator.url) assert.equal(locator.url, incoming.source_url, `Source locator URL identity: ${incoming.id}`);
+    }
+    addRecord(corpus[incoming.kind], incoming, 'record');
+    index.set(incoming.id, incoming);
+  }
+  for (const incoming of [...packet.sources, ...packet.records]) {
+    for (const sourceId of incoming.source_ids || []) assert.equal(index.get(sourceId)?.kind, 'source', `Missing real-estate source ${sourceId}`);
+    for (const relatedId of incoming.related_ids || []) assert.ok(index.has(relatedId), `Missing real-estate related record ${relatedId}`);
+  }
+  for (const question of packet.question_rows) {
+    const guide = index.get(question.record_id);
+    assert.ok(guide, `Missing question record ${question.record_id}`);
+    const pointed = question.pointer.split('/').slice(1).reduce((node, key) => node?.[key], guide);
+    assert.deepEqual(pointed, question, `Question pointer differs: ${question.id}`);
+    for (const locator of question.source_locators || []) {
+      const source = index.get(locator.source_id);
+      assert.equal(source?.kind, 'source', `Missing question source: ${question.id}`);
+      assert.equal(locator.url, source.source_url, `Question source URL identity: ${question.id}`);
+      assert.ok(locator.effective_period && locator.access_limits, `Question locator evidence is incomplete: ${question.id}`);
+    }
+    assert.equal(index.get(question.example_id)?.kind, 'example', `Question example is unresolved: ${question.id}`);
+  }
+  const questions = read(files.questions), assessments = read(files.assessments), mappings = read(files.mappings);
+  for (const row of packet.question_rows) addRecord(questions.questions, row, 'question');
+  for (const row of packet.assessments) addRecord(assessments.assessments, row, 'assessment');
+  for (const [id, row] of Object.entries(packet.mapping_overrides)) {
+    const current = mappings.records[id];
+    assert.ok(!current || isDeepStrictEqual(current, row), `Real-estate preflight conflict: mapping:${id}`);
+    if (!current) mappings.records[id] = structuredClone(row);
+  }
+  stage.set(files.questions, questions);
+  stage.set(files.assessments, assessments);
+  stage.set(files.mappings, mappings);
+
+  let changed = 0;
+  for (const [file, value] of stage) {
+    const original = fs.readFileSync(path.join(root, file), 'utf8');
+    const body = JSON.stringify(value, null, 2) + '\n';
+    if (isDeepStrictEqual(JSON.parse(original), value)) continue;
+    if (!dryRun) fs.writeFileSync(path.join(root, file), body);
+    changed++;
+  }
+  return { dryRun, changed, catalog_version: catalog.corpus_version, sources: packet.sources.length, records: packet.records.length, questions: packet.question_rows.length, assessments: packet.assessments.length };
 }
-for (const incoming of packet.records) {
-  assert.ok(corpus[incoming.kind], `Unsupported record kind ${incoming.kind}`);
-  for (const sourceId of incoming.source_ids || []) assert.ok(knownSources.has(sourceId), `${incoming.id}: unknown source ${sourceId}`);
-  const current = index.get(incoming.id)?.row;
-  if (current && !same(current, incoming)) conflict(`${incoming.kind}:${incoming.id}`, 'existing-record-differs', current, incoming);
-  if (!current) { corpus[incoming.kind].push(structuredClone(incoming)); index.set(incoming.id, {kind:incoming.kind,row:incoming}); }
+
+if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) {
+  const value = flag => { const i = process.argv.indexOf(flag); return i < 0 ? undefined : process.argv[i + 1]; };
+  const dryRun = process.argv.includes('--dry-run');
+  assert.ok(dryRun || process.argv.includes('--apply-source-fixture'), 'Refusing to write without --apply-source-fixture');
+  console.log(JSON.stringify(applyToRoot(value('--root') || process.cwd(), { expectedVersion: value('--expected-version'), dryRun }), null, 2));
 }
-const addById = (rows, incoming, target) => {
-  const current = rows.find(row => row.id === incoming.id);
-  if (current && !same(current, incoming)) conflict(`${target}:${incoming.id}`, 'existing-row-differs', current, incoming);
-  if (!current) rows.push(structuredClone(incoming));
-};
-for (const incoming of packet.question_rows) addById(questions.questions, incoming, 'research-question');
-for (const incoming of packet.assessments) addById(assessments.assessments, incoming, 'assessment');
-for (const [id, incoming] of Object.entries(packet.mapping_overrides)) {
-  const current = mappings.records[id];
-  if (current && !same(current, incoming)) conflict(`mapping:${id}`, 'existing-mapping-differs', current, incoming);
-  if (!current) mappings.records[id] = structuredClone(incoming);
-}
-assert.equal(conflicts.length, 0, JSON.stringify({message:'Real-estate integration preflight conflicts; no files written.', conflicts}, null, 2));
-const staged = new Map();
-for (const [kind,file] of Object.entries(files)) {
-  if (['source','guide','workflow','control','example'].includes(kind)) staged.set(file, writeBody(corpus[kind]));
-}
-staged.set(files.questions, writeBody(questions));
-staged.set(files.assessments, writeBody(assessments));
-staged.set(files.mappings, writeBody(mappings));
-if (!dryRun && applyFixture) for (const [file, body] of staged) if (fs.readFileSync(resolve(file), 'utf8') !== body) fs.writeFileSync(resolve(file), body);
-console.log(JSON.stringify({mode:dryRun?'dry-run':'applied',package_version:packet.package_version,candidate_sources:packet.sources.length,candidate_records:packet.records.length,candidate_questions:packet.question_rows.length,candidate_assessments:packet.assessments.length,candidate_mappings:Object.keys(packet.mapping_overrides).length,staged_files:[...staged.keys()]}, null, 2));
