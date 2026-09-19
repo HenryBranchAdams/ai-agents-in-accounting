@@ -6579,5 +6579,195 @@
         "external_sources": "Not redistributed; publisher terms apply"
       }
     }
+  },
+  {
+    "id": "example-aa-i124-role-routing",
+    "kind": "example",
+    "title": "Original synthetic institutional inflow and custody routing",
+    "summary": "Three independent $100,000 fact patterns and an owned-versus-client custody counterexample demonstrate why amount and industry alone cannot determine accounting.",
+    "topics": [
+      "Accounting and reporting"
+    ],
+    "industries": [],
+    "jurisdiction": "United States; selected roles and reporting purposes only",
+    "source_type": "Original synthetic example",
+    "publisher": "Accounting Agents",
+    "source_url": null,
+    "source_ids": [
+      "src_nonprofit_fasb_2018_08",
+      "src_cfr200grants",
+      "src_roadmap_gasb34_basis",
+      "src_roadmap_gasb103",
+      "src_roadmap_fasab34",
+      "src_roadmap_fasab53",
+      "src_naic_sap_hierarchy_2026",
+      "src_aa_i124_naic",
+      "src_ffiec051_instructions_2025",
+      "src_aa_i124_custody",
+      "src_aa_i124_ferc101",
+      "src_fercacct",
+      "src_aa_i124_oilgas",
+      "src_roadmap_ecfr_41324f_2026",
+      "src_cms255210_transmittal25_2026",
+      "src_roadmap_cms_2552_10_r24",
+      "src_construction_fasb_2014_09",
+      "src_nonprofit_fasb_2016_14"
+    ],
+    "related_ids": [
+      "guide-q-revenue",
+      "guide-us-nonprofit-contributions-close"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-19",
+    "provenance": {
+      "added_on": "2026-09-19",
+      "reviewer": "Codex AI-assisted source and editorial review",
+      "issue_id": "AA-I124",
+      "note": "Selected original-authority locators and explicit inherited reviews support this bounded synthesis. No professional signoff or operational validation. Review date is distinct from reserved snapshot ID."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "External text is not stored; publisher terms apply. Public access does not establish reuse permission.",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "issue_id": "AA-I124",
+      "classification": "Original synthetic",
+      "currency": "USD",
+      "cutoff": "2026-12-31",
+      "opening_balances": "Zero for all illustrated cash, liability and revenue accounts; independent entities and cases, not one combined ledger.",
+      "custody": {
+        "statement_id": "CUST-001",
+        "statement_value": 250000,
+        "identical_input": "Security and quantity/value feed identical; legal title and beneficial ownership evidence differ.",
+        "owned": {
+          "assumption": "Entity owns the investment, acquired with its own funds; measurement assumed at cost equal to statement value.",
+          "entity_asset": 250000,
+          "client_asset_subledger": 0
+        },
+        "client": {
+          "assumption": "Adviser acts only for the client; no ownership, guarantee or principal obligation assumed.",
+          "entity_asset": 0,
+          "client_asset_subledger": 250000
+        },
+        "source_ids": [
+          "src_aa_i124_custody"
+        ],
+        "control": "Require account title, agreement and beneficial ownership evidence before routing. SEC custody compliance does not determine GAAP measurement."
+      },
+      "controls": [
+        "Review role and framework before posting",
+        "Reconcile each independent case separately",
+        "Never sum budget authority and financial-statement revenue as one balance"
+      ],
+      "limitations": [
+        "No professional accounting signoff.",
+        "No operational population or empirical agent evidence; synthetic checks do not establish effective controls.",
+        "Entries are editorial illustrations under stated assumptions, not regulator-approved posting instructions.",
+        "No per-family operational examples or accounting adequacy claim.",
+        "Synthetic facts and amounts only; not operational evidence."
+      ],
+      "examples": [
+        {
+          "id": "customer",
+          "amount": 100000,
+          "facts": "US GAAP customer prepays on December 1 for a single service fully delivered December 31; no refund, financing or variable consideration.",
+          "source_ids": [
+            "src_construction_fasb_2014_09"
+          ],
+          "related_ids": [
+            "guide-q-revenue"
+          ],
+          "evidence": [
+            "executed contract",
+            "bank receipt",
+            "service acceptance"
+          ],
+          "entries": [
+            {
+              "date": "2026-12-01",
+              "debit": "Cash",
+              "credit": "Contract liability",
+              "amount": 100000
+            },
+            {
+              "date": "2026-12-31",
+              "debit": "Contract liability",
+              "credit": "Service revenue",
+              "amount": 100000
+            }
+          ],
+          "ending": {
+            "cash": 100000,
+            "liability": 0,
+            "revenue": 100000
+          },
+          "basis_bridge": "Cash receipt precedes performance; liability is released only on assumed delivery."
+        },
+        {
+          "id": "contribution",
+          "amount": 100000,
+          "facts": "Nongovernmental US nonprofit receives an unconditional purpose-restricted gift December 1. No qualifying spending by year end; no barrier/return combination.",
+          "source_ids": [
+            "src_nonprofit_fasb_2018_08",
+            "src_nonprofit_fasb_2016_14"
+          ],
+          "related_ids": [
+            "guide-us-nonprofit-contributions-close"
+          ],
+          "evidence": [
+            "donor agreement",
+            "condition analysis",
+            "restriction ledger"
+          ],
+          "entries": [
+            {
+              "date": "2026-12-01",
+              "debit": "Cash",
+              "credit": "Contribution revenue with donor restrictions",
+              "amount": 100000
+            }
+          ],
+          "ending": {
+            "cash": 100000,
+            "liability": 0,
+            "revenue": 100000,
+            "restriction_release": 0
+          },
+          "basis_bridge": "Restriction does not by itself defer contribution revenue. If a barrier and return right were present, use a refundable advance until the condition is met; do not copy this entry."
+        },
+        {
+          "id": "appropriation",
+          "amount": 100000,
+          "facts": "State/local general fund receives spending authorization December 1 against existing available resources. There is no cash transfer, tax levy, receivable, expenditure or liability in this event.",
+          "source_ids": [
+            "src_roadmap_gasb34_basis",
+            "src_roadmap_gasb103"
+          ],
+          "related_ids": [
+            "guide-q-government-funds",
+            "guide-q-federal-sovereign"
+          ],
+          "evidence": [
+            "enacted appropriation",
+            "budget schedule",
+            "evidence of no separate resource transaction"
+          ],
+          "entries": [],
+          "ending": {
+            "cash": 0,
+            "liability": 0,
+            "revenue": 0,
+            "budget_authority": 100000
+          },
+          "basis_bridge": "Record budget authorization in the applicable budget system, not invented cash/revenue. Local budget-entry mechanics remain unverified. Federal authority would require the separate FASAB/budget-law route."
+        }
+      ]
+    }
   }
 ]
