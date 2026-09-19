@@ -1,12 +1,12 @@
 {
   "schema_version": "1.0.0",
-  "mapping_version": "2026-09-19.12420",
+  "mapping_version": "2026-09-19.12421",
   "topology_version": "2026-09-11.1",
-  "corpus_version": "2026-09-19.12420",
+  "corpus_version": "2026-09-19.12421",
   "generated_at": "2026-09-19",
-  "corpus_sha256": "5c6bba0ca9a5d0bf568b10a6334e0e2f72880a4b8782884ce4e35392b68bac2e",
+  "corpus_sha256": "6f03684fdbd847e0b9bbe3119e850a6e3b56fcf893872fbecc696e01ba841c1d",
   "rules_sha256": "550b2bb485399af996bac6ed34542d7a91170d4b31b5e5026e0e9c2c32068b9d",
-  "overrides_sha256": "06bb549e59ae53f31500d70c92fd3f25103899f06ade85fc4f949d6a1cdc7c1c",
+  "overrides_sha256": "11bc5aa21dcf4f6d6bb18c419eaeeb025e1855cd1028a2ae6a5a2c980dc56a4d",
   "method": "Deterministic title/topic associations, conservative industry crosswalk, and explicit editorial additions. All initial links are candidates; source review status is unchanged.",
   "mappings": [
     {
@@ -4069,6 +4069,143 @@
       "note": "Reviewed association with the original editorial content. This does not validate accounting treatment or the adequacy of its external references."
     },
     {
+      "record_id": "ctrl-holding-perimeter-and-matches",
+      "question_mappings": [
+        {
+          "question_id": "q-consolidation",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected US parent/subsidiary application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit entity and tax boundaries; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-cost-allocation",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected US parent/subsidiary application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit entity and tax boundaries; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-data-lineage",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected US parent/subsidiary application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit entity and tax boundaries; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-debt",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected US parent/subsidiary application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit entity and tax boundaries; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-investments",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected US parent/subsidiary application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit entity and tax boundaries; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-related-parties",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected US parent/subsidiary application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit entity and tax boundaries; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-revenue",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected US parent/subsidiary application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit entity and tax boundaries; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "551",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected US parent/subsidiary application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit entity and tax boundaries; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "note": "Bounded source-linked synthetic application with explicit entity and tax boundaries; not professional or empirical verification."
+    },
+    {
       "record_id": "ctrl-human-approval",
       "question_mappings": [
         {
@@ -6733,6 +6870,164 @@
       "industry_scope": "unassigned",
       "industry_mappings": [],
       "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "example-holding-parent-subsidiary-close",
+      "question_mappings": [
+        {
+          "question_id": "q-consolidation",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "consolidat",
+              "rule": "title:consolidation"
+            },
+            {
+              "field": "/data",
+              "matched": "Original selected US parent/subsidiary application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit entity and tax boundaries; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-cost-allocation",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected US parent/subsidiary application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit entity and tax boundaries; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-data-lineage",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "reconcil",
+              "rule": "title:data-lineage"
+            },
+            {
+              "field": "/data",
+              "matched": "Original selected US parent/subsidiary application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit entity and tax boundaries; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-debt",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected US parent/subsidiary application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit entity and tax boundaries; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-evaluation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Synthetic",
+              "rule": "title:evaluation"
+            }
+          ]
+        },
+        {
+          "question_id": "q-investments",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected US parent/subsidiary application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit entity and tax boundaries; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-related-parties",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected US parent/subsidiary application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit entity and tax boundaries; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-revenue",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected US parent/subsidiary application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit entity and tax boundaries; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "551",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected US parent/subsidiary application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit entity and tax boundaries; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "note": "Bounded source-linked synthetic application with explicit entity and tax boundaries; not professional or empirical verification."
     },
     {
       "record_id": "example-i97-crop-support-close",
@@ -9565,6 +9860,143 @@
       "industry_scope": "shared-context",
       "industry_mappings": [],
       "note": "Reviewed association with the original editorial content. This does not validate accounting treatment or the adequacy of its external references."
+    },
+    {
+      "record_id": "guide-holding-management-us-close",
+      "question_mappings": [
+        {
+          "question_id": "q-consolidation",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "Original selected US parent/subsidiary application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit entity and tax boundaries; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-cost-allocation",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "Original selected US parent/subsidiary application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit entity and tax boundaries; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-data-lineage",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "Original selected US parent/subsidiary application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit entity and tax boundaries; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-debt",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "Original selected US parent/subsidiary application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit entity and tax boundaries; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-investments",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "Original selected US parent/subsidiary application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit entity and tax boundaries; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-related-parties",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "Original selected US parent/subsidiary application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit entity and tax boundaries; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-revenue",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "Original selected US parent/subsidiary application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit entity and tax boundaries; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "551",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "Original selected US parent/subsidiary application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit entity and tax boundaries; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "note": "Bounded source-linked synthetic application with explicit entity and tax boundaries; not professional or empirical verification."
     },
     {
       "record_id": "guide-i97-crop-producer",
@@ -36849,6 +37281,51 @@
       "note": "Bounded source and synthetic application review; no current consolidated ASC conclusion, professional verification, operational evidence or rights upgrade."
     },
     {
+      "record_id": "src_aa_i109_arb51_amended",
+      "question_mappings": [
+        {
+          "question_id": "q-consolidation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "consolidation",
+              "rule": "title:consolidation"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_aa_i109_cfr_14829_2025",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_aa_i109_secsx_3a02_2025",
+      "question_mappings": [
+        {
+          "question_id": "q-consolidation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "consolidation",
+              "rule": "title:consolidation"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
       "record_id": "src_aa_i123_201408",
       "question_mappings": [
         {
@@ -56523,6 +57000,148 @@
         }
       ],
       "note": "Candidate association with this industry scope; applicability and depth are not inferred."
+    },
+    {
+      "record_id": "wf-holding-entity-to-consolidated",
+      "question_mappings": [
+        {
+          "question_id": "q-consolidation",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "consolidation",
+              "rule": "title:consolidation"
+            },
+            {
+              "field": "/data",
+              "matched": "Original selected US parent/subsidiary application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit entity and tax boundaries; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-cost-allocation",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected US parent/subsidiary application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit entity and tax boundaries; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-data-lineage",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected US parent/subsidiary application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit entity and tax boundaries; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-debt",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected US parent/subsidiary application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit entity and tax boundaries; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-investments",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected US parent/subsidiary application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit entity and tax boundaries; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-related-parties",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected US parent/subsidiary application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit entity and tax boundaries; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-revenue",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected US parent/subsidiary application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit entity and tax boundaries; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "551",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected US parent/subsidiary application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit entity and tax boundaries; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "note": "Bounded source-linked synthetic application with explicit entity and tax boundaries; not professional or empirical verification."
     },
     {
       "record_id": "wf-i97-crop-service-close",
