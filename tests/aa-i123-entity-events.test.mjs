@@ -187,7 +187,20 @@ test('AA-I123 replay is byte-stable and does not touch unrelated importer packag
   try{
     for(const dir of ['data/corpus','data/coverage','data/research']){fs.mkdirSync(path.join(root,dir),{recursive:true});for(const file of fs.readdirSync(dir))if(file.endsWith('.json'))fs.copyFileSync(path.join(dir,file),path.join(root,dir,file));}
     fs.copyFileSync('data/catalog.json',path.join(root,'data/catalog.json'));
-    const catalog=read(path.join(root,'data/catalog.json'));catalog.corpus_version='2026-09-19.12405';fs.writeFileSync(path.join(root,'data/catalog.json'),JSON.stringify(catalog,null,2)+'\n');
+    // Exercise the recorded entity edition while retaining later records. Pin
+    // every version field owned by this historical applicator before replay.
+    for (const [file,fields] of Object.entries({
+      'data/catalog.json':['corpus_version'],
+      'data/coverage/assessments.json':['assessment_version'],
+      'data/coverage/research-questions.json':['question_set_version','corpus_version'],
+      'data/coverage/mapping-overrides.json':['mapping_version'],
+      'data/coverage/subsector-profiles.json':['corpus_version'],
+      'data/coverage/subsector-screening.json':['corpus_version'],
+    })) {
+      const target=path.join(root,file),value=read(target);
+      for (const field of fields)value[field]='2026-09-19.12405';
+      fs.writeFileSync(target,JSON.stringify(value,null,2)+'\n');
+    }
     const before=new Map();
     for(const dir of ['data/corpus','data/coverage','data/research'])for(const file of fs.readdirSync(path.join(root,dir)))before.set(`${dir}/${file}`,fs.readFileSync(path.join(root,dir,file)));
     const result=spawnSync(process.execPath,[path.resolve('scripts/integrate-aa-i123.mjs'),'--current'],{cwd:root,encoding:'utf8'});
