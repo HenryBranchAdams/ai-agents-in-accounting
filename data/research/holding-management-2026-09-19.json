@@ -1,0 +1,3596 @@
+{
+  "schema_version": "1.0.0",
+  "package_name": "holding-management-us-source-only",
+  "package_version": "2026-09-19.109.1",
+  "current_corpus_version": "2026-09-19.12419",
+  "status": "source-only-pending-integration",
+  "reviewed_at": "2026-09-19",
+  "base_commit": "a122d3b58607aa4bf8adfa101f011fe612d378f0",
+  "baseline": {
+    "commit": "a122d3b58607aa4bf8adfa101f011fe612d378f0",
+    "corpus_version": "2026-09-19.12419",
+    "original_issue_associated_record_count": 1,
+    "associated_record_count": 1,
+    "associated_records": [
+      {
+        "id": "guide-industry-naics2022-551",
+        "industry_codes": [
+          "551"
+        ],
+        "question_ids": [
+          "q-cost-allocation",
+          "q-data-lineage",
+          "q-human-authority",
+          "q-performance",
+          "q-security"
+        ]
+      }
+    ],
+    "linked_question_count": 73,
+    "linked_questions": [
+      {
+        "id": "rq-consolidation-scope-treatment",
+        "record_id": "guide-q-consolidation",
+        "family_ids": [
+          "q-consolidation"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-consolidation-evidence-controls",
+        "record_id": "guide-q-consolidation",
+        "family_ids": [
+          "q-consolidation"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-consolidation-us-control-models",
+        "record_id": "guide-q-consolidation",
+        "family_ids": [
+          "q-consolidation"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-revenue-scope-treatment",
+        "record_id": "guide-q-revenue",
+        "family_ids": [
+          "q-revenue"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-revenue-evidence-controls",
+        "record_id": "guide-q-revenue",
+        "family_ids": [
+          "q-revenue"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-us-revenue-contract-control",
+        "record_id": "guide-q-revenue",
+        "family_ids": [
+          "q-revenue"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-us-revenue-presentation-refunds",
+        "record_id": "guide-q-revenue",
+        "family_ids": [
+          "q-revenue"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-debt-scope-treatment",
+        "record_id": "guide-q-debt",
+        "family_ids": [
+          "q-debt"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-debt-evidence-controls",
+        "record_id": "guide-q-debt",
+        "family_ids": [
+          "q-debt"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-investments-classification",
+        "record_id": "guide-q-investments",
+        "family_ids": [
+          "q-investments"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-investments-losses",
+        "record_id": "guide-q-investments",
+        "family_ids": [
+          "q-investments"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-related-parties-identify",
+        "record_id": "guide-q-related-parties",
+        "family_ids": [
+          "q-related-parties"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-related-parties-intercompany",
+        "record_id": "guide-q-related-parties",
+        "family_ids": [
+          "q-related-parties"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-cost-allocation-allocation-base",
+        "record_id": "guide-q-cost-allocation",
+        "family_ids": [
+          "q-cost-allocation"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-cost-allocation-unit-cost",
+        "record_id": "guide-q-cost-allocation",
+        "family_ids": [
+          "q-cost-allocation"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-data-lineage-lineage-reproduction",
+        "record_id": "guide-q-data-lineage",
+        "family_ids": [
+          "q-data-lineage"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-data-lineage-data-quality",
+        "record_id": "guide-q-data-lineage",
+        "family_ids": [
+          "q-data-lineage"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-mfg-cost",
+        "record_id": "guide-manufacturing-conversion",
+        "family_ids": [
+          "q-inventory",
+          "q-cost-allocation"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-mfg-longterm",
+        "record_id": "guide-manufacturing-conversion",
+        "family_ids": [
+          "q-revenue",
+          "q-project-wip",
+          "q-provisions"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-mfg-completeness",
+        "record_id": "guide-manufacturing-conversion",
+        "family_ids": [
+          "q-inventory",
+          "q-data-lineage",
+          "q-ledger-close"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-trade-control",
+        "record_id": "guide-wholesale-retail",
+        "family_ids": [
+          "q-revenue",
+          "q-inventory"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-trade-principal",
+        "record_id": "guide-wholesale-retail",
+        "family_ids": [
+          "q-revenue"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-trade-returns",
+        "record_id": "guide-wholesale-retail",
+        "family_ids": [
+          "q-revenue",
+          "q-receivables-credit",
+          "q-purchasing-payables"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-trade-cutoff",
+        "record_id": "guide-wholesale-retail",
+        "family_ids": [
+          "q-inventory",
+          "q-cash-settlement",
+          "q-data-lineage"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-trade-intermediary",
+        "record_id": "guide-wholesale-retail",
+        "family_ids": [
+          "q-revenue"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-software-role-boundary",
+        "record_id": "guide-software-subscriptions",
+        "family_ids": [
+          "q-intangibles-software",
+          "q-revenue"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-software-provider-principal-agent",
+        "record_id": "guide-software-subscriptions",
+        "family_ids": [
+          "q-revenue"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-software-subscription-timing",
+        "record_id": "guide-software-subscriptions",
+        "family_ids": [
+          "q-revenue"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-software-controls-agent",
+        "record_id": "guide-software-subscriptions",
+        "family_ids": [
+          "q-intangibles-software",
+          "q-data-lineage"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-services-time-material",
+        "record_id": "guide-professional-services",
+        "family_ids": [
+          "q-revenue",
+          "q-project-wip"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-services-fixed-fee-wip",
+        "record_id": "guide-professional-services",
+        "family_ids": [
+          "q-project-wip",
+          "q-revenue"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-services-principal-agent-staffing",
+        "record_id": "guide-professional-services",
+        "family_ids": [
+          "q-revenue",
+          "q-payroll"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-services-retainers",
+        "record_id": "guide-professional-services",
+        "family_ids": [
+          "q-revenue",
+          "q-cash-settlement"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-services-wip-controls",
+        "record_id": "guide-professional-services",
+        "family_ids": [
+          "q-project-wip",
+          "q-data-lineage"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-ca-cpr-correction",
+        "record_id": "guide-jurisdiction-ca-construction-service",
+        "family_ids": [
+          "q-payroll",
+          "q-data-lineage"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-construction-tax-source-conflict",
+        "record_id": "guide-construction-tax-transitions",
+        "family_ids": [
+          "q-tax-methods",
+          "q-data-lineage"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-construction-connected-facts",
+        "record_id": "guide-construction-connected-close",
+        "family_ids": [
+          "q-revenue",
+          "q-estimates",
+          "q-project-wip"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-construction-connected-population",
+        "record_id": "guide-construction-connected-close",
+        "family_ids": [
+          "q-purchasing-payables",
+          "q-payroll",
+          "q-data-lineage"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-construction-connected-progress",
+        "record_id": "guide-construction-connected-close",
+        "family_ids": [
+          "q-project-wip",
+          "q-revenue",
+          "q-receivables-credit",
+          "q-cash-settlement"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-aa-i127-lineage-completeness",
+        "record_id": "guide-us-accounting-agent-evidence-boundaries",
+        "family_ids": [
+          "q-data-lineage",
+          "q-interfaces",
+          "q-audit-assertions"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-aa-i127-corrections-tombstones",
+        "record_id": "guide-us-accounting-agent-evidence-boundaries",
+        "family_ids": [
+          "q-data-lineage",
+          "q-ledger-close",
+          "q-interfaces"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-aa-i127-rights-provenance",
+        "record_id": "guide-us-accounting-agent-evidence-boundaries",
+        "family_ids": [
+          "q-reuse-rights",
+          "q-data-lineage"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-us-nonprofit-award-close",
+        "record_id": "guide-us-nonprofit-contributions-close",
+        "family_ids": [
+          "q-grants-contributions",
+          "q-ledger-close",
+          "q-cost-allocation",
+          "q-tax-returns"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-us-education-tuition-term",
+        "record_id": "guide-us-education-tuition-aid",
+        "family_ids": [
+          "q-revenue",
+          "q-grants-contributions"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-us-education-aid-payment",
+        "record_id": "guide-us-education-tuition-aid",
+        "family_ids": [
+          "q-revenue",
+          "q-grants-contributions"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-us-education-withdrawal-return",
+        "record_id": "guide-us-education-tuition-aid",
+        "family_ids": [
+          "q-revenue",
+          "q-grants-contributions"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-us-education-framework-routing",
+        "record_id": "guide-us-education-tuition-aid",
+        "family_ids": [
+          "q-revenue",
+          "q-grants-contributions"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-us-extractive-royalty-reporting",
+        "record_id": "guide-us-extractive-production-settlement",
+        "family_ids": [
+          "q-revenue"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-us-extractive-revenue-presentation",
+        "record_id": "guide-us-extractive-production-settlement",
+        "family_ids": [
+          "q-revenue"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-i97-crop-cutoff-quality",
+        "record_id": "guide-i97-crop-producer",
+        "family_ids": [
+          "q-inventory",
+          "q-revenue",
+          "q-data-lineage"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-i97-support-service-revenue",
+        "record_id": "guide-i97-harvesting-contractor",
+        "family_ids": [
+          "q-revenue",
+          "q-project-wip"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-i97-support-cost-custody",
+        "record_id": "guide-i97-harvesting-contractor",
+        "family_ids": [
+          "q-project-wip",
+          "q-payroll",
+          "q-data-lineage"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-i97-timber-disposition",
+        "record_id": "guide-i97-resource-dispositions",
+        "family_ids": [
+          "q-natural-resources",
+          "q-capital-assets",
+          "q-revenue"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-i97-wild-catch-disposition",
+        "record_id": "guide-i97-resource-dispositions",
+        "family_ids": [
+          "q-natural-resources",
+          "q-inventory",
+          "q-revenue"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-aa-i123-related",
+        "record_id": "guide-q-related-parties",
+        "family_ids": [
+          "q-related-parties"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-aa-i121-debt-costs-covenants",
+        "record_id": "guide-q-debt",
+        "family_ids": [
+          "q-debt"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-aa-i121-debt-evidence",
+        "record_id": "guide-q-debt",
+        "family_ids": [
+          "q-debt"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-aa-i121-investment-classification",
+        "record_id": "guide-q-investments",
+        "family_ids": [
+          "q-investments"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-aa-i121-investment-losses",
+        "record_id": "guide-q-investments",
+        "family_ids": [
+          "q-investments"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-utilities-role-regulatory-route",
+        "record_id": "guide-utilities-us-regulated-close",
+        "family_ids": [
+          "q-rate-regulation",
+          "q-data-lineage"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-utilities-metered-unbilled-cutoff",
+        "record_id": "guide-utilities-us-regulated-close",
+        "family_ids": [
+          "q-revenue",
+          "q-data-lineage",
+          "q-interfaces"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-utilities-plant-cost-lineage",
+        "record_id": "guide-utilities-us-regulated-close",
+        "family_ids": [
+          "q-capital-assets",
+          "q-data-lineage",
+          "q-interfaces"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-utilities-retirement-obligation-boundary",
+        "record_id": "guide-utilities-us-regulated-close",
+        "family_ids": [
+          "q-environmental",
+          "q-capital-assets",
+          "q-data-lineage"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-utilities-purchased-power-settlement",
+        "record_id": "guide-utilities-us-regulated-close",
+        "family_ids": [
+          "q-purchasing-payables",
+          "q-data-lineage",
+          "q-revenue"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-transport-role-event-boundary",
+        "record_id": "guide-transport-role-routing",
+        "family_ids": [
+          "q-revenue",
+          "q-data-lineage",
+          "q-inventory"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-transport-freight-passenger-cutoff-surcharge",
+        "record_id": "guide-transport-role-routing",
+        "family_ids": [
+          "q-revenue",
+          "q-cash-settlement",
+          "q-data-lineage"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-transport-customer-owned-warehouse-claims",
+        "record_id": "guide-transport-role-routing",
+        "family_ids": [
+          "q-inventory",
+          "q-revenue",
+          "q-provisions",
+          "q-data-lineage"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-information-provider-usage-subscription",
+        "record_id": "guide-information-us-provider-customer",
+        "family_ids": [
+          "q-revenue",
+          "q-data-lineage"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-information-bundle-principal-customer-expense",
+        "record_id": "guide-information-us-provider-customer",
+        "family_ids": [
+          "q-revenue",
+          "q-intangibles-software",
+          "q-licensed-content"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-information-content-software-costs",
+        "record_id": "guide-information-us-provider-customer",
+        "family_ids": [
+          "q-cost-allocation",
+          "q-intangibles-software",
+          "q-licensed-content"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-information-royalty-rights-period",
+        "record_id": "guide-information-us-provider-customer",
+        "family_ids": [
+          "q-licensed-content",
+          "q-reuse-rights",
+          "q-data-lineage"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-information-sector-role-route",
+        "record_id": "guide-information-us-provider-customer",
+        "family_ids": [
+          "q-data-lineage",
+          "q-interfaces",
+          "q-licensed-content"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-information-retrieval-lineage",
+        "record_id": "guide-information-us-provider-customer",
+        "family_ids": [
+          "q-data-lineage",
+          "q-interfaces"
+        ],
+        "assessment_status": "partial"
+      }
+    ],
+    "inventory_method": "NAICS 55 and descendant mappings; linked question inventory includes those records plus selected reusable family context, not an assertion that every shared question is industry-specific.",
+    "reused_foundations": [
+      "guide-industry-naics2022-551",
+      "guide-q-consolidation",
+      "guide-q-investments",
+      "guide-q-debt",
+      "guide-q-related-parties",
+      "guide-q-cost-allocation",
+      "wf-r2r-consolidation",
+      "example-us-management-allocation-budget-actual",
+      "example-us-tax-foundations-boundary"
+    ]
+  },
+  "scope": {
+    "jurisdiction": "United States",
+    "selected_roles": [
+      "Domestic SEC registrant parent with an assumed controlled operating subsidiary",
+      "Passive holding entity as a separate role",
+      "Operating management-service provider and recipient",
+      "Unconsolidated investee and tax affiliated-group counterroles"
+    ],
+    "framework": "Selected US GAAP consolidation workpaper research; SEC rules only for registrants; federal controlled-service tax rules and tax returns are separate",
+    "period": "Synthetic 2025 calendar-year closing worksheet; dated 2025 federal editions and historical amended ARB 51 reviewed on 2026-09-19",
+    "population": "Six questions connecting entity perimeter, investment, intercompany financing, services, distributions and eliminations to a parent/subsidiary reconciliation.",
+    "exclusions": [
+      "Current consolidated ASC, later amendments and entity-specific applicability are not established by these dated public sources.",
+      "No actual group ledgers, governing documents, loan agreements, tax election, professional review or measured agent performance were obtained.",
+      "External source rights remain unknown; publisher full text is not stored.",
+      "Selected US research does not establish whole-industry sufficiency or an international or state-law survey."
+    ]
+  },
+  "sources": [
+    {
+      "id": "src_aa_i109_arb51_amended",
+      "kind": "source",
+      "title": "ARB 51 as amended by FAS 160: historical consolidation procedures",
+      "summary": "Historical amended consolidation procedures identify the group as one economic entity and address intercompany balances, transactions and parent-company presentation.",
+      "topics": [
+        "Accounting and reporting",
+        "Reporting perimeter and consolidation",
+        "Related parties and intercompany arrangements"
+      ],
+      "industries": [],
+      "jurisdiction": "United States; selected entity and reporting roles",
+      "source_type": "Original authority",
+      "publisher": "AICPA Committee on Accounting Procedure; amended text hosted by FASB",
+      "source_url": "https://storage.fasb.org/ARB%2051.pdf",
+      "source_ids": [],
+      "related_ids": [],
+      "review_status": "source-checked",
+      "reviewed_at": "2026-09-19",
+      "provenance": {
+        "added_on": "2026-09-19",
+        "reviewer": "Codex AI-assisted bounded source and editorial review",
+        "scope": "Selected source locators and original synthetic reconciliation; not professional signoff.",
+        "note": "Public original sources were read on the stated review date. Source-only proposal pending independent acceptance and integration.",
+        "evidence_urls": [
+          "https://storage.fasb.org/ARB%2051.pdf"
+        ]
+      },
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External publisher text is not stored; publisher terms and source rights remain separate and unresolved.",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": null
+      },
+      "data": {
+        "locators": [
+          {
+            "locator": "Status page, PDF page 1; After FAS 160 paragraphs 1-6, PDF pages 6-7",
+            "url": "https://storage.fasb.org/ARB%2051.pdf"
+          },
+          {
+            "locator": "After FAS 160 paragraphs 9, 11 and 24, PDF pages 7-8",
+            "url": "https://storage.fasb.org/ARB%2051.pdf"
+          }
+        ],
+        "edition": "ARB 51 issued August 1959; selected After FAS 160 text applies after adoption of that statement; FAS 160 effective for fiscal years beginning on or after December 15, 2008.",
+        "effective_period": "ARB 51 issued August 1959; selected After FAS 160 text applies after adoption of that statement; FAS 160 effective for fiscal years beginning on or after December 15, 2008.",
+        "access_note": "Selected public text opened on 2026-09-19. No publisher full text stored.",
+        "limitations": "Historical pre-Codification text, not current ASC 810. The separate Before FAS 160 passage is not the selected procedure. NCI, acquisition accounting and current applicability require separate review.",
+        "evidence": [
+          {
+            "claim": "Historical amended consolidation procedures identify the group as one economic entity and address intercompany balances, transactions and parent-company presentation.",
+            "classification": "official-source",
+            "source": {
+              "title": "ARB 51 as amended by FAS 160: historical consolidation procedures",
+              "url": "https://storage.fasb.org/ARB%2051.pdf"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "src_aa_i109_secsx_3a02_2025",
+      "kind": "source",
+      "title": "2025 Regulation S-X 3A-02: registrant consolidation perimeter",
+      "summary": "Dated SEC rule describes a registrant consolidation perimeter, with control-based exceptions to ownership heuristics.",
+      "topics": [
+        "Accounting and reporting",
+        "Reporting perimeter and consolidation",
+        "Related parties and intercompany arrangements"
+      ],
+      "industries": [],
+      "jurisdiction": "United States; selected entity and reporting roles",
+      "source_type": "Original authority",
+      "publisher": "Securities and Exchange Commission via GovInfo",
+      "source_url": "https://www.govinfo.gov/content/pkg/CFR-2025-title17-vol3/pdf/CFR-2025-title17-vol3-sec210-3A-02.pdf",
+      "source_ids": [],
+      "related_ids": [],
+      "review_status": "source-checked",
+      "reviewed_at": "2026-09-19",
+      "provenance": {
+        "added_on": "2026-09-19",
+        "reviewer": "Codex AI-assisted bounded source and editorial review",
+        "scope": "Selected source locators and original synthetic reconciliation; not professional signoff.",
+        "note": "Public original sources were read on the stated review date. Source-only proposal pending independent acceptance and integration.",
+        "evidence_urls": [
+          "https://www.govinfo.gov/content/pkg/CFR-2025-title17-vol3/pdf/CFR-2025-title17-vol3-sec210-3A-02.pdf"
+        ]
+      },
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External publisher text is not stored; publisher terms and source rights remain separate and unresolved.",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": null
+      },
+      "data": {
+        "locators": [
+          {
+            "locator": "17 CFR 210.3A-02 introductory text and (a), printed pages 286-287; PDF pages 1-2",
+            "url": "https://www.govinfo.gov/content/pkg/CFR-2025-title17-vol3/pdf/CFR-2025-title17-vol3-sec210-3A-02.pdf"
+          },
+          {
+            "locator": "Adjacent 210.3A-03(b), printed page 287; PDF page 2",
+            "url": "https://www.govinfo.gov/content/pkg/CFR-2025-title17-vol3/pdf/CFR-2025-title17-vol3-sec210-3A-02.pdf"
+          }
+        ],
+        "edition": "April 1, 2025 CFR edition; 3A-02 amendment citation October 4, 2018; later currency not verified.",
+        "effective_period": "April 1, 2025 CFR edition; 3A-02 amendment citation October 4, 2018; later currency not verified.",
+        "access_note": "Selected public text opened on 2026-09-19. No publisher full text stored.",
+        "limitations": "Registrants only. Current eCFR lookup was inaccessible in this review. Dated source is not a current-GAAP substitute and does not itself supply the intercompany-elimination procedure.",
+        "evidence": [
+          {
+            "claim": "Dated SEC rule describes a registrant consolidation perimeter, with control-based exceptions to ownership heuristics.",
+            "classification": "official-source",
+            "source": {
+              "title": "2025 Regulation S-X 3A-02: registrant consolidation perimeter",
+              "url": "https://www.govinfo.gov/content/pkg/CFR-2025-title17-vol3/pdf/CFR-2025-title17-vol3-sec210-3A-02.pdf"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "src_aa_i109_cfr_14829_2025",
+      "kind": "source",
+      "title": "2025 controlled-services regulation: allocation, benefit and shareholder activities",
+      "summary": "Dated federal tax text connects controlled services to a recipient benefit, identifies cost-allocation considerations and distinguishes shareholder or passive association activities.",
+      "topics": [
+        "Accounting and reporting",
+        "Reporting perimeter and consolidation",
+        "Related parties and intercompany arrangements"
+      ],
+      "industries": [],
+      "jurisdiction": "United States; selected entity and reporting roles",
+      "source_type": "Original authority",
+      "publisher": "Internal Revenue Service and Treasury via GovInfo",
+      "source_url": "https://www.govinfo.gov/link/cfr/26/1?link-type=pdf&sectionnum=482-9&year=mostrecent",
+      "source_ids": [],
+      "related_ids": [],
+      "review_status": "source-checked",
+      "reviewed_at": "2026-09-19",
+      "provenance": {
+        "added_on": "2026-09-19",
+        "reviewer": "Codex AI-assisted bounded source and editorial review",
+        "scope": "Selected source locators and original synthetic reconciliation; not professional signoff.",
+        "note": "Public original sources were read on the stated review date. Source-only proposal pending independent acceptance and integration.",
+        "evidence_urls": [
+          "https://www.govinfo.gov/link/cfr/26/1?link-type=pdf&sectionnum=482-9&year=mostrecent"
+        ]
+      },
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External publisher text is not stored; publisher terms and source rights remain separate and unresolved.",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": null
+      },
+      "data": {
+        "locators": [
+          {
+            "locator": "26 CFR 1.482-9(j), (k)(1)-(2), printed pages 844-845; PDF pages 34-35",
+            "url": "https://www.govinfo.gov/link/cfr/26/1?link-type=pdf&sectionnum=482-9&year=mostrecent"
+          },
+          {
+            "locator": "26 CFR 1.482-9(l)(1)-(3)(v), printed pages 846-847; PDF pages 36-37",
+            "url": "https://www.govinfo.gov/link/cfr/26/1?link-type=pdf&sectionnum=482-9&year=mostrecent"
+          },
+          {
+            "locator": "26 CFR 1.482-9(b)(7), Example 16, printed page 819; PDF page 9",
+            "url": "https://www.govinfo.gov/link/cfr/26/1?link-type=pdf&sectionnum=482-9&year=mostrecent"
+          }
+        ],
+        "edition": "The GovInfo mostrecent resolver served the April 1, 2025 CFR edition on 2026-09-19; resolver target may change.",
+        "effective_period": "The GovInfo mostrecent resolver served the April 1, 2025 CFR edition on 2026-09-19; resolver target may change.",
+        "access_note": "Selected public text opened on 2026-09-19. No publisher full text stored.",
+        "limitations": "Federal tax controlled-service rules, not a GAAP allocation mandate. Current eCFR and fixed-year URL were inaccessible; later currency is unknown. Method eligibility, exclusions, comparables and markup require separate review; cost allocation alone does not prove an arm's length price.",
+        "evidence": [
+          {
+            "claim": "Dated federal tax text connects controlled services to a recipient benefit, identifies cost-allocation considerations and distinguishes shareholder or passive association activities.",
+            "classification": "official-source",
+            "source": {
+              "title": "2025 controlled-services regulation: allocation, benefit and shareholder activities",
+              "url": "https://www.govinfo.gov/link/cfr/26/1?link-type=pdf&sectionnum=482-9&year=mostrecent"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "reused_source_ids": [
+    "src_fasb_201502",
+    "src_construction_fasb_201817",
+    "src_construction_fasb_2014_09",
+    "src_aa122_irs_i1120_2025"
+  ],
+  "selected_reused_source_reviews": [
+    {
+      "source_id": "src_aa122_irs_i1120_2025",
+      "url": "https://www.irs.gov/instructions/i1120",
+      "locator": "Item A, Consolidated Return; Schedule C, Consolidated returns; Schedule K, Question 3, Affiliated group",
+      "effective_period": "2025 Form 1120 instructions, selected headings opened on 2026-09-19.",
+      "access_limits": "Selected additional headings read for this package; canonical AA-I122 primary review unchanged. Tax-year instructions do not determine the GAAP perimeter or current tax eligibility.",
+      "reviewed_at": "2026-09-19",
+      "review_level": "selected-headings-read",
+      "primary_metadata_mutation": false
+    }
+  ],
+  "records": [
+    {
+      "id": "guide-holding-management-us-close",
+      "kind": "guide",
+      "title": "US holding companies and management entities: parent/subsidiary close",
+      "summary": "Connects a parent and subsidiary ledger to consolidation, while separating passive holding, management services, investment and tax roles.",
+      "topics": [
+        "Accounting and reporting",
+        "Reporting perimeter and consolidation",
+        "Related parties and intercompany arrangements"
+      ],
+      "industries": [
+        "holding-companies-management"
+      ],
+      "jurisdiction": "United States; selected entity and reporting roles",
+      "source_type": null,
+      "publisher": "Accounting Agents contributors",
+      "source_url": null,
+      "source_ids": [
+        "src_aa_i109_secsx_3a02_2025",
+        "src_fasb_201502",
+        "src_construction_fasb_201817",
+        "src_aa_i109_arb51_amended",
+        "src_aa_i109_cfr_14829_2025",
+        "src_construction_fasb_2014_09",
+        "src_aa122_irs_i1120_2025"
+      ],
+      "related_ids": [
+        "guide-industry-naics2022-551",
+        "guide-q-consolidation",
+        "guide-q-investments",
+        "guide-q-debt",
+        "guide-q-related-parties",
+        "guide-q-cost-allocation",
+        "wf-r2r-consolidation",
+        "example-us-management-allocation-budget-actual",
+        "example-us-tax-foundations-boundary",
+        "wf-holding-entity-to-consolidated",
+        "ctrl-holding-perimeter-and-matches",
+        "example-holding-parent-subsidiary-close"
+      ],
+      "review_status": "editorially-reviewed",
+      "reviewed_at": "2026-09-19",
+      "provenance": {
+        "added_on": "2026-09-19",
+        "reviewer": "Codex AI-assisted bounded source and editorial review",
+        "scope": "Selected source locators and original synthetic reconciliation; not professional signoff.",
+        "note": "Public original sources were read on the stated review date. Source-only proposal pending independent acceptance and integration."
+      },
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External publisher text is not stored; publisher terms and source rights remain separate and unresolved.",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": null
+      },
+      "data": {
+        "version": "2026-09-19.109.1",
+        "research_package": "holding-management-us-source-only",
+        "scope": {
+          "jurisdiction": "United States",
+          "selected_roles": [
+            "Domestic SEC registrant parent with an assumed controlled operating subsidiary",
+            "Passive holding entity as a separate role",
+            "Operating management-service provider and recipient",
+            "Unconsolidated investee and tax affiliated-group counterroles"
+          ],
+          "framework": "Selected US GAAP consolidation workpaper research; SEC rules only for registrants; federal controlled-service tax rules and tax returns are separate",
+          "period": "Synthetic 2025 calendar-year closing worksheet; dated 2025 federal editions and historical amended ARB 51 reviewed on 2026-09-19",
+          "population": "Six questions connecting entity perimeter, investment, intercompany financing, services, distributions and eliminations to a parent/subsidiary reconciliation.",
+          "exclusions": [
+            "Current consolidated ASC, later amendments and entity-specific applicability are not established by these dated public sources.",
+            "No actual group ledgers, governing documents, loan agreements, tax election, professional review or measured agent performance were obtained.",
+            "External source rights remain unknown; publisher full text is not stored.",
+            "Selected US research does not establish whole-industry sufficiency or an international or state-law survey."
+          ]
+        },
+        "professional_review": "not-performed",
+        "empirical_support": "not-established",
+        "research_questions": [
+          {
+            "id": "rq-holding-us-perimeter",
+            "record_id": "guide-holding-management-us-close",
+            "pointer": "/data/research_questions/0",
+            "family_ids": [
+              "q-consolidation"
+            ],
+            "question": "Which entities belong in the selected parent reporting perimeter?",
+            "scope": "US domestic registrant parent and assumed controlled operating subsidiary; 2025 synthetic close; separate financial-reporting and federal tax purposes.",
+            "answer": "Start with reporting purpose and evidence of control. Apply the selected registrant rule with its ownership exceptions; retain a separate conclusion for each entity and disclose material perimeter changes. A passive holding company can still have a controlled subsidiary. A management-service contract alone does not settle control. Public-company use of the private-company alternative remains outside this scope.",
+            "answer_status": "sourced-answer-and-original-example",
+            "assessment_status": "partial",
+            "source_ids": [
+              "src_aa_i109_secsx_3a02_2025",
+              "src_fasb_201502",
+              "src_construction_fasb_201817"
+            ],
+            "source_locators": [
+              {
+                "source_id": "src_aa_i109_secsx_3a02_2025",
+                "url": "https://www.govinfo.gov/content/pkg/CFR-2025-title17-vol3/pdf/CFR-2025-title17-vol3-sec210-3A-02.pdf",
+                "locator": "210.3A-02 introductory text and (a), PDF pages 1-2; 3A-03(b), PDF page 2",
+                "effective_period": "April 1, 2025 CFR edition; 3A-02 amendment citation October 4, 2018; later currency not verified.",
+                "access_limits": "Registrants only. Current eCFR lookup was inaccessible in this review. Dated source is not a current-GAAP substitute and does not itself supply the intercompany-elimination procedure."
+              },
+              {
+                "source_id": "src_fasb_201502",
+                "url": "https://storage.fasb.org/ASU%202015-02.pdf",
+                "locator": "ASU 2015-02 Summary and Topic 810 amendments, controlling financial interest and limited-partnership/VIE routes",
+                "effective_period": "Issued February 2015; historical amendment and entity transition dates in canonical record.",
+                "access_limits": "Reused accepted consolidation foundation; no new full-source or current ASC review."
+              },
+              {
+                "source_id": "src_construction_fasb_201817",
+                "url": "https://storage.fasb.org/ASU%202018-17.pdf",
+                "locator": "ASU 2018-17 Summary; Topic 810 private-company common-control alternative and decision-maker fee amendments",
+                "effective_period": "Issued October 2018; entity-specific adoption and eligibility remain open.",
+                "access_limits": "Reused entity-change foundation, not a general election for a public registrant."
+              }
+            ],
+            "inputs": [
+              "Legal entity register, voting and contractual rights, consolidation policy and dated perimeter memo",
+              "Separate entity trial balances with account, counterparty, currency and period",
+              "Investment and equity rollforwards; inception or acquisition documents",
+              "Loan principal, rate, period, accrued interest and counterparty confirmation",
+              "Service agreement, cost-pool ledger, benefit evidence, allocation units and approved invoice",
+              "Distribution approvals, declarations, payments and relevant capital restrictions"
+            ],
+            "workflow": [
+              "Resolve reporting purpose, actual control and included entities before amounts.",
+              "Validate each standalone trial balance and reconcile investment/equity and reciprocal balances.",
+              "Separate third-party activity from matching in-group principal, charges, interest and distributions.",
+              "Recompute service allocation and interest; route unproved benefit or mismatches to review.",
+              "Prepare elimination-only entries in a consolidation column and recompute the group trial balance.",
+              "Retain entity ledgers, source versions, exceptions, preparer and reviewer evidence; route book-to-tax separately."
+            ],
+            "controls": [
+              "Independent perimeter approval; ownership percentage is not a substitute for the control memo.",
+              "Trial-balance completeness, debit/credit equality and currency/period alignment.",
+              "Two-sided counterparty matching by transaction ID; do not plug differences.",
+              "Independent cost-driver and interest recomputation with duplicate and cutoff checks.",
+              "Separate consolidation adjustment column with approved evidence links.",
+              "Verify external balances survive and source rights and period limits remain visible."
+            ],
+            "exceptions": [
+              "A 25% investment may still require a control/VIE analysis; percentage alone does not classify it.",
+              "Common ownership without a parent relationship may call for a combined-statement analysis."
+            ],
+            "remaining_gaps": [
+              "Current consolidated ASC, later amendments and entity-specific applicability are not established by these dated public sources.",
+              "No actual group ledgers, governing documents, loan agreements, tax election, professional review or measured agent performance were obtained.",
+              "External source rights remain unknown; publisher full text is not stored.",
+              "Selected US research does not establish whole-industry sufficiency or an international or state-law survey."
+            ],
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "dimensions": {
+              "scope": "present",
+              "accounting-question": "partial",
+              "evidence-inputs": "present",
+              "workflow": "present",
+              "controls": "present",
+              "worked-material": "present",
+              "empirical-support": "not-assessed"
+            },
+            "dimension_basis": "Selected dated primary-source locators and an original synthetic worksheet; current accounting sufficiency and operational effectiveness remain unverified."
+          },
+          {
+            "id": "rq-holding-us-investment",
+            "record_id": "guide-holding-management-us-close",
+            "pointer": "/data/research_questions/1",
+            "family_ids": [
+              "q-investments",
+              "q-consolidation"
+            ],
+            "question": "How do standalone investment balances connect to the subsidiary equity and consolidation worksheet?",
+            "scope": "US domestic registrant parent and assumed controlled operating subsidiary; 2025 synthetic close; separate financial-reporting and federal tax purposes.",
+            "answer": "Match the parent investment to the subsidiary capital and acquisition/inception history. The fixture starts a wholly owned subsidiary at cash contributed equal to share capital and keeps the parent cost ledger as a clearly labeled worksheet input. Its investment/capital elimination is not a conclusion about the required standalone investment method. Reuse the investment and entity-change foundations for equity-method, fair-value, impairment, acquisition and loss-of-control questions.",
+            "answer_status": "sourced-answer-and-original-example",
+            "assessment_status": "partial",
+            "source_ids": [
+              "src_aa_i109_arb51_amended",
+              "src_fasb_201502",
+              "src_construction_fasb_201817"
+            ],
+            "source_locators": [
+              {
+                "source_id": "src_aa_i109_arb51_amended",
+                "url": "https://storage.fasb.org/ARB%2051.pdf",
+                "locator": "After FAS 160 paragraphs 6, 9 and 11, PDF page 7; paragraph 24, PDF page 8",
+                "effective_period": "ARB 51 issued August 1959; selected After FAS 160 text applies after adoption of that statement; FAS 160 effective for fiscal years beginning on or after December 15, 2008.",
+                "access_limits": "Historical pre-Codification text, not current ASC 810. The separate Before FAS 160 passage is not the selected procedure. NCI, acquisition accounting and current applicability require separate review."
+              },
+              {
+                "source_id": "src_fasb_201502",
+                "url": "https://storage.fasb.org/ASU%202015-02.pdf",
+                "locator": "ASU 2015-02 Summary and Topic 810 amendments, controlling financial interest and limited-partnership/VIE routes",
+                "effective_period": "Issued February 2015; historical amendment and entity transition dates in canonical record.",
+                "access_limits": "Reused accepted consolidation foundation; no new full-source or current ASC review."
+              },
+              {
+                "source_id": "src_construction_fasb_201817",
+                "url": "https://storage.fasb.org/ASU%202018-17.pdf",
+                "locator": "ASU 2018-17 Summary; Topic 810 private-company common-control alternative and decision-maker fee amendments",
+                "effective_period": "Issued October 2018; entity-specific adoption and eligibility remain open.",
+                "access_limits": "Reused entity-change foundation, not a general election for a public registrant."
+              }
+            ],
+            "inputs": [
+              "Legal entity register, voting and contractual rights, consolidation policy and dated perimeter memo",
+              "Separate entity trial balances with account, counterparty, currency and period",
+              "Investment and equity rollforwards; inception or acquisition documents",
+              "Loan principal, rate, period, accrued interest and counterparty confirmation",
+              "Service agreement, cost-pool ledger, benefit evidence, allocation units and approved invoice",
+              "Distribution approvals, declarations, payments and relevant capital restrictions"
+            ],
+            "workflow": [
+              "Resolve reporting purpose, actual control and included entities before amounts.",
+              "Validate each standalone trial balance and reconcile investment/equity and reciprocal balances.",
+              "Separate third-party activity from matching in-group principal, charges, interest and distributions.",
+              "Recompute service allocation and interest; route unproved benefit or mismatches to review.",
+              "Prepare elimination-only entries in a consolidation column and recompute the group trial balance.",
+              "Retain entity ledgers, source versions, exceptions, preparer and reviewer evidence; route book-to-tax separately."
+            ],
+            "controls": [
+              "Independent perimeter approval; ownership percentage is not a substitute for the control memo.",
+              "Trial-balance completeness, debit/credit equality and currency/period alignment.",
+              "Two-sided counterparty matching by transaction ID; do not plug differences.",
+              "Independent cost-driver and interest recomputation with duplicate and cutoff checks.",
+              "Separate consolidation adjustment column with approved evidence links.",
+              "Verify external balances survive and source rights and period limits remain visible."
+            ],
+            "exceptions": [
+              "A noncontrolled investee is not deleted from the group assets just because it is related.",
+              "Goodwill, NCI and acquisition-date fair-value adjustments are absent from the synthetic inception case."
+            ],
+            "remaining_gaps": [
+              "Current consolidated ASC, later amendments and entity-specific applicability are not established by these dated public sources.",
+              "No actual group ledgers, governing documents, loan agreements, tax election, professional review or measured agent performance were obtained.",
+              "External source rights remain unknown; publisher full text is not stored.",
+              "Selected US research does not establish whole-industry sufficiency or an international or state-law survey."
+            ],
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "dimensions": {
+              "scope": "present",
+              "accounting-question": "partial",
+              "evidence-inputs": "present",
+              "workflow": "present",
+              "controls": "present",
+              "worked-material": "present",
+              "empirical-support": "not-assessed"
+            },
+            "dimension_basis": "Selected dated primary-source locators and an original synthetic worksheet; current accounting sufficiency and operational effectiveness remain unverified."
+          },
+          {
+            "id": "rq-holding-us-financing",
+            "record_id": "guide-holding-management-us-close",
+            "pointer": "/data/research_questions/2",
+            "family_ids": [
+              "q-debt",
+              "q-related-parties"
+            ],
+            "question": "How are an intercompany loan and accrued interest reconciled at close?",
+            "scope": "US domestic registrant parent and assumed controlled operating subsidiary; 2025 synthetic close; separate financial-reporting and federal tax purposes.",
+            "answer": "Reconcile both entities by agreement, counterparty, principal, currency, rate and accrual period. The fixture assumes a 6% annual rate on unchanged principal for one full year. Principal and accrued-interest reciprocal balances and in-group interest income/expense are eliminated in the group column after matching. External borrowing, impairment, debt/equity substance, transfer pricing and legal enforceability require their own evidence.",
+            "answer_status": "sourced-answer-and-original-example",
+            "assessment_status": "partial",
+            "source_ids": [
+              "src_aa_i109_arb51_amended"
+            ],
+            "source_locators": [
+              {
+                "source_id": "src_aa_i109_arb51_amended",
+                "url": "https://storage.fasb.org/ARB%2051.pdf",
+                "locator": "After FAS 160 paragraph 6, PDF page 7; paragraph 24, PDF page 8",
+                "effective_period": "ARB 51 issued August 1959; selected After FAS 160 text applies after adoption of that statement; FAS 160 effective for fiscal years beginning on or after December 15, 2008.",
+                "access_limits": "Historical pre-Codification text, not current ASC 810. The separate Before FAS 160 passage is not the selected procedure. NCI, acquisition accounting and current applicability require separate review."
+              }
+            ],
+            "inputs": [
+              "Legal entity register, voting and contractual rights, consolidation policy and dated perimeter memo",
+              "Separate entity trial balances with account, counterparty, currency and period",
+              "Investment and equity rollforwards; inception or acquisition documents",
+              "Loan principal, rate, period, accrued interest and counterparty confirmation",
+              "Service agreement, cost-pool ledger, benefit evidence, allocation units and approved invoice",
+              "Distribution approvals, declarations, payments and relevant capital restrictions"
+            ],
+            "workflow": [
+              "Resolve reporting purpose, actual control and included entities before amounts.",
+              "Validate each standalone trial balance and reconcile investment/equity and reciprocal balances.",
+              "Separate third-party activity from matching in-group principal, charges, interest and distributions.",
+              "Recompute service allocation and interest; route unproved benefit or mismatches to review.",
+              "Prepare elimination-only entries in a consolidation column and recompute the group trial balance.",
+              "Retain entity ledgers, source versions, exceptions, preparer and reviewer evidence; route book-to-tax separately."
+            ],
+            "controls": [
+              "Independent perimeter approval; ownership percentage is not a substitute for the control memo.",
+              "Trial-balance completeness, debit/credit equality and currency/period alignment.",
+              "Two-sided counterparty matching by transaction ID; do not plug differences.",
+              "Independent cost-driver and interest recomputation with duplicate and cutoff checks.",
+              "Separate consolidation adjustment column with approved evidence links.",
+              "Verify external balances survive and source rights and period limits remain visible."
+            ],
+            "exceptions": [
+              "An unmatched lender receivable and borrower payable stops the close; a balancing plug is not evidence.",
+              "An external bank loan is not an intercompany balance."
+            ],
+            "remaining_gaps": [
+              "Current consolidated ASC, later amendments and entity-specific applicability are not established by these dated public sources.",
+              "No actual group ledgers, governing documents, loan agreements, tax election, professional review or measured agent performance were obtained.",
+              "External source rights remain unknown; publisher full text is not stored.",
+              "Selected US research does not establish whole-industry sufficiency or an international or state-law survey."
+            ],
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "dimensions": {
+              "scope": "present",
+              "accounting-question": "partial",
+              "evidence-inputs": "present",
+              "workflow": "present",
+              "controls": "present",
+              "worked-material": "present",
+              "empirical-support": "not-assessed"
+            },
+            "dimension_basis": "Selected dated primary-source locators and an original synthetic worksheet; current accounting sufficiency and operational effectiveness remain unverified."
+          },
+          {
+            "id": "rq-holding-us-services",
+            "record_id": "guide-holding-management-us-close",
+            "pointer": "/data/research_questions/3",
+            "family_ids": [
+              "q-cost-allocation",
+              "q-revenue",
+              "q-related-parties"
+            ],
+            "question": "When does a management-service charge differ from passive holding activity?",
+            "scope": "US domestic registrant parent and assumed controlled operating subsidiary; 2025 synthetic close; separate financial-reporting and federal tax purposes.",
+            "answer": "Document the actual service and recipient benefit before choosing a cost driver. For controlled-service tax analysis, exclude activities whose sole effect protects the shareholder investment or meets the renderer-specific obligations; day-to-day management can differ. The original allocation case uses documented processing units, retains the renderer share and separates internal allocation from tax-method and markup conclusions. The charge and receipt are reciprocal entity entries, then eliminated within the assumed group.",
+            "answer_status": "sourced-answer-and-original-example",
+            "assessment_status": "partial",
+            "source_ids": [
+              "src_aa_i109_cfr_14829_2025",
+              "src_aa_i109_arb51_amended",
+              "src_construction_fasb_2014_09"
+            ],
+            "source_locators": [
+              {
+                "source_id": "src_aa_i109_cfr_14829_2025",
+                "url": "https://www.govinfo.gov/link/cfr/26/1?link-type=pdf&sectionnum=482-9&year=mostrecent",
+                "locator": "1.482-9(j), (k)(1)-(2), (l)(1)-(3)(v), PDF pages 34-37; (b)(7) Example 16, PDF page 9",
+                "effective_period": "The GovInfo mostrecent resolver served the April 1, 2025 CFR edition on 2026-09-19; resolver target may change.",
+                "access_limits": "Federal tax controlled-service rules, not a GAAP allocation mandate. Current eCFR and fixed-year URL were inaccessible; later currency is unknown. Method eligibility, exclusions, comparables and markup require separate review; cost allocation alone does not prove an arm's length price."
+              },
+              {
+                "source_id": "src_aa_i109_arb51_amended",
+                "url": "https://storage.fasb.org/ARB%2051.pdf",
+                "locator": "After FAS 160 paragraph 6, PDF page 7; paragraph 24, PDF page 8",
+                "effective_period": "ARB 51 issued August 1959; selected After FAS 160 text applies after adoption of that statement; FAS 160 effective for fiscal years beginning on or after December 15, 2008.",
+                "access_limits": "Historical pre-Codification text, not current ASC 810. The separate Before FAS 160 passage is not the selected procedure. NCI, acquisition accounting and current applicability require separate review."
+              },
+              {
+                "source_id": "src_construction_fasb_2014_09",
+                "url": "https://storage.fasb.org/ASU%202014-09_Section%20A.pdf",
+                "locator": "Topic 606 contract and performance-obligation amendments in Section A",
+                "effective_period": "May 2014 amendment; later effective-date changes and current Codification require review.",
+                "access_limits": "Reused operating foundation; performance and transfer-pricing conclusions remain separately reviewed."
+              }
+            ],
+            "inputs": [
+              "Legal entity register, voting and contractual rights, consolidation policy and dated perimeter memo",
+              "Separate entity trial balances with account, counterparty, currency and period",
+              "Investment and equity rollforwards; inception or acquisition documents",
+              "Loan principal, rate, period, accrued interest and counterparty confirmation",
+              "Service agreement, cost-pool ledger, benefit evidence, allocation units and approved invoice",
+              "Distribution approvals, declarations, payments and relevant capital restrictions"
+            ],
+            "workflow": [
+              "Resolve reporting purpose, actual control and included entities before amounts.",
+              "Validate each standalone trial balance and reconcile investment/equity and reciprocal balances.",
+              "Separate third-party activity from matching in-group principal, charges, interest and distributions.",
+              "Recompute service allocation and interest; route unproved benefit or mismatches to review.",
+              "Prepare elimination-only entries in a consolidation column and recompute the group trial balance.",
+              "Retain entity ledgers, source versions, exceptions, preparer and reviewer evidence; route book-to-tax separately."
+            ],
+            "controls": [
+              "Independent perimeter approval; ownership percentage is not a substitute for the control memo.",
+              "Trial-balance completeness, debit/credit equality and currency/period alignment.",
+              "Two-sided counterparty matching by transaction ID; do not plug differences.",
+              "Independent cost-driver and interest recomputation with duplicate and cutoff checks.",
+              "Separate consolidation adjustment column with approved evidence links.",
+              "Verify external balances survive and source rights and period limits remain visible."
+            ],
+            "exceptions": [
+              "Ownership or passive group membership alone does not demonstrate a service.",
+              "A flat revenue-based allocation is not automatically an appropriate benefit measure."
+            ],
+            "remaining_gaps": [
+              "Current consolidated ASC, later amendments and entity-specific applicability are not established by these dated public sources.",
+              "No actual group ledgers, governing documents, loan agreements, tax election, professional review or measured agent performance were obtained.",
+              "External source rights remain unknown; publisher full text is not stored.",
+              "Selected US research does not establish whole-industry sufficiency or an international or state-law survey."
+            ],
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "dimensions": {
+              "scope": "present",
+              "accounting-question": "partial",
+              "evidence-inputs": "present",
+              "workflow": "present",
+              "controls": "present",
+              "worked-material": "present",
+              "empirical-support": "not-assessed"
+            },
+            "dimension_basis": "Selected dated primary-source locators and an original synthetic worksheet; current accounting sufficiency and operational effectiveness remain unverified."
+          },
+          {
+            "id": "rq-holding-us-dividends-tax",
+            "record_id": "guide-holding-management-us-close",
+            "pointer": "/data/research_questions/4",
+            "family_ids": [
+              "q-related-parties",
+              "q-consolidation"
+            ],
+            "question": "How are subsidiary distributions and tax consolidation kept separate in the close?",
+            "scope": "US domestic registrant parent and assumed controlled operating subsidiary; 2025 synthetic close; separate financial-reporting and federal tax purposes.",
+            "answer": "Tie the declared and paid dividend to both entity ledgers and its approval. The worksheet removes the parent dividend-income entry against the subsidiary distribution column. Financial and tax group memberships need separate decisions: the 2025 IRS instructions identify an 80% voting-power and value test for includible corporations and require separate forms and supporting reconciliations. The synthetic book elimination does not establish tax eligibility, a filing election, deductibility or distribution legality.",
+            "answer_status": "sourced-answer-and-original-example",
+            "assessment_status": "partial",
+            "source_ids": [
+              "src_aa_i109_arb51_amended",
+              "src_aa122_irs_i1120_2025"
+            ],
+            "source_locators": [
+              {
+                "source_id": "src_aa_i109_arb51_amended",
+                "url": "https://storage.fasb.org/ARB%2051.pdf",
+                "locator": "After FAS 160 paragraph 6, PDF page 7; paragraph 24, PDF page 8",
+                "effective_period": "ARB 51 issued August 1959; selected After FAS 160 text applies after adoption of that statement; FAS 160 effective for fiscal years beginning on or after December 15, 2008.",
+                "access_limits": "Historical pre-Codification text, not current ASC 810. The separate Before FAS 160 passage is not the selected procedure. NCI, acquisition accounting and current applicability require separate review."
+              },
+              {
+                "source_id": "src_aa122_irs_i1120_2025",
+                "url": "https://www.irs.gov/instructions/i1120",
+                "locator": "Item A, Consolidated Return; Schedule C, Consolidated returns; Schedule K, Question 3, Affiliated group",
+                "effective_period": "2025 Form 1120 instructions, selected headings opened on 2026-09-19.",
+                "access_limits": "Selected additional headings read for this package; canonical AA-I122 primary review unchanged. Tax-year instructions do not determine the GAAP perimeter or current tax eligibility."
+              }
+            ],
+            "inputs": [
+              "Legal entity register, voting and contractual rights, consolidation policy and dated perimeter memo",
+              "Separate entity trial balances with account, counterparty, currency and period",
+              "Investment and equity rollforwards; inception or acquisition documents",
+              "Loan principal, rate, period, accrued interest and counterparty confirmation",
+              "Service agreement, cost-pool ledger, benefit evidence, allocation units and approved invoice",
+              "Distribution approvals, declarations, payments and relevant capital restrictions"
+            ],
+            "workflow": [
+              "Resolve reporting purpose, actual control and included entities before amounts.",
+              "Validate each standalone trial balance and reconcile investment/equity and reciprocal balances.",
+              "Separate third-party activity from matching in-group principal, charges, interest and distributions.",
+              "Recompute service allocation and interest; route unproved benefit or mismatches to review.",
+              "Prepare elimination-only entries in a consolidation column and recompute the group trial balance.",
+              "Retain entity ledgers, source versions, exceptions, preparer and reviewer evidence; route book-to-tax separately."
+            ],
+            "controls": [
+              "Independent perimeter approval; ownership percentage is not a substitute for the control memo.",
+              "Trial-balance completeness, debit/credit equality and currency/period alignment.",
+              "Two-sided counterparty matching by transaction ID; do not plug differences.",
+              "Independent cost-driver and interest recomputation with duplicate and cutoff checks.",
+              "Separate consolidation adjustment column with approved evidence links.",
+              "Verify external balances survive and source rights and period limits remain visible."
+            ],
+            "exceptions": [
+              "A 60%-controlled financial-reporting subsidiary does not satisfy the stated 80% tax stock test merely through GAAP consolidation.",
+              "An external shareholder distribution cannot be eliminated as an internal dividend."
+            ],
+            "remaining_gaps": [
+              "Current consolidated ASC, later amendments and entity-specific applicability are not established by these dated public sources.",
+              "No actual group ledgers, governing documents, loan agreements, tax election, professional review or measured agent performance were obtained.",
+              "External source rights remain unknown; publisher full text is not stored.",
+              "Selected US research does not establish whole-industry sufficiency or an international or state-law survey."
+            ],
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "dimensions": {
+              "scope": "present",
+              "accounting-question": "partial",
+              "evidence-inputs": "present",
+              "workflow": "present",
+              "controls": "present",
+              "worked-material": "present",
+              "empirical-support": "not-assessed"
+            },
+            "dimension_basis": "Selected dated primary-source locators and an original synthetic worksheet; current accounting sufficiency and operational effectiveness remain unverified."
+          },
+          {
+            "id": "rq-holding-us-close",
+            "record_id": "guide-holding-management-us-close",
+            "pointer": "/data/research_questions/5",
+            "family_ids": [
+              "q-consolidation",
+              "q-data-lineage"
+            ],
+            "question": "How do the standalone ledgers and elimination column reconcile to the consolidated total?",
+            "scope": "US domestic registrant parent and assumed controlled operating subsidiary; 2025 synthetic close; separate financial-reporting and federal tax purposes.",
+            "answer": "Use independently balanced parent and subsidiary ledgers, match transaction IDs, and preserve an auditable elimination column. In the fixture the group retains only cash assets, external revenue, external expenses and parent capital. The displayed standalone, combined and group totals are recomputed from original journal lines. Counterparty differences, excluded entities and third-party revenue remain visible rather than being absorbed into an unexplained adjustment.",
+            "answer_status": "sourced-answer-and-original-example",
+            "assessment_status": "partial",
+            "source_ids": [
+              "src_aa_i109_arb51_amended",
+              "src_aa_i109_secsx_3a02_2025"
+            ],
+            "source_locators": [
+              {
+                "source_id": "src_aa_i109_arb51_amended",
+                "url": "https://storage.fasb.org/ARB%2051.pdf",
+                "locator": "After FAS 160 paragraph 6, PDF page 7; paragraph 24, PDF page 8",
+                "effective_period": "ARB 51 issued August 1959; selected After FAS 160 text applies after adoption of that statement; FAS 160 effective for fiscal years beginning on or after December 15, 2008.",
+                "access_limits": "Historical pre-Codification text, not current ASC 810. The separate Before FAS 160 passage is not the selected procedure. NCI, acquisition accounting and current applicability require separate review."
+              },
+              {
+                "source_id": "src_aa_i109_secsx_3a02_2025",
+                "url": "https://www.govinfo.gov/content/pkg/CFR-2025-title17-vol3/pdf/CFR-2025-title17-vol3-sec210-3A-02.pdf",
+                "locator": "210.3A-02 introductory text and (a), PDF pages 1-2; 3A-03(b), PDF page 2",
+                "effective_period": "April 1, 2025 CFR edition; 3A-02 amendment citation October 4, 2018; later currency not verified.",
+                "access_limits": "Registrants only. Current eCFR lookup was inaccessible in this review. Dated source is not a current-GAAP substitute and does not itself supply the intercompany-elimination procedure."
+              }
+            ],
+            "inputs": [
+              "Legal entity register, voting and contractual rights, consolidation policy and dated perimeter memo",
+              "Separate entity trial balances with account, counterparty, currency and period",
+              "Investment and equity rollforwards; inception or acquisition documents",
+              "Loan principal, rate, period, accrued interest and counterparty confirmation",
+              "Service agreement, cost-pool ledger, benefit evidence, allocation units and approved invoice",
+              "Distribution approvals, declarations, payments and relevant capital restrictions"
+            ],
+            "workflow": [
+              "Resolve reporting purpose, actual control and included entities before amounts.",
+              "Validate each standalone trial balance and reconcile investment/equity and reciprocal balances.",
+              "Separate third-party activity from matching in-group principal, charges, interest and distributions.",
+              "Recompute service allocation and interest; route unproved benefit or mismatches to review.",
+              "Prepare elimination-only entries in a consolidation column and recompute the group trial balance.",
+              "Retain entity ledgers, source versions, exceptions, preparer and reviewer evidence; route book-to-tax separately."
+            ],
+            "controls": [
+              "Independent perimeter approval; ownership percentage is not a substitute for the control memo.",
+              "Trial-balance completeness, debit/credit equality and currency/period alignment.",
+              "Two-sided counterparty matching by transaction ID; do not plug differences.",
+              "Independent cost-driver and interest recomputation with duplicate and cutoff checks.",
+              "Separate consolidation adjustment column with approved evidence links.",
+              "Verify external balances survive and source rights and period limits remain visible."
+            ],
+            "exceptions": [
+              "A management fee earned from an outside client survives group reporting.",
+              "Mismatched dates, ownership or currencies require a new analysis, not reuse of this worksheet."
+            ],
+            "remaining_gaps": [
+              "Current consolidated ASC, later amendments and entity-specific applicability are not established by these dated public sources.",
+              "No actual group ledgers, governing documents, loan agreements, tax election, professional review or measured agent performance were obtained.",
+              "External source rights remain unknown; publisher full text is not stored.",
+              "Selected US research does not establish whole-industry sufficiency or an international or state-law survey."
+            ],
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "dimensions": {
+              "scope": "present",
+              "accounting-question": "partial",
+              "evidence-inputs": "present",
+              "workflow": "present",
+              "controls": "present",
+              "worked-material": "present",
+              "empirical-support": "not-assessed"
+            },
+            "dimension_basis": "Selected dated primary-source locators and an original synthetic worksheet; current accounting sufficiency and operational effectiveness remain unverified."
+          }
+        ],
+        "inputs": [
+          "Legal entity register, voting and contractual rights, consolidation policy and dated perimeter memo",
+          "Separate entity trial balances with account, counterparty, currency and period",
+          "Investment and equity rollforwards; inception or acquisition documents",
+          "Loan principal, rate, period, accrued interest and counterparty confirmation",
+          "Service agreement, cost-pool ledger, benefit evidence, allocation units and approved invoice",
+          "Distribution approvals, declarations, payments and relevant capital restrictions"
+        ],
+        "workflows": [
+          "Resolve reporting purpose, actual control and included entities before amounts.",
+          "Validate each standalone trial balance and reconcile investment/equity and reciprocal balances.",
+          "Separate third-party activity from matching in-group principal, charges, interest and distributions.",
+          "Recompute service allocation and interest; route unproved benefit or mismatches to review.",
+          "Prepare elimination-only entries in a consolidation column and recompute the group trial balance.",
+          "Retain entity ledgers, source versions, exceptions, preparer and reviewer evidence; route book-to-tax separately."
+        ],
+        "controls": [
+          "Independent perimeter approval; ownership percentage is not a substitute for the control memo.",
+          "Trial-balance completeness, debit/credit equality and currency/period alignment.",
+          "Two-sided counterparty matching by transaction ID; do not plug differences.",
+          "Independent cost-driver and interest recomputation with duplicate and cutoff checks.",
+          "Separate consolidation adjustment column with approved evidence links.",
+          "Verify external balances survive and source rights and period limits remain visible."
+        ],
+        "coverage_gaps": [
+          "Current consolidated ASC, later amendments and entity-specific applicability are not established by these dated public sources.",
+          "No actual group ledgers, governing documents, loan agreements, tax election, professional review or measured agent performance were obtained.",
+          "External source rights remain unknown; publisher full text is not stored.",
+          "Selected US research does not establish whole-industry sufficiency or an international or state-law survey."
+        ],
+        "selected_role_routes": [
+          "Holding ownership -> establish actual control, investment method and reporting purpose.",
+          "Management provider -> prove service, benefit, contract, costs and counterparty.",
+          "Consolidation -> combine included entities and eliminate matched in-group activity.",
+          "Tax -> separately assess includibility, ownership thresholds, elections and adjustments."
+        ]
+      }
+    },
+    {
+      "id": "wf-holding-entity-to-consolidated",
+      "kind": "workflow",
+      "title": "Parent and subsidiary ledgers to consolidation worksheet",
+      "summary": "A descriptive research workflow linking entity facts and reciprocal balances to an approved elimination column.",
+      "topics": [
+        "Accounting and reporting",
+        "Reporting perimeter and consolidation",
+        "Related parties and intercompany arrangements"
+      ],
+      "industries": [
+        "holding-companies-management"
+      ],
+      "jurisdiction": "United States; selected entity and reporting roles",
+      "source_type": null,
+      "publisher": "Accounting Agents contributors",
+      "source_url": null,
+      "source_ids": [
+        "src_aa_i109_secsx_3a02_2025",
+        "src_fasb_201502",
+        "src_construction_fasb_201817",
+        "src_aa_i109_arb51_amended",
+        "src_aa_i109_cfr_14829_2025",
+        "src_construction_fasb_2014_09",
+        "src_aa122_irs_i1120_2025"
+      ],
+      "related_ids": [
+        "guide-holding-management-us-close",
+        "ctrl-holding-perimeter-and-matches",
+        "example-holding-parent-subsidiary-close"
+      ],
+      "review_status": "editorially-reviewed",
+      "reviewed_at": "2026-09-19",
+      "provenance": {
+        "added_on": "2026-09-19",
+        "reviewer": "Codex AI-assisted bounded source and editorial review",
+        "scope": "Selected source locators and original synthetic reconciliation; not professional signoff.",
+        "note": "Public original sources were read on the stated review date. Source-only proposal pending independent acceptance and integration."
+      },
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External publisher text is not stored; publisher terms and source rights remain separate and unresolved.",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": null
+      },
+      "data": {
+        "inputs": [
+          "Legal entity register, voting and contractual rights, consolidation policy and dated perimeter memo",
+          "Separate entity trial balances with account, counterparty, currency and period",
+          "Investment and equity rollforwards; inception or acquisition documents",
+          "Loan principal, rate, period, accrued interest and counterparty confirmation",
+          "Service agreement, cost-pool ledger, benefit evidence, allocation units and approved invoice",
+          "Distribution approvals, declarations, payments and relevant capital restrictions"
+        ],
+        "steps": [
+          "Resolve reporting purpose, actual control and included entities before amounts.",
+          "Validate each standalone trial balance and reconcile investment/equity and reciprocal balances.",
+          "Separate third-party activity from matching in-group principal, charges, interest and distributions.",
+          "Recompute service allocation and interest; route unproved benefit or mismatches to review.",
+          "Prepare elimination-only entries in a consolidation column and recompute the group trial balance.",
+          "Retain entity ledgers, source versions, exceptions, preparer and reviewer evidence; route book-to-tax separately."
+        ],
+        "outputs": [
+          "Separate entity trial balances",
+          "Perimeter memo and reciprocal-balance exceptions",
+          "Elimination journal with source and transaction links",
+          "Consolidated worksheet and separate tax-review questions"
+        ],
+        "human_review": [
+          "Perimeter and investment method",
+          "Contracts and service benefit",
+          "Loan and distribution legality",
+          "Eliminations and unresolved counterparty differences"
+        ],
+        "limitations": [
+          "Current consolidated ASC, later amendments and entity-specific applicability are not established by these dated public sources.",
+          "No actual group ledgers, governing documents, loan agreements, tax election, professional review or measured agent performance were obtained.",
+          "External source rights remain unknown; publisher full text is not stored.",
+          "Selected US research does not establish whole-industry sufficiency or an international or state-law survey."
+        ]
+      }
+    },
+    {
+      "id": "ctrl-holding-perimeter-and-matches",
+      "kind": "control",
+      "title": "Holding-company perimeter, matching and external-balance control",
+      "summary": "Original proposed checks for an entity-to-group reconciliation; operating effectiveness is untested.",
+      "topics": [
+        "Accounting and reporting",
+        "Reporting perimeter and consolidation",
+        "Related parties and intercompany arrangements"
+      ],
+      "industries": [
+        "holding-companies-management"
+      ],
+      "jurisdiction": "United States; selected entity and reporting roles",
+      "source_type": null,
+      "publisher": "Accounting Agents contributors",
+      "source_url": null,
+      "source_ids": [
+        "src_aa_i109_secsx_3a02_2025",
+        "src_fasb_201502",
+        "src_construction_fasb_201817",
+        "src_aa_i109_arb51_amended",
+        "src_aa_i109_cfr_14829_2025",
+        "src_construction_fasb_2014_09",
+        "src_aa122_irs_i1120_2025"
+      ],
+      "related_ids": [
+        "guide-holding-management-us-close",
+        "wf-holding-entity-to-consolidated",
+        "example-holding-parent-subsidiary-close"
+      ],
+      "review_status": "editorially-reviewed",
+      "reviewed_at": "2026-09-19",
+      "provenance": {
+        "added_on": "2026-09-19",
+        "reviewer": "Codex AI-assisted bounded source and editorial review",
+        "scope": "Selected source locators and original synthetic reconciliation; not professional signoff.",
+        "note": "Public original sources were read on the stated review date. Source-only proposal pending independent acceptance and integration."
+      },
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External publisher text is not stored; publisher terms and source rights remain separate and unresolved.",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": null
+      },
+      "data": {
+        "controls": [
+          "Independent perimeter approval; ownership percentage is not a substitute for the control memo.",
+          "Trial-balance completeness, debit/credit equality and currency/period alignment.",
+          "Two-sided counterparty matching by transaction ID; do not plug differences.",
+          "Independent cost-driver and interest recomputation with duplicate and cutoff checks.",
+          "Separate consolidation adjustment column with approved evidence links.",
+          "Verify external balances survive and source rights and period limits remain visible."
+        ],
+        "failure_conditions": [
+          "Missing perimeter approval",
+          "Unmatched reciprocal entry",
+          "Unproved service benefit",
+          "Eliminated third-party activity",
+          "Collapsed book and tax group definitions"
+        ],
+        "evidence": [
+          "Entity register",
+          "Signed contracts and distribution approvals",
+          "Counterparty confirmation",
+          "Allocation-driver population",
+          "Separate entity and elimination trial balances"
+        ],
+        "limitations": [
+          "Current consolidated ASC, later amendments and entity-specific applicability are not established by these dated public sources.",
+          "No actual group ledgers, governing documents, loan agreements, tax election, professional review or measured agent performance were obtained.",
+          "External source rights remain unknown; publisher full text is not stored.",
+          "Selected US research does not establish whole-industry sufficiency or an international or state-law survey."
+        ]
+      }
+    },
+    {
+      "id": "example-holding-parent-subsidiary-close",
+      "kind": "example",
+      "title": "Synthetic parent/subsidiary standalone-to-consolidated reconciliation",
+      "summary": "Original integer-cents worksheet showing parent and subsidiary journals, intercompany matching, eliminations and retained external activity.",
+      "topics": [
+        "Accounting and reporting",
+        "Reporting perimeter and consolidation",
+        "Related parties and intercompany arrangements"
+      ],
+      "industries": [
+        "holding-companies-management"
+      ],
+      "jurisdiction": "United States; selected entity and reporting roles",
+      "source_type": null,
+      "publisher": "Accounting Agents contributors",
+      "source_url": null,
+      "source_ids": [
+        "src_aa_i109_secsx_3a02_2025",
+        "src_fasb_201502",
+        "src_construction_fasb_201817",
+        "src_aa_i109_arb51_amended",
+        "src_aa_i109_cfr_14829_2025",
+        "src_construction_fasb_2014_09",
+        "src_aa122_irs_i1120_2025"
+      ],
+      "related_ids": [
+        "guide-holding-management-us-close",
+        "wf-holding-entity-to-consolidated",
+        "ctrl-holding-perimeter-and-matches"
+      ],
+      "review_status": "editorially-reviewed",
+      "reviewed_at": "2026-09-19",
+      "provenance": {
+        "added_on": "2026-09-19",
+        "reviewer": "Codex AI-assisted bounded source and editorial review",
+        "scope": "Selected source locators and original synthetic reconciliation; not professional signoff.",
+        "note": "Public original sources were read on the stated review date. Source-only proposal pending independent acceptance and integration."
+      },
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External publisher text is not stored; publisher terms and source rights remain separate and unresolved.",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": null
+      },
+      "data": {
+        "fixture_type": "synthetic-original",
+        "currency": "USD",
+        "unit": "integer cents",
+        "period": "2025-01-01 through 2025-12-31",
+        "assumptions": [
+          "P is a domestic SEC registrant; S is wholly owned and controlled throughout the year, with control already established by assumption.",
+          "S is formed for cash equal to stated capital; no goodwill, NCI, preacquisition retained earnings, FX, OCI, income taxes or impairment.",
+          "Parent standalone input is a cost-method bookkeeping worksheet. It is not represented as a complete GAAP standalone financial statement or a universally permitted investment method.",
+          "Shared service is assumed performed and earned; 1000 documented processing units allocate 600 to S and 400 to P. A tax arm's length price or services-cost-method election is not established.",
+          "Loan outstanding for a full year at assumed 6% simple interest; no repayments, fees or capitalization.",
+          "Dividend approval and legal capacity are assumed solely for the synthetic entry.",
+          "No entries are posted to an operational system."
+        ],
+        "accounts": {
+          "cash": "asset",
+          "investment_S": "asset",
+          "loan_receivable_S": "asset",
+          "service_receivable_S": "asset",
+          "interest_receivable_S": "asset",
+          "dividend_receivable_S": "asset",
+          "loan_payable_P": "liability",
+          "service_payable_P": "liability",
+          "interest_payable_P": "liability",
+          "dividend_payable_P": "liability",
+          "parent_capital": "equity",
+          "subsidiary_capital": "equity",
+          "dividends_declared": "distribution",
+          "external_revenue": "revenue",
+          "service_revenue": "revenue",
+          "interest_revenue": "revenue",
+          "dividend_income": "revenue",
+          "external_operating_expense": "expense",
+          "shared_service_cost": "expense",
+          "service_expense": "expense",
+          "interest_expense": "expense"
+        },
+        "journals": [
+          {
+            "id": "P01",
+            "match_id": "CAP-P",
+            "description": "Opening parent cash capital",
+            "status": "proposed-synthetic-workpaper-only",
+            "lines": [
+              {
+                "entity": "P",
+                "account": "cash",
+                "debit_cents": 2500000,
+                "credit_cents": 0
+              },
+              {
+                "entity": "P",
+                "account": "parent_capital",
+                "debit_cents": 0,
+                "credit_cents": 2500000
+              }
+            ]
+          },
+          {
+            "id": "P02",
+            "match_id": "CAP-S",
+            "description": "Form wholly owned S for cash at stated capital",
+            "status": "proposed-synthetic-workpaper-only",
+            "lines": [
+              {
+                "entity": "P",
+                "account": "investment_S",
+                "debit_cents": 1000000,
+                "credit_cents": 0
+              },
+              {
+                "entity": "P",
+                "account": "cash",
+                "debit_cents": 0,
+                "credit_cents": 1000000
+              }
+            ]
+          },
+          {
+            "id": "S01",
+            "match_id": "CAP-S",
+            "description": "Receive parent capital",
+            "status": "proposed-synthetic-workpaper-only",
+            "lines": [
+              {
+                "entity": "S",
+                "account": "cash",
+                "debit_cents": 1000000,
+                "credit_cents": 0
+              },
+              {
+                "entity": "S",
+                "account": "subsidiary_capital",
+                "debit_cents": 0,
+                "credit_cents": 1000000
+              }
+            ]
+          },
+          {
+            "id": "P03",
+            "match_id": "LOAN-1",
+            "description": "Advance loan at start of year",
+            "status": "proposed-synthetic-workpaper-only",
+            "lines": [
+              {
+                "entity": "P",
+                "account": "loan_receivable_S",
+                "debit_cents": 500000,
+                "credit_cents": 0
+              },
+              {
+                "entity": "P",
+                "account": "cash",
+                "debit_cents": 0,
+                "credit_cents": 500000
+              }
+            ]
+          },
+          {
+            "id": "S02",
+            "match_id": "LOAN-1",
+            "description": "Receive parent advance",
+            "status": "proposed-synthetic-workpaper-only",
+            "lines": [
+              {
+                "entity": "S",
+                "account": "cash",
+                "debit_cents": 500000,
+                "credit_cents": 0
+              },
+              {
+                "entity": "S",
+                "account": "loan_payable_P",
+                "debit_cents": 0,
+                "credit_cents": 500000
+              }
+            ]
+          },
+          {
+            "id": "S03",
+            "match_id": "EXT-REV",
+            "description": "Collected external revenue",
+            "status": "proposed-synthetic-workpaper-only",
+            "lines": [
+              {
+                "entity": "S",
+                "account": "cash",
+                "debit_cents": 2000000,
+                "credit_cents": 0
+              },
+              {
+                "entity": "S",
+                "account": "external_revenue",
+                "debit_cents": 0,
+                "credit_cents": 2000000
+              }
+            ]
+          },
+          {
+            "id": "S04",
+            "match_id": "EXT-EXP",
+            "description": "Paid external operating costs",
+            "status": "proposed-synthetic-workpaper-only",
+            "lines": [
+              {
+                "entity": "S",
+                "account": "external_operating_expense",
+                "debit_cents": 1200000,
+                "credit_cents": 0
+              },
+              {
+                "entity": "S",
+                "account": "cash",
+                "debit_cents": 0,
+                "credit_cents": 1200000
+              }
+            ]
+          },
+          {
+            "id": "P04",
+            "match_id": "POOL-1",
+            "description": "Paid external central processing costs",
+            "status": "proposed-synthetic-workpaper-only",
+            "lines": [
+              {
+                "entity": "P",
+                "account": "shared_service_cost",
+                "debit_cents": 200000,
+                "credit_cents": 0
+              },
+              {
+                "entity": "P",
+                "account": "cash",
+                "debit_cents": 0,
+                "credit_cents": 200000
+              }
+            ]
+          },
+          {
+            "id": "P05",
+            "match_id": "SERVICE-1",
+            "description": "Invoice assumed earned processing service",
+            "status": "proposed-synthetic-workpaper-only",
+            "lines": [
+              {
+                "entity": "P",
+                "account": "service_receivable_S",
+                "debit_cents": 120000,
+                "credit_cents": 0
+              },
+              {
+                "entity": "P",
+                "account": "service_revenue",
+                "debit_cents": 0,
+                "credit_cents": 120000
+              }
+            ]
+          },
+          {
+            "id": "S05",
+            "match_id": "SERVICE-1",
+            "description": "Accrue received processing service",
+            "status": "proposed-synthetic-workpaper-only",
+            "lines": [
+              {
+                "entity": "S",
+                "account": "service_expense",
+                "debit_cents": 120000,
+                "credit_cents": 0
+              },
+              {
+                "entity": "S",
+                "account": "service_payable_P",
+                "debit_cents": 0,
+                "credit_cents": 120000
+              }
+            ]
+          },
+          {
+            "id": "P06",
+            "match_id": "INT-1",
+            "description": "One year simple interest",
+            "status": "proposed-synthetic-workpaper-only",
+            "lines": [
+              {
+                "entity": "P",
+                "account": "interest_receivable_S",
+                "debit_cents": 30000,
+                "credit_cents": 0
+              },
+              {
+                "entity": "P",
+                "account": "interest_revenue",
+                "debit_cents": 0,
+                "credit_cents": 30000
+              }
+            ]
+          },
+          {
+            "id": "S06",
+            "match_id": "INT-1",
+            "description": "Accrue reciprocal interest",
+            "status": "proposed-synthetic-workpaper-only",
+            "lines": [
+              {
+                "entity": "S",
+                "account": "interest_expense",
+                "debit_cents": 30000,
+                "credit_cents": 0
+              },
+              {
+                "entity": "S",
+                "account": "interest_payable_P",
+                "debit_cents": 0,
+                "credit_cents": 30000
+              }
+            ]
+          },
+          {
+            "id": "P07",
+            "match_id": "DIV-1",
+            "description": "Parent cost-ledger distribution entry",
+            "status": "proposed-synthetic-workpaper-only",
+            "lines": [
+              {
+                "entity": "P",
+                "account": "dividend_receivable_S",
+                "debit_cents": 100000,
+                "credit_cents": 0
+              },
+              {
+                "entity": "P",
+                "account": "dividend_income",
+                "debit_cents": 0,
+                "credit_cents": 100000
+              }
+            ]
+          },
+          {
+            "id": "S07",
+            "match_id": "DIV-1",
+            "description": "Assumed lawfully approved dividend",
+            "status": "proposed-synthetic-workpaper-only",
+            "lines": [
+              {
+                "entity": "S",
+                "account": "dividends_declared",
+                "debit_cents": 100000,
+                "credit_cents": 0
+              },
+              {
+                "entity": "S",
+                "account": "dividend_payable_P",
+                "debit_cents": 0,
+                "credit_cents": 100000
+              }
+            ]
+          },
+          {
+            "id": "P08",
+            "match_id": "DIV-PAY",
+            "description": "Receive dividend",
+            "status": "proposed-synthetic-workpaper-only",
+            "lines": [
+              {
+                "entity": "P",
+                "account": "cash",
+                "debit_cents": 100000,
+                "credit_cents": 0
+              },
+              {
+                "entity": "P",
+                "account": "dividend_receivable_S",
+                "debit_cents": 0,
+                "credit_cents": 100000
+              }
+            ]
+          },
+          {
+            "id": "S08",
+            "match_id": "DIV-PAY",
+            "description": "Pay dividend",
+            "status": "proposed-synthetic-workpaper-only",
+            "lines": [
+              {
+                "entity": "S",
+                "account": "dividend_payable_P",
+                "debit_cents": 100000,
+                "credit_cents": 0
+              },
+              {
+                "entity": "S",
+                "account": "cash",
+                "debit_cents": 0,
+                "credit_cents": 100000
+              }
+            ]
+          }
+        ],
+        "elimination_journals": [
+          {
+            "id": "E01",
+            "match_id": "CAP-S",
+            "description": "Remove reciprocal inception capital and investment",
+            "status": "proposed-synthetic-consolidation-column-only",
+            "source_locator": {
+              "source_id": "src_aa_i109_arb51_amended",
+              "url": "https://storage.fasb.org/ARB%2051.pdf",
+              "locator": "After FAS 160 paragraph 6, PDF page 7; paragraph 24, PDF page 8",
+              "effective_period": "ARB 51 issued August 1959; selected After FAS 160 text applies after adoption of that statement; FAS 160 effective for fiscal years beginning on or after December 15, 2008.",
+              "access_limits": "Historical pre-Codification text, not current ASC 810. The separate Before FAS 160 passage is not the selected procedure. NCI, acquisition accounting and current applicability require separate review."
+            },
+            "lines": [
+              {
+                "entity": "S",
+                "account": "subsidiary_capital",
+                "debit_cents": 1000000,
+                "credit_cents": 0
+              },
+              {
+                "entity": "P",
+                "account": "investment_S",
+                "debit_cents": 0,
+                "credit_cents": 1000000
+              }
+            ]
+          },
+          {
+            "id": "E02",
+            "match_id": "LOAN-1",
+            "description": "Remove matched loan principal",
+            "status": "proposed-synthetic-consolidation-column-only",
+            "source_locator": {
+              "source_id": "src_aa_i109_arb51_amended",
+              "url": "https://storage.fasb.org/ARB%2051.pdf",
+              "locator": "After FAS 160 paragraph 6, PDF page 7; paragraph 24, PDF page 8",
+              "effective_period": "ARB 51 issued August 1959; selected After FAS 160 text applies after adoption of that statement; FAS 160 effective for fiscal years beginning on or after December 15, 2008.",
+              "access_limits": "Historical pre-Codification text, not current ASC 810. The separate Before FAS 160 passage is not the selected procedure. NCI, acquisition accounting and current applicability require separate review."
+            },
+            "lines": [
+              {
+                "entity": "S",
+                "account": "loan_payable_P",
+                "debit_cents": 500000,
+                "credit_cents": 0
+              },
+              {
+                "entity": "P",
+                "account": "loan_receivable_S",
+                "debit_cents": 0,
+                "credit_cents": 500000
+              }
+            ]
+          },
+          {
+            "id": "E03",
+            "match_id": "SERVICE-1",
+            "description": "Remove reciprocal service balances",
+            "status": "proposed-synthetic-consolidation-column-only",
+            "source_locator": {
+              "source_id": "src_aa_i109_arb51_amended",
+              "url": "https://storage.fasb.org/ARB%2051.pdf",
+              "locator": "After FAS 160 paragraph 6, PDF page 7; paragraph 24, PDF page 8",
+              "effective_period": "ARB 51 issued August 1959; selected After FAS 160 text applies after adoption of that statement; FAS 160 effective for fiscal years beginning on or after December 15, 2008.",
+              "access_limits": "Historical pre-Codification text, not current ASC 810. The separate Before FAS 160 passage is not the selected procedure. NCI, acquisition accounting and current applicability require separate review."
+            },
+            "lines": [
+              {
+                "entity": "S",
+                "account": "service_payable_P",
+                "debit_cents": 120000,
+                "credit_cents": 0
+              },
+              {
+                "entity": "P",
+                "account": "service_receivable_S",
+                "debit_cents": 0,
+                "credit_cents": 120000
+              }
+            ]
+          },
+          {
+            "id": "E04",
+            "match_id": "SERVICE-1",
+            "description": "Remove internal service activity; external pool costs remain",
+            "status": "proposed-synthetic-consolidation-column-only",
+            "source_locator": {
+              "source_id": "src_aa_i109_arb51_amended",
+              "url": "https://storage.fasb.org/ARB%2051.pdf",
+              "locator": "After FAS 160 paragraph 6, PDF page 7; paragraph 24, PDF page 8",
+              "effective_period": "ARB 51 issued August 1959; selected After FAS 160 text applies after adoption of that statement; FAS 160 effective for fiscal years beginning on or after December 15, 2008.",
+              "access_limits": "Historical pre-Codification text, not current ASC 810. The separate Before FAS 160 passage is not the selected procedure. NCI, acquisition accounting and current applicability require separate review."
+            },
+            "lines": [
+              {
+                "entity": "P",
+                "account": "service_revenue",
+                "debit_cents": 120000,
+                "credit_cents": 0
+              },
+              {
+                "entity": "S",
+                "account": "service_expense",
+                "debit_cents": 0,
+                "credit_cents": 120000
+              }
+            ]
+          },
+          {
+            "id": "E05",
+            "match_id": "INT-1",
+            "description": "Remove reciprocal interest balances",
+            "status": "proposed-synthetic-consolidation-column-only",
+            "source_locator": {
+              "source_id": "src_aa_i109_arb51_amended",
+              "url": "https://storage.fasb.org/ARB%2051.pdf",
+              "locator": "After FAS 160 paragraph 6, PDF page 7; paragraph 24, PDF page 8",
+              "effective_period": "ARB 51 issued August 1959; selected After FAS 160 text applies after adoption of that statement; FAS 160 effective for fiscal years beginning on or after December 15, 2008.",
+              "access_limits": "Historical pre-Codification text, not current ASC 810. The separate Before FAS 160 passage is not the selected procedure. NCI, acquisition accounting and current applicability require separate review."
+            },
+            "lines": [
+              {
+                "entity": "S",
+                "account": "interest_payable_P",
+                "debit_cents": 30000,
+                "credit_cents": 0
+              },
+              {
+                "entity": "P",
+                "account": "interest_receivable_S",
+                "debit_cents": 0,
+                "credit_cents": 30000
+              }
+            ]
+          },
+          {
+            "id": "E06",
+            "match_id": "INT-1",
+            "description": "Remove internal interest activity",
+            "status": "proposed-synthetic-consolidation-column-only",
+            "source_locator": {
+              "source_id": "src_aa_i109_arb51_amended",
+              "url": "https://storage.fasb.org/ARB%2051.pdf",
+              "locator": "After FAS 160 paragraph 6, PDF page 7; paragraph 24, PDF page 8",
+              "effective_period": "ARB 51 issued August 1959; selected After FAS 160 text applies after adoption of that statement; FAS 160 effective for fiscal years beginning on or after December 15, 2008.",
+              "access_limits": "Historical pre-Codification text, not current ASC 810. The separate Before FAS 160 passage is not the selected procedure. NCI, acquisition accounting and current applicability require separate review."
+            },
+            "lines": [
+              {
+                "entity": "P",
+                "account": "interest_revenue",
+                "debit_cents": 30000,
+                "credit_cents": 0
+              },
+              {
+                "entity": "S",
+                "account": "interest_expense",
+                "debit_cents": 0,
+                "credit_cents": 30000
+              }
+            ]
+          },
+          {
+            "id": "E07",
+            "match_id": "DIV-1",
+            "description": "Remove internal distribution activity; paid reciprocal receivables/payables already zero",
+            "status": "proposed-synthetic-consolidation-column-only",
+            "source_locator": {
+              "source_id": "src_aa_i109_arb51_amended",
+              "url": "https://storage.fasb.org/ARB%2051.pdf",
+              "locator": "After FAS 160 paragraph 6, PDF page 7; paragraph 24, PDF page 8",
+              "effective_period": "ARB 51 issued August 1959; selected After FAS 160 text applies after adoption of that statement; FAS 160 effective for fiscal years beginning on or after December 15, 2008.",
+              "access_limits": "Historical pre-Codification text, not current ASC 810. The separate Before FAS 160 passage is not the selected procedure. NCI, acquisition accounting and current applicability require separate review."
+            },
+            "lines": [
+              {
+                "entity": "P",
+                "account": "dividend_income",
+                "debit_cents": 100000,
+                "credit_cents": 0
+              },
+              {
+                "entity": "S",
+                "account": "dividends_declared",
+                "debit_cents": 0,
+                "credit_cents": 100000
+              }
+            ]
+          }
+        ],
+        "allocation_case": {
+          "pool_cents": 200000,
+          "processing_units": {
+            "S": 600,
+            "P": 400
+          },
+          "allocated_cents": {
+            "S": 120000,
+            "P": 80000
+          },
+          "source_locator": {
+            "source_id": "src_aa_i109_cfr_14829_2025",
+            "url": "https://www.govinfo.gov/link/cfr/26/1?link-type=pdf&sectionnum=482-9&year=mostrecent",
+            "locator": "1.482-9(j), (k)(1)-(2), (l)(1)-(3)(v), PDF pages 34-37; (b)(7) Example 16, PDF page 9",
+            "effective_period": "The GovInfo mostrecent resolver served the April 1, 2025 CFR edition on 2026-09-19; resolver target may change.",
+            "access_limits": "Federal tax controlled-service rules, not a GAAP allocation mandate. Current eCFR and fixed-year URL were inaccessible; later currency is unknown. Method eligibility, exclusions, comparables and markup require separate review; cost allocation alone does not prove an arm's length price."
+          },
+          "counterexample": "Tax costs or service price cannot be justified solely by ownership or a convenient revenue ratio."
+        },
+        "interest_case": {
+          "principal_cents": 500000,
+          "annual_rate_basis_points": 600,
+          "years": 1,
+          "interest_cents": 30000
+        },
+        "trial_balances": {
+          "parent": {
+            "cash": 900000,
+            "parent_capital": -2500000,
+            "investment_S": 1000000,
+            "loan_receivable_S": 500000,
+            "shared_service_cost": 200000,
+            "service_receivable_S": 120000,
+            "service_revenue": -120000,
+            "interest_receivable_S": 30000,
+            "interest_revenue": -30000,
+            "dividend_income": -100000
+          },
+          "subsidiary": {
+            "cash": 2200000,
+            "subsidiary_capital": -1000000,
+            "loan_payable_P": -500000,
+            "external_revenue": -2000000,
+            "external_operating_expense": 1200000,
+            "service_expense": 120000,
+            "service_payable_P": -120000,
+            "interest_expense": 30000,
+            "interest_payable_P": -30000,
+            "dividends_declared": 100000
+          },
+          "combined": {
+            "cash": 3100000,
+            "parent_capital": -2500000,
+            "investment_S": 1000000,
+            "subsidiary_capital": -1000000,
+            "loan_receivable_S": 500000,
+            "loan_payable_P": -500000,
+            "external_revenue": -2000000,
+            "external_operating_expense": 1200000,
+            "shared_service_cost": 200000,
+            "service_receivable_S": 120000,
+            "service_revenue": -120000,
+            "service_expense": 120000,
+            "service_payable_P": -120000,
+            "interest_receivable_S": 30000,
+            "interest_revenue": -30000,
+            "interest_expense": 30000,
+            "interest_payable_P": -30000,
+            "dividend_income": -100000,
+            "dividends_declared": 100000
+          },
+          "consolidated": {
+            "cash": 3100000,
+            "parent_capital": -2500000,
+            "external_revenue": -2000000,
+            "external_operating_expense": 1200000,
+            "shared_service_cost": 200000
+          }
+        },
+        "reconciliation": {
+          "parent": {
+            "assets_cents": 2550000,
+            "liabilities_cents": 0,
+            "revenue_cents": 250000,
+            "expenses_cents": 200000,
+            "net_income_cents": 50000,
+            "ending_equity_cents": 2550000,
+            "balance_difference_cents": 0,
+            "trial_balance_sum_cents": 0
+          },
+          "subsidiary": {
+            "assets_cents": 2200000,
+            "liabilities_cents": 650000,
+            "revenue_cents": 2000000,
+            "expenses_cents": 1350000,
+            "net_income_cents": 650000,
+            "ending_equity_cents": 1550000,
+            "balance_difference_cents": 0,
+            "trial_balance_sum_cents": 0
+          },
+          "combined": {
+            "assets_cents": 4750000,
+            "liabilities_cents": 650000,
+            "revenue_cents": 2250000,
+            "expenses_cents": 1550000,
+            "net_income_cents": 700000,
+            "ending_equity_cents": 4100000,
+            "balance_difference_cents": 0,
+            "trial_balance_sum_cents": 0
+          },
+          "consolidated": {
+            "assets_cents": 3100000,
+            "liabilities_cents": 0,
+            "revenue_cents": 2000000,
+            "expenses_cents": 1400000,
+            "net_income_cents": 600000,
+            "ending_equity_cents": 3100000,
+            "balance_difference_cents": 0,
+            "trial_balance_sum_cents": 0
+          }
+        },
+        "scope_counterexamples": [
+          {
+            "id": "PASSIVE-HOLDING",
+            "facts": "P only owns shares and provides no identified service.",
+            "outcome": "Do not infer an earned management charge from ownership alone.",
+            "source_locator": {
+              "source_id": "src_aa_i109_cfr_14829_2025",
+              "url": "https://www.govinfo.gov/link/cfr/26/1?link-type=pdf&sectionnum=482-9&year=mostrecent",
+              "locator": "1.482-9(j), (k)(1)-(2), (l)(1)-(3)(v), PDF pages 34-37; (b)(7) Example 16, PDF page 9",
+              "effective_period": "The GovInfo mostrecent resolver served the April 1, 2025 CFR edition on 2026-09-19; resolver target may change.",
+              "access_limits": "Federal tax controlled-service rules, not a GAAP allocation mandate. Current eCFR and fixed-year URL were inaccessible; later currency is unknown. Method eligibility, exclusions, comparables and markup require separate review; cost allocation alone does not prove an arm's length price."
+            }
+          },
+          {
+            "id": "OUTSIDE-CUSTOMER",
+            "facts": "Separate branch: P earns and collects 50000 cents from an outside client.",
+            "entries": [
+              {
+                "id": "P-EXT",
+                "match_id": "EXTERNAL-SERVICE",
+                "description": "Third-party management service",
+                "status": "proposed-synthetic-workpaper-only",
+                "lines": [
+                  {
+                    "entity": "P",
+                    "account": "cash",
+                    "debit_cents": 50000,
+                    "credit_cents": 0
+                  },
+                  {
+                    "entity": "P",
+                    "account": "external_revenue",
+                    "debit_cents": 0,
+                    "credit_cents": 50000
+                  }
+                ]
+              }
+            ],
+            "expected_group_cash_cents": 3150000,
+            "expected_group_net_income_cents": 650000,
+            "outcome": "The third-party revenue and cash survive consolidation."
+          },
+          {
+            "id": "UNMATCHED-LOAN",
+            "facts": "P loan receivable is 500000 cents; S loan payable is 480000 cents.",
+            "difference_cents": 20000,
+            "outcome": "Hold elimination and investigate; do not create a plug."
+          },
+          {
+            "id": "MINORITY-INVESTEE",
+            "facts": "P holds 25% voting ownership; other rights and VIE facts are unknown.",
+            "outcome": "Do not conclude consolidation, equity method or fair value from the percentage alone.",
+            "source_locator": {
+              "source_id": "src_aa_i109_secsx_3a02_2025",
+              "url": "https://www.govinfo.gov/content/pkg/CFR-2025-title17-vol3/pdf/CFR-2025-title17-vol3-sec210-3A-02.pdf",
+              "locator": "210.3A-02 introductory text and (a), PDF pages 1-2; 3A-03(b), PDF page 2",
+              "effective_period": "April 1, 2025 CFR edition; 3A-02 amendment citation October 4, 2018; later currency not verified.",
+              "access_limits": "Registrants only. Current eCFR lookup was inaccessible in this review. Dated source is not a current-GAAP substitute and does not itself supply the intercompany-elimination procedure."
+            }
+          },
+          {
+            "id": "BOOK-TAX-PERIMETER",
+            "facts": "A 60%-owned and controlled corporation is in the financial group; tax includibility and other ownership facts are not established.",
+            "outcome": "The stated 80% federal tax ownership threshold is not met by a 60% interest alone; financial consolidation does not establish tax filing eligibility.",
+            "source_locator": {
+              "source_id": "src_aa122_irs_i1120_2025",
+              "url": "https://www.irs.gov/instructions/i1120",
+              "locator": "Item A, Consolidated Return; Schedule C, Consolidated returns; Schedule K, Question 3, Affiliated group",
+              "effective_period": "2025 Form 1120 instructions, selected headings opened on 2026-09-19.",
+              "access_limits": "Selected additional headings read for this package; canonical AA-I122 primary review unchanged. Tax-year instructions do not determine the GAAP perimeter or current tax eligibility."
+            }
+          }
+        ],
+        "limitations": [
+          "Synthetic original worksheet; no operating ledger evidence or professional acceptance.",
+          "Current consolidated ASC, later amendments and entity-specific applicability are not established by these dated public sources.",
+          "No actual group ledgers, governing documents, loan agreements, tax election, professional review or measured agent performance were obtained.",
+          "External source rights remain unknown; publisher full text is not stored.",
+          "Selected US research does not establish whole-industry sufficiency or an international or state-law survey."
+        ]
+      }
+    }
+  ],
+  "question_rows": [
+    {
+      "id": "rq-holding-us-perimeter",
+      "record_id": "guide-holding-management-us-close",
+      "pointer": "/data/research_questions/0",
+      "family_ids": [
+        "q-consolidation"
+      ],
+      "question": "Which entities belong in the selected parent reporting perimeter?",
+      "scope": "US domestic registrant parent and assumed controlled operating subsidiary; 2025 synthetic close; separate financial-reporting and federal tax purposes.",
+      "answer": "Start with reporting purpose and evidence of control. Apply the selected registrant rule with its ownership exceptions; retain a separate conclusion for each entity and disclose material perimeter changes. A passive holding company can still have a controlled subsidiary. A management-service contract alone does not settle control. Public-company use of the private-company alternative remains outside this scope.",
+      "answer_status": "sourced-answer-and-original-example",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_aa_i109_secsx_3a02_2025",
+        "src_fasb_201502",
+        "src_construction_fasb_201817"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_aa_i109_secsx_3a02_2025",
+          "url": "https://www.govinfo.gov/content/pkg/CFR-2025-title17-vol3/pdf/CFR-2025-title17-vol3-sec210-3A-02.pdf",
+          "locator": "210.3A-02 introductory text and (a), PDF pages 1-2; 3A-03(b), PDF page 2",
+          "effective_period": "April 1, 2025 CFR edition; 3A-02 amendment citation October 4, 2018; later currency not verified.",
+          "access_limits": "Registrants only. Current eCFR lookup was inaccessible in this review. Dated source is not a current-GAAP substitute and does not itself supply the intercompany-elimination procedure."
+        },
+        {
+          "source_id": "src_fasb_201502",
+          "url": "https://storage.fasb.org/ASU%202015-02.pdf",
+          "locator": "ASU 2015-02 Summary and Topic 810 amendments, controlling financial interest and limited-partnership/VIE routes",
+          "effective_period": "Issued February 2015; historical amendment and entity transition dates in canonical record.",
+          "access_limits": "Reused accepted consolidation foundation; no new full-source or current ASC review."
+        },
+        {
+          "source_id": "src_construction_fasb_201817",
+          "url": "https://storage.fasb.org/ASU%202018-17.pdf",
+          "locator": "ASU 2018-17 Summary; Topic 810 private-company common-control alternative and decision-maker fee amendments",
+          "effective_period": "Issued October 2018; entity-specific adoption and eligibility remain open.",
+          "access_limits": "Reused entity-change foundation, not a general election for a public registrant."
+        }
+      ],
+      "inputs": [
+        "Legal entity register, voting and contractual rights, consolidation policy and dated perimeter memo",
+        "Separate entity trial balances with account, counterparty, currency and period",
+        "Investment and equity rollforwards; inception or acquisition documents",
+        "Loan principal, rate, period, accrued interest and counterparty confirmation",
+        "Service agreement, cost-pool ledger, benefit evidence, allocation units and approved invoice",
+        "Distribution approvals, declarations, payments and relevant capital restrictions"
+      ],
+      "workflow": [
+        "Resolve reporting purpose, actual control and included entities before amounts.",
+        "Validate each standalone trial balance and reconcile investment/equity and reciprocal balances.",
+        "Separate third-party activity from matching in-group principal, charges, interest and distributions.",
+        "Recompute service allocation and interest; route unproved benefit or mismatches to review.",
+        "Prepare elimination-only entries in a consolidation column and recompute the group trial balance.",
+        "Retain entity ledgers, source versions, exceptions, preparer and reviewer evidence; route book-to-tax separately."
+      ],
+      "controls": [
+        "Independent perimeter approval; ownership percentage is not a substitute for the control memo.",
+        "Trial-balance completeness, debit/credit equality and currency/period alignment.",
+        "Two-sided counterparty matching by transaction ID; do not plug differences.",
+        "Independent cost-driver and interest recomputation with duplicate and cutoff checks.",
+        "Separate consolidation adjustment column with approved evidence links.",
+        "Verify external balances survive and source rights and period limits remain visible."
+      ],
+      "exceptions": [
+        "A 25% investment may still require a control/VIE analysis; percentage alone does not classify it.",
+        "Common ownership without a parent relationship may call for a combined-statement analysis."
+      ],
+      "remaining_gaps": [
+        "Current consolidated ASC, later amendments and entity-specific applicability are not established by these dated public sources.",
+        "No actual group ledgers, governing documents, loan agreements, tax election, professional review or measured agent performance were obtained.",
+        "External source rights remain unknown; publisher full text is not stored.",
+        "Selected US research does not establish whole-industry sufficiency or an international or state-law survey."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Selected dated primary-source locators and an original synthetic worksheet; current accounting sufficiency and operational effectiveness remain unverified."
+    },
+    {
+      "id": "rq-holding-us-investment",
+      "record_id": "guide-holding-management-us-close",
+      "pointer": "/data/research_questions/1",
+      "family_ids": [
+        "q-investments",
+        "q-consolidation"
+      ],
+      "question": "How do standalone investment balances connect to the subsidiary equity and consolidation worksheet?",
+      "scope": "US domestic registrant parent and assumed controlled operating subsidiary; 2025 synthetic close; separate financial-reporting and federal tax purposes.",
+      "answer": "Match the parent investment to the subsidiary capital and acquisition/inception history. The fixture starts a wholly owned subsidiary at cash contributed equal to share capital and keeps the parent cost ledger as a clearly labeled worksheet input. Its investment/capital elimination is not a conclusion about the required standalone investment method. Reuse the investment and entity-change foundations for equity-method, fair-value, impairment, acquisition and loss-of-control questions.",
+      "answer_status": "sourced-answer-and-original-example",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_aa_i109_arb51_amended",
+        "src_fasb_201502",
+        "src_construction_fasb_201817"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_aa_i109_arb51_amended",
+          "url": "https://storage.fasb.org/ARB%2051.pdf",
+          "locator": "After FAS 160 paragraphs 6, 9 and 11, PDF page 7; paragraph 24, PDF page 8",
+          "effective_period": "ARB 51 issued August 1959; selected After FAS 160 text applies after adoption of that statement; FAS 160 effective for fiscal years beginning on or after December 15, 2008.",
+          "access_limits": "Historical pre-Codification text, not current ASC 810. The separate Before FAS 160 passage is not the selected procedure. NCI, acquisition accounting and current applicability require separate review."
+        },
+        {
+          "source_id": "src_fasb_201502",
+          "url": "https://storage.fasb.org/ASU%202015-02.pdf",
+          "locator": "ASU 2015-02 Summary and Topic 810 amendments, controlling financial interest and limited-partnership/VIE routes",
+          "effective_period": "Issued February 2015; historical amendment and entity transition dates in canonical record.",
+          "access_limits": "Reused accepted consolidation foundation; no new full-source or current ASC review."
+        },
+        {
+          "source_id": "src_construction_fasb_201817",
+          "url": "https://storage.fasb.org/ASU%202018-17.pdf",
+          "locator": "ASU 2018-17 Summary; Topic 810 private-company common-control alternative and decision-maker fee amendments",
+          "effective_period": "Issued October 2018; entity-specific adoption and eligibility remain open.",
+          "access_limits": "Reused entity-change foundation, not a general election for a public registrant."
+        }
+      ],
+      "inputs": [
+        "Legal entity register, voting and contractual rights, consolidation policy and dated perimeter memo",
+        "Separate entity trial balances with account, counterparty, currency and period",
+        "Investment and equity rollforwards; inception or acquisition documents",
+        "Loan principal, rate, period, accrued interest and counterparty confirmation",
+        "Service agreement, cost-pool ledger, benefit evidence, allocation units and approved invoice",
+        "Distribution approvals, declarations, payments and relevant capital restrictions"
+      ],
+      "workflow": [
+        "Resolve reporting purpose, actual control and included entities before amounts.",
+        "Validate each standalone trial balance and reconcile investment/equity and reciprocal balances.",
+        "Separate third-party activity from matching in-group principal, charges, interest and distributions.",
+        "Recompute service allocation and interest; route unproved benefit or mismatches to review.",
+        "Prepare elimination-only entries in a consolidation column and recompute the group trial balance.",
+        "Retain entity ledgers, source versions, exceptions, preparer and reviewer evidence; route book-to-tax separately."
+      ],
+      "controls": [
+        "Independent perimeter approval; ownership percentage is not a substitute for the control memo.",
+        "Trial-balance completeness, debit/credit equality and currency/period alignment.",
+        "Two-sided counterparty matching by transaction ID; do not plug differences.",
+        "Independent cost-driver and interest recomputation with duplicate and cutoff checks.",
+        "Separate consolidation adjustment column with approved evidence links.",
+        "Verify external balances survive and source rights and period limits remain visible."
+      ],
+      "exceptions": [
+        "A noncontrolled investee is not deleted from the group assets just because it is related.",
+        "Goodwill, NCI and acquisition-date fair-value adjustments are absent from the synthetic inception case."
+      ],
+      "remaining_gaps": [
+        "Current consolidated ASC, later amendments and entity-specific applicability are not established by these dated public sources.",
+        "No actual group ledgers, governing documents, loan agreements, tax election, professional review or measured agent performance were obtained.",
+        "External source rights remain unknown; publisher full text is not stored.",
+        "Selected US research does not establish whole-industry sufficiency or an international or state-law survey."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Selected dated primary-source locators and an original synthetic worksheet; current accounting sufficiency and operational effectiveness remain unverified."
+    },
+    {
+      "id": "rq-holding-us-financing",
+      "record_id": "guide-holding-management-us-close",
+      "pointer": "/data/research_questions/2",
+      "family_ids": [
+        "q-debt",
+        "q-related-parties"
+      ],
+      "question": "How are an intercompany loan and accrued interest reconciled at close?",
+      "scope": "US domestic registrant parent and assumed controlled operating subsidiary; 2025 synthetic close; separate financial-reporting and federal tax purposes.",
+      "answer": "Reconcile both entities by agreement, counterparty, principal, currency, rate and accrual period. The fixture assumes a 6% annual rate on unchanged principal for one full year. Principal and accrued-interest reciprocal balances and in-group interest income/expense are eliminated in the group column after matching. External borrowing, impairment, debt/equity substance, transfer pricing and legal enforceability require their own evidence.",
+      "answer_status": "sourced-answer-and-original-example",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_aa_i109_arb51_amended"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_aa_i109_arb51_amended",
+          "url": "https://storage.fasb.org/ARB%2051.pdf",
+          "locator": "After FAS 160 paragraph 6, PDF page 7; paragraph 24, PDF page 8",
+          "effective_period": "ARB 51 issued August 1959; selected After FAS 160 text applies after adoption of that statement; FAS 160 effective for fiscal years beginning on or after December 15, 2008.",
+          "access_limits": "Historical pre-Codification text, not current ASC 810. The separate Before FAS 160 passage is not the selected procedure. NCI, acquisition accounting and current applicability require separate review."
+        }
+      ],
+      "inputs": [
+        "Legal entity register, voting and contractual rights, consolidation policy and dated perimeter memo",
+        "Separate entity trial balances with account, counterparty, currency and period",
+        "Investment and equity rollforwards; inception or acquisition documents",
+        "Loan principal, rate, period, accrued interest and counterparty confirmation",
+        "Service agreement, cost-pool ledger, benefit evidence, allocation units and approved invoice",
+        "Distribution approvals, declarations, payments and relevant capital restrictions"
+      ],
+      "workflow": [
+        "Resolve reporting purpose, actual control and included entities before amounts.",
+        "Validate each standalone trial balance and reconcile investment/equity and reciprocal balances.",
+        "Separate third-party activity from matching in-group principal, charges, interest and distributions.",
+        "Recompute service allocation and interest; route unproved benefit or mismatches to review.",
+        "Prepare elimination-only entries in a consolidation column and recompute the group trial balance.",
+        "Retain entity ledgers, source versions, exceptions, preparer and reviewer evidence; route book-to-tax separately."
+      ],
+      "controls": [
+        "Independent perimeter approval; ownership percentage is not a substitute for the control memo.",
+        "Trial-balance completeness, debit/credit equality and currency/period alignment.",
+        "Two-sided counterparty matching by transaction ID; do not plug differences.",
+        "Independent cost-driver and interest recomputation with duplicate and cutoff checks.",
+        "Separate consolidation adjustment column with approved evidence links.",
+        "Verify external balances survive and source rights and period limits remain visible."
+      ],
+      "exceptions": [
+        "An unmatched lender receivable and borrower payable stops the close; a balancing plug is not evidence.",
+        "An external bank loan is not an intercompany balance."
+      ],
+      "remaining_gaps": [
+        "Current consolidated ASC, later amendments and entity-specific applicability are not established by these dated public sources.",
+        "No actual group ledgers, governing documents, loan agreements, tax election, professional review or measured agent performance were obtained.",
+        "External source rights remain unknown; publisher full text is not stored.",
+        "Selected US research does not establish whole-industry sufficiency or an international or state-law survey."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Selected dated primary-source locators and an original synthetic worksheet; current accounting sufficiency and operational effectiveness remain unverified."
+    },
+    {
+      "id": "rq-holding-us-services",
+      "record_id": "guide-holding-management-us-close",
+      "pointer": "/data/research_questions/3",
+      "family_ids": [
+        "q-cost-allocation",
+        "q-revenue",
+        "q-related-parties"
+      ],
+      "question": "When does a management-service charge differ from passive holding activity?",
+      "scope": "US domestic registrant parent and assumed controlled operating subsidiary; 2025 synthetic close; separate financial-reporting and federal tax purposes.",
+      "answer": "Document the actual service and recipient benefit before choosing a cost driver. For controlled-service tax analysis, exclude activities whose sole effect protects the shareholder investment or meets the renderer-specific obligations; day-to-day management can differ. The original allocation case uses documented processing units, retains the renderer share and separates internal allocation from tax-method and markup conclusions. The charge and receipt are reciprocal entity entries, then eliminated within the assumed group.",
+      "answer_status": "sourced-answer-and-original-example",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_aa_i109_cfr_14829_2025",
+        "src_aa_i109_arb51_amended",
+        "src_construction_fasb_2014_09"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_aa_i109_cfr_14829_2025",
+          "url": "https://www.govinfo.gov/link/cfr/26/1?link-type=pdf&sectionnum=482-9&year=mostrecent",
+          "locator": "1.482-9(j), (k)(1)-(2), (l)(1)-(3)(v), PDF pages 34-37; (b)(7) Example 16, PDF page 9",
+          "effective_period": "The GovInfo mostrecent resolver served the April 1, 2025 CFR edition on 2026-09-19; resolver target may change.",
+          "access_limits": "Federal tax controlled-service rules, not a GAAP allocation mandate. Current eCFR and fixed-year URL were inaccessible; later currency is unknown. Method eligibility, exclusions, comparables and markup require separate review; cost allocation alone does not prove an arm's length price."
+        },
+        {
+          "source_id": "src_aa_i109_arb51_amended",
+          "url": "https://storage.fasb.org/ARB%2051.pdf",
+          "locator": "After FAS 160 paragraph 6, PDF page 7; paragraph 24, PDF page 8",
+          "effective_period": "ARB 51 issued August 1959; selected After FAS 160 text applies after adoption of that statement; FAS 160 effective for fiscal years beginning on or after December 15, 2008.",
+          "access_limits": "Historical pre-Codification text, not current ASC 810. The separate Before FAS 160 passage is not the selected procedure. NCI, acquisition accounting and current applicability require separate review."
+        },
+        {
+          "source_id": "src_construction_fasb_2014_09",
+          "url": "https://storage.fasb.org/ASU%202014-09_Section%20A.pdf",
+          "locator": "Topic 606 contract and performance-obligation amendments in Section A",
+          "effective_period": "May 2014 amendment; later effective-date changes and current Codification require review.",
+          "access_limits": "Reused operating foundation; performance and transfer-pricing conclusions remain separately reviewed."
+        }
+      ],
+      "inputs": [
+        "Legal entity register, voting and contractual rights, consolidation policy and dated perimeter memo",
+        "Separate entity trial balances with account, counterparty, currency and period",
+        "Investment and equity rollforwards; inception or acquisition documents",
+        "Loan principal, rate, period, accrued interest and counterparty confirmation",
+        "Service agreement, cost-pool ledger, benefit evidence, allocation units and approved invoice",
+        "Distribution approvals, declarations, payments and relevant capital restrictions"
+      ],
+      "workflow": [
+        "Resolve reporting purpose, actual control and included entities before amounts.",
+        "Validate each standalone trial balance and reconcile investment/equity and reciprocal balances.",
+        "Separate third-party activity from matching in-group principal, charges, interest and distributions.",
+        "Recompute service allocation and interest; route unproved benefit or mismatches to review.",
+        "Prepare elimination-only entries in a consolidation column and recompute the group trial balance.",
+        "Retain entity ledgers, source versions, exceptions, preparer and reviewer evidence; route book-to-tax separately."
+      ],
+      "controls": [
+        "Independent perimeter approval; ownership percentage is not a substitute for the control memo.",
+        "Trial-balance completeness, debit/credit equality and currency/period alignment.",
+        "Two-sided counterparty matching by transaction ID; do not plug differences.",
+        "Independent cost-driver and interest recomputation with duplicate and cutoff checks.",
+        "Separate consolidation adjustment column with approved evidence links.",
+        "Verify external balances survive and source rights and period limits remain visible."
+      ],
+      "exceptions": [
+        "Ownership or passive group membership alone does not demonstrate a service.",
+        "A flat revenue-based allocation is not automatically an appropriate benefit measure."
+      ],
+      "remaining_gaps": [
+        "Current consolidated ASC, later amendments and entity-specific applicability are not established by these dated public sources.",
+        "No actual group ledgers, governing documents, loan agreements, tax election, professional review or measured agent performance were obtained.",
+        "External source rights remain unknown; publisher full text is not stored.",
+        "Selected US research does not establish whole-industry sufficiency or an international or state-law survey."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Selected dated primary-source locators and an original synthetic worksheet; current accounting sufficiency and operational effectiveness remain unverified."
+    },
+    {
+      "id": "rq-holding-us-dividends-tax",
+      "record_id": "guide-holding-management-us-close",
+      "pointer": "/data/research_questions/4",
+      "family_ids": [
+        "q-related-parties",
+        "q-consolidation"
+      ],
+      "question": "How are subsidiary distributions and tax consolidation kept separate in the close?",
+      "scope": "US domestic registrant parent and assumed controlled operating subsidiary; 2025 synthetic close; separate financial-reporting and federal tax purposes.",
+      "answer": "Tie the declared and paid dividend to both entity ledgers and its approval. The worksheet removes the parent dividend-income entry against the subsidiary distribution column. Financial and tax group memberships need separate decisions: the 2025 IRS instructions identify an 80% voting-power and value test for includible corporations and require separate forms and supporting reconciliations. The synthetic book elimination does not establish tax eligibility, a filing election, deductibility or distribution legality.",
+      "answer_status": "sourced-answer-and-original-example",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_aa_i109_arb51_amended",
+        "src_aa122_irs_i1120_2025"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_aa_i109_arb51_amended",
+          "url": "https://storage.fasb.org/ARB%2051.pdf",
+          "locator": "After FAS 160 paragraph 6, PDF page 7; paragraph 24, PDF page 8",
+          "effective_period": "ARB 51 issued August 1959; selected After FAS 160 text applies after adoption of that statement; FAS 160 effective for fiscal years beginning on or after December 15, 2008.",
+          "access_limits": "Historical pre-Codification text, not current ASC 810. The separate Before FAS 160 passage is not the selected procedure. NCI, acquisition accounting and current applicability require separate review."
+        },
+        {
+          "source_id": "src_aa122_irs_i1120_2025",
+          "url": "https://www.irs.gov/instructions/i1120",
+          "locator": "Item A, Consolidated Return; Schedule C, Consolidated returns; Schedule K, Question 3, Affiliated group",
+          "effective_period": "2025 Form 1120 instructions, selected headings opened on 2026-09-19.",
+          "access_limits": "Selected additional headings read for this package; canonical AA-I122 primary review unchanged. Tax-year instructions do not determine the GAAP perimeter or current tax eligibility."
+        }
+      ],
+      "inputs": [
+        "Legal entity register, voting and contractual rights, consolidation policy and dated perimeter memo",
+        "Separate entity trial balances with account, counterparty, currency and period",
+        "Investment and equity rollforwards; inception or acquisition documents",
+        "Loan principal, rate, period, accrued interest and counterparty confirmation",
+        "Service agreement, cost-pool ledger, benefit evidence, allocation units and approved invoice",
+        "Distribution approvals, declarations, payments and relevant capital restrictions"
+      ],
+      "workflow": [
+        "Resolve reporting purpose, actual control and included entities before amounts.",
+        "Validate each standalone trial balance and reconcile investment/equity and reciprocal balances.",
+        "Separate third-party activity from matching in-group principal, charges, interest and distributions.",
+        "Recompute service allocation and interest; route unproved benefit or mismatches to review.",
+        "Prepare elimination-only entries in a consolidation column and recompute the group trial balance.",
+        "Retain entity ledgers, source versions, exceptions, preparer and reviewer evidence; route book-to-tax separately."
+      ],
+      "controls": [
+        "Independent perimeter approval; ownership percentage is not a substitute for the control memo.",
+        "Trial-balance completeness, debit/credit equality and currency/period alignment.",
+        "Two-sided counterparty matching by transaction ID; do not plug differences.",
+        "Independent cost-driver and interest recomputation with duplicate and cutoff checks.",
+        "Separate consolidation adjustment column with approved evidence links.",
+        "Verify external balances survive and source rights and period limits remain visible."
+      ],
+      "exceptions": [
+        "A 60%-controlled financial-reporting subsidiary does not satisfy the stated 80% tax stock test merely through GAAP consolidation.",
+        "An external shareholder distribution cannot be eliminated as an internal dividend."
+      ],
+      "remaining_gaps": [
+        "Current consolidated ASC, later amendments and entity-specific applicability are not established by these dated public sources.",
+        "No actual group ledgers, governing documents, loan agreements, tax election, professional review or measured agent performance were obtained.",
+        "External source rights remain unknown; publisher full text is not stored.",
+        "Selected US research does not establish whole-industry sufficiency or an international or state-law survey."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Selected dated primary-source locators and an original synthetic worksheet; current accounting sufficiency and operational effectiveness remain unverified."
+    },
+    {
+      "id": "rq-holding-us-close",
+      "record_id": "guide-holding-management-us-close",
+      "pointer": "/data/research_questions/5",
+      "family_ids": [
+        "q-consolidation",
+        "q-data-lineage"
+      ],
+      "question": "How do the standalone ledgers and elimination column reconcile to the consolidated total?",
+      "scope": "US domestic registrant parent and assumed controlled operating subsidiary; 2025 synthetic close; separate financial-reporting and federal tax purposes.",
+      "answer": "Use independently balanced parent and subsidiary ledgers, match transaction IDs, and preserve an auditable elimination column. In the fixture the group retains only cash assets, external revenue, external expenses and parent capital. The displayed standalone, combined and group totals are recomputed from original journal lines. Counterparty differences, excluded entities and third-party revenue remain visible rather than being absorbed into an unexplained adjustment.",
+      "answer_status": "sourced-answer-and-original-example",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_aa_i109_arb51_amended",
+        "src_aa_i109_secsx_3a02_2025"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_aa_i109_arb51_amended",
+          "url": "https://storage.fasb.org/ARB%2051.pdf",
+          "locator": "After FAS 160 paragraph 6, PDF page 7; paragraph 24, PDF page 8",
+          "effective_period": "ARB 51 issued August 1959; selected After FAS 160 text applies after adoption of that statement; FAS 160 effective for fiscal years beginning on or after December 15, 2008.",
+          "access_limits": "Historical pre-Codification text, not current ASC 810. The separate Before FAS 160 passage is not the selected procedure. NCI, acquisition accounting and current applicability require separate review."
+        },
+        {
+          "source_id": "src_aa_i109_secsx_3a02_2025",
+          "url": "https://www.govinfo.gov/content/pkg/CFR-2025-title17-vol3/pdf/CFR-2025-title17-vol3-sec210-3A-02.pdf",
+          "locator": "210.3A-02 introductory text and (a), PDF pages 1-2; 3A-03(b), PDF page 2",
+          "effective_period": "April 1, 2025 CFR edition; 3A-02 amendment citation October 4, 2018; later currency not verified.",
+          "access_limits": "Registrants only. Current eCFR lookup was inaccessible in this review. Dated source is not a current-GAAP substitute and does not itself supply the intercompany-elimination procedure."
+        }
+      ],
+      "inputs": [
+        "Legal entity register, voting and contractual rights, consolidation policy and dated perimeter memo",
+        "Separate entity trial balances with account, counterparty, currency and period",
+        "Investment and equity rollforwards; inception or acquisition documents",
+        "Loan principal, rate, period, accrued interest and counterparty confirmation",
+        "Service agreement, cost-pool ledger, benefit evidence, allocation units and approved invoice",
+        "Distribution approvals, declarations, payments and relevant capital restrictions"
+      ],
+      "workflow": [
+        "Resolve reporting purpose, actual control and included entities before amounts.",
+        "Validate each standalone trial balance and reconcile investment/equity and reciprocal balances.",
+        "Separate third-party activity from matching in-group principal, charges, interest and distributions.",
+        "Recompute service allocation and interest; route unproved benefit or mismatches to review.",
+        "Prepare elimination-only entries in a consolidation column and recompute the group trial balance.",
+        "Retain entity ledgers, source versions, exceptions, preparer and reviewer evidence; route book-to-tax separately."
+      ],
+      "controls": [
+        "Independent perimeter approval; ownership percentage is not a substitute for the control memo.",
+        "Trial-balance completeness, debit/credit equality and currency/period alignment.",
+        "Two-sided counterparty matching by transaction ID; do not plug differences.",
+        "Independent cost-driver and interest recomputation with duplicate and cutoff checks.",
+        "Separate consolidation adjustment column with approved evidence links.",
+        "Verify external balances survive and source rights and period limits remain visible."
+      ],
+      "exceptions": [
+        "A management fee earned from an outside client survives group reporting.",
+        "Mismatched dates, ownership or currencies require a new analysis, not reuse of this worksheet."
+      ],
+      "remaining_gaps": [
+        "Current consolidated ASC, later amendments and entity-specific applicability are not established by these dated public sources.",
+        "No actual group ledgers, governing documents, loan agreements, tax election, professional review or measured agent performance were obtained.",
+        "External source rights remain unknown; publisher full text is not stored.",
+        "Selected US research does not establish whole-industry sufficiency or an international or state-law survey."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Selected dated primary-source locators and an original synthetic worksheet; current accounting sufficiency and operational effectiveness remain unverified."
+    }
+  ],
+  "assessments": [
+    {
+      "id": "coverage-holding-us-perimeter",
+      "scope_kind": "industry",
+      "industry_code": "551",
+      "question_id": "q-consolidation",
+      "family_ids": [
+        "q-consolidation"
+      ],
+      "status": "partial",
+      "scope": "US domestic registrant parent and assumed controlled operating subsidiary; 2025 synthetic close; separate financial-reporting and federal tax purposes.",
+      "jurisdictions": [
+        "United States"
+      ],
+      "frameworks": [
+        "US GAAP research; SEC registrant rules; federal tax separately"
+      ],
+      "effective_from": null,
+      "effective_to": null,
+      "reviewed_at": "2026-09-19",
+      "reviewer": "Codex AI-assisted bounded source review",
+      "review_basis": "Selected question rq-holding-us-perimeter, dated or historical sources, original synthetic input and reconciliation. Current consolidated authority remains unknown.",
+      "source_currency": "unknown",
+      "evidence_record_ids": [
+        "guide-holding-management-us-close",
+        "wf-holding-entity-to-consolidated",
+        "ctrl-holding-perimeter-and-matches",
+        "example-holding-parent-subsidiary-close",
+        "src_aa_i109_secsx_3a02_2025",
+        "src_fasb_201502",
+        "src_construction_fasb_201817"
+      ],
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "gaps": [
+        "A 25% investment may still require a control/VIE analysis; percentage alone does not classify it.",
+        "Common ownership without a parent relationship may call for a combined-statement analysis.",
+        "Current consolidated ASC, later amendments and entity-specific applicability are not established by these dated public sources.",
+        "No actual group ledgers, governing documents, loan agreements, tax election, professional review or measured agent performance were obtained.",
+        "External source rights remain unknown; publisher full text is not stored.",
+        "Selected US research does not establish whole-industry sufficiency or an international or state-law survey."
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External publisher text is not stored; publisher terms and source rights remain separate and unresolved.",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": null
+      },
+      "professional_review": "not-performed",
+      "empirical_support": "not-established"
+    },
+    {
+      "id": "coverage-holding-us-investment",
+      "scope_kind": "industry",
+      "industry_code": "551",
+      "question_id": "q-investments",
+      "family_ids": [
+        "q-investments",
+        "q-consolidation"
+      ],
+      "status": "partial",
+      "scope": "US domestic registrant parent and assumed controlled operating subsidiary; 2025 synthetic close; separate financial-reporting and federal tax purposes.",
+      "jurisdictions": [
+        "United States"
+      ],
+      "frameworks": [
+        "US GAAP research; SEC registrant rules; federal tax separately"
+      ],
+      "effective_from": null,
+      "effective_to": null,
+      "reviewed_at": "2026-09-19",
+      "reviewer": "Codex AI-assisted bounded source review",
+      "review_basis": "Selected question rq-holding-us-investment, dated or historical sources, original synthetic input and reconciliation. Current consolidated authority remains unknown.",
+      "source_currency": "unknown",
+      "evidence_record_ids": [
+        "guide-holding-management-us-close",
+        "wf-holding-entity-to-consolidated",
+        "ctrl-holding-perimeter-and-matches",
+        "example-holding-parent-subsidiary-close",
+        "src_aa_i109_arb51_amended",
+        "src_fasb_201502",
+        "src_construction_fasb_201817"
+      ],
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "gaps": [
+        "A noncontrolled investee is not deleted from the group assets just because it is related.",
+        "Goodwill, NCI and acquisition-date fair-value adjustments are absent from the synthetic inception case.",
+        "Current consolidated ASC, later amendments and entity-specific applicability are not established by these dated public sources.",
+        "No actual group ledgers, governing documents, loan agreements, tax election, professional review or measured agent performance were obtained.",
+        "External source rights remain unknown; publisher full text is not stored.",
+        "Selected US research does not establish whole-industry sufficiency or an international or state-law survey."
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External publisher text is not stored; publisher terms and source rights remain separate and unresolved.",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": null
+      },
+      "professional_review": "not-performed",
+      "empirical_support": "not-established"
+    },
+    {
+      "id": "coverage-holding-us-financing",
+      "scope_kind": "industry",
+      "industry_code": "551",
+      "question_id": "q-debt",
+      "family_ids": [
+        "q-debt",
+        "q-related-parties"
+      ],
+      "status": "partial",
+      "scope": "US domestic registrant parent and assumed controlled operating subsidiary; 2025 synthetic close; separate financial-reporting and federal tax purposes.",
+      "jurisdictions": [
+        "United States"
+      ],
+      "frameworks": [
+        "US GAAP research; SEC registrant rules; federal tax separately"
+      ],
+      "effective_from": null,
+      "effective_to": null,
+      "reviewed_at": "2026-09-19",
+      "reviewer": "Codex AI-assisted bounded source review",
+      "review_basis": "Selected question rq-holding-us-financing, dated or historical sources, original synthetic input and reconciliation. Current consolidated authority remains unknown.",
+      "source_currency": "unknown",
+      "evidence_record_ids": [
+        "guide-holding-management-us-close",
+        "wf-holding-entity-to-consolidated",
+        "ctrl-holding-perimeter-and-matches",
+        "example-holding-parent-subsidiary-close",
+        "src_aa_i109_arb51_amended"
+      ],
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "gaps": [
+        "An unmatched lender receivable and borrower payable stops the close; a balancing plug is not evidence.",
+        "An external bank loan is not an intercompany balance.",
+        "Current consolidated ASC, later amendments and entity-specific applicability are not established by these dated public sources.",
+        "No actual group ledgers, governing documents, loan agreements, tax election, professional review or measured agent performance were obtained.",
+        "External source rights remain unknown; publisher full text is not stored.",
+        "Selected US research does not establish whole-industry sufficiency or an international or state-law survey."
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External publisher text is not stored; publisher terms and source rights remain separate and unresolved.",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": null
+      },
+      "professional_review": "not-performed",
+      "empirical_support": "not-established"
+    },
+    {
+      "id": "coverage-holding-us-services",
+      "scope_kind": "industry",
+      "industry_code": "551",
+      "question_id": "q-cost-allocation",
+      "family_ids": [
+        "q-cost-allocation",
+        "q-revenue",
+        "q-related-parties"
+      ],
+      "status": "partial",
+      "scope": "US domestic registrant parent and assumed controlled operating subsidiary; 2025 synthetic close; separate financial-reporting and federal tax purposes.",
+      "jurisdictions": [
+        "United States"
+      ],
+      "frameworks": [
+        "US GAAP research; SEC registrant rules; federal tax separately"
+      ],
+      "effective_from": null,
+      "effective_to": null,
+      "reviewed_at": "2026-09-19",
+      "reviewer": "Codex AI-assisted bounded source review",
+      "review_basis": "Selected question rq-holding-us-services, dated or historical sources, original synthetic input and reconciliation. Current consolidated authority remains unknown.",
+      "source_currency": "unknown",
+      "evidence_record_ids": [
+        "guide-holding-management-us-close",
+        "wf-holding-entity-to-consolidated",
+        "ctrl-holding-perimeter-and-matches",
+        "example-holding-parent-subsidiary-close",
+        "src_aa_i109_cfr_14829_2025",
+        "src_aa_i109_arb51_amended",
+        "src_construction_fasb_2014_09"
+      ],
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "gaps": [
+        "Ownership or passive group membership alone does not demonstrate a service.",
+        "A flat revenue-based allocation is not automatically an appropriate benefit measure.",
+        "Current consolidated ASC, later amendments and entity-specific applicability are not established by these dated public sources.",
+        "No actual group ledgers, governing documents, loan agreements, tax election, professional review or measured agent performance were obtained.",
+        "External source rights remain unknown; publisher full text is not stored.",
+        "Selected US research does not establish whole-industry sufficiency or an international or state-law survey."
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External publisher text is not stored; publisher terms and source rights remain separate and unresolved.",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": null
+      },
+      "professional_review": "not-performed",
+      "empirical_support": "not-established"
+    },
+    {
+      "id": "coverage-holding-us-dividends-tax",
+      "scope_kind": "industry",
+      "industry_code": "551",
+      "question_id": "q-related-parties",
+      "family_ids": [
+        "q-related-parties",
+        "q-consolidation"
+      ],
+      "status": "partial",
+      "scope": "US domestic registrant parent and assumed controlled operating subsidiary; 2025 synthetic close; separate financial-reporting and federal tax purposes.",
+      "jurisdictions": [
+        "United States"
+      ],
+      "frameworks": [
+        "US GAAP research; SEC registrant rules; federal tax separately"
+      ],
+      "effective_from": null,
+      "effective_to": null,
+      "reviewed_at": "2026-09-19",
+      "reviewer": "Codex AI-assisted bounded source review",
+      "review_basis": "Selected question rq-holding-us-dividends-tax, dated or historical sources, original synthetic input and reconciliation. Current consolidated authority remains unknown.",
+      "source_currency": "unknown",
+      "evidence_record_ids": [
+        "guide-holding-management-us-close",
+        "wf-holding-entity-to-consolidated",
+        "ctrl-holding-perimeter-and-matches",
+        "example-holding-parent-subsidiary-close",
+        "src_aa_i109_arb51_amended",
+        "src_aa122_irs_i1120_2025"
+      ],
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "gaps": [
+        "A 60%-controlled financial-reporting subsidiary does not satisfy the stated 80% tax stock test merely through GAAP consolidation.",
+        "An external shareholder distribution cannot be eliminated as an internal dividend.",
+        "Current consolidated ASC, later amendments and entity-specific applicability are not established by these dated public sources.",
+        "No actual group ledgers, governing documents, loan agreements, tax election, professional review or measured agent performance were obtained.",
+        "External source rights remain unknown; publisher full text is not stored.",
+        "Selected US research does not establish whole-industry sufficiency or an international or state-law survey."
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External publisher text is not stored; publisher terms and source rights remain separate and unresolved.",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": null
+      },
+      "professional_review": "not-performed",
+      "empirical_support": "not-established"
+    },
+    {
+      "id": "coverage-holding-us-close",
+      "scope_kind": "industry",
+      "industry_code": "551",
+      "question_id": "q-consolidation",
+      "family_ids": [
+        "q-consolidation",
+        "q-data-lineage"
+      ],
+      "status": "partial",
+      "scope": "US domestic registrant parent and assumed controlled operating subsidiary; 2025 synthetic close; separate financial-reporting and federal tax purposes.",
+      "jurisdictions": [
+        "United States"
+      ],
+      "frameworks": [
+        "US GAAP research; SEC registrant rules; federal tax separately"
+      ],
+      "effective_from": null,
+      "effective_to": null,
+      "reviewed_at": "2026-09-19",
+      "reviewer": "Codex AI-assisted bounded source review",
+      "review_basis": "Selected question rq-holding-us-close, dated or historical sources, original synthetic input and reconciliation. Current consolidated authority remains unknown.",
+      "source_currency": "unknown",
+      "evidence_record_ids": [
+        "guide-holding-management-us-close",
+        "wf-holding-entity-to-consolidated",
+        "ctrl-holding-perimeter-and-matches",
+        "example-holding-parent-subsidiary-close",
+        "src_aa_i109_arb51_amended",
+        "src_aa_i109_secsx_3a02_2025"
+      ],
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "gaps": [
+        "A management fee earned from an outside client survives group reporting.",
+        "Mismatched dates, ownership or currencies require a new analysis, not reuse of this worksheet.",
+        "Current consolidated ASC, later amendments and entity-specific applicability are not established by these dated public sources.",
+        "No actual group ledgers, governing documents, loan agreements, tax election, professional review or measured agent performance were obtained.",
+        "External source rights remain unknown; publisher full text is not stored.",
+        "Selected US research does not establish whole-industry sufficiency or an international or state-law survey."
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External publisher text is not stored; publisher terms and source rights remain separate and unresolved.",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": null
+      },
+      "professional_review": "not-performed",
+      "empirical_support": "not-established"
+    }
+  ],
+  "mapping_overrides": {
+    "guide-holding-management-us-close": {
+      "replace_question_ids": false,
+      "question_ids": [
+        "q-consolidation",
+        "q-investments",
+        "q-debt",
+        "q-related-parties",
+        "q-cost-allocation",
+        "q-revenue",
+        "q-data-lineage"
+      ],
+      "industry_codes": [
+        "551"
+      ],
+      "industry_scope": "specific",
+      "basis_field": "/data/research_questions",
+      "reason": "Original selected US parent/subsidiary application; association is not industry sufficiency.",
+      "reviewed_question_ids": [
+        "q-consolidation",
+        "q-investments",
+        "q-debt",
+        "q-related-parties",
+        "q-cost-allocation",
+        "q-revenue",
+        "q-data-lineage"
+      ],
+      "reviewed_industry_codes": [
+        "551"
+      ],
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded source-linked synthetic application with explicit entity and tax boundaries; not professional or empirical verification."
+    },
+    "wf-holding-entity-to-consolidated": {
+      "replace_question_ids": false,
+      "question_ids": [
+        "q-consolidation",
+        "q-investments",
+        "q-debt",
+        "q-related-parties",
+        "q-cost-allocation",
+        "q-revenue",
+        "q-data-lineage"
+      ],
+      "industry_codes": [
+        "551"
+      ],
+      "industry_scope": "specific",
+      "basis_field": "/data",
+      "reason": "Original selected US parent/subsidiary application; association is not industry sufficiency.",
+      "reviewed_question_ids": [
+        "q-consolidation",
+        "q-investments",
+        "q-debt",
+        "q-related-parties",
+        "q-cost-allocation",
+        "q-revenue",
+        "q-data-lineage"
+      ],
+      "reviewed_industry_codes": [
+        "551"
+      ],
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded source-linked synthetic application with explicit entity and tax boundaries; not professional or empirical verification."
+    },
+    "ctrl-holding-perimeter-and-matches": {
+      "replace_question_ids": false,
+      "question_ids": [
+        "q-consolidation",
+        "q-investments",
+        "q-debt",
+        "q-related-parties",
+        "q-cost-allocation",
+        "q-revenue",
+        "q-data-lineage"
+      ],
+      "industry_codes": [
+        "551"
+      ],
+      "industry_scope": "specific",
+      "basis_field": "/data",
+      "reason": "Original selected US parent/subsidiary application; association is not industry sufficiency.",
+      "reviewed_question_ids": [
+        "q-consolidation",
+        "q-investments",
+        "q-debt",
+        "q-related-parties",
+        "q-cost-allocation",
+        "q-revenue",
+        "q-data-lineage"
+      ],
+      "reviewed_industry_codes": [
+        "551"
+      ],
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded source-linked synthetic application with explicit entity and tax boundaries; not professional or empirical verification."
+    },
+    "example-holding-parent-subsidiary-close": {
+      "replace_question_ids": false,
+      "question_ids": [
+        "q-consolidation",
+        "q-investments",
+        "q-debt",
+        "q-related-parties",
+        "q-cost-allocation",
+        "q-revenue",
+        "q-data-lineage"
+      ],
+      "industry_codes": [
+        "551"
+      ],
+      "industry_scope": "specific",
+      "basis_field": "/data",
+      "reason": "Original selected US parent/subsidiary application; association is not industry sufficiency.",
+      "reviewed_question_ids": [
+        "q-consolidation",
+        "q-investments",
+        "q-debt",
+        "q-related-parties",
+        "q-cost-allocation",
+        "q-revenue",
+        "q-data-lineage"
+      ],
+      "reviewed_industry_codes": [
+        "551"
+      ],
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded source-linked synthetic application with explicit entity and tax boundaries; not professional or empirical verification."
+    }
+  },
+  "common_limits": [
+    "Current consolidated ASC, later amendments and entity-specific applicability are not established by these dated public sources.",
+    "No actual group ledgers, governing documents, loan agreements, tax election, professional review or measured agent performance were obtained.",
+    "External source rights remain unknown; publisher full text is not stored.",
+    "Selected US research does not establish whole-industry sufficiency or an international or state-law survey."
+  ],
+  "integration_contract": {
+    "target_files": [
+      "data/corpus/source.json",
+      "data/corpus/guide.json",
+      "data/corpus/example.json",
+      "data/corpus/workflow.json",
+      "data/corpus/control.json",
+      "data/coverage/research-questions.json",
+      "data/coverage/assessments.json",
+      "data/coverage/mapping-overrides.json"
+    ],
+    "additive_only": true,
+    "preserve_primary_metadata": true,
+    "source_url_conflict": "reuse existing source ID and add only bounded review supplement; refuse different stable ID for same URL",
+    "preflight_before_write": true,
+    "replay_safe": true,
+    "corpus_version_update": "coordinator-controlled only; helper preserves current corpus version by default",
+    "catalog_write": false,
+    "release_write": false
+  },
+  "retrieval_fixtures": {
+    "search": [
+      {
+        "query": "holding management parent subsidiary standalone consolidation",
+        "limit": 5,
+        "expected_record_ids": [
+          "guide-holding-management-us-close"
+        ]
+      },
+      {
+        "query": "Synthetic parent subsidiary standalone consolidated reconciliation",
+        "limit": 5,
+        "expected_record_ids": [
+          "example-holding-parent-subsidiary-close"
+        ]
+      }
+    ],
+    "get": [
+      {
+        "id": "guide-holding-management-us-close",
+        "limit": 20,
+        "expected_source_ids": [
+          "src_aa_i109_secsx_3a02_2025",
+          "src_fasb_201502",
+          "src_construction_fasb_201817",
+          "src_aa_i109_arb51_amended",
+          "src_aa_i109_cfr_14829_2025",
+          "src_construction_fasb_2014_09",
+          "src_aa122_irs_i1120_2025"
+        ]
+      },
+      {
+        "id": "example-holding-parent-subsidiary-close",
+        "limit": 20,
+        "expected_record_ids": [
+          "example-holding-parent-subsidiary-close"
+        ]
+      }
+    ]
+  },
+  "dispositions": {
+    "preserve": "Every baseline canonical record, source right, question, mapping and historical release remains unchanged.",
+    "reuse": "Accepted consolidation, investment, debt, related-party, allocation and tax foundations are linked by stable ID.",
+    "add": "Three dated/historical original sources, four original records, six questions and six partial assessments.",
+    "defer": "Current consolidated authority, actual control and standalone method, contractual/legal/tax conclusions, professional review and empirical evidence remain open."
+  }
+}
