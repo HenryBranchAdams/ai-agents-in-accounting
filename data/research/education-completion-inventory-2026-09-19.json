@@ -1,0 +1,139 @@
+{
+  "schema_version": "1.0.0",
+  "package_id": "aa-i111-education-completion",
+  "issue_id": 111,
+  "base_commit": "66b0eda121cd9aee40857a2d691e25b18737f63e",
+  "original_issue_source_commit": "afd2aced307628843f8a26677c3a6fb37fa733e",
+  "baseline": {
+    "guide": [
+      "guide-us-education-tuition-aid"
+    ],
+    "example": [
+      "example-us-education-tuition-aid-clearing"
+    ],
+    "sources": [
+      "src_education_fsa_2526_disbursement",
+      "src_education_fsa_2526_withdrawal",
+      "src_education_gasb35",
+      "src_nonprofit_fasb_2018_08",
+      "src_construction_fasb_2014_09",
+      "src_roadmap_gasb34_basis",
+      "src_roadmap_gasb103"
+    ],
+    "questions": [
+      "rq-us-education-tuition-term",
+      "rq-us-education-aid-payment",
+      "rq-us-education-withdrawal-return",
+      "rq-us-education-framework-routing"
+    ]
+  },
+  "accepted_baseline_package_commit": "a38de70787ee47653f3e315a3c31f0577b5b9ae2",
+  "new_routes": [
+    {
+      "route": "auxiliary",
+      "guide_id": "guide-us-education-auxiliary-services",
+      "question_id": "rq-us-education-auxiliary-services",
+      "source_ids": [
+        "src_construction_fasb_2014_09",
+        "src_education_gasb35",
+        "src_education_irs_p598_auxiliary"
+      ],
+      "dependencies": []
+    },
+    {
+      "route": "grants",
+      "guide_id": "guide-us-education-federal-grants",
+      "question_id": "rq-us-education-federal-grants",
+      "source_ids": [
+        "src_nonprofit_fasb_2018_08",
+        "src_cfr200grants",
+        "src_education_fsa_2526_disbursement",
+        "src_education_gasb35"
+      ],
+      "dependencies": []
+    },
+    {
+      "route": "appropriations",
+      "guide_id": "guide-us-education-public-appropriations",
+      "question_id": "rq-us-education-public-appropriations",
+      "source_ids": [
+        "src_education_gasb35",
+        "src_roadmap_gasb34_basis"
+      ],
+      "dependencies": []
+    },
+    {
+      "route": "endowment",
+      "guide_id": "guide-us-education-endowment-routing",
+      "question_id": "rq-us-education-endowment-routing",
+      "source_ids": [
+        "src_nonprofit_fasb_2016_14",
+        "src_nonprofit_illinois_upmifa_2009",
+        "src_nonprofit_fasb_2018_08"
+      ],
+      "dependencies": [
+        "src_nonprofit_fasb_2016_14",
+        "src_nonprofit_illinois_upmifa_2009"
+      ]
+    }
+  ],
+  "preservation": {
+    "history": "No catalog, release, snapshot, or existing historical corpus object is changed by this source-only package.",
+    "stable_ids": "Accepted education IDs are referenced and preserved; new IDs are additive.",
+    "shared_sources": "Pending nonprofit endowment source IDs are dependencies; no shared publisher URL is duplicated.",
+    "rights": "Existing and new source rights remain explicit and external full text is not stored."
+  },
+  "counts": {
+    "baseline_records": 1,
+    "baseline_questions": 4,
+    "new_guides": 4,
+    "new_workflows": 4,
+    "new_controls": 4,
+    "new_examples": 4,
+    "new_questions": 4,
+    "new_assessments": 4
+  },
+  "integration_source_amendment": {
+    "original_source_commit": "3fbf850fcd7c9ff008fc13a46167b745a0f25606",
+    "reviewed_at": "2026-09-19",
+    "correction": "Endowment guide and registry use explicit FASB and Illinois source locator pointers, including 760 ILCS 51/4(a)-(c), through the shared nonprofit records. No source IDs, source rights or applicability limits are changed."
+  },
+  "endowment_source_locators": [
+    {
+      "source_id": "src_nonprofit_fasb_2016_14",
+      "locator": "ASU 2016-14 PDF pp. 10-11 and 17 (effective period and transition), pp. 30-31 (958-205-45-2 and 45-9), and pp. 41-42 (958-205-50-1A through 50-2): selected donor restrictions, endowment composition, rollforward, policies and underwater disclosures.",
+      "period_pointer": "/data/effective_period",
+      "locator_pointers": [
+        "/data/locators/0",
+        "/data/locators/1",
+        "/data/locators/2",
+        "/data/locators/3",
+        "/data/locators/5",
+        "/data/locators/6",
+        "/data/locators/7"
+      ]
+    },
+    {
+      "source_id": "src_nonprofit_illinois_upmifa_2009",
+      "locator": "760 ILCS 51/2, /3, /4(a)-(c), /6, /7 and /11; selected Illinois institutional-fund routing, donor intent, prudence and appropriation or accumulation only.",
+      "period_pointer": "/data/effective_period",
+      "locator_pointers": [
+        "/data/locators/0",
+        "/data/locators/1",
+        "/data/locators/2",
+        "/data/locators/3",
+        "/data/locators/4",
+        "/data/locators/5"
+      ]
+    },
+    {
+      "source_id": "src_nonprofit_fasb_2018_08",
+      "locator": "ASU 2018-08 PDF pp. 7-10 and 958-605-15-5A; contribution/exchange and condition boundary where a gift or award has provider terms.",
+      "period_pointer": "/data/effective_period",
+      "locator_pointers": [
+        "/data/locators/0",
+        "/data/locators/1"
+      ]
+    }
+  ]
+}

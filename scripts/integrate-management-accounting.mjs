@@ -1,8 +1,12 @@
 import fs from "node:fs";
 import assert from "node:assert/strict";
+import { isDeepStrictEqual } from "node:util";
 
 const read = file => JSON.parse(fs.readFileSync(file, "utf8"));
-const write = (file, value) => fs.writeFileSync(file, JSON.stringify(value, null, 2) + "\n");
+const write = (file, value) => {
+  if (fs.existsSync(file) && isDeepStrictEqual(read(file), value)) return;
+  fs.writeFileSync(file, JSON.stringify(value, null, 2) + "\n");
+};
 const packet = read("data/research/management-accounting-2026-09-17.json");
 const integrateIntoNewerCorpus = process.argv.includes("--integrate-into-newer-corpus");
 const versionPattern = /^(\d{4}-\d{2}-\d{2})\.(\d+)$/;
@@ -419,6 +423,22 @@ const insertNewSource = (records, source) => {
   records.splice(lastAtOrBeforeTarget + 1, 0, source);
 };
 for (const update of packet.sources) {
+  const current = canonicalSources.find(source => source.id === update.id);
+  if (integrateIntoNewerCorpus && current) {
+    const ownReview = current.data?.supplemental_reviews?.find(review => review.batch === packet.issue_id);
+    if (ownReview) {
+      assert.equal(current.source_url, update.checked_url, `${update.id}: existing publisher URL differs`);
+      assert.deepEqual(ownReview, supplementalReview(update), `${update.id}: existing AA-I125 review differs; refusing overwrite`);
+      // An accepted later review may deepen the primary source fields. Replay
+      // verifies this package's review without replacing the later evidence.
+      continue;
+    }
+    assert.ok(
+      !(current.reviewed_at > packet.reviewed_at) &&
+      !(current.data?.supplemental_reviews || []).some(review => review.reviewed_at > packet.reviewed_at),
+      `${update.id}: newer source evidence exists without the exact AA-I125 review; refusing overwrite`,
+    );
+  }
   if (update.new) {
     const existing = canonicalSources.find(source => source.id === update.id);
     if (existing) {

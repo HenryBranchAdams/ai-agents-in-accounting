@@ -26279,5 +26279,736 @@
         "Source rights and downstream reuse permissions remain unknown; publisher full text is not stored."
       ]
     }
+  },
+  {
+    "id": "workflow-us-nonprofit-endowment-spending",
+    "kind": "workflow",
+    "title": "US nonprofit endowment spending review",
+    "summary": "Read-only workflow for identifying donor restrictions, board designations, governing-law gates, spending evidence, rollforward arithmetic and endowment disclosure questions.",
+    "topics": [
+      "Record to report",
+      "Accounting and reporting",
+      "Controls and governance",
+      "Public sector and charity"
+    ],
+    "industries": [
+      "public-sector-nonprofit"
+    ],
+    "jurisdiction": "United States; nongovernmental nonprofit, with Illinois as the selected state-law example",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_nonprofit_fasb_2016_14",
+      "src_nonprofit_illinois_upmifa_2009",
+      "src_nonprofit_irs_990_2025"
+    ],
+    "related_ids": [
+      "guide-us-nonprofit-endowment-spending",
+      "example-us-nonprofit-endowment-rollforward",
+      "ctrl-us-nonprofit-endowment-donor-instrument"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-19",
+    "provenance": {
+      "added_on": "2026-09-19",
+      "reviewer": "Codex AI-assisted original workflow review",
+      "note": "Descriptive read-only workflow linked to selected source records and a synthetic fixture. It does not authorize a release, investment action, legal conclusion or professional sign-off."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false
+    },
+    "data": {
+      "id": "workflow-us-nonprofit-endowment-spending",
+      "version": "1",
+      "family": "record-to-report",
+      "family_name": "Record to report",
+      "name": "Endowment spending review",
+      "accounting_objective": "Prepare an evidence-linked endowment rollforward and identify the human decisions needed before spending, release or disclosure.",
+      "accountable_owner": "Nonprofit controller, CFO or designated endowment accounting owner",
+      "reviewer": "Controller, CFO, investment committee or qualified accounting reviewer independent from preparation",
+      "trigger": "The owner initiates the review for a defined fund, reporting period, spending decision or disclosure package.",
+      "scope": "Only the named fund, donor instrument, board designation, investment population, spending policy, liquidity evidence and reporting period are in scope. Other funds, split-interest arrangements and governmental entities remain excluded.",
+      "period_scope": "The fund, fiscal year and cutoff named in the initiation record.",
+      "inputs": [
+        "Donor instrument and amendments",
+        "Board designation and spending-policy approval",
+        "Governing-law and institution facts",
+        "Investment statement and return detail",
+        "Appropriation, qualifying expense and liquidity evidence",
+        "Endowment disclosure and Form 990 profile"
+      ],
+      "control_totals": [
+        "Opening fund assets and donor-restricted principal",
+        "Gifts, investment return, spending and release totals",
+        "Investment statement to GL difference",
+        "Unresolved restrictions, underwater deficiency and liquidity exceptions"
+      ],
+      "steps": [
+        "Identify entity, framework, governing law and fund population.",
+        "Read and preserve the donor instrument separately from the board designation.",
+        "Document spending policy, appropriation, liquidity and qualifying expense evidence.",
+        "Recalculate the fund rollforward and preserve the underwater branch if triggered.",
+        "Prepare proposed disclosure and Form 990 route notes for human review."
+      ],
+      "outputs": [
+        "Endowment rollforward",
+        "Donor restriction and board designation matrix",
+        "Liquidity and underwater exception register",
+        "Proposed disclosure and filing-route packet"
+      ],
+      "human_judgments": [
+        "Governing law and donor-instrument interpretation",
+        "Prudence, spending-policy application and restriction release",
+        "Underwater-fund, liquidity and disclosure conclusion",
+        "Final accounting entry, filing and approval"
+      ],
+      "authority_level": "A2",
+      "actions": [
+        {
+          "action": "Prepare a fund rollforward and review packet",
+          "authority_level": "A1",
+          "agent_role": "Collect declared evidence, calculate and surface exceptions.",
+          "human_role": "Set scope, interpret the instrument and approve or reject proposed treatment."
+        },
+        {
+          "action": "Release a restriction, change a designation or move funds",
+          "authority_level": "human-only",
+          "agent_role": "Prepare evidence and draft options only.",
+          "human_role": "Own the legal, governance, accounting and investment decision."
+        }
+      ],
+      "stop_conditions": [
+        "Donor instrument is missing or conflicts with the board designation",
+        "Governing law or institution is unresolved",
+        "Fund is underwater or liquidity evidence is insufficient",
+        "Investment statement, spending approval or qualifying expense population does not tie"
+      ],
+      "limitations": [
+        "No live fund, donor instrument, investment statement or professional review was performed.",
+        "The linked Illinois statute is a selected state example and does not determine governing law.",
+        "This workflow does not authorize a transfer, restriction release, investment decision or filing."
+      ]
+    }
+  },
+  {
+    "id": "workflow-us-nonprofit-contributed-nonfinancial-assets",
+    "kind": "workflow",
+    "title": "US nonprofit contributed nonfinancial asset review",
+    "summary": "Read-only workflow for routing donated goods, use of assets and services through contribution, recognition, valuation, consumption and disclosure gates.",
+    "topics": [
+      "Record to report",
+      "Accounting and reporting",
+      "Controls and governance",
+      "Public sector and charity"
+    ],
+    "industries": [
+      "public-sector-nonprofit"
+    ],
+    "jurisdiction": "United States; nongovernmental nonprofit",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_nonprofit_fasb_2018_08",
+      "src_nonprofit_fasb_2020_07",
+      "src_nonprofit_irs_990_2025"
+    ],
+    "related_ids": [
+      "guide-us-nonprofit-contributed-nonfinancial-assets",
+      "example-us-nonprofit-contributed-nonfinancial-assets",
+      "ctrl-us-nonprofit-contributed-asset-valuation"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-19",
+    "provenance": {
+      "added_on": "2026-09-19",
+      "reviewer": "Codex AI-assisted original workflow review",
+      "note": "Descriptive read-only workflow linked to selected source records and a synthetic fixture. It does not decide recognition, valuation or filing treatment for a real donation."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false
+    },
+    "data": {
+      "id": "workflow-us-nonprofit-contributed-nonfinancial-assets",
+      "version": "1",
+      "family": "record-to-report",
+      "family_name": "Record to report",
+      "name": "Contributed goods and services review",
+      "accounting_objective": "Prepare an evidence-linked donated-asset and service population while keeping recognition, presentation, disclosure and Form 990 narrative questions separate.",
+      "accountable_owner": "Nonprofit controller or contribution accounting owner",
+      "reviewer": "Controller, CFO or qualified accounting reviewer independent from preparation",
+      "trigger": "The owner initiates the review when donated goods, use of assets or services enter the close population.",
+      "scope": "Only the declared donation population, period, entity, donor terms, valuation evidence and program use are in scope. Exchanges, governmental entities and unresearched current Topic 958 branches remain separate.",
+      "period_scope": "The donation receipt, consumption, service period and close cutoff named in the initiation record.",
+      "inputs": [
+        "Donation receipt and agreement",
+        "Asset category, quantity, condition and use",
+        "Valuation technique, market and input support",
+        "Service provider skill, time, rate and hypothetical purchase evidence",
+        "Restriction, monetization and remaining inventory evidence",
+        "Form 990 narrative and filing profile"
+      ],
+      "control_totals": [
+        "Received quantity and value by category",
+        "Consumed, monetized and ending quantity",
+        "Recognized and unrecognized service populations",
+        "Valuation and restriction exceptions"
+      ],
+      "steps": [
+        "Identify exchange, conditional contribution or unconditional contribution.",
+        "Classify nonfinancial asset or service and record restrictions.",
+        "Apply the human recognition and measurement gate; do not infer it from ASU 2020-07.",
+        "Reconcile receipt, consumption, monetization and ending inventory.",
+        "Prepare separate presentation, disclosure and Form 990 narrative notes."
+      ],
+      "outputs": [
+        "Donation population and recognition-gate matrix",
+        "Asset quantity and value rollforward",
+        "Service qualification and volunteer counterexample register",
+        "Proposed presentation and filing-route packet"
+      ],
+      "human_judgments": [
+        "Exchange, conditionality and contribution classification",
+        "Recognition and measurement under the applicable current framework",
+        "Valuation, restrictions, affiliate service and program-use conclusions",
+        "Final ledger, disclosure and filing treatment"
+      ],
+      "authority_level": "A2",
+      "actions": [
+        {
+          "action": "Prepare a donated-asset and service review packet",
+          "authority_level": "A1",
+          "agent_role": "Collect declared evidence, calculate and surface gaps.",
+          "human_role": "Set the recognition and valuation scope and own the final conclusion."
+        },
+        {
+          "action": "Post a donated asset, recognize a service or file a return",
+          "authority_level": "human-only",
+          "agent_role": "Draft options and evidence links only.",
+          "human_role": "Approve the accounting and filing action."
+        }
+      ],
+      "stop_conditions": [
+        "Exchange or contribution classification is unresolved",
+        "Valuation or restriction evidence is missing",
+        "Service qualification or affiliate relationship is unclear",
+        "Receipt, consumption or ending inventory does not tie"
+      ],
+      "limitations": [
+        "No current consolidated Topic 958 recognition review or professional review was performed.",
+        "ASU 2020-07 presentation and disclosure requirements do not decide recognition or measurement.",
+        "This workflow does not authorize a posting, valuation certification or Form 990 filing."
+      ]
+    }
+  },
+  {
+    "id": "workflow-us-nonprofit-federal-reporting",
+    "kind": "workflow",
+    "title": "US nonprofit selected federal reporting review",
+    "summary": "Read-only workflow separating Form 990 schedule routing and book reconciliation from 2 CFR Part 200 award records, reporting and audit-routing gates.",
+    "topics": [
+      "Record to report",
+      "Accounting and reporting",
+      "Controls and governance",
+      "Law and policy",
+      "Public sector and charity"
+    ],
+    "industries": [
+      "public-sector-nonprofit"
+    ],
+    "jurisdiction": "United States; nongovernmental nonprofit",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_nonprofit_irs_990_2025",
+      "src_cfr200grants",
+      "src_nonprofit_fasb_2016_14"
+    ],
+    "related_ids": [
+      "guide-us-nonprofit-federal-reporting",
+      "example-us-nonprofit-federal-reporting-bridge",
+      "ctrl-us-nonprofit-federal-reporting-reconciliation"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-19",
+    "provenance": {
+      "added_on": "2026-09-19",
+      "reviewer": "Codex AI-assisted original workflow review",
+      "note": "Descriptive read-only workflow linked to selected IRS and eCFR records. It does not authorize filing, award certification, a Single Audit conclusion or professional sign-off."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false
+    },
+    "data": {
+      "id": "workflow-us-nonprofit-federal-reporting",
+      "version": "1",
+      "family": "record-to-report",
+      "family_name": "Record to report",
+      "name": "Selected Form 990 and Federal-award reporting review",
+      "accounting_objective": "Prepare a declared book-to-Form-990 bridge and separately determine which Federal-award records and current Part 200 gates require human review.",
+      "accountable_owner": "Nonprofit controller, tax owner or Federal-award compliance owner",
+      "reviewer": "Controller, tax reviewer, grants manager or qualified compliance reviewer independent from preparation",
+      "trigger": "The owner initiates the workflow for a named tax year, Form 990 filing population or Federal-award period.",
+      "scope": "Only the named entity, tax year, functional-expense population, award agreement, recipient or subrecipient role, fiscal period and current source versions are in scope. Governmental, for-profit contractor and no-award branches remain separate.",
+      "period_scope": "Tax year and award fiscal or performance period named in the initiation record.",
+      "inputs": [
+        "Entity, EIN, exempt status and filing profile",
+        "Tax year, accounting method and trial balance",
+        "Part IV schedule trigger facts",
+        "Book functional-expense population and allocation support",
+        "Award number, Assistance Listing, agreement, terms and period",
+        "Award obligations, expenditures, source documents, budget and performance evidence",
+        "Current Part 200 text and award-specific supplements"
+      ],
+      "control_totals": [
+        "Book functional-expense totals",
+        "Form 990 Part IX totals and schedule population",
+        "Federal-award obligations and expenditures by award",
+        "Budget comparison and report population",
+        "Current threshold and exception review date"
+      ],
+      "steps": [
+        "Identify entity, tax year, filing profile and accounting basis.",
+        "Route Part IV questions to applicable schedules and retain the tax-year instructions.",
+        "Reconcile book functional expense to the declared Form 990 Part IX bridge.",
+        "Gate Federal-award applicability using the award, entity role, period and terms.",
+        "Read current Part 200 records, reporting, performance and audit sections and prepare an exception packet."
+      ],
+      "outputs": [
+        "Book-to-Form-990 bridge",
+        "Part IV schedule trigger register",
+        "Federal-award source and expenditure register",
+        "Current-threshold and award-term review packet",
+        "Open tax, GAAP and compliance judgment register"
+      ],
+      "human_judgments": [
+        "Filing status and tax-return treatment",
+        "GAAP versus tax presentation and allocation judgments",
+        "Award applicability, allowability and performance evidence",
+        "Single Audit or other compliance conclusion and final filing"
+      ],
+      "authority_level": "A2",
+      "actions": [
+        {
+          "action": "Prepare a reporting bridge and evidence packet",
+          "authority_level": "A1",
+          "agent_role": "Collect declared inputs, calculate and surface missing or contradictory evidence.",
+          "human_role": "Set filing and award scope and own every final tax or compliance judgment."
+        },
+        {
+          "action": "File Form 990, certify award reporting or determine audit obligation",
+          "authority_level": "human-only",
+          "agent_role": "Prepare the evidence packet only.",
+          "human_role": "Review, approve, sign and submit or escalate."
+        }
+      ],
+      "stop_conditions": [
+        "Entity, tax year or filing status is unclear",
+        "Book and Part IX populations do not reconcile",
+        "Award role, terms, identifiers or period are missing",
+        "Current Part 200 threshold or exception path cannot be verified",
+        "Source documents or performance reports are incomplete"
+      ],
+      "limitations": [
+        "No tax return, award file, agency supplement, expenditure population or professional review was performed.",
+        "Form 990, US GAAP and Part 200 answer different questions and are not interchangeable.",
+        "This workflow does not authorize filing, certification, payment, audit determination or compliance conclusion."
+      ]
+    }
+  },
+  {
+    "id": "workflow-us-education-auxiliary-services",
+    "kind": "workflow",
+    "title": "US education auxiliary services and fee routing workflow",
+    "summary": "Staged inputs, routing and reconciliation workflow for the selected education branch.",
+    "topics": [
+      "Accounting and reporting",
+      "Educational Services"
+    ],
+    "industries": [
+      "Educational Services"
+    ],
+    "jurisdiction": "United States; declared entity and reporting framework required",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_construction_fasb_2014_09",
+      "src_education_gasb35",
+      "src_education_irs_p598_auxiliary"
+    ],
+    "related_ids": [
+      "guide-us-education-auxiliary-services",
+      "ctrl-us-education-auxiliary-services",
+      "example-us-education-auxiliary-services-bridge"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-19",
+    "provenance": {
+      "added_on": "2026-09-19",
+      "reviewer": "Codex AI-assisted original-source research",
+      "note": "Bounded US education completion synthesis from selected original public sources. No professional review, operational evidence or current consolidated Codification/GASB conclusion is asserted."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not stored; original publisher rights apply",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": "Original factual metadata and synthesis only; external full text is not stored."
+    },
+    "data": {
+      "version": "1.0.0",
+      "scope": "Selected US higher-education auxiliary-service branches: nongovernmental US GAAP, public GASB business-type/governmental routing and for-profit US GAAP. Covers housing, dining, bookstore and a commercial lease/service counterexample; it is not a campus-wide chart of accounts or tax opinion.",
+      "frameworks": [
+        "US GAAP",
+        "GASB where the public route applies",
+        "US federal requirements or tax boundary where explicitly stated"
+      ],
+      "inputs": [
+        "entity legal form and reporting framework",
+        "service catalog and customer/payer",
+        "housing/dining/bookstore/lease contract",
+        "service period, delivery evidence and refund terms",
+        "facility-use and tax-purpose facts",
+        "public reporting-model and fee evidence"
+      ],
+      "steps": [
+        {
+          "step": 1,
+          "action": "Capture entity, role, period, source agreement and governing framework."
+        },
+        {
+          "step": 2,
+          "action": "Classify the resource or service using the cited route and preserve the exact source locator."
+        },
+        {
+          "step": 3,
+          "action": "Post or stage only after evidence, allocation, condition, restriction and payer checks pass."
+        },
+        {
+          "step": 4,
+          "action": "Reconcile subledger, budget or fund rollforward to the general ledger and retain exception evidence."
+        }
+      ],
+      "controls": [
+        "separate tuition and auxiliary item codes",
+        "approve service-period and refund evidence before revenue posting",
+        "route public activity through GASB model decision",
+        "retain dual-use and UBIT facts separately from GAAP conclusion",
+        "reconcile subledger to GL and external-user cash"
+      ],
+      "exceptions": [
+        "student housing bundled with instruction may require distinct-service and allocation analysis",
+        "commercial lease or excess facility scale can create a different tax route",
+        "public appropriations are not auxiliary customer revenue",
+        "current consolidated GAAP/GASB and tax law require separate review"
+      ],
+      "limitations": [
+        "This workflow is educational reference material, not approval authority.",
+        "Current consolidated guidance, entity facts and professional review remain open."
+      ]
+    }
+  },
+  {
+    "id": "workflow-us-education-federal-grants",
+    "kind": "workflow",
+    "title": "US education grants and restricted-award routing workflow",
+    "summary": "Staged inputs, routing and reconciliation workflow for the selected education branch.",
+    "topics": [
+      "Accounting and reporting",
+      "Educational Services"
+    ],
+    "industries": [
+      "Educational Services"
+    ],
+    "jurisdiction": "United States; declared entity and reporting framework required",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_nonprofit_fasb_2018_08",
+      "src_cfr200grants",
+      "src_education_fsa_2526_disbursement",
+      "src_education_gasb35"
+    ],
+    "related_ids": [
+      "guide-us-education-federal-grants",
+      "ctrl-us-education-federal-grants",
+      "example-us-education-federal-grant-bridge"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-19",
+    "provenance": {
+      "added_on": "2026-09-19",
+      "reviewer": "Codex AI-assisted original-source research",
+      "note": "Bounded US education completion synthesis from selected original public sources. No professional review, operational evidence or current consolidated Codification/GASB conclusion is asserted."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not stored; original publisher rights apply",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": "Original factual metadata and synthesis only; external full text is not stored."
+    },
+    "data": {
+      "version": "1.0.0",
+      "scope": "Selected US education federal-award branch for a nongovernmental nonprofit or public institution receiving a grant. Covers contribution-versus-exchange, conditional barriers, allowability and source-supported award records; it does not conclude any institution-specific award.",
+      "frameworks": [
+        "US GAAP",
+        "GASB where the public route applies",
+        "US federal requirements or tax boundary where explicitly stated"
+      ],
+      "inputs": [
+        "signed award and amendments",
+        "barrier and return/release terms",
+        "award budget and allowable-cost basis",
+        "source documents, cost centers and allocation driver",
+        "entity framework and public/nonprofit status",
+        "student-aid records kept separate from award accounting"
+      ],
+      "steps": [
+        {
+          "step": 1,
+          "action": "Capture entity, role, period, source agreement and governing framework."
+        },
+        {
+          "step": 2,
+          "action": "Classify the resource or service using the cited route and preserve the exact source locator."
+        },
+        {
+          "step": 3,
+          "action": "Post or stage only after evidence, allocation, condition, restriction and payer checks pass."
+        },
+        {
+          "step": 4,
+          "action": "Reconcile subledger, budget or fund rollforward to the general ledger and retain exception evidence."
+        }
+      ],
+      "controls": [
+        "review agreement before posting cash",
+        "hold conditional receipts in a liability or other framework-appropriate account until evidence supports recognition",
+        "document allowability and allocability with no double charge",
+        "reconcile award ledger, budget and GL",
+        "segregate Title IV administration from award and tuition subledgers"
+      ],
+      "exceptions": [
+        "an exchange contract can fall under revenue guidance rather than contribution guidance",
+        "award terms or agency supplements can control over general Part 200 defaults",
+        "public framework and nonprofit framework cannot be blended",
+        "pending nonprofit endowment and Illinois IDs are not required for this grant branch"
+      ],
+      "limitations": [
+        "This workflow is educational reference material, not approval authority.",
+        "Current consolidated guidance, entity facts and professional review remain open."
+      ]
+    }
+  },
+  {
+    "id": "workflow-us-education-public-appropriations",
+    "kind": "workflow",
+    "title": "US public education appropriations and reporting-model routing workflow",
+    "summary": "Staged inputs, routing and reconciliation workflow for the selected education branch.",
+    "topics": [
+      "Accounting and reporting",
+      "Educational Services"
+    ],
+    "industries": [
+      "Educational Services"
+    ],
+    "jurisdiction": "United States; declared entity and reporting framework required",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_education_gasb35",
+      "src_roadmap_gasb34_basis"
+    ],
+    "related_ids": [
+      "guide-us-education-public-appropriations",
+      "ctrl-us-education-public-appropriations",
+      "example-us-education-public-appropriation-routing"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-19",
+    "provenance": {
+      "added_on": "2026-09-19",
+      "reviewer": "Codex AI-assisted original-source research",
+      "note": "Bounded US education completion synthesis from selected original public sources. No professional review, operational evidence or current consolidated Codification/GASB conclusion is asserted."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not stored; original publisher rights apply",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": "Original factual metadata and synthesis only; external full text is not stored."
+    },
+    "data": {
+      "version": "1.0.0",
+      "scope": "Selected US public-college appropriation branch using historical GASB 35 text and the existing GASB 34 source foundation. Covers primary-government appropriations, governmental/business-type activity selection and a tuition counterexample; current consolidated GASB applicability remains open.",
+      "frameworks": [
+        "US GAAP",
+        "GASB where the public route applies",
+        "US federal requirements or tax boundary where explicitly stated"
+      ],
+      "inputs": [
+        "appropriation statute or budget act",
+        "primary-government and reporting-entity relationship",
+        "GASB reporting model and activity classification",
+        "cash receipt and appropriation budget",
+        "tuition billing and student-service evidence",
+        "current GASB amendment/applicability review"
+      ],
+      "steps": [
+        {
+          "step": 1,
+          "action": "Capture entity, role, period, source agreement and governing framework."
+        },
+        {
+          "step": 2,
+          "action": "Classify the resource or service using the cited route and preserve the exact source locator."
+        },
+        {
+          "step": 3,
+          "action": "Post or stage only after evidence, allocation, condition, restriction and payer checks pass."
+        },
+        {
+          "step": 4,
+          "action": "Reconcile subledger, budget or fund rollforward to the general ledger and retain exception evidence."
+        }
+      ],
+      "controls": [
+        "do not post appropriations to tuition subledger",
+        "tie legal appropriation authority to budget and cash",
+        "review operating/nonoperating presentation under current GASB model",
+        "reconcile primary-government transfers and eliminations",
+        "retain framework decision with period and entity facts"
+      ],
+      "exceptions": [
+        "capital-purpose appropriations may follow a different presentation",
+        "component units and blended entities require separate analysis",
+        "historical GASB 35 text is not a current consolidated conclusion",
+        "a fee-for-service activity is not automatically the whole reporting entity’s classification"
+      ],
+      "limitations": [
+        "This workflow is educational reference material, not approval authority.",
+        "Current consolidated guidance, entity facts and professional review remain open."
+      ]
+    }
+  },
+  {
+    "id": "workflow-us-education-endowment-routing",
+    "kind": "workflow",
+    "title": "US education endowment and restricted-resource routing workflow",
+    "summary": "Staged inputs, routing and reconciliation workflow for the selected education branch.",
+    "topics": [
+      "Accounting and reporting",
+      "Educational Services"
+    ],
+    "industries": [
+      "Educational Services"
+    ],
+    "jurisdiction": "United States; declared entity and reporting framework required",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_nonprofit_fasb_2016_14",
+      "src_nonprofit_illinois_upmifa_2009",
+      "src_nonprofit_fasb_2018_08"
+    ],
+    "related_ids": [
+      "guide-us-education-endowment-routing",
+      "ctrl-us-education-endowment-routing",
+      "example-us-education-endowment-rollforward"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-19",
+    "provenance": {
+      "added_on": "2026-09-19",
+      "reviewer": "Codex AI-assisted original-source research",
+      "note": "Bounded US education completion synthesis from selected original public sources. No professional review, operational evidence or current consolidated Codification/GASB conclusion is asserted."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not stored; original publisher rights apply",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": "Original factual metadata and synthesis only; external full text is not stored."
+    },
+    "data": {
+      "version": "1.0.0",
+      "scope": "Selected US nongovernmental nonprofit higher-education endowment branch. Uses the pending shared nonprofit FASB endowment and Illinois UPMIFA source IDs as dependencies, with no nationwide state-law survey and no conclusion for a public institution’s GASB endowment presentation.",
+      "frameworks": [
+        "US GAAP",
+        "GASB where the public route applies",
+        "US federal requirements or tax boundary where explicitly stated"
+      ],
+      "inputs": [
+        "gift instrument and donor restriction",
+        "board designation evidence",
+        "investment and spending policy",
+        "fund-level opening balance and return",
+        "qualifying spending and release evidence",
+        "governing law and current consolidated GAAP review"
+      ],
+      "steps": [
+        {
+          "step": 1,
+          "action": "Capture entity, role, period, source agreement and governing framework."
+        },
+        {
+          "step": 2,
+          "action": "Classify the resource or service using the cited route and preserve the exact source locator."
+        },
+        {
+          "step": 3,
+          "action": "Post or stage only after evidence, allocation, condition, restriction and payer checks pass."
+        },
+        {
+          "step": 4,
+          "action": "Reconcile subledger, budget or fund rollforward to the general ledger and retain exception evidence."
+        }
+      ],
+      "controls": [
+        "capture donor instrument before coding fund",
+        "segregate donor-restricted and board-designated balances",
+        "approve spending against policy and legal restrictions",
+        "reconcile investment return and spending by fund",
+        "escalate underwater, modification and release questions"
+      ],
+      "exceptions": [
+        "Illinois law does not represent all state law",
+        "donor consent, court modification and small-fund rules need fact-specific review",
+        "public institutions may follow GASB rather than this nonprofit branch",
+        "endowment investment return is not automatically available tuition revenue"
+      ],
+      "limitations": [
+        "This workflow is educational reference material, not approval authority.",
+        "Current consolidated guidance, entity facts and professional review remain open."
+      ]
+    }
   }
 ]

@@ -11758,5 +11758,1168 @@
         }
       ]
     }
+  },
+  {
+    "id": "example-us-nonprofit-endowment-rollforward",
+    "kind": "example",
+    "title": "US nonprofit endowment rollforward: synthetic close fixture",
+    "summary": "Synthetic endowment fixture separating donor-restricted principal, investment return, spending appropriation, board designation and an independent underwater-fund branch.",
+    "topics": [
+      "Accounting and reporting",
+      "Synthetic examples",
+      "Law and policy",
+      "Public sector and charity"
+    ],
+    "industries": [
+      "public-sector-nonprofit"
+    ],
+    "jurisdiction": "United States; nongovernmental nonprofit, with Illinois as the selected state-law example",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_nonprofit_fasb_2016_14",
+      "src_nonprofit_illinois_upmifa_2009",
+      "src_nonprofit_irs_990_2025"
+    ],
+    "related_ids": [
+      "guide-us-nonprofit-endowment-spending",
+      "workflow-us-nonprofit-endowment-spending",
+      "ctrl-us-nonprofit-endowment-donor-instrument"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-19",
+    "provenance": {
+      "added_on": "2026-09-19",
+      "reviewer": "Codex AI-assisted original synthetic fixture review",
+      "note": "Original synthetic numbers only. Arithmetic is independently reproducible from the listed inputs and journals; no donor instrument, board resolution, investment statement or professional review was performed."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "No external example content included",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": "Original synthetic example only; linked publisher text is not stored."
+    },
+    "data": {
+      "version": "1.0.0",
+      "origin": "Original synthetic project-authored example.",
+      "scope": "One fictional donor-restricted endowment fund for a 2026 calendar-year close. The base case is a donor gift, investment return and approved spending appropriation. The board-designated quasi-endowment and underwater-fund cases are independent branches and are not combined with the base case.",
+      "frameworks": [
+        "US GAAP",
+        "Selected Illinois institutional-fund law"
+      ],
+      "close_period": {
+        "start": "2026-01-01",
+        "end": "2026-12-31",
+        "cutoff": "2026-12-31",
+        "basis": "Illustrative calendar-year close; all listed events are synthetic and dated on or before the cutoff."
+      },
+      "assumptions": [
+        "Opening donor-restricted endowment assets are $1,000,000 at 2026-01-01.",
+        "The $100,000 gift is explicitly restricted by the synthetic donor instrument for perpetual endowment purposes; it is not a board designation.",
+        "The $50,000 investment return is attributed to the donor-restricted fund by the synthetic investment statement.",
+        "The $40,000 appropriation is approved under a declared spending policy after the donor-instrument, governing-law and liquidity gates are documented.",
+        "The $40,000 appropriation is paid for qualifying program spending in cash and the purpose release is recorded in the base case.",
+        "Illinois is used only as a synthetic governing-law example; no real legal determination is made."
+      ],
+      "inputs": {
+        "opening_endowment_assets": 1000000,
+        "donor_restricted_gift": 100000,
+        "investment_return": 50000,
+        "approved_spending_appropriation": 40000,
+        "board_designated_quasi_endowment_independent_branch": 300000,
+        "liquid_cash_available_for_appropriation": 80000,
+        "allocation_basis": "synthetic fund-level activity; no pooled-fund allocation is inferred"
+      },
+      "events": [
+        {
+          "date": "2026-02-15",
+          "event": "donor-restricted endowment gift received",
+          "evidence": "Synthetic donor instrument and receipt; not an operational bank or gift record.",
+          "accounting": "increase donor-restricted endowment assets and donor-restricted contribution activity"
+        },
+        {
+          "date": "2026-09-30",
+          "event": "investment return allocated to donor-restricted fund",
+          "evidence": "Synthetic investment statement; no actual custodian evidence.",
+          "accounting": "increase endowment assets and investment-return activity"
+        },
+        {
+          "date": "2026-10-15",
+          "event": "board-approved spending appropriation paid for qualifying program spending",
+          "evidence": "Synthetic policy approval, liquidity check and qualifying expense register.",
+          "accounting": "reduce endowment assets, record program expense and release the corresponding purpose restriction"
+        },
+        {
+          "date": "2026-12-31",
+          "event": "endowment disclosure and closing rollforward review",
+          "evidence": "Synthetic disclosure checklist and reconciled fund schedule.",
+          "accounting": "tie ending assets and donor-restricted balance to the source schedule; retain unresolved branches"
+        }
+      ],
+      "independent_branches": {
+        "board_designated_quasi_endowment": {
+          "opening_net_assets_without_donor_restrictions": 300000,
+          "designation": "Synthetic governing-board designation only; no donor instrument restriction.",
+          "classification_boundary": "Keep in net assets without donor restrictions unless separate facts establish a donor restriction; the board can remove its internal designation subject to the organization's governance.",
+          "not_combined_with_base_case": true
+        },
+        "underwater_fund": {
+          "donor_restricted_preservation_amount": 1000000,
+          "fair_value": 970000,
+          "deficiency": 30000,
+          "spending_appropriation": 0,
+          "required_action": "Stop the base spending release, preserve the deficiency and related policy and liquidity evidence, and escalate for the applicable disclosure and human review.",
+          "not_combined_with_base_case": true
+        }
+      },
+      "journals": [
+        {
+          "id": "E1",
+          "date": "2026-02-15",
+          "debit": "endowment_investments",
+          "credit": "contribution_revenue_with_donor_restrictions",
+          "amount": 100000
+        },
+        {
+          "id": "E2",
+          "date": "2026-09-30",
+          "debit": "endowment_investments",
+          "credit": "investment_return_with_donor_restrictions",
+          "amount": 50000
+        },
+        {
+          "id": "E3",
+          "date": "2026-10-15",
+          "debit": "program_expense",
+          "credit": "endowment_investments",
+          "amount": 40000
+        },
+        {
+          "id": "E4",
+          "date": "2026-10-15",
+          "debit": "net_assets_with_donor_restrictions",
+          "credit": "net_assets_without_donor_restrictions_release",
+          "amount": 40000
+        }
+      ],
+      "fund_rollforward": {
+        "opening_assets": 1000000,
+        "donor_restricted_gift": 100000,
+        "investment_return": 50000,
+        "spending_appropriation": -40000,
+        "ending_assets": 1110000,
+        "formula": "1,000,000 + 100,000 + 50,000 - 40,000 = 1,110,000"
+      },
+      "ledger_rollforward": {
+        "endowment_investments": {
+          "opening": 1000000,
+          "gift": 100000,
+          "return": 50000,
+          "appropriation_paid": -40000,
+          "ending": 1110000
+        },
+        "net_assets_with_donor_restrictions": {
+          "opening": 1000000,
+          "gift": 100000,
+          "return": 50000,
+          "purpose_release": -40000,
+          "ending": 1110000
+        },
+        "net_assets_without_donor_restrictions_activity": {
+          "opening": 0,
+          "restriction_release": 40000,
+          "program_expense": -40000,
+          "ending": 0
+        }
+      },
+      "ending_balances": {
+        "as_of": "2026-12-31",
+        "endowment_investments": 1110000,
+        "net_assets_with_donor_restrictions": 1110000,
+        "net_assets_without_donor_restrictions_activity": 0,
+        "board_designated_quasi_endowment": 300000,
+        "underwater_branch_deficiency": 30000
+      },
+      "reconciliation": {
+        "journal_debits": 230000,
+        "journal_credits": 230000,
+        "ending_assets_formula": "1,000,000 opening + 100,000 gift + 50,000 return - 40,000 appropriation = 1,110,000",
+        "restricted_net_asset_formula": "1,000,000 opening + 100,000 gift + 50,000 return - 40,000 purpose release = 1,110,000",
+        "board_designation": "The independent $300,000 board-designated branch is not added to the donor-restricted base rollforward.",
+        "underwater_branch": "The independent $30,000 deficiency is not netted into the base case."
+      },
+      "calculation": {
+        "ending_endowment_assets": 1110000,
+        "ending_donor_restricted_net_assets": 1110000,
+        "donor_restricted_principal_after_gift": 1100000,
+        "spending_release": 40000,
+        "journal_balance_difference": 0,
+        "underwater_deficiency_independent_branch": 30000
+      },
+      "controls": [
+        "retain the donor instrument and amendments",
+        "retain the separate board designation and approval",
+        "document governing-law and spending-policy gates",
+        "reconcile investment activity to the fund rollforward",
+        "approve liquidity and qualifying expense evidence before release",
+        "stop for underwater funds or unresolved restrictions",
+        "retain endowment and Form 990 disclosure support"
+      ],
+      "limitations": [
+        "Synthetic educational fixture, not operational evidence or a legal opinion.",
+        "The selected FASB material is an ASU excerpt rather than current consolidated Codification; professional review was not performed.",
+        "Illinois law is one selected state example and does not establish the law governing a real fund.",
+        "No actual donor instrument, board resolution, investment statement, liquidity forecast or Form 990 was reviewed.",
+        "The underwater and board-designated branches are independent changed-assumption cases and must not be combined with the base case."
+      ],
+      "examples": [
+        {
+          "id": "endowment-rollforward-base",
+          "title": "Donor-restricted endowment gift, return and spending appropriation",
+          "input": {
+            "opening_assets": 1000000,
+            "gift": 100000,
+            "investment_return": 50000,
+            "spending_appropriation": 40000
+          },
+          "calculation": "1,000,000 + 100,000 + 50,000 - 40,000 = 1,110,000; the separate $300,000 board-designated and $30,000 underwater branches are excluded.",
+          "result": {
+            "ending_assets": 1110000,
+            "ending_donor_restricted_net_assets": 1110000,
+            "journal_balance_difference": 0
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "example-us-nonprofit-contributed-nonfinancial-assets",
+    "kind": "example",
+    "title": "US nonprofit contributed goods and services: synthetic fixture",
+    "summary": "Synthetic donation fixture tying donated food and supplies to use and ending inventory, recognizing one explicitly assumed qualifying specialized service, and preserving a general volunteer-service counterexample.",
+    "topics": [
+      "Accounting and reporting",
+      "Synthetic examples",
+      "Public sector and charity"
+    ],
+    "industries": [
+      "public-sector-nonprofit"
+    ],
+    "jurisdiction": "United States; nongovernmental nonprofit",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_nonprofit_fasb_2018_08",
+      "src_nonprofit_fasb_2020_07",
+      "src_nonprofit_irs_990_2025"
+    ],
+    "related_ids": [
+      "guide-us-nonprofit-contributed-nonfinancial-assets",
+      "workflow-us-nonprofit-contributed-nonfinancial-assets",
+      "ctrl-us-nonprofit-contributed-asset-valuation"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-19",
+    "provenance": {
+      "added_on": "2026-09-19",
+      "reviewer": "Codex AI-assisted original synthetic fixture review",
+      "note": "Original synthetic numbers only. Recognition assumptions, valuation inputs and service qualification are declared fixture assumptions, not current consolidated GAAP conclusions or operational evidence."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "No external example content included",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": "Original synthetic example only; linked publisher text is not stored."
+    },
+    "data": {
+      "version": "1.0.0",
+      "origin": "Original synthetic project-authored example.",
+      "scope": "One fictional 2026 nonprofit donation population: $12,000 of donated food consumed in the program, $8,000 of donated clinic supplies with $5,000 consumed and $3,000 remaining, a $6,000 specialized legal service assumed to qualify for recognition, and $4,000 of general volunteer administration that is not recognized in this fixture.",
+      "frameworks": [
+        "US GAAP",
+        "US federal tax reporting"
+      ],
+      "close_period": {
+        "start": "2026-01-01",
+        "end": "2026-12-31",
+        "cutoff": "2026-12-31",
+        "basis": "Illustrative calendar-year close; all amounts and evidence are synthetic."
+      },
+      "assumptions": [
+        "The food and clinic supplies are unconditional donated nonfinancial assets with valuation support at receipt.",
+        "The clinic supplies are donor-restricted to the clinic program; $5,000 is consumed by cutoff and $3,000 remains in inventory.",
+        "The donated legal service is specialized, would otherwise be purchased, is directly used for the nonprofit's program and is assumed to satisfy the selected recognition gate for this fixture.",
+        "The general volunteer administration service is not a specialized service that would otherwise be purchased and is not recognized in this fixture.",
+        "ASU 2020-07 presentation and disclosure fields are recorded separately from the recognition assumptions.",
+        "The Form 990 narrative branch is not a filed return and is not added to the GAAP ledger."
+      ],
+      "inputs": {
+        "donated_food": 12000,
+        "donated_clinic_supplies": 8000,
+        "clinic_supplies_consumed": 5000,
+        "clinic_supplies_remaining": 3000,
+        "qualifying_specialized_legal_service": 6000,
+        "general_volunteer_administration_service": 4000
+      },
+      "events": [
+        {
+          "date": "2026-03-01",
+          "event": "donated food received and used",
+          "evidence": "Synthetic receipt, valuation worksheet and program-use log.",
+          "accounting": "recognize the declared food contribution and program consumption"
+        },
+        {
+          "date": "2026-04-01",
+          "event": "donated clinic supplies received with purpose restriction",
+          "evidence": "Synthetic receipt, restriction statement, valuation and inventory log.",
+          "accounting": "recognize the declared donated nonfinancial asset and retain $3,000 restricted ending inventory"
+        },
+        {
+          "date": "2026-07-15",
+          "event": "specialized legal service completed",
+          "evidence": "Synthetic engagement description, provider qualification, time record and hypothetical purchase comparison.",
+          "accounting": "recognize $6,000 only under the fixture's declared qualifying-service assumption"
+        },
+        {
+          "date": "2026-12-31",
+          "event": "general volunteer administration service reviewed",
+          "evidence": "Synthetic volunteer log; no hypothetical purchase or specialized-service evidence.",
+          "accounting": "no recognized amount in this fixture; retain nature and extent for disclosure or narrative review"
+        }
+      ],
+      "journals": [
+        {
+          "id": "D1",
+          "date": "2026-03-01",
+          "debit": "donated_food_inventory_or_program_expense",
+          "credit": "contributed_nonfinancial_asset_revenue",
+          "amount": 12000
+        },
+        {
+          "id": "D2",
+          "date": "2026-04-01",
+          "debit": "donated_clinic_supplies_inventory",
+          "credit": "contributed_nonfinancial_asset_revenue",
+          "amount": 8000
+        },
+        {
+          "id": "D3",
+          "date": "2026-10-01",
+          "debit": "clinic_program_supplies_expense",
+          "credit": "donated_clinic_supplies_inventory",
+          "amount": 5000
+        },
+        {
+          "id": "D4",
+          "date": "2026-07-15",
+          "debit": "program_legal_expense",
+          "credit": "contributed_specialized_service_revenue",
+          "amount": 6000
+        }
+      ],
+      "asset_rollforward": {
+        "food": {
+          "opening": 0,
+          "received": 12000,
+          "consumed": -12000,
+          "ending": 0
+        },
+        "clinic_supplies": {
+          "opening": 0,
+          "received": 8000,
+          "consumed": -5000,
+          "ending": 3000
+        }
+      },
+      "service_assessment": {
+        "qualifying_specialized_service": {
+          "amount": 6000,
+          "status": "assumed-qualifying-for-synthetic-fixture",
+          "basis": [
+            "specialized legal skill",
+            "would otherwise be purchased",
+            "direct program use",
+            "provider time and service description retained"
+          ]
+        },
+        "general_volunteer_service": {
+          "amount": 4000,
+          "status": "counterexample-not-recognized-in-fixture",
+          "basis": "No declared specialized skill or hypothetical purchase evidence; preserve nature and extent for human disclosure review."
+        }
+      },
+      "presentation": {
+        "recognized_contributed_nonfinancial_assets": 20000,
+        "recognized_contributed_specialized_service": 6000,
+        "recognized_total": 26000,
+        "ending_donated_supplies_inventory": 3000,
+        "unrecognized_general_volunteer_service_for_disclosure_review": 4000,
+        "separate_line_and_disclosures": "Use the source-record presentation and disclosure fields only after the human recognition and measurement gate."
+      },
+      "reconciliation": {
+        "journal_debits": 31000,
+        "journal_credits": 31000,
+        "recognized_revenue_formula": "12,000 food + 8,000 supplies + 6,000 qualifying specialized service = 26,000",
+        "supplies_formula": "8,000 received - 5,000 consumed = 3,000 ending inventory",
+        "volunteer_branch": "The $4,000 general volunteer service has no journal in this fixture and is not a balancing plug."
+      },
+      "calculation": {
+        "recognized_nonfinancial_asset_revenue": 20000,
+        "recognized_service_revenue": 6000,
+        "recognized_total": 26000,
+        "ending_supplies": 3000,
+        "journal_balance_difference": 0,
+        "unrecognized_volunteer_service": 4000
+      },
+      "controls": [
+        "retain donation receipt and restriction evidence",
+        "approve valuation input and category classification",
+        "tie receipt, consumption and ending inventory",
+        "review specialized-service and hypothetical-purchase evidence",
+        "retain non-recognition counterexample without a plug",
+        "separate GAAP presentation from Form 990 narrative"
+      ],
+      "limitations": [
+        "Synthetic educational fixture, not operational evidence.",
+        "The $6,000 service qualification is an explicit fixture assumption and is not a current consolidated Topic 958 conclusion.",
+        "ASU 2020-07 did not change recognition or measurement; its presentation and disclosure fields do not decide recognition.",
+        "No donor, provider, affiliate, market, inventory or professional evidence was accessed.",
+        "The general volunteer branch is a counterexample and must not be combined with the qualifying-service assumption."
+      ],
+      "examples": [
+        {
+          "id": "contributed-assets-and-services",
+          "title": "Goods rollforward plus qualifying and nonqualifying service branches",
+          "input": {
+            "food": 12000,
+            "supplies": 8000,
+            "supplies_consumed": 5000,
+            "qualifying_service": 6000,
+            "general_volunteer_service": 4000
+          },
+          "calculation": "Recognized amount is 12,000 + 8,000 + 6,000 = 26,000; ending supplies are 8,000 - 5,000 = 3,000; the 4,000 volunteer branch has no recognized journal.",
+          "result": {
+            "recognized_total": 26000,
+            "ending_supplies": 3000,
+            "journal_balance_difference": 0,
+            "volunteer_recognized_amount": 0
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "example-us-nonprofit-federal-reporting-bridge",
+    "kind": "example",
+    "title": "US nonprofit book-to-federal-reporting bridge: synthetic fixture",
+    "summary": "Synthetic bridge that ties a simple functional-expense book population to selected Form 990 Part IX presentation and keeps a separate Federal-award records and audit-routing branch.",
+    "topics": [
+      "Accounting and reporting",
+      "Synthetic examples",
+      "Law and policy",
+      "Public sector and charity"
+    ],
+    "industries": [
+      "public-sector-nonprofit"
+    ],
+    "jurisdiction": "United States; nongovernmental nonprofit",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_nonprofit_irs_990_2025",
+      "src_cfr200grants",
+      "src_nonprofit_fasb_2016_14"
+    ],
+    "related_ids": [
+      "guide-us-nonprofit-federal-reporting",
+      "workflow-us-nonprofit-federal-reporting",
+      "ctrl-us-nonprofit-federal-reporting-reconciliation"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-19",
+    "provenance": {
+      "added_on": "2026-09-19",
+      "reviewer": "Codex AI-assisted original synthetic fixture review",
+      "note": "Original synthetic numbers only. The bridge is a design fixture, not a Form 990, award report, audit determination or professional workpaper."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "No external example content included",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": "Original synthetic example only; linked publisher text is not stored."
+    },
+    "data": {
+      "version": "1.0.0",
+      "origin": "Original synthetic project-authored example.",
+      "scope": "One fictional 2025 Form 990 bridge and an independent 2026 Federal-award branch. The book population totals $100,000 of functional expense. The award branch tracks $60,000 of Federal-award expenditures and deliberately preserves the current-source gate rather than concluding audit applicability from the amount.",
+      "frameworks": [
+        "US GAAP",
+        "US federal tax reporting",
+        "2 CFR Part 200 when the award applicability gate is met"
+      ],
+      "close_period": {
+        "start": "2025-01-01",
+        "end": "2025-12-31",
+        "cutoff": "2025-12-31",
+        "basis": "Synthetic 2025 tax-year book and Form 990 bridge; Federal-award branch is a separate 2026 monitoring population."
+      },
+      "assumptions": [
+        "The book population contains $80,000 program expense, $15,000 management and general expense and $5,000 fundraising expense.",
+        "The synthetic Part IX bridge uses the same functional totals with no difference; this is a fixture simplification, not a rule that Form 990 and GAAP must match.",
+        "The Federal-award branch has a declared recipient or subrecipient role, a 2026 award period and $60,000 of expenditures supported by synthetic source records.",
+        "The current eCFR display inspected on 2026-09-19 states a $1,000,000 Subpart F threshold, but the fixture does not conclude Single Audit applicability or exemption for a real entity.",
+        "The no-award and contractor branches are independent counterexamples and are not combined with the recipient branch."
+      ],
+      "inputs": {
+        "book_functional_expenses": {
+          "program": 80000,
+          "management_general": 15000,
+          "fundraising": 5000,
+          "total": 100000
+        },
+        "form_990_part_ix_bridge": {
+          "program": 80000,
+          "management_general": 15000,
+          "fundraising": 5000,
+          "total": 100000
+        },
+        "federal_award_branch": {
+          "award_expenditures": 60000,
+          "award_period": "2026-01-01 through 2026-12-31",
+          "award_identifier": "SYN-AWARD-2026-001",
+          "current_source_audit_threshold": 1000000,
+          "threshold_source_date": "2026-09-19"
+        }
+      },
+      "events": [
+        {
+          "date": "2025-12-31",
+          "event": "book functional-expense population closed",
+          "evidence": "Synthetic trial balance and cost-center schedule.",
+          "accounting": "reconcile the book population before preparing the tax-reporting bridge"
+        },
+        {
+          "date": "2026-01-15",
+          "event": "2025 Form 990 Part IV and Part IX route reviewed",
+          "evidence": "Synthetic filing profile and selected 2025 IRS instruction locators.",
+          "accounting": "preserve schedule triggers and differences separately from GAAP"
+        },
+        {
+          "date": "2026-12-31",
+          "event": "Federal-award expenditure and performance packet assembled",
+          "evidence": "Synthetic award ledger, source documents, budget comparison and performance record.",
+          "accounting": "retain Part 200 records and current award-term review; do not infer audit or compliance conclusion"
+        }
+      ],
+      "journals": [
+        {
+          "id": "F1",
+          "date": "2025-12-31",
+          "debit": "program_expense",
+          "credit": "cash_or_payables",
+          "amount": 80000
+        },
+        {
+          "id": "F2",
+          "date": "2025-12-31",
+          "debit": "management_general_expense",
+          "credit": "cash_or_payables",
+          "amount": 15000
+        },
+        {
+          "id": "F3",
+          "date": "2025-12-31",
+          "debit": "fundraising_expense",
+          "credit": "cash_or_payables",
+          "amount": 5000
+        }
+      ],
+      "branches": {
+        "book_to_form_990": {
+          "book_total": 100000,
+          "form_990_part_ix_total": 100000,
+          "difference": 0,
+          "status": "synthetic-bridge-only",
+          "human_gate": "Confirm the filed return, required schedules, accounting method, allocation documentation and state requirements."
+        },
+        "federal_award_recipient_or_subrecipient": {
+          "award_expenditures": 60000,
+          "records_required": [
+            "award identifier and program",
+            "source-supported obligations and expenditures",
+            "budget comparison",
+            "financial and performance reports",
+            "award terms and current Part 200 review"
+          ],
+          "current_source_threshold": 1000000,
+          "threshold_comparison": "The synthetic $60,000 amount is below the selected current display threshold, but no real audit exemption or compliance conclusion is made.",
+          "not_combined_with_other_branches": true
+        },
+        "no_federal_award": {
+          "award_expenditures": 0,
+          "route": "Do not apply the Federal-award branch solely because the entity is nonprofit; retain the Form 990 route separately.",
+          "not_combined_with_other_branches": true
+        },
+        "for_profit_contractor": {
+          "route": "Payments for goods or services as a contractor are a separate applicability branch under the selected Part 200 source; do not treat the contractor as a recipient or subrecipient without the actual award terms.",
+          "not_combined_with_other_branches": true
+        }
+      },
+      "reconciliation": {
+        "book_debits": 100000,
+        "book_credits": 100000,
+        "book_functional_total": 100000,
+        "form_990_part_ix_total": 100000,
+        "book_to_form_990_difference": 0,
+        "award_expenditure_population": 60000,
+        "award_threshold_used_for_fixture": 1000000,
+        "warning": "The equal bridge is synthetic and does not prove filing accuracy, GAAP conformity, allowability or audit status."
+      },
+      "calculation": {
+        "book_total": 100000,
+        "form_990_part_ix_total": 100000,
+        "book_to_form_990_difference": 0,
+        "award_expenditures": 60000,
+        "award_threshold_from_current_source_display": 1000000,
+        "journal_balance_difference": 0
+      },
+      "controls": [
+        "identify entity, tax year, award and fiscal period",
+        "reconcile book functional totals before filing mapping",
+        "retain Part IV schedule trigger evidence",
+        "tie award expenditures to source documents and identifiers",
+        "review current Part 200 text and award terms",
+        "keep no-award, contractor and recipient branches independent",
+        "route final filing and audit decisions to a qualified human"
+      ],
+      "limitations": [
+        "Synthetic educational fixture, not a Form 990, award report, audit workpaper or compliance determination.",
+        "Form 990 presentation, US GAAP presentation and Federal-award reporting have different purposes.",
+        "The $1,000,000 threshold is recorded from the selected current eCFR display and must be rechecked for the actual fiscal period and award.",
+        "No actual entity, EIN, award agreement, schedule, source population, professional review or filing submission was accessed.",
+        "No amount is a license to file, certify, approve or conclude compliance."
+      ],
+      "examples": [
+        {
+          "id": "book-form-990-award-bridge",
+          "title": "Functional expense bridge with independent award branch",
+          "input": {
+            "program": 80000,
+            "management_general": 15000,
+            "fundraising": 5000,
+            "award_expenditures": 60000
+          },
+          "calculation": "80,000 + 15,000 + 5,000 = 100,000 book and synthetic Part IX total; the independent award population is 60,000 and is not a substitute for the tax filing or Part 200 review.",
+          "result": {
+            "book_total": 100000,
+            "form_990_part_ix_total": 100000,
+            "book_to_form_990_difference": 0,
+            "award_expenditures": 60000,
+            "journal_balance_difference": 0
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "example-us-education-auxiliary-services-bridge",
+    "kind": "example",
+    "title": "US education auxiliary services and fee routing synthetic bridge",
+    "summary": "Synthetic education example with arithmetic, controls and explicit counterexamples.",
+    "topics": [
+      "Accounting and reporting",
+      "Educational Services",
+      "Synthetic examples"
+    ],
+    "industries": [
+      "Educational Services"
+    ],
+    "jurisdiction": "United States; declared entity and reporting framework required",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_construction_fasb_2014_09",
+      "src_education_gasb35",
+      "src_education_irs_p598_auxiliary"
+    ],
+    "related_ids": [
+      "guide-us-education-auxiliary-services",
+      "workflow-us-education-auxiliary-services",
+      "ctrl-us-education-auxiliary-services"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-19",
+    "provenance": {
+      "added_on": "2026-09-19",
+      "reviewer": "Codex AI-assisted original-source research",
+      "note": "Bounded US education completion synthesis from selected original public sources. No professional review, operational evidence or current consolidated Codification/GASB conclusion is asserted."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not stored; original publisher rights apply",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": "Original factual metadata and synthesis only; external full text is not stored."
+    },
+    "data": {
+      "version": "1.0.0",
+      "origin": "Original synthetic project-authored example.",
+      "scope": "A 10-week auxiliary housing service for 40 students at $2,000 each, with a separate commercial lease counterexample.",
+      "frameworks": [
+        "US GAAP selected model",
+        "GASB routing counterexample",
+        "US federal tax boundary"
+      ],
+      "close_period": {
+        "start": "2026-01-01",
+        "end": "2026-12-31",
+        "cutoff": "2026-12-31"
+      },
+      "assumptions": [
+        "40 service contracts at $2,000 each, cash collected at start: $80,000.",
+        "The service is delivered evenly over 10 weeks; after week 2, 20% is delivered.",
+        "The fixture is not tuition and has no student-aid or appropriation component.",
+        "Tax treatment is a separate factual branch."
+      ],
+      "inputs": {
+        "contracts": 40,
+        "price_each": 2000,
+        "cash_received": 80000,
+        "weeks_total": 10,
+        "weeks_delivered": 2,
+        "service_revenue": 16000,
+        "deferred_service": 64000,
+        "direct_costs_incurred": 6000
+      },
+      "journals": [
+        {
+          "id": "A1",
+          "debit": "cash",
+          "credit": "deferred_auxiliary_service_revenue",
+          "amount": 80000
+        },
+        {
+          "id": "A2",
+          "debit": "deferred_auxiliary_service_revenue",
+          "credit": "auxiliary_service_revenue",
+          "amount": 16000
+        },
+        {
+          "id": "A3",
+          "debit": "auxiliary_service_expense",
+          "credit": "cash_or_payable",
+          "amount": 6000
+        }
+      ],
+      "calculation": {
+        "cash": 80000,
+        "deferred_revenue": 64000,
+        "recognized_revenue": 16000,
+        "expense": 6000,
+        "journal_balance_difference": 0
+      },
+      "counterexamples": [
+        "A public appropriation is not a customer service fee.",
+        "A commercial lease with substantial services may have a different federal tax boundary than bare rent.",
+        "A bundled instructional housing promise needs separate-service and allocation evidence."
+      ],
+      "limitations": [
+        "Synthetic example, not an operational ledger or tax conclusion.",
+        "Historical ASU and GASB text are locator aids; current consolidated requirements were not reviewed."
+      ],
+      "examples": [
+        {
+          "id": "base-service",
+          "label": "Base synthetic service-period branch",
+          "assumptions": [
+            "40 contracts at $2,000",
+            "2 of 10 service weeks delivered"
+          ],
+          "result": "Recognize $16,000 and retain $64,000 deferred after the $80,000 cash receipt."
+        },
+        {
+          "id": "commercial-lease",
+          "label": "Independent tax counterexample",
+          "assumptions": [
+            "Commercial lease includes substantial services"
+          ],
+          "result": "Route for separate UBIT and lease analysis; do not reuse the base education-service conclusion."
+        }
+      ]
+    }
+  },
+  {
+    "id": "example-us-education-federal-grant-bridge",
+    "kind": "example",
+    "title": "US education grants and restricted-award routing synthetic bridge",
+    "summary": "Synthetic education example with arithmetic, controls and explicit counterexamples.",
+    "topics": [
+      "Accounting and reporting",
+      "Educational Services",
+      "Synthetic examples"
+    ],
+    "industries": [
+      "Educational Services"
+    ],
+    "jurisdiction": "United States; declared entity and reporting framework required",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_nonprofit_fasb_2018_08",
+      "src_cfr200grants",
+      "src_education_fsa_2526_disbursement",
+      "src_education_gasb35"
+    ],
+    "related_ids": [
+      "guide-us-education-federal-grants",
+      "workflow-us-education-federal-grants",
+      "ctrl-us-education-federal-grants"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-19",
+    "provenance": {
+      "added_on": "2026-09-19",
+      "reviewer": "Codex AI-assisted original-source research",
+      "note": "Bounded US education completion synthesis from selected original public sources. No professional review, operational evidence or current consolidated Codification/GASB conclusion is asserted."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not stored; original publisher rights apply",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": "Original factual metadata and synthesis only; external full text is not stored."
+    },
+    "data": {
+      "version": "1.0.0",
+      "origin": "Original synthetic project-authored example.",
+      "scope": "A $120,000 federal award with three $40,000 conditional milestones; the base branch recognizes one tranche only after documented eligible-cost and milestone evidence.",
+      "frameworks": [
+        "US GAAP selected nonprofit route",
+        "2 CFR Part 200 award-control route"
+      ],
+      "close_period": {
+        "start": "2026-01-01",
+        "end": "2026-12-31",
+        "cutoff": "2026-12-31"
+      },
+      "assumptions": [
+        "Cash of $120,000 is received before any milestone is met.",
+        "The first $40,000 milestone is met on 2026-06-30 and has a documented return right before that date.",
+        "$30,000 of costs are eligible and allocable to the first tranche; $10,000 is held for later eligible activity.",
+        "The example does not decide whether a real agreement is a contribution or exchange without reading its terms."
+      ],
+      "journals": [
+        {
+          "id": "G1",
+          "debit": "cash",
+          "credit": "refundable_advance",
+          "amount": 120000
+        },
+        {
+          "id": "G2",
+          "debit": "refundable_advance",
+          "credit": "contribution_or_award_revenue",
+          "amount": 40000
+        },
+        {
+          "id": "G3",
+          "debit": "eligible_program_expense",
+          "credit": "cash_or_payable",
+          "amount": 30000
+        }
+      ],
+      "calculation": {
+        "cash_received": 120000,
+        "recognized_first_tranche": 40000,
+        "unrecognized_conditional_balance": 80000,
+        "eligible_cost": 30000,
+        "journal_balance_difference": 0
+      },
+      "counterexamples": [
+        "A reciprocal contract with commensurate provider value may be exchange revenue.",
+        "A cost that fails necessary, reasonable or allocable tests cannot be made allowable by a balanced ledger.",
+        "Title IV credit-balance administration is not proof of award revenue recognition."
+      ],
+      "limitations": [
+        "Synthetic award terms and costs; no agency award or operational evidence.",
+        "Current consolidated GAAP, agency supplements and professional compliance review remain open."
+      ],
+      "examples": [
+        {
+          "id": "conditional-award",
+          "label": "Base synthetic conditional-award branch",
+          "assumptions": [
+            "$120,000 cash before three milestone barriers",
+            "one $40,000 milestone verified"
+          ],
+          "result": "Recognize only the verified tranche in the illustrative branch and retain $80,000 conditional."
+        },
+        {
+          "id": "exchange-contract",
+          "label": "Independent exchange counterexample",
+          "assumptions": [
+            "Provider receives commensurate value"
+          ],
+          "result": "Route outside the contribution branch and read the applicable revenue guidance."
+        }
+      ]
+    }
+  },
+  {
+    "id": "example-us-education-public-appropriation-routing",
+    "kind": "example",
+    "title": "US public education appropriations and reporting-model routing synthetic bridge",
+    "summary": "Synthetic education example with arithmetic, controls and explicit counterexamples.",
+    "topics": [
+      "Accounting and reporting",
+      "Educational Services",
+      "Synthetic examples"
+    ],
+    "industries": [
+      "Educational Services"
+    ],
+    "jurisdiction": "United States; declared entity and reporting framework required",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_education_gasb35",
+      "src_roadmap_gasb34_basis"
+    ],
+    "related_ids": [
+      "guide-us-education-public-appropriations",
+      "workflow-us-education-public-appropriations",
+      "ctrl-us-education-public-appropriations"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-19",
+    "provenance": {
+      "added_on": "2026-09-19",
+      "reviewer": "Codex AI-assisted original-source research",
+      "note": "Bounded US education completion synthesis from selected original public sources. No professional review, operational evidence or current consolidated Codification/GASB conclusion is asserted."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not stored; original publisher rights apply",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": "Original factual metadata and synthesis only; external full text is not stored."
+    },
+    "data": {
+      "version": "1.0.0",
+      "origin": "Original synthetic project-authored example.",
+      "scope": "A public college receives a $1,200,000 primary-government appropriation and $800,000 tuition fees. The fixture keeps the appropriation outside the tuition subledger and shows a historical GASB 35 business-type presentation branch.",
+      "frameworks": [
+        "GASB historical routing example"
+      ],
+      "close_period": {
+        "start": "2026-01-01",
+        "end": "2026-12-31",
+        "cutoff": "2026-12-31"
+      },
+      "assumptions": [
+        "The legal appropriation is from the primary government and is not a student exchange transaction.",
+        "The $800,000 tuition receipt is separately supported by enrollment and service evidence.",
+        "The $1,200,000 amount is shown as nonoperating in the historical business-type illustration branch only.",
+        "Current GASB reporting model and amendments are not concluded."
+      ],
+      "journals": [
+        {
+          "id": "P1",
+          "debit": "cash",
+          "credit": "appropriation_revenue_or_transfer",
+          "amount": 1200000
+        },
+        {
+          "id": "P2",
+          "debit": "cash_or_receivable",
+          "credit": "tuition_revenue",
+          "amount": 800000
+        }
+      ],
+      "calculation": {
+        "appropriation": 1200000,
+        "tuition": 800000,
+        "cash_or_receivable_total": 2000000,
+        "journal_balance_difference": 0
+      },
+      "counterexamples": [
+        "A tuition charge is not an appropriation.",
+        "A capital-purpose appropriation may require a different presentation.",
+        "A public activity with external fees does not by itself determine the entire institution reporting model."
+      ],
+      "limitations": [
+        "Synthetic public-college fixture.",
+        "Historical GASB 35 illustration is not a current consolidated GASB conclusion or professional review."
+      ],
+      "examples": [
+        {
+          "id": "primary-government",
+          "label": "Historical business-type presentation branch",
+          "assumptions": [
+            "$1,200,000 primary-government appropriation",
+            "$800,000 tuition"
+          ],
+          "result": "Keep appropriation outside tuition and show the historical nonoperating illustration branch pending current GASB review."
+        },
+        {
+          "id": "capital-purpose",
+          "label": "Independent capital-purpose counterexample",
+          "assumptions": [
+            "Appropriation restricted to capital purpose"
+          ],
+          "result": "Escalate for separate presentation and current GASB applicability."
+        }
+      ]
+    }
+  },
+  {
+    "id": "example-us-education-endowment-rollforward",
+    "kind": "example",
+    "title": "US education endowment and restricted-resource routing synthetic bridge",
+    "summary": "Synthetic education example with arithmetic, controls and explicit counterexamples.",
+    "topics": [
+      "Accounting and reporting",
+      "Educational Services",
+      "Synthetic examples"
+    ],
+    "industries": [
+      "Educational Services"
+    ],
+    "jurisdiction": "United States; declared entity and reporting framework required",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_nonprofit_fasb_2016_14",
+      "src_nonprofit_illinois_upmifa_2009",
+      "src_nonprofit_fasb_2018_08"
+    ],
+    "related_ids": [
+      "guide-us-education-endowment-routing",
+      "workflow-us-education-endowment-routing",
+      "ctrl-us-education-endowment-routing"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-19",
+    "provenance": {
+      "added_on": "2026-09-19",
+      "reviewer": "Codex AI-assisted original-source research",
+      "note": "Bounded US education completion synthesis from selected original public sources. No professional review, operational evidence or current consolidated Codification/GASB conclusion is asserted."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not stored; original publisher rights apply",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": "Original factual metadata and synthesis only; external full text is not stored."
+    },
+    "data": {
+      "version": "1.0.0",
+      "origin": "Original synthetic project-authored example.",
+      "scope": "A nongovernmental nonprofit college has a donor-restricted endowment opening balance of $1,000,000, investment return of $60,000, spending of $40,000 and a separate board-designated quasi-endowment of $200,000.",
+      "frameworks": [
+        "US GAAP selected nonprofit route",
+        "Selected Illinois law example"
+      ],
+      "close_period": {
+        "start": "2026-01-01",
+        "end": "2026-12-31",
+        "cutoff": "2026-12-31"
+      },
+      "assumptions": [
+        "The donor instrument restricts the $1,000,000 fund; board designation applies only to the separate $200,000 fund.",
+        "The $40,000 spending is approved and documented under the applicable instrument and policy.",
+        "The $60,000 return is allocated to the donor-restricted fund under the selected policy.",
+        "Illinois law is only a routing example; governing law must be confirmed."
+      ],
+      "journals": [
+        {
+          "id": "E1",
+          "debit": "investments_or_cash",
+          "credit": "net_assets_with_donor_restrictions_return",
+          "amount": 60000
+        },
+        {
+          "id": "E2",
+          "debit": "net_assets_with_donor_restrictions_spending",
+          "credit": "cash_or_payable",
+          "amount": 40000
+        },
+        {
+          "id": "E3",
+          "debit": "net_assets_with_donor_restrictions",
+          "credit": "net_assets_without_donor_restrictions_release",
+          "amount": 40000
+        }
+      ],
+      "calculation": {
+        "donor_restricted_opening": 1000000,
+        "investment_return": 60000,
+        "spending": -40000,
+        "donor_restricted_ending": 1020000,
+        "board_designated_quasi_endowment": 200000,
+        "journal_balance_difference": 0
+      },
+      "counterexamples": [
+        "Board designation is not donor restriction.",
+        "Endowment spending is not automatically tuition revenue.",
+        "An underwater or modified fund requires separate evidence and may not follow the base branch."
+      ],
+      "limitations": [
+        "Synthetic fund rollforward.",
+        "Pending nonprofit source dependencies must be present before integration.",
+        "No donor instrument, live fund, legal opinion or professional review."
+      ],
+      "examples": [
+        {
+          "id": "donor-restricted",
+          "label": "Base synthetic donor-restricted branch",
+          "assumptions": [
+            "$1,000,000 opening restricted fund",
+            "$60,000 return",
+            "$40,000 approved spending"
+          ],
+          "result": "Ending donor-restricted balance is $1,020,000 before any separately supported release presentation."
+        },
+        {
+          "id": "board-designated",
+          "label": "Independent board-designated counterexample",
+          "assumptions": [
+            "$200,000 board designation without donor restriction"
+          ],
+          "result": "Track separately from donor-restricted endowment and retain board evidence."
+        }
+      ]
+    }
   }
 ]
