@@ -1,12 +1,12 @@
 {
   "schema_version": "1.0.0",
-  "mapping_version": "2026-09-19.12405",
+  "mapping_version": "2026-09-19.12406",
   "topology_version": "2026-09-11.1",
-  "corpus_version": "2026-09-19.12405",
+  "corpus_version": "2026-09-19.12406",
   "generated_at": "2026-09-19",
-  "corpus_sha256": "68b597b468bd1e3d1d1f196b96c7ecb948ddbb8c57e32d06695269d3d120be95",
+  "corpus_sha256": "5cf5786b49c3e4d1f464af5845bcc0f5ede09a18b38422bb2bb1b4420420d760",
   "rules_sha256": "550b2bb485399af996bac6ed34542d7a91170d4b31b5e5026e0e9c2c32068b9d",
-  "overrides_sha256": "6bdc0b662c3ad4a4af463e1fae9bbcfc13b6ffe4fcdfccb2fb861cf61bf12ed2",
+  "overrides_sha256": "4e9969e19dd168a16d8bbd328328bda5ac364dcb2a7cae80d182865210ce6e30",
   "method": "Deterministic title/topic associations, conservative industry crosswalk, and explicit editorial additions. All initial links are candidates; source review status is unchanged.",
   "mappings": [
     {
@@ -6298,6 +6298,94 @@
       "industry_scope": "shared-context",
       "industry_mappings": [],
       "note": "Synthetic example association reviewed for named-family navigation only; no accounting adequacy, industry coverage or professional verification is conferred."
+    },
+    {
+      "record_id": "example-us-tax-foundations-boundary",
+      "question_mappings": [
+        {
+          "question_id": "q-income-tax",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/editorial_review",
+              "matched": "Original synthetic AA-I122 fixture explicitly covers five US tax families and supports discovery navigation only; it does not establish taxpayer, industry, or professional adequacy.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/editorial_review",
+              "matched": "2026-09-18: AA-I122 synthetic fixture association reviewed for named-family navigation only; no filing authority, tax conclusion, industry coverage, or professional verification is conferred.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-indirect-tax",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/editorial_review",
+              "matched": "Original synthetic AA-I122 fixture explicitly covers five US tax families and supports discovery navigation only; it does not establish taxpayer, industry, or professional adequacy.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/editorial_review",
+              "matched": "2026-09-18: AA-I122 synthetic fixture association reviewed for named-family navigation only; no filing authority, tax conclusion, industry coverage, or professional verification is conferred.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-international-tax",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/editorial_review",
+              "matched": "Original synthetic AA-I122 fixture explicitly covers five US tax families and supports discovery navigation only; it does not establish taxpayer, industry, or professional adequacy.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/editorial_review",
+              "matched": "2026-09-18: AA-I122 synthetic fixture association reviewed for named-family navigation only; no filing authority, tax conclusion, industry coverage, or professional verification is conferred.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-tax-methods",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/editorial_review",
+              "matched": "Original synthetic AA-I122 fixture explicitly covers five US tax families and supports discovery navigation only; it does not establish taxpayer, industry, or professional adequacy.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/editorial_review",
+              "matched": "2026-09-18: AA-I122 synthetic fixture association reviewed for named-family navigation only; no filing authority, tax conclusion, industry coverage, or professional verification is conferred.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-tax-returns",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/editorial_review",
+              "matched": "Original synthetic AA-I122 fixture explicitly covers five US tax families and supports discovery navigation only; it does not establish taxpayer, industry, or professional adequacy.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/editorial_review",
+              "matched": "2026-09-18: AA-I122 synthetic fixture association reviewed for named-family navigation only; no filing authority, tax conclusion, industry coverage, or professional verification is conferred.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "AA-I122 synthetic fixture association reviewed for named-family navigation only; no filing authority, tax conclusion, industry coverage, or professional verification is conferred."
     },
     {
       "record_id": "guide-aa-i124-institutional",
@@ -19363,12 +19451,12 @@
           "basis": [
             {
               "field": "/data/research_questions",
-              "matched": "The explicitly scoped research questions and original synthesis support discovery associations only. Detailed-industry adequacy is separately assessed.",
+              "matched": "The explicitly scoped AA-I122 US tax questions and original synthesis support discovery associations only. Detailed-industry adequacy, taxpayer applicability, filing authority, and professional verification are separate.",
               "rule": "editorial-association"
             },
             {
               "field": "/data/research_questions",
-              "matched": "2026-09-11: Reviewed discovery relationship to the named questions and explicitly declared industry scope; does not confer accounting adequacy or professional verification.",
+              "matched": "2026-09-18: AA-I122 guide association reviewed for the named US tax question only; it does not confer family-wide adequacy or professional verification.",
               "rule": "editorial-review"
             }
           ]
@@ -19376,7 +19464,7 @@
       ],
       "industry_scope": "shared-context",
       "industry_mappings": [],
-      "note": "Reviewed discovery relationship to the named questions and explicitly declared industry scope; does not confer accounting adequacy or professional verification."
+      "note": "AA-I122 guide association reviewed for the named US tax question only; it does not confer family-wide adequacy or professional verification."
     },
     {
       "record_id": "guide-q-indirect-tax",
@@ -19387,12 +19475,12 @@
           "basis": [
             {
               "field": "/data/research_questions",
-              "matched": "The explicitly scoped research questions and original synthesis support discovery associations only. Detailed-industry adequacy is separately assessed.",
+              "matched": "The explicitly scoped AA-I122 US tax questions and original synthesis support discovery associations only. Detailed-industry adequacy, taxpayer applicability, filing authority, and professional verification are separate.",
               "rule": "editorial-association"
             },
             {
               "field": "/data/research_questions",
-              "matched": "2026-09-11: Reviewed discovery relationship to the named questions and explicitly declared industry scope; does not confer accounting adequacy or professional verification.",
+              "matched": "2026-09-18: AA-I122 guide association reviewed for the named US tax question only; it does not confer family-wide adequacy or professional verification.",
               "rule": "editorial-review"
             }
           ]
@@ -19400,7 +19488,7 @@
       ],
       "industry_scope": "shared-context",
       "industry_mappings": [],
-      "note": "Reviewed discovery relationship to the named questions and explicitly declared industry scope; does not confer accounting adequacy or professional verification."
+      "note": "AA-I122 guide association reviewed for the named US tax question only; it does not confer family-wide adequacy or professional verification."
     },
     {
       "record_id": "guide-q-insurance-policyholder",
@@ -19507,12 +19595,12 @@
           "basis": [
             {
               "field": "/data/research_questions",
-              "matched": "The explicitly scoped research questions and original synthesis support discovery associations only. Detailed-industry adequacy is separately assessed.",
+              "matched": "The explicitly scoped AA-I122 US tax questions and original synthesis support discovery associations only. Detailed-industry adequacy, taxpayer applicability, filing authority, and professional verification are separate.",
               "rule": "editorial-association"
             },
             {
               "field": "/data/research_questions",
-              "matched": "2026-09-11: Reviewed discovery relationship to the named questions and explicitly declared industry scope; does not confer accounting adequacy or professional verification.",
+              "matched": "2026-09-18: AA-I122 guide association reviewed for the named US tax question only; it does not confer family-wide adequacy or professional verification.",
               "rule": "editorial-review"
             }
           ]
@@ -19520,7 +19608,7 @@
       ],
       "industry_scope": "shared-context",
       "industry_mappings": [],
-      "note": "Reviewed discovery relationship to the named questions and explicitly declared industry scope; does not confer accounting adequacy or professional verification."
+      "note": "AA-I122 guide association reviewed for the named US tax question only; it does not confer family-wide adequacy or professional verification."
     },
     {
       "record_id": "guide-q-inventory",
@@ -20131,12 +20219,12 @@
           "basis": [
             {
               "field": "/data/research_questions",
-              "matched": "The explicitly scoped research questions and original synthesis support discovery associations only. Detailed-industry adequacy is separately assessed.",
+              "matched": "The explicitly scoped AA-I122 US tax questions and original synthesis support discovery associations only. Detailed-industry adequacy, taxpayer applicability, filing authority, and professional verification are separate.",
               "rule": "editorial-association"
             },
             {
               "field": "/data/research_questions",
-              "matched": "2026-09-11: Reviewed discovery relationship to the named questions and explicitly declared industry scope; does not confer accounting adequacy or professional verification.",
+              "matched": "2026-09-18: AA-I122 guide association reviewed for the named US tax question only; it does not confer family-wide adequacy or professional verification.",
               "rule": "editorial-review"
             }
           ]
@@ -20144,7 +20232,7 @@
       ],
       "industry_scope": "shared-context",
       "industry_mappings": [],
-      "note": "Reviewed discovery relationship to the named questions and explicitly declared industry scope; does not confer accounting adequacy or professional verification."
+      "note": "AA-I122 guide association reviewed for the named US tax question only; it does not confer family-wide adequacy or professional verification."
     },
     {
       "record_id": "guide-q-tax-returns",
@@ -20155,12 +20243,12 @@
           "basis": [
             {
               "field": "/data/research_questions",
-              "matched": "The explicitly scoped research questions and original synthesis support discovery associations only. Detailed-industry adequacy is separately assessed.",
+              "matched": "The explicitly scoped AA-I122 US tax questions and original synthesis support discovery associations only. Detailed-industry adequacy, taxpayer applicability, filing authority, and professional verification are separate.",
               "rule": "editorial-association"
             },
             {
               "field": "/data/research_questions",
-              "matched": "2026-09-11: Reviewed discovery relationship to the named questions and explicitly declared industry scope; does not confer accounting adequacy or professional verification.",
+              "matched": "2026-09-18: AA-I122 guide association reviewed for the named US tax question only; it does not confer family-wide adequacy or professional verification.",
               "rule": "editorial-review"
             }
           ]
@@ -20168,7 +20256,7 @@
       ],
       "industry_scope": "shared-context",
       "industry_mappings": [],
-      "note": "Reviewed discovery relationship to the named questions and explicitly declared industry scope; does not confer accounting adequacy or professional verification."
+      "note": "AA-I122 guide association reviewed for the named US tax question only; it does not confer family-wide adequacy or professional verification."
     },
     {
       "record_id": "guide-q-valuation-impairment",
@@ -33284,6 +33372,382 @@
       "note": "Source editions and named-question limits govern; no professional verification."
     },
     {
+      "record_id": "src_aa122_ecfr_methods",
+      "question_mappings": [
+        {
+          "question_id": "q-tax-methods",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/source_review/mapping_rationale",
+              "matched": "Exact named AA-I122 tax questions cite this source within a bounded US scope; the association supports discovery only and does not establish tax adequacy, industry coverage, filing authority, or professional verification.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/source_review/mapping_rationale",
+              "matched": "2026-09-18: AA-I122 source association reviewed for the bounded US tax package; shared context only, with no industry descendant or sufficiency credit.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "AA-I122 source association reviewed for the bounded US tax package; shared context only, with no industry descendant or sufficiency credit."
+    },
+    {
+      "record_id": "src_aa122_ecfr_source",
+      "question_mappings": [
+        {
+          "question_id": "q-international-tax",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/source_review/mapping_rationale",
+              "matched": "Exact named AA-I122 tax questions cite this source within a bounded US scope; the association supports discovery only and does not establish tax adequacy, industry coverage, filing authority, or professional verification.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/source_review/mapping_rationale",
+              "matched": "2026-09-18: AA-I122 source association reviewed for the bounded US tax package; shared context only, with no industry descendant or sufficiency credit.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "AA-I122 source association reviewed for the bounded US tax package; shared context only, with no industry descendant or sufficiency credit."
+    },
+    {
+      "record_id": "src_aa122_ecfr_withholding",
+      "question_mappings": [
+        {
+          "question_id": "q-international-tax",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/source_review/mapping_rationale",
+              "matched": "Exact named AA-I122 tax questions cite this source within a bounded US scope; the association supports discovery only and does not establish tax adequacy, industry coverage, filing authority, or professional verification.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/source_review/mapping_rationale",
+              "matched": "2026-09-18: AA-I122 source association reviewed for the bounded US tax package; shared context only, with no industry descendant or sufficiency credit.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "AA-I122 source association reviewed for the bounded US tax package; shared context only, with no industry descendant or sufficiency credit."
+    },
+    {
+      "record_id": "src_aa122_fasb_topic740_2025",
+      "question_mappings": [
+        {
+          "question_id": "q-income-tax",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/source_review/mapping_rationale",
+              "matched": "Exact named AA-I122 tax questions cite this source within a bounded US scope; the association supports discovery only and does not establish tax adequacy, industry coverage, filing authority, or professional verification.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/source_review/mapping_rationale",
+              "matched": "2026-09-18: AA-I122 source association reviewed for the bounded US tax package; shared context only, with no industry descendant or sufficiency credit.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "AA-I122 source association reviewed for the bounded US tax package; shared context only, with no industry descendant or sufficiency credit."
+    },
+    {
+      "record_id": "src_aa122_irs_i1042_2025",
+      "question_mappings": [
+        {
+          "question_id": "q-tax-returns",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/source_review/mapping_rationale",
+              "matched": "Exact named AA-I122 tax questions cite this source within a bounded US scope; the association supports discovery only and does not establish tax adequacy, industry coverage, filing authority, or professional verification.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/source_review/mapping_rationale",
+              "matched": "2026-09-18: AA-I122 source association reviewed for the bounded US tax package; shared context only, with no industry descendant or sufficiency credit.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "AA-I122 source association reviewed for the bounded US tax package; shared context only, with no industry descendant or sufficiency credit."
+    },
+    {
+      "record_id": "src_aa122_irs_i1042s_2026",
+      "question_mappings": [
+        {
+          "question_id": "q-tax-returns",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/source_review/mapping_rationale",
+              "matched": "Exact named AA-I122 tax questions cite this source within a bounded US scope; the association supports discovery only and does not establish tax adequacy, industry coverage, filing authority, or professional verification.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/source_review/mapping_rationale",
+              "matched": "2026-09-18: AA-I122 source association reviewed for the bounded US tax package; shared context only, with no industry descendant or sufficiency credit.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "AA-I122 source association reviewed for the bounded US tax package; shared context only, with no industry descendant or sufficiency credit."
+    },
+    {
+      "record_id": "src_aa122_irs_i1120_2025",
+      "question_mappings": [
+        {
+          "question_id": "q-income-tax",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/source_review/mapping_rationale",
+              "matched": "Exact named AA-I122 tax questions cite this source within a bounded US scope; the association supports discovery only and does not establish tax adequacy, industry coverage, filing authority, or professional verification.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/source_review/mapping_rationale",
+              "matched": "2026-09-18: AA-I122 source association reviewed for the bounded US tax package; shared context only, with no industry descendant or sufficiency credit.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-indirect-tax",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/source_review/mapping_rationale",
+              "matched": "Exact named AA-I122 tax questions cite this source within a bounded US scope; the association supports discovery only and does not establish tax adequacy, industry coverage, filing authority, or professional verification.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/source_review/mapping_rationale",
+              "matched": "2026-09-18: AA-I122 source association reviewed for the bounded US tax package; shared context only, with no industry descendant or sufficiency credit.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-tax-returns",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/source_review/mapping_rationale",
+              "matched": "Exact named AA-I122 tax questions cite this source within a bounded US scope; the association supports discovery only and does not establish tax adequacy, industry coverage, filing authority, or professional verification.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/source_review/mapping_rationale",
+              "matched": "2026-09-18: AA-I122 source association reviewed for the bounded US tax package; shared context only, with no industry descendant or sufficiency credit.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "AA-I122 source association reviewed for the bounded US tax package; shared context only, with no industry descendant or sufficiency credit."
+    },
+    {
+      "record_id": "src_aa122_irs_presumption",
+      "question_mappings": [
+        {
+          "question_id": "q-international-tax",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/source_review/mapping_rationale",
+              "matched": "Exact named AA-I122 tax questions cite this source within a bounded US scope; the association supports discovery only and does not establish tax adequacy, industry coverage, filing authority, or professional verification.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/source_review/mapping_rationale",
+              "matched": "2026-09-18: AA-I122 source association reviewed for the bounded US tax package; shared context only, with no industry descendant or sufficiency credit.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-tax-returns",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/source_review/mapping_rationale",
+              "matched": "Exact named AA-I122 tax questions cite this source within a bounded US scope; the association supports discovery only and does not establish tax adequacy, industry coverage, filing authority, or professional verification.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/source_review/mapping_rationale",
+              "matched": "2026-09-18: AA-I122 source association reviewed for the bounded US tax package; shared context only, with no industry descendant or sufficiency credit.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "AA-I122 source association reviewed for the bounded US tax package; shared context only, with no industry descendant or sufficiency credit."
+    },
+    {
+      "record_id": "src_aa122_irs_w8bene",
+      "question_mappings": [
+        {
+          "question_id": "q-international-tax",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/source_review/mapping_rationale",
+              "matched": "Exact named AA-I122 tax questions cite this source within a bounded US scope; the association supports discovery only and does not establish tax adequacy, industry coverage, filing authority, or professional verification.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/source_review/mapping_rationale",
+              "matched": "2026-09-18: AA-I122 source association reviewed for the bounded US tax package; shared context only, with no industry descendant or sufficiency credit.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-tax-returns",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/source_review/mapping_rationale",
+              "matched": "Exact named AA-I122 tax questions cite this source within a bounded US scope; the association supports discovery only and does not establish tax adequacy, industry coverage, filing authority, or professional verification.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/source_review/mapping_rationale",
+              "matched": "2026-09-18: AA-I122 source association reviewed for the bounded US tax package; shared context only, with no industry descendant or sufficiency credit.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "AA-I122 source association reviewed for the bounded US tax package; shared context only, with no industry descendant or sufficiency credit."
+    },
+    {
+      "record_id": "src_aa122_usc26_income",
+      "question_mappings": [
+        {
+          "question_id": "q-income-tax",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/source_review/mapping_rationale",
+              "matched": "Exact named AA-I122 tax questions cite this source within a bounded US scope; the association supports discovery only and does not establish tax adequacy, industry coverage, filing authority, or professional verification.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/source_review/mapping_rationale",
+              "matched": "2026-09-18: AA-I122 source association reviewed for the bounded US tax package; shared context only, with no industry descendant or sufficiency credit.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "AA-I122 source association reviewed for the bounded US tax package; shared context only, with no industry descendant or sufficiency credit."
+    },
+    {
+      "record_id": "src_aa122_usc26_methods",
+      "question_mappings": [
+        {
+          "question_id": "q-tax-methods",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/source_review/mapping_rationale",
+              "matched": "Exact named AA-I122 tax questions cite this source within a bounded US scope; the association supports discovery only and does not establish tax adequacy, industry coverage, filing authority, or professional verification.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/source_review/mapping_rationale",
+              "matched": "2026-09-18: AA-I122 source association reviewed for the bounded US tax package; shared context only, with no industry descendant or sufficiency credit.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "AA-I122 source association reviewed for the bounded US tax package; shared context only, with no industry descendant or sufficiency credit."
+    },
+    {
+      "record_id": "src_aa122_usc26_residence_source",
+      "question_mappings": [
+        {
+          "question_id": "q-international-tax",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/source_review/mapping_rationale",
+              "matched": "Exact named AA-I122 tax questions cite this source within a bounded US scope; the association supports discovery only and does not establish tax adequacy, industry coverage, filing authority, or professional verification.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/source_review/mapping_rationale",
+              "matched": "2026-09-18: AA-I122 source association reviewed for the bounded US tax package; shared context only, with no industry descendant or sufficiency credit.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "AA-I122 source association reviewed for the bounded US tax package; shared context only, with no industry descendant or sufficiency credit."
+    },
+    {
+      "record_id": "src_aa122_usc26_withholding",
+      "question_mappings": [
+        {
+          "question_id": "q-international-tax",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/source_review/mapping_rationale",
+              "matched": "Exact named AA-I122 tax questions cite this source within a bounded US scope; the association supports discovery only and does not establish tax adequacy, industry coverage, filing authority, or professional verification.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/source_review/mapping_rationale",
+              "matched": "2026-09-18: AA-I122 source association reviewed for the bounded US tax package; shared context only, with no industry descendant or sufficiency credit.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "AA-I122 source association reviewed for the bounded US tax package; shared context only, with no industry descendant or sufficiency credit."
+    },
+    {
       "record_id": "src_aadp",
       "question_mappings": [
         {
@@ -36638,7 +37102,7 @@
             },
             {
               "field": "/data",
-              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "matched": "2026-09-18: Question-level citation association reviewed; no industry descendant or sufficiency credit. AA-I122 association reviewed within the bounded US tax package.",
               "rule": "editorial-review"
             }
           ]
@@ -36657,7 +37121,7 @@
       ],
       "industry_scope": "shared-context",
       "industry_mappings": [],
-      "note": "Question-level citation association reviewed; no industry descendant or sufficiency credit."
+      "note": "Question-level citation association reviewed; no industry descendant or sufficiency credit. AA-I122 association reviewed within the bounded US tax package."
     },
     {
       "record_id": "src_construction_texas_trust_funds",
@@ -41297,10 +41761,27 @@
     },
     {
       "record_id": "src_irs_pub15_2026",
-      "question_mappings": [],
+      "question_mappings": [
+        {
+          "question_id": "q-indirect-tax",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Exact named AA-I122 tax questions cite this source within a bounded US scope; the association supports discovery only and does not establish tax adequacy, industry coverage, filing authority, or professional verification.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-18: Question-level citation association reviewed; no industry descendant or sufficiency credit. AA-I122 association reviewed within the bounded US tax package.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
       "industry_scope": "shared-context",
       "industry_mappings": [],
-      "note": "Shared context; no industry-specific coverage credit."
+      "note": "Question-level citation association reviewed; no industry descendant or sufficiency credit. AA-I122 association reviewed within the bounded US tax package."
     },
     {
       "record_id": "src_irs1099",
@@ -44755,7 +45236,7 @@
             },
             {
               "field": "/data",
-              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "matched": "2026-09-18: Question-level citation association reviewed; no industry descendant or sufficiency credit. AA-I122 association reviewed within the bounded US tax package.",
               "rule": "editorial-review"
             }
           ]
@@ -44763,7 +45244,7 @@
       ],
       "industry_scope": "shared-context",
       "industry_mappings": [],
-      "note": "Question-level citation association reviewed; no industry descendant or sufficiency credit."
+      "note": "Question-level citation association reviewed; no industry descendant or sufficiency credit. AA-I122 association reviewed within the bounded US tax package."
     },
     {
       "record_id": "src_roadmap_kpmg_ifrs_revenue_2025",
@@ -45322,7 +45803,7 @@
             },
             {
               "field": "/data",
-              "matched": "2026-09-11: Question-level citation association reviewed; no industry descendant or sufficiency credit.",
+              "matched": "2026-09-18: Question-level citation association reviewed; no industry descendant or sufficiency credit. AA-I122 association reviewed within the bounded US tax package.",
               "rule": "editorial-review"
             }
           ]
@@ -45330,7 +45811,7 @@
       ],
       "industry_scope": "shared-context",
       "industry_mappings": [],
-      "note": "Question-level citation association reviewed; no industry descendant or sufficiency credit."
+      "note": "Question-level citation association reviewed; no industry descendant or sufficiency credit. AA-I122 association reviewed within the bounded US tax package."
     },
     {
       "record_id": "src_roadmap_sec_custody_2003",

@@ -1,0 +1,174 @@
+{
+  "id": "example-us-tax-foundations-boundary",
+  "title": "Synthetic US tax provision, filing, withholding, and tax-family boundary fixture",
+  "summary": "Original synthetic scenarios for a US corporate book-to-tax bridge, separate return and withholding populations, a method-change evidence route, cross-border missing-document handling, and the boundary to sales/use/payroll taxes.",
+  "jurisdiction": "United States federal tax; selected Texas sales/use context; synthetic only",
+  "source_ids": [
+    "src_aa122_irs_i1120_2025",
+    "src_aa122_irs_i1042_2025",
+    "src_aa122_irs_i1042s_2026",
+    "src_aa122_irs_w8bene",
+    "src_aa122_irs_presumption",
+    "src_aa122_usc26_income",
+    "src_aa122_usc26_methods",
+    "src_aa122_usc26_residence_source",
+    "src_aa122_usc26_withholding",
+    "src_aa122_ecfr_methods",
+    "src_aa122_ecfr_source",
+    "src_aa122_ecfr_withholding",
+    "src_aa122_fasb_topic740_2025",
+    "src_roadmap_irs_form3115_2022",
+    "src_roadmap_oecd_tp",
+    "src_construction_texas_sales_tax",
+    "src_irs_pub15_2026"
+  ],
+  "related_ids": [],
+  "data": {
+    "editorial_review": {
+      "reviewed_at": "2026-09-18",
+      "reviewer": "Codex AI-assisted original-source and synthetic-fixture review",
+      "status": "editorially-reviewed",
+      "basis": "Arithmetic and evidence-routing branches were checked against the issue package and linked source records. No taxpayer evidence, professional review, or external operational validation was used."
+    },
+    "scope": "All amounts, entities, invoices, certificates, rates, classifications, and dates below are synthetic assumptions. They illustrate retrieval and control boundaries only.",
+    "inputs": [
+      "Declare tax year, entity and recipient roles, accounting basis, payment character, source cutoff, and tax family.",
+      "Preserve unavailable treaty, entity, certificate, rate, classification, and effective-date facts as unresolved rather than filling them in.",
+      "Use source records for routing and citations; do not treat a synthetic event as evidence of a real filing or tax result."
+    ],
+    "examples": [
+      {
+        "id": "book-tax-bridge",
+        "title": "Declared-assumption federal book-to-tax bridge",
+        "facts": {
+          "tax_year": "2025 assumed for illustration",
+          "entity": "Synthetic domestic C corporation",
+          "accounting_basis": "US GAAP context, with authoritative Topic 740 text unavailable in this packet",
+          "pretax_book_income": 200000,
+          "assumed_nondeductible_difference": 5000,
+          "assumed_excess_tax_depreciation_over_book": 20000,
+          "rate": "r, a symbolic input only"
+        },
+        "calculation": [
+          "Taxable-income bridge = 200000 + 5000 - 20000 = 185000.",
+          "Hypothetical current tax = 185000 * r.",
+          "Hypothetical temporary-difference balance from the depreciation assumption = 20000 * r.",
+          "No real tax rate, permanent classification, depreciation method, deferred-tax recognition, or uncertain-position conclusion is asserted."
+        ],
+        "controls": [
+          "Tie every adjustment to a dated evidence row and label it assumed, evidenced, or unresolved.",
+          "Review current tax, deferred tax, rate reconciliation, and tax-return populations separately.",
+          "Do not replace the symbolic rate with a default percentage."
+        ],
+        "unavailable_facts": [
+          "Enacted rate and jurisdictional rate stack",
+          "Actual depreciation methods, placed-in-service dates, and tax basis",
+          "ASC Topic 740 authoritative text and professional provision review",
+          "State, local, foreign, uncertain-position, and valuation-allowance facts"
+        ]
+      },
+      {
+        "id": "return-and-withholding-populations",
+        "title": "Separate Form 1120 and Form 1042-S populations",
+        "facts": {
+          "corporate_return": "Synthetic corporation's annual Form 1120 population for the declared tax year",
+          "withholding_agent_return": "Synthetic payer's Form 1042 and Form 1042-S population for foreign-person payments",
+          "recipient_certificate": "Synthetic W-8BEN-E is present in one branch and expired or missing in another"
+        },
+        "workflow": [
+          "Do not merge the corporation's income-tax return population with the withholding agent's foreign-payee population.",
+          "For the withholding population, reconcile payment rows to Form 1042-S records, then reconcile Form 1042-S totals to Form 1042.",
+          "If the certificate is missing or expired, record the presumption branch and obtain human review; do not infer a percentage."
+        ],
+        "unavailable_facts": [
+          "Actual entity and recipient status",
+          "Payment character, source, treaty claim, beneficial ownership, and rate",
+          "E-file configuration, transmission evidence, and correction event"
+        ]
+      },
+      {
+        "id": "withholding-character-and-place",
+        "title": "Two otherwise similar invoices with different evidence",
+        "invoices": [
+          {
+            "id": "invoice-a",
+            "character": "Synthetic service invoice",
+            "place_of_performance": "All services performed outside the United States in the assumed branch",
+            "certificate": "Current certificate supplied in the assumed branch",
+            "route": "Evidence review required; no withholding result or rate is concluded."
+          },
+          {
+            "id": "invoice-b",
+            "character": "Same nominal service label, but contract and work log show performance in the United States in the assumed branch",
+            "place_of_performance": "United States in the assumed branch",
+            "certificate": "Certificate expired or missing in the assumed branch",
+            "route": "Different source and documentation branch; presumption and human review required."
+          }
+        ],
+        "controls": [
+          "Compare contract, invoice, work log, location, recipient, certificate, and payment-date evidence.",
+          "Do not use the invoice label alone to decide source or withholding.",
+          "Do not use a universal withholding percentage."
+        ],
+        "unavailable_facts": [
+          "Treaty residence and limitation-on-benefits facts",
+          "Beneficial ownership and effectively connected income analysis",
+          "Current regulation and filing-year applicability"
+        ]
+      },
+      {
+        "id": "method-change-bridge",
+        "title": "Method-change routing and section 481(a) bridge",
+        "facts": {
+          "requested_year": "Declared but not populated",
+          "old_method": "Declared but not populated",
+          "proposed_method": "Declared but not populated",
+          "section_481_adjustment": "Not calculated because the affected-item schedule is unavailable"
+        },
+        "workflow": [
+          "Identify the item and Code section, then obtain the current requested-year revenue procedure and Form 3115 instructions.",
+          "Determine automatic or non-automatic routing only after eligibility facts are checked.",
+          "Reconcile old method, proposed method, cumulative difference, inclusion period, prior returns, and exceptions before any filing decision."
+        ],
+        "unavailable_facts": [
+          "Current automatic-change list and taxpayer eligibility",
+          "Affected-item schedule and prior-return method",
+          "Current Form 3115 successor instructions and professional review"
+        ]
+      },
+      {
+        "id": "tax-family-boundary",
+        "title": "Federal income-tax boundary to sales/use and payroll tax",
+        "facts": {
+          "federal_income_tax": "Synthetic Form 1120 and book-to-tax bridge population",
+          "sales_use_tax": "Synthetic Texas contract and destination facts required; no rate or exemption supplied",
+          "payroll_tax": "Synthetic employer and worker population required; no payroll rate or state rule supplied"
+        },
+        "workflow": [
+          "Stop and classify the tax family when a prompt changes from federal income tax to sales/use or payroll tax.",
+          "For sales/use tax, request item, contract, seller, delivery destination, exemption, permit, and nexus facts.",
+          "For payroll tax, request employer, worker, period, withholding, deposit, reporting, and jurisdiction facts."
+        ],
+        "unavailable_facts": [
+          "State-by-state sales/use tax rules",
+          "Worker classification and payroll-period facts",
+          "Current rates, registrations, exemptions, and professional review"
+        ]
+      }
+    ],
+    "limitations": [
+      "Synthetic example: no real taxpayer, invoice, certificate, return, workpaper, or filing is represented.",
+      "The arithmetic is illustrative and uses a symbolic rate and assumed classifications.",
+      "No professional review, licensed Topic 740 review, treaty analysis, rate determination, filing, or empirical agent validation was performed."
+    ],
+    "retrieval_terms": [
+      "US federal income tax",
+      "book-to-tax bridge",
+      "Form 1120",
+      "Form 1042-S",
+      "section 481(a)",
+      "W-8BEN-E",
+      "sales use payroll boundary"
+    ]
+  }
+}
