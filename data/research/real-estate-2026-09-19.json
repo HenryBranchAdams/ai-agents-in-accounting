@@ -1,0 +1,1361 @@
+{
+  "schema_version": "1.0.0",
+  "package_name": "real-estate-rental-leasing-2026-09-19",
+  "package_version": "2026-09-19.107.1",
+  "issue_id": "AA-I107",
+  "current_corpus_version": "2026-09-19.12419",
+  "status": "source-only-pending-integration",
+  "reviewed_at": "2026-09-19",
+  "reviewer": "Codex AI-assisted bounded source research",
+  "baseline": {
+    "source_commit": "a122d3b58607aa4bf8adfa101f011fe612d378f0",
+    "source_release": "2026-09-14.3",
+    "issue_association_count": 3,
+    "associated_record_count": 3,
+    "associated_records": [
+      {
+        "id": "guide-industry-naics2022-531",
+        "kind": "guide",
+        "linked_question_ids": [
+          "q-cost-allocation",
+          "q-data-lineage",
+          "q-human-authority",
+          "q-security",
+          "q-leases"
+        ]
+      },
+      {
+        "id": "guide-industry-naics2022-532",
+        "kind": "guide",
+        "linked_question_ids": [
+          "q-cost-allocation",
+          "q-data-lineage",
+          "q-security",
+          "q-leases",
+          "q-revenue"
+        ]
+      },
+      {
+        "id": "guide-industry-naics2022-533",
+        "kind": "guide",
+        "linked_question_ids": [
+          "q-licensed-content",
+          "q-data-lineage",
+          "q-security",
+          "q-human-authority"
+        ]
+      }
+    ],
+    "association_note": "The three-record baseline is an association inventory, not an adequacy claim. Existing international records are not expanded.",
+    "inventory_note": "The associated guide data records the open question families, role patterns and exceptions. This packet preserves those records and adds six named role questions in a separate guide."
+  },
+  "scope": {
+    "jurisdiction": "United States",
+    "framework": "Selected nongovernmental US GAAP routes; current FASB Codification remains authoritative",
+    "period": "2026 reporting examples; historical source effective periods are recorded per source",
+    "selected_roles": [
+      "property owners and developers",
+      "property managers and brokers",
+      "equipment lessors",
+      "nonfinancial-rights licensors"
+    ],
+    "selected_topics": [
+      "acquisition and development cost routing",
+      "rental incentives and refundable deposits",
+      "property sales",
+      "lessor accounting and bundled services",
+      "managed-property settlements",
+      "time, territory and usage-limited nonfinancial rights"
+    ],
+    "excluded": [
+      "50-state survey",
+      "new international package",
+      "tax-only accounting authority",
+      "professional signoff",
+      "whole-sector sufficiency"
+    ]
+  },
+  "reused_source_ids": [
+    "src_roadmap_naics2022_manual",
+    "src_fasb_asu201602_leases",
+    "src_i120_asu202005_lease_dates",
+    "src_construction_fasb_2014_09",
+    "src_fasb_asu2016_08_principal_agent",
+    "src_aa_i105_fasb_2016_10",
+    "src_1os761s"
+  ],
+  "sources": [],
+  "records": [
+    {
+      "id": "guide-real-estate-us-roles",
+      "kind": "guide",
+      "title": "US real estate, rental and leasing roles: bounded source package",
+      "summary": "A source-only US application for selected property owner/developer, property manager or broker, equipment lessor and nonfinancial-rights licensor roles. It separates property ownership, rental, agency settlement and licensing questions without asserting whole-sector sufficiency.",
+      "topics": [
+        "Scoped research",
+        "Real estate, rental and leasing",
+        "Accounting and reporting",
+        "Revenue and customer contracts",
+        "Leases",
+        "Rights, provenance and reusable data"
+      ],
+      "industries": [
+        "real-estate-sector"
+      ],
+      "jurisdiction": "United States; selected roles and reporting purposes only",
+      "source_type": null,
+      "publisher": "Accounting Agents contributors",
+      "source_url": null,
+      "source_ids": [
+        "src_roadmap_naics2022_manual",
+        "src_fasb_asu201602_leases",
+        "src_i120_asu202005_lease_dates",
+        "src_construction_fasb_2014_09",
+        "src_fasb_asu2016_08_principal_agent",
+        "src_aa_i105_fasb_2016_10",
+        "src_1os761s"
+      ],
+      "related_ids": [
+        "guide-industry-naics2022-531",
+        "guide-industry-naics2022-532",
+        "guide-industry-naics2022-533",
+        "guide-q-leases",
+        "guide-q-revenue",
+        "guide-q-licensed-content",
+        "wf-real-estate-property-to-ledger",
+        "ctrl-real-estate-role-and-settlement",
+        "example-real-estate-owner-manager-close"
+      ],
+      "review_status": "source-reviewed",
+      "reviewed_at": "2026-09-19",
+      "provenance": {
+        "added_on": "2026-09-19",
+        "reviewer": "Codex AI-assisted bounded source research",
+        "note": "Source-only candidate for issue 107. Original publisher text is not stored; no professional signoff is asserted."
+      },
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External publisher text is not stored; publisher terms and source rights remain separate and unresolved.",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": null
+      },
+      "data": {
+        "research_questions": [
+          "rq-aa-i107-property-acquisition-development",
+          "rq-aa-i107-rental-incentives-deposits",
+          "rq-aa-i107-property-sales",
+          "rq-aa-i107-equipment-lessor",
+          "rq-aa-i107-managed-property-settlement",
+          "rq-aa-i107-nonfinancial-rights-license"
+        ],
+        "baseline_roles": [
+          "property owner or developer",
+          "property manager or broker",
+          "equipment lessor",
+          "nonfinancial-rights licensor"
+        ],
+        "source_matrix": {
+          "classification": "NAICS 2022 Sector 53, Subsectors 531-533; classification only",
+          "lease": "ASC 842 issued amendment and adoption-date amendment; current Codification remains open",
+          "customer_revenue": "ASC 606 original, principal-agent and licensing amendments; current Codification remains open",
+          "current_authority": "FASB Codification is the routing authority; exact current property topic was not reproduced"
+        },
+        "integration_note": "Additive candidate. Existing NAICS guides and shared questions remain preserved; coordinator decides final mapping and release."
+      }
+    },
+    {
+      "id": "wf-real-estate-property-to-ledger",
+      "kind": "workflow",
+      "title": "Real estate contract and property evidence to ledger proposal",
+      "summary": "A review workflow that routes owner/developer, manager/broker, equipment-lessor and rights-licensor evidence into separate accounting populations before an authorized conclusion.",
+      "topics": [
+        "Accounting and reporting",
+        "Source data, lineage and reconciliation",
+        "Controls and governance"
+      ],
+      "industries": [
+        "real-estate-sector"
+      ],
+      "jurisdiction": "United States; selected roles and reporting purposes only",
+      "source_type": null,
+      "publisher": "Accounting Agents contributors",
+      "source_url": null,
+      "source_ids": [
+        "src_roadmap_naics2022_manual",
+        "src_fasb_asu201602_leases",
+        "src_i120_asu202005_lease_dates",
+        "src_construction_fasb_2014_09",
+        "src_fasb_asu2016_08_principal_agent",
+        "src_aa_i105_fasb_2016_10",
+        "src_1os761s"
+      ],
+      "related_ids": [
+        "guide-real-estate-us-roles"
+      ],
+      "review_status": "source-reviewed",
+      "reviewed_at": "2026-09-19",
+      "provenance": {
+        "added_on": "2026-09-19",
+        "reviewer": "Codex AI-assisted bounded source research",
+        "note": "Source-only candidate for issue 107. Original publisher text is not stored; no professional signoff is asserted."
+      },
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External publisher text is not stored; publisher terms and source rights remain separate and unresolved.",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": null
+      },
+      "data": {
+        "steps": [
+          "Inventory entity role, reporting framework, period and contract version.",
+          "Classify property, lease, service, sale, settlement or rights population.",
+          "Capture original evidence and exact source locator or document reference.",
+          "Reconcile contract terms, schedules, deposits, owner funds and usage data to a control total.",
+          "Record proposed treatment with current-topic and professional-review gates.",
+          "Release only an authorized, reviewable conclusion; preserve unresolved items."
+        ],
+        "inputs": [
+          "Executed contract and amendments",
+          "Title, possession, financing and closing evidence where relevant",
+          "Payment, deposit, incentive, fee, usage and settlement schedules",
+          "Entity adoption, election and policy evidence",
+          "Source and rights metadata"
+        ],
+        "outputs": [
+          "Proposed classification and treatment route",
+          "Reconciled control totals",
+          "Open-exception queue",
+          "Evidence-linked review receipt"
+        ],
+        "stop_conditions": [
+          "Missing contract or role evidence",
+          "Unresolved source URL or rights mismatch",
+          "Unknown current authority or effective period",
+          "Control total does not reconcile",
+          "Principal-versus-agent or owner-versus-contractor facts are unresolved"
+        ]
+      }
+    },
+    {
+      "id": "ctrl-real-estate-role-and-settlement",
+      "kind": "control",
+      "title": "Role, source and settlement controls for real estate research",
+      "summary": "Controls keep property-owner assets, contractor services, manager settlements, tenant deposits, lease consideration and license rights from being merged by industry label.",
+      "topics": [
+        "Controls and governance",
+        "Source data, lineage and reconciliation",
+        "Accounting and reporting"
+      ],
+      "industries": [
+        "real-estate-sector"
+      ],
+      "jurisdiction": "United States; selected roles and reporting purposes only",
+      "source_type": null,
+      "publisher": "Accounting Agents contributors",
+      "source_url": null,
+      "source_ids": [
+        "src_roadmap_naics2022_manual",
+        "src_fasb_asu201602_leases",
+        "src_i120_asu202005_lease_dates",
+        "src_construction_fasb_2014_09",
+        "src_fasb_asu2016_08_principal_agent",
+        "src_aa_i105_fasb_2016_10",
+        "src_1os761s"
+      ],
+      "related_ids": [
+        "guide-real-estate-us-roles",
+        "wf-real-estate-property-to-ledger"
+      ],
+      "review_status": "source-reviewed",
+      "reviewed_at": "2026-09-19",
+      "provenance": {
+        "added_on": "2026-09-19",
+        "reviewer": "Codex AI-assisted bounded source research",
+        "note": "Source-only candidate for issue 107. Original publisher text is not stored; no professional signoff is asserted."
+      },
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External publisher text is not stored; publisher terms and source rights remain separate and unresolved.",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": null
+      },
+      "data": {
+        "control_points": [
+          "Role control: require owner/developer, contractor, manager/broker, lessor or rights-licensor designation.",
+          "Source control: stable source ID, exact locator and locator URL equality.",
+          "Contract control: immutable contract version and amendment sequence.",
+          "Settlement control: separate owner funds, tenant deposits and manager fee populations.",
+          "Calculation control: cents-level schedule and independently recomputed totals.",
+          "Release control: current consolidated authority and professional review remain explicit gates."
+        ],
+        "failure_behavior": "Stage all additions and validate conflicts before any write; reject unknown source IDs, duplicate URLs, stable-ID differences, unresolved locators or arithmetic mismatch."
+      }
+    },
+    {
+      "id": "example-real-estate-owner-manager-close",
+      "kind": "example",
+      "title": "Synthetic real estate role and settlement close",
+      "summary": "Synthetic worked examples for an owner/developer cost bridge, owner-versus-manager settlement, property sale hold, equipment lessor components and nonfinancial-rights license. These figures are review fixtures, not operational evidence or posting instructions.",
+      "topics": [
+        "Synthetic examples",
+        "Real estate, rental and leasing",
+        "Revenue and customer contracts",
+        "Leases"
+      ],
+      "industries": [
+        "real-estate-sector"
+      ],
+      "jurisdiction": "United States; selected roles and reporting purposes only",
+      "source_type": null,
+      "publisher": "Accounting Agents contributors",
+      "source_url": null,
+      "source_ids": [
+        "src_roadmap_naics2022_manual",
+        "src_fasb_asu201602_leases",
+        "src_i120_asu202005_lease_dates",
+        "src_construction_fasb_2014_09",
+        "src_fasb_asu2016_08_principal_agent",
+        "src_aa_i105_fasb_2016_10",
+        "src_1os761s"
+      ],
+      "related_ids": [
+        "guide-real-estate-us-roles",
+        "wf-real-estate-property-to-ledger",
+        "ctrl-real-estate-role-and-settlement"
+      ],
+      "review_status": "source-reviewed",
+      "reviewed_at": "2026-09-19",
+      "provenance": {
+        "added_on": "2026-09-19",
+        "reviewer": "Codex AI-assisted bounded source research",
+        "note": "Source-only candidate for issue 107. Original publisher text is not stored; no professional signoff is asserted."
+      },
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External publisher text is not stored; publisher terms and source rights remain separate and unresolved.",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": null
+      },
+      "data": {
+        "synthetic": true,
+        "currency": "USD",
+        "owner_manager": {
+          "rent_collected_cents": 12000000,
+          "management_fee_rate_bps": 500,
+          "management_fee_cents": 600000,
+          "owner_settlement_liability_cents": 11400000,
+          "refundable_deposit_cents": 2000000,
+          "check": "12000000 = 600000 + 11400000; deposit is separate"
+        },
+        "developer_cost_bridge": {
+          "land_cents": 240000000,
+          "closing_costs_cents": 6000000,
+          "direct_development_cents": 120000000,
+          "project_cost_population_cents": 366000000,
+          "unresolved_common_overhead_cents": 40000000,
+          "check": "240000000 + 6000000 + 120000000 = 366000000; overhead remains a current-authority review item"
+        },
+        "property_sale_hold": {
+          "contract_price_cents": 150000000,
+          "deposit_cents": 15000000,
+          "status": "pending-transfer-evidence",
+          "counterexample": "deposit received before authorized transfer or while substantial continuing involvement remains"
+        },
+        "equipment_lessor": {
+          "fixed_payments_cents": 9000000,
+          "refundable_deposit_cents": 500000,
+          "maintenance_cents": 1800000,
+          "check": "9000000 + 500000 + 1800000 are separate populations; classification and allocation remain open"
+        },
+        "rights_license": {
+          "fixed_fee_cents": 10000000,
+          "usage_units": 80000,
+          "royalty_rate_cents_per_unit": 50,
+          "royalty_cents": 4000000,
+          "total_consideration_cents": 14000000,
+          "counterexample": "usage report covers an expired territory and must be rejected pending contract match"
+        },
+        "proposed_entries": [
+          {
+            "id": "owner-manager-fee",
+            "status": "proposed-synthetic",
+            "amount_cents": 600000
+          },
+          {
+            "id": "owner-settlement",
+            "status": "proposed-synthetic",
+            "amount_cents": 11400000
+          },
+          {
+            "id": "deposit-liability",
+            "status": "proposed-synthetic",
+            "amount_cents": 2000000
+          },
+          {
+            "id": "developer-project-population",
+            "status": "proposed-synthetic",
+            "amount_cents": 366000000
+          }
+        ],
+        "scope_counterexamples": [
+          "OWNER-AS-CONTRACTOR: owner hires contractor; contractor revenue does not become owner property-sale revenue",
+          "DEPOSIT-AS-RENT: refundable deposit received before conditions are met",
+          "MANAGER-GROSS: manager collects owner rent but lacks control facts for gross presentation",
+          "EXPIRED-LICENSE-TERRITORY: usage report outside licensed territory"
+        ],
+        "limitations": [
+          "No external full text, entity ledger, live contract, title file or professional approval is included."
+        ]
+      }
+    }
+  ],
+  "question_rows": [
+    {
+      "id": "rq-aa-i107-property-acquisition-development",
+      "record_id": "guide-real-estate-us-roles",
+      "pointer": "/data/research_questions/0",
+      "family_ids": [
+        "q-cost-allocation",
+        "q-data-lineage"
+      ],
+      "question": "How should a US property owner or developer route acquisition and development costs while keeping the construction-contractor role separate?",
+      "scope": "Selected US GAAP owner/developer with land acquisition, development work in progress and a separate construction contractor; 2026 reporting period; no current ASC 970 conclusion.",
+      "answer_status": "sourced-answer-and-original-example",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_roadmap_naics2022_manual",
+        "src_1os761s",
+        "src_construction_fasb_2014_09"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_1os761s",
+          "locator": "Current US GAAP routing begins with the applicable Codification topic; ASC 970 real-estate inventory and development-cost text was not reproduced or treated as reviewed.",
+          "url": "https://asc.fasb.org/"
+        },
+        {
+          "source_id": "src_roadmap_naics2022_manual",
+          "locator": "2022 NAICS Manual Part I, Sector 53, Subsector 531 Real Estate, PDF pp. 443-446; establishment classification only.",
+          "url": "https://www.census.gov/naics/reference_files_tools/2022_NAICS_Manual.pdf"
+        },
+        {
+          "source_id": "src_construction_fasb_2014_09",
+          "locator": "ASC 606-10-25-27 through 25-37, PDF pp. 33-36; contractor customer-contract route only.",
+          "url": "https://storage.fasb.org/ASU%202014-09_Section%20A.pdf"
+        }
+      ],
+      "answer": "Classify the entity and arrangement first. A property owner or developer keeps land, directly attributable development work and approved allocation bases in a project-cost population pending applicable current property guidance. A construction contractor evaluates its customer contract under the current revenue model. The packet stops before asserting a universal real-estate capitalization rule.",
+      "inputs": [
+        "Parcel/title and acquisition documents",
+        "Direct labor, materials, permits and subcontractor invoices tagged to project",
+        "Overhead allocation policy and resource-consumption basis",
+        "Entity role, intended use, sale or rental plan and current US GAAP topic"
+      ],
+      "treatment": "Do not copy contractor revenue treatment into the owner/developer asset ledger. Reconcile every cost to project, cost class, period and approval; route uncertain acquisition or development costs to current ASC 970/360 review.",
+      "workflow": [
+        "Freeze project population at period end",
+        "Classify owner/developer versus contractor role",
+        "Reconcile subledger to GL",
+        "Document open current-authority route",
+        "Release only after authorized review"
+      ],
+      "controls": [
+        "Unique project ID and title evidence",
+        "Invoice approval and three-way match",
+        "Separate owner/developer and contractor role flags",
+        "Direct-cost and allocation-base control total"
+      ],
+      "exceptions": [
+        "Land held for rental, sale or development may follow different current guidance. A contractor can be a related party or service provider without making the owner a contractor. Tax capitalization and local property law are outside scope."
+      ],
+      "remaining_gaps": [
+        "Current consolidated Codification, later amendments, entity adoption and contract-specific facts must be checked before an accounting conclusion.",
+        "The packet contains no live entity ledger, lease, title, management agreement, customer contract or professional review.",
+        "Publisher reuse rights remain unresolved; only source metadata and bounded summaries are stored.",
+        "Current ASC 970 and cost-capitalization, impairment and held-for-sale rules were not reviewed."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Selected official source locators, role boundaries, bounded inputs, workflow, controls and synthetic arithmetic were reviewed. Partial status does not establish professional or whole-sector sufficiency.",
+      "example_id": "example-real-estate-ledger-bridge"
+    },
+    {
+      "id": "rq-aa-i107-rental-incentives-deposits",
+      "record_id": "guide-real-estate-us-roles",
+      "pointer": "/data/research_questions/1",
+      "family_ids": [
+        "q-leases",
+        "q-revenue"
+      ],
+      "question": "What evidence separates rent, lease incentives and refundable deposits for a US rental arrangement?",
+      "scope": "Selected US property owner/lessor and lessee rental arrangements with a 24-month term, one concession and a refundable security deposit; current elections remain open.",
+      "answer_status": "sourced-answer-and-original-example",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_fasb_asu201602_leases",
+        "src_i120_asu202005_lease_dates",
+        "src_construction_fasb_2014_09"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_fasb_asu201602_leases",
+          "locator": "842-10-15-3, 15-6 and 15-20; 842-10-25-11 through 25-13, PDF pp. 37-38; 842-20-30-1, 30-3, 30-5 and 35-3 through 35-5, PDF pp. 108-110.",
+          "url": "https://storage.fasb.org/ASU%202016-02_Section%20A.pdf"
+        },
+        {
+          "source_id": "src_i120_asu202005_lease_dates",
+          "locator": "ASU 2020-05 printed p. 4 (PDF p. 10); 842-10-65-1(a)-(b), printed pp. 7-8 (PDF pp. 13-14).",
+          "url": "https://storage.fasb.org/ASU%202020-05.pdf"
+        },
+        {
+          "source_id": "src_construction_fasb_2014_09",
+          "locator": "ASC 606-10-25-1 through 25-2 and 32-1 through 32-6, PDF pp. 26-27 and 36-37, for nonlease customer-service components.",
+          "url": "https://storage.fasb.org/ASU%202014-09_Section%20A.pdf"
+        }
+      ],
+      "answer": "Identify the controlled asset and right to use it, then separate lease consideration, nonlease services, concession or incentive terms and refundable deposit obligations. A deposit is not rent merely because cash was received.",
+      "inputs": [
+        "Executed lease and amendments",
+        "Identified asset, term, options and payment schedule",
+        "Incentive or concession agreement",
+        "Deposit terms, refund conditions and tenant ledger",
+        "Entity adoption and elections"
+      ],
+      "treatment": "Build a cents payment schedule; separately track deposit liability, lease consideration and nonlease services; reconcile concessions to the approved calculation; use current Topic 842 before posting.",
+      "workflow": [
+        "Capture contract version",
+        "Identify commencement and modification dates",
+        "Independently recalculate schedule",
+        "Reconcile tenant balance and deposit liability",
+        "Route exceptions for review"
+      ],
+      "controls": [
+        "Contract-version hash",
+        "Deposit completeness and refund authorization",
+        "Lease schedule to GL total",
+        "Separate nonlease-service coding"
+      ],
+      "exceptions": [
+        "Short-term or low-value elections, common-area services, tenant improvements, renewal options, variable rent and local law can change treatment."
+      ],
+      "remaining_gaps": [
+        "Current consolidated Codification, later amendments, entity adoption and contract-specific facts must be checked before an accounting conclusion.",
+        "The packet contains no live entity ledger, lease, title, management agreement, customer contract or professional review.",
+        "Publisher reuse rights remain unresolved; only source metadata and bounded summaries are stored.",
+        "Current consolidated Topic 842 and entity-specific election review remain open."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Selected official source locators, role boundaries, bounded inputs, workflow, controls and synthetic arithmetic were reviewed. Partial status does not establish professional or whole-sector sufficiency.",
+      "example_id": "example-real-estate-owner-manager-close"
+    },
+    {
+      "id": "rq-aa-i107-property-sales",
+      "record_id": "guide-real-estate-us-roles",
+      "pointer": "/data/research_questions/2",
+      "family_ids": [
+        "q-revenue",
+        "q-data-lineage"
+      ],
+      "question": "What evidence and control-transfer facts support a US property sale route, separate from rental or construction services?",
+      "scope": "Selected US property sale contract with an executed agreement, financing or closing conditions and possible continuing involvement; no broad real-estate sales standard conclusion.",
+      "answer_status": "sourced-answer-and-original-example",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_construction_fasb_2014_09",
+        "src_1os761s"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_construction_fasb_2014_09",
+          "locator": "ASC 606-10-25-27 through 25-37, PDF pp. 33-36; 606-10-32-1 through 32-6, PDF pp. 36-37; 606-10-45-1 through 45-5, PDF pp. 47-48.",
+          "url": "https://storage.fasb.org/ASU%202014-09_Section%20A.pdf"
+        },
+        {
+          "source_id": "src_1os761s",
+          "locator": "Current Codification routing: confirm applicable property-sale, inventory, customer-contract and presentation topics for the entity and contract.",
+          "url": "https://asc.fasb.org/"
+        }
+      ],
+      "answer": "A property sale analysis records the contract, promised outputs, control or transfer evidence, consideration, contingencies, continuing involvement and collectibility. A signed contract and deposit alone do not establish the final recognition route.",
+      "inputs": [
+        "Executed contract and amendments",
+        "Title, closing and possession evidence",
+        "Buyer financing and contingencies",
+        "Continuing involvement or repurchase rights",
+        "Consideration and deposits"
+      ],
+      "treatment": "Hold a sale pending authorized transfer evidence and applicable topic. Reconcile contract asset, liability, deposit and recognized amount to signed terms; do not use the synthetic branch as a posting instruction.",
+      "workflow": [
+        "Index contract and closing packet",
+        "Assess transfer evidence",
+        "Reconcile consideration",
+        "Disclose unresolved route",
+        "Approve before release"
+      ],
+      "controls": [
+        "No recognition from deposit alone",
+        "Closing checklist",
+        "Contract-to-ledger tie-out",
+        "Exception queue for continuing involvement"
+      ],
+      "exceptions": [
+        "Installment terms, sales of units, rental property, development inventory, repurchase rights and entity-specific industry guidance may route differently."
+      ],
+      "remaining_gaps": [
+        "Current consolidated Codification, later amendments, entity adoption and contract-specific facts must be checked before an accounting conclusion.",
+        "The packet contains no live entity ledger, lease, title, management agreement, customer contract or professional review.",
+        "Publisher reuse rights remain unresolved; only source metadata and bounded summaries are stored.",
+        "Historical SEC SAB 101 real-estate discussion was not used as current GAAP; current Codification and later amendments need separate review."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Selected official source locators, role boundaries, bounded inputs, workflow, controls and synthetic arithmetic were reviewed. Partial status does not establish professional or whole-sector sufficiency.",
+      "example_id": "example-real-estate-property-sale"
+    },
+    {
+      "id": "rq-aa-i107-equipment-lessor",
+      "record_id": "guide-real-estate-us-roles",
+      "pointer": "/data/research_questions/3",
+      "family_ids": [
+        "q-leases",
+        "q-revenue"
+      ],
+      "question": "How should an equipment lessor separate lease classification from bundled maintenance or other customer services?",
+      "scope": "Selected US equipment lessor with a 36-month equipment arrangement, refundable deposit and separately priced maintenance; lessor classification and current elections remain open.",
+      "answer_status": "sourced-answer-and-original-example",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_fasb_asu201602_leases",
+        "src_construction_fasb_2014_09",
+        "src_roadmap_naics2022_manual"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_fasb_asu201602_leases",
+          "locator": "842-30 lessor accounting and classification passages in the issued update; current consolidated Topic 842 and later amendments control.",
+          "url": "https://storage.fasb.org/ASU%202016-02_Section%20A.pdf"
+        },
+        {
+          "source_id": "src_construction_fasb_2014_09",
+          "locator": "ASC 606-10-25-19 through 25-22 and 55-56 through 55-64, PDF pp. 30 and 55-57, for separate customer-service and license analysis where applicable.",
+          "url": "https://storage.fasb.org/ASU%202014-09_Section%20A.pdf"
+        },
+        {
+          "source_id": "src_roadmap_naics2022_manual",
+          "locator": "2022 NAICS Manual Part I, Sector 53, Subsector 532 Rental and Leasing Services, PDF pp. 447-453; classification only.",
+          "url": "https://www.census.gov/naics/reference_files_tools/2022_NAICS_Manual.pdf"
+        }
+      ],
+      "answer": "Keep equipment right-of-use, service or maintenance, deposit and variable charges as separate fact populations before applying current lessor and revenue guidance. Equipment rental classification in NAICS does not decide the accounting model.",
+      "inputs": [
+        "Equipment identity and substitution rights",
+        "Lease term, options and payment schedule",
+        "Maintenance scope",
+        "Deposit/refund terms",
+        "Lessor classification facts and elections"
+      ],
+      "treatment": "Map each contract line to a component; reconcile fixed payment and service billing separately; flag allocation judgments for current-topic review.",
+      "workflow": [
+        "Contract ingestion",
+        "Component checklist",
+        "Schedule and service tie-out",
+        "Exception review",
+        "Authorized release"
+      ],
+      "controls": [
+        "No grossing refundable deposit into rental revenue",
+        "Separate maintenance population",
+        "Asset identity evidence",
+        "Modification completeness"
+      ],
+      "exceptions": [
+        "Service-inclusive rental, variable usage, sale-and-leaseback, sublease, residual guarantees and specialized assets require additional review."
+      ],
+      "remaining_gaps": [
+        "Current consolidated Codification, later amendments, entity adoption and contract-specific facts must be checked before an accounting conclusion.",
+        "The packet contains no live entity ledger, lease, title, management agreement, customer contract or professional review.",
+        "Publisher reuse rights remain unresolved; only source metadata and bounded summaries are stored.",
+        "The package does not conclude a lessor classification or current allocation for a live contract."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Selected official source locators, role boundaries, bounded inputs, workflow, controls and synthetic arithmetic were reviewed. Partial status does not establish professional or whole-sector sufficiency.",
+      "example_id": "example-real-estate-equipment-lessor"
+    },
+    {
+      "id": "rq-aa-i107-managed-property-settlement",
+      "record_id": "guide-real-estate-us-roles",
+      "pointer": "/data/research_questions/4",
+      "family_ids": [
+        "q-revenue",
+        "q-data-lineage"
+      ],
+      "question": "When a property manager collects tenant cash for an owner, what evidence supports principal-versus-agent and settlement presentation?",
+      "scope": "Selected US property manager or broker acting under an owner agreement, with rent collected, management fee, owner remittance and tenant deposit; no legal agency conclusion.",
+      "answer_status": "sourced-answer-and-original-example",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_fasb_asu2016_08_principal_agent",
+        "src_construction_fasb_2014_09"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_fasb_asu2016_08_principal_agent",
+          "locator": "ASU 2016-08 Summary pp. 1-5; ASC 606-10-55-36 through 55-40 and related examples; control is fact-specific.",
+          "url": "https://storage.fasb.org/ASU%202016-08.pdf"
+        },
+        {
+          "source_id": "src_construction_fasb_2014_09",
+          "locator": "ASC 606-10-25-1 through 25-2 and 45-1 through 45-5, PDF pp. 26-27 and 47-48, for contract evidence and presentation.",
+          "url": "https://storage.fasb.org/ASU%202014-09_Section%20A.pdf"
+        }
+      ],
+      "answer": "In the synthetic agency branch, tenant rent collected for the owner is a settlement liability while the manager recognizes only the contractually earned fee, subject to current principal-versus-agent analysis. Preserve owner funds, tenant deposits and manager revenue as separate populations.",
+      "inputs": [
+        "Owner management agreement",
+        "Authority to set rent, select tenants or direct services",
+        "Tenant cash and deposit terms",
+        "Management fee and reimbursement terms",
+        "Owner remittance and bank reconciliation"
+      ],
+      "treatment": "For a synthetic $120,000 collection and 5% fee, reconcile $6,000 manager fee, $114,000 owner settlement liability and any separate $20,000 refundable deposit. This is a worked control example, not every manager contract.",
+      "workflow": [
+        "Capture agreement and authority facts",
+        "Classify service and funds",
+        "Reconcile receipts to owner and tenant ledgers",
+        "Calculate fee",
+        "Approve settlement"
+      ],
+      "controls": [
+        "Separate owner funds",
+        "Receipt-to-bank tie",
+        "Fee rate and base approval",
+        "Owner remittance and deposit liability reconciliation"
+      ],
+      "exceptions": [
+        "A manager can control a specified service in some arrangements; a broker commission, owner-operated property and tenant security deposit can route differently. Legal fiduciary and trust rules are outside scope."
+      ],
+      "remaining_gaps": [
+        "Current consolidated Codification, later amendments, entity adoption and contract-specific facts must be checked before an accounting conclusion.",
+        "The packet contains no live entity ledger, lease, title, management agreement, customer contract or professional review.",
+        "Publisher reuse rights remain unresolved; only source metadata and bounded summaries are stored.",
+        "No actual agency agreement or legal analysis was reviewed; principal-versus-agent remains contract-specific."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Selected official source locators, role boundaries, bounded inputs, workflow, controls and synthetic arithmetic were reviewed. Partial status does not establish professional or whole-sector sufficiency.",
+      "example_id": "example-real-estate-owner-manager-close"
+    },
+    {
+      "id": "rq-aa-i107-nonfinancial-rights-license",
+      "record_id": "guide-real-estate-us-roles",
+      "pointer": "/data/research_questions/5",
+      "family_ids": [
+        "q-licensed-content",
+        "q-revenue"
+      ],
+      "question": "How should a US nonfinancial-rights licensor separate a time or territory-limited license from property and equipment rental?",
+      "scope": "Selected US patent, trademark or franchise-right licensor under NAICS 533; copyrighted works and international packages are outside this issue.",
+      "answer_status": "sourced-answer-and-original-example",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_aa_i105_fasb_2016_10",
+        "src_construction_fasb_2014_09",
+        "src_roadmap_naics2022_manual"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_aa_i105_fasb_2016_10",
+          "locator": "606-10-25-19 through 25-22; 606-10-55-56 through 55-64; 606-10-65-1, as reproduced in ASU 2016-10.",
+          "url": "https://storage.fasb.org/ASU%202016-10.pdf"
+        },
+        {
+          "source_id": "src_construction_fasb_2014_09",
+          "locator": "ASC 606-10-25-1 through 25-2 and 32-1 through 32-6, PDF pp. 26-27 and 36-37, for contract and consideration evidence.",
+          "url": "https://storage.fasb.org/ASU%202014-09_Section%20A.pdf"
+        },
+        {
+          "source_id": "src_roadmap_naics2022_manual",
+          "locator": "2022 NAICS Manual Part I, Sector 53, Subsector 533 Lessors of Nonfinancial Intangible Assets except Copyrighted Works, PDF pp. 454-456; classification only.",
+          "url": "https://www.census.gov/naics/reference_files_tools/2022_NAICS_Manual.pdf"
+        }
+      ],
+      "answer": "Record the right, territory, term, usage or sales-based consideration and customer promise separately. A nonfinancial-rights license is not automatically a lease of tangible property, and NAICS 533 does not determine revenue timing.",
+      "inputs": [
+        "License grant and amendments",
+        "Right type, territory, term and exclusivity",
+        "Usage or sales reports",
+        "Fixed and variable consideration",
+        "Separate support or service promises"
+      ],
+      "treatment": "Tie recognized or deferred amounts to the licensed right and period; reconcile usage reports to royalty consideration; stop on territory, term, source or rights mismatch.",
+      "workflow": [
+        "Index grant",
+        "Identify license and service promises",
+        "Validate usage evidence",
+        "Reconcile royalty and cash",
+        "Approve cutoff"
+      ],
+      "controls": [
+        "Stable rights ID and territory check",
+        "Usage completeness",
+        "Amendment conflict guard",
+        "Royalty-to-cash reconciliation"
+      ],
+      "exceptions": [
+        "Copyrighted works, franchise-specific requirements, bundled services, sales-based royalties, sublicensing, tax and legal rights require separate review."
+      ],
+      "remaining_gaps": [
+        "Current consolidated Codification, later amendments, entity adoption and contract-specific facts must be checked before an accounting conclusion.",
+        "The packet contains no live entity ledger, lease, title, management agreement, customer contract or professional review.",
+        "Publisher reuse rights remain unresolved; only source metadata and bounded summaries are stored.",
+        "The packet does not establish current consolidated license implementation or legal enforceability."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Selected official source locators, role boundaries, bounded inputs, workflow, controls and synthetic arithmetic were reviewed. Partial status does not establish professional or whole-sector sufficiency.",
+      "example_id": "example-real-estate-rights-license"
+    }
+  ],
+  "assessments": [
+    {
+      "id": "coverage-aa-i107-property-acquisition-development",
+      "scope_kind": "industry",
+      "industry_code": "53",
+      "question_id": "q-cost-allocation",
+      "named_question_id": "rq-aa-i107-property-acquisition-development",
+      "status": "partial",
+      "scope": "Selected US GAAP owner/developer with land acquisition, development work in progress and a separate construction contractor; 2026 reporting period; no current ASC 970 conclusion.",
+      "jurisdictions": [
+        "United States"
+      ],
+      "frameworks": [
+        "US GAAP selected role routes; current consolidated authority remains open"
+      ],
+      "effective_from": "2026-01-01",
+      "effective_to": null,
+      "reviewed_at": "2026-09-19",
+      "reviewer": "Codex AI-assisted bounded source research",
+      "review_basis": "Official Census and FASB source locators were reviewed for the named role question, with a synthetic workflow, control and arithmetic fixture. No professional, operational or whole-sector sufficiency is asserted.",
+      "source_currency": "verified-within-stated-scope",
+      "evidence_record_ids": [
+        "guide-real-estate-us-roles",
+        "wf-real-estate-property-to-ledger",
+        "ctrl-real-estate-role-and-settlement",
+        "example-real-estate-owner-manager-close",
+        "src_roadmap_naics2022_manual",
+        "src_1os761s",
+        "src_construction_fasb_2014_09"
+      ],
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "gaps": [
+        "Current consolidated Codification, later amendments, entity adoption and contract-specific facts must be checked before an accounting conclusion.",
+        "The packet contains no live entity ledger, lease, title, management agreement, customer contract or professional review.",
+        "Publisher reuse rights remain unresolved; only source metadata and bounded summaries are stored.",
+        "Current ASC 970 and cost-capitalization, impairment and held-for-sale rules were not reviewed."
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External publisher text is not stored; publisher terms and source rights remain separate and unresolved.",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": null
+      },
+      "family_ids": [
+        "q-cost-allocation",
+        "q-data-lineage"
+      ]
+    },
+    {
+      "id": "coverage-aa-i107-rental-incentives-deposits",
+      "scope_kind": "industry",
+      "industry_code": "53",
+      "question_id": "q-leases",
+      "named_question_id": "rq-aa-i107-rental-incentives-deposits",
+      "status": "partial",
+      "scope": "Selected US property owner/lessor and lessee rental arrangements with a 24-month term, one concession and a refundable security deposit; current elections remain open.",
+      "jurisdictions": [
+        "United States"
+      ],
+      "frameworks": [
+        "US GAAP selected role routes; current consolidated authority remains open"
+      ],
+      "effective_from": "2026-01-01",
+      "effective_to": null,
+      "reviewed_at": "2026-09-19",
+      "reviewer": "Codex AI-assisted bounded source research",
+      "review_basis": "Official Census and FASB source locators were reviewed for the named role question, with a synthetic workflow, control and arithmetic fixture. No professional, operational or whole-sector sufficiency is asserted.",
+      "source_currency": "verified-within-stated-scope",
+      "evidence_record_ids": [
+        "guide-real-estate-us-roles",
+        "wf-real-estate-property-to-ledger",
+        "ctrl-real-estate-role-and-settlement",
+        "example-real-estate-owner-manager-close",
+        "src_fasb_asu201602_leases",
+        "src_i120_asu202005_lease_dates",
+        "src_construction_fasb_2014_09"
+      ],
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "gaps": [
+        "Current consolidated Codification, later amendments, entity adoption and contract-specific facts must be checked before an accounting conclusion.",
+        "The packet contains no live entity ledger, lease, title, management agreement, customer contract or professional review.",
+        "Publisher reuse rights remain unresolved; only source metadata and bounded summaries are stored.",
+        "Current consolidated Topic 842 and entity-specific election review remain open."
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External publisher text is not stored; publisher terms and source rights remain separate and unresolved.",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": null
+      },
+      "family_ids": [
+        "q-leases",
+        "q-revenue"
+      ]
+    },
+    {
+      "id": "coverage-aa-i107-property-sales",
+      "scope_kind": "industry",
+      "industry_code": "53",
+      "question_id": "q-revenue",
+      "named_question_id": "rq-aa-i107-property-sales",
+      "status": "partial",
+      "scope": "Selected US property sale contract with an executed agreement, financing or closing conditions and possible continuing involvement; no broad real-estate sales standard conclusion.",
+      "jurisdictions": [
+        "United States"
+      ],
+      "frameworks": [
+        "US GAAP selected role routes; current consolidated authority remains open"
+      ],
+      "effective_from": "2026-01-01",
+      "effective_to": null,
+      "reviewed_at": "2026-09-19",
+      "reviewer": "Codex AI-assisted bounded source research",
+      "review_basis": "Official Census and FASB source locators were reviewed for the named role question, with a synthetic workflow, control and arithmetic fixture. No professional, operational or whole-sector sufficiency is asserted.",
+      "source_currency": "verified-within-stated-scope",
+      "evidence_record_ids": [
+        "guide-real-estate-us-roles",
+        "wf-real-estate-property-to-ledger",
+        "ctrl-real-estate-role-and-settlement",
+        "example-real-estate-owner-manager-close",
+        "src_construction_fasb_2014_09",
+        "src_1os761s"
+      ],
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "gaps": [
+        "Current consolidated Codification, later amendments, entity adoption and contract-specific facts must be checked before an accounting conclusion.",
+        "The packet contains no live entity ledger, lease, title, management agreement, customer contract or professional review.",
+        "Publisher reuse rights remain unresolved; only source metadata and bounded summaries are stored.",
+        "Historical SEC SAB 101 real-estate discussion was not used as current GAAP; current Codification and later amendments need separate review."
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External publisher text is not stored; publisher terms and source rights remain separate and unresolved.",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": null
+      },
+      "family_ids": [
+        "q-revenue",
+        "q-data-lineage"
+      ]
+    },
+    {
+      "id": "coverage-aa-i107-equipment-lessor",
+      "scope_kind": "industry",
+      "industry_code": "53",
+      "question_id": "q-leases",
+      "named_question_id": "rq-aa-i107-equipment-lessor",
+      "status": "partial",
+      "scope": "Selected US equipment lessor with a 36-month equipment arrangement, refundable deposit and separately priced maintenance; lessor classification and current elections remain open.",
+      "jurisdictions": [
+        "United States"
+      ],
+      "frameworks": [
+        "US GAAP selected role routes; current consolidated authority remains open"
+      ],
+      "effective_from": "2026-01-01",
+      "effective_to": null,
+      "reviewed_at": "2026-09-19",
+      "reviewer": "Codex AI-assisted bounded source research",
+      "review_basis": "Official Census and FASB source locators were reviewed for the named role question, with a synthetic workflow, control and arithmetic fixture. No professional, operational or whole-sector sufficiency is asserted.",
+      "source_currency": "verified-within-stated-scope",
+      "evidence_record_ids": [
+        "guide-real-estate-us-roles",
+        "wf-real-estate-property-to-ledger",
+        "ctrl-real-estate-role-and-settlement",
+        "example-real-estate-owner-manager-close",
+        "src_fasb_asu201602_leases",
+        "src_construction_fasb_2014_09",
+        "src_roadmap_naics2022_manual"
+      ],
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "gaps": [
+        "Current consolidated Codification, later amendments, entity adoption and contract-specific facts must be checked before an accounting conclusion.",
+        "The packet contains no live entity ledger, lease, title, management agreement, customer contract or professional review.",
+        "Publisher reuse rights remain unresolved; only source metadata and bounded summaries are stored.",
+        "The package does not conclude a lessor classification or current allocation for a live contract."
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External publisher text is not stored; publisher terms and source rights remain separate and unresolved.",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": null
+      },
+      "family_ids": [
+        "q-leases",
+        "q-revenue"
+      ]
+    },
+    {
+      "id": "coverage-aa-i107-managed-property-settlement",
+      "scope_kind": "industry",
+      "industry_code": "53",
+      "question_id": "q-revenue",
+      "named_question_id": "rq-aa-i107-managed-property-settlement",
+      "status": "partial",
+      "scope": "Selected US property manager or broker acting under an owner agreement, with rent collected, management fee, owner remittance and tenant deposit; no legal agency conclusion.",
+      "jurisdictions": [
+        "United States"
+      ],
+      "frameworks": [
+        "US GAAP selected role routes; current consolidated authority remains open"
+      ],
+      "effective_from": "2026-01-01",
+      "effective_to": null,
+      "reviewed_at": "2026-09-19",
+      "reviewer": "Codex AI-assisted bounded source research",
+      "review_basis": "Official Census and FASB source locators were reviewed for the named role question, with a synthetic workflow, control and arithmetic fixture. No professional, operational or whole-sector sufficiency is asserted.",
+      "source_currency": "verified-within-stated-scope",
+      "evidence_record_ids": [
+        "guide-real-estate-us-roles",
+        "wf-real-estate-property-to-ledger",
+        "ctrl-real-estate-role-and-settlement",
+        "example-real-estate-owner-manager-close",
+        "src_fasb_asu2016_08_principal_agent",
+        "src_construction_fasb_2014_09"
+      ],
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "gaps": [
+        "Current consolidated Codification, later amendments, entity adoption and contract-specific facts must be checked before an accounting conclusion.",
+        "The packet contains no live entity ledger, lease, title, management agreement, customer contract or professional review.",
+        "Publisher reuse rights remain unresolved; only source metadata and bounded summaries are stored.",
+        "No actual agency agreement or legal analysis was reviewed; principal-versus-agent remains contract-specific."
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External publisher text is not stored; publisher terms and source rights remain separate and unresolved.",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": null
+      },
+      "family_ids": [
+        "q-revenue",
+        "q-data-lineage"
+      ]
+    },
+    {
+      "id": "coverage-aa-i107-nonfinancial-rights-license",
+      "scope_kind": "industry",
+      "industry_code": "53",
+      "question_id": "q-licensed-content",
+      "named_question_id": "rq-aa-i107-nonfinancial-rights-license",
+      "status": "partial",
+      "scope": "Selected US patent, trademark or franchise-right licensor under NAICS 533; copyrighted works and international packages are outside this issue.",
+      "jurisdictions": [
+        "United States"
+      ],
+      "frameworks": [
+        "US GAAP selected role routes; current consolidated authority remains open"
+      ],
+      "effective_from": "2026-01-01",
+      "effective_to": null,
+      "reviewed_at": "2026-09-19",
+      "reviewer": "Codex AI-assisted bounded source research",
+      "review_basis": "Official Census and FASB source locators were reviewed for the named role question, with a synthetic workflow, control and arithmetic fixture. No professional, operational or whole-sector sufficiency is asserted.",
+      "source_currency": "verified-within-stated-scope",
+      "evidence_record_ids": [
+        "guide-real-estate-us-roles",
+        "wf-real-estate-property-to-ledger",
+        "ctrl-real-estate-role-and-settlement",
+        "example-real-estate-owner-manager-close",
+        "src_aa_i105_fasb_2016_10",
+        "src_construction_fasb_2014_09",
+        "src_roadmap_naics2022_manual"
+      ],
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "gaps": [
+        "Current consolidated Codification, later amendments, entity adoption and contract-specific facts must be checked before an accounting conclusion.",
+        "The packet contains no live entity ledger, lease, title, management agreement, customer contract or professional review.",
+        "Publisher reuse rights remain unresolved; only source metadata and bounded summaries are stored.",
+        "The packet does not establish current consolidated license implementation or legal enforceability."
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External publisher text is not stored; publisher terms and source rights remain separate and unresolved.",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": null
+      },
+      "family_ids": [
+        "q-licensed-content",
+        "q-revenue"
+      ]
+    }
+  ],
+  "mapping_overrides": {
+    "guide-real-estate-us-roles": {
+      "replace_question_ids": true,
+      "question_ids": [
+        "q-cost-allocation",
+        "q-data-lineage",
+        "q-leases",
+        "q-revenue",
+        "q-licensed-content"
+      ],
+      "industry_codes": [],
+      "industry_scope": "shared-context",
+      "basis_field": "/data/research_questions",
+      "reason": "Selected role-specific questions support a bounded discovery guide; no NAICS family sufficiency or professional credit is implied.",
+      "reviewed_question_ids": [
+        "q-cost-allocation",
+        "q-data-lineage",
+        "q-leases",
+        "q-revenue",
+        "q-licensed-content"
+      ],
+      "reviewed_industry_codes": [],
+      "reviewed_at": "2026-09-19",
+      "review_note": "Issue 107 selected US roles are connected to existing question families while preserving the three baseline NAICS guide mappings."
+    }
+  },
+  "common_limits": [
+    "Current consolidated Codification, later amendments, entity adoption and contract-specific facts must be checked before an accounting conclusion.",
+    "The packet contains no live entity ledger, lease, title, management agreement, customer contract or professional review.",
+    "Publisher reuse rights remain unresolved; only source metadata and bounded summaries are stored.",
+    "The source package does not write canonical corpus, catalog, release, snapshot or archive files."
+  ],
+  "integration_contract": {
+    "source_only": true,
+    "additive_only": true,
+    "preserve_existing_records": true,
+    "preserve_existing_rights_and_mappings": true,
+    "preflight_before_write": true,
+    "replay_safe": true,
+    "reject_duplicate_source_urls": true,
+    "reject_locator_url_mismatch": true,
+    "catalog_write": false,
+    "release_write": false,
+    "snapshot_write": false,
+    "archive_write": false,
+    "target_files": [
+      "data/corpus/source.json",
+      "data/corpus/guide.json",
+      "data/corpus/workflow.json",
+      "data/corpus/control.json",
+      "data/corpus/example.json",
+      "data/coverage/research-questions.json",
+      "data/coverage/assessments.json",
+      "data/coverage/mapping-overrides.json"
+    ]
+  },
+  "retrieval_fixtures": {
+    "search": [
+      {
+        "query": "real estate owner manager settlement lease deposit",
+        "limit": 20,
+        "expected_record_ids": [
+          "guide-real-estate-us-roles",
+          "example-real-estate-owner-manager-close",
+          "wf-real-estate-property-to-ledger"
+        ],
+        "excluded_record_ids": [
+          "guide-industry-naics2022-533"
+        ]
+      },
+      {
+        "query": "equipment lessor nonfinancial rights license",
+        "limit": 20,
+        "expected_record_ids": [
+          "guide-real-estate-us-roles",
+          "example-real-estate-owner-manager-close"
+        ]
+      }
+    ],
+    "get": [
+      {
+        "id": "guide-real-estate-us-roles",
+        "limit": 20,
+        "expected_question_ids": [
+          "rq-aa-i107-property-acquisition-development",
+          "rq-aa-i107-rental-incentives-deposits",
+          "rq-aa-i107-property-sales",
+          "rq-aa-i107-equipment-lessor",
+          "rq-aa-i107-managed-property-settlement",
+          "rq-aa-i107-nonfinancial-rights-license"
+        ]
+      },
+      {
+        "id": "example-real-estate-owner-manager-close",
+        "limit": 20,
+        "expected_scope_counterexamples": [
+          "OWNER-AS-CONTRACTOR",
+          "DEPOSIT-AS-RENT",
+          "MANAGER-GROSS",
+          "EXPIRED-LICENSE-TERRITORY"
+        ]
+      }
+    ]
+  },
+  "dispositions": {
+    "A1": "pass-with-bounded-scope",
+    "A2": "pass for selected original US source locators; current consolidated authority and ASC 970 remain open",
+    "A3": "pass-with-synthetic-workflow-and-owner-manager-arithmetic",
+    "A4": "pass-with-explicit limits, exceptions and no professional or empirical claim",
+    "A5": "source package supplies representative retrieval fixtures and helper checks; coordinator must run integrated check, build, archive and public retrieval after integration"
+  },
+  "source_review_notes": {
+    "naics": "Census classification was used only to inventory and separate roles; it does not establish accounting treatment.",
+    "fasb": "Issued FASB updates supply selected original locators. Current consolidated Codification, later amendments, adoption and entity elections remain required for a live conclusion.",
+    "sec": "SEC SAB material was inspected as context during research but is not included as current GAAP authority in this package."
+  }
+}
