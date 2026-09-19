@@ -67,7 +67,7 @@ test('the nonprofit scoped assessment is partial and does not become constructio
  const assessmentData=read('data/coverage/assessments.json');
  const canonical=assessmentData.assessments.find(row=>row.id===a.id);
  assert.ok(canonical);assert.equal(canonical.status,a.status);
- assert.equal(assessmentData.assessment_version,'2026-09-18.1');
+ assert.equal(assessmentData.assessment_version,read('data/catalog.json').corpus_version);
  assert.equal(canonical.effective_from,'2026-01-01');assert.equal(canonical.effective_to,'2026-12-31');
  assert.ok(canonical.evidence_record_ids.includes('src_nonprofit_fasb_2018_08'));
  assert.ok(canonical.evidence_record_ids.includes('src_nonprofit_fasb_2016_14'));
@@ -87,7 +87,7 @@ test('the nonprofit scoped assessment is partial and does not become constructio
  assert.equal(byId.get(guideId).data.research_questions[0].id,q.id);
  const snapshots=read('data/coverage/snapshots.json').snapshots;
  const prior=snapshots.find(snapshot=>snapshot.id==='2026-09-17.1');
- const correction=snapshots.find(snapshot=>snapshot.id==='2026-09-18.1');
+ const correction=snapshots.find(snapshot=>snapshot.id===read('data/catalog.json').corpus_version);
  assert.ok(prior);assert.ok(correction);
  assert.equal(prior.assessment_version,'2026-09-16.1');
  assert.equal(correction.assessment_version,assessmentData.assessment_version);

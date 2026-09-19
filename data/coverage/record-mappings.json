@@ -1,12 +1,12 @@
 {
   "schema_version": "1.0.0",
-  "mapping_version": "2026-09-18.1",
+  "mapping_version": "2026-09-18.102103",
   "topology_version": "2026-09-11.1",
-  "corpus_version": "2026-09-18.1",
-  "generated_at": "2026-09-18",
-  "corpus_sha256": "e9eed736c146541ea9f8a88b952d1e6dc3e818feaf776f54fb93a06ec4076782",
+  "corpus_version": "2026-09-18.102103",
+  "generated_at": "2026-09-19",
+  "corpus_sha256": "13246711c6e5cffcec06594dd8788832a9fec86a684d5912f227cc3574449b4d",
   "rules_sha256": "550b2bb485399af996bac6ed34542d7a91170d4b31b5e5026e0e9c2c32068b9d",
-  "overrides_sha256": "2f4842d36202937d1b98d6feb21eacd0fdebf1bad95332c7c9c6950553669c05",
+  "overrides_sha256": "9d15d122a6694c0423f60fe86e8700f16861434a556fe1ac7645a93c8f581e5f",
   "method": "Deterministic title/topic associations, conservative industry crosswalk, and explicit editorial additions. All initial links are candidates; source review status is unchanged.",
   "mappings": [
     {
@@ -5641,6 +5641,25 @@
       "industry_scope": "shared-context",
       "industry_mappings": [],
       "note": "Synthetic example association reviewed for named-family navigation only; no accounting adequacy, industry coverage or professional verification is conferred."
+    },
+    {
+      "record_id": "example-us-wholesale-retail-trade-reconciliation",
+      "question_mappings": [
+        {
+          "question_id": "q-data-lineage",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "reconcil",
+              "rule": "title:data-lineage"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
     },
     {
       "record_id": "guide-accounting-llm-benchmark-claims",
@@ -19402,7 +19421,7 @@
             },
             {
               "field": "/data/research_questions",
-              "matched": "2026-09-11: Reviewed discovery relationship to the named questions and explicitly declared industry scope; does not confer accounting adequacy or professional verification.",
+              "matched": "2026-09-19: Reviewed the additive US wholesale and retail package for AA-I102 and AA-I103; discovery mapping remains separate from accounting adequacy or professional verification.",
               "rule": "editorial-review"
             }
           ]
@@ -19418,7 +19437,7 @@
             },
             {
               "field": "/data/research_questions",
-              "matched": "2026-09-11: Reviewed discovery relationship to the named questions and explicitly declared industry scope; does not confer accounting adequacy or professional verification.",
+              "matched": "2026-09-19: Reviewed the additive US wholesale and retail package for AA-I102 and AA-I103; discovery mapping remains separate from accounting adequacy or professional verification.",
               "rule": "editorial-review"
             }
           ]
@@ -19434,7 +19453,7 @@
             },
             {
               "field": "/data/research_questions",
-              "matched": "2026-09-11: Reviewed discovery relationship to the named questions and explicitly declared industry scope; does not confer accounting adequacy or professional verification.",
+              "matched": "2026-09-19: Reviewed the additive US wholesale and retail package for AA-I102 and AA-I103; discovery mapping remains separate from accounting adequacy or professional verification.",
               "rule": "editorial-review"
             }
           ]
@@ -19450,7 +19469,7 @@
             },
             {
               "field": "/data/research_questions",
-              "matched": "2026-09-11: Reviewed discovery relationship to the named questions and explicitly declared industry scope; does not confer accounting adequacy or professional verification.",
+              "matched": "2026-09-19: Reviewed the additive US wholesale and retail package for AA-I102 and AA-I103; discovery mapping remains separate from accounting adequacy or professional verification.",
               "rule": "editorial-review"
             }
           ]
@@ -19466,7 +19485,7 @@
             },
             {
               "field": "/data/research_questions",
-              "matched": "2026-09-11: Reviewed discovery relationship to the named questions and explicitly declared industry scope; does not confer accounting adequacy or professional verification.",
+              "matched": "2026-09-19: Reviewed the additive US wholesale and retail package for AA-I102 and AA-I103; discovery mapping remains separate from accounting adequacy or professional verification.",
               "rule": "editorial-review"
             }
           ]
@@ -19485,7 +19504,7 @@
             },
             {
               "field": "/data/research_questions",
-              "matched": "2026-09-11: Reviewed discovery relationship to the named questions and explicitly declared industry scope; does not confer accounting adequacy or professional verification.",
+              "matched": "2026-09-19: Reviewed the additive US wholesale and retail package for AA-I102 and AA-I103; discovery mapping remains separate from accounting adequacy or professional verification.",
               "rule": "editorial-review"
             }
           ]
@@ -19501,13 +19520,13 @@
             },
             {
               "field": "/data/research_questions",
-              "matched": "2026-09-11: Reviewed discovery relationship to the named questions and explicitly declared industry scope; does not confer accounting adequacy or professional verification.",
+              "matched": "2026-09-19: Reviewed the additive US wholesale and retail package for AA-I102 and AA-I103; discovery mapping remains separate from accounting adequacy or professional verification.",
               "rule": "editorial-review"
             }
           ]
         }
       ],
-      "note": "Reviewed discovery relationship to the named questions and explicitly declared industry scope; does not confer accounting adequacy or professional verification."
+      "note": "Reviewed the additive US wholesale and retail package for AA-I102 and AA-I103; discovery mapping remains separate from accounting adequacy or professional verification."
     },
     {
       "record_id": "human-only",
@@ -36142,6 +36161,13 @@
       "industry_scope": "shared-context",
       "industry_mappings": [],
       "note": "Association reviewed for the named US operating-transaction questions; it does not establish accounting adequacy, industry coverage or professional verification."
+    },
+    {
+      "record_id": "src_fasb_asu2016_04_gift_cards",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
     },
     {
       "record_id": "src_fasb_asu2016_08_principal_agent",
