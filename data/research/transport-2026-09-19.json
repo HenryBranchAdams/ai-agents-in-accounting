@@ -1,0 +1,2661 @@
+{
+  "package_name": "transport-us-source-package",
+  "package_version": "2026-09-19.transport.1",
+  "corpus_version": "2026-09-19.12406",
+  "status": "source-only-pending-integration",
+  "reviewed_at": "2026-09-19",
+  "scope": {
+    "jurisdiction": "United States",
+    "industry_codes": [
+      "48",
+      "49"
+    ],
+    "roles": [
+      "freight carrier",
+      "passenger carrier",
+      "property broker",
+      "warehouse operator or custodian"
+    ],
+    "framework": "US GAAP research route with existing shared foundations reused by reference",
+    "period": "Synthetic calendar 2026 close with January 2027 cutoff counterexamples",
+    "professional_review": "not-performed",
+    "empirical_support": "not-established",
+    "role_qualifications": {
+      "passenger": "Regular-route motor passenger ticketing/service; passenger vehicle leasing separately scoped under390.401, including exceptions.",
+      "property": "Property-carrier/broker billing and equipment rules stay separate from passenger rules."
+    }
+  },
+  "baseline_inventory": [
+    {
+      "record_id": "guide-industry-naics2022-481",
+      "industry_code": "481",
+      "linked_families": [
+        "q-capital-assets",
+        "q-cash-settlement",
+        "q-leases",
+        "q-provisions",
+        "q-receivables-credit",
+        "q-revenue"
+      ]
+    },
+    {
+      "record_id": "guide-industry-naics2022-482",
+      "industry_code": "482",
+      "linked_families": [
+        "q-capital-assets",
+        "q-leases",
+        "q-provisions",
+        "q-receivables-credit",
+        "q-revenue"
+      ]
+    },
+    {
+      "record_id": "guide-industry-naics2022-483",
+      "industry_code": "483",
+      "linked_families": [
+        "q-capital-assets",
+        "q-cash-settlement",
+        "q-leases",
+        "q-provisions",
+        "q-revenue"
+      ]
+    },
+    {
+      "record_id": "guide-industry-naics2022-484",
+      "industry_code": "484",
+      "linked_families": [
+        "q-cash-settlement",
+        "q-leases",
+        "q-payroll",
+        "q-provisions",
+        "q-purchasing-payables",
+        "q-revenue"
+      ]
+    },
+    {
+      "record_id": "guide-industry-naics2022-485",
+      "industry_code": "485",
+      "linked_families": [
+        "q-capital-assets",
+        "q-cash-settlement",
+        "q-grants-contributions",
+        "q-leases",
+        "q-payroll",
+        "q-revenue"
+      ]
+    },
+    {
+      "record_id": "guide-industry-naics2022-486",
+      "industry_code": "486",
+      "linked_families": [
+        "q-capital-assets",
+        "q-environmental",
+        "q-leases",
+        "q-provisions",
+        "q-rate-regulation",
+        "q-revenue"
+      ]
+    },
+    {
+      "record_id": "guide-industry-naics2022-487",
+      "industry_code": "487",
+      "linked_families": [
+        "q-cash-settlement",
+        "q-leases",
+        "q-payroll",
+        "q-provisions",
+        "q-revenue"
+      ]
+    },
+    {
+      "record_id": "guide-industry-naics2022-488",
+      "industry_code": "488",
+      "linked_families": [
+        "q-cash-settlement",
+        "q-inventory",
+        "q-leases",
+        "q-provisions",
+        "q-receivables-credit",
+        "q-revenue"
+      ]
+    },
+    {
+      "record_id": "guide-industry-naics2022-491",
+      "industry_code": "491",
+      "linked_families": [
+        "q-capital-assets",
+        "q-cash-settlement",
+        "q-leases",
+        "q-payroll",
+        "q-provisions",
+        "q-revenue"
+      ]
+    },
+    {
+      "record_id": "guide-industry-naics2022-492",
+      "industry_code": "492",
+      "linked_families": [
+        "q-cash-settlement",
+        "q-leases",
+        "q-payroll",
+        "q-provisions",
+        "q-revenue"
+      ]
+    },
+    {
+      "record_id": "guide-industry-naics2022-493",
+      "industry_code": "493",
+      "linked_families": [
+        "q-cash-settlement",
+        "q-controls-fraud",
+        "q-inventory",
+        "q-leases",
+        "q-provisions",
+        "q-revenue"
+      ]
+    },
+    {
+      "record_id": "src_fercacct",
+      "industry_code": "4861",
+      "linked_families": [
+        "q-rate-regulation"
+      ]
+    }
+  ],
+  "reused_foundations": [
+    "guide-q-revenue",
+    "guide-q-inventory",
+    "guide-q-leases",
+    "guide-q-purchasing-payables",
+    "guide-q-cash-settlement",
+    "guide-q-capital-assets",
+    "guide-q-provisions",
+    "guide-q-receivables-credit",
+    "ctrl-input-completeness",
+    "ctrl-source-authenticity",
+    "src_1os761s",
+    "src_fasb_asu2016_08_principal_agent",
+    "src_aa_i123_fas5"
+  ],
+  "sources": [
+    {
+      "id": "src_transport_fmcsa_broker_371",
+      "kind": "source",
+      "title": "49 CFR Part 371, Brokers of Property",
+      "summary": "Federal broker definition, transaction records, compensation and carrier-payment fields, retention, misrepresentation boundary, and segregated brokerage accounting.",
+      "topics": [
+        "Transportation and logistics"
+      ],
+      "industries": [
+        "Transportation and warehousing"
+      ],
+      "jurisdiction": "United States",
+      "source_type": "Regulation",
+      "publisher": "Federal Motor Carrier Safety Administration",
+      "source_url": "https://www.ecfr.gov/current/title-49/subtitle-B/chapter-III/subchapter-B/part-371",
+      "source_ids": [],
+      "related_ids": [],
+      "reviewed_at": "2026-09-19",
+      "review_status": "source-checked",
+      "provenance": {
+        "imported_on": "2026-09-19",
+        "previous_corpus_version": "2026-09-19.12406",
+        "previous_reviewed_at": null,
+        "previous_review_status": "source-only pending integration",
+        "note": "Original source package. Editorial summaries and synthetic facts only; publisher text is not stored. Integration and professional review remain separate. Current eCFR page read 2026-09-19; Title 49 page states current through 2026-09-17. eCFR is an unofficial editorial compilation and publisher rights are unknown."
+      },
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "Not included; publisher terms apply",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": null
+      },
+      "data": {
+        "id": "src_transport_fmcsa_broker_371",
+        "record_version": "1",
+        "record_updated_at": "2026-09-19",
+        "topic": "Transportation and logistics",
+        "source_type": "Regulation",
+        "owner": "Federal Motor Carrier Safety Administration",
+        "title": "49 CFR Part 371, Brokers of Property",
+        "published_or_status": "Current or dated source as described in review notes",
+        "jurisdiction": "United States",
+        "access": "Public web access; publisher terms apply",
+        "summary": "Federal broker definition, transaction records, compensation and carrier-payment fields, retention, misrepresentation boundary, and segregated brokerage accounting.",
+        "curation": {
+          "applicability": [
+            "selected US transport roles"
+          ],
+          "applicability_note": "Supports the cited federal or model-law scope only. It does not establish accounting treatment or whole-industry sufficiency.",
+          "temporal_role": "bounded-source",
+          "lifecycle": "current-or-dated",
+          "publication_status": "Current or dated source as described in review notes",
+          "method": "Original publisher or government source review with short locators.",
+          "transfer_limit": "Do not infer financial-statement recognition, measurement, tax, insurance, legal liability, or state-law applicability beyond the cited scope.",
+          "commercial_interest": "not assessed",
+          "source_updated_at": null,
+          "next_review_at": null,
+          "profile_status": "relationship-profiled"
+        },
+        "source_review": {
+          "reviewed_at": "2026-09-19",
+          "locators": [
+            "49 CFR 371.1-371.3",
+            "49 CFR 371.7 and 371.13"
+          ],
+          "review_scope": "Current eCFR page read 2026-09-19; Title 49 page states current through 2026-09-17. eCFR is an unofficial editorial compilation and publisher rights are unknown.",
+          "outcome": "Bounded source scope supported; accounting applicability, rights and professional review remain unresolved."
+        }
+      }
+    },
+    {
+      "id": "src_transport_fmcsa_credit_377",
+      "kind": "source",
+      "title": "49 CFR 377.203, Extension of Credit to Shippers",
+      "summary": "Freight-bill presentation and credit timing used as billing and receivable evidence.",
+      "topics": [
+        "Transportation and logistics"
+      ],
+      "industries": [
+        "Transportation and warehousing"
+      ],
+      "jurisdiction": "United States",
+      "source_type": "Regulation",
+      "publisher": "Federal Motor Carrier Safety Administration",
+      "source_url": "https://www.ecfr.gov/current/title-49/subtitle-B/chapter-III/subchapter-B/part-377/subpart-B/section-377.203",
+      "source_ids": [],
+      "related_ids": [],
+      "reviewed_at": "2026-09-19",
+      "review_status": "source-checked",
+      "provenance": {
+        "imported_on": "2026-09-19",
+        "previous_corpus_version": "2026-09-19.12406",
+        "previous_reviewed_at": null,
+        "previous_review_status": "source-only pending integration",
+        "note": "Original source package. Editorial summaries and synthetic facts only; publisher text is not stored. Integration and professional review remain separate. Current eCFR section read 2026-09-19; payment rule is not a revenue-recognition rule. Publisher rights unknown."
+      },
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "Not included; publisher terms apply",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": null
+      },
+      "data": {
+        "id": "src_transport_fmcsa_credit_377",
+        "record_version": "1",
+        "record_updated_at": "2026-09-19",
+        "topic": "Transportation and logistics",
+        "source_type": "Regulation",
+        "owner": "Federal Motor Carrier Safety Administration",
+        "title": "49 CFR 377.203, Extension of Credit to Shippers",
+        "published_or_status": "Current or dated source as described in review notes",
+        "jurisdiction": "United States",
+        "access": "Public web access; publisher terms apply",
+        "summary": "Freight-bill presentation and credit timing used as billing and receivable evidence.",
+        "curation": {
+          "applicability": [
+            "selected US transport roles"
+          ],
+          "applicability_note": "Supports the cited federal or model-law scope only. It does not establish accounting treatment or whole-industry sufficiency.",
+          "temporal_role": "bounded-source",
+          "lifecycle": "current-or-dated",
+          "publication_status": "Current or dated source as described in review notes",
+          "method": "Original publisher or government source review with short locators.",
+          "transfer_limit": "Do not infer financial-statement recognition, measurement, tax, insurance, legal liability, or state-law applicability beyond the cited scope.",
+          "commercial_interest": "not assessed",
+          "source_updated_at": null,
+          "next_review_at": null,
+          "profile_status": "relationship-profiled"
+        },
+        "source_review": {
+          "reviewed_at": "2026-09-19",
+          "locators": [
+            "49 CFR 377.203(a)-(d)",
+            "49 CFR 377.203(g)"
+          ],
+          "review_scope": "Current eCFR section read 2026-09-19; payment rule is not a revenue-recognition rule. Publisher rights unknown.",
+          "outcome": "Bounded source scope supported; accounting applicability, rights and professional review remain unresolved."
+        }
+      }
+    },
+    {
+      "id": "src_transport_fmcsa_maintenance_396",
+      "kind": "source",
+      "title": "FMCSA Part 396, Inspection, Repair, and Maintenance",
+      "summary": "Operational maintenance evidence for vehicles under carrier control, including records for leased vehicles and inspection or repair history.",
+      "topics": [
+        "Transportation and logistics"
+      ],
+      "industries": [
+        "Transportation and warehousing"
+      ],
+      "jurisdiction": "United States",
+      "source_type": "Regulatory guidance",
+      "publisher": "Federal Motor Carrier Safety Administration",
+      "source_url": "https://www.fmcsa.dot.gov/safety/passenger-safety/inspection-repair-and-maintenance-motor-carriers-passengers-part-396",
+      "source_ids": [],
+      "related_ids": [],
+      "reviewed_at": "2026-09-19",
+      "review_status": "source-checked",
+      "provenance": {
+        "imported_on": "2026-09-19",
+        "previous_corpus_version": "2026-09-19.12406",
+        "previous_reviewed_at": null,
+        "previous_review_status": "source-only pending integration",
+        "note": "Original source package. Editorial summaries and synthetic facts only; publisher text is not stored. Integration and professional review remain separate. FMCSA explanatory page read 2026-09-19 and last updated 2019-07-12. Current eCFR text and carrier-specific applicability require fresh review; no expense or capitalization conclusion is made."
+      },
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "Not included; publisher terms apply",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": null
+      },
+      "data": {
+        "id": "src_transport_fmcsa_maintenance_396",
+        "record_version": "1",
+        "record_updated_at": "2026-09-19",
+        "topic": "Transportation and logistics",
+        "source_type": "Regulatory guidance",
+        "owner": "Federal Motor Carrier Safety Administration",
+        "title": "FMCSA Part 396, Inspection, Repair, and Maintenance",
+        "published_or_status": "Current or dated source as described in review notes",
+        "jurisdiction": "United States",
+        "access": "Public web access; publisher terms apply",
+        "summary": "Operational maintenance evidence for vehicles under carrier control, including records for leased vehicles and inspection or repair history.",
+        "curation": {
+          "applicability": [
+            "motor carriers of passengers within the explanatory page scope"
+          ],
+          "applicability_note": "Dated passenger-carrier explanation only. The separate current396.3 source supplies the selected general motor-carrier record rule. The current396.3 vehicle identification list differs from the older summary; do not treat the summary as current consolidated regulation.",
+          "temporal_role": "bounded-source",
+          "lifecycle": "current-or-dated",
+          "publication_status": "Current or dated source as described in review notes",
+          "method": "Original publisher or government source review with short locators.",
+          "transfer_limit": "Do not infer financial-statement recognition, measurement, tax, insurance, legal liability, or state-law applicability beyond the cited scope.",
+          "commercial_interest": "not assessed",
+          "source_updated_at": null,
+          "next_review_at": null,
+          "profile_status": "relationship-profiled"
+        },
+        "source_review": {
+          "reviewed_at": "2026-09-19",
+          "locators": [
+            "49 CFR 396.3(a)-(b)",
+            "49 CFR 396.7, 396.11 and 396.17"
+          ],
+          "review_scope": "FMCSA explanatory page read 2026-09-19 and last updated 2019-07-12. Current eCFR text and carrier-specific applicability require fresh review; no expense or capitalization conclusion is made.",
+          "outcome": "Bounded source scope supported; accounting applicability, rights and professional review remain unresolved."
+        }
+      }
+    },
+    {
+      "id": "src_transport_fmcsa_leases_376",
+      "kind": "source",
+      "title": "49 CFR Part 376, Lease and Interchange of Vehicles",
+      "summary": "Property-carrier equipment leasing and interchange requirements identify the contracting parties, operating responsibility, duration, possession records and equipment trips, subject to stated exceptions.",
+      "topics": [
+        "Transportation and logistics"
+      ],
+      "industries": [
+        "Transportation and warehousing"
+      ],
+      "jurisdiction": "United States",
+      "source_type": "Regulation",
+      "publisher": "Federal Motor Carrier Safety Administration",
+      "source_url": "https://www.ecfr.gov/current/title-49/subtitle-B/chapter-III/subchapter-B/part-376",
+      "source_ids": [],
+      "related_ids": [],
+      "reviewed_at": "2026-09-19",
+      "review_status": "source-checked",
+      "provenance": {
+        "imported_on": "2026-09-19",
+        "previous_corpus_version": "2026-09-19.12406",
+        "previous_reviewed_at": null,
+        "previous_review_status": "source-only pending integration",
+        "note": "Original source package. Editorial summaries and synthetic facts only; publisher text is not stored. Integration and professional review remain separate. Part page was intermittently access-limited; FMCSA final-rule summaries were read for passenger responsibility and amendment history. Current text and entity applicability remain open. Publisher rights unknown. Current selected376.1,376.2 and376.11-376.12(a)-(c) text re-read2026-09-19; prior passenger rulemaking references are replaced by a separately identified390SubpartG source."
+      },
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "Not included; publisher terms apply",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": null
+      },
+      "data": {
+        "id": "src_transport_fmcsa_leases_376",
+        "record_version": "1",
+        "record_updated_at": "2026-09-19",
+        "topic": "Transportation and logistics",
+        "source_type": "Regulation",
+        "owner": "Federal Motor Carrier Safety Administration",
+        "title": "49 CFR Part 376, Lease and Interchange of Vehicles",
+        "published_or_status": "Current or dated source as described in review notes",
+        "jurisdiction": "United States",
+        "access": "Public web access; publisher terms apply",
+        "summary": "Property-carrier equipment leasing and interchange requirements identify the contracting parties, operating responsibility, duration, possession records and equipment trips, subject to stated exceptions.",
+        "curation": {
+          "applicability": [
+            "motor carriers registered to transport property within376.1"
+          ],
+          "applicability_note": "Supports the cited federal or model-law scope only. It does not establish accounting treatment or whole-industry sufficiency.",
+          "temporal_role": "bounded-source",
+          "lifecycle": "current-or-dated",
+          "publication_status": "Current or dated source as described in review notes",
+          "method": "Original publisher or government source review with short locators.",
+          "transfer_limit": "Do not infer financial-statement recognition, measurement, tax, insurance, legal liability, or state-law applicability beyond the cited scope.",
+          "commercial_interest": "not assessed",
+          "source_updated_at": null,
+          "next_review_at": null,
+          "profile_status": "relationship-profiled"
+        },
+        "source_review": {
+          "reviewed_at": "2026-09-19",
+          "locators": [
+            "49 CFR 376.1 and376.2",
+            "49 CFR 376.11 and376.12(a)-(c)"
+          ],
+          "review_scope": "Current eCFR Title49 displayed through2026-09-17. Selected property-carrier text read2026-09-19; passenger leasing is a separate390SubpartG route.",
+          "outcome": "Bounded property role supported; accounting and worker-status conclusions remain unresolved."
+        }
+      }
+    },
+    {
+      "id": "src_transport_fmcsa_claims_370",
+      "kind": "source",
+      "title": "FMCSA Regulations and Enforcement, Part 370 claims route",
+      "summary": "Official FMCSA index identifying Part 370 as the claims and salvage rule for loss and damage claims.",
+      "topics": [
+        "Transportation and logistics"
+      ],
+      "industries": [
+        "Transportation and warehousing"
+      ],
+      "jurisdiction": "United States",
+      "source_type": "Regulatory index",
+      "publisher": "Federal Motor Carrier Safety Administration",
+      "source_url": "https://www.fmcsa.dot.gov/protect-your-move/resources/regulation-enforcement",
+      "source_ids": [],
+      "related_ids": [],
+      "reviewed_at": "2026-09-19",
+      "review_status": "access-limited",
+      "provenance": {
+        "imported_on": "2026-09-19",
+        "previous_corpus_version": "2026-09-19.12406",
+        "previous_reviewed_at": null,
+        "previous_review_status": "source-only pending integration",
+        "note": "Original source package. Editorial summaries and synthetic facts only; publisher text is not stored. Integration and professional review remain separate. The current Part 370 eCFR page was access-limited by an anti-automation gate on 2026-09-19. Only the FMCSA index was read; exact deadlines, valuation and disposition require a permitted current-text review."
+      },
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "Not included; publisher terms apply",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": null
+      },
+      "data": {
+        "id": "src_transport_fmcsa_claims_370",
+        "record_version": "1",
+        "record_updated_at": "2026-09-19",
+        "topic": "Transportation and logistics",
+        "source_type": "Regulatory index",
+        "owner": "Federal Motor Carrier Safety Administration",
+        "title": "FMCSA Regulations and Enforcement, Part 370 claims route",
+        "published_or_status": "Current or dated source as described in review notes",
+        "jurisdiction": "United States",
+        "access": "Public web access; publisher terms apply",
+        "summary": "Official FMCSA index identifying Part 370 as the claims and salvage rule for loss and damage claims.",
+        "curation": {
+          "applicability": [
+            "selected US transport roles"
+          ],
+          "applicability_note": "Supports the cited federal or model-law scope only. It does not establish accounting treatment or whole-industry sufficiency.",
+          "temporal_role": "bounded-source",
+          "lifecycle": "current-or-dated",
+          "publication_status": "Current or dated source as described in review notes",
+          "method": "Original publisher or government source review with short locators.",
+          "transfer_limit": "Do not infer financial-statement recognition, measurement, tax, insurance, legal liability, or state-law applicability beyond the cited scope.",
+          "commercial_interest": "not assessed",
+          "source_updated_at": null,
+          "next_review_at": null,
+          "profile_status": "relationship-profiled"
+        },
+        "source_review": {
+          "reviewed_at": "2026-09-19",
+          "locators": [
+            "Consumer Protection Regulations, Part 370: claims and salvage"
+          ],
+          "review_scope": "The current Part 370 eCFR page was access-limited by an anti-automation gate on 2026-09-19. Only the FMCSA index was read; exact deadlines, valuation and disposition require a permitted current-text review.",
+          "outcome": "Identity and routing only; current text was not read."
+        }
+      }
+    },
+    {
+      "id": "src_transport_ulc_ucc7",
+      "kind": "source",
+      "title": "Uniform Commercial Code Article 7, Documents of Title (2003)",
+      "summary": "Model-law framework for warehouse receipts, bills of lading, bailees and custodial goods, with a state-enactment boundary.",
+      "topics": [
+        "Transportation and logistics"
+      ],
+      "industries": [
+        "Transportation and warehousing"
+      ],
+      "jurisdiction": "United States",
+      "source_type": "Model law",
+      "publisher": "Uniform Law Commission",
+      "source_url": "https://www.uniformlaws.org/acts/ucc",
+      "source_ids": [],
+      "related_ids": [],
+      "reviewed_at": "2026-09-19",
+      "review_status": "source-checked",
+      "provenance": {
+        "imported_on": "2026-09-19",
+        "previous_corpus_version": "2026-09-19.12406",
+        "previous_reviewed_at": null,
+        "previous_review_status": "source-only pending integration",
+        "note": "Original source package. Editorial summaries and synthetic facts only; publisher text is not stored. Integration and professional review remain separate. ULC page read 2026-09-19. UCC is not federal law; enacted text, variations, liens and warehouse contracts require selected-state review. No full text stored."
+      },
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "Not included; publisher terms apply",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": null
+      },
+      "data": {
+        "id": "src_transport_ulc_ucc7",
+        "record_version": "1",
+        "record_updated_at": "2026-09-19",
+        "topic": "Transportation and logistics",
+        "source_type": "Model law",
+        "owner": "Uniform Law Commission",
+        "title": "Uniform Commercial Code Article 7, Documents of Title (2003)",
+        "published_or_status": "Current or dated source as described in review notes",
+        "jurisdiction": "United States",
+        "access": "Public web access; publisher terms apply",
+        "summary": "Model-law framework for warehouse receipts, bills of lading, bailees and custodial goods, with a state-enactment boundary.",
+        "curation": {
+          "applicability": [
+            "selected US transport roles"
+          ],
+          "applicability_note": "Supports the cited federal or model-law scope only. It does not establish accounting treatment or whole-industry sufficiency.",
+          "temporal_role": "bounded-source",
+          "lifecycle": "current-or-dated",
+          "publication_status": "Current or dated source as described in review notes",
+          "method": "Original publisher or government source review with short locators.",
+          "transfer_limit": "Do not infer financial-statement recognition, measurement, tax, insurance, legal liability, or state-law applicability beyond the cited scope.",
+          "commercial_interest": "not assessed",
+          "source_updated_at": null,
+          "next_review_at": null,
+          "profile_status": "relationship-profiled"
+        },
+        "source_review": {
+          "reviewed_at": "2026-09-19",
+          "locators": [
+            "UCC Article 7 summary",
+            "UCC Article 7 §§ 7-102, 7-202, 7-204, 7-207, 7-209 and 7-403"
+          ],
+          "review_scope": "ULC page read 2026-09-19. UCC is not federal law; enacted text, variations, liens and warehouse contracts require selected-state review. No full text stored.",
+          "outcome": "Bounded source scope supported; accounting applicability, rights and professional review remain unresolved."
+        }
+      }
+    },
+    {
+      "id": "src_transport_ecfr_passenger_374",
+      "kind": "source",
+      "title": "49 CFR Part 374, regular-route passenger ticketing and service",
+      "summary": "For the selected regular-route passenger role, schedules and ticket/refund terms supply evidence distinct from freight billing. Unused-ticket refunds follow the governing tariff; fare receipts alone do not establish accounting recognition.",
+      "topics": [
+        "Transportation and logistics"
+      ],
+      "industries": [
+        "Transportation and warehousing"
+      ],
+      "jurisdiction": "United States",
+      "source_type": "Regulation",
+      "publisher": "Federal Motor Carrier Safety Administration",
+      "source_url": "https://www.ecfr.gov/current/title-49/subtitle-B/chapter-III/subchapter-B/part-374",
+      "source_ids": [],
+      "related_ids": [],
+      "reviewed_at": "2026-09-19",
+      "review_status": "source-checked",
+      "provenance": {
+        "imported_on": "2026-09-19",
+        "previous_corpus_version": "2026-09-19.12406",
+        "previous_reviewed_at": null,
+        "previous_review_status": "source-only pending integration",
+        "note": "Selected current eCFR text read on2026-09-19. Title49 displayed current through2026-09-17. Original editorial synthesis only, with rights unknown and professional applicability unresolved."
+      },
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "Not included; publisher terms apply",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": null
+      },
+      "data": {
+        "id": "src_transport_ecfr_passenger_374",
+        "record_version": "1",
+        "record_updated_at": "2026-09-19",
+        "topic": "Transportation and logistics",
+        "source_type": "Regulation",
+        "owner": "Federal Motor Carrier Safety Administration",
+        "title": "49 CFR Part 374, regular-route passenger ticketing and service",
+        "published_or_status": "eCFR Title49 current through2026-09-17, read2026-09-19",
+        "jurisdiction": "United States",
+        "access": "Public web access; publisher terms apply",
+        "summary": "For the selected regular-route passenger role, schedules and ticket/refund terms supply evidence distinct from freight billing. Unused-ticket refunds follow the governing tariff; fare receipts alone do not establish accounting recognition.",
+        "curation": {
+          "applicability": [
+            "regular-route motor passenger carrier"
+          ],
+          "applicability_note": "Subpart C covers regular-route motor passenger operations, not every passenger mode or charter service. This selected review does not determine revenue recognition, tariff applicability or a particular refund obligation.",
+          "temporal_role": "bounded-source",
+          "lifecycle": "current-or-dated",
+          "publication_status": "Current or dated source as described in review notes",
+          "method": "Original publisher or government source review with short locators.",
+          "transfer_limit": "Do not infer financial-statement recognition, measurement, tax, insurance, legal liability, or state-law applicability beyond the cited scope.",
+          "commercial_interest": "not assessed",
+          "source_updated_at": null,
+          "next_review_at": null,
+          "profile_status": "relationship-profiled"
+        },
+        "source_review": {
+          "reviewed_at": "2026-09-19",
+          "locators": [
+            "49 CFR 374.1 and374.301",
+            "49 CFR 374.305(c)-(d) and374.311(a)-(c)"
+          ],
+          "review_scope": "Selected current eCFR text read on2026-09-19. Title49 displayed current through2026-09-17. Original editorial synthesis only, with rights unknown and professional applicability unresolved.",
+          "outcome": "Selected role-specific evidence supported; accounting treatment, rights and professional review remain unresolved.",
+          "limitations": [
+            "Subpart C covers regular-route motor passenger operations, not every passenger mode or charter service. This selected review does not determine revenue recognition, tariff applicability or a particular refund obligation."
+          ]
+        },
+        "effective_period": "Displayed current text through2026-09-17; individual entity and period applicability requires review."
+      }
+    },
+    {
+      "id": "src_transport_ecfr_passenger_leases_390g",
+      "kind": "source",
+      "title": "49 CFR Part 390 Subpart G, passenger vehicle leases and interchange",
+      "summary": "The passenger leasing route begins January1,2021 and has explicit exceptions for certain authorized-carrier service agreements and financial leases. Covered agreements identify the vehicle, parties, duration and operating responsibility.",
+      "topics": [
+        "Transportation and logistics"
+      ],
+      "industries": [
+        "Transportation and warehousing"
+      ],
+      "jurisdiction": "United States",
+      "source_type": "Regulation",
+      "publisher": "Federal Motor Carrier Safety Administration",
+      "source_url": "https://www.ecfr.gov/current/title-49/subtitle-B/chapter-III/subchapter-B/part-390/subpart-G",
+      "source_ids": [],
+      "related_ids": [],
+      "reviewed_at": "2026-09-19",
+      "review_status": "source-checked",
+      "provenance": {
+        "imported_on": "2026-09-19",
+        "previous_corpus_version": "2026-09-19.12406",
+        "previous_reviewed_at": null,
+        "previous_review_status": "source-only pending integration",
+        "note": "Selected current eCFR text read on2026-09-19. Title49 displayed current through2026-09-17. Original editorial synthesis only, with rights unknown and professional applicability unresolved."
+      },
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "Not included; publisher terms apply",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": null
+      },
+      "data": {
+        "id": "src_transport_ecfr_passenger_leases_390g",
+        "record_version": "1",
+        "record_updated_at": "2026-09-19",
+        "topic": "Transportation and logistics",
+        "source_type": "Regulation",
+        "owner": "Federal Motor Carrier Safety Administration",
+        "title": "49 CFR Part 390 Subpart G, passenger vehicle leases and interchange",
+        "published_or_status": "eCFR Title49 current through2026-09-17, read2026-09-19",
+        "jurisdiction": "United States",
+        "access": "Public web access; publisher terms apply",
+        "summary": "The passenger leasing route begins January1,2021 and has explicit exceptions for certain authorized-carrier service agreements and financial leases. Covered agreements identify the vehicle, parties, duration and operating responsibility.",
+        "curation": {
+          "applicability": [
+            "motor passenger carrier within390.401 scope"
+          ],
+          "applicability_note": "Regulatory lease/control duties do not determine the US GAAP lease model. Applicability, the390.401(b) exceptions and executed contract facts require review; property-carrier Part376 is a separate route.",
+          "temporal_role": "bounded-source",
+          "lifecycle": "current-or-dated",
+          "publication_status": "Current or dated source as described in review notes",
+          "method": "Original publisher or government source review with short locators.",
+          "transfer_limit": "Do not infer financial-statement recognition, measurement, tax, insurance, legal liability, or state-law applicability beyond the cited scope.",
+          "commercial_interest": "not assessed",
+          "source_updated_at": null,
+          "next_review_at": null,
+          "profile_status": "relationship-profiled"
+        },
+        "source_review": {
+          "reviewed_at": "2026-09-19",
+          "locators": [
+            "49 CFR 390.401(a)-(b)",
+            "49 CFR 390.403(a)-(c)"
+          ],
+          "review_scope": "Selected current eCFR text read on2026-09-19. Title49 displayed current through2026-09-17. Original editorial synthesis only, with rights unknown and professional applicability unresolved.",
+          "outcome": "Selected role-specific evidence supported; accounting treatment, rights and professional review remain unresolved.",
+          "limitations": [
+            "Regulatory lease/control duties do not determine the US GAAP lease model. Applicability, the390.401(b) exceptions and executed contract facts require review; property-carrier Part376 is a separate route."
+          ]
+        },
+        "effective_period": "Selected390.401/403 provisions begin2021-01-01; current text and applicability read2026-09-19."
+      }
+    },
+    {
+      "id": "src_transport_ecfr_maintenance_3963",
+      "kind": "source",
+      "title": "49 CFR 396.3, motor-carrier inspection and maintenance records",
+      "summary": "Current selected text requires systematic vehicle maintenance and records of vehicle identity, scheduled work and completed work. The record duty addresses vehicles controlled for30consecutive days, with a stated nonbusiness private-passenger exception.",
+      "topics": [
+        "Transportation and logistics"
+      ],
+      "industries": [
+        "Transportation and warehousing"
+      ],
+      "jurisdiction": "United States",
+      "source_type": "Regulation",
+      "publisher": "Federal Motor Carrier Safety Administration",
+      "source_url": "https://www.ecfr.gov/current/title-49/subtitle-B/chapter-III/subchapter-B/part-396/section-396.3",
+      "source_ids": [],
+      "related_ids": [],
+      "reviewed_at": "2026-09-19",
+      "review_status": "source-checked",
+      "provenance": {
+        "imported_on": "2026-09-19",
+        "previous_corpus_version": "2026-09-19.12406",
+        "previous_reviewed_at": null,
+        "previous_review_status": "source-only pending integration",
+        "note": "Selected current eCFR text read on2026-09-19. Title49 displayed current through2026-09-17. Original editorial synthesis only, with rights unknown and professional applicability unresolved."
+      },
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "Not included; publisher terms apply",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": null
+      },
+      "data": {
+        "id": "src_transport_ecfr_maintenance_3963",
+        "record_version": "1",
+        "record_updated_at": "2026-09-19",
+        "topic": "Transportation and logistics",
+        "source_type": "Regulation",
+        "owner": "Federal Motor Carrier Safety Administration",
+        "title": "49 CFR 396.3, motor-carrier inspection and maintenance records",
+        "published_or_status": "eCFR Title49 current through2026-09-17, read2026-09-19",
+        "jurisdiction": "United States",
+        "access": "Public web access; publisher terms apply",
+        "summary": "Current selected text requires systematic vehicle maintenance and records of vehicle identity, scheduled work and completed work. The record duty addresses vehicles controlled for30consecutive days, with a stated nonbusiness private-passenger exception.",
+        "curation": {
+          "applicability": [
+            "motor carrier within applicable FMCSA scope",
+            "intermodal equipment provider within applicable FMCSA scope"
+          ],
+          "applicability_note": "The selected operational rule supports evidence collection, not repair expense, capitalization, lease classification or whole-fleet legal compliance. Vehicle and carrier scope remain fact dependent.",
+          "temporal_role": "bounded-source",
+          "lifecycle": "current-or-dated",
+          "publication_status": "Current or dated source as described in review notes",
+          "method": "Original publisher or government source review with short locators.",
+          "transfer_limit": "Do not infer financial-statement recognition, measurement, tax, insurance, legal liability, or state-law applicability beyond the cited scope.",
+          "commercial_interest": "not assessed",
+          "source_updated_at": null,
+          "next_review_at": null,
+          "profile_status": "relationship-profiled"
+        },
+        "source_review": {
+          "reviewed_at": "2026-09-19",
+          "locators": [
+            "49 CFR 396.3(a)-(c)"
+          ],
+          "review_scope": "Selected current eCFR text read on2026-09-19. Title49 displayed current through2026-09-17. Original editorial synthesis only, with rights unknown and professional applicability unresolved.",
+          "outcome": "Selected role-specific evidence supported; accounting treatment, rights and professional review remain unresolved.",
+          "limitations": [
+            "The selected operational rule supports evidence collection, not repair expense, capitalization, lease classification or whole-fleet legal compliance. Vehicle and carrier scope remain fact dependent."
+          ]
+        },
+        "effective_period": "Displayed current text through2026-09-17; individual entity and period applicability requires review."
+      }
+    }
+  ],
+  "records": [
+    {
+      "id": "guide-transport-role-routing",
+      "kind": "guide",
+      "title": "US transport events, roles and ledger routing",
+      "summary": "Bounded source package for US freight carriers, passenger carriers, property brokers, and warehouse custodians. It connects shipment or storage evidence to proposed billing, settlement, and ledger review while preserving ownership and claim exceptions.",
+      "topics": [
+        "Transportation and logistics",
+        "Accounting workflows"
+      ],
+      "industries": [
+        "Transportation and warehousing"
+      ],
+      "jurisdiction": "United States",
+      "source_type": null,
+      "publisher": "Accounting Agents contributors",
+      "source_url": null,
+      "source_ids": [
+        "src_transport_fmcsa_broker_371",
+        "src_transport_fmcsa_credit_377",
+        "src_transport_fmcsa_maintenance_396",
+        "src_transport_fmcsa_leases_376",
+        "src_transport_fmcsa_claims_370",
+        "src_transport_ulc_ucc7",
+        "src_transport_ecfr_passenger_374",
+        "src_transport_ecfr_passenger_leases_390g",
+        "src_transport_ecfr_maintenance_3963"
+      ],
+      "related_ids": [],
+      "reviewed_at": "2026-09-19",
+      "review_status": "editorially-reviewed",
+      "provenance": {
+        "imported_on": "2026-09-19",
+        "previous_corpus_version": "2026-09-19.12406",
+        "previous_reviewed_at": null,
+        "previous_review_status": "source-only pending integration",
+        "note": "Original source package. Editorial summaries and synthetic facts only; publisher text is not stored. Integration and professional review remain separate."
+      },
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "Not included; publisher terms apply",
+        "full_text_stored": false
+      },
+      "data": {
+        "id": "guide-transport-role-routing",
+        "version": "1.0.0",
+        "title": "US transport events, roles and ledger routing",
+        "description": "Bounded source package for US freight carriers, passenger carriers, property brokers, and warehouse custodians. It connects shipment or storage evidence to proposed billing, settlement, and ledger review while preserving ownership and claim exceptions.",
+        "prepared_at": "2026-09-19",
+        "review_note": "Source-only pending integration. No professional review, current consolidated accounting conclusion, operating effectiveness, or production posting is claimed.",
+        "evidence_classification": "editorial-recommendation",
+        "intended_audience": "Accounting researchers, controllers, reviewers, and builders of read-only accounting agents.",
+        "scope": "Selected US nongovernmental operating entities applying accrual-basis US GAAP research for calendar 2026 examples. Require legal entity, role, contract, authority, ownership, custody, reporting framework and period. Roles are separated into freight carrier, passenger carrier, property broker, and warehouse or custodian. Freight and passenger branches are illustrative routes.",
+        "jurisdiction": "United States",
+        "framework": "US GAAP research route with existing revenue, inventory, leases, payables, provisions, settlement and control foundations reused by reference; current consolidated Codification was not read in this package.",
+        "roles": [
+          "freight carrier",
+          "passenger carrier",
+          "property broker",
+          "warehouse operator or custodian"
+        ],
+        "source_ids": [
+          "src_transport_fmcsa_broker_371",
+          "src_transport_fmcsa_credit_377",
+          "src_transport_fmcsa_maintenance_396",
+          "src_transport_fmcsa_leases_376",
+          "src_transport_fmcsa_claims_370",
+          "src_transport_ulc_ucc7",
+          "src_transport_ecfr_passenger_374",
+          "src_transport_ecfr_passenger_leases_390g",
+          "src_transport_ecfr_maintenance_3963"
+        ],
+        "workflow_ids": [
+          "workflow-transport-event-to-ledger"
+        ],
+        "control_ids": [
+          "control-transport-role-ownership"
+        ],
+        "example_ids": [
+          "example-transport-connected-ledger"
+        ],
+        "research_questions": [
+          {
+            "id": "rq-transport-role-event-boundary",
+            "family_ids": [
+              "q-revenue",
+              "q-data-lineage",
+              "q-inventory"
+            ],
+            "question": "How should a US transport agent distinguish a carrier, property broker, and warehouse custodian before connecting shipment or storage events to billing and ledger proposals?",
+            "scope": "Selected US nongovernmental operating entities applying accrual-basis US GAAP research for calendar 2026 examples. Require legal entity, role, contract, authority, ownership, custody, reporting framework and period.",
+            "answer_status": "sourced-answer-bounded",
+            "source_ids": [
+              "src_transport_fmcsa_broker_371",
+              "src_transport_ulc_ucc7",
+              "src_1os761s"
+            ],
+            "source_locators": [
+              {
+                "source_id": "src_transport_fmcsa_broker_371",
+                "locator": "49 CFR 371.2-371.3 and 371.7",
+                "effective_period": "Current eCFR read 2026-09-19; Title 49 current through 2026-09-17.",
+                "access_limits": "Public eCFR page; unofficial compilation; rights unknown; full text not stored."
+              },
+              {
+                "source_id": "src_transport_ulc_ucc7",
+                "locator": "UCC Article 7 summary and §§ 7-102, 7-202, 7-204, 7-207, 7-403",
+                "effective_period": "Revised model text approved 2003; state enactment and contract period must be checked.",
+                "access_limits": "Public ULC summary; model law is not federal; state variation and rights unresolved."
+              }
+            ],
+            "remaining_gaps": [
+              "The package does not survey state warehouse statutes or determine whether a specific entity is a carrier, broker, bailee, agent, or principal.",
+              "Current consolidated accounting text, entity policy, executed contract terms, state-law applicability and professional review remain open.",
+              "Synthetic calculations are demonstrations only; no operational population or measured agent performance was obtained."
+            ],
+            "assessment": {
+              "status": "partial",
+              "professional_review": "not-performed",
+              "empirical_support": "not-established",
+              "dimensions": {
+                "scope": "present",
+                "accounting-question": "partial",
+                "evidence-inputs": "present",
+                "workflow": "present",
+                "controls": "present",
+                "worked-material": "present",
+                "empirical-support": "not-assessed"
+              },
+              "basis": "Named source locators, role-specific evidence requirements, proposed workflow and original synthetic fixture are present. Partial does not establish accounting correctness or whole-subsector sufficiency."
+            },
+            "exceptions": [
+              "The package does not survey state warehouse statutes or determine whether a specific entity is a carrier, broker, bailee, agent, or principal."
+            ],
+            "answer": "Classify the entity before accounting retrieval. A carrier performs the movement and retains movement, delivery, and billing evidence; a property broker arranges transportation and retains consignor, carrier, bill or freight-bill, compensation, freight-collected, and carrier-payment evidence; a warehouse or custodian retains receipt, owner, quantity, location, release, and custody evidence. Ownership and financial-statement presentation remain separate review steps."
+          },
+          {
+            "id": "rq-transport-freight-passenger-cutoff-surcharge",
+            "family_ids": [
+              "q-revenue",
+              "q-cash-settlement",
+              "q-data-lineage"
+            ],
+            "question": "How should freight and passenger cutoff evidence separate service events, billed amounts, fuel surcharges, accessorials, and cash or settlement timing?",
+            "scope": "Selected US nongovernmental operating entities applying accrual-basis US GAAP research for calendar 2026 examples. Require legal entity, role, contract, authority, ownership, custody, reporting framework and period.",
+            "answer_status": "sourced-answer-bounded",
+            "source_ids": [
+              "src_transport_fmcsa_broker_371",
+              "src_transport_fmcsa_credit_377",
+              "src_1os761s",
+              "src_fasb_asu2016_08_principal_agent",
+              "src_transport_ecfr_passenger_374"
+            ],
+            "source_locators": [
+              {
+                "source_id": "src_transport_fmcsa_broker_371",
+                "locator": "49 CFR 371.3(a)(3)-(6)",
+                "effective_period": "Current eCFR read 2026-09-19; Title 49 current through 2026-09-17.",
+                "access_limits": "Public eCFR page; record rule only; rights unknown."
+              },
+              {
+                "source_id": "src_transport_fmcsa_credit_377",
+                "locator": "49 CFR 377.203(b)-(d)",
+                "effective_period": "Current eCFR section read 2026-09-19; payment rule is not revenue recognition.",
+                "access_limits": "Public eCFR page; rights unknown."
+              },
+              {
+                "source_id": "src_fasb_asu2016_08_principal_agent",
+                "locator": "Existing accepted principal-versus-agent foundation; current applicable accounting text remains to be read.",
+                "effective_period": "Inherited foundation; current consolidated text unresolved.",
+                "access_limits": "Existing source rights and review limits remain in force."
+              },
+              {
+                "source_id": "src_transport_ecfr_passenger_374",
+                "locator": "49 CFR 374.1 and374.301; 49 CFR 374.305(c)-(d) and374.311(a)-(c)",
+                "effective_period": "Current eCFR read2026-09-19; Title49 through2026-09-17.",
+                "access_limits": "Subpart C covers regular-route motor passenger operations, not every passenger mode or charter service. This selected review does not determine revenue recognition, tariff applicability or a particular refund obligation."
+              }
+            ],
+            "remaining_gaps": [
+              "Fuel-index formulas and passenger fare rules are contract-specific; no universal fuel or passenger policy is asserted.",
+              "Current consolidated accounting text, entity policy, executed contract terms, state-law applicability and professional review remain open.",
+              "Synthetic calculations are demonstrations only; no operational population or measured agent performance was obtained."
+            ],
+            "assessment": {
+              "status": "partial",
+              "professional_review": "not-performed",
+              "empirical_support": "not-established",
+              "dimensions": {
+                "scope": "present",
+                "accounting-question": "partial",
+                "evidence-inputs": "present",
+                "workflow": "present",
+                "controls": "present",
+                "worked-material": "present",
+                "empirical-support": "not-assessed"
+              },
+              "basis": "Named source locators, role-specific evidence requirements, proposed workflow and original synthetic fixture are present. Partial does not establish accounting correctness or whole-subsector sufficiency."
+            },
+            "exceptions": [
+              "Fuel-index formulas and passenger fare rules are contract-specific; no universal fuel or passenger policy is asserted."
+            ],
+            "answer": "Retain service-event date, billing date, cash date, base rate, surcharge percentage and amount, accessorial approval, and contract role. Freight-bill presentation or cash receipt does not by itself establish recognition. Passenger cash received before the trip is a distinct cutoff branch requiring the trip or ticket service date and current policy review. The passenger branch selects regular-route motor service under374.301 and374.305/311: retain the schedule, ticket status, governing tariff and refund request alongside trip performance. Parts371and377 support only property brokerage and freight billing. The passenger rule supplies service/refund evidence, not a GAAP recognition conclusion.",
+            "role_source_routes": [
+              {
+                "role": "property broker or freight carrier",
+                "source_ids": [
+                  "src_transport_fmcsa_broker_371",
+                  "src_transport_fmcsa_credit_377"
+                ]
+              },
+              {
+                "role": "regular-route motor passenger carrier",
+                "source_ids": [
+                  "src_transport_ecfr_passenger_374"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "rq-transport-carrier-settlement-claims",
+            "family_ids": [
+              "q-purchasing-payables",
+              "q-receivables-credit",
+              "q-provisions",
+              "q-cash-settlement"
+            ],
+            "question": "How should carrier settlements and cargo claims remain separate from customer billings, cash, and proposed claim accruals?",
+            "scope": "Selected US nongovernmental operating entities applying accrual-basis US GAAP research for calendar 2026 examples. Require legal entity, role, contract, authority, ownership, custody, reporting framework and period.",
+            "answer_status": "sourced-answer-bounded",
+            "source_ids": [
+              "src_transport_fmcsa_broker_371",
+              "src_transport_fmcsa_claims_370",
+              "src_transport_fmcsa_credit_377",
+              "src_aa_i123_fas5"
+            ],
+            "source_locators": [
+              {
+                "source_id": "src_transport_fmcsa_broker_371",
+                "locator": "49 CFR 371.3(a)(4)-(6) and (b)-(c)",
+                "effective_period": "Current eCFR read 2026-09-19; Title 49 current through 2026-09-17.",
+                "access_limits": "Public eCFR page; does not decide gross or net financial presentation."
+              },
+              {
+                "source_id": "src_transport_fmcsa_claims_370",
+                "locator": "FMCSA Regulations and Enforcement, Consumer Protection Regulations, Part 370",
+                "effective_period": "Official FMCSA index read 2026-09-19; current Part 370 text not read because eCFR access was limited.",
+                "access_limits": "Identity and routing only; exact claim rules require permitted current-text review."
+              },
+              {
+                "source_id": "src_aa_i123_fas5",
+                "locator": "Existing accepted US claims and provisions foundation; current consolidated ASC 450 remains open.",
+                "effective_period": "Inherited historical source review; not current consolidated verification.",
+                "access_limits": "Existing source rights and review limits remain in force."
+              }
+            ],
+            "remaining_gaps": [
+              "Part 370 text, carrier liability, insurance recovery and current loss-contingency application are not concluded.",
+              "Current consolidated accounting text, entity policy, executed contract terms, state-law applicability and professional review remain open.",
+              "Synthetic calculations are demonstrations only; no operational population or measured agent performance was obtained."
+            ],
+            "assessment": {
+              "status": "partial",
+              "professional_review": "not-performed",
+              "empirical_support": "not-established",
+              "dimensions": {
+                "scope": "present",
+                "accounting-question": "partial",
+                "evidence-inputs": "present",
+                "workflow": "present",
+                "controls": "present",
+                "worked-material": "present",
+                "empirical-support": "not-assessed"
+              },
+              "basis": "Named source locators, role-specific evidence requirements, proposed workflow and original synthetic fixture are present. Partial does not establish accounting correctness or whole-subsector sufficiency."
+            },
+            "exceptions": [
+              "Part 370 text, carrier liability, insurance recovery and current loss-contingency application are not concluded."
+            ],
+            "answer": "Separate customer receivable or cash, carrier payable or clearing, broker compensation, and claim suspense or review. A damaged-shipment claim is not netted against earned billing merely because a carrier or broker paid a settlement; the claim file, current claims rule, contract, and accounting authority determine later treatment."
+          },
+          {
+            "id": "rq-transport-leased-fleet-maintenance",
+            "family_ids": [
+              "q-leases",
+              "q-capital-assets",
+              "q-purchasing-payables"
+            ],
+            "question": "What evidence separates leased-fleet control, maintenance obligations, and repairs from carrier billing and settlement?",
+            "scope": "Selected US nongovernmental operating entities applying accrual-basis US GAAP research for calendar 2026 examples. Require legal entity, role, contract, authority, ownership, custody, reporting framework and period.",
+            "answer_status": "sourced-answer-bounded",
+            "source_ids": [
+              "src_transport_fmcsa_leases_376",
+              "src_transport_fmcsa_maintenance_396",
+              "src_1os761s",
+              "src_transport_ecfr_passenger_leases_390g",
+              "src_transport_ecfr_maintenance_3963"
+            ],
+            "source_locators": [
+              {
+                "source_id": "src_transport_fmcsa_leases_376",
+                "locator": "49 CFR 376.1,376.2,376.11 and376.12(a)-(c)",
+                "effective_period": "Current eCFR read2026-09-19; Title49 through2026-09-17.",
+                "access_limits": "Property-carrier route only, subject to applicable exceptions; no accounting classification conclusion."
+              },
+              {
+                "source_id": "src_transport_fmcsa_maintenance_396",
+                "locator": "49 CFR 396.3(a)-(b), 396.7, 396.11 and 396.17 as summarized by FMCSA",
+                "effective_period": "FMCSA explanatory page read 2026-09-19; page last updated 2019-07-12; current eCFR review required.",
+                "access_limits": "Dated passenger-carrier explanation only; current396.3 is separately reviewed. No accounting classification conclusion."
+              },
+              {
+                "source_id": "src_transport_ecfr_passenger_leases_390g",
+                "locator": "49 CFR 390.401(a)-(b); 49 CFR 390.403(a)-(c)",
+                "effective_period": "Current eCFR read2026-09-19; Title49 through2026-09-17.",
+                "access_limits": "Regulatory lease/control duties do not determine the US GAAP lease model. Applicability, the390.401(b) exceptions and executed contract facts require review; property-carrier Part376 is a separate route."
+              },
+              {
+                "source_id": "src_transport_ecfr_maintenance_3963",
+                "locator": "49 CFR 396.3(a)-(c)",
+                "effective_period": "Current eCFR read2026-09-19; Title49 through2026-09-17.",
+                "access_limits": "The selected operational rule supports evidence collection, not repair expense, capitalization, lease classification or whole-fleet legal compliance. Vehicle and carrier scope remain fact dependent."
+              }
+            ],
+            "remaining_gaps": [
+              "Passenger and property lease rules differ; a lease label does not establish the accounting model or maintenance classification.",
+              "Current consolidated accounting text, entity policy, executed contract terms, state-law applicability and professional review remain open.",
+              "Synthetic calculations are demonstrations only; no operational population or measured agent performance was obtained."
+            ],
+            "assessment": {
+              "status": "partial",
+              "professional_review": "not-performed",
+              "empirical_support": "not-established",
+              "dimensions": {
+                "scope": "present",
+                "accounting-question": "partial",
+                "evidence-inputs": "present",
+                "workflow": "present",
+                "controls": "present",
+                "worked-material": "present",
+                "empirical-support": "not-assessed"
+              },
+              "basis": "Named source locators, role-specific evidence requirements, proposed workflow and original synthetic fixture are present. Partial does not establish accounting correctness or whole-subsector sufficiency."
+            },
+            "exceptions": [
+              "Passenger and property lease rules differ; a lease label does not establish the accounting model or maintenance classification."
+            ],
+            "answer": "Identify who controls the vehicle, the lessor or provider, lease term and payment, maintenance responsibility, work-order date and nature, inspection evidence, and service-period allocation. Retain proposed lease, repair, or capitalization routes for the selected accounting foundation and professional review. Property equipment leases use376.1/11/12. Passenger vehicle leases use390.401/403 after checking the authorized-carrier-service and financial-lease exceptions. Current396.3 supplies the general selected maintenance-record route; the earlier FMCSA passenger page is a dated explanation. None of these operational duties resolves US GAAP classification.",
+            "role_source_routes": [
+              {
+                "role": "property carrier",
+                "source_ids": [
+                  "src_transport_fmcsa_leases_376",
+                  "src_transport_ecfr_maintenance_3963"
+                ]
+              },
+              {
+                "role": "passenger carrier",
+                "source_ids": [
+                  "src_transport_ecfr_passenger_leases_390g",
+                  "src_transport_ecfr_maintenance_3963"
+                ],
+                "dated_context_source_ids": [
+                  "src_transport_fmcsa_maintenance_396"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "rq-transport-customer-owned-warehouse-claims",
+            "family_ids": [
+              "q-inventory",
+              "q-revenue",
+              "q-provisions",
+              "q-data-lineage"
+            ],
+            "question": "How should a warehouse or custodian keep customer-owned goods, storage billing, release authority, and damage claims out of the custodian inventory population?",
+            "scope": "Selected US nongovernmental operating entities applying accrual-basis US GAAP research for calendar 2026 examples. Require legal entity, role, contract, authority, ownership, custody, reporting framework and period.",
+            "answer_status": "sourced-answer-bounded",
+            "source_ids": [
+              "src_transport_ulc_ucc7",
+              "src_transport_fmcsa_claims_370",
+              "src_1os761s"
+            ],
+            "source_locators": [
+              {
+                "source_id": "src_transport_ulc_ucc7",
+                "locator": "UCC Article 7 summary; §§ 7-102(1),(13), 7-202(b)(1)-(9), 7-204, 7-207, 7-209 and 7-403",
+                "effective_period": "Revised model text approved 2003; selected state enactment and contract period required.",
+                "access_limits": "ULC public summary and model-law locator; not federal law; state variations, liens and rights unresolved."
+              },
+              {
+                "source_id": "src_transport_fmcsa_claims_370",
+                "locator": "FMCSA Regulations and Enforcement, Part 370 claims and salvage index",
+                "effective_period": "Official FMCSA index read 2026-09-19; Part 370 current text not read.",
+                "access_limits": "Routing only; warehouse contract and state-law claims need separate review."
+              }
+            ],
+            "remaining_gaps": [
+              "No state warehouse statute, warehouse lien enforcement, insurance policy, or customer contract was reviewed for a particular operator.",
+              "Current consolidated accounting text, entity policy, executed contract terms, state-law applicability and professional review remain open.",
+              "Synthetic calculations are demonstrations only; no operational population or measured agent performance was obtained."
+            ],
+            "assessment": {
+              "status": "partial",
+              "professional_review": "not-performed",
+              "empirical_support": "not-established",
+              "dimensions": {
+                "scope": "present",
+                "accounting-question": "partial",
+                "evidence-inputs": "present",
+                "workflow": "present",
+                "controls": "present",
+                "worked-material": "present",
+                "empirical-support": "not-assessed"
+              },
+              "basis": "Named source locators, role-specific evidence requirements, proposed workflow and original synthetic fixture are present. Partial does not establish accounting correctness or whole-subsector sufficiency."
+            },
+            "exceptions": [
+              "No state warehouse statute, warehouse lien enforcement, insurance policy, or customer contract was reviewed for a particular operator."
+            ],
+            "answer": "Separate owned supplies and equipment from the customer custody subledger, storage or handling revenue, receivables, lien or hold status, and claim evidence. A receipt or custody record is not by itself evidence that the custodian owns the goods or recognizes them as inventory; verify the selected state enactment and contract."
+          }
+        ]
+      }
+    },
+    {
+      "id": "workflow-transport-event-to-ledger",
+      "kind": "workflow",
+      "title": "US transport event to proposed ledger",
+      "summary": "Read-only workflow routing shipment, storage, settlement, lease, maintenance and claim evidence into proposed billing and ledger workpapers.",
+      "topics": [
+        "Transportation and logistics",
+        "Accounting workflows"
+      ],
+      "industries": [
+        "Transportation and warehousing"
+      ],
+      "jurisdiction": "United States",
+      "source_type": null,
+      "publisher": "Accounting Agents contributors",
+      "source_url": null,
+      "source_ids": [
+        "src_transport_fmcsa_broker_371",
+        "src_transport_fmcsa_credit_377",
+        "src_transport_fmcsa_maintenance_396",
+        "src_transport_fmcsa_leases_376",
+        "src_transport_fmcsa_claims_370",
+        "src_transport_ulc_ucc7",
+        "src_transport_ecfr_passenger_374",
+        "src_transport_ecfr_passenger_leases_390g",
+        "src_transport_ecfr_maintenance_3963"
+      ],
+      "related_ids": [],
+      "reviewed_at": "2026-09-19",
+      "review_status": "editorially-reviewed",
+      "provenance": {
+        "imported_on": "2026-09-19",
+        "previous_corpus_version": "2026-09-19.12406",
+        "previous_reviewed_at": null,
+        "previous_review_status": "source-only pending integration",
+        "note": "Original source package. Editorial summaries and synthetic facts only; publisher text is not stored. Integration and professional review remain separate."
+      },
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "Not included; publisher terms apply",
+        "full_text_stored": false
+      },
+      "data": {
+        "id": "workflow-transport-event-to-ledger",
+        "version": "1.0.0",
+        "name": "US transport event to proposed ledger",
+        "purpose": "Connect operational transport or custody events to an accountable review packet without executing postings, payments, release, or claim settlement.",
+        "scope": "Selected US nongovernmental operating entities applying accrual-basis US GAAP research for calendar 2026 examples. Require legal entity, role, contract, authority, ownership, custody, reporting framework and period.",
+        "inputs": [
+          "Contract, rate sheet or tariff",
+          "Load tender, ticket, bill of lading or trip record",
+          "Pickup, delivery, proof-of-delivery, storage receipt or release evidence",
+          "Fuel surcharge calculation and accessorial approval",
+          "Broker record and carrier settlement statement",
+          "Lease, maintenance and inspection records",
+          "Claim notice, evidence and status",
+          "Customer ownership and custody confirmation"
+        ],
+        "steps": [
+          "Classify role before retrieval",
+          "Reconcile event, period, owner, counterparty and identifiers",
+          "Calculate base charge, surcharge and settlement independently",
+          "Separate customer billing, carrier settlement, broker fee, storage fee, claim status and customer-owned goods",
+          "Prepare proposed ledger routes",
+          "Stop on missing or conflicting evidence",
+          "Route to accountable reviewer; no execution"
+        ],
+        "controls": [
+          "control-transport-role-ownership",
+          "ctrl-input-completeness",
+          "ctrl-source-authenticity"
+        ],
+        "outputs": [
+          "Role and applicability matrix",
+          "Event-to-billing bridge",
+          "Carrier or broker settlement reconciliation",
+          "Warehouse custody rollforward",
+          "Lease and maintenance evidence schedule",
+          "Claim exception register",
+          "Proposed ledger entries with review status"
+        ],
+        "limitations": [
+          "Passing calculation does not establish recognition, measurement, tax, insurance, legal liability, or operating effectiveness.",
+          "No current consolidated ASC text was read.",
+          "No live operational population was accessed."
+        ]
+      }
+    },
+    {
+      "id": "control-transport-role-ownership",
+      "kind": "control",
+      "title": "Transport role, ownership and custody evidence",
+      "summary": "Control proposal preventing a carrier, broker, warehouse custodian, and customer-owned goods from collapsing into one ledger population.",
+      "topics": [
+        "Transportation and logistics",
+        "Accounting workflows"
+      ],
+      "industries": [
+        "Transportation and warehousing"
+      ],
+      "jurisdiction": "United States",
+      "source_type": null,
+      "publisher": "Accounting Agents contributors",
+      "source_url": null,
+      "source_ids": [
+        "src_transport_fmcsa_broker_371",
+        "src_transport_fmcsa_credit_377",
+        "src_transport_fmcsa_maintenance_396",
+        "src_transport_fmcsa_leases_376",
+        "src_transport_fmcsa_claims_370",
+        "src_transport_ulc_ucc7",
+        "src_transport_ecfr_passenger_374",
+        "src_transport_ecfr_passenger_leases_390g",
+        "src_transport_ecfr_maintenance_3963"
+      ],
+      "related_ids": [],
+      "reviewed_at": "2026-09-19",
+      "review_status": "editorially-reviewed",
+      "provenance": {
+        "imported_on": "2026-09-19",
+        "previous_corpus_version": "2026-09-19.12406",
+        "previous_reviewed_at": null,
+        "previous_review_status": "source-only pending integration",
+        "note": "Original source package. Editorial summaries and synthetic facts only; publisher text is not stored. Integration and professional review remain separate."
+      },
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "Not included; publisher terms apply",
+        "full_text_stored": false
+      },
+      "data": {
+        "id": "control-transport-role-ownership",
+        "version": "1.0.0",
+        "name": "Transport role, ownership and custody evidence",
+        "risk": "A shipment, ticket, customer-owned good, lease, settlement or claim is routed to the wrong entity or period because role or ownership evidence is missing.",
+        "objective": "Establish role, ownership, custody, service event, settlement and claim status before proposing a ledger effect.",
+        "procedure": [
+          "Capture legal entity, role, authority, contract and counterparty",
+          "Match load, trip, storage receipt, bill, ticket, proof of delivery and release identifiers",
+          "Recalculate base charge, surcharge, accessorials and broker or carrier settlement",
+          "Reconcile owned inventory and customer custody populations",
+          "Match lease and maintenance responsibility to vehicle control",
+          "Hold claims and disputed charges until authority and evidence are reviewed",
+          "Document reviewer disposition and prohibit execution"
+        ],
+        "evidence": [
+          "Contract or tariff",
+          "Broker transaction record",
+          "Bill of lading or freight bill",
+          "Proof of delivery or trip completion",
+          "Warehouse receipt and owner confirmation",
+          "Fuel surcharge basis",
+          "Carrier settlement statement",
+          "Lease and maintenance records",
+          "Claim file and status"
+        ],
+        "exceptions": [
+          "Role or ownership conflict",
+          "Freight or passenger service date missing",
+          "Surcharge formula not reproducible",
+          "Settlement does not tie to customer billing",
+          "Customer goods included in owned inventory",
+          "Lease or maintenance responsibility unclear",
+          "Claim evidence or current rule unavailable"
+        ],
+        "owner": "Controller or transport accounting reviewer",
+        "frequency": "Each close and material exception",
+        "source_ids": [
+          "src_transport_fmcsa_broker_371",
+          "src_transport_fmcsa_credit_377",
+          "src_transport_fmcsa_maintenance_396",
+          "src_transport_fmcsa_leases_376",
+          "src_transport_fmcsa_claims_370",
+          "src_transport_ulc_ucc7",
+          "src_transport_ecfr_passenger_374",
+          "src_transport_ecfr_passenger_leases_390g",
+          "src_transport_ecfr_maintenance_3963"
+        ]
+      }
+    },
+    {
+      "id": "example-transport-connected-ledger",
+      "kind": "example",
+      "title": "Transport shipment, settlement and custody: synthetic connected ledger",
+      "summary": "Original synthetic example covering freight cutoff, fuel surcharge, broker settlement, passenger cutoff, leased fleet maintenance, customer-owned goods and a claim exception.",
+      "topics": [
+        "Transportation and logistics",
+        "Accounting workflows"
+      ],
+      "industries": [
+        "Transportation and warehousing"
+      ],
+      "jurisdiction": "United States",
+      "source_type": null,
+      "publisher": "Accounting Agents contributors",
+      "source_url": null,
+      "source_ids": [
+        "src_transport_fmcsa_broker_371",
+        "src_transport_fmcsa_credit_377",
+        "src_transport_fmcsa_maintenance_396",
+        "src_transport_fmcsa_leases_376",
+        "src_transport_fmcsa_claims_370",
+        "src_transport_ulc_ucc7",
+        "src_transport_ecfr_passenger_374",
+        "src_transport_ecfr_passenger_leases_390g",
+        "src_transport_ecfr_maintenance_3963"
+      ],
+      "related_ids": [
+        "workflow-transport-event-to-ledger",
+        "control-transport-role-ownership"
+      ],
+      "reviewed_at": "2026-09-19",
+      "review_status": "editorially-reviewed",
+      "provenance": {
+        "imported_on": "2026-09-19",
+        "previous_corpus_version": "2026-09-19.12406",
+        "previous_reviewed_at": null,
+        "previous_review_status": "source-only pending integration",
+        "note": "Original source package. Editorial summaries and synthetic facts only; publisher text is not stored. Integration and professional review remain separate."
+      },
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "Not included; publisher terms apply",
+        "full_text_stored": false
+      },
+      "data": {
+        "id": "example-transport-connected-ledger",
+        "title": "Transport shipment, settlement and custody: synthetic connected ledger",
+        "summary": "Original synthetic example covering freight cutoff, fuel surcharge, broker settlement, passenger cutoff, leased fleet maintenance, customer-owned goods and a claim exception.",
+        "workflow_ids": [
+          "workflow-transport-event-to-ledger"
+        ],
+        "process_family": "order-to-cash and record-to-report",
+        "authority_level": "A2",
+        "accountable_owner": "Controller or transport accounting reviewer",
+        "scope": "Synthetic December 2026 close for a freight carrier, property broker, passenger operator and warehouse custodian. Not operational evidence or an approved journal-entry policy.",
+        "jurisdiction": "United States",
+        "source_ids": [
+          "src_transport_fmcsa_broker_371",
+          "src_transport_fmcsa_credit_377",
+          "src_transport_fmcsa_maintenance_396",
+          "src_transport_fmcsa_leases_376",
+          "src_transport_fmcsa_claims_370",
+          "src_transport_ulc_ucc7",
+          "src_transport_ecfr_passenger_374",
+          "src_transport_ecfr_passenger_leases_390g",
+          "src_transport_ecfr_maintenance_3963"
+        ],
+        "inputs": [
+          "Synthetic contracts, event records, rates, custody confirmations and settlement statements"
+        ],
+        "procedures": [
+          "Classify role",
+          "Tie events to period",
+          "Recalculate amounts",
+          "Separate ledger populations",
+          "Route exceptions"
+        ],
+        "deterministic_checks": [
+          "Fuel surcharge equals base times stated percentage",
+          "Customer invoice equals base plus approved surcharge",
+          "Broker settlement plus fee equals collection",
+          "Passenger cash before trip remains separate from trip date",
+          "Customer-owned goods are excluded from custodian inventory",
+          "Claim remains unresolved until evidence and authority are sufficient"
+        ],
+        "expected_artifact": "Reviewer packet with proposed entries and exception register",
+        "fixture": {
+          "currency": "USD",
+          "period_end": "2026-12-31",
+          "freight": {
+            "role": "carrier",
+            "load_id": "LOAD-1001",
+            "pickup_date": "2026-12-30",
+            "delivery_date": "2027-01-02",
+            "base_cents": 240000,
+            "surcharge_rate_bps": 1200,
+            "surcharge_cents": 28800,
+            "invoice_cents": 268800,
+            "billing_date": "2027-01-03",
+            "route": "Hold cutoff until contract and service pattern review; event and billing dates remain separate."
+          },
+          "freight_cutoff_counterexample": {
+            "role": "carrier",
+            "load_id": "LOAD-1002",
+            "delivery_date": "2026-12-31",
+            "base_cents": 200000,
+            "surcharge_rate_bps": 1000,
+            "surcharge_cents": 20000,
+            "invoice_cents": 220000,
+            "billing_date": "2027-01-03",
+            "route": "December service-event candidate for reviewer; not an automatic recognition conclusion."
+          },
+          "broker": {
+            "role": "property broker",
+            "load_id": "LOAD-1002",
+            "customer_collected_cents": 220000,
+            "carrier_settlement_cents": 176000,
+            "broker_fee_cents": 44000,
+            "check": "176000 + 44000 = 220000",
+            "route": "Keep customer collection, carrier payable or clearing, and broker fee separate."
+          },
+          "passenger": {
+            "role": "passenger carrier",
+            "ticket_id": "TICKET-2001",
+            "cash_received_date": "2026-12-20",
+            "trip_date": "2027-01-02",
+            "fare_cents": 25000,
+            "quantity": 20,
+            "total_cents": 500000,
+            "route": "Cash before trip is a cutoff counterexample; hold service-date classification for current policy review.",
+            "service_type": "regular-route interstate motor passenger service",
+            "source_ids": [
+              "src_transport_ecfr_passenger_374"
+            ],
+            "governing_tariff": "Fictional ticket terms require refund and unused-ticket status review; no particular tariff conclusion."
+          },
+          "leased_fleet": {
+            "role": "property carrier",
+            "vehicle_id": "TRACTOR-7",
+            "lease_month_cents": 600000,
+            "maintenance_invoice_cents": 90000,
+            "maintenance_date": "2026-12-31",
+            "route": "Retain lease, control, maintenance, work-order and inspection evidence; do not infer accounting classification.",
+            "source_ids": [
+              "src_transport_fmcsa_leases_376",
+              "src_transport_ecfr_maintenance_3963"
+            ]
+          },
+          "warehouse": {
+            "role": "warehouse custodian",
+            "receipt_id": "WR-3001",
+            "owner": "Customer-A",
+            "sku": "PART-X",
+            "units": 500,
+            "unit_value_cents": 4000,
+            "customer_goods_value_cents": 2000000,
+            "storage_fee_cents": 120000,
+            "owned_inventory_cents": 0,
+            "route": "Customer-owned goods stay in custody subledger; storage billing is separate."
+          },
+          "claim": {
+            "claim_id": "CLM-4001",
+            "related_load_id": "LOAD-1002",
+            "damaged_goods_cents": 400000,
+            "carrier_payment_cents": 0,
+            "status": "notice-received-under-review",
+            "route": "Do not net customer invoice or recognize recovery from this notice; preserve claim file and route current Part 370 review."
+          },
+          "passenger_lease_counterexample": {
+            "role": "motor passenger carrier",
+            "vehicle_id": "BUS-8",
+            "contract_type": "financial lease from bank",
+            "regulatory_route": "390.401(b)(2) excludes this contract fromSubpartG; do not substitute property-onlyPart376.",
+            "accounting_route": "Separate currentASC842 review; the regulatory exception does not establish an accounting exemption.",
+            "source_ids": [
+              "src_transport_ecfr_passenger_leases_390g"
+            ]
+          }
+        },
+        "examples": [
+          {
+            "id": "transport--golden",
+            "scenario_type": "golden",
+            "input": "Use fixture as supplied.",
+            "reference_expectations": {
+              "outcome": "complete-with-review",
+              "exception_codes": [
+                "ACCOUNTING_APPLICABILITY_OPEN"
+              ],
+              "review_required": true,
+              "executed_actions_must_be_empty": true
+            }
+          },
+          {
+            "id": "transport--role-collapse",
+            "scenario_type": "negative",
+            "input": "Treat broker collection as carrier revenue and include customer-owned goods in warehouse inventory.",
+            "reference_expectations": {
+              "outcome": "stop",
+              "exception_codes": [
+                "ROLE_MISMATCH",
+                "CUSTOMER_CUSTODY_MISCLASSIFIED"
+              ],
+              "review_required": true,
+              "executed_actions_must_be_empty": true
+            }
+          },
+          {
+            "id": "transport--surcharge-error",
+            "scenario_type": "negative",
+            "input": "Use 12% of 240000 as 2880 cents instead of 28800 cents.",
+            "reference_expectations": {
+              "outcome": "stop",
+              "exception_codes": [
+                "SURCHARGE_MATH_MISMATCH"
+              ],
+              "review_required": true,
+              "executed_actions_must_be_empty": true
+            }
+          },
+          {
+            "id": "transport--passenger-lease-regulatory-exception",
+            "scenario_type": "negative",
+            "input": "BUS-8 is a bank financial lease. A proposed route incorrectly applies property-carrier Part376 or treats the390.401(b)(2) exception as a GAAP exemption.",
+            "reference_expectations": {
+              "outcome": "stop-and-review",
+              "exception_codes": [
+                "PASSENGER_PROPERTY_SCOPE_MISMATCH",
+                "ACCOUNTING_APPLICABILITY_OPEN"
+              ],
+              "review_required": true,
+              "executed_actions_must_be_empty": true
+            }
+          }
+        ],
+        "reference_output": {
+          "outcome": "complete-with-review",
+          "proposed_entries": [],
+          "executed_actions": [],
+          "review_required": true,
+          "open_exceptions": [
+            "Current consolidated accounting text and entity policy",
+            "Part 370 claim text",
+            "State warehouse enactment and contract",
+            "Operational evidence"
+          ]
+        },
+        "version": "1.0.0",
+        "specification_version": "1.0.0",
+        "licenses": {
+          "manifest_and_factual_metadata": "CC0-1.0",
+          "original_explanatory_content": "CC-BY-4.0",
+          "code": "MIT",
+          "external_sources": "Not redistributed; publisher terms apply"
+        },
+        "limitations": [
+          "Synthetic facts and arithmetic are illustrative only; they are not operational evidence, an approved journal-entry policy, or professional review.",
+          "Current consolidated accounting text, entity policy, state warehouse law and current Part 370 text remain open.",
+          "No live ERP, carrier, broker, warehouse, passenger, bank or claim population was accessed."
+        ]
+      }
+    }
+  ],
+  "question_rows": [
+    {
+      "id": "rq-transport-role-event-boundary",
+      "record_id": "guide-transport-role-routing",
+      "pointer": "/data/research_questions/0",
+      "family_ids": [
+        "q-revenue",
+        "q-data-lineage",
+        "q-inventory"
+      ],
+      "question": "How should a US transport agent distinguish a carrier, property broker, and warehouse custodian before connecting shipment or storage events to billing and ledger proposals?",
+      "scope": "Selected US nongovernmental operating entities applying accrual-basis US GAAP research for calendar 2026 examples. Require legal entity, role, contract, authority, ownership, custody, reporting framework and period.",
+      "answer_status": "sourced-answer-bounded",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_transport_fmcsa_broker_371",
+        "src_transport_ulc_ucc7",
+        "src_1os761s"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_transport_fmcsa_broker_371",
+          "locator": "49 CFR 371.2-371.3 and 371.7",
+          "effective_period": "Current eCFR read 2026-09-19; Title 49 current through 2026-09-17.",
+          "access_limits": "Public eCFR page; unofficial compilation; rights unknown; full text not stored."
+        },
+        {
+          "source_id": "src_transport_ulc_ucc7",
+          "locator": "UCC Article 7 summary and §§ 7-102, 7-202, 7-204, 7-207, 7-403",
+          "effective_period": "Revised model text approved 2003; state enactment and contract period must be checked.",
+          "access_limits": "Public ULC summary; model law is not federal; state variation and rights unresolved."
+        }
+      ],
+      "remaining_gaps": [
+        "The package does not survey state warehouse statutes or determine whether a specific entity is a carrier, broker, bailee, agent, or principal.",
+        "Current consolidated accounting text, entity policy, executed contract terms, state-law applicability and professional review remain open.",
+        "Synthetic calculations are demonstrations only; no operational population or measured agent performance was obtained."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Named source locators, role-specific evidence requirements, proposed workflow and original synthetic fixture are present. Partial does not establish accounting correctness or whole-subsector sufficiency.",
+      "reviewed_at": "2026-09-19"
+    },
+    {
+      "id": "rq-transport-freight-passenger-cutoff-surcharge",
+      "record_id": "guide-transport-role-routing",
+      "pointer": "/data/research_questions/1",
+      "family_ids": [
+        "q-revenue",
+        "q-cash-settlement",
+        "q-data-lineage"
+      ],
+      "question": "How should freight and passenger cutoff evidence separate service events, billed amounts, fuel surcharges, accessorials, and cash or settlement timing?",
+      "scope": "Selected US nongovernmental operating entities applying accrual-basis US GAAP research for calendar 2026 examples. Require legal entity, role, contract, authority, ownership, custody, reporting framework and period.",
+      "answer_status": "sourced-answer-bounded",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_transport_fmcsa_broker_371",
+        "src_transport_fmcsa_credit_377",
+        "src_1os761s",
+        "src_fasb_asu2016_08_principal_agent",
+        "src_transport_ecfr_passenger_374"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_transport_fmcsa_broker_371",
+          "locator": "49 CFR 371.3(a)(3)-(6)",
+          "effective_period": "Current eCFR read 2026-09-19; Title 49 current through 2026-09-17.",
+          "access_limits": "Public eCFR page; record rule only; rights unknown."
+        },
+        {
+          "source_id": "src_transport_fmcsa_credit_377",
+          "locator": "49 CFR 377.203(b)-(d)",
+          "effective_period": "Current eCFR section read 2026-09-19; payment rule is not revenue recognition.",
+          "access_limits": "Public eCFR page; rights unknown."
+        },
+        {
+          "source_id": "src_fasb_asu2016_08_principal_agent",
+          "locator": "Existing accepted principal-versus-agent foundation; current applicable accounting text remains to be read.",
+          "effective_period": "Inherited foundation; current consolidated text unresolved.",
+          "access_limits": "Existing source rights and review limits remain in force."
+        },
+        {
+          "source_id": "src_transport_ecfr_passenger_374",
+          "locator": "49 CFR 374.1 and374.301; 49 CFR 374.305(c)-(d) and374.311(a)-(c)",
+          "effective_period": "Current eCFR read2026-09-19; Title49 through2026-09-17.",
+          "access_limits": "Subpart C covers regular-route motor passenger operations, not every passenger mode or charter service. This selected review does not determine revenue recognition, tariff applicability or a particular refund obligation."
+        }
+      ],
+      "remaining_gaps": [
+        "Fuel-index formulas and passenger fare rules are contract-specific; no universal fuel or passenger policy is asserted.",
+        "Current consolidated accounting text, entity policy, executed contract terms, state-law applicability and professional review remain open.",
+        "Synthetic calculations are demonstrations only; no operational population or measured agent performance was obtained."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Named source locators, role-specific evidence requirements, proposed workflow and original synthetic fixture are present. Partial does not establish accounting correctness or whole-subsector sufficiency.",
+      "reviewed_at": "2026-09-19",
+      "role_source_routes": [
+        {
+          "role": "property broker or freight carrier",
+          "source_ids": [
+            "src_transport_fmcsa_broker_371",
+            "src_transport_fmcsa_credit_377"
+          ]
+        },
+        {
+          "role": "regular-route motor passenger carrier",
+          "source_ids": [
+            "src_transport_ecfr_passenger_374"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rq-transport-carrier-settlement-claims",
+      "record_id": "guide-transport-role-routing",
+      "pointer": "/data/research_questions/2",
+      "family_ids": [
+        "q-purchasing-payables",
+        "q-receivables-credit",
+        "q-provisions",
+        "q-cash-settlement"
+      ],
+      "question": "How should carrier settlements and cargo claims remain separate from customer billings, cash, and proposed claim accruals?",
+      "scope": "Selected US nongovernmental operating entities applying accrual-basis US GAAP research for calendar 2026 examples. Require legal entity, role, contract, authority, ownership, custody, reporting framework and period.",
+      "answer_status": "sourced-answer-bounded",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_transport_fmcsa_broker_371",
+        "src_transport_fmcsa_claims_370",
+        "src_transport_fmcsa_credit_377",
+        "src_aa_i123_fas5"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_transport_fmcsa_broker_371",
+          "locator": "49 CFR 371.3(a)(4)-(6) and (b)-(c)",
+          "effective_period": "Current eCFR read 2026-09-19; Title 49 current through 2026-09-17.",
+          "access_limits": "Public eCFR page; does not decide gross or net financial presentation."
+        },
+        {
+          "source_id": "src_transport_fmcsa_claims_370",
+          "locator": "FMCSA Regulations and Enforcement, Consumer Protection Regulations, Part 370",
+          "effective_period": "Official FMCSA index read 2026-09-19; current Part 370 text not read because eCFR access was limited.",
+          "access_limits": "Identity and routing only; exact claim rules require permitted current-text review."
+        },
+        {
+          "source_id": "src_aa_i123_fas5",
+          "locator": "Existing accepted US claims and provisions foundation; current consolidated ASC 450 remains open.",
+          "effective_period": "Inherited historical source review; not current consolidated verification.",
+          "access_limits": "Existing source rights and review limits remain in force."
+        }
+      ],
+      "remaining_gaps": [
+        "Part 370 text, carrier liability, insurance recovery and current loss-contingency application are not concluded.",
+        "Current consolidated accounting text, entity policy, executed contract terms, state-law applicability and professional review remain open.",
+        "Synthetic calculations are demonstrations only; no operational population or measured agent performance was obtained."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Named source locators, role-specific evidence requirements, proposed workflow and original synthetic fixture are present. Partial does not establish accounting correctness or whole-subsector sufficiency.",
+      "reviewed_at": "2026-09-19"
+    },
+    {
+      "id": "rq-transport-leased-fleet-maintenance",
+      "record_id": "guide-transport-role-routing",
+      "pointer": "/data/research_questions/3",
+      "family_ids": [
+        "q-leases",
+        "q-capital-assets",
+        "q-purchasing-payables"
+      ],
+      "question": "What evidence separates leased-fleet control, maintenance obligations, and repairs from carrier billing and settlement?",
+      "scope": "Selected US nongovernmental operating entities applying accrual-basis US GAAP research for calendar 2026 examples. Require legal entity, role, contract, authority, ownership, custody, reporting framework and period.",
+      "answer_status": "sourced-answer-bounded",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_transport_fmcsa_leases_376",
+        "src_transport_fmcsa_maintenance_396",
+        "src_1os761s",
+        "src_transport_ecfr_passenger_leases_390g",
+        "src_transport_ecfr_maintenance_3963"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_transport_fmcsa_leases_376",
+          "locator": "49 CFR 376.1,376.2,376.11 and376.12(a)-(c)",
+          "effective_period": "Current eCFR read2026-09-19; Title49 through2026-09-17.",
+          "access_limits": "Property-carrier route only, subject to applicable exceptions; no accounting classification conclusion."
+        },
+        {
+          "source_id": "src_transport_fmcsa_maintenance_396",
+          "locator": "49 CFR 396.3(a)-(b), 396.7, 396.11 and 396.17 as summarized by FMCSA",
+          "effective_period": "FMCSA explanatory page read 2026-09-19; page last updated 2019-07-12; current eCFR review required.",
+          "access_limits": "Dated passenger-carrier explanation only; current396.3 is separately reviewed. No accounting classification conclusion."
+        },
+        {
+          "source_id": "src_transport_ecfr_passenger_leases_390g",
+          "locator": "49 CFR 390.401(a)-(b); 49 CFR 390.403(a)-(c)",
+          "effective_period": "Current eCFR read2026-09-19; Title49 through2026-09-17.",
+          "access_limits": "Regulatory lease/control duties do not determine the US GAAP lease model. Applicability, the390.401(b) exceptions and executed contract facts require review; property-carrier Part376 is a separate route."
+        },
+        {
+          "source_id": "src_transport_ecfr_maintenance_3963",
+          "locator": "49 CFR 396.3(a)-(c)",
+          "effective_period": "Current eCFR read2026-09-19; Title49 through2026-09-17.",
+          "access_limits": "The selected operational rule supports evidence collection, not repair expense, capitalization, lease classification or whole-fleet legal compliance. Vehicle and carrier scope remain fact dependent."
+        }
+      ],
+      "remaining_gaps": [
+        "Passenger and property lease rules differ; a lease label does not establish the accounting model or maintenance classification.",
+        "Current consolidated accounting text, entity policy, executed contract terms, state-law applicability and professional review remain open.",
+        "Synthetic calculations are demonstrations only; no operational population or measured agent performance was obtained."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Named source locators, role-specific evidence requirements, proposed workflow and original synthetic fixture are present. Partial does not establish accounting correctness or whole-subsector sufficiency.",
+      "reviewed_at": "2026-09-19",
+      "role_source_routes": [
+        {
+          "role": "property carrier",
+          "source_ids": [
+            "src_transport_fmcsa_leases_376",
+            "src_transport_ecfr_maintenance_3963"
+          ]
+        },
+        {
+          "role": "passenger carrier",
+          "source_ids": [
+            "src_transport_ecfr_passenger_leases_390g",
+            "src_transport_ecfr_maintenance_3963"
+          ],
+          "dated_context_source_ids": [
+            "src_transport_fmcsa_maintenance_396"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rq-transport-customer-owned-warehouse-claims",
+      "record_id": "guide-transport-role-routing",
+      "pointer": "/data/research_questions/4",
+      "family_ids": [
+        "q-inventory",
+        "q-revenue",
+        "q-provisions",
+        "q-data-lineage"
+      ],
+      "question": "How should a warehouse or custodian keep customer-owned goods, storage billing, release authority, and damage claims out of the custodian inventory population?",
+      "scope": "Selected US nongovernmental operating entities applying accrual-basis US GAAP research for calendar 2026 examples. Require legal entity, role, contract, authority, ownership, custody, reporting framework and period.",
+      "answer_status": "sourced-answer-bounded",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_transport_ulc_ucc7",
+        "src_transport_fmcsa_claims_370",
+        "src_1os761s"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_transport_ulc_ucc7",
+          "locator": "UCC Article 7 summary; §§ 7-102(1),(13), 7-202(b)(1)-(9), 7-204, 7-207, 7-209 and 7-403",
+          "effective_period": "Revised model text approved 2003; selected state enactment and contract period required.",
+          "access_limits": "ULC public summary and model-law locator; not federal law; state variations, liens and rights unresolved."
+        },
+        {
+          "source_id": "src_transport_fmcsa_claims_370",
+          "locator": "FMCSA Regulations and Enforcement, Part 370 claims and salvage index",
+          "effective_period": "Official FMCSA index read 2026-09-19; Part 370 current text not read.",
+          "access_limits": "Routing only; warehouse contract and state-law claims need separate review."
+        }
+      ],
+      "remaining_gaps": [
+        "No state warehouse statute, warehouse lien enforcement, insurance policy, or customer contract was reviewed for a particular operator.",
+        "Current consolidated accounting text, entity policy, executed contract terms, state-law applicability and professional review remain open.",
+        "Synthetic calculations are demonstrations only; no operational population or measured agent performance was obtained."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Named source locators, role-specific evidence requirements, proposed workflow and original synthetic fixture are present. Partial does not establish accounting correctness or whole-subsector sufficiency.",
+      "reviewed_at": "2026-09-19"
+    }
+  ],
+  "assessments": [
+    {
+      "id": "coverage-transport-rq-transport-role-event-boundary",
+      "scope_kind": "industry",
+      "industry_code": "48-49",
+      "question_id": "q-revenue",
+      "family_ids": [
+        "q-revenue",
+        "q-data-lineage",
+        "q-inventory"
+      ],
+      "status": "partial",
+      "scope": "Selected US nongovernmental operating entities applying accrual-basis US GAAP research for calendar 2026 examples. Require legal entity, role, contract, authority, ownership, custody, reporting framework and period.",
+      "jurisdictions": [
+        "United States"
+      ],
+      "frameworks": [
+        "US GAAP research"
+      ],
+      "effective_from": "2026-01-01",
+      "effective_to": "2026-12-31",
+      "reviewed_at": "2026-09-19",
+      "reviewer": "Codex AI-assisted scoped source review",
+      "review_basis": "Named source locators, role-specific evidence requirements, proposed workflow and original synthetic fixture are present. Partial does not establish accounting correctness or whole-subsector sufficiency. Selected sources mix current paragraph checks, dated context and blocked authority; overall source currency remains unknown.",
+      "source_currency": "unknown",
+      "evidence_record_ids": [
+        "guide-transport-role-routing",
+        "workflow-transport-event-to-ledger",
+        "control-transport-role-ownership",
+        "example-transport-connected-ledger",
+        "src_transport_fmcsa_broker_371",
+        "src_transport_ulc_ucc7",
+        "src_1os761s"
+      ],
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "gaps": [
+        "The package does not survey state warehouse statutes or determine whether a specific entity is a carrier, broker, bailee, agent, or principal.",
+        "Current consolidated accounting text, entity policy, executed contract terms, state-law applicability and professional review remain open.",
+        "Synthetic calculations are demonstrations only; no operational population or measured agent performance was obtained."
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "Not included; publisher terms apply",
+        "full_text_stored": false
+      },
+      "professional_review": "not-performed",
+      "empirical_support": "not-established"
+    },
+    {
+      "id": "coverage-transport-rq-transport-freight-passenger-cutoff-surcharge",
+      "scope_kind": "industry",
+      "industry_code": "48-49",
+      "question_id": "q-revenue",
+      "family_ids": [
+        "q-revenue",
+        "q-cash-settlement",
+        "q-data-lineage"
+      ],
+      "status": "partial",
+      "scope": "Selected US nongovernmental operating entities applying accrual-basis US GAAP research for calendar 2026 examples. Require legal entity, role, contract, authority, ownership, custody, reporting framework and period.",
+      "jurisdictions": [
+        "United States"
+      ],
+      "frameworks": [
+        "US GAAP research"
+      ],
+      "effective_from": "2026-01-01",
+      "effective_to": "2026-12-31",
+      "reviewed_at": "2026-09-19",
+      "reviewer": "Codex AI-assisted scoped source review",
+      "review_basis": "Named source locators, role-specific evidence requirements, proposed workflow and original synthetic fixture are present. Partial does not establish accounting correctness or whole-subsector sufficiency. Selected sources mix current paragraph checks, dated context and blocked authority; overall source currency remains unknown.",
+      "source_currency": "unknown",
+      "evidence_record_ids": [
+        "guide-transport-role-routing",
+        "workflow-transport-event-to-ledger",
+        "control-transport-role-ownership",
+        "example-transport-connected-ledger",
+        "src_transport_fmcsa_broker_371",
+        "src_transport_fmcsa_credit_377",
+        "src_1os761s",
+        "src_fasb_asu2016_08_principal_agent",
+        "src_transport_ecfr_passenger_374"
+      ],
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "gaps": [
+        "Fuel-index formulas and passenger fare rules are contract-specific; no universal fuel or passenger policy is asserted.",
+        "Current consolidated accounting text, entity policy, executed contract terms, state-law applicability and professional review remain open.",
+        "Synthetic calculations are demonstrations only; no operational population or measured agent performance was obtained."
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "Not included; publisher terms apply",
+        "full_text_stored": false
+      },
+      "professional_review": "not-performed",
+      "empirical_support": "not-established"
+    },
+    {
+      "id": "coverage-transport-rq-transport-carrier-settlement-claims",
+      "scope_kind": "industry",
+      "industry_code": "48-49",
+      "question_id": "q-purchasing-payables",
+      "family_ids": [
+        "q-purchasing-payables",
+        "q-receivables-credit",
+        "q-provisions",
+        "q-cash-settlement"
+      ],
+      "status": "partial",
+      "scope": "Selected US nongovernmental operating entities applying accrual-basis US GAAP research for calendar 2026 examples. Require legal entity, role, contract, authority, ownership, custody, reporting framework and period.",
+      "jurisdictions": [
+        "United States"
+      ],
+      "frameworks": [
+        "US GAAP research"
+      ],
+      "effective_from": "2026-01-01",
+      "effective_to": "2026-12-31",
+      "reviewed_at": "2026-09-19",
+      "reviewer": "Codex AI-assisted scoped source review",
+      "review_basis": "Named source locators, role-specific evidence requirements, proposed workflow and original synthetic fixture are present. Partial does not establish accounting correctness or whole-subsector sufficiency. Selected sources mix current paragraph checks, dated context and blocked authority; overall source currency remains unknown.",
+      "source_currency": "unknown",
+      "evidence_record_ids": [
+        "guide-transport-role-routing",
+        "workflow-transport-event-to-ledger",
+        "control-transport-role-ownership",
+        "example-transport-connected-ledger",
+        "src_transport_fmcsa_broker_371",
+        "src_transport_fmcsa_claims_370",
+        "src_transport_fmcsa_credit_377",
+        "src_aa_i123_fas5"
+      ],
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "gaps": [
+        "Part 370 text, carrier liability, insurance recovery and current loss-contingency application are not concluded.",
+        "Current consolidated accounting text, entity policy, executed contract terms, state-law applicability and professional review remain open.",
+        "Synthetic calculations are demonstrations only; no operational population or measured agent performance was obtained."
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "Not included; publisher terms apply",
+        "full_text_stored": false
+      },
+      "professional_review": "not-performed",
+      "empirical_support": "not-established"
+    },
+    {
+      "id": "coverage-transport-rq-transport-leased-fleet-maintenance",
+      "scope_kind": "industry",
+      "industry_code": "48-49",
+      "question_id": "q-leases",
+      "family_ids": [
+        "q-leases",
+        "q-capital-assets",
+        "q-purchasing-payables"
+      ],
+      "status": "partial",
+      "scope": "Selected US nongovernmental operating entities applying accrual-basis US GAAP research for calendar 2026 examples. Require legal entity, role, contract, authority, ownership, custody, reporting framework and period.",
+      "jurisdictions": [
+        "United States"
+      ],
+      "frameworks": [
+        "US GAAP research"
+      ],
+      "effective_from": "2026-01-01",
+      "effective_to": "2026-12-31",
+      "reviewed_at": "2026-09-19",
+      "reviewer": "Codex AI-assisted scoped source review",
+      "review_basis": "Named source locators, role-specific evidence requirements, proposed workflow and original synthetic fixture are present. Partial does not establish accounting correctness or whole-subsector sufficiency. Selected sources mix current paragraph checks, dated context and blocked authority; overall source currency remains unknown.",
+      "source_currency": "unknown",
+      "evidence_record_ids": [
+        "guide-transport-role-routing",
+        "workflow-transport-event-to-ledger",
+        "control-transport-role-ownership",
+        "example-transport-connected-ledger",
+        "src_transport_fmcsa_leases_376",
+        "src_transport_fmcsa_maintenance_396",
+        "src_1os761s",
+        "src_transport_ecfr_passenger_leases_390g",
+        "src_transport_ecfr_maintenance_3963"
+      ],
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "gaps": [
+        "Passenger and property lease rules differ; a lease label does not establish the accounting model or maintenance classification.",
+        "Current consolidated accounting text, entity policy, executed contract terms, state-law applicability and professional review remain open.",
+        "Synthetic calculations are demonstrations only; no operational population or measured agent performance was obtained."
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "Not included; publisher terms apply",
+        "full_text_stored": false
+      },
+      "professional_review": "not-performed",
+      "empirical_support": "not-established"
+    },
+    {
+      "id": "coverage-transport-rq-transport-customer-owned-warehouse-claims",
+      "scope_kind": "industry",
+      "industry_code": "48-49",
+      "question_id": "q-inventory",
+      "family_ids": [
+        "q-inventory",
+        "q-revenue",
+        "q-provisions",
+        "q-data-lineage"
+      ],
+      "status": "partial",
+      "scope": "Selected US nongovernmental operating entities applying accrual-basis US GAAP research for calendar 2026 examples. Require legal entity, role, contract, authority, ownership, custody, reporting framework and period.",
+      "jurisdictions": [
+        "United States"
+      ],
+      "frameworks": [
+        "US GAAP research"
+      ],
+      "effective_from": "2026-01-01",
+      "effective_to": "2026-12-31",
+      "reviewed_at": "2026-09-19",
+      "reviewer": "Codex AI-assisted scoped source review",
+      "review_basis": "Named source locators, role-specific evidence requirements, proposed workflow and original synthetic fixture are present. Partial does not establish accounting correctness or whole-subsector sufficiency. Selected sources mix current paragraph checks, dated context and blocked authority; overall source currency remains unknown.",
+      "source_currency": "unknown",
+      "evidence_record_ids": [
+        "guide-transport-role-routing",
+        "workflow-transport-event-to-ledger",
+        "control-transport-role-ownership",
+        "example-transport-connected-ledger",
+        "src_transport_ulc_ucc7",
+        "src_transport_fmcsa_claims_370",
+        "src_1os761s"
+      ],
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "gaps": [
+        "No state warehouse statute, warehouse lien enforcement, insurance policy, or customer contract was reviewed for a particular operator.",
+        "Current consolidated accounting text, entity policy, executed contract terms, state-law applicability and professional review remain open.",
+        "Synthetic calculations are demonstrations only; no operational population or measured agent performance was obtained."
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "Not included; publisher terms apply",
+        "full_text_stored": false
+      },
+      "professional_review": "not-performed",
+      "empirical_support": "not-established"
+    }
+  ],
+  "mapping_overrides": {
+    "mapping_version": "2026-09-19.transport.1",
+    "updated_at": "2026-09-19",
+    "records": {
+      "guide-transport-role-routing": {
+        "replace_question_ids": false,
+        "question_ids": [
+          "q-revenue",
+          "q-data-lineage",
+          "q-inventory",
+          "q-cash-settlement",
+          "q-purchasing-payables",
+          "q-receivables-credit",
+          "q-provisions",
+          "q-leases",
+          "q-capital-assets"
+        ],
+        "industry_codes": [
+          "48-49"
+        ],
+        "industry_scope": "specific",
+        "basis_field": "/summary",
+        "reason": "Role-specific transport application; association does not establish whole-subsector sufficiency.",
+        "reviewed_question_ids": [
+          "q-revenue",
+          "q-data-lineage",
+          "q-inventory",
+          "q-cash-settlement",
+          "q-purchasing-payables",
+          "q-receivables-credit",
+          "q-provisions",
+          "q-leases",
+          "q-capital-assets"
+        ],
+        "reviewed_industry_codes": [
+          "48-49"
+        ],
+        "reviewed_at": "2026-09-19",
+        "review_note": "Source-only package; source currency, rights, professional review and entity applicability remain separate."
+      },
+      "workflow-transport-event-to-ledger": {
+        "replace_question_ids": false,
+        "question_ids": [
+          "q-revenue",
+          "q-data-lineage",
+          "q-inventory",
+          "q-cash-settlement",
+          "q-purchasing-payables",
+          "q-receivables-credit",
+          "q-provisions",
+          "q-leases",
+          "q-capital-assets"
+        ],
+        "industry_codes": [
+          "48-49"
+        ],
+        "industry_scope": "specific",
+        "basis_field": "/summary",
+        "reason": "Role-specific transport application; association does not establish whole-subsector sufficiency.",
+        "reviewed_question_ids": [
+          "q-revenue",
+          "q-data-lineage",
+          "q-inventory",
+          "q-cash-settlement",
+          "q-purchasing-payables",
+          "q-receivables-credit",
+          "q-provisions",
+          "q-leases",
+          "q-capital-assets"
+        ],
+        "reviewed_industry_codes": [
+          "48-49"
+        ],
+        "reviewed_at": "2026-09-19",
+        "review_note": "Source-only package; source currency, rights, professional review and entity applicability remain separate."
+      },
+      "control-transport-role-ownership": {
+        "replace_question_ids": false,
+        "question_ids": [
+          "q-revenue",
+          "q-data-lineage",
+          "q-inventory",
+          "q-cash-settlement",
+          "q-purchasing-payables",
+          "q-receivables-credit",
+          "q-provisions",
+          "q-leases",
+          "q-capital-assets"
+        ],
+        "industry_codes": [
+          "48-49"
+        ],
+        "industry_scope": "specific",
+        "basis_field": "/summary",
+        "reason": "Role-specific transport application; association does not establish whole-subsector sufficiency.",
+        "reviewed_question_ids": [
+          "q-revenue",
+          "q-data-lineage",
+          "q-inventory",
+          "q-cash-settlement",
+          "q-purchasing-payables",
+          "q-receivables-credit",
+          "q-provisions",
+          "q-leases",
+          "q-capital-assets"
+        ],
+        "reviewed_industry_codes": [
+          "48-49"
+        ],
+        "reviewed_at": "2026-09-19",
+        "review_note": "Source-only package; source currency, rights, professional review and entity applicability remain separate."
+      },
+      "example-transport-connected-ledger": {
+        "replace_question_ids": false,
+        "question_ids": [
+          "q-revenue",
+          "q-data-lineage",
+          "q-inventory",
+          "q-cash-settlement",
+          "q-purchasing-payables",
+          "q-receivables-credit",
+          "q-provisions",
+          "q-leases",
+          "q-capital-assets"
+        ],
+        "industry_codes": [
+          "48-49"
+        ],
+        "industry_scope": "specific",
+        "basis_field": "/summary",
+        "reason": "Role-specific transport application; association does not establish whole-subsector sufficiency.",
+        "reviewed_question_ids": [
+          "q-revenue",
+          "q-data-lineage",
+          "q-inventory",
+          "q-cash-settlement",
+          "q-purchasing-payables",
+          "q-receivables-credit",
+          "q-provisions",
+          "q-leases",
+          "q-capital-assets"
+        ],
+        "reviewed_industry_codes": [
+          "48-49"
+        ],
+        "reviewed_at": "2026-09-19",
+        "review_note": "Source-only package; source currency, rights, professional review and entity applicability remain separate."
+      }
+    }
+  },
+  "fixture": {
+    "currency": "USD",
+    "period_end": "2026-12-31",
+    "freight": {
+      "role": "carrier",
+      "load_id": "LOAD-1001",
+      "pickup_date": "2026-12-30",
+      "delivery_date": "2027-01-02",
+      "base_cents": 240000,
+      "surcharge_rate_bps": 1200,
+      "surcharge_cents": 28800,
+      "invoice_cents": 268800,
+      "billing_date": "2027-01-03",
+      "route": "Hold cutoff until contract and service pattern review; event and billing dates remain separate."
+    },
+    "freight_cutoff_counterexample": {
+      "role": "carrier",
+      "load_id": "LOAD-1002",
+      "delivery_date": "2026-12-31",
+      "base_cents": 200000,
+      "surcharge_rate_bps": 1000,
+      "surcharge_cents": 20000,
+      "invoice_cents": 220000,
+      "billing_date": "2027-01-03",
+      "route": "December service-event candidate for reviewer; not an automatic recognition conclusion."
+    },
+    "broker": {
+      "role": "property broker",
+      "load_id": "LOAD-1002",
+      "customer_collected_cents": 220000,
+      "carrier_settlement_cents": 176000,
+      "broker_fee_cents": 44000,
+      "check": "176000 + 44000 = 220000",
+      "route": "Keep customer collection, carrier payable or clearing, and broker fee separate."
+    },
+    "passenger": {
+      "role": "passenger carrier",
+      "ticket_id": "TICKET-2001",
+      "cash_received_date": "2026-12-20",
+      "trip_date": "2027-01-02",
+      "fare_cents": 25000,
+      "quantity": 20,
+      "total_cents": 500000,
+      "route": "Cash before trip is a cutoff counterexample; hold service-date classification for current policy review.",
+      "service_type": "regular-route interstate motor passenger service",
+      "source_ids": [
+        "src_transport_ecfr_passenger_374"
+      ],
+      "governing_tariff": "Fictional ticket terms require refund and unused-ticket status review; no particular tariff conclusion."
+    },
+    "leased_fleet": {
+      "role": "property carrier",
+      "vehicle_id": "TRACTOR-7",
+      "lease_month_cents": 600000,
+      "maintenance_invoice_cents": 90000,
+      "maintenance_date": "2026-12-31",
+      "route": "Retain lease, control, maintenance, work-order and inspection evidence; do not infer accounting classification.",
+      "source_ids": [
+        "src_transport_fmcsa_leases_376",
+        "src_transport_ecfr_maintenance_3963"
+      ]
+    },
+    "warehouse": {
+      "role": "warehouse custodian",
+      "receipt_id": "WR-3001",
+      "owner": "Customer-A",
+      "sku": "PART-X",
+      "units": 500,
+      "unit_value_cents": 4000,
+      "customer_goods_value_cents": 2000000,
+      "storage_fee_cents": 120000,
+      "owned_inventory_cents": 0,
+      "route": "Customer-owned goods stay in custody subledger; storage billing is separate."
+    },
+    "claim": {
+      "claim_id": "CLM-4001",
+      "related_load_id": "LOAD-1002",
+      "damaged_goods_cents": 400000,
+      "carrier_payment_cents": 0,
+      "status": "notice-received-under-review",
+      "route": "Do not net customer invoice or recognize recovery from this notice; preserve claim file and route current Part 370 review."
+    },
+    "passenger_lease_counterexample": {
+      "role": "motor passenger carrier",
+      "vehicle_id": "BUS-8",
+      "contract_type": "financial lease from bank",
+      "regulatory_route": "390.401(b)(2) excludes this contract fromSubpartG; do not substitute property-onlyPart376.",
+      "accounting_route": "Separate currentASC842 review; the regulatory exception does not establish an accounting exemption.",
+      "source_ids": [
+        "src_transport_ecfr_passenger_leases_390g"
+      ]
+    }
+  },
+  "integration_source_amendment": {
+    "reviewed_at": "2026-09-19",
+    "source_commit": "2a610f34758176514e8095abcc03961487cf95b8",
+    "reason": "Correct passenger/property source-role mismatch with three current primary sources, scoped routes and a financial-lease exception counterexample. Original source proposal remains preserved in its commit.",
+    "added_source_ids": [
+      "src_transport_ecfr_passenger_374",
+      "src_transport_ecfr_passenger_leases_390g",
+      "src_transport_ecfr_maintenance_3963"
+    ]
+  },
+  "retrieval_fixtures": [
+    {
+      "id": "rq-transport-search-roles",
+      "user_question": "How should a US carrier, broker and warehouse custodian preserve role and ownership evidence?",
+      "search_query": "transport carrier broker warehouse custodian",
+      "kind": "guide",
+      "filters": {},
+      "expected_ids": [
+        "guide-transport-role-routing"
+      ],
+      "excluded_ids": [
+        "src_transport_fmcsa_broker_371"
+      ],
+      "expected_scope": "Selected US carrier, broker and warehouse roles; no collapse of principal, agent or owner/custodian boundaries.",
+      "required_citations": 1,
+      "claims_assert_only_supported": [
+        "Role and ownership are required before a transport ledger conclusion."
+      ]
+    },
+    {
+      "id": "rq-transport-search-passenger",
+      "user_question": "Which passenger vehicle lease rules distinguish a bank financial lease from a property carrier lease?",
+      "search_query": "passenger vehicle leases interchange",
+      "kind": "source",
+      "filters": {
+        "jurisdiction": "United States"
+      },
+      "expected_ids": [
+        "src_transport_ecfr_passenger_leases_390g"
+      ],
+      "excluded_ids": [
+        "src_transport_ulc_ucc7"
+      ],
+      "expected_scope": "Selected passenger vehicle regulatory route and exceptions; a regulatory exception is not an ASC842 exemption.",
+      "required_citations": 1,
+      "claims_assert_only_supported": [
+        "Passenger lease exceptions require a separate accounting review."
+      ]
+    },
+    {
+      "id": "rq-transport-search-synthetic",
+      "user_question": "How does the synthetic transport example separate customer-owned inventory from storage billing?",
+      "search_query": "transport customer-owned custody storage",
+      "kind": "example",
+      "filters": {},
+      "expected_ids": [
+        "example-transport-connected-ledger"
+      ],
+      "excluded_ids": [
+        "src_transport_ulc_ucc7"
+      ],
+      "expected_scope": "Original synthetic owner/custodian counterexample, with rights and entity accounting review still required.",
+      "required_citations": 1,
+      "claims_assert_only_supported": [
+        "Customer-owned goods remain separate from storage billing in the synthetic example."
+      ]
+    }
+  ]
+}

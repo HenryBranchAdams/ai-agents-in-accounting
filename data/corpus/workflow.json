@@ -26111,5 +26111,94 @@
         "Current consolidated US GAAP and entity-specific regulatory applicability remain open."
       ]
     }
+  },
+  {
+    "id": "workflow-transport-event-to-ledger",
+    "kind": "workflow",
+    "title": "US transport event to proposed ledger",
+    "summary": "Read-only workflow routing shipment, storage, settlement, lease, maintenance and claim evidence into proposed billing and ledger workpapers.",
+    "topics": [
+      "Transportation and logistics",
+      "Accounting workflows"
+    ],
+    "industries": [
+      "Transportation and warehousing"
+    ],
+    "jurisdiction": "United States",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_transport_fmcsa_broker_371",
+      "src_transport_fmcsa_credit_377",
+      "src_transport_fmcsa_maintenance_396",
+      "src_transport_fmcsa_leases_376",
+      "src_transport_fmcsa_claims_370",
+      "src_transport_ulc_ucc7",
+      "src_transport_ecfr_passenger_374",
+      "src_transport_ecfr_passenger_leases_390g",
+      "src_transport_ecfr_maintenance_3963"
+    ],
+    "related_ids": [],
+    "reviewed_at": "2026-09-19",
+    "review_status": "editorially-reviewed",
+    "provenance": {
+      "imported_on": "2026-09-19",
+      "previous_corpus_version": "2026-09-19.12406",
+      "previous_reviewed_at": null,
+      "previous_review_status": "source-only pending integration",
+      "note": "Original source package. Editorial summaries and synthetic facts only; publisher text is not stored. Integration and professional review remain separate."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false
+    },
+    "data": {
+      "id": "workflow-transport-event-to-ledger",
+      "version": "1.0.0",
+      "name": "US transport event to proposed ledger",
+      "purpose": "Connect operational transport or custody events to an accountable review packet without executing postings, payments, release, or claim settlement.",
+      "scope": "Selected US nongovernmental operating entities applying accrual-basis US GAAP research for calendar 2026 examples. Require legal entity, role, contract, authority, ownership, custody, reporting framework and period.",
+      "inputs": [
+        "Contract, rate sheet or tariff",
+        "Load tender, ticket, bill of lading or trip record",
+        "Pickup, delivery, proof-of-delivery, storage receipt or release evidence",
+        "Fuel surcharge calculation and accessorial approval",
+        "Broker record and carrier settlement statement",
+        "Lease, maintenance and inspection records",
+        "Claim notice, evidence and status",
+        "Customer ownership and custody confirmation"
+      ],
+      "steps": [
+        "Classify role before retrieval",
+        "Reconcile event, period, owner, counterparty and identifiers",
+        "Calculate base charge, surcharge and settlement independently",
+        "Separate customer billing, carrier settlement, broker fee, storage fee, claim status and customer-owned goods",
+        "Prepare proposed ledger routes",
+        "Stop on missing or conflicting evidence",
+        "Route to accountable reviewer; no execution"
+      ],
+      "controls": [
+        "control-transport-role-ownership",
+        "ctrl-input-completeness",
+        "ctrl-source-authenticity"
+      ],
+      "outputs": [
+        "Role and applicability matrix",
+        "Event-to-billing bridge",
+        "Carrier or broker settlement reconciliation",
+        "Warehouse custody rollforward",
+        "Lease and maintenance evidence schedule",
+        "Claim exception register",
+        "Proposed ledger entries with review status"
+      ],
+      "limitations": [
+        "Passing calculation does not establish recognition, measurement, tax, insurance, legal liability, or operating effectiveness.",
+        "No current consolidated ASC text was read.",
+        "No live operational population was accessed."
+      ]
+    }
   }
 ]

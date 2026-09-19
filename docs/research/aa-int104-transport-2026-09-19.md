@@ -1,0 +1,11 @@
+# Transport current integration
+
+Edition 2026-09-19.12418 integrates the selected US transport research from source commit 2a610f3, with a separately reviewed correction to passenger and property authority routes. The original twelve-record inventory and five named questions remain explicit. Nine source records and four original guide, workflow, control and example records are added. Prior canonical records, source rights, question payloads, snapshots and frozen releases remain unchanged.
+
+The correction separates regular-route passenger tickets and refunds under 49 CFR Part 374, passenger leases and their exceptions under Part 390 Subpart G, property-carrier leases under Part 376, and current general maintenance records under section 396.3. The older passenger maintenance page remains dated context. Source access limits, current consolidated accounting review, entity applicability, warehouse state-law application and claims recognition remain open where recorded.
+
+The synthetic example links freight charges and fuel surcharges, passenger ticket cutoff, broker settlements, customer-owned warehouse goods and claims evidence to the proposed ledger workflow. Passenger financial-lease and broker/carrier counterexamples preserve distinct regulatory and accounting questions. All five assessments remain partial and do not grant whole-industry sufficiency, professional verification or operational evidence.
+
+The current importer stages all outputs, rejects unknown editions and conflicting records, mappings or retrieval fixtures before writing, and replays without changing bytes. Focused checks exercise prior-record preservation and late conflict handling. Real search and context retrieval must expose the selected records with publisher citations and preserve record-kind exclusions. Standard generators produce the current screening, mapping, snapshot, downloads and source archive in the same build. Local checks, independent acceptance and CI remain separate evidence; no deployment is performed.
+
+The draft12417 snapshot and release remain immutable. Its full check found an unsupported source-currency label in five assessments. Final12418 uses the schema value unknown and retains the mixed current, dated and blocked source-review explanation in each review basis. No source-currency or adequacy claim was strengthened.
