@@ -1,0 +1,1956 @@
+{
+  "package_name": "aa-i106-finance-insurance",
+  "package_version": "2026-09-19.106.1",
+  "corpus_version": "2026-09-19.12418",
+  "status": "source-only-pending-integration",
+  "reviewed_at": "2026-09-19",
+  "baseline_commit": "d07dd357b9b8faa1ba32cb534c8397030364d3fd",
+  "scope": {
+    "jurisdiction": "United States",
+    "industry_code": "52",
+    "roles": [
+      "lending/deposits/servicing",
+      "funds/valuation/custody",
+      "broker-dealers/advisers",
+      "insurance/reinsurance"
+    ],
+    "frameworks": [
+      "US GAAP",
+      "applicable federal regulatory reporting",
+      "NAIC SAP and state prescribed/permitted practices"
+    ],
+    "period": "2026 research period with source-specific effective periods",
+    "professional_review": "not-performed",
+    "empirical_support": "not-established",
+    "role_qualifications": "Entity role, reporting purpose, framework, jurisdiction, period, source edition and ownership/custody facts must be established before use."
+  },
+  "baseline_inventory": [
+    {
+      "record_id": "collection-financial-dataset-provenance",
+      "industry_codes": [
+        "522"
+      ],
+      "linked_question_ids": [
+        "q-data-lineage",
+        "q-evaluation",
+        "q-interfaces",
+        "q-reuse-rights"
+      ],
+      "disposition": "Existing NAICS-52 association retained as inventory context; association is not an adequacy claim."
+    },
+    {
+      "record_id": "collection-industry-reporting-authorities",
+      "industry_codes": [
+        "522",
+        "524"
+      ],
+      "linked_question_ids": [],
+      "disposition": "Existing NAICS-52 association retained as inventory context; association is not an adequacy claim."
+    },
+    {
+      "record_id": "guide-industry-naics2022-521",
+      "industry_codes": [
+        "521"
+      ],
+      "linked_question_ids": [
+        "q-data-lineage",
+        "q-federal-sovereign",
+        "q-interfaces",
+        "q-security"
+      ],
+      "disposition": "Existing NAICS-52 association retained as inventory context; association is not an adequacy claim."
+    },
+    {
+      "record_id": "guide-industry-naics2022-522",
+      "industry_codes": [
+        "522"
+      ],
+      "linked_question_ids": [
+        "q-cost-allocation",
+        "q-credit-intermediation",
+        "q-data-lineage",
+        "q-interfaces",
+        "q-investments",
+        "q-security"
+      ],
+      "disposition": "Existing NAICS-52 association retained as inventory context; association is not an adequacy claim."
+    },
+    {
+      "record_id": "guide-industry-naics2022-523",
+      "industry_codes": [
+        "523"
+      ],
+      "linked_question_ids": [
+        "q-data-lineage",
+        "q-derivatives",
+        "q-funds-custody",
+        "q-human-authority",
+        "q-interfaces",
+        "q-investments",
+        "q-security"
+      ],
+      "disposition": "Existing NAICS-52 association retained as inventory context; association is not an adequacy claim."
+    },
+    {
+      "record_id": "guide-industry-naics2022-524",
+      "industry_codes": [
+        "524"
+      ],
+      "linked_question_ids": [
+        "q-data-lineage",
+        "q-human-authority",
+        "q-insurance-policyholder",
+        "q-insurer",
+        "q-interfaces",
+        "q-security"
+      ],
+      "disposition": "Existing NAICS-52 association retained as inventory context; association is not an adequacy claim."
+    },
+    {
+      "record_id": "guide-industry-naics2022-525",
+      "industry_codes": [
+        "525"
+      ],
+      "linked_question_ids": [
+        "q-data-lineage",
+        "q-derivatives",
+        "q-funds-custody",
+        "q-human-authority",
+        "q-interfaces",
+        "q-investments",
+        "q-security"
+      ],
+      "disposition": "Existing NAICS-52 association retained as inventory context; association is not an adequacy claim."
+    },
+    {
+      "record_id": "src_eiopa_dpm210_2026",
+      "industry_codes": [
+        "524"
+      ],
+      "linked_question_ids": [
+        "q-insurer",
+        "q-interfaces"
+      ],
+      "disposition": "Existing NAICS-52 association retained as inventory context; association is not an adequacy claim."
+    },
+    {
+      "record_id": "src_eiopa25ai",
+      "industry_codes": [
+        "5241"
+      ],
+      "linked_question_ids": [
+        "q-insurer",
+        "q-security"
+      ],
+      "disposition": "Existing NAICS-52 association retained as inventory context; association is not an adequacy claim."
+    },
+    {
+      "record_id": "src_fed_fry9c_instructions_2026",
+      "industry_codes": [
+        "522"
+      ],
+      "linked_question_ids": [
+        "q-credit-intermediation"
+      ],
+      "disposition": "Existing NAICS-52 association retained as inventory context; association is not an adequacy claim."
+    },
+    {
+      "record_id": "src_ffiec051_instructions_2025",
+      "industry_codes": [
+        "522"
+      ],
+      "linked_question_ids": [
+        "q-credit-intermediation",
+        "q-presentation"
+      ],
+      "disposition": "Existing NAICS-52 association retained as inventory context; association is not an adequacy claim."
+    },
+    {
+      "record_id": "src_ffiecauth",
+      "industry_codes": [
+        "5221"
+      ],
+      "linked_question_ids": [
+        "q-cash-settlement",
+        "q-security"
+      ],
+      "disposition": "Existing NAICS-52 association retained as inventory context; association is not an adequacy claim."
+    },
+    {
+      "record_id": "src_ibm_aml_synthetic_transactions",
+      "industry_codes": [
+        "522"
+      ],
+      "linked_question_ids": [
+        "q-evaluation",
+        "q-interfaces"
+      ],
+      "disposition": "Existing NAICS-52 association retained as inventory context; association is not an adequacy claim."
+    },
+    {
+      "record_id": "src_ibm_tabformer_card_data",
+      "industry_codes": [
+        "522"
+      ],
+      "linked_question_ids": [
+        "q-evaluation",
+        "q-interfaces"
+      ],
+      "disposition": "Existing NAICS-52 association retained as inventory context; association is not an adequacy claim."
+    },
+    {
+      "record_id": "src_naic_sap_hierarchy_2026",
+      "industry_codes": [
+        "524"
+      ],
+      "linked_question_ids": [
+        "q-insurer"
+      ],
+      "disposition": "Existing NAICS-52 association retained as inventory context; association is not an adequacy claim."
+    },
+    {
+      "record_id": "src_occ_baas_2026",
+      "industry_codes": [
+        "522"
+      ],
+      "linked_question_ids": [
+        "q-cash-settlement",
+        "q-credit-intermediation"
+      ],
+      "disposition": "Existing NAICS-52 association retained as inventory context; association is not an adequacy claim."
+    }
+  ],
+  "reused_foundations": [
+    "guide-aa-i124-institutional",
+    "example-aa-i124-role-routing",
+    "guide-q-credit-intermediation",
+    "guide-q-funds-custody",
+    "guide-q-insurer",
+    "src_occ_baas_2026",
+    "src_ffiec051_instructions_2025",
+    "src_fasb_asu_201613_credit_losses",
+    "src_fasb_asc820_fair_value",
+    "src_aa_i124_custody",
+    "src_naic_sap_hierarchy_2026",
+    "src_aa_i124_naic",
+    "src_fasb_asu2016_08_principal_agent"
+  ],
+  "sources": [
+    {
+      "id": "src_aa_i106_occ_acl_2026",
+      "kind": "source",
+      "title": "OCC allowances for credit losses and CECL process guidance",
+      "summary": "OCC describes expected credit loss measurement, impairment of available-for-sale debt securities, estimation controls, management responsibility and examiner review for bank accounting.",
+      "topics": [
+        "Accounting and reporting",
+        "Finance and insurance"
+      ],
+      "industries": [
+        "banking-credit-unions"
+      ],
+      "jurisdiction": "United States; national banks and federal savings associations",
+      "source_type": "Official supervisory and accounting guidance",
+      "publisher": "Office of the Comptroller of the Currency",
+      "source_url": "https://www.occ.gov/topics/supervision-and-examination/bank-operations/accounting/allowance-for-credit-losses/index-allowances-for-credit-losses.html",
+      "source_ids": [],
+      "related_ids": [],
+      "reviewed_at": "2026-09-19",
+      "review_status": "source-checked",
+      "provenance": {
+        "added_on": "2026-09-19",
+        "reviewer": "Codex AI-assisted official-source research; no professional sign-off",
+        "issue_id": "AA-I106",
+        "scope": "Selected US finance and insurance role routing only; current official source locators, not a whole-industry review.",
+        "note": "Original publisher material was checked for the cited locator and bounded summary. No full publisher text is stored."
+      },
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External text is not stored; publisher terms apply. Public access does not establish reuse permission.",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": null
+      },
+      "data": {
+        "id": "src_aa_i106_occ_acl_2026",
+        "edition": "Current page with 2023 interagency policy statement and August 2026 BAAS references",
+        "effective_period": "Page crawled 2026-09-19; the page identifies the revised April 2023 policy statement and current 2026 BAAS reference. Entity and reporting-period applicability remain open.",
+        "source_locator": "ACL page: CECL scope; estimation process, documentation, validation and controls; related OCC 2023-11 and BAAS Topic 12 references.",
+        "access_note": "Official public source checked 2026-09-19; selected locator only; no full text stored.",
+        "evidence_summary": "A supervisory page and cited guidance do not determine an entity-specific allowance or US GAAP conclusion. Current consolidated ASC 326 text and portfolio data were not reviewed.",
+        "limitations": [
+          "No loan population, model, forecast, collateral file or regulatory return was tested.",
+          "OCC guidance is not a substitute for entity policy or professional review."
+        ],
+        "checks": [
+          {
+            "method": "official publisher source review",
+            "url": "https://www.occ.gov/topics/supervision-and-examination/bank-operations/accounting/allowance-for-credit-losses/index-allowances-for-credit-losses.html",
+            "material_read": true,
+            "checked_at": "2026-09-19"
+          }
+        ]
+      }
+    },
+    {
+      "id": "src_aa_i106_sec_2a5_2020",
+      "kind": "source",
+      "title": "SEC good-faith fair-value determinations under Rule 2a-5",
+      "summary": "SEC Rule 2a-5 provides a framework for registered investment companies and business development companies to determine fair value in good faith, including board or valuation-designee oversight, valuation risks, methodologies and records.",
+      "topics": [
+        "Accounting and reporting",
+        "Finance and insurance"
+      ],
+      "industries": [
+        "securities-investment"
+      ],
+      "jurisdiction": "United States; registered investment companies and business development companies",
+      "source_type": "Final rule",
+      "publisher": "U.S. Securities and Exchange Commission",
+      "source_url": "https://www.sec.gov/files/rules/final/2020/ic-34128.pdf",
+      "source_ids": [],
+      "related_ids": [],
+      "reviewed_at": "2026-09-19",
+      "review_status": "source-checked",
+      "provenance": {
+        "added_on": "2026-09-19",
+        "reviewer": "Codex AI-assisted official-source research; no professional sign-off",
+        "issue_id": "AA-I106",
+        "scope": "Selected US finance and insurance role routing only; current official source locators, not a whole-industry review.",
+        "note": "Original publisher material was checked for the cited locator and bounded summary. No full publisher text is stored."
+      },
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External text is not stored; publisher terms apply. Public access does not establish reuse permission.",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": null
+      },
+      "data": {
+        "id": "src_aa_i106_sec_2a5_2020",
+        "edition": "Rule 2a-5 final rule adopted December 3, 2020",
+        "effective_period": "Compliance dates are stated in the final rule; current fund facts and later amendments require confirmation.",
+        "source_locator": "Rule 2a-5 and Rule 31a-4; fair value in good faith, valuation risk, methodologies, records and valuation designee oversight.",
+        "access_note": "Official public source checked 2026-09-19; selected locator only; no full text stored.",
+        "evidence_summary": "The SEC final rule and compliance guide were checked for the selected fair-value and recordkeeping route; full legal and fund-specific analysis remains outside scope.",
+        "limitations": [
+          "Rule 2a-5 does not establish general US GAAP for every financial institution or asset.",
+          "No fund board, valuation designee, portfolio or model was reviewed."
+        ],
+        "checks": [
+          {
+            "method": "official publisher source review",
+            "url": "https://www.sec.gov/files/rules/final/2020/ic-34128.pdf",
+            "material_read": true,
+            "checked_at": "2026-09-19"
+          }
+        ]
+      }
+    },
+    {
+      "id": "src_aa_i106_sec_15c3_3",
+      "kind": "source",
+      "title": "SEC broker-dealer customer protection rule locator",
+      "summary": "The customer protection rule requires covered broker-dealers to safeguard customer cash and securities through possession or control and reserve computations, with scope and compliance dates depending on the rule and firm.",
+      "topics": [
+        "Accounting and reporting",
+        "Finance and insurance"
+      ],
+      "industries": [
+        "securities-investment"
+      ],
+      "jurisdiction": "United States; broker-dealers carrying customer accounts",
+      "source_type": "Federal regulation locator",
+      "publisher": "U.S. Securities and Exchange Commission; Office of the Federal Register",
+      "source_url": "https://www.ecfr.gov/current/title-17/chapter-II/part-240/section-240.15c3-3",
+      "source_ids": [],
+      "related_ids": [],
+      "reviewed_at": "2026-09-19",
+      "review_status": "source-checked",
+      "provenance": {
+        "added_on": "2026-09-19",
+        "reviewer": "Codex AI-assisted official-source research; no professional sign-off",
+        "issue_id": "AA-I106",
+        "scope": "Selected US finance and insurance role routing only; current official source locators, not a whole-industry review.",
+        "note": "Original publisher material was checked for the cited locator and bounded summary. No full publisher text is stored."
+      },
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External text is not stored; publisher terms apply. Public access does not establish reuse permission.",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": null
+      },
+      "data": {
+        "id": "src_aa_i106_sec_15c3_3",
+        "edition": "Current eCFR section read 2026-09-19",
+        "effective_period": "Applicable amendments and compliance dates must be checked for the reporting period and firm.",
+        "source_locator": "17 CFR 240.15c3-3(a), (b), (d), (e) and applicable current paragraphs; possession/control and customer/PAB reserve routing.",
+        "access_note": "Official public source checked 2026-09-19; selected locator only; no full text stored.",
+        "evidence_summary": "Current eCFR page checked for the customer-protection locator; staff guidance and firm-specific exemptions or compliance dates require separate review.",
+        "limitations": [
+          "Customer-protection compliance does not decide GAAP ownership, revenue, or presentation.",
+          "No broker-dealer books, reserve computation or customer account population was reviewed."
+        ],
+        "checks": [
+          {
+            "method": "official publisher source review",
+            "url": "https://www.ecfr.gov/current/title-17/chapter-II/part-240/section-240.15c3-3",
+            "material_read": true,
+            "checked_at": "2026-09-19"
+          }
+        ]
+      }
+    },
+    {
+      "id": "src_aa_i106_naic_appm_2026",
+      "kind": "source",
+      "title": "NAIC 2026 Accounting Practices and Procedures Manual",
+      "summary": "The NAIC AP&P Manual contains statutory accounting guidance adopted through March 2026, including SSAP material, cross-reference and implementation material; state prescribed or permitted practices remain separate.",
+      "topics": [
+        "Accounting and reporting",
+        "Finance and insurance"
+      ],
+      "industries": [
+        "insurance"
+      ],
+      "jurisdiction": "United States; insurer statutory reporting subject to state authority",
+      "source_type": "Official statutory accounting manual",
+      "publisher": "National Association of Insurance Commissioners",
+      "source_url": "https://content.naic.org/sites/default/files/publication-app-manual.pdf",
+      "source_ids": [],
+      "related_ids": [],
+      "reviewed_at": "2026-09-19",
+      "review_status": "source-checked",
+      "provenance": {
+        "added_on": "2026-09-19",
+        "reviewer": "Codex AI-assisted official-source research; no professional sign-off",
+        "issue_id": "AA-I106",
+        "scope": "Selected US finance and insurance role routing only; current official source locators, not a whole-industry review.",
+        "note": "Original publisher material was checked for the cited locator and bounded summary. No full publisher text is stored."
+      },
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External text is not stored; publisher terms apply. Public access does not establish reuse permission.",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": null
+      },
+      "data": {
+        "id": "src_aa_i106_naic_appm_2026",
+        "edition": "AP&P Manual 2026; guidance adopted as of March 2026",
+        "effective_period": "Individual SSAP and state prescribed/permitted practice effective dates require confirmation.",
+        "source_locator": "AP&P Manual 2026, SSAP No. 62 reinsurance risk-transfer discussion and GAAP-to-SAP cross-reference material; use the relevant SSAP and state practice for the entity and period.",
+        "access_note": "Official public source checked 2026-09-19; selected locator only; no full text stored.",
+        "evidence_summary": "Official NAIC manual PDF checked for the selected statutory/reinsurance route; only selected pages and headings were used and full text is not stored.",
+        "limitations": [
+          "SAP is for statutory/regulatory reporting and does not replace US GAAP.",
+          "No policy, treaty, reserve, actuarial report or domiciliary-state practice was reviewed."
+        ],
+        "checks": [
+          {
+            "method": "official publisher source review",
+            "url": "https://content.naic.org/sites/default/files/publication-app-manual.pdf",
+            "material_read": true,
+            "checked_at": "2026-09-19"
+          }
+        ]
+      }
+    }
+  ],
+  "reused_source_reviews": [
+    {
+      "source_id": "src_occ_baas_2026",
+      "url": "https://www.occ.gov/publications-and-resources/publications/banker-education/files/bank-accounting-advisory-series.html",
+      "locator": "OCC Bulletin 2026-38: August 2026 BAAS edition, scope and non-rule status; use the edition’s selected loan, deposit and servicing answers only after entity and period routing.",
+      "effective_period": "August 2026 edition; Bulletin 2026-38 rescinds the 2025 bulletin.",
+      "access_limits": "Official OCC bulletin and BAAS landing page checked; individual answers, current ASC text and entity facts were not comprehensively reviewed.",
+      "evidence_url": "https://www.occ.gov/news-issuances/bulletins/2026/bulletin-2026-38.html"
+    },
+    {
+      "source_id": "src_ffiec051_instructions_2025",
+      "url": "https://www.ffiec.gov/sites/default/files/data/reporting-forms/FFIEC051_202512_i.pdf",
+      "locator": "FFIEC 051 December 2025 instructions: eligibility, report schedules and accounting glossary context; reporting form route only.",
+      "effective_period": "December 2025 instructions; eligibility and later reporting period must be checked.",
+      "access_limits": "Official public PDF; introduction and eligibility context only, not a complete regulatory-report review."
+    },
+    {
+      "source_id": "src_fasb_asu_201613_credit_losses",
+      "url": "https://storage.fasb.org/ASU%202016-13.pdf",
+      "locator": "ASU 2016-13 pp. 2-10; ASC 326-20-30, 326-20-35 and 326-20-55-7, as amended by the effective-date guidance.",
+      "effective_period": "ASU 2019-10 adoption schedule applies by entity class; entity adoption and later amendments require confirmation.",
+      "access_limits": "Official FASB PDF and existing accepted source review; current consolidated Codification and portfolio estimate were not reviewed."
+    },
+    {
+      "source_id": "src_fasb_asc820_fair_value",
+      "url": "https://asc.fasb.org/#topic-820",
+      "locator": "ASC 820-10-35 and ASC 820-10-50; unit of account, fair-value inputs, hierarchy and disclosures.",
+      "effective_period": "Current Topic 820 landing page is access- and update-sensitive; no universal effective date inferred.",
+      "access_limits": "Official FASB landing page locator only; full licensed paragraphs, model and market data were not stored or reviewed."
+    },
+    {
+      "source_id": "src_aa_i124_custody",
+      "url": "https://www.ecfr.gov/current/title-17/chapter-II/part-275/section-275.206(4)-2",
+      "locator": "17 CFR 275.206(4)-2(a)(1)-(4), (b)(1)-(6), (d)(2) and (d)(6); adviser custody, qualified custodian, statements and exceptions.",
+      "effective_period": "Current eCFR read 2026-09-19; historical rule versions must be checked for earlier periods.",
+      "access_limits": "Regulatory custody route only; it is not a GAAP ownership or valuation conclusion."
+    },
+    {
+      "source_id": "src_naic_sap_hierarchy_2026",
+      "url": "https://content.naic.org/committees/e/statutory-accounting-principles-wg",
+      "locator": "SAPWG statutory hierarchy: SSAP Level 1 and interpretation Level 2; AP&P Manual and adopted-revision routing.",
+      "effective_period": "2026 public hierarchy page; individual SSAP and state practice effective dates unresolved.",
+      "access_limits": "Public hierarchy page, not a state-specific statutory filing or complete manual review."
+    },
+    {
+      "source_id": "src_aa_i124_naic",
+      "url": "https://content.naic.org/insurance-topics/statutory-accounting-principles",
+      "locator": "NAIC overview: statutory purpose, prescribed and permitted practices, and SAP versus US GAAP distinction.",
+      "effective_period": "Living topic page read 2026-09-19; page updated 2026-06-23; state adoption remains unresolved.",
+      "access_limits": "Public overview only; no state law, SSAP, reserve or entity practice reviewed."
+    }
+  ],
+  "records": [
+    {
+      "id": "guide-aa-i106-finance-insurance",
+      "kind": "guide",
+      "title": "US finance and insurance role routing",
+      "summary": "Bounded US role routing for four selected finance and insurance workstreams, connecting source evidence to proposed ledger review while preserving framework, ownership, custody and statutory boundaries.",
+      "topics": [
+        "Accounting and reporting",
+        "Finance and insurance"
+      ],
+      "industries": [
+        "Finance and insurance"
+      ],
+      "jurisdiction": "United States; selected roles and reporting purposes only",
+      "source_type": "Original bounded synthesis",
+      "publisher": "Accounting Agents contributors",
+      "source_url": null,
+      "source_ids": [
+        "src_aa_i106_occ_acl_2026",
+        "src_aa_i106_sec_2a5_2020",
+        "src_aa_i106_sec_15c3_3",
+        "src_aa_i106_naic_appm_2026",
+        "src_occ_baas_2026",
+        "src_ffiec051_instructions_2025",
+        "src_fasb_asu_201613_credit_losses",
+        "src_fasb_asc820_fair_value",
+        "src_aa_i124_custody",
+        "src_naic_sap_hierarchy_2026",
+        "src_aa_i124_naic"
+      ],
+      "related_ids": [],
+      "reviewed_at": "2026-09-19",
+      "review_status": "editorially-reviewed",
+      "provenance": {
+        "added_on": "2026-09-19",
+        "reviewer": "Codex AI-assisted source and editorial review",
+        "issue_id": "AA-I106",
+        "note": "Source-only package. Official source summaries and original synthetic facts are bounded to the selected roles; no professional sign-off or operational validation."
+      },
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External text is not stored; publisher terms apply. Public access does not establish reuse permission.",
+        "full_text_stored": false
+      },
+      "data": {
+        "id": "guide-aa-i106-finance-insurance",
+        "version": "1.0.0",
+        "scope": "Selected US finance and insurance roles for calendar 2026 research. Identify legal entity, role, reporting purpose, jurisdiction, framework, reporting date and source edition before routing. This package is a bounded research reference, not a whole-industry or professional conclusion.",
+        "title": "US finance and insurance role routing",
+        "description": "Bounded US source package for lending/deposits/servicing, funds/valuation/custody, broker-dealers/advisers, and insurance/reinsurance.",
+        "prepared_at": "2026-09-19",
+        "review_note": "Source-only pending integration. No professional review, whole-industry sufficiency, current consolidated conclusion or production posting is claimed.",
+        "evidence_classification": "editorial-recommendation",
+        "intended_audience": "Accounting researchers, controllers, reviewers and builders of read-only accounting agents.",
+        "roles": [
+          "lending/deposits/servicing",
+          "funds/valuation/custody",
+          "broker-dealers/advisers",
+          "insurance/reinsurance"
+        ],
+        "frameworks": [
+          "US GAAP",
+          "applicable federal regulatory reporting",
+          "NAIC SAP and state prescribed/permitted practices"
+        ],
+        "period": "2026 research period; source-specific effective periods recorded per locator",
+        "source_ids": [
+          "src_aa_i106_occ_acl_2026",
+          "src_aa_i106_sec_2a5_2020",
+          "src_aa_i106_sec_15c3_3",
+          "src_aa_i106_naic_appm_2026",
+          "src_occ_baas_2026",
+          "src_ffiec051_instructions_2025",
+          "src_fasb_asu_201613_credit_losses",
+          "src_fasb_asc820_fair_value",
+          "src_aa_i124_custody",
+          "src_naic_sap_hierarchy_2026",
+          "src_aa_i124_naic"
+        ],
+        "workflow_ids": [
+          "workflow-aa-i106-role-ledger-routing"
+        ],
+        "control_ids": [
+          "control-aa-i106-source-bridge"
+        ],
+        "example_ids": [
+          "example-aa-i106-role-branches"
+        ],
+        "research_questions": [
+          {
+            "id": "rq-aa-i106-lending-deposit-servicing",
+            "record_id": "guide-aa-i106-finance-insurance",
+            "pointer": "/data/research_questions/0",
+            "family_ids": [
+              "q-credit-intermediation",
+              "q-data-lineage",
+              "q-cash-settlement"
+            ],
+            "question": "How should a US lender or deposit-taking entity connect loan, deposit and servicing events to ledger proposals without confusing customer liabilities, owned receivables and agency funds?",
+            "scope": "Selected US finance and insurance roles for calendar 2026 research. Identify legal entity, role, reporting purpose, jurisdiction, framework, reporting date and source edition before routing. This package is a bounded research reference, not a whole-industry or professional conclusion.",
+            "answer_status": "sourced-answer-bounded",
+            "assessment_status": "partial",
+            "source_ids": [
+              "src_occ_baas_2026",
+              "src_aa_i106_occ_acl_2026",
+              "src_ffiec051_instructions_2025",
+              "src_fasb_asu_201613_credit_losses"
+            ],
+            "source_locators": [
+              {
+                "source_id": "src_occ_baas_2026",
+                "url": "https://www.occ.gov/publications-and-resources/publications/banker-education/files/bank-accounting-advisory-series.html",
+                "locator": "OCC Bulletin 2026-38: August 2026 BAAS edition, scope and non-rule status; selected loan, deposit and servicing answers.",
+                "effective_period": "August 2026 edition; Bulletin 2026-38 rescinds the 2025 bulletin.",
+                "access_limits": "Official OCC bulletin and BAAS landing page checked; individual answers, current ASC text and entity facts were not comprehensively reviewed."
+              },
+              {
+                "source_id": "src_aa_i106_occ_acl_2026",
+                "url": "https://www.occ.gov/topics/supervision-and-examination/bank-operations/accounting/allowance-for-credit-losses/index-allowances-for-credit-losses.html",
+                "locator": "ACL page: CECL scope; estimation process, documentation, validation and controls.",
+                "effective_period": "Page crawled 2026-09-19; the page identifies the revised April 2023 policy statement and current 2026 BAAS reference. Entity and reporting-period applicability remain open.",
+                "access_limits": "No loan population, model, forecast, collateral file or regulatory return was tested."
+              },
+              {
+                "source_id": "src_ffiec051_instructions_2025",
+                "url": "https://www.ffiec.gov/sites/default/files/data/reporting-forms/FFIEC051_202512_i.pdf",
+                "locator": "FFIEC 051 December 2025 instructions: eligibility, schedules and accounting glossary.",
+                "effective_period": "December 2025 instructions; eligibility and later reporting period must be checked.",
+                "access_limits": "Official public PDF; introduction and eligibility context only, not a complete regulatory-report review."
+              },
+              {
+                "source_id": "src_fasb_asu_201613_credit_losses",
+                "url": "https://storage.fasb.org/ASU%202016-13.pdf",
+                "locator": "ASU 2016-13 pp. 2-10; ASC 326-20-30, 326-20-35 and 326-20-55-7.",
+                "effective_period": "ASU 2019-10 adoption schedule applies by entity class; entity adoption and later amendments require confirmation.",
+                "access_limits": "Official FASB PDF and existing accepted source review; current consolidated Codification and portfolio estimate were not reviewed."
+              }
+            ],
+            "remaining_gaps": [
+              "Current consolidated ASC 326 and entity adoption were not reviewed.",
+              "No loan, deposit, servicing or regulatory-report population was tested.",
+              "Agency and fiduciary arrangements require legal and contract analysis."
+            ],
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "dimensions": {
+              "scope": "present",
+              "accounting-question": "partial",
+              "evidence-inputs": "present",
+              "workflow": "present",
+              "controls": "present",
+              "worked-material": "present",
+              "empirical-support": "not-assessed"
+            },
+            "dimension_basis": "Selected official locators, role-specific inputs, workflow and original synthetic examples are present. Partial does not establish accounting correctness, professional review or whole-industry sufficiency.",
+            "reviewed_at": "2026-09-19",
+            "answer": "Start with entity role, contract, ownership, reporting purpose and period. Separate loan principal and expected-credit-loss inputs from deposits owed to customers and servicing or agency balances; route each population to the applicable US GAAP and regulatory-reporting source, then reconcile subledgers and exceptions before proposing an entry.",
+            "selected_role": "lending/deposits/servicing",
+            "frameworks": [
+              "US GAAP",
+              "applicable federal regulatory reporting"
+            ]
+          },
+          {
+            "id": "rq-aa-i106-funds-valuation-custody",
+            "record_id": "guide-aa-i106-finance-insurance",
+            "pointer": "/data/research_questions/1",
+            "family_ids": [
+              "q-funds-custody",
+              "q-investments",
+              "q-valuation-impairment"
+            ],
+            "question": "How should a US fund or adviser separate owned investments, client custody and valuation evidence before proposing ledger treatment?",
+            "scope": "Selected US finance and insurance roles for calendar 2026 research. Identify legal entity, role, reporting purpose, jurisdiction, framework, reporting date and source edition before routing. This package is a bounded research reference, not a whole-industry or professional conclusion.",
+            "answer_status": "sourced-answer-bounded",
+            "assessment_status": "partial",
+            "source_ids": [
+              "src_aa_i106_sec_2a5_2020",
+              "src_fasb_asc820_fair_value",
+              "src_aa_i124_custody",
+              "src_aa_i124_naic"
+            ],
+            "source_locators": [
+              {
+                "source_id": "src_aa_i106_sec_2a5_2020",
+                "url": "https://www.sec.gov/files/rules/final/2020/ic-34128.pdf",
+                "locator": "Rule 2a-5 and Rule 31a-4; fair value in good faith, valuation risk, methodologies, records and valuation-designee oversight.",
+                "effective_period": "Compliance dates are stated in the final rule; current fund facts and later amendments require confirmation.",
+                "access_limits": "Rule 2a-5 does not establish general US GAAP for every financial institution or asset."
+              },
+              {
+                "source_id": "src_fasb_asc820_fair_value",
+                "url": "https://asc.fasb.org/#topic-820",
+                "locator": "ASC 820-10-35 and ASC 820-10-50; unit of account, fair-value inputs, hierarchy and disclosures.",
+                "effective_period": "Current Topic 820 landing page is access- and update-sensitive; no universal effective date inferred.",
+                "access_limits": "Official FASB landing page locator only; full licensed paragraphs, model and market data were not stored or reviewed."
+              },
+              {
+                "source_id": "src_aa_i124_custody",
+                "url": "https://www.ecfr.gov/current/title-17/chapter-II/part-275/section-275.206(4)-2",
+                "locator": "17 CFR 275.206(4)-2(a)(1)-(4), (b)(1)-(6), (d)(2) and (d)(6).",
+                "effective_period": "Current eCFR read 2026-09-19; historical rule versions must be checked for earlier periods.",
+                "access_limits": "Regulatory custody route only; it is not a GAAP ownership or valuation conclusion."
+              }
+            ],
+            "remaining_gaps": [
+              "No fund board, valuation designee, portfolio or market data was reviewed.",
+              "Current consolidated US GAAP and fund-specific classification remain open.",
+              "SEC custody status does not resolve beneficial ownership or financial-statement presentation."
+            ],
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "dimensions": {
+              "scope": "present",
+              "accounting-question": "partial",
+              "evidence-inputs": "present",
+              "workflow": "present",
+              "controls": "present",
+              "worked-material": "present",
+              "empirical-support": "not-assessed"
+            },
+            "dimension_basis": "Selected official locators, role-specific inputs, workflow and original synthetic examples are present. Partial does not establish accounting correctness, professional review or whole-industry sufficiency.",
+            "reviewed_at": "2026-09-19",
+            "answer": "Classify owned assets, client assets and custody authority separately. For a registered fund or business development company route valuation to the applicable Rule 2a-5 process and retain valuation-method and oversight evidence; custody evidence supports regulatory safeguarding but does not itself establish GAAP ownership or measurement.",
+            "selected_role": "funds/valuation/custody",
+            "frameworks": [
+              "US GAAP",
+              "Investment Company Act / SEC custody and valuation rules where applicable"
+            ]
+          },
+          {
+            "id": "rq-aa-i106-broker-adviser-protection",
+            "record_id": "guide-aa-i106-finance-insurance",
+            "pointer": "/data/research_questions/2",
+            "family_ids": [
+              "q-funds-custody",
+              "q-security",
+              "q-data-lineage"
+            ],
+            "question": "How should a US broker-dealer or adviser keep customer assets, proprietary positions, reserve computations and fee activity distinct in a transaction-to-ledger review?",
+            "scope": "Selected US finance and insurance roles for calendar 2026 research. Identify legal entity, role, reporting purpose, jurisdiction, framework, reporting date and source edition before routing. This package is a bounded research reference, not a whole-industry or professional conclusion.",
+            "answer_status": "sourced-answer-bounded",
+            "assessment_status": "partial",
+            "source_ids": [
+              "src_aa_i106_sec_15c3_3",
+              "src_aa_i124_custody",
+              "src_aa_i106_sec_2a5_2020"
+            ],
+            "source_locators": [
+              {
+                "source_id": "src_aa_i106_sec_15c3_3",
+                "url": "https://www.ecfr.gov/current/title-17/chapter-II/part-240/section-240.15c3-3",
+                "locator": "17 CFR 240.15c3-3(a), (b), (d), (e) and applicable current paragraphs.",
+                "effective_period": "Applicable amendments and compliance dates must be checked for the reporting period and firm.",
+                "access_limits": "Customer-protection compliance does not decide GAAP ownership, revenue, or presentation."
+              },
+              {
+                "source_id": "src_aa_i124_custody",
+                "url": "https://www.ecfr.gov/current/title-17/chapter-II/part-275/section-275.206(4)-2",
+                "locator": "17 CFR 275.206(4)-2(a)(1)-(4), (b)(1)-(6), (d)(2) and (d)(6).",
+                "effective_period": "Current eCFR read 2026-09-19; historical rule versions must be checked for earlier periods.",
+                "access_limits": "Regulatory custody route only; it is not a GAAP ownership or valuation conclusion."
+              }
+            ],
+            "remaining_gaps": [
+              "No broker-dealer reserve computation or adviser client-account population was tested.",
+              "Firm exemptions, compliance dates, contracts and ownership evidence require separate review.",
+              "Fee recognition and financial-statement presentation remain entity-specific."
+            ],
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "dimensions": {
+              "scope": "present",
+              "accounting-question": "partial",
+              "evidence-inputs": "present",
+              "workflow": "present",
+              "controls": "present",
+              "worked-material": "present",
+              "empirical-support": "not-assessed"
+            },
+            "dimension_basis": "Selected official locators, role-specific inputs, workflow and original synthetic examples are present. Partial does not establish accounting correctness, professional review or whole-industry sufficiency.",
+            "reviewed_at": "2026-09-19",
+            "answer": "Route customer cash and securities, proprietary positions, reserve or possession/control evidence, and adviser fees as separate populations. Rule 15c3-3 or the adviser custody rule supplies regulatory control evidence for covered entities; neither rule transfers customer assets into firm-owned assets nor answers every US GAAP presentation question.",
+            "selected_role": "broker-dealers/advisers",
+            "frameworks": [
+              "US GAAP",
+              "Exchange Act Rule 15c3-3 and Advisers Act custody rule where applicable"
+            ]
+          },
+          {
+            "id": "rq-aa-i106-insurance-reinsurance",
+            "record_id": "guide-aa-i106-finance-insurance",
+            "pointer": "/data/research_questions/3",
+            "family_ids": [
+              "q-insurer",
+              "q-insurance-policyholder",
+              "q-investments"
+            ],
+            "question": "How should a US insurer or reinsurer connect premiums, claims, ceded risk and statutory reporting to ledger proposals without transferring SAP authority to US GAAP?",
+            "scope": "Selected US finance and insurance roles for calendar 2026 research. Identify legal entity, role, reporting purpose, jurisdiction, framework, reporting date and source edition before routing. This package is a bounded research reference, not a whole-industry or professional conclusion.",
+            "answer_status": "sourced-answer-bounded",
+            "assessment_status": "partial",
+            "source_ids": [
+              "src_aa_i106_naic_appm_2026",
+              "src_naic_sap_hierarchy_2026",
+              "src_aa_i124_naic",
+              "src_fasb_asu_201613_credit_losses"
+            ],
+            "source_locators": [
+              {
+                "source_id": "src_aa_i106_naic_appm_2026",
+                "url": "https://content.naic.org/sites/default/files/publication-app-manual.pdf",
+                "locator": "AP&P Manual 2026, SSAP No. 62 reinsurance risk-transfer discussion and GAAP-to-SAP cross-reference material.",
+                "effective_period": "Individual SSAP and state prescribed/permitted practice effective dates require confirmation.",
+                "access_limits": "SAP is for statutory/regulatory reporting and does not replace US GAAP."
+              },
+              {
+                "source_id": "src_naic_sap_hierarchy_2026",
+                "url": "https://content.naic.org/committees/e/statutory-accounting-principles-wg",
+                "locator": "SAPWG statutory hierarchy: SSAP Level 1 and interpretation Level 2.",
+                "effective_period": "2026 public hierarchy page; individual SSAP and state practice effective dates unresolved.",
+                "access_limits": "Public hierarchy page, not a state-specific statutory filing or complete manual review."
+              },
+              {
+                "source_id": "src_aa_i124_naic",
+                "url": "https://content.naic.org/insurance-topics/statutory-accounting-principles",
+                "locator": "NAIC overview: statutory purpose, prescribed and permitted practices, and SAP versus US GAAP distinction.",
+                "effective_period": "Living topic page read 2026-09-19; page updated 2026-06-23; state adoption remains unresolved.",
+                "access_limits": "Public overview only; no state law, SSAP, reserve or entity practice reviewed."
+              }
+            ],
+            "remaining_gaps": [
+              "No policy, treaty, reserve, actuarial report or domiciliary-state practice was reviewed.",
+              "Current US GAAP insurance-contract text was not read in this package.",
+              "No claims population or statutory filing was tested."
+            ],
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "dimensions": {
+              "scope": "present",
+              "accounting-question": "partial",
+              "evidence-inputs": "present",
+              "workflow": "present",
+              "controls": "present",
+              "worked-material": "present",
+              "empirical-support": "not-assessed"
+            },
+            "dimension_basis": "Selected official locators, role-specific inputs, workflow and original synthetic examples are present. Partial does not establish accounting correctness, professional review or whole-industry sufficiency.",
+            "reviewed_at": "2026-09-19",
+            "answer": "Identify the reporting purpose first. Keep direct premiums, claims or loss estimates, ceded premiums and recoveries as separate populations, then use the applicable US GAAP or SAP/state-practice authority. The NAIC hierarchy and AP&P material explain statutory reporting, but they do not replace US GAAP or establish a reserve or reinsurance conclusion for a particular entity.",
+            "selected_role": "insurance/reinsurance",
+            "frameworks": [
+              "US GAAP where applicable",
+              "NAIC SAP and state prescribed/permitted practices"
+            ]
+          }
+        ],
+        "reused_foundations": [
+          "guide-aa-i124-institutional",
+          "example-aa-i124-role-routing",
+          "guide-q-credit-intermediation",
+          "guide-q-funds-custody",
+          "guide-q-insurer",
+          "src_occ_baas_2026",
+          "src_ffiec051_instructions_2025",
+          "src_fasb_asu_201613_credit_losses",
+          "src_fasb_asc820_fair_value",
+          "src_aa_i124_custody",
+          "src_naic_sap_hierarchy_2026",
+          "src_aa_i124_naic",
+          "src_fasb_asu2016_08_principal_agent"
+        ],
+        "boundaries": [
+          "No 50-state survey",
+          "No new international package; existing international foundations remain context only",
+          "No transfer of US GAAP, SEC, OCC or NAIC authority between roles",
+          "No professional or empirical sufficiency claim"
+        ]
+      }
+    },
+    {
+      "id": "workflow-aa-i106-role-ledger-routing",
+      "kind": "workflow",
+      "title": "Finance and insurance transaction-to-ledger routing",
+      "summary": "A read-only evidence workflow that classifies role and reporting purpose before connecting source-backed events to ledger populations and exceptions.",
+      "topics": [
+        "Accounting and reporting",
+        "Finance and insurance"
+      ],
+      "industries": [
+        "Finance and insurance"
+      ],
+      "jurisdiction": "United States; selected roles and reporting purposes only",
+      "source_type": "Original bounded synthesis",
+      "publisher": "Accounting Agents contributors",
+      "source_url": null,
+      "source_ids": [
+        "src_aa_i106_occ_acl_2026",
+        "src_aa_i106_sec_2a5_2020",
+        "src_aa_i106_sec_15c3_3",
+        "src_aa_i106_naic_appm_2026",
+        "src_occ_baas_2026",
+        "src_ffiec051_instructions_2025",
+        "src_fasb_asu_201613_credit_losses",
+        "src_fasb_asc820_fair_value",
+        "src_aa_i124_custody",
+        "src_naic_sap_hierarchy_2026",
+        "src_aa_i124_naic"
+      ],
+      "related_ids": [],
+      "reviewed_at": "2026-09-19",
+      "review_status": "editorially-reviewed",
+      "provenance": {
+        "added_on": "2026-09-19",
+        "reviewer": "Codex AI-assisted source and editorial review",
+        "issue_id": "AA-I106",
+        "note": "Source-only package. Official source summaries and original synthetic facts are bounded to the selected roles; no professional sign-off or operational validation."
+      },
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External text is not stored; publisher terms apply. Public access does not establish reuse permission.",
+        "full_text_stored": false
+      },
+      "data": {
+        "id": "workflow-aa-i106-role-ledger-routing",
+        "version": "1.0.0",
+        "scope": "Selected US finance and insurance roles for calendar 2026 research. Identify legal entity, role, reporting purpose, jurisdiction, framework, reporting date and source edition before routing. This package is a bounded research reference, not a whole-industry or professional conclusion.",
+        "purpose": "Prepare a source-linked review packet without posting or filing.",
+        "inputs": [
+          "legal entity and actual role",
+          "contract or account terms",
+          "ownership/custody or reserve evidence",
+          "reporting framework and purpose",
+          "reporting date and source edition",
+          "transaction, subledger and reconciliation data"
+        ],
+        "steps": [
+          "Classify one of the four selected roles and reporting purpose.",
+          "Pin the source URL, locator, effective period and access limit.",
+          "Separate owned assets, customer assets, liabilities, fees, claims, reserves and regulatory populations.",
+          "Recalculate synthetic or supplied amounts and tie each proposed population to a source and evidence item.",
+          "Stop on framework, ownership, effective-date, rights or source-currency conflict before suggesting a ledger route.",
+          "Record unresolved items and require accountable human disposition."
+        ],
+        "outputs": [
+          "role and framework matrix",
+          "source locator ledger",
+          "proposed ledger-population map",
+          "exception register",
+          "no-execution review packet"
+        ],
+        "controls": [
+          "stable source IDs and original publisher URLs",
+          "source-version and effective-date pin",
+          "separate GAAP, regulatory and statutory columns",
+          "conflict-before-write staging",
+          "human review for unresolved judgment"
+        ],
+        "exceptions": [
+          "custody is not ownership",
+          "regulatory reporting is not automatically GAAP",
+          "SAP does not replace US GAAP",
+          "same transaction amount can route differently by entity role",
+          "unknown rights or stale source currency"
+        ],
+        "limitations": [
+          "This is a research workflow, not a posting policy or professional review.",
+          "No live population, operational control test or production retrieval was performed."
+        ]
+      }
+    },
+    {
+      "id": "control-aa-i106-source-bridge",
+      "kind": "control",
+      "title": "Finance and insurance source-to-ledger boundary control",
+      "summary": "A review control for preserving source identity, framework boundaries and role-specific ownership before any accounting proposal.",
+      "topics": [
+        "Accounting and reporting",
+        "Finance and insurance"
+      ],
+      "industries": [
+        "Finance and insurance"
+      ],
+      "jurisdiction": "United States; selected roles and reporting purposes only",
+      "source_type": "Original bounded synthesis",
+      "publisher": "Accounting Agents contributors",
+      "source_url": null,
+      "source_ids": [
+        "src_aa_i106_occ_acl_2026",
+        "src_aa_i106_sec_2a5_2020",
+        "src_aa_i106_sec_15c3_3",
+        "src_aa_i106_naic_appm_2026",
+        "src_occ_baas_2026",
+        "src_ffiec051_instructions_2025",
+        "src_fasb_asu_201613_credit_losses",
+        "src_fasb_asc820_fair_value",
+        "src_aa_i124_custody",
+        "src_naic_sap_hierarchy_2026",
+        "src_aa_i124_naic"
+      ],
+      "related_ids": [],
+      "reviewed_at": "2026-09-19",
+      "review_status": "editorially-reviewed",
+      "provenance": {
+        "added_on": "2026-09-19",
+        "reviewer": "Codex AI-assisted source and editorial review",
+        "issue_id": "AA-I106",
+        "note": "Source-only package. Official source summaries and original synthetic facts are bounded to the selected roles; no professional sign-off or operational validation."
+      },
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External text is not stored; publisher terms apply. Public access does not establish reuse permission.",
+        "full_text_stored": false
+      },
+      "data": {
+        "id": "control-aa-i106-source-bridge",
+        "version": "1.0.0",
+        "scope": "Selected US finance and insurance roles for calendar 2026 research. Identify legal entity, role, reporting purpose, jurisdiction, framework, reporting date and source edition before routing. This package is a bounded research reference, not a whole-industry or professional conclusion.",
+        "control_objective": "Prevent a role, source or reporting-basis mismatch from becoming a ledger proposal.",
+        "trigger": "Before applying an external source or a transaction-to-ledger route.",
+        "evidence": [
+          "source URL and locator",
+          "edition/effective period",
+          "entity role and reporting purpose",
+          "contract/account/ownership evidence",
+          "subledger reconciliation",
+          "exception and reviewer record"
+        ],
+        "procedure": [
+          "Match each source locator URL to one stable source record.",
+          "Verify source framework and role are compatible with the selected question.",
+          "Keep customer custody, owned assets, regulatory reserves and fees in separate populations.",
+          "Reject stale, missing, conflicting or rights-unknown evidence for automatic routing.",
+          "Stage all additions and fail before writes on any stable-ID, URL or primary-metadata conflict."
+        ],
+        "control_owner": "Accounting reviewer or controller; no automatic posting authority",
+        "failure_modes": [
+          "source URL duplicate with changed primary metadata",
+          "US GAAP and SAP treatment copied across bases",
+          "customer assets counted as firm assets",
+          "synthetic amount treated as operational evidence",
+          "current source or effective date omitted"
+        ],
+        "limitations": [
+          "Control design only; no operating-effectiveness test or professional review was performed."
+        ]
+      }
+    },
+    {
+      "id": "example-aa-i106-role-branches",
+      "kind": "example",
+      "title": "Finance and insurance role branches: synthetic connected ledger",
+      "summary": "Original synthetic scenarios connect four selected roles to separate ledger populations and preserve framework and ownership counterexamples.",
+      "topics": [
+        "Accounting and reporting",
+        "Finance and insurance"
+      ],
+      "industries": [
+        "Finance and insurance"
+      ],
+      "jurisdiction": "United States; selected roles and reporting purposes only",
+      "source_type": "Original bounded synthesis",
+      "publisher": "Accounting Agents contributors",
+      "source_url": null,
+      "source_ids": [
+        "src_aa_i106_occ_acl_2026",
+        "src_aa_i106_sec_2a5_2020",
+        "src_aa_i106_sec_15c3_3",
+        "src_aa_i106_naic_appm_2026",
+        "src_occ_baas_2026",
+        "src_ffiec051_instructions_2025",
+        "src_fasb_asu_201613_credit_losses",
+        "src_fasb_asc820_fair_value",
+        "src_aa_i124_custody",
+        "src_naic_sap_hierarchy_2026",
+        "src_aa_i124_naic"
+      ],
+      "related_ids": [],
+      "reviewed_at": "2026-09-19",
+      "review_status": "editorially-reviewed",
+      "provenance": {
+        "added_on": "2026-09-19",
+        "reviewer": "Codex AI-assisted source and editorial review",
+        "issue_id": "AA-I106",
+        "note": "Source-only package. Official source summaries and original synthetic facts are bounded to the selected roles; no professional sign-off or operational validation."
+      },
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External text is not stored; publisher terms apply. Public access does not establish reuse permission.",
+        "full_text_stored": false
+      },
+      "data": {
+        "id": "example-aa-i106-role-branches",
+        "version": "1.0.0",
+        "scope": "Selected US finance and insurance roles for calendar 2026 research. Identify legal entity, role, reporting purpose, jurisdiction, framework, reporting date and source edition before routing. This package is a bounded research reference, not a whole-industry or professional conclusion.",
+        "title": "Finance and insurance role branches: synthetic connected ledger",
+        "summary": "Original synthetic scenarios connect lending, funds, broker-dealer/adviser and insurance events to separate ledger populations and show custody, valuation, credit-loss and premium/claim counterexamples.",
+        "workflow_ids": [
+          "workflow-aa-i106-role-ledger-routing"
+        ],
+        "control_ids": [
+          "control-aa-i106-source-bridge"
+        ],
+        "source_ids": [
+          "src_aa_i106_occ_acl_2026",
+          "src_aa_i106_sec_2a5_2020",
+          "src_aa_i106_sec_15c3_3",
+          "src_aa_i106_naic_appm_2026",
+          "src_occ_baas_2026",
+          "src_ffiec051_instructions_2025",
+          "src_fasb_asu_201613_credit_losses",
+          "src_fasb_asc820_fair_value",
+          "src_aa_i124_custody",
+          "src_naic_sap_hierarchy_2026",
+          "src_aa_i124_naic"
+        ],
+        "authority_level": "A2",
+        "accountable_owner": "Controller, accounting reviewer or designated reporting owner",
+        "fixture": {
+          "currency": "USD",
+          "period_end": "2026-12-31",
+          "lending_deposit_servicing": {
+            "role": "deposit-taking lender",
+            "loan_principal_cents": 100000000,
+            "expected_credit_loss_cents": 3000000,
+            "customer_deposit_liability_cents": 75000000,
+            "servicing_fee_cents": 120000,
+            "agency_cash_cents": 5000000,
+            "route": "Separate owned loan, loss allowance input, deposit liability, servicing fee and agency cash; no automatic entry."
+          },
+          "funds_valuation_custody": {
+            "role": "registered fund and adviser custody branch",
+            "client_security_value_cents": 25000000,
+            "owned_investment_value_cents": 24000000,
+            "valuation_adjustment_cents": 2000000,
+            "client_asset_subledger_cents": 25000000,
+            "entity_asset_cents": 24000000,
+            "route": "Custody and owned investment populations remain separate; valuation evidence and Rule 2a-5 applicability require review."
+          },
+          "broker_adviser": {
+            "role": "carrying broker-dealer and adviser",
+            "customer_cash_cents": 40000000,
+            "customer_securities_cents": 60000000,
+            "proprietary_position_cents": 12000000,
+            "adviser_fee_cents": 800000,
+            "customer_reserve_input_cents": 100000000,
+            "route": "Customer reserve and possession/control evidence are separate from proprietary positions and fees."
+          },
+          "insurance_reinsurance": {
+            "role": "US insurer with ceded reinsurance",
+            "direct_premium_cents": 50000000,
+            "reported_claim_estimate_cents": 12000000,
+            "ceded_premium_cents": 5000000,
+            "reinsurance_recovery_estimate_cents": 4000000,
+            "statutory_adjustment_cents": 1500000,
+            "route": "Keep direct premium, claims, ceded premium, recoveries and SAP-to-GAAP adjustments separate; treaty and state practice remain open."
+          },
+          "counterexamples": [
+            {
+              "id": "custody-versus-owned",
+              "same_statement_value_cents": 25000000,
+              "custody_case": {
+                "entity_asset_cents": 0,
+                "client_asset_subledger_cents": 25000000
+              },
+              "owned_case": {
+                "entity_asset_cents": 25000000,
+                "client_asset_subledger_cents": 0
+              },
+              "reason": "Identical statement amount does not establish identical ownership or presentation."
+            },
+            {
+              "id": "sap-versus-gaap",
+              "same_claim_estimate_cents": 12000000,
+              "gaap_route": "Requires current applicable US GAAP and contract facts.",
+              "sap_route": "Requires applicable SSAP and domiciliary state prescribed/permitted practices.",
+              "reason": "Statutory and GAAP reporting purposes must not be substituted."
+            }
+          ]
+        },
+        "examples": [
+          {
+            "id": "aa-i106-golden",
+            "scenario_type": "golden",
+            "input": "Use the four role fixtures as supplied.",
+            "reference_expectations": {
+              "outcome": "complete-with-review",
+              "proposed_entries": [],
+              "executed_actions": [],
+              "review_required": true
+            }
+          },
+          {
+            "id": "aa-i106-role-collapse",
+            "scenario_type": "negative",
+            "input": "Treat customer custody as owned assets, use SAP as a US GAAP conclusion, or combine broker customer funds with adviser fees.",
+            "reference_expectations": {
+              "outcome": "stop",
+              "exception_codes": [
+                "ROLE_OR_FRAMEWORK_MISMATCH",
+                "CUSTOMER_CUSTODY_MISCLASSIFIED",
+                "STATUTORY_GAAP_BOUNDARY"
+              ],
+              "executed_actions": [],
+              "review_required": true
+            }
+          },
+          {
+            "id": "aa-i106-credit-loss-math",
+            "scenario_type": "negative",
+            "input": "Post the 3,000,000 expected-credit-loss input as a validated allowance without confirming scope, model, forecast and entity adoption.",
+            "reference_expectations": {
+              "outcome": "stop-and-review",
+              "exception_codes": [
+                "CECL_APPLICABILITY_OPEN"
+              ],
+              "executed_actions": [],
+              "review_required": true
+            }
+          }
+        ],
+        "limitations": [
+          "Synthetic amounts and arithmetic are illustrative only, not operational evidence or an approved journal-entry policy.",
+          "No professional accounting, legal, actuarial or valuation review was performed.",
+          "No live ERP, portfolio, customer-account, reserve, policy, treaty or claims population was accessed.",
+          "Current consolidated standards, entity policy, state practice and source rights require separate review."
+        ]
+      }
+    }
+  ],
+  "question_rows": [
+    {
+      "id": "rq-aa-i106-lending-deposit-servicing",
+      "record_id": "guide-aa-i106-finance-insurance",
+      "pointer": "/data/research_questions/0",
+      "family_ids": [
+        "q-credit-intermediation",
+        "q-data-lineage",
+        "q-cash-settlement"
+      ],
+      "question": "How should a US lender or deposit-taking entity connect loan, deposit and servicing events to ledger proposals without confusing customer liabilities, owned receivables and agency funds?",
+      "scope": "Selected US finance and insurance roles for calendar 2026 research. Identify legal entity, role, reporting purpose, jurisdiction, framework, reporting date and source edition before routing. This package is a bounded research reference, not a whole-industry or professional conclusion.",
+      "answer_status": "sourced-answer-bounded",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_occ_baas_2026",
+        "src_aa_i106_occ_acl_2026",
+        "src_ffiec051_instructions_2025",
+        "src_fasb_asu_201613_credit_losses"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_occ_baas_2026",
+          "url": "https://www.occ.gov/publications-and-resources/publications/banker-education/files/bank-accounting-advisory-series.html",
+          "locator": "OCC Bulletin 2026-38: August 2026 BAAS edition, scope and non-rule status; selected loan, deposit and servicing answers.",
+          "effective_period": "August 2026 edition; Bulletin 2026-38 rescinds the 2025 bulletin.",
+          "access_limits": "Official OCC bulletin and BAAS landing page checked; individual answers, current ASC text and entity facts were not comprehensively reviewed."
+        },
+        {
+          "source_id": "src_aa_i106_occ_acl_2026",
+          "url": "https://www.occ.gov/topics/supervision-and-examination/bank-operations/accounting/allowance-for-credit-losses/index-allowances-for-credit-losses.html",
+          "locator": "ACL page: CECL scope; estimation process, documentation, validation and controls.",
+          "effective_period": "Page crawled 2026-09-19; the page identifies the revised April 2023 policy statement and current 2026 BAAS reference. Entity and reporting-period applicability remain open.",
+          "access_limits": "No loan population, model, forecast, collateral file or regulatory return was tested."
+        },
+        {
+          "source_id": "src_ffiec051_instructions_2025",
+          "url": "https://www.ffiec.gov/sites/default/files/data/reporting-forms/FFIEC051_202512_i.pdf",
+          "locator": "FFIEC 051 December 2025 instructions: eligibility, schedules and accounting glossary.",
+          "effective_period": "December 2025 instructions; eligibility and later reporting period must be checked.",
+          "access_limits": "Official public PDF; introduction and eligibility context only, not a complete regulatory-report review."
+        },
+        {
+          "source_id": "src_fasb_asu_201613_credit_losses",
+          "url": "https://storage.fasb.org/ASU%202016-13.pdf",
+          "locator": "ASU 2016-13 pp. 2-10; ASC 326-20-30, 326-20-35 and 326-20-55-7.",
+          "effective_period": "ASU 2019-10 adoption schedule applies by entity class; entity adoption and later amendments require confirmation.",
+          "access_limits": "Official FASB PDF and existing accepted source review; current consolidated Codification and portfolio estimate were not reviewed."
+        }
+      ],
+      "remaining_gaps": [
+        "Current consolidated ASC 326 and entity adoption were not reviewed.",
+        "No loan, deposit, servicing or regulatory-report population was tested.",
+        "Agency and fiduciary arrangements require legal and contract analysis."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Selected official locators, role-specific inputs, workflow and original synthetic examples are present. Partial does not establish accounting correctness, professional review or whole-industry sufficiency.",
+      "reviewed_at": "2026-09-19",
+      "answer": "Start with entity role, contract, ownership, reporting purpose and period. Separate loan principal and expected-credit-loss inputs from deposits owed to customers and servicing or agency balances; route each population to the applicable US GAAP and regulatory-reporting source, then reconcile subledgers and exceptions before proposing an entry.",
+      "selected_role": "lending/deposits/servicing",
+      "frameworks": [
+        "US GAAP",
+        "applicable federal regulatory reporting"
+      ]
+    },
+    {
+      "id": "rq-aa-i106-funds-valuation-custody",
+      "record_id": "guide-aa-i106-finance-insurance",
+      "pointer": "/data/research_questions/1",
+      "family_ids": [
+        "q-funds-custody",
+        "q-investments",
+        "q-valuation-impairment"
+      ],
+      "question": "How should a US fund or adviser separate owned investments, client custody and valuation evidence before proposing ledger treatment?",
+      "scope": "Selected US finance and insurance roles for calendar 2026 research. Identify legal entity, role, reporting purpose, jurisdiction, framework, reporting date and source edition before routing. This package is a bounded research reference, not a whole-industry or professional conclusion.",
+      "answer_status": "sourced-answer-bounded",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_aa_i106_sec_2a5_2020",
+        "src_fasb_asc820_fair_value",
+        "src_aa_i124_custody",
+        "src_aa_i124_naic"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_aa_i106_sec_2a5_2020",
+          "url": "https://www.sec.gov/files/rules/final/2020/ic-34128.pdf",
+          "locator": "Rule 2a-5 and Rule 31a-4; fair value in good faith, valuation risk, methodologies, records and valuation-designee oversight.",
+          "effective_period": "Compliance dates are stated in the final rule; current fund facts and later amendments require confirmation.",
+          "access_limits": "Rule 2a-5 does not establish general US GAAP for every financial institution or asset."
+        },
+        {
+          "source_id": "src_fasb_asc820_fair_value",
+          "url": "https://asc.fasb.org/#topic-820",
+          "locator": "ASC 820-10-35 and ASC 820-10-50; unit of account, fair-value inputs, hierarchy and disclosures.",
+          "effective_period": "Current Topic 820 landing page is access- and update-sensitive; no universal effective date inferred.",
+          "access_limits": "Official FASB landing page locator only; full licensed paragraphs, model and market data were not stored or reviewed."
+        },
+        {
+          "source_id": "src_aa_i124_custody",
+          "url": "https://www.ecfr.gov/current/title-17/chapter-II/part-275/section-275.206(4)-2",
+          "locator": "17 CFR 275.206(4)-2(a)(1)-(4), (b)(1)-(6), (d)(2) and (d)(6).",
+          "effective_period": "Current eCFR read 2026-09-19; historical rule versions must be checked for earlier periods.",
+          "access_limits": "Regulatory custody route only; it is not a GAAP ownership or valuation conclusion."
+        }
+      ],
+      "remaining_gaps": [
+        "No fund board, valuation designee, portfolio or market data was reviewed.",
+        "Current consolidated US GAAP and fund-specific classification remain open.",
+        "SEC custody status does not resolve beneficial ownership or financial-statement presentation."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Selected official locators, role-specific inputs, workflow and original synthetic examples are present. Partial does not establish accounting correctness, professional review or whole-industry sufficiency.",
+      "reviewed_at": "2026-09-19",
+      "answer": "Classify owned assets, client assets and custody authority separately. For a registered fund or business development company route valuation to the applicable Rule 2a-5 process and retain valuation-method and oversight evidence; custody evidence supports regulatory safeguarding but does not itself establish GAAP ownership or measurement.",
+      "selected_role": "funds/valuation/custody",
+      "frameworks": [
+        "US GAAP",
+        "Investment Company Act / SEC custody and valuation rules where applicable"
+      ]
+    },
+    {
+      "id": "rq-aa-i106-broker-adviser-protection",
+      "record_id": "guide-aa-i106-finance-insurance",
+      "pointer": "/data/research_questions/2",
+      "family_ids": [
+        "q-funds-custody",
+        "q-security",
+        "q-data-lineage"
+      ],
+      "question": "How should a US broker-dealer or adviser keep customer assets, proprietary positions, reserve computations and fee activity distinct in a transaction-to-ledger review?",
+      "scope": "Selected US finance and insurance roles for calendar 2026 research. Identify legal entity, role, reporting purpose, jurisdiction, framework, reporting date and source edition before routing. This package is a bounded research reference, not a whole-industry or professional conclusion.",
+      "answer_status": "sourced-answer-bounded",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_aa_i106_sec_15c3_3",
+        "src_aa_i124_custody",
+        "src_aa_i106_sec_2a5_2020"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_aa_i106_sec_15c3_3",
+          "url": "https://www.ecfr.gov/current/title-17/chapter-II/part-240/section-240.15c3-3",
+          "locator": "17 CFR 240.15c3-3(a), (b), (d), (e) and applicable current paragraphs.",
+          "effective_period": "Applicable amendments and compliance dates must be checked for the reporting period and firm.",
+          "access_limits": "Customer-protection compliance does not decide GAAP ownership, revenue, or presentation."
+        },
+        {
+          "source_id": "src_aa_i124_custody",
+          "url": "https://www.ecfr.gov/current/title-17/chapter-II/part-275/section-275.206(4)-2",
+          "locator": "17 CFR 275.206(4)-2(a)(1)-(4), (b)(1)-(6), (d)(2) and (d)(6).",
+          "effective_period": "Current eCFR read 2026-09-19; historical rule versions must be checked for earlier periods.",
+          "access_limits": "Regulatory custody route only; it is not a GAAP ownership or valuation conclusion."
+        }
+      ],
+      "remaining_gaps": [
+        "No broker-dealer reserve computation or adviser client-account population was tested.",
+        "Firm exemptions, compliance dates, contracts and ownership evidence require separate review.",
+        "Fee recognition and financial-statement presentation remain entity-specific."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Selected official locators, role-specific inputs, workflow and original synthetic examples are present. Partial does not establish accounting correctness, professional review or whole-industry sufficiency.",
+      "reviewed_at": "2026-09-19",
+      "answer": "Route customer cash and securities, proprietary positions, reserve or possession/control evidence, and adviser fees as separate populations. Rule 15c3-3 or the adviser custody rule supplies regulatory control evidence for covered entities; neither rule transfers customer assets into firm-owned assets nor answers every US GAAP presentation question.",
+      "selected_role": "broker-dealers/advisers",
+      "frameworks": [
+        "US GAAP",
+        "Exchange Act Rule 15c3-3 and Advisers Act custody rule where applicable"
+      ]
+    },
+    {
+      "id": "rq-aa-i106-insurance-reinsurance",
+      "record_id": "guide-aa-i106-finance-insurance",
+      "pointer": "/data/research_questions/3",
+      "family_ids": [
+        "q-insurer",
+        "q-insurance-policyholder",
+        "q-investments"
+      ],
+      "question": "How should a US insurer or reinsurer connect premiums, claims, ceded risk and statutory reporting to ledger proposals without transferring SAP authority to US GAAP?",
+      "scope": "Selected US finance and insurance roles for calendar 2026 research. Identify legal entity, role, reporting purpose, jurisdiction, framework, reporting date and source edition before routing. This package is a bounded research reference, not a whole-industry or professional conclusion.",
+      "answer_status": "sourced-answer-bounded",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_aa_i106_naic_appm_2026",
+        "src_naic_sap_hierarchy_2026",
+        "src_aa_i124_naic",
+        "src_fasb_asu_201613_credit_losses"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_aa_i106_naic_appm_2026",
+          "url": "https://content.naic.org/sites/default/files/publication-app-manual.pdf",
+          "locator": "AP&P Manual 2026, SSAP No. 62 reinsurance risk-transfer discussion and GAAP-to-SAP cross-reference material.",
+          "effective_period": "Individual SSAP and state prescribed/permitted practice effective dates require confirmation.",
+          "access_limits": "SAP is for statutory/regulatory reporting and does not replace US GAAP."
+        },
+        {
+          "source_id": "src_naic_sap_hierarchy_2026",
+          "url": "https://content.naic.org/committees/e/statutory-accounting-principles-wg",
+          "locator": "SAPWG statutory hierarchy: SSAP Level 1 and interpretation Level 2.",
+          "effective_period": "2026 public hierarchy page; individual SSAP and state practice effective dates unresolved.",
+          "access_limits": "Public hierarchy page, not a state-specific statutory filing or complete manual review."
+        },
+        {
+          "source_id": "src_aa_i124_naic",
+          "url": "https://content.naic.org/insurance-topics/statutory-accounting-principles",
+          "locator": "NAIC overview: statutory purpose, prescribed and permitted practices, and SAP versus US GAAP distinction.",
+          "effective_period": "Living topic page read 2026-09-19; page updated 2026-06-23; state adoption remains unresolved.",
+          "access_limits": "Public overview only; no state law, SSAP, reserve or entity practice reviewed."
+        }
+      ],
+      "remaining_gaps": [
+        "No policy, treaty, reserve, actuarial report or domiciliary-state practice was reviewed.",
+        "Current US GAAP insurance-contract text was not read in this package.",
+        "No claims population or statutory filing was tested."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Selected official locators, role-specific inputs, workflow and original synthetic examples are present. Partial does not establish accounting correctness, professional review or whole-industry sufficiency.",
+      "reviewed_at": "2026-09-19",
+      "answer": "Identify the reporting purpose first. Keep direct premiums, claims or loss estimates, ceded premiums and recoveries as separate populations, then use the applicable US GAAP or SAP/state-practice authority. The NAIC hierarchy and AP&P material explain statutory reporting, but they do not replace US GAAP or establish a reserve or reinsurance conclusion for a particular entity.",
+      "selected_role": "insurance/reinsurance",
+      "frameworks": [
+        "US GAAP where applicable",
+        "NAIC SAP and state prescribed/permitted practices"
+      ]
+    }
+  ],
+  "assessments": [
+    {
+      "id": "coverage-aa-i106-lending-2026-09-19",
+      "scope_kind": "industry",
+      "industry_code": "52",
+      "question_id": "rq-aa-i106-lending-deposit-servicing",
+      "family_ids": [
+        "q-credit-intermediation",
+        "q-data-lineage",
+        "q-cash-settlement"
+      ],
+      "status": "partial",
+      "scope": "lending/deposits/servicing route under selected US finance and insurance scope; this assessment addresses the named question and sources only.",
+      "jurisdictions": [
+        "US"
+      ],
+      "frameworks": [
+        "US GAAP",
+        "applicable federal regulatory reporting"
+      ],
+      "effective_from": "2026-01-01",
+      "effective_to": null,
+      "reviewed_at": "2026-09-19",
+      "reviewer": "Codex AI-assisted source and editorial review",
+      "review_basis": "Inspected the selected role, official source locators, applied synthetic fixture and retrieval counterexample. Existing foundations are reused without reauthorizing their primary metadata. This is not an adequacy or professional conclusion.",
+      "source_currency": "verified-within-stated-scope",
+      "evidence_record_ids": [
+        "guide-aa-i106-finance-insurance",
+        "workflow-aa-i106-role-ledger-routing",
+        "control-aa-i106-source-bridge",
+        "example-aa-i106-role-branches",
+        "src_occ_baas_2026",
+        "src_aa_i106_occ_acl_2026",
+        "src_ffiec051_instructions_2025",
+        "src_fasb_asu_201613_credit_losses"
+      ],
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "gaps": [
+        "Current consolidated ASC 326 and entity adoption were not reviewed.",
+        "No loan, deposit, servicing or regulatory-report population was tested.",
+        "Agency and fiduciary arrangements require legal and contract analysis.",
+        "No professional sign-off, live ERP population or measured agent performance."
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "Linked publisher rights remain unresolved; no external text stored"
+      },
+      "professional_review": "not-performed",
+      "empirical_support": "not-established"
+    },
+    {
+      "id": "coverage-aa-i106-funds-2026-09-19",
+      "scope_kind": "industry",
+      "industry_code": "52",
+      "question_id": "rq-aa-i106-funds-valuation-custody",
+      "family_ids": [
+        "q-funds-custody",
+        "q-investments",
+        "q-valuation-impairment"
+      ],
+      "status": "partial",
+      "scope": "funds/valuation/custody route under selected US finance and insurance scope; this assessment addresses the named question and sources only.",
+      "jurisdictions": [
+        "US"
+      ],
+      "frameworks": [
+        "US GAAP",
+        "Investment Company Act / SEC custody and valuation rules where applicable"
+      ],
+      "effective_from": "2026-01-01",
+      "effective_to": null,
+      "reviewed_at": "2026-09-19",
+      "reviewer": "Codex AI-assisted source and editorial review",
+      "review_basis": "Inspected the selected role, official source locators, applied synthetic fixture and retrieval counterexample. Existing foundations are reused without reauthorizing their primary metadata. This is not an adequacy or professional conclusion.",
+      "source_currency": "verified-within-stated-scope",
+      "evidence_record_ids": [
+        "guide-aa-i106-finance-insurance",
+        "workflow-aa-i106-role-ledger-routing",
+        "control-aa-i106-source-bridge",
+        "example-aa-i106-role-branches",
+        "src_aa_i106_sec_2a5_2020",
+        "src_fasb_asc820_fair_value",
+        "src_aa_i124_custody",
+        "src_aa_i124_naic"
+      ],
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "gaps": [
+        "No fund board, valuation designee, portfolio or market data was reviewed.",
+        "Current consolidated US GAAP and fund-specific classification remain open.",
+        "SEC custody status does not resolve beneficial ownership or financial-statement presentation.",
+        "No professional sign-off, live ERP population or measured agent performance."
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "Linked publisher rights remain unresolved; no external text stored"
+      },
+      "professional_review": "not-performed",
+      "empirical_support": "not-established"
+    },
+    {
+      "id": "coverage-aa-i106-broker-2026-09-19",
+      "scope_kind": "industry",
+      "industry_code": "52",
+      "question_id": "rq-aa-i106-broker-adviser-protection",
+      "family_ids": [
+        "q-funds-custody",
+        "q-security",
+        "q-data-lineage"
+      ],
+      "status": "partial",
+      "scope": "broker-dealers/advisers route under selected US finance and insurance scope; this assessment addresses the named question and sources only.",
+      "jurisdictions": [
+        "US"
+      ],
+      "frameworks": [
+        "US GAAP",
+        "Exchange Act Rule 15c3-3 and Advisers Act custody rule where applicable"
+      ],
+      "effective_from": "2026-01-01",
+      "effective_to": null,
+      "reviewed_at": "2026-09-19",
+      "reviewer": "Codex AI-assisted source and editorial review",
+      "review_basis": "Inspected the selected role, official source locators, applied synthetic fixture and retrieval counterexample. Existing foundations are reused without reauthorizing their primary metadata. This is not an adequacy or professional conclusion.",
+      "source_currency": "verified-within-stated-scope",
+      "evidence_record_ids": [
+        "guide-aa-i106-finance-insurance",
+        "workflow-aa-i106-role-ledger-routing",
+        "control-aa-i106-source-bridge",
+        "example-aa-i106-role-branches",
+        "src_aa_i106_sec_15c3_3",
+        "src_aa_i124_custody",
+        "src_aa_i106_sec_2a5_2020"
+      ],
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "gaps": [
+        "No broker-dealer reserve computation or adviser client-account population was tested.",
+        "Firm exemptions, compliance dates, contracts and ownership evidence require separate review.",
+        "Fee recognition and financial-statement presentation remain entity-specific.",
+        "No professional sign-off, live ERP population or measured agent performance."
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "Linked publisher rights remain unresolved; no external text stored"
+      },
+      "professional_review": "not-performed",
+      "empirical_support": "not-established"
+    },
+    {
+      "id": "coverage-aa-i106-insurance-2026-09-19",
+      "scope_kind": "industry",
+      "industry_code": "52",
+      "question_id": "rq-aa-i106-insurance-reinsurance",
+      "family_ids": [
+        "q-insurer",
+        "q-insurance-policyholder",
+        "q-investments"
+      ],
+      "status": "partial",
+      "scope": "insurance/reinsurance route under selected US finance and insurance scope; this assessment addresses the named question and sources only.",
+      "jurisdictions": [
+        "US"
+      ],
+      "frameworks": [
+        "US GAAP where applicable",
+        "NAIC SAP and state prescribed/permitted practices"
+      ],
+      "effective_from": "2026-01-01",
+      "effective_to": null,
+      "reviewed_at": "2026-09-19",
+      "reviewer": "Codex AI-assisted source and editorial review",
+      "review_basis": "Inspected the selected role, official source locators, applied synthetic fixture and retrieval counterexample. Existing foundations are reused without reauthorizing their primary metadata. This is not an adequacy or professional conclusion.",
+      "source_currency": "verified-within-stated-scope",
+      "evidence_record_ids": [
+        "guide-aa-i106-finance-insurance",
+        "workflow-aa-i106-role-ledger-routing",
+        "control-aa-i106-source-bridge",
+        "example-aa-i106-role-branches",
+        "src_aa_i106_naic_appm_2026",
+        "src_naic_sap_hierarchy_2026",
+        "src_aa_i124_naic",
+        "src_fasb_asu_201613_credit_losses"
+      ],
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "gaps": [
+        "No policy, treaty, reserve, actuarial report or domiciliary-state practice was reviewed.",
+        "Current US GAAP insurance-contract text was not read in this package.",
+        "No claims population or statutory filing was tested.",
+        "No professional sign-off, live ERP population or measured agent performance."
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "Linked publisher rights remain unresolved; no external text stored"
+      },
+      "professional_review": "not-performed",
+      "empirical_support": "not-established"
+    }
+  ],
+  "mapping_overrides": {
+    "mapping_version": "source-only-pending-integration",
+    "updated_at": "2026-09-19",
+    "records": {
+      "guide-aa-i106-finance-insurance": {
+        "question_ids": [
+          "q-credit-intermediation",
+          "q-funds-custody",
+          "q-security",
+          "q-insurer",
+          "q-insurance-policyholder",
+          "q-investments"
+        ],
+        "industry_codes": [
+          "52"
+        ],
+        "basis_field": "/data/roles",
+        "reason": "Source-only selected-role association; industry mapping is discovery context, not adequacy."
+      },
+      "workflow-aa-i106-role-ledger-routing": {
+        "question_ids": [
+          "q-credit-intermediation",
+          "q-funds-custody",
+          "q-security",
+          "q-insurer",
+          "q-data-lineage"
+        ],
+        "industry_codes": [
+          "52"
+        ],
+        "basis_field": "/data/inputs",
+        "reason": "Source-only workflow association; no coverage sufficiency claim."
+      },
+      "control-aa-i106-source-bridge": {
+        "question_ids": [
+          "q-data-lineage",
+          "q-security",
+          "q-human-authority"
+        ],
+        "industry_codes": [
+          "52"
+        ],
+        "basis_field": "/data/control_objective",
+        "reason": "Shared control context only; no industry-specific accounting conclusion."
+      },
+      "example-aa-i106-role-branches": {
+        "question_ids": [
+          "q-credit-intermediation",
+          "q-funds-custody",
+          "q-investments",
+          "q-insurer",
+          "q-insurance-policyholder"
+        ],
+        "industry_codes": [
+          "52"
+        ],
+        "basis_field": "/data/fixture",
+        "reason": "Original synthetic example association; not operational evidence."
+      }
+    }
+  },
+  "fixture": {
+    "currency": "USD",
+    "period_end": "2026-12-31",
+    "lending_deposit_servicing": {
+      "role": "deposit-taking lender",
+      "loan_principal_cents": 100000000,
+      "expected_credit_loss_cents": 3000000,
+      "customer_deposit_liability_cents": 75000000,
+      "servicing_fee_cents": 120000,
+      "agency_cash_cents": 5000000,
+      "route": "Separate owned loan, loss allowance input, deposit liability, servicing fee and agency cash; no automatic entry."
+    },
+    "funds_valuation_custody": {
+      "role": "registered fund and adviser custody branch",
+      "client_security_value_cents": 25000000,
+      "owned_investment_value_cents": 24000000,
+      "valuation_adjustment_cents": 2000000,
+      "client_asset_subledger_cents": 25000000,
+      "entity_asset_cents": 24000000,
+      "route": "Custody and owned investment populations remain separate; valuation evidence and Rule 2a-5 applicability require review."
+    },
+    "broker_adviser": {
+      "role": "carrying broker-dealer and adviser",
+      "customer_cash_cents": 40000000,
+      "customer_securities_cents": 60000000,
+      "proprietary_position_cents": 12000000,
+      "adviser_fee_cents": 800000,
+      "customer_reserve_input_cents": 100000000,
+      "route": "Customer reserve and possession/control evidence are separate from proprietary positions and fees."
+    },
+    "insurance_reinsurance": {
+      "role": "US insurer with ceded reinsurance",
+      "direct_premium_cents": 50000000,
+      "reported_claim_estimate_cents": 12000000,
+      "ceded_premium_cents": 5000000,
+      "reinsurance_recovery_estimate_cents": 4000000,
+      "statutory_adjustment_cents": 1500000,
+      "route": "Keep direct premium, claims, ceded premium, recoveries and SAP-to-GAAP adjustments separate; treaty and state practice remain open."
+    },
+    "counterexamples": [
+      {
+        "id": "custody-versus-owned",
+        "same_statement_value_cents": 25000000,
+        "custody_case": {
+          "entity_asset_cents": 0,
+          "client_asset_subledger_cents": 25000000
+        },
+        "owned_case": {
+          "entity_asset_cents": 25000000,
+          "client_asset_subledger_cents": 0
+        },
+        "reason": "Identical statement amount does not establish identical ownership or presentation."
+      },
+      {
+        "id": "sap-versus-gaap",
+        "same_claim_estimate_cents": 12000000,
+        "gaap_route": "Requires current applicable US GAAP and contract facts.",
+        "sap_route": "Requires applicable SSAP and domiciliary state prescribed/permitted practices.",
+        "reason": "Statutory and GAAP reporting purposes must not be substituted."
+      }
+    ]
+  },
+  "integration_source_amendment": {
+    "reviewed_at": "2026-09-19",
+    "source_commit": "d07dd357b9b8faa1ba32cb534c8397030364d3fd",
+    "reason": "Source-only package; later integration must preserve existing primary metadata and add only these stable records, questions, assessments and mappings after conflict checks.",
+    "added_source_ids": [
+      "src_aa_i106_occ_acl_2026",
+      "src_aa_i106_sec_2a5_2020",
+      "src_aa_i106_sec_15c3_3",
+      "src_aa_i106_naic_appm_2026"
+    ],
+    "reused_source_ids": [
+      "src_occ_baas_2026",
+      "src_ffiec051_instructions_2025",
+      "src_fasb_asu_201613_credit_losses",
+      "src_fasb_asc820_fair_value",
+      "src_aa_i124_custody",
+      "src_naic_sap_hierarchy_2026",
+      "src_aa_i124_naic"
+    ]
+  },
+  "retrieval_fixtures": [
+    {
+      "id": "retrieval-aa-i106-role-routing",
+      "user_question": "For a US finance entity, distinguish a lender, fund/adviser custody, carrying broker-dealer and insurer before connecting source evidence to ledger review.",
+      "search_query": "US finance insurance lending custody broker adviser insurer role ledger",
+      "kind": "role-routing",
+      "filters": {
+        "jurisdiction": "United States",
+        "industry_code": "52"
+      },
+      "expected_ids": [
+        "guide-aa-i106-finance-insurance",
+        "workflow-aa-i106-role-ledger-routing"
+      ],
+      "excluded_ids": [
+        "example-aa-i106-role-branches"
+      ],
+      "expected_scope": "Four selected US roles only; no whole-industry claim.",
+      "required_citations": [
+        "src_occ_baas_2026",
+        "src_aa_i106_sec_2a5_2020",
+        "src_aa_i106_sec_15c3_3",
+        "src_aa_i106_naic_appm_2026"
+      ],
+      "claims_assert_only_supported": [
+        "Role and reporting-purpose classification precedes ledger routing."
+      ]
+    },
+    {
+      "id": "retrieval-aa-i106-custody-counterexample",
+      "user_question": "Why does a 25 million client custody statement not establish a 25 million firm asset?",
+      "search_query": "client custody owned investment asset counterexample",
+      "kind": "scope-counterexample",
+      "filters": {
+        "jurisdiction": "United States"
+      },
+      "expected_ids": [
+        "example-aa-i106-role-branches",
+        "guide-aa-i106-finance-insurance"
+      ],
+      "excluded_ids": [
+        "guide-q-insurer"
+      ],
+      "expected_scope": "Custody versus ownership only; no GAAP presentation conclusion.",
+      "required_citations": [
+        "src_aa_i124_custody",
+        "src_aa_i106_sec_2a5_2020"
+      ],
+      "claims_assert_only_supported": [
+        "Identical statement value can route differently when ownership facts differ."
+      ]
+    }
+  ]
+}

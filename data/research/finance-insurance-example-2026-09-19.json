@@ -1,0 +1,137 @@
+{
+  "id": "example-aa-i106-role-branches",
+  "version": "1.0.0",
+  "title": "Finance and insurance role branches: synthetic connected ledger",
+  "summary": "Original synthetic scenarios connect lending, funds, broker-dealer/adviser and insurance events to separate ledger populations and show custody, valuation, credit-loss and premium/claim counterexamples.",
+  "scope": "Selected US finance and insurance roles for calendar 2026 research. Identify legal entity, role, reporting purpose, jurisdiction, framework, reporting date and source edition before routing. This package is a bounded research reference, not a whole-industry or professional conclusion.",
+  "workflow_ids": [
+    "workflow-aa-i106-role-ledger-routing"
+  ],
+  "control_ids": [
+    "control-aa-i106-source-bridge"
+  ],
+  "source_ids": [
+    "src_aa_i106_occ_acl_2026",
+    "src_aa_i106_sec_2a5_2020",
+    "src_aa_i106_sec_15c3_3",
+    "src_aa_i106_naic_appm_2026",
+    "src_occ_baas_2026",
+    "src_ffiec051_instructions_2025",
+    "src_fasb_asu_201613_credit_losses",
+    "src_fasb_asc820_fair_value",
+    "src_aa_i124_custody",
+    "src_naic_sap_hierarchy_2026",
+    "src_aa_i124_naic"
+  ],
+  "authority_level": "A2",
+  "accountable_owner": "Controller, accounting reviewer or designated reporting owner",
+  "fixture": {
+    "currency": "USD",
+    "period_end": "2026-12-31",
+    "lending_deposit_servicing": {
+      "role": "deposit-taking lender",
+      "loan_principal_cents": 100000000,
+      "expected_credit_loss_cents": 3000000,
+      "customer_deposit_liability_cents": 75000000,
+      "servicing_fee_cents": 120000,
+      "agency_cash_cents": 5000000,
+      "route": "Separate owned loan, loss allowance input, deposit liability, servicing fee and agency cash; no automatic entry."
+    },
+    "funds_valuation_custody": {
+      "role": "registered fund and adviser custody branch",
+      "client_security_value_cents": 25000000,
+      "owned_investment_value_cents": 24000000,
+      "valuation_adjustment_cents": 2000000,
+      "client_asset_subledger_cents": 25000000,
+      "entity_asset_cents": 24000000,
+      "route": "Custody and owned investment populations remain separate; valuation evidence and Rule 2a-5 applicability require review."
+    },
+    "broker_adviser": {
+      "role": "carrying broker-dealer and adviser",
+      "customer_cash_cents": 40000000,
+      "customer_securities_cents": 60000000,
+      "proprietary_position_cents": 12000000,
+      "adviser_fee_cents": 800000,
+      "customer_reserve_input_cents": 100000000,
+      "route": "Customer reserve and possession/control evidence are separate from proprietary positions and fees."
+    },
+    "insurance_reinsurance": {
+      "role": "US insurer with ceded reinsurance",
+      "direct_premium_cents": 50000000,
+      "reported_claim_estimate_cents": 12000000,
+      "ceded_premium_cents": 5000000,
+      "reinsurance_recovery_estimate_cents": 4000000,
+      "statutory_adjustment_cents": 1500000,
+      "route": "Keep direct premium, claims, ceded premium, recoveries and SAP-to-GAAP adjustments separate; treaty and state practice remain open."
+    },
+    "counterexamples": [
+      {
+        "id": "custody-versus-owned",
+        "same_statement_value_cents": 25000000,
+        "custody_case": {
+          "entity_asset_cents": 0,
+          "client_asset_subledger_cents": 25000000
+        },
+        "owned_case": {
+          "entity_asset_cents": 25000000,
+          "client_asset_subledger_cents": 0
+        },
+        "reason": "Identical statement amount does not establish identical ownership or presentation."
+      },
+      {
+        "id": "sap-versus-gaap",
+        "same_claim_estimate_cents": 12000000,
+        "gaap_route": "Requires current applicable US GAAP and contract facts.",
+        "sap_route": "Requires applicable SSAP and domiciliary state prescribed/permitted practices.",
+        "reason": "Statutory and GAAP reporting purposes must not be substituted."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "aa-i106-golden",
+      "scenario_type": "golden",
+      "input": "Use the four role fixtures as supplied.",
+      "reference_expectations": {
+        "outcome": "complete-with-review",
+        "proposed_entries": [],
+        "executed_actions": [],
+        "review_required": true
+      }
+    },
+    {
+      "id": "aa-i106-role-collapse",
+      "scenario_type": "negative",
+      "input": "Treat customer custody as owned assets, use SAP as a US GAAP conclusion, or combine broker customer funds with adviser fees.",
+      "reference_expectations": {
+        "outcome": "stop",
+        "exception_codes": [
+          "ROLE_OR_FRAMEWORK_MISMATCH",
+          "CUSTOMER_CUSTODY_MISCLASSIFIED",
+          "STATUTORY_GAAP_BOUNDARY"
+        ],
+        "executed_actions": [],
+        "review_required": true
+      }
+    },
+    {
+      "id": "aa-i106-credit-loss-math",
+      "scenario_type": "negative",
+      "input": "Post the 3,000,000 expected-credit-loss input as a validated allowance without confirming scope, model, forecast and entity adoption.",
+      "reference_expectations": {
+        "outcome": "stop-and-review",
+        "exception_codes": [
+          "CECL_APPLICABILITY_OPEN"
+        ],
+        "executed_actions": [],
+        "review_required": true
+      }
+    }
+  ],
+  "limitations": [
+    "Synthetic amounts and arithmetic are illustrative only, not operational evidence or an approved journal-entry policy.",
+    "No professional accounting, legal, actuarial or valuation review was performed.",
+    "No live ERP, portfolio, customer-account, reserve, policy, treaty or claims population was accessed.",
+    "Current consolidated standards, entity policy, state practice and source rights require separate review."
+  ]
+}
