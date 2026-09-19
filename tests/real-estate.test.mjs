@@ -76,14 +76,21 @@ test('records and assessments pass schemas with resolved refs and source evidenc
     assert.equal(assessment.rights.full_text_stored, false);
   }
   const sourceById = new Map([...read('data/corpus/source.json'), ...packet.sources].map(row => [row.id, row]));
+  const example = packet.records.find(row => row.id === 'example-real-estate-owner-manager-close');
   for (const question of packet.question_rows) {
     assert.equal(question.example_id, 'example-real-estate-owner-manager-close');
-    assert.ok(question.example_subcase);
+    assert.ok(question.example_subcase && Object.hasOwn(example.data, question.example_subcase), `${question.id}: unresolved example subcase`);
     for (const locator of question.source_locators) {
       assert.equal(locator.url, sourceById.get(locator.source_id)?.source_url, `${question.id}: locator URL identity`);
       assert.ok(locator.effective_period && locator.access_limits, `${question.id}: locator evidence`);
     }
   }
+  const rental = packet.question_rows.find(question => question.id === 'rq-aa-i107-rental-incentives-deposits');
+  const rentalLessorLocator = rental.source_locators.find(locator => locator.source_id === 'src_fasb_asu201602_leases').locator;
+  assert.match(rentalLessorLocator, /842-30-25-11 through 25-13, official PDF p135 \(printed p129\)/);
+  assert.match(rentalLessorLocator, /842-10-55-30, official PDF p51/);
+  const equipment = packet.question_rows.find(question => question.id === 'rq-aa-i107-equipment-lessor');
+  assert.match(equipment.source_locators.find(locator => locator.source_id === 'src_fasb_asu201602_leases').locator, /official PDF pp\. 133-135/);
   assert.ok(packet.sources.some(source => source.id === 'src_aa_i107_fas67_real_estate_costs'));
   assert.ok(packet.sources.some(source => source.id === 'src_aa_i107_fas66_real_estate_sales'));
 });
@@ -105,6 +112,15 @@ test('synthetic owner and manager books, payment schedule, developer bridge and 
   assert.deepEqual(balance(om.manager_book.entries), om.manager_book.ending_balances);
   assert.equal(om.management_fee_cents, om.rent_collected_cents * om.management_fee_rate_bps / 10000);
   assert.equal(om.owner_settlement_liability_cents, om.rent_collected_cents - om.management_fee_cents);
+  assert.ok(om.manager_book.entries.flatMap(entry => entry.lines).every(line => line.account !== 'tenant_deposit_liability'));
+  assert.equal(om.manager_book.ending_balances.owner_deposit_custody_liability, -om.refundable_deposit_cents);
+  const rent = data.rental_incentives_deposits;
+  assert.equal(rent.monthly_schedule.length, rent.term_months);
+  assert.equal(rent.monthly_schedule.reduce((sum, row) => sum + row.cash_rent_cents, 0), rent.cash_rent_total_cents);
+  assert.equal(rent.monthly_schedule.reduce((sum, row) => sum + row.straight_line_lease_income_cents, 0), rent.cash_rent_total_cents);
+  assert.ok(rent.monthly_schedule.every(row => row.refundable_deposit_liability_cents === rent.refundable_deposit_cents));
+  assert.equal(rent.monthly_schedule[0].cash_rent_cents, 0);
+  assert.equal(rent.monthly_schedule.slice(1).every(row => row.cash_rent_cents === rent.stated_monthly_rent_cents), true);
   assert.equal(data.equipment_lessor.months * data.equipment_lessor.monthly_payment_cents, data.equipment_lessor.fixed_payments_cents);
   assert.equal(data.developer_cost_bridge.land_cents + data.developer_cost_bridge.closing_costs_cents + data.developer_cost_bridge.direct_development_cents, data.developer_cost_bridge.project_cost_population_cents);
   assert.equal(data.rights_license.usage_units * data.rights_license.royalty_rate_cents_per_unit, data.rights_license.royalty_cents);
