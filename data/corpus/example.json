@@ -10594,5 +10594,169 @@
         "status": "Synthetic historical model only; current-framework and entity review hold"
       }
     }
+  },
+  {
+    "id": "example-us-reporting-completion-boundaries",
+    "kind": "example",
+    "title": "Synthetic US reporting completion and change-classification packet",
+    "summary": "Original synthetic close, estimate, statement-mapping and accounting-change cases for the four selected reporting routes.",
+    "topics": [
+      "Accounting and reporting",
+      "Synthetic examples"
+    ],
+    "industries": [],
+    "jurisdiction": "United States; private nongovernmental US GAAP with SEC counterexamples; synthetic only",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_1os761s",
+      "src_fasb_202010",
+      "src_secsab0099",
+      "src_secsab0108",
+      "src_aa118_sec_frm_topic1",
+      "src_regsxcfr"
+    ],
+    "related_ids": [
+      "guide-q-ledger-close",
+      "guide-q-estimates",
+      "guide-q-presentation",
+      "guide-q-policy-changes-errors"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-19",
+    "provenance": {
+      "added_on": "2026-09-19",
+      "reviewer": "Codex AI-assisted original-source research",
+      "review_scope": "Four selected US reporting routes; synthetic routing fixture only.",
+      "note": "Synthetic examples are not professional, ERP, filing or ledger evidence."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; linked source records retain publisher terms.",
+      "full_text_stored": false
+    },
+    "data": {
+      "id": "example-us-reporting-completion-boundaries",
+      "title": "Synthetic US reporting completion and change-classification packet",
+      "summary": "Original synthetic close, estimate, statement-mapping and accounting-change cases for the four selected reporting routes.",
+      "scope": "All entities, dates, amounts, invoices, estimates, classifications, approvals and reporting outcomes are synthetic assumptions. They support evidence routing only.",
+      "examples": [
+        {
+          "id": "close-cutoff-bridge",
+          "title": "Close population and later invoice boundary",
+          "facts": {
+            "january_accrual_supported": 3000,
+            "february_service_invoice": 3000,
+            "later_payment": 6000,
+            "january_trial_balance_before_review": 185000,
+            "january_trial_balance_after_supported_entry": 188000
+          },
+          "calculation": "Only the 3,000 January service obligation is proposed for January; the 3,000 February service is excluded. The 6,000 later payment is evidence to investigate, not an automatic January entry.",
+          "controls": [
+            "Freeze January population",
+            "Tie invoice service dates to cutoff",
+            "Retain journal packet and reviewer status",
+            "Reconcile adjusted trial balance"
+          ],
+          "counterexamples": [
+            "Payment date alone",
+            "Invoice arrival date alone",
+            "A small amount treated as automatically immaterial"
+          ]
+        },
+        {
+          "id": "estimate-change-boundary",
+          "title": "New estimate information versus known omission",
+          "facts": {
+            "original_expected_units": 100,
+            "original_unit_cost": 10,
+            "original_estimate": 1000,
+            "new_expected_unit_cost": 12,
+            "revised_estimate": 1200,
+            "known_omitted_invoice": 400
+          },
+          "calculation": "The 200 increase is a prospective estimate layer only if the 12 unit cost is new information. The 400 invoice is an error candidate if the obligation and amount were available at the earlier close.",
+          "controls": [
+            "Version the original estimate",
+            "Record evidence availability dates",
+            "Map affected periods and disclosures",
+            "Obtain independent classification review"
+          ],
+          "counterexamples": [
+            "Estimate uncertainty does not convert a known omission into a new estimate",
+            "A changed estimate does not prove the original was erroneous"
+          ]
+        },
+        {
+          "id": "statement-mapping-packet",
+          "title": "Adjusted trial balance to statement and disclosure map",
+          "facts": {
+            "cash": 80000,
+            "accounts_receivable": 120000,
+            "accounts_payable": 70000,
+            "long_term_debt": 200000,
+            "equity_plug": -70000
+          },
+          "calculation": "The synthetic map records each balance, statement destination, current/noncurrent fact, note cross-reference, comparative period and reviewer status. A private entity route is separated from an SEC Regulation S-X route.",
+          "controls": [
+            "Every balance has one destination or exception",
+            "Statement totals reconcile",
+            "Notes and comparatives cross-reference the mapping",
+            "SEC status is separately decided"
+          ],
+          "counterexamples": [
+            "A private entity is not an SEC filer because its layout resembles Form 10-K",
+            "An XBRL tag does not prove the accounting or disclosure is correct"
+          ]
+        },
+        {
+          "id": "change-classification-matrix",
+          "title": "Policy, estimate and error matrix",
+          "facts": {
+            "policy_case": "Adopt a permitted standard using its effective-date transition",
+            "estimate_case": "Revise useful life from new operating evidence",
+            "error_case": "Omitted an available invoice from the prior close"
+          },
+          "calculation": "No correction or restatement is executed. Each branch retains the original facts, information cutoff, affected periods, issued status, statement/disclosure effects and reviewer decision required before action.",
+          "controls": [
+            "Classify before posting",
+            "Preserve prior workpaper",
+            "Quantify all affected statements and disclosures",
+            "Route current Topic 250 and professional review"
+          ],
+          "counterexamples": [
+            "Future guidance is not current default",
+            "A new estimate is not an error solely because it changes",
+            "An omitted available fact is not made prospective by labeling it uncertain"
+          ]
+        }
+      ],
+      "limitations": [
+        "Synthetic facts are not ERP, ledger, filing, valuation or professional evidence.",
+        "The examples do not decide current ASC 250 treatment, materiality, restatement or SEC applicability.",
+        "No action is executed by this package."
+      ],
+      "source_ids": [
+        "src_1os761s",
+        "src_fasb_202010",
+        "src_secsab0099",
+        "src_secsab0108",
+        "src_aa118_sec_frm_topic1",
+        "src_regsxcfr"
+      ],
+      "related_ids": [
+        "guide-q-ledger-close",
+        "guide-q-estimates",
+        "guide-q-presentation",
+        "guide-q-policy-changes-errors"
+      ],
+      "reporting_completion": {
+        "package_id": "reporting-completion-us",
+        "version": "2026-09-19.118-completion.1",
+        "reviewed_at": "2026-09-19"
+      }
+    }
   }
 ]
