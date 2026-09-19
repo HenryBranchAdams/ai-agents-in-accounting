@@ -1181,5 +1181,61 @@
     "claims_assert_only_supported": [
       "Policy changes, estimate changes and errors require distinct evidence and review."
     ]
+  },
+  {
+    "id": "rq-transport-search-roles",
+    "user_question": "How should a US carrier, broker and warehouse custodian preserve role and ownership evidence?",
+    "search_query": "transport carrier broker warehouse custodian",
+    "kind": "guide",
+    "filters": {},
+    "expected_ids": [
+      "guide-transport-role-routing"
+    ],
+    "excluded_ids": [
+      "src_transport_fmcsa_broker_371"
+    ],
+    "expected_scope": "Selected US carrier, broker and warehouse roles; no collapse of principal, agent or owner/custodian boundaries.",
+    "required_citations": 1,
+    "claims_assert_only_supported": [
+      "Role and ownership are required before a transport ledger conclusion."
+    ]
+  },
+  {
+    "id": "rq-transport-search-passenger",
+    "user_question": "Which passenger vehicle lease rules distinguish a bank financial lease from a property carrier lease?",
+    "search_query": "passenger vehicle leases interchange",
+    "kind": "source",
+    "filters": {
+      "jurisdiction": "United States"
+    },
+    "expected_ids": [
+      "src_transport_ecfr_passenger_leases_390g"
+    ],
+    "excluded_ids": [
+      "src_transport_ulc_ucc7"
+    ],
+    "expected_scope": "Selected passenger vehicle regulatory route and exceptions; a regulatory exception is not an ASC842 exemption.",
+    "required_citations": 1,
+    "claims_assert_only_supported": [
+      "Passenger lease exceptions require a separate accounting review."
+    ]
+  },
+  {
+    "id": "rq-transport-search-synthetic",
+    "user_question": "How does the synthetic transport example separate customer-owned inventory from storage billing?",
+    "search_query": "transport customer-owned custody storage",
+    "kind": "example",
+    "filters": {},
+    "expected_ids": [
+      "example-transport-connected-ledger"
+    ],
+    "excluded_ids": [
+      "src_transport_ulc_ucc7"
+    ],
+    "expected_scope": "Original synthetic owner/custodian counterexample, with rights and entity accounting review still required.",
+    "required_citations": 1,
+    "claims_assert_only_supported": [
+      "Customer-owned goods remain separate from storage billing in the synthetic example."
+    ]
   }
 ]

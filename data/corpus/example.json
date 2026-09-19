@@ -10758,5 +10758,269 @@
         "reviewed_at": "2026-09-19"
       }
     }
+  },
+  {
+    "id": "example-transport-connected-ledger",
+    "kind": "example",
+    "title": "Transport shipment, settlement and custody: synthetic connected ledger",
+    "summary": "Original synthetic example covering freight cutoff, fuel surcharge, broker settlement, passenger cutoff, leased fleet maintenance, customer-owned goods and a claim exception.",
+    "topics": [
+      "Transportation and logistics",
+      "Accounting workflows"
+    ],
+    "industries": [
+      "Transportation and warehousing"
+    ],
+    "jurisdiction": "United States",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_transport_fmcsa_broker_371",
+      "src_transport_fmcsa_credit_377",
+      "src_transport_fmcsa_maintenance_396",
+      "src_transport_fmcsa_leases_376",
+      "src_transport_fmcsa_claims_370",
+      "src_transport_ulc_ucc7",
+      "src_transport_ecfr_passenger_374",
+      "src_transport_ecfr_passenger_leases_390g",
+      "src_transport_ecfr_maintenance_3963"
+    ],
+    "related_ids": [
+      "workflow-transport-event-to-ledger",
+      "control-transport-role-ownership"
+    ],
+    "reviewed_at": "2026-09-19",
+    "review_status": "editorially-reviewed",
+    "provenance": {
+      "imported_on": "2026-09-19",
+      "previous_corpus_version": "2026-09-19.12406",
+      "previous_reviewed_at": null,
+      "previous_review_status": "source-only pending integration",
+      "note": "Original source package. Editorial summaries and synthetic facts only; publisher text is not stored. Integration and professional review remain separate."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false
+    },
+    "data": {
+      "id": "example-transport-connected-ledger",
+      "title": "Transport shipment, settlement and custody: synthetic connected ledger",
+      "summary": "Original synthetic example covering freight cutoff, fuel surcharge, broker settlement, passenger cutoff, leased fleet maintenance, customer-owned goods and a claim exception.",
+      "workflow_ids": [
+        "workflow-transport-event-to-ledger"
+      ],
+      "process_family": "order-to-cash and record-to-report",
+      "authority_level": "A2",
+      "accountable_owner": "Controller or transport accounting reviewer",
+      "scope": "Synthetic December 2026 close for a freight carrier, property broker, passenger operator and warehouse custodian. Not operational evidence or an approved journal-entry policy.",
+      "jurisdiction": "United States",
+      "source_ids": [
+        "src_transport_fmcsa_broker_371",
+        "src_transport_fmcsa_credit_377",
+        "src_transport_fmcsa_maintenance_396",
+        "src_transport_fmcsa_leases_376",
+        "src_transport_fmcsa_claims_370",
+        "src_transport_ulc_ucc7",
+        "src_transport_ecfr_passenger_374",
+        "src_transport_ecfr_passenger_leases_390g",
+        "src_transport_ecfr_maintenance_3963"
+      ],
+      "inputs": [
+        "Synthetic contracts, event records, rates, custody confirmations and settlement statements"
+      ],
+      "procedures": [
+        "Classify role",
+        "Tie events to period",
+        "Recalculate amounts",
+        "Separate ledger populations",
+        "Route exceptions"
+      ],
+      "deterministic_checks": [
+        "Fuel surcharge equals base times stated percentage",
+        "Customer invoice equals base plus approved surcharge",
+        "Broker settlement plus fee equals collection",
+        "Passenger cash before trip remains separate from trip date",
+        "Customer-owned goods are excluded from custodian inventory",
+        "Claim remains unresolved until evidence and authority are sufficient"
+      ],
+      "expected_artifact": "Reviewer packet with proposed entries and exception register",
+      "fixture": {
+        "currency": "USD",
+        "period_end": "2026-12-31",
+        "freight": {
+          "role": "carrier",
+          "load_id": "LOAD-1001",
+          "pickup_date": "2026-12-30",
+          "delivery_date": "2027-01-02",
+          "base_cents": 240000,
+          "surcharge_rate_bps": 1200,
+          "surcharge_cents": 28800,
+          "invoice_cents": 268800,
+          "billing_date": "2027-01-03",
+          "route": "Hold cutoff until contract and service pattern review; event and billing dates remain separate."
+        },
+        "freight_cutoff_counterexample": {
+          "role": "carrier",
+          "load_id": "LOAD-1002",
+          "delivery_date": "2026-12-31",
+          "base_cents": 200000,
+          "surcharge_rate_bps": 1000,
+          "surcharge_cents": 20000,
+          "invoice_cents": 220000,
+          "billing_date": "2027-01-03",
+          "route": "December service-event candidate for reviewer; not an automatic recognition conclusion."
+        },
+        "broker": {
+          "role": "property broker",
+          "load_id": "LOAD-1002",
+          "customer_collected_cents": 220000,
+          "carrier_settlement_cents": 176000,
+          "broker_fee_cents": 44000,
+          "check": "176000 + 44000 = 220000",
+          "route": "Keep customer collection, carrier payable or clearing, and broker fee separate."
+        },
+        "passenger": {
+          "role": "passenger carrier",
+          "ticket_id": "TICKET-2001",
+          "cash_received_date": "2026-12-20",
+          "trip_date": "2027-01-02",
+          "fare_cents": 25000,
+          "quantity": 20,
+          "total_cents": 500000,
+          "route": "Cash before trip is a cutoff counterexample; hold service-date classification for current policy review.",
+          "service_type": "regular-route interstate motor passenger service",
+          "source_ids": [
+            "src_transport_ecfr_passenger_374"
+          ],
+          "governing_tariff": "Fictional ticket terms require refund and unused-ticket status review; no particular tariff conclusion."
+        },
+        "leased_fleet": {
+          "role": "property carrier",
+          "vehicle_id": "TRACTOR-7",
+          "lease_month_cents": 600000,
+          "maintenance_invoice_cents": 90000,
+          "maintenance_date": "2026-12-31",
+          "route": "Retain lease, control, maintenance, work-order and inspection evidence; do not infer accounting classification.",
+          "source_ids": [
+            "src_transport_fmcsa_leases_376",
+            "src_transport_ecfr_maintenance_3963"
+          ]
+        },
+        "warehouse": {
+          "role": "warehouse custodian",
+          "receipt_id": "WR-3001",
+          "owner": "Customer-A",
+          "sku": "PART-X",
+          "units": 500,
+          "unit_value_cents": 4000,
+          "customer_goods_value_cents": 2000000,
+          "storage_fee_cents": 120000,
+          "owned_inventory_cents": 0,
+          "route": "Customer-owned goods stay in custody subledger; storage billing is separate."
+        },
+        "claim": {
+          "claim_id": "CLM-4001",
+          "related_load_id": "LOAD-1002",
+          "damaged_goods_cents": 400000,
+          "carrier_payment_cents": 0,
+          "status": "notice-received-under-review",
+          "route": "Do not net customer invoice or recognize recovery from this notice; preserve claim file and route current Part 370 review."
+        },
+        "passenger_lease_counterexample": {
+          "role": "motor passenger carrier",
+          "vehicle_id": "BUS-8",
+          "contract_type": "financial lease from bank",
+          "regulatory_route": "390.401(b)(2) excludes this contract fromSubpartG; do not substitute property-onlyPart376.",
+          "accounting_route": "Separate currentASC842 review; the regulatory exception does not establish an accounting exemption.",
+          "source_ids": [
+            "src_transport_ecfr_passenger_leases_390g"
+          ]
+        }
+      },
+      "examples": [
+        {
+          "id": "transport--golden",
+          "scenario_type": "golden",
+          "input": "Use fixture as supplied.",
+          "reference_expectations": {
+            "outcome": "complete-with-review",
+            "exception_codes": [
+              "ACCOUNTING_APPLICABILITY_OPEN"
+            ],
+            "review_required": true,
+            "executed_actions_must_be_empty": true
+          }
+        },
+        {
+          "id": "transport--role-collapse",
+          "scenario_type": "negative",
+          "input": "Treat broker collection as carrier revenue and include customer-owned goods in warehouse inventory.",
+          "reference_expectations": {
+            "outcome": "stop",
+            "exception_codes": [
+              "ROLE_MISMATCH",
+              "CUSTOMER_CUSTODY_MISCLASSIFIED"
+            ],
+            "review_required": true,
+            "executed_actions_must_be_empty": true
+          }
+        },
+        {
+          "id": "transport--surcharge-error",
+          "scenario_type": "negative",
+          "input": "Use 12% of 240000 as 2880 cents instead of 28800 cents.",
+          "reference_expectations": {
+            "outcome": "stop",
+            "exception_codes": [
+              "SURCHARGE_MATH_MISMATCH"
+            ],
+            "review_required": true,
+            "executed_actions_must_be_empty": true
+          }
+        },
+        {
+          "id": "transport--passenger-lease-regulatory-exception",
+          "scenario_type": "negative",
+          "input": "BUS-8 is a bank financial lease. A proposed route incorrectly applies property-carrier Part376 or treats the390.401(b)(2) exception as a GAAP exemption.",
+          "reference_expectations": {
+            "outcome": "stop-and-review",
+            "exception_codes": [
+              "PASSENGER_PROPERTY_SCOPE_MISMATCH",
+              "ACCOUNTING_APPLICABILITY_OPEN"
+            ],
+            "review_required": true,
+            "executed_actions_must_be_empty": true
+          }
+        }
+      ],
+      "reference_output": {
+        "outcome": "complete-with-review",
+        "proposed_entries": [],
+        "executed_actions": [],
+        "review_required": true,
+        "open_exceptions": [
+          "Current consolidated accounting text and entity policy",
+          "Part 370 claim text",
+          "State warehouse enactment and contract",
+          "Operational evidence"
+        ]
+      },
+      "version": "1.0.0",
+      "specification_version": "1.0.0",
+      "licenses": {
+        "manifest_and_factual_metadata": "CC0-1.0",
+        "original_explanatory_content": "CC-BY-4.0",
+        "code": "MIT",
+        "external_sources": "Not redistributed; publisher terms apply"
+      },
+      "limitations": [
+        "Synthetic facts and arithmetic are illustrative only; they are not operational evidence, an approved journal-entry policy, or professional review.",
+        "Current consolidated accounting text, entity policy, state warehouse law and current Part 370 text remain open.",
+        "No live ERP, carrier, broker, warehouse, passenger, bank or claim population was accessed."
+      ]
+    }
   }
 ]

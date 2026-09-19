@@ -2562,5 +2562,98 @@
         "No production incident or deployment study is included."
       ]
     }
+  },
+  {
+    "id": "control-transport-role-ownership",
+    "kind": "control",
+    "title": "Transport role, ownership and custody evidence",
+    "summary": "Control proposal preventing a carrier, broker, warehouse custodian, and customer-owned goods from collapsing into one ledger population.",
+    "topics": [
+      "Transportation and logistics",
+      "Accounting workflows"
+    ],
+    "industries": [
+      "Transportation and warehousing"
+    ],
+    "jurisdiction": "United States",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_transport_fmcsa_broker_371",
+      "src_transport_fmcsa_credit_377",
+      "src_transport_fmcsa_maintenance_396",
+      "src_transport_fmcsa_leases_376",
+      "src_transport_fmcsa_claims_370",
+      "src_transport_ulc_ucc7",
+      "src_transport_ecfr_passenger_374",
+      "src_transport_ecfr_passenger_leases_390g",
+      "src_transport_ecfr_maintenance_3963"
+    ],
+    "related_ids": [],
+    "reviewed_at": "2026-09-19",
+    "review_status": "editorially-reviewed",
+    "provenance": {
+      "imported_on": "2026-09-19",
+      "previous_corpus_version": "2026-09-19.12406",
+      "previous_reviewed_at": null,
+      "previous_review_status": "source-only pending integration",
+      "note": "Original source package. Editorial summaries and synthetic facts only; publisher text is not stored. Integration and professional review remain separate."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false
+    },
+    "data": {
+      "id": "control-transport-role-ownership",
+      "version": "1.0.0",
+      "name": "Transport role, ownership and custody evidence",
+      "risk": "A shipment, ticket, customer-owned good, lease, settlement or claim is routed to the wrong entity or period because role or ownership evidence is missing.",
+      "objective": "Establish role, ownership, custody, service event, settlement and claim status before proposing a ledger effect.",
+      "procedure": [
+        "Capture legal entity, role, authority, contract and counterparty",
+        "Match load, trip, storage receipt, bill, ticket, proof of delivery and release identifiers",
+        "Recalculate base charge, surcharge, accessorials and broker or carrier settlement",
+        "Reconcile owned inventory and customer custody populations",
+        "Match lease and maintenance responsibility to vehicle control",
+        "Hold claims and disputed charges until authority and evidence are reviewed",
+        "Document reviewer disposition and prohibit execution"
+      ],
+      "evidence": [
+        "Contract or tariff",
+        "Broker transaction record",
+        "Bill of lading or freight bill",
+        "Proof of delivery or trip completion",
+        "Warehouse receipt and owner confirmation",
+        "Fuel surcharge basis",
+        "Carrier settlement statement",
+        "Lease and maintenance records",
+        "Claim file and status"
+      ],
+      "exceptions": [
+        "Role or ownership conflict",
+        "Freight or passenger service date missing",
+        "Surcharge formula not reproducible",
+        "Settlement does not tie to customer billing",
+        "Customer goods included in owned inventory",
+        "Lease or maintenance responsibility unclear",
+        "Claim evidence or current rule unavailable"
+      ],
+      "owner": "Controller or transport accounting reviewer",
+      "frequency": "Each close and material exception",
+      "source_ids": [
+        "src_transport_fmcsa_broker_371",
+        "src_transport_fmcsa_credit_377",
+        "src_transport_fmcsa_maintenance_396",
+        "src_transport_fmcsa_leases_376",
+        "src_transport_fmcsa_claims_370",
+        "src_transport_ulc_ucc7",
+        "src_transport_ecfr_passenger_374",
+        "src_transport_ecfr_passenger_leases_390g",
+        "src_transport_ecfr_maintenance_3963"
+      ]
+    }
   }
 ]

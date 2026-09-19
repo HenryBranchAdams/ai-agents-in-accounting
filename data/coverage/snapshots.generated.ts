@@ -59,7 +59,9 @@ import snapshot56 from "./snapshots/2026-09-19.12413.json";
 import snapshot57 from "./snapshots/2026-09-19.12414.json";
 import snapshot58 from "./snapshots/2026-09-19.12415.json";
 import snapshot59 from "./snapshots/2026-09-19.12416.json";
+import snapshot60 from "./snapshots/2026-09-19.12417.json";
+import snapshot61 from "./snapshots/2026-09-19.12418.json";
 
-const snapshots: unknown[] = [snapshot0, snapshot1, snapshot2, snapshot3, snapshot4, snapshot5, snapshot6, snapshot7, snapshot8, snapshot9, snapshot10, snapshot11, snapshot12, snapshot13, snapshot14, snapshot15, snapshot16, snapshot17, snapshot18, snapshot19, snapshot20, snapshot21, snapshot22, snapshot23, snapshot24, snapshot25, snapshot26, snapshot27, snapshot28, snapshot29, snapshot30, snapshot31, snapshot32, snapshot33, snapshot34, snapshot35, snapshot36, snapshot37, snapshot38, snapshot39, snapshot40, snapshot41, snapshot42, snapshot43, snapshot44, snapshot45, snapshot46, snapshot47, snapshot48, snapshot49, snapshot50, snapshot51, snapshot52, snapshot53, snapshot54, snapshot55, snapshot56, snapshot57, snapshot58, snapshot59];
+const snapshots: unknown[] = [snapshot0, snapshot1, snapshot2, snapshot3, snapshot4, snapshot5, snapshot6, snapshot7, snapshot8, snapshot9, snapshot10, snapshot11, snapshot12, snapshot13, snapshot14, snapshot15, snapshot16, snapshot17, snapshot18, snapshot19, snapshot20, snapshot21, snapshot22, snapshot23, snapshot24, snapshot25, snapshot26, snapshot27, snapshot28, snapshot29, snapshot30, snapshot31, snapshot32, snapshot33, snapshot34, snapshot35, snapshot36, snapshot37, snapshot38, snapshot39, snapshot40, snapshot41, snapshot42, snapshot43, snapshot44, snapshot45, snapshot46, snapshot47, snapshot48, snapshot49, snapshot50, snapshot51, snapshot52, snapshot53, snapshot54, snapshot55, snapshot56, snapshot57, snapshot58, snapshot59, snapshot60, snapshot61];
 const metadata = {"schema_version":"1.0.0"};
 export default { ...metadata, snapshots };
