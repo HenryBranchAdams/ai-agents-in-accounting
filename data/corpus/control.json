@@ -2404,5 +2404,93 @@
         "The control does not authorize a write-down, shipment or inventory adjustment."
       ]
     }
+  },
+  {
+    "id": "ctrl-i97-quantity-ownership",
+    "kind": "control",
+    "title": "Agriculture quantity, ownership and period boundary control",
+    "summary": "Detect lost units, price/quantity conflation, customer-stock misclassification and invoice-only recognition.",
+    "topics": [
+      "Agriculture research",
+      "Accounting and reporting"
+    ],
+    "industries": [],
+    "jurisdiction": "United States; nongovernmental US GAAP illustration",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_fasb_asu2015_11_inventory",
+      "src_construction_fasb_2014_09",
+      "src_i97_noaa_landings"
+    ],
+    "related_ids": [
+      "guide-i97-crop-producer",
+      "guide-i97-harvesting-contractor",
+      "guide-i97-resource-dispositions",
+      "wf-i97-crop-service-close",
+      "example-i97-crop-support-close"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-19",
+    "provenance": {
+      "added_on": "2026-09-19",
+      "reviewer": "Codex AI-assisted editorial research",
+      "note": "Original issue 97 synthesis and synthetic arithmetic; no professional review or operational evidence.",
+      "research_file": "data/research/agriculture-i97.json"
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not stored; original publisher rights remain separate and unknown.",
+      "full_text_stored": false
+    },
+    "data": {
+      "version": "2026-09-18.97",
+      "scope": {
+        "roles": [
+          "US nongovernmental crop producer owning one harvested lot",
+          "Independent harvesting contractor providing a completed acreage service without crop ownership"
+        ],
+        "framework": "Accrual-basis US GAAP; cost-route agricultural inventory assumption; federal insurance/program and tax contexts kept separate.",
+        "period": "Synthetic close 2026-12-31, subsequent events January 2027; evidence reviewed 2026-09-18/19, so future transactions are fictional, not observed.",
+        "population": "One 200-acre producer lot yielding 10,000 standardized bushels, $50,000 eligible assumed production costs, and a separate 200-acre custom-harvest contract. Original named-question population is enumerated in this package.",
+        "exclusions": [
+          "No species-wide manual, international expansion or state survey.",
+          "No operational evidence, professional review or authorization to post."
+        ]
+      },
+      "objective": "Produce zero unexplained differences while preserving unresolved accounting judgments.",
+      "procedure": [
+        "Reperform unit and dollar bridges from source IDs; investigate any nonzero difference.",
+        "Challenge the owner field and distinguish acres, hours, standardized bushels and pounds.",
+        "Reject contractor crop-inventory entries absent an ownership-changing contract.",
+        "Inspect last/first period performance and shipment evidence; compare to invoice/posting dates.",
+        "Require a named reviewer for policy, rights, claims and exceptions."
+      ],
+      "failure_modes": [
+        "Price discount incorrectly removes stock",
+        "Spoilage buried in unit cost",
+        "January delivery included in December revenue",
+        "Full service invoice recognized despite incomplete acres",
+        "Quota treated as owned fish biomass"
+      ],
+      "evidence_retained": [
+        "Original tickets and conversion records",
+        "Recalculation with source IDs",
+        "Contract and dated acceptance",
+        "Exception disposition and reviewer identity"
+      ],
+      "test_cases": [
+        "loss-quality-cutoff",
+        "incomplete-service",
+        "wild-catch-counterexample"
+      ],
+      "limitations": [
+        "Only the identified passages were reviewed. Current consolidated GAAP and fact-specific applicability require further review.",
+        "No professional sign-off, operational transaction population or measured agent performance is established.",
+        "External reuse rights remain unknown; publisher text is not stored."
+      ]
+    }
   }
 ]

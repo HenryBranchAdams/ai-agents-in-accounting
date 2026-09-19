@@ -6,7 +6,7 @@ import path from "node:path";
 import { spawnSync } from "node:child_process";
 
 const repository = process.cwd();
-const packageBatches = new Set(["foundations", "industries", "jurisdictions", "empirical"]);
+const packageBatches = new Set(["foundations", "industries", "jurisdictions", "empirical", "agriculture-i97"]);
 const datePattern = /^\d{4}-\d{2}-\d{2}$/;
 const read = (root, file) => JSON.parse(fs.readFileSync(path.join(root, file), "utf8"));
 const write = (root, file, value) => fs.writeFileSync(path.join(root, file), JSON.stringify(value, null, 2) + "\n");
@@ -318,23 +318,23 @@ test("replay preserves newer canonical metadata and reports only bounded conflic
   const root = createFixture();
   try {
     const registry = read(root, "data/coverage/research-questions.json");
-    registry.question_set_version = "2026-09-18.9";
-    registry.corpus_version = "2026-09-18.9";
-    registry.reviewed_at = "2026-09-18";
+    registry.question_set_version = "2099-01-01.9";
+    registry.corpus_version = "2099-01-01.9";
+    registry.reviewed_at = "2099-01-01";
     write(root, "data/coverage/research-questions.json", registry);
 
     const guides = read(root, "data/corpus/guide.json");
     const guide = guides.find((record) => record.id === "guide-independent-deployment-evidence");
-    guide.data.version = "2026-09-18.9";
-    guide.reviewed_at = "2026-09-18";
+    guide.data.version = "2099-01-01.9";
+    guide.reviewed_at = "2099-01-01";
     guide.data.replay_marker = { owner: "newer-guide" };
     write(root, "data/corpus/guide.json", guides);
 
     const overrides = read(root, "data/coverage/mapping-overrides.json");
-    overrides.records[guide.id].reviewed_at = "2026-09-18";
+    overrides.records[guide.id].reviewed_at = "2099-01-01";
     overrides.records[guide.id].replay_marker = { owner: "newer-mapping" };
     const sourceOverride = overrides.records.src_1sbtyzp;
-    sourceOverride.reviewed_at = "2026-09-18";
+    sourceOverride.reviewed_at = "2099-01-01";
     sourceOverride.replace_question_ids = true;
     sourceOverride.question_ids = ["q-deployment-evidence"];
     sourceOverride.industry_codes = ["23"];
@@ -351,7 +351,7 @@ test("replay preserves newer canonical metadata and reports only bounded conflic
     const sources = read(root, "data/corpus/source.json");
     const source = sources.find((record) => record.id === "src_1sbtyzp");
     const currentReview = packageReview(source, "empirical", "https://onlinelibrary.wiley.com/doi/abs/10.1111/1475-679x.70052");
-    currentReview.reviewed_at = "2026-09-18";
+    currentReview.reviewed_at = "2099-01-01";
     currentReview.limitations = ["Canonical newer limitation replaces the prior package limitations."];
     currentReview.checks = [{url: currentReview.checked_url, method: "canonical-newer-check", outcome: "Canonical newer check retained."}];
     currentReview.preservation_marker = "keep-newer-state";
@@ -367,19 +367,19 @@ test("replay preserves newer canonical metadata and reports only bounded conflic
 
     assert.ok(output.preserved_newer_metadata >= 4);
     assert.ok(output.conflicts.some((conflict) => conflict.target === "research-questions:question_set_version"));
-    assert.equal(afterRegistry.question_set_version, "2026-09-18.9");
-    assert.equal(afterRegistry.corpus_version, "2026-09-18.9");
-    assert.equal(afterRegistry.reviewed_at, "2026-09-18");
-    assert.equal(afterGuide.data.version, "2026-09-18.9");
-    assert.equal(afterGuide.reviewed_at, "2026-09-18");
+    assert.equal(afterRegistry.question_set_version, "2099-01-01.9");
+    assert.equal(afterRegistry.corpus_version, "2099-01-01.9");
+    assert.equal(afterRegistry.reviewed_at, "2099-01-01");
+    assert.equal(afterGuide.data.version, "2099-01-01.9");
+    assert.equal(afterGuide.reviewed_at, "2099-01-01");
     assert.deepEqual(afterGuide.data.replay_marker, { owner: "newer-guide" });
-    assert.equal(afterOverrides.records[guide.id].reviewed_at, "2026-09-18");
+    assert.equal(afterOverrides.records[guide.id].reviewed_at, "2099-01-01");
     assert.deepEqual(afterOverrides.records[guide.id].replay_marker, { owner: "newer-mapping" });
-    assert.equal(afterOverrides.records.src_1sbtyzp.reviewed_at, "2026-09-18");
+    assert.equal(afterOverrides.records.src_1sbtyzp.reviewed_at, "2099-01-01");
     assert.deepEqual(afterOverrides.records.src_1sbtyzp.replay_marker, { owner: "newer-source-mapping" });
     assert.deepEqual(afterOverrides.records.src_1sbtyzp, newerSourceMapping);
     assert.ok(output.conflicts.some((conflict) => conflict.target === "mapping:src_1sbtyzp" && conflict.reason === "incoming-older-reviewed-mapping-preserved-current"));
-    assert.equal(afterReview.reviewed_at, "2026-09-18");
+    assert.equal(afterReview.reviewed_at, "2099-01-01");
     assert.equal(afterReview.preservation_marker, "keep-newer-state");
     assert.deepEqual(afterReview.limitations, newerSupplemental.limitations);
     assert.deepEqual(afterReview.checks, newerSupplemental.checks);
