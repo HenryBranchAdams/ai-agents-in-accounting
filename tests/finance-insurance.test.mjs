@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
+import { pathToFileURL } from 'node:url';
 import { validateSchema } from '../scripts/validate.mjs';
 
 const read = (file) => JSON.parse(fs.readFileSync(file, 'utf8'));
@@ -32,11 +33,26 @@ function copyHarness() {
 function run(root, args = []) {
   return spawnSync(process.execPath, ['scripts/integrate-finance-insurance.mjs', ...args], { cwd: root, encoding: 'utf8' });
 }
-function appliedSearch(root, query, limit = 20) {
-  const terms = query.toLowerCase().split(/\s+/).filter(Boolean);
-  const records = canonicalKinds.flatMap((kind) => read(path.join(root, `data/corpus/${kind}.json`)));
-  return records.map((record) => ({ record, score: terms.reduce((n, term) => n + (JSON.stringify(record).toLowerCase().includes(term) ? 1 : 0), 0) }))
-    .filter((x) => x.score > 0).sort((a, b) => b.score - a.score).slice(0, limit).map((x) => x.record);
+function copyBuildHarness() {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'finance-insurance-build-'));
+  const excluded = new Set(['.git', 'node_modules', 'dist']);
+  fs.cpSync(process.cwd(), root, {
+    recursive: true,
+    filter: (source) => !excluded.has(path.relative(process.cwd(), source).split(path.sep)[0]),
+  });
+  fs.symlinkSync(path.resolve('node_modules'), path.join(root, 'node_modules'), 'dir');
+  return root;
+}
+function buildApplied(root) {
+  const catalogPath = path.join(root, 'data/catalog.json');
+  const catalog = read(catalogPath);
+  catalog.corpus_version = '2026-09-19.12419';
+  fs.writeFileSync(catalogPath, JSON.stringify(catalog, null, 2) + '\n');
+  const research = spawnSync(process.execPath, ['scripts/build-research-coverage.mjs'], { cwd: root, encoding: 'utf8', timeout: 180000 });
+  if (research.status !== 0) return research;
+  const coverage = spawnSync(process.execPath, ['scripts/coverage-mappings.mjs'], { cwd: root, encoding: 'utf8', timeout: 180000 });
+  if (coverage.status !== 0) return coverage;
+  return spawnSync(process.execPath, ['scripts/build.mjs'], { cwd: root, encoding: 'utf8', timeout: 180000 });
 }
 
 test('source records and coverage assessments resolve schemas and rights', () => {
@@ -77,15 +93,37 @@ test('four role routes retain exact source URL identity and explicit boundaries'
   for (const review of packet.reused_source_reviews) assert.equal(sources.get(review.source_id)?.source_url, review.url);
 });
 
-test('synthetic role fixture and counterexamples reconcile without asserting journal entries', () => {
+test('synthetic role fixture replays event-sequenced balanced proposals and independent rollforwards', () => {
   const f = packet.fixture;
+  assert.equal(f.event_sequence.length, 17);
+  assert.deepEqual(new Set(f.event_sequence.map((event) => event.role)), new Set(packet.scope.roles));
   assert.equal(f.funds_valuation_custody.client_asset_subledger_cents, f.funds_valuation_custody.client_security_value_cents);
   assert.equal(f.funds_valuation_custody.entity_asset_cents, f.funds_valuation_custody.owned_investment_value_cents);
-  assert.equal(f.broker_adviser.customer_cash_cents + f.broker_adviser.customer_securities_cents, f.broker_adviser.customer_reserve_input_cents);
+  assert.equal(f.funds_valuation_custody.owned_investment_value_cents + f.funds_valuation_custody.valuation_adjustment_cents, 26000000);
+  assert.equal(f.broker_adviser.informational_custody_totals_cents, 100000000);
+  assert.equal(f.broker_adviser.reserve_computation.status, 'not-computed');
+  assert.equal(f.broker_adviser.reserve_computation.result_cents, null);
   assert.equal(f.insurance_reinsurance.direct_premium_cents - f.insurance_reinsurance.ceded_premium_cents, 45000000);
   assert.equal(f.insurance_reinsurance.reported_claim_estimate_cents - f.insurance_reinsurance.reinsurance_recovery_estimate_cents, 8000000);
-  assert.equal(f.lending_deposit_servicing.loan_principal_cents / 100 + f.lending_deposit_servicing.customer_deposit_liability_cents / 100, 1750000);
-  assert.equal(f.counterexamples.length, 2);
+  for (const [role, entries] of Object.entries(f.journal_proposals)) {
+    assert.ok(entries.length >= 3, role);
+    for (const entry of entries) {
+      const debit = entry.lines.filter((line) => line.side === 'debit').reduce((sum, line) => sum + line.amount_cents, 0);
+      const credit = entry.lines.filter((line) => line.side === 'credit').reduce((sum, line) => sum + line.amount_cents, 0);
+      assert.equal(debit, credit, `${role}/${entry.entry_id}`);
+    }
+  }
+  for (const [role, movements] of Object.entries(f.movement_reconciliations)) {
+    for (const movement of movements) {
+      const closing = movement.normal_side === 'debit'
+        ? movement.opening_cents + movement.debits_cents - movement.credits_cents
+        : movement.opening_cents + movement.credits_cents - movement.debits_cents;
+      assert.equal(closing, movement.expected_closing_cents, `${role}/${movement.account}`);
+    }
+  }
+  assert.equal(f.independent_math_checks.find((check) => check.id === 'fund-owned-investment-after-valuation').result_cents, 26000000);
+  assert.ok(f.counterexamples.some((item) => item.id === 'custody-total-is-not-reserve'));
+  assert.ok(f.counterexamples.some((item) => item.id === 'insurance-risk-transfer-open'));
   assert.ok(packet.records.find((r) => r.id === 'example-aa-i106-role-branches').data.examples.some((x) => x.scenario_type === 'negative'));
 });
 
@@ -115,15 +153,32 @@ test('helper applies only in a disposable fixture, replays byte-stably, and stag
   assert.equal(fs.readFileSync(sourceFile, 'utf8'), before);
 });
 
-test('applied retrieval returns bounded role evidence and the custody counterexample', () => {
-  const root = copyHarness();
-  const result = run(root, ['--applied']);
-  assert.equal(result.status, 0, result.stderr || result.stdout);
-  const roleHits = appliedSearch(root, 'lending funds custody broker insurance', 20);
-  assert.ok(roleHits.some((r) => r.id === 'guide-aa-i106-finance-insurance'));
-  assert.ok(roleHits.length <= 20);
-  const counterHits = appliedSearch(root, 'client_asset_subledger_cents custody', 20);
-  assert.ok(counterHits.some((r) => r.id === 'example-aa-i106-role-branches'), JSON.stringify(counterHits.map((r) => r.id)));
-  assert.ok(JSON.stringify(counterHits).includes('client_asset_subledger_cents'));
-  assert.ok(!counterHits.some((r) => r.id === 'guide-aa-i106-finance-insurance' && JSON.stringify(r).includes('whole-industry sufficiency')));
+test('applied disposable bundle uses the real agent search and context paths', async () => {
+  const root = copyBuildHarness();
+  const applied = run(root, ['--applied']);
+  assert.equal(applied.status, 0, applied.stderr || applied.stdout);
+  const built = buildApplied(root);
+  assert.equal(built.status, 0, built.stderr || built.stdout);
+  const { executeAgent } = await import(`${pathToFileURL(path.join(root, 'dist/internal/agent.mjs')).href}?finance=${Date.now()}`);
+  const fixtures = read(path.join(root, 'data/research/finance-insurance-2026-09-19.json')).retrieval_fixtures;
+  for (const fixture of fixtures) {
+    assert.ok(fixture.search_query.length > 0);
+    const result = executeAgent('search', { q: fixture.search_query, limit: 20 });
+    assert.ok(result.results.length <= 20, fixture.id);
+    for (const id of fixture.expected_ids) assert.ok(result.results.some((row) => row.id === id), `${fixture.id}: ${id}`);
+    for (const id of fixture.excluded_ids) assert.ok(!result.results.some((row) => row.id === id), `${fixture.id}: unexpectedly returned ${id}`);
+  }
+  const guide = executeAgent('get', { id: 'guide-aa-i106-finance-insurance', limit: 20 });
+  assert.ok(guide.passages.length);
+  assert.equal(guide.record.rights.full_text_stored, false);
+  const context = executeAgent('context', { ids: ['example-aa-i106-role-branches'], include_sources: true, max_chars: 40000 });
+  assert.ok(context.records.some((entry) => entry.record.id === 'example-aa-i106-role-branches'));
+  assert.ok(context.records.some((entry) => entry.record.id === 'src_aa_i106_sec_15c3_3'));
+  let detail = executeAgent('get', { id: 'example-aa-i106-role-branches', section: 'data.fixture', limit: 20 });
+  let detailText = JSON.stringify(detail);
+  while (!/custody-total-is-not-reserve|informational_custody_totals_cents/.test(detailText) && detail.next_cursor) {
+    detail = executeAgent('get', { id: 'example-aa-i106-role-branches', section: 'data.fixture', limit: 20, cursor: detail.next_cursor });
+    detailText = JSON.stringify(detail);
+  }
+  assert.match(detailText, /custody-total-is-not-reserve|informational_custody_totals_cents/);
 });
