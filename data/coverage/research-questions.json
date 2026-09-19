@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "question_set_version": "2026-09-19.12421",
-  "corpus_version": "2026-09-19.12421",
+  "question_set_version": "2026-09-19.12422",
+  "corpus_version": "2026-09-19.12422",
   "reviewed_at": "2026-09-19",
   "scope": "Versioned named research questions. Broader unresolved family questions and industry applicability are separate denominators, retained in their review files. The nonprofit question was appended on 2026-09-16; inherited individual review dates and limitations are unchanged. The reporting-foundations-us supplement adds eight US-scoped named answers while preserving IFRS and other existing framework records. The tax-foundations-us supplement adds five US-scoped named tax answers while preserving existing framework, construction-conflict, and jurisdiction boundaries.",
   "questions": [
@@ -11745,6 +11745,456 @@
         "empirical-support": "not-assessed"
       },
       "dimension_basis": "Selected dated primary-source locators and an original synthetic worksheet; current accounting sufficiency and operational effectiveness remain unverified."
+    },
+    {
+      "id": "rq-support-waste-staffing-gross-net",
+      "record_id": "guide-support-waste-us-close",
+      "pointer": "/data/research_questions/0",
+      "family_ids": [
+        "q-revenue",
+        "q-payroll"
+      ],
+      "question": "How does a staffing principal differ from a payroll disbursing agent?",
+      "scope": "Selected US 561 roles; synthetic 2025 close with separate federal tax, regulatory and financial-reporting purposes.",
+      "answer": "Identify the promised service and control before transfer. Under the stated principal facts, gross staffing revenue and labor costs stay separate; the disbursing-agent branch earns only its processing fee. Client funding is not fee revenue.",
+      "answer_status": "sourced-answer-and-original-example",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_fasb_asu2016_08_principal_agent"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_fasb_asu2016_08_principal_agent",
+          "url": "https://storage.fasb.org/ASU%202016-08.pdf",
+          "locator": "606-10-55-36 through 55-38, including 55-36A and 55-37A, PDF pages 11-13",
+          "effective_period": "Issued March 2016; amendments follow the Topic 606 effective and transition requirements after ASU 2015-14. Selected 2025 research only.",
+          "access_limits": "Issued amendment only; current consolidated Topic 606, subsequent amendments and contract facts not reviewed."
+        }
+      ],
+      "inputs": [
+        "Entity role, contract/permit, reporting framework and dated source locator",
+        "Approved hours, pay rates, withholding and employer-tax schedules; customer and employee identifiers",
+        "Service completion and tonnage tickets tied to invoice, unbilled balances and bank receipts",
+        "Facility legal obligation, engineering estimate, valuation inputs, assurance instrument and expiration",
+        "Remediation legal assessment, contractor budget, cost-to-date and separate recovery evidence"
+      ],
+      "workflow": [
+        "Resolve the entity, obligation and reporting purpose before aggregating amounts.",
+        "Match approved time or service tickets to the correct period and invoice population.",
+        "Reconcile wages, withholdings, employer costs and client money separately.",
+        "Maintain separate revenue, retirement obligation, remediation loss and assurance schedules.",
+        "Recompute journals, estimates and settlement rollforwards; hold unmatched or unsupported facts.",
+        "Retain source version, reviewer, exceptions and authority evidence with the proposed close."
+      ],
+      "controls": [
+        "Two-sided bank, subledger and general-ledger reconciliation; no suspense plug",
+        "Approved contract, hours/rates and service-date cutoff; duplicates and later-period work held",
+        "Client funds do not become fee revenue through receipt alone",
+        "Facility permit and legal obligor must match the estimate; no classification-only obligation",
+        "Assurance face value, recognized liability and disputed recovery tracked separately",
+        "Estimate revisions carry a dated evidence trail and independent recomputation"
+      ],
+      "exceptions": [
+        "CPEO tax status does not decide financial-statement gross/net presentation."
+      ],
+      "remaining_gaps": [
+        "Current consolidated ASC, later amendments, actual contract and permit applicability remain unverified.",
+        "Synthetic worksheets are not operational evidence, professional review or legal and employment-tax conclusions.",
+        "Source rights remain unknown; external full text is not stored. Selected questions do not establish industry sufficiency or a state-law survey."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Selected original-source passages and original role-specific arithmetic; current authority, operational performance and professional review remain unverified.",
+      "example_id": "example-support-labor-and-agency-close"
+    },
+    {
+      "id": "rq-support-waste-cpeo-tax-role",
+      "record_id": "guide-support-waste-us-close",
+      "pointer": "/data/research_questions/1",
+      "family_ids": [
+        "q-payroll",
+        "q-human-authority"
+      ],
+      "question": "Which federal employment-tax facts must be retained when a customer uses a CPEO?",
+      "scope": "Selected US 561 roles; synthetic 2025 close with separate federal tax, regulatory and financial-reporting purposes.",
+      "answer": "Check certification, exact contract name/EIN, remuneration paid and worksite status. IRS guidance distinguishes sole CPEO responsibility for qualifying worksite remuneration from possible shared liability for non-worksite employees. Retain Form 8973 and customer Schedule R allocation evidence.",
+      "answer_status": "sourced-answer-and-original-example",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_aa_i110_irs_cpeo_customers"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_aa_i110_irs_cpeo_customers",
+          "url": "https://www.irs.gov/tax-professionals/cpeo-customers-what-you-need-to-know",
+          "locator": "What does contracting with a CPEO mean for my business?, paragraphs 1-5; exact contract name/EIN paragraph",
+          "effective_period": "Undated live customer guidance accessed 2026-09-19; cites Revenue Procedure 2023-18. Certification dates and employee/contract eligibility must be checked separately.",
+          "access_limits": "Federal employment-tax guidance only. A PEO label alone establishes neither CPEO eligibility, all-purpose employer status nor GAAP gross/net presentation."
+        }
+      ],
+      "inputs": [
+        "Entity role, contract/permit, reporting framework and dated source locator",
+        "Approved hours, pay rates, withholding and employer-tax schedules; customer and employee identifiers",
+        "Service completion and tonnage tickets tied to invoice, unbilled balances and bank receipts",
+        "Facility legal obligation, engineering estimate, valuation inputs, assurance instrument and expiration",
+        "Remediation legal assessment, contractor budget, cost-to-date and separate recovery evidence"
+      ],
+      "workflow": [
+        "Resolve the entity, obligation and reporting purpose before aggregating amounts.",
+        "Match approved time or service tickets to the correct period and invoice population.",
+        "Reconcile wages, withholdings, employer costs and client money separately.",
+        "Maintain separate revenue, retirement obligation, remediation loss and assurance schedules.",
+        "Recompute journals, estimates and settlement rollforwards; hold unmatched or unsupported facts.",
+        "Retain source version, reviewer, exceptions and authority evidence with the proposed close."
+      ],
+      "controls": [
+        "Two-sided bank, subledger and general-ledger reconciliation; no suspense plug",
+        "Approved contract, hours/rates and service-date cutoff; duplicates and later-period work held",
+        "Client funds do not become fee revenue through receipt alone",
+        "Facility permit and legal obligor must match the estimate; no classification-only obligation",
+        "Assurance face value, recognized liability and disputed recovery tracked separately",
+        "Estimate revisions carry a dated evidence trail and independent recomputation"
+      ],
+      "exceptions": [
+        "Customer EFTPS access does not show the CPEO deposits; obtain the relevant reconciliation evidence.",
+        "The payroll-agent worksheet is a different legal/tax branch and does not calculate CPEO statutory liability."
+      ],
+      "remaining_gaps": [
+        "Current consolidated ASC, later amendments, actual contract and permit applicability remain unverified.",
+        "Synthetic worksheets are not operational evidence, professional review or legal and employment-tax conclusions.",
+        "Source rights remain unknown; external full text is not stored. Selected questions do not establish industry sufficiency or a state-law survey."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Selected original-source passages and original role-specific arithmetic; current authority, operational performance and professional review remain unverified.",
+      "example_id": "example-support-labor-and-agency-close"
+    },
+    {
+      "id": "rq-support-waste-support-cutoff",
+      "record_id": "guide-support-waste-us-close",
+      "pointer": "/data/research_questions/2",
+      "family_ids": [
+        "q-revenue",
+        "q-payroll",
+        "q-ledger-close"
+      ],
+      "question": "How do recurring support fees and labor obligations connect at cutoff?",
+      "scope": "Selected US 561 roles; synthetic 2025 close with separate federal tax, regulatory and financial-reporting purposes.",
+      "answer": "Under the even-service assumption, recognize the completed month and retain the unearned advance. Accrue labor for services received using approved employment evidence. Reconcile service delivery separately from billing and payroll payment dates.",
+      "answer_status": "sourced-answer-and-original-example",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_construction_fasb_2014_09"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_construction_fasb_2014_09",
+          "url": "https://storage.fasb.org/ASU%202014-09_Section%20A.pdf",
+          "locator": "606-10-25-27(a)-(b), 25-31 through 25-37, PDF pages 34-37; 45-1 through 45-4, PDF pages 48-49",
+          "effective_period": "Issued May 2014; original adoption timetable was subsequently deferred by ASU 2015-14. Selected 2025 worksheet assumes applicable adoption; current authority must be checked.",
+          "access_limits": "Issued amendment only; current consolidated Topic 606, subsequent amendments and contract facts not reviewed."
+        }
+      ],
+      "inputs": [
+        "Entity role, contract/permit, reporting framework and dated source locator",
+        "Approved hours, pay rates, withholding and employer-tax schedules; customer and employee identifiers",
+        "Service completion and tonnage tickets tied to invoice, unbilled balances and bank receipts",
+        "Facility legal obligation, engineering estimate, valuation inputs, assurance instrument and expiration",
+        "Remediation legal assessment, contractor budget, cost-to-date and separate recovery evidence"
+      ],
+      "workflow": [
+        "Resolve the entity, obligation and reporting purpose before aggregating amounts.",
+        "Match approved time or service tickets to the correct period and invoice population.",
+        "Reconcile wages, withholdings, employer costs and client money separately.",
+        "Maintain separate revenue, retirement obligation, remediation loss and assurance schedules.",
+        "Recompute journals, estimates and settlement rollforwards; hold unmatched or unsupported facts.",
+        "Retain source version, reviewer, exceptions and authority evidence with the proposed close."
+      ],
+      "controls": [
+        "Two-sided bank, subledger and general-ledger reconciliation; no suspense plug",
+        "Approved contract, hours/rates and service-date cutoff; duplicates and later-period work held",
+        "Client funds do not become fee revenue through receipt alone",
+        "Facility permit and legal obligor must match the estimate; no classification-only obligation",
+        "Assurance face value, recognized liability and disputed recovery tracked separately",
+        "Estimate revisions carry a dated evidence trail and independent recomputation"
+      ],
+      "exceptions": [
+        "A customer invoice dispute and a wage obligation require separate analyses; cash timing does not settle either."
+      ],
+      "remaining_gaps": [
+        "Current consolidated ASC, later amendments, actual contract and permit applicability remain unverified.",
+        "Synthetic worksheets are not operational evidence, professional review or legal and employment-tax conclusions.",
+        "Source rights remain unknown; external full text is not stored. Selected questions do not establish industry sufficiency or a state-law survey."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Selected original-source passages and original role-specific arithmetic; current authority, operational performance and professional review remain unverified.",
+      "example_id": "example-support-labor-and-agency-close"
+    },
+    {
+      "id": "rq-support-waste-collection-cutoff",
+      "record_id": "guide-support-waste-us-close",
+      "pointer": "/data/research_questions/3",
+      "family_ids": [
+        "q-revenue",
+        "q-receivables-credit"
+      ],
+      "question": "How do waste collection tickets connect to billed and unbilled revenue?",
+      "scope": "Selected US 562 roles; synthetic 2025 close with separate federal tax, regulatory and financial-reporting purposes.",
+      "answer": "Match accepted service tickets to the period, rate and payment right. The 100-ton branch reconciles billed and uninvoiced receivables, collections, tipping fees and accrued labor. Work completed after cutoff is excluded.",
+      "answer_status": "sourced-answer-and-original-example",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_construction_fasb_2014_09"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_construction_fasb_2014_09",
+          "url": "https://storage.fasb.org/ASU%202014-09_Section%20A.pdf",
+          "locator": "606-10-25-27(a)-(b), 25-31 through 25-37, PDF pages 34-37; 45-1 through 45-4, PDF pages 48-49",
+          "effective_period": "Issued May 2014; original adoption timetable was subsequently deferred by ASU 2015-14. Selected 2025 worksheet assumes applicable adoption; current authority must be checked.",
+          "access_limits": "Issued amendment only; current consolidated Topic 606, subsequent amendments and contract facts not reviewed."
+        }
+      ],
+      "inputs": [
+        "Entity role, contract/permit, reporting framework and dated source locator",
+        "Approved hours, pay rates, withholding and employer-tax schedules; customer and employee identifiers",
+        "Service completion and tonnage tickets tied to invoice, unbilled balances and bank receipts",
+        "Facility legal obligation, engineering estimate, valuation inputs, assurance instrument and expiration",
+        "Remediation legal assessment, contractor budget, cost-to-date and separate recovery evidence"
+      ],
+      "workflow": [
+        "Resolve the entity, obligation and reporting purpose before aggregating amounts.",
+        "Match approved time or service tickets to the correct period and invoice population.",
+        "Reconcile wages, withholdings, employer costs and client money separately.",
+        "Maintain separate revenue, retirement obligation, remediation loss and assurance schedules.",
+        "Recompute journals, estimates and settlement rollforwards; hold unmatched or unsupported facts.",
+        "Retain source version, reviewer, exceptions and authority evidence with the proposed close."
+      ],
+      "controls": [
+        "Two-sided bank, subledger and general-ledger reconciliation; no suspense plug",
+        "Approved contract, hours/rates and service-date cutoff; duplicates and later-period work held",
+        "Client funds do not become fee revenue through receipt alone",
+        "Facility permit and legal obligor must match the estimate; no classification-only obligation",
+        "Assurance face value, recognized liability and disputed recovery tracked separately",
+        "Estimate revisions carry a dated evidence trail and independent recomputation"
+      ],
+      "exceptions": [
+        "No disposal-site obligation is inferred for a collector without facility ownership or another legal obligation."
+      ],
+      "remaining_gaps": [
+        "Current consolidated ASC, later amendments, actual contract and permit applicability remain unverified.",
+        "Synthetic worksheets are not operational evidence, professional review or legal and employment-tax conclusions.",
+        "Source rights remain unknown; external full text is not stored. Selected questions do not establish industry sufficiency or a state-law survey."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Selected original-source passages and original role-specific arithmetic; current authority, operational performance and professional review remain unverified.",
+      "example_id": "example-waste-disposal-remediation-close"
+    },
+    {
+      "id": "rq-support-waste-disposal-assurance",
+      "record_id": "guide-support-waste-us-close",
+      "pointer": "/data/research_questions/4",
+      "family_ids": [
+        "q-environmental",
+        "q-capital-assets",
+        "q-estimates"
+      ],
+      "question": "How do a TSDF retirement obligation and financial assurance differ?",
+      "scope": "Selected US 562 roles; synthetic 2025 close with separate federal tax, regulatory and financial-reporting purposes.",
+      "answer": "For the stated retirement scope, the historical worksheet records the supplied liability and capitalized retirement cost, then accretion, depreciation and revision. EPA assurance uses a separate third-party closure estimate and instrument amount. Assurance does not extinguish the liability.",
+      "answer_status": "sourced-answer-and-original-example",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_aa_i123_fas143",
+        "src_aa_i110_epa_tsdf_assurance"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_aa_i123_fas143",
+          "url": "https://storage.fasb.org/fas143.pdf",
+          "locator": "Paragraphs 2-3, PDF page 7; paragraph 11, PDF page 9; paragraphs 13-15, PDF page 10; paragraph 16, PDF page 11; paragraph 22, PDF page 12; paragraph 24, PDF page 13",
+          "effective_period": "Historical FAS 143, effective fiscal years beginning after June 15, 2002. Later/current ASC 410-20 not reviewed.",
+          "access_limits": "Selected historical paragraphs read again for this package; canonical review unchanged. Normal-operation retirement differs from improper-operation remediation."
+        },
+        {
+          "source_id": "src_aa_i110_epa_tsdf_assurance",
+          "url": "https://www.epa.gov/hwpermitting/financial-assurance-requirements-hazardous-waste-treatment-storage-and-disposal",
+          "locator": "How Much Financial Assurance is Needed?, third-party estimate and annual update; Letter of Credit, amount and standby trust",
+          "effective_period": "Live guidance accessed 2026-09-19; references 40 CFR parts 264/265 Subpart H. No universal commencement date inferred; applicable permit and current regulation require checking.",
+          "access_limits": "Federal hazardous-waste TSDF scope; not every collector or municipal disposal site. Assurance is distinct from financial-statement liability recognition and measurement; state implementation and permit terms remain open."
+        }
+      ],
+      "inputs": [
+        "Entity role, contract/permit, reporting framework and dated source locator",
+        "Approved hours, pay rates, withholding and employer-tax schedules; customer and employee identifiers",
+        "Service completion and tonnage tickets tied to invoice, unbilled balances and bank receipts",
+        "Facility legal obligation, engineering estimate, valuation inputs, assurance instrument and expiration",
+        "Remediation legal assessment, contractor budget, cost-to-date and separate recovery evidence"
+      ],
+      "workflow": [
+        "Resolve the entity, obligation and reporting purpose before aggregating amounts.",
+        "Match approved time or service tickets to the correct period and invoice population.",
+        "Reconcile wages, withholdings, employer costs and client money separately.",
+        "Maintain separate revenue, retirement obligation, remediation loss and assurance schedules.",
+        "Recompute journals, estimates and settlement rollforwards; hold unmatched or unsupported facts.",
+        "Retain source version, reviewer, exceptions and authority evidence with the proposed close."
+      ],
+      "controls": [
+        "Two-sided bank, subledger and general-ledger reconciliation; no suspense plug",
+        "Approved contract, hours/rates and service-date cutoff; duplicates and later-period work held",
+        "Client funds do not become fee revenue through receipt alone",
+        "Facility permit and legal obligor must match the estimate; no classification-only obligation",
+        "Assurance face value, recognized liability and disputed recovery tracked separately",
+        "Estimate revisions carry a dated evidence trail and independent recomputation"
+      ],
+      "exceptions": [
+        "Improper-operation remediation is outside the selected normal-retirement branch.",
+        "A permit, engineering estimate and valuation basis are required; a nominal letter of credit is not the liability measurement."
+      ],
+      "remaining_gaps": [
+        "Current consolidated ASC, later amendments, actual contract and permit applicability remain unverified.",
+        "Synthetic worksheets are not operational evidence, professional review or legal and employment-tax conclusions.",
+        "Source rights remain unknown; external full text is not stored. Selected questions do not establish industry sufficiency or a state-law survey."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Selected original-source passages and original role-specific arithmetic; current authority, operational performance and professional review remain unverified.",
+      "example_id": "example-waste-disposal-remediation-close"
+    },
+    {
+      "id": "rq-support-waste-remediation-estimates",
+      "record_id": "guide-support-waste-us-close",
+      "pointer": "/data/research_questions/5",
+      "family_ids": [
+        "q-environmental",
+        "q-estimates",
+        "q-project-wip"
+      ],
+      "question": "How do contamination losses differ from a remediation contractor estimate?",
+      "scope": "Selected US 562 roles; synthetic 2025 close with separate federal tax, regulatory and financial-reporting purposes.",
+      "answer": "The obligor branch accrues an assumed probable, estimable loss and tracks settlement separately from contested recovery. The service-contractor branch updates a reliable cost-to-cost estimate, producing a revenue reduction and contract liability. These are different entities and obligations.",
+      "answer_status": "sourced-answer-and-original-example",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_aa_i123_fas5",
+        "src_aa_i123_sec5y",
+        "src_construction_fasb_2014_09"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_aa_i123_fas5",
+          "url": "https://storage.fasb.org/aop_fas5.pdf",
+          "locator": "Paragraphs 8-10, PDF page 6",
+          "effective_period": "Historical amended FAS 5 text; original effective date July 1, 1975. Current ASC 450 not reviewed.",
+          "access_limits": "Selected probable/estimable and disclosure paragraphs read; not a current Codification substitute."
+        },
+        {
+          "source_id": "src_aa_i123_sec5y",
+          "url": "https://www.sec.gov/interps/account/sabcodet5.htm",
+          "locator": "Topic 5.Y, Questions 1-3 and footnote 49",
+          "effective_period": "Live SEC staff page accessed 2026-09-19; staff interpretation for registrants, not a universal GAAP effective date.",
+          "access_limits": "Selected environmental liability disclosure and contested-recovery text only. Current underlying Codification and entity facts remain open."
+        },
+        {
+          "source_id": "src_construction_fasb_2014_09",
+          "url": "https://storage.fasb.org/ASU%202014-09_Section%20A.pdf",
+          "locator": "606-10-25-27(a)-(b), 25-31 through 25-37, PDF pages 34-37; 45-1 through 45-4, PDF pages 48-49",
+          "effective_period": "Issued May 2014; original adoption timetable was subsequently deferred by ASU 2015-14. Selected 2025 worksheet assumes applicable adoption; current authority must be checked.",
+          "access_limits": "Issued amendment only; current consolidated Topic 606, subsequent amendments and contract facts not reviewed."
+        }
+      ],
+      "inputs": [
+        "Entity role, contract/permit, reporting framework and dated source locator",
+        "Approved hours, pay rates, withholding and employer-tax schedules; customer and employee identifiers",
+        "Service completion and tonnage tickets tied to invoice, unbilled balances and bank receipts",
+        "Facility legal obligation, engineering estimate, valuation inputs, assurance instrument and expiration",
+        "Remediation legal assessment, contractor budget, cost-to-date and separate recovery evidence"
+      ],
+      "workflow": [
+        "Resolve the entity, obligation and reporting purpose before aggregating amounts.",
+        "Match approved time or service tickets to the correct period and invoice population.",
+        "Reconcile wages, withholdings, employer costs and client money separately.",
+        "Maintain separate revenue, retirement obligation, remediation loss and assurance schedules.",
+        "Recompute journals, estimates and settlement rollforwards; hold unmatched or unsupported facts.",
+        "Retain source version, reviewer, exceptions and authority evidence with the proposed close."
+      ],
+      "controls": [
+        "Two-sided bank, subledger and general-ledger reconciliation; no suspense plug",
+        "Approved contract, hours/rates and service-date cutoff; duplicates and later-period work held",
+        "Client funds do not become fee revenue through receipt alone",
+        "Facility permit and legal obligor must match the estimate; no classification-only obligation",
+        "Assurance face value, recognized liability and disputed recovery tracked separately",
+        "Estimate revisions carry a dated evidence trail and independent recomputation"
+      ],
+      "exceptions": [
+        "The SEC recovery presumption is registrant-specific; no insurance offset is assumed.",
+        "Over-time eligibility, progress reliability and estimate revision evidence are explicit assumptions, not established by a contract label."
+      ],
+      "remaining_gaps": [
+        "Current consolidated ASC, later amendments, actual contract and permit applicability remain unverified.",
+        "Synthetic worksheets are not operational evidence, professional review or legal and employment-tax conclusions.",
+        "Source rights remain unknown; external full text is not stored. Selected questions do not establish industry sufficiency or a state-law survey."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Selected original-source passages and original role-specific arithmetic; current authority, operational performance and professional review remain unverified.",
+      "example_id": "example-waste-disposal-remediation-close"
     }
   ]
 }
