@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import {spawnSync} from 'node:child_process';
+import {spawnSync,execFileSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
 import {records} from '../dist/internal/corpus.mjs';
 import {executeAgent} from '../dist/internal/agent.mjs';
@@ -14,6 +14,89 @@ const byId=new Map(records.map(r=>[r.id,r]));
 const fixture=byId.get('example-aa-i123-entity-events');
 const cases=new Map(fixture.data.examples.map(c=>[c.id,c]));
 const sha=b=>createHash('sha256').update(b).digest('hex');
+const reused=['src_construction_fasb_201817','src_construction_fasb_202305'];
+function freshHarness(ref=packet.base_commit) {
+  const root=fs.mkdtempSync(path.join(os.tmpdir(),'aa-i123-base-'));
+  // CI checks out full history. Use the immutable assigned base, not a copy of
+  // already-mutated canonical records, to expose first-application regressions.
+  const files=execFileSync('git',['ls-tree','-r','--name-only',ref,'data/corpus','data/coverage','data/research','data/catalog.json','scripts/coverage-mappings.mjs']).toString().trim().split('\n').filter(f=>!f.endsWith('/snapshots.json'));
+  execFileSync('git',['archive','--output',path.join(root,'base.tar'),ref,...files]);
+  execFileSync('tar',['-xf',path.join(root,'base.tar'),'-C',root]);
+  fs.copyFileSync('data/research/aa-i123-entity-events.json',path.join(root,'data/research/aa-i123-entity-events.json'));
+  return root;
+}
+function runIn(root,file) {
+  const r=spawnSync(process.execPath,[path.resolve(file)],{cwd:root,encoding:'utf8'});
+  assert.equal(r.status,0,r.stderr||r.stdout);
+}
+function assertConstruction(rows,baseline) {
+  for(const id of reused) {
+    const actual=rows.find(r=>r.record_id===id),prior=baseline.find(r=>r.record_id===id);
+    assert.equal(actual.industry_scope,'specific',id);
+    assert.deepEqual(actual.industry_mappings,prior.industry_mappings,id);
+    assert.ok(actual.industry_mappings.some(m=>m.industry_code==='23'),id);
+  }
+}
+
+test('AA-I123 fresh apply preserves inherited construction mappings and versions mapping provenance',()=>{
+  const root=freshHarness();
+  try {
+    const baseline=read(path.join(root,'data/coverage/record-mappings.json')).mappings;
+    runIn(root,'scripts/integrate-aa-i123.mjs');runIn(root,'scripts/coverage-mappings.mjs');
+    const generated=read(path.join(root,'data/coverage/record-mappings.json'));
+    assertConstruction(generated.mappings,baseline);
+    const overrides=read(path.join(root,'data/coverage/mapping-overrides.json'));
+    assert.equal(overrides.mapping_version,packet.version);assert.equal(overrides.updated_at,packet.reviewed_at);
+    assert.equal(generated.mapping_version,packet.version);assert.equal(generated.generated_at,packet.reviewed_at);
+    for(const id of reused)assert.equal(Object.hasOwn(overrides.records[id],'industry_codes'),false);
+    const bytes=fs.readFileSync(path.join(root,'data/coverage/record-mappings.json'));
+    runIn(root,'scripts/integrate-aa-i123.mjs');runIn(root,'scripts/coverage-mappings.mjs');
+    assert.deepEqual(fs.readFileSync(path.join(root,'data/coverage/record-mappings.json')),bytes);
+    // Independent mutation recreates the reported bug for each reused source.
+    for(const id of reused) {
+      const mutant=structuredClone(overrides);mutant.records[id].industry_codes=[];
+      fs.writeFileSync(path.join(root,'data/coverage/mapping-overrides.json'),JSON.stringify(mutant));
+      runIn(root,'scripts/coverage-mappings.mjs');
+      assert.throws(()=>assertConstruction(read(path.join(root,'data/coverage/record-mappings.json')).mappings,baseline));
+    }
+  } finally {fs.rmSync(root,{recursive:true,force:true});}
+});
+
+test('AA-I123 preserves explicit industry overrides and fails conflicting owned records before writes',()=>{
+  const root=freshHarness();
+  try {
+    const file=path.join(root,'data/coverage/mapping-overrides.json'),overrides=read(file);
+    overrides.records[reused[0]]={industry_codes:['23']};
+    overrides.records[reused[1]]={industry_codes:[],industry_scope:'unassigned'};
+    fs.writeFileSync(file,JSON.stringify(overrides));
+    runIn(root,'scripts/integrate-aa-i123.mjs');runIn(root,'scripts/coverage-mappings.mjs');
+    const after=read(file);assert.deepEqual(after.records[reused[0]].industry_codes,['23']);assert.deepEqual(after.records[reused[1]].industry_codes,[]);assert.equal(after.records[reused[1]].industry_scope,'unassigned');
+    const mappings=read(path.join(root,'data/coverage/record-mappings.json')).mappings;
+    assert.equal(mappings.find(r=>r.record_id===reused[0]).industry_scope,'specific');assert.equal(mappings.find(r=>r.record_id===reused[1]).industry_scope,'unassigned');
+    const sourcePath=path.join(root,'data/corpus/source.json'),sources=read(sourcePath);
+    sources.find(r=>r.id===packet.sources.find(s=>!s.reuse).id).summary='Deliberate conflicting owned content';
+    fs.writeFileSync(sourcePath,JSON.stringify(sources));
+    const paths=['data/catalog.json',...['data/corpus','data/coverage','data/research'].flatMap(d=>fs.readdirSync(path.join(root,d)).filter(f=>f.endsWith('.json')).map(f=>`${d}/${f}`))];
+    const before=paths.map(p=>sha(fs.readFileSync(path.join(root,p))));
+    const r=spawnSync(process.execPath,[path.resolve('scripts/integrate-aa-i123.mjs')],{cwd:root,encoding:'utf8'});
+    assert.notEqual(r.status,0);assert.match(r.stderr,/Conflicting owned ID/);
+    assert.deepEqual(paths.map(p=>sha(fs.readFileSync(path.join(root,p)))),before);
+  } finally {fs.rmSync(root,{recursive:true,force:true});}
+});
+
+test('AA-I123 repairs the exact rejected candidate and preserves the repaired mapping on replay',()=>{
+  const root=freshHarness('6bb01850f7481afac3da20aae7f19c234388340e');
+  try {
+    const baseline=JSON.parse(execFileSync('git',['show',`${packet.base_commit}:data/coverage/record-mappings.json`],{maxBuffer:20*1024*1024})).mappings;
+    const file=path.join(root,'data/coverage/record-mappings.json');
+    assert.throws(()=>assertConstruction(read(file).mappings,baseline),'Rejected head must reproduce the finding');
+    runIn(root,'scripts/integrate-aa-i123.mjs');runIn(root,'scripts/coverage-mappings.mjs');
+    assertConstruction(read(file).mappings,baseline);
+    const bytes=fs.readFileSync(file);
+    runIn(root,'scripts/integrate-aa-i123.mjs');runIn(root,'scripts/coverage-mappings.mjs');
+    assert.deepEqual(fs.readFileSync(file),bytes);
+  } finally {fs.rmSync(root,{recursive:true,force:true});}
+});
 
 test('AA-I123 preserves the original 14-question population and source/role limits',()=>{
   const inventory=read('data/research/aa-i123-inventory.json');
@@ -92,6 +175,10 @@ test('AA-I123 source rights and same-build export/archive membership remain exac
   }
   const snapshot=read('data/coverage/snapshots.json').snapshots.find(s=>s.id===packet.version);
   assert.deepEqual(snapshot.summary,read('dist/client/downloads/coverage.json').summary);
+  const prior=read('data/coverage/snapshots.json').snapshots.find(s=>s.id==='2026-09-18.123');
+  assert.ok(prior,'Original candidate snapshot remains historical evidence');
+  const baseline=JSON.parse(execFileSync('git',['show',`${packet.base_commit}:data/coverage/record-mappings.json`],{maxBuffer:20*1024*1024})).mappings;
+  assertConstruction(read('data/coverage/record-mappings.json').mappings,baseline);
 });
 
 test('AA-I123 replay is byte-stable and does not touch unrelated importer packages',()=>{

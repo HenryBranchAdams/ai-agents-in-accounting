@@ -91,8 +91,26 @@ for (const q of p.questions) {
 for (const id of union(p.sources.map(s=>s.id),families.map(f=>`guide-${f}`),[exampleId])) {
   const familyIds = id===exampleId ? families : id.startsWith('guide-') ? [id.slice(6)] : union(p.questions.filter(q=>q.source_ids.includes(id)).map(q=>q.family_id));
   const old=overrides.records[id]||{};
-  overrides.records[id]={...old,replace_question_ids:old.replace_question_ids??false,question_ids:union(old.question_ids||[],familyIds),industry_codes:old.industry_codes||[],industry_scope:old.industry_scope||'shared-context',basis_field:'/data',reason:'AA-I123 named questions cite these records within separate source and role limits; discovery only.',reviewed_question_ids:union(old.reviewed_question_ids||[],familyIds),reviewed_industry_codes:old.reviewed_industry_codes||[],reviewed_at:date,review_note:'Issue123 source/question associations inspected; no descendant or family sufficiency claim.'};
+  // Absence means inherit the canonical tags. An empty array is an explicit
+  // replacement, so never manufacture one for existing records.
+  const industryOverride={...old};
+  if (id===exampleId || p.sources.some(s=>s.id===id&&!s.reuse)) {
+    industryOverride.industry_scope ??= 'shared-context';
+    industryOverride.industry_codes ??= [];
+  }
+  // Repair only the known erroneous override from the published .123 candidate.
+  // Keep other explicit replacements, including deliberately empty ones.
+  if (p.sources.some(s=>s.id===id&&s.reuse) &&
+      read('data/catalog.json').corpus_version==='2026-09-18.123' &&
+      old.industry_scope==='shared-context' && old.industry_codes?.length===0 &&
+      old.review_note==='Issue123 source/question associations inspected; no descendant or family sufficiency claim.') {
+    delete industryOverride.industry_codes;
+    delete industryOverride.industry_scope;
+  }
+  overrides.records[id]={...industryOverride,replace_question_ids:old.replace_question_ids??false,question_ids:union(old.question_ids||[],familyIds),basis_field:'/data',reason:'AA-I123 named questions cite these records within separate source and role limits; discovery only.',reviewed_question_ids:union(old.reviewed_question_ids||[],familyIds),reviewed_industry_codes:old.reviewed_industry_codes||[],reviewed_at:date,review_note:'Issue123 source/question associations inspected; no descendant or family sufficiency claim.'};
 }
+overrides.mapping_version=p.version;
+overrides.updated_at=date;
 const criteria=read('data/coverage/research-criteria.json'); criteria.population.named_research_questions=registry.questions.length;
 registry.question_set_version=p.version;registry.corpus_version=p.version;registry.reviewed_at=date;
 assessments.assessment_version=p.version;
@@ -102,10 +120,14 @@ for (const file of ['data/coverage/subsector-profiles.json','data/coverage/subse
 }
 const catalog=read('data/catalog.json');
 if (catalog.corpus_version!==p.version) {
-  assert.equal(catalog.corpus_version,'2026-09-18.1','Apply on assigned base; newer corpus integration requires separate coordinator review.');
+  assert.ok(['2026-09-18.1','2026-09-18.123'].includes(catalog.corpus_version),'Apply on assigned base or the original .123 candidate; newer corpus integration requires separate coordinator review.');
+  const fresh=catalog.corpus_version==='2026-09-18.1';
   catalog.corpus_version=p.version;catalog.updated_at=date;
-  catalog.coverage_note += ' AA-I123 adds nine bounded US entity-event questions to six existing guides, original-source reviews and synthetic branches. All nine assessments remain partial; historical sources do not close current-authority gaps.';
-  catalog.review_note += ' AA-I123 was researched on 2026-09-18/19 with reserved edition 2026-09-18.123; no professional approval or deployment is asserted.';
+  if(fresh) {
+    catalog.coverage_note += ' AA-I123 adds nine bounded US entity-event questions to six existing guides, original-source reviews and synthetic branches. All nine assessments remain partial; historical sources do not close current-authority gaps.';
+    catalog.review_note += ' AA-I123 was researched on 2026-09-18/19 with reserved edition 2026-09-18.123; no professional approval or deployment is asserted.';
+  }
+  catalog.review_note += ' Correction edition 2026-09-19.1231 restores inherited construction mappings for both reused FASB sources and versions mapping provenance. The original .123 release and snapshot remain immutable; no scope or source acceptance upgrade.';
 }
 for(const [file,value] of Object.entries({'data/corpus/source.json':sources,'data/corpus/guide.json':guides,'data/corpus/example.json':examples,'data/coverage/research-questions.json':registry,'data/coverage/assessments.json':assessments,'data/coverage/mapping-overrides.json':overrides,'data/coverage/research-criteria.json':criteria,'data/catalog.json':catalog}))save(file,value);
 for(const [file,body] of outputs)if(!fs.existsSync(file)||fs.readFileSync(file,'utf8')!==body)fs.writeFileSync(file,body);

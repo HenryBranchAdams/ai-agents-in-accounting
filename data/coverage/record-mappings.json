@@ -1,12 +1,12 @@
 {
   "schema_version": "1.0.0",
-  "mapping_version": "2026-09-18.1",
+  "mapping_version": "2026-09-19.1231",
   "topology_version": "2026-09-11.1",
-  "corpus_version": "2026-09-18.123",
-  "generated_at": "2026-09-18",
+  "corpus_version": "2026-09-19.1231",
+  "generated_at": "2026-09-19",
   "corpus_sha256": "4813d72024a2f8546fb51c645364103455d54b82ee4dbcc4bcb466c025963b0c",
   "rules_sha256": "550b2bb485399af996bac6ed34542d7a91170d4b31b5e5026e0e9c2c32068b9d",
-  "overrides_sha256": "740eb26eb95f2eb931324e370be5599dde828fa195f2f631f0f04579e3e80d73",
+  "overrides_sha256": "99b760618775ee4a4d6c80d070fc6d0f9367152b9f745508d1b3d1c24eff2bd7",
   "method": "Deterministic title/topic associations, conservative industry crosswalk, and explicit editorial additions. All initial links are candidates; source review status is unchanged.",
   "mappings": [
     {
@@ -34210,8 +34210,20 @@
           ]
         }
       ],
-      "industry_scope": "shared-context",
-      "industry_mappings": [],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "23",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/industries/0",
+              "matched": "construction-real-estate",
+              "rule": "legacy-tag-crosswalk"
+            }
+          ]
+        }
+      ],
       "note": "Issue123 source/question associations inspected; no descendant or family sufficiency claim."
     },
     {
@@ -34281,8 +34293,20 @@
           ]
         }
       ],
-      "industry_scope": "shared-context",
-      "industry_mappings": [],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "23",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/industries/0",
+              "matched": "construction-real-estate",
+              "rule": "legacy-tag-crosswalk"
+            }
+          ]
+        }
+      ],
       "note": "Issue123 source/question associations inspected; no descendant or family sufficiency claim."
     },
     {

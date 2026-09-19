@@ -37,3 +37,11 @@ The issue-specific applicator appends owned IDs and fails on conflicting owned c
 Release-dependent assertions in four older test files now compare current exports and metadata with the current catalog or preserved input registry, and preserve historical release checks explicitly. The AA-I127 assessment test retains its full owned-question check while allowing additional shared-context assessments.
 
 Independent acceptance, merge and criteria-based issue closure belong to the coordinator. No claim is made that the current-authority or professional-review gaps have been closed.
+
+## Author correction after independent review
+
+The independent review of `6bb01850f7481afac3da20aae7f19c234388340e` identified that an absent industry override became an empty replacement for two reused sources, dropping their inherited construction `23` association. The applicator now preserves absent versus explicit overrides and repairs the known erroneous `.123` overrides for `src_construction_fasb_201817` and `src_construction_fasb_202305`. Explicit pre-existing replacements remain authoritative. Mapping version is now `2026-09-19.1231`, dated September 19, before generation.
+
+Correction release and snapshot `2026-09-19.1231` append to the immutable `.123` history. Use this new ID for the snapshot command above. No current-main integration is included. Research content, rights, source checks, original questions and partial assessments are unchanged; edition metadata and mapping evidence are corrected.
+
+Regression tests apply the corrected script to the exact assigned base and to the rejected source head in temporary fixtures. Both reused sources must retain construction scope and original industry-basis evidence after mapping and replay. Independent mutations restore the faulty empty override for each source and must fail the preservation assertions. Additional tests preserve deliberate explicit replacements and verify owned-content conflicts fail before any file write. These historical-fixture tests require Git history, as provided by the repository CI checkout.
