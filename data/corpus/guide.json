@@ -4961,7 +4961,9 @@
       "src_1og297z",
       "src_1v1zwt5",
       "src_1os761s",
-      "src_fasb_202010"
+      "src_fasb_202010",
+      "src_secsab0099",
+      "src_secsab0108"
     ],
     "related_ids": [
       "guide-q-reporting-basis"
@@ -4977,7 +4979,14 @@
       "supplemental_inventory_file": "data/research/reporting-foundations-inventory.json",
       "supplemental_reviewed_at": "2026-09-17",
       "supplemental_reviewer": "Codex AI-assisted research with source-scope review",
-      "supplemental_scope": "US GAAP month close for a selected private nongovernmental entity. The fixture uses a January 2026 reporting date, explicit event IDs, a reversible prior-period accrual, a scoped CAD payable, an earned-but-unrecorded expense and a balanced proposed close packet."
+      "supplemental_scope": "US GAAP month close for a selected private nongovernmental entity. The fixture uses a January 2026 reporting date, explicit event IDs, a reversible prior-period accrual, a scoped CAD payable, an earned-but-unrecorded expense and a balanced proposed close packet.",
+      "reporting_completion": {
+        "package_id": "reporting-completion-us",
+        "version": "2026-09-19.118-completion.1",
+        "family_id": "q-ledger-close",
+        "question_id": "rq-ledger-close-usgaap-month-close-completion",
+        "reviewed_at": "2026-09-19"
+      }
     },
     "rights": {
       "metadata": "CC0-1.0",
@@ -4994,7 +5003,9 @@
         "src_1og297z",
         "src_1v1zwt5",
         "src_1os761s",
-        "src_fasb_202010"
+        "src_fasb_202010",
+        "src_secsab0099",
+        "src_secsab0108"
       ],
       "source_locators": [
         {
@@ -5012,6 +5023,22 @@
         {
           "source_id": "src_fasb_202010",
           "locator": "ASU 2020-10 printed pp.13-14; Topic 250-10-45-27 and 250-10-50-12 materiality considerations for error correction, plus 250-10-50-7A historical-summary disclosure; update and not current consolidated text."
+        },
+        {
+          "source_id": "src_1os761s",
+          "locator": "Current ASC Topics 210/220/250 access boundary"
+        },
+        {
+          "source_id": "src_fasb_202010",
+          "locator": "ASU 2020-10 pp. 17-18, 41-44"
+        },
+        {
+          "source_id": "src_secsab0099",
+          "locator": "SAB 99 Topic 1.M and footnote 50"
+        },
+        {
+          "source_id": "src_secsab0108",
+          "locator": "SAB 108 Topic 1.N paragraphs 47-60"
         }
       ],
       "shared_inputs": [
@@ -5237,6 +5264,95 @@
               "empirical-support": "not-assessed"
             }
           }
+        },
+        {
+          "id": "rq-ledger-close-usgaap-month-close-completion",
+          "question": "What evidence, journal controls and reconciliation steps make a proposed US GAAP month close reproducible without treating a later invoice or payment as an automatic prior-period entry?",
+          "scope": "US GAAP January 2026 month close for the selected private nongovernmental entity; SEC registrant materiality and books-and-records considerations are separate.",
+          "conditions": [
+            "Entity role, US GAAP basis, reporting period and current effective requirements are declared before applying the route.",
+            "The selected answer is bounded to the listed source locators and does not decide entity-specific accounting."
+          ],
+          "answer": "Freeze the reporting period, entity, ledger and subledger populations; reconcile opening balances and activity to the GL; identify cutoff items using service or obligation dates rather than payment dates; retain each proposed journal's source row, calculation, period, preparer, reviewer and posting status; and reperform the closing trial balance and financial-statement bridge. A later invoice or payment is evidence to investigate, not an automatic prior-period entry. For an SEC registrant, assess a missed close item under SAB 99's quantitative and qualitative materiality framework and, when an error remains unadjusted, quantify its effects across the relevant financial statements and disclosures under SAB 108. Current ASC 250 and entity facts still require permitted review before a live conclusion.",
+          "answer_status": "sourced-answer-bounded",
+          "source_ids": [
+            "src_1os761s",
+            "src_fasb_202010",
+            "src_secsab0099",
+            "src_secsab0108"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_1os761s",
+              "locator": "Current ASC Topics 210/220/250 access boundary"
+            },
+            {
+              "source_id": "src_fasb_202010",
+              "locator": "ASU 2020-10 pp. 17-18, 41-44"
+            },
+            {
+              "source_id": "src_secsab0099",
+              "locator": "SAB 99 Topic 1.M and footnote 50"
+            },
+            {
+              "source_id": "src_secsab0108",
+              "locator": "SAB 108 Topic 1.N paragraphs 47-60"
+            }
+          ],
+          "dimensions": {
+            "scope": "present",
+            "accounting-question": "partial",
+            "evidence-inputs": "present",
+            "workflow": "present",
+            "controls": "present",
+            "worked-material": "present",
+            "empirical-support": "not-assessed"
+          },
+          "inputs": [
+            "Entity, role, US GAAP basis, period-end and close calendar",
+            "GL, subledger, bank and journal populations with extraction timestamps",
+            "Cutoff evidence, invoices, service dates, receipts, contracts and subsequent settlement facts",
+            "Journal calculation, preparer/reviewer, approval, posting and exception status"
+          ],
+          "controls": [
+            "Population completeness and cutoff sign-off",
+            "Journal packet required before posting",
+            "Independent reconciliation and exception review",
+            "Post-close invoice/payment review linked to period evidence",
+            "SEC-only materiality and error escalation when applicable"
+          ],
+          "exceptions": [
+            "A February payment for a January obligation is not by itself proof that a January accrual was omitted.",
+            "A late invoice for February service is not a January close entry merely because it arrived during the close review.",
+            "A small numerical difference is not automatically immaterial for an SEC registrant under SAB 99."
+          ],
+          "remaining_gaps": [
+            "Current ASC 250 paragraph text was not readable in the public review session.",
+            "A real ERP population, access log, approval record and operating-effectiveness test were not obtained.",
+            "SEC SAB 99 and 108 do not establish private-company materiality or posting thresholds."
+          ],
+          "family_id": "q-ledger-close",
+          "worked_record_id": "example-us-reporting-completion-boundaries",
+          "assessment": {
+            "status": "partial",
+            "dimensions": {
+              "scope": "present",
+              "accounting-question": "partial",
+              "evidence-inputs": "present",
+              "workflow": "present",
+              "controls": "present",
+              "worked-material": "present",
+              "empirical-support": "not-assessed"
+            },
+            "basis": "Primary-source excerpts, current-access boundaries and original synthetic close evidence; no current Codification or professional review."
+          },
+          "reporting_completion": {
+            "package_id": "reporting-completion-us",
+            "version": "2026-09-19.118-completion.1",
+            "family_id": "q-ledger-close",
+            "question_id": "rq-ledger-close-usgaap-month-close-completion",
+            "reviewed_at": "2026-09-19"
+          }
         }
       ],
       "editorial_brief": {
@@ -5315,7 +5431,16 @@
       ],
       "supplemental_research_package": "reporting-foundations-us",
       "supplemental_research_file": "data/research/reporting-foundations.json",
-      "supplemental_inventory_file": "data/research/reporting-foundations-inventory.json"
+      "supplemental_inventory_file": "data/research/reporting-foundations-inventory.json",
+      "reporting_completion": {
+        "package_id": "reporting-completion-us",
+        "version": "2026-09-19.118-completion.1",
+        "family_id": "q-ledger-close",
+        "question_id": "rq-ledger-close-usgaap-month-close-completion",
+        "reviewed_at": "2026-09-19",
+        "source_file": "data/research/reporting-completion-2026-09-19.json",
+        "inventory_file": "data/research/reporting-completion-inventory-2026-09-19.json"
+      }
     }
   },
   {
@@ -5336,7 +5461,9 @@
       "src_ias08pol",
       "src_1os761s",
       "src_fasb_202511",
-      "src_secsab0099"
+      "src_secsab0099",
+      "src_fasb_202010",
+      "src_secsab0108"
     ],
     "related_ids": [
       "guide-q-reporting-basis",
@@ -5353,7 +5480,14 @@
       "supplemental_inventory_file": "data/research/reporting-foundations-inventory.json",
       "supplemental_reviewed_at": "2026-09-17",
       "supplemental_reviewer": "Codex AI-assisted research with source-scope review",
-      "supplemental_scope": "US GAAP estimate-change versus error branch for a selected private nongovernmental entity. The linked fixture includes a warranty estimate revision branch with an explicit availability-of-information question."
+      "supplemental_scope": "US GAAP estimate-change versus error branch for a selected private nongovernmental entity. The linked fixture includes a warranty estimate revision branch with an explicit availability-of-information question.",
+      "reporting_completion": {
+        "package_id": "reporting-completion-us",
+        "version": "2026-09-19.118-completion.1",
+        "family_id": "q-estimates",
+        "question_id": "rq-estimates-us-change-or-error-completion",
+        "reviewed_at": "2026-09-19"
+      }
     },
     "rights": {
       "metadata": "CC0-1.0",
@@ -5370,7 +5504,9 @@
         "src_ias08pol",
         "src_1os761s",
         "src_fasb_202511",
-        "src_secsab0099"
+        "src_secsab0099",
+        "src_fasb_202010",
+        "src_secsab0108"
       ],
       "source_locators": [
         {
@@ -5388,6 +5524,22 @@
         {
           "source_id": "src_secsab0099",
           "locator": "SAB 99, Topic 1.M, Assessing Materiality question and interpretive response; SEC staff guidance for registrants, not a Commission rule or private-company US GAAP authority."
+        },
+        {
+          "source_id": "src_1os761s",
+          "locator": "Current ASC Topics 250 and 820 access boundary"
+        },
+        {
+          "source_id": "src_fasb_202010",
+          "locator": "ASU 2020-10 ASC 250-10-45-27 and 105-10-65-6"
+        },
+        {
+          "source_id": "src_secsab0099",
+          "locator": "SAB 99 Topic 1.M estimate-imprecision factors"
+        },
+        {
+          "source_id": "src_secsab0108",
+          "locator": "SAB 108 Topic 1.N Question 1"
         }
       ],
       "shared_inputs": [
@@ -5596,6 +5748,96 @@
               "empirical-support": "not-assessed"
             }
           }
+        },
+        {
+          "id": "rq-estimates-us-change-or-error-completion",
+          "question": "Under US GAAP, which facts distinguish a change in estimate from an error, and how should the decision be evidenced before a period or comparative is changed?",
+          "scope": "US GAAP estimate-versus-error analysis for the selected private entity; SEC registrant materiality overlay remains separate.",
+          "conditions": [
+            "Entity role, US GAAP basis, reporting period and current effective requirements are declared before applying the route.",
+            "The selected answer is bounded to the listed source locators and does not decide entity-specific accounting."
+          ],
+          "answer": "Start with the information that existed and was reasonably available when the earlier financial statements were prepared. A changed estimate is supported when new facts, experience or conditions revise an earlier reasonable amount; an error route is indicated when the earlier amount omitted or misapplied facts or GAAP that were available then. Preserve the original estimate, evidence cutoff, new information, recalculation, affected periods, statement and disclosure effects, reviewer decision and required correction path. Do not label a known prior-period omission a new estimate merely because the amount was uncertain. SAB 99 requires more than a mechanical percentage for SEC registrants, and SAB 108 requires the effects of an identified error to be quantified across each financial statement and related disclosure. Current ASC 250 text and entity-specific materiality remain open.",
+          "answer_status": "sourced-answer-bounded",
+          "source_ids": [
+            "src_1os761s",
+            "src_fasb_202010",
+            "src_secsab0099",
+            "src_secsab0108"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_1os761s",
+              "locator": "Current ASC Topics 250 and 820 access boundary"
+            },
+            {
+              "source_id": "src_fasb_202010",
+              "locator": "ASU 2020-10 ASC 250-10-45-27 and 105-10-65-6"
+            },
+            {
+              "source_id": "src_secsab0099",
+              "locator": "SAB 99 Topic 1.M estimate-imprecision factors"
+            },
+            {
+              "source_id": "src_secsab0108",
+              "locator": "SAB 108 Topic 1.N Question 1"
+            }
+          ],
+          "dimensions": {
+            "scope": "present",
+            "accounting-question": "partial",
+            "evidence-inputs": "present",
+            "workflow": "present",
+            "controls": "present",
+            "worked-material": "present",
+            "empirical-support": "not-assessed"
+          },
+          "inputs": [
+            "Prior estimate and calculation version",
+            "Facts available at the original reporting date",
+            "New evidence date and source",
+            "Affected accounts, periods, disclosures and comparative statements",
+            "Materiality and reviewer assessment"
+          ],
+          "controls": [
+            "Versioned estimate memo",
+            "Evidence-availability date check",
+            "Independent estimate-versus-error review",
+            "Statement/disclosure impact matrix",
+            "SEC registrant quantitative and qualitative materiality review when applicable"
+          ],
+          "exceptions": [
+            "A later change in expected warranty claims can be new information; an invoice already received but omitted from the earlier close is not made an estimate change by uncertainty.",
+            "A revised estimate is not evidence that the original estimate was an error.",
+            "A correction cannot be justified by offsetting an estimated misstatement against a precise misstatement without considering qualitative and aggregate effects."
+          ],
+          "remaining_gaps": [
+            "Current ASC 250 treatment and transition text was not directly accessed.",
+            "Materiality, comparative correction and issued-period facts are not supplied by the synthetic case.",
+            "No valuation, legal, engineering or management evidence was obtained."
+          ],
+          "family_id": "q-estimates",
+          "worked_record_id": "example-us-reporting-completion-boundaries",
+          "assessment": {
+            "status": "partial",
+            "dimensions": {
+              "scope": "present",
+              "accounting-question": "partial",
+              "evidence-inputs": "present",
+              "workflow": "present",
+              "controls": "present",
+              "worked-material": "present",
+              "empirical-support": "not-assessed"
+            },
+            "basis": "Public primary excerpts and original estimate/error counterexamples; no current Codification or professional review."
+          },
+          "reporting_completion": {
+            "package_id": "reporting-completion-us",
+            "version": "2026-09-19.118-completion.1",
+            "family_id": "q-estimates",
+            "question_id": "rq-estimates-us-change-or-error-completion",
+            "reviewed_at": "2026-09-19"
+          }
         }
       ],
       "editorial_brief": {
@@ -5671,7 +5913,16 @@
       ],
       "supplemental_research_package": "reporting-foundations-us",
       "supplemental_research_file": "data/research/reporting-foundations.json",
-      "supplemental_inventory_file": "data/research/reporting-foundations-inventory.json"
+      "supplemental_inventory_file": "data/research/reporting-foundations-inventory.json",
+      "reporting_completion": {
+        "package_id": "reporting-completion-us",
+        "version": "2026-09-19.118-completion.1",
+        "family_id": "q-estimates",
+        "question_id": "rq-estimates-us-change-or-error-completion",
+        "reviewed_at": "2026-09-19",
+        "source_file": "data/research/reporting-completion-2026-09-19.json",
+        "inventory_file": "data/research/reporting-completion-inventory-2026-09-19.json"
+      }
     }
   },
   {
@@ -5695,7 +5946,9 @@
       "src_secfrm26",
       "src_sec_regsx",
       "src_fasb_202010",
-      "src_secsab0099"
+      "src_secsab0099",
+      "src_aa118_sec_frm_topic1",
+      "src_regsxcfr"
     ],
     "related_ids": [
       "guide-q-reporting-basis"
@@ -5711,7 +5964,14 @@
       "supplemental_inventory_file": "data/research/reporting-foundations-inventory.json",
       "supplemental_reviewed_at": "2026-09-17",
       "supplemental_reviewer": "Codex AI-assisted research with source-scope review",
-      "supplemental_scope": "US GAAP statement and disclosure mapping for the selected private nongovernmental entity, with a separate SEC registrant counterexample. This supplement does not duplicate digital filing implementation or XBRL evidence."
+      "supplemental_scope": "US GAAP statement and disclosure mapping for the selected private nongovernmental entity, with a separate SEC registrant counterexample. This supplement does not duplicate digital filing implementation or XBRL evidence.",
+      "reporting_completion": {
+        "package_id": "reporting-completion-us",
+        "version": "2026-09-19.118-completion.1",
+        "family_id": "q-presentation",
+        "question_id": "rq-presentation-us-statements-disclosures-completion",
+        "reviewed_at": "2026-09-19"
+      }
     },
     "rights": {
       "metadata": "CC0-1.0",
@@ -5731,7 +5991,9 @@
         "src_secfrm26",
         "src_sec_regsx",
         "src_fasb_202010",
-        "src_secsab0099"
+        "src_secsab0099",
+        "src_aa118_sec_frm_topic1",
+        "src_regsxcfr"
       ],
       "source_locators": [
         {
@@ -5761,6 +6023,22 @@
         {
           "source_id": "src_secsab0099",
           "locator": "SAB 99, Topic 1.M, Assessing Materiality question and interpretive response; SEC staff guidance for registrants, not a Commission rule or private-company US GAAP authority."
+        },
+        {
+          "source_id": "src_1os761s",
+          "locator": "Current ASC Topics 210 and 220 access boundary"
+        },
+        {
+          "source_id": "src_aa118_sec_frm_topic1",
+          "locator": "SEC FRM Topic 1 sections 1110.1, 1410-1410.1 and 1450.1-1450.4"
+        },
+        {
+          "source_id": "src_regsxcfr",
+          "locator": "17 CFR Part 210 Articles 3-5"
+        },
+        {
+          "source_id": "src_fasb_202010",
+          "locator": "ASU 2020-10 historical presentation and disclosure amendments"
         }
       ],
       "shared_inputs": [
@@ -5989,6 +6267,96 @@
               "empirical-support": "not-assessed"
             }
           }
+        },
+        {
+          "id": "rq-presentation-us-statements-disclosures-completion",
+          "question": "How should a US GAAP close map adjusted ledger balances to statements and disclosures while deciding whether an SEC filing overlay applies?",
+          "scope": "US GAAP statement and disclosure mapping for the selected private entity, with SEC registrant routing as a counterexample.",
+          "conditions": [
+            "Entity role, US GAAP basis, reporting period and current effective requirements are declared before applying the route.",
+            "The selected answer is bounded to the listed source locators and does not decide entity-specific accounting."
+          ],
+          "answer": "Build a versioned mapping from each adjusted trial-balance line to the statement line, note, policy, comparative period and supporting evidence. Reconcile subtotals and totals, record current/noncurrent and operating/nonoperating classification facts, identify required disclosures and retain an exception log for unmapped or aggregated balances. First classify the entity and reporting purpose: a private nongovernmental entity follows its applicable US GAAP presentation and disclosure requirements; a domestic SEC issuer must also route through Regulation S-X and the applicable form and filer class. The SEC FRM is useful current staff routing but is explicitly nonauthoritative. Do not use an SEC filing format as a private-company rule or treat a taxonomy tag as proof that the underlying accounting conclusion is correct.",
+          "answer_status": "sourced-answer-bounded",
+          "source_ids": [
+            "src_1os761s",
+            "src_aa118_sec_frm_topic1",
+            "src_regsxcfr",
+            "src_fasb_202010"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_1os761s",
+              "locator": "Current ASC Topics 210 and 220 access boundary"
+            },
+            {
+              "source_id": "src_aa118_sec_frm_topic1",
+              "locator": "SEC FRM Topic 1 sections 1110.1, 1410-1410.1 and 1450.1-1450.4"
+            },
+            {
+              "source_id": "src_regsxcfr",
+              "locator": "17 CFR Part 210 Articles 3-5"
+            },
+            {
+              "source_id": "src_fasb_202010",
+              "locator": "ASU 2020-10 historical presentation and disclosure amendments"
+            }
+          ],
+          "dimensions": {
+            "scope": "present",
+            "accounting-question": "partial",
+            "evidence-inputs": "present",
+            "workflow": "present",
+            "controls": "present",
+            "worked-material": "present",
+            "empirical-support": "not-assessed"
+          },
+          "inputs": [
+            "Adjusted trial balance and mapping version",
+            "Entity class, reporting framework, filing status and reporting form",
+            "Statement line, note, comparative and policy mapping",
+            "Classification, aggregation, disclosure and taxonomy evidence",
+            "Reviewer sign-off and unresolved exception list"
+          ],
+          "controls": [
+            "Trial-balance-to-statement completeness check",
+            "Statement-to-note cross-reference review",
+            "Comparative-period and classification review",
+            "SEC overlay decision record",
+            "Taxonomy and filing package review kept separate from accounting approval"
+          ],
+          "exceptions": [
+            "A private entity does not become an SEC registrant because its output resembles Form 10-K presentation.",
+            "An SEC filer cannot rely on a private-company statement layout without checking applicable S-X article and form requirements.",
+            "A valid XBRL tag or rendered line does not prove the mapped amount, period or disclosure is correct."
+          ],
+          "remaining_gaps": [
+            "Current ASC 210/220 presentation and disclosure text was not directly accessed.",
+            "The current eCFR page was identified but individual Part 210 paragraphs were not extracted in the review session.",
+            "No actual filing, taxonomy package or disclosure checklist was reviewed."
+          ],
+          "family_id": "q-presentation",
+          "worked_record_id": "example-us-reporting-completion-boundaries",
+          "assessment": {
+            "status": "partial",
+            "dimensions": {
+              "scope": "present",
+              "accounting-question": "partial",
+              "evidence-inputs": "present",
+              "workflow": "present",
+              "controls": "present",
+              "worked-material": "present",
+              "empirical-support": "not-assessed"
+            },
+            "basis": "Current SEC routing sources, historical FASB presentation changes and original statement-mapping fixture; no current Codification or filing review."
+          },
+          "reporting_completion": {
+            "package_id": "reporting-completion-us",
+            "version": "2026-09-19.118-completion.1",
+            "family_id": "q-presentation",
+            "question_id": "rq-presentation-us-statements-disclosures-completion",
+            "reviewed_at": "2026-09-19"
+          }
         }
       ],
       "editorial_brief": {
@@ -6068,7 +6436,16 @@
       ],
       "supplemental_research_package": "reporting-foundations-us",
       "supplemental_research_file": "data/research/reporting-foundations.json",
-      "supplemental_inventory_file": "data/research/reporting-foundations-inventory.json"
+      "supplemental_inventory_file": "data/research/reporting-foundations-inventory.json",
+      "reporting_completion": {
+        "package_id": "reporting-completion-us",
+        "version": "2026-09-19.118-completion.1",
+        "family_id": "q-presentation",
+        "question_id": "rq-presentation-us-statements-disclosures-completion",
+        "reviewed_at": "2026-09-19",
+        "source_file": "data/research/reporting-completion-2026-09-19.json",
+        "inventory_file": "data/research/reporting-completion-inventory-2026-09-19.json"
+      }
     }
   },
   {
@@ -6443,7 +6820,9 @@
       "src_1os761s",
       "src_fasb_202010",
       "src_fasb_202511",
-      "src_secsab0099"
+      "src_secsab0099",
+      "src_secsab0108",
+      "src_aa118_sec_frm_topic1"
     ],
     "related_ids": [
       "guide-q-reporting-basis",
@@ -6460,7 +6839,14 @@
       "supplemental_inventory_file": "data/research/reporting-foundations-inventory.json",
       "supplemental_reviewed_at": "2026-09-17",
       "supplemental_reviewer": "Codex AI-assisted research with source-scope review",
-      "supplemental_scope": "US GAAP accounting-change and error-correction routing for the selected private entity. The linked fixture includes an issued-period error branch that distinguishes information available before issuance from information discovered later."
+      "supplemental_scope": "US GAAP accounting-change and error-correction routing for the selected private entity. The linked fixture includes an issued-period error branch that distinguishes information available before issuance from information discovered later.",
+      "reporting_completion": {
+        "package_id": "reporting-completion-us",
+        "version": "2026-09-19.118-completion.1",
+        "family_id": "q-policy-changes-errors",
+        "question_id": "rq-policy-changes-errors-usgaap-completion",
+        "reviewed_at": "2026-09-19"
+      }
     },
     "rights": {
       "metadata": "CC0-1.0",
@@ -6478,7 +6864,9 @@
         "src_1os761s",
         "src_fasb_202010",
         "src_fasb_202511",
-        "src_secsab0099"
+        "src_secsab0099",
+        "src_secsab0108",
+        "src_aa118_sec_frm_topic1"
       ],
       "source_locators": [
         {
@@ -6500,6 +6888,26 @@
         {
           "source_id": "src_secsab0099",
           "locator": "SAB 99, Topic 1.M, Assessing Materiality question and interpretive response; SEC staff guidance for registrants, not a Commission rule or private-company US GAAP authority."
+        },
+        {
+          "source_id": "src_1os761s",
+          "locator": "Current ASC Topic 250 access boundary"
+        },
+        {
+          "source_id": "src_fasb_202010",
+          "locator": "ASU 2020-10 ASC 250-10-45-27, 45-28, 50-7A, 50-12 and 105-10-65-6"
+        },
+        {
+          "source_id": "src_secsab0099",
+          "locator": "SAB 99 Topic 1.M"
+        },
+        {
+          "source_id": "src_secsab0108",
+          "locator": "SAB 108 Topic 1.N"
+        },
+        {
+          "source_id": "src_aa118_sec_frm_topic1",
+          "locator": "SEC FRM Topic 1 sections 1410 and 1450"
         }
       ],
       "shared_inputs": [
@@ -6710,6 +7118,101 @@
               "empirical-support": "not-assessed"
             }
           }
+        },
+        {
+          "id": "rq-policy-changes-errors-usgaap-completion",
+          "question": "How should a US GAAP workpaper distinguish a policy change, estimate change and error before deciding whether a comparative or issued period requires correction?",
+          "scope": "US GAAP Topic 250 decision for the selected private entity; SEC registrant materiality and filing overlay remains separate.",
+          "conditions": [
+            "Entity role, US GAAP basis, reporting period and current effective requirements are declared before applying the route.",
+            "The selected answer is bounded to the listed source locators and does not decide entity-specific accounting."
+          ],
+          "answer": "Start with the governing accounting policy, the facts available when the earlier statements were prepared, the reason for the proposed change and the periods affected. A policy change requires a documented basis and applicable transition path; an estimate change reflects new information and must retain the old estimate and evidence layer; an error reflects a mathematical mistake, GAAP misapplication or misuse or oversight of facts that were available when the statements were prepared. The workpaper should identify whether statements were issued, quantify affected statements and disclosures, preserve comparatives and opening equity where relevant, and obtain a reviewer decision before posting or restating. ASU 2020-10 supplies bounded current-history and disclosure references, while SAB 99 and SAB 108 supply SEC materiality and prior-year quantification context. The current ASC 250 text and entity-specific correction treatment still require permitted review.",
+          "answer_status": "sourced-answer-bounded",
+          "source_ids": [
+            "src_1os761s",
+            "src_fasb_202010",
+            "src_secsab0099",
+            "src_secsab0108",
+            "src_aa118_sec_frm_topic1"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_1os761s",
+              "locator": "Current ASC Topic 250 access boundary"
+            },
+            {
+              "source_id": "src_fasb_202010",
+              "locator": "ASU 2020-10 ASC 250-10-45-27, 45-28, 50-7A, 50-12 and 105-10-65-6"
+            },
+            {
+              "source_id": "src_secsab0099",
+              "locator": "SAB 99 Topic 1.M"
+            },
+            {
+              "source_id": "src_secsab0108",
+              "locator": "SAB 108 Topic 1.N"
+            },
+            {
+              "source_id": "src_aa118_sec_frm_topic1",
+              "locator": "SEC FRM Topic 1 sections 1410 and 1450"
+            }
+          ],
+          "dimensions": {
+            "scope": "present",
+            "accounting-question": "partial",
+            "evidence-inputs": "present",
+            "workflow": "present",
+            "controls": "present",
+            "worked-material": "present",
+            "empirical-support": "not-assessed"
+          },
+          "inputs": [
+            "Policy and standard version",
+            "Original facts and information-availability date",
+            "Reason for change or discovered omission",
+            "Affected periods, statements, disclosures and issued status",
+            "Materiality, transition and reviewer evidence"
+          ],
+          "controls": [
+            "Change-classification memo",
+            "Facts-available-at-preparation check",
+            "Period and issued-status matrix",
+            "Comparative and disclosure impact review",
+            "Independent approval before correction or restatement"
+          ],
+          "exceptions": [
+            "A new useful-life estimate based on later operating experience is not automatically an error.",
+            "A known invoice or contract fact omitted from an earlier close is not converted into an estimate change by calling the amount uncertain.",
+            "A future ASU or SEC staff route is not the current default for a private entity without an applicability analysis."
+          ],
+          "remaining_gaps": [
+            "Current ASC 250 classification and correction paragraphs were not directly accessed.",
+            "The package does not decide materiality, retrospective correction or restatement for a real entity.",
+            "SEC staff guidance does not establish private-company filing or professional-review conclusions."
+          ],
+          "family_id": "q-policy-changes-errors",
+          "worked_record_id": "example-us-reporting-completion-boundaries",
+          "assessment": {
+            "status": "partial",
+            "dimensions": {
+              "scope": "present",
+              "accounting-question": "partial",
+              "evidence-inputs": "present",
+              "workflow": "present",
+              "controls": "present",
+              "worked-material": "present",
+              "empirical-support": "not-assessed"
+            },
+            "basis": "Official historical update and SEC primary guidance with explicit current-access limits; no current Codification or professional review."
+          },
+          "reporting_completion": {
+            "package_id": "reporting-completion-us",
+            "version": "2026-09-19.118-completion.1",
+            "family_id": "q-policy-changes-errors",
+            "question_id": "rq-policy-changes-errors-usgaap-completion",
+            "reviewed_at": "2026-09-19"
+          }
         }
       ],
       "editorial_brief": {
@@ -6787,7 +7290,16 @@
       ],
       "supplemental_research_package": "reporting-foundations-us",
       "supplemental_research_file": "data/research/reporting-foundations.json",
-      "supplemental_inventory_file": "data/research/reporting-foundations-inventory.json"
+      "supplemental_inventory_file": "data/research/reporting-foundations-inventory.json",
+      "reporting_completion": {
+        "package_id": "reporting-completion-us",
+        "version": "2026-09-19.118-completion.1",
+        "family_id": "q-policy-changes-errors",
+        "question_id": "rq-policy-changes-errors-usgaap-completion",
+        "reviewed_at": "2026-09-19",
+        "source_file": "data/research/reporting-completion-2026-09-19.json",
+        "inventory_file": "data/research/reporting-completion-inventory-2026-09-19.json"
+      }
     }
   },
   {

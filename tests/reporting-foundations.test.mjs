@@ -312,7 +312,11 @@ test("the applicator refuses a newer unrelated field on a matching canonical rec
     for (const file of inputs) {
       const destination = path.join(root, file);
       fs.mkdirSync(path.dirname(destination), { recursive: true });
-      fs.copyFileSync(file, destination);
+      // Pin the accepted source objects for these historical later-stage guard
+      // tests. New supplemental reviews correctly make the legacy applicator
+      // reject a current source earlier, before the field under test is reached.
+      if (file === "data/corpus/source.json") fs.writeFileSync(destination, execFileSync("git", ["show", "66b0eda121cd9aee40857a2d691e25b18737f63e:data/corpus/source.json"], { maxBuffer: 32 * 1024 * 1024 }));
+      else fs.copyFileSync(file, destination);
     }
     return root;
   };
@@ -575,7 +579,11 @@ test("the applicator preserves newer source mappings and rejects conflicting ass
     for (const file of [...canonicalInputs, ...packageInputs]) {
       const destination = path.join(root, file);
       fs.mkdirSync(path.dirname(destination), { recursive: true });
-      fs.copyFileSync(file, destination);
+      // Pin the accepted source objects for these historical later-stage guard
+      // tests. New supplemental reviews correctly make the legacy applicator
+      // reject a current source earlier, before the field under test is reached.
+      if (file === "data/corpus/source.json") fs.writeFileSync(destination, execFileSync("git", ["show", "66b0eda121cd9aee40857a2d691e25b18737f63e:data/corpus/source.json"], { maxBuffer: 32 * 1024 * 1024 }));
+      else fs.copyFileSync(file, destination);
     }
     return root;
   };
