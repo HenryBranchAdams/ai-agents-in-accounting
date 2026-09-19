@@ -11016,7 +11016,8 @@
     "summary": "Shared accounting foundation; entity, framework, jurisdiction and period must be declared. Only the named questions and accessed editions are assessed; other family branches remain open.",
     "topics": [
       "Scoped research",
-      "Debt, financing costs and covenants"
+      "Debt, financing costs and covenants",
+      "US GAAP capital and financing"
     ],
     "industries": [],
     "jurisdiction": "Entities applying the stated IFRS framework; local adoption and period must be established",
@@ -11025,9 +11026,14 @@
     "source_url": null,
     "source_ids": [
       "src_ias1",
-      "src_ifrs09a"
+      "src_ifrs09a",
+      "src_fasb_asu_201503_debt_costs",
+      "src_fasb_asc470_debt",
+      "src_fasb_asu_201613_credit_losses"
     ],
-    "related_ids": [],
+    "related_ids": [
+      "example-capital-financing-evidence"
+    ],
     "review_status": "editorially-reviewed",
     "reviewed_at": "2026-09-11",
     "provenance": {
@@ -11049,7 +11055,10 @@
       "review_basis": "Substantive bounded repair from cited official material; professional review not performed.",
       "source_ids": [
         "src_ias1",
-        "src_ifrs09a"
+        "src_ifrs09a",
+        "src_fasb_asu_201503_debt_costs",
+        "src_fasb_asc470_debt",
+        "src_fasb_asu_201613_credit_losses"
       ],
       "source_locators": [
         {
@@ -11201,6 +11210,120 @@
               "empirical-support": "not-assessed"
             }
           }
+        },
+        {
+          "id": "rq-aa-i121-debt-costs-covenants",
+          "question": "How do debt issuance costs, effective interest and covenant terms affect US GAAP debt measurement and presentation?",
+          "scope": "US GAAP debt issued by a reporting entity; instrument terms, issue date, reporting date and applicable effective period declared.",
+          "conditions": [
+            "Separate debt measurement from current/noncurrent classification and covenant disclosure.",
+            "Use the applicable entity and adoption date before applying an Update."
+          ],
+          "answer": "ASU 2015-03 presents debt issuance costs as a direct deduction from the related debt liability and amortizes them as interest expense using the effective interest method. Covenant classification and disclosure then require the reporting-date breach, waiver and grace-period facts identified by ASC 470-10.",
+          "answer_status": "sourced-answer-bounded",
+          "source_ids": [
+            "src_fasb_asu_201503_debt_costs",
+            "src_fasb_asc470_debt"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_fasb_asu_201503_debt_costs",
+              "locator": "ASU 2015-03 pp. 1-2; ASC 835-30-45-1A and 45-2."
+            },
+            {
+              "source_id": "src_fasb_asc470_debt",
+              "locator": "ASC 470-10-45-1 through 45-4 and 50-1 through 50-2."
+            }
+          ],
+          "inputs": [
+            "Executed debt agreement, issuance costs, principal, rate, maturity, payment schedule and covenant definitions.",
+            "Reporting-date compliance calculation, waiver or grace-period evidence, ledger tie-out and adoption cohort."
+          ],
+          "controls": [
+            "Independent recomputation of effective-interest amortization and covenant ratios.",
+            "Reporting-date legal and treasury review with retained waiver, breach and approval evidence."
+          ],
+          "exceptions": [
+            "Modification, extinguishment, related-party financing, collateral, default, waiver after period end or disputed covenant definition.",
+            "Current Codification text, entity adoption and SEC disclosure requirements may differ from the bounded source excerpt."
+          ],
+          "remaining_gaps": [
+            "No entity debt agreement or covenant calculation was reviewed.",
+            "Current licensed Codification access and professional review remain unresolved."
+          ],
+          "family_id": "q-debt",
+          "assessment": {
+            "status": "partial",
+            "basis": "Presence of a source-linked bounded answer, explicit inputs, controls, synthetic worked material and stated limitations. This is not a family-wide sufficiency or professional conclusion.",
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "dimensions": {
+              "scope": "present",
+              "accounting-question": "partial",
+              "evidence-inputs": "present",
+              "workflow": "present",
+              "controls": "present",
+              "worked-material": "present",
+              "empirical-support": "not-assessed"
+            }
+          }
+        },
+        {
+          "id": "rq-aa-i121-debt-evidence",
+          "question": "What evidence supports a US GAAP debt classification, covenant and expected-credit-loss conclusion?",
+          "scope": "US GAAP financing portfolio and reporting date declared; each instrument and applicable credit-loss scope identified.",
+          "conditions": [
+            "Reconcile the legal instrument population to the general ledger and reporting package.",
+            "Do not infer covenant compliance or expected losses from a balance alone."
+          ],
+          "answer": "The evidence packet should link each instrument to its executed terms, reporting-date maturity and covenant calculation, then separately identify financial assets within ASC 326 scope and the reasonable and supportable information used in the expected-credit-loss estimate. ASU 2016-13 does not prescribe one estimation method.",
+          "answer_status": "sourced-answer-bounded",
+          "source_ids": [
+            "src_fasb_asc470_debt",
+            "src_fasb_asu_201613_credit_losses"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_fasb_asc470_debt",
+              "locator": "ASC 470-10-45-1 through 45-4 and 50-1 through 50-2."
+            },
+            {
+              "source_id": "src_fasb_asu_201613_credit_losses",
+              "locator": "ASU 2016-13 pp. 2-10; ASC 326-20-30, 35 and 55-7."
+            }
+          ],
+          "inputs": [
+            "Debt and receivable population, contractual cash flows, aging, collateral, forecasts, historical loss data and approvals.",
+            "Source-to-ledger reconciliation, model version, assumptions, overrides and reporting-date events."
+          ],
+          "controls": [
+            "Population completeness, duplicate detection and source-to-ledger reconciliation.",
+            "Model governance, forecast support, approval and exception escalation."
+          ],
+          "exceptions": [
+            "Borrower modification, disputed rights, collateral dependency, concentration, restructuring, forecast uncertainty or missing source population.",
+            "A debt covenant question and a credit-loss question can have different instruments, models and reviewers."
+          ],
+          "remaining_gaps": [
+            "No portfolio, forecast or covenant file was independently tested.",
+            "No professional assessment of the entity's ASC 326 scope or model was performed."
+          ],
+          "family_id": "q-debt",
+          "assessment": {
+            "status": "partial",
+            "basis": "Presence of a source-linked bounded answer, explicit inputs, controls, synthetic worked material and stated limitations. This is not a family-wide sufficiency or professional conclusion.",
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "dimensions": {
+              "scope": "present",
+              "accounting-question": "partial",
+              "evidence-inputs": "present",
+              "workflow": "present",
+              "controls": "present",
+              "worked-material": "present",
+              "empirical-support": "not-assessed"
+            }
+          }
         }
       ],
       "editorial_brief": {
@@ -11234,6 +11357,78 @@
           "src_ias1",
           "src_ifrs09a"
         ]
+      },
+      "supplemental_research_files": [
+        "data/research/capital-financing-2026-09-18.json"
+      ],
+      "supplemental_reviews": [
+        {
+          "batch": "AA-I121",
+          "reviewed_at": "2026-09-18",
+          "reviewer": "Codex AI-assisted official-source research; no professional sign-off",
+          "package_version": "2026-09-18.121",
+          "research_file": "data/research/capital-financing-2026-09-18.json",
+          "scope": "US GAAP reporting entities with borrowing arrangements; reporting entity, instrument terms, reporting date, effective period and covenant facts must be established.",
+          "framework": "US GAAP, with SEC staff guidance where identified",
+          "professional_review": "not-performed",
+          "empirical_support": "not-established"
+        }
+      ],
+      "us_capital_financing": {
+        "scope": "US GAAP reporting entities with borrowing arrangements; reporting entity, instrument terms, reporting date, effective period and covenant facts must be established.",
+        "source_locators": [
+          {
+            "source_id": "src_fasb_asu_201503_debt_costs",
+            "locator": "ASU 2015-03 pp. 1-2; ASC 835-30-45-1A, 45-2, 45-3, 45-4 and 65-1."
+          },
+          {
+            "source_id": "src_fasb_asc470_debt",
+            "locator": "ASC 470-10-45-1 through 45-4 and 50-1 through 50-2; current/noncurrent classification, covenant breach, waiver and disclosure routing."
+          }
+        ],
+        "shared_inputs": [
+          "Reporting entity, US GAAP basis, reporting date, instrument population and effective requirements.",
+          "Executed contracts, ledger extracts, reconciliations, estimates, approvals and disclosure evidence."
+        ],
+        "controls": [
+          "Human approval for consequential accounting conclusions and filings.",
+          "Access control, versioned evidence, segregation of duties and exception monitoring."
+        ],
+        "exceptions": [
+          "Local legal, tax, regulatory and financing overlays; disputed terms or incomplete source population.",
+          "Professional review, current Codification currency and operating effectiveness are not established."
+        ],
+        "coverage_gaps": [
+          "The two named answers are bounded and do not cover the full debt family.",
+          "No actual entity evidence, professional sign-off or empirical agent-performance evidence."
+        ],
+        "frameworks": [
+          "US GAAP"
+        ],
+        "selected_scope": {
+          "jurisdiction": "United States",
+          "framework": "US GAAP, with SEC staff guidance where identified",
+          "entity_scope": "US GAAP reporting entities; public-company-only guidance is labeled",
+          "period": "ASU and staff-guidance effective periods are stated per source; current Codification access remains edition-sensitive",
+          "families": [
+            "q-debt",
+            "q-equity",
+            "q-share-compensation",
+            "q-investments",
+            "q-derivatives",
+            "q-valuation-impairment",
+            "q-digital-assets"
+          ],
+          "boundaries": [
+            "This packet is a bounded research layer, not a complete US GAAP treatment or professional conclusion.",
+            "Publisher text is not redistributed; current Codification paragraphs require authorized access where the public landing page is the cited locator.",
+            "Entity contracts, valuation evidence, hedge documentation, legal ownership, custody agreements and current adoption facts remain inputs for human review."
+          ]
+        },
+        "named_question_ids": [
+          "rq-aa-i121-debt-costs-covenants",
+          "rq-aa-i121-debt-evidence"
+        ]
       }
     }
   },
@@ -11244,7 +11439,8 @@
     "summary": "Shared accounting foundation; entity, framework, jurisdiction and period must be declared. Only the named questions and accessed editions are assessed; other family branches remain open.",
     "topics": [
       "Scoped research",
-      "Equity and complex capital instruments"
+      "Equity and complex capital instruments",
+      "US GAAP capital and financing"
     ],
     "industries": [],
     "jurisdiction": "Entities applying the stated IFRS framework; local adoption and period must be established",
@@ -11252,9 +11448,13 @@
     "publisher": "Accounting Agents contributors",
     "source_url": null,
     "source_ids": [
-      "src_roadmap_ias32_financial_instruments_presentation"
+      "src_roadmap_ias32_financial_instruments_presentation",
+      "src_fasb_asu_202006_convertibles",
+      "src_fasb_asc815_hedging"
     ],
-    "related_ids": [],
+    "related_ids": [
+      "example-capital-financing-evidence"
+    ],
     "review_status": "editorially-reviewed",
     "reviewed_at": "2026-09-11",
     "provenance": {
@@ -11275,7 +11475,9 @@
       "scope": "Shared accounting foundation; entity, framework, jurisdiction and period must be declared. Only the named questions and accessed editions are assessed; other family branches remain open.",
       "review_basis": "Reviewed-scoped from official public standard material; professional review not performed.",
       "source_ids": [
-        "src_roadmap_ias32_financial_instruments_presentation"
+        "src_roadmap_ias32_financial_instruments_presentation",
+        "src_fasb_asu_202006_convertibles",
+        "src_fasb_asc815_hedging"
       ],
       "source_locators": [
         {
@@ -11413,6 +11615,115 @@
               "empirical-support": "not-assessed"
             }
           }
+        },
+        {
+          "id": "rq-aa-i121-equity-classification",
+          "question": "Which contractual rights and settlement alternatives determine US GAAP liability, equity or derivative classification for a complex capital instrument?",
+          "scope": "US GAAP issuer, instrument, settlement alternatives, modification history and reporting period declared.",
+          "conditions": [
+            "Read the contractual obligation and settlement mechanics, not only the legal label.",
+            "Check the applicable issuer and smaller-reporting-company effective cohort."
+          ],
+          "answer": "ASU 2020-06 removes specified beneficial-conversion and cash-conversion separation models for issuers but retains derivative and own-equity classification gates. Classification therefore remains dependent on the instrument's contractual settlement rights, contingencies and applicable ASC 815-40 analysis.",
+          "answer_status": "sourced-answer-bounded",
+          "source_ids": [
+            "src_fasb_asu_202006_convertibles",
+            "src_fasb_asc815_hedging"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_fasb_asu_202006_convertibles",
+              "locator": "ASU 2020-06 pp. 1-11 and 93; ASC 470-20 and ASC 815-40."
+            },
+            {
+              "source_id": "src_fasb_asc815_hedging",
+              "locator": "ASC 815-10-15-83 through 15-88 and ASC 815-40; authorized current Codification locator."
+            }
+          ],
+          "inputs": [
+            "Signed instrument, amendments, conversion formula, redemption rights, settlement choices, contingencies and issuer status.",
+            "Accounting memo, valuation, EPS impact, board approvals and current-period adoption evidence."
+          ],
+          "controls": [
+            "Legal-to-accounting term inventory and independent classification review.",
+            "Versioned valuation and EPS workpapers with approval before issuance or filing."
+          ],
+          "exceptions": [
+            "Down-round, cash settlement, contingent settlement, modification, extinguishment, related party, private-company election or unclear enforceability.",
+            "Current licensed Codification text and legal enforceability are not established by this packet."
+          ],
+          "remaining_gaps": [
+            "No issuer instrument or settlement contract was reviewed.",
+            "No professional classification or diluted-EPS review was performed."
+          ],
+          "family_id": "q-equity",
+          "assessment": {
+            "status": "partial",
+            "basis": "Presence of a source-linked bounded answer, explicit inputs, controls, synthetic worked material and stated limitations. This is not a family-wide sufficiency or professional conclusion.",
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "dimensions": {
+              "scope": "present",
+              "accounting-question": "partial",
+              "evidence-inputs": "present",
+              "workflow": "present",
+              "controls": "present",
+              "worked-material": "present",
+              "empirical-support": "not-assessed"
+            }
+          }
+        },
+        {
+          "id": "rq-aa-i121-convertible",
+          "question": "What evidence is needed to support conversion, redemption and own-equity calculations through issuance and reporting?",
+          "scope": "US GAAP issuer with a complex capital instrument; issuance, modification and reporting-date populations declared.",
+          "conditions": [
+            "Retain the instrument version used for each conclusion.",
+            "Reperform calculations from contractual terms and reconcile to the ledger and filing."
+          ],
+          "answer": "The evidence should show each version of the instrument, the settlement path available at each relevant date, the applicable effective period, valuation or allocation inputs, and the resulting balance-sheet and EPS treatment. A presentation label alone is insufficient evidence.",
+          "answer_status": "sourced-answer-bounded",
+          "source_ids": [
+            "src_fasb_asu_202006_convertibles"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_fasb_asu_202006_convertibles",
+              "locator": "ASU 2020-06 pp. 1-11 and 93; transition and effective-date provisions."
+            }
+          ],
+          "inputs": [
+            "Original and amended agreements, cap table, authorized shares, settlement notices and valuation inputs.",
+            "Ledger entries, disclosure draft, EPS model, approvals and effective-date analysis."
+          ],
+          "controls": [
+            "Contract population completeness and version control.",
+            "Independent recalculation, legal review and filing tie-out."
+          ],
+          "exceptions": [
+            "Missing amendment, disputed conversion notice, share availability, issuer repurchase, unusual settlement or unresolved legal right.",
+            "No empirical evidence supports automated classification of novel instruments."
+          ],
+          "remaining_gaps": [
+            "No worked issuer instrument is included; the example is synthetic and arithmetic only.",
+            "No legal or professional review was performed."
+          ],
+          "family_id": "q-equity",
+          "assessment": {
+            "status": "partial",
+            "basis": "Presence of a source-linked bounded answer, explicit inputs, controls, synthetic worked material and stated limitations. This is not a family-wide sufficiency or professional conclusion.",
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "dimensions": {
+              "scope": "present",
+              "accounting-question": "partial",
+              "evidence-inputs": "present",
+              "workflow": "present",
+              "controls": "present",
+              "worked-material": "present",
+              "empirical-support": "not-assessed"
+            }
+          }
         }
       ],
       "editorial_brief": {
@@ -11443,6 +11754,74 @@
         "reading_order": [
           "src_roadmap_ias32_financial_instruments_presentation"
         ]
+      },
+      "supplemental_research_files": [
+        "data/research/capital-financing-2026-09-18.json"
+      ],
+      "supplemental_reviews": [
+        {
+          "batch": "AA-I121",
+          "reviewed_at": "2026-09-18",
+          "reviewer": "Codex AI-assisted official-source research; no professional sign-off",
+          "package_version": "2026-09-18.121",
+          "research_file": "data/research/capital-financing-2026-09-18.json",
+          "scope": "US GAAP issuers evaluating equity, liability, conversion and own-equity terms; entity status, instrument terms, settlement alternatives and effective period declared.",
+          "framework": "US GAAP, with SEC staff guidance where identified",
+          "professional_review": "not-performed",
+          "empirical_support": "not-established"
+        }
+      ],
+      "us_capital_financing": {
+        "scope": "US GAAP issuers evaluating equity, liability, conversion and own-equity terms; entity status, instrument terms, settlement alternatives and effective period declared.",
+        "source_locators": [
+          {
+            "source_id": "src_fasb_asu_202006_convertibles",
+            "locator": "ASU 2020-06 pp. 1-11 and 93; ASC 470-20 and ASC 815-40 amendments."
+          }
+        ],
+        "shared_inputs": [
+          "Issuer, US GAAP basis, instrument population, effective period and reporting objective.",
+          "Agreements, cap table, valuations, approvals, ledger and filing evidence."
+        ],
+        "controls": [
+          "Human approval for classification, valuation, EPS and filings.",
+          "Access control, versioned contracts, reconciliation and exception monitoring."
+        ],
+        "exceptions": [
+          "Legal enforceability, private-company elections, modifications and unusual settlement rights.",
+          "No professional sign-off, current licensed Codification review or empirical performance evidence."
+        ],
+        "coverage_gaps": [
+          "Named questions are bounded and do not establish a complete equity or capital-instruments treatment.",
+          "No entity instrument, legal opinion or professional review was performed."
+        ],
+        "frameworks": [
+          "US GAAP"
+        ],
+        "selected_scope": {
+          "jurisdiction": "United States",
+          "framework": "US GAAP, with SEC staff guidance where identified",
+          "entity_scope": "US GAAP reporting entities; public-company-only guidance is labeled",
+          "period": "ASU and staff-guidance effective periods are stated per source; current Codification access remains edition-sensitive",
+          "families": [
+            "q-debt",
+            "q-equity",
+            "q-share-compensation",
+            "q-investments",
+            "q-derivatives",
+            "q-valuation-impairment",
+            "q-digital-assets"
+          ],
+          "boundaries": [
+            "This packet is a bounded research layer, not a complete US GAAP treatment or professional conclusion.",
+            "Publisher text is not redistributed; current Codification paragraphs require authorized access where the public landing page is the cited locator.",
+            "Entity contracts, valuation evidence, hedge documentation, legal ownership, custody agreements and current adoption facts remain inputs for human review."
+          ]
+        },
+        "named_question_ids": [
+          "rq-aa-i121-equity-classification",
+          "rq-aa-i121-convertible"
+        ]
       }
     }
   },
@@ -11453,7 +11832,8 @@
     "summary": "Shared accounting foundation; entity, framework, jurisdiction and period must be declared. Only the named questions and accessed editions are assessed; other family branches remain open.",
     "topics": [
       "Scoped research",
-      "Share-based compensation"
+      "Share-based compensation",
+      "US GAAP capital and financing"
     ],
     "industries": [],
     "jurisdiction": "Entities applying the stated IFRS framework; local adoption and period must be established",
@@ -11461,9 +11841,13 @@
     "publisher": "Accounting Agents contributors",
     "source_url": null,
     "source_ids": [
-      "src_roadmap_ifrs2_share_based_payment"
+      "src_roadmap_ifrs2_share_based_payment",
+      "src_fasb_asu_201807_share_comp",
+      "src_sec_sab120_awards"
     ],
-    "related_ids": [],
+    "related_ids": [
+      "example-capital-financing-evidence"
+    ],
     "review_status": "editorially-reviewed",
     "reviewed_at": "2026-09-11",
     "provenance": {
@@ -11484,7 +11868,9 @@
       "scope": "Shared accounting foundation; entity, framework, jurisdiction and period must be declared. Only the named questions and accessed editions are assessed; other family branches remain open.",
       "review_basis": "Reviewed-scoped from official public standard material; professional review not performed.",
       "source_ids": [
-        "src_roadmap_ifrs2_share_based_payment"
+        "src_roadmap_ifrs2_share_based_payment",
+        "src_fasb_asu_201807_share_comp",
+        "src_sec_sab120_awards"
       ],
       "source_locators": [
         {
@@ -11622,6 +12008,120 @@
               "empirical-support": "not-assessed"
             }
           }
+        },
+        {
+          "id": "rq-aa-i121-share-awards",
+          "question": "How do US GAAP award terms and recipient status determine share-based compensation recognition and valuation inputs?",
+          "scope": "US GAAP equity or liability awards to employees or nonemployees; grant, service, performance and settlement facts declared.",
+          "conditions": [
+            "Identify whether the recipient provides goods or services and whether Topic 718 applies.",
+            "Separate grant-date valuation from vesting, modification and settlement evidence."
+          ],
+          "answer": "ASU 2018-07 brings most nonemployee goods and services awards into Topic 718 and generally uses grant-date fair value for equity-classified awards, subject to scope exclusions. For SEC public companies, SAB 120 highlights current share price, volatility, expected term and governance or disclosure considerations when material nonpublic information may affect award valuation.",
+          "answer_status": "sourced-answer-bounded",
+          "source_ids": [
+            "src_fasb_asu_201807_share_comp",
+            "src_sec_sab120_awards"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_fasb_asu_201807_share_comp",
+              "locator": "ASU 2018-07 pp. 1-10 and 176-177; ASC 718."
+            },
+            {
+              "source_id": "src_sec_sab120_awards",
+              "locator": "SAB 120 Topic 14.D; valuation inputs and governance."
+            }
+          ],
+          "inputs": [
+            "Award agreement, recipient role, grant date, service and performance conditions, share price, volatility, term and settlement terms.",
+            "Payroll or vendor records, board approval, valuation memo and modification history."
+          ],
+          "controls": [
+            "Award population completeness and agreement-to-cap-table reconciliation.",
+            "Independent valuation review, vesting schedule control and public-company governance review where applicable."
+          ],
+          "exceptions": [
+            "Modification, forfeiture, nonemployee scope exclusion, unusual settlement, private-company valuation, spring-loaded information or tax withholding.",
+            "SAB 120 is public-company staff guidance and is not a universal private-company rule."
+          ],
+          "remaining_gaps": [
+            "No real award population or valuation model was reviewed.",
+            "No professional valuation, payroll or SEC reporting review was performed."
+          ],
+          "family_id": "q-share-compensation",
+          "assessment": {
+            "status": "partial",
+            "basis": "Presence of a source-linked bounded answer, explicit inputs, controls, synthetic worked material and stated limitations. This is not a family-wide sufficiency or professional conclusion.",
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "dimensions": {
+              "scope": "present",
+              "accounting-question": "partial",
+              "evidence-inputs": "present",
+              "workflow": "present",
+              "controls": "present",
+              "worked-material": "present",
+              "empirical-support": "not-assessed"
+            }
+          }
+        },
+        {
+          "id": "rq-aa-i121-share-comp-controls",
+          "question": "What controls and evidence support share-based compensation expense from grant through vesting and settlement?",
+          "scope": "US GAAP award population and reporting period declared; issuer and recipient roles identified.",
+          "conditions": [
+            "Tie the award register to approved grants and the general ledger.",
+            "Preserve changes to terms, service status and valuation inputs at each reporting date."
+          ],
+          "answer": "A supportable workpaper links authorized awards to recipient and service evidence, valuation inputs, vesting or performance outcomes, expense recognition, tax effects and settlement. Exceptions such as modifications, cancellations and material nonpublic information require explicit review rather than silent model overrides.",
+          "answer_status": "sourced-answer-bounded",
+          "source_ids": [
+            "src_fasb_asu_201807_share_comp",
+            "src_sec_sab120_awards"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_fasb_asu_201807_share_comp",
+              "locator": "ASU 2018-07 pp. 1-10; Topic 718 scope and measurement."
+            },
+            {
+              "source_id": "src_sec_sab120_awards",
+              "locator": "SAB 120 Topic 14.D; governance, disclosure and ICFR considerations."
+            }
+          ],
+          "inputs": [
+            "Award register, approval minutes, service and performance records, valuation model, ledger and settlement reports.",
+            "Reviewer sign-off, exception log and disclosure support."
+          ],
+          "controls": [
+            "Segregation of award authorization, data preparation, valuation and approval.",
+            "Reconciliation, change log, access control and exception escalation."
+          ],
+          "exceptions": [
+            "Incomplete award register, departed employee, disputed vesting, modification, late approval or model override.",
+            "No operating-effectiveness testing or empirical agent-performance evidence is included."
+          ],
+          "remaining_gaps": [
+            "Only a synthetic arithmetic case is included.",
+            "Professional review and issuer-specific control testing remain open."
+          ],
+          "family_id": "q-share-compensation",
+          "assessment": {
+            "status": "partial",
+            "basis": "Presence of a source-linked bounded answer, explicit inputs, controls, synthetic worked material and stated limitations. This is not a family-wide sufficiency or professional conclusion.",
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "dimensions": {
+              "scope": "present",
+              "accounting-question": "partial",
+              "evidence-inputs": "present",
+              "workflow": "present",
+              "controls": "present",
+              "worked-material": "present",
+              "empirical-support": "not-assessed"
+            }
+          }
         }
       ],
       "editorial_brief": {
@@ -11652,6 +12152,78 @@
         "reading_order": [
           "src_roadmap_ifrs2_share_based_payment"
         ]
+      },
+      "supplemental_research_files": [
+        "data/research/capital-financing-2026-09-18.json"
+      ],
+      "supplemental_reviews": [
+        {
+          "batch": "AA-I121",
+          "reviewed_at": "2026-09-18",
+          "reviewer": "Codex AI-assisted official-source research; no professional sign-off",
+          "package_version": "2026-09-18.121",
+          "research_file": "data/research/capital-financing-2026-09-18.json",
+          "scope": "US GAAP awards for employees or nonemployees; award terms, service or performance conditions, valuation date and issuer status declared.",
+          "framework": "US GAAP, with SEC staff guidance where identified",
+          "professional_review": "not-performed",
+          "empirical_support": "not-established"
+        }
+      ],
+      "us_capital_financing": {
+        "scope": "US GAAP awards for employees or nonemployees; award terms, service or performance conditions, valuation date and issuer status declared.",
+        "source_locators": [
+          {
+            "source_id": "src_fasb_asu_201807_share_comp",
+            "locator": "ASU 2018-07 pp. 1-10 and 176-177; ASC 718 scope and transition."
+          },
+          {
+            "source_id": "src_sec_sab120_awards",
+            "locator": "SAB 120 Topic 14.D; spring-loaded award valuation, governance and controls."
+          }
+        ],
+        "shared_inputs": [
+          "Reporting entity, US GAAP basis, award population, recipient roles, reporting date and effective requirements.",
+          "Award agreements, cap table, service evidence, valuations, payroll, ledger and approvals."
+        ],
+        "controls": [
+          "Human approval for valuation, expense, tax and filing conclusions.",
+          "Role separation, versioned award data, reconciliation and exception monitoring."
+        ],
+        "exceptions": [
+          "Public versus private company, nonemployee scope, modification, performance condition, tax and legal overlays.",
+          "No professional valuation, payroll review or operating-effectiveness evidence."
+        ],
+        "coverage_gaps": [
+          "The named answers do not cover all Topic 718 branches or tax accounting.",
+          "No actual award records or empirical validation were reviewed."
+        ],
+        "frameworks": [
+          "US GAAP"
+        ],
+        "selected_scope": {
+          "jurisdiction": "United States",
+          "framework": "US GAAP, with SEC staff guidance where identified",
+          "entity_scope": "US GAAP reporting entities; public-company-only guidance is labeled",
+          "period": "ASU and staff-guidance effective periods are stated per source; current Codification access remains edition-sensitive",
+          "families": [
+            "q-debt",
+            "q-equity",
+            "q-share-compensation",
+            "q-investments",
+            "q-derivatives",
+            "q-valuation-impairment",
+            "q-digital-assets"
+          ],
+          "boundaries": [
+            "This packet is a bounded research layer, not a complete US GAAP treatment or professional conclusion.",
+            "Publisher text is not redistributed; current Codification paragraphs require authorized access where the public landing page is the cited locator.",
+            "Entity contracts, valuation evidence, hedge documentation, legal ownership, custody agreements and current adoption facts remain inputs for human review."
+          ]
+        },
+        "named_question_ids": [
+          "rq-aa-i121-share-awards",
+          "rq-aa-i121-share-comp-controls"
+        ]
       }
     }
   },
@@ -11662,7 +12234,8 @@
     "summary": "Reporting entities applying IFRS 9 and IAS 32 to investments and financial assets in annual or interim periods; scope requires identified entity, transaction date, jurisdiction and applicable effective text, and excludes other regimes. Only the named questions and accessed editions are assessed; other family branches remain open.",
     "topics": [
       "Scoped research",
-      "Investments and financial assets"
+      "Investments and financial assets",
+      "US GAAP capital and financing"
     ],
     "industries": [],
     "jurisdiction": "Entities applying the stated IFRS framework; local adoption and period must be established",
@@ -11671,9 +12244,16 @@
     "source_url": null,
     "source_ids": [
       "src_ifrs09a",
-      "src_roadmap_ias32_financial_instruments_presentation"
+      "src_roadmap_ias32_financial_instruments_presentation",
+      "src_fasb_asu_201601_equity_investments",
+      "src_fasb_asu_201613_credit_losses",
+      "src_fasb_asu_202203_sale_restrictions",
+      "src_fasb_asc820_fair_value",
+      "src_fasb_asu_201910_effective_dates"
     ],
-    "related_ids": [],
+    "related_ids": [
+      "example-capital-financing-evidence"
+    ],
     "review_status": "editorially-reviewed",
     "reviewed_at": "2026-09-11",
     "provenance": {
@@ -11695,7 +12275,12 @@
       "review_basis": "Original publisher pages and cited standard sections were read or bounded to accessible landing/abstract level on 2026-09-11; answers are research foundations, not professional advice.",
       "source_ids": [
         "src_ifrs09a",
-        "src_roadmap_ias32_financial_instruments_presentation"
+        "src_roadmap_ias32_financial_instruments_presentation",
+        "src_fasb_asu_201601_equity_investments",
+        "src_fasb_asu_201613_credit_losses",
+        "src_fasb_asu_202203_sale_restrictions",
+        "src_fasb_asc820_fair_value",
+        "src_fasb_asu_201910_effective_dates"
       ],
       "source_locators": [
         {
@@ -11883,6 +12468,131 @@
               "empirical-support": "not-assessed"
             }
           }
+        },
+        {
+          "id": "rq-aa-i121-investment-classification",
+          "question": "Which rights, ownership interests and business-purpose facts determine US GAAP investment classification and measurement?",
+          "scope": "US GAAP reporting entity investment population; consolidation, equity-method, debt, equity and contractual-rights facts declared.",
+          "conditions": [
+            "Start with the instrument's enforceable rights and the reporting entity's relationship to the issuer.",
+            "Exclude consolidation and equity-method holdings from the equity-investment measurement alternative unless the applicable scope supports it."
+          ],
+          "answer": "ASU 2016-01 generally takes equity investments within its scope to fair value through net income and provides a measurement alternative for equity securities without readily determinable fair value, including the stated impairment and observable-price-change mechanics. The classification cannot be determined from an investment-account label alone.",
+          "answer_status": "sourced-answer-bounded",
+          "source_ids": [
+            "src_fasb_asu_201601_equity_investments",
+            "src_fasb_asc820_fair_value"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_fasb_asu_201601_equity_investments",
+              "locator": "ASU 2016-01 pp. 2-5; equity investment recognition and measurement."
+            },
+            {
+              "source_id": "src_fasb_asc820_fair_value",
+              "locator": "ASC 820-10-35; fair-value unit of account and inputs locator."
+            }
+          ],
+          "inputs": [
+            "Security agreement, issuer relationship, voting and redemption rights, ownership percentage, business purpose and observable price evidence.",
+            "Investment register, ledger, valuation, impairment review and reporting-date events."
+          ],
+          "controls": [
+            "Investment population completeness and custody statement reconciliation.",
+            "Independent classification and valuation review with approval of non-readily-determinable measurement inputs."
+          ],
+          "exceptions": [
+            "Consolidation, equity method, strategic influence, restricted sale, related party, private valuation, impairment indicator or disputed ownership.",
+            "No legal ownership, control or valuation evidence was reviewed."
+          ],
+          "remaining_gaps": [
+            "No actual investment agreement or valuation file was reviewed.",
+            "Current Codification currency and professional review remain unresolved."
+          ],
+          "family_id": "q-investments",
+          "assessment": {
+            "status": "partial",
+            "basis": "Presence of a source-linked bounded answer, explicit inputs, controls, synthetic worked material and stated limitations. This is not a family-wide sufficiency or professional conclusion.",
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "dimensions": {
+              "scope": "present",
+              "accounting-question": "partial",
+              "evidence-inputs": "present",
+              "workflow": "present",
+              "controls": "present",
+              "worked-material": "present",
+              "empirical-support": "not-assessed"
+            }
+          }
+        },
+        {
+          "id": "rq-aa-i121-investment-losses",
+          "question": "What evidence supports fair value, contractual sale restriction and expected-credit-loss conclusions for US GAAP investments?",
+          "scope": "US GAAP investment or financial-asset population at a stated reporting date; measurement category and instrument terms declared.",
+          "conditions": [
+            "Tie the valuation unit of account and market inputs to the instrument rights.",
+            "Use the appropriate ASC 326 scope and forecast evidence for assets not measured at fair value through net income."
+          ],
+          "answer": "ASU 2022-03 clarifies that a contractual sale restriction is not separately recognized and does not automatically create a fair-value discount, while ASC 820 supplies the fair-value input and disclosure route. ASU 2016-13 supplies the expected-credit-loss model for assets within its scope that are not measured at fair value through net income.",
+          "answer_status": "sourced-answer-bounded",
+          "source_ids": [
+            "src_fasb_asu_202203_sale_restrictions",
+            "src_fasb_asc820_fair_value",
+            "src_fasb_asu_201613_credit_losses",
+            "src_fasb_asu_201910_effective_dates"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_fasb_asu_202203_sale_restrictions",
+              "locator": "ASU 2022-03 pp. 1 and 7; contractual sale restriction amendments."
+            },
+            {
+              "source_id": "src_fasb_asc820_fair_value",
+              "locator": "ASC 820-10-35 and 50; fair-value measurement and disclosure locator."
+            },
+            {
+              "source_id": "src_fasb_asu_201613_credit_losses",
+              "locator": "ASU 2016-13 pp. 2-10; ASC 326-20-30 and 35."
+            },
+            {
+              "source_id": "src_fasb_asu_201910_effective_dates",
+              "locator": "Printed summary p. 3; ASC 326-10-65-1(a)-(b) on pp. 6 and 9; ASC 815-20-65-3 effective-date amendments."
+            }
+          ],
+          "inputs": [
+            "Price quotes, market hierarchy, restriction terms, broker or custodian statements, cash flows, forecasts, collateral and historical loss evidence.",
+            "Valuation model, impairment or ECL memo, ledger tie-out, sensitivity and approval evidence."
+          ],
+          "controls": [
+            "Independent price verification and restriction-term review.",
+            "Model governance, source reconciliation, sensitivity review and human approval."
+          ],
+          "exceptions": [
+            "Thin market, stale quote, complex restriction, collateral dependence, forecast uncertainty, concentration or conflicting custodian evidence.",
+            "No specialist valuation or model-validation evidence is included."
+          ],
+          "remaining_gaps": [
+            "The example is synthetic and does not evidence a real market or portfolio.",
+            "No professional valuation or credit review was performed.",
+            "Use ASU 2019-10 cohort dates and document entity eligibility and any early adoption; original Update timing alone is insufficient."
+          ],
+          "family_id": "q-investments",
+          "assessment": {
+            "status": "partial",
+            "basis": "Presence of a source-linked bounded answer, explicit inputs, controls, synthetic worked material and stated limitations. This is not a family-wide sufficiency or professional conclusion.",
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "dimensions": {
+              "scope": "present",
+              "accounting-question": "partial",
+              "evidence-inputs": "present",
+              "workflow": "present",
+              "controls": "present",
+              "worked-material": "present",
+              "empirical-support": "not-assessed"
+            }
+          }
         }
       ],
       "editorial_brief": {
@@ -11916,6 +12626,86 @@
           "src_ifrs09a",
           "src_roadmap_ias32_financial_instruments_presentation"
         ]
+      },
+      "supplemental_research_files": [
+        "data/research/capital-financing-2026-09-18.json"
+      ],
+      "supplemental_reviews": [
+        {
+          "batch": "AA-I121",
+          "reviewed_at": "2026-09-18",
+          "reviewer": "Codex AI-assisted official-source research; no professional sign-off",
+          "package_version": "2026-09-18.121",
+          "research_file": "data/research/capital-financing-2026-09-18.json",
+          "scope": "US GAAP reporting entity holding debt or equity investments; instrument rights, business purpose, measurement basis and reporting period declared.",
+          "framework": "US GAAP, with SEC staff guidance where identified",
+          "professional_review": "not-performed",
+          "empirical_support": "not-established"
+        }
+      ],
+      "us_capital_financing": {
+        "scope": "US GAAP reporting entity holding debt or equity investments; instrument rights, business purpose, measurement basis and reporting period declared.",
+        "source_locators": [
+          {
+            "source_id": "src_fasb_asu_201601_equity_investments",
+            "locator": "ASU 2016-01 pp. 2-5; equity investments outside consolidation or equity method."
+          },
+          {
+            "source_id": "src_fasb_asu_201613_credit_losses",
+            "locator": "ASU 2016-13 pp. 2-10; ASC 326 expected-credit-loss model."
+          },
+          {
+            "source_id": "src_fasb_asu_202203_sale_restrictions",
+            "locator": "ASU 2022-03 pp. 1 and 7; contractual sale restrictions and fair value."
+          },
+          {
+            "source_id": "src_fasb_asu_201910_effective_dates",
+            "locator": "Printed summary p. 3; ASC 326-10-65-1(a)-(b) on pp. 6 and 9; ASC 815-20-65-3 effective-date amendments."
+          }
+        ],
+        "shared_inputs": [
+          "Reporting entity, US GAAP basis, investment population, reporting date and rights.",
+          "Agreements, statements, market data, forecasts, valuations, reconciliations and approvals."
+        ],
+        "controls": [
+          "Human approval for classification, valuation, impairment and disclosures.",
+          "Population completeness, source reconciliation, access control and exception monitoring."
+        ],
+        "exceptions": [
+          "Consolidation, equity method, custody, restricted securities, private valuations and credit-loss model scope.",
+          "No professional valuation, legal ownership or operating-effectiveness evidence."
+        ],
+        "coverage_gaps": [
+          "Named answers are not a complete investment-accounting treatment.",
+          "No actual holdings or independent empirical performance evidence was reviewed."
+        ],
+        "frameworks": [
+          "US GAAP"
+        ],
+        "selected_scope": {
+          "jurisdiction": "United States",
+          "framework": "US GAAP, with SEC staff guidance where identified",
+          "entity_scope": "US GAAP reporting entities; public-company-only guidance is labeled",
+          "period": "ASU and staff-guidance effective periods are stated per source; current Codification access remains edition-sensitive",
+          "families": [
+            "q-debt",
+            "q-equity",
+            "q-share-compensation",
+            "q-investments",
+            "q-derivatives",
+            "q-valuation-impairment",
+            "q-digital-assets"
+          ],
+          "boundaries": [
+            "This packet is a bounded research layer, not a complete US GAAP treatment or professional conclusion.",
+            "Publisher text is not redistributed; current Codification paragraphs require authorized access where the public landing page is the cited locator.",
+            "Entity contracts, valuation evidence, hedge documentation, legal ownership, custody agreements and current adoption facts remain inputs for human review."
+          ]
+        },
+        "named_question_ids": [
+          "rq-aa-i121-investment-classification",
+          "rq-aa-i121-investment-losses"
+        ]
       }
     }
   },
@@ -11926,7 +12716,8 @@
     "summary": "Reporting entities applying IFRS 9 and IAS 32 to derivatives and hedging in annual or interim periods; scope requires identified entity, transaction date, jurisdiction and applicable effective text, and excludes other regimes. Only the named questions and accessed editions are assessed; other family branches remain open.",
     "topics": [
       "Scoped research",
-      "Derivatives and hedging"
+      "Derivatives and hedging",
+      "US GAAP capital and financing"
     ],
     "industries": [],
     "jurisdiction": "Entities applying the stated IFRS framework; local adoption and period must be established",
@@ -11935,9 +12726,14 @@
     "source_url": null,
     "source_ids": [
       "src_ifrs09a",
-      "src_roadmap_ias32_financial_instruments_presentation"
+      "src_roadmap_ias32_financial_instruments_presentation",
+      "src_fasb_asc815_hedging",
+      "src_fasb_asu_201712_hedging",
+      "src_fasb_asu_201910_effective_dates"
     ],
-    "related_ids": [],
+    "related_ids": [
+      "example-capital-financing-evidence"
+    ],
     "review_status": "editorially-reviewed",
     "reviewed_at": "2026-09-11",
     "provenance": {
@@ -11959,7 +12755,10 @@
       "review_basis": "Original publisher pages and cited standard sections were read or bounded to accessible landing/abstract level on 2026-09-11; answers are research foundations, not professional advice.",
       "source_ids": [
         "src_ifrs09a",
-        "src_roadmap_ias32_financial_instruments_presentation"
+        "src_roadmap_ias32_financial_instruments_presentation",
+        "src_fasb_asc815_hedging",
+        "src_fasb_asu_201712_hedging",
+        "src_fasb_asu_201910_effective_dates"
       ],
       "source_locators": [
         {
@@ -12152,6 +12951,121 @@
               "empirical-support": "not-assessed"
             }
           }
+        },
+        {
+          "id": "rq-aa-i121-derivative-scope",
+          "question": "Which contract terms and embedded features require US GAAP derivative or bifurcation analysis?",
+          "scope": "US GAAP contract population and reporting date declared; underlying, notional, settlement, net settlement and financing terms identified.",
+          "conditions": [
+            "Read the contract and amendments before classifying the instrument.",
+            "Consider scope exceptions and embedded-feature interactions using authorized current Codification text."
+          ],
+          "answer": "ASC 815-10-15 and ASC 815-15 are the relevant US GAAP routing points for derivative scope, embedded features and bifurcation. A derivative conclusion depends on the contract's underlying, notional or payment provision, net settlement characteristics and scope exceptions, not on a contract label.",
+          "answer_status": "sourced-answer-bounded",
+          "source_ids": [
+            "src_fasb_asc815_hedging"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_fasb_asc815_hedging",
+              "locator": "ASC 815-10-15-83 through 15-88 and ASC 815-15; authorized current Codification locator."
+            }
+          ],
+          "inputs": [
+            "Executed contract and amendments, underlying, notional, settlement, collateral, counterparties and business purpose.",
+            "Population reconciliation, valuation, scope memo and current-period accounting policy."
+          ],
+          "controls": [
+            "Contract intake review and derivative inventory reconciliation.",
+            "Independent scope conclusion, valuation tie-out and approval of exceptions."
+          ],
+          "exceptions": [
+            "Normal-purchase or normal-sale exception, embedded feature, credit-risk provision, unusual settlement, novation or disputed contract terms.",
+            "Full current Codification text and legal enforceability were not reviewed."
+          ],
+          "remaining_gaps": [
+            "No derivative contract or embedded feature was tested.",
+            "No professional legal, valuation or accounting review was performed."
+          ],
+          "family_id": "q-derivatives",
+          "assessment": {
+            "status": "partial",
+            "basis": "Presence of a source-linked bounded answer, explicit inputs, controls, synthetic worked material and stated limitations. This is not a family-wide sufficiency or professional conclusion.",
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "dimensions": {
+              "scope": "present",
+              "accounting-question": "partial",
+              "evidence-inputs": "present",
+              "workflow": "present",
+              "controls": "present",
+              "worked-material": "present",
+              "empirical-support": "not-assessed"
+            }
+          }
+        },
+        {
+          "id": "rq-aa-i121-hedge-designation",
+          "question": "What designation, effectiveness and documentation evidence supports US GAAP hedge accounting?",
+          "scope": "US GAAP hedge relationship, risk objective, designated item and reporting period declared.",
+          "conditions": [
+            "Designation and documentation must be tied to the risk-management objective and qualifying relationship.",
+            "Separate designation evidence from subsequent effectiveness measurement and presentation."
+          ],
+          "answer": "ASU 2017-12 makes targeted improvements to hedge accounting, but a supportable hedge conclusion still requires a documented risk-management objective, qualifying hedged item and instrument, designation terms, effectiveness method and reporting-period evidence.",
+          "answer_status": "sourced-answer-bounded",
+          "source_ids": [
+            "src_fasb_asu_201712_hedging",
+            "src_fasb_asc815_hedging",
+            "src_fasb_asu_201910_effective_dates"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_fasb_asu_201712_hedging",
+              "locator": "ASU 2017-12 pp. 7-8; ASC 815-20-25-3 and 815-20-65-3."
+            },
+            {
+              "source_id": "src_fasb_asc815_hedging",
+              "locator": "ASC 815-20-25; designation, documentation and hedge-accounting routing."
+            },
+            {
+              "source_id": "src_fasb_asu_201910_effective_dates",
+              "locator": "Printed summary p. 3; ASC 326-10-65-1(a)-(b) on pp. 6 and 9; ASC 815-20-65-3 effective-date amendments."
+            }
+          ],
+          "inputs": [
+            "Board or treasury risk policy, designation memo, forecast transaction, derivative terms, effectiveness method and valuation.",
+            "Journal entries, OCI or earnings presentation, effectiveness results, amendments and approvals."
+          ],
+          "controls": [
+            "Timely designation and documentation review.",
+            "Independent valuation and effectiveness recalculation with exception escalation."
+          ],
+          "exceptions": [
+            "Late designation, forecast transaction no longer probable, de-designation, ineffectiveness, counterparty change or missing risk policy.",
+            "No operating effectiveness or forecast-probability evidence was tested."
+          ],
+          "remaining_gaps": [
+            "No worked hedge file or live market data is included.",
+            "No professional treasury or valuation review was performed.",
+            "Use ASU 2019-10 cohort dates and document entity eligibility and any early adoption; original Update timing alone is insufficient."
+          ],
+          "family_id": "q-derivatives",
+          "assessment": {
+            "status": "partial",
+            "basis": "Presence of a source-linked bounded answer, explicit inputs, controls, synthetic worked material and stated limitations. This is not a family-wide sufficiency or professional conclusion.",
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "dimensions": {
+              "scope": "present",
+              "accounting-question": "partial",
+              "evidence-inputs": "present",
+              "workflow": "present",
+              "controls": "present",
+              "worked-material": "present",
+              "empirical-support": "not-assessed"
+            }
+          }
         }
       ],
       "editorial_brief": {
@@ -12185,6 +13099,82 @@
           "src_ifrs09a",
           "src_roadmap_ias32_financial_instruments_presentation"
         ]
+      },
+      "supplemental_research_files": [
+        "data/research/capital-financing-2026-09-18.json"
+      ],
+      "supplemental_reviews": [
+        {
+          "batch": "AA-I121",
+          "reviewed_at": "2026-09-18",
+          "reviewer": "Codex AI-assisted official-source research; no professional sign-off",
+          "package_version": "2026-09-18.121",
+          "research_file": "data/research/capital-financing-2026-09-18.json",
+          "scope": "US GAAP reporting entity with derivative, embedded-feature or hedge activity; contract terms, risk exposure, designation and reporting period declared.",
+          "framework": "US GAAP, with SEC staff guidance where identified",
+          "professional_review": "not-performed",
+          "empirical_support": "not-established"
+        }
+      ],
+      "us_capital_financing": {
+        "scope": "US GAAP reporting entity with derivative, embedded-feature or hedge activity; contract terms, risk exposure, designation and reporting period declared.",
+        "source_locators": [
+          {
+            "source_id": "src_fasb_asc815_hedging",
+            "locator": "ASC 815-10-15-83 through 15-88, ASC 815-15 and ASC 815-20-25; derivative, embedded and designation routing."
+          },
+          {
+            "source_id": "src_fasb_asu_201712_hedging",
+            "locator": "ASU 2017-12 pp. 7-8; ASC 815-20-25-3 and 815-20-65-3."
+          },
+          {
+            "source_id": "src_fasb_asu_201910_effective_dates",
+            "locator": "Printed summary p. 3; ASC 326-10-65-1(a)-(b) on pp. 6 and 9; ASC 815-20-65-3 effective-date amendments."
+          }
+        ],
+        "shared_inputs": [
+          "Reporting entity, US GAAP basis, contract population, risk objective, reporting date and effective requirements.",
+          "Contracts, valuations, designations, forecasts, journals, controls and approvals."
+        ],
+        "controls": [
+          "Human approval for scope, designation, valuation and filings.",
+          "Contract inventory, timely documentation, versioning and exception monitoring."
+        ],
+        "exceptions": [
+          "Embedded features, scope exceptions, modifications, de-designation and data or valuation gaps.",
+          "No professional review or empirical agent-performance evidence."
+        ],
+        "coverage_gaps": [
+          "The two named answers do not cover all derivatives or hedging branches.",
+          "No real contract, hedge file or effectiveness result was reviewed."
+        ],
+        "frameworks": [
+          "US GAAP"
+        ],
+        "selected_scope": {
+          "jurisdiction": "United States",
+          "framework": "US GAAP, with SEC staff guidance where identified",
+          "entity_scope": "US GAAP reporting entities; public-company-only guidance is labeled",
+          "period": "ASU and staff-guidance effective periods are stated per source; current Codification access remains edition-sensitive",
+          "families": [
+            "q-debt",
+            "q-equity",
+            "q-share-compensation",
+            "q-investments",
+            "q-derivatives",
+            "q-valuation-impairment",
+            "q-digital-assets"
+          ],
+          "boundaries": [
+            "This packet is a bounded research layer, not a complete US GAAP treatment or professional conclusion.",
+            "Publisher text is not redistributed; current Codification paragraphs require authorized access where the public landing page is the cited locator.",
+            "Entity contracts, valuation evidence, hedge documentation, legal ownership, custody agreements and current adoption facts remain inputs for human review."
+          ]
+        },
+        "named_question_ids": [
+          "rq-aa-i121-derivative-scope",
+          "rq-aa-i121-hedge-designation"
+        ]
       }
     }
   },
@@ -12195,7 +13185,8 @@
     "summary": "Reporting entities applying IAS 36 and IFRS 9 to fair value and impairment in annual or interim periods; scope requires identified entity, transaction date, jurisdiction and applicable effective text, and excludes other regimes. Only the named questions and accessed editions are assessed; other family branches remain open.",
     "topics": [
       "Scoped research",
-      "Fair value and impairment"
+      "Fair value and impairment",
+      "US GAAP capital and financing"
     ],
     "industries": [],
     "jurisdiction": "Entities applying the stated IFRS framework; local adoption and period must be established",
@@ -12204,9 +13195,15 @@
     "source_url": null,
     "source_ids": [
       "src_ias36imp",
-      "src_roadmap_ifrs13_overview"
+      "src_roadmap_ifrs13_overview",
+      "src_fasb_asc820_fair_value",
+      "src_fasb_asc360_impairment",
+      "src_fasb_asu_202203_sale_restrictions",
+      "src_fasb_asu_201613_credit_losses"
     ],
-    "related_ids": [],
+    "related_ids": [
+      "example-capital-financing-evidence"
+    ],
     "review_status": "editorially-reviewed",
     "reviewed_at": "2026-09-11",
     "provenance": {
@@ -12228,7 +13225,11 @@
       "review_basis": "Original publisher pages and cited standard sections were read or bounded to accessible landing/abstract level on 2026-09-11; answers are research foundations, not professional advice.",
       "source_ids": [
         "src_ias36imp",
-        "src_roadmap_ifrs13_overview"
+        "src_roadmap_ifrs13_overview",
+        "src_fasb_asc820_fair_value",
+        "src_fasb_asc360_impairment",
+        "src_fasb_asu_202203_sale_restrictions",
+        "src_fasb_asu_201613_credit_losses"
       ],
       "source_locators": [
         {
@@ -12410,6 +13411,120 @@
               "empirical-support": "not-assessed"
             }
           }
+        },
+        {
+          "id": "rq-aa-i121-valuation-trigger",
+          "question": "Which asset, unit-of-account and triggering-event facts support a US GAAP impairment analysis?",
+          "scope": "US GAAP long-lived asset or financial-asset population at a stated reporting date; asset group, use, disposal and market facts declared.",
+          "conditions": [
+            "Identify the applicable impairment model and asset group before selecting cash flows.",
+            "Separate a triggering-event screen from a final measurement conclusion."
+          ],
+          "answer": "ASC 360-10-35 is the US GAAP routing point for long-lived asset impairment scope, triggering events, recoverability and measurement. The conclusion depends on the asset group, expected use or disposal facts and supported cash-flow assumptions, not on a generic valuation threshold.",
+          "answer_status": "sourced-answer-bounded",
+          "source_ids": [
+            "src_fasb_asc360_impairment",
+            "src_fasb_asc820_fair_value"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_fasb_asc360_impairment",
+              "locator": "ASC 360-10-35; authorized current Codification locator."
+            },
+            {
+              "source_id": "src_fasb_asc820_fair_value",
+              "locator": "ASC 820-10-35; fair-value unit and inputs locator."
+            }
+          ],
+          "inputs": [
+            "Asset register, asset group, utilization, market and macro indicators, budgets, cash flows and disposal plans.",
+            "Depreciation, impairment history, approvals, sensitivity and reporting-date events."
+          ],
+          "controls": [
+            "Completeness of triggering-event screen and asset-group mapping.",
+            "Independent review of cash flows, assumptions, sensitivity and conclusion."
+          ],
+          "exceptions": [
+            "Held-for-sale classification, discontinued operation, regulated asset, foreign currency, changing use, forecast bias or missing market evidence.",
+            "No actual asset group or forecast was tested."
+          ],
+          "remaining_gaps": [
+            "No entity impairment indicator or valuation was reviewed.",
+            "No professional valuation or operating-effectiveness review was performed."
+          ],
+          "family_id": "q-valuation-impairment",
+          "assessment": {
+            "status": "partial",
+            "basis": "Presence of a source-linked bounded answer, explicit inputs, controls, synthetic worked material and stated limitations. This is not a family-wide sufficiency or professional conclusion.",
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "dimensions": {
+              "scope": "present",
+              "accounting-question": "partial",
+              "evidence-inputs": "present",
+              "workflow": "present",
+              "controls": "present",
+              "worked-material": "present",
+              "empirical-support": "not-assessed"
+            }
+          }
+        },
+        {
+          "id": "rq-aa-i121-fair-value",
+          "question": "What fair-value inputs and contractual restriction evidence support a US GAAP valuation and disclosure?",
+          "scope": "US GAAP asset or liability measured or disclosed at fair value; unit of account, market, hierarchy and restriction terms declared.",
+          "conditions": [
+            "Use market-participant assumptions and the appropriate unit of account.",
+            "Do not create a valuation discount solely because a contractual sale restriction exists unless the applicable guidance supports it."
+          ],
+          "answer": "ASC 820-10 supplies the fair-value measurement and disclosure route. ASU 2022-03 clarifies that a qualifying contractual sale restriction is not separately recognized and does not automatically result in a fair-value discount, while the valuation must still reflect the instrument's unit of account and market-participant assumptions.",
+          "answer_status": "sourced-answer-bounded",
+          "source_ids": [
+            "src_fasb_asc820_fair_value",
+            "src_fasb_asu_202203_sale_restrictions"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_fasb_asc820_fair_value",
+              "locator": "ASC 820-10-35 and 50; fair-value hierarchy and disclosures."
+            },
+            {
+              "source_id": "src_fasb_asu_202203_sale_restrictions",
+              "locator": "ASU 2022-03 pp. 1 and 7; contractual sale restriction amendments."
+            }
+          ],
+          "inputs": [
+            "Price observations, valuation model, market-participant assumptions, restriction contract, liquidity, hierarchy classification and specialist report.",
+            "Disclosure rollforward, sensitivity, approval and source-to-ledger tie-out."
+          ],
+          "controls": [
+            "Independent price verification and model governance.",
+            "Restriction-term review, hierarchy approval, sensitivity review and disclosure tie-out."
+          ],
+          "exceptions": [
+            "Thin or inactive market, conflicting quotes, complex contract, restricted security, model change or specialist disagreement.",
+            "No market data, specialist report or current licensed Codification text was reviewed."
+          ],
+          "remaining_gaps": [
+            "The numerical example is synthetic and not a market valuation.",
+            "No professional valuation review was performed."
+          ],
+          "family_id": "q-valuation-impairment",
+          "assessment": {
+            "status": "partial",
+            "basis": "Presence of a source-linked bounded answer, explicit inputs, controls, synthetic worked material and stated limitations. This is not a family-wide sufficiency or professional conclusion.",
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "dimensions": {
+              "scope": "present",
+              "accounting-question": "partial",
+              "evidence-inputs": "present",
+              "workflow": "present",
+              "controls": "present",
+              "worked-material": "present",
+              "empirical-support": "not-assessed"
+            }
+          }
         }
       ],
       "editorial_brief": {
@@ -12441,6 +13556,82 @@
           "src_ias36imp",
           "src_roadmap_ifrs13_overview"
         ]
+      },
+      "supplemental_research_files": [
+        "data/research/capital-financing-2026-09-18.json"
+      ],
+      "supplemental_reviews": [
+        {
+          "batch": "AA-I121",
+          "reviewed_at": "2026-09-18",
+          "reviewer": "Codex AI-assisted official-source research; no professional sign-off",
+          "package_version": "2026-09-18.121",
+          "research_file": "data/research/capital-financing-2026-09-18.json",
+          "scope": "US GAAP reporting entity evaluating fair value or impairment; asset group, unit of account, market, cash flows, assumptions and reporting period declared.",
+          "framework": "US GAAP, with SEC staff guidance where identified",
+          "professional_review": "not-performed",
+          "empirical_support": "not-established"
+        }
+      ],
+      "us_capital_financing": {
+        "scope": "US GAAP reporting entity evaluating fair value or impairment; asset group, unit of account, market, cash flows, assumptions and reporting period declared.",
+        "source_locators": [
+          {
+            "source_id": "src_fasb_asc820_fair_value",
+            "locator": "ASC 820-10-35 and 50; fair-value measurement, inputs and disclosures."
+          },
+          {
+            "source_id": "src_fasb_asc360_impairment",
+            "locator": "ASC 360-10-35; long-lived asset impairment scope and triggering events."
+          },
+          {
+            "source_id": "src_fasb_asu_202203_sale_restrictions",
+            "locator": "ASU 2022-03 pp. 1 and 7; contractual sale restrictions."
+          }
+        ],
+        "shared_inputs": [
+          "Reporting entity, US GAAP basis, asset or liability population, reporting date and model scope.",
+          "Contracts, market data, cash flows, assumptions, specialist work, reconciliations and approvals."
+        ],
+        "controls": [
+          "Human approval for valuation, impairment and disclosure conclusions.",
+          "Model versioning, source reconciliation, sensitivity review and exception monitoring."
+        ],
+        "exceptions": [
+          "Asset group, unit of account, held-for-sale, restricted securities, thin markets and estimate uncertainty.",
+          "No professional valuation or empirical agent-performance evidence."
+        ],
+        "coverage_gaps": [
+          "Named answers are bounded and do not establish a complete impairment or valuation program.",
+          "No actual market, asset group or specialist evidence was reviewed."
+        ],
+        "frameworks": [
+          "US GAAP"
+        ],
+        "selected_scope": {
+          "jurisdiction": "United States",
+          "framework": "US GAAP, with SEC staff guidance where identified",
+          "entity_scope": "US GAAP reporting entities; public-company-only guidance is labeled",
+          "period": "ASU and staff-guidance effective periods are stated per source; current Codification access remains edition-sensitive",
+          "families": [
+            "q-debt",
+            "q-equity",
+            "q-share-compensation",
+            "q-investments",
+            "q-derivatives",
+            "q-valuation-impairment",
+            "q-digital-assets"
+          ],
+          "boundaries": [
+            "This packet is a bounded research layer, not a complete US GAAP treatment or professional conclusion.",
+            "Publisher text is not redistributed; current Codification paragraphs require authorized access where the public landing page is the cited locator.",
+            "Entity contracts, valuation evidence, hedge documentation, legal ownership, custody agreements and current adoption facts remain inputs for human review."
+          ]
+        },
+        "named_question_ids": [
+          "rq-aa-i121-valuation-trigger",
+          "rq-aa-i121-fair-value"
+        ]
       }
     }
   },
@@ -12451,7 +13642,8 @@
     "summary": "Defined cryptocurrency holdings in the final June 2019 IFRIC agenda decision; tokenized contracts and customer custody are unresolved separate questions. Only the named questions and accessed editions are assessed; other family branches remain open.",
     "topics": [
       "Scoped research",
-      "Digital assets and tokenized arrangements"
+      "Digital assets and tokenized arrangements",
+      "US GAAP capital and financing"
     ],
     "industries": [],
     "jurisdiction": "Entities applying the stated IFRS framework; local adoption and period must be established",
@@ -12459,9 +13651,14 @@
     "publisher": "Accounting Agents contributors",
     "source_url": null,
     "source_ids": [
-      "src_roadmap_ifric_crypto_2019"
+      "src_roadmap_ifric_crypto_2019",
+      "src_asu202308",
+      "src_secsab122",
+      "src_fasb_asu_202502_crypto_safeguarding"
     ],
-    "related_ids": [],
+    "related_ids": [
+      "example-capital-financing-evidence"
+    ],
     "review_status": "editorially-reviewed",
     "reviewed_at": "2026-09-11",
     "provenance": {
@@ -12482,7 +13679,10 @@
       "scope": "Defined cryptocurrency holdings in the final June 2019 IFRIC agenda decision; tokenized contracts and customer custody are unresolved separate questions. Only the named questions and accessed editions are assessed; other family branches remain open.",
       "review_basis": "Original publisher pages and cited standard sections were read or bounded to accessible landing/abstract level on 2026-09-11; answers are research foundations, not professional advice.",
       "source_ids": [
-        "src_roadmap_ifric_crypto_2019"
+        "src_roadmap_ifric_crypto_2019",
+        "src_asu202308",
+        "src_secsab122",
+        "src_fasb_asu_202502_crypto_safeguarding"
       ],
       "source_locators": [
         {
@@ -12645,6 +13845,125 @@
               "empirical-support": "not-assessed"
             }
           }
+        },
+        {
+          "id": "rq-aa-i121-digital-ownership",
+          "question": "Which rights and ownership facts determine whether a US GAAP reporting entity holds a qualifying crypto asset or another digital-asset arrangement?",
+          "scope": "US GAAP digital-asset arrangement; token rights, issuer, ledger, control, custody role and related-party facts declared.",
+          "conditions": [
+            "Test all six ASU 2023-08 scope characteristics before applying the fair-value model.",
+            "Separate ownership of a qualifying crypto asset from a contractual claim, tokenized right or custody service."
+          ],
+          "answer": "ASU 2023-08 applies only when all six stated characteristics are present, including no enforceable rights to underlying goods, services or assets and no creation or issuance by the reporting entity or its related parties. A token or ledger entry that conveys a contractual right, issuer obligation or customer asset requires a different analysis.",
+          "answer_status": "sourced-answer-bounded",
+          "source_ids": [
+            "src_asu202308",
+            "src_roadmap_ifric_crypto_2019"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_asu202308",
+              "locator": "ASU 2023-08 pp. 4-7; ASC 350-60 scope criteria."
+            },
+            {
+              "source_id": "src_roadmap_ifric_crypto_2019",
+              "locator": "IFRIC June 2019 final agenda decision; defined IFRS cryptocurrency subset only."
+            }
+          ],
+          "inputs": [
+            "Token terms, issuer and related parties, wallet or ledger control, legal rights, exchange data, custody agreement and reporting role.",
+            "Population reconciliation, classification memo, valuation, ledger and disclosure evidence."
+          ],
+          "controls": [
+            "Rights and ownership review by accounting and legal owners.",
+            "Wallet or custodian population reconciliation, access control and approval before classification."
+          ],
+          "exceptions": [
+            "Stablecoins, tokenized securities, wrapped assets, issuer obligations, staking, lending, customer assets, legal claims or disputed control.",
+            "The IFRIC June 2019 decision is IFRS-only and does not settle US GAAP custody or ownership."
+          ],
+          "remaining_gaps": [
+            "No token contract, wallet, legal opinion or custody agreement was reviewed.",
+            "No professional legal, accounting or valuation review was performed."
+          ],
+          "family_id": "q-digital-assets",
+          "assessment": {
+            "status": "partial",
+            "basis": "Presence of a source-linked bounded answer, explicit inputs, controls, synthetic worked material and stated limitations. This is not a family-wide sufficiency or professional conclusion.",
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "dimensions": {
+              "scope": "present",
+              "accounting-question": "partial",
+              "evidence-inputs": "present",
+              "workflow": "present",
+              "controls": "present",
+              "worked-material": "present",
+              "empirical-support": "not-assessed"
+            }
+          }
+        },
+        {
+          "id": "rq-aa-i121-digital-custody",
+          "question": "How should a US GAAP research packet distinguish owned crypto assets from customer custody and safeguarding risk?",
+          "scope": "US public-company custody or safeguarding arrangement and owned-asset population; customer rights, loss risk, control and effective period declared.",
+          "conditions": [
+            "Do not infer ownership from private-key access, wallet address or gross platform balance.",
+            "Assess customer rights, legal ownership, control and risk of loss separately from the asset held by the custodian."
+          ],
+          "answer": "SAB 122 rescinds SAB Topic 5.FF and directs registrants to assess applicable US GAAP, including ASC 450-20 when a loss-contingency liability is appropriate. The rescission does not conclude that customer assets are owned by a custodian or that every custody arrangement is off balance sheet. ASU 2025-02 removes the former Codification reference, but the legal and accounting facts remain unresolved until reviewed.",
+          "answer_status": "evidence-gap",
+          "source_ids": [
+            "src_secsab122",
+            "src_fasb_asu_202502_crypto_safeguarding",
+            "src_asu202308"
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_secsab122",
+              "locator": "SAB 122 summary; rescission of SAB Topic 5.FF and ASC 450-20 risk-of-loss assessment."
+            },
+            {
+              "source_id": "src_fasb_asu_202502_crypto_safeguarding",
+              "locator": "ASU 2025-02, printed pp. 1-7, paragraphs 2-3; amendments to ASC 405-10-S99, S55 and S65."
+            },
+            {
+              "source_id": "src_asu202308",
+              "locator": "ASU 2023-08 pp. 4-7; owned qualifying crypto-asset scope and measurement."
+            }
+          ],
+          "inputs": [
+            "Customer agreement, withdrawal and rehypothecation rights, safeguarding controls, insurance, indemnity, loss history, wallet control and legal ownership.",
+            "Customer asset reconciliation, owned-asset ledger, risk-of-loss analysis, disclosures and approval evidence."
+          ],
+          "controls": [
+            "Separate customer and proprietary wallet populations and reconcile both to subledger and external evidence.",
+            "Legal, risk and accounting review of loss-of-asset exposure, disclosure and any ASC 450-20 conclusion."
+          ],
+          "exceptions": [
+            "Commingling, omnibus wallets, insolvency, rehypothecation, insurance limits, sanctions, private-key loss, service-provider dependency or disputed customer claim.",
+            "SAB 122 is SEC staff guidance for public companies; no general custody conclusion is supplied."
+          ],
+          "remaining_gaps": [
+            "Custody remains an evidence gap because no customer contract, legal ownership opinion or loss-risk file was reviewed.",
+            "No conclusion about gross presentation, liability recognition or disclosure should be inferred from this packet alone."
+          ],
+          "family_id": "q-digital-assets",
+          "assessment": {
+            "status": "evidence-gap",
+            "basis": "Presence of a source-linked bounded answer, explicit inputs, controls, synthetic worked material and stated limitations. This is not a family-wide sufficiency or professional conclusion.",
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "dimensions": {
+              "scope": "partial",
+              "accounting-question": "partial",
+              "evidence-inputs": "partial",
+              "workflow": "partial",
+              "controls": "present",
+              "worked-material": "present",
+              "empirical-support": "not-assessed"
+            }
+          }
         }
       ],
       "editorial_brief": {
@@ -12674,6 +13993,84 @@
         ],
         "reading_order": [
           "src_roadmap_ifric_crypto_2019"
+        ]
+      },
+      "supplemental_research_files": [
+        "data/research/capital-financing-2026-09-18.json"
+      ],
+      "supplemental_reviews": [
+        {
+          "batch": "AA-I121",
+          "reviewed_at": "2026-09-18",
+          "reviewer": "Codex AI-assisted official-source research; no professional sign-off",
+          "package_version": "2026-09-18.121",
+          "research_file": "data/research/capital-financing-2026-09-18.json",
+          "scope": "US GAAP reporting entity holding, issuing or safeguarding digital assets; token rights, ownership, control, custody role and reporting period declared.",
+          "framework": "US GAAP, with SEC staff guidance where identified",
+          "professional_review": "not-performed",
+          "empirical_support": "not-established"
+        }
+      ],
+      "us_capital_financing": {
+        "scope": "US GAAP reporting entity holding, issuing or safeguarding digital assets; token rights, ownership, control, custody role and reporting period declared.",
+        "source_locators": [
+          {
+            "source_id": "src_asu202308",
+            "locator": "ASU 2023-08 pp. 4-7; ASC 350-60 scope and 45-1, 45-2."
+          },
+          {
+            "source_id": "src_secsab122",
+            "locator": "SAB 122 summary and transition/application paragraphs; rescission of SAB Topic 5.FF."
+          },
+          {
+            "source_id": "src_fasb_asu_202502_crypto_safeguarding",
+            "locator": "ASU 2025-02, printed pp. 1-7, paragraphs 2-3; amendments to ASC 405-10-S99, S55 and S65."
+          }
+        ],
+        "shared_inputs": [
+          "Reporting entity, US GAAP basis, token population, ownership or custody role, reporting date and effective requirements.",
+          "Token terms, contracts, wallet or custodian records, legal analysis, valuation and controls."
+        ],
+        "controls": [
+          "Human approval for ownership, valuation, safeguarding, liability and filing conclusions.",
+          "Separate owned and customer populations, restricted access, reconciliations and exception monitoring."
+        ],
+        "exceptions": [
+          "Tokenized rights, issuer relationships, custody, staking, lending, commingling and insolvency.",
+          "No professional legal review, current licensed Codification review or empirical custody evidence."
+        ],
+        "coverage_gaps": [
+          "Owned qualifying crypto assets have a bounded US GAAP source answer; custody remains an evidence gap.",
+          "The inherited IFRS agenda decision is preserved as historical context and cannot be used as US authority."
+        ],
+        "frameworks": [
+          "US GAAP",
+          "SEC staff guidance where identified",
+          "IFRS context retained separately"
+        ],
+        "selected_scope": {
+          "jurisdiction": "United States",
+          "framework": "US GAAP, with SEC staff guidance where identified",
+          "entity_scope": "US GAAP reporting entities; public-company-only guidance is labeled",
+          "period": "ASU and staff-guidance effective periods are stated per source; current Codification access remains edition-sensitive",
+          "families": [
+            "q-debt",
+            "q-equity",
+            "q-share-compensation",
+            "q-investments",
+            "q-derivatives",
+            "q-valuation-impairment",
+            "q-digital-assets"
+          ],
+          "boundaries": [
+            "This packet is a bounded research layer, not a complete US GAAP treatment or professional conclusion.",
+            "Publisher text is not redistributed; current Codification paragraphs require authorized access where the public landing page is the cited locator.",
+            "Entity contracts, valuation evidence, hedge documentation, legal ownership, custody agreements and current adoption facts remain inputs for human review."
+          ]
+        },
+        "named_question_ids": [
+          "rq-aa-i121-digital-ownership",
+          "rq-aa-i121-digital-custody"
         ]
       }
     }

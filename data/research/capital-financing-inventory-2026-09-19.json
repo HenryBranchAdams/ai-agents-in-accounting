@@ -1,0 +1,805 @@
+{
+  "schema_version": "1.0.0",
+  "issue_id": 121,
+  "base_commit": "a38de70787ee47653f3e315a3c31f0577b5b9ae2",
+  "recorded_at": "2026-09-19",
+  "source_package": "data/research/capital-financing-2026-09-18.json",
+  "scope": {
+    "jurisdiction": "United States",
+    "framework": "US GAAP, with SEC staff guidance where identified",
+    "entity_scope": "US GAAP reporting entities; public-company-only guidance is labeled",
+    "period": "ASU and staff-guidance effective periods are stated per source; current Codification access remains edition-sensitive",
+    "families": [
+      "q-debt",
+      "q-equity",
+      "q-share-compensation",
+      "q-investments",
+      "q-derivatives",
+      "q-valuation-impairment",
+      "q-digital-assets"
+    ],
+    "boundaries": [
+      "This packet is a bounded research layer, not a complete US GAAP treatment or professional conclusion.",
+      "Publisher text is not redistributed; current Codification paragraphs require authorized access where the public landing page is the cited locator.",
+      "Entity contracts, valuation evidence, hedge documentation, legal ownership, custody agreements and current adoption facts remain inputs for human review."
+    ]
+  },
+  "original_issue_baseline": {
+    "corpus_version": "2026-09-14.3",
+    "associated_records": 34,
+    "named_questions": 14
+  },
+  "assigned_base_inventory": {
+    "corpus_version": "2026-09-18.1",
+    "associated_records": [
+      {
+        "record_id": "agent-assets-impairment",
+        "family_ids": [
+          "q-valuation-impairment"
+        ]
+      },
+      {
+        "record_id": "agent-treasury-financial-risk",
+        "family_ids": [
+          "q-debt",
+          "q-derivatives"
+        ]
+      },
+      {
+        "record_id": "assets-inventory",
+        "family_ids": [
+          "q-valuation-impairment"
+        ]
+      },
+      {
+        "record_id": "guide-industry-naics2022-211",
+        "family_ids": [
+          "q-derivatives"
+        ]
+      },
+      {
+        "record_id": "guide-industry-naics2022-212",
+        "family_ids": [
+          "q-valuation-impairment"
+        ]
+      },
+      {
+        "record_id": "guide-industry-naics2022-221",
+        "family_ids": [
+          "q-derivatives"
+        ]
+      },
+      {
+        "record_id": "guide-industry-naics2022-324",
+        "family_ids": [
+          "q-derivatives"
+        ]
+      },
+      {
+        "record_id": "guide-industry-naics2022-331",
+        "family_ids": [
+          "q-derivatives"
+        ]
+      },
+      {
+        "record_id": "guide-industry-naics2022-441",
+        "family_ids": [
+          "q-debt"
+        ]
+      },
+      {
+        "record_id": "guide-industry-naics2022-522",
+        "family_ids": [
+          "q-investments"
+        ]
+      },
+      {
+        "record_id": "guide-industry-naics2022-523",
+        "family_ids": [
+          "q-derivatives",
+          "q-investments"
+        ]
+      },
+      {
+        "record_id": "guide-industry-naics2022-525",
+        "family_ids": [
+          "q-derivatives",
+          "q-investments"
+        ]
+      },
+      {
+        "record_id": "guide-q-debt",
+        "family_ids": [
+          "q-debt"
+        ]
+      },
+      {
+        "record_id": "guide-q-derivatives",
+        "family_ids": [
+          "q-derivatives"
+        ]
+      },
+      {
+        "record_id": "guide-q-digital-assets",
+        "family_ids": [
+          "q-digital-assets"
+        ]
+      },
+      {
+        "record_id": "guide-q-equity",
+        "family_ids": [
+          "q-equity"
+        ]
+      },
+      {
+        "record_id": "guide-q-investments",
+        "family_ids": [
+          "q-investments"
+        ]
+      },
+      {
+        "record_id": "guide-q-share-compensation",
+        "family_ids": [
+          "q-share-compensation"
+        ]
+      },
+      {
+        "record_id": "guide-q-valuation-impairment",
+        "family_ids": [
+          "q-valuation-impairment"
+        ]
+      },
+      {
+        "record_id": "src_16ubi7b",
+        "family_ids": [
+          "q-valuation-impairment"
+        ]
+      },
+      {
+        "record_id": "src_ias1",
+        "family_ids": [
+          "q-debt"
+        ]
+      },
+      {
+        "record_id": "src_ias36imp",
+        "family_ids": [
+          "q-valuation-impairment"
+        ]
+      },
+      {
+        "record_id": "src_ifrs09a",
+        "family_ids": [
+          "q-debt",
+          "q-derivatives",
+          "q-investments",
+          "q-valuation-impairment"
+        ]
+      },
+      {
+        "record_id": "src_roadmap_ias23_borrowing_costs",
+        "family_ids": [
+          "q-debt"
+        ]
+      },
+      {
+        "record_id": "src_roadmap_ias32_financial_instruments_presentation",
+        "family_ids": [
+          "q-derivatives",
+          "q-equity",
+          "q-investments"
+        ]
+      },
+      {
+        "record_id": "src_roadmap_ifric_crypto_2019",
+        "family_ids": [
+          "q-digital-assets"
+        ]
+      },
+      {
+        "record_id": "src_roadmap_ifrs13_overview",
+        "family_ids": [
+          "q-valuation-impairment"
+        ]
+      },
+      {
+        "record_id": "src_roadmap_ifrs2_share_based_payment",
+        "family_ids": [
+          "q-share-compensation"
+        ]
+      },
+      {
+        "record_id": "treasury-cash",
+        "family_ids": [
+          "q-debt"
+        ]
+      },
+      {
+        "record_id": "wf-assets-impairment",
+        "family_ids": [
+          "q-valuation-impairment"
+        ]
+      },
+      {
+        "record_id": "wf-construction-cash-surety-closeout",
+        "family_ids": [
+          "q-debt"
+        ]
+      },
+      {
+        "record_id": "wf-technical-estimates-valuations",
+        "family_ids": [
+          "q-valuation-impairment"
+        ]
+      },
+      {
+        "record_id": "wf-treasury-debt-investments",
+        "family_ids": [
+          "q-debt",
+          "q-investments"
+        ]
+      },
+      {
+        "record_id": "wf-treasury-liquidity-covenants",
+        "family_ids": [
+          "q-debt"
+        ]
+      }
+    ],
+    "existing_named_questions": [
+      {
+        "id": "rq-debt-scope-treatment",
+        "record_id": "guide-q-debt",
+        "pointer": "/data/research_questions/0",
+        "family_ids": [
+          "q-debt"
+        ],
+        "question": "Which terms determine IFRS 9 financial-liability measurement and IAS 1 current/non-current presentation?",
+        "scope": "Debt, financing costs and covenants; entity, framework, jurisdiction and period declared",
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_ias1",
+          "src_ifrs09a"
+        ],
+        "remaining_gaps": [
+          "Only cited public sections were used; local adoption, entity facts and professional review remain unresolved.",
+          "Original broader prompt retained as unresolved scope: Which debt terms drive measurement?"
+        ],
+        "professional_review": "not-performed",
+        "empirical_support": "not-established",
+        "dimensions": {
+          "scope": "partial",
+          "accounting-question": "partial",
+          "evidence-inputs": "partial",
+          "workflow": "missing",
+          "controls": "partial",
+          "worked-material": "missing",
+          "empirical-support": "not-assessed"
+        },
+        "dimension_basis": "Presence and review limits of the linked named question, package workflow and original worked material. Partial does not establish accounting correctness; missing means this question packet lacks that component."
+      },
+      {
+        "id": "rq-debt-evidence-controls",
+        "record_id": "guide-q-debt",
+        "pointer": "/data/research_questions/1",
+        "family_ids": [
+          "q-debt"
+        ],
+        "question": "What reporting-date covenant, waiver and maturity evidence supports IAS 1 debt classification?",
+        "scope": "Debt, financing costs and covenants; entity, framework, jurisdiction and period declared",
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_ias1",
+          "src_ifrs09a"
+        ],
+        "remaining_gaps": [
+          "Only cited public sections were used; local adoption, entity facts and professional review remain unresolved.",
+          "Original broader prompt retained as unresolved scope: How does covenant monitoring affect reporting?"
+        ],
+        "professional_review": "not-performed",
+        "empirical_support": "not-established",
+        "dimensions": {
+          "scope": "partial",
+          "accounting-question": "partial",
+          "evidence-inputs": "partial",
+          "workflow": "missing",
+          "controls": "partial",
+          "worked-material": "missing",
+          "empirical-support": "not-assessed"
+        },
+        "dimension_basis": "Presence and review limits of the linked named question, package workflow and original worked material. Partial does not establish accounting correctness; missing means this question packet lacks that component."
+      },
+      {
+        "id": "rq-equity-scope-treatment",
+        "record_id": "guide-q-equity",
+        "pointer": "/data/research_questions/0",
+        "family_ids": [
+          "q-equity"
+        ],
+        "question": "What contractual obligation causes IAS 32.15-16 to classify an instrument as a liability rather than equity?",
+        "scope": "Equity and complex capital instruments; entity, framework, jurisdiction and period declared",
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_roadmap_ias32_financial_instruments_presentation"
+        ],
+        "remaining_gaps": [
+          "Public edition and cited paragraphs were read; current consolidated text, local adoption and entity-specific professional review remain unresolved.",
+          "Original broader prompt retained as unresolved scope: How is equity versus liability classified?"
+        ],
+        "professional_review": "not-performed",
+        "empirical_support": "not-established",
+        "dimensions": {
+          "scope": "partial",
+          "accounting-question": "partial",
+          "evidence-inputs": "partial",
+          "workflow": "missing",
+          "controls": "partial",
+          "worked-material": "missing",
+          "empirical-support": "not-assessed"
+        },
+        "dimension_basis": "Presence and review limits of the linked named question, package workflow and original worked material. Partial does not establish accounting correctness; missing means this question packet lacks that component."
+      },
+      {
+        "id": "rq-equity-evidence-controls",
+        "record_id": "guide-q-equity",
+        "pointer": "/data/research_questions/1",
+        "family_ids": [
+          "q-equity"
+        ],
+        "question": "What terms and calculations support separating the liability and equity components of a compound instrument under IAS 32.28-32?",
+        "scope": "Equity and complex capital instruments; entity, framework, jurisdiction and period declared",
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_roadmap_ias32_financial_instruments_presentation"
+        ],
+        "remaining_gaps": [
+          "Public edition and cited paragraphs were read; current consolidated text, local adoption and entity-specific professional review remain unresolved.",
+          "Original broader prompt retained as unresolved scope: What proves issuance or repurchase?"
+        ],
+        "professional_review": "not-performed",
+        "empirical_support": "not-established",
+        "dimensions": {
+          "scope": "partial",
+          "accounting-question": "partial",
+          "evidence-inputs": "partial",
+          "workflow": "missing",
+          "controls": "partial",
+          "worked-material": "missing",
+          "empirical-support": "not-assessed"
+        },
+        "dimension_basis": "Presence and review limits of the linked named question, package workflow and original worked material. Partial does not establish accounting correctness; missing means this question packet lacks that component."
+      },
+      {
+        "id": "rq-share-compensation-scope-treatment",
+        "record_id": "guide-q-share-compensation",
+        "pointer": "/data/research_questions/0",
+        "family_ids": [
+          "q-share-compensation"
+        ],
+        "question": "How do IFRS 2.7-8 award settlement terms determine equity-settled versus cash-settled recognition?",
+        "scope": "Share-based compensation; entity, framework, jurisdiction and period declared",
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_roadmap_ifrs2_share_based_payment"
+        ],
+        "remaining_gaps": [
+          "Public edition and cited paragraphs were read; current consolidated text, local adoption and entity-specific professional review remain unresolved.",
+          "Original broader prompt retained as unresolved scope: What award facts determine recognition?"
+        ],
+        "professional_review": "not-performed",
+        "empirical_support": "not-established",
+        "dimensions": {
+          "scope": "partial",
+          "accounting-question": "partial",
+          "evidence-inputs": "partial",
+          "workflow": "missing",
+          "controls": "partial",
+          "worked-material": "missing",
+          "empirical-support": "not-assessed"
+        },
+        "dimension_basis": "Presence and review limits of the linked named question, package workflow and original worked material. Partial does not establish accounting correctness; missing means this question packet lacks that component."
+      },
+      {
+        "id": "rq-share-compensation-evidence-controls",
+        "record_id": "guide-q-share-compensation",
+        "pointer": "/data/research_questions/1",
+        "family_ids": [
+          "q-share-compensation"
+        ],
+        "question": "How do IFRS 2 vesting conditions and cash-settled fair-value updates change the evidence required through settlement?",
+        "scope": "Share-based compensation; entity, framework, jurisdiction and period declared",
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_roadmap_ifrs2_share_based_payment"
+        ],
+        "remaining_gaps": [
+          "Public edition and cited paragraphs were read; current consolidated text, local adoption and entity-specific professional review remain unresolved.",
+          "Original broader prompt retained as unresolved scope: How are valuation changes controlled?"
+        ],
+        "professional_review": "not-performed",
+        "empirical_support": "not-established",
+        "dimensions": {
+          "scope": "partial",
+          "accounting-question": "partial",
+          "evidence-inputs": "partial",
+          "workflow": "missing",
+          "controls": "partial",
+          "worked-material": "missing",
+          "empirical-support": "not-assessed"
+        },
+        "dimension_basis": "Presence and review limits of the linked named question, package workflow and original worked material. Partial does not establish accounting correctness; missing means this question packet lacks that component."
+      },
+      {
+        "id": "rq-investments-classification",
+        "record_id": "guide-q-investments",
+        "pointer": "/data/research_questions/0",
+        "family_ids": [
+          "q-investments"
+        ],
+        "question": "How should an agent distinguish debt, equity and contractual cash-flow features before selecting a measurement basis?",
+        "scope": "q-investments: reporting entity applying the named framework to the described transaction in an annual or interim reporting period; exclude jurisdictions and instruments outside the cited standard.",
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_ifrs09a",
+          "src_roadmap_ias32_financial_instruments_presentation"
+        ],
+        "remaining_gaps": [
+          "Current endorsed IFRS 9 text and entity facts were not independently checked here."
+        ],
+        "professional_review": "not-performed",
+        "empirical_support": "not-established",
+        "dimensions": {
+          "scope": "partial",
+          "accounting-question": "partial",
+          "evidence-inputs": "partial",
+          "workflow": "missing",
+          "controls": "partial",
+          "worked-material": "missing",
+          "empirical-support": "not-assessed"
+        },
+        "dimension_basis": "Presence and review limits of the linked named question, package workflow and original worked material. Partial does not establish accounting correctness; missing means this question packet lacks that component."
+      },
+      {
+        "id": "rq-investments-losses",
+        "record_id": "guide-q-investments",
+        "pointer": "/data/research_questions/1",
+        "family_ids": [
+          "q-investments"
+        ],
+        "question": "When is an expected-credit-loss allowance required and what evidence supports staging?",
+        "scope": "q-investments: reporting entity applying the named framework to the described transaction in an annual or interim reporting period; exclude jurisdictions and instruments outside the cited standard.",
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_ifrs09a",
+          "src_roadmap_ias32_financial_instruments_presentation"
+        ],
+        "remaining_gaps": [
+          "No portfolio data or model validation was available."
+        ],
+        "professional_review": "not-performed",
+        "empirical_support": "not-established",
+        "dimensions": {
+          "scope": "partial",
+          "accounting-question": "partial",
+          "evidence-inputs": "partial",
+          "workflow": "missing",
+          "controls": "partial",
+          "worked-material": "missing",
+          "empirical-support": "not-assessed"
+        },
+        "dimension_basis": "Presence and review limits of the linked named question, package workflow and original worked material. Partial does not establish accounting correctness; missing means this question packet lacks that component."
+      },
+      {
+        "id": "rq-derivatives-embedded",
+        "record_id": "guide-q-derivatives",
+        "pointer": "/data/research_questions/0",
+        "family_ids": [
+          "q-derivatives"
+        ],
+        "question": "Which contract features can make a host contract a derivative or contain an embedded derivative?",
+        "scope": "q-derivatives: reporting entity applying the named framework to the described transaction in an annual or interim reporting period; exclude jurisdictions and instruments outside the cited standard.",
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_ifrs09a",
+          "src_roadmap_ias32_financial_instruments_presentation"
+        ],
+        "remaining_gaps": [
+          "Hedge-accounting eligibility and effectiveness were not tested."
+        ],
+        "professional_review": "not-performed",
+        "empirical_support": "not-established",
+        "dimensions": {
+          "scope": "partial",
+          "accounting-question": "partial",
+          "evidence-inputs": "partial",
+          "workflow": "missing",
+          "controls": "partial",
+          "worked-material": "missing",
+          "empirical-support": "not-assessed"
+        },
+        "dimension_basis": "Presence and review limits of the linked named question, package workflow and original worked material. Partial does not establish accounting correctness; missing means this question packet lacks that component."
+      },
+      {
+        "id": "rq-derivatives-hedge",
+        "record_id": "guide-q-derivatives",
+        "pointer": "/data/research_questions/1",
+        "family_ids": [
+          "q-derivatives"
+        ],
+        "question": "What evidence is needed to designate and continue a qualifying hedge?",
+        "scope": "q-derivatives: reporting entity applying the named framework to the described transaction in an annual or interim reporting period; exclude jurisdictions and instruments outside the cited standard.",
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_ifrs09a",
+          "src_roadmap_ias32_financial_instruments_presentation"
+        ],
+        "remaining_gaps": [
+          "No live hedge documentation was reviewed."
+        ],
+        "professional_review": "not-performed",
+        "empirical_support": "not-established",
+        "dimensions": {
+          "scope": "partial",
+          "accounting-question": "partial",
+          "evidence-inputs": "partial",
+          "workflow": "missing",
+          "controls": "partial",
+          "worked-material": "missing",
+          "empirical-support": "not-assessed"
+        },
+        "dimension_basis": "Presence and review limits of the linked named question, package workflow and original worked material. Partial does not establish accounting correctness; missing means this question packet lacks that component."
+      },
+      {
+        "id": "rq-valuation-impairment-trigger",
+        "record_id": "guide-q-valuation-impairment",
+        "pointer": "/data/research_questions/0",
+        "family_ids": [
+          "q-valuation-impairment"
+        ],
+        "question": "What event or indicator requires an impairment test, and at what unit of account?",
+        "scope": "q-valuation-impairment: reporting entity applying the named framework to the described transaction in an annual or interim reporting period; exclude jurisdictions and instruments outside the cited standard.",
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_ias36imp"
+        ],
+        "remaining_gaps": [
+          "Valuation conclusions require qualified review."
+        ],
+        "professional_review": "not-performed",
+        "empirical_support": "not-established",
+        "dimensions": {
+          "scope": "partial",
+          "accounting-question": "partial",
+          "evidence-inputs": "partial",
+          "workflow": "missing",
+          "controls": "partial",
+          "worked-material": "missing",
+          "empirical-support": "not-assessed"
+        },
+        "dimension_basis": "Presence and review limits of the linked named question, package workflow and original worked material. Partial does not establish accounting correctness; missing means this question packet lacks that component."
+      },
+      {
+        "id": "rq-valuation-impairment-fair-value",
+        "record_id": "guide-q-valuation-impairment",
+        "pointer": "/data/research_questions/1",
+        "family_ids": [
+          "q-valuation-impairment"
+        ],
+        "question": "When does IFRS 13 provide the fair-value measurement framework?",
+        "scope": "q-valuation-impairment: reporting entity applying the named framework to the described transaction in an annual or interim reporting period; exclude jurisdictions and instruments outside the cited standard.",
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_roadmap_ifrs13_overview"
+        ],
+        "remaining_gaps": [
+          "No instrument-specific valuation was tested.",
+          "Broader research still open: How should an agent separate observable market evidence from model assumptions?"
+        ],
+        "professional_review": "not-performed",
+        "empirical_support": "not-established",
+        "dimensions": {
+          "scope": "partial",
+          "accounting-question": "partial",
+          "evidence-inputs": "partial",
+          "workflow": "missing",
+          "controls": "partial",
+          "worked-material": "missing",
+          "empirical-support": "not-assessed"
+        },
+        "dimension_basis": "Presence and review limits of the linked named question, package workflow and original worked material. Partial does not establish accounting correctness; missing means this question packet lacks that component."
+      },
+      {
+        "id": "rq-digital-assets-rights",
+        "record_id": "guide-q-digital-assets",
+        "pointer": "/data/research_questions/0",
+        "family_ids": [
+          "q-digital-assets"
+        ],
+        "question": "For the cryptocurrency subset considered by the June 2019 IFRIC decision, which standards apply to holdings?",
+        "scope": "q-digital-assets: reporting entity applying the named framework to the described transaction in an annual or interim reporting period; exclude jurisdictions and instruments outside the cited standard.",
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_roadmap_ifric_crypto_2019"
+        ],
+        "remaining_gaps": [
+          "IFRS has no single digital-asset standard; fact pattern remains unresolved.",
+          "Broader research still open: What rights and obligations does a tokenized arrangement convey before classification?"
+        ],
+        "professional_review": "not-performed",
+        "empirical_support": "not-established",
+        "dimensions": {
+          "scope": "partial",
+          "accounting-question": "partial",
+          "evidence-inputs": "partial",
+          "workflow": "missing",
+          "controls": "partial",
+          "worked-material": "missing",
+          "empirical-support": "not-assessed"
+        },
+        "dimension_basis": "Presence and review limits of the linked named question, package workflow and original worked material. Partial does not establish accounting correctness; missing means this question packet lacks that component."
+      },
+      {
+        "id": "rq-digital-assets-custody",
+        "record_id": "guide-q-digital-assets",
+        "pointer": "/data/research_questions/1",
+        "family_ids": [
+          "q-digital-assets"
+        ],
+        "question": "Does the June 2019 IFRIC holding decision resolve customer custody or token redemption rights?",
+        "scope": "q-digital-assets: reporting entity applying the named framework to the described transaction in an annual or interim reporting period; exclude jurisdictions and instruments outside the cited standard.",
+        "answer_status": "evidence-gap",
+        "assessment_status": "evidence-gap",
+        "source_ids": [
+          "src_roadmap_ifric_crypto_2019"
+        ],
+        "remaining_gaps": [
+          "No custody-specific standard or regulator source was read in this family; do not infer provider recognition from the IFRIC decision.",
+          "Broader research still open: When is a digital asset held for a customer rather than recognized by the service provider?"
+        ],
+        "professional_review": "not-performed",
+        "empirical_support": "not-established",
+        "dimensions": {
+          "scope": "partial",
+          "accounting-question": "missing",
+          "evidence-inputs": "partial",
+          "workflow": "missing",
+          "controls": "partial",
+          "worked-material": "missing",
+          "empirical-support": "not-assessed"
+        },
+        "dimension_basis": "Presence and review limits of the linked named question, package workflow and original worked material. Partial does not establish accounting correctness; missing means this question packet lacks that component."
+      }
+    ]
+  },
+  "selected_questions": [
+    {
+      "family_id": "q-debt",
+      "existing_questions": [
+        "rq-debt-scope-treatment",
+        "rq-debt-evidence-controls"
+      ],
+      "selected_question_ids": [
+        "rq-aa-i121-debt-costs-covenants",
+        "rq-aa-i121-debt-evidence"
+      ],
+      "priority": "Deepen the two selected US questions while preserving prior cross-industry and international context.",
+      "status": "Partial or evidence-gap as specified by the canonical question assessment."
+    },
+    {
+      "family_id": "q-equity",
+      "existing_questions": [
+        "rq-equity-scope-treatment",
+        "rq-equity-evidence-controls"
+      ],
+      "selected_question_ids": [
+        "rq-aa-i121-equity-classification",
+        "rq-aa-i121-convertible"
+      ],
+      "priority": "Deepen the two selected US questions while preserving prior cross-industry and international context.",
+      "status": "Partial or evidence-gap as specified by the canonical question assessment."
+    },
+    {
+      "family_id": "q-share-compensation",
+      "existing_questions": [
+        "rq-share-compensation-scope-treatment",
+        "rq-share-compensation-evidence-controls"
+      ],
+      "selected_question_ids": [
+        "rq-aa-i121-share-awards",
+        "rq-aa-i121-share-comp-controls"
+      ],
+      "priority": "Deepen the two selected US questions while preserving prior cross-industry and international context.",
+      "status": "Partial or evidence-gap as specified by the canonical question assessment."
+    },
+    {
+      "family_id": "q-investments",
+      "existing_questions": [
+        "rq-investments-classification",
+        "rq-investments-losses"
+      ],
+      "selected_question_ids": [
+        "rq-aa-i121-investment-classification",
+        "rq-aa-i121-investment-losses"
+      ],
+      "priority": "Deepen the two selected US questions while preserving prior cross-industry and international context.",
+      "status": "Partial or evidence-gap as specified by the canonical question assessment."
+    },
+    {
+      "family_id": "q-derivatives",
+      "existing_questions": [
+        "rq-derivatives-embedded",
+        "rq-derivatives-hedge"
+      ],
+      "selected_question_ids": [
+        "rq-aa-i121-derivative-scope",
+        "rq-aa-i121-hedge-designation"
+      ],
+      "priority": "Deepen the two selected US questions while preserving prior cross-industry and international context.",
+      "status": "Partial or evidence-gap as specified by the canonical question assessment."
+    },
+    {
+      "family_id": "q-valuation-impairment",
+      "existing_questions": [
+        "rq-valuation-impairment-trigger",
+        "rq-valuation-impairment-fair-value"
+      ],
+      "selected_question_ids": [
+        "rq-aa-i121-valuation-trigger",
+        "rq-aa-i121-fair-value"
+      ],
+      "priority": "Deepen the two selected US questions while preserving prior cross-industry and international context.",
+      "status": "Partial or evidence-gap as specified by the canonical question assessment."
+    },
+    {
+      "family_id": "q-digital-assets",
+      "existing_questions": [
+        "rq-digital-assets-rights",
+        "rq-digital-assets-custody"
+      ],
+      "selected_question_ids": [
+        "rq-aa-i121-digital-ownership",
+        "rq-aa-i121-digital-custody"
+      ],
+      "priority": "Deepen the two selected US questions while preserving prior cross-industry and international context.",
+      "status": "Partial or evidence-gap as specified by the canonical question assessment."
+    }
+  ],
+  "dispositions": {
+    "preserve": "Retain every existing record, question, primary source field, right, source date and industry association.",
+    "reuse": [
+      "src_asu202308",
+      "src_secsab122"
+    ],
+    "new_source_records": [
+      "src_fasb_asu_201503_debt_costs",
+      "src_fasb_asc470_debt",
+      "src_fasb_asu_201601_equity_investments",
+      "src_fasb_asu_201613_credit_losses",
+      "src_fasb_asu_201807_share_comp",
+      "src_sec_sab120_awards",
+      "src_fasb_asu_201712_hedging",
+      "src_fasb_asc815_hedging",
+      "src_fasb_asu_202006_convertibles",
+      "src_fasb_asu_202203_sale_restrictions",
+      "src_fasb_asc820_fair_value",
+      "src_fasb_asc360_impairment",
+      "src_fasb_asu_202502_crypto_safeguarding",
+      "src_fasb_asu_201910_effective_dates"
+    ],
+    "custody": "US authority distinguishes eligible owned assets from customer safeguarding; contracts, legal title, control and applicable accounting conclusions remain an explicit evidence gap.",
+    "excluded": "No new country survey, actual entity contract analysis, professional signoff, operational evidence or executed financial action."
+  }
+}
