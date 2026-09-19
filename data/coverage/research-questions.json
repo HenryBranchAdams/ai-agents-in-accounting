@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "question_set_version": "2026-09-19.12419",
-  "corpus_version": "2026-09-19.12419",
+  "question_set_version": "2026-09-19.12420",
+  "corpus_version": "2026-09-19.12420",
   "reviewed_at": "2026-09-19",
   "scope": "Versioned named research questions. Broader unresolved family questions and industry applicability are separate denominators, retained in their review files. The nonprofit question was appended on 2026-09-16; inherited individual review dates and limitations are unchanged. The reporting-foundations-us supplement adds eight US-scoped named answers while preserving IFRS and other existing framework records. The tax-foundations-us supplement adds five US-scoped named tax answers while preserving existing framework, construction-conflict, and jurisdiction boundaries.",
   "questions": [
@@ -10719,6 +10719,536 @@
         "empirical-support": "not-assessed"
       },
       "dimension_basis": "Live selected-source locators, original synthetic scenarios and proposed workflow/control fields provide bounded support. Partial does not establish accounting correctness or sector completeness."
+    },
+    {
+      "id": "rq-us-nonprofit-endowment-spending",
+      "record_id": "guide-us-nonprofit-endowment-spending",
+      "pointer": "/data/research_questions/0",
+      "family_ids": [
+        "q-grants-contributions",
+        "q-investments",
+        "q-presentation",
+        "q-ledger-close"
+      ],
+      "question": "How should a selected US nongovernmental nonprofit distinguish donor-restricted endowment funds from board-designated quasi-endowments and evidence a 2026 spending rollforward?",
+      "scope": "Selected FASB NFP endowment disclosure, Illinois institutional-fund prudence and 2025 Form 990 route questions for one synthetic 2026 calendar-year close.",
+      "answer_status": "sourced-answer-and-original-example",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_nonprofit_fasb_2016_14",
+        "src_nonprofit_illinois_upmifa_2009",
+        "src_nonprofit_irs_990_2025"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_nonprofit_fasb_2016_14",
+          "locator": "ASU 2016-14 PDF pp. 41-42, paragraphs 958-205-50-1A through 958-205-50-2",
+          "period_pointer": "/data/effective_period",
+          "locator_pointers": [
+            "/data/locators/6",
+            "/data/locators/7"
+          ]
+        },
+        {
+          "source_id": "src_nonprofit_illinois_upmifa_2009",
+          "locator": "760 ILCS 51/2, /3, /6, /7 and /11; 760 ILCS51/4(a)-(c)",
+          "period_pointer": "/data/effective_period",
+          "locator_pointers": [
+            "/data/locators/0",
+            "/data/locators/1",
+            "/data/locators/2",
+            "/data/locators/3",
+            "/data/locators/4",
+            "/data/locators/5"
+          ]
+        },
+        {
+          "source_id": "src_nonprofit_irs_990_2025",
+          "locator": "2025 Instructions for Form 990 PDF p. 11, Part IV line 10 and Schedule D reference",
+          "period_pointer": "/data/effective_period",
+          "locator_pointers": [
+            "/data/locators/3"
+          ]
+        }
+      ],
+      "remaining_gaps": [
+        "No current consolidated Codification review, live fund or professional review.",
+        "No conclusion for a state other than the selected Illinois example."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Selected source locators, a declared workflow, control proposal and independent synthetic rollforward are present; current consolidated authority, professional review and operational evidence remain incomplete.",
+      "reviewed_at": "2026-09-19"
+    },
+    {
+      "id": "rq-us-nonprofit-contributed-nonfinancial-assets",
+      "record_id": "guide-us-nonprofit-contributed-nonfinancial-assets",
+      "pointer": "/data/research_questions/0",
+      "family_ids": [
+        "q-grants-contributions",
+        "q-presentation",
+        "q-ledger-close",
+        "q-reuse-rights"
+      ],
+      "question": "How should a selected US nonprofit route donated goods and services while separating recognition, ASU 2020-07 presentation and disclosure, and Form 990 narrative treatment?",
+      "scope": "Selected US nongovernmental NFP contribution and nonfinancial-asset presentation questions for a synthetic 2026 close, including a qualifying specialized-service branch and a general volunteer-service counterexample.",
+      "answer_status": "sourced-answer-and-original-example",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_nonprofit_fasb_2018_08",
+        "src_nonprofit_fasb_2020_07",
+        "src_nonprofit_irs_990_2025"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_nonprofit_fasb_2018_08",
+          "locator": "ASU 2018-08 PDF pp. 7-10, contribution-versus-exchange, conditionality and effective-period summary",
+          "period_pointer": "/data/effective_period",
+          "locator_pointers": [
+            "/data/locators/0",
+            "/data/locators/1",
+            "/data/locators/2",
+            "/data/locators/3"
+          ]
+        },
+        {
+          "source_id": "src_nonprofit_fasb_2020_07",
+          "locator": "ASU 2020-07 PDF pp. 6-7 and 17-19, paragraphs 958-605-45-7A, 958-605-50-1A and 958-605-50-1B",
+          "period_pointer": "/data/effective_period",
+          "locator_pointers": [
+            "/data/locators/0",
+            "/data/locators/1",
+            "/data/locators/2",
+            "/data/locators/3",
+            "/data/locators/4"
+          ]
+        },
+        {
+          "source_id": "src_nonprofit_irs_990_2025",
+          "locator": "2025 Instructions for Form 990 PDF p. 10, Part III donated services or use of equipment, materials or facilities",
+          "period_pointer": "/data/effective_period",
+          "locator_pointers": [
+            "/data/locators/1"
+          ]
+        }
+      ],
+      "remaining_gaps": [
+        "No current consolidated recognition review or professional accounting review.",
+        "No operational donation population or empirical agent evidence."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Selected source locators, a declared workflow, control proposal and independent goods and services fixture are present; current consolidated recognition authority, professional review and operational evidence remain incomplete.",
+      "reviewed_at": "2026-09-19"
+    },
+    {
+      "id": "rq-us-nonprofit-federal-reporting",
+      "record_id": "guide-us-nonprofit-federal-reporting",
+      "pointer": "/data/research_questions/0",
+      "family_ids": [
+        "q-tax-returns",
+        "q-grants-contributions",
+        "q-cost-allocation",
+        "q-compliance-assurance",
+        "q-presentation"
+      ],
+      "question": "How should a selected US nonprofit bridge a book functional-expense close to the 2025 Form 990 route and separately gate a 2 CFR Part 200 Federal-award reporting branch?",
+      "scope": "Selected US nongovernmental nonprofit Form 990 and Federal-award reporting routes; no universal filing, GAAP or Single Audit conclusion.",
+      "answer_status": "sourced-answer-and-original-example",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_nonprofit_irs_990_2025",
+        "src_cfr200grants",
+        "src_nonprofit_fasb_2016_14"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_nonprofit_irs_990_2025",
+          "locator": "2025 Instructions for Form 990 PDF pp. 10-12, Part IV; pp. 41-43, Part IX",
+          "period_pointer": "/data/effective_period",
+          "locator_pointers": [
+            "/data/locators/1",
+            "/data/locators/2",
+            "/data/locators/3",
+            "/data/locators/4",
+            "/data/locators/5"
+          ]
+        },
+        {
+          "source_id": "src_cfr200grants",
+          "locator": "2 CFR §§200.302(a)-(b)(1)-(3), 200.328, 200.329 and 200.501(a)-(h), current eCFR display inspected 2026-09-19; 2 CFR200.331(a)-(b)",
+          "period_pointer": "/data/source_review/effective_period",
+          "locator_pointers": [
+            "/data/source_review",
+            "/data/supplemental_reviews/1"
+          ]
+        },
+        {
+          "source_id": "src_nonprofit_fasb_2016_14",
+          "locator": "ASU 2016-14 PDF p. 160, paragraph 958-720-45-15",
+          "period_pointer": "/data/effective_period",
+          "locator_pointers": [
+            "/data/locators/4"
+          ]
+        }
+      ],
+      "remaining_gaps": [
+        "No live tax return, award file, professional review or filing submission.",
+        "The current threshold and exception analysis is not portable without current entity and award facts."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Selected IRS and eCFR locators, a declared reconciliation workflow, control proposal and independent bridge fixture are present; entity filing, award, professional and operational conclusions remain incomplete.",
+      "reviewed_at": "2026-09-19"
+    },
+    {
+      "id": "rq-us-nonprofit-cross-industry-routing",
+      "record_id": "guide-us-nonprofit-cross-industry-routing",
+      "pointer": "/data/research_questions/0",
+      "family_ids": [
+        "q-reporting-basis",
+        "q-grants-contributions",
+        "q-government-funds",
+        "q-revenue"
+      ],
+      "question": "How should a US nonprofit research request route among existing education, healthcare, social assistance, arts, membership and religious activity guides without transferring framework or transaction conclusions?",
+      "scope": "NAICS 2022 activity routing and issue handoff only; no whole-industry or whole-family sufficiency conclusion.",
+      "answer_status": "sourced-answer-bounded",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_roadmap_naics2022_manual"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_roadmap_naics2022_manual",
+          "locator": "2022 NAICS-US manual Part II activity definitions for subsectors 611, 621-624, 711-713 and 813; individual existing guides retain their printed or PDF locators",
+          "period_pointer": "/data/source_currency",
+          "locator_pointers": [
+            "/data"
+          ]
+        }
+      ],
+      "remaining_gaps": [
+        "No independent review of every activity-specific accounting question was performed.",
+        "No education tuition or aid content is duplicated here; follow the separately owned education package.",
+        "Classification and routing do not establish accounting adequacy or professional review."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "missing",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Existing NAICS activity guides and an explicit handoff map are present; no new industry operating evidence, professional review or whole-industry sufficiency is asserted.",
+      "reviewed_at": "2026-09-19"
+    },
+    {
+      "id": "rq-us-education-auxiliary-services",
+      "record_id": "guide-us-education-auxiliary-services",
+      "pointer": "/data/research_questions/0",
+      "family_ids": [
+        "q-revenue",
+        "q-grants-contributions",
+        "q-reporting-basis"
+      ],
+      "question": "How should a selected US education provider separate auxiliary service fees from tuition, public-entity reporting-model routing and the federal tax boundary for unrelated activity?",
+      "scope": "Selected US higher-education auxiliary-service branches: nongovernmental US GAAP, public GASB business-type/governmental routing and for-profit US GAAP. Covers housing, dining, bookstore and a commercial lease/service counterexample; it is not a campus-wide chart of accounts or tax opinion.",
+      "answer_status": "sourced-answer-and-original-example",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_construction_fasb_2014_09",
+        "src_education_gasb35",
+        "src_education_irs_p598_auxiliary"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_construction_fasb_2014_09",
+          "locator": "ASU 2014-09 Section A, ASC 606-10-25-1 through 25-2, 25-27 through 25-37, 32-1 through 32-6 and 45-1 through 45-5; original issued text, current consolidated GAAP not reviewed.",
+          "period_pointer": "/data/published_or_status"
+        },
+        {
+          "source_id": "src_education_gasb35",
+          "locator": "GASB 35 paragraphs 43-46 and .101-.106; external-user fees and public-college business-type/governmental routing.",
+          "period_pointer": "/data/effective_period",
+          "locator_pointers": [
+            "/data/locators/1",
+            "/data/locators/4"
+          ]
+        },
+        {
+          "source_id": "src_education_irs_p598_auxiliary",
+          "locator": "Publication 598, sections 1 and 3: colleges and universities, trade or business, substantially related, dual-use facilities and services with lease.",
+          "period_pointer": "/data/effective_period",
+          "locator_pointers": [
+            "/data/locators/0",
+            "/data/locators/1",
+            "/data/locators/2",
+            "/data/locators/3",
+            "/data/locators/4"
+          ]
+        }
+      ],
+      "remaining_gaps": [
+        "student housing bundled with instruction may require distinct-service and allocation analysis",
+        "commercial lease or excess facility scale can create a different tax route",
+        "public appropriations are not auxiliary customer revenue",
+        "current consolidated GAAP/GASB and tax law require separate review",
+        "No professional review, operational population or measured agent performance."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Selected original-source locators, bounded roles, workflow, controls, synthetic example and counterexamples are present; current consolidated guidance and operational evidence remain incomplete.",
+      "reviewed_at": "2026-09-19"
+    },
+    {
+      "id": "rq-us-education-federal-grants",
+      "record_id": "guide-us-education-federal-grants",
+      "pointer": "/data/research_questions/0",
+      "family_ids": [
+        "q-revenue",
+        "q-grants-contributions",
+        "q-reporting-basis"
+      ],
+      "question": "How should an education provider distinguish a federal grant or award from tuition exchange revenue and control award costs across nonprofit and public routes?",
+      "scope": "Selected US education federal-award branch for a nongovernmental nonprofit or public institution receiving a grant. Covers contribution-versus-exchange, conditional barriers, allowability and source-supported award records; it does not conclude any institution-specific award.",
+      "answer_status": "sourced-answer-and-original-example",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_nonprofit_fasb_2018_08",
+        "src_cfr200grants",
+        "src_education_fsa_2526_disbursement",
+        "src_education_gasb35"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_nonprofit_fasb_2018_08",
+          "locator": "ASU 2018-08 PDF pp. 7-10; 958-605-15-5A and 958-605-25-5A through 25-5F; contribution versus exchange and conditionality.",
+          "period_pointer": "/data/effective_period",
+          "locator_pointers": [
+            "/data/locators/0",
+            "/data/locators/1",
+            "/data/locators/2",
+            "/data/locators/3"
+          ]
+        },
+        {
+          "source_id": "src_cfr200grants",
+          "locator": "2 CFR §§200.101(b)-(c), 200.302(b)(3),(5),(7), 200.403(a)-(h), 200.405(a)-(e); award applicability, records, allowability and allocability.",
+          "period_pointer": "/data/source_review/effective_period",
+          "locator_pointers": [
+            "/data/source_review/source_locator"
+          ]
+        },
+        {
+          "source_id": "src_education_fsa_2526_disbursement",
+          "locator": "FSA Handbook 2025-2026 Volume 4 Chapter 2, Institutional Versus Noninstitutional Charges and Title IV Credit Balances; program administration only.",
+          "period_pointer": "/data/effective_period",
+          "locator_pointers": [
+            "/data/locators/0",
+            "/data/locators/1"
+          ]
+        },
+        {
+          "source_id": "src_education_gasb35",
+          "locator": "GASB 35 paragraphs 43-46; public reporting-model routing remains separate from federal-award terms.",
+          "period_pointer": "/data/effective_period",
+          "locator_pointers": [
+            "/data/locators/1"
+          ]
+        }
+      ],
+      "remaining_gaps": [
+        "an exchange contract can fall under revenue guidance rather than contribution guidance",
+        "award terms or agency supplements can control over general Part 200 defaults",
+        "public framework and nonprofit framework cannot be blended",
+        "pending nonprofit endowment and Illinois IDs are not required for this grant branch",
+        "No professional review, operational population or measured agent performance."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Selected original-source locators, bounded roles, workflow, controls, synthetic example and counterexamples are present; current consolidated guidance and operational evidence remain incomplete.",
+      "reviewed_at": "2026-09-19"
+    },
+    {
+      "id": "rq-us-education-public-appropriations",
+      "record_id": "guide-us-education-public-appropriations",
+      "pointer": "/data/research_questions/0",
+      "family_ids": [
+        "q-revenue",
+        "q-grants-contributions",
+        "q-reporting-basis"
+      ],
+      "question": "How should a public college route primary-government appropriations without treating them as tuition or assuming operating revenue?",
+      "scope": "Selected US public-college appropriation branch using historical GASB 35 text and the existing GASB 34 source foundation. Covers primary-government appropriations, governmental/business-type activity selection and a tuition counterexample; current consolidated GASB applicability remains open.",
+      "answer_status": "sourced-answer-and-original-example",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_education_gasb35",
+        "src_roadmap_gasb34_basis"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_education_gasb35",
+          "locator": "GASB 35 paragraphs 43-46, 50-52; PDF pp. 24-26, public-college reporting models and appropriation presentation.",
+          "period_pointer": "/data/effective_period",
+          "locator_pointers": [
+            "/data/locators/1",
+            "/data/locators/2"
+          ]
+        },
+        {
+          "source_id": "src_roadmap_gasb34_basis",
+          "locator": "Existing source foundation: selected GASB 34 basis and governmental/business-type reporting boundaries; current consolidated applicability remains separate.",
+          "period_pointer": "/data/effective_period"
+        }
+      ],
+      "remaining_gaps": [
+        "capital-purpose appropriations may follow a different presentation",
+        "component units and blended entities require separate analysis",
+        "historical GASB 35 text is not a current consolidated conclusion",
+        "a fee-for-service activity is not automatically the whole reporting entity’s classification",
+        "No professional review, operational population or measured agent performance."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Selected original-source locators, bounded roles, workflow, controls, synthetic example and counterexamples are present; current consolidated guidance and operational evidence remain incomplete.",
+      "reviewed_at": "2026-09-19"
+    },
+    {
+      "id": "rq-us-education-endowment-routing",
+      "record_id": "guide-us-education-endowment-routing",
+      "pointer": "/data/research_questions/0",
+      "family_ids": [
+        "q-revenue",
+        "q-grants-contributions",
+        "q-reporting-basis"
+      ],
+      "question": "How should a selected US nongovernmental education nonprofit distinguish donor-restricted endowment resources from board-designated quasi-endowment resources and document a spending rollforward?",
+      "scope": "Selected US nongovernmental nonprofit higher-education endowment branch. Uses the pending shared nonprofit FASB endowment and Illinois UPMIFA source IDs as dependencies, with no nationwide state-law survey and no conclusion for a public institution’s GASB endowment presentation.",
+      "answer_status": "sourced-answer-and-original-example",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_nonprofit_fasb_2016_14",
+        "src_nonprofit_illinois_upmifa_2009",
+        "src_nonprofit_fasb_2018_08"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_nonprofit_fasb_2016_14",
+          "locator": "ASU 2016-14 PDF pp. 10-11 and 17 (effective period and transition), pp. 30-31 (958-205-45-2 and 45-9), and pp. 41-42 (958-205-50-1A through 50-2): selected donor restrictions, endowment composition, rollforward, policies and underwater disclosures.",
+          "period_pointer": "/data/effective_period",
+          "locator_pointers": [
+            "/data/locators/0",
+            "/data/locators/1",
+            "/data/locators/2",
+            "/data/locators/3",
+            "/data/locators/5",
+            "/data/locators/6",
+            "/data/locators/7"
+          ]
+        },
+        {
+          "source_id": "src_nonprofit_illinois_upmifa_2009",
+          "locator": "760 ILCS 51/2, /3, /4(a)-(c), /6, /7 and /11; selected Illinois institutional-fund routing, donor intent, prudence and appropriation or accumulation only.",
+          "period_pointer": "/data/effective_period",
+          "locator_pointers": [
+            "/data/locators/0",
+            "/data/locators/1",
+            "/data/locators/2",
+            "/data/locators/3",
+            "/data/locators/4",
+            "/data/locators/5"
+          ]
+        },
+        {
+          "source_id": "src_nonprofit_fasb_2018_08",
+          "locator": "ASU 2018-08 PDF pp. 7-10 and 958-605-15-5A; contribution/exchange and condition boundary where a gift or award has provider terms.",
+          "period_pointer": "/data/effective_period",
+          "locator_pointers": [
+            "/data/locators/0",
+            "/data/locators/1"
+          ]
+        }
+      ],
+      "remaining_gaps": [
+        "Illinois law does not represent all state law",
+        "donor consent, court modification and small-fund rules need fact-specific review",
+        "public institutions may follow GASB rather than this nonprofit branch",
+        "endowment investment return is not automatically available tuition revenue",
+        "No professional review, operational population or measured agent performance."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Selected original-source locators, bounded roles, workflow, controls, synthetic example and counterexamples are present; current consolidated guidance and operational evidence remain incomplete.",
+      "reviewed_at": "2026-09-19"
     }
   ]
 }

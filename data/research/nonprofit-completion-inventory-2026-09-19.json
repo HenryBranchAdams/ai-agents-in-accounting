@@ -1,0 +1,5127 @@
+{
+  "schema_version": "1.0.0",
+  "package_id": "aa-i117-nonprofit-completion",
+  "issue_id": 117,
+  "reviewed_at": "2026-09-19",
+  "base_commit": "f393fd5a451bbfda6251be55dd420f03eddf3b3d",
+  "original_criteria": {
+    "A1": "Inventory selected US nonprofit roles, framework, periods and question population.",
+    "A2": "Use original US authorities with exact locators, effective periods, access/review limits and record-level rights.",
+    "A3": "Connect inputs, treatment, workflow, controls and original synthetic worked material with counterexamples.",
+    "A4": "Record unresolved exceptions, professional-review status and empirical limits without claiming sufficiency.",
+    "A5": "Verify representative retrieval, a scope counterexample, deterministic mappings and standard corpus contracts."
+  },
+  "selected_scope": {
+    "us_frameworks": [
+      "US GAAP nonprofit presentation and contributions",
+      "US federal tax reporting",
+      "2 CFR Part 200 when applicable"
+    ],
+    "state_law_example": "Illinois UPMIFA only",
+    "periods": [
+      "2025 Form 990 tax year",
+      "current eCFR display inspected 2026-09-19",
+      "illustrative 2026 calendar-year close"
+    ],
+    "excluded": [
+      "50-state survey",
+      "whole-industry perfection",
+      "professional sign-off",
+      "operational agent performance"
+    ]
+  },
+  "records_by_kind": {
+    "source": [
+      "src_nonprofit_fasb_2020_07",
+      "src_nonprofit_illinois_upmifa_2009"
+    ],
+    "guide": [
+      "guide-us-nonprofit-endowment-spending",
+      "guide-us-nonprofit-contributed-nonfinancial-assets",
+      "guide-us-nonprofit-federal-reporting",
+      "guide-us-nonprofit-cross-industry-routing"
+    ],
+    "workflow": [
+      "workflow-us-nonprofit-endowment-spending",
+      "workflow-us-nonprofit-contributed-nonfinancial-assets",
+      "workflow-us-nonprofit-federal-reporting"
+    ],
+    "control": [
+      "ctrl-us-nonprofit-endowment-donor-instrument",
+      "ctrl-us-nonprofit-contributed-asset-valuation",
+      "ctrl-us-nonprofit-federal-reporting-reconciliation"
+    ],
+    "example": [
+      "example-us-nonprofit-endowment-rollforward",
+      "example-us-nonprofit-contributed-nonfinancial-assets",
+      "example-us-nonprofit-federal-reporting-bridge"
+    ]
+  },
+  "source_inventory": [
+    {
+      "id": "src_nonprofit_fasb_2020_07",
+      "publisher": "Financial Accounting Standards Board",
+      "url": "https://storage.fasb.org/ASU%202020-07.pdf",
+      "reviewed_at": "2026-09-19",
+      "review_level": "substantive-excerpt",
+      "effective_period": {
+        "annual_periods_beginning_after": "2021-06-15",
+        "interim_periods_beginning_after": "2022-06-15",
+        "early_adoption": "Permitted",
+        "transition": "Retrospective",
+        "selected_application": "The illustrative 2026 NFP examples fall after the stated annual and interim effective thresholds; entity-specific adoption history is not established."
+      },
+      "locators": [
+        {
+          "artifact": "ASU 2020-07 PDF",
+          "page": 6,
+          "section": "Summary: What Are the Main Provisions and Why Would They Be an Improvement?",
+          "paragraph": null,
+          "locator": "PDF p. 6, contributed nonfinancial assets and services in scope, including fixed assets, materials and supplies, intangible assets and services"
+        },
+        {
+          "artifact": "ASU 2020-07 PDF",
+          "page": 7,
+          "section": "Summary: When Will the Amendments Be Effective?",
+          "paragraph": null,
+          "locator": "PDF p. 7, effective periods, early adoption and retrospective transition; recognition and measurement are unchanged"
+        },
+        {
+          "artifact": "ASU 2020-07 PDF",
+          "page": 17,
+          "section": "Amendments to Subtopic 958-605",
+          "paragraph": "958-605-45-7A",
+          "locator": "PDF p. 17, contributed nonfinancial assets presented as a separate line item"
+        },
+        {
+          "artifact": "ASU 2020-07 PDF",
+          "page": 18,
+          "section": "Disclosure",
+          "paragraph": "958-605-50-1A",
+          "locator": "PDF p. 18, category, use, monetization, donor restriction, valuation technique, input and principal-market disclosures"
+        },
+        {
+          "artifact": "ASU 2020-07 PDF",
+          "page": 19,
+          "section": "Disclosure",
+          "paragraph": "958-605-50-1B",
+          "locator": "PDF p. 19, contributed-service description, program use, nature and extent, and recognized amount disclosure"
+        }
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "Not included; original publisher rights apply",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": "Original factual metadata and synthesis only; publisher full text is not stored."
+      }
+    },
+    {
+      "id": "src_nonprofit_illinois_upmifa_2009",
+      "publisher": "Illinois General Assembly",
+      "url": "https://www.ilga.gov/legislation/ilcs/ilcs3.asp?ActID=3093&ChapterID=61&Print=True",
+      "reviewed_at": "2026-09-19",
+      "review_level": "substantive-excerpt",
+      "effective_period": {
+        "status": "Current Illinois Compiled Statutes display inspected 2026-09-19; 760 ILCS 51/11 states the Act is effective upon becoming law.",
+        "application": "Confirm the institution, governing law, donor instrument and later amendments before applying this state-law branch."
+      },
+      "locators": [
+        {
+          "artifact": "Illinois Compiled Statutes public text",
+          "page": null,
+          "section": "760 ILCS 51/2",
+          "paragraph": null,
+          "locator": "Section 2 definitions of endowment fund, gift instrument, institution and institutional fund"
+        },
+        {
+          "artifact": "Illinois Compiled Statutes public text",
+          "page": null,
+          "section": "760 ILCS 51/3",
+          "paragraph": null,
+          "locator": "Section 3 prudence factors for management and investment of institutional funds, subject to donor intent"
+        },
+        {
+          "artifact": "Illinois Compiled Statutes public text",
+          "page": null,
+          "section": "760 ILCS 51/6",
+          "paragraph": null,
+          "locator": "Section 6 release or modification of restrictions, including donor consent, court modification and small-fund rules"
+        },
+        {
+          "artifact": "Illinois Compiled Statutes public text",
+          "page": null,
+          "section": "760 ILCS 51/7",
+          "paragraph": null,
+          "locator": "Section 7 compliance with the Act judged by facts and circumstances at the time, not hindsight"
+        },
+        {
+          "artifact": "Illinois Compiled Statutes public text",
+          "page": null,
+          "section": "760 ILCS 51/11",
+          "paragraph": null,
+          "locator": "Section 11 effective date"
+        },
+        {
+          "artifact": "Illinois General Assembly section text",
+          "page": null,
+          "section": "760 ILCS 51/4(a)-(c)",
+          "paragraph": null,
+          "locator": "Section4 appropriation or accumulation subject to donor intent, prudence, stated factors and gift-instrument rules; P.A.96-29 effective2009-06-30",
+          "checked_url": "https://my.ilga.gov/ftp/ILCS/Ch%200760/Act%200051/076000510K4.html",
+          "reviewed_at": "2026-09-19"
+        }
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "Not included; publisher terms apply",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": "Original factual metadata and synthesis only; statutory text is not stored."
+      }
+    },
+    {
+      "id": "src_cfr200grants",
+      "publisher": "US Office of Management and Budget and eCFR",
+      "url": "https://www.ecfr.gov/current/title-2/subtitle-A/chapter-II/part-200",
+      "reviewed_at": "2026-09-19",
+      "review_level": "substantive-excerpt",
+      "effective_period": "Current display inspected 2026-09-19; confirm the award terms, entity role and point-in-time requirements for the actual award or contract.",
+      "locators": [
+        {
+          "locator": "2 CFR §§200.302(a)-(b)(1)-(3), 200.328(a)-(d), 200.329(a)-(c), and 200.501(a)-(h); 2 CFR200.331(a)-(b)",
+          "source_pointer": "/data/supplemental_reviews/1/locator",
+          "period_pointer": "/data/supplemental_reviews/1/effective_period",
+          "url": "https://www.ecfr.gov/current/title-2/subtitle-A/chapter-II/part-200",
+          "access_note": "Selected current display inspected on the recorded review date; later access errors and award-specific point-in-time applicability remain limits."
+        }
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "Not included; publisher terms apply",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": null
+      },
+      "revision": "preserved existing record with additive selected review"
+    },
+    {
+      "id": "src_nonprofit_fasb_2016_14",
+      "publisher": "Financial Accounting Standards Board",
+      "url": "https://storage.fasb.org/ASU_2016-14.pdf",
+      "reviewed_at": "2026-09-19",
+      "review_level": "substantive-excerpt",
+      "effective_period": {
+        "annual_financial_statements_issued_for_fiscal_years_beginning_after": "2017-12-15",
+        "interim_periods_within_fiscal_years_beginning_after": "2018-12-15",
+        "interim_application_in_initial_year": "permitted but not required",
+        "selected_application": "The illustrative 2026 NFP close falls after these stated annual and interim effective thresholds; entity-specific adoption history is not established."
+      },
+      "locators": [
+        {
+          "artifact": "ASU 2016-14 PDF",
+          "page": 10,
+          "section": "Summary: When Will the Amendments Be Effective?",
+          "paragraph": null,
+          "locator": "PDF p. 10, annual and interim effective periods and early application"
+        },
+        {
+          "artifact": "ASU 2016-14 PDF",
+          "page": 11,
+          "section": "Summary: When Will the Amendments Be Effective? (continued)",
+          "paragraph": null,
+          "locator": "PDF p. 11, retrospective application and comparative-period limits"
+        },
+        {
+          "artifact": "ASU 2016-14 PDF",
+          "page": 30,
+          "section": "Amendments to Subtopic 958-205",
+          "paragraph": "958-205-45-2",
+          "locator": "PDF p. 30, classification of net assets and donor-imposed restrictions"
+        },
+        {
+          "artifact": "ASU 2016-14 PDF",
+          "page": 31,
+          "section": "Expirations of Donor-Imposed Restrictions",
+          "paragraph": "958-205-45-9",
+          "locator": "PDF p. 31, restriction expires when stipulated time or purpose is fulfilled"
+        },
+        {
+          "artifact": "ASU 2016-14 PDF",
+          "page": 160,
+          "section": "Reporting of Expenses by Nature and Function",
+          "paragraph": "958-720-45-15",
+          "locator": "PDF p. 160, relationship between functional and natural expense classification"
+        },
+        {
+          "artifact": "ASU 2016-14 PDF",
+          "page": 17,
+          "section": "Amendments to Subtopic 958-10",
+          "paragraph": "958-10-65-1",
+          "locator": "PDF p. 17, transition and effective-date information; continuation at PDF p. 18"
+        },
+        {
+          "artifact": "ASU 2016-14 PDF",
+          "page": 41,
+          "section": "Endowment Funds",
+          "paragraph": "958-205-50-1A",
+          "locator": "PDF p. 41, endowment net-asset composition, changes, spending policies and investment policies"
+        },
+        {
+          "artifact": "ASU 2016-14 PDF",
+          "page": 42,
+          "section": "Endowment Funds",
+          "paragraph": "958-205-50-1B through 958-205-50-2",
+          "locator": "PDF p. 42, minimum endowment disclosures, purchasing-power adjustments and aggregate underwater-fund deficiencies"
+        }
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "Not included; original publisher rights apply",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": "Original factual metadata and synthesis only; publisher full text is not stored."
+      },
+      "revision": "preserved existing record with additive selected review"
+    },
+    {
+      "id": "src_nonprofit_irs_990_2025",
+      "publisher": "Internal Revenue Service",
+      "url": "https://www.irs.gov/pub/irs-prior/i990--2025.pdf",
+      "reviewed_at": "2026-09-19",
+      "review_level": "substantive-excerpt",
+      "effective_period": {
+        "tax_year": 2025,
+        "reporting_period": "2025 tax year",
+        "applicability": "Form 990 reporting instructions; filer status and required schedules remain entity-specific."
+      },
+      "locators": [
+        {
+          "artifact": "2025 Instructions for Form 990 PDF",
+          "page": 41,
+          "section": "Part IX. Statement of Functional Expenses",
+          "paragraph": null,
+          "locator": "PDF p. 41, Part IX, normal accounting method, reasonable allocation method, documentation, and section 501(c)(3)/(c)(4) column scope"
+        },
+        {
+          "artifact": "2025 Instructions for Form 990 PDF",
+          "page": 10,
+          "section": "Part III. Statement of Program Service Accomplishments",
+          "paragraph": null,
+          "locator": "PDF p. 10, donated services or use of materials, equipment or facilities may be described in program narratives but are excluded from Part III revenue, expenses and grants"
+        },
+        {
+          "artifact": "2025 Instructions for Form 990 PDF",
+          "page": 10,
+          "section": "Part IV. Checklist of Required Schedules",
+          "paragraph": null,
+          "locator": "PDF p. 10, each Yes response in Part IV routes to the applicable schedule; schedule minimum thresholds can affect the route"
+        },
+        {
+          "artifact": "2025 Instructions for Form 990 PDF",
+          "page": 11,
+          "section": "Part IV. Checklist of Required Schedules",
+          "paragraph": null,
+          "locator": "PDF p. 11, lines 8-10 cover collections, escrow or custodial accounts and donor-restricted, board-designated or other endowment funds"
+        },
+        {
+          "artifact": "2025 Instructions for Form 990 PDF",
+          "page": 12,
+          "section": "Part IV. Checklist of Required Schedules",
+          "paragraph": null,
+          "locator": "PDF p. 12, lines 20a-20b, 21 and 22 route hospital and domestic grant or assistance populations to the applicable filing schedules"
+        },
+        {
+          "artifact": "2025 Instructions for Form 990 PDF",
+          "page": 43,
+          "section": "Part IX. Statement of Functional Expenses",
+          "paragraph": null,
+          "locator": "PDF p. 43, grants and other assistance lines 1-3 and the greater-than-$5,000 Schedule I routing examples"
+        }
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "Not included; original publisher rights apply",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": "Original factual metadata and synthesis only; publisher full text is not stored."
+      },
+      "revision": "preserved existing record with additive selected review"
+    }
+  ],
+  "named_questions": [
+    "rq-us-nonprofit-endowment-spending",
+    "rq-us-nonprofit-contributed-nonfinancial-assets",
+    "rq-us-nonprofit-federal-reporting",
+    "rq-us-nonprofit-cross-industry-routing"
+  ],
+  "assessments": [
+    "coverage-us-nonprofit-endowment-2026-09-19",
+    "coverage-us-nonprofit-contributed-assets-2026-09-19",
+    "coverage-us-nonprofit-federal-reporting-2026-09-19",
+    "coverage-us-nonprofit-cross-industry-routing-2026-09-19"
+  ],
+  "mapping_override_ids": [
+    "ctrl-us-nonprofit-contributed-asset-valuation",
+    "ctrl-us-nonprofit-endowment-donor-instrument",
+    "ctrl-us-nonprofit-federal-reporting-reconciliation",
+    "example-us-nonprofit-contributed-nonfinancial-assets",
+    "example-us-nonprofit-endowment-rollforward",
+    "example-us-nonprofit-federal-reporting-bridge",
+    "guide-us-nonprofit-contributed-nonfinancial-assets",
+    "guide-us-nonprofit-cross-industry-routing",
+    "guide-us-nonprofit-endowment-spending",
+    "guide-us-nonprofit-federal-reporting",
+    "src_cfr200grants",
+    "src_nonprofit_fasb_2016_14",
+    "src_nonprofit_fasb_2020_07",
+    "src_nonprofit_illinois_upmifa_2009",
+    "src_nonprofit_irs_990_2025",
+    "workflow-us-nonprofit-contributed-nonfinancial-assets",
+    "workflow-us-nonprofit-endowment-spending",
+    "workflow-us-nonprofit-federal-reporting"
+  ],
+  "issue_111_disposition": {
+    "issue_number": 111,
+    "title": "US industry gap: Education",
+    "status": "partial-bounded-disposition",
+    "selected_routes_supported": [
+      "tuition and deferred tuition term routing",
+      "third-party student aid as payment-source routing",
+      "withdrawal, institutional-refund and Title IV return separation",
+      "public versus nongovernmental framework routing"
+    ],
+    "reused_record_ids": [
+      "guide-us-education-tuition-aid",
+      "rq-us-education-tuition-term",
+      "rq-us-education-aid-payment",
+      "rq-us-education-withdrawal-return",
+      "rq-us-education-framework-routing",
+      "src_education_fsa_2526_disbursement",
+      "src_education_fsa_2526_withdrawal",
+      "src_education_gasb35",
+      "src_nonprofit_fasb_2018_08",
+      "src_construction_fasb_2014_09"
+    ],
+    "remaining_routes": [
+      "auxiliary services such as housing and dining",
+      "education-specific grants",
+      "public appropriations",
+      "endowments"
+    ],
+    "disposition": "The existing education guide provides selected bounded tuition, aid, refund and framework routes. The nonprofit package supplies reusable contribution, endowment, Federal-award and routing context but does not supply education-specific auxiliary-service, appropriations, grant or endowment answers. Issue 111 remains open for those routes and is not closed by this package.",
+    "limits": [
+      "The selected education material is synthetic and partial. Current consolidated standards, institution facts, professional review and operational evidence remain outside scope."
+    ]
+  },
+  "validation_plan": {
+    "applied_copy": "Disposable detached Git worktree; package application, regenerated mappings, standard corpus/coverage/research validators, build/import retrieval checks, then removal.",
+    "historical_snapshots": "Existing snapshot files and manifest remain immutable; validation compares each snapshot to its own recorded metadata.",
+    "synthetic_contract": "All added example records retain nonempty data.examples arrays and explicit Synthetic limitations labels.",
+    "retrieval_limit": 20
+  },
+  "known_limits": [
+    "Selected excerpts do not replace current consolidated Codification review. Illinois is illustrative only. Form 990 and Federal-award routing do not establish GAAP, filing, audit or compliance conclusions. Synthetic arithmetic is not operational evidence."
+  ],
+  "baseline": {
+    "commit": "f393fd5a451bbfda6251be55dd420f03eddf3b3d",
+    "corpus_version": "2026-09-19.12411",
+    "selection_rule": "Union of record ID/title/summary matching nonprofit, non-profit, not-for-profit, donor or endowment, and record mappings to grants-contributions, reporting-basis, cost-allocation or compliance-assurance. Linked questions use selected record/source IDs or these families. Broad shared-context association is not nonprofit applicability or sufficient coverage.",
+    "family_ids": [
+      "q-grants-contributions",
+      "q-reporting-basis",
+      "q-cost-allocation",
+      "q-compliance-assurance"
+    ],
+    "associated_record_count": 182,
+    "linked_question_count": 105,
+    "records": [
+      {
+        "id": "collection-international-audit-oversight",
+        "kind": "collection",
+        "title": "International audit oversight",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-audit-assertions",
+          "q-compliance-assurance",
+          "q-professional-governance"
+        ],
+        "source_ids": [
+          "src_09imui4",
+          "src_1bu97ex",
+          "src_0qw4qgy",
+          "src_1tcpuh2",
+          "src_1ayxpgh",
+          "src_0rz6w00"
+        ]
+      },
+      {
+        "id": "collection-ai-assurance-governance",
+        "kind": "collection",
+        "title": "AI assurance and governance",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-compliance-assurance",
+          "q-controls-fraud",
+          "q-professional-governance"
+        ],
+        "source_ids": [
+          "src_04s75ox",
+          "src_1igc1rp",
+          "src_17r8k3y",
+          "src_1e96rjh",
+          "src_0djqo8b",
+          "src_179f1cz",
+          "src_aicpa26resp",
+          "src_saicagenai",
+          "src_ccab26draft"
+        ]
+      },
+      {
+        "id": "collection-financial-services-supervision",
+        "kind": "collection",
+        "title": "Financial-services supervision",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-compliance-assurance",
+          "q-controls-fraud",
+          "q-security"
+        ],
+        "source_ids": [
+          "src_osfi26agent",
+          "src_iosco26ai",
+          "src_finra2409",
+          "src_finma24ai",
+          "src_apra26ai",
+          "src_sfc24genai",
+          "src_esma24ai",
+          "src_eiopa25ai",
+          "src_hkma19ai",
+          "src_bis24regai"
+        ]
+      },
+      {
+        "id": "collection-publicsector-charity-accounting",
+        "kind": "collection",
+        "title": "Public-sector and charity accounting",
+        "association": "nonprofit-keyword",
+        "family_ids": [
+          "q-government-funds",
+          "q-grants-contributions"
+        ],
+        "source_ids": [
+          "src_ipsas47_revenue",
+          "src_ipsas48_transfer_expenses",
+          "src_fasab_sffas54_leases",
+          "src_fasab_sffas59_land",
+          "src_irs_form990_2025",
+          "src_uk_charities_sorp2026"
+        ]
+      },
+      {
+        "id": "collection-construction-public-works",
+        "kind": "collection",
+        "title": "Public construction: payroll, costs, payment and bonds",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-cash-settlement",
+          "q-compliance-assurance",
+          "q-cost-allocation",
+          "q-payroll"
+        ],
+        "source_ids": [
+          "src_construction_dol_wh347",
+          "src_construction_california_certified_payroll",
+          "src_construction_dcaa_accounting_system",
+          "src_construction_far_31105",
+          "src_construction_far_522325",
+          "src_construction_far_5223227",
+          "src_construction_texas_public_prompt_payment",
+          "src_construction_texas_public_bonds"
+        ]
+      },
+      {
+        "id": "ctrl-source-authenticity",
+        "kind": "control",
+        "title": "Source authenticity and applicability",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-controls-fraud",
+          "q-data-lineage",
+          "q-reporting-basis"
+        ],
+        "source_ids": [
+          "src_0vf7hhg",
+          "src_08a3eqe",
+          "src_09rekxe"
+        ]
+      },
+      {
+        "id": "ctrl-third-party-risk",
+        "kind": "control",
+        "title": "Third-party and vendor risk",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-compliance-assurance",
+          "q-controls-fraud",
+          "q-security"
+        ],
+        "source_ids": [
+          "src_0np8u4i",
+          "src_1bwn6bv",
+          "src_068k4kv"
+        ]
+      },
+      {
+        "id": "agent-assets-inventory-cost",
+        "kind": "design",
+        "title": "Inventory and Cost design reference",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-agent-design",
+          "q-cost-allocation",
+          "q-human-authority",
+          "q-inventory"
+        ],
+        "source_ids": [
+          "src_1os761s",
+          "src_0n4x3cf",
+          "src_1v1zwt5",
+          "src_ias02inv",
+          "src_0vf7hhg",
+          "src_1l45nk0",
+          "src_16ubi7b"
+        ]
+      },
+      {
+        "id": "agent-tax-regulatory-retention",
+        "kind": "design",
+        "title": "Regulatory Reporting and Retention design reference",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-agent-design",
+          "q-compliance-assurance",
+          "q-data-lineage",
+          "q-human-authority"
+        ],
+        "source_ids": [
+          "src_1os761s",
+          "src_0n4x3cf",
+          "src_10b9y2x",
+          "src_regsxcfr",
+          "src_edgarfm",
+          "src_secfile",
+          "src_0vf7hhg",
+          "src_1l45nk0",
+          "src_irsrecord",
+          "src_irselect",
+          "src_secr206"
+        ]
+      },
+      {
+        "id": "agent-technical-research-memo",
+        "kind": "design",
+        "title": "Technical Research and Memorandum design reference",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-agent-design",
+          "q-human-authority",
+          "q-reporting-basis"
+        ],
+        "source_ids": [
+          "src_1os761s",
+          "src_0n4x3cf",
+          "src_0rbcora",
+          "src_10b9y2x",
+          "src_0vf7hhg",
+          "src_1l45nk0",
+          "src_ias08pol"
+        ]
+      },
+      {
+        "id": "agent-technical-policy-estimates",
+        "kind": "design",
+        "title": "Policy and Estimates design reference",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-agent-design",
+          "q-estimates",
+          "q-human-authority",
+          "q-reporting-basis"
+        ],
+        "source_ids": [
+          "src_1os761s",
+          "src_0n4x3cf",
+          "src_0rbcora",
+          "src_10b9y2x",
+          "src_ias08pol",
+          "src_0vf7hhg",
+          "src_1l45nk0",
+          "src_16ubi7b"
+        ]
+      },
+      {
+        "id": "example-us-nonprofit-restricted-award-close",
+        "kind": "example",
+        "title": "US nonprofit restricted award: synthetic close example",
+        "association": "nonprofit-keyword",
+        "family_ids": [
+          "q-cost-allocation",
+          "q-evaluation",
+          "q-grants-contributions",
+          "q-ledger-close"
+        ],
+        "source_ids": [
+          "src_nonprofit_fasb_2018_08",
+          "src_nonprofit_fasb_2016_14",
+          "src_nonprofit_irs_990_2025"
+        ]
+      },
+      {
+        "id": "example-us-management-allocation-budget-actual",
+        "kind": "example",
+        "title": "US management accounting: shared-service allocation and budget-to-actual bridge",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-cost-allocation",
+          "q-performance",
+          "q-planning"
+        ],
+        "source_ids": [
+          "src_cfr200grants",
+          "src_far_31203_indirect_costs",
+          "src_secsab0099",
+          "src_0xce2sl",
+          "src_0w2pi9z"
+        ]
+      },
+      {
+        "id": "example-us-reporting-foundations-close",
+        "kind": "example",
+        "title": "US reporting foundations: synthetic January close",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-consolidation",
+          "q-estimates",
+          "q-events-going-concern",
+          "q-foreign-currency",
+          "q-ledger-close",
+          "q-policy-changes-errors",
+          "q-presentation",
+          "q-reporting-basis"
+        ],
+        "source_ids": [
+          "src_1os761s",
+          "src_fasb_fas52",
+          "src_fasb_201009",
+          "src_fasb_201415",
+          "src_fasb_201305",
+          "src_fasb_201502",
+          "src_secfrm26",
+          "src_sec_regsx"
+        ]
+      },
+      {
+        "id": "example-us-education-tuition-aid-clearing",
+        "kind": "example",
+        "title": "Synthetic education term and aid clearing reconciliation",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-data-lineage",
+          "q-evaluation",
+          "q-grants-contributions",
+          "q-revenue"
+        ],
+        "source_ids": [
+          "src_education_fsa_2526_disbursement",
+          "src_education_fsa_2526_withdrawal",
+          "src_education_gasb35",
+          "src_nonprofit_fasb_2018_08",
+          "src_construction_fasb_2014_09"
+        ]
+      },
+      {
+        "id": "example-aa-i124-role-routing",
+        "kind": "example",
+        "title": "Original synthetic institutional inflow and custody routing",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-credit-intermediation",
+          "q-federal-sovereign",
+          "q-funds-custody",
+          "q-government-funds",
+          "q-grants-contributions",
+          "q-insurer",
+          "q-licensed-content",
+          "q-natural-resources",
+          "q-rate-regulation",
+          "q-reimbursement"
+        ],
+        "source_ids": [
+          "src_nonprofit_fasb_2018_08",
+          "src_cfr200grants",
+          "src_roadmap_gasb34_basis",
+          "src_roadmap_gasb103",
+          "src_roadmap_fasab34",
+          "src_roadmap_fasab53",
+          "src_naic_sap_hierarchy_2026",
+          "src_aa_i124_naic",
+          "src_ffiec051_instructions_2025",
+          "src_aa_i124_custody",
+          "src_aa_i124_ferc101",
+          "src_fercacct",
+          "src_aa_i124_oilgas",
+          "src_roadmap_ecfr_41324f_2026",
+          "src_cms255210_transmittal25_2026",
+          "src_roadmap_cms_2552_10_r24",
+          "src_construction_fasb_2014_09",
+          "src_nonprofit_fasb_2016_14"
+        ]
+      },
+      {
+        "id": "guide-q-reporting-basis",
+        "kind": "guide",
+        "title": "Reporting basis and accounting policies",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-reporting-basis"
+        ],
+        "source_ids": [
+          "src_ias08pol",
+          "src_1os761s",
+          "src_secfrm26",
+          "src_roadmap_gasb34_basis",
+          "src_roadmap_fasab34"
+        ]
+      },
+      {
+        "id": "guide-q-grants-contributions",
+        "kind": "guide",
+        "title": "Grants, contributions and restricted resources",
+        "association": "nonprofit-keyword",
+        "family_ids": [
+          "q-grants-contributions"
+        ],
+        "source_ids": [
+          "src_roadmap_ias20_overview"
+        ]
+      },
+      {
+        "id": "guide-q-government-funds",
+        "kind": "guide",
+        "title": "Governmental funds, accrual reconciliation and budget comparisons",
+        "association": "nonprofit-keyword",
+        "family_ids": [
+          "q-government-funds"
+        ],
+        "source_ids": [
+          "src_roadmap_gasb34_basis",
+          "src_roadmap_texas_fund_basis",
+          "src_roadmap_gasb103"
+        ]
+      },
+      {
+        "id": "guide-q-cost-allocation",
+        "kind": "guide",
+        "title": "Cost objects and allocation",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-cost-allocation"
+        ],
+        "source_ids": [
+          "src_ias02inv",
+          "src_0xce2sl",
+          "src_cfr200grants",
+          "src_far_31203_indirect_costs"
+        ]
+      },
+      {
+        "id": "guide-q-compliance-assurance",
+        "kind": "guide",
+        "title": "Compliance and special-purpose assurance",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-compliance-assurance"
+        ],
+        "source_ids": [
+          "src_0ww9s76",
+          "src_1ky30oj",
+          "src_cfr200grants",
+          "src_0ukc3p8",
+          "src_gaogb25",
+          "src_gaofam26",
+          "src_06tnkx2"
+        ]
+      },
+      {
+        "id": "guide-manufacturing-conversion",
+        "kind": "guide",
+        "title": "Manufacturing conversion, production and long-term custom goods",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-cost-allocation",
+          "q-data-lineage",
+          "q-inventory",
+          "q-project-wip",
+          "q-revenue"
+        ],
+        "source_ids": [
+          "src_ias02inv",
+          "src_roadmap_kpmg_inventory_2026",
+          "src_roadmap_naics2022_manual",
+          "src_ifrs15a"
+        ]
+      },
+      {
+        "id": "guide-jurisdiction-tx-construction-service",
+        "kind": "guide",
+        "title": "Texas construction and service business",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-cash-settlement",
+          "q-compliance-assurance",
+          "q-indirect-tax",
+          "q-payroll",
+          "q-reporting-basis"
+        ],
+        "source_ids": [
+          "src_construction_texas_sales_tax",
+          "src_roadmap_tx_davis",
+          "src_construction_texas_public_prompt_payment"
+        ]
+      },
+      {
+        "id": "guide-jurisdiction-ca-construction-service",
+        "kind": "guide",
+        "title": "California construction and service business",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-compliance-assurance",
+          "q-indirect-tax",
+          "q-payroll",
+          "q-reporting-basis"
+        ],
+        "source_ids": [
+          "src_roadmap_ca_sales",
+          "src_roadmap_ca_cpr"
+        ]
+      },
+      {
+        "id": "guide-jurisdiction-uk-construction-service",
+        "kind": "guide",
+        "title": "United Kingdom construction and service business",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-compliance-assurance",
+          "q-indirect-tax",
+          "q-payroll",
+          "q-reporting-basis"
+        ],
+        "source_ids": [
+          "src_roadmap_uk_frs102",
+          "src_roadmap_uk_vat",
+          "src_roadmap_uk_cis",
+          "src_hmrc_fps_payroll",
+          "src_roadmap_class_sicnace",
+          "src_roadmap_uk_vat_rates",
+          "src_roadmap_uk_frc_frs102_scope_2024"
+        ]
+      },
+      {
+        "id": "guide-jurisdiction-canada-ontario",
+        "kind": "guide",
+        "title": "Canada private enterprise and Ontario GST/HST",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-compliance-assurance",
+          "q-indirect-tax",
+          "q-payroll",
+          "q-reporting-basis"
+        ],
+        "source_ids": [
+          "src_roadmap_ca_aspe",
+          "src_roadmap_ca_gsthst",
+          "src_roadmap_class_naics",
+          "src_roadmap_naics2022_manual",
+          "src_roadmap_ca_acsb_aspe_ifrs_scope_2023"
+        ]
+      },
+      {
+        "id": "guide-industry-naics2022-111",
+        "kind": "guide",
+        "title": "Crop Production: roles, transactions and open accounting questions",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-capital-assets",
+          "q-grants-contributions",
+          "q-insurance-policyholder",
+          "q-inventory",
+          "q-natural-resources",
+          "q-revenue"
+        ],
+        "source_ids": [
+          "src_roadmap_naics2022_manual",
+          "src_fasb_asu2015_11_inventory",
+          "src_i97_usda_arms",
+          "src_construction_fasb_2014_09",
+          "src_i97_rma_26br",
+          "src_i97_fsa_arc_plc",
+          "src_i97_irs_p225_2025"
+        ]
+      },
+      {
+        "id": "guide-industry-naics2022-112",
+        "kind": "guide",
+        "title": "Animal Production and Aquaculture: roles, transactions and open accounting questions",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-capital-assets",
+          "q-cost-allocation",
+          "q-insurance-policyholder",
+          "q-inventory",
+          "q-natural-resources",
+          "q-revenue"
+        ],
+        "source_ids": [
+          "src_roadmap_naics2022_manual",
+          "src_fasb_asu2015_11_inventory",
+          "src_i97_usda_arms",
+          "src_i97_usfs_timber_contract",
+          "src_construction_fasb_2014_09",
+          "src_i97_noaa_landings",
+          "src_i97_noaa_catch_shares"
+        ]
+      },
+      {
+        "id": "guide-industry-naics2022-313",
+        "kind": "guide",
+        "title": "Textile Mills: roles, transactions and open accounting questions",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-capital-assets",
+          "q-cost-allocation",
+          "q-inventory",
+          "q-purchasing-payables",
+          "q-revenue"
+        ],
+        "source_ids": [
+          "src_roadmap_naics2022_manual",
+          "src_ias02inv",
+          "src_roadmap_kpmg_inventory_2026",
+          "src_ifrs15a"
+        ]
+      },
+      {
+        "id": "guide-industry-naics2022-314",
+        "kind": "guide",
+        "title": "Textile Product Mills: roles, transactions and open accounting questions",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-cost-allocation",
+          "q-inventory",
+          "q-payroll",
+          "q-purchasing-payables",
+          "q-revenue"
+        ],
+        "source_ids": [
+          "src_roadmap_naics2022_manual",
+          "src_ias02inv",
+          "src_roadmap_kpmg_inventory_2026",
+          "src_ifrs15a"
+        ]
+      },
+      {
+        "id": "guide-industry-naics2022-315",
+        "kind": "guide",
+        "title": "Apparel Manufacturing: roles, transactions and open accounting questions",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-cost-allocation",
+          "q-inventory",
+          "q-payroll",
+          "q-purchasing-payables",
+          "q-receivables-credit",
+          "q-revenue"
+        ],
+        "source_ids": [
+          "src_roadmap_naics2022_manual",
+          "src_ias02inv",
+          "src_roadmap_kpmg_inventory_2026",
+          "src_ifrs15a"
+        ]
+      },
+      {
+        "id": "guide-industry-naics2022-316",
+        "kind": "guide",
+        "title": "Leather and Allied Product Manufacturing: roles, transactions and open accounting questions",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-capital-assets",
+          "q-cost-allocation",
+          "q-inventory",
+          "q-provisions",
+          "q-revenue"
+        ],
+        "source_ids": [
+          "src_roadmap_naics2022_manual",
+          "src_ias02inv",
+          "src_roadmap_kpmg_inventory_2026",
+          "src_ifrs15a"
+        ]
+      },
+      {
+        "id": "guide-industry-naics2022-321",
+        "kind": "guide",
+        "title": "Wood Product Manufacturing: roles, transactions and open accounting questions",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-capital-assets",
+          "q-cost-allocation",
+          "q-environmental",
+          "q-inventory",
+          "q-revenue"
+        ],
+        "source_ids": [
+          "src_roadmap_naics2022_manual",
+          "src_ias02inv",
+          "src_roadmap_kpmg_inventory_2026",
+          "src_ifrs15a"
+        ]
+      },
+      {
+        "id": "guide-industry-naics2022-322",
+        "kind": "guide",
+        "title": "Paper Manufacturing: roles, transactions and open accounting questions",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-capital-assets",
+          "q-cost-allocation",
+          "q-environmental",
+          "q-inventory",
+          "q-revenue"
+        ],
+        "source_ids": [
+          "src_roadmap_naics2022_manual",
+          "src_ias02inv",
+          "src_roadmap_kpmg_inventory_2026",
+          "src_ifrs15a"
+        ]
+      },
+      {
+        "id": "guide-industry-naics2022-323",
+        "kind": "guide",
+        "title": "Printing and Related Support Activities: roles, transactions and open accounting questions",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-cost-allocation",
+          "q-intangibles-software",
+          "q-inventory",
+          "q-licensed-content",
+          "q-revenue"
+        ],
+        "source_ids": [
+          "src_roadmap_naics2022_manual",
+          "src_ias02inv",
+          "src_roadmap_kpmg_inventory_2026",
+          "src_ifrs15a"
+        ]
+      },
+      {
+        "id": "guide-industry-naics2022-324",
+        "kind": "guide",
+        "title": "Petroleum and Coal Products Manufacturing: roles, transactions and open accounting questions",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-cost-allocation",
+          "q-derivatives",
+          "q-environmental",
+          "q-indirect-tax",
+          "q-inventory",
+          "q-revenue"
+        ],
+        "source_ids": [
+          "src_roadmap_naics2022_manual",
+          "src_ias02inv",
+          "src_roadmap_kpmg_inventory_2026",
+          "src_ifrs15a"
+        ]
+      },
+      {
+        "id": "guide-industry-naics2022-326",
+        "kind": "guide",
+        "title": "Plastics and Rubber Products Manufacturing: roles, transactions and open accounting questions",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-capital-assets",
+          "q-cost-allocation",
+          "q-inventory",
+          "q-purchasing-payables",
+          "q-revenue"
+        ],
+        "source_ids": [
+          "src_roadmap_naics2022_manual",
+          "src_ias02inv",
+          "src_roadmap_kpmg_inventory_2026",
+          "src_ifrs15a"
+        ]
+      },
+      {
+        "id": "guide-industry-naics2022-327",
+        "kind": "guide",
+        "title": "Nonmetallic Mineral Product Manufacturing: roles, transactions and open accounting questions",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-capital-assets",
+          "q-cost-allocation",
+          "q-environmental",
+          "q-inventory",
+          "q-revenue"
+        ],
+        "source_ids": [
+          "src_roadmap_naics2022_manual",
+          "src_ias02inv",
+          "src_roadmap_kpmg_inventory_2026",
+          "src_ifrs15a"
+        ]
+      },
+      {
+        "id": "guide-industry-naics2022-331",
+        "kind": "guide",
+        "title": "Primary Metal Manufacturing: roles, transactions and open accounting questions",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-capital-assets",
+          "q-cost-allocation",
+          "q-derivatives",
+          "q-environmental",
+          "q-inventory",
+          "q-revenue"
+        ],
+        "source_ids": [
+          "src_roadmap_naics2022_manual",
+          "src_ias02inv",
+          "src_roadmap_kpmg_inventory_2026",
+          "src_ifrs15a"
+        ]
+      },
+      {
+        "id": "guide-industry-naics2022-332",
+        "kind": "guide",
+        "title": "Fabricated Metal Product Manufacturing: roles, transactions and open accounting questions",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-capital-assets",
+          "q-cost-allocation",
+          "q-inventory",
+          "q-purchasing-payables",
+          "q-revenue"
+        ],
+        "source_ids": [
+          "src_roadmap_naics2022_manual",
+          "src_ias02inv",
+          "src_roadmap_kpmg_inventory_2026",
+          "src_ifrs15a"
+        ]
+      },
+      {
+        "id": "guide-industry-naics2022-333",
+        "kind": "guide",
+        "title": "Machinery Manufacturing: roles, transactions and open accounting questions",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-capital-assets",
+          "q-cost-allocation",
+          "q-inventory",
+          "q-project-wip",
+          "q-provisions",
+          "q-revenue"
+        ],
+        "source_ids": [
+          "src_roadmap_naics2022_manual",
+          "src_ias02inv",
+          "src_roadmap_kpmg_inventory_2026",
+          "src_ifrs15a"
+        ]
+      },
+      {
+        "id": "guide-industry-naics2022-336",
+        "kind": "guide",
+        "title": "Transportation Equipment Manufacturing: roles, transactions and open accounting questions",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-capital-assets",
+          "q-cost-allocation",
+          "q-inventory",
+          "q-provisions",
+          "q-purchasing-payables",
+          "q-revenue"
+        ],
+        "source_ids": [
+          "src_roadmap_naics2022_manual",
+          "src_ias02inv",
+          "src_roadmap_kpmg_inventory_2026",
+          "src_ifrs15a"
+        ]
+      },
+      {
+        "id": "guide-industry-naics2022-337",
+        "kind": "guide",
+        "title": "Furniture and Related Product Manufacturing: roles, transactions and open accounting questions",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-capital-assets",
+          "q-cost-allocation",
+          "q-inventory",
+          "q-purchasing-payables",
+          "q-revenue"
+        ],
+        "source_ids": [
+          "src_roadmap_naics2022_manual",
+          "src_ias02inv",
+          "src_roadmap_kpmg_inventory_2026",
+          "src_ifrs15a"
+        ]
+      },
+      {
+        "id": "guide-industry-naics2022-485",
+        "kind": "guide",
+        "title": "Transit and Ground Passenger Transportation: roles, transactions and open accounting questions",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-capital-assets",
+          "q-cash-settlement",
+          "q-grants-contributions",
+          "q-leases",
+          "q-payroll",
+          "q-revenue"
+        ],
+        "source_ids": [
+          "src_roadmap_naics2022_manual"
+        ]
+      },
+      {
+        "id": "guide-industry-naics2022-512",
+        "kind": "guide",
+        "title": "Motion Picture and Sound Recording Industries: roles, transactions and open accounting questions",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-cost-allocation",
+          "q-data-lineage",
+          "q-licensed-content",
+          "q-revenue"
+        ],
+        "source_ids": [
+          "src_roadmap_naics2022_manual"
+        ]
+      },
+      {
+        "id": "guide-industry-naics2022-513",
+        "kind": "guide",
+        "title": "Publishing Industries: roles, transactions and open accounting questions",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-cost-allocation",
+          "q-data-lineage",
+          "q-interfaces",
+          "q-licensed-content"
+        ],
+        "source_ids": [
+          "src_roadmap_naics2022_manual",
+          "src_ifrs15a",
+          "src_asu201815",
+          "src_roadmap_asu202506",
+          "src_roadmap_ifric2022_reseller"
+        ]
+      },
+      {
+        "id": "guide-industry-naics2022-522",
+        "kind": "guide",
+        "title": "Credit Intermediation and Related Activities: roles, transactions and open accounting questions",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-cost-allocation",
+          "q-credit-intermediation",
+          "q-data-lineage",
+          "q-interfaces",
+          "q-investments",
+          "q-security"
+        ],
+        "source_ids": [
+          "src_roadmap_naics2022_manual"
+        ]
+      },
+      {
+        "id": "guide-industry-naics2022-531",
+        "kind": "guide",
+        "title": "Real Estate: roles, transactions and open accounting questions",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-cost-allocation",
+          "q-data-lineage",
+          "q-human-authority",
+          "q-leases",
+          "q-security"
+        ],
+        "source_ids": [
+          "src_roadmap_naics2022_manual"
+        ]
+      },
+      {
+        "id": "guide-industry-naics2022-532",
+        "kind": "guide",
+        "title": "Rental and Leasing Services: roles, transactions and open accounting questions",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-cost-allocation",
+          "q-data-lineage",
+          "q-leases",
+          "q-revenue",
+          "q-security"
+        ],
+        "source_ids": [
+          "src_roadmap_naics2022_manual"
+        ]
+      },
+      {
+        "id": "guide-industry-naics2022-541",
+        "kind": "guide",
+        "title": "Professional, Scientific, and Technical Services: roles, transactions and open accounting questions",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-cost-allocation",
+          "q-data-lineage",
+          "q-human-authority",
+          "q-licensed-content",
+          "q-professional-governance",
+          "q-project-wip"
+        ],
+        "source_ids": [
+          "src_roadmap_naics2022_manual",
+          "src_ifrs15a",
+          "src_asu201815",
+          "src_roadmap_asu202506",
+          "src_roadmap_ifric2022_reseller",
+          "src_roadmap_asu202505",
+          "src_construction_texas_sales_tax",
+          "src_roadmap_tx_davis",
+          "src_construction_texas_public_prompt_payment",
+          "src_roadmap_ca_sales",
+          "src_roadmap_ca_cpr",
+          "src_roadmap_uk_frs102",
+          "src_roadmap_uk_vat",
+          "src_roadmap_uk_cis",
+          "src_hmrc_fps_payroll",
+          "src_roadmap_class_sicnace",
+          "src_roadmap_uk_frc_frs102_scope_2024"
+        ]
+      },
+      {
+        "id": "guide-industry-naics2022-551",
+        "kind": "guide",
+        "title": "Management of Companies and Enterprises: roles, transactions and open accounting questions",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-cost-allocation",
+          "q-data-lineage",
+          "q-human-authority",
+          "q-performance",
+          "q-security"
+        ],
+        "source_ids": [
+          "src_roadmap_naics2022_manual"
+        ]
+      },
+      {
+        "id": "guide-industry-naics2022-561",
+        "kind": "guide",
+        "title": "Administrative and Support Services: roles, transactions and open accounting questions",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-cost-allocation",
+          "q-data-lineage",
+          "q-human-authority",
+          "q-payroll",
+          "q-revenue",
+          "q-security"
+        ],
+        "source_ids": [
+          "src_roadmap_naics2022_manual",
+          "src_ifrs15a",
+          "src_roadmap_asu202505"
+        ]
+      },
+      {
+        "id": "guide-industry-naics2022-562",
+        "kind": "guide",
+        "title": "Waste Management and Remediation Services: roles, transactions and open accounting questions",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-cost-allocation",
+          "q-data-lineage",
+          "q-environmental",
+          "q-human-authority",
+          "q-security"
+        ],
+        "source_ids": [
+          "src_roadmap_naics2022_manual"
+        ]
+      },
+      {
+        "id": "guide-industry-naics2022-611",
+        "kind": "guide",
+        "title": "Educational Services: roles, transactions and open accounting questions",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-grants-contributions",
+          "q-payroll",
+          "q-revenue"
+        ],
+        "source_ids": [
+          "src_roadmap_naics2022_manual",
+          "src_construction_fasb_2014_09",
+          "src_nonprofit_fasb_2018_08",
+          "src_education_fsa_2526_withdrawal",
+          "src_education_fsa_2526_disbursement",
+          "src_education_gasb35"
+        ]
+      },
+      {
+        "id": "guide-industry-naics2022-622",
+        "kind": "guide",
+        "title": "Hospitals: roles, transactions and open accounting questions",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-grants-contributions",
+          "q-inventory",
+          "q-provisions",
+          "q-receivables-credit",
+          "q-revenue"
+        ],
+        "source_ids": [
+          "src_roadmap_naics2022_manual"
+        ]
+      },
+      {
+        "id": "guide-industry-naics2022-624",
+        "kind": "guide",
+        "title": "Social Assistance: roles, transactions and open accounting questions",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-grants-contributions",
+          "q-inventory",
+          "q-payroll",
+          "q-provisions",
+          "q-reimbursement"
+        ],
+        "source_ids": [
+          "src_roadmap_naics2022_manual"
+        ]
+      },
+      {
+        "id": "guide-industry-naics2022-712",
+        "kind": "guide",
+        "title": "Museums, Historical Sites, Zoos and Nature Parks: roles, transactions and open accounting questions",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-capital-assets",
+          "q-grants-contributions",
+          "q-licensed-content",
+          "q-revenue"
+        ],
+        "source_ids": [
+          "src_roadmap_naics2022_manual"
+        ]
+      },
+      {
+        "id": "guide-industry-naics2022-813",
+        "kind": "guide",
+        "title": "Religious, Grantmaking, Civic, Professional and Similar Organizations: roles, transactions and open accounting questions",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-cost-allocation",
+          "q-grants-contributions",
+          "q-revenue",
+          "q-tax-returns"
+        ],
+        "source_ids": [
+          "src_roadmap_naics2022_manual",
+          "src_nonprofit_fasb_2018_08",
+          "src_nonprofit_fasb_2016_14",
+          "src_nonprofit_irs_990_2025"
+        ]
+      },
+      {
+        "id": "guide-industry-naics2022-921",
+        "kind": "guide",
+        "title": "Executive, Legislative, and Other General Government Support: roles, transactions and open accounting questions",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-federal-sovereign",
+          "q-government-funds",
+          "q-grants-contributions",
+          "q-payroll"
+        ],
+        "source_ids": [
+          "src_roadmap_naics2022_manual"
+        ]
+      },
+      {
+        "id": "guide-industry-naics2022-922",
+        "kind": "guide",
+        "title": "Justice, Public Order, and Safety Activities: roles, transactions and open accounting questions",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-federal-sovereign",
+          "q-government-funds",
+          "q-grants-contributions",
+          "q-payroll"
+        ],
+        "source_ids": [
+          "src_roadmap_naics2022_manual"
+        ]
+      },
+      {
+        "id": "guide-industry-naics2022-923",
+        "kind": "guide",
+        "title": "Administration of Human Resource Programs: roles, transactions and open accounting questions",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-federal-sovereign",
+          "q-government-funds",
+          "q-grants-contributions",
+          "q-payroll"
+        ],
+        "source_ids": [
+          "src_roadmap_naics2022_manual"
+        ]
+      },
+      {
+        "id": "guide-industry-naics2022-924",
+        "kind": "guide",
+        "title": "Administration of Environmental Quality Programs: roles, transactions and open accounting questions",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-federal-sovereign",
+          "q-government-funds",
+          "q-grants-contributions",
+          "q-payroll",
+          "q-provisions"
+        ],
+        "source_ids": [
+          "src_roadmap_naics2022_manual"
+        ]
+      },
+      {
+        "id": "guide-industry-naics2022-925",
+        "kind": "guide",
+        "title": "Administration of Housing Programs, Urban Planning, and Community Development: roles, transactions and open accounting questions",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-federal-sovereign",
+          "q-government-funds",
+          "q-grants-contributions",
+          "q-payroll",
+          "q-provisions"
+        ],
+        "source_ids": [
+          "src_roadmap_naics2022_manual"
+        ]
+      },
+      {
+        "id": "guide-industry-naics2022-926",
+        "kind": "guide",
+        "title": "Administration of Economic Programs: roles, transactions and open accounting questions",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-federal-sovereign",
+          "q-government-funds",
+          "q-grants-contributions",
+          "q-payroll",
+          "q-provisions"
+        ],
+        "source_ids": [
+          "src_roadmap_naics2022_manual"
+        ]
+      },
+      {
+        "id": "guide-industry-naics2022-927",
+        "kind": "guide",
+        "title": "Space Research and Technology: roles, transactions and open accounting questions",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-federal-sovereign",
+          "q-government-funds",
+          "q-grants-contributions",
+          "q-intangibles-software",
+          "q-payroll"
+        ],
+        "source_ids": [
+          "src_roadmap_naics2022_manual"
+        ]
+      },
+      {
+        "id": "guide-industry-naics2022-928",
+        "kind": "guide",
+        "title": "National Security and International Affairs: roles, transactions and open accounting questions",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-federal-sovereign",
+          "q-government-funds",
+          "q-grants-contributions",
+          "q-payroll",
+          "q-security"
+        ],
+        "source_ids": [
+          "src_roadmap_naics2022_manual"
+        ]
+      },
+      {
+        "id": "guide-us-nonprofit-contributions-close",
+        "kind": "guide",
+        "title": "US nonprofit contributions and restricted-award close",
+        "association": "nonprofit-keyword",
+        "family_ids": [
+          "q-cost-allocation",
+          "q-grants-contributions",
+          "q-ledger-close",
+          "q-tax-returns"
+        ],
+        "source_ids": [
+          "src_nonprofit_fasb_2018_08",
+          "src_nonprofit_fasb_2016_14",
+          "src_nonprofit_irs_990_2025"
+        ]
+      },
+      {
+        "id": "guide-us-education-tuition-aid",
+        "kind": "guide",
+        "title": "US education tuition, student aid and framework boundaries",
+        "association": "nonprofit-keyword",
+        "family_ids": [
+          "q-grants-contributions",
+          "q-revenue"
+        ],
+        "source_ids": [
+          "src_education_fsa_2526_disbursement",
+          "src_education_fsa_2526_withdrawal",
+          "src_education_gasb35",
+          "src_nonprofit_fasb_2018_08",
+          "src_construction_fasb_2014_09",
+          "src_roadmap_gasb34_basis",
+          "src_roadmap_gasb103"
+        ]
+      },
+      {
+        "id": "guide-aa-i124-institutional",
+        "kind": "guide",
+        "title": "US institutional and regulated arrangements: role and framework routing",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-credit-intermediation",
+          "q-federal-sovereign",
+          "q-funds-custody",
+          "q-government-funds",
+          "q-grants-contributions",
+          "q-insurer",
+          "q-licensed-content",
+          "q-natural-resources",
+          "q-rate-regulation",
+          "q-reimbursement"
+        ],
+        "source_ids": [
+          "src_nonprofit_fasb_2018_08",
+          "src_cfr200grants",
+          "src_roadmap_gasb34_basis",
+          "src_roadmap_gasb103",
+          "src_roadmap_fasab34",
+          "src_roadmap_fasab53",
+          "src_naic_sap_hierarchy_2026",
+          "src_aa_i124_naic",
+          "src_ffiec051_instructions_2025",
+          "src_aa_i124_custody",
+          "src_aa_i124_ferc101",
+          "src_fercacct",
+          "src_aa_i124_oilgas",
+          "src_roadmap_ecfr_41324f_2026",
+          "src_cms255210_transmittal25_2026",
+          "src_roadmap_cms_2552_10_r24",
+          "src_construction_fasb_2014_09"
+        ]
+      },
+      {
+        "id": "guide-i97-crop-producer",
+        "kind": "guide",
+        "title": "US crop harvest inventory cutoff and cost-to-sale",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-data-lineage",
+          "q-grants-contributions",
+          "q-insurance-policyholder",
+          "q-inventory",
+          "q-natural-resources",
+          "q-revenue",
+          "q-tax-methods"
+        ],
+        "source_ids": [
+          "src_fasb_asu2015_11_inventory",
+          "src_i97_usda_arms",
+          "src_construction_fasb_2014_09",
+          "src_i97_rma_26br",
+          "src_i97_fsa_arc_plc",
+          "src_i97_irs_p225_2025"
+        ]
+      },
+      {
+        "id": "technical-policy",
+        "kind": "process",
+        "title": "Technical accounting and policy",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-policy-changes-errors",
+          "q-reporting-basis"
+        ],
+        "source_ids": [
+          "src_1os761s",
+          "src_0n4x3cf",
+          "src_09rekxe",
+          "src_0rbcora",
+          "src_ias08pol",
+          "src_fasbasu",
+          "src_fasbeff",
+          "src_ifrs18p"
+        ]
+      },
+      {
+        "id": "src_1os761s",
+        "kind": "source",
+        "title": "FASB Accounting Standards Codification",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-reporting-basis",
+          "q-security"
+        ],
+        "source_ids": [
+          "src_netsuite26ai",
+          "src_sageclose25",
+          "src_0n4x3cf",
+          "src_0rbcora",
+          "src_1lq8uv4"
+        ]
+      },
+      {
+        "id": "src_0rbcora",
+        "kind": "source",
+        "title": "Conceptual Framework for Financial Reporting",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-presentation",
+          "q-reporting-basis"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_0n4x3cf",
+        "kind": "source",
+        "title": "IFRS Accounting Standards Navigator",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-reporting-basis"
+        ],
+        "source_ids": [
+          "src_1os761s",
+          "src_ifrsconcept18",
+          "src_ias08pol",
+          "src_ifrs18p"
+        ]
+      },
+      {
+        "id": "src_06z3svl",
+        "kind": "source",
+        "title": "AI performance with and without XBRL",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-evaluation",
+          "q-reporting-basis"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_09rekxe",
+        "kind": "source",
+        "title": "Accounting Research and AI: New Challenges and Opportunities for Financial Reporting Judgments",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-human-authority",
+          "q-reporting-basis"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_1rrurlr",
+        "kind": "source",
+        "title": "Generative AI in Financial Reporting",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-controls-fraud",
+          "q-reporting-basis"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_0gq92vl",
+        "kind": "source",
+        "title": "AS 2301, The Auditor's Responses to the Risks of Material Misstatement",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-audit-assertions",
+          "q-compliance-assurance",
+          "q-security"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_06tnkx2",
+        "kind": "source",
+        "title": "SQMS No. 1, A Firm's System of Quality Management",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-compliance-assurance",
+          "q-professional-governance"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_0ifcj9w",
+        "kind": "source",
+        "title": "Global Internal Audit Standards",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-audit-assertions",
+          "q-compliance-assurance",
+          "q-security"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_0ukc3p8",
+        "kind": "source",
+        "title": "Government Auditing Standards, 2024 Revision",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-audit-assertions",
+          "q-compliance-assurance"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_0n05noc",
+        "kind": "source",
+        "title": "Federal Information System Controls Audit Manual",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-audit-assertions",
+          "q-compliance-assurance",
+          "q-security"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_0j8szcr",
+        "kind": "source",
+        "title": "The Emergence of Artificial Intelligence: How Automation is Changing Auditing",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-audit-assertions",
+          "q-compliance-assurance",
+          "q-security"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_0djqo8b",
+        "kind": "source",
+        "title": "Technology in the Audit: The Use of Artificial Intelligence in the Audit—Balancing Innovation and Risk",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-audit-assertions",
+          "q-compliance-assurance",
+          "q-reporting-basis"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_0q59egd",
+        "kind": "source",
+        "title": "ISO/IEC 42006:2025, Certification of AI management systems",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-audit-assertions",
+          "q-compliance-assurance"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_1ky30oj",
+        "kind": "source",
+        "title": "Trust Services Criteria with revised points of focus",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-compliance-assurance",
+          "q-controls-fraud",
+          "q-interfaces"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_0ww9s76",
+        "kind": "source",
+        "title": "SOC 2 Description Criteria",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-compliance-assurance",
+          "q-controls-fraud",
+          "q-security"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_02b8fpu",
+        "kind": "source",
+        "title": "Portfolio of AI Assurance Techniques",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-compliance-assurance"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_0dolcm7",
+        "kind": "source",
+        "title": "The Smart Alliance: Accounting Expertise Meets Machine Intelligence",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-reporting-basis"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_0eqyd2f",
+        "kind": "source",
+        "title": "Is Artificial Intelligence Improving the Audit Process?",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-audit-assertions",
+          "q-compliance-assurance",
+          "q-security"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_0pvvq36",
+        "kind": "source",
+        "title": "Is It All Hype? ChatGPT's Performance and Disruptive Potential in Accounting and Auditing",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-audit-assertions",
+          "q-compliance-assurance",
+          "q-security"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_0p2iwpf",
+        "kind": "source",
+        "title": "Artificial Intelligence and White-Collar Work: Evidence from the Accounting Profession",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-reporting-basis"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_0m0fadx",
+        "kind": "source",
+        "title": "An Investigation into How Generative AI Can Improve Auditors' Decisions",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-audit-assertions",
+          "q-compliance-assurance"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_0f8dgq5",
+        "kind": "source",
+        "title": "Artificial Intelligence Auditability and Auditor Readiness for Auditing AI Systems",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-audit-assertions",
+          "q-compliance-assurance",
+          "q-security"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_0qwi4ry",
+        "kind": "source",
+        "title": "FinBalance: A Multi-Document Accounting Reconciliation Benchmark",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-data-lineage",
+          "q-evaluation",
+          "q-ledger-close",
+          "q-reporting-basis"
+        ],
+        "source_ids": [
+          "src_digitsagents25",
+          "src_netsuite26ai",
+          "src_1n79yb8",
+          "src_auditflow26",
+          "src_1s8hjcx",
+          "src_finagentbench"
+        ]
+      },
+      {
+        "id": "src_1n79yb8",
+        "kind": "source",
+        "title": "FinAuditing: A Financial Taxonomy-Structured Multi-Document Benchmark",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-audit-assertions",
+          "q-evaluation",
+          "q-reporting-basis"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_0ny36z0",
+        "kind": "source",
+        "title": "FinRule-Bench: Joint Reasoning over Financial Tables and Principles",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-reporting-basis"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_0lcv7z2",
+        "kind": "source",
+        "title": "2025 AI in Accounting Report",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-reporting-basis"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_02v8o5o",
+        "kind": "source",
+        "title": "Regulation (EU) 2024/1689: Artificial Intelligence Act",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-compliance-assurance",
+          "q-human-authority"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_0jm0sii",
+        "kind": "source",
+        "title": "Statement on AI and auditor independence",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-audit-assertions",
+          "q-compliance-assurance"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_ias02inv",
+        "kind": "source",
+        "title": "IAS 2, Inventories",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-cost-allocation",
+          "q-inventory"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_ias08pol",
+        "kind": "source",
+        "title": "IAS 8, Basis of Preparation of Financial Statements",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-estimates",
+          "q-policy-changes-errors",
+          "q-presentation",
+          "q-reporting-basis",
+          "q-restructuring-distress"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_fasbasu",
+        "kind": "source",
+        "title": "FASB Accounting Standards Updates",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-policy-changes-errors",
+          "q-reporting-basis"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_fasbeff",
+        "kind": "source",
+        "title": "FASB ASU effective-date resources",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-policy-changes-errors",
+          "q-reporting-basis"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_regsxcfr",
+        "kind": "source",
+        "title": "Regulation S-X, 17 CFR Part 210",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-controls-fraud",
+          "q-reporting-basis"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_edgarfm",
+        "kind": "source",
+        "title": "EDGAR Filer Manual",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-interfaces",
+          "q-reporting-basis"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_sec8124",
+        "kind": "source",
+        "title": "SEC Release 33-8124, Certification of Quarterly and Annual Reports",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-controls-fraud",
+          "q-reporting-basis"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_sec8238",
+        "kind": "source",
+        "title": "SEC Release 33-8238, Management Reports on ICFR and Certification",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-controls-fraud",
+          "q-reporting-basis"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_sec13a15",
+        "kind": "source",
+        "title": "Exchange Act Rule 13a-15",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-controls-fraud",
+          "q-reporting-basis"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_secr206",
+        "kind": "source",
+        "title": "SEC Rule 2-06, Retention of Audit and Review Records",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-controls-fraud",
+          "q-reporting-basis"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_04s75ox",
+        "kind": "source",
+        "title": "Auditing large language models: a three-layered approach",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-compliance-assurance"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_0qw4qgy",
+        "kind": "source",
+        "title": "Questions and answers on the use of artificial intelligence in auditing practice",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-audit-assertions",
+          "q-compliance-assurance"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_0cn4sq6",
+        "kind": "source",
+        "title": "The use of Artificial Intelligence Technologies in Corporate Reporting",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-agent-design",
+          "q-reporting-basis",
+          "q-security"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_04sc6cz",
+        "kind": "source",
+        "title": "Structured Digital Reporting: Insights 2025/26",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-data-lineage",
+          "q-reporting-basis"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_0qnpuy0",
+        "kind": "source",
+        "title": "Enabling finance insight: Bridging skills and data gaps for AI-enabled finance",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-agent-design",
+          "q-reporting-basis",
+          "q-security"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_0p9wfhe",
+        "kind": "source",
+        "title": "AI auditing tool",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-audit-assertions",
+          "q-compliance-assurance",
+          "q-reporting-basis"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_0l1dez7",
+        "kind": "source",
+        "title": "Leveraging Artificial Intelligence in Public Financial Management",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-reporting-basis"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_finra2409",
+        "kind": "source",
+        "title": "Regulatory Notice 24-09: Regulatory Obligations When Using Generative AI and Large Language Models",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-compliance-assurance",
+          "q-deployment-evidence",
+          "q-evaluation",
+          "q-human-authority",
+          "q-security"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_esef2019",
+        "kind": "source",
+        "title": "European Single Electronic Format Regulation",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-data-lineage",
+          "q-reporting-basis"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_finverbench",
+        "kind": "source",
+        "title": "FinVerBench: Benchmark Validity and Calibration in Large Language Model Financial Statement Verification",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-evaluation",
+          "q-reporting-basis"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_etsi104008",
+        "kind": "source",
+        "title": "ETSI TS 104 008: Continuous Auditing-Based Conformity Assessment for AI-Enabled Systems",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-compliance-assurance",
+          "q-evaluation"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_esma24ai",
+        "kind": "source",
+        "title": "Public Statement on AI and Investment Services",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-compliance-assurance",
+          "q-human-authority"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_auditflow26",
+        "kind": "source",
+        "title": "AuditFlow: Executable Symbolic Environments for Structured Financial Reporting Verification",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-audit-assertions",
+          "q-reporting-basis",
+          "q-security"
+        ],
+        "source_ids": [
+          "src_1n79yb8",
+          "src_0qwi4ry",
+          "src_agenticaudit",
+          "src_xbrlvalid"
+        ]
+      },
+      {
+        "id": "src_ifrsconcept18",
+        "kind": "source",
+        "title": "IFRS Conceptual Framework for Financial Reporting",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-reporting-basis"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_ifrsmc2025",
+        "kind": "source",
+        "title": "IFRS Practice Statement 1: Management Commentary",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-reporting-basis"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_secsab0099",
+        "kind": "source",
+        "title": "Staff Accounting Bulletin No. 99 — Materiality",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-controls-fraud",
+          "q-performance",
+          "q-reporting-basis"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_secsab0108",
+        "kind": "source",
+        "title": "Staff Accounting Bulletin No. 108",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-controls-fraud",
+          "q-reporting-basis"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_fasbtax2025",
+        "kind": "source",
+        "title": "2025 GAAP Financial Reporting Taxonomy",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-data-lineage",
+          "q-reporting-basis"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_cmsmcref",
+        "kind": "source",
+        "title": "Medicare Cost Report Electronic Filing",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-reporting-basis"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_asu201815",
+        "kind": "source",
+        "title": "ASU 2018-15: Customer's Accounting for Implementation Costs in a Cloud Computing Arrangement",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-data-lineage",
+          "q-intangibles-software",
+          "q-reporting-basis",
+          "q-revenue"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_focusv14",
+        "kind": "source",
+        "title": "FOCUS Specification 1.4",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-cost-allocation",
+          "q-interfaces"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_socsupply",
+        "kind": "source",
+        "title": "SOC for Supply Chain",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-compliance-assurance",
+          "q-controls-fraud"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_cfr200grants",
+        "kind": "source",
+        "title": "2 CFR Part 200, Uniform Administrative Requirements, Cost Principles, and Audit Requirements for Federal Awards",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-audit-assertions",
+          "q-controls-fraud",
+          "q-cost-allocation",
+          "q-planning",
+          "q-reporting-basis"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_asu202308",
+        "kind": "source",
+        "title": "ASU 2023-08: Accounting for and Disclosure of Crypto Assets",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-digital-assets",
+          "q-ledger-close",
+          "q-reporting-basis"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_secsab122",
+        "kind": "source",
+        "title": "Staff Accounting Bulletin No. 122",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-controls-fraud",
+          "q-digital-assets",
+          "q-reporting-basis"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_ipsas48_transfer_expenses",
+        "kind": "source",
+        "title": "IPSAS 48, Transfer Expenses",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-grants-contributions"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_irs_form990_2025",
+        "kind": "source",
+        "title": "Instructions for Form 990, Return of Organization Exempt From Income Tax (2025)",
+        "association": "nonprofit-keyword",
+        "family_ids": [
+          "q-income-tax",
+          "q-tax-returns"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_uk_charities_sorp2026",
+        "kind": "source",
+        "title": "Changes to charity accounting and reporting — SORP 2026 transition",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-grants-contributions",
+          "q-policy-changes-errors"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_construction_dol_wh347",
+        "kind": "source",
+        "title": "Davis-Bacon weekly certified payroll: WH-347 instructions",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-compliance-assurance",
+          "q-payroll"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_construction_california_certified_payroll",
+        "kind": "source",
+        "title": "California public works certified payroll reporting",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-compliance-assurance",
+          "q-payroll"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_construction_dcaa_accounting_system",
+        "kind": "source",
+        "title": "DCAA preaward accounting system requirements",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-compliance-assurance",
+          "q-controls-fraud"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_construction_far_31105",
+        "kind": "source",
+        "title": "FAR 31.105: construction and architect-engineer contract costs",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-cost-allocation",
+          "q-project-wip"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_roadmap_naics2022_manual",
+        "kind": "source",
+        "title": "2022 NAICS United States manual: industry definitions and exclusions",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-cash-settlement",
+          "q-cost-allocation",
+          "q-data-lineage",
+          "q-insurer",
+          "q-intangibles-software",
+          "q-inventory",
+          "q-ledger-close",
+          "q-payroll",
+          "q-reporting-basis",
+          "q-revenue"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_roadmap_ias20_overview",
+        "kind": "source",
+        "title": "IAS 20: public government-grant recognition and presentation overview",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-grants-contributions"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_roadmap_kpmg_inventory_2026",
+        "kind": "source",
+        "title": "Inventory accounting: IFRS Accounting Standards vs US GAAP",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-cost-allocation",
+          "q-data-lineage",
+          "q-inventory",
+          "q-ledger-close",
+          "q-purchasing-payables",
+          "q-receivables-credit",
+          "q-revenue"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_roadmap_tx_davis",
+        "kind": "source",
+        "title": "Texas SECO Davis-Bacon guidance",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-compliance-assurance",
+          "q-payroll"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_roadmap_ca_cpr",
+        "kind": "source",
+        "title": "California Certified Payroll FAQ",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-compliance-assurance",
+          "q-data-lineage",
+          "q-payroll"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_roadmap_uk_frs102",
+        "kind": "source",
+        "title": "FRS 102 Periodic Review 2024 explainer",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-policy-changes-errors",
+          "q-reporting-basis"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_roadmap_class_naics",
+        "kind": "source",
+        "title": "NAICS Canada 2022 to ISIC Rev.4 correspondence",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-insurer",
+          "q-reporting-basis"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_roadmap_class_sicnace",
+        "kind": "source",
+        "title": "UK SIC(2007) introduction and correspondence",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-reporting-basis"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_roadmap_ca_acsb_aspe_ifrs_scope_2023",
+        "kind": "source",
+        "title": "AcSB Exploring Scalability in Canada consultation paper",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-reporting-basis"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_roadmap_uk_frc_frs102_scope_2024",
+        "kind": "source",
+        "title": "FRS 102 (2024 Edition) Section 1 scope and basis of preparation",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-reporting-basis"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_construction_gao_25107258",
+        "kind": "source",
+        "title": "GAO-25-107258: construction estimate and final-cost evidence",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-controls-fraud",
+          "q-cost-allocation",
+          "q-estimates",
+          "q-project-wip"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_construction_gsa184a_2015",
+        "kind": "source",
+        "title": "GSA 184A (March 2015): work-breakdown evidence fields",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-controls-fraud",
+          "q-cost-allocation",
+          "q-project-wip"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_nonprofit_fasb_2018_08",
+        "kind": "source",
+        "title": "FASB ASU 2018-08: contributions, exchange transactions and conditions",
+        "association": "nonprofit-keyword",
+        "family_ids": [
+          "q-grants-contributions"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_nonprofit_fasb_2016_14",
+        "kind": "source",
+        "title": "FASB ASU 2016-14: NFP presentation, restrictions and functional expenses",
+        "association": "nonprofit-keyword",
+        "family_ids": [
+          "q-cost-allocation",
+          "q-grants-contributions",
+          "q-presentation"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_nonprofit_irs_990_2025",
+        "kind": "source",
+        "title": "IRS 2025 Form 990 instructions: functional expenses and federal reporting",
+        "association": "nonprofit-keyword",
+        "family_ids": [
+          "q-cost-allocation",
+          "q-tax-returns"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_far_31203_indirect_costs",
+        "kind": "source",
+        "title": "FAR 31.203: Indirect costs",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-cost-allocation"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_education_fsa_2526_disbursement",
+        "kind": "source",
+        "title": "FSA Handbook 2025-2026: Disbursing Title IV funds",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-grants-contributions",
+          "q-revenue"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_education_fsa_2526_withdrawal",
+        "kind": "source",
+        "title": "FSA Handbook 2025-2026: Withdrawal and return of Title IV funds",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-grants-contributions",
+          "q-revenue"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_education_gasb35",
+        "kind": "source",
+        "title": "GASB Statement 35: Public colleges and universities",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-government-funds",
+          "q-grants-contributions",
+          "q-revenue"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_i97_rma_26br",
+        "kind": "source",
+        "title": "RMA Common Crop Insurance Policy Basic Provisions 26-BR",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-data-lineage",
+          "q-grants-contributions",
+          "q-insurance-policyholder",
+          "q-inventory",
+          "q-provisions",
+          "q-revenue",
+          "q-tax-methods"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_i97_irs_p225_2025",
+        "kind": "source",
+        "title": "IRS Publication 225 (2025): crop insurance tax timing",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-grants-contributions",
+          "q-insurance-policyholder",
+          "q-tax-methods"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "src_i97_fsa_arc_plc",
+        "kind": "source",
+        "title": "FSA Agriculture Risk Coverage and Price Loss Coverage",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-grants-contributions",
+          "q-insurance-policyholder",
+          "q-tax-methods"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "tpl-technical-memo",
+        "kind": "template",
+        "title": "Technical-accounting memo",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-data-lineage",
+          "q-reporting-basis"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "term-authoritative-source",
+        "kind": "term",
+        "title": "Authoritative source",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-data-lineage",
+          "q-reporting-basis"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "term-applicability",
+        "kind": "term",
+        "title": "Applicability",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-data-lineage",
+          "q-reporting-basis"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "term-jurisdiction",
+        "kind": "term",
+        "title": "Jurisdiction",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-data-lineage",
+          "q-reporting-basis"
+        ],
+        "source_ids": []
+      },
+      {
+        "id": "wf-o2c-customer-contract-intake",
+        "kind": "workflow",
+        "title": "Customer and contract intake",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-reporting-basis",
+          "q-revenue"
+        ],
+        "source_ids": [
+          "src_1os761s",
+          "src_0n4x3cf",
+          "src_1v1zwt5",
+          "src_ifrs15a",
+          "src_0vf7hhg",
+          "src_1l45nk0"
+        ]
+      },
+      {
+        "id": "wf-tax-indirect-tax",
+        "kind": "workflow",
+        "title": "Indirect-tax determination and reconciliation",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-indirect-tax",
+          "q-reporting-basis"
+        ],
+        "source_ids": [
+          "src_1os761s",
+          "src_0n4x3cf",
+          "src_10b9y2x",
+          "src_0vf7hhg",
+          "src_1l45nk0"
+        ]
+      },
+      {
+        "id": "wf-tax-statutory-regulatory",
+        "kind": "workflow",
+        "title": "Statutory and regulatory reporting",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-compliance-assurance",
+          "q-presentation"
+        ],
+        "source_ids": [
+          "src_1os761s",
+          "src_0n4x3cf",
+          "src_10b9y2x",
+          "src_regsxcfr",
+          "src_edgarfm",
+          "src_secfile",
+          "src_0vf7hhg",
+          "src_1l45nk0"
+        ]
+      },
+      {
+        "id": "wf-tax-jurisdiction-retention",
+        "kind": "workflow",
+        "title": "Jurisdiction, effective-date, and retention checks",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-reporting-basis",
+          "q-reuse-rights"
+        ],
+        "source_ids": [
+          "src_1os761s",
+          "src_0n4x3cf",
+          "src_10b9y2x",
+          "src_irsrecord",
+          "src_irselect",
+          "src_secr206",
+          "src_0vf7hhg",
+          "src_1l45nk0"
+        ]
+      },
+      {
+        "id": "wf-technical-fact-pattern",
+        "kind": "workflow",
+        "title": "Fact-pattern intake",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-estimates",
+          "q-reporting-basis"
+        ],
+        "source_ids": [
+          "src_1os761s",
+          "src_0n4x3cf",
+          "src_0rbcora",
+          "src_10b9y2x",
+          "src_0vf7hhg",
+          "src_1l45nk0"
+        ]
+      },
+      {
+        "id": "wf-technical-authoritative-research",
+        "kind": "workflow",
+        "title": "Authoritative research",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-reporting-basis",
+          "q-reuse-rights"
+        ],
+        "source_ids": [
+          "src_1os761s",
+          "src_0n4x3cf",
+          "src_0rbcora",
+          "src_10b9y2x",
+          "src_ias08pol",
+          "src_0vf7hhg",
+          "src_1l45nk0"
+        ]
+      },
+      {
+        "id": "wf-technical-memoranda",
+        "kind": "workflow",
+        "title": "Technical-accounting memoranda",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-data-lineage",
+          "q-reporting-basis"
+        ],
+        "source_ids": [
+          "src_1os761s",
+          "src_0n4x3cf",
+          "src_0rbcora",
+          "src_10b9y2x",
+          "src_1l45nk0",
+          "src_0vf7hhg"
+        ]
+      },
+      {
+        "id": "wf-technical-policy-drafting",
+        "kind": "workflow",
+        "title": "Accounting-policy drafting and maintenance",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-human-authority",
+          "q-reporting-basis"
+        ],
+        "source_ids": [
+          "src_1os761s",
+          "src_0n4x3cf",
+          "src_0rbcora",
+          "src_10b9y2x",
+          "src_ias08pol",
+          "src_0vf7hhg",
+          "src_1l45nk0"
+        ]
+      },
+      {
+        "id": "wf-technical-change-monitoring",
+        "kind": "workflow",
+        "title": "New-standard and regulatory-change monitoring",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-policy-changes-errors",
+          "q-reporting-basis"
+        ],
+        "source_ids": [
+          "src_1os761s",
+          "src_0n4x3cf",
+          "src_0rbcora",
+          "src_10b9y2x",
+          "src_fasbasu",
+          "src_fasbeff",
+          "src_ifrs18p",
+          "src_0vf7hhg",
+          "src_1l45nk0"
+        ]
+      },
+      {
+        "id": "wf-construction-contract-intake",
+        "kind": "workflow",
+        "title": "Construction contract intake and accounting scope",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-compliance-assurance",
+          "q-cost-allocation",
+          "q-reporting-basis",
+          "q-revenue"
+        ],
+        "source_ids": [
+          "src_construction_fasb_2014_09",
+          "src_construction_aicpa_revenue_issues",
+          "src_construction_ey_engineering_revenue"
+        ]
+      },
+      {
+        "id": "wf-construction-job-cost-estimates",
+        "kind": "workflow",
+        "title": "Job-cost cutoff, commitments and estimate-to-complete review",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-cost-allocation",
+          "q-data-lineage",
+          "q-estimates",
+          "q-ledger-close",
+          "q-project-wip"
+        ],
+        "source_ids": [
+          "src_construction_dcaa_accounting_system",
+          "src_construction_far_31105",
+          "src_construction_aicpa_wip",
+          "src_aicpacon25",
+          "src_construction_gao_25107258"
+        ]
+      },
+      {
+        "id": "wf-construction-subcontractor-payables",
+        "kind": "workflow",
+        "title": "Subcontractor payables, trust funds and lien or bond evidence",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-cash-settlement",
+          "q-compliance-assurance",
+          "q-provisions",
+          "q-purchasing-payables"
+        ],
+        "source_ids": [
+          "src_construction_texas_trust_funds",
+          "src_construction_texas_private_prompt_payment",
+          "src_construction_texas_public_prompt_payment",
+          "src_construction_texas_mechanics_liens",
+          "src_construction_texas_public_bonds",
+          "src_construction_california_lien_waivers"
+        ]
+      },
+      {
+        "id": "wf-construction-prevailing-wage-payroll",
+        "kind": "workflow",
+        "title": "Construction labor costing and certified payroll reconciliation",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-compliance-assurance",
+          "q-cost-allocation",
+          "q-data-lineage",
+          "q-payroll"
+        ],
+        "source_ids": [
+          "src_construction_dol_wh347",
+          "src_construction_california_certified_payroll",
+          "src_construction_dcaa_accounting_system",
+          "src_irs_pub15_2026"
+        ]
+      },
+      {
+        "id": "wf-construction-equipment-leases",
+        "kind": "workflow",
+        "title": "Contractor equipment, leases and owner-asset construction in progress",
+        "association": "shared-family-context",
+        "family_ids": [
+          "q-capital-assets",
+          "q-cost-allocation",
+          "q-leases"
+        ],
+        "source_ids": [
+          "src_construction_fasb_202301",
+          "src_construction_irs_tangible_property",
+          "src_construction_far_31105"
+        ]
+      }
+    ],
+    "linked_questions": [
+      {
+        "id": "rq-reporting-basis-scope-treatment",
+        "record_id": "guide-q-reporting-basis",
+        "family_ids": [
+          "q-reporting-basis"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_ias08pol"
+        ],
+        "remaining_gaps": [
+          "Public edition and cited paragraphs were read; current consolidated text, local adoption and entity-specific professional review remain unresolved.",
+          "Original broader prompt retained as unresolved scope: Which framework governs this entry?"
+        ]
+      },
+      {
+        "id": "rq-reporting-basis-evidence-controls",
+        "record_id": "guide-q-reporting-basis",
+        "family_ids": [
+          "q-reporting-basis"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_ias08pol"
+        ],
+        "remaining_gaps": [
+          "Public edition and cited paragraphs were read; current consolidated text, local adoption and entity-specific professional review remain unresolved.",
+          "Original broader prompt retained as unresolved scope: What proves the policy choice?"
+        ]
+      },
+      {
+        "id": "rq-reporting-basis-us-framework-routing",
+        "record_id": "guide-q-reporting-basis",
+        "family_ids": [
+          "q-reporting-basis"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_1os761s",
+          "src_secfrm26",
+          "src_roadmap_gasb34_basis",
+          "src_roadmap_fasab34"
+        ],
+        "remaining_gaps": [
+          "Current consolidated FASB, GASB and FASAB text was not fully accessed; source records state exact bounded locators and access limits.",
+          "Nonprofit Topic 958 substantive treatment remains open and coordinated with #117 rather than duplicated.",
+          "No professional reviewer accepted a live framework-selection conclusion."
+        ]
+      },
+      {
+        "id": "rq-ledger-close-usgaap-month-close",
+        "record_id": "guide-q-ledger-close",
+        "family_ids": [
+          "q-ledger-close"
+        ],
+        "answer_status": "evidence-gap",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_1os761s",
+          "src_1og297z",
+          "src_1v1zwt5",
+          "src_fasb_202010"
+        ],
+        "remaining_gaps": [
+          "The FASB ASC record was reviewed at landing-page level; current transaction-specific recognition, cutoff and error-correction text and entity facts remain unresolved. ASU 2020-10 is only a bounded disclosure and materiality reference.",
+          "The close-control sources are editorial proposals, not universal accounting or audit requirements.",
+          "The example is synthetic and has no live ERP completeness, production posting or professional review."
+        ]
+      },
+      {
+        "id": "rq-estimates-scope-treatment",
+        "record_id": "guide-q-estimates",
+        "family_ids": [
+          "q-estimates"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_ias08pol"
+        ],
+        "remaining_gaps": [
+          "Public edition and cited paragraphs were read; current consolidated text, local adoption and entity-specific professional review remain unresolved.",
+          "Original broader prompt retained as unresolved scope: What makes an estimate supportable?",
+          "Broader research still open: What should an estimate memo document before management can support its method and inputs?"
+        ]
+      },
+      {
+        "id": "rq-estimates-evidence-controls",
+        "record_id": "guide-q-estimates",
+        "family_ids": [
+          "q-estimates"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_ias08pol"
+        ],
+        "remaining_gaps": [
+          "Public edition and cited paragraphs were read; current consolidated text, local adoption and entity-specific professional review remain unresolved.",
+          "Original broader prompt retained as unresolved scope: When is extra challenge required?",
+          "Broader research still open: Which sensitivity, back-testing and revision evidence can trigger additional challenge of an estimate?"
+        ]
+      },
+      {
+        "id": "rq-estimates-us-change-or-error",
+        "record_id": "guide-q-estimates",
+        "family_ids": [
+          "q-estimates"
+        ],
+        "answer_status": "evidence-gap",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_1os761s",
+          "src_fasb_202511",
+          "src_secsab0099"
+        ],
+        "remaining_gaps": [
+          "Current ASC 250 consolidated text, effective treatment for the selected private entity and entity-specific materiality were not fully reviewed. ASU 2025-11 is pending future interim content, and SAB 99 is registrant-only staff guidance.",
+          "No independent accounting reviewer accepted the classification or correction path.",
+          "The synthetic branch has no empirical estimate-performance evidence."
+        ]
+      },
+      {
+        "id": "rq-presentation-us-statements-disclosures",
+        "record_id": "guide-q-presentation",
+        "family_ids": [
+          "q-presentation"
+        ],
+        "answer_status": "evidence-gap",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_1os761s",
+          "src_secfrm26",
+          "src_sec_regsx",
+          "src_fasb_202010",
+          "src_secsab0099"
+        ],
+        "remaining_gaps": [
+          "Current FASB presentation topics and SEC form-specific rules were not fully accessed; ASU 2020-10 and SAB 99 cover only narrow error-disclosure or registrant-materiality contexts.",
+          "No filing, taxonomy, comparative population or professional disclosure review was performed.",
+          "The synthetic output only demonstrates a bounded statement tie-out."
+        ]
+      },
+      {
+        "id": "rq-foreign-currency-us-transaction-remeasurement",
+        "record_id": "guide-q-foreign-currency",
+        "family_ids": [
+          "q-foreign-currency"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_1os761s",
+          "src_fasb_fas52",
+          "src_fasb_201305"
+        ],
+        "remaining_gaps": [
+          "Current ASC 830 consolidated text and later amendments were not fully accessed.",
+          "No professional reviewer approved the functional-currency or transaction classification.",
+          "The fixture does not establish live market-rate or foreign-operation evidence."
+        ]
+      },
+      {
+        "id": "rq-policy-changes-errors-scope-treatment",
+        "record_id": "guide-q-policy-changes-errors",
+        "family_ids": [
+          "q-policy-changes-errors"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_ias08pol"
+        ],
+        "remaining_gaps": [
+          "Public edition and cited paragraphs were read; current consolidated text, local adoption and entity-specific professional review remain unresolved.",
+          "Original broader prompt retained as unresolved scope: How are policy changes, estimates and errors separated?"
+        ]
+      },
+      {
+        "id": "rq-policy-changes-errors-evidence-controls",
+        "record_id": "guide-q-policy-changes-errors",
+        "family_ids": [
+          "q-policy-changes-errors"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_ias08pol"
+        ],
+        "remaining_gaps": [
+          "Public edition and cited paragraphs were read; current consolidated text, local adoption and entity-specific professional review remain unresolved.",
+          "Original broader prompt retained as unresolved scope: What does an adoption file contain?"
+        ]
+      },
+      {
+        "id": "rq-policy-changes-errors-usgaap",
+        "record_id": "guide-q-policy-changes-errors",
+        "family_ids": [
+          "q-policy-changes-errors"
+        ],
+        "answer_status": "evidence-gap",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_1os761s",
+          "src_fasb_202010",
+          "src_fasb_202511",
+          "src_secsab0099"
+        ],
+        "remaining_gaps": [
+          "Current ASC 250 text, effective transition treatment and entity-specific materiality were not fully reviewed. ASU 2020-10 is a bounded amendment reference, ASU 2025-11 is pending future interim content and SAB 99 is registrant-only staff guidance.",
+          "No professional reviewer accepted the correction path or comparative presentation.",
+          "No live issued financial statement or restatement package was tested."
+        ]
+      },
+      {
+        "id": "rq-events-going-concern-usgaap",
+        "record_id": "guide-q-events-going-concern",
+        "family_ids": [
+          "q-events-going-concern"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_1os761s",
+          "src_fasb_201009",
+          "src_fasb_201415"
+        ],
+        "remaining_gaps": [
+          "Current consolidated Topics 855 and 205-40 and later amendments were not fully accessed.",
+          "No live issuance process, financing evidence or professional going-concern review was performed.",
+          "The fixture's missing-date branch demonstrates escalation behavior but not a live conclusion."
+        ]
+      },
+      {
+        "id": "rq-consolidation-us-control-models",
+        "record_id": "guide-q-consolidation",
+        "family_ids": [
+          "q-consolidation"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_1os761s",
+          "src_fasb_201502"
+        ],
+        "remaining_gaps": [
+          "Current Topic 810 and later amendments were not fully accessed.",
+          "No legal-entity population, VIE evidence, elimination schedule or professional review was performed.",
+          "Existing #109 parent/subsidiary material remains scoped application evidence, not a universal rule."
+        ]
+      },
+      {
+        "id": "rq-us-revenue-contract-control",
+        "record_id": "guide-q-revenue",
+        "family_ids": [
+          "q-revenue"
+        ],
+        "answer_status": "sourced-answer-and-original-example",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_construction_fasb_2014_09",
+          "src_fasb_asu2016_08_principal_agent",
+          "src_1os761s"
+        ],
+        "remaining_gaps": [
+          "Current consolidated ASC text, later amendments, entity adoption and local legal or tax overlays remain to be reviewed by a qualified professional.",
+          "Source-level reuse rights remain unresolved; only original summaries and synthetic facts are stored, not publisher text.",
+          "No professional sign-off, live ERP population, production posting or measured agent-performance evidence was obtained.",
+          "The source excerpts do not resolve every current ASC 606 contract-modification, return, consignment or industry implementation question."
+        ]
+      },
+      {
+        "id": "rq-us-revenue-presentation-refunds",
+        "record_id": "guide-q-revenue",
+        "family_ids": [
+          "q-revenue"
+        ],
+        "answer_status": "sourced-answer-and-original-example",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_construction_fasb_2014_09",
+          "src_fasb_concepts8_elements",
+          "src_1os761s"
+        ],
+        "remaining_gaps": [
+          "Current consolidated ASC text, later amendments, entity adoption and local legal or tax overlays remain to be reviewed by a qualified professional.",
+          "Source-level reuse rights remain unresolved; only original summaries and synthetic facts are stored, not publisher text.",
+          "No professional sign-off, live ERP population, production posting or measured agent-performance evidence was obtained.",
+          "Tax jurisdiction, payment-network terms, fee presentation and current Topic 606 implementation guidance remain open."
+        ]
+      },
+      {
+        "id": "rq-us-project-wip-over-time-cutoff",
+        "record_id": "guide-q-project-wip",
+        "family_ids": [
+          "q-project-wip"
+        ],
+        "answer_status": "sourced-answer-and-original-example",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_construction_fasb_2014_09",
+          "src_fasb_concepts8_elements",
+          "src_1os761s"
+        ],
+        "remaining_gaps": [
+          "Current consolidated ASC text, later amendments, entity adoption and local legal or tax overlays remain to be reviewed by a qualified professional.",
+          "Source-level reuse rights remain unresolved; only original summaries and synthetic facts are stored, not publisher text.",
+          "No professional sign-off, live ERP population, production posting or measured agent-performance evidence was obtained.",
+          "The current Topic 606 contract and industry facts needed to decide the over-time criterion remain open; the synthetic case is not a construction package."
+        ]
+      },
+      {
+        "id": "rq-us-project-wip-contract-costs",
+        "record_id": "guide-q-project-wip",
+        "family_ids": [
+          "q-project-wip"
+        ],
+        "answer_status": "sourced-answer-and-original-example",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_construction_fasb_2014_09",
+          "src_1os761s"
+        ],
+        "remaining_gaps": [
+          "Current consolidated ASC text, later amendments, entity adoption and local legal or tax overlays remain to be reviewed by a qualified professional.",
+          "Source-level reuse rights remain unresolved; only original summaries and synthetic facts are stored, not publisher text.",
+          "No professional sign-off, live ERP population, production posting or measured agent-performance evidence was obtained.",
+          "The issued amendment excerpt does not resolve every current Topic 340-40 or other-Topic cost classification and impairment question."
+        ]
+      },
+      {
+        "id": "rq-us-purchasing-payables-receipt-cutoff",
+        "record_id": "guide-q-purchasing-payables",
+        "family_ids": [
+          "q-purchasing-payables"
+        ],
+        "answer_status": "sourced-answer-and-original-example",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_fasb_concepts8_elements",
+          "src_1os761s",
+          "src_1v1zwt5"
+        ],
+        "remaining_gaps": [
+          "Current consolidated ASC text, later amendments, entity adoption and local legal or tax overlays remain to be reviewed by a qualified professional.",
+          "Source-level reuse rights remain unresolved; only original summaries and synthetic facts are stored, not publisher text.",
+          "No professional sign-off, live ERP population, production posting or measured agent-performance evidence was obtained.",
+          "The conceptual source does not establish every asset, expense, lease, tax or industry-specific liability rule."
+        ]
+      },
+      {
+        "id": "rq-inventory-scope-treatment",
+        "record_id": "guide-q-inventory",
+        "family_ids": [
+          "q-inventory"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_ias02inv"
+        ],
+        "remaining_gaps": [
+          "Public edition and cited paragraphs were read; current consolidated text, local adoption and entity-specific professional review remain unresolved.",
+          "Original broader prompt retained as unresolved scope: Which costs enter inventory?"
+        ]
+      },
+      {
+        "id": "rq-inventory-evidence-controls",
+        "record_id": "guide-q-inventory",
+        "family_ids": [
+          "q-inventory"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_ias02inv"
+        ],
+        "remaining_gaps": [
+          "Public edition and cited paragraphs were read; current consolidated text, local adoption and entity-specific professional review remain unresolved.",
+          "Original broader prompt retained as unresolved scope: When is a write-down required?"
+        ]
+      },
+      {
+        "id": "rq-us-inventory-landed-cost",
+        "record_id": "guide-q-inventory",
+        "family_ids": [
+          "q-inventory"
+        ],
+        "answer_status": "sourced-answer-and-original-example",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_fasb_bmho20241218_topic330",
+          "src_fasb_asu2015_11_inventory",
+          "src_1os761s"
+        ],
+        "remaining_gaps": [
+          "Current consolidated ASC text, later amendments, entity adoption and local legal or tax overlays remain to be reviewed by a qualified professional.",
+          "Source-level reuse rights remain unresolved; only original summaries and synthetic facts are stored, not publisher text.",
+          "No professional sign-off, live ERP population, production posting or measured agent-performance evidence was obtained.",
+          "The board handout is non-authoritative and the ASU is not consolidated current GAAP; no entity policy or physical-observation evidence was reviewed."
+        ]
+      },
+      {
+        "id": "rq-restructuring-distress-restructuring",
+        "record_id": "guide-q-restructuring-distress",
+        "family_ids": [
+          "q-restructuring-distress"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_roadmap_ifrs5",
+          "src_roadmap_ias37_overview",
+          "src_ias08pol"
+        ],
+        "remaining_gaps": [
+          "Insolvency law and local GAAP were not reviewed."
+        ]
+      },
+      {
+        "id": "rq-restructuring-distress-disposal",
+        "record_id": "guide-q-restructuring-distress",
+        "family_ids": [
+          "q-restructuring-distress"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_roadmap_ifrs5",
+          "src_roadmap_ias37_overview",
+          "src_ias08pol"
+        ],
+        "remaining_gaps": [
+          "No disposal facts were tested."
+        ]
+      },
+      {
+        "id": "rq-grants-contributions-conditions",
+        "record_id": "guide-q-grants-contributions",
+        "family_ids": [
+          "q-grants-contributions"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_roadmap_ias20_overview"
+        ],
+        "remaining_gaps": [
+          "Specific nonprofit/public-sector framework was not selected.",
+          "Broader research still open: What conditions distinguish a grant or contribution from unrestricted income?"
+        ]
+      },
+      {
+        "id": "rq-grants-contributions-release",
+        "record_id": "guide-q-grants-contributions",
+        "family_ids": [
+          "q-grants-contributions"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_roadmap_ias20_overview"
+        ],
+        "remaining_gaps": [
+          "No award file was inspected.",
+          "Broader research still open: When may restricted resources be released or recognized?"
+        ]
+      },
+      {
+        "id": "rq-government-funds-basis-bridge",
+        "record_id": "guide-q-government-funds",
+        "family_ids": [
+          "q-government-funds"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_roadmap_gasb34_basis",
+          "src_roadmap_texas_fund_basis"
+        ],
+        "remaining_gaps": [
+          "No complete governmental reporting checklist or entity-specific policy reviewed."
+        ]
+      },
+      {
+        "id": "rq-government-funds-budget-103",
+        "record_id": "guide-q-government-funds",
+        "family_ids": [
+          "q-government-funds"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_roadmap_gasb103"
+        ],
+        "remaining_gaps": [
+          "No threshold for significant variance or local appropriation law is inferred."
+        ]
+      },
+      {
+        "id": "rq-cost-allocation-allocation-base",
+        "record_id": "guide-q-cost-allocation",
+        "family_ids": [
+          "q-cost-allocation"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_cfr200grants",
+          "src_far_31203_indirect_costs",
+          "src_0xce2sl"
+        ],
+        "remaining_gaps": [
+          "No professional or operating validation of the selected driver.",
+          "FAR and 2 CFR applicability cannot be concluded without the actual contract or award.",
+          "Current consolidated US GAAP inventory and overhead requirements were not accessed."
+        ]
+      },
+      {
+        "id": "rq-cost-allocation-unit-cost",
+        "record_id": "guide-q-cost-allocation",
+        "family_ids": [
+          "q-cost-allocation"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_ias02inv"
+        ],
+        "remaining_gaps": [
+          "Retained international context is not a US answer; the public overview is not licensed full text.",
+          "No professional sign-off or production validation."
+        ]
+      },
+      {
+        "id": "rq-planning-driver-model",
+        "record_id": "guide-q-planning",
+        "family_ids": [
+          "q-planning"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_0xce2sl",
+          "src_cfr200grants"
+        ],
+        "remaining_gaps": [
+          "No production forecast model or backtest.",
+          "The two-factor synthetic population does not support a general variance taxonomy.",
+          "No federal-award report or external operating evidence was reviewed."
+        ]
+      },
+      {
+        "id": "rq-performance-margin-definition",
+        "record_id": "guide-q-performance",
+        "family_ids": [
+          "q-performance"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_secsab0099",
+          "src_0xce2sl"
+        ],
+        "remaining_gaps": [
+          "No professional or current US GAAP review.",
+          "The fixture does not establish a universal contribution-margin convention.",
+          "No operating KPI evidence was reviewed."
+        ]
+      },
+      {
+        "id": "rq-performance-materiality",
+        "record_id": "guide-q-performance",
+        "family_ids": [
+          "q-performance"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_secsab0099"
+        ],
+        "remaining_gaps": [
+          "SAB 99 is SEC staff guidance, not a Commission rule.",
+          "No real registrant, filing, audit, or professional review was examined."
+        ]
+      },
+      {
+        "id": "rq-audit-assertions-assertion-evidence",
+        "record_id": "guide-q-audit-assertions",
+        "family_ids": [
+          "q-audit-assertions"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_0vf7hhg",
+          "src_04t8hqe",
+          "src_05n7atb",
+          "src_0ukc3p8",
+          "src_cfr200grants"
+        ],
+        "remaining_gaps": [
+          "Sample or full-population design remains engagement-specific and no selected items are sufficient coverage by themselves.",
+          "No professional reviewer evaluated this matrix or the synthetic packet.",
+          "Federal-award compliance criteria and award terms require entity- and program-specific review."
+        ]
+      },
+      {
+        "id": "rq-audit-assertions-recorded-vs-omitted",
+        "record_id": "guide-q-audit-assertions",
+        "family_ids": [
+          "q-audit-assertions"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_0vf7hhg",
+          "src_0gq92vl",
+          "src_04t8hqe",
+          "src_cfr200grants"
+        ],
+        "remaining_gaps": [
+          "The packet does not select or justify an audit sample and does not establish completeness for an operational population."
+        ]
+      },
+      {
+        "id": "rq-audit-assertions-contradictory-evidence",
+        "record_id": "guide-q-audit-assertions",
+        "family_ids": [
+          "q-audit-assertions"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_0vf7hhg",
+          "src_1wj6irw",
+          "src_1l45nk0",
+          "src_0ukc3p8"
+        ],
+        "remaining_gaps": [
+          "No actual engagement escalation or reporting decision was observed."
+        ]
+      },
+      {
+        "id": "rq-controls-fraud-design-operation",
+        "record_id": "guide-q-controls-fraud",
+        "family_ids": [
+          "q-controls-fraud"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_075usnq",
+          "src_0rs2kpd",
+          "src_05n7atb",
+          "src_gaogb25",
+          "src_cfr200grants"
+        ],
+        "remaining_gaps": [
+          "No live control owner, operating period, sample design, or professional control conclusion was observed."
+        ]
+      },
+      {
+        "id": "rq-controls-fraud-contradiction-override",
+        "record_id": "guide-q-controls-fraud",
+        "family_ids": [
+          "q-controls-fraud"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_1wj6irw",
+          "src_075usnq",
+          "src_0vf7hhg",
+          "src_gaogb25",
+          "src_cfr200grants"
+        ],
+        "remaining_gaps": [
+          "No live override log, control deficiency evaluation, or fraud investigation was performed."
+        ]
+      },
+      {
+        "id": "rq-compliance-assurance-criteria-scope",
+        "record_id": "guide-q-compliance-assurance",
+        "family_ids": [
+          "q-compliance-assurance"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_0ww9s76",
+          "src_1ky30oj",
+          "src_cfr200grants",
+          "src_0ukc3p8",
+          "src_gaogb25"
+        ],
+        "remaining_gaps": [
+          "Engagement-specific practitioner requirements, award supplements, and intended-user restrictions remain."
+        ]
+      },
+      {
+        "id": "rq-compliance-assurance-federal-award-criteria",
+        "record_id": "guide-q-compliance-assurance",
+        "family_ids": [
+          "q-compliance-assurance"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_cfr200grants",
+          "src_0ukc3p8",
+          "src_gaogb25",
+          "src_gaofam26"
+        ],
+        "remaining_gaps": [
+          "No federal-award file, program supplement, expenditure population, single-audit determination, or Yellow Book report was reviewed."
+        ]
+      },
+      {
+        "id": "rq-compliance-assurance-exception-scope",
+        "record_id": "guide-q-compliance-assurance",
+        "family_ids": [
+          "q-compliance-assurance"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_0ww9s76",
+          "src_1ky30oj",
+          "src_cfr200grants",
+          "src_0ukc3p8"
+        ],
+        "remaining_gaps": [
+          "No practitioner report, intended-user decision, or award-specific compliance conclusion was performed."
+        ]
+      },
+      {
+        "id": "rq-compliance-assurance-evidence-exception",
+        "record_id": "guide-q-compliance-assurance",
+        "family_ids": [
+          "q-compliance-assurance"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_1ky30oj",
+          "src_0ww9s76",
+          "src_cfr200grants",
+          "src_0ukc3p8",
+          "src_gaogb25"
+        ],
+        "remaining_gaps": [
+          "This corpus produces no assurance conclusion, report modification, or federal compliance determination."
+        ]
+      },
+      {
+        "id": "rq-professional-governance-competence-independence",
+        "record_id": "guide-q-professional-governance",
+        "family_ids": [
+          "q-professional-governance"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_1qpx6gc",
+          "src_1l42i21",
+          "src_1l45nk0",
+          "src_06tnkx2",
+          "src_0ukc3p8"
+        ],
+        "remaining_gaps": [
+          "Jurisdiction, firm status, engagement type, and current quality-system adoption determine controlling rules."
+        ]
+      },
+      {
+        "id": "rq-professional-governance-human-boundary",
+        "record_id": "guide-q-professional-governance",
+        "family_ids": [
+          "q-professional-governance"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_1qpx6gc",
+          "src_1l42i21",
+          "src_1l45nk0",
+          "src_06tnkx2",
+          "src_0xkvmih",
+          "src_0ukc3p8"
+        ],
+        "remaining_gaps": [
+          "No named professional, live firm quality system, or engagement signoff was evaluated."
+        ]
+      },
+      {
+        "id": "rq-professional-governance-context-routing",
+        "record_id": "guide-q-professional-governance",
+        "family_ids": [
+          "q-professional-governance"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_1rr48dm",
+          "src_06tnkx2",
+          "src_0xkvmih",
+          "src_0ukc3p8",
+          "src_cfr200grants"
+        ],
+        "remaining_gaps": [
+          "No live engagement intake or firm acceptance process was reviewed."
+        ]
+      },
+      {
+        "id": "rq-professional-governance-quality-system",
+        "record_id": "guide-q-professional-governance",
+        "family_ids": [
+          "q-professional-governance"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_06tnkx2",
+          "src_0xkvmih",
+          "src_1l42i21",
+          "src_1l45nk0",
+          "src_0ukc3p8"
+        ],
+        "remaining_gaps": [
+          "Firm adoption, implementation, monitoring results, and engagement-level quality evidence require current verification."
+        ]
+      },
+      {
+        "id": "rq-evaluation-transfer-limit",
+        "record_id": "guide-q-evaluation",
+        "family_ids": [
+          "q-evaluation"
+        ],
+        "answer_status": "editorial-proposal",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_0qwi4ry"
+        ],
+        "remaining_gaps": [
+          "Cross-workflow replication remains a gap."
+        ]
+      },
+      {
+        "id": "rq-mfg-cost",
+        "record_id": "guide-manufacturing-conversion",
+        "family_ids": [
+          "q-inventory",
+          "q-cost-allocation"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_ias02inv",
+          "src_roadmap_kpmg_inventory_2026",
+          "src_roadmap_naics2022_manual"
+        ],
+        "remaining_gaps": [
+          "The public 2022 IFRS edition was read for the cited paragraphs; verify amendments effective for the reporting period and obtain entity-specific professional review."
+        ]
+      },
+      {
+        "id": "rq-mfg-nrv",
+        "record_id": "guide-manufacturing-conversion",
+        "family_ids": [
+          "q-inventory"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_ias02inv",
+          "src_roadmap_kpmg_inventory_2026",
+          "src_roadmap_naics2022_manual"
+        ],
+        "remaining_gaps": [
+          "The public 2022 IFRS edition was read for the cited paragraphs; verify amendments effective for the reporting period and obtain entity-specific professional review."
+        ]
+      },
+      {
+        "id": "rq-mfg-outsourced",
+        "record_id": "guide-manufacturing-conversion",
+        "family_ids": [
+          "q-inventory",
+          "q-purchasing-payables"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_ifrs15a"
+        ],
+        "remaining_gaps": [
+          "The public 2022 IFRS edition was read for the cited paragraphs; verify amendments effective for the reporting period and obtain entity-specific professional review."
+        ]
+      },
+      {
+        "id": "rq-mfg-longterm",
+        "record_id": "guide-manufacturing-conversion",
+        "family_ids": [
+          "q-revenue",
+          "q-project-wip",
+          "q-provisions"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_ifrs15a"
+        ],
+        "remaining_gaps": [
+          "The public 2022 IFRS edition was read for the cited paragraphs; verify amendments effective for the reporting period and obtain entity-specific professional review.",
+          "Exact loss-recognition authority was not established from the accessed IFRS 15 overview or KPMG revenue excerpt; obtain current IAS 37/ASC contract guidance before posting.",
+          "This package does not establish the applicable contract-loss model or a universal IFRS/US GAAP loss rule."
+        ]
+      },
+      {
+        "id": "rq-mfg-completeness",
+        "record_id": "guide-manufacturing-conversion",
+        "family_ids": [
+          "q-inventory",
+          "q-data-lineage",
+          "q-ledger-close"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_roadmap_naics2022_manual",
+          "src_roadmap_kpmg_inventory_2026"
+        ],
+        "remaining_gaps": [
+          "The public 2022 IFRS edition was read for the cited paragraphs; verify amendments effective for the reporting period and obtain entity-specific professional review."
+        ]
+      },
+      {
+        "id": "rq-trade-control",
+        "record_id": "guide-wholesale-retail",
+        "family_ids": [
+          "q-revenue",
+          "q-inventory"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_construction_fasb_2014_09",
+          "src_fasb_asu2016_08_principal_agent",
+          "src_roadmap_naics2022_manual"
+        ],
+        "remaining_gaps": [
+          "Current consolidated ASC 606, later amendments, entity adoption and contract-specific control evidence were not reviewed.",
+          "Legal title, shipping terms, acceptance, return rights, credit risk and warehouse confirmation remain unresolved for a real population.",
+          "Dealership and floorplan arrangements are outside this package and routed to separate capital or lending research."
+        ]
+      },
+      {
+        "id": "rq-trade-principal",
+        "record_id": "guide-wholesale-retail",
+        "family_ids": [
+          "q-revenue"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_fasb_asu2016_08_principal_agent",
+          "src_construction_fasb_2014_09",
+          "src_roadmap_naics2022_manual"
+        ],
+        "remaining_gaps": [
+          "Current consolidated ASC 606 and the entity marketplace, distributor or drop-shipping contracts were not reviewed.",
+          "No conclusion is made for mixed roles, guarantees, credit risk, returns or customer support without contract evidence.",
+          "Dealership and floorplan lending remain outside this package."
+        ]
+      },
+      {
+        "id": "rq-trade-cutoff",
+        "record_id": "guide-wholesale-retail",
+        "family_ids": [
+          "q-inventory",
+          "q-cash-settlement",
+          "q-data-lineage"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_roadmap_naics2022_manual",
+          "src_construction_fasb_2014_09",
+          "src_fasb_asu2016_08_principal_agent",
+          "src_fasb_asu2016_04_gift_cards"
+        ],
+        "remaining_gaps": [
+          "The fixture is not a live POS, ERP, processor, platform or bank population and does not establish completeness or operating effectiveness.",
+          "Current consolidated ASC 606 and entity-specific system joins, permissions, deletion behavior and settlement terms were not reviewed.",
+          "Sales-tax, unclaimed-property and consumer-protection rules remain jurisdiction-specific and outside scope."
+        ]
+      },
+      {
+        "id": "rq-trade-inventory",
+        "record_id": "guide-wholesale-retail",
+        "family_ids": [
+          "q-inventory"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_fasb_asu2015_11_inventory",
+          "src_roadmap_naics2022_manual",
+          "src_ias02inv"
+        ],
+        "remaining_gaps": [
+          "Current consolidated Topic 330, retail method, LIFO, freight, rebates, shrinkage, spoilage, markdown and perishable-goods requirements were not fully reviewed.",
+          "Physical-count differences remain an investigation population; no universal shrinkage entry or timing is asserted.",
+          "IAS 2 and KPMG comparison material are retained as international or interpretive context and cannot substitute for US authority."
+        ]
+      },
+      {
+        "id": "rq-trade-intermediary",
+        "record_id": "guide-wholesale-retail",
+        "family_ids": [
+          "q-revenue"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_fasb_asu2016_08_principal_agent",
+          "src_construction_fasb_2014_09",
+          "src_roadmap_naics2022_manual"
+        ],
+        "remaining_gaps": [
+          "Current consolidated ASC 606 and no live marketplace, distributor, broker or consignment contract population were reviewed.",
+          "No professional gross-net conclusion, legal-title conclusion or inventory-ownership conclusion is made.",
+          "Dealership and floorplan arrangements remain outside this package."
+        ]
+      },
+      {
+        "id": "rq-software-role-boundary",
+        "record_id": "guide-software-subscriptions",
+        "family_ids": [
+          "q-intangibles-software",
+          "q-revenue"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_ifrs15a",
+          "src_roadmap_naics2022_manual",
+          "src_asu201815"
+        ],
+        "remaining_gaps": [
+          "Professional review and production validation were not performed."
+        ]
+      },
+      {
+        "id": "rq-software-cloud-implementation",
+        "record_id": "guide-software-subscriptions",
+        "family_ids": [
+          "q-intangibles-software"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_asu201815"
+        ],
+        "remaining_gaps": [
+          "Professional review and production validation were not performed."
+        ]
+      },
+      {
+        "id": "rq-software-controls-agent",
+        "record_id": "guide-software-subscriptions",
+        "family_ids": [
+          "q-intangibles-software",
+          "q-data-lineage"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_roadmap_asu202506",
+          "src_asu201815",
+          "src_roadmap_naics2022_manual"
+        ],
+        "remaining_gaps": [
+          "Professional review and production validation were not performed."
+        ]
+      },
+      {
+        "id": "rq-services-principal-agent-staffing",
+        "record_id": "guide-professional-services",
+        "family_ids": [
+          "q-revenue",
+          "q-payroll"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_ifrs15a",
+          "src_roadmap_naics2022_manual"
+        ],
+        "remaining_gaps": [
+          "Professional review and production validation were not performed."
+        ]
+      },
+      {
+        "id": "rq-tx-contract-tax",
+        "record_id": "guide-jurisdiction-tx-construction-service",
+        "family_ids": [
+          "q-indirect-tax"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_construction_texas_sales_tax"
+        ],
+        "remaining_gaps": [
+          "No professional sign-off or live-system accuracy evidence.",
+          "State/provincial/local and contract-specific branches outside selected scope remain unassessed."
+        ]
+      },
+      {
+        "id": "rq-tx-public-payroll",
+        "record_id": "guide-jurisdiction-tx-construction-service",
+        "family_ids": [
+          "q-payroll",
+          "q-compliance-assurance"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_roadmap_tx_davis"
+        ],
+        "remaining_gaps": [
+          "No professional sign-off or live-system accuracy evidence.",
+          "State/provincial/local and contract-specific branches outside selected scope remain unassessed."
+        ]
+      },
+      {
+        "id": "rq-tx-payment",
+        "record_id": "guide-jurisdiction-tx-construction-service",
+        "family_ids": [
+          "q-cash-settlement",
+          "q-receivables-credit"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_construction_texas_public_prompt_payment"
+        ],
+        "remaining_gaps": [
+          "Confirm contract date, entity definition, funding source, amendments and any current Comptroller implementation rule before operational use."
+        ]
+      },
+      {
+        "id": "rq-tx-service-tax",
+        "record_id": "guide-jurisdiction-tx-construction-service",
+        "family_ids": [
+          "q-indirect-tax"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_construction_texas_sales_tax"
+        ],
+        "remaining_gaps": [
+          "No professional sign-off or live-system accuracy evidence.",
+          "State/provincial/local and contract-specific branches outside selected scope remain unassessed."
+        ]
+      },
+      {
+        "id": "rq-tx-payment-dispute-chain",
+        "record_id": "guide-jurisdiction-tx-construction-service",
+        "family_ids": [
+          "q-cash-settlement",
+          "q-purchasing-payables"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_construction_texas_public_prompt_payment"
+        ],
+        "remaining_gaps": [
+          "No contract-specific dispute, bond, federal grant or interest-rate determination was performed."
+        ]
+      },
+      {
+        "id": "rq-ca-materials-fixtures",
+        "record_id": "guide-jurisdiction-ca-construction-service",
+        "family_ids": [
+          "q-indirect-tax"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_roadmap_ca_sales"
+        ],
+        "remaining_gaps": [
+          "No professional sign-off or live-system accuracy evidence.",
+          "State/provincial/local and contract-specific branches outside selected scope remain unassessed."
+        ]
+      },
+      {
+        "id": "rq-ca-cpr",
+        "record_id": "guide-jurisdiction-ca-construction-service",
+        "family_ids": [
+          "q-payroll",
+          "q-compliance-assurance"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_roadmap_ca_cpr"
+        ],
+        "remaining_gaps": [
+          "No professional sign-off or live-system accuracy evidence.",
+          "State/provincial/local and contract-specific branches outside selected scope remain unassessed."
+        ]
+      },
+      {
+        "id": "rq-ca-wage",
+        "record_id": "guide-jurisdiction-ca-construction-service",
+        "family_ids": [
+          "q-payroll"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_roadmap_ca_cpr"
+        ],
+        "remaining_gaps": [
+          "No professional sign-off or live-system accuracy evidence.",
+          "State/provincial/local and contract-specific branches outside selected scope remain unassessed."
+        ]
+      },
+      {
+        "id": "rq-ca-registration",
+        "record_id": "guide-jurisdiction-ca-construction-service",
+        "family_ids": [
+          "q-indirect-tax"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_roadmap_ca_sales"
+        ],
+        "remaining_gaps": [
+          "No professional sign-off or live-system accuracy evidence.",
+          "State/provincial/local and contract-specific branches outside selected scope remain unassessed."
+        ]
+      },
+      {
+        "id": "rq-ca-cpr-correction",
+        "record_id": "guide-jurisdiction-ca-construction-service",
+        "family_ids": [
+          "q-payroll",
+          "q-data-lineage"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_roadmap_ca_cpr"
+        ],
+        "remaining_gaps": [
+          "FAQ is labeledJuly2016 on a live authority page; current statute and contract terms remain governing sources."
+        ]
+      },
+      {
+        "id": "rq-uk-framework",
+        "record_id": "guide-jurisdiction-uk-construction-service",
+        "family_ids": [
+          "q-reporting-basis",
+          "q-policy-changes-errors"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_roadmap_uk_frs102"
+        ],
+        "remaining_gaps": [
+          "No professional sign-off or live-system accuracy evidence.",
+          "State/provincial/local and contract-specific branches outside selected scope remain unassessed."
+        ]
+      },
+      {
+        "id": "rq-uk-vat",
+        "record_id": "guide-jurisdiction-uk-construction-service",
+        "family_ids": [
+          "q-indirect-tax"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_roadmap_uk_vat"
+        ],
+        "remaining_gaps": [
+          "No professional sign-off or live-system accuracy evidence.",
+          "State/provincial/local and contract-specific branches outside selected scope remain unassessed."
+        ]
+      },
+      {
+        "id": "rq-uk-cis-payroll",
+        "record_id": "guide-jurisdiction-uk-construction-service",
+        "family_ids": [
+          "q-payroll",
+          "q-tax-returns"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_roadmap_uk_cis",
+          "src_hmrc_fps_payroll"
+        ],
+        "remaining_gaps": [
+          "No professional sign-off or live-system accuracy evidence.",
+          "State/provincial/local and contract-specific branches outside selected scope remain unassessed."
+        ]
+      },
+      {
+        "id": "rq-uk-class",
+        "record_id": "guide-jurisdiction-uk-construction-service",
+        "family_ids": [
+          "q-reporting-basis"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_roadmap_class_sicnace"
+        ],
+        "remaining_gaps": [
+          "No professional sign-off or live-system accuracy evidence.",
+          "State/provincial/local and contract-specific branches outside selected scope remain unassessed."
+        ]
+      },
+      {
+        "id": "rq-uk-frs102-ifrs-eligibility",
+        "record_id": "guide-jurisdiction-uk-construction-service",
+        "family_ids": [
+          "q-reporting-basis"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_roadmap_uk_frc_frs102_scope_2024"
+        ],
+        "remaining_gaps": [
+          "Companies Act and complete FRS 100/101/105 eligibility provisions require a separate current UK legal review."
+        ]
+      },
+      {
+        "id": "rq-ca-framework",
+        "record_id": "guide-jurisdiction-canada-ontario",
+        "family_ids": [
+          "q-reporting-basis"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_roadmap_ca_acsb_aspe_ifrs_scope_2023"
+        ],
+        "remaining_gaps": [
+          "Current Handbook text and applicable provincial/federal legal requirements were not reviewed; eligibility remains conditional."
+        ]
+      },
+      {
+        "id": "rq-ca-gst",
+        "record_id": "guide-jurisdiction-canada-ontario",
+        "family_ids": [
+          "q-indirect-tax"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_roadmap_ca_gsthst"
+        ],
+        "remaining_gaps": [
+          "No professional sign-off or live-system accuracy evidence.",
+          "State/provincial/local and contract-specific branches outside selected scope remain unassessed."
+        ]
+      },
+      {
+        "id": "rq-ca-class",
+        "record_id": "guide-jurisdiction-canada-ontario",
+        "family_ids": [
+          "q-reporting-basis"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_roadmap_class_naics",
+          "src_roadmap_naics2022_manual"
+        ],
+        "remaining_gaps": [
+          "No professional sign-off or live-system accuracy evidence.",
+          "State/provincial/local and contract-specific branches outside selected scope remain unassessed."
+        ]
+      },
+      {
+        "id": "rq-ca-tax-period",
+        "record_id": "guide-jurisdiction-canada-ontario",
+        "family_ids": [
+          "q-indirect-tax",
+          "q-tax-returns"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_roadmap_ca_gsthst"
+        ],
+        "remaining_gaps": [
+          "No professional sign-off or live-system accuracy evidence.",
+          "State/provincial/local and contract-specific branches outside selected scope remain unassessed."
+        ]
+      },
+      {
+        "id": "rq-deployment-study-5",
+        "record_id": "guide-independent-deployment-evidence",
+        "family_ids": [
+          "q-deployment-evidence",
+          "q-evaluation",
+          "q-human-authority"
+        ],
+        "answer_status": "regulatory-guidance",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_finra2409"
+        ],
+        "remaining_gaps": [
+          "This is regulatory guidance and not an empirical incident study; it reports risk areas and obligations, not measured accounting-agent outcomes or causal effectiveness of controls."
+        ]
+      },
+      {
+        "id": "rq-construction-connected-facts",
+        "record_id": "guide-construction-connected-close",
+        "family_ids": [
+          "q-revenue",
+          "q-estimates",
+          "q-project-wip"
+        ],
+        "answer_status": "sourced-answer-and-original-example",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_construction_fasb_2014_09",
+          "src_roadmap_ey_revenue_2026",
+          "src_roadmap_kpmg_revenue_2025",
+          "src_construction_aicpa_wip",
+          "src_construction_fasb_retainage_staff",
+          "src_construction_gao_25107258",
+          "src_construction_asbca_51759"
+        ],
+        "remaining_gaps": [
+          "No directly reviewed current consolidated Codification or professional sign-off.",
+          "Original synthetic data is not ERP completeness evidence or measured agent performance.",
+          "No rights-cleared end-to-end contract, estimate, invoice, payroll, cash and GL population obtained.",
+          "Current consolidated GAAP and entity-specific error-versus-estimate, enforceability and disclosure judgments remain unverified.",
+          "ASBCA 51759 identifies contract, billing and payment facts but supplies no complete estimate/AP/payroll/GL/bank or correction/deletion population."
+        ]
+      },
+      {
+        "id": "rq-construction-connected-population",
+        "record_id": "guide-construction-connected-close",
+        "family_ids": [
+          "q-purchasing-payables",
+          "q-payroll",
+          "q-data-lineage"
+        ],
+        "answer_status": "editorial-proposal",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_construction_fasb_2014_09",
+          "src_roadmap_ey_revenue_2026",
+          "src_roadmap_kpmg_revenue_2025",
+          "src_construction_aicpa_wip",
+          "src_construction_fasb_retainage_staff",
+          "src_construction_gao_25107258",
+          "src_construction_asbca_51759"
+        ],
+        "remaining_gaps": [
+          "No directly reviewed current consolidated Codification or professional sign-off.",
+          "Original synthetic data is not ERP completeness evidence or measured agent performance.",
+          "No rights-cleared end-to-end contract, estimate, invoice, payroll, cash and GL population obtained.",
+          "Current consolidated GAAP and entity-specific error-versus-estimate, enforceability and disclosure judgments remain unverified.",
+          "ASBCA 51759 identifies contract, billing and payment facts but supplies no complete estimate/AP/payroll/GL/bank or correction/deletion population."
+        ]
+      },
+      {
+        "id": "rq-construction-connected-progress",
+        "record_id": "guide-construction-connected-close",
+        "family_ids": [
+          "q-project-wip",
+          "q-revenue",
+          "q-receivables-credit",
+          "q-cash-settlement"
+        ],
+        "answer_status": "sourced-answer-and-original-example",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_construction_fasb_2014_09",
+          "src_roadmap_ey_revenue_2026",
+          "src_roadmap_kpmg_revenue_2025",
+          "src_construction_aicpa_wip",
+          "src_construction_fasb_retainage_staff",
+          "src_construction_gao_25107258"
+        ],
+        "remaining_gaps": [
+          "No directly reviewed current consolidated Codification or professional sign-off.",
+          "Original synthetic data is not ERP completeness evidence or measured agent performance.",
+          "No rights-cleared end-to-end contract, estimate, invoice, payroll, cash and GL population obtained.",
+          "Current consolidated GAAP and entity-specific error-versus-estimate, enforceability and disclosure judgments remain unverified."
+        ]
+      },
+      {
+        "id": "rq-construction-connected-exceptions",
+        "record_id": "guide-construction-connected-close",
+        "family_ids": [
+          "q-project-wip",
+          "q-provisions",
+          "q-policy-changes-errors"
+        ],
+        "answer_status": "sourced-answer-and-original-example",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_construction_fasb_2014_09",
+          "src_roadmap_ey_revenue_2026",
+          "src_roadmap_kpmg_revenue_2025",
+          "src_construction_aicpa_wip",
+          "src_construction_fasb_retainage_staff",
+          "src_construction_gao_25107258"
+        ],
+        "remaining_gaps": [
+          "No directly reviewed current consolidated Codification or professional sign-off.",
+          "Original synthetic data is not ERP completeness evidence or measured agent performance.",
+          "No rights-cleared end-to-end contract, estimate, invoice, payroll, cash and GL population obtained.",
+          "Current consolidated GAAP and entity-specific error-versus-estimate, enforceability and disclosure judgments remain unverified."
+        ]
+      },
+      {
+        "id": "rq-us-nonprofit-award-close",
+        "record_id": "guide-us-nonprofit-contributions-close",
+        "family_ids": [
+          "q-grants-contributions",
+          "q-ledger-close",
+          "q-cost-allocation",
+          "q-tax-returns"
+        ],
+        "answer_status": "sourced-answer-and-original-example",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_nonprofit_fasb_2018_08",
+          "src_nonprofit_fasb_2016_14",
+          "src_nonprofit_irs_990_2025"
+        ],
+        "remaining_gaps": [
+          "No current consolidated Codification review or professional sign-off.",
+          "No operational ERP population or empirical agent evidence."
+        ]
+      },
+      {
+        "id": "rq-us-education-tuition-term",
+        "record_id": "guide-us-education-tuition-aid",
+        "family_ids": [
+          "q-revenue",
+          "q-grants-contributions"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_construction_fasb_2014_09"
+        ],
+        "remaining_gaps": [
+          "Current consolidated FASB/GASB amendments and institution-specific applicability are not verified by the historical amendment sources.",
+          "No real enrollment, student, aid-program or ledger evidence; fixture is synthetic.",
+          "No professional signoff; permitted operational evidence would be needed to establish real completeness.",
+          "2026-2027 Title IV changes, program exceptions and institution refund terms require separate period-specific review."
+        ]
+      },
+      {
+        "id": "rq-us-education-aid-payment",
+        "record_id": "guide-us-education-tuition-aid",
+        "family_ids": [
+          "q-revenue",
+          "q-grants-contributions"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_nonprofit_fasb_2018_08"
+        ],
+        "remaining_gaps": [
+          "Current consolidated FASB/GASB amendments and institution-specific applicability are not verified by the historical amendment sources.",
+          "No real enrollment, student, aid-program or ledger evidence; fixture is synthetic.",
+          "No professional signoff; permitted operational evidence would be needed to establish real completeness.",
+          "2026-2027 Title IV changes, program exceptions and institution refund terms require separate period-specific review."
+        ]
+      },
+      {
+        "id": "rq-us-education-withdrawal-return",
+        "record_id": "guide-us-education-tuition-aid",
+        "family_ids": [
+          "q-revenue",
+          "q-grants-contributions"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_education_fsa_2526_withdrawal",
+          "src_education_fsa_2526_disbursement"
+        ],
+        "remaining_gaps": [
+          "Current consolidated FASB/GASB amendments and institution-specific applicability are not verified by the historical amendment sources.",
+          "No real enrollment, student, aid-program or ledger evidence; fixture is synthetic.",
+          "No professional signoff; permitted operational evidence would be needed to establish real completeness.",
+          "2026-2027 Title IV changes, program exceptions and institution refund terms require separate period-specific review."
+        ]
+      },
+      {
+        "id": "rq-us-education-framework-routing",
+        "record_id": "guide-us-education-tuition-aid",
+        "family_ids": [
+          "q-revenue",
+          "q-grants-contributions"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_education_gasb35"
+        ],
+        "remaining_gaps": [
+          "Current consolidated FASB/GASB amendments and institution-specific applicability are not verified by the historical amendment sources.",
+          "No real enrollment, student, aid-program or ledger evidence; fixture is synthetic.",
+          "No professional signoff; permitted operational evidence would be needed to establish real completeness.",
+          "2026-2027 Title IV changes, program exceptions and institution refund terms require separate period-specific review."
+        ]
+      },
+      {
+        "id": "rq-aa-i124-grants-contributions",
+        "record_id": "guide-aa-i124-institutional",
+        "family_ids": [
+          "q-grants-contributions"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_nonprofit_fasb_2018_08",
+          "src_cfr200grants"
+        ],
+        "remaining_gaps": [
+          "Current consolidated ASC and actual award terms not reviewed",
+          "No professional accounting signoff.",
+          "No operational population or empirical agent evidence; synthetic checks do not establish effective controls."
+        ]
+      },
+      {
+        "id": "rq-aa-i124-government-funds",
+        "record_id": "guide-aa-i124-institutional",
+        "family_ids": [
+          "q-government-funds"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_roadmap_gasb34_basis",
+          "src_roadmap_gasb103"
+        ],
+        "remaining_gaps": [
+          "Local appropriation law and full current GASB consolidation not reviewed",
+          "No professional accounting signoff.",
+          "No operational population or empirical agent evidence; synthetic checks do not establish effective controls."
+        ]
+      },
+      {
+        "id": "rq-aa-i124-federal-sovereign",
+        "record_id": "guide-aa-i124-institutional",
+        "family_ids": [
+          "q-federal-sovereign"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_roadmap_fasab34",
+          "src_roadmap_fasab53"
+        ],
+        "remaining_gaps": [
+          "No appropriation-specific budget law, Treasury posting model or agency ledger reviewed",
+          "No professional accounting signoff.",
+          "No operational population or empirical agent evidence; synthetic checks do not establish effective controls."
+        ]
+      },
+      {
+        "id": "rq-aa-i124-insurer",
+        "record_id": "guide-aa-i124-institutional",
+        "family_ids": [
+          "q-insurer"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_naic_sap_hierarchy_2026",
+          "src_aa_i124_naic"
+        ],
+        "remaining_gaps": [
+          "Individual SSAP, state adoption, reserve methods and permitted-practice letters not reviewed",
+          "No professional accounting signoff.",
+          "No operational population or empirical agent evidence; synthetic checks do not establish effective controls."
+        ]
+      },
+      {
+        "id": "rq-aa-i124-credit-intermediation",
+        "record_id": "guide-aa-i124-institutional",
+        "family_ids": [
+          "q-credit-intermediation"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_ffiec051_instructions_2025"
+        ],
+        "remaining_gaps": [
+          "Full schedule review, CECL measurement, nonbank and servicing accounting remain open",
+          "No professional accounting signoff.",
+          "No operational population or empirical agent evidence; synthetic checks do not establish effective controls."
+        ]
+      },
+      {
+        "id": "rq-aa-i124-funds-custody",
+        "record_id": "guide-aa-i124-institutional",
+        "family_ids": [
+          "q-funds-custody"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_aa_i124_custody"
+        ],
+        "remaining_gaps": [
+          "No legal title opinion, actual custodian confirmation, or fund accounting policy reviewed",
+          "No professional accounting signoff.",
+          "No operational population or empirical agent evidence; synthetic checks do not establish effective controls."
+        ]
+      },
+      {
+        "id": "rq-aa-i124-rate-regulation",
+        "record_id": "guide-aa-i124-institutional",
+        "family_ids": [
+          "q-rate-regulation"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_aa_i124_ferc101",
+          "src_fercacct"
+        ],
+        "remaining_gaps": [
+          "ASC 980, actual rate orders and entity recovery evidence not reviewed",
+          "No professional accounting signoff.",
+          "No operational population or empirical agent evidence; synthetic checks do not establish effective controls."
+        ]
+      },
+      {
+        "id": "rq-aa-i124-natural-resources",
+        "record_id": "guide-aa-i124-institutional",
+        "family_ids": [
+          "q-natural-resources"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_aa_i124_oilgas"
+        ],
+        "remaining_gaps": [
+          "Current rules, ASC 932, reserve expertise and mining/agriculture branches remain open",
+          "No professional accounting signoff.",
+          "No operational population or empirical agent evidence; synthetic checks do not establish effective controls."
+        ]
+      },
+      {
+        "id": "rq-aa-i124-reimbursement",
+        "record_id": "guide-aa-i124-institutional",
+        "family_ids": [
+          "q-reimbursement"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_roadmap_ecfr_41324f_2026",
+          "src_cms255210_transmittal25_2026",
+          "src_roadmap_cms_2552_10_r24"
+        ],
+        "remaining_gaps": [
+          "No actual provider enrollment, MAC decision, allowable payment or full manual review",
+          "No professional accounting signoff.",
+          "No operational population or empirical agent evidence; synthetic checks do not establish effective controls."
+        ]
+      },
+      {
+        "id": "rq-aa-i124-licensed-content",
+        "record_id": "guide-aa-i124-institutional",
+        "family_ids": [
+          "q-licensed-content"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_construction_fasb_2014_09"
+        ],
+        "remaining_gaps": [
+          "Current ASC and later licensing amendments, legal rights and actual usage not verified",
+          "No professional accounting signoff.",
+          "No operational population or empirical agent evidence; synthetic checks do not establish effective controls."
+        ]
+      },
+      {
+        "id": "rq-i97-crop-stage-cost",
+        "record_id": "guide-i97-crop-producer",
+        "family_ids": [
+          "q-inventory",
+          "q-natural-resources"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_fasb_asu2015_11_inventory",
+          "src_i97_usda_arms"
+        ],
+        "remaining_gaps": [
+          "Current ASC 905 scope, allowed cost components and alternative-measurement policy require confirmation; no general per-bushel cost rule is asserted.",
+          "Only the identified passages were reviewed. Current consolidated GAAP and fact-specific applicability require further review.",
+          "No professional sign-off, operational transaction population or measured agent performance is established.",
+          "External reuse rights remain unknown; publisher text is not stored."
+        ]
+      },
+      {
+        "id": "rq-i97-crop-cutoff-quality",
+        "record_id": "guide-i97-crop-producer",
+        "family_ids": [
+          "q-inventory",
+          "q-revenue",
+          "q-data-lineage"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_construction_fasb_2014_09",
+          "src_fasb_asu2015_11_inventory",
+          "src_i97_rma_26br"
+        ],
+        "remaining_gaps": [
+          "Actual contract control terms, quality tests and current revenue text remain entity-specific; spoilage loss is a stated no-salvage scenario.",
+          "Only the identified passages were reviewed. Current consolidated GAAP and fact-specific applicability require further review.",
+          "No professional sign-off, operational transaction population or measured agent performance is established.",
+          "External reuse rights remain unknown; publisher text is not stored."
+        ]
+      },
+      {
+        "id": "rq-i97-crop-insurance-awards",
+        "record_id": "guide-i97-crop-producer",
+        "family_ids": [
+          "q-insurance-policyholder",
+          "q-grants-contributions",
+          "q-tax-methods"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_i97_rma_26br",
+          "src_i97_fsa_arc_plc",
+          "src_i97_irs_p225_2025"
+        ],
+        "remaining_gaps": [
+          "No actual policy or award terms, final claim, current for-profit book policy or 2026 tax conclusion established.",
+          "Only the identified passages were reviewed. Current consolidated GAAP and fact-specific applicability require further review.",
+          "No professional sign-off, operational transaction population or measured agent performance is established.",
+          "External reuse rights remain unknown; publisher text is not stored."
+        ]
+      },
+      {
+        "id": "rq-aa-i121-digital-ownership",
+        "record_id": "guide-q-digital-assets",
+        "family_ids": [
+          "q-digital-assets"
+        ],
+        "answer_status": "sourced-answer-bounded",
+        "assessment_status": "partial",
+        "source_ids": [
+          "src_asu202308",
+          "src_roadmap_ifric_crypto_2019"
+        ],
+        "remaining_gaps": [
+          "No token contract, wallet, legal opinion or custody agreement was reviewed.",
+          "No professional legal, accounting or valuation review was performed."
+        ]
+      },
+      {
+        "id": "rq-aa-i121-digital-custody",
+        "record_id": "guide-q-digital-assets",
+        "family_ids": [
+          "q-digital-assets"
+        ],
+        "answer_status": "evidence-gap",
+        "assessment_status": "evidence-gap",
+        "source_ids": [
+          "src_secsab122",
+          "src_fasb_asu_202502_crypto_safeguarding",
+          "src_asu202308"
+        ],
+        "remaining_gaps": [
+          "Custody remains an evidence gap because no customer contract, legal ownership opinion or loss-risk file was reviewed.",
+          "No conclusion about gross presentation, liability recognition or disclosure should be inferred from this packet alone."
+        ]
+      }
+    ]
+  },
+  "integration_amendment": {
+    "source_commit": "cf6d4b715995250ce79d81f08db7a1ae287b5ed3",
+    "reviewed_at": "2026-09-19",
+    "corrections": [
+      "Add760ILCS51/4directappropriationlocatorandlinkedquestionpointer.",
+      "Add2CFR200.331roleclassificationlocatortotheAA-I117reviewandlinkedquestions.",
+      "Enumerateimmutablebaseline recordsandlinkedquestionsusingadeclaredselectionrule."
+    ],
+    "checked_urls": [
+      "https://my.ilga.gov/ftp/ILCS/Ch%200760/Act%200051/076000510K4.html",
+      "https://www.ecfr.gov/current/title-2/subtitle-A/chapter-II/part-200"
+    ],
+    "limits": "Selected primary text only. Illinois is one state-law example; current entity, award, gift-instrument and professional conclusions remain open."
+  }
+}

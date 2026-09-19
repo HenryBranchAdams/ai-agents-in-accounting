@@ -46,7 +46,8 @@ test('education source and framework retrieval preserve program-year and authori
  for(const q of guide.data.research_questions){const r=registry.find(x=>x.id===q.id);assert.deepEqual(r.source_locators,q.source_locators);assert.equal(r.record_id,guide.id);}
 });
 test('education discovery includes durable negative fixtures and exact FSA anchors',()=>{
- const cases=JSON.parse(fs.readFileSync('data/research-questions.json','utf8')).filter(q=>q.id.startsWith('rq-education-'));
+ const baselineIds=['rq-education-tuition-aid-retrieval','rq-education-withdrawal-counterexample'];
+ const cases=JSON.parse(fs.readFileSync('data/research-questions.json','utf8')).filter(q=>baselineIds.includes(q.id));
  assert.equal(cases.length,2);
  for(const q of cases){
   const ids=executeAgent('search',{q:q.search_query,kind:q.kind,limit:5}).results.map(r=>r.id);

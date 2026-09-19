@@ -1,0 +1,2987 @@
+{
+  "schema_version": "1.0.0",
+  "package_id": "aa-i111-education-completion",
+  "issue_id": 111,
+  "reviewed_at": "2026-09-19",
+  "version": "2026-09-19.111-source.1",
+  "base_commit": "66b0eda121cd9aee40857a2d691e25b18737f63e",
+  "scope": "Bounded US education completion package for auxiliary services, federal grants, public appropriations and nonprofit endowment routing. Existing tuition, student-aid, withdrawal/refund and framework-routing evidence is preserved; no 50-state survey, international expansion or institution-wide sufficiency is asserted.",
+  "baseline": {
+    "original_issue_source_commit": "afd2aced307628843f8a26677c3a6fb37fa733e",
+    "accepted_education_package_base_commit": "a38de70787ee47653f3e315a3c31f0577b5b9ae2",
+    "accepted_existing_record_ids": {
+      "guide": [
+        "guide-us-education-tuition-aid"
+      ],
+      "example": [
+        "example-us-education-tuition-aid-clearing"
+      ],
+      "sources": [
+        "src_education_fsa_2526_disbursement",
+        "src_education_fsa_2526_withdrawal",
+        "src_education_gasb35",
+        "src_nonprofit_fasb_2018_08",
+        "src_construction_fasb_2014_09",
+        "src_roadmap_gasb34_basis",
+        "src_roadmap_gasb103"
+      ],
+      "questions": [
+        "rq-us-education-tuition-term",
+        "rq-us-education-aid-payment",
+        "rq-us-education-withdrawal-return",
+        "rq-us-education-framework-routing"
+      ]
+    },
+    "preservation": "The accepted tuition/aid/refund/framework guide, example, questions, source fields, reviews, rights and mappings are read-only inputs. This package adds completion records and a distinct GASB review marker only."
+  },
+  "dependencies": {
+    "required_existing_source_ids": [
+      "src_nonprofit_fasb_2016_14",
+      "src_nonprofit_illinois_upmifa_2009"
+    ],
+    "pending_package": "aa-i117-nonprofit-completion",
+    "reason": "Endowment route reuses the pending nonprofit package source IDs and does not duplicate publisher URLs or reauthor those shared foundation records. The package can be staged only after those exact IDs exist."
+  },
+  "records": {
+    "source": [
+      {
+        "id": "src_education_irs_p598_auxiliary",
+        "kind": "source",
+        "title": "IRS Publication 598: unrelated business income boundaries for colleges and universities",
+        "summary": "IRS Publication 598 explains the federal unrelated-business boundary for regularly conducted activities of exempt organizations, including state and municipal colleges and universities; it is a tax boundary, not a US GAAP revenue-recognition authority.",
+        "topics": [
+          "Law and policy",
+          "Accounting and reporting"
+        ],
+        "industries": [
+          "Educational Services"
+        ],
+        "jurisdiction": "United States federal tax; selected educational-organization boundary",
+        "source_type": "Federal tax publication",
+        "publisher": "Internal Revenue Service",
+        "source_url": "https://www.irs.gov/publications/p598",
+        "source_ids": [],
+        "related_ids": [
+          "guide-us-education-auxiliary-services",
+          "example-us-education-auxiliary-services-bridge"
+        ],
+        "review_status": "source-checked",
+        "reviewed_at": "2026-09-19",
+        "provenance": {
+          "added_on": "2026-09-19",
+          "reviewer": "Codex AI-assisted original-source research",
+          "scope": "Publication 598 sections on organizations subject to tax, trade or business, not substantially related activities, dual-use assets and services provided with a lease.",
+          "method": "Official IRS HTML read live on 2026-09-19; no external full text stored.",
+          "outcome": "Supports a tax-routing boundary for auxiliary activity; does not decide financial-statement recognition, measurement or institution-specific exemption.",
+          "evidence_urls": [
+            "https://www.irs.gov/publications/p598"
+          ],
+          "note": "Selected federal tax boundary only; no tax opinion or professional review."
+        },
+        "rights": {
+          "metadata": "CC0-1.0",
+          "content": "CC-BY-4.0",
+          "external_content": "Not included; original publisher rights apply",
+          "full_text_stored": false,
+          "source_status": "unknown",
+          "source_license": null,
+          "source_license_url": null,
+          "source_permission_scope": "Original factual metadata and synthesis only; publisher full text is not stored."
+        },
+        "data": {
+          "version": "1.0.0",
+          "frameworks": [
+            "US federal tax reporting"
+          ],
+          "review_level": "substantive-excerpt",
+          "access_note": "Official IRS HTML inspected; no full text is stored.",
+          "publication": {
+            "edition": "Publication 598 (03/2021)",
+            "published_at": "2021-03",
+            "title": "Tax on Unrelated Business Income of Exempt Organizations",
+            "artifact": "Official IRS publication"
+          },
+          "effective_period": {
+            "publication_date": "2021-03",
+            "application": "Use the applicable tax-year law and current IRS instructions; this source does not establish 2026 tax-law currency by itself."
+          },
+          "locators": [
+            {
+              "section": "Organizations Subject to the Tax; Colleges and universities",
+              "locator": "Publication 598, section 1, Colleges and universities: state and municipal colleges and universities are subject to the unrelated-business income tax boundary."
+            },
+            {
+              "section": "What Is an Unrelated Trade or Business?; Trade or business",
+              "locator": "Publication 598, section 3: regularly conducted activity involving selling goods or performing services; profit intent and activity identity matter."
+            },
+            {
+              "section": "What Is an Unrelated Trade or Business?; Not substantially related",
+              "locator": "Publication 598, section 3: activity must contribute importantly to exempt purpose; activity larger than reasonably necessary can be unrelated."
+            },
+            {
+              "section": "What Is an Unrelated Trade or Business?; Dual use of assets or facilities",
+              "locator": "Publication 598, section 3: dual use of facilities does not itself make commercial activity related."
+            },
+            {
+              "section": "What Is an Unrelated Trade or Business?; Services provided with lease",
+              "locator": "Publication 598, section 3 example: substantial services furnished with a lease can change the tax treatment."
+            }
+          ],
+          "limitations": [
+            "Tax classification is separate from US GAAP or GASB recognition and presentation.",
+            "Current tax-year law, entity status, facts and applicable exceptions require separate review.",
+            "No real auxiliary-service population or tax return was reviewed."
+          ],
+          "evidence": [
+            {
+              "claim": "State and municipal colleges and universities are within the federal unrelated-business tax boundary when they conduct unrelated business.",
+              "classification": "official-authority",
+              "locator": "Publication 598, section 1, Colleges and universities."
+            },
+            {
+              "claim": "Whether an activity is substantially related depends on whether it contributes importantly to the exempt purpose and on the scale and facts of the activity.",
+              "classification": "official-authority",
+              "locator": "Publication 598, section 3, Not substantially related."
+            },
+            {
+              "claim": "Dual use of educational facilities and substantial services with a lease require separate factual analysis.",
+              "classification": "official-authority",
+              "locator": "Publication 598, section 3, Dual use of assets or facilities; Services provided with lease."
+            }
+          ]
+        }
+      }
+    ],
+    "guide": [
+      {
+        "id": "guide-us-education-auxiliary-services",
+        "kind": "guide",
+        "title": "US education auxiliary services and fee routing",
+        "summary": "Treat a distinct auxiliary service as a separately evidenced service arrangement. For a public institution, first identify the GASB reporting model and whether external-user fees support a business-type activity. For a nongovernmental or for-profit provider, use the applicable current revenue guidance; the historical ASU is only a locator aid. Separately test UBIT facts for a tax-exempt or public institution.",
+        "topics": [
+          "Accounting and reporting",
+          "Educational Services"
+        ],
+        "industries": [
+          "Educational Services"
+        ],
+        "jurisdiction": "United States; declared entity and reporting framework required",
+        "source_type": null,
+        "publisher": "Accounting Agents contributors",
+        "source_url": null,
+        "source_ids": [
+          "src_construction_fasb_2014_09",
+          "src_education_gasb35",
+          "src_education_irs_p598_auxiliary"
+        ],
+        "related_ids": [
+          "workflow-us-education-auxiliary-services",
+          "ctrl-us-education-auxiliary-services",
+          "example-us-education-auxiliary-services-bridge"
+        ],
+        "review_status": "editorially-reviewed",
+        "reviewed_at": "2026-09-19",
+        "provenance": {
+          "added_on": "2026-09-19",
+          "reviewer": "Codex AI-assisted original-source research",
+          "note": "Bounded US education completion synthesis from selected original public sources. No professional review, operational evidence or current consolidated Codification/GASB conclusion is asserted."
+        },
+        "rights": {
+          "metadata": "CC0-1.0",
+          "content": "CC-BY-4.0",
+          "external_content": "Not stored; original publisher rights apply",
+          "full_text_stored": false,
+          "source_status": "unknown",
+          "source_license": null,
+          "source_license_url": null,
+          "source_permission_scope": "Original factual metadata and synthesis only; external full text is not stored."
+        },
+        "data": {
+          "version": "1.0.0",
+          "frameworks": [
+            "US GAAP",
+            "GASB where the public route applies",
+            "US federal requirements or tax boundary where explicitly stated"
+          ],
+          "business_roles": [
+            "Nongovernmental nonprofit higher-education provider, US GAAP selected model",
+            "Public college or university, GASB reporting model selected after entity and activity review",
+            "For-profit education provider, US GAAP selected model",
+            "Auxiliary operator or lessee providing housing, dining, bookstore or facility services"
+          ],
+          "scope": "Selected US higher-education auxiliary-service branches: nongovernmental US GAAP, public GASB business-type/governmental routing and for-profit US GAAP. Covers housing, dining, bookstore and a commercial lease/service counterexample; it is not a campus-wide chart of accounts or tax opinion.",
+          "periods": "Illustrative calendar-year 2026 close; source effective periods and tax/program periods remain source-specific.",
+          "close_period": {
+            "start": "2026-01-01",
+            "end": "2026-12-31",
+            "cutoff": "2026-12-31"
+          },
+          "source_periods": [
+            {
+              "source_id": "src_construction_fasb_2014_09",
+              "effective_period_pointer": "/data/effective_period",
+              "role_note": "Confirm current consolidated guidance, entity facts and source-specific period before applying."
+            },
+            {
+              "source_id": "src_education_gasb35",
+              "effective_period_pointer": "/data/effective_period",
+              "role_note": "Confirm current consolidated guidance, entity facts and source-specific period before applying."
+            },
+            {
+              "source_id": "src_education_irs_p598_auxiliary",
+              "effective_period_pointer": "/data/effective_period",
+              "role_note": "Confirm current consolidated guidance, entity facts and source-specific period before applying."
+            }
+          ],
+          "question_population": [
+            "How should a selected US education provider separate auxiliary service fees from tuition, public-entity reporting-model routing and the federal tax boundary for unrelated activity?"
+          ],
+          "decision_flow": [
+            {
+              "step": 1,
+              "decision": "Identify legal entity, reporting framework, activity and payer/resource-provider role."
+            },
+            {
+              "step": 2,
+              "decision": "Treat a distinct auxiliary service as a separately evidenced service arrangement. For a public institution, first identify the GASB reporting model and whether external-user fees support a business-type activity. For a nongovernmental or for-profit provider, use the applicable current revenue guidance; the historical ASU is only a locator aid. Separately test UBIT facts for a tax-exempt or public institution.",
+              "source_ids": [
+                "src_construction_fasb_2014_09",
+                "src_education_gasb35",
+                "src_education_irs_p598_auxiliary"
+              ]
+            },
+            {
+              "step": 3,
+              "decision": "Capture source-period, rights and professional-review limits before any operational conclusion."
+            }
+          ],
+          "inputs": [
+            "entity legal form and reporting framework",
+            "service catalog and customer/payer",
+            "housing/dining/bookstore/lease contract",
+            "service period, delivery evidence and refund terms",
+            "facility-use and tax-purpose facts",
+            "public reporting-model and fee evidence"
+          ],
+          "controls": [
+            "separate tuition and auxiliary item codes",
+            "approve service-period and refund evidence before revenue posting",
+            "route public activity through GASB model decision",
+            "retain dual-use and UBIT facts separately from GAAP conclusion",
+            "reconcile subledger to GL and external-user cash"
+          ],
+          "open_questions": [
+            "student housing bundled with instruction may require distinct-service and allocation analysis",
+            "commercial lease or excess facility scale can create a different tax route",
+            "public appropriations are not auxiliary customer revenue",
+            "current consolidated GAAP/GASB and tax law require separate review",
+            "No professional review, operational population or measured agent performance."
+          ],
+          "research_questions": [
+            {
+              "id": "rq-us-education-auxiliary-services",
+              "question": "How should a selected US education provider separate auxiliary service fees from tuition, public-entity reporting-model routing and the federal tax boundary for unrelated activity?",
+              "family_ids": [
+                "q-revenue",
+                "q-grants-contributions",
+                "q-reporting-basis"
+              ],
+              "scope": "Selected US higher-education auxiliary-service branches: nongovernmental US GAAP, public GASB business-type/governmental routing and for-profit US GAAP. Covers housing, dining, bookstore and a commercial lease/service counterexample; it is not a campus-wide chart of accounts or tax opinion.",
+              "answer": "Treat a distinct auxiliary service as a separately evidenced service arrangement. For a public institution, first identify the GASB reporting model and whether external-user fees support a business-type activity. For a nongovernmental or for-profit provider, use the applicable current revenue guidance; the historical ASU is only a locator aid. Separately test UBIT facts for a tax-exempt or public institution.",
+              "source_ids": [
+                "src_construction_fasb_2014_09",
+                "src_education_gasb35",
+                "src_education_irs_p598_auxiliary"
+              ],
+              "answer_status": "sourced-answer-and-original-example",
+              "assessment_status": "partial",
+              "professional_review": "not-performed",
+              "empirical_support": "not-established"
+            }
+          ]
+        }
+      },
+      {
+        "id": "guide-us-education-federal-grants",
+        "kind": "guide",
+        "title": "US education grants and restricted-award routing",
+        "summary": "Classify the agreement from its terms and resource-provider value, then apply the entity framework. For a nongovernmental recipient, an award with a barrier and return/release right remains conditional until the barrier is overcome. For a federal award, cost allowability and allocability are separate controls under current 2 CFR Part 200. Student aid program administration remains separate from financial-statement recognition.",
+        "topics": [
+          "Accounting and reporting",
+          "Educational Services"
+        ],
+        "industries": [
+          "Educational Services"
+        ],
+        "jurisdiction": "United States; declared entity and reporting framework required",
+        "source_type": null,
+        "publisher": "Accounting Agents contributors",
+        "source_url": null,
+        "source_ids": [
+          "src_nonprofit_fasb_2018_08",
+          "src_cfr200grants",
+          "src_education_fsa_2526_disbursement",
+          "src_education_gasb35"
+        ],
+        "related_ids": [
+          "workflow-us-education-federal-grants",
+          "ctrl-us-education-federal-grants",
+          "example-us-education-federal-grant-bridge"
+        ],
+        "review_status": "editorially-reviewed",
+        "reviewed_at": "2026-09-19",
+        "provenance": {
+          "added_on": "2026-09-19",
+          "reviewer": "Codex AI-assisted original-source research",
+          "note": "Bounded US education completion synthesis from selected original public sources. No professional review, operational evidence or current consolidated Codification/GASB conclusion is asserted."
+        },
+        "rights": {
+          "metadata": "CC0-1.0",
+          "content": "CC-BY-4.0",
+          "external_content": "Not stored; original publisher rights apply",
+          "full_text_stored": false,
+          "source_status": "unknown",
+          "source_license": null,
+          "source_license_url": null,
+          "source_permission_scope": "Original factual metadata and synthesis only; external full text is not stored."
+        },
+        "data": {
+          "version": "1.0.0",
+          "frameworks": [
+            "US GAAP",
+            "GASB where the public route applies",
+            "US federal requirements or tax boundary where explicitly stated"
+          ],
+          "business_roles": [
+            "Nongovernmental nonprofit education provider receiving a federal award",
+            "Public college or university receiving a federal award under its public reporting model",
+            "Federal agency or pass-through provider as resource provider, not assumed to receive commensurate student services",
+            "Student-aid administrator whose program records are not themselves GAAP evidence"
+          ],
+          "scope": "Selected US education federal-award branch for a nongovernmental nonprofit or public institution receiving a grant. Covers contribution-versus-exchange, conditional barriers, allowability and source-supported award records; it does not conclude any institution-specific award.",
+          "periods": "Illustrative calendar-year 2026 close; source effective periods and tax/program periods remain source-specific.",
+          "close_period": {
+            "start": "2026-01-01",
+            "end": "2026-12-31",
+            "cutoff": "2026-12-31"
+          },
+          "source_periods": [
+            {
+              "source_id": "src_nonprofit_fasb_2018_08",
+              "effective_period_pointer": "/data/effective_period",
+              "role_note": "Confirm current consolidated guidance, entity facts and source-specific period before applying."
+            },
+            {
+              "source_id": "src_cfr200grants",
+              "effective_period_pointer": "/data/effective_period",
+              "role_note": "Confirm current consolidated guidance, entity facts and source-specific period before applying."
+            },
+            {
+              "source_id": "src_education_fsa_2526_disbursement",
+              "effective_period_pointer": "/data/effective_period",
+              "role_note": "Confirm current consolidated guidance, entity facts and source-specific period before applying."
+            },
+            {
+              "source_id": "src_education_gasb35",
+              "effective_period_pointer": "/data/effective_period",
+              "role_note": "Confirm current consolidated guidance, entity facts and source-specific period before applying."
+            }
+          ],
+          "question_population": [
+            "How should an education provider distinguish a federal grant or award from tuition exchange revenue and control award costs across nonprofit and public routes?"
+          ],
+          "decision_flow": [
+            {
+              "step": 1,
+              "decision": "Identify legal entity, reporting framework, activity and payer/resource-provider role."
+            },
+            {
+              "step": 2,
+              "decision": "Classify the agreement from its terms and resource-provider value, then apply the entity framework. For a nongovernmental recipient, an award with a barrier and return/release right remains conditional until the barrier is overcome. For a federal award, cost allowability and allocability are separate controls under current 2 CFR Part 200. Student aid program administration remains separate from financial-statement recognition.",
+              "source_ids": [
+                "src_nonprofit_fasb_2018_08",
+                "src_cfr200grants",
+                "src_education_fsa_2526_disbursement",
+                "src_education_gasb35"
+              ]
+            },
+            {
+              "step": 3,
+              "decision": "Capture source-period, rights and professional-review limits before any operational conclusion."
+            }
+          ],
+          "inputs": [
+            "signed award and amendments",
+            "barrier and return/release terms",
+            "award budget and allowable-cost basis",
+            "source documents, cost centers and allocation driver",
+            "entity framework and public/nonprofit status",
+            "student-aid records kept separate from award accounting"
+          ],
+          "controls": [
+            "review agreement before posting cash",
+            "hold conditional receipts in a liability or other framework-appropriate account until evidence supports recognition",
+            "document allowability and allocability with no double charge",
+            "reconcile award ledger, budget and GL",
+            "segregate Title IV administration from award and tuition subledgers"
+          ],
+          "open_questions": [
+            "an exchange contract can fall under revenue guidance rather than contribution guidance",
+            "award terms or agency supplements can control over general Part 200 defaults",
+            "public framework and nonprofit framework cannot be blended",
+            "pending nonprofit endowment and Illinois IDs are not required for this grant branch",
+            "No professional review, operational population or measured agent performance."
+          ],
+          "research_questions": [
+            {
+              "id": "rq-us-education-federal-grants",
+              "question": "How should an education provider distinguish a federal grant or award from tuition exchange revenue and control award costs across nonprofit and public routes?",
+              "family_ids": [
+                "q-revenue",
+                "q-grants-contributions",
+                "q-reporting-basis"
+              ],
+              "scope": "Selected US education federal-award branch for a nongovernmental nonprofit or public institution receiving a grant. Covers contribution-versus-exchange, conditional barriers, allowability and source-supported award records; it does not conclude any institution-specific award.",
+              "answer": "Classify the agreement from its terms and resource-provider value, then apply the entity framework. For a nongovernmental recipient, an award with a barrier and return/release right remains conditional until the barrier is overcome. For a federal award, cost allowability and allocability are separate controls under current 2 CFR Part 200. Student aid program administration remains separate from financial-statement recognition.",
+              "source_ids": [
+                "src_nonprofit_fasb_2018_08",
+                "src_cfr200grants",
+                "src_education_fsa_2526_disbursement",
+                "src_education_gasb35"
+              ],
+              "answer_status": "sourced-answer-and-original-example",
+              "assessment_status": "partial",
+              "professional_review": "not-performed",
+              "empirical_support": "not-established"
+            }
+          ]
+        }
+      },
+      {
+        "id": "guide-us-education-public-appropriations",
+        "kind": "guide",
+        "title": "US public education appropriations and reporting-model routing",
+        "summary": "Identify the public reporting model and legal source of the funds first. GASB 35’s original text illustrates primary-government appropriations as nonoperating revenue in a business-type presentation and rejects an industry-specific operating-revenue exception. The fixture therefore routes appropriations separately from tuition and reports the unresolved current GASB decision explicitly.",
+        "topics": [
+          "Accounting and reporting",
+          "Educational Services"
+        ],
+        "industries": [
+          "Educational Services"
+        ],
+        "jurisdiction": "United States; declared entity and reporting framework required",
+        "source_type": null,
+        "publisher": "Accounting Agents contributors",
+        "source_url": null,
+        "source_ids": [
+          "src_education_gasb35",
+          "src_roadmap_gasb34_basis"
+        ],
+        "related_ids": [
+          "workflow-us-education-public-appropriations",
+          "ctrl-us-education-public-appropriations",
+          "example-us-education-public-appropriation-routing"
+        ],
+        "review_status": "editorially-reviewed",
+        "reviewed_at": "2026-09-19",
+        "provenance": {
+          "added_on": "2026-09-19",
+          "reviewer": "Codex AI-assisted original-source research",
+          "note": "Bounded US education completion synthesis from selected original public sources. No professional review, operational evidence or current consolidated Codification/GASB conclusion is asserted."
+        },
+        "rights": {
+          "metadata": "CC0-1.0",
+          "content": "CC-BY-4.0",
+          "external_content": "Not stored; original publisher rights apply",
+          "full_text_stored": false,
+          "source_status": "unknown",
+          "source_license": null,
+          "source_license_url": null,
+          "source_permission_scope": "Original factual metadata and synthesis only; external full text is not stored."
+        },
+        "data": {
+          "version": "1.0.0",
+          "frameworks": [
+            "US GAAP",
+            "GASB where the public route applies",
+            "US federal requirements or tax boundary where explicitly stated"
+          ],
+          "business_roles": [
+            "Public state or local college, GASB reporting entity",
+            "Primary government providing an appropriation",
+            "Public-college business-type activity funded partly by external user fees",
+            "Tuition payer or student, whose exchange payment is separate from appropriation"
+          ],
+          "scope": "Selected US public-college appropriation branch using historical GASB 35 text and the existing GASB 34 source foundation. Covers primary-government appropriations, governmental/business-type activity selection and a tuition counterexample; current consolidated GASB applicability remains open.",
+          "periods": "Illustrative calendar-year 2026 close; source effective periods and tax/program periods remain source-specific.",
+          "close_period": {
+            "start": "2026-01-01",
+            "end": "2026-12-31",
+            "cutoff": "2026-12-31"
+          },
+          "source_periods": [
+            {
+              "source_id": "src_education_gasb35",
+              "effective_period_pointer": "/data/effective_period",
+              "role_note": "Confirm current consolidated guidance, entity facts and source-specific period before applying."
+            },
+            {
+              "source_id": "src_roadmap_gasb34_basis",
+              "effective_period_pointer": "/data/effective_period",
+              "role_note": "Confirm current consolidated guidance, entity facts and source-specific period before applying."
+            }
+          ],
+          "question_population": [
+            "How should a public college route primary-government appropriations without treating them as tuition or assuming operating revenue?"
+          ],
+          "decision_flow": [
+            {
+              "step": 1,
+              "decision": "Identify legal entity, reporting framework, activity and payer/resource-provider role."
+            },
+            {
+              "step": 2,
+              "decision": "Identify the public reporting model and legal source of the funds first. GASB 35’s original text illustrates primary-government appropriations as nonoperating revenue in a business-type presentation and rejects an industry-specific operating-revenue exception. The fixture therefore routes appropriations separately from tuition and reports the unresolved current GASB decision explicitly.",
+              "source_ids": [
+                "src_education_gasb35",
+                "src_roadmap_gasb34_basis"
+              ]
+            },
+            {
+              "step": 3,
+              "decision": "Capture source-period, rights and professional-review limits before any operational conclusion."
+            }
+          ],
+          "inputs": [
+            "appropriation statute or budget act",
+            "primary-government and reporting-entity relationship",
+            "GASB reporting model and activity classification",
+            "cash receipt and appropriation budget",
+            "tuition billing and student-service evidence",
+            "current GASB amendment/applicability review"
+          ],
+          "controls": [
+            "do not post appropriations to tuition subledger",
+            "tie legal appropriation authority to budget and cash",
+            "review operating/nonoperating presentation under current GASB model",
+            "reconcile primary-government transfers and eliminations",
+            "retain framework decision with period and entity facts"
+          ],
+          "open_questions": [
+            "capital-purpose appropriations may follow a different presentation",
+            "component units and blended entities require separate analysis",
+            "historical GASB 35 text is not a current consolidated conclusion",
+            "a fee-for-service activity is not automatically the whole reporting entity’s classification",
+            "No professional review, operational population or measured agent performance."
+          ],
+          "research_questions": [
+            {
+              "id": "rq-us-education-public-appropriations",
+              "question": "How should a public college route primary-government appropriations without treating them as tuition or assuming operating revenue?",
+              "family_ids": [
+                "q-revenue",
+                "q-grants-contributions",
+                "q-reporting-basis"
+              ],
+              "scope": "Selected US public-college appropriation branch using historical GASB 35 text and the existing GASB 34 source foundation. Covers primary-government appropriations, governmental/business-type activity selection and a tuition counterexample; current consolidated GASB applicability remains open.",
+              "answer": "Identify the public reporting model and legal source of the funds first. GASB 35’s original text illustrates primary-government appropriations as nonoperating revenue in a business-type presentation and rejects an industry-specific operating-revenue exception. The fixture therefore routes appropriations separately from tuition and reports the unresolved current GASB decision explicitly.",
+              "source_ids": [
+                "src_education_gasb35",
+                "src_roadmap_gasb34_basis"
+              ],
+              "answer_status": "sourced-answer-and-original-example",
+              "assessment_status": "partial",
+              "professional_review": "not-performed",
+              "empirical_support": "not-established"
+            }
+          ]
+        }
+      },
+      {
+        "id": "guide-us-education-endowment-routing",
+        "kind": "guide",
+        "title": "US education endowment and restricted-resource routing",
+        "summary": "Separate donor restrictions and board designation at intake, retain the gift instrument and governing law, and roll forward gifts, investment return, spending and releases by fund. Illinois is only a selected state-law routing example. The package does not infer that an endowment distribution is tuition, unrestricted support or a current consolidated GAAP conclusion.",
+        "topics": [
+          "Accounting and reporting",
+          "Educational Services"
+        ],
+        "industries": [
+          "Educational Services"
+        ],
+        "jurisdiction": "United States; declared entity and reporting framework required",
+        "source_type": null,
+        "publisher": "Accounting Agents contributors",
+        "source_url": null,
+        "source_ids": [
+          "src_nonprofit_fasb_2016_14",
+          "src_nonprofit_illinois_upmifa_2009",
+          "src_nonprofit_fasb_2018_08"
+        ],
+        "related_ids": [
+          "workflow-us-education-endowment-routing",
+          "ctrl-us-education-endowment-routing",
+          "example-us-education-endowment-rollforward"
+        ],
+        "review_status": "editorially-reviewed",
+        "reviewed_at": "2026-09-19",
+        "provenance": {
+          "added_on": "2026-09-19",
+          "reviewer": "Codex AI-assisted original-source research",
+          "note": "Bounded US education completion synthesis from selected original public sources. No professional review, operational evidence or current consolidated Codification/GASB conclusion is asserted."
+        },
+        "rights": {
+          "metadata": "CC0-1.0",
+          "content": "CC-BY-4.0",
+          "external_content": "Not stored; original publisher rights apply",
+          "full_text_stored": false,
+          "source_status": "unknown",
+          "source_license": null,
+          "source_license_url": null,
+          "source_permission_scope": "Original factual metadata and synthesis only; external full text is not stored."
+        },
+        "data": {
+          "version": "1.0.0",
+          "frameworks": [
+            "US GAAP",
+            "GASB where the public route applies",
+            "US federal requirements or tax boundary where explicitly stated"
+          ],
+          "business_roles": [
+            "Nongovernmental nonprofit college or university under US GAAP",
+            "Donor or resource provider imposing a gift-instrument restriction",
+            "Board-designated quasi-endowment holder",
+            "State-law example under Illinois UPMIFA; governing law must be confirmed"
+          ],
+          "scope": "Selected US nongovernmental nonprofit higher-education endowment branch. Uses the pending shared nonprofit FASB endowment and Illinois UPMIFA source IDs as dependencies, with no nationwide state-law survey and no conclusion for a public institution’s GASB endowment presentation.",
+          "periods": "Illustrative calendar-year 2026 close; source effective periods and tax/program periods remain source-specific.",
+          "close_period": {
+            "start": "2026-01-01",
+            "end": "2026-12-31",
+            "cutoff": "2026-12-31"
+          },
+          "source_periods": [
+            {
+              "source_id": "src_nonprofit_fasb_2016_14",
+              "effective_period_pointer": "/data/effective_period",
+              "role_note": "Confirm current consolidated guidance, entity facts and source-specific period before applying.",
+              "locator_pointers": [
+                "/data/locators/0",
+                "/data/locators/1",
+                "/data/locators/2",
+                "/data/locators/3",
+                "/data/locators/5",
+                "/data/locators/6",
+                "/data/locators/7"
+              ]
+            },
+            {
+              "source_id": "src_nonprofit_illinois_upmifa_2009",
+              "effective_period_pointer": "/data/effective_period",
+              "role_note": "Confirm current consolidated guidance, entity facts and source-specific period before applying.",
+              "locator_pointers": [
+                "/data/locators/0",
+                "/data/locators/1",
+                "/data/locators/2",
+                "/data/locators/3",
+                "/data/locators/4",
+                "/data/locators/5"
+              ]
+            },
+            {
+              "source_id": "src_nonprofit_fasb_2018_08",
+              "effective_period_pointer": "/data/effective_period",
+              "role_note": "Confirm current consolidated guidance, entity facts and source-specific period before applying.",
+              "locator_pointers": [
+                "/data/locators/0",
+                "/data/locators/1"
+              ]
+            }
+          ],
+          "question_population": [
+            "How should a selected US nongovernmental education nonprofit distinguish donor-restricted endowment resources from board-designated quasi-endowment resources and document a spending rollforward?"
+          ],
+          "decision_flow": [
+            {
+              "step": 1,
+              "decision": "Identify legal entity, reporting framework, activity and payer/resource-provider role."
+            },
+            {
+              "step": 2,
+              "decision": "Separate donor restrictions and board designation at intake, retain the gift instrument and governing law, and roll forward gifts, investment return, spending and releases by fund. Illinois is only a selected state-law routing example. The package does not infer that an endowment distribution is tuition, unrestricted support or a current consolidated GAAP conclusion.",
+              "source_ids": [
+                "src_nonprofit_fasb_2016_14",
+                "src_nonprofit_illinois_upmifa_2009",
+                "src_nonprofit_fasb_2018_08"
+              ]
+            },
+            {
+              "step": 3,
+              "decision": "Capture source-period, rights and professional-review limits before any operational conclusion."
+            }
+          ],
+          "inputs": [
+            "gift instrument and donor restriction",
+            "board designation evidence",
+            "investment and spending policy",
+            "fund-level opening balance and return",
+            "qualifying spending and release evidence",
+            "governing law and current consolidated GAAP review"
+          ],
+          "controls": [
+            "capture donor instrument before coding fund",
+            "segregate donor-restricted and board-designated balances",
+            "approve spending against policy and legal restrictions",
+            "reconcile investment return and spending by fund",
+            "escalate underwater, modification and release questions"
+          ],
+          "open_questions": [
+            "Illinois law does not represent all state law",
+            "donor consent, court modification and small-fund rules need fact-specific review",
+            "public institutions may follow GASB rather than this nonprofit branch",
+            "endowment investment return is not automatically available tuition revenue",
+            "No professional review, operational population or measured agent performance."
+          ],
+          "research_questions": [
+            {
+              "id": "rq-us-education-endowment-routing",
+              "question": "How should a selected US nongovernmental education nonprofit distinguish donor-restricted endowment resources from board-designated quasi-endowment resources and document a spending rollforward?",
+              "family_ids": [
+                "q-revenue",
+                "q-grants-contributions",
+                "q-reporting-basis"
+              ],
+              "scope": "Selected US nongovernmental nonprofit higher-education endowment branch. Uses the pending shared nonprofit FASB endowment and Illinois UPMIFA source IDs as dependencies, with no nationwide state-law survey and no conclusion for a public institution’s GASB endowment presentation.",
+              "answer": "Separate donor restrictions and board designation at intake, retain the gift instrument and governing law, and roll forward gifts, investment return, spending and releases by fund. Illinois is only a selected state-law routing example. The package does not infer that an endowment distribution is tuition, unrestricted support or a current consolidated GAAP conclusion.",
+              "source_ids": [
+                "src_nonprofit_fasb_2016_14",
+                "src_nonprofit_illinois_upmifa_2009",
+                "src_nonprofit_fasb_2018_08"
+              ],
+              "answer_status": "sourced-answer-and-original-example",
+              "assessment_status": "partial",
+              "professional_review": "not-performed",
+              "empirical_support": "not-established",
+              "source_locators": [
+                {
+                  "source_id": "src_nonprofit_fasb_2016_14",
+                  "locator": "ASU 2016-14 PDF pp. 10-11 and 17 (effective period and transition), pp. 30-31 (958-205-45-2 and 45-9), and pp. 41-42 (958-205-50-1A through 50-2): selected donor restrictions, endowment composition, rollforward, policies and underwater disclosures.",
+                  "period_pointer": "/data/effective_period",
+                  "locator_pointers": [
+                    "/data/locators/0",
+                    "/data/locators/1",
+                    "/data/locators/2",
+                    "/data/locators/3",
+                    "/data/locators/5",
+                    "/data/locators/6",
+                    "/data/locators/7"
+                  ]
+                },
+                {
+                  "source_id": "src_nonprofit_illinois_upmifa_2009",
+                  "locator": "760 ILCS 51/2, /3, /4(a)-(c), /6, /7 and /11; selected Illinois institutional-fund routing, donor intent, prudence and appropriation or accumulation only.",
+                  "period_pointer": "/data/effective_period",
+                  "locator_pointers": [
+                    "/data/locators/0",
+                    "/data/locators/1",
+                    "/data/locators/2",
+                    "/data/locators/3",
+                    "/data/locators/4",
+                    "/data/locators/5"
+                  ]
+                },
+                {
+                  "source_id": "src_nonprofit_fasb_2018_08",
+                  "locator": "ASU 2018-08 PDF pp. 7-10 and 958-605-15-5A; contribution/exchange and condition boundary where a gift or award has provider terms.",
+                  "period_pointer": "/data/effective_period",
+                  "locator_pointers": [
+                    "/data/locators/0",
+                    "/data/locators/1"
+                  ]
+                }
+              ]
+            }
+          ],
+          "source_locators": [
+            {
+              "source_id": "src_nonprofit_fasb_2016_14",
+              "locator": "ASU 2016-14 PDF pp. 10-11 and 17 (effective period and transition), pp. 30-31 (958-205-45-2 and 45-9), and pp. 41-42 (958-205-50-1A through 50-2): selected donor restrictions, endowment composition, rollforward, policies and underwater disclosures.",
+              "period_pointer": "/data/effective_period",
+              "locator_pointers": [
+                "/data/locators/0",
+                "/data/locators/1",
+                "/data/locators/2",
+                "/data/locators/3",
+                "/data/locators/5",
+                "/data/locators/6",
+                "/data/locators/7"
+              ]
+            },
+            {
+              "source_id": "src_nonprofit_illinois_upmifa_2009",
+              "locator": "760 ILCS 51/2, /3, /4(a)-(c), /6, /7 and /11; selected Illinois institutional-fund routing, donor intent, prudence and appropriation or accumulation only.",
+              "period_pointer": "/data/effective_period",
+              "locator_pointers": [
+                "/data/locators/0",
+                "/data/locators/1",
+                "/data/locators/2",
+                "/data/locators/3",
+                "/data/locators/4",
+                "/data/locators/5"
+              ]
+            },
+            {
+              "source_id": "src_nonprofit_fasb_2018_08",
+              "locator": "ASU 2018-08 PDF pp. 7-10 and 958-605-15-5A; contribution/exchange and condition boundary where a gift or award has provider terms.",
+              "period_pointer": "/data/effective_period",
+              "locator_pointers": [
+                "/data/locators/0",
+                "/data/locators/1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "workflow": [
+      {
+        "id": "workflow-us-education-auxiliary-services",
+        "kind": "workflow",
+        "title": "US education auxiliary services and fee routing workflow",
+        "summary": "Staged inputs, routing and reconciliation workflow for the selected education branch.",
+        "topics": [
+          "Accounting and reporting",
+          "Educational Services"
+        ],
+        "industries": [
+          "Educational Services"
+        ],
+        "jurisdiction": "United States; declared entity and reporting framework required",
+        "source_type": null,
+        "publisher": "Accounting Agents contributors",
+        "source_url": null,
+        "source_ids": [
+          "src_construction_fasb_2014_09",
+          "src_education_gasb35",
+          "src_education_irs_p598_auxiliary"
+        ],
+        "related_ids": [
+          "guide-us-education-auxiliary-services",
+          "ctrl-us-education-auxiliary-services",
+          "example-us-education-auxiliary-services-bridge"
+        ],
+        "review_status": "editorially-reviewed",
+        "reviewed_at": "2026-09-19",
+        "provenance": {
+          "added_on": "2026-09-19",
+          "reviewer": "Codex AI-assisted original-source research",
+          "note": "Bounded US education completion synthesis from selected original public sources. No professional review, operational evidence or current consolidated Codification/GASB conclusion is asserted."
+        },
+        "rights": {
+          "metadata": "CC0-1.0",
+          "content": "CC-BY-4.0",
+          "external_content": "Not stored; original publisher rights apply",
+          "full_text_stored": false,
+          "source_status": "unknown",
+          "source_license": null,
+          "source_license_url": null,
+          "source_permission_scope": "Original factual metadata and synthesis only; external full text is not stored."
+        },
+        "data": {
+          "version": "1.0.0",
+          "scope": "Selected US higher-education auxiliary-service branches: nongovernmental US GAAP, public GASB business-type/governmental routing and for-profit US GAAP. Covers housing, dining, bookstore and a commercial lease/service counterexample; it is not a campus-wide chart of accounts or tax opinion.",
+          "frameworks": [
+            "US GAAP",
+            "GASB where the public route applies",
+            "US federal requirements or tax boundary where explicitly stated"
+          ],
+          "inputs": [
+            "entity legal form and reporting framework",
+            "service catalog and customer/payer",
+            "housing/dining/bookstore/lease contract",
+            "service period, delivery evidence and refund terms",
+            "facility-use and tax-purpose facts",
+            "public reporting-model and fee evidence"
+          ],
+          "steps": [
+            {
+              "step": 1,
+              "action": "Capture entity, role, period, source agreement and governing framework."
+            },
+            {
+              "step": 2,
+              "action": "Classify the resource or service using the cited route and preserve the exact source locator."
+            },
+            {
+              "step": 3,
+              "action": "Post or stage only after evidence, allocation, condition, restriction and payer checks pass."
+            },
+            {
+              "step": 4,
+              "action": "Reconcile subledger, budget or fund rollforward to the general ledger and retain exception evidence."
+            }
+          ],
+          "controls": [
+            "separate tuition and auxiliary item codes",
+            "approve service-period and refund evidence before revenue posting",
+            "route public activity through GASB model decision",
+            "retain dual-use and UBIT facts separately from GAAP conclusion",
+            "reconcile subledger to GL and external-user cash"
+          ],
+          "exceptions": [
+            "student housing bundled with instruction may require distinct-service and allocation analysis",
+            "commercial lease or excess facility scale can create a different tax route",
+            "public appropriations are not auxiliary customer revenue",
+            "current consolidated GAAP/GASB and tax law require separate review"
+          ],
+          "limitations": [
+            "This workflow is educational reference material, not approval authority.",
+            "Current consolidated guidance, entity facts and professional review remain open."
+          ]
+        }
+      },
+      {
+        "id": "workflow-us-education-federal-grants",
+        "kind": "workflow",
+        "title": "US education grants and restricted-award routing workflow",
+        "summary": "Staged inputs, routing and reconciliation workflow for the selected education branch.",
+        "topics": [
+          "Accounting and reporting",
+          "Educational Services"
+        ],
+        "industries": [
+          "Educational Services"
+        ],
+        "jurisdiction": "United States; declared entity and reporting framework required",
+        "source_type": null,
+        "publisher": "Accounting Agents contributors",
+        "source_url": null,
+        "source_ids": [
+          "src_nonprofit_fasb_2018_08",
+          "src_cfr200grants",
+          "src_education_fsa_2526_disbursement",
+          "src_education_gasb35"
+        ],
+        "related_ids": [
+          "guide-us-education-federal-grants",
+          "ctrl-us-education-federal-grants",
+          "example-us-education-federal-grant-bridge"
+        ],
+        "review_status": "editorially-reviewed",
+        "reviewed_at": "2026-09-19",
+        "provenance": {
+          "added_on": "2026-09-19",
+          "reviewer": "Codex AI-assisted original-source research",
+          "note": "Bounded US education completion synthesis from selected original public sources. No professional review, operational evidence or current consolidated Codification/GASB conclusion is asserted."
+        },
+        "rights": {
+          "metadata": "CC0-1.0",
+          "content": "CC-BY-4.0",
+          "external_content": "Not stored; original publisher rights apply",
+          "full_text_stored": false,
+          "source_status": "unknown",
+          "source_license": null,
+          "source_license_url": null,
+          "source_permission_scope": "Original factual metadata and synthesis only; external full text is not stored."
+        },
+        "data": {
+          "version": "1.0.0",
+          "scope": "Selected US education federal-award branch for a nongovernmental nonprofit or public institution receiving a grant. Covers contribution-versus-exchange, conditional barriers, allowability and source-supported award records; it does not conclude any institution-specific award.",
+          "frameworks": [
+            "US GAAP",
+            "GASB where the public route applies",
+            "US federal requirements or tax boundary where explicitly stated"
+          ],
+          "inputs": [
+            "signed award and amendments",
+            "barrier and return/release terms",
+            "award budget and allowable-cost basis",
+            "source documents, cost centers and allocation driver",
+            "entity framework and public/nonprofit status",
+            "student-aid records kept separate from award accounting"
+          ],
+          "steps": [
+            {
+              "step": 1,
+              "action": "Capture entity, role, period, source agreement and governing framework."
+            },
+            {
+              "step": 2,
+              "action": "Classify the resource or service using the cited route and preserve the exact source locator."
+            },
+            {
+              "step": 3,
+              "action": "Post or stage only after evidence, allocation, condition, restriction and payer checks pass."
+            },
+            {
+              "step": 4,
+              "action": "Reconcile subledger, budget or fund rollforward to the general ledger and retain exception evidence."
+            }
+          ],
+          "controls": [
+            "review agreement before posting cash",
+            "hold conditional receipts in a liability or other framework-appropriate account until evidence supports recognition",
+            "document allowability and allocability with no double charge",
+            "reconcile award ledger, budget and GL",
+            "segregate Title IV administration from award and tuition subledgers"
+          ],
+          "exceptions": [
+            "an exchange contract can fall under revenue guidance rather than contribution guidance",
+            "award terms or agency supplements can control over general Part 200 defaults",
+            "public framework and nonprofit framework cannot be blended",
+            "pending nonprofit endowment and Illinois IDs are not required for this grant branch"
+          ],
+          "limitations": [
+            "This workflow is educational reference material, not approval authority.",
+            "Current consolidated guidance, entity facts and professional review remain open."
+          ]
+        }
+      },
+      {
+        "id": "workflow-us-education-public-appropriations",
+        "kind": "workflow",
+        "title": "US public education appropriations and reporting-model routing workflow",
+        "summary": "Staged inputs, routing and reconciliation workflow for the selected education branch.",
+        "topics": [
+          "Accounting and reporting",
+          "Educational Services"
+        ],
+        "industries": [
+          "Educational Services"
+        ],
+        "jurisdiction": "United States; declared entity and reporting framework required",
+        "source_type": null,
+        "publisher": "Accounting Agents contributors",
+        "source_url": null,
+        "source_ids": [
+          "src_education_gasb35",
+          "src_roadmap_gasb34_basis"
+        ],
+        "related_ids": [
+          "guide-us-education-public-appropriations",
+          "ctrl-us-education-public-appropriations",
+          "example-us-education-public-appropriation-routing"
+        ],
+        "review_status": "editorially-reviewed",
+        "reviewed_at": "2026-09-19",
+        "provenance": {
+          "added_on": "2026-09-19",
+          "reviewer": "Codex AI-assisted original-source research",
+          "note": "Bounded US education completion synthesis from selected original public sources. No professional review, operational evidence or current consolidated Codification/GASB conclusion is asserted."
+        },
+        "rights": {
+          "metadata": "CC0-1.0",
+          "content": "CC-BY-4.0",
+          "external_content": "Not stored; original publisher rights apply",
+          "full_text_stored": false,
+          "source_status": "unknown",
+          "source_license": null,
+          "source_license_url": null,
+          "source_permission_scope": "Original factual metadata and synthesis only; external full text is not stored."
+        },
+        "data": {
+          "version": "1.0.0",
+          "scope": "Selected US public-college appropriation branch using historical GASB 35 text and the existing GASB 34 source foundation. Covers primary-government appropriations, governmental/business-type activity selection and a tuition counterexample; current consolidated GASB applicability remains open.",
+          "frameworks": [
+            "US GAAP",
+            "GASB where the public route applies",
+            "US federal requirements or tax boundary where explicitly stated"
+          ],
+          "inputs": [
+            "appropriation statute or budget act",
+            "primary-government and reporting-entity relationship",
+            "GASB reporting model and activity classification",
+            "cash receipt and appropriation budget",
+            "tuition billing and student-service evidence",
+            "current GASB amendment/applicability review"
+          ],
+          "steps": [
+            {
+              "step": 1,
+              "action": "Capture entity, role, period, source agreement and governing framework."
+            },
+            {
+              "step": 2,
+              "action": "Classify the resource or service using the cited route and preserve the exact source locator."
+            },
+            {
+              "step": 3,
+              "action": "Post or stage only after evidence, allocation, condition, restriction and payer checks pass."
+            },
+            {
+              "step": 4,
+              "action": "Reconcile subledger, budget or fund rollforward to the general ledger and retain exception evidence."
+            }
+          ],
+          "controls": [
+            "do not post appropriations to tuition subledger",
+            "tie legal appropriation authority to budget and cash",
+            "review operating/nonoperating presentation under current GASB model",
+            "reconcile primary-government transfers and eliminations",
+            "retain framework decision with period and entity facts"
+          ],
+          "exceptions": [
+            "capital-purpose appropriations may follow a different presentation",
+            "component units and blended entities require separate analysis",
+            "historical GASB 35 text is not a current consolidated conclusion",
+            "a fee-for-service activity is not automatically the whole reporting entity’s classification"
+          ],
+          "limitations": [
+            "This workflow is educational reference material, not approval authority.",
+            "Current consolidated guidance, entity facts and professional review remain open."
+          ]
+        }
+      },
+      {
+        "id": "workflow-us-education-endowment-routing",
+        "kind": "workflow",
+        "title": "US education endowment and restricted-resource routing workflow",
+        "summary": "Staged inputs, routing and reconciliation workflow for the selected education branch.",
+        "topics": [
+          "Accounting and reporting",
+          "Educational Services"
+        ],
+        "industries": [
+          "Educational Services"
+        ],
+        "jurisdiction": "United States; declared entity and reporting framework required",
+        "source_type": null,
+        "publisher": "Accounting Agents contributors",
+        "source_url": null,
+        "source_ids": [
+          "src_nonprofit_fasb_2016_14",
+          "src_nonprofit_illinois_upmifa_2009",
+          "src_nonprofit_fasb_2018_08"
+        ],
+        "related_ids": [
+          "guide-us-education-endowment-routing",
+          "ctrl-us-education-endowment-routing",
+          "example-us-education-endowment-rollforward"
+        ],
+        "review_status": "editorially-reviewed",
+        "reviewed_at": "2026-09-19",
+        "provenance": {
+          "added_on": "2026-09-19",
+          "reviewer": "Codex AI-assisted original-source research",
+          "note": "Bounded US education completion synthesis from selected original public sources. No professional review, operational evidence or current consolidated Codification/GASB conclusion is asserted."
+        },
+        "rights": {
+          "metadata": "CC0-1.0",
+          "content": "CC-BY-4.0",
+          "external_content": "Not stored; original publisher rights apply",
+          "full_text_stored": false,
+          "source_status": "unknown",
+          "source_license": null,
+          "source_license_url": null,
+          "source_permission_scope": "Original factual metadata and synthesis only; external full text is not stored."
+        },
+        "data": {
+          "version": "1.0.0",
+          "scope": "Selected US nongovernmental nonprofit higher-education endowment branch. Uses the pending shared nonprofit FASB endowment and Illinois UPMIFA source IDs as dependencies, with no nationwide state-law survey and no conclusion for a public institution’s GASB endowment presentation.",
+          "frameworks": [
+            "US GAAP",
+            "GASB where the public route applies",
+            "US federal requirements or tax boundary where explicitly stated"
+          ],
+          "inputs": [
+            "gift instrument and donor restriction",
+            "board designation evidence",
+            "investment and spending policy",
+            "fund-level opening balance and return",
+            "qualifying spending and release evidence",
+            "governing law and current consolidated GAAP review"
+          ],
+          "steps": [
+            {
+              "step": 1,
+              "action": "Capture entity, role, period, source agreement and governing framework."
+            },
+            {
+              "step": 2,
+              "action": "Classify the resource or service using the cited route and preserve the exact source locator."
+            },
+            {
+              "step": 3,
+              "action": "Post or stage only after evidence, allocation, condition, restriction and payer checks pass."
+            },
+            {
+              "step": 4,
+              "action": "Reconcile subledger, budget or fund rollforward to the general ledger and retain exception evidence."
+            }
+          ],
+          "controls": [
+            "capture donor instrument before coding fund",
+            "segregate donor-restricted and board-designated balances",
+            "approve spending against policy and legal restrictions",
+            "reconcile investment return and spending by fund",
+            "escalate underwater, modification and release questions"
+          ],
+          "exceptions": [
+            "Illinois law does not represent all state law",
+            "donor consent, court modification and small-fund rules need fact-specific review",
+            "public institutions may follow GASB rather than this nonprofit branch",
+            "endowment investment return is not automatically available tuition revenue"
+          ],
+          "limitations": [
+            "This workflow is educational reference material, not approval authority.",
+            "Current consolidated guidance, entity facts and professional review remain open."
+          ]
+        }
+      }
+    ],
+    "control": [
+      {
+        "id": "ctrl-us-education-auxiliary-services",
+        "kind": "control",
+        "title": "US education auxiliary services and fee routing control",
+        "summary": "Proposed evidence and exception control for the selected education route.",
+        "topics": [
+          "Accounting and reporting",
+          "Educational Services"
+        ],
+        "industries": [
+          "Educational Services"
+        ],
+        "jurisdiction": "United States; declared entity and reporting framework required",
+        "source_type": null,
+        "publisher": "Accounting Agents contributors",
+        "source_url": null,
+        "source_ids": [
+          "src_construction_fasb_2014_09",
+          "src_education_gasb35",
+          "src_education_irs_p598_auxiliary"
+        ],
+        "related_ids": [
+          "guide-us-education-auxiliary-services",
+          "workflow-us-education-auxiliary-services",
+          "example-us-education-auxiliary-services-bridge"
+        ],
+        "review_status": "editorially-reviewed",
+        "reviewed_at": "2026-09-19",
+        "provenance": {
+          "added_on": "2026-09-19",
+          "reviewer": "Codex AI-assisted original-source research",
+          "note": "Bounded US education completion synthesis from selected original public sources. No professional review, operational evidence or current consolidated Codification/GASB conclusion is asserted."
+        },
+        "rights": {
+          "metadata": "CC0-1.0",
+          "content": "CC-BY-4.0",
+          "external_content": "Not stored; original publisher rights apply",
+          "full_text_stored": false,
+          "source_status": "unknown",
+          "source_license": null,
+          "source_license_url": null,
+          "source_permission_scope": "Original factual metadata and synthesis only; external full text is not stored."
+        },
+        "data": {
+          "version": "1.0.0",
+          "scope": "Selected US higher-education auxiliary-service branches: nongovernmental US GAAP, public GASB business-type/governmental routing and for-profit US GAAP. Covers housing, dining, bookstore and a commercial lease/service counterexample; it is not a campus-wide chart of accounts or tax opinion.",
+          "control_objective": "Prevent framework, payer, condition, restriction, allocation and period errors before recognition or reporting.",
+          "control_steps": [
+            {
+              "id": "C1",
+              "action": "separate tuition and auxiliary item codes"
+            },
+            {
+              "id": "C2",
+              "action": "approve service-period and refund evidence before revenue posting"
+            },
+            {
+              "id": "C3",
+              "action": "route public activity through GASB model decision"
+            },
+            {
+              "id": "C4",
+              "action": "Retain reviewer, source locator, exception and reconciliation evidence."
+            }
+          ],
+          "evidence": [
+            "source or agreement copy/link",
+            "entity/framework decision",
+            "subledger or fund rollforward",
+            "reconciliation and exception signoff"
+          ],
+          "failure_response": "Hold or reverse the proposed posting, preserve the input and escalate the unresolved framework or legal question.",
+          "limitations": [
+            "Synthetic control design only; no operating effectiveness test."
+          ]
+        }
+      },
+      {
+        "id": "ctrl-us-education-federal-grants",
+        "kind": "control",
+        "title": "US education grants and restricted-award routing control",
+        "summary": "Proposed evidence and exception control for the selected education route.",
+        "topics": [
+          "Accounting and reporting",
+          "Educational Services"
+        ],
+        "industries": [
+          "Educational Services"
+        ],
+        "jurisdiction": "United States; declared entity and reporting framework required",
+        "source_type": null,
+        "publisher": "Accounting Agents contributors",
+        "source_url": null,
+        "source_ids": [
+          "src_nonprofit_fasb_2018_08",
+          "src_cfr200grants",
+          "src_education_fsa_2526_disbursement",
+          "src_education_gasb35"
+        ],
+        "related_ids": [
+          "guide-us-education-federal-grants",
+          "workflow-us-education-federal-grants",
+          "example-us-education-federal-grant-bridge"
+        ],
+        "review_status": "editorially-reviewed",
+        "reviewed_at": "2026-09-19",
+        "provenance": {
+          "added_on": "2026-09-19",
+          "reviewer": "Codex AI-assisted original-source research",
+          "note": "Bounded US education completion synthesis from selected original public sources. No professional review, operational evidence or current consolidated Codification/GASB conclusion is asserted."
+        },
+        "rights": {
+          "metadata": "CC0-1.0",
+          "content": "CC-BY-4.0",
+          "external_content": "Not stored; original publisher rights apply",
+          "full_text_stored": false,
+          "source_status": "unknown",
+          "source_license": null,
+          "source_license_url": null,
+          "source_permission_scope": "Original factual metadata and synthesis only; external full text is not stored."
+        },
+        "data": {
+          "version": "1.0.0",
+          "scope": "Selected US education federal-award branch for a nongovernmental nonprofit or public institution receiving a grant. Covers contribution-versus-exchange, conditional barriers, allowability and source-supported award records; it does not conclude any institution-specific award.",
+          "control_objective": "Prevent framework, payer, condition, restriction, allocation and period errors before recognition or reporting.",
+          "control_steps": [
+            {
+              "id": "C1",
+              "action": "review agreement before posting cash"
+            },
+            {
+              "id": "C2",
+              "action": "hold conditional receipts in a liability or other framework-appropriate account until evidence supports recognition"
+            },
+            {
+              "id": "C3",
+              "action": "document allowability and allocability with no double charge"
+            },
+            {
+              "id": "C4",
+              "action": "Retain reviewer, source locator, exception and reconciliation evidence."
+            }
+          ],
+          "evidence": [
+            "source or agreement copy/link",
+            "entity/framework decision",
+            "subledger or fund rollforward",
+            "reconciliation and exception signoff"
+          ],
+          "failure_response": "Hold or reverse the proposed posting, preserve the input and escalate the unresolved framework or legal question.",
+          "limitations": [
+            "Synthetic control design only; no operating effectiveness test."
+          ]
+        }
+      },
+      {
+        "id": "ctrl-us-education-public-appropriations",
+        "kind": "control",
+        "title": "US public education appropriations and reporting-model routing control",
+        "summary": "Proposed evidence and exception control for the selected education route.",
+        "topics": [
+          "Accounting and reporting",
+          "Educational Services"
+        ],
+        "industries": [
+          "Educational Services"
+        ],
+        "jurisdiction": "United States; declared entity and reporting framework required",
+        "source_type": null,
+        "publisher": "Accounting Agents contributors",
+        "source_url": null,
+        "source_ids": [
+          "src_education_gasb35",
+          "src_roadmap_gasb34_basis"
+        ],
+        "related_ids": [
+          "guide-us-education-public-appropriations",
+          "workflow-us-education-public-appropriations",
+          "example-us-education-public-appropriation-routing"
+        ],
+        "review_status": "editorially-reviewed",
+        "reviewed_at": "2026-09-19",
+        "provenance": {
+          "added_on": "2026-09-19",
+          "reviewer": "Codex AI-assisted original-source research",
+          "note": "Bounded US education completion synthesis from selected original public sources. No professional review, operational evidence or current consolidated Codification/GASB conclusion is asserted."
+        },
+        "rights": {
+          "metadata": "CC0-1.0",
+          "content": "CC-BY-4.0",
+          "external_content": "Not stored; original publisher rights apply",
+          "full_text_stored": false,
+          "source_status": "unknown",
+          "source_license": null,
+          "source_license_url": null,
+          "source_permission_scope": "Original factual metadata and synthesis only; external full text is not stored."
+        },
+        "data": {
+          "version": "1.0.0",
+          "scope": "Selected US public-college appropriation branch using historical GASB 35 text and the existing GASB 34 source foundation. Covers primary-government appropriations, governmental/business-type activity selection and a tuition counterexample; current consolidated GASB applicability remains open.",
+          "control_objective": "Prevent framework, payer, condition, restriction, allocation and period errors before recognition or reporting.",
+          "control_steps": [
+            {
+              "id": "C1",
+              "action": "do not post appropriations to tuition subledger"
+            },
+            {
+              "id": "C2",
+              "action": "tie legal appropriation authority to budget and cash"
+            },
+            {
+              "id": "C3",
+              "action": "review operating/nonoperating presentation under current GASB model"
+            },
+            {
+              "id": "C4",
+              "action": "Retain reviewer, source locator, exception and reconciliation evidence."
+            }
+          ],
+          "evidence": [
+            "source or agreement copy/link",
+            "entity/framework decision",
+            "subledger or fund rollforward",
+            "reconciliation and exception signoff"
+          ],
+          "failure_response": "Hold or reverse the proposed posting, preserve the input and escalate the unresolved framework or legal question.",
+          "limitations": [
+            "Synthetic control design only; no operating effectiveness test."
+          ]
+        }
+      },
+      {
+        "id": "ctrl-us-education-endowment-routing",
+        "kind": "control",
+        "title": "US education endowment and restricted-resource routing control",
+        "summary": "Proposed evidence and exception control for the selected education route.",
+        "topics": [
+          "Accounting and reporting",
+          "Educational Services"
+        ],
+        "industries": [
+          "Educational Services"
+        ],
+        "jurisdiction": "United States; declared entity and reporting framework required",
+        "source_type": null,
+        "publisher": "Accounting Agents contributors",
+        "source_url": null,
+        "source_ids": [
+          "src_nonprofit_fasb_2016_14",
+          "src_nonprofit_illinois_upmifa_2009",
+          "src_nonprofit_fasb_2018_08"
+        ],
+        "related_ids": [
+          "guide-us-education-endowment-routing",
+          "workflow-us-education-endowment-routing",
+          "example-us-education-endowment-rollforward"
+        ],
+        "review_status": "editorially-reviewed",
+        "reviewed_at": "2026-09-19",
+        "provenance": {
+          "added_on": "2026-09-19",
+          "reviewer": "Codex AI-assisted original-source research",
+          "note": "Bounded US education completion synthesis from selected original public sources. No professional review, operational evidence or current consolidated Codification/GASB conclusion is asserted."
+        },
+        "rights": {
+          "metadata": "CC0-1.0",
+          "content": "CC-BY-4.0",
+          "external_content": "Not stored; original publisher rights apply",
+          "full_text_stored": false,
+          "source_status": "unknown",
+          "source_license": null,
+          "source_license_url": null,
+          "source_permission_scope": "Original factual metadata and synthesis only; external full text is not stored."
+        },
+        "data": {
+          "version": "1.0.0",
+          "scope": "Selected US nongovernmental nonprofit higher-education endowment branch. Uses the pending shared nonprofit FASB endowment and Illinois UPMIFA source IDs as dependencies, with no nationwide state-law survey and no conclusion for a public institution’s GASB endowment presentation.",
+          "control_objective": "Prevent framework, payer, condition, restriction, allocation and period errors before recognition or reporting.",
+          "control_steps": [
+            {
+              "id": "C1",
+              "action": "capture donor instrument before coding fund"
+            },
+            {
+              "id": "C2",
+              "action": "segregate donor-restricted and board-designated balances"
+            },
+            {
+              "id": "C3",
+              "action": "approve spending against policy and legal restrictions"
+            },
+            {
+              "id": "C4",
+              "action": "Retain reviewer, source locator, exception and reconciliation evidence."
+            }
+          ],
+          "evidence": [
+            "source or agreement copy/link",
+            "entity/framework decision",
+            "subledger or fund rollforward",
+            "reconciliation and exception signoff"
+          ],
+          "failure_response": "Hold or reverse the proposed posting, preserve the input and escalate the unresolved framework or legal question.",
+          "limitations": [
+            "Synthetic control design only; no operating effectiveness test."
+          ]
+        }
+      }
+    ],
+    "example": [
+      {
+        "id": "example-us-education-auxiliary-services-bridge",
+        "kind": "example",
+        "title": "US education auxiliary services and fee routing synthetic bridge",
+        "summary": "Synthetic education example with arithmetic, controls and explicit counterexamples.",
+        "topics": [
+          "Accounting and reporting",
+          "Educational Services",
+          "Synthetic examples"
+        ],
+        "industries": [
+          "Educational Services"
+        ],
+        "jurisdiction": "United States; declared entity and reporting framework required",
+        "source_type": null,
+        "publisher": "Accounting Agents contributors",
+        "source_url": null,
+        "source_ids": [
+          "src_construction_fasb_2014_09",
+          "src_education_gasb35",
+          "src_education_irs_p598_auxiliary"
+        ],
+        "related_ids": [
+          "guide-us-education-auxiliary-services",
+          "workflow-us-education-auxiliary-services",
+          "ctrl-us-education-auxiliary-services"
+        ],
+        "review_status": "editorially-reviewed",
+        "reviewed_at": "2026-09-19",
+        "provenance": {
+          "added_on": "2026-09-19",
+          "reviewer": "Codex AI-assisted original-source research",
+          "note": "Bounded US education completion synthesis from selected original public sources. No professional review, operational evidence or current consolidated Codification/GASB conclusion is asserted."
+        },
+        "rights": {
+          "metadata": "CC0-1.0",
+          "content": "CC-BY-4.0",
+          "external_content": "Not stored; original publisher rights apply",
+          "full_text_stored": false,
+          "source_status": "unknown",
+          "source_license": null,
+          "source_license_url": null,
+          "source_permission_scope": "Original factual metadata and synthesis only; external full text is not stored."
+        },
+        "data": {
+          "version": "1.0.0",
+          "origin": "Original synthetic project-authored example.",
+          "scope": "A 10-week auxiliary housing service for 40 students at $2,000 each, with a separate commercial lease counterexample.",
+          "frameworks": [
+            "US GAAP selected model",
+            "GASB routing counterexample",
+            "US federal tax boundary"
+          ],
+          "close_period": {
+            "start": "2026-01-01",
+            "end": "2026-12-31",
+            "cutoff": "2026-12-31"
+          },
+          "assumptions": [
+            "40 service contracts at $2,000 each, cash collected at start: $80,000.",
+            "The service is delivered evenly over 10 weeks; after week 2, 20% is delivered.",
+            "The fixture is not tuition and has no student-aid or appropriation component.",
+            "Tax treatment is a separate factual branch."
+          ],
+          "inputs": {
+            "contracts": 40,
+            "price_each": 2000,
+            "cash_received": 80000,
+            "weeks_total": 10,
+            "weeks_delivered": 2,
+            "service_revenue": 16000,
+            "deferred_service": 64000,
+            "direct_costs_incurred": 6000
+          },
+          "journals": [
+            {
+              "id": "A1",
+              "debit": "cash",
+              "credit": "deferred_auxiliary_service_revenue",
+              "amount": 80000
+            },
+            {
+              "id": "A2",
+              "debit": "deferred_auxiliary_service_revenue",
+              "credit": "auxiliary_service_revenue",
+              "amount": 16000
+            },
+            {
+              "id": "A3",
+              "debit": "auxiliary_service_expense",
+              "credit": "cash_or_payable",
+              "amount": 6000
+            }
+          ],
+          "calculation": {
+            "cash": 80000,
+            "deferred_revenue": 64000,
+            "recognized_revenue": 16000,
+            "expense": 6000,
+            "journal_balance_difference": 0
+          },
+          "counterexamples": [
+            "A public appropriation is not a customer service fee.",
+            "A commercial lease with substantial services may have a different federal tax boundary than bare rent.",
+            "A bundled instructional housing promise needs separate-service and allocation evidence."
+          ],
+          "limitations": [
+            "Synthetic example, not an operational ledger or tax conclusion.",
+            "Historical ASU and GASB text are locator aids; current consolidated requirements were not reviewed."
+          ],
+          "examples": [
+            {
+              "id": "base-service",
+              "label": "Base synthetic service-period branch",
+              "assumptions": [
+                "40 contracts at $2,000",
+                "2 of 10 service weeks delivered"
+              ],
+              "result": "Recognize $16,000 and retain $64,000 deferred after the $80,000 cash receipt."
+            },
+            {
+              "id": "commercial-lease",
+              "label": "Independent tax counterexample",
+              "assumptions": [
+                "Commercial lease includes substantial services"
+              ],
+              "result": "Route for separate UBIT and lease analysis; do not reuse the base education-service conclusion."
+            }
+          ]
+        }
+      },
+      {
+        "id": "example-us-education-federal-grant-bridge",
+        "kind": "example",
+        "title": "US education grants and restricted-award routing synthetic bridge",
+        "summary": "Synthetic education example with arithmetic, controls and explicit counterexamples.",
+        "topics": [
+          "Accounting and reporting",
+          "Educational Services",
+          "Synthetic examples"
+        ],
+        "industries": [
+          "Educational Services"
+        ],
+        "jurisdiction": "United States; declared entity and reporting framework required",
+        "source_type": null,
+        "publisher": "Accounting Agents contributors",
+        "source_url": null,
+        "source_ids": [
+          "src_nonprofit_fasb_2018_08",
+          "src_cfr200grants",
+          "src_education_fsa_2526_disbursement",
+          "src_education_gasb35"
+        ],
+        "related_ids": [
+          "guide-us-education-federal-grants",
+          "workflow-us-education-federal-grants",
+          "ctrl-us-education-federal-grants"
+        ],
+        "review_status": "editorially-reviewed",
+        "reviewed_at": "2026-09-19",
+        "provenance": {
+          "added_on": "2026-09-19",
+          "reviewer": "Codex AI-assisted original-source research",
+          "note": "Bounded US education completion synthesis from selected original public sources. No professional review, operational evidence or current consolidated Codification/GASB conclusion is asserted."
+        },
+        "rights": {
+          "metadata": "CC0-1.0",
+          "content": "CC-BY-4.0",
+          "external_content": "Not stored; original publisher rights apply",
+          "full_text_stored": false,
+          "source_status": "unknown",
+          "source_license": null,
+          "source_license_url": null,
+          "source_permission_scope": "Original factual metadata and synthesis only; external full text is not stored."
+        },
+        "data": {
+          "version": "1.0.0",
+          "origin": "Original synthetic project-authored example.",
+          "scope": "A $120,000 federal award with three $40,000 conditional milestones; the base branch recognizes one tranche only after documented eligible-cost and milestone evidence.",
+          "frameworks": [
+            "US GAAP selected nonprofit route",
+            "2 CFR Part 200 award-control route"
+          ],
+          "close_period": {
+            "start": "2026-01-01",
+            "end": "2026-12-31",
+            "cutoff": "2026-12-31"
+          },
+          "assumptions": [
+            "Cash of $120,000 is received before any milestone is met.",
+            "The first $40,000 milestone is met on 2026-06-30 and has a documented return right before that date.",
+            "$30,000 of costs are eligible and allocable to the first tranche; $10,000 is held for later eligible activity.",
+            "The example does not decide whether a real agreement is a contribution or exchange without reading its terms."
+          ],
+          "journals": [
+            {
+              "id": "G1",
+              "debit": "cash",
+              "credit": "refundable_advance",
+              "amount": 120000
+            },
+            {
+              "id": "G2",
+              "debit": "refundable_advance",
+              "credit": "contribution_or_award_revenue",
+              "amount": 40000
+            },
+            {
+              "id": "G3",
+              "debit": "eligible_program_expense",
+              "credit": "cash_or_payable",
+              "amount": 30000
+            }
+          ],
+          "calculation": {
+            "cash_received": 120000,
+            "recognized_first_tranche": 40000,
+            "unrecognized_conditional_balance": 80000,
+            "eligible_cost": 30000,
+            "journal_balance_difference": 0
+          },
+          "counterexamples": [
+            "A reciprocal contract with commensurate provider value may be exchange revenue.",
+            "A cost that fails necessary, reasonable or allocable tests cannot be made allowable by a balanced ledger.",
+            "Title IV credit-balance administration is not proof of award revenue recognition."
+          ],
+          "limitations": [
+            "Synthetic award terms and costs; no agency award or operational evidence.",
+            "Current consolidated GAAP, agency supplements and professional compliance review remain open."
+          ],
+          "examples": [
+            {
+              "id": "conditional-award",
+              "label": "Base synthetic conditional-award branch",
+              "assumptions": [
+                "$120,000 cash before three milestone barriers",
+                "one $40,000 milestone verified"
+              ],
+              "result": "Recognize only the verified tranche in the illustrative branch and retain $80,000 conditional."
+            },
+            {
+              "id": "exchange-contract",
+              "label": "Independent exchange counterexample",
+              "assumptions": [
+                "Provider receives commensurate value"
+              ],
+              "result": "Route outside the contribution branch and read the applicable revenue guidance."
+            }
+          ]
+        }
+      },
+      {
+        "id": "example-us-education-public-appropriation-routing",
+        "kind": "example",
+        "title": "US public education appropriations and reporting-model routing synthetic bridge",
+        "summary": "Synthetic education example with arithmetic, controls and explicit counterexamples.",
+        "topics": [
+          "Accounting and reporting",
+          "Educational Services",
+          "Synthetic examples"
+        ],
+        "industries": [
+          "Educational Services"
+        ],
+        "jurisdiction": "United States; declared entity and reporting framework required",
+        "source_type": null,
+        "publisher": "Accounting Agents contributors",
+        "source_url": null,
+        "source_ids": [
+          "src_education_gasb35",
+          "src_roadmap_gasb34_basis"
+        ],
+        "related_ids": [
+          "guide-us-education-public-appropriations",
+          "workflow-us-education-public-appropriations",
+          "ctrl-us-education-public-appropriations"
+        ],
+        "review_status": "editorially-reviewed",
+        "reviewed_at": "2026-09-19",
+        "provenance": {
+          "added_on": "2026-09-19",
+          "reviewer": "Codex AI-assisted original-source research",
+          "note": "Bounded US education completion synthesis from selected original public sources. No professional review, operational evidence or current consolidated Codification/GASB conclusion is asserted."
+        },
+        "rights": {
+          "metadata": "CC0-1.0",
+          "content": "CC-BY-4.0",
+          "external_content": "Not stored; original publisher rights apply",
+          "full_text_stored": false,
+          "source_status": "unknown",
+          "source_license": null,
+          "source_license_url": null,
+          "source_permission_scope": "Original factual metadata and synthesis only; external full text is not stored."
+        },
+        "data": {
+          "version": "1.0.0",
+          "origin": "Original synthetic project-authored example.",
+          "scope": "A public college receives a $1,200,000 primary-government appropriation and $800,000 tuition fees. The fixture keeps the appropriation outside the tuition subledger and shows a historical GASB 35 business-type presentation branch.",
+          "frameworks": [
+            "GASB historical routing example"
+          ],
+          "close_period": {
+            "start": "2026-01-01",
+            "end": "2026-12-31",
+            "cutoff": "2026-12-31"
+          },
+          "assumptions": [
+            "The legal appropriation is from the primary government and is not a student exchange transaction.",
+            "The $800,000 tuition receipt is separately supported by enrollment and service evidence.",
+            "The $1,200,000 amount is shown as nonoperating in the historical business-type illustration branch only.",
+            "Current GASB reporting model and amendments are not concluded."
+          ],
+          "journals": [
+            {
+              "id": "P1",
+              "debit": "cash",
+              "credit": "appropriation_revenue_or_transfer",
+              "amount": 1200000
+            },
+            {
+              "id": "P2",
+              "debit": "cash_or_receivable",
+              "credit": "tuition_revenue",
+              "amount": 800000
+            }
+          ],
+          "calculation": {
+            "appropriation": 1200000,
+            "tuition": 800000,
+            "cash_or_receivable_total": 2000000,
+            "journal_balance_difference": 0
+          },
+          "counterexamples": [
+            "A tuition charge is not an appropriation.",
+            "A capital-purpose appropriation may require a different presentation.",
+            "A public activity with external fees does not by itself determine the entire institution reporting model."
+          ],
+          "limitations": [
+            "Synthetic public-college fixture.",
+            "Historical GASB 35 illustration is not a current consolidated GASB conclusion or professional review."
+          ],
+          "examples": [
+            {
+              "id": "primary-government",
+              "label": "Historical business-type presentation branch",
+              "assumptions": [
+                "$1,200,000 primary-government appropriation",
+                "$800,000 tuition"
+              ],
+              "result": "Keep appropriation outside tuition and show the historical nonoperating illustration branch pending current GASB review."
+            },
+            {
+              "id": "capital-purpose",
+              "label": "Independent capital-purpose counterexample",
+              "assumptions": [
+                "Appropriation restricted to capital purpose"
+              ],
+              "result": "Escalate for separate presentation and current GASB applicability."
+            }
+          ]
+        }
+      },
+      {
+        "id": "example-us-education-endowment-rollforward",
+        "kind": "example",
+        "title": "US education endowment and restricted-resource routing synthetic bridge",
+        "summary": "Synthetic education example with arithmetic, controls and explicit counterexamples.",
+        "topics": [
+          "Accounting and reporting",
+          "Educational Services",
+          "Synthetic examples"
+        ],
+        "industries": [
+          "Educational Services"
+        ],
+        "jurisdiction": "United States; declared entity and reporting framework required",
+        "source_type": null,
+        "publisher": "Accounting Agents contributors",
+        "source_url": null,
+        "source_ids": [
+          "src_nonprofit_fasb_2016_14",
+          "src_nonprofit_illinois_upmifa_2009",
+          "src_nonprofit_fasb_2018_08"
+        ],
+        "related_ids": [
+          "guide-us-education-endowment-routing",
+          "workflow-us-education-endowment-routing",
+          "ctrl-us-education-endowment-routing"
+        ],
+        "review_status": "editorially-reviewed",
+        "reviewed_at": "2026-09-19",
+        "provenance": {
+          "added_on": "2026-09-19",
+          "reviewer": "Codex AI-assisted original-source research",
+          "note": "Bounded US education completion synthesis from selected original public sources. No professional review, operational evidence or current consolidated Codification/GASB conclusion is asserted."
+        },
+        "rights": {
+          "metadata": "CC0-1.0",
+          "content": "CC-BY-4.0",
+          "external_content": "Not stored; original publisher rights apply",
+          "full_text_stored": false,
+          "source_status": "unknown",
+          "source_license": null,
+          "source_license_url": null,
+          "source_permission_scope": "Original factual metadata and synthesis only; external full text is not stored."
+        },
+        "data": {
+          "version": "1.0.0",
+          "origin": "Original synthetic project-authored example.",
+          "scope": "A nongovernmental nonprofit college has a donor-restricted endowment opening balance of $1,000,000, investment return of $60,000, spending of $40,000 and a separate board-designated quasi-endowment of $200,000.",
+          "frameworks": [
+            "US GAAP selected nonprofit route",
+            "Selected Illinois law example"
+          ],
+          "close_period": {
+            "start": "2026-01-01",
+            "end": "2026-12-31",
+            "cutoff": "2026-12-31"
+          },
+          "assumptions": [
+            "The donor instrument restricts the $1,000,000 fund; board designation applies only to the separate $200,000 fund.",
+            "The $40,000 spending is approved and documented under the applicable instrument and policy.",
+            "The $60,000 return is allocated to the donor-restricted fund under the selected policy.",
+            "Illinois law is only a routing example; governing law must be confirmed."
+          ],
+          "journals": [
+            {
+              "id": "E1",
+              "debit": "investments_or_cash",
+              "credit": "net_assets_with_donor_restrictions_return",
+              "amount": 60000
+            },
+            {
+              "id": "E2",
+              "debit": "net_assets_with_donor_restrictions_spending",
+              "credit": "cash_or_payable",
+              "amount": 40000
+            },
+            {
+              "id": "E3",
+              "debit": "net_assets_with_donor_restrictions",
+              "credit": "net_assets_without_donor_restrictions_release",
+              "amount": 40000
+            }
+          ],
+          "calculation": {
+            "donor_restricted_opening": 1000000,
+            "investment_return": 60000,
+            "spending": -40000,
+            "donor_restricted_ending": 1020000,
+            "board_designated_quasi_endowment": 200000,
+            "journal_balance_difference": 0
+          },
+          "counterexamples": [
+            "Board designation is not donor restriction.",
+            "Endowment spending is not automatically tuition revenue.",
+            "An underwater or modified fund requires separate evidence and may not follow the base branch."
+          ],
+          "limitations": [
+            "Synthetic fund rollforward.",
+            "Pending nonprofit source dependencies must be present before integration.",
+            "No donor instrument, live fund, legal opinion or professional review."
+          ],
+          "examples": [
+            {
+              "id": "donor-restricted",
+              "label": "Base synthetic donor-restricted branch",
+              "assumptions": [
+                "$1,000,000 opening restricted fund",
+                "$60,000 return",
+                "$40,000 approved spending"
+              ],
+              "result": "Ending donor-restricted balance is $1,020,000 before any separately supported release presentation."
+            },
+            {
+              "id": "board-designated",
+              "label": "Independent board-designated counterexample",
+              "assumptions": [
+                "$200,000 board designation without donor restriction"
+              ],
+              "result": "Track separately from donor-restricted endowment and retain board evidence."
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "source_revisions": [
+    {
+      "id": "src_education_gasb35",
+      "before": {
+        "topics": [
+          "Education",
+          "Student aid",
+          "Revenue and customer contracts",
+          "Source data, lineage and reconciliation"
+        ],
+        "industries": [
+          "Educational Services"
+        ],
+        "jurisdiction": "United States; declared entity and reporting framework required",
+        "source_type": "original accounting standard",
+        "publisher": "Governmental Accounting Standards Board",
+        "source_url": "https://storage.gasb.org/GASBS%2035.pdf",
+        "related_ids": [],
+        "review_status": "source-checked",
+        "reviewed_at": "2026-09-18",
+        "provenance": {
+          "added_on": "2026-09-18",
+          "reviewer": "Codex AI-assisted research",
+          "scope": "Paragraphs 2-5 (public-college scope), 6-8 (historical transition)",
+          "method": "Read original publisher web/PDF scoped sections on 2026-09-18",
+          "outcome": "Original November1999 statement, not current consolidated GASB guidance; later amendments require separate review.",
+          "note": "Original November1999 statement, not current consolidated GASB guidance; later amendments require separate review."
+        },
+        "rights": {
+          "metadata": "CC0-1.0",
+          "content": "CC-BY-4.0",
+          "external_content": "Original editorial summary is project content; external source rights are unknown and no publisher text is stored.",
+          "full_text_stored": false,
+          "source_status": "unknown",
+          "source_license": null
+        },
+        "id": "src_education_gasb35",
+        "kind": "source",
+        "title": "GASB Statement 35: Public colleges and universities",
+        "summary": "Original November1999 statement, not current consolidated GASB guidance; later amendments require separate review.",
+        "source_ids": [],
+        "data": {
+          "publication": {
+            "edition": "November 1999"
+          },
+          "locators": [
+            {
+              "locator": "Paragraphs 2-5 (public-college scope), 6-8 (historical transition)"
+            }
+          ],
+          "access_note": "Original publisher excerpt read; full text is not stored.",
+          "effective_period": "Historical implementation phases in paragraphs6-8; current applicability not established by historical text alone",
+          "limitations": [
+            "Original November1999 statement, not current consolidated GASB guidance; later amendments require separate review."
+          ],
+          "question_ids": [
+            "q-revenue",
+            "q-grants-contributions"
+          ]
+        }
+      },
+      "after": {
+        "topics": [
+          "Education",
+          "Student aid",
+          "Revenue and customer contracts",
+          "Source data, lineage and reconciliation"
+        ],
+        "industries": [
+          "Educational Services"
+        ],
+        "jurisdiction": "United States; declared entity and reporting framework required",
+        "source_type": "original accounting standard",
+        "publisher": "Governmental Accounting Standards Board",
+        "source_url": "https://storage.gasb.org/GASBS%2035.pdf",
+        "related_ids": [
+          "example-us-education-public-appropriation-routing",
+          "guide-us-education-auxiliary-services",
+          "guide-us-education-public-appropriations"
+        ],
+        "review_status": "source-checked",
+        "reviewed_at": "2026-09-18",
+        "provenance": {
+          "added_on": "2026-09-18",
+          "reviewer": "Codex AI-assisted research",
+          "scope": "Paragraphs 2-5 (public-college scope), 6-8 (historical transition)",
+          "method": "Read original publisher web/PDF scoped sections on 2026-09-18",
+          "outcome": "Original November1999 statement, not current consolidated GASB guidance; later amendments require separate review.",
+          "note": "Original November1999 statement, not current consolidated GASB guidance; later amendments require separate review.",
+          "revision_history": [
+            {
+              "date": "2026-09-19",
+              "scope": "Education completion review of public-college business-type activity, auxiliary enterprises and appropriations using selected original GASB 35 paragraphs; historical source limits retained.",
+              "reviewer": "Codex AI-assisted original-source research",
+              "professional_review": "not-performed"
+            }
+          ]
+        },
+        "rights": {
+          "metadata": "CC0-1.0",
+          "content": "CC-BY-4.0",
+          "external_content": "Original editorial summary is project content; external source rights are unknown and no publisher text is stored.",
+          "full_text_stored": false,
+          "source_status": "unknown",
+          "source_license": null
+        },
+        "id": "src_education_gasb35",
+        "kind": "source",
+        "title": "GASB Statement 35: Public colleges and universities",
+        "summary": "Original November1999 statement, not current consolidated GASB guidance; later amendments require separate review.",
+        "source_ids": [],
+        "data": {
+          "publication": {
+            "edition": "November 1999"
+          },
+          "locators": [
+            {
+              "locator": "Paragraphs 2-5 (public-college scope), 6-8 (historical transition)"
+            },
+            {
+              "locator": "Paragraphs 43-46, PDF pp. 24-25: public colleges may report as special-purpose governments engaged in governmental activities, business-type activities or both; business-type activity is available where fees are charged to external users."
+            },
+            {
+              "locator": "Paragraphs 50-52, PDF p. 26: appropriations from a primary government are illustrated as nonoperating revenue in the business-type presentation; the Board did not create an industry-specific operating-revenue exclusion."
+            },
+            {
+              "locator": "Illustrative financial statements, PDF pp. 35-36: auxiliary enterprises such as residential life and bookstore are shown separately, with auxiliary enterprise charges in cash flows."
+            },
+            {
+              "locator": "Paragraphs .101-.106, PDF pp. 57-62: business-type activities are financed in whole or in part by fees charged to external users and public-college reporting routes remain entity/reporting-model dependent."
+            }
+          ],
+          "access_note": "Original publisher excerpt read; full text is not stored.",
+          "effective_period": "Historical implementation phases in paragraphs6-8; current applicability not established by historical text alone",
+          "limitations": [
+            "Original November1999 statement, not current consolidated GASB guidance; later amendments require separate review."
+          ],
+          "question_ids": [
+            "q-grants-contributions",
+            "q-revenue",
+            "rq-us-education-auxiliary-services",
+            "rq-us-education-public-appropriations"
+          ],
+          "supplemental_reviews": [
+            {
+              "batch": "AA-I111-education-completion",
+              "reviewed_at": "2026-09-19",
+              "review_level": "substantive-excerpt",
+              "checked_url": "https://storage.gasb.org/GASBS%2035.pdf",
+              "locator": "GASB 35 paragraphs 43-46 and 50-52; illustrative auxiliary-enterprise statements PDF pp. 35-36; paragraphs .101-.106 PDF pp. 57-62.",
+              "publication_or_edition": "November 1999 original statement; selected original text, not current consolidated GASB guidance.",
+              "effective_period": "Historical GASB 35 implementation and selected reporting text; confirm current GASB 34/35 amendments and entity reporting model before applying.",
+              "evidence_summary": "The original statement supports explicit routing of public colleges among governmental, business-type or combined reporting models, identifies external-user fee activity as a business-type route, and illustrates appropriations and auxiliary enterprises. It does not establish a current consolidated conclusion.",
+              "limitations": [
+                "Historical original statement only; current consolidated GASB guidance and entity facts remain open.",
+                "Appropriation operating/nonoperating presentation requires current framework and reporting-model review.",
+                "No public institution ledger or professional review was performed."
+              ],
+              "checks": [
+                {
+                  "url": "https://storage.gasb.org/GASBS%2035.pdf",
+                  "method": "official publisher PDF selected passages",
+                  "outcome": "Selected paragraphs and illustrative financial statements read live on 2026-09-19.",
+                  "material_read": true
+                }
+              ],
+              "rights_review": {
+                "status": "unknown",
+                "license": null,
+                "license_url": null,
+                "scope": null,
+                "note": "Public access does not establish reuse permission; no full text is stored."
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "questions": [
+    {
+      "id": "rq-us-education-auxiliary-services",
+      "record_id": "guide-us-education-auxiliary-services",
+      "pointer": "/data/research_questions/0",
+      "family_ids": [
+        "q-revenue",
+        "q-grants-contributions",
+        "q-reporting-basis"
+      ],
+      "question": "How should a selected US education provider separate auxiliary service fees from tuition, public-entity reporting-model routing and the federal tax boundary for unrelated activity?",
+      "scope": "Selected US higher-education auxiliary-service branches: nongovernmental US GAAP, public GASB business-type/governmental routing and for-profit US GAAP. Covers housing, dining, bookstore and a commercial lease/service counterexample; it is not a campus-wide chart of accounts or tax opinion.",
+      "answer_status": "sourced-answer-and-original-example",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_construction_fasb_2014_09",
+        "src_education_gasb35",
+        "src_education_irs_p598_auxiliary"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_construction_fasb_2014_09",
+          "locator": "ASU 2014-09 Section A, ASC 606-10-25-1 through 25-2, 25-27 through 25-37, 32-1 through 32-6 and 45-1 through 45-5; original issued text, current consolidated GAAP not reviewed.",
+          "period_pointer": "/data/published_or_status"
+        },
+        {
+          "source_id": "src_education_gasb35",
+          "locator": "GASB 35 paragraphs 43-46 and .101-.106; external-user fees and public-college business-type/governmental routing.",
+          "period_pointer": "/data/effective_period",
+          "locator_pointers": [
+            "/data/locators/1",
+            "/data/locators/4"
+          ]
+        },
+        {
+          "source_id": "src_education_irs_p598_auxiliary",
+          "locator": "Publication 598, sections 1 and 3: colleges and universities, trade or business, substantially related, dual-use facilities and services with lease.",
+          "period_pointer": "/data/effective_period",
+          "locator_pointers": [
+            "/data/locators/0",
+            "/data/locators/1",
+            "/data/locators/2",
+            "/data/locators/3",
+            "/data/locators/4"
+          ]
+        }
+      ],
+      "remaining_gaps": [
+        "student housing bundled with instruction may require distinct-service and allocation analysis",
+        "commercial lease or excess facility scale can create a different tax route",
+        "public appropriations are not auxiliary customer revenue",
+        "current consolidated GAAP/GASB and tax law require separate review",
+        "No professional review, operational population or measured agent performance."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Selected original-source locators, bounded roles, workflow, controls, synthetic example and counterexamples are present; current consolidated guidance and operational evidence remain incomplete.",
+      "reviewed_at": "2026-09-19"
+    },
+    {
+      "id": "rq-us-education-federal-grants",
+      "record_id": "guide-us-education-federal-grants",
+      "pointer": "/data/research_questions/0",
+      "family_ids": [
+        "q-revenue",
+        "q-grants-contributions",
+        "q-reporting-basis"
+      ],
+      "question": "How should an education provider distinguish a federal grant or award from tuition exchange revenue and control award costs across nonprofit and public routes?",
+      "scope": "Selected US education federal-award branch for a nongovernmental nonprofit or public institution receiving a grant. Covers contribution-versus-exchange, conditional barriers, allowability and source-supported award records; it does not conclude any institution-specific award.",
+      "answer_status": "sourced-answer-and-original-example",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_nonprofit_fasb_2018_08",
+        "src_cfr200grants",
+        "src_education_fsa_2526_disbursement",
+        "src_education_gasb35"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_nonprofit_fasb_2018_08",
+          "locator": "ASU 2018-08 PDF pp. 7-10; 958-605-15-5A and 958-605-25-5A through 25-5F; contribution versus exchange and conditionality.",
+          "period_pointer": "/data/effective_period",
+          "locator_pointers": [
+            "/data/locators/0",
+            "/data/locators/1",
+            "/data/locators/2",
+            "/data/locators/3"
+          ]
+        },
+        {
+          "source_id": "src_cfr200grants",
+          "locator": "2 CFR §§200.101(b)-(c), 200.302(b)(3),(5),(7), 200.403(a)-(h), 200.405(a)-(e); award applicability, records, allowability and allocability.",
+          "period_pointer": "/data/source_review/effective_period",
+          "locator_pointers": [
+            "/data/source_review/source_locator"
+          ]
+        },
+        {
+          "source_id": "src_education_fsa_2526_disbursement",
+          "locator": "FSA Handbook 2025-2026 Volume 4 Chapter 2, Institutional Versus Noninstitutional Charges and Title IV Credit Balances; program administration only.",
+          "period_pointer": "/data/effective_period",
+          "locator_pointers": [
+            "/data/locators/0",
+            "/data/locators/1"
+          ]
+        },
+        {
+          "source_id": "src_education_gasb35",
+          "locator": "GASB 35 paragraphs 43-46; public reporting-model routing remains separate from federal-award terms.",
+          "period_pointer": "/data/effective_period",
+          "locator_pointers": [
+            "/data/locators/1"
+          ]
+        }
+      ],
+      "remaining_gaps": [
+        "an exchange contract can fall under revenue guidance rather than contribution guidance",
+        "award terms or agency supplements can control over general Part 200 defaults",
+        "public framework and nonprofit framework cannot be blended",
+        "pending nonprofit endowment and Illinois IDs are not required for this grant branch",
+        "No professional review, operational population or measured agent performance."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Selected original-source locators, bounded roles, workflow, controls, synthetic example and counterexamples are present; current consolidated guidance and operational evidence remain incomplete.",
+      "reviewed_at": "2026-09-19"
+    },
+    {
+      "id": "rq-us-education-public-appropriations",
+      "record_id": "guide-us-education-public-appropriations",
+      "pointer": "/data/research_questions/0",
+      "family_ids": [
+        "q-revenue",
+        "q-grants-contributions",
+        "q-reporting-basis"
+      ],
+      "question": "How should a public college route primary-government appropriations without treating them as tuition or assuming operating revenue?",
+      "scope": "Selected US public-college appropriation branch using historical GASB 35 text and the existing GASB 34 source foundation. Covers primary-government appropriations, governmental/business-type activity selection and a tuition counterexample; current consolidated GASB applicability remains open.",
+      "answer_status": "sourced-answer-and-original-example",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_education_gasb35",
+        "src_roadmap_gasb34_basis"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_education_gasb35",
+          "locator": "GASB 35 paragraphs 43-46, 50-52; PDF pp. 24-26, public-college reporting models and appropriation presentation.",
+          "period_pointer": "/data/effective_period",
+          "locator_pointers": [
+            "/data/locators/1",
+            "/data/locators/2"
+          ]
+        },
+        {
+          "source_id": "src_roadmap_gasb34_basis",
+          "locator": "Existing source foundation: selected GASB 34 basis and governmental/business-type reporting boundaries; current consolidated applicability remains separate.",
+          "period_pointer": "/data/effective_period"
+        }
+      ],
+      "remaining_gaps": [
+        "capital-purpose appropriations may follow a different presentation",
+        "component units and blended entities require separate analysis",
+        "historical GASB 35 text is not a current consolidated conclusion",
+        "a fee-for-service activity is not automatically the whole reporting entity’s classification",
+        "No professional review, operational population or measured agent performance."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Selected original-source locators, bounded roles, workflow, controls, synthetic example and counterexamples are present; current consolidated guidance and operational evidence remain incomplete.",
+      "reviewed_at": "2026-09-19"
+    },
+    {
+      "id": "rq-us-education-endowment-routing",
+      "record_id": "guide-us-education-endowment-routing",
+      "pointer": "/data/research_questions/0",
+      "family_ids": [
+        "q-revenue",
+        "q-grants-contributions",
+        "q-reporting-basis"
+      ],
+      "question": "How should a selected US nongovernmental education nonprofit distinguish donor-restricted endowment resources from board-designated quasi-endowment resources and document a spending rollforward?",
+      "scope": "Selected US nongovernmental nonprofit higher-education endowment branch. Uses the pending shared nonprofit FASB endowment and Illinois UPMIFA source IDs as dependencies, with no nationwide state-law survey and no conclusion for a public institution’s GASB endowment presentation.",
+      "answer_status": "sourced-answer-and-original-example",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_nonprofit_fasb_2016_14",
+        "src_nonprofit_illinois_upmifa_2009",
+        "src_nonprofit_fasb_2018_08"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_nonprofit_fasb_2016_14",
+          "locator": "ASU 2016-14 PDF pp. 10-11 and 17 (effective period and transition), pp. 30-31 (958-205-45-2 and 45-9), and pp. 41-42 (958-205-50-1A through 50-2): selected donor restrictions, endowment composition, rollforward, policies and underwater disclosures.",
+          "period_pointer": "/data/effective_period",
+          "locator_pointers": [
+            "/data/locators/0",
+            "/data/locators/1",
+            "/data/locators/2",
+            "/data/locators/3",
+            "/data/locators/5",
+            "/data/locators/6",
+            "/data/locators/7"
+          ]
+        },
+        {
+          "source_id": "src_nonprofit_illinois_upmifa_2009",
+          "locator": "760 ILCS 51/2, /3, /4(a)-(c), /6, /7 and /11; selected Illinois institutional-fund routing, donor intent, prudence and appropriation or accumulation only.",
+          "period_pointer": "/data/effective_period",
+          "locator_pointers": [
+            "/data/locators/0",
+            "/data/locators/1",
+            "/data/locators/2",
+            "/data/locators/3",
+            "/data/locators/4",
+            "/data/locators/5"
+          ]
+        },
+        {
+          "source_id": "src_nonprofit_fasb_2018_08",
+          "locator": "ASU 2018-08 PDF pp. 7-10 and 958-605-15-5A; contribution/exchange and condition boundary where a gift or award has provider terms.",
+          "period_pointer": "/data/effective_period",
+          "locator_pointers": [
+            "/data/locators/0",
+            "/data/locators/1"
+          ]
+        }
+      ],
+      "remaining_gaps": [
+        "Illinois law does not represent all state law",
+        "donor consent, court modification and small-fund rules need fact-specific review",
+        "public institutions may follow GASB rather than this nonprofit branch",
+        "endowment investment return is not automatically available tuition revenue",
+        "No professional review, operational population or measured agent performance."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Selected original-source locators, bounded roles, workflow, controls, synthetic example and counterexamples are present; current consolidated guidance and operational evidence remain incomplete.",
+      "reviewed_at": "2026-09-19"
+    }
+  ],
+  "assessments": [
+    {
+      "id": "coverage-us-education-auxiliary-2026-09-19",
+      "industry_code": "611",
+      "question_id": "q-revenue",
+      "status": "partial",
+      "scope": "Selected US higher-education auxiliary-service branches: nongovernmental US GAAP, public GASB business-type/governmental routing and for-profit US GAAP. Covers housing, dining, bookstore and a commercial lease/service counterexample; it is not a campus-wide chart of accounts or tax opinion.",
+      "jurisdictions": [
+        "United States"
+      ],
+      "frameworks": [
+        "US GAAP",
+        "GASB where the public route applies",
+        "US federal requirements or tax boundary where explicitly stated"
+      ],
+      "effective_from": "2026-01-01",
+      "effective_to": "2026-12-31",
+      "reviewed_at": "2026-09-19",
+      "reviewer": "Codex AI-assisted selected-source, workflow, control and synthetic-fixture review",
+      "review_basis": "Inspected selected original public sources and locators, bounded roles, workflow, control, synthetic arithmetic and counterexamples. No current consolidated accounting conclusion, professional review or operational evidence was established.",
+      "source_currency": "verified-within-stated-scope",
+      "evidence_record_ids": [
+        "guide-us-education-auxiliary-services",
+        "workflow-us-education-auxiliary-services",
+        "ctrl-us-education-auxiliary-services",
+        "example-us-education-auxiliary-services-bridge",
+        "src_construction_fasb_2014_09",
+        "src_education_gasb35",
+        "src_education_irs_p598_auxiliary"
+      ],
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "gaps": [
+        "student housing bundled with instruction may require distinct-service and allocation analysis",
+        "commercial lease or excess facility scale can create a different tax route",
+        "public appropriations are not auxiliary customer revenue",
+        "current consolidated GAAP/GASB and tax law require separate review",
+        "No professional review, operational population or measured agent performance."
+      ],
+      "scope_kind": "industry",
+      "family_ids": [
+        "q-grants-contributions",
+        "q-reporting-basis",
+        "q-revenue"
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "No external full text stored; original publisher rights remain separate.",
+        "full_text_stored": false
+      }
+    },
+    {
+      "id": "coverage-us-education-federal-grants-2026-09-19",
+      "industry_code": "611",
+      "question_id": "q-grants-contributions",
+      "status": "partial",
+      "scope": "Selected US education federal-award branch for a nongovernmental nonprofit or public institution receiving a grant. Covers contribution-versus-exchange, conditional barriers, allowability and source-supported award records; it does not conclude any institution-specific award.",
+      "jurisdictions": [
+        "United States"
+      ],
+      "frameworks": [
+        "US GAAP",
+        "GASB where the public route applies",
+        "US federal requirements or tax boundary where explicitly stated"
+      ],
+      "effective_from": "2026-01-01",
+      "effective_to": "2026-12-31",
+      "reviewed_at": "2026-09-19",
+      "reviewer": "Codex AI-assisted selected-source, workflow, control and synthetic-fixture review",
+      "review_basis": "Inspected selected original public sources and locators, bounded roles, workflow, control, synthetic arithmetic and counterexamples. No current consolidated accounting conclusion, professional review or operational evidence was established.",
+      "source_currency": "verified-within-stated-scope",
+      "evidence_record_ids": [
+        "guide-us-education-federal-grants",
+        "workflow-us-education-federal-grants",
+        "ctrl-us-education-federal-grants",
+        "example-us-education-federal-grant-bridge",
+        "src_nonprofit_fasb_2018_08",
+        "src_cfr200grants",
+        "src_education_fsa_2526_disbursement",
+        "src_education_gasb35"
+      ],
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "gaps": [
+        "an exchange contract can fall under revenue guidance rather than contribution guidance",
+        "award terms or agency supplements can control over general Part 200 defaults",
+        "public framework and nonprofit framework cannot be blended",
+        "pending nonprofit endowment and Illinois IDs are not required for this grant branch",
+        "No professional review, operational population or measured agent performance."
+      ],
+      "scope_kind": "industry",
+      "family_ids": [
+        "q-grants-contributions",
+        "q-reporting-basis",
+        "q-revenue"
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "No external full text stored; original publisher rights remain separate.",
+        "full_text_stored": false
+      }
+    },
+    {
+      "id": "coverage-us-education-public-appropriations-2026-09-19",
+      "industry_code": "611",
+      "question_id": "q-government-funds",
+      "status": "partial",
+      "scope": "Selected US public-college appropriation branch using historical GASB 35 text and the existing GASB 34 source foundation. Covers primary-government appropriations, governmental/business-type activity selection and a tuition counterexample; current consolidated GASB applicability remains open.",
+      "jurisdictions": [
+        "United States"
+      ],
+      "frameworks": [
+        "US GAAP",
+        "GASB where the public route applies",
+        "US federal requirements or tax boundary where explicitly stated"
+      ],
+      "effective_from": "2026-01-01",
+      "effective_to": "2026-12-31",
+      "reviewed_at": "2026-09-19",
+      "reviewer": "Codex AI-assisted selected-source, workflow, control and synthetic-fixture review",
+      "review_basis": "Inspected selected original public sources and locators, bounded roles, workflow, control, synthetic arithmetic and counterexamples. No current consolidated accounting conclusion, professional review or operational evidence was established.",
+      "source_currency": "verified-within-stated-scope",
+      "evidence_record_ids": [
+        "guide-us-education-public-appropriations",
+        "workflow-us-education-public-appropriations",
+        "ctrl-us-education-public-appropriations",
+        "example-us-education-public-appropriation-routing",
+        "src_education_gasb35",
+        "src_roadmap_gasb34_basis"
+      ],
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "gaps": [
+        "capital-purpose appropriations may follow a different presentation",
+        "component units and blended entities require separate analysis",
+        "historical GASB 35 text is not a current consolidated conclusion",
+        "a fee-for-service activity is not automatically the whole reporting entity’s classification",
+        "No professional review, operational population or measured agent performance."
+      ],
+      "scope_kind": "industry",
+      "family_ids": [
+        "q-government-funds",
+        "q-grants-contributions",
+        "q-reporting-basis",
+        "q-revenue"
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "No external full text stored; original publisher rights remain separate.",
+        "full_text_stored": false
+      }
+    },
+    {
+      "id": "coverage-us-education-endowment-2026-09-19",
+      "industry_code": "611",
+      "question_id": "q-grants-contributions",
+      "status": "partial",
+      "scope": "Selected US nongovernmental nonprofit higher-education endowment branch. Uses the pending shared nonprofit FASB endowment and Illinois UPMIFA source IDs as dependencies, with no nationwide state-law survey and no conclusion for a public institution’s GASB endowment presentation.",
+      "jurisdictions": [
+        "United States"
+      ],
+      "frameworks": [
+        "US GAAP",
+        "GASB where the public route applies",
+        "US federal requirements or tax boundary where explicitly stated"
+      ],
+      "effective_from": "2026-01-01",
+      "effective_to": "2026-12-31",
+      "reviewed_at": "2026-09-19",
+      "reviewer": "Codex AI-assisted selected-source, workflow, control and synthetic-fixture review",
+      "review_basis": "Inspected selected original public sources and locators, bounded roles, workflow, control, synthetic arithmetic and counterexamples. No current consolidated accounting conclusion, professional review or operational evidence was established.",
+      "source_currency": "verified-within-stated-scope",
+      "evidence_record_ids": [
+        "guide-us-education-endowment-routing",
+        "workflow-us-education-endowment-routing",
+        "ctrl-us-education-endowment-routing",
+        "example-us-education-endowment-rollforward",
+        "src_nonprofit_fasb_2016_14",
+        "src_nonprofit_illinois_upmifa_2009",
+        "src_nonprofit_fasb_2018_08"
+      ],
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "gaps": [
+        "Illinois law does not represent all state law",
+        "donor consent, court modification and small-fund rules need fact-specific review",
+        "public institutions may follow GASB rather than this nonprofit branch",
+        "endowment investment return is not automatically available tuition revenue",
+        "No professional review, operational population or measured agent performance."
+      ],
+      "scope_kind": "industry",
+      "family_ids": [
+        "q-grants-contributions",
+        "q-reporting-basis",
+        "q-revenue"
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "No external full text stored; original publisher rights remain separate.",
+        "full_text_stored": false
+      }
+    }
+  ],
+  "mapping_overrides": {
+    "guide-us-education-auxiliary-services": {
+      "industry_codes": [
+        "611"
+      ],
+      "question_ids": [
+        "q-revenue",
+        "q-grants-contributions",
+        "q-reporting-basis"
+      ],
+      "basis_field": "/data",
+      "reason": "Issue #111 bounded US education completion package; NAICS 611 is a discovery association only and does not establish industry-wide sufficiency.",
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded education route association; no current consolidated accounting, professional or operational sufficiency is inferred."
+    },
+    "workflow-us-education-auxiliary-services": {
+      "industry_codes": [
+        "611"
+      ],
+      "question_ids": [
+        "q-revenue",
+        "q-grants-contributions",
+        "q-reporting-basis"
+      ],
+      "basis_field": "/data",
+      "reason": "Issue #111 bounded US education completion package; NAICS 611 is a discovery association only and does not establish industry-wide sufficiency.",
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded education route association; no current consolidated accounting, professional or operational sufficiency is inferred."
+    },
+    "ctrl-us-education-auxiliary-services": {
+      "industry_codes": [
+        "611"
+      ],
+      "question_ids": [
+        "q-revenue",
+        "q-grants-contributions",
+        "q-reporting-basis"
+      ],
+      "basis_field": "/data",
+      "reason": "Issue #111 bounded US education completion package; NAICS 611 is a discovery association only and does not establish industry-wide sufficiency.",
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded education route association; no current consolidated accounting, professional or operational sufficiency is inferred."
+    },
+    "example-us-education-auxiliary-services-bridge": {
+      "industry_codes": [
+        "611"
+      ],
+      "question_ids": [
+        "q-revenue",
+        "q-grants-contributions",
+        "q-reporting-basis"
+      ],
+      "basis_field": "/data",
+      "reason": "Issue #111 bounded US education completion package; NAICS 611 is a discovery association only and does not establish industry-wide sufficiency.",
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded education route association; no current consolidated accounting, professional or operational sufficiency is inferred."
+    },
+    "guide-us-education-federal-grants": {
+      "industry_codes": [
+        "611"
+      ],
+      "question_ids": [
+        "q-revenue",
+        "q-grants-contributions",
+        "q-reporting-basis"
+      ],
+      "basis_field": "/data",
+      "reason": "Issue #111 bounded US education completion package; NAICS 611 is a discovery association only and does not establish industry-wide sufficiency.",
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded education route association; no current consolidated accounting, professional or operational sufficiency is inferred."
+    },
+    "workflow-us-education-federal-grants": {
+      "industry_codes": [
+        "611"
+      ],
+      "question_ids": [
+        "q-revenue",
+        "q-grants-contributions",
+        "q-reporting-basis"
+      ],
+      "basis_field": "/data",
+      "reason": "Issue #111 bounded US education completion package; NAICS 611 is a discovery association only and does not establish industry-wide sufficiency.",
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded education route association; no current consolidated accounting, professional or operational sufficiency is inferred."
+    },
+    "ctrl-us-education-federal-grants": {
+      "industry_codes": [
+        "611"
+      ],
+      "question_ids": [
+        "q-revenue",
+        "q-grants-contributions",
+        "q-reporting-basis"
+      ],
+      "basis_field": "/data",
+      "reason": "Issue #111 bounded US education completion package; NAICS 611 is a discovery association only and does not establish industry-wide sufficiency.",
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded education route association; no current consolidated accounting, professional or operational sufficiency is inferred."
+    },
+    "example-us-education-federal-grant-bridge": {
+      "industry_codes": [
+        "611"
+      ],
+      "question_ids": [
+        "q-revenue",
+        "q-grants-contributions",
+        "q-reporting-basis"
+      ],
+      "basis_field": "/data",
+      "reason": "Issue #111 bounded US education completion package; NAICS 611 is a discovery association only and does not establish industry-wide sufficiency.",
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded education route association; no current consolidated accounting, professional or operational sufficiency is inferred."
+    },
+    "guide-us-education-public-appropriations": {
+      "industry_codes": [
+        "611"
+      ],
+      "question_ids": [
+        "q-revenue",
+        "q-grants-contributions",
+        "q-reporting-basis"
+      ],
+      "basis_field": "/data",
+      "reason": "Issue #111 bounded US education completion package; NAICS 611 is a discovery association only and does not establish industry-wide sufficiency.",
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded education route association; no current consolidated accounting, professional or operational sufficiency is inferred."
+    },
+    "workflow-us-education-public-appropriations": {
+      "industry_codes": [
+        "611"
+      ],
+      "question_ids": [
+        "q-revenue",
+        "q-grants-contributions",
+        "q-reporting-basis"
+      ],
+      "basis_field": "/data",
+      "reason": "Issue #111 bounded US education completion package; NAICS 611 is a discovery association only and does not establish industry-wide sufficiency.",
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded education route association; no current consolidated accounting, professional or operational sufficiency is inferred."
+    },
+    "ctrl-us-education-public-appropriations": {
+      "industry_codes": [
+        "611"
+      ],
+      "question_ids": [
+        "q-revenue",
+        "q-grants-contributions",
+        "q-reporting-basis"
+      ],
+      "basis_field": "/data",
+      "reason": "Issue #111 bounded US education completion package; NAICS 611 is a discovery association only and does not establish industry-wide sufficiency.",
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded education route association; no current consolidated accounting, professional or operational sufficiency is inferred."
+    },
+    "example-us-education-public-appropriation-routing": {
+      "industry_codes": [
+        "611"
+      ],
+      "question_ids": [
+        "q-revenue",
+        "q-grants-contributions",
+        "q-reporting-basis"
+      ],
+      "basis_field": "/data",
+      "reason": "Issue #111 bounded US education completion package; NAICS 611 is a discovery association only and does not establish industry-wide sufficiency.",
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded education route association; no current consolidated accounting, professional or operational sufficiency is inferred."
+    },
+    "guide-us-education-endowment-routing": {
+      "industry_codes": [
+        "611"
+      ],
+      "question_ids": [
+        "q-revenue",
+        "q-grants-contributions",
+        "q-reporting-basis"
+      ],
+      "basis_field": "/data",
+      "reason": "Issue #111 bounded US education completion package; NAICS 611 is a discovery association only and does not establish industry-wide sufficiency.",
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded education route association; no current consolidated accounting, professional or operational sufficiency is inferred."
+    },
+    "workflow-us-education-endowment-routing": {
+      "industry_codes": [
+        "611"
+      ],
+      "question_ids": [
+        "q-revenue",
+        "q-grants-contributions",
+        "q-reporting-basis"
+      ],
+      "basis_field": "/data",
+      "reason": "Issue #111 bounded US education completion package; NAICS 611 is a discovery association only and does not establish industry-wide sufficiency.",
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded education route association; no current consolidated accounting, professional or operational sufficiency is inferred."
+    },
+    "ctrl-us-education-endowment-routing": {
+      "industry_codes": [
+        "611"
+      ],
+      "question_ids": [
+        "q-revenue",
+        "q-grants-contributions",
+        "q-reporting-basis"
+      ],
+      "basis_field": "/data",
+      "reason": "Issue #111 bounded US education completion package; NAICS 611 is a discovery association only and does not establish industry-wide sufficiency.",
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded education route association; no current consolidated accounting, professional or operational sufficiency is inferred."
+    },
+    "example-us-education-endowment-rollforward": {
+      "industry_codes": [
+        "611"
+      ],
+      "question_ids": [
+        "q-revenue",
+        "q-grants-contributions",
+        "q-reporting-basis"
+      ],
+      "basis_field": "/data",
+      "reason": "Issue #111 bounded US education completion package; NAICS 611 is a discovery association only and does not establish industry-wide sufficiency.",
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded education route association; no current consolidated accounting, professional or operational sufficiency is inferred."
+    },
+    "src_education_irs_p598_auxiliary": {
+      "industry_codes": [
+        "611"
+      ],
+      "question_ids": [
+        "q-revenue",
+        "q-grants-contributions"
+      ],
+      "basis_field": "/data",
+      "reason": "Issue #111 selected auxiliary-service tax boundary; NAICS 611 is a discovery anchor only and tax classification is not GAAP sufficiency.",
+      "reviewed_at": "2026-09-19",
+      "review_note": "Selected federal tax boundary for education auxiliary services; no tax opinion or financial-statement conclusion is inferred."
+    }
+  },
+  "criteria_patch": {
+    "expected_named_research_questions": 286,
+    "new_named_research_questions": 4,
+    "result_named_research_questions": 290
+  },
+  "issue_111_disposition": {
+    "status": "partial-bounded-disposition",
+    "a1": "Existing one-record NAICS 611 baseline and four accepted education questions are enumerated; four completion questions add auxiliary, federal-grant, appropriation and endowment routes.",
+    "a2": "Selected original US sources have locators, effective or publication periods, access limits and unresolved rights. Endowment sources are explicit pending nonprofit dependencies.",
+    "a3": "Each route has inputs, treatment summary, workflow, controls, synthetic arithmetic and counterexamples.",
+    "a4": "Current consolidated guidance, entity facts, state-law breadth, professional review and empirical sufficiency remain unresolved.",
+    "a5": "Package helper provides staged conflict checks and disposable applied validation; canonical release, snapshot, archive and deployment are intentionally outside this source-only package.",
+    "remaining_routes": []
+  },
+  "preservation": {
+    "history": "No catalog, release, snapshot, or existing historical corpus object is changed by this source-only package.",
+    "stable_ids": "Accepted education IDs are referenced and preserved; new IDs are additive.",
+    "shared_sources": "Pending nonprofit endowment source IDs are dependencies; no shared publisher URL is duplicated.",
+    "rights": "Existing and new source rights remain explicit and external full text is not stored."
+  },
+  "integration_source_amendment": {
+    "original_source_commit": "3fbf850fcd7c9ff008fc13a46167b745a0f25606",
+    "reviewed_at": "2026-09-19",
+    "correction": "Endowment guide and registry use explicit FASB and Illinois source locator pointers, including 760 ILCS 51/4(a)-(c), through the shared nonprofit records. No source IDs, source rights or applicability limits are changed."
+  }
+}

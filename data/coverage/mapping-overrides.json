@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "mapping_version": "2026-09-19.12419",
+  "mapping_version": "2026-09-19.12420",
   "updated_at": "2026-09-19",
   "records": {
     "wf-construction-contract-intake": {
@@ -20830,6 +20830,443 @@
       ],
       "reviewed_at": "2026-09-19",
       "review_note": "Bounded source and synthetic application review; no current consolidated ASC conclusion, professional verification, operational evidence or rights upgrade."
+    },
+    "src_nonprofit_fasb_2020_07": {
+      "question_ids": [
+        "q-grants-contributions",
+        "q-presentation",
+        "q-reuse-rights"
+      ],
+      "industry_codes": [
+        "813"
+      ],
+      "basis_field": "/data",
+      "reason": "Issue #117 selected contributed nonfinancial asset source association; NAICS 813 is a discovery anchor only and does not establish recognition or industry sufficiency."
+    },
+    "src_nonprofit_illinois_upmifa_2009": {
+      "question_ids": [
+        "q-grants-contributions",
+        "q-investments",
+        "q-presentation"
+      ],
+      "industry_codes": [
+        "813"
+      ],
+      "basis_field": "/data",
+      "reason": "Issue #117 selected Illinois state-law endowment routing source; state-law applicability remains entity-specific and NAICS 813 is a discovery anchor only."
+    },
+    "guide-us-nonprofit-endowment-spending": {
+      "question_ids": [
+        "q-grants-contributions",
+        "q-investments",
+        "q-presentation",
+        "q-ledger-close"
+      ],
+      "industry_codes": [
+        "813"
+      ],
+      "basis_field": "/data",
+      "reason": "Issue #117 bounded US nonprofit endowment package; NAICS 813 is a discovery association only and does not limit cross-industry nonprofit applicability."
+    },
+    "guide-us-nonprofit-contributed-nonfinancial-assets": {
+      "question_ids": [
+        "q-grants-contributions",
+        "q-presentation",
+        "q-ledger-close",
+        "q-reuse-rights"
+      ],
+      "industry_codes": [
+        "813"
+      ],
+      "basis_field": "/data",
+      "reason": "Issue #117 bounded US nonprofit contributed nonfinancial asset package; NAICS 813 is a discovery association only and recognition remains a separate current-framework judgment."
+    },
+    "guide-us-nonprofit-federal-reporting": {
+      "question_ids": [
+        "q-tax-returns",
+        "q-grants-contributions",
+        "q-cost-allocation",
+        "q-compliance-assurance",
+        "q-presentation"
+      ],
+      "industry_codes": [
+        "813"
+      ],
+      "basis_field": "/data",
+      "reason": "Issue #117 selected nonprofit Form 990 and Federal-award reporting package; NAICS 813 is a discovery association only and tax, GAAP and award conclusions remain separate."
+    },
+    "guide-us-nonprofit-cross-industry-routing": {
+      "question_ids": [
+        "q-reporting-basis",
+        "q-grants-contributions",
+        "q-government-funds",
+        "q-revenue"
+      ],
+      "industry_codes": [
+        "813"
+      ],
+      "basis_field": "/data",
+      "reason": "Issue #117 cross-industry nonprofit routing map; NAICS 813 is a schema anchor and no conclusion propagates across activity, entity or framework."
+    },
+    "example-us-nonprofit-endowment-rollforward": {
+      "question_ids": [
+        "q-grants-contributions",
+        "q-investments",
+        "q-presentation",
+        "q-ledger-close",
+        "q-evaluation"
+      ],
+      "industry_codes": [
+        "813"
+      ],
+      "basis_field": "/data",
+      "reason": "Issue #117 synthetic endowment fixture; arithmetic and counterexamples support discovery only and do not establish accounting adequacy."
+    },
+    "example-us-nonprofit-contributed-nonfinancial-assets": {
+      "question_ids": [
+        "q-grants-contributions",
+        "q-presentation",
+        "q-ledger-close",
+        "q-reuse-rights",
+        "q-evaluation"
+      ],
+      "industry_codes": [
+        "813"
+      ],
+      "basis_field": "/data",
+      "reason": "Issue #117 synthetic contributed goods and services fixture; recognition assumptions and counterexamples support discovery only."
+    },
+    "example-us-nonprofit-federal-reporting-bridge": {
+      "question_ids": [
+        "q-tax-returns",
+        "q-grants-contributions",
+        "q-cost-allocation",
+        "q-compliance-assurance",
+        "q-evaluation"
+      ],
+      "industry_codes": [
+        "813"
+      ],
+      "basis_field": "/data",
+      "reason": "Issue #117 synthetic Form 990 and Federal-award bridge; selected arithmetic does not establish filing or compliance conclusions."
+    },
+    "workflow-us-nonprofit-endowment-spending": {
+      "question_ids": [
+        "q-grants-contributions",
+        "q-investments",
+        "q-presentation",
+        "q-ledger-close",
+        "q-human-authority"
+      ],
+      "industry_codes": [
+        "813"
+      ],
+      "basis_field": "/data",
+      "reason": "Issue #117 read-only endowment workflow; authority and review boundaries are descriptive and not execution evidence."
+    },
+    "workflow-us-nonprofit-contributed-nonfinancial-assets": {
+      "question_ids": [
+        "q-grants-contributions",
+        "q-presentation",
+        "q-ledger-close",
+        "q-human-authority"
+      ],
+      "industry_codes": [
+        "813"
+      ],
+      "basis_field": "/data",
+      "reason": "Issue #117 read-only contributed-asset workflow; recognition and filing decisions remain human-owned."
+    },
+    "workflow-us-nonprofit-federal-reporting": {
+      "question_ids": [
+        "q-tax-returns",
+        "q-grants-contributions",
+        "q-cost-allocation",
+        "q-compliance-assurance",
+        "q-human-authority"
+      ],
+      "industry_codes": [
+        "813"
+      ],
+      "basis_field": "/data",
+      "reason": "Issue #117 read-only Form 990 and Federal-award workflow; filing and compliance conclusions remain human-owned."
+    },
+    "ctrl-us-nonprofit-endowment-donor-instrument": {
+      "question_ids": [
+        "q-grants-contributions",
+        "q-investments",
+        "q-controls-fraud",
+        "q-human-authority"
+      ],
+      "industry_codes": [
+        "813"
+      ],
+      "basis_field": "/data",
+      "reason": "Issue #117 proposed endowment control; control design is not operating-effectiveness or professional evidence."
+    },
+    "ctrl-us-nonprofit-contributed-asset-valuation": {
+      "question_ids": [
+        "q-grants-contributions",
+        "q-presentation",
+        "q-controls-fraud",
+        "q-human-authority"
+      ],
+      "industry_codes": [
+        "813"
+      ],
+      "basis_field": "/data",
+      "reason": "Issue #117 proposed contributed-asset control; control design is not a recognition, valuation or operating-effectiveness conclusion."
+    },
+    "ctrl-us-nonprofit-federal-reporting-reconciliation": {
+      "question_ids": [
+        "q-tax-returns",
+        "q-cost-allocation",
+        "q-compliance-assurance",
+        "q-controls-fraud",
+        "q-human-authority"
+      ],
+      "industry_codes": [
+        "813"
+      ],
+      "basis_field": "/data",
+      "reason": "Issue #117 proposed Form 990 and Federal-award reconciliation control; design does not establish filing accuracy or compliance."
+    },
+    "guide-us-education-auxiliary-services": {
+      "industry_codes": [
+        "611"
+      ],
+      "question_ids": [
+        "q-revenue",
+        "q-grants-contributions",
+        "q-reporting-basis"
+      ],
+      "basis_field": "/data",
+      "reason": "Issue #111 bounded US education completion package; NAICS 611 is a discovery association only and does not establish industry-wide sufficiency.",
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded education route association; no current consolidated accounting, professional or operational sufficiency is inferred."
+    },
+    "workflow-us-education-auxiliary-services": {
+      "industry_codes": [
+        "611"
+      ],
+      "question_ids": [
+        "q-revenue",
+        "q-grants-contributions",
+        "q-reporting-basis"
+      ],
+      "basis_field": "/data",
+      "reason": "Issue #111 bounded US education completion package; NAICS 611 is a discovery association only and does not establish industry-wide sufficiency.",
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded education route association; no current consolidated accounting, professional or operational sufficiency is inferred."
+    },
+    "ctrl-us-education-auxiliary-services": {
+      "industry_codes": [
+        "611"
+      ],
+      "question_ids": [
+        "q-revenue",
+        "q-grants-contributions",
+        "q-reporting-basis"
+      ],
+      "basis_field": "/data",
+      "reason": "Issue #111 bounded US education completion package; NAICS 611 is a discovery association only and does not establish industry-wide sufficiency.",
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded education route association; no current consolidated accounting, professional or operational sufficiency is inferred."
+    },
+    "example-us-education-auxiliary-services-bridge": {
+      "industry_codes": [
+        "611"
+      ],
+      "question_ids": [
+        "q-revenue",
+        "q-grants-contributions",
+        "q-reporting-basis"
+      ],
+      "basis_field": "/data",
+      "reason": "Issue #111 bounded US education completion package; NAICS 611 is a discovery association only and does not establish industry-wide sufficiency.",
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded education route association; no current consolidated accounting, professional or operational sufficiency is inferred."
+    },
+    "guide-us-education-federal-grants": {
+      "industry_codes": [
+        "611"
+      ],
+      "question_ids": [
+        "q-revenue",
+        "q-grants-contributions",
+        "q-reporting-basis"
+      ],
+      "basis_field": "/data",
+      "reason": "Issue #111 bounded US education completion package; NAICS 611 is a discovery association only and does not establish industry-wide sufficiency.",
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded education route association; no current consolidated accounting, professional or operational sufficiency is inferred."
+    },
+    "workflow-us-education-federal-grants": {
+      "industry_codes": [
+        "611"
+      ],
+      "question_ids": [
+        "q-revenue",
+        "q-grants-contributions",
+        "q-reporting-basis"
+      ],
+      "basis_field": "/data",
+      "reason": "Issue #111 bounded US education completion package; NAICS 611 is a discovery association only and does not establish industry-wide sufficiency.",
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded education route association; no current consolidated accounting, professional or operational sufficiency is inferred."
+    },
+    "ctrl-us-education-federal-grants": {
+      "industry_codes": [
+        "611"
+      ],
+      "question_ids": [
+        "q-revenue",
+        "q-grants-contributions",
+        "q-reporting-basis"
+      ],
+      "basis_field": "/data",
+      "reason": "Issue #111 bounded US education completion package; NAICS 611 is a discovery association only and does not establish industry-wide sufficiency.",
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded education route association; no current consolidated accounting, professional or operational sufficiency is inferred."
+    },
+    "example-us-education-federal-grant-bridge": {
+      "industry_codes": [
+        "611"
+      ],
+      "question_ids": [
+        "q-revenue",
+        "q-grants-contributions",
+        "q-reporting-basis"
+      ],
+      "basis_field": "/data",
+      "reason": "Issue #111 bounded US education completion package; NAICS 611 is a discovery association only and does not establish industry-wide sufficiency.",
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded education route association; no current consolidated accounting, professional or operational sufficiency is inferred."
+    },
+    "guide-us-education-public-appropriations": {
+      "industry_codes": [
+        "611"
+      ],
+      "question_ids": [
+        "q-revenue",
+        "q-grants-contributions",
+        "q-reporting-basis"
+      ],
+      "basis_field": "/data",
+      "reason": "Issue #111 bounded US education completion package; NAICS 611 is a discovery association only and does not establish industry-wide sufficiency.",
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded education route association; no current consolidated accounting, professional or operational sufficiency is inferred."
+    },
+    "workflow-us-education-public-appropriations": {
+      "industry_codes": [
+        "611"
+      ],
+      "question_ids": [
+        "q-revenue",
+        "q-grants-contributions",
+        "q-reporting-basis"
+      ],
+      "basis_field": "/data",
+      "reason": "Issue #111 bounded US education completion package; NAICS 611 is a discovery association only and does not establish industry-wide sufficiency.",
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded education route association; no current consolidated accounting, professional or operational sufficiency is inferred."
+    },
+    "ctrl-us-education-public-appropriations": {
+      "industry_codes": [
+        "611"
+      ],
+      "question_ids": [
+        "q-revenue",
+        "q-grants-contributions",
+        "q-reporting-basis"
+      ],
+      "basis_field": "/data",
+      "reason": "Issue #111 bounded US education completion package; NAICS 611 is a discovery association only and does not establish industry-wide sufficiency.",
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded education route association; no current consolidated accounting, professional or operational sufficiency is inferred."
+    },
+    "example-us-education-public-appropriation-routing": {
+      "industry_codes": [
+        "611"
+      ],
+      "question_ids": [
+        "q-revenue",
+        "q-grants-contributions",
+        "q-reporting-basis"
+      ],
+      "basis_field": "/data",
+      "reason": "Issue #111 bounded US education completion package; NAICS 611 is a discovery association only and does not establish industry-wide sufficiency.",
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded education route association; no current consolidated accounting, professional or operational sufficiency is inferred."
+    },
+    "guide-us-education-endowment-routing": {
+      "industry_codes": [
+        "611"
+      ],
+      "question_ids": [
+        "q-revenue",
+        "q-grants-contributions",
+        "q-reporting-basis"
+      ],
+      "basis_field": "/data",
+      "reason": "Issue #111 bounded US education completion package; NAICS 611 is a discovery association only and does not establish industry-wide sufficiency.",
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded education route association; no current consolidated accounting, professional or operational sufficiency is inferred."
+    },
+    "workflow-us-education-endowment-routing": {
+      "industry_codes": [
+        "611"
+      ],
+      "question_ids": [
+        "q-revenue",
+        "q-grants-contributions",
+        "q-reporting-basis"
+      ],
+      "basis_field": "/data",
+      "reason": "Issue #111 bounded US education completion package; NAICS 611 is a discovery association only and does not establish industry-wide sufficiency.",
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded education route association; no current consolidated accounting, professional or operational sufficiency is inferred."
+    },
+    "ctrl-us-education-endowment-routing": {
+      "industry_codes": [
+        "611"
+      ],
+      "question_ids": [
+        "q-revenue",
+        "q-grants-contributions",
+        "q-reporting-basis"
+      ],
+      "basis_field": "/data",
+      "reason": "Issue #111 bounded US education completion package; NAICS 611 is a discovery association only and does not establish industry-wide sufficiency.",
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded education route association; no current consolidated accounting, professional or operational sufficiency is inferred."
+    },
+    "example-us-education-endowment-rollforward": {
+      "industry_codes": [
+        "611"
+      ],
+      "question_ids": [
+        "q-revenue",
+        "q-grants-contributions",
+        "q-reporting-basis"
+      ],
+      "basis_field": "/data",
+      "reason": "Issue #111 bounded US education completion package; NAICS 611 is a discovery association only and does not establish industry-wide sufficiency.",
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded education route association; no current consolidated accounting, professional or operational sufficiency is inferred."
+    },
+    "src_education_irs_p598_auxiliary": {
+      "industry_codes": [
+        "611"
+      ],
+      "question_ids": [
+        "q-revenue",
+        "q-grants-contributions"
+      ],
+      "basis_field": "/data",
+      "reason": "Issue #111 selected auxiliary-service tax boundary; NAICS 611 is a discovery anchor only and tax classification is not GAAP sufficiency.",
+      "reviewed_at": "2026-09-19",
+      "review_note": "Selected federal tax boundary for education auxiliary services; no tax opinion or financial-statement conclusion is inferred."
     }
   }
 }
