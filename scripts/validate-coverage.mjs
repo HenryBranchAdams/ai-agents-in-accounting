@@ -1,3 +1,4 @@
+import { readSnapshotHistory } from "./snapshot-history.mjs";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import { read, generateMappings, hash } from "./coverage-mappings.mjs";
@@ -73,7 +74,7 @@ export function validateCoverage(records) {
     for (const d of topology.depth_dimensions) assert.ok(["present","partial","missing","not-assessed","not-applicable"].includes(a.dimensions[d.id]));
     if (a.status === "partial") assert.ok(a.gaps.length&&a.evidence_record_ids.length);
   }
-  const history = read("data/coverage/snapshots.json").snapshots;
+  const history = readSnapshotHistory().snapshots;
   assert.equal(new Set(history.map(s=>s.id)).size,history.length,"Duplicate coverage snapshot");
   for (const snapshot of history) assert.ok(snapshot.recorded_at&&snapshot.topology_version&&snapshot.corpus_version&&snapshot.inputs_sha256&&snapshot.summary);
   return { mapped_records: mappings.mappings.length, assessments: assessmentData.assessments.length, snapshots: history.length };

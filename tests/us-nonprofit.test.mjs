@@ -1,3 +1,4 @@
+import { readSnapshotHistory } from "../scripts/snapshot-history.mjs";
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -85,7 +86,7 @@ test('the nonprofit scoped assessment is partial and does not become constructio
  assert.ok(q.source_locators.every(locator=>locator.period_pointer&&locator.locator_pointers.length));
  assert.equal(q.professional_review,'not-performed');assert.equal(q.empirical_support,'not-established');
  assert.equal(byId.get(guideId).data.research_questions[0].id,q.id);
- const snapshots=read('data/coverage/snapshots.json').snapshots;
+ const snapshots=readSnapshotHistory().snapshots;
  const prior=snapshots.find(snapshot=>snapshot.id==='2026-09-17.1');
  const correction=snapshots.find(snapshot=>snapshot.id===meta.corpus_version);
  assert.ok(prior);assert.ok(correction);

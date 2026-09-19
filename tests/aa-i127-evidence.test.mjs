@@ -1,3 +1,4 @@
+import { readSnapshotHistory } from "../scripts/snapshot-history.mjs";
 import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
@@ -96,7 +97,7 @@ test("AA-I127 derived research denominators agree across criteria, runtime analy
   const criteria = read("data/coverage/research-criteria.json");
   const questions = read("data/coverage/research-questions.json").questions;
   const analytics = read("dist/client/downloads/coverage.json");
-  const history = read("data/coverage/snapshots.json").snapshots;
+  const history = readSnapshotHistory().snapshots;
   const latest = history.at(-1);
   const partial = questions.filter((question) => question.assessment_status === "partial").length;
   const gaps = questions.filter((question) => question.assessment_status === "evidence-gap").length;

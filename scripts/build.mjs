@@ -1,3 +1,4 @@
+import { readSnapshotHistory } from "./snapshot-history.mjs";
 import { execFileSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
@@ -181,7 +182,7 @@ write(
 );
 write(
   "downloads/coverage-history.json",
-  fs.readFileSync("data/coverage/snapshots.json"),
+  JSON.stringify(readSnapshotHistory(), null, 2) + "\n",
 );
 write(
   "downloads/coverage.schema.json",

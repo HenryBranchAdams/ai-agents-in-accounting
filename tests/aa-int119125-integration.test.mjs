@@ -1,3 +1,4 @@
+import { readSnapshotHistory } from "../scripts/snapshot-history.mjs";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
@@ -180,11 +181,11 @@ test("2026-09-18.1 release and snapshot match the local assurance integration bu
     assert.deepEqual(gunzipSync(fs.readFileSync(`${priorRelease}/corpus.json.gz`)), priorBytes);
   }
 
-  const snapshot = read("data/coverage/snapshots.json").snapshots.find(item => item.id === "2026-09-18.1");
+  const snapshot = readSnapshotHistory().snapshots.find(item => item.id === "2026-09-18.1");
   assert.ok(snapshot);
   assert.equal(snapshot.summary.record_count, 1107);
   assert.equal(snapshot.summary.scoped_assessments, 29);
-  const collisionSnapshot = read("data/coverage/snapshots.json").snapshots.find(item => item.id === "2026-09-17.6");
+  const collisionSnapshot = readSnapshotHistory().snapshots.find(item => item.id === "2026-09-17.6");
   assert.ok(collisionSnapshot);
   assert.equal(collisionSnapshot.provenance.collision_snapshot_id, "2026-09-17.1");
   assert.deepEqual(

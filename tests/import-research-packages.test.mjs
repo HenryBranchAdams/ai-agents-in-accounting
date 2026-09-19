@@ -23,9 +23,13 @@ const mutableOutputs = [
 function linkStaticDirectory(sourceDirectory, targetDirectory, copiedFiles) {
   fs.mkdirSync(targetDirectory, { recursive: true });
   for (const entry of fs.readdirSync(sourceDirectory, { withFileTypes: true })) {
-    if (!entry.isFile() || !entry.name.endsWith(".json")) continue;
     const source = path.join(sourceDirectory, entry.name);
     const target = path.join(targetDirectory, entry.name);
+    if (entry.isDirectory() || entry.name === "snapshots.generated.ts") {
+      fs.symlinkSync(source, target);
+      continue;
+    }
+    if (!entry.isFile() || !entry.name.endsWith(".json")) continue;
     if (copiedFiles.has(entry.name)) fs.copyFileSync(source, target);
     else fs.symlinkSync(source, target);
   }

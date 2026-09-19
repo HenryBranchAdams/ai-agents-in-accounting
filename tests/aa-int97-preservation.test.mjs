@@ -1,3 +1,4 @@
+import { readSnapshotHistory } from "../scripts/snapshot-history.mjs";
 import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
@@ -34,7 +35,7 @@ test("AA-INT97 preserves the accepted education package and prior history while 
     assert.ok(fs.existsSync(`data/releases/${version}/manifest.json`), `${version}: manifest missing`);
   }
 
-  const snapshots = read("data/coverage/snapshots.json").snapshots;
+  const snapshots = readSnapshotHistory().snapshots;
   for (const version of ["2026-09-18.97", "2026-09-18.111", "2026-09-18.1111", "2026-09-19.1112", "2026-09-19.1113", "2026-09-19.1114", "2026-09-19.1115", "2026-09-19.9804", "2026-09-19.12401", "2026-09-19.12402"]) {
     assert.ok(snapshots.some((snapshot) => snapshot.id === version), `${version}: snapshot missing`);
   }
