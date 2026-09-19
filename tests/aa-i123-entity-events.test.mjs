@@ -104,7 +104,20 @@ test('AA-I123 preserves the original 14-question population and source/role limi
   assert.equal(inventory.existing_named_questions.length,14);
   assert.equal(inventory.associated_records.length,89);
   const registry=read('data/coverage/research-questions.json').questions;
-  for(const old of inventory.existing_named_questions)assert.deepEqual(registry.find(q=>q.id===old.id),old);
+  const root=freshHarness();
+  try {
+    runIn(root,'scripts/integrate-aa-i123.mjs');
+    const applied=read(path.join(root,'data/coverage/research-questions.json')).questions;
+    for(const old of inventory.existing_named_questions)assert.deepEqual(applied.find(q=>q.id===old.id),old);
+  } finally {fs.rmSync(root,{recursive:true,force:true});}
+  // Later industry packages may append scoped evidence to these shared questions.
+  // This importer must preserve its baseline exactly; current IDs and original
+  // evidence remain stable while each later package tests its own additions.
+  for(const old of inventory.existing_named_questions){
+    const current=registry.find(q=>q.id===old.id);
+    assert.ok(current,old.id);assert.equal(current.record_id,old.record_id);assert.equal(current.pointer,old.pointer);
+    for(const sourceId of old.source_ids)assert.ok(current.source_ids.includes(sourceId),`${old.id}: missing prior source ${sourceId}`);
+  }
   const assessments=read('data/coverage/assessments.json').assessments;
   for(const q of packet.questions){
     const row=registry.find(r=>r.id===q.id);

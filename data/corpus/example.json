@@ -11022,5 +11022,741 @@
         "No live ERP, carrier, broker, warehouse, passenger, bank or claim population was accessed."
       ]
     }
+  },
+  {
+    "id": "example-aa-i101-manufacturing-conversion",
+    "kind": "example",
+    "title": "US manufacturing process versus discrete WIP, idle overhead and outsourced ownership",
+    "summary": "Synthetic manufacturing quantity-to-ledger cases: normal capacity idle overhead, scrap, process versus discrete WIP, outsourced ownership, write-down, cutoff and custom-goods counterexamples.",
+    "topics": [
+      "Scoped research",
+      "Inventory, conversion costs and cost of sales",
+      "Cost objects and allocation",
+      "Revenue and customer contracts",
+      "Contract costs, project WIP and estimates to complete",
+      "Source data, lineage and reconciliation"
+    ],
+    "industries": [],
+    "jurisdiction": "United States; selected US GAAP synthetic scenarios",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_aa_i101_fas151_inventory",
+      "src_fasb_asu2015_11_inventory",
+      "src_construction_fasb_2014_09",
+      "src_roadmap_naics2022_manual",
+      "src_1os761s"
+    ],
+    "related_ids": [
+      "guide-manufacturing-conversion"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-19",
+    "provenance": {
+      "added_on": "2026-09-19",
+      "reviewer": "Codex AI-assisted editorial and arithmetic review",
+      "note": "Original synthetic scenarios; source and entity limitations are explicit.",
+      "research_file": "data/research/manufacturing-conversion-2026-09-18.json"
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "External text is not included; source terms and unresolved permissions remain separate.",
+      "full_text_stored": false
+    },
+    "data": {
+      "scope": "United States, privately held nongovernmental manufacturer using US GAAP and FIFO/weighted-average inventory; March 31, 2026 close, with a separate June 30, 2026 custom-contract branch. Owner-manufacturer, toll processor and customer roles are separate. Excludes LIFO/retail calculations, tax costing, government-contract cost allowability and sector-wide adequacy.",
+      "examples": [
+        {
+          "id": "PROC-0331",
+          "label": "Synthetic process/batch mass and cost close",
+          "source_ids": [
+            "src_aa_i101_fas151_inventory"
+          ],
+          "period": "2026-03-31",
+          "policy": "Weighted-average single batch, no opening WIP. All conversion assumed uniform through the batch. Normal loss is absorbed by output; recoverable scrap is credited at assumed $10/kg net recoverable value. The scrap policy is a declared illustrative assumption pending current US policy review.",
+          "inputs": {
+            "kg": 1000,
+            "materials_cents": 400000,
+            "labor_cents": 120000,
+            "variable_overhead_cents": 40000,
+            "fixed_overhead_cents": 1200000,
+            "normal_hours": 2000,
+            "actual_hours": 1000,
+            "good_kg": 900,
+            "scrap_kg": 50,
+            "loss_kg": 50,
+            "scrap_nrv_cents_per_kg": 1000
+          },
+          "normal_capacity_evidence": "Synthetic approved CAP-0331 assumes actual activity is abnormally below the documented normal-capacity range, after planned maintenance. A ratio alone does not establish abnormal activity.",
+          "outputs": {
+            "fixed_rate_cents_per_hour": 600,
+            "applied_fixed_cents": 600000,
+            "idle_expense_cents": 600000,
+            "production_cost_cents": 1160000,
+            "scrap_cents": 50000,
+            "finished_goods_cents": 1110000,
+            "total_incurred_cents": 1760000
+          },
+          "journals": [
+            {
+              "id": "PROC-CAPTURE",
+              "lot": "PROC-0331",
+              "debits": {
+                "WIP": 1160000,
+                "idle_capacity_expense": 600000
+              },
+              "credits": {
+                "raw_material_inventory": 400000,
+                "payroll_payable": 120000,
+                "variable_overhead_clearing": 40000,
+                "fixed_overhead_clearing": 1200000
+              }
+            },
+            {
+              "id": "PROC-COMPLETE",
+              "lot": "PROC-0331",
+              "debits": {
+                "finished_goods": 1110000,
+                "scrap_inventory": 50000
+              },
+              "credits": {
+                "WIP": 1160000
+              }
+            }
+          ],
+          "abnormal_loss_branch": {
+            "assumption": "Reclassify the 50 kg loss as abnormal, with uniform incurred resources. Illustrative cost attribution assigns 5% of materials and applied conversion to the loss; no assertion that FAS 151 prescribes this attribution.",
+            "materials_cents": 20000,
+            "conversion_cents": 38000,
+            "abnormal_expense_cents": 58000,
+            "finished_goods_cents": 1052000,
+            "scrap_cents": 50000,
+            "journal": {
+              "lot": "PROC-0331",
+              "debits": {
+                "abnormal_loss_expense": 58000
+              },
+              "credits": {
+                "finished_goods": 58000
+              }
+            }
+          },
+          "byproduct_branch": {
+            "trigger": "Two saleable primary outputs or material by-product value",
+            "disposition": "Do not apply the immaterial-scrap residual convention automatically. Retain separate quantities, split-off point, further processing costs and sales values; approve a joint-cost policy using current ASC guidance. No numerical joint-cost conclusion is asserted."
+          }
+        },
+        {
+          "id": "JOB-0331",
+          "label": "Synthetic discrete manufacturing equivalent-unit WIP",
+          "source_ids": [
+            "src_aa_i101_fas151_inventory"
+          ],
+          "period": "2026-03-31",
+          "policy": "Separate job, no beginning WIP. All materials introduced at start; completed units 100% converted; remaining WIP 40% converted. Weighted-average equivalent units are an illustrative cost-system assumption.",
+          "inputs": {
+            "started_units": 100,
+            "completed_units": 80,
+            "wip_units": 20,
+            "wip_material_completion": 1,
+            "wip_conversion_completion": 0.4,
+            "materials_cents": 1000000,
+            "labor_cents": 400000,
+            "variable_overhead_cents": 100000,
+            "applied_fixed_cents": 240000
+          },
+          "outputs": {
+            "conversion_equivalent_units": 88,
+            "finished_material_cents": 800000,
+            "finished_conversion_cents": 672727,
+            "wip_material_cents": 200000,
+            "wip_conversion_cents": 67273,
+            "finished_goods_cents": 1472727,
+            "wip_cents": 267273,
+            "total_cost_cents": 1740000
+          },
+          "rounding": "Round completed conversion to cents; WIP conversion is the remaining cents, a disclosed rounding allocation of less than one cent before rounding. No inventory plug.",
+          "journals": [
+            {
+              "id": "JOB-CAPTURE",
+              "lot": "JOB-0331",
+              "debits": {
+                "WIP": 1740000
+              },
+              "credits": {
+                "raw_material_inventory": 1000000,
+                "payroll_payable": 400000,
+                "variable_overhead_clearing": 100000,
+                "fixed_overhead_clearing": 240000
+              }
+            },
+            {
+              "id": "JOB-COMPLETE",
+              "lot": "JOB-0331",
+              "debits": {
+                "finished_goods": 1472727
+              },
+              "credits": {
+                "WIP": 1472727
+              }
+            }
+          ]
+        },
+        {
+          "id": "TOLL-0331",
+          "label": "Synthetic outsourced ownership and late-invoice close",
+          "source_ids": [
+            "src_construction_fasb_2014_09",
+            "src_aa_i101_fas151_inventory"
+          ],
+          "period": "2026-03-31",
+          "inputs": {
+            "components": 1000,
+            "component_cost_cents": 600,
+            "completed": 900,
+            "unfinished": 100,
+            "conversion_fee_cents_per_completed": 150
+          },
+          "contract_assumptions": [
+            "Signed TOLL-01 retains manufacturer ownership and control of identifiable components and output; processor cannot redirect or pledge them.",
+            "Processor confirmation CONF-0331 reports 900 completed and 100 unfinished components; unfinished units have received no conversion service.",
+            "Conversion service completed March 31 is $1350; invoice INV-0403 arrives April 3; no separate additional fee or opening payable."
+          ],
+          "outputs": {
+            "finished_goods_cents": 675000,
+            "wip_cents": 60000,
+            "total_inventory_cents": 735000,
+            "accrued_fee_cents": 135000
+          },
+          "journals": [
+            {
+              "id": "TOLL-TRANSFER",
+              "lot": "TOLL-0331",
+              "debits": {
+                "materials_at_processor": 600000
+              },
+              "credits": {
+                "raw_material_inventory": 600000
+              }
+            },
+            {
+              "id": "TOLL-CLOSE",
+              "lot": "TOLL-0331",
+              "debits": {
+                "finished_goods": 675000,
+                "WIP": 60000
+              },
+              "credits": {
+                "materials_at_processor": 600000,
+                "processor_accrual": 135000
+              }
+            },
+            {
+              "id": "TOLL-INVOICE-0403",
+              "lot": "TOLL-0331",
+              "debits": {
+                "processor_accrual": 135000
+              },
+              "credits": {
+                "accounts_payable": 135000
+              }
+            }
+          ],
+          "counterexamples": [
+            {
+              "role": "toll processor holding customer-owned materials",
+              "decision": "Exclude customer-owned material from the processor inventory population under the stated no-control facts; assess service revenue separately."
+            },
+            {
+              "role": "supplier-owned inputs or consignment",
+              "decision": "Custody and a warehouse count cannot establish acquisition. Read control, return, payment and redirection terms before recognition."
+            },
+            {
+              "role": "customer-owned tooling",
+              "decision": "Track custody separately; no tooling asset conclusion from physical location. Reuse asset foundations and inspect control and contract terms."
+            },
+            {
+              "role": "missing or conflicting title/control contract",
+              "decision": "Ownership conclusion unresolved. Keep confirmed quantities in an exception register and withhold automatic inventory recognition."
+            }
+          ]
+        },
+        {
+          "id": "CUSTOM-0630",
+          "label": "Synthetic custom-contract timing and scope counterexample",
+          "source_ids": [
+            "src_construction_fasb_2014_09"
+          ],
+          "period": "2026-06-30",
+          "inputs": {
+            "price_cents": 10000000,
+            "incurred_cost_cents": 4000000,
+            "estimated_total_cost_cents": 8000000,
+            "billings_cents": 3000000
+          },
+          "qualifying_facts": [
+            "No alternative use is supported at contract inception by substantive contractual and practical restrictions.",
+            "Enforceable right to payment for performance to date includes a reasonable profit margin on cancellation other than manufacturer breach; legal review is assumed solely for this synthetic branch.",
+            "Single performance obligation; all incurred costs depict performance, no excluded inefficiency, uninstalled material, variable consideration, financing or collectibility complication."
+          ],
+          "outputs": {
+            "progress": 0.5,
+            "revenue_cents": 5000000,
+            "contract_asset_cents": 2000000,
+            "cost_of_sales_cents": 4000000
+          },
+          "journals": [
+            {
+              "lot": "CUSTOM-0630",
+              "debits": {
+                "contract_asset": 5000000
+              },
+              "credits": {
+                "revenue": 5000000
+              }
+            },
+            {
+              "lot": "CUSTOM-0630",
+              "debits": {
+                "receivable": 3000000
+              },
+              "credits": {
+                "contract_asset": 3000000
+              }
+            },
+            {
+              "lot": "CUSTOM-0630",
+              "debits": {
+                "cost_of_sales": 4000000
+              },
+              "credits": {
+                "production_WIP": 4000000
+              }
+            }
+          ],
+          "counterexample": {
+            "facts": [
+              "Standard equipment can be redirected to another customer.",
+              "No enforceable right to payment for performance to date.",
+              "Customer does not control WIP and does not simultaneously receive and consume the production benefits."
+            ],
+            "decision": "None of ASC 606-10-25-27 criteria is established. Recognize at point-in-time control transfer when supported; do not use 50% completion to book revenue. If payment rights are merely unknown, conclusion remains unresolved rather than automatically point-in-time.",
+            "revenue_cents_before_transfer": 0
+          },
+          "remaining_gap": "Contract loss, modifications, tooling ownership and asset/labor capitalization questions route to #119/#120/#123; their completion is not asserted."
+        },
+        {
+          "id": "NRV-0331",
+          "label": "Synthetic FIFO write-down branch on PROC-0331 good output",
+          "source_ids": [
+            "src_fasb_asu2015_11_inventory",
+            "src_aa_i101_fas151_inventory"
+          ],
+          "inputs": {
+            "quantity_kg": 900,
+            "cost_cents": 1110000,
+            "estimated_sale_cents_per_kg": 1200,
+            "completion_cents_per_kg": 0,
+            "disposal_transport_cents_per_kg": 100
+          },
+          "outputs": {
+            "nrv_cents": 990000,
+            "write_down_cents": 120000,
+            "carrying_cents": 990000
+          },
+          "journals": [
+            {
+              "lot": "PROC-0331",
+              "debits": {
+                "inventory_write_down_expense": 120000
+              },
+              "credits": {
+                "finished_goods": 120000
+              }
+            }
+          ],
+          "boundary": "Separate sensitivity applied to the normal-loss branch only; do not add it to the abnormal-loss branch. LIFO/retail is outside this calculation. FAS 151 footnote 2 describes reduced year-end cost as subsequent cost; interim recovery and current US exceptions require separate review. Do not import the IFRS reversal rule."
+        },
+        {
+          "id": "CUT-0331",
+          "label": "Synthetic quantity-to-ledger cutoff register",
+          "period": "2026-03-31",
+          "events": [
+            {
+              "id": "ISSUE-PROC",
+              "date": "2026-03-30",
+              "lot": "PROC-0331",
+              "evidence": "Material issue 1000 kg, count signed March 31",
+              "treatment": "Reconcile input to 900 good, 50 scrap, 50 loss; cost and physical ledgers separately."
+            },
+            {
+              "id": "COUNT-JOB",
+              "date": "2026-03-31",
+              "lot": "JOB-0331",
+              "evidence": "80 complete, 20 WIP at 40% conversion; independent routing-stage signoff",
+              "treatment": "Include finished goods and WIP at their separate conversion stages."
+            },
+            {
+              "id": "SHIP-JOB",
+              "date": "2026-04-02",
+              "lot": "JOB-0331",
+              "evidence": "Shipment of all 80 finished units; contract transfers control at shipment; no bill-and-hold or over-time terms",
+              "treatment": "March: retain 1472727 cents finished goods and zero related revenue/COGS. April: Dr COGS 1472727, Cr finished goods 1472727. Sales price is not supplied; no invented revenue amount."
+            },
+            {
+              "id": "CONF-TOLL",
+              "date": "2026-03-31",
+              "lot": "TOLL-0331",
+              "evidence": "Processor confirmation and completed-service record",
+              "treatment": "Accrue 135000 cents fee in March and include confirmed manufacturer-owned units."
+            },
+            {
+              "id": "INV-0403",
+              "date": "2026-04-03",
+              "lot": "TOLL-0331",
+              "evidence": "Invoice references March service and accrual key",
+              "treatment": "Clear March accrual to AP; do not capitalize fee again."
+            }
+          ],
+          "control": "Match event IDs to lot, count, production completion, shipment contract, accrual and GL. Reconcile opening plus receipts/issues/conversion less disposals to close. Reconcile missing documents and duplicate invoice keys, not just balanced debit/credit totals.",
+          "counterexample": "Removing CONF-TOLL does not prove zero stock or zero accrual. Mark ownership/quantity/service evidence incomplete and request corroboration; never force a balancing plug."
+        }
+      ],
+      "workflow": [
+        "Lock entity, framework, cost method, reporting date and lot/contract population; preserve prior versions.",
+        "Independently reconcile input/output quantities, WIP stages, loss and scrap; match third-party confirmations and identify missing documents.",
+        "Trace direct costs and approved normal-capacity overhead to the lot; separate idle and abnormal charges; approve scrap/joint-output policy.",
+        "Read ownership and customer-contract terms before selecting inventory or revenue timing; route unknown legal rights for qualified review.",
+        "Test method-specific measurement and dated prices; inspect receipts, shipments and late invoices around close.",
+        "Tie each proposed journal to lot/event evidence, reconcile subledger to GL and review exceptions; an authorized human approves and posts."
+      ],
+      "controls": [
+        "Independent production/count reconciliation",
+        "Normal-capacity range and downtime approval",
+        "Yield, abnormal-loss and recoverable-scrap signoff",
+        "Processor confirmation matched to title/control evidence",
+        "Contract legal-rights and progress-measure review",
+        "Late-invoice accrual key and duplicate prevention",
+        "SKU cost/NRV review and general-ledger tieout"
+      ],
+      "limitations": [
+        "Synthetic examples are not operational evidence.",
+        "Current consolidated ASC 330 and ASC 606 text was not obtained from asc.fasb.org: the public page returned no paragraph text on 2026-09-19. Issued amendments and historical FAS 151 are bounded original evidence, not verification of all amendments effective in 2026.",
+        "No entity contracts, title terms, processor confirmations, physical counts, production logs or general ledger were supplied. All numerical examples are original synthetic scenarios.",
+        "No professional accounting or legal review, operational effectiveness testing or empirical agent evaluation was performed.",
+        "Scrap/by-product allocation, joint-product policy, abnormal-loss attribution and custom-contract loss guidance require current applicable guidance and entity facts; the illustrated allocation policies are assumptions, not FASB prescriptions.",
+        "External reuse and automated-access permissions remain unknown; no publisher full text is stored."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "id": "example-aa-i101-manufacturing-conversion"
+    }
+  },
+  {
+    "id": "example-information-bundle-close",
+    "kind": "example",
+    "title": "Synthetic information provider bundle, customer software cost and rights-period close",
+    "summary": "Original fictional numbers connect usage/subscription billing, bundle allocation, customer implementation cost, content royalty and a rights-expiry counterexample. All entries are proposals for review.",
+    "topics": [
+      "Original synthetic example",
+      "Revenue and customer contracts",
+      "Intangibles, software and research expenditure",
+      "Rights, provenance and reusable data",
+      "Source data, lineage and reconciliation"
+    ],
+    "industries": [
+      "information-sector"
+    ],
+    "jurisdiction": "United States; selected information-sector provider/customer roles",
+    "source_type": "Original synthetic example",
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_roadmap_naics2022_manual",
+      "src_construction_fasb_2014_09",
+      "src_fasb_asu2016_08_principal_agent",
+      "src_asu201815",
+      "src_aa_i105_fasb_2016_10",
+      "src_aa_i105_fcc_part32",
+      "src_aa_i105_uscode_copyright"
+    ],
+    "related_ids": [
+      "guide-information-us-provider-customer",
+      "wf-information-contract-to-ledger",
+      "ctrl-information-role-and-rights"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-19",
+    "provenance": {
+      "added_on": "2026-09-19",
+      "reviewer": "Codex AI-assisted bounded source and editorial review",
+      "note": "All facts, dates and amounts are original synthetic data. This example is source-only pending integration and is not operational evidence or posting authorization."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "External publisher text is not stored; publisher terms and source rights remain separate and unresolved.",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "version": "2026-09-19.information.1",
+      "example_type": "original-synthetic",
+      "authority_level": "A2 bounded source synthesis",
+      "accountable_owner": "Controller or revenue/accounting manager; human review required",
+      "framework": "US GAAP research illustration with separate FCC and legal-rights routes; current consolidated review hold",
+      "period": "Synthetic 2026-12-31 close; all transactions fictional",
+      "assumptions": [
+        "Provider has a 12-month data subscription from 2026-10-01 through 2027-09-30 for $120,000 collected upfront.",
+        "December usage is 4,000 units at $2.50 and a separate setup service is $12,000; the synthetic contract states setup is a distinct service.",
+        "A $180,000 bundle has standalone prices of $120,000 hosting, $90,000 content access and $30,000 implementation, so the $180,000 discount is allocated using relative standalone prices.",
+        "A customer pays $30,000 for internal-use software implementation; the example holds classification for current framework review and does not turn customer spend into provider revenue.",
+        "A content license pays 5% of 10,000 licensed uses and expires 2026-12-31; a missing usage report is a negative counterexample."
+      ],
+      "events": [
+        {
+          "id": "SUB-UPFRONT",
+          "date": "2026-10-01",
+          "amount": 120000,
+          "evidence": [
+            "signed subscription",
+            "cash receipt",
+            "service term"
+          ],
+          "proposed_route": "contract liability then recognize over service period subject to policy"
+        },
+        {
+          "id": "USAGE-DEC",
+          "date": "2026-12-31",
+          "quantity": 4000,
+          "rate": 2.5,
+          "amount": 10000,
+          "evidence": [
+            "usage meter",
+            "rating table",
+            "invoice"
+          ],
+          "proposed_route": "usage revenue subject to contract review"
+        },
+        {
+          "id": "SETUP-DISTINCT",
+          "date": "2026-12-15",
+          "amount": 12000,
+          "evidence": [
+            "order form",
+            "implementation acceptance"
+          ],
+          "proposed_route": "separate service revenue only if distinct and satisfied"
+        },
+        {
+          "id": "BUNDLE-180K",
+          "date": "2026-12-31",
+          "amount": 180000,
+          "evidence": [
+            "bundle order",
+            "standalone price schedule"
+          ],
+          "proposed_route": "allocate to hosting/content/implementation using documented relative prices"
+        },
+        {
+          "id": "CUSTOMER-IMPLEMENT",
+          "date": "2026-12-20",
+          "amount": 30000,
+          "evidence": [
+            "customer invoice",
+            "implementation work order"
+          ],
+          "proposed_route": "customer expenditure population; not provider revenue"
+        },
+        {
+          "id": "ROYALTY-5PCT",
+          "date": "2026-12-31",
+          "quantity": 10000,
+          "rate": 0.05,
+          "amount": 500,
+          "evidence": [
+            "license term",
+            "usage report"
+          ],
+          "proposed_route": "royalty payable/expense subject to agreement and usage evidence"
+        }
+      ],
+      "reconciliation": {
+        "subscription_cash": 120000,
+        "subscription_months": 12,
+        "monthly_subscription_revenue": 10000,
+        "subscription_revenue_for_2026_q4": 30000,
+        "december_usage_revenue": 10000,
+        "distinct_setup_revenue": 12000,
+        "bundle_allocated": {
+          "hosting": 90000,
+          "content": 67500,
+          "implementation": 22500,
+          "total": 180000
+        },
+        "customer_software_expenditure": 30000,
+        "royalty": 500,
+        "check": "$120,000 / 12 = $10,000 per month; Oct-Dec subscription revenue = $30,000; 4,000 x $2.50 = $10,000; 10,000 x 5% = $500; bundle allocation uses 120:90:30 relative prices, total 240, so 180,000 x 1/2 = 90,000, x 3/8 = 67,500, x 1/8 = 22,500."
+      },
+      "numeric_counterexamples": [
+        {
+          "id": "BUNDLE-NET-30K",
+          "facts": "Customer implementation is incorrectly netted against provider bundle revenue.",
+          "difference": {
+            "gross_bundle": 180000,
+            "customer_cost": 30000,
+            "wrong_net": 150000
+          },
+          "treatment": "Keep provider billing and customer expenditure populations separate."
+        },
+        {
+          "id": "ROYALTY-MISSING-USAGE",
+          "facts": "Contract says 5% of usage, but the close has no usage report.",
+          "difference": {
+            "reported_usage": 0,
+            "provisional_royalty": 0,
+            "known_rate": 0.05
+          },
+          "treatment": "Hold the royalty estimate and request source evidence; do not assume zero usage."
+        },
+        {
+          "id": "SUB-CUTOFF",
+          "facts": "All $120,000 cash is posted as 2026 revenue.",
+          "difference": {
+            "cash": 120000,
+            "earned_oct_dec": 30000,
+            "overstatement": 90000
+          },
+          "treatment": "Retain the remaining service period as an unresolved contract-balance review item."
+        }
+      ],
+      "scope_counterexamples": [
+        {
+          "id": "NONCARRIER-HOSTING",
+          "facts": "A hosting provider purchases telecom connectivity and sells cloud storage.",
+          "treatment": "It does not inherit FCC Part 32 carrier accounting solely from network use; classify its own role and contract evidence."
+        },
+        {
+          "id": "CUSTOMER-SOFTWARE",
+          "facts": "A customer pays $30,000 to configure internal-use software.",
+          "treatment": "This is a customer expenditure and software-cost review population, not the provider’s subscription revenue."
+        },
+        {
+          "id": "EXPIRED-CONTENT",
+          "facts": "A publisher continues distributing content after a license term ends.",
+          "treatment": "Rights expiry is a legal and operational exception; no royalty or revenue conclusion follows without renewed rights."
+        }
+      ],
+      "proposed_entries": [
+        {
+          "date": "2026-10-01",
+          "debit": "Cash",
+          "credit": "Contract liability",
+          "amount": 120000,
+          "status": "proposed-synthetic; policy review hold"
+        },
+        {
+          "date": "2026-10-31 to 2026-12-31",
+          "debit": "Contract liability",
+          "credit": "Subscription revenue",
+          "amount": 30000,
+          "status": "proposed-synthetic; service-period review hold"
+        },
+        {
+          "date": "2026-12-31",
+          "debit": "Accounts receivable",
+          "credit": "Usage revenue",
+          "amount": 10000,
+          "status": "proposed-synthetic; meter and contract review hold"
+        },
+        {
+          "date": "2026-12-15",
+          "debit": "Accounts receivable",
+          "credit": "Setup service revenue",
+          "amount": 12000,
+          "status": "proposed-synthetic; distinct-service review hold"
+        },
+        {
+          "date": "2026-12-31",
+          "debit": "Accounts receivable",
+          "credit": "Bundle revenue allocations",
+          "amount": 180000,
+          "status": "proposed-synthetic; performance-obligation and allocation review hold"
+        },
+        {
+          "date": "2026-12-31",
+          "debit": "Royalty expense",
+          "credit": "Royalty payable",
+          "amount": 500,
+          "status": "proposed-synthetic; rights and usage review hold"
+        }
+      ],
+      "controls": [
+        "Recalculate monthly and usage extensions independently",
+        "Tie each entry to contract, event, source URL and rights-term ID",
+        "Keep provider revenue, customer spend, supplier cost, content rights and telecom route separate",
+        "Preserve missing, expired, conflicting and corrected evidence with human disposition"
+      ],
+      "limitations": [
+        "Synthetic facts and amounts only.",
+        "No entry is posting authorization.",
+        "Current consolidated ASC 606, ASC 350-40 and industry-specific content-cost guidance were not read.",
+        "Copyright statute and FCC Part 32 do not replace actual contracts, role evidence or professional review.",
+        "No actual billing population, license portfolio, customer ledger, operational control test or measured agent performance.",
+        "External source rights remain unknown; no publisher full text is stored."
+      ],
+      "examples": [
+        {
+          "id": "INFO-SUBSCRIPTION-CUTOFF",
+          "title": "Synthetic subscription, usage and setup cutoff",
+          "synthetic": true,
+          "event_ids": [
+            "SUB-UPFRONT",
+            "USAGE-DEC",
+            "SETUP-DISTINCT"
+          ],
+          "reconciliation": {
+            "subscription_revenue_for_2026_q4": 30000,
+            "december_usage_revenue": 10000,
+            "distinct_setup_revenue": 12000
+          },
+          "review_result": "Hold contract and service-period review; $90,000 of upfront cash is outside the synthetic 2026 earned period."
+        },
+        {
+          "id": "INFO-BUNDLE-CUSTOMER-COST",
+          "title": "Synthetic provider bundle and customer expenditure separation",
+          "synthetic": true,
+          "event_ids": [
+            "BUNDLE-180K",
+            "CUSTOMER-IMPLEMENT"
+          ],
+          "reconciliation": {
+            "bundle_total": 180000,
+            "customer_software_expenditure": 30000,
+            "bundle_allocated_total": 180000
+          },
+          "review_result": "Preserve provider bundle allocation separately from the customer’s $30,000 software-cost population."
+        },
+        {
+          "id": "INFO-ROYALTY-RIGHTS",
+          "title": "Synthetic royalty and rights expiry review",
+          "synthetic": true,
+          "event_ids": [
+            "ROYALTY-5PCT"
+          ],
+          "reconciliation": {
+            "usage": 10000,
+            "rate": 0.05,
+            "royalty": 500
+          },
+          "review_result": "Verify usage report and license term before recording the $500 proposal; missing usage or expired rights is an exception."
+        }
+      ]
+    }
   }
 ]

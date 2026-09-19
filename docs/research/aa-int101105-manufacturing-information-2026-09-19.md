@@ -1,0 +1,13 @@
+# Manufacturing and information current integration
+
+Edition 2026-09-19.12419 integrates two independently reviewed source packages while preserving their distinct industry roles and original criteria.
+
+Manufacturing retains the 23-record inventory, five questions and 21 partial subsector dispositions from source commit 1104b4e. One source record and one original synthetic example supplement the existing guide with US conversion-cost, normal-capacity, outsourced inventory, custom-contract and net-realizable-value branches. The existing guide's primary metadata and earlier answers remain unchanged. The ASC root source check now uses its existing stable ID, src_1os761s, and the importer rejects a source ID whose checked URL differs. The earlier access-boundary source remains intact. Both original draft snapshots and frozen releases 2026-09-18.101 and 2026-09-18.1011 are preserved.
+
+Information retains the seven-record baseline and six selected questions from source commit 474b0f9. Three sources and four original records connect subscription, usage, bundled services, customer software costs, content rights, royalties and selected carrier accounting. Provider and customer roles remain separate. FCC Part 32 is restricted to its stated carrier applicability. The FASB ASU 2016-10 source and question locators use the verified official PDF URL; reused ASU 2018-15 locators match its existing canonical URL without changing that source record. URL identity is checked before writes.
+
+Both packages retain unknown external rights, historical-amendment and current-consolidated-access limits, synthetic labels, professional-review gaps and partial assessments. Their importers stage all writes, reject unknown editions or conflicting prior content, and replay without changing bytes. Current tests cover the combined application, preservation of earlier source metadata and guide answers, late conflicts and publisher-URL identity. Representative search/context fixtures retain citable evidence and role or record-kind exclusions.
+
+Standard generators produce matching coverage inputs, snapshot, release files, downloads and the source archive. Local checks, exact-commit independent acceptance and CI are separate evidence. No deployment is performed.
+
+The entity-events regression now checks preservation of its original fourteen-question inventory by applying that importer to its immutable baseline. The current corpus still checks stable identities and retained earlier source links. This permits the separately tested manufacturing supplement to append US evidence and explicit gaps to a shared question without rewriting the original answer. The change does not alter canonical records or frozen release bytes.
