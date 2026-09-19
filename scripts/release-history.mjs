@@ -75,7 +75,7 @@ export function writeReleaseArtifacts(currentExport, destination = "data/release
     if (!fs.existsSync(file)) fs.writeFileSync(file, body);
   }
   const indexFile = path.join(destination, "index.json");
-  const versions = fs.readdirSync(destination, { withFileTypes: true }).filter((e) => e.isDirectory() && /^\d{4}-\d{2}-\d{2}\.\d+$/.test(e.name)).map((e) => e.name).sort();
+  const versions = fs.readdirSync(destination, { withFileTypes: true }).filter((e) => e.isDirectory() && /^\d{4}-\d{2}-\d{2}\.\d+$/.test(e.name)).map((e) => e.name).sort((a, b) => a.localeCompare(b, "en", { numeric: true }));
   const indexBody = Buffer.from(JSON.stringify({ schema_version: "1.0.0", current_version: version, versions }, null, 2) + "\n");
   fs.writeFileSync(indexFile, indexBody);
   return { version, changes, directory: dir, files };

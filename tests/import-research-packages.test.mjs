@@ -140,7 +140,7 @@ test("research package replay validates the full clean corpus and is idempotent"
     assert.ok(Array.isArray(output.changes.source_records));
     assert.ok(Array.isArray(output.changes.mapping_records));
     assert.equal(registry.question_set_version, beforeRegistry.question_set_version);
-    assert.equal(registry.reviewed_at, foundations.reviewed_at);
+    assert.equal(registry.reviewed_at, beforeRegistry.reviewed_at);
     assert.equal(guide.data.version, empirical.version);
     assert.equal(aliases.src_roadmap_naics2022, "src_roadmap_naics2022_manual");
     assert.equal(aliases.src_roadmap_naics_311, "src_roadmap_naics2022_manual");
@@ -478,4 +478,45 @@ test("replay fails closed on duplicate canonical URLs before mutating outputs", 
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
   }
+});
+
+test("declared same-document aliases preserve both record IDs and route new reviews to the selected source", () => {
+  const root = createFixture();
+  try {
+    const retainedId = "src_aa_i124_oilgas";
+    const selectedId = "src_us_extractive_sec_410_2025";
+    const before = read(root, "data/corpus/source.json");
+    const retained = before.find(source => source.id === retainedId);
+    const selected = before.find(source => source.id === selectedId);
+    assert.equal(retained.source_url, selected.source_url);
+    const empirical = read(root, "data/research/empirical.json");
+    empirical.sources.push({
+      id: retainedId, title: retained.title, source_url: retained.source_url,
+      review_level: "scope-not-specified", source_locator: "Synthetic same-document resolver exercise",
+      evidence_summary: "Synthetic importer test input, not an actual source review.",
+    });
+    if (empirical.integration_scope?.source_ids) empirical.integration_scope.source_ids.push(retainedId);
+    write(root, "data/research/empirical.json", empirical);
+    runImporter(root);
+    const after = read(root, "data/corpus/source.json");
+    assert.deepEqual(after.map(source => source.id), before.map(source => source.id));
+    assert.deepEqual(after.find(source => source.id === retainedId), retained);
+    const updated = after.find(source => source.id === selectedId);
+    assert.deepEqual(withoutSupplementalReviews(updated), withoutSupplementalReviews(selected));
+    assert.ok(updated.data.supplemental_reviews.some(review => review.locator === "Synthetic same-document resolver exercise"));
+    assert.equal(read(root, "data/research/source-aliases.json")[retainedId], selectedId);
+  } finally { fs.rmSync(root, { recursive: true, force: true }); }
+});
+
+test("retained record aliases reject a different document before any write", () => {
+  const root = createFixture();
+  try {
+    const aliases = read(root, "data/research/source-aliases.json");
+    aliases.src_aa_i124_oilgas = "src_1os761s";
+    write(root, "data/research/source-aliases.json", aliases);
+    const before = snapshots(root);
+    const result = runFailure(root, ["scripts/import-research-packages.mjs"], "cross-document retained alias");
+    assert.match(result.stderr, /Retained source alias URL mismatch/);
+    assertByteStable(root, before, "Cross-document alias mutated outputs");
+  } finally { fs.rmSync(root, { recursive: true, force: true }); }
 });
