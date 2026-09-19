@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 
 const read = f => JSON.parse(fs.readFileSync(f, "utf8"));
 const write = (f, x) => fs.writeFileSync(f, JSON.stringify(x, null, 2) + "\n");
-const names = ["foundations", "industries", "jurisdictions", "empirical"];
+const names = ["foundations", "industries", "jurisdictions", "empirical", "agriculture-i97"];
 const batches = names.filter(n => fs.existsSync(`data/research/${n}.json`)).map(n => ({name:n, ...read(`data/research/${n}.json`)}));
 const scopedQuestionReplacements = new Set(batches.flatMap(batch => {
   const ids = batch.integration_scope?.replace_question_ids || [];
