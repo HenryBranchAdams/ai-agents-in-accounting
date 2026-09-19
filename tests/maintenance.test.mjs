@@ -67,6 +67,19 @@ test("release writes preflight all bytes before changing an existing version", (
   assert.deepEqual(fs.readFileSync(path.join(dir, "2026-09-07.4", "corpus.json")), before);
 });
 
+test("release index orders numeric edition suffixes consistently with build predecessors", () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "release-history-numeric-"));
+  try {
+    for (const version of ["2026-09-19.1115", "2026-09-19.9804", "2026-09-19.12401"]) {
+      writeReleaseArtifacts({ schema_version: "2.0.0", corpus_version: version, records: [] }, dir);
+    }
+    const index = JSON.parse(fs.readFileSync(path.join(dir, "index.json"), "utf8"));
+    assert.deepEqual(index.versions, ["2026-09-19.1115", "2026-09-19.9804", "2026-09-19.12401"]);
+    assert.equal(index.versions.at(-1), index.current_version);
+    assert.equal(index.versions.at(-2), "2026-09-19.9804");
+  } finally { fs.rmSync(dir, { recursive: true, force: true }); }
+});
+
 test("release preserves equivalent gzip bytes across zlib representations but rejects payload changes", () => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), "release-history-gzip-"));
   const current = { schema_version: "2.0.0", corpus_version: "2026-09-07.4", records: [{ id: "a", kind: "source", title: "A" }] };

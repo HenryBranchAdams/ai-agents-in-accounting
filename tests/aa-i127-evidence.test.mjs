@@ -130,11 +130,13 @@ test("AA-I127 shared assessments, cited locators, and empirical source reviews a
     ...byId.get("guide-independent-deployment-evidence").data.research_questions.filter((question) => question.id.startsWith("rq-deployment-accounting-")),
     ...byId.get("guide-us-accounting-agent-evidence-boundaries").data.research_questions,
   ];
-  const shared = assessments.filter((assessment) => assessment.scope_kind === "shared-context");
+  const allShared = assessments.filter((assessment) => assessment.scope_kind === "shared-context");
+  const ownedQuestionIds = new Set(namedQuestions.map((question) => question.id));
+  const shared = allShared.filter((assessment) => ownedQuestionIds.has(assessment.named_question_id));
   assert.equal(shared.length, namedQuestions.length);
-  assert.ok(shared.every((assessment) => assessment.industry_code === null && assessment.named_question_id));
+  assert.ok(allShared.every((assessment) => assessment.industry_code === null && assessment.named_question_id));
   assert.deepEqual(new Set(shared.map((assessment) => assessment.named_question_id)), new Set(namedQuestions.map((question) => question.id)));
-  assert.equal(analytics.summary.shared_scope_assessments, shared.length);
+  assert.equal(analytics.summary.shared_scope_assessments, allShared.length);
   assert.ok(analytics.assessments.some((assessment) => assessment.named_question_id === "rq-aa-i127-rights-provenance"));
 
   const empirical = read("data/research/empirical.json").sources.filter((source) => ["src_1sbtyzp", "src_1v8cm5i"].includes(source.id));

@@ -224,8 +224,16 @@ aliases.src_roadmap_naics_311 = "src_roadmap_naics2022_manual";
 const sourceById = new Map(sources.map(r => [r.id, r]));
 const sourcesByURL = new Map();
 for (const source of sources.filter(r => r.source_url)) {
+  // A reviewed same-document alias may retain a public record ID and its
+  // distinct review scope. Resolve URL-based imports to the declared source;
+  // an undeclared duplicate or a cross-document alias remains an error.
+  const targetId = aliases[source.id] || source.id;
+  const target = sourceById.get(targetId);
+  assert.ok(target, `Retained source alias target missing for ${source.id}: ${targetId}`);
+  assert.equal(target.source_url, source.source_url, `Retained source alias URL mismatch for ${source.id}: ${targetId}`);
+  assert.ok(!aliases[targetId] || aliases[targetId] === targetId, `Retained source alias chain for ${source.id}: ${targetId}`);
   const matches=sourcesByURL.get(source.source_url) || [];
-  matches.push(source);
+  if (!matches.some(match => match.id === target.id)) matches.push(target);
   sourcesByURL.set(source.source_url,matches);
 }
 for (const [url, matches] of sourcesByURL) assert.equal(matches.length,1,`Ambiguous canonical source URL: ${url}`);
@@ -264,7 +272,7 @@ for (const batch of batches) for (const s of batch.sources || []) {
   }
   if (direct) {
     const urlMatches=sourcesByURL.get(s.source_url) || [];
-    assert.ok(!urlMatches.length || urlMatches.some(source => source.id === direct.id),`Package ID/URL resolves to a different canonical source for ${s.id}`);
+    assert.ok(!urlMatches.length || urlMatches.some(source => source.id === (aliased || direct).id),`Package ID/URL resolves to a different canonical source for ${s.id}`);
   }
   const existing = aliased || direct || sourcesByURL.get(s.source_url)?.[0];
   const record = existing || {
