@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 
 const read = (file) => JSON.parse(fs.readFileSync(file, "utf8"));
+const catalog = read("data/catalog.json");
 const records = [
   ...read("data/corpus/action.json"),
   ...read("data/corpus/authority.json"),
@@ -81,7 +82,7 @@ test("AA-I127 rights matrix keeps code, data, upstream inputs, and unresolved pe
 
 test("AA-I127 build exports and source export include the new canonical records", () => {
   const exported = read("dist/client/downloads/corpus.json");
-  assert.equal(exported.exported_record_count, 1107);
+  assert.equal(exported.exported_record_count, records.length);
   assert.ok(exported.records.some((record) => record.id === "example-erp-journal-lineage"));
   assert.ok(exported.records.some((record) => record.id === "guide-us-accounting-agent-evidence-boundaries"));
   const manifest = read("dist/client/downloads/manifest.json");
@@ -104,7 +105,7 @@ test("AA-I127 derived research denominators agree across criteria, runtime analy
   assert.equal(analytics.summary.research.named_partial_questions, partial);
   assert.equal(analytics.summary.research.named_evidence_gaps, gaps);
   assert.equal(partial + gaps, questions.length);
-  assert.equal(latest.id, "2026-09-18.1");
+  assert.equal(latest.id, catalog.corpus_version);
   assert.deepEqual(latest.summary, analytics.summary);
 });
 
@@ -130,9 +131,11 @@ test("AA-I127 shared assessments, cited locators, and empirical source reviews a
     ...byId.get("guide-us-accounting-agent-evidence-boundaries").data.research_questions,
   ];
   const shared = assessments.filter((assessment) => assessment.scope_kind === "shared-context");
-  assert.equal(shared.length, namedQuestions.length);
-  assert.ok(shared.every((assessment) => assessment.industry_code === null && assessment.named_question_id));
-  assert.deepEqual(new Set(shared.map((assessment) => assessment.named_question_id)), new Set(namedQuestions.map((question) => question.id)));
+  const aaI127QuestionIds = new Set(namedQuestions.map((question) => question.id));
+  const aaI127Shared = shared.filter((assessment) => aaI127QuestionIds.has(assessment.named_question_id));
+  assert.equal(aaI127Shared.length, namedQuestions.length);
+  assert.ok(aaI127Shared.every((assessment) => assessment.industry_code === null && assessment.named_question_id));
+  assert.deepEqual(new Set(aaI127Shared.map((assessment) => assessment.named_question_id)), aaI127QuestionIds);
   assert.equal(analytics.summary.shared_scope_assessments, shared.length);
   assert.ok(analytics.assessments.some((assessment) => assessment.named_question_id === "rq-aa-i127-rights-provenance"));
 

@@ -6579,5 +6579,272 @@
         "external_sources": "Not redistributed; publisher terms apply"
       }
     }
+  },
+  {
+    "id": "example-capital-financing-evidence",
+    "kind": "example",
+    "title": "US capital and financing evidence: synthetic worked cases",
+    "summary": "Small synthetic cases connect source-linked capital-accounting questions to evidence inputs, calculations, controls and explicit custody boundaries.",
+    "topics": [
+      "Debt, financing costs and covenants",
+      "Equity and complex capital instruments",
+      "Share-based compensation",
+      "Investments",
+      "Derivatives",
+      "Fair value and impairment",
+      "Digital assets",
+      "Synthetic examples"
+    ],
+    "industries": [],
+    "jurisdiction": "United States; educational fixture only",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_fasb_asu_201503_debt_costs",
+      "src_fasb_asu_201601_equity_investments",
+      "src_fasb_asu_201807_share_comp",
+      "src_fasb_asu_202203_sale_restrictions",
+      "src_asu202308",
+      "src_secsab122",
+      "src_fasb_asc820_fair_value"
+    ],
+    "related_ids": [
+      "guide-q-debt",
+      "guide-q-equity",
+      "guide-q-share-compensation",
+      "guide-q-investments",
+      "guide-q-derivatives",
+      "guide-q-valuation-impairment",
+      "guide-q-digital-assets"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-18",
+    "provenance": {
+      "added_on": "2026-09-18",
+      "reviewer": "Codex AI-assisted official-source research; no professional sign-off",
+      "issue_id": "AA-I121",
+      "package_version": "2026-09-18.121",
+      "note": "Original synthetic cases connect source-linked accounting questions to evidence inputs, controls and authority limits. They are not customer, production or professional evidence."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; linked publisher terms apply.",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "id": "example-capital-financing-evidence",
+      "title": "US capital and financing evidence: synthetic worked cases",
+      "summary": "Small synthetic cases connect source-linked capital-accounting questions to evidence inputs, calculations, controls and explicit custody boundaries.",
+      "version": "2026-09-18.121",
+      "authority_level": "A2",
+      "accountable_owner": "Controller, treasurer or accounting policy owner",
+      "scope": "United States; educational fixture only",
+      "source_ids": [
+        "src_fasb_asu_201503_debt_costs",
+        "src_fasb_asu_201601_equity_investments",
+        "src_fasb_asu_201807_share_comp",
+        "src_fasb_asu_202203_sale_restrictions",
+        "src_asu202308",
+        "src_secsab122",
+        "src_fasb_asc820_fair_value"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_fasb_asu_201503_debt_costs",
+          "locator": "ASU 2015-03 pp. 1-2; debt issuance cost presentation and effective interest."
+        },
+        {
+          "source_id": "src_fasb_asu_201807_share_comp",
+          "locator": "ASU 2018-07 pp. 1-10; Topic 718 scope and measurement."
+        },
+        {
+          "source_id": "src_fasb_asu_202203_sale_restrictions",
+          "locator": "ASU 2022-03 pp. 1 and 7; contractual sale restrictions."
+        },
+        {
+          "source_id": "src_asu202308",
+          "locator": "ASU 2023-08 pp. 4-7; qualifying crypto assets."
+        },
+        {
+          "source_id": "src_secsab122",
+          "locator": "SAB 122; safeguarding rescission and ASC 450-20 routing."
+        }
+      ],
+      "authority_boundary": "Synthetic arithmetic illustrates evidence structure only. It does not authorize posting, payment, filing, custody action or an accounting conclusion for a real entity.",
+      "inputs": [
+        "Executed agreements, source populations, reporting-date facts, valuations, reconciliations, approvals and legal or custody evidence as applicable."
+      ],
+      "procedures": [
+        "Declare entity, framework, period and instrument role.",
+        "Reconcile source populations, calculate the bounded example, preserve exceptions and route consequential conclusions to a human reviewer."
+      ],
+      "controls": [
+        "Source-to-ledger reconciliation",
+        "Independent recalculation",
+        "Rights and ownership review",
+        "No executed actions"
+      ],
+      "examples": [
+        {
+          "id": "capital-financing--debt-effective-interest",
+          "title": "Debt issuance cost and reporting-date covenant review",
+          "scenario_type": "golden",
+          "objective": "Show a reproducible carrying-amount rollforward while keeping covenant evidence separate.",
+          "input": {
+            "principal": 1000000,
+            "debt_issuance_cost": 20000,
+            "cash_interest": 15000,
+            "effective_interest_expense": 17000,
+            "opening_carrying_amount": 980000,
+            "reporting_date_covenant_status": "compliant",
+            "currency": "USD",
+            "source_record_ids": [
+              "synthetic-debt-agreement",
+              "synthetic-covenant-certificate",
+              "synthetic-debt-ledger"
+            ]
+          },
+          "reference_expectations": {
+            "closing_carrying_amount": 982000,
+            "amortization_of_issuance_cost": 2000,
+            "cash_interest_reconciliation": "17000 effective interest expense less 15000 cash interest equals 2000 carrying-amount accretion",
+            "review_required": true,
+            "executed_actions_must_be_empty": true
+          },
+          "controls": [
+            "Reconcile agreement, debt ledger, cash payment and covenant certificate.",
+            "Independently recalculate effective-interest accretion and confirm reporting-date waiver or breach facts."
+          ],
+          "limitations": [
+            "Synthetic values only; no real debt agreement or covenant definition was reviewed.",
+            "The arithmetic does not establish classification, disclosure or a professional conclusion."
+          ]
+        },
+        {
+          "id": "capital-financing--share-award",
+          "title": "Share-based award expense and vesting evidence",
+          "scenario_type": "golden",
+          "objective": "Show a simple grant-date award rollforward with service evidence and no valuation shortcut.",
+          "input": {
+            "grant_date_fair_value": 120000,
+            "vesting_months": 36,
+            "months_served": 4,
+            "award_classification": "equity-classified synthetic award",
+            "currency": "USD",
+            "source_record_ids": [
+              "synthetic-award-agreement",
+              "synthetic-board-approval",
+              "synthetic-service-record"
+            ]
+          },
+          "reference_expectations": {
+            "monthly_expense": 3333.333333,
+            "cumulative_expense_after_four_months": 13333.33,
+            "unrecognized_amount_before_rounding": 106666.67,
+            "review_required": true,
+            "executed_actions_must_be_empty": true
+          },
+          "controls": [
+            "Tie approved award register to cap table, service evidence and ledger.",
+            "Review modifications, forfeitures, performance conditions and valuation inputs separately."
+          ],
+          "limitations": [
+            "Synthetic values only; no award valuation or payroll population was reviewed.",
+            "Rounding is illustrative and does not resolve Topic 718 or tax treatment."
+          ]
+        },
+        {
+          "id": "capital-financing--owned-investment",
+          "title": "Owned investment fair-value and restriction review",
+          "scenario_type": "golden",
+          "objective": "Show a conditional fair-value rollforward with contractual sale restriction evidence.",
+          "input": {
+            "cost": 100000,
+            "fair_value_at_reporting_date": 115000,
+            "contractual_sale_restriction": true,
+            "measurement_basis": "synthetic fair value through net income",
+            "currency": "USD",
+            "source_record_ids": [
+              "synthetic-investment-agreement",
+              "synthetic-price-observation",
+              "synthetic-restriction-term"
+            ]
+          },
+          "reference_expectations": {
+            "conditional_gain": 15000,
+            "restriction_discount_assumed": 0,
+            "review_required": true,
+            "executed_actions_must_be_empty": true
+          },
+          "controls": [
+            "Verify unit of account, market input and restriction terms.",
+            "Do not apply a restriction discount without the applicable fair-value analysis and approval."
+          ],
+          "limitations": [
+            "Synthetic values only; no market or specialist valuation was reviewed.",
+            "The conditional gain is not a universal US GAAP conclusion for every investment."
+          ]
+        },
+        {
+          "id": "capital-financing--owned-vs-custody-crypto",
+          "title": "Owned crypto asset versus customer custody boundary",
+          "scenario_type": "scope-counterexample",
+          "objective": "Distinguish a qualifying owned crypto asset from a custody balance where ownership and loss risk remain unresolved.",
+          "input": {
+            "owned_cost": 100000,
+            "owned_fair_value": 115000,
+            "custody_customer_balance": 500000,
+            "owned_scope_test": {
+              "all_six_asu_202308_characteristics": true,
+              "enforceable_right_to_underlying": false,
+              "created_by_reporting_entity_or_related_party": false
+            },
+            "custody_facts": {
+              "customer_contract_reviewed": false,
+              "legal_ownership_reviewed": false,
+              "risk_of_loss_reviewed": false,
+              "private_key_access": true
+            },
+            "currency": "USD",
+            "source_record_ids": [
+              "synthetic-owned-token-terms",
+              "synthetic-custody-ledger",
+              "synthetic-customer-contract"
+            ]
+          },
+          "reference_expectations": {
+            "owned_fair_value_gain": 15000,
+            "custody_gross_balance_sheet_asset": "unresolved",
+            "requires_asc450_review": true,
+            "private_key_access_proves_ownership": false,
+            "review_required": true,
+            "executed_actions_must_be_empty": true
+          },
+          "controls": [
+            "Reconcile proprietary and customer populations separately.",
+            "Obtain legal ownership, withdrawal, rehypothecation, insurance and loss-risk evidence before concluding presentation or liability treatment."
+          ],
+          "limitations": [
+            "Synthetic values and intentionally incomplete custody facts only.",
+            "Custody remains an evidence gap after SAB 122 and ASU 2025-02; this fixture does not resolve gross presentation or liability recognition."
+          ]
+        }
+      ],
+      "limitations": [
+        "Synthetic project-created values and scenarios only; no customer or production data.",
+        "Illustrates evidence and control boundaries. Not a benchmark, professional validation or evidence of real agent performance."
+      ],
+      "licenses": {
+        "manifest_and_factual_metadata": "CC0-1.0",
+        "original_explanatory_content": "CC-BY-4.0",
+        "external_sources": "Not redistributed; publisher terms apply"
+      }
+    }
   }
 ]

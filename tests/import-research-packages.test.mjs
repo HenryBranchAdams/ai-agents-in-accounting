@@ -121,6 +121,7 @@ test("research package replay validates the full clean corpus and is idempotent"
     const beforePrimary = new Map(beforeSources.map((source) => [source.id, withoutSupplementalReviews(source)]));
     const nonPackageReviews = new Map(beforeSources.map((source) => [source.id, (source.data?.supplemental_reviews || [])
       .filter((review) => !packageBatches.has(review.batch))]));
+    const beforeQuestionSetVersion = read(root, "data/coverage/research-questions.json").question_set_version;
     const empirical = read(root, "data/research/empirical.json");
     const foundations = read(root, "data/research/foundations.json");
 
@@ -138,7 +139,7 @@ test("research package replay validates the full clean corpus and is idempotent"
     assert.deepEqual(output.changes.registry_fields, []);
     assert.ok(Array.isArray(output.changes.source_records));
     assert.ok(Array.isArray(output.changes.mapping_records));
-    assert.equal(registry.question_set_version, foundations.question_set_version);
+    assert.equal(registry.question_set_version, beforeQuestionSetVersion);
     assert.equal(registry.reviewed_at, foundations.reviewed_at);
     assert.equal(guide.data.version, empirical.version);
     assert.equal(aliases.src_roadmap_naics2022, "src_roadmap_naics2022_manual");
