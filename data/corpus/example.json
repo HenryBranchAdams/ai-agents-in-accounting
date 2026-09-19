@@ -13781,5 +13781,1169 @@
         }
       ]
     }
+  },
+  {
+    "id": "example-support-labor-and-agency-close",
+    "kind": "example",
+    "title": "Support services: staffing, payroll agency and recurring close",
+    "summary": "Separate synthetic staffing, client-money and recurring-service books reconcile labor, fees, cash and cutoff.",
+    "topics": [
+      "Accounting and reporting",
+      "Service revenue and labor",
+      "Environmental obligations"
+    ],
+    "industries": [
+      "administrative-support-waste-remediation"
+    ],
+    "jurisdiction": "United States; selected business and reporting roles",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_fasb_asu2016_08_principal_agent",
+      "src_aa_i110_irs_cpeo_customers",
+      "src_construction_fasb_2014_09"
+    ],
+    "related_ids": [
+      "guide-support-waste-us-close",
+      "wf-support-waste-evidence-close",
+      "ctrl-support-waste-role-cutoff",
+      "example-waste-disposal-remediation-close"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-19",
+    "provenance": {
+      "added_on": "2026-09-19",
+      "reviewer": "Codex AI-assisted bounded source and editorial review",
+      "scope": "Selected original-source passages and synthetic role-specific worksheets; not professional signoff.",
+      "note": "Source-only proposal pending independent acceptance and current integration."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "External publisher text is not stored; publisher terms and source rights remain separate and unresolved.",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "fixture_type": "original-synthetic",
+      "currency": "USD",
+      "unit": "integer cents",
+      "period": "2025 illustrative reporting close",
+      "accounts": {
+        "cash": "asset",
+        "client_cash": "asset",
+        "receivable": "asset",
+        "billed_receivable": "asset",
+        "unbilled_receivable": "asset",
+        "contract_asset": "asset",
+        "retirement_cost": "asset",
+        "accumulated_depreciation": "contra_asset",
+        "capital": "equity",
+        "revenue": "revenue",
+        "fee_revenue": "revenue",
+        "labor_expense": "expense",
+        "employer_tax_expense": "expense",
+        "tipping_expense": "expense",
+        "accretion_expense": "expense",
+        "depreciation_expense": "expense",
+        "assurance_fee_expense": "expense",
+        "remediation_loss": "expense",
+        "contract_cost": "expense",
+        "wages_payable": "liability",
+        "withholding_payable": "liability",
+        "employer_tax_payable": "liability",
+        "client_funds_payable": "liability",
+        "contract_liability": "liability",
+        "accounts_payable": "liability",
+        "aro_liability": "liability",
+        "remediation_liability": "liability"
+      },
+      "cases": [
+        {
+          "id": "staffing-principal",
+          "synthetic": true,
+          "assumptions": [
+            "Staffing provider controls the promised labor service before transfer; this is a stated contract assumption, not a conclusion from a PEO label.",
+            "All 1,000 hours are approved and delivered by period end. Wage and tax amounts are illustrative inputs, not statutory rates."
+          ],
+          "inputs": {
+            "hours": 1000,
+            "bill_rate_cents": 5000,
+            "wage_rate_cents": 3000,
+            "employee_withholding_cents": 600000,
+            "employer_tax_cents": 300000,
+            "customer_cash_cents": 4500000
+          },
+          "journals": [
+            {
+              "id": "S0",
+              "entity": "S",
+              "lines": [
+                {
+                  "account": "cash",
+                  "debit_cents": 5000000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "capital",
+                  "debit_cents": 0,
+                  "credit_cents": 5000000
+                }
+              ]
+            },
+            {
+              "id": "S1",
+              "entity": "S",
+              "lines": [
+                {
+                  "account": "receivable",
+                  "debit_cents": 5000000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "revenue",
+                  "debit_cents": 0,
+                  "credit_cents": 5000000
+                }
+              ]
+            },
+            {
+              "id": "S2",
+              "entity": "S",
+              "lines": [
+                {
+                  "account": "labor_expense",
+                  "debit_cents": 3000000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "wages_payable",
+                  "debit_cents": 0,
+                  "credit_cents": 2400000
+                },
+                {
+                  "account": "withholding_payable",
+                  "debit_cents": 0,
+                  "credit_cents": 600000
+                }
+              ]
+            },
+            {
+              "id": "S3",
+              "entity": "S",
+              "lines": [
+                {
+                  "account": "employer_tax_expense",
+                  "debit_cents": 300000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "employer_tax_payable",
+                  "debit_cents": 0,
+                  "credit_cents": 300000
+                }
+              ]
+            },
+            {
+              "id": "S4",
+              "entity": "S",
+              "lines": [
+                {
+                  "account": "wages_payable",
+                  "debit_cents": 2400000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "cash",
+                  "debit_cents": 0,
+                  "credit_cents": 2400000
+                }
+              ]
+            },
+            {
+              "id": "S5",
+              "entity": "S",
+              "lines": [
+                {
+                  "account": "withholding_payable",
+                  "debit_cents": 600000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "employer_tax_payable",
+                  "debit_cents": 300000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "cash",
+                  "debit_cents": 0,
+                  "credit_cents": 900000
+                }
+              ]
+            },
+            {
+              "id": "S6",
+              "entity": "S",
+              "lines": [
+                {
+                  "account": "cash",
+                  "debit_cents": 4500000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "receivable",
+                  "debit_cents": 0,
+                  "credit_cents": 4500000
+                }
+              ]
+            }
+          ],
+          "trial_balance": {
+            "cash": 6200000,
+            "capital": -5000000,
+            "receivable": 500000,
+            "revenue": -5000000,
+            "labor_expense": 3000000,
+            "employer_tax_expense": 300000
+          },
+          "reconciliation": {
+            "assets_cents": 6700000,
+            "liabilities_cents": 0,
+            "net_income_cents": 1700000,
+            "contributed_capital_cents": 5000000
+          }
+        },
+        {
+          "id": "payroll-disbursing-agent",
+          "synthetic": true,
+          "assumptions": [
+            "Separate agent only transmits customer-provided funds; customer remains employer in this branch. Client-money accounts are illustrative and do not settle legal custody or balance-sheet recognition policy.",
+            "The agent earns a separately contracted $500 processing fee; this is not a CPEO federal-tax conclusion."
+          ],
+          "inputs": {
+            "client_funding_cents": 3300000,
+            "net_wages_cents": 2400000,
+            "tax_remittance_cents": 900000,
+            "fee_cents": 50000
+          },
+          "journals": [
+            {
+              "id": "A1",
+              "entity": "A",
+              "lines": [
+                {
+                  "account": "client_cash",
+                  "debit_cents": 3300000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "client_funds_payable",
+                  "debit_cents": 0,
+                  "credit_cents": 3300000
+                }
+              ]
+            },
+            {
+              "id": "A2",
+              "entity": "A",
+              "lines": [
+                {
+                  "account": "client_funds_payable",
+                  "debit_cents": 2400000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "client_cash",
+                  "debit_cents": 0,
+                  "credit_cents": 2400000
+                }
+              ]
+            },
+            {
+              "id": "A3",
+              "entity": "A",
+              "lines": [
+                {
+                  "account": "client_funds_payable",
+                  "debit_cents": 900000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "client_cash",
+                  "debit_cents": 0,
+                  "credit_cents": 900000
+                }
+              ]
+            },
+            {
+              "id": "A4",
+              "entity": "A",
+              "lines": [
+                {
+                  "account": "receivable",
+                  "debit_cents": 50000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "fee_revenue",
+                  "debit_cents": 0,
+                  "credit_cents": 50000
+                }
+              ]
+            },
+            {
+              "id": "A5",
+              "entity": "A",
+              "lines": [
+                {
+                  "account": "cash",
+                  "debit_cents": 50000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "receivable",
+                  "debit_cents": 0,
+                  "credit_cents": 50000
+                }
+              ]
+            }
+          ],
+          "trial_balance": {
+            "fee_revenue": -50000,
+            "cash": 50000
+          },
+          "reconciliation": {
+            "assets_cents": 50000,
+            "liabilities_cents": 0,
+            "net_income_cents": 50000,
+            "contributed_capital_cents": 0
+          }
+        },
+        {
+          "id": "recurring-support",
+          "synthetic": true,
+          "assumptions": [
+            "Three equal months of administrative support are one evenly satisfied service obligation; one month completed. No disputed acceptance or variable consideration."
+          ],
+          "inputs": {
+            "advance_cents": 900000,
+            "months": 3,
+            "completed_months": 1,
+            "labor_accrual_cents": 200000
+          },
+          "journals": [
+            {
+              "id": "J1",
+              "entity": "J",
+              "lines": [
+                {
+                  "account": "cash",
+                  "debit_cents": 900000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "contract_liability",
+                  "debit_cents": 0,
+                  "credit_cents": 900000
+                }
+              ]
+            },
+            {
+              "id": "J2",
+              "entity": "J",
+              "lines": [
+                {
+                  "account": "contract_liability",
+                  "debit_cents": 300000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "revenue",
+                  "debit_cents": 0,
+                  "credit_cents": 300000
+                }
+              ]
+            },
+            {
+              "id": "J3",
+              "entity": "J",
+              "lines": [
+                {
+                  "account": "labor_expense",
+                  "debit_cents": 200000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "wages_payable",
+                  "debit_cents": 0,
+                  "credit_cents": 200000
+                }
+              ]
+            }
+          ],
+          "trial_balance": {
+            "cash": 900000,
+            "contract_liability": -600000,
+            "revenue": -300000,
+            "labor_expense": 200000,
+            "wages_payable": -200000
+          },
+          "reconciliation": {
+            "assets_cents": 900000,
+            "liabilities_cents": 800000,
+            "net_income_cents": 100000,
+            "contributed_capital_cents": 0
+          }
+        }
+      ],
+      "examples": [
+        {
+          "scenario": "staffing-principal",
+          "scenario_type": "positive",
+          "synthetic": true,
+          "inputs_pointer": "/data/cases/0/inputs",
+          "journals_pointer": "/data/cases/0/journals",
+          "expected_pointer": "/data/cases/0/reconciliation"
+        },
+        {
+          "scenario": "payroll-disbursing-agent",
+          "scenario_type": "positive",
+          "synthetic": true,
+          "inputs_pointer": "/data/cases/1/inputs",
+          "journals_pointer": "/data/cases/1/journals",
+          "expected_pointer": "/data/cases/1/reconciliation"
+        },
+        {
+          "scenario": "recurring-support",
+          "scenario_type": "positive",
+          "synthetic": true,
+          "inputs_pointer": "/data/cases/2/inputs",
+          "journals_pointer": "/data/cases/2/journals",
+          "expected_pointer": "/data/cases/2/reconciliation"
+        },
+        {
+          "scenario": "PEO-LABEL",
+          "scenario_type": "negative",
+          "synthetic": true,
+          "expected": "Hold CPEO tax transfer until certification, exact contract party, remuneration and employee category are established; certification alone does not determine gross/net GAAP."
+        },
+        {
+          "scenario": "UNAPPROVED-TIME",
+          "scenario_type": "negative",
+          "synthetic": true,
+          "expected": "Do not infer an earned invoice or eliminate a real wage obligation from missing customer approval; investigate service, employment and contract facts separately."
+        },
+        {
+          "scenario": "CLIENT-FUNDS-AS-REVENUE",
+          "scenario_type": "negative",
+          "synthetic": true,
+          "expected": "Client funding is not agent fee revenue; the branch reconciles client funds to zero."
+        }
+      ],
+      "scope_counterexamples": [
+        {
+          "id": "PEO-LABEL",
+          "outcome": "Hold CPEO tax transfer until certification, exact contract party, remuneration and employee category are established; certification alone does not determine gross/net GAAP."
+        },
+        {
+          "id": "UNAPPROVED-TIME",
+          "hours": 150,
+          "outcome": "Do not infer an earned invoice or eliminate a real wage obligation from missing customer approval; investigate service, employment and contract facts separately."
+        },
+        {
+          "id": "CLIENT-FUNDS-AS-REVENUE",
+          "client_funding_cents": 3300000,
+          "correct_fee_revenue_cents": 50000,
+          "outcome": "Client funding is not agent fee revenue; the branch reconciles client funds to zero."
+        }
+      ],
+      "limitations": [
+        "Synthetic arithmetic with explicitly assumed accounting and legal predicates; not actual transaction or professional evidence.",
+        "Current consolidated ASC, later amendments, actual contract and permit applicability remain unverified.",
+        "Synthetic worksheets are not operational evidence, professional review or legal and employment-tax conclusions.",
+        "Source rights remain unknown; external full text is not stored. Selected questions do not establish industry sufficiency or a state-law survey."
+      ]
+    }
+  },
+  {
+    "id": "example-waste-disposal-remediation-close",
+    "kind": "example",
+    "title": "Waste services: collection, retirement and remediation close",
+    "summary": "Separate synthetic collection, TSDF assurance, contamination liability and remediation-contractor estimate reconciliations.",
+    "topics": [
+      "Accounting and reporting",
+      "Service revenue and labor",
+      "Environmental obligations"
+    ],
+    "industries": [
+      "administrative-support-waste-remediation"
+    ],
+    "jurisdiction": "United States; selected business and reporting roles",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_construction_fasb_2014_09",
+      "src_aa_i110_epa_tsdf_assurance",
+      "src_aa_i123_fas143",
+      "src_aa_i123_fas5",
+      "src_aa_i123_sec5y"
+    ],
+    "related_ids": [
+      "guide-support-waste-us-close",
+      "wf-support-waste-evidence-close",
+      "ctrl-support-waste-role-cutoff",
+      "example-support-labor-and-agency-close"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-19",
+    "provenance": {
+      "added_on": "2026-09-19",
+      "reviewer": "Codex AI-assisted bounded source and editorial review",
+      "scope": "Selected original-source passages and synthetic role-specific worksheets; not professional signoff.",
+      "note": "Source-only proposal pending independent acceptance and current integration."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "External publisher text is not stored; publisher terms and source rights remain separate and unresolved.",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "fixture_type": "original-synthetic",
+      "currency": "USD",
+      "unit": "integer cents",
+      "period": "2025 illustrative reporting close",
+      "accounts": {
+        "cash": "asset",
+        "client_cash": "asset",
+        "receivable": "asset",
+        "billed_receivable": "asset",
+        "unbilled_receivable": "asset",
+        "contract_asset": "asset",
+        "retirement_cost": "asset",
+        "accumulated_depreciation": "contra_asset",
+        "capital": "equity",
+        "revenue": "revenue",
+        "fee_revenue": "revenue",
+        "labor_expense": "expense",
+        "employer_tax_expense": "expense",
+        "tipping_expense": "expense",
+        "accretion_expense": "expense",
+        "depreciation_expense": "expense",
+        "assurance_fee_expense": "expense",
+        "remediation_loss": "expense",
+        "contract_cost": "expense",
+        "wages_payable": "liability",
+        "withholding_payable": "liability",
+        "employer_tax_payable": "liability",
+        "client_funds_payable": "liability",
+        "contract_liability": "liability",
+        "accounts_payable": "liability",
+        "aro_liability": "liability",
+        "remediation_liability": "liability"
+      },
+      "cases": [
+        {
+          "id": "waste-collection",
+          "synthetic": true,
+          "assumptions": [
+            "Collector provides the contracted pickup service and owns no disposal site in this branch. Accepted tonnage establishes service performance.",
+            "All rights to payment are unconditional except passage of time; uninvoiced completed work is a receivable, not automatically a contract asset."
+          ],
+          "inputs": {
+            "completed_tons": 100,
+            "rate_cents_per_ton": 8000,
+            "invoiced_tons": 80,
+            "paid_tons": 60,
+            "tipping_rate_cents_per_ton": 2500,
+            "labor_accrual_cents": 200000
+          },
+          "journals": [
+            {
+              "id": "W0",
+              "entity": "W",
+              "lines": [
+                {
+                  "account": "cash",
+                  "debit_cents": 1000000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "capital",
+                  "debit_cents": 0,
+                  "credit_cents": 1000000
+                }
+              ]
+            },
+            {
+              "id": "W1",
+              "entity": "W",
+              "lines": [
+                {
+                  "account": "billed_receivable",
+                  "debit_cents": 640000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "unbilled_receivable",
+                  "debit_cents": 160000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "revenue",
+                  "debit_cents": 0,
+                  "credit_cents": 800000
+                }
+              ]
+            },
+            {
+              "id": "W2",
+              "entity": "W",
+              "lines": [
+                {
+                  "account": "cash",
+                  "debit_cents": 480000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "billed_receivable",
+                  "debit_cents": 0,
+                  "credit_cents": 480000
+                }
+              ]
+            },
+            {
+              "id": "W3",
+              "entity": "W",
+              "lines": [
+                {
+                  "account": "tipping_expense",
+                  "debit_cents": 250000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "accounts_payable",
+                  "debit_cents": 0,
+                  "credit_cents": 250000
+                }
+              ]
+            },
+            {
+              "id": "W4",
+              "entity": "W",
+              "lines": [
+                {
+                  "account": "labor_expense",
+                  "debit_cents": 200000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "wages_payable",
+                  "debit_cents": 0,
+                  "credit_cents": 200000
+                }
+              ]
+            },
+            {
+              "id": "W5",
+              "entity": "W",
+              "lines": [
+                {
+                  "account": "accounts_payable",
+                  "debit_cents": 250000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "cash",
+                  "debit_cents": 0,
+                  "credit_cents": 250000
+                }
+              ]
+            }
+          ],
+          "trial_balance": {
+            "cash": 1230000,
+            "capital": -1000000,
+            "billed_receivable": 160000,
+            "unbilled_receivable": 160000,
+            "revenue": -800000,
+            "tipping_expense": 250000,
+            "labor_expense": 200000,
+            "wages_payable": -200000
+          },
+          "reconciliation": {
+            "assets_cents": 1550000,
+            "liabilities_cents": 200000,
+            "net_income_cents": 350000,
+            "contributed_capital_cents": 1000000
+          }
+        },
+        {
+          "id": "tsdf-retirement-and-assurance",
+          "synthetic": true,
+          "assumptions": [
+            "Incremental retirement-cost worksheet for a permitted hazardous-waste TSDF with an assumed legal retirement obligation arising from normal operation. Existing facility plant is outside this incremental worksheet.",
+            "Opening fair value, one-year 5% accretion and year-end upward revision are supplied valuation assumptions, not a validated market valuation. Initial retirement-cost life is 10 years; the new revision occurs at year end.",
+            "Assurance letter of credit has a separate fee; nominal face value is not cash, an offset or an extinguishment of the liability."
+          ],
+          "inputs": {
+            "initial_aro_cents": 1000000,
+            "accretion_rate_basis_points": 500,
+            "initial_cost_life_years": 10,
+            "year_end_upward_revision_fair_value_cents": 200000,
+            "closure_estimate_before_inflation_cents": 1600000,
+            "inflation_basis_points": 300,
+            "assurance_face_cents": 1500000,
+            "assurance_fee_cents": 10000
+          },
+          "journals": [
+            {
+              "id": "T0",
+              "entity": "T",
+              "lines": [
+                {
+                  "account": "cash",
+                  "debit_cents": 2000000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "capital",
+                  "debit_cents": 0,
+                  "credit_cents": 2000000
+                }
+              ]
+            },
+            {
+              "id": "T1",
+              "entity": "T",
+              "lines": [
+                {
+                  "account": "retirement_cost",
+                  "debit_cents": 1000000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "aro_liability",
+                  "debit_cents": 0,
+                  "credit_cents": 1000000
+                }
+              ]
+            },
+            {
+              "id": "T2",
+              "entity": "T",
+              "lines": [
+                {
+                  "account": "accretion_expense",
+                  "debit_cents": 50000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "aro_liability",
+                  "debit_cents": 0,
+                  "credit_cents": 50000
+                }
+              ]
+            },
+            {
+              "id": "T3",
+              "entity": "T",
+              "lines": [
+                {
+                  "account": "depreciation_expense",
+                  "debit_cents": 100000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "accumulated_depreciation",
+                  "debit_cents": 0,
+                  "credit_cents": 100000
+                }
+              ]
+            },
+            {
+              "id": "T4",
+              "entity": "T",
+              "lines": [
+                {
+                  "account": "retirement_cost",
+                  "debit_cents": 200000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "aro_liability",
+                  "debit_cents": 0,
+                  "credit_cents": 200000
+                }
+              ]
+            },
+            {
+              "id": "T5",
+              "entity": "T",
+              "lines": [
+                {
+                  "account": "assurance_fee_expense",
+                  "debit_cents": 10000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "cash",
+                  "debit_cents": 0,
+                  "credit_cents": 10000
+                }
+              ]
+            }
+          ],
+          "trial_balance": {
+            "cash": 1990000,
+            "capital": -2000000,
+            "retirement_cost": 1200000,
+            "aro_liability": -1250000,
+            "accretion_expense": 50000,
+            "depreciation_expense": 100000,
+            "accumulated_depreciation": -100000,
+            "assurance_fee_expense": 10000
+          },
+          "reconciliation": {
+            "assets_cents": 3090000,
+            "liabilities_cents": 1250000,
+            "net_income_cents": -160000,
+            "contributed_capital_cents": 2000000
+          },
+          "assurance_schedule": {
+            "updated_third_party_estimate_cents": 1648000,
+            "assurance_face_cents": 1500000,
+            "shortfall_cents": 148000,
+            "action": "Flag instrument increase and permit review; do not reduce the 1,250,000-cent liability."
+          }
+        },
+        {
+          "id": "remediation-obligor",
+          "synthetic": true,
+          "assumptions": [
+            "Separate SEC registrant with a probable, reasonably estimable contamination obligation of $6,000; no discounting used. Improper-operation cleanup is not assumed to be the normal-retirement ARO.",
+            "Insurer contests its $2,500 claimed responsibility; no evidence overcomes the SEC staff presumption against a recovery asset."
+          ],
+          "inputs": {
+            "estimated_loss_cents": 600000,
+            "settled_cents": 200000,
+            "contested_recovery_claim_cents": 250000,
+            "recognized_recovery_cents": 0
+          },
+          "journals": [
+            {
+              "id": "O0",
+              "entity": "O",
+              "lines": [
+                {
+                  "account": "cash",
+                  "debit_cents": 2000000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "capital",
+                  "debit_cents": 0,
+                  "credit_cents": 2000000
+                }
+              ]
+            },
+            {
+              "id": "O1",
+              "entity": "O",
+              "lines": [
+                {
+                  "account": "remediation_loss",
+                  "debit_cents": 600000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "remediation_liability",
+                  "debit_cents": 0,
+                  "credit_cents": 600000
+                }
+              ]
+            },
+            {
+              "id": "O2",
+              "entity": "O",
+              "lines": [
+                {
+                  "account": "remediation_liability",
+                  "debit_cents": 200000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "cash",
+                  "debit_cents": 0,
+                  "credit_cents": 200000
+                }
+              ]
+            }
+          ],
+          "trial_balance": {
+            "cash": 1800000,
+            "capital": -2000000,
+            "remediation_loss": 600000,
+            "remediation_liability": -400000
+          },
+          "reconciliation": {
+            "assets_cents": 1800000,
+            "liabilities_cents": 400000,
+            "net_income_cents": -600000,
+            "contributed_capital_cents": 2000000
+          }
+        },
+        {
+          "id": "remediation-service-contractor",
+          "synthetic": true,
+          "assumptions": [
+            "Contractor cleans a customer-controlled site; over-time eligibility and reliable cost-to-cost progress are assumed, with no wasted inputs or excluded materials. Contractor is not the contamination obligor.",
+            "Fixed consideration is $12,000. A documented year-end estimate increases total expected cost from $8,000 to $10,000; actual costs remain $4,000."
+          ],
+          "inputs": {
+            "contract_price_cents": 1200000,
+            "cost_to_date_cents": 400000,
+            "original_total_cost_cents": 800000,
+            "revised_total_cost_cents": 1000000,
+            "billed_cents": 500000,
+            "collected_cents": 450000,
+            "paid_cost_cents": 300000
+          },
+          "journals": [
+            {
+              "id": "R1",
+              "entity": "R",
+              "lines": [
+                {
+                  "account": "contract_cost",
+                  "debit_cents": 400000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "accounts_payable",
+                  "debit_cents": 0,
+                  "credit_cents": 400000
+                }
+              ]
+            },
+            {
+              "id": "R2",
+              "entity": "R",
+              "lines": [
+                {
+                  "account": "contract_asset",
+                  "debit_cents": 600000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "revenue",
+                  "debit_cents": 0,
+                  "credit_cents": 600000
+                }
+              ]
+            },
+            {
+              "id": "R3",
+              "entity": "R",
+              "lines": [
+                {
+                  "account": "receivable",
+                  "debit_cents": 500000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "contract_asset",
+                  "debit_cents": 0,
+                  "credit_cents": 500000
+                }
+              ]
+            },
+            {
+              "id": "R4",
+              "entity": "R",
+              "lines": [
+                {
+                  "account": "cash",
+                  "debit_cents": 450000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "receivable",
+                  "debit_cents": 0,
+                  "credit_cents": 450000
+                }
+              ]
+            },
+            {
+              "id": "R5",
+              "entity": "R",
+              "lines": [
+                {
+                  "account": "accounts_payable",
+                  "debit_cents": 300000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "cash",
+                  "debit_cents": 0,
+                  "credit_cents": 300000
+                }
+              ]
+            },
+            {
+              "id": "R6",
+              "entity": "R",
+              "lines": [
+                {
+                  "account": "revenue",
+                  "debit_cents": 120000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "contract_asset",
+                  "debit_cents": 0,
+                  "credit_cents": 100000
+                },
+                {
+                  "account": "contract_liability",
+                  "debit_cents": 0,
+                  "credit_cents": 20000
+                }
+              ]
+            }
+          ],
+          "trial_balance": {
+            "contract_cost": 400000,
+            "accounts_payable": -100000,
+            "revenue": -480000,
+            "receivable": 50000,
+            "cash": 150000,
+            "contract_liability": -20000
+          },
+          "reconciliation": {
+            "assets_cents": 200000,
+            "liabilities_cents": 120000,
+            "net_income_cents": 80000,
+            "contributed_capital_cents": 0
+          },
+          "estimate_bridge": {
+            "original_progress_basis_points": 5000,
+            "revised_progress_basis_points": 4000,
+            "original_cumulative_revenue_cents": 600000,
+            "revised_cumulative_revenue_cents": 480000,
+            "revenue_catchup_cents": -120000,
+            "closing_contract_liability_cents": 20000
+          }
+        }
+      ],
+      "examples": [
+        {
+          "scenario": "waste-collection",
+          "scenario_type": "positive",
+          "synthetic": true,
+          "inputs_pointer": "/data/cases/0/inputs",
+          "journals_pointer": "/data/cases/0/journals",
+          "expected_pointer": "/data/cases/0/reconciliation"
+        },
+        {
+          "scenario": "tsdf-retirement-and-assurance",
+          "scenario_type": "positive",
+          "synthetic": true,
+          "inputs_pointer": "/data/cases/1/inputs",
+          "journals_pointer": "/data/cases/1/journals",
+          "expected_pointer": "/data/cases/1/reconciliation"
+        },
+        {
+          "scenario": "remediation-obligor",
+          "scenario_type": "positive",
+          "synthetic": true,
+          "inputs_pointer": "/data/cases/2/inputs",
+          "journals_pointer": "/data/cases/2/journals",
+          "expected_pointer": "/data/cases/2/reconciliation"
+        },
+        {
+          "scenario": "remediation-service-contractor",
+          "scenario_type": "positive",
+          "synthetic": true,
+          "inputs_pointer": "/data/cases/3/inputs",
+          "journals_pointer": "/data/cases/3/journals",
+          "expected_pointer": "/data/cases/3/reconciliation"
+        },
+        {
+          "scenario": "COLLECTOR-AS-TSDF",
+          "scenario_type": "negative",
+          "synthetic": true,
+          "expected": "A collection contract and NAICS label alone do not establish ownership of a TSDF or a facility retirement obligation."
+        },
+        {
+          "scenario": "AFTER-CUTOFF-TONNAGE",
+          "scenario_type": "negative",
+          "synthetic": true,
+          "expected": "Five next-period tons remain outside the current 100-ton population."
+        },
+        {
+          "scenario": "ASSURANCE-AS-OFFSET",
+          "scenario_type": "negative",
+          "synthetic": true,
+          "expected": "Do not offset or extinguish the liability using the assurance face amount; separately flag the assurance shortfall."
+        },
+        {
+          "scenario": "CONTRACTOR-AS-OBLIGOR",
+          "scenario_type": "negative",
+          "synthetic": true,
+          "expected": "Cleaning a customer site does not make the service contractor the contamination obligor; contract estimates and environmental loss estimates remain distinct."
+        },
+        {
+          "scenario": "DISPUTED-RECOVERY",
+          "scenario_type": "negative",
+          "synthetic": true,
+          "expected": "Contested insurance does not automatically reduce the recorded remediation liability."
+        }
+      ],
+      "scope_counterexamples": [
+        {
+          "id": "COLLECTOR-AS-TSDF",
+          "outcome": "A collection contract and NAICS label alone do not establish ownership of a TSDF or a facility retirement obligation."
+        },
+        {
+          "id": "AFTER-CUTOFF-TONNAGE",
+          "next_period_tons": 5,
+          "rate_cents_per_ton": 8000,
+          "excluded_current_revenue_cents": 40000,
+          "outcome": "Five next-period tons remain outside the current 100-ton population."
+        },
+        {
+          "id": "ASSURANCE-AS-OFFSET",
+          "recognized_aro_cents": 1250000,
+          "assurance_face_cents": 1500000,
+          "outcome": "Do not offset or extinguish the liability using the assurance face amount; separately flag the assurance shortfall."
+        },
+        {
+          "id": "CONTRACTOR-AS-OBLIGOR",
+          "outcome": "Cleaning a customer site does not make the service contractor the contamination obligor; contract estimates and environmental loss estimates remain distinct."
+        },
+        {
+          "id": "DISPUTED-RECOVERY",
+          "claimed_cents": 250000,
+          "recognized_cents": 0,
+          "outcome": "Contested insurance does not automatically reduce the recorded remediation liability."
+        }
+      ],
+      "limitations": [
+        "Synthetic arithmetic with explicitly assumed accounting and legal predicates; not actual transaction or professional evidence.",
+        "Current consolidated ASC, later amendments, actual contract and permit applicability remain unverified.",
+        "Synthetic worksheets are not operational evidence, professional review or legal and employment-tax conclusions.",
+        "Source rights remain unknown; external full text is not stored. Selected questions do not establish industry sufficiency or a state-law survey."
+      ]
+    }
   }
 ]
