@@ -27626,7 +27626,7 @@
     "id": "guide-wholesale-retail",
     "kind": "guide",
     "title": "Wholesale, retail, consignment and marketplace settlement",
-    "summary": "Scoped research on wholesale, retail, consignment and marketplace settlement: 6 questions, evidence inputs, worked material and remaining gaps.",
+    "summary": "US wholesale and retail application package covering merchant ownership, broker and consignment counterexamples, landed cost, returns, POS-to-bank settlement, gift cards, loyalty, grocery shrinkage and marketplace presentation. Six named questions remain partial and source-bounded.",
     "topics": [
       "Scoped research",
       "Inventory, conversion costs and cost of sales",
@@ -27636,7 +27636,7 @@
       "Source data, lineage and reconciliation"
     ],
     "industries": [],
-    "jurisdiction": "Declared separately for each question",
+    "jurisdiction": "United States; nongovernmental US GAAP application questions, with IFRS context retained separately and state or local rules out of scope",
     "source_type": null,
     "publisher": "Accounting Agents contributors",
     "source_url": null,
@@ -27645,16 +27645,31 @@
       "src_roadmap_kpmg_ifrs_revenue_2025",
       "src_roadmap_kpmg_inventory_2026",
       "src_roadmap_naics2022_manual",
-      "src_ias02inv"
+      "src_ias02inv",
+      "src_construction_fasb_2014_09",
+      "src_fasb_asu2016_08_principal_agent",
+      "src_fasb_asu2015_11_inventory",
+      "src_fasb_asu2016_04_gift_cards",
+      "src_1os761s"
     ],
     "related_ids": [],
     "review_status": "editorially-reviewed",
-    "reviewed_at": "2026-09-11",
+    "reviewed_at": "2026-09-19",
     "provenance": {
       "added_on": "2026-09-11",
       "reviewer": "Codex AI-assisted research, with root source-scope and semantic review",
       "note": "Original research synthesis and clearly labeled original examples. Listed source access and currency limits constrain every answer; no professional sign-off or production validation.",
-      "research_file": "data/research/industries.json"
+      "research_file": "data/research/aa-i102103-wholesale-retail-2026-09-19.json",
+      "issue_id": "AA-I102103",
+      "package_version": "2026-09-18.102103",
+      "revision_history": [
+        {
+          "date": "2026-09-19",
+          "scope": "Combined AA-I102 wholesale and AA-I103 retail package: US source locators, role and settlement boundaries, synthetic reconciliation fixture and partial coverage assessments; prior international context retained.",
+          "reviewer": "Codex, AI-assisted source and metadata review",
+          "professional_review": "not-performed"
+        }
+      ]
     },
     "rights": {
       "metadata": "CC0-1.0",
@@ -27671,50 +27686,58 @@
           "44-45"
         ],
         "classification_source": "src_roadmap_naics2022_manual",
-        "rationale": "NAICS definitions classify wholesale and retail establishment activity; they do not decide control, principal/agent presentation or revenue timing."
+        "rationale": "The 2022 Census manual identifies wholesale and retail establishment activity and distinguishes merchant wholesalers from agents or brokers. It does not decide title, control, principal-agent presentation, inventory cost, revenue timing or sector sufficiency."
       },
       "roles": [
-        "merchant wholesaler or retailer owning goods for resale",
-        "manufacturer/consignor supplying goods under shipment, return or consignment terms",
+        "durable or nondurable merchant wholesaler owning goods for resale",
+        "physical, online or omnichannel retailer owning goods for resale",
+        "manufacturer or consignor supplying goods under shipment, return or consignment terms",
         "broker, distributor or marketplace arranging a sale without necessarily controlling the specified good",
-        "customer purchasing goods or services"
+        "customer purchasing goods or services",
+        "processor, bank or platform settling funds without determining the accounting conclusion"
       ],
       "frameworks": [
         {
           "name": "IFRS 15 / ASC 606",
           "jurisdiction": "IFRS or US GAAP reporter",
-          "date": "2022 issued IFRS text / current adopted US GAAP; contract-specific"
+          "date": "2022 issued IFRS text / original US GAAP amendments reviewed here; current adopted US GAAP and entity adoption require confirmation"
         },
         {
           "name": "IAS 2 / ASC 330",
           "jurisdiction": "IFRS or US GAAP inventory reporter",
-          "date": "2022 issued IFRS text / current adopted US GAAP; method-specific"
+          "date": "2022 issued IFRS text / original US GAAP inventory amendment reviewed here; current adopted US GAAP and method-specific application require confirmation"
         }
       ],
       "shared_inputs": [
-        "NAICS establishment activity and entity role",
-        "Orders, POS, shipment, delivery, returns and settlement populations",
-        "Customer/supplier/platform contracts and credits",
-        "Framework, reporting date and costing method"
+        "NAICS establishment activity, merchant or intermediary role and selected durable, nondurable, physical, online or grocery branch",
+        "Orders, POS, item, location, channel, shipment, delivery, return, void, correction and settlement populations",
+        "Tender, sales-tax, gift-card, loyalty, processor, bank, customer, supplier and platform contract or credit populations",
+        "Purchase cost, assumed eligible freight, vendor rebate or credit terms, inventory method, reporting framework, reporting date and custody evidence",
+        "Transaction, shipment, delivery, settlement and inventory identifiers with extraction and omission logs"
       ],
       "controls": [
-        "Control-transfer and principal/agent memos",
-        "Independent cutoff and population reconciliation",
-        "Return/credit/rebate roll-forwards",
-        "Inventory ownership and shrinkage controls"
+        "Specified-promise, title, control, custody, fulfilment, price discretion, credit-risk, return-risk and principal-agent memo",
+        "Independent POS, shipment, delivery, inventory, processor, bank and platform population reconciliation",
+        "Customer-return, refund, gift-card, loyalty, vendor-credit and rebate roll-forwards with separate tax and fee populations",
+        "Inventory ownership, consignment, in-transit, third-party custody, count, shrinkage, spoilage, markdown and cutoff controls",
+        "Correction, void, duplicate, deletion, orphan and late-settlement exception routing"
       ],
       "exceptions": [
-        "Consignment and bill-and-hold",
-        "Marketplace mixed roles and drop-shipping",
-        "Returns, rebates, markdowns and supplier credits",
-        "LIFO, retail method, NRV/market and reversal differences"
+        "Consignment, bill-and-hold, warehouse custody and incomplete confirmation",
+        "Marketplace mixed roles, drop-shipping, physical retail, online retail and platform-held funds",
+        "Customer returns, refunds, rebates, vendor credits, markdowns, distinct services and tax",
+        "Gift cards, breakage, loyalty or material rights, unclaimed property and state or local law",
+        "LIFO, retail method, FIFO or average cost, NRV or market, freight eligibility, shrinkage, spoilage and reversal differences",
+        "Dealership and floorplan financing, routed to separate capital or lending research"
       ],
       "coverage_gaps": [
-        "No state/country indirect-tax determination",
-        "No entity-specific marketplace contracts or POS population",
-        "US GAAP primary Codification text not stored",
+        "No state or local sales-tax, consumer-protection or unclaimed-property determination",
+        "No entity-specific marketplace, supplier, processor, POS, ERP, bank or warehouse population",
+        "Current consolidated US GAAP Codification text was not accessed; issued amendments and selected locators are not a substitute",
+        "Vendor-rebate, freight eligibility, retail method, LIFO, shrinkage, spoilage and perishable-goods accounting remain fact and policy dependent",
+        "Dealership or floorplan lending and financing are not covered; the separate capital or lending owner retains that scope",
         "Only declared business-role fact patterns are covered. Leaf exception reviews identify additional research; no automatic detailed-industry sufficiency.",
-        "Worked examples are original synthetic illustrations, not real company transactions or deployment validation."
+        "Worked examples are original synthetic illustrations, not real company transactions, professional workpapers, operating evidence or deployment validation."
       ],
       "professional_review": "not-performed",
       "empirical_support": "not-established",
@@ -27754,27 +27777,57 @@
             "Physical shrinkage/count differences require entity population and policy evidence; this example does not prescribe their posting.",
             "Selling-price, completion-cost and method facts must be refreshed at each reporting date."
           ]
+        },
+        {
+          "id": "example-us-wholesale-retail-trade-reconciliation",
+          "basis": "original synthetic US wholesale and retail reconciliation fixture; current authority and professional review boundaries stated separately",
+          "framework": "Selected nongovernmental US GAAP research fixture; IFRS material remains comparative context only",
+          "period": "2026-01-31 reporting date with 2026-02 settlement and correction window",
+          "record_id": "example-us-wholesale-retail-trade-reconciliation",
+          "assumptions": [
+            "Wholesale merchant: 100 units at $400 plus $2,000 assumed eligible inbound freight, 60 units sold at $700, 40 units ending.",
+            "Broker or consignment branch: $50,000 customer activity, $47,500 due to the principal and $2,500 commission candidate, with no owned inventory.",
+            "Retail card clearing: $12,000 gross charges less $800 refunds and $300 processor fees equals $10,900 bank deposit; merchandise, tax and gift-card issuance remain separate.",
+            "Grocery branch: 1,000 opening units plus 500 receipts less 1,200 sales and 100 recorded spoilage gives 200 expected units; 185 counted units leaves a 15-unit investigation difference."
+          ],
+          "calculation": [
+            "Wholesale cost pool=$100 x $400+$2,000=$42,000; unit cost=$420; COGS=60 x $420=$25,200; ending cost=$16,800.",
+            "Broker settlement=$50,000-$47,500=$2,500 commission candidate; owned inventory=0 in this branch.",
+            "Retail clearing=$12,000-$800-$300=$10,900; composition=$10,500 merchandise+$700 tax+$800 gift-card issuance=$12,000.",
+            "Grocery expected units=1,000+500-1,200-100=200; counted 185; shrink investigation population=15."
+          ],
+          "tieout": "All declared bridges reconcile to zero difference. Agent and principal branches, retained-control consignment and changed-control merchant branches are mutually exclusive.",
+          "exceptions": [
+            "No vendor rebate, freight, shrinkage, spoilage, markdown, gift-card breakage, loyalty allocation, sales-tax or unclaimed-property treatment is posted or generalized.",
+            "No dealership or floorplan financing conclusion is included.",
+            "No live POS, ERP, processor, bank, supplier, warehouse or marketplace evidence is represented."
+          ]
         }
       ],
-      "version": "2026-09-11.1",
-      "research_package": "industries",
+      "version": "2026-09-18.102103",
+      "research_package": "aa-i102103-wholesale-retail",
       "research_questions": [
         {
           "id": "rq-trade-control",
           "question": "When does a wholesale or retail shipment transfer control, and how does consignment differ?",
-          "answer": "A shipment to a dealer is not automatically a sale. Under IFRS 15, consignment indicators include the supplier’s continuing ability to require return or transfer, no unconditional dealer payment and retained inventory control; revenue generally waits for end-customer sale or other transfer evidence.",
+          "answer": "For a US merchant, shipment, legal title, physical custody and cash collection are separate facts. The selected promise must be assessed for control before transfer using the contract, shipping or acceptance terms, return rights, payment obligation, sell-through evidence and inventory risk. A consignor or merchant does not treat a dealer, warehouse or marketplace delivery as a sale solely because goods moved. The original US revenue amendment identifies consignment and control material, while current consolidated ASC 606 remains controlling.",
           "source_ids": [
-            "src_ifrs15a",
-            "src_roadmap_kpmg_ifrs_revenue_2025"
+            "src_construction_fasb_2014_09",
+            "src_fasb_asu2016_08_principal_agent",
+            "src_roadmap_naics2022_manual"
           ],
           "source_locators": [
             {
-              "source_id": "src_ifrs15a",
-              "locator": "IFRS 15.B77-B78 (consignment indicators)"
+              "source_id": "src_construction_fasb_2014_09",
+              "locator": "ASC 606-10-55-79 through 55-80, consignment arrangements; original ASU Section A pp. 70-71"
             },
             {
-              "source_id": "src_roadmap_kpmg_ifrs_revenue_2025",
-              "locator": "KPMG 2025 Chapter 10, Section 10.3; consignment indicators and Example 3; interpretive context only, primary accounting authority remains cited IFRS/US GAAP standard"
+              "source_id": "src_fasb_asu2016_08_principal_agent",
+              "locator": "ASC 606-10-55-36 through 55-40; control and agent indicators in the issued amendment"
+            },
+            {
+              "source_id": "src_roadmap_naics2022_manual",
+              "locator": "2022 NAICS Manual 423, 424, 425 and 42 definitions; classification and role context only"
             }
           ],
           "conditions": [
@@ -27794,26 +27847,34 @@
             "cutoff and return reconciliation",
             "control memo approval"
           ],
+          "workflow": [
+            "Freeze the contract, order, shipment, acceptance, return, warehouse and sell-through populations at the reporting date.",
+            "Classify title, control, custody, payment, return, credit-risk and fulfilment evidence for the specified promise.",
+            "Reconcile owned, consigned, in-transit and returned units, then route missing confirmations or contradictory terms to human review."
+          ],
           "exceptions": [
             "flash title is not sufficient",
             "bill-and-hold and repurchase arrangements",
             "customer acceptance and right of return"
           ],
           "remaining_gaps": [
-            "The public 2022 IFRS edition was read for the cited paragraphs; verify amendments effective for the reporting period and obtain entity-specific professional review."
+            "Current consolidated ASC 606, later amendments, entity adoption and contract-specific control evidence were not reviewed.",
+            "Legal title, shipping terms, acceptance, return rights, credit risk and warehouse confirmation remain unresolved for a real population.",
+            "Dealership and floorplan arrangements are outside this package and routed to separate capital or lending research."
           ],
+          "worked_record_id": "example-us-wholesale-retail-trade-reconciliation",
           "worked_example": {
             "inputs": [
-              "Wholesale shipment: 100 units at $50 = $5,000 gross billings",
-              "Expected returns: 8 units; expected credit $400",
-              "Platform commission: 10% of end-customer sales"
+              "Merchant branch: 100 units received, 60 units sold, $42,000 assumed cost pool and $42,000 sales",
+              "Consignor branch: 100 units in a dealer or warehouse with retained control and incomplete confirmation",
+              "Broker branch: $50,000 customer activity, $47,500 due to principal and $2,500 commission candidate"
             ],
-            "calculation": "Expected transaction price before tax = $5,000-$400 = $4,600; if the platform is agent, commission revenue = 10% × $4,600 = $460; principal revenue would be $4,600 with separate cost of sales.",
-            "result": "Agent presentation: revenue $460 and payable/settlement for amounts collected for supplier; principal presentation: revenue $4,600, subject to inventory/control evidence.",
-            "limits": "Synthetic IFRS 15 illustration; control, returns and tax facts determine presentation."
+            "calculation": "Merchant ending units = 0 + 100 - 60 = 40; merchant COGS = 60 × $420 = $25,200. Broker commission candidate = $50,000 - $47,500 = $2,500. Consignor branch has no sale or COGS until control evidence changes.",
+            "result": "Three mutually exclusive role branches reconcile without using physical custody, legal title, cash collection or a net deposit as a shortcut.",
+            "limits": "Synthetic US fixture; current consolidated ASC 606, legal terms and professional review remain required."
           },
-          "framework_scope": "IFRS 15 or IAS 2 for IFRS reporters; ASC 606 or ASC 330 for US GAAP reporters. Confirm 2026 entity, method and jurisdiction before applying.",
-          "scope": "IFRS 15 or IAS 2 for IFRS reporters; ASC 606 or ASC 330 for US GAAP reporters. Confirm 2026 entity, method and jurisdiction before applying.",
+          "framework_scope": "Selected US nongovernmental US GAAP application using original ASU 2014-09 and ASU 2016-08 locators; IFRS 15 consignment context is retained separately and is not US authority.",
+          "scope": "United States; selected merchant, consignor, broker and intermediary roles in NAICS 42 and 44-45. Confirm current ASC 606, entity adoption, contract and reporting date before applying.",
           "answer_status": "sourced-answer-bounded",
           "assessment": {
             "status": "partial",
@@ -27824,7 +27885,7 @@
               "scope": "partial",
               "accounting-question": "partial",
               "evidence-inputs": "partial",
-              "workflow": "missing",
+              "workflow": "partial",
               "controls": "partial",
               "worked-material": "partial",
               "empirical-support": "not-assessed"
@@ -27838,19 +27899,24 @@
         {
           "id": "rq-trade-principal",
           "question": "How should a marketplace or distributor decide gross principal versus net agent revenue?",
-          "answer": "The entity is principal when it controls the specified good or service before transfer; an agent arranges for another party and recognizes its commission. Price discretion, fulfilment responsibility, inventory risk and ability to direct use are indicators, not automatic rules.",
+          "answer": "Under the selected US source scope, principal-agent analysis starts with the specified good or service and whether the entity controls it before transfer. Price discretion, primary fulfilment responsibility, inventory or return risk, credit exposure and commission form are indicators that inform the control analysis, not automatic rules. A marketplace deposit is a settlement fact, not proof of net revenue. The same customer activity can produce different candidates when the contract changes control and risk facts.",
           "source_ids": [
-            "src_ifrs15a",
-            "src_roadmap_kpmg_ifrs_revenue_2025"
+            "src_fasb_asu2016_08_principal_agent",
+            "src_construction_fasb_2014_09",
+            "src_roadmap_naics2022_manual"
           ],
           "source_locators": [
             {
-              "source_id": "src_ifrs15a",
-              "locator": "IFRS 15.B34-B38 (principal/agent control indicators)"
+              "source_id": "src_fasb_asu2016_08_principal_agent",
+              "locator": "ASC 606-10-55-36 through 55-40 and related examples; issued principal-agent amendment"
             },
             {
-              "source_id": "src_roadmap_kpmg_ifrs_revenue_2025",
-              "locator": "KPMG 2025 Chapter 10, Section 10.3, Example 3, IFRS 15.IE231-IE233; interpretive context only, primary accounting authority remains cited IFRS/US GAAP standard"
+              "source_id": "src_construction_fasb_2014_09",
+              "locator": "ASC 606-10-55-36 through 55-40 and 55-79 through 55-80; original issued amendment"
+            },
+            {
+              "source_id": "src_roadmap_naics2022_manual",
+              "locator": "2022 NAICS Manual 425; agents and brokers arrange sales of goods owned by others; classification only"
             }
           ],
           "conditions": [
@@ -27870,26 +27936,33 @@
             "gross/net tie-out",
             "tax-excluded transaction price review"
           ],
+          "workflow": [
+            "Identify each promised good or service and the party responsible for fulfilment before reviewing the settlement report.",
+            "Document control, price setting, inventory, return, credit and platform-guarantee evidence per promise.",
+            "Reconcile gross customer activity, amounts held for another party and commission or principal candidates without posting a conclusion."
+          ],
           "exceptions": [
             "mixed principal/agent roles by promise",
             "third-party taxes collected",
             "platform guarantees and drop-shipping"
           ],
           "remaining_gaps": [
-            "The public 2022 IFRS edition was read for the cited paragraphs; verify amendments effective for the reporting period and obtain entity-specific professional review."
+            "Current consolidated ASC 606 and the entity marketplace, distributor or drop-shipping contracts were not reviewed.",
+            "No conclusion is made for mixed roles, guarantees, credit risk, returns or customer support without contract evidence.",
+            "Dealership and floorplan lending remain outside this package."
           ],
+          "worked_record_id": "example-us-wholesale-retail-trade-reconciliation",
           "worked_example": {
             "inputs": [
-              "Wholesale shipment: 100 units at $50 = $5,000 gross billings",
-              "Expected returns: 8 units; expected credit $400",
-              "Platform commission: 10% of end-customer sales"
+              "Agent branch: $50,000 customer activity, supplier sets price and fulfils, marketplace risk is zero, 5% commission candidate",
+              "Principal branch: the same $50,000 customer activity, marketplace sets price and fulfils, and marketplace inventory risk is present"
             ],
-            "calculation": "Expected transaction price before tax = $5,000-$400 = $4,600; if the platform is agent, commission revenue = 10% × $4,600 = $460; principal revenue would be $4,600 with separate cost of sales.",
-            "result": "Agent presentation: revenue $460 and payable/settlement for amounts collected for supplier; principal presentation: revenue $4,600, subject to inventory/control evidence.",
-            "limits": "Synthetic IFRS 15 illustration; control, returns and tax facts determine presentation."
+            "calculation": "Agent commission candidate = $50,000 × 5% = $2,500; $47,500 is collected for the supplier. Principal branch gross revenue candidate remains $50,000 before returns, taxes and other constraints.",
+            "result": "The branches are mutually exclusive and require the specified-promise control analysis before a human approves gross or net presentation.",
+            "limits": "Synthetic US fixture; current consolidated Topic 606, contract evidence and professional review remain required."
           },
-          "framework_scope": "IFRS 15 or IAS 2 for IFRS reporters; ASC 606 or ASC 330 for US GAAP reporters. Confirm 2026 entity, method and jurisdiction before applying.",
-          "scope": "IFRS 15 or IAS 2 for IFRS reporters; ASC 606 or ASC 330 for US GAAP reporters. Confirm 2026 entity, method and jurisdiction before applying.",
+          "framework_scope": "Selected US nongovernmental US GAAP application using ASU 2016-08 and original ASC 606 locators; IFRS 15 principal-agent context is retained separately and is not US authority.",
+          "scope": "United States; selected wholesale, retail and marketplace promises in NAICS 42 and 44-45. Confirm current ASC 606, contract, entity and reporting-period facts before applying.",
           "answer_status": "sourced-answer-bounded",
           "assessment": {
             "status": "partial",
@@ -27900,7 +27973,7 @@
               "scope": "partial",
               "accounting-question": "partial",
               "evidence-inputs": "partial",
-              "workflow": "missing",
+              "workflow": "partial",
               "controls": "partial",
               "worked-material": "partial",
               "empirical-support": "not-assessed"
@@ -27913,24 +27986,29 @@
         {
           "id": "rq-trade-returns",
           "question": "How should returns, customer credits, rebates and supplier credits be separated?",
-          "answer": "Variable consideration is constrained by expected returns and credits; amounts payable to a customer generally reduce transaction price unless payment is for a distinct service. Supplier rebates and credits require contract and inventory-cost analysis and cannot be netted without evidence.",
+          "answer": "For the selected US scope, customer returns, refunds, credits and consideration payable to a customer are separate from supplier rebates, vendor credits, markdown support, processor fees, taxes and inventory movements. The issued revenue amendment provides bounded source material for variable consideration, returns, customer payments and customer options. A vendor rebate is not automatically a customer refund or a revenue offset: its contract, earned status, allocation, inventory method and current Topic 330 or Topic 606 treatment must be established.",
           "source_ids": [
-            "src_ifrs15a",
-            "src_roadmap_kpmg_ifrs_revenue_2025",
-            "src_roadmap_kpmg_inventory_2026"
+            "src_construction_fasb_2014_09",
+            "src_fasb_asu2015_11_inventory",
+            "src_fasb_asu2016_08_principal_agent",
+            "src_fasb_asu2016_04_gift_cards"
           ],
           "source_locators": [
             {
-              "source_id": "src_ifrs15a",
-              "locator": "IFRS 15.50-59 and 70-72 (variable consideration, returns and customer payments)"
+              "source_id": "src_construction_fasb_2014_09",
+              "locator": "ASC 606-10-32-5 through 32-14; 32-25 through 32-27; 55-22 through 55-29; 55-41 through 55-49"
             },
             {
-              "source_id": "src_roadmap_kpmg_ifrs_revenue_2025",
-              "locator": "KPMG revenue handbook, application issues and principal/agent section; interpretive context only, primary accounting authority remains cited IFRS/US GAAP standard"
+              "source_id": "src_fasb_asu2015_11_inventory",
+              "locator": "ASC 330-10-35-1A through 35-1C, printed pp. 4-5; method boundary only"
             },
             {
-              "source_id": "src_roadmap_kpmg_inventory_2026",
-              "locator": "KPMG inventory comparison: cost and write-down sections; interpretive context only, primary accounting authority remains cited IFRS/US GAAP standard"
+              "source_id": "src_fasb_asu2016_08_principal_agent",
+              "locator": "ASC 606-10-55-36 through 55-40; principal-agent indicators where customer or supplier consideration changes the promise"
+            },
+            {
+              "source_id": "src_fasb_asu2016_04_gift_cards",
+              "locator": "ASC 405-20-40-3 through 40-4, 50-2 and 65-1; prepaid stored-value scope and breakage boundary"
             }
           ],
           "conditions": [
@@ -27949,6 +28027,11 @@
             "credit memo cutoff",
             "inventory cost reconciliation"
           ],
+          "workflow": [
+            "Classify each amount by counterparty, contract, trigger, date, population and proposed account before any netting.",
+            "Reconcile customer returns and refunds to return assets or liabilities, and reconcile vendor credits or rebates to supplier agreements and inventory cost evidence.",
+            "Review customer payments for distinct services, tax, processor fees and gift-card or loyalty populations separately, then route unresolved current-authority questions."
+          ],
           "exceptions": [
             "price protection and markdown support",
             "customer service payments",
@@ -27956,18 +28039,23 @@
             "jurisdictional tax treatment"
           ],
           "remaining_gaps": [
-            "The public 2022 IFRS edition was read for the cited paragraphs; verify amendments effective for the reporting period and obtain entity-specific professional review."
+            "Current consolidated ASC 606 and Topic 330, vendor agreements, earned-status evidence and allocation policy were not reviewed.",
+            "Sales-tax, unclaimed-property, consumer-protection and state-specific return rules remain outside scope.",
+            "No supplier rebate or customer-return population was operationally validated."
           ],
+          "worked_record_id": "example-us-wholesale-retail-trade-reconciliation",
           "worked_example": {
             "inputs": [
-              "Gross sales $20,000; expected customer credits $1,200; expected returns cost asset $700; supplier rebate contract $500"
+              "Retail card branch: $12,000 gross charges, $800 refunds and $300 processor fees",
+              "Wholesale branch: $500 vendor credit or rebate held as an unresolved contract and cost question",
+              "Separate gift-card issuance $800 and sales tax $700 populations"
             ],
-            "calculation": "Revenue estimate = $20,000-$1,200 = $18,800; return asset and liability are tracked separately; supplier rebate reduces inventory cost or COGS only when contract and allocation support it.",
-            "result": "Revenue $18,800 before other constraints; $700 return asset and $1,200 refund liability are separately monitored; $500 supplier credit is not netted automatically.",
-            "limits": "Synthetic illustration; contract terms and framework determine classification."
+            "calculation": "Card clearing = $12,000 - $800 - $300 = $10,900. The $500 vendor credit remains outside customer revenue until contract, earned-status, allocation and current-authority evidence support treatment.",
+            "result": "Customer refunds, vendor consideration, tax, fees and stored-value liabilities remain separate populations; no unsupported net revenue is produced.",
+            "limits": "Synthetic US fixture; current consolidated Topics 606, 330, 405 and state law require separate review."
           },
-          "framework_scope": "IFRS 15 or IAS 2 for IFRS reporters; ASC 606 or ASC 330 for US GAAP reporters. Confirm 2026 entity, method and jurisdiction before applying.",
-          "scope": "IFRS 15 or IAS 2 for IFRS reporters; ASC 606 or ASC 330 for US GAAP reporters. Confirm 2026 entity, method and jurisdiction before applying.",
+          "framework_scope": "Selected US nongovernmental US GAAP application using original ASC 606 and Topic 330 amendment locators; IFRS 15 and IAS 2 remain comparative context only.",
+          "scope": "United States; customer returns, vendor consideration, retail settlement and inventory-cost populations in NAICS 42 and 44-45. Confirm current authority, contracts and jurisdiction before applying.",
           "answer_status": "sourced-answer-bounded",
           "assessment": {
             "status": "partial",
@@ -27978,7 +28066,7 @@
               "scope": "partial",
               "accounting-question": "partial",
               "evidence-inputs": "partial",
-              "workflow": "missing",
+              "workflow": "partial",
               "controls": "partial",
               "worked-material": "partial",
               "empirical-support": "not-assessed"
@@ -27993,14 +28081,29 @@
         {
           "id": "rq-trade-cutoff",
           "question": "How should a trade agent reconcile point-of-sale, shipment, inventory and marketplace settlement populations?",
-          "answer": "Editorial control proposal: compare orders, POS, shipment/delivery, returns, inventory movement, cash and platform settlement populations. Settlement receipts evidence cash movement, not by themselves revenue transfer or inventory ownership.",
+          "answer": "A read-only trade reconciliation freezes transaction, item, location, channel, shipment, delivery, return, tender, tax, gift-card, loyalty, processor, bank, inventory and platform populations by reporting date. Stable IDs and event dates are joined across systems, and missing, duplicate, voided, reversed, corrected, in-transit and late-settlement rows are reported as exceptions. A settlement receipt evidences cash movement, not by itself revenue transfer, inventory ownership or principal status.",
           "source_ids": [
-            "src_roadmap_naics2022_manual"
+            "src_roadmap_naics2022_manual",
+            "src_construction_fasb_2014_09",
+            "src_fasb_asu2016_08_principal_agent",
+            "src_fasb_asu2016_04_gift_cards"
           ],
           "source_locators": [
             {
               "source_id": "src_roadmap_naics2022_manual",
-              "locator": "2022 NAICS Manual wholesale/retail definitions; classification context only; classification-only evidence, not accounting authority"
+              "locator": "2022 NAICS Manual 42 and 44-45 definitions; classification context only, not accounting authority"
+            },
+            {
+              "source_id": "src_construction_fasb_2014_09",
+              "locator": "ASC 606-10-25-1 through 25-2, 45-1 through 45-5 and 55-22 through 55-29; transfer and return source context"
+            },
+            {
+              "source_id": "src_fasb_asu2016_08_principal_agent",
+              "locator": "ASC 606-10-55-36 through 55-40; control evidence required before gross or net presentation"
+            },
+            {
+              "source_id": "src_fasb_asu2016_04_gift_cards",
+              "locator": "ASC 405-20-40-3 through 40-4 and 50-2; gift-card liability and breakage boundary"
             }
           ],
           "conditions": [
@@ -28020,6 +28123,11 @@
             "orphan/duplicate/deletion and void-log detection",
             "cash-to-settlement reconciliation"
           ],
+          "workflow": [
+            "Freeze and version each source population with extraction date, reporting date, system owner and stable join keys.",
+            "Join orders or POS to shipment, delivery, return, inventory, processor, platform and bank populations without dropping unmatched rows.",
+            "Classify corrections, reversals, duplicate settlements, tax, gift-card, loyalty and in-transit branches, then route differences to human review."
+          ],
           "exceptions": [
             "drop shipments",
             "offline sales",
@@ -28027,18 +28135,23 @@
             "marketplace-held funds"
           ],
           "remaining_gaps": [
-            "The public 2022 IFRS edition was read for the cited paragraphs; verify amendments effective for the reporting period and obtain entity-specific professional review."
+            "The fixture is not a live POS, ERP, processor, platform or bank population and does not establish completeness or operating effectiveness.",
+            "Current consolidated ASC 606 and entity-specific system joins, permissions, deletion behavior and settlement terms were not reviewed.",
+            "Sales-tax, unclaimed-property and consumer-protection rules remain jurisdiction-specific and outside scope."
           ],
+          "worked_record_id": "example-us-wholesale-retail-trade-reconciliation",
           "worked_example": {
             "inputs": [
-              "POS sales $100,000; shipment-confirmed $92,000; returns $4,000; settlement cash $88,000"
+              "Retail card clearing: $12,000 gross charges, $800 refunds, $300 processor fees, $10,900 bank deposit",
+              "Grocery inventory: 1,000 opening units, 500 receipts, 1,200 sales and 100 recorded spoilage; 185 counted",
+              "Corrections: one reversed sale and one duplicate settlement row linked to original IDs"
             ],
-            "calculation": "Recognized-sales candidate = $92,000-$4,000 = $88,000; unexplained POS-to-shipment gap = $8,000; settlement agrees to candidate but does not clear the $8,000 population exception.",
-            "result": "Agent reports $8,000 cutoff/completeness exception for review and separately ties $88,000 candidate sales to settlement.",
-            "limits": "Synthetic reconciliation; recognition remains contract and control dependent."
+            "calculation": "Card bridge = $12,000 - $800 - $300 = $10,900. Grocery expected ending = 1,000 + 500 - 1,200 - 100 = 200; counted difference = 15 units. Corrections are not counted twice.",
+            "result": "The control packet reports unmatched and corrected populations rather than converting a cash tie into a recognition conclusion.",
+            "limits": "Synthetic US reconciliation; source completeness, system controls, contract facts and professional review remain open."
           },
-          "framework_scope": "IFRS 15 or IAS 2 for IFRS reporters; ASC 606 or ASC 330 for US GAAP reporters. Confirm 2026 entity, method and jurisdiction before applying.",
-          "scope": "IFRS 15 or IAS 2 for IFRS reporters; ASC 606 or ASC 330 for US GAAP reporters. Confirm 2026 entity, method and jurisdiction before applying.",
+          "framework_scope": "Read-only US GAAP evidence and data-lineage workflow using Census classification and original ASC 606 source locators; classification and settlement do not establish recognition.",
+          "scope": "United States; physical, online, marketplace and grocery transaction populations in NAICS 42 and 44-45. Confirm source systems, framework, entity and reporting period before use.",
           "answer_status": "sourced-answer-bounded",
           "assessment": {
             "status": "partial",
@@ -28049,7 +28162,7 @@
               "scope": "partial",
               "accounting-question": "partial",
               "evidence-inputs": "partial",
-              "workflow": "missing",
+              "workflow": "partial",
               "controls": "partial",
               "worked-material": "partial",
               "empirical-support": "not-assessed"
@@ -28064,24 +28177,24 @@
         {
           "id": "rq-trade-inventory",
           "question": "How should wholesale/retail inventory cost, NRV or market evidence be scoped under IFRS and US GAAP, and which physical-count issues remain entity-specific?",
-          "answer": "IAS 2 generally measures inventory at the lower of cost and NRV, prohibits LIFO and reverses recoveries up to original cost. US GAAP method and class facts determine whether lower-of-cost-or-market applies and whether reversals are permitted. Physical shrinkage, count differences and cutoff require entity policy and population evidence; this review does not establish a universal shrinkage posting rule or derive one from NAICS/KPMG.",
+          "answer": "For US inventory research, the selected ASU 2015-11 material supports a method boundary: methods other than LIFO or the retail method use the lower-of-cost-and-NRV amendment, while LIFO and retail method treatment remains separate. It does not answer acquisition cost, freight eligibility, ownership, vendor rebates, shrinkage, spoilage, markdowns or every grocery fact. The fixture therefore reconciles units and an assumed landed-cost pool, then keeps count differences, spoilage, valuation and supplier credits as separate review populations. IAS 2 remains explicitly comparative context.",
           "source_ids": [
-            "src_ias02inv",
-            "src_roadmap_kpmg_inventory_2026",
-            "src_roadmap_naics2022_manual"
+            "src_fasb_asu2015_11_inventory",
+            "src_roadmap_naics2022_manual",
+            "src_ias02inv"
           ],
           "source_locators": [
             {
-              "source_id": "src_ias02inv",
-              "locator": "IAS 2.10-18, 25-27 and 28-36 (2022 Issued IFRS Standards Part A public PDF paragraphs read; 2026 currency remains to be checked)"
-            },
-            {
-              "source_id": "src_roadmap_kpmg_inventory_2026",
-              "locator": "IAS 2.25-36 (cost formulas, NRV and reversals), with KPMG sections 1-2 and 7 for ASC 330 comparison; interpretive context only, primary accounting authority remains cited IFRS/US GAAP standard"
+              "source_id": "src_fasb_asu2015_11_inventory",
+              "locator": "ASC 330-10-35-1A through 35-1C, printed pp. 4-5; methods other than LIFO or retail method"
             },
             {
               "source_id": "src_roadmap_naics2022_manual",
-              "locator": "NAICS 2022 Manual wholesale and retail definitions; classification only; classification-only evidence, not accounting authority"
+              "locator": "2022 NAICS Manual 42 and 44-45 definitions; business activity classification only"
+            },
+            {
+              "source_id": "src_ias02inv",
+              "locator": "IAS 2.10-18, 25-27 and 28-36; comparative IFRS context, not US authority"
             }
           ],
           "conditions": [
@@ -28100,25 +28213,33 @@
             "cost-method lock",
             "NRV/market testing and review"
           ],
+          "workflow": [
+            "Freeze the inventory ledger, receiving, shipment, return, third-party custody, in-transit, spoilage, markdown and count populations.",
+            "Reconcile opening units plus receipts less sales and recorded spoilage to expected units, then investigate counted differences without a plug.",
+            "Confirm inventory method, purchase and freight policy, vendor-credit terms and current Topic 330 valuation requirements before any posting."
+          ],
           "exceptions": [
             "retail inventory method differences",
             "obsolescence and seasonal markdowns",
             "consignment inventory excluded until control"
           ],
           "remaining_gaps": [
-            "The public 2022 IFRS edition was read for the cited paragraphs; verify amendments effective for the reporting period and obtain entity-specific professional review.",
-            "Physical-count shrinkage recognition and loss timing were not established from the cited standard excerpts."
+            "Current consolidated Topic 330, retail method, LIFO, freight, rebates, shrinkage, spoilage, markdown and perishable-goods requirements were not fully reviewed.",
+            "Physical-count differences remain an investigation population; no universal shrinkage entry or timing is asserted.",
+            "IAS 2 and KPMG comparison material are retained as international or interpretive context and cannot substitute for US authority."
           ],
+          "worked_record_id": "example-us-wholesale-retail-trade-reconciliation",
           "worked_example": {
             "inputs": [
-              "Book inventory 1,000 units at $12 = $12,000; count finds 970 units; current sell price $11 and selling cost $1"
+              "Wholesale merchant: 100 units at $400 plus $2,000 assumed eligible inbound freight; 60 units sold",
+              "Grocery: 1,000 opening units, 500 receipts, 1,200 sales, 100 recorded spoilage and 185 counted units"
             ],
-            "calculation": "Shrinkage = 30 × $12 = $360; IFRS NRV = 970 × ($11-$1) = $9,700; write-down from post-shrinkage cost $11,640 = $1,940.",
-            "result": "Illustrative IFRS inventory $9,700 after $360 shrinkage and $1,940 NRV write-down; US GAAP method and market test may differ.",
-            "limits": "Synthetic example; costing method, market ceiling/floor and jurisdiction require review."
+            "calculation": "Merchant cost pool = $42,000; unit cost = $420; COGS = $25,200; ending cost = $16,800. Grocery expected ending = 200 units; counted difference = 15 units pending investigation.",
+            "result": "The arithmetic identifies cost and quantity populations without deciding freight eligibility, shrinkage posting, valuation, rebate allocation or method-specific US treatment.",
+            "limits": "Synthetic US fixture; current Topic 330, policy, contracts and professional review remain required."
           },
-          "framework_scope": "IFRS 15 or IAS 2 for IFRS reporters; ASC 606 or ASC 330 for US GAAP reporters. Confirm 2026 entity, method and jurisdiction before applying.",
-          "scope": "IFRS 15 or IAS 2 for IFRS reporters; ASC 606 or ASC 330 for US GAAP reporters. Confirm 2026 entity, method and jurisdiction before applying.",
+          "framework_scope": "Selected US nongovernmental US GAAP inventory application using ASU 2015-11 and Topic 330 locators; IAS 2 remains comparative context only.",
+          "scope": "United States; wholesale, retail and grocery inventory populations in NAICS 42 and 44-45. Confirm inventory method, contracts, entity policy and reporting period before applying.",
           "answer_status": "sourced-answer-bounded",
           "assessment": {
             "status": "partial",
@@ -28129,7 +28250,7 @@
               "scope": "partial",
               "accounting-question": "partial",
               "evidence-inputs": "partial",
-              "workflow": "missing",
+              "workflow": "partial",
               "controls": "partial",
               "worked-material": "partial",
               "empirical-support": "not-assessed"
@@ -28142,19 +28263,24 @@
         {
           "id": "rq-trade-intermediary",
           "question": "What evidence distinguishes a reseller, broker, distributor and marketplace intermediary?",
-          "answer": "The analysis begins with the specified promise and asks who controls it before transfer. A distributor may be principal where it directs use and bears meaningful fulfilment or inventory risk; a marketplace may be agent where the supplier sets price, ships directly and retains risk.",
+          "answer": "The role map begins with the specified promise and separates legal title, control, physical custody, price setting, fulfilment, return exposure, inventory risk, credit risk and settlement. A merchant or reseller can be principal for owned goods; a broker or marketplace can be an agent when another party controls the specified good and the platform earns a commission. One entity can have different roles by promise. NAICS 425 supports the agent or broker activity boundary only and does not determine gross or net presentation.",
           "source_ids": [
-            "src_ifrs15a",
-            "src_roadmap_kpmg_ifrs_revenue_2025"
+            "src_fasb_asu2016_08_principal_agent",
+            "src_construction_fasb_2014_09",
+            "src_roadmap_naics2022_manual"
           ],
           "source_locators": [
             {
-              "source_id": "src_ifrs15a",
-              "locator": "IFRS 15.B34-B38 (principal/agent control indicators)"
+              "source_id": "src_fasb_asu2016_08_principal_agent",
+              "locator": "ASC 606-10-55-36 through 55-40 and related examples; control and agent indicators"
             },
             {
-              "source_id": "src_roadmap_kpmg_ifrs_revenue_2025",
-              "locator": "KPMG 2025 Chapter 10, Section 10.3, Example 3 and control indicators; interpretive context only, primary accounting authority remains cited IFRS/US GAAP standard"
+              "source_id": "src_construction_fasb_2014_09",
+              "locator": "ASC 606-10-55-36 through 55-40; original issued US revenue amendment"
+            },
+            {
+              "source_id": "src_roadmap_naics2022_manual",
+              "locator": "2022 NAICS Manual 425, agents and brokers; classification only"
             }
           ],
           "conditions": [
@@ -28174,24 +28300,33 @@
             "gross/net revenue tie-out",
             "exception escalation"
           ],
+          "workflow": [
+            "Inventory each contract and promise, then record the parties, title, control, custody, price, fulfilment, return, credit and settlement evidence.",
+            "Compare merchant, reseller, broker, distributor, consignor and marketplace branches without assuming a single role across all promises.",
+            "Reconcile customer activity to commission or principal candidates and route mixed-role or incomplete-evidence cases to a qualified reviewer."
+          ],
           "exceptions": [
             "one entity can be principal for one promise and agent for another",
             "legal title and flash title alone do not decide",
             "supplier defaults and platform guarantees"
           ],
           "remaining_gaps": [
-            "The public 2022 IFRS edition was read for the cited paragraphs; verify amendments effective for the reporting period and obtain entity-specific professional review."
+            "Current consolidated ASC 606 and no live marketplace, distributor, broker or consignment contract population were reviewed.",
+            "No professional gross-net conclusion, legal-title conclusion or inventory-ownership conclusion is made.",
+            "Dealership and floorplan arrangements remain outside this package."
           ],
+          "worked_record_id": "example-us-wholesale-retail-trade-reconciliation",
           "worked_example": {
             "inputs": [
-              "Marketplace end-customer billings $50,000; supplier sets price and ships directly; marketplace commission 12%"
+              "Marketplace agent branch: $50,000 end-customer activity; supplier sets price, fulfils and retains inventory risk; 5% commission",
+              "Marketplace principal branch: same $50,000 activity; marketplace sets price, fulfils and bears inventory risk"
             ],
-            "calculation": "Commission = $50,000 × 12% = $6,000; absent control evidence, agent presentation candidate is $6,000 rather than $50,000 gross.",
-            "result": "Agent candidate revenue $6,000, with $44,000 collected on behalf of supplier subject to settlement terms.",
-            "limits": "Synthetic principal/agent illustration; final conclusion requires contract-specific control evidence."
+            "calculation": "Agent commission candidate = $50,000 × 5% = $2,500 and $47,500 is held for the supplier. Principal candidate is $50,000 before returns, tax, fees and other constraints.",
+            "result": "The same gross activity produces different candidate presentations only because the role and control facts change; the branches are not additive.",
+            "limits": "Synthetic US fixture; final presentation requires current consolidated Topic 606 and contract-specific human review."
           },
-          "framework_scope": "IFRS 15 or IAS 2 for IFRS reporters; ASC 606 or ASC 330 for US GAAP reporters. Confirm 2026 entity, method and jurisdiction before applying.",
-          "scope": "IFRS 15 or IAS 2 for IFRS reporters; ASC 606 or ASC 330 for US GAAP reporters. Confirm 2026 entity, method and jurisdiction before applying.",
+          "framework_scope": "Selected US nongovernmental US GAAP application using ASU 2016-08 and original ASC 606 locators; IFRS 15 remains comparative context only.",
+          "scope": "United States; merchant, reseller, distributor, broker, consignor and marketplace roles in NAICS 42 and 44-45. Confirm current authority, contract, entity and reporting-period facts before applying.",
           "answer_status": "sourced-answer-bounded",
           "assessment": {
             "status": "partial",
@@ -28202,7 +28337,7 @@
               "scope": "partial",
               "accounting-question": "partial",
               "evidence-inputs": "partial",
-              "workflow": "missing",
+              "workflow": "partial",
               "controls": "partial",
               "worked-material": "partial",
               "empirical-support": "not-assessed"
@@ -40666,9 +40801,10 @@
     "source_url": null,
     "source_ids": [
       "src_roadmap_naics2022_manual",
-      "src_ifrs15a",
-      "src_roadmap_kpmg_ifrs_revenue_2025",
-      "src_roadmap_kpmg_inventory_2026",
+      "src_construction_fasb_2014_09",
+      "src_fasb_asu2016_08_principal_agent",
+      "src_fasb_asu2015_11_inventory",
+      "src_fasb_asu2016_04_gift_cards",
       "src_ias02inv"
     ],
     "related_ids": [
@@ -40950,9 +41086,10 @@
     "source_url": null,
     "source_ids": [
       "src_roadmap_naics2022_manual",
-      "src_ifrs15a",
-      "src_roadmap_kpmg_ifrs_revenue_2025",
-      "src_roadmap_kpmg_inventory_2026",
+      "src_construction_fasb_2014_09",
+      "src_fasb_asu2016_08_principal_agent",
+      "src_fasb_asu2015_11_inventory",
+      "src_fasb_asu2016_04_gift_cards",
       "src_ias02inv"
     ],
     "related_ids": [
@@ -41228,9 +41365,10 @@
     "source_url": null,
     "source_ids": [
       "src_roadmap_naics2022_manual",
-      "src_ifrs15a",
-      "src_roadmap_kpmg_ifrs_revenue_2025",
-      "src_roadmap_kpmg_inventory_2026",
+      "src_construction_fasb_2014_09",
+      "src_fasb_asu2016_08_principal_agent",
+      "src_fasb_asu2015_11_inventory",
+      "src_fasb_asu2016_04_gift_cards",
       "src_ias02inv"
     ],
     "related_ids": [
@@ -41420,9 +41558,10 @@
     "source_url": null,
     "source_ids": [
       "src_roadmap_naics2022_manual",
-      "src_ifrs15a",
-      "src_roadmap_kpmg_ifrs_revenue_2025",
-      "src_roadmap_kpmg_inventory_2026",
+      "src_construction_fasb_2014_09",
+      "src_fasb_asu2016_08_principal_agent",
+      "src_fasb_asu2015_11_inventory",
+      "src_fasb_asu2016_04_gift_cards",
       "src_ias02inv"
     ],
     "related_ids": [
@@ -41674,9 +41813,10 @@
     "source_url": null,
     "source_ids": [
       "src_roadmap_naics2022_manual",
-      "src_ifrs15a",
-      "src_roadmap_kpmg_ifrs_revenue_2025",
-      "src_roadmap_kpmg_inventory_2026",
+      "src_construction_fasb_2014_09",
+      "src_fasb_asu2016_08_principal_agent",
+      "src_fasb_asu2015_11_inventory",
+      "src_fasb_asu2016_04_gift_cards",
       "src_ias02inv"
     ],
     "related_ids": [
@@ -41903,9 +42043,10 @@
     "source_url": null,
     "source_ids": [
       "src_roadmap_naics2022_manual",
-      "src_ifrs15a",
-      "src_roadmap_kpmg_ifrs_revenue_2025",
-      "src_roadmap_kpmg_inventory_2026",
+      "src_construction_fasb_2014_09",
+      "src_fasb_asu2016_08_principal_agent",
+      "src_fasb_asu2015_11_inventory",
+      "src_fasb_asu2016_04_gift_cards",
       "src_ias02inv"
     ],
     "related_ids": [
@@ -42160,9 +42301,10 @@
     "source_url": null,
     "source_ids": [
       "src_roadmap_naics2022_manual",
-      "src_ifrs15a",
-      "src_roadmap_kpmg_ifrs_revenue_2025",
-      "src_roadmap_kpmg_inventory_2026",
+      "src_construction_fasb_2014_09",
+      "src_fasb_asu2016_08_principal_agent",
+      "src_fasb_asu2015_11_inventory",
+      "src_fasb_asu2016_04_gift_cards",
       "src_ias02inv"
     ],
     "related_ids": [
@@ -42388,9 +42530,10 @@
     "source_url": null,
     "source_ids": [
       "src_roadmap_naics2022_manual",
-      "src_ifrs15a",
-      "src_roadmap_kpmg_ifrs_revenue_2025",
-      "src_roadmap_kpmg_inventory_2026",
+      "src_construction_fasb_2014_09",
+      "src_fasb_asu2016_08_principal_agent",
+      "src_fasb_asu2015_11_inventory",
+      "src_fasb_asu2016_04_gift_cards",
       "src_ias02inv"
     ],
     "related_ids": [
@@ -42638,9 +42781,10 @@
     "source_url": null,
     "source_ids": [
       "src_roadmap_naics2022_manual",
-      "src_ifrs15a",
-      "src_roadmap_kpmg_ifrs_revenue_2025",
-      "src_roadmap_kpmg_inventory_2026",
+      "src_construction_fasb_2014_09",
+      "src_fasb_asu2016_08_principal_agent",
+      "src_fasb_asu2015_11_inventory",
+      "src_fasb_asu2016_04_gift_cards",
       "src_ias02inv"
     ],
     "related_ids": [
@@ -42866,9 +43010,10 @@
     "source_url": null,
     "source_ids": [
       "src_roadmap_naics2022_manual",
-      "src_ifrs15a",
-      "src_roadmap_kpmg_ifrs_revenue_2025",
-      "src_roadmap_kpmg_inventory_2026",
+      "src_construction_fasb_2014_09",
+      "src_fasb_asu2016_08_principal_agent",
+      "src_fasb_asu2015_11_inventory",
+      "src_fasb_asu2016_04_gift_cards",
       "src_ias02inv"
     ],
     "related_ids": [
@@ -43116,9 +43261,10 @@
     "source_url": null,
     "source_ids": [
       "src_roadmap_naics2022_manual",
-      "src_ifrs15a",
-      "src_roadmap_kpmg_ifrs_revenue_2025",
-      "src_roadmap_kpmg_inventory_2026",
+      "src_construction_fasb_2014_09",
+      "src_fasb_asu2016_08_principal_agent",
+      "src_fasb_asu2015_11_inventory",
+      "src_fasb_asu2016_04_gift_cards",
       "src_ias02inv"
     ],
     "related_ids": [
@@ -43343,9 +43489,10 @@
     "source_url": null,
     "source_ids": [
       "src_roadmap_naics2022_manual",
-      "src_ifrs15a",
-      "src_roadmap_kpmg_ifrs_revenue_2025",
-      "src_roadmap_kpmg_inventory_2026",
+      "src_construction_fasb_2014_09",
+      "src_fasb_asu2016_08_principal_agent",
+      "src_fasb_asu2015_11_inventory",
+      "src_fasb_asu2016_04_gift_cards",
       "src_ias02inv"
     ],
     "related_ids": [

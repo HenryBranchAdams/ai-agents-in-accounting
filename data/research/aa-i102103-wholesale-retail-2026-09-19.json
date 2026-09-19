@@ -1,0 +1,302 @@
+{
+  "package_id": "aa-i102103-wholesale-retail",
+  "issue_ids": [
+    "AA-I102",
+    "AA-I103"
+  ],
+  "reviewed_at": "2026-09-19",
+  "package_version": "2026-09-18.102103",
+  "base_verified_main": {
+    "commit": "a38de70787ee47653f3e315a3c31f0577b5b9ae2",
+    "tree": "a38de70787ee47653f3e315a3c31f0577b5b9ae2",
+    "branch": "codex/aa-i102103"
+  },
+  "baseline": {
+    "corpus_version": "2026-09-18.1",
+    "wholesale_association": "Four distinct records are associated with NAICS 42 and descendants, including the shared guide and three subsector guides; association is a discovery denominator, not adequacy.",
+    "retail_association": "Ten distinct records are associated with NAICS 44-45 and descendants, including the shared guide and seven subsector guides; association is a discovery denominator, not adequacy.",
+    "existing_guide": "guide-wholesale-retail",
+    "existing_questions": [
+      "rq-trade-control",
+      "rq-trade-principal",
+      "rq-trade-returns",
+      "rq-trade-cutoff",
+      "rq-trade-inventory",
+      "rq-trade-intermediary"
+    ],
+    "preserved_international_context": [
+      "src_ifrs15a",
+      "src_ias02inv",
+      "src_roadmap_kpmg_ifrs_revenue_2025",
+      "src_roadmap_kpmg_inventory_2026"
+    ]
+  },
+  "selected_scope": {
+    "jurisdiction": "United States; nongovernmental US GAAP application questions, with state and local tax or unclaimed-property rules separate.",
+    "population": "Synthetic wholesale merchant, broker or consignor, physical and online retail POS, marketplace settlement and grocery inventory populations at 2026-01-31 with a 2026-02 correction and settlement window.",
+    "framework": "US GAAP source review using original FASB amendments and current-Codification access boundary; IFRS records remain comparative context and are not substituted for US authority.",
+    "period": "2026 reporting date and settlement window; source effective periods are recorded per authority.",
+    "industry": "NAICS 42 Wholesale Trade and NAICS 44-45 Retail Trade, with Census classification used only to identify business activity and role boundaries."
+  },
+  "new_records": {
+    "source_ids": [
+      "src_fasb_asu2016_04_gift_cards"
+    ],
+    "example_ids": [
+      "example-us-wholesale-retail-trade-reconciliation"
+    ],
+    "assessment_ids": [
+      "coverage-wholesale-trade-2026-09-18",
+      "coverage-retail-trade-2026-09-18"
+    ]
+  },
+  "source_review": [
+    {
+      "source_id": "src_construction_fasb_2014_09",
+      "publisher": "Financial Accounting Standards Board",
+      "url": "https://storage.fasb.org/ASU%202014-09_Section%20A.pdf",
+      "status": "existing source reused with an additive trade-scoped supplemental review",
+      "locators": "ASC 606-10-32-5 through 32-14; 32-25 through 32-27; 55-22 through 55-29; 55-36 through 55-40; 55-41 through 55-49; 55-79 through 55-84",
+      "effective_period": "Original ASU 2014-09 effective dates were deferred by ASU 2015-14; current Topic 606 effective requirements and adoption must be confirmed.",
+      "finding": "The issued text supports bounded research on variable consideration, customer payments, returns, customer options, unexercised rights, principal-agent indicators, consignment and bill-and-hold; it is not current consolidated GAAP.",
+      "rights": "Publisher terms remain unresolved; no external text is stored."
+    },
+    {
+      "source_id": "src_fasb_asu2016_08_principal_agent",
+      "publisher": "Financial Accounting Standards Board",
+      "url": "https://storage.fasb.org/ASU%202016-08.pdf",
+      "status": "existing source rechecked",
+      "locators": "Summary pp. 1-5; ASC 606-10-55-36 through 55-40 and related examples; transition 606-10-65-1",
+      "effective_period": "Uses Topic 606 adoption and transition dates in the issued update; current effective requirements remain to be confirmed.",
+      "finding": "Control of the specified good or service before transfer is the principal-agent starting point; indicators do not replace contract-specific control analysis.",
+      "rights": "Publisher terms remain unresolved; no external text is stored."
+    },
+    {
+      "source_id": "src_fasb_asu2015_11_inventory",
+      "publisher": "Financial Accounting Standards Board",
+      "url": "https://storage.fasb.org/ASU_2015-11.pdf",
+      "status": "existing source rechecked",
+      "locators": "Summary pp. 1-3; ASC 330-10-35-1A through 35-1C, printed pp. 4-5",
+      "effective_period": "Fiscal years beginning after December 15, 2016, with nonpublic interim and prospective-application details in the update.",
+      "finding": "The issued update distinguishes lower-of-cost-and-NRV treatment for methods other than LIFO or retail from the retained LIFO or retail method boundary; it does not establish acquisition cost, ownership or shrinkage posting.",
+      "rights": "Publisher terms remain unresolved; no external text is stored."
+    },
+    {
+      "source_id": "src_fasb_asu2016_04_gift_cards",
+      "publisher": "Financial Accounting Standards Board",
+      "url": "https://storage.fasb.org/ASU%202016-04.pdf",
+      "status": "new source reviewed",
+      "locators": "Summary pp. 1-3; ASC 405-20-40-3 through 40-4, 50-2 and 65-1",
+      "effective_period": "Specified public entities after fiscal years beginning December 15, 2017; other entities after December 15, 2018, with interim timing stated in the update; earlier application permitted.",
+      "finding": "The issued update provides a narrow prepaid stored-value breakage model, with scope exclusions for unclaimed-property remittance, segregated accounts, loyalty programs and other Topics.",
+      "rights": "Publisher terms remain unresolved; state unclaimed-property rules and current Topic 405 remain separate."
+    },
+    {
+      "source_id": "src_roadmap_naics2022_manual",
+      "publisher": "US Census Bureau",
+      "url": "https://www.census.gov/naics/reference_files_tools/2022_NAICS_Manual.pdf",
+      "status": "existing source rechecked",
+      "locators": "2022 NAICS Manual Part II: 423 p. 307, 424 p. 324, 425 p. 337, 44-45 p. 339 and 445 p. 346",
+      "effective_period": "NAICS 2022 classification edition",
+      "finding": "Wholesale merchant activity is separated from agents and brokers, and NAICS 425 describes agents or brokers arranging sales of goods owned by others; classification does not decide accounting treatment.",
+      "rights": "Census terms and reuse scope remain unresolved; no external text is stored."
+    }
+  ],
+  "question_updates": [
+    {
+      "id": "rq-trade-control",
+      "issues": [
+        "AA-I102",
+        "AA-I103"
+      ],
+      "evidence": "US merchant ownership, consignment and custody are separated by specified promise, title, control, physical custody, payment obligation, return rights, shipping or acceptance evidence and inventory risk. A warehouse or dealer confirmation remains an input, not a conclusion.",
+      "source_ids": [
+        "src_construction_fasb_2014_09",
+        "src_fasb_asu2016_08_principal_agent",
+        "src_roadmap_naics2022_manual"
+      ],
+      "worked_record_id": "example-us-wholesale-retail-trade-reconciliation",
+      "gaps": [
+        "Current consolidated ASC 606 and entity contract terms were not accessed.",
+        "The package does not determine legal title, shipping terms, acceptance or state-law ownership for a real population.",
+        "Dealership and floorplan arrangements remain routed to the separate capital or lending owner."
+      ]
+    },
+    {
+      "id": "rq-trade-principal",
+      "issues": [
+        "AA-I102",
+        "AA-I103"
+      ],
+      "evidence": "Merchant, broker and marketplace branches compare price discretion, fulfilment responsibility, inventory and return risk, credit exposure, customer promise and settlement. The same $50,000 customer activity is shown as an agent candidate or principal candidate under mutually exclusive facts.",
+      "source_ids": [
+        "src_fasb_asu2016_08_principal_agent",
+        "src_construction_fasb_2014_09",
+        "src_roadmap_naics2022_manual"
+      ],
+      "worked_record_id": "example-us-wholesale-retail-trade-reconciliation",
+      "gaps": [
+        "No entity marketplace contract, returns clause, guarantee or credit-risk evidence was reviewed.",
+        "Gross versus net presentation remains a human conclusion under current consolidated Topic 606."
+      ]
+    },
+    {
+      "id": "rq-trade-returns",
+      "issues": [
+        "AA-I102",
+        "AA-I103"
+      ],
+      "evidence": "Customer refunds and return assets, vendor rebates or credits, markdown support, customer payments for distinct services, gift-card liabilities, processor fees and tax are tracked as separate populations. No vendor rebate is netted without contract, earned-status, allocation and current-authority evidence.",
+      "source_ids": [
+        "src_construction_fasb_2014_09",
+        "src_fasb_asu2016_08_principal_agent",
+        "src_fasb_asu2015_11_inventory",
+        "src_fasb_asu2016_04_gift_cards"
+      ],
+      "worked_record_id": "example-us-wholesale-retail-trade-reconciliation",
+      "gaps": [
+        "Vendor-consideration and inventory-cost application was not resolved from a current consolidated Topic 330 or entity agreement.",
+        "Sales-tax treatment is jurisdiction-specific and excluded."
+      ]
+    },
+    {
+      "id": "rq-trade-cutoff",
+      "issues": [
+        "AA-I102",
+        "AA-I103"
+      ],
+      "evidence": "A proposed read-only workflow freezes transaction, item, location, channel, shipment, delivery, settlement, refund, tender, tax, gift-card, loyalty and inventory populations; joins stable IDs; and reports omissions, duplicates, voids, corrections and in-transit rows separately.",
+      "source_ids": [
+        "src_roadmap_naics2022_manual",
+        "src_construction_fasb_2014_09",
+        "src_fasb_asu2016_08_principal_agent",
+        "src_fasb_asu2016_04_gift_cards"
+      ],
+      "worked_record_id": "example-us-wholesale-retail-trade-reconciliation",
+      "gaps": [
+        "The fixture is not a live POS, ERP, processor or bank population and does not establish completeness or operating effectiveness.",
+        "Settlement agreement does not clear a population or recognition exception by itself."
+      ]
+    },
+    {
+      "id": "rq-trade-inventory",
+      "issues": [
+        "AA-I102",
+        "AA-I103"
+      ],
+      "evidence": "Wholesale landed-cost arithmetic identifies assumed purchase cost and freight as a cost pool without universal eligibility. Grocery quantity rollforward separates expected ending units, spoilage, counted shrinkage, markdown and supplier-credit questions. US Topic 330 method boundaries remain explicit.",
+      "source_ids": [
+        "src_fasb_asu2015_11_inventory",
+        "src_roadmap_naics2022_manual",
+        "src_ias02inv"
+      ],
+      "worked_record_id": "example-us-wholesale-retail-trade-reconciliation",
+      "gaps": [
+        "Current consolidated Topic 330, retail method, LIFO, freight, rebates, shrinkage and perishable-goods policy were not fully reviewed.",
+        "A physical count difference is an exception population, not an automatic entry."
+      ]
+    },
+    {
+      "id": "rq-trade-intermediary",
+      "issues": [
+        "AA-I102",
+        "AA-I103"
+      ],
+      "evidence": "The guide distinguishes merchant, reseller, broker, distributor, consignor and marketplace roles, and keeps legal title, control, custody, price-setting, fulfilment, credit risk, returns and commission evidence separate. NAICS 425 supports role classification only.",
+      "source_ids": [
+        "src_fasb_asu2016_08_principal_agent",
+        "src_construction_fasb_2014_09",
+        "src_roadmap_naics2022_manual"
+      ],
+      "worked_record_id": "example-us-wholesale-retail-trade-reconciliation",
+      "gaps": [
+        "No current consolidated Codification access or professional gross-net conclusion was obtained.",
+        "Mixed-role contracts can be principal for one promise and agent for another; no live contract population was tested."
+      ]
+    }
+  ],
+  "criteria_evidence": {
+    "AA-I102": [
+      {
+        "criterion": 1,
+        "status": "partial",
+        "evidence": "Existing guide and six question IDs were preserved; the package adds US source links, selected merchant and broker roles, and a 42-specific coverage assessment.",
+        "gap": "Whole-sector and detailed-industry sufficiency remain open."
+      },
+      {
+        "criterion": 2,
+        "status": "partial",
+        "evidence": "FASB ASU 2014-09, ASU 2016-08 and ASU 2015-11 plus Census classification were reviewed with locators, effective periods, access limits and unresolved rights.",
+        "gap": "Current consolidated Codification, vendor rebate application and entity adoption were not reviewed."
+      },
+      {
+        "criterion": 3,
+        "status": "present-with-boundary",
+        "evidence": "The synthetic fixture reconciles 100 units at $420, 60-unit COGS, $50,000 broker settlement, consignment custody and correction branches; proposed controls remain read-only.",
+        "gap": "No operational population or professional workpaper is claimed."
+      },
+      {
+        "criterion": 4,
+        "status": "present-with-boundary",
+        "evidence": "Assessment gaps retain unresolved current authority, source rights, professional review, empirical support, state tax and floorplan exceptions; counts are explicitly association denominators.",
+        "gap": "No live control effectiveness or empirical support."
+      },
+      {
+        "criterion": 5,
+        "status": "present-locally",
+        "evidence": "The package has a merchant, broker, consignment, landed-cost and source-pointer retrieval path; the release and coverage snapshot use the reserved immutable identity.",
+        "gap": "Deployment and cross-account acceptance are not part of this local author check."
+      }
+    ],
+    "AA-I103": [
+      {
+        "criterion": 1,
+        "status": "partial",
+        "evidence": "Existing guide and six question IDs were preserved; the package adds physical, online, marketplace, POS, gift-card, loyalty and grocery populations and a 44-45-specific coverage assessment.",
+        "gap": "Whole-sector and detailed-industry sufficiency remain open."
+      },
+      {
+        "criterion": 2,
+        "status": "partial",
+        "evidence": "FASB ASU 2014-09, ASU 2016-08, ASU 2015-11 and new ASU 2016-04 records include original locators, effective-period notes, access boundaries and unresolved rights.",
+        "gap": "Current consolidated Codification, state tax and unclaimed-property rules were not reviewed."
+      },
+      {
+        "criterion": 3,
+        "status": "present-with-boundary",
+        "evidence": "The synthetic fixture reconciles $12,000 card charges to $10,900 deposit, gift-card liability, loyalty population, grocery shrinkage and agent or principal branches.",
+        "gap": "No live POS, processor or bank population and no posting authority are claimed."
+      },
+      {
+        "criterion": 4,
+        "status": "present-with-boundary",
+        "evidence": "Retail assessment retains gift-card, loyalty, grocery, marketplace, tax, unclaimed-property, dealership and professional-review limits; no sufficiency is inferred from counts.",
+        "gap": "No operating effectiveness or empirical retail agent performance."
+      },
+      {
+        "criterion": 5,
+        "status": "present-locally",
+        "evidence": "The package includes POS, gift-card, grocery and marketplace retrieval fixtures plus generated export and coverage history under the reserved immutable identity.",
+        "gap": "Deployment and cross-account acceptance are not part of this local author check."
+      }
+    ]
+  },
+  "negative_scope": [
+    "NAICS classifications do not establish control, ownership, recognition or sufficiency.",
+    "A net bank deposit does not establish net revenue or an agent role.",
+    "Customer returns, vendor rebates, taxes, processor fees, gift-card liabilities, loyalty awards, shrinkage, spoilage and markdowns are not interchangeable offsets.",
+    "No universal shrinkage journal, breakage recognition date, vendor-rebate accounting, freight eligibility, sales-tax treatment or unclaimed-property treatment is asserted.",
+    "Dealership and floorplan lending, state or local law, real contracts, current consolidated Codification access, professional sign-off, production validation and empirical agent performance remain outside this package."
+  ],
+  "reproducibility": {
+    "reserved_snapshot_id": "2026-09-18.102103",
+    "expected_commands": [
+      "npm run coverage:map",
+      "npm run coverage:snapshot -- 2026-09-18.102103",
+      "npm run build",
+      "npm run check"
+    ],
+    "source_export": "Generated by the repository build from canonical records; external source text is not stored.",
+    "publication_boundary": "Local author verification only; no deployment, merge or issue closure is claimed by this package."
+  }
+}

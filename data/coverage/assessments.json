@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "assessment_version": "2026-09-19.12409",
+  "assessment_version": "2026-09-19.12410",
   "topology_version": "2026-09-11.1",
   "assessments": [
     {
@@ -3796,6 +3796,121 @@
       "reviewed_at": "2026-09-18",
       "reviewer": "Codex AI-assisted official-source research; no professional sign-off",
       "industry_code": null
+    },
+    {
+      "id": "coverage-wholesale-trade-2026-09-18",
+      "scope_kind": "industry",
+      "industry_code": "42",
+      "question_id": "q-revenue",
+      "family_ids": [
+        "q-inventory",
+        "q-revenue",
+        "q-cash-settlement",
+        "q-receivables-credit",
+        "q-data-lineage"
+      ],
+      "status": "partial",
+      "scope": "Selected US wholesale merchant, broker, consignor and distributor application for NAICS 42 and descendants. The package covers ownership, consignment, landed-cost arithmetic, returns or vendor-credit separation, settlement and principal-agent evidence. It is not a whole-sector, subsector or detailed-industry sufficiency finding.",
+      "jurisdictions": [
+        "United States; selected nongovernmental US GAAP research scope"
+      ],
+      "frameworks": [
+        "US GAAP source review using FASB ASU 2014-09, ASU 2016-08 and ASU 2015-11 locators",
+        "IFRS 15 and IAS 2 retained as comparative context only"
+      ],
+      "effective_from": "2026-01-31",
+      "effective_to": "2026-02-28",
+      "reviewed_at": "2026-09-19",
+      "reviewer": "Codex AI-assisted selected-source, synthetic-fixture and metadata review",
+      "review_basis": "Inspected guide-wholesale-retail, all six named trade questions, the combined synthetic merchant and broker fixture, original FASB source locators, Census role classification, reconciliation arithmetic, negative scope and source-rights boundaries. The assessment preserves the original issue criteria but does not convert association counts into adequacy.",
+      "source_currency": "verified-within-stated-scope",
+      "evidence_record_ids": [
+        "guide-wholesale-retail",
+        "example-us-wholesale-retail-trade-reconciliation",
+        "src_construction_fasb_2014_09",
+        "src_fasb_asu2016_08_principal_agent",
+        "src_fasb_asu2015_11_inventory",
+        "src_roadmap_naics2022_manual"
+      ],
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "gaps": [
+        "Current consolidated ASC 606 and Topic 330, later amendments, entity adoption, contracts, title, shipping, acceptance and vendor-rebate application were not fully reviewed.",
+        "No real wholesale, broker, supplier, warehouse, POS, marketplace, processor or bank population, professional workpaper or operating-effectiveness result was obtained.",
+        "State or local tax, unclaimed property, dealership and floorplan requirements remain outside scope.",
+        "External source rights remain unresolved and no publisher text is stored."
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "Official source records are linked without redistributing publisher text; linked record rights remain unresolved",
+        "full_text_stored": false
+      }
+    },
+    {
+      "id": "coverage-retail-trade-2026-09-18",
+      "scope_kind": "industry",
+      "industry_code": "44-45",
+      "question_id": "q-revenue",
+      "family_ids": [
+        "q-inventory",
+        "q-revenue",
+        "q-cash-settlement",
+        "q-receivables-credit",
+        "q-data-lineage"
+      ],
+      "status": "partial",
+      "scope": "Selected US physical, online, omnichannel, marketplace and grocery retail application for NAICS 44-45 and descendants. The package covers POS-to-bank reconciliation, gift cards, loyalty, returns, vendor consideration, inventory cutoff, spoilage and shrinkage. It is not a whole-sector, subsector or detailed-industry sufficiency finding.",
+      "jurisdictions": [
+        "United States; selected nongovernmental US GAAP research scope"
+      ],
+      "frameworks": [
+        "US GAAP source review using FASB ASU 2014-09, ASU 2016-08, ASU 2015-11 and ASU 2016-04 locators",
+        "IFRS 15 and IAS 2 retained as comparative context only"
+      ],
+      "effective_from": "2026-01-31",
+      "effective_to": "2026-02-28",
+      "reviewed_at": "2026-09-19",
+      "reviewer": "Codex AI-assisted selected-source, synthetic-fixture and metadata review",
+      "review_basis": "Inspected guide-wholesale-retail, all six named trade questions, the combined synthetic POS, gift-card, loyalty, grocery and marketplace fixture, original FASB source locators, Census role classification, reconciliation arithmetic, negative scope and source-rights boundaries. The assessment preserves the original issue criteria but does not convert association counts into adequacy.",
+      "source_currency": "verified-within-stated-scope",
+      "evidence_record_ids": [
+        "guide-wholesale-retail",
+        "example-us-wholesale-retail-trade-reconciliation",
+        "src_construction_fasb_2014_09",
+        "src_fasb_asu2016_08_principal_agent",
+        "src_fasb_asu2015_11_inventory",
+        "src_fasb_asu2016_04_gift_cards",
+        "src_roadmap_naics2022_manual"
+      ],
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "gaps": [
+        "Current consolidated ASC 606, Topic 330 and Topic 405, state sales-tax and unclaimed-property rules, loyalty contracts, gift-card population and entity adoption were not fully reviewed.",
+        "No real POS, ERP, processor, bank, marketplace, grocery, supplier or warehouse population, professional workpaper or operating-effectiveness result was obtained.",
+        "Dealership and floorplan arrangements remain outside scope and are routed to separate capital or lending research.",
+        "External source rights remain unresolved and no publisher text is stored."
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "Official source records are linked without redistributing publisher text; linked record rights remain unresolved",
+        "full_text_stored": false
+      }
     }
   ]
 }
