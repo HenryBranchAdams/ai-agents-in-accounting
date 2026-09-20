@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { spawnSync } from 'node:child_process';
+import { spawnSync, execFileSync } from 'node:child_process';
 import { pathToFileURL } from 'node:url';
 import { validateSchema } from '../scripts/validate.mjs';
 
@@ -24,8 +24,8 @@ const resolveCoverage = (value) => Array.isArray(value)
 function copyHarness() {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'finance-insurance-harness-'));
   for (const dir of ['data/research', 'data/corpus', 'data/coverage', 'scripts']) fs.mkdirSync(path.join(root, dir), { recursive: true });
-  for (const file of ['data/coverage/research-questions.json', 'data/coverage/assessments.json', 'data/coverage/mapping-overrides.json']) fs.copyFileSync(file, path.join(root, file));
-  for (const kind of canonicalKinds) fs.copyFileSync(`data/corpus/${kind}.json`, path.join(root, `data/corpus/${kind}.json`));
+  for (const file of ['data/coverage/research-questions.json', 'data/coverage/assessments.json', 'data/coverage/mapping-overrides.json']) fs.writeFileSync(path.join(root, file), execFileSync('git', ['show', `${packet.baseline_commit}:${file}`], {maxBuffer:64*1024*1024}));
+  for (const kind of canonicalKinds) fs.writeFileSync(path.join(root, `data/corpus/${kind}.json`), execFileSync('git', ['show', `${packet.baseline_commit}:data/corpus/${kind}.json`], {maxBuffer:64*1024*1024}));
   fs.copyFileSync('data/research/finance-insurance-2026-09-19.json', path.join(root, 'data/research/finance-insurance-2026-09-19.json'));
   fs.copyFileSync(helper, path.join(root, 'scripts/integrate-finance-insurance.mjs'));
   return root;
@@ -34,25 +34,28 @@ function run(root, args = []) {
   return spawnSync(process.execPath, ['scripts/integrate-finance-insurance.mjs', ...args], { cwd: root, encoding: 'utf8' });
 }
 function copyBuildHarness() {
-  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'finance-insurance-build-'));
-  const excluded = new Set(['.git', 'node_modules', 'dist']);
-  fs.cpSync(process.cwd(), root, {
-    recursive: true,
-    filter: (source) => !excluded.has(path.relative(process.cwd(), source).split(path.sep)[0]),
-  });
-  fs.symlinkSync(path.resolve('node_modules'), path.join(root, 'node_modules'), 'dir');
+  const root = copyHarness();
+  for (const dir of ['src','scripts','schemas']) fs.cpSync(dir,path.join(root,dir),{recursive:true});
+  const files=execFileSync('git',['ls-tree','-r','--name-only',packet.baseline_commit,'data'],{encoding:'utf8'}).trim().split('\n');
+  for (const file of files) {
+    if (/^data\/(research|releases)\//.test(file) || file.startsWith('data/coverage/snapshots/')) continue;
+    fs.mkdirSync(path.dirname(path.join(root,file)),{recursive:true});
+    fs.writeFileSync(path.join(root,file),execFileSync('git',['show',`${packet.baseline_commit}:${file}`],{maxBuffer:64*1024*1024}));
+  }
+  fs.symlinkSync(path.resolve('data/coverage/snapshots'),path.join(root,'data/coverage/snapshots'));
+  fs.symlinkSync(path.resolve('node_modules'),path.join(root,'node_modules'),'dir');
   return root;
 }
 function buildApplied(root) {
-  const catalogPath = path.join(root, 'data/catalog.json');
-  const catalog = read(catalogPath);
-  catalog.corpus_version = '2026-09-19.12419';
-  fs.writeFileSync(catalogPath, JSON.stringify(catalog, null, 2) + '\n');
-  const research = spawnSync(process.execPath, ['scripts/build-research-coverage.mjs'], { cwd: root, encoding: 'utf8', timeout: 180000 });
-  if (research.status !== 0) return research;
-  const coverage = spawnSync(process.execPath, ['scripts/coverage-mappings.mjs'], { cwd: root, encoding: 'utf8', timeout: 180000 });
-  if (coverage.status !== 0) return coverage;
-  return spawnSync(process.execPath, ['scripts/build.mjs'], { cwd: root, encoding: 'utf8', timeout: 180000 });
+  const file=path.join(root,'data/coverage/research-criteria.json'), criteria=read(file);
+  criteria.population.named_research_questions=read(path.join(root,'data/coverage/research-questions.json')).questions.length;
+  fs.writeFileSync(file,JSON.stringify(criteria,null,2)+'\n');
+  for (const script of ['scripts/coverage-mappings.mjs','scripts/validate.mjs']) {
+    const result=spawnSync(process.execPath,[script],{cwd:root,encoding:'utf8'});
+    if (result.status!==0) return result;
+  }
+  fs.mkdirSync(path.join(root,'dist/internal'),{recursive:true});
+  return spawnSync(path.resolve('node_modules/.bin/esbuild'),['src/agent.ts','--bundle','--platform=node','--format=esm','--outfile=dist/internal/agent.mjs'],{cwd:root,encoding:'utf8'});
 }
 
 test('source records and coverage assessments resolve schemas and rights', () => {
@@ -96,6 +99,9 @@ test('four role routes retain exact source URL identity and explicit boundaries'
 test('synthetic role fixture replays event-sequenced balanced proposals and independent rollforwards', () => {
   const f = packet.fixture;
   assert.equal(f.event_sequence.length, 17);
+  assert.equal(f.insurance_reinsurance.statutory_bridge.ledger_entry, null);
+  assert.ok(!f.journal_proposals['insurance/reinsurance'].some(e => e.entry_id === 'insurance-sap-bridge'));
+  for (const row of packet.question_rows) assert.deepEqual(packet.records.find(r=>r.id===row.record_id).data.research_questions.find(q=>q.id===row.id),row);
   assert.deepEqual(new Set(f.event_sequence.map((event) => event.role)), new Set(packet.scope.roles));
   assert.equal(f.funds_valuation_custody.client_asset_subledger_cents, f.funds_valuation_custody.client_security_value_cents);
   assert.equal(f.funds_valuation_custody.entity_asset_cents, f.funds_valuation_custody.owned_investment_value_cents);
@@ -115,6 +121,9 @@ test('synthetic role fixture replays event-sequenced balanced proposals and inde
   }
   for (const [role, movements] of Object.entries(f.movement_reconciliations)) {
     for (const movement of movements) {
+      const lines = f.journal_proposals[role].flatMap(entry => entry.lines).filter(line => line.account === movement.account);
+      assert.equal(lines.filter(line => line.side === 'debit').reduce((sum,line) => sum+line.amount_cents,0), movement.debits_cents);
+      assert.equal(lines.filter(line => line.side === 'credit').reduce((sum,line) => sum+line.amount_cents,0), movement.credits_cents);
       const closing = movement.normal_side === 'debit'
         ? movement.opening_cents + movement.debits_cents - movement.credits_cents
         : movement.opening_cents + movement.credits_cents - movement.debits_cents;

@@ -3431,5 +3431,162 @@
         "Source rights remain unknown; external full text is not stored. Selected questions do not establish industry sufficiency or a state-law survey."
       ]
     }
+  },
+  {
+    "id": "control-aa-i106-source-bridge",
+    "kind": "control",
+    "title": "Finance and insurance source-to-ledger boundary control",
+    "summary": "A review control for preserving source identity, framework boundaries and role-specific ownership before any accounting proposal.",
+    "topics": [
+      "Accounting and reporting",
+      "Finance and insurance"
+    ],
+    "industries": [
+      "Finance and insurance"
+    ],
+    "jurisdiction": "United States; selected roles and reporting purposes only",
+    "source_type": "Original bounded synthesis",
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_aa_i106_occ_acl_2026",
+      "src_aa_i106_sec_2a5_2020",
+      "src_aa_i106_sec_15c3_3",
+      "src_aa_i106_naic_appm_2026",
+      "src_occ_baas_2026",
+      "src_ffiec051_instructions_2025",
+      "src_fasb_asu_201613_credit_losses",
+      "src_fasb_asc820_fair_value",
+      "src_aa_i124_custody",
+      "src_naic_sap_hierarchy_2026",
+      "src_aa_i124_naic"
+    ],
+    "related_ids": [],
+    "reviewed_at": "2026-09-19",
+    "review_status": "editorially-reviewed",
+    "provenance": {
+      "added_on": "2026-09-19",
+      "reviewer": "Codex AI-assisted source and editorial review",
+      "issue_id": "AA-I106",
+      "note": "Source-only package. Official source summaries and original synthetic facts are bounded to the selected roles; no professional sign-off or operational validation."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "External text is not stored; publisher terms apply. Public access does not establish reuse permission.",
+      "full_text_stored": false
+    },
+    "data": {
+      "id": "control-aa-i106-source-bridge",
+      "version": "1.0.0",
+      "scope": "Selected US finance and insurance roles for calendar 2026 research. Identify legal entity, role, reporting purpose, jurisdiction, framework, reporting date and source edition before routing. This package is a bounded research reference, not a whole-industry or professional conclusion.",
+      "control_objective": "Prevent a role, source or reporting-basis mismatch from becoming a ledger proposal.",
+      "trigger": "Before applying an external source or a transaction-to-ledger route.",
+      "evidence": [
+        "source URL and locator",
+        "edition/effective period",
+        "entity role and reporting purpose",
+        "contract/account/ownership evidence",
+        "subledger reconciliation",
+        "exception and reviewer record"
+      ],
+      "procedure": [
+        "Match each source locator URL to one stable source record.",
+        "Verify source framework and role are compatible with the selected question.",
+        "Keep customer custody, owned assets, regulatory reserves and fees in separate populations.",
+        "Reject stale, missing, conflicting or rights-unknown evidence for automatic routing.",
+        "Stage all additions and fail before writes on any stable-ID, URL or primary-metadata conflict."
+      ],
+      "control_owner": "Accounting reviewer or controller; no automatic posting authority",
+      "failure_modes": [
+        "source URL duplicate with changed primary metadata",
+        "US GAAP and SAP treatment copied across bases",
+        "customer assets counted as firm assets",
+        "synthetic amount treated as operational evidence",
+        "current source or effective date omitted"
+      ],
+      "limitations": [
+        "Control design only; no operating-effectiveness test or professional review was performed."
+      ]
+    }
+  },
+  {
+    "id": "ctrl-healthcare-payer-role-and-reconciliation",
+    "kind": "control",
+    "title": "Provider, payer and settlement reconciliation controls",
+    "summary": "Selected controls prevent duplicated capitation revenue, unsupported patient billing and mixed claim/PLB or charity populations.",
+    "topics": [
+      "Accounting and reporting",
+      "Health care and social assistance",
+      "Payer settlement and revenue"
+    ],
+    "industries": [
+      "health-care-social-assistance"
+    ],
+    "jurisdiction": "United States; selected provider, payer and entity roles",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_construction_fasb_2014_09",
+      "src_fasb_asu_201613_credit_losses",
+      "src_aa_i112_cms_remittance",
+      "src_cms_hcris_cost_reports_2026",
+      "src_aa_i112_cms_subcapitation_v4",
+      "src_aa_i112_fasb_2010_23",
+      "src_nonprofit_fasb_2018_08",
+      "src_nonprofit_fasb_2016_14"
+    ],
+    "related_ids": [
+      "guide-healthcare-us-claim-close",
+      "wf-healthcare-encounter-to-close",
+      "example-healthcare-claims-and-provider-roles"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-19",
+    "provenance": {
+      "added_on": "2026-09-19",
+      "reviewer": "Codex AI-assisted bounded source and editorial review",
+      "scope": "Selected primary-source passages and original synthetic provider worksheets; not professional verification.",
+      "note": "Source-only proposal pending independent acceptance and current integration."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "External publisher text is not stored; publisher terms and source rights remain separate and unresolved.",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "controls": [
+        "Stable encounter/claim/remittance/bank identifiers and duplicate detection",
+        "No patient balance transfer from a provider-responsibility code alone",
+        "Separate price concession, contractual adjustment, charity policy and credit-loss classification",
+        "EFT equals claim payment total plus or minus separately reconciled provider-level items",
+        "Provider/year-specific cost-report form and book-to-report mapping; no cost-equals-payment assumption",
+        "Member roster, service period, resident deposit and donor barrier checks; restricted data access"
+      ],
+      "failure_conditions": [
+        "Missing provider/payer identity, contract or role",
+        "Unmatched claim, EFT or provider-level adjustment",
+        "Unsupported estimate, denominator or source period"
+      ],
+      "evidence": [
+        "Provider identity, entity form, payer contract, patient policy and service dates",
+        "Encounter and claim identifiers, charges, allowed amounts, concession estimates and responsibility assignment",
+        "ERA line/claim adjustments, PLB details, claim references and EFT trace tied to bank",
+        "Member roster and covered period for capitation; resident contract and refundable deposit register",
+        "GL cost centers, cost-report form and fiscal year, MAC settlement and prior estimate",
+        "Award conditions, eligible units, return rights and donor restrictions; charity cost method and separate funding"
+      ],
+      "limitations": [
+        "Current consolidated ASC, later amendments, actual payer contracts, patient financial-assistance policy and provider-specific reporting obligations remain unverified.",
+        "Synthetic cases contain no patient data, live claims or actual cost reports; professional review and empirical performance are not established.",
+        "Publisher rights remain unknown and full text is not stored; selected roles do not establish whole-sector sufficiency or state-law coverage."
+      ]
+    }
   }
 ]

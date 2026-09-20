@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "mapping_version": "2026-09-19.12422",
+  "mapping_version": "2026-09-19.12424",
   "updated_at": "2026-09-19",
   "records": {
     "wf-construction-contract-intake": {
@@ -21631,6 +21631,287 @@
       ],
       "reviewed_at": "2026-09-19",
       "review_note": "Source-linked bounded research and synthetic examples; no professional or empirical verification."
+    },
+    "guide-aa-i106-finance-insurance": {
+      "question_ids": [
+        "q-credit-intermediation",
+        "q-funds-custody",
+        "q-security",
+        "q-insurer",
+        "q-insurance-policyholder",
+        "q-investments"
+      ],
+      "industry_codes": [
+        "52"
+      ],
+      "basis_field": "/data/roles",
+      "reason": "Source-only selected-role association; industry mapping is discovery context, not adequacy."
+    },
+    "workflow-aa-i106-role-ledger-routing": {
+      "question_ids": [
+        "q-credit-intermediation",
+        "q-funds-custody",
+        "q-security",
+        "q-insurer",
+        "q-data-lineage"
+      ],
+      "industry_codes": [
+        "52"
+      ],
+      "basis_field": "/data/inputs",
+      "reason": "Source-only workflow association; no coverage sufficiency claim."
+    },
+    "control-aa-i106-source-bridge": {
+      "question_ids": [
+        "q-data-lineage",
+        "q-security",
+        "q-human-authority"
+      ],
+      "industry_codes": [
+        "52"
+      ],
+      "basis_field": "/data/control_objective",
+      "reason": "Shared control context only; no industry-specific accounting conclusion."
+    },
+    "example-aa-i106-role-branches": {
+      "question_ids": [
+        "q-credit-intermediation",
+        "q-funds-custody",
+        "q-investments",
+        "q-insurer",
+        "q-insurance-policyholder"
+      ],
+      "industry_codes": [
+        "52"
+      ],
+      "basis_field": "/data/fixture",
+      "reason": "Original synthetic example association; not operational evidence."
+    },
+    "guide-healthcare-us-claim-close": {
+      "replace_question_ids": false,
+      "question_ids": [
+        "q-revenue",
+        "q-receivables-credit",
+        "q-cash-settlement",
+        "q-data-lineage",
+        "q-cost-allocation",
+        "q-estimates",
+        "q-ledger-close",
+        "q-grants-contributions"
+      ],
+      "industry_codes": [
+        "621",
+        "622",
+        "623",
+        "624"
+      ],
+      "industry_scope": "specific",
+      "basis_field": "/data/research_questions",
+      "reason": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+      "reviewed_question_ids": [
+        "q-revenue",
+        "q-receivables-credit",
+        "q-cash-settlement",
+        "q-data-lineage",
+        "q-cost-allocation",
+        "q-estimates",
+        "q-ledger-close",
+        "q-grants-contributions"
+      ],
+      "reviewed_industry_codes": [
+        "621",
+        "622",
+        "623",
+        "624"
+      ],
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded source-linked synthetic application, not professional or operational verification."
+    },
+    "wf-healthcare-encounter-to-close": {
+      "replace_question_ids": false,
+      "question_ids": [
+        "q-revenue",
+        "q-receivables-credit",
+        "q-cash-settlement",
+        "q-data-lineage",
+        "q-cost-allocation",
+        "q-estimates",
+        "q-ledger-close",
+        "q-grants-contributions"
+      ],
+      "industry_codes": [
+        "621",
+        "622",
+        "623",
+        "624"
+      ],
+      "industry_scope": "specific",
+      "basis_field": "/data",
+      "reason": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+      "reviewed_question_ids": [
+        "q-revenue",
+        "q-receivables-credit",
+        "q-cash-settlement",
+        "q-data-lineage",
+        "q-cost-allocation",
+        "q-estimates",
+        "q-ledger-close",
+        "q-grants-contributions"
+      ],
+      "reviewed_industry_codes": [
+        "621",
+        "622",
+        "623",
+        "624"
+      ],
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded source-linked synthetic application, not professional or operational verification."
+    },
+    "ctrl-healthcare-payer-role-and-reconciliation": {
+      "replace_question_ids": false,
+      "question_ids": [
+        "q-revenue",
+        "q-receivables-credit",
+        "q-cash-settlement",
+        "q-data-lineage",
+        "q-cost-allocation",
+        "q-estimates",
+        "q-ledger-close",
+        "q-grants-contributions"
+      ],
+      "industry_codes": [
+        "621",
+        "622",
+        "623",
+        "624"
+      ],
+      "industry_scope": "specific",
+      "basis_field": "/data",
+      "reason": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+      "reviewed_question_ids": [
+        "q-revenue",
+        "q-receivables-credit",
+        "q-cash-settlement",
+        "q-data-lineage",
+        "q-cost-allocation",
+        "q-estimates",
+        "q-ledger-close",
+        "q-grants-contributions"
+      ],
+      "reviewed_industry_codes": [
+        "621",
+        "622",
+        "623",
+        "624"
+      ],
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded source-linked synthetic application, not professional or operational verification."
+    },
+    "example-healthcare-claims-and-provider-roles": {
+      "replace_question_ids": false,
+      "question_ids": [
+        "q-revenue",
+        "q-receivables-credit",
+        "q-cash-settlement",
+        "q-data-lineage",
+        "q-cost-allocation",
+        "q-estimates",
+        "q-ledger-close",
+        "q-grants-contributions"
+      ],
+      "industry_codes": [
+        "621",
+        "622",
+        "623",
+        "624"
+      ],
+      "industry_scope": "specific",
+      "basis_field": "/data",
+      "reason": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+      "reviewed_question_ids": [
+        "q-revenue",
+        "q-receivables-credit",
+        "q-cash-settlement",
+        "q-data-lineage",
+        "q-cost-allocation",
+        "q-estimates",
+        "q-ledger-close",
+        "q-grants-contributions"
+      ],
+      "reviewed_industry_codes": [
+        "621",
+        "622",
+        "623",
+        "624"
+      ],
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded source-linked synthetic application, not professional or operational verification."
+    },
+    "src_aa_i112_cms_remittance": {
+      "replace_question_ids": false,
+      "question_ids": [
+        "q-cash-settlement",
+        "q-data-lineage"
+      ],
+      "industry_codes": [
+        "622"
+      ],
+      "industry_scope": "specific",
+      "basis_field": "/data",
+      "reason": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+      "reviewed_question_ids": [
+        "q-cash-settlement",
+        "q-data-lineage"
+      ],
+      "reviewed_industry_codes": [
+        "622"
+      ],
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded source-linked synthetic application, not professional or operational verification."
+    },
+    "src_aa_i112_fasb_2010_23": {
+      "replace_question_ids": false,
+      "question_ids": [
+        "q-cost-allocation",
+        "q-revenue"
+      ],
+      "industry_codes": [
+        "622"
+      ],
+      "industry_scope": "specific",
+      "basis_field": "/data",
+      "reason": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+      "reviewed_question_ids": [
+        "q-cost-allocation",
+        "q-revenue"
+      ],
+      "reviewed_industry_codes": [
+        "622"
+      ],
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded source-linked synthetic application, not professional or operational verification."
+    },
+    "src_aa_i112_cms_subcapitation_v4": {
+      "replace_question_ids": false,
+      "question_ids": [
+        "q-revenue",
+        "q-ledger-close"
+      ],
+      "industry_codes": [
+        "621"
+      ],
+      "industry_scope": "specific",
+      "basis_field": "/data",
+      "reason": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+      "reviewed_question_ids": [
+        "q-revenue",
+        "q-ledger-close"
+      ],
+      "reviewed_industry_codes": [
+        "621"
+      ],
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded source-linked synthetic application, not professional or operational verification."
     }
   }
 }

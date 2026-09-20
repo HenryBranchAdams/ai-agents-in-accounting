@@ -182,7 +182,7 @@
         "sequence": 13,
         "event_id": "insurance-direct-premium",
         "role": "insurance/reinsurance",
-        "event": "Direct premium recognized in the synthetic prospective case",
+        "event": "Supplied earned and unpaid direct premium for a completed coverage period",
         "facts": {
           "direct_premium_cents": 50000000
         },
@@ -230,14 +230,15 @@
         "sequence": 17,
         "event_id": "insurance-sap-bridge",
         "role": "insurance/reinsurance",
-        "event": "Synthetic SAP-to-GAAP bridge held separately pending authority and state facts",
+        "event": "Unclassified statutory reconciliation input held without a ledger proposal",
         "facts": {
           "statutory_adjustment_cents": 1500000
         },
         "source_ids": [
           "src_aa_i106_naic_appm_2026",
           "src_naic_sap_hierarchy_2026"
-        ]
+        ],
+        "disposition": "unclassified-not-posted"
       }
     ],
     "journal_proposals": {
@@ -495,7 +496,7 @@
           "treatment_status": "review-only-proposal",
           "lines": [
             {
-              "account": "cash_or_premium_receivable",
+              "account": "earned_premium_receivable",
               "side": "debit",
               "amount_cents": 50000000,
               "memo": "Direct premium in synthetic prospective case"
@@ -506,7 +507,8 @@
               "amount_cents": 50000000,
               "memo": "Direct premium"
             }
-          ]
+          ],
+          "assumption": "Supplied earned and unpaid premium for a completed coverage period; not a recognition rule from SSAP 62."
         },
         {
           "entry_id": "insurance-claim-estimate",
@@ -565,26 +567,6 @@
               "side": "credit",
               "amount_cents": 4000000,
               "memo": "Synthetic recovery movement"
-            }
-          ]
-        },
-        {
-          "entry_id": "insurance-sap-bridge",
-          "event_id": "insurance-sap-bridge",
-          "role": "insurance/reinsurance",
-          "treatment_status": "review-only-proposal",
-          "lines": [
-            {
-              "account": "sap_to_gaap_bridge_asset",
-              "side": "debit",
-              "amount_cents": 1500000,
-              "memo": "Separate synthetic bridge population"
-            },
-            {
-              "account": "sap_to_gaap_bridge_offset",
-              "side": "credit",
-              "amount_cents": 1500000,
-              "memo": "Separate synthetic bridge population"
             }
           ]
         }
@@ -727,7 +709,7 @@
       ],
       "insurance/reinsurance": [
         {
-          "account": "cash_or_premium_receivable",
+          "account": "earned_premium_receivable",
           "normal_side": "debit",
           "opening_cents": 0,
           "debits_cents": 50000000,
@@ -863,6 +845,12 @@
         "gaap_route": "Requires current applicable US GAAP and contract facts.",
         "sap_route": "Requires applicable SSAP and domiciliary state prescribed/permitted practices.",
         "reason": "Statutory and GAAP reporting purposes must not be substituted."
+      },
+      {
+        "id": "unclassified-sap-adjustment",
+        "incorrect_route": "Create a bridge asset and offset solely because a 1,500,000-cent difference was supplied.",
+        "correct_route": "Hold the difference unposted until its nature, applicable GAAP and SAP requirements and account mapping are supported.",
+        "reason": "Balanced placeholder accounts do not establish an asset or a reporting-basis adjustment."
       }
     ],
     "lending_deposit_servicing": {
@@ -911,7 +899,24 @@
       "ceded_premium_cents": 5000000,
       "reinsurance_recovery_estimate_cents": 4000000,
       "statutory_adjustment_cents": 1500000,
-      "route": "Separate premium, claim, ceded premium, recovery and SAP bridge movements; SSAP No. 62 risk transfer and state practice remain open."
+      "route": "Keep assumed earned direct premiums, supplied claim estimates, ceded premiums and recoveries separate. SSAP 62 supports only the selected statutory reinsurance/deposit question. Hold the unidentified SAP adjustment outside the ledger.",
+      "synthetic_assumptions": [
+        "The direct-premium input is assumed already earned for the completed selected coverage period and unpaid. It is an opening recognition assumption, not a conclusion derived from SSAP 62 or from receipt of cash.",
+        "The reported direct-claim estimate is a supplied, unpaid estimate, not an actuarial calculation. Direct insurance recognition and measurement require their own applicable authority.",
+        "The four insurance entries illustrate a conditional prospective reinsurance case assuming the stated risk-transfer predicates are met. If they are not met, hold these reinsurance proposals and evaluate the cited statutory deposit route.",
+        "The unidentified statutory adjustment has no supported account or recognition basis. It remains an unposted reconciliation exception."
+      ],
+      "statutory_bridge": {
+        "status": "unclassified-not-posted",
+        "input_cents": 1500000,
+        "ledger_entry": null,
+        "required_evidence": [
+          "Nature and reporting period of the difference",
+          "Applicable US GAAP requirement",
+          "Applicable SSAP and domiciliary-state practice",
+          "Account mapping and signed reconciliation"
+        ]
+      }
     }
   },
   "examples": [
