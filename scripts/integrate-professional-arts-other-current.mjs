@@ -58,24 +58,40 @@ function addExact(rows, incoming, target) {
   }
 }
 
-function retrievalRows(packet, file) {
+export function retrievalRows(packet, file) {
   const prefix = packetPrefix(file);
   const fixtures = packet.retrieval_fixtures || {};
   const scope = packet.scope || {};
   const scopeLimits = scope.exclusions || scope.excluded || [];
   const scopeText = [scope.jurisdiction, scope.framework, scope.named_outcome, ...scopeLimits].filter(Boolean).join("; ");
+  const userQuestions = {
+    "professional-services": [
+      "How does California Rule 1.15 govern disputed and undisputed client funds?",
+      "How do engineering, accounting and staffing contracts differ from California legal client-money arrangements?",
+    ],
+    "arts-recreation": [
+      "How should live-event advance ticketing and refunds flow to the ledger?",
+      "How do museum memberships differ from donor-restricted contributions?",
+      "How do gaming receipts, prizes and funds held for others reconcile?",
+    ],
+    "other-services": [
+      "How do repair work orders separate service warranties and customer-owned equipment?",
+      "How should funeral pre-need deposits follow the selected service milestone?",
+      "How do member dues, donor restrictions and household payroll retain separate accounting treatment?",
+    ],
+  }[prefix];
+  assert.equal(userQuestions.length, (fixtures.search || []).length, `${prefix}: curate each search question`);
   const rows = [];
   let index = 0;
   for (const fixture of fixtures.search || []) {
     const expected = fixture.expected_record_ids || fixture.expected_ids || [];
-    const kind = expected.some(id => id.startsWith("example-")) && !expected.some(id => id.startsWith("guide-")) ? "example" : "guide";
     const excluded = fixture.excluded_record_ids || fixture.excluded_ids || [];
     rows.push({
-      id: `rq-${prefix}-retrieval-${index++}`,
-      user_question: fixture.query,
+      id: `rq-${prefix}-retrieval-${index}`,
+      user_question: userQuestions[index++],
       search_query: fixture.query,
-      kind,
-      filters: {},
+      ...(fixture.kind ? { kind: fixture.kind } : {}),
+      filters: fixture.filters || {},
       expected_ids: expected,
       excluded_ids: excluded,
       expected_scope: fixture.scope_assertion || scopeText || `Selected ${prefix} retrieval fixture; source and role limits remain explicit.`,

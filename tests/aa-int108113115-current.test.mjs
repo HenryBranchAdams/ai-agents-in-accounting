@@ -91,6 +91,16 @@ test("frozen applied corpus validates and uses the real bundled agent", async ()
     const bundle = path.join(dir, "agent.mjs");
     execFileSync(path.resolve("node_modules/.bin/esbuild"), ["src/agent.ts", "--bundle", "--platform=node", "--format=esm", `--outfile=${bundle}`], { cwd: dir, stdio: "pipe" });
     const { executeAgent } = await import(`${pathToFileURL(bundle).href}?int108113115=${Date.now()}`);
+    const globalFixtures = read(path.join(dir, "data/research-questions.json"))
+      .filter(row => /^rq-(professional-services|arts-recreation|other-services)-retrieval-/.test(row.id));
+    assert.equal(globalFixtures.length, 8);
+    for (const row of globalFixtures) {
+      assert.ok(row.user_question.endsWith("?"), `${row.id}: user-facing question`);
+      assert.notEqual(row.user_question, row.search_query);
+      const result = executeAgent("search", { q: row.search_query, limit: 5, ...(row.kind ? { kind: row.kind } : {}), ...row.filters });
+      for (const id of row.expected_ids) assert.ok(result.results.some(hit => hit.id === id), `${row.id}: missing ${id}`);
+      for (const id of row.excluded_ids) assert.ok(!result.results.some(hit => hit.id === id), `${row.id}: excluded ${id}`);
+    }
     for (const file of packetFiles) {
       const packet = read(file);
       for (const fixture of packet.retrieval_fixtures.search || []) {
