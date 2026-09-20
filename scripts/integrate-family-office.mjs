@@ -6,12 +6,14 @@ import { pathToFileURL } from "node:url";
 
 export const packetFile = "data/research/family-office-2026-09-19.json";
 
-export function applyToRoot(root, { expectedVersion, dryRun = false } = {}) {
+export function applyToRoot(root, { expectedVersion, dryRun = false, currentMode = false } = {}) {
   const read = (file) => JSON.parse(fs.readFileSync(path.join(root, file), "utf8"));
   const packet = read(packetFile);
   const catalog = read("data/catalog.json");
   assert.equal(packet.status, "source-only-pending-integration");
-  assert.equal(catalog.corpus_version, expectedVersion || packet.current_corpus_version, 'Refuse unexpected family office source edition before writes');
+  const version = '2026-09-19.12427';
+  if (currentMode) assert.ok(['2026-09-19.12426',version].includes(catalog.corpus_version), 'Refuse unexpected family office current edition before writes');
+  else assert.equal(catalog.corpus_version, expectedVersion || packet.current_corpus_version, 'Refuse unexpected family office source edition before writes');
   assert.equal(packet.integration_contract.catalog_write, false);
   assert.equal(packet.integration_contract.release_write, false);
   assert.equal(packet.integration_contract.snapshot_write, false);
@@ -104,6 +106,30 @@ export function applyToRoot(root, { expectedVersion, dryRun = false } = {}) {
   }
   stage.set(mappingsFile, mappings);
 
+  if (currentMode) {
+    const note = ` Edition ${version} adds six selected US family-office answers and a connected office, investment, Texas trust and personal-account example.`;
+    const review = ` Edition ${version} retains source rights, historical editions and partial assessment limits; the supplemental statement is not a consolidation or final valuation.`;
+    if (!catalog.coverage_note.includes(note)) catalog.coverage_note += note;
+    if (!catalog.review_note.includes(review)) catalog.review_note += review;
+    catalog.corpus_version = version;
+    stage.set('data/catalog.json',catalog);
+    questions.corpus_version = version;
+    questions.question_set_version = version;
+    assessments.assessment_version = version;
+    mappings.mapping_version = version;
+    mappings.updated_at = packet.reviewed_at;
+    for (const file of ['data/coverage/subsector-profiles.json','data/coverage/subsector-screening.json']) {
+      const value=read(file); value.corpus_version=version; stage.set(file,value);
+    }
+    const file='data/research-questions.json', fixtures=read(file);
+    for (const row of read('data/research/family-office-retrieval-2026-09-19.json')) {
+      const old=fixtures.find(x=>x.id===row.id);
+      assert.ok(!old||isDeepStrictEqual(old,row),`Family office retrieval conflict: ${row.id}`);
+      if(!old)fixtures.push(structuredClone(row));
+    }
+    stage.set(file,fixtures);
+  }
+
   let changed = 0;
   if (!dryRun) {
     for (const [file, value] of stage) {
@@ -130,5 +156,6 @@ if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.ar
   console.log(JSON.stringify(applyToRoot(value("--root") || process.cwd(), {
     expectedVersion: value("--expected-version"),
     dryRun: process.argv.includes("--dry-run"),
+    currentMode: process.argv.includes("--current"),
   }), null, 2));
 }

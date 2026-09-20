@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "question_set_version": "2026-09-19.12426",
-  "corpus_version": "2026-09-19.12426",
+  "question_set_version": "2026-09-19.12427",
+  "corpus_version": "2026-09-19.12427",
   "reviewed_at": "2026-09-19",
   "scope": "Versioned named research questions. Broader unresolved family questions and industry applicability are separate denominators, retained in their review files. The nonprofit question was appended on 2026-09-16; inherited individual review dates and limitations are unchanged. The reporting-foundations-us supplement adds eight US-scoped named answers while preserving IFRS and other existing framework records. The tax-foundations-us supplement adds five US-scoped named tax answers while preserving existing framework, construction-conflict, and jurisdiction boundaries.",
   "questions": [
@@ -15602,6 +15602,516 @@
       },
       "dimension_basis": "Selected official locators, residual leaf facts, connected synthetic ledger and explicit counterexample; current consolidated authority and actual facts remain open.",
       "example_id": "example-other-services-membership-household-close"
+    },
+    {
+      "id": "rq-family-office-perimeter",
+      "record_id": "guide-family-office-us-accounting",
+      "pointer": "/data/research_questions/0",
+      "family_ids": [
+        "q-consolidation",
+        "q-funds-custody"
+      ],
+      "question": "How does a family office define ownership and reporting boundaries?",
+      "scope": "US office service company, domestic investment LLC taxed as a partnership, Texas domestic non-grantor complex trust, and individual; synthetic September 2026 close. Tax coordination uses explicitly selected 2025 IRS instructions as prior-year routing, not 2026 return instructions.",
+      "answer": "Maintain separate office-company, individual, trust/estate, investment-entity and underlying property or operating ledgers. Administrative authority and beneficial interests do not make all administered assets office-owned. Consolidation requires its own control and scope analysis; an explicitly defined supplemental family aggregation is a separate purpose. The historical SEC exclusion has client, ownership/control and public-holding-out conditions; a multifamily office cannot assume the single-family exclusion.",
+      "answer_status": "sourced-answer-and-original-example",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_family_office_sec_2011_rule",
+        "src_fasb_201502"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_family_office_sec_2011_rule",
+          "url": "https://www.sec.gov/rules/final/2011/ia-3220fr.pdf",
+          "locator": "Physical PDF p.1 effective date; p.9 section II.A.4 Multifamily Offices; pp.12-13 rule 202(a)(11)(G)-1(b)(1)-(3) and (d)(4).",
+          "effective_period": "Effective August 29, 2011; historical published rule, later amendments not established.",
+          "access_limits": "Selected public passages only; no complete current-authority or entity-specific review. External rights remain unknown."
+        },
+        {
+          "source_id": "src_fasb_201502",
+          "url": "https://storage.fasb.org/ASU%202015-02.pdf",
+          "locator": "ASU 2015-02, General Note on Consolidation, physical PDF pp.15-16; ASC 810-10-05-8, p.21.",
+          "effective_period": "Issued February 2015. Historical consolidation amendment; applicable transition and later amendments require separate review.",
+          "access_limits": "Selected official public PDF passages reread for this package; historical text is not current consolidated ASC."
+        }
+      ],
+      "inputs": [
+        "Entity and owner register with instrument, control, taxpayer and account-title evidence.",
+        "Dated bank/custodian statements, share quantities, capital notices, commitments and valuation dates.",
+        "Vendor detail, benefit/time allocation, service agreement, payroll register and reciprocal transaction IDs.",
+        "Trust instrument, jurisdiction, principal/income schedule and authorized beneficiary payment.",
+        "Tax-year-specific K-1, outside-basis rollforward, corrections and transfer-tax information requests."
+      ],
+      "workflow": [
+        "Define each entity and reporting purpose; distinguish administrative access from legal ownership.",
+        "Reconcile source activity to each entity ledger before matching cross-entity balances.",
+        "Keep investment quantity, cash, funded commitment, book value, outside basis and valuation date as distinct fields.",
+        "Match allocation, reimbursement, fee and beneficiary-transfer IDs on both sides; retain unpaid differences.",
+        "Prepare supplemental adjustments in a separate column; retain entity books, restrictions and valuation exceptions.",
+        "Hand tax-year and taxpayer-specific schedules to accountable reviewers; do not post, pay, file or execute planning."
+      ],
+      "controls": [
+        "Confirm account title and beneficial rights separately from login access or assets under administration.",
+        "Use independent callback and dual authorization for new payment instructions, payee changes and beneficiary distributions.",
+        "Reconcile bank and custodian completeness, dates, duplicate notices, unsettled items and ownership exceptions.",
+        "Require supported cost drivers; isolate personal costs, unapproved fees and unmatched reciprocal balances.",
+        "Limit access by entity and need; use synthetic identifiers, redact tax IDs and bank details, and retain a review log.",
+        "Do not finalize the supplemental statement while ownership, valuation or material reconciliation exceptions remain unresolved."
+      ],
+      "exceptions": [
+        "Custody is not ownership.",
+        "Aggregation is not a GAAP consolidation conclusion.",
+        "Serving unrelated families requires a separate adviser-status analysis; this package makes no registration conclusion."
+      ],
+      "remaining_gaps": [
+        "Selected source passages and synthetic bookkeeping do not establish current consolidated GAAP, entity-specific legal or tax conclusions, or professional review.",
+        "Private-fund measurement, standalone interest measurement, tax elections, governing documents and actual ownership/control require further evidence.",
+        "No operational financial data or empirical agent performance is established. Source rights and later source currency remain unresolved."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Selected primary passages and original synthetic accounting. The worked example tests reconciliation, not professional or operational validity.",
+      "example_id": "example-family-office-four-entity-close"
+    },
+    {
+      "id": "rq-family-office-capital-activity",
+      "record_id": "guide-family-office-us-accounting",
+      "pointer": "/data/research_questions/1",
+      "family_ids": [
+        "q-investments",
+        "q-funds-custody",
+        "q-valuation-impairment"
+      ],
+      "question": "How do liquid holdings and private-fund notices connect to a family investment ledger?",
+      "scope": "US office service company, domestic investment LLC taxed as a partnership, Texas domestic non-grantor complex trust, and individual; synthetic September 2026 close. Tax coordination uses explicitly selected 2025 IRS instructions as prior-year routing, not 2026 return instructions.",
+      "answer": "Reconcile units, transactions and cash to the account owner. For the selected quoted equity outside consolidation/equity-method scope, the historical ASC 321 amendment routes fair-value changes and dividends to earnings. Track private-fund commitment, funded calls, distributions, book carry, tax basis and dated valuation evidence separately. A commitment is not funded capital. The example retains a provisional capital-activity ledger and holds stale NAV measurement unresolved rather than calling the last notice current fair value.",
+      "answer_status": "sourced-answer-and-original-example",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_fasb_asu_201601_equity_investments",
+        "src_family_office_irs_k1_1065_2025"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_fasb_asu_201601_equity_investments",
+          "url": "https://storage.fasb.org/ASU%202016-01.pdf",
+          "locator": "ASU 2016-01, ASC 321-10-35-1 and 35-2, physical PDF p.58; 35-3 through 35-4, p.59; 35-6, p.60.",
+          "effective_period": "Issued January 2016. Public business entities: fiscal years after December 15, 2017; other entities: fiscal years after December 15, 2018, with interim transition as stated. Later requirements remain open.",
+          "access_limits": "Selected official public PDF passages reread for this package; historical text is not current consolidated ASC."
+        },
+        {
+          "source_id": "src_family_office_irs_k1_1065_2025",
+          "url": "https://www.irs.gov/instructions/i1065sk1",
+          "locator": "General Instructions, Purpose of Schedule K-1; Limitations on Losses, Deductions, and Credits, Basis Limitations; Worksheet for Adjusting the Basis of a Partner’s Interest; Item L Partner’s Capital Account Analysis.",
+          "effective_period": "Tax year 2025 only; separately verify the edition for later tax years.",
+          "access_limits": "Selected public passages only; no complete current-authority or entity-specific review. External rights remain unknown."
+        }
+      ],
+      "inputs": [
+        "Entity and owner register with instrument, control, taxpayer and account-title evidence.",
+        "Dated bank/custodian statements, share quantities, capital notices, commitments and valuation dates.",
+        "Vendor detail, benefit/time allocation, service agreement, payroll register and reciprocal transaction IDs.",
+        "Trust instrument, jurisdiction, principal/income schedule and authorized beneficiary payment.",
+        "Tax-year-specific K-1, outside-basis rollforward, corrections and transfer-tax information requests."
+      ],
+      "workflow": [
+        "Define each entity and reporting purpose; distinguish administrative access from legal ownership.",
+        "Reconcile source activity to each entity ledger before matching cross-entity balances.",
+        "Keep investment quantity, cash, funded commitment, book value, outside basis and valuation date as distinct fields.",
+        "Match allocation, reimbursement, fee and beneficiary-transfer IDs on both sides; retain unpaid differences.",
+        "Prepare supplemental adjustments in a separate column; retain entity books, restrictions and valuation exceptions.",
+        "Hand tax-year and taxpayer-specific schedules to accountable reviewers; do not post, pay, file or execute planning."
+      ],
+      "controls": [
+        "Confirm account title and beneficial rights separately from login access or assets under administration.",
+        "Use independent callback and dual authorization for new payment instructions, payee changes and beneficiary distributions.",
+        "Reconcile bank and custodian completeness, dates, duplicate notices, unsettled items and ownership exceptions.",
+        "Require supported cost drivers; isolate personal costs, unapproved fees and unmatched reciprocal balances.",
+        "Limit access by entity and need; use synthetic identifiers, redact tax IDs and bank details, and retain a review log.",
+        "Do not finalize the supplemental statement while ownership, valuation or material reconciliation exceptions remain unresolved."
+      ],
+      "exceptions": [
+        "An uncalled commitment is not a posted investment asset here.",
+        "A distribution notice does not establish final tax character.",
+        "Registered-fund, investment-company, equity-method and consolidation models require separate applicability review."
+      ],
+      "remaining_gaps": [
+        "Selected source passages and synthetic bookkeeping do not establish current consolidated GAAP, entity-specific legal or tax conclusions, or professional review.",
+        "Private-fund measurement, standalone interest measurement, tax elections, governing documents and actual ownership/control require further evidence.",
+        "No operational financial data or empirical agent performance is established. Source rights and later source currency remain unresolved."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Selected primary passages and original synthetic accounting. The worked example tests reconciliation, not professional or operational validity.",
+      "example_id": "example-family-office-four-entity-close"
+    },
+    {
+      "id": "rq-family-office-shared-costs",
+      "record_id": "guide-family-office-us-accounting",
+      "pointer": "/data/research_questions/2",
+      "family_ids": [
+        "q-cost-allocation",
+        "q-related-parties",
+        "q-payroll"
+      ],
+      "question": "How should family office shared costs and personal spending remain traceable?",
+      "scope": "US office service company, domestic investment LLC taxed as a partnership, Texas domestic non-grantor complex trust, and individual; synthetic September 2026 close. Tax coordination uses explicitly selected 2025 IRS instructions as prior-year routing, not 2026 return instructions.",
+      "answer": "Identify the beneficiary of each payroll or vendor cost, retain its allocation basis, and record reciprocal receivable/payable entries before reimbursements. Keep a separate earned management fee and its agreement. The related-party source cautions against assuming arm’s-length terms. The original fixture allocates a vendor bill using supplied time records and leaves one reimbursement outstanding. Personal spending stays in the individual ledger. Neither allocation nor reimbursement establishes tax deductibility.",
+      "answer_status": "sourced-answer-and-original-example",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_aa_i123_fas57"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_aa_i123_fas57",
+          "url": "https://storage.fasb.org/aop_FAS57.pdf",
+          "locator": "FAS 57, as-amended compilation, paragraphs 2-4, physical PDF pp.3-4; paragraph 5 effective date, p.4.",
+          "effective_period": "Original statement March 1982, fiscal years ending after June 15, 1982; consulted as-amended historical compilation is not current ASC 850.",
+          "access_limits": "Selected official public PDF passages reread for this package; historical text is not current consolidated ASC."
+        }
+      ],
+      "inputs": [
+        "Entity and owner register with instrument, control, taxpayer and account-title evidence.",
+        "Dated bank/custodian statements, share quantities, capital notices, commitments and valuation dates.",
+        "Vendor detail, benefit/time allocation, service agreement, payroll register and reciprocal transaction IDs.",
+        "Trust instrument, jurisdiction, principal/income schedule and authorized beneficiary payment.",
+        "Tax-year-specific K-1, outside-basis rollforward, corrections and transfer-tax information requests."
+      ],
+      "workflow": [
+        "Define each entity and reporting purpose; distinguish administrative access from legal ownership.",
+        "Reconcile source activity to each entity ledger before matching cross-entity balances.",
+        "Keep investment quantity, cash, funded commitment, book value, outside basis and valuation date as distinct fields.",
+        "Match allocation, reimbursement, fee and beneficiary-transfer IDs on both sides; retain unpaid differences.",
+        "Prepare supplemental adjustments in a separate column; retain entity books, restrictions and valuation exceptions.",
+        "Hand tax-year and taxpayer-specific schedules to accountable reviewers; do not post, pay, file or execute planning."
+      ],
+      "controls": [
+        "Confirm account title and beneficial rights separately from login access or assets under administration.",
+        "Use independent callback and dual authorization for new payment instructions, payee changes and beneficiary distributions.",
+        "Reconcile bank and custodian completeness, dates, duplicate notices, unsettled items and ownership exceptions.",
+        "Require supported cost drivers; isolate personal costs, unapproved fees and unmatched reciprocal balances.",
+        "Limit access by entity and need; use synthetic identifiers, redact tax IDs and bank details, and retain a review log.",
+        "Do not finalize the supplemental statement while ownership, valuation or material reconciliation exceptions remain unresolved."
+      ],
+      "exceptions": [
+        "Personal spending is not automatically an office expense.",
+        "A cash transfer without an identified cost or agreement is not automatically reimbursement or fee revenue.",
+        "Payroll tax and withholding amounts are supplied inputs, not a rate or worker-classification conclusion."
+      ],
+      "remaining_gaps": [
+        "Selected source passages and synthetic bookkeeping do not establish current consolidated GAAP, entity-specific legal or tax conclusions, or professional review.",
+        "Private-fund measurement, standalone interest measurement, tax elections, governing documents and actual ownership/control require further evidence.",
+        "No operational financial data or empirical agent performance is established. Source rights and later source currency remain unresolved."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Selected primary passages and original synthetic accounting. The worked example tests reconciliation, not professional or operational validity.",
+      "example_id": "example-family-office-four-entity-close"
+    },
+    {
+      "id": "rq-family-office-trust-beneficiary",
+      "record_id": "guide-family-office-us-accounting",
+      "pointer": "/data/research_questions/3",
+      "family_ids": [
+        "q-funds-custody",
+        "q-reporting-basis",
+        "q-income-tax"
+      ],
+      "question": "How do Texas trust principal, income and beneficiary distributions differ from tax reporting?",
+      "scope": "US office service company, domestic investment LLC taxed as a partnership, Texas domestic non-grantor complex trust, and individual; synthetic September 2026 close. Tax coordination uses explicitly selected 2025 IRS instructions as prior-year routing, not 2026 return instructions.",
+      "answer": "For the stated Texas trust, first check the instrument and any authorized adjustment. Selected interest is income; the specified long-held bond-sale proceeds belong to principal. An accounting expense involving both income and remainder interests is split equally under the selected default provisions. The example pays an authorized income distribution and retains income separately. These fiduciary classifications do not determine GAAP presentation, DNI, the distribution deduction or beneficiary tax character.",
+      "answer_status": "sourced-answer-and-original-example",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_family_office_texas_principal_income",
+        "src_family_office_irs_1041_2025"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_family_office_texas_principal_income",
+          "url": "https://tcss.legis.texas.gov/resources/pr/htm/pr.116.htm",
+          "locator": "Sections 116.004(a), 116.005, 116.161(2), 116.163(a)-(c), 116.201(2) and 116.202(a)(1-a).",
+          "effective_period": "Chapter effective January 1, 2004; selected sections 116.201 and 116.202 amended effective September 1, 2013. Applicability to the instrument and period remains necessary.",
+          "access_limits": "Selected public passages only; no complete current-authority or entity-specific review. External rights remain unknown."
+        },
+        {
+          "source_id": "src_family_office_irs_1041_2025",
+          "url": "https://www.irs.gov/instructions/i1041",
+          "locator": "General Instructions, Purpose of Form; Definitions, Distributable net income; Who Must File, Trust; Schedule B Income Distribution Deduction, General Instructions and line 7.",
+          "effective_period": "Tax year 2025 only; no automatic transfer to the illustrative 2026 close.",
+          "access_limits": "Selected public passages only; no complete current-authority or entity-specific review. External rights remain unknown."
+        }
+      ],
+      "inputs": [
+        "Entity and owner register with instrument, control, taxpayer and account-title evidence.",
+        "Dated bank/custodian statements, share quantities, capital notices, commitments and valuation dates.",
+        "Vendor detail, benefit/time allocation, service agreement, payroll register and reciprocal transaction IDs.",
+        "Trust instrument, jurisdiction, principal/income schedule and authorized beneficiary payment.",
+        "Tax-year-specific K-1, outside-basis rollforward, corrections and transfer-tax information requests."
+      ],
+      "workflow": [
+        "Define each entity and reporting purpose; distinguish administrative access from legal ownership.",
+        "Reconcile source activity to each entity ledger before matching cross-entity balances.",
+        "Keep investment quantity, cash, funded commitment, book value, outside basis and valuation date as distinct fields.",
+        "Match allocation, reimbursement, fee and beneficiary-transfer IDs on both sides; retain unpaid differences.",
+        "Prepare supplemental adjustments in a separate column; retain entity books, restrictions and valuation exceptions.",
+        "Hand tax-year and taxpayer-specific schedules to accountable reviewers; do not post, pay, file or execute planning."
+      ],
+      "controls": [
+        "Confirm account title and beneficial rights separately from login access or assets under administration.",
+        "Use independent callback and dual authorization for new payment instructions, payee changes and beneficiary distributions.",
+        "Reconcile bank and custodian completeness, dates, duplicate notices, unsettled items and ownership exceptions.",
+        "Require supported cost drivers; isolate personal costs, unapproved fees and unmatched reciprocal balances.",
+        "Limit access by entity and need; use synthetic identifiers, redact tax IDs and bank details, and retain a review log.",
+        "Do not finalize the supplemental statement while ownership, valuation or material reconciliation exceptions remain unresolved."
+      ],
+      "exceptions": [
+        "Principal/income classification is not federal tax classification.",
+        "A short-maturity obligation, different instrument, adjustment power, unitrust or estate-administration case may require another route.",
+        "The half split does not apply to every ordinary administration expense."
+      ],
+      "remaining_gaps": [
+        "Selected source passages and synthetic bookkeeping do not establish current consolidated GAAP, entity-specific legal or tax conclusions, or professional review.",
+        "Private-fund measurement, standalone interest measurement, tax elections, governing documents and actual ownership/control require further evidence.",
+        "No operational financial data or empirical agent performance is established. Source rights and later source currency remain unresolved."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Selected primary passages and original synthetic accounting. The worked example tests reconciliation, not professional or operational validity.",
+      "example_id": "example-family-office-four-entity-close"
+    },
+    {
+      "id": "rq-family-office-tax-coordination",
+      "record_id": "guide-family-office-us-accounting",
+      "pointer": "/data/research_questions/4",
+      "family_ids": [
+        "q-tax-returns",
+        "q-tax-methods",
+        "q-income-tax"
+      ],
+      "question": "Which family office taxpayer and year should receive K-1, basis and estate/gift information?",
+      "scope": "US office service company, domestic investment LLC taxed as a partnership, Texas domestic non-grantor complex trust, and individual; synthetic September 2026 close. Tax coordination uses explicitly selected 2025 IRS instructions as prior-year routing, not 2026 return instructions.",
+      "answer": "Use separate taxpayer and tax-year identifiers. The investment partnership issues partner K-1 information; the individual and trust receive their own shares, including income not distributed. Maintain outside basis independently from K-1 capital. The non-grantor trust uses the fiduciary return and beneficiary K-1 route, while the individual uses the individual return and the assumed office C corporation retains its corporate route. Collect donor, donee, transfer-date/value and prior-gift evidence for gift-tax review, and decedent, death-date, ownership/value and prior-transfer evidence for estate review. No filing requirement, tax amount or planning action is determined.",
+      "answer_status": "sourced-answer-and-original-example",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_family_office_irs_k1_1065_2025",
+        "src_family_office_irs_1041_2025",
+        "src_family_office_irs_k1_1041_2025",
+        "src_family_office_irs_p559_2025",
+        "src_aa122_irs_i1120_2025"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_family_office_irs_k1_1065_2025",
+          "url": "https://www.irs.gov/instructions/i1065sk1",
+          "locator": "General Instructions, Purpose of Schedule K-1; Limitations on Losses, Deductions, and Credits, Basis Limitations; Worksheet for Adjusting the Basis of a Partner’s Interest; Item L Partner’s Capital Account Analysis.",
+          "effective_period": "Tax year 2025 only; separately verify the edition for later tax years.",
+          "access_limits": "Selected public passages only; no complete current-authority or entity-specific review. External rights remain unknown."
+        },
+        {
+          "source_id": "src_family_office_irs_1041_2025",
+          "url": "https://www.irs.gov/instructions/i1041",
+          "locator": "General Instructions, Purpose of Form; Definitions, Distributable net income; Who Must File, Trust; Schedule B Income Distribution Deduction, General Instructions and line 7.",
+          "effective_period": "Tax year 2025 only; no automatic transfer to the illustrative 2026 close.",
+          "access_limits": "Selected public passages only; no complete current-authority or entity-specific review. External rights remain unknown."
+        },
+        {
+          "source_id": "src_family_office_irs_k1_1041_2025",
+          "url": "https://www.irs.gov/instructions/i1041sk1",
+          "locator": "General Instructions, Purpose of Form, Inconsistent Treatment of Items and Errors; Part III Beneficiary’s Share of Current Year Income, Deductions, Credits, and Other Items.",
+          "effective_period": "Tax year 2025; retain the estate or trust year and beneficiary reporting year.",
+          "access_limits": "Selected public passages only; no complete current-authority or entity-specific review. External rights remain unknown."
+        },
+        {
+          "source_id": "src_family_office_irs_p559_2025",
+          "url": "https://www.irs.gov/publications/p559",
+          "locator": "Personal Representatives, Duties; Final Income Tax Return for Decedent, Form 1040 or 1040-SR; Income Tax Return of an Estate, Form 1041; Estate and Gift Taxes, Form 706 and Form 709 discussion.",
+          "effective_period": "Selected 2025 reporting guidance; filing thresholds, elections and later-year rules are not carried into this example.",
+          "access_limits": "Selected public passages only; no complete current-authority or entity-specific review. External rights remain unknown."
+        },
+        {
+          "source_id": "src_aa122_irs_i1120_2025",
+          "url": "https://www.irs.gov/instructions/i1120",
+          "locator": "Reused accepted tax foundation: 2025 Form 1120 instructions, Who Must File and book-to-tax reporting route.",
+          "effective_period": "Tax year 2025; C-corporation assumption and later-year edition require separate verification.",
+          "access_limits": "Inherited accepted source review from tax122; not newly rechecked here. No tax calculation or filing conclusion."
+        }
+      ],
+      "inputs": [
+        "Entity and owner register with instrument, control, taxpayer and account-title evidence.",
+        "Dated bank/custodian statements, share quantities, capital notices, commitments and valuation dates.",
+        "Vendor detail, benefit/time allocation, service agreement, payroll register and reciprocal transaction IDs.",
+        "Trust instrument, jurisdiction, principal/income schedule and authorized beneficiary payment.",
+        "Tax-year-specific K-1, outside-basis rollforward, corrections and transfer-tax information requests."
+      ],
+      "workflow": [
+        "Define each entity and reporting purpose; distinguish administrative access from legal ownership.",
+        "Reconcile source activity to each entity ledger before matching cross-entity balances.",
+        "Keep investment quantity, cash, funded commitment, book value, outside basis and valuation date as distinct fields.",
+        "Match allocation, reimbursement, fee and beneficiary-transfer IDs on both sides; retain unpaid differences.",
+        "Prepare supplemental adjustments in a separate column; retain entity books, restrictions and valuation exceptions.",
+        "Hand tax-year and taxpayer-specific schedules to accountable reviewers; do not post, pay, file or execute planning."
+      ],
+      "controls": [
+        "Confirm account title and beneficial rights separately from login access or assets under administration.",
+        "Use independent callback and dual authorization for new payment instructions, payee changes and beneficiary distributions.",
+        "Reconcile bank and custodian completeness, dates, duplicate notices, unsettled items and ownership exceptions.",
+        "Require supported cost drivers; isolate personal costs, unapproved fees and unmatched reciprocal balances.",
+        "Limit access by entity and need; use synthetic identifiers, redact tax IDs and bank details, and retain a review log.",
+        "Do not finalize the supplemental statement while ownership, valuation or material reconciliation exceptions remain unresolved."
+      ],
+      "exceptions": [
+        "Grantor-trust status or another entity tax election changes the routing.",
+        "The selected 2025 instructions are not 2026 return instructions.",
+        "Book carrying amount and K-1 capital are not automatically outside basis; cash distributions are not automatically taxable income."
+      ],
+      "remaining_gaps": [
+        "Selected source passages and synthetic bookkeeping do not establish current consolidated GAAP, entity-specific legal or tax conclusions, or professional review.",
+        "Private-fund measurement, standalone interest measurement, tax elections, governing documents and actual ownership/control require further evidence.",
+        "No operational financial data or empirical agent performance is established. Source rights and later source currency remain unresolved."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Selected primary passages and original synthetic accounting. The worked example tests reconciliation, not professional or operational validity.",
+      "example_id": "example-family-office-four-entity-close"
+    },
+    {
+      "id": "rq-family-office-supplemental-close",
+      "record_id": "guide-family-office-us-accounting",
+      "pointer": "/data/research_questions/5",
+      "family_ids": [
+        "q-ledger-close",
+        "q-presentation",
+        "q-human-authority",
+        "q-security"
+      ],
+      "question": "How can a family office reconcile a supplemental family statement without double counting?",
+      "scope": "US office service company, domestic investment LLC taxed as a partnership, Texas domestic non-grantor complex trust, and individual; synthetic September 2026 close. Tax coordination uses explicitly selected 2025 IRS instructions as prior-year routing, not 2026 return instructions.",
+      "answer": "Complete separate bank, custodian and ledger reconciliations, then define the included accounts and purpose of a supplemental view. Remove duplicated interests only where the underlying entity is also included, match interentity balances, and distinguish internal fees and beneficiary transfers from external activity. Retain the entity trial balances and an adjustment log. The original four-entity example shows a balanced carrying-value aggregation, including restricted trust resources and an unresolved valuation exception; it is not an individual’s net worth or a final GAAP financial statement. Payment-authority and sensitive-data controls are editorial proposals.",
+      "answer_status": "sourced-answer-and-original-example",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_fasb_201502",
+        "src_aa_i123_fas57",
+        "src_family_office_texas_principal_income"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_fasb_201502",
+          "url": "https://storage.fasb.org/ASU%202015-02.pdf",
+          "locator": "ASU 2015-02, General Note on Consolidation, physical PDF pp.15-16; ASC 810-10-05-8, p.21.",
+          "effective_period": "Issued February 2015. Historical consolidation amendment; applicable transition and later amendments require separate review.",
+          "access_limits": "Selected official public PDF passages reread for this package; historical text is not current consolidated ASC."
+        },
+        {
+          "source_id": "src_aa_i123_fas57",
+          "url": "https://storage.fasb.org/aop_FAS57.pdf",
+          "locator": "FAS 57, as-amended compilation, paragraphs 2-4, physical PDF pp.3-4; paragraph 5 effective date, p.4.",
+          "effective_period": "Original statement March 1982, fiscal years ending after June 15, 1982; consulted as-amended historical compilation is not current ASC 850.",
+          "access_limits": "Selected official public PDF passages reread for this package; historical text is not current consolidated ASC."
+        },
+        {
+          "source_id": "src_family_office_texas_principal_income",
+          "url": "https://tcss.legis.texas.gov/resources/pr/htm/pr.116.htm",
+          "locator": "Sections 116.004(a), 116.005, 116.161(2), 116.163(a)-(c), 116.201(2) and 116.202(a)(1-a).",
+          "effective_period": "Chapter effective January 1, 2004; selected sections 116.201 and 116.202 amended effective September 1, 2013. Applicability to the instrument and period remains necessary.",
+          "access_limits": "Selected public passages only; no complete current-authority or entity-specific review. External rights remain unknown."
+        }
+      ],
+      "inputs": [
+        "Entity and owner register with instrument, control, taxpayer and account-title evidence.",
+        "Dated bank/custodian statements, share quantities, capital notices, commitments and valuation dates.",
+        "Vendor detail, benefit/time allocation, service agreement, payroll register and reciprocal transaction IDs.",
+        "Trust instrument, jurisdiction, principal/income schedule and authorized beneficiary payment.",
+        "Tax-year-specific K-1, outside-basis rollforward, corrections and transfer-tax information requests."
+      ],
+      "workflow": [
+        "Define each entity and reporting purpose; distinguish administrative access from legal ownership.",
+        "Reconcile source activity to each entity ledger before matching cross-entity balances.",
+        "Keep investment quantity, cash, funded commitment, book value, outside basis and valuation date as distinct fields.",
+        "Match allocation, reimbursement, fee and beneficiary-transfer IDs on both sides; retain unpaid differences.",
+        "Prepare supplemental adjustments in a separate column; retain entity books, restrictions and valuation exceptions.",
+        "Hand tax-year and taxpayer-specific schedules to accountable reviewers; do not post, pay, file or execute planning."
+      ],
+      "controls": [
+        "Confirm account title and beneficial rights separately from login access or assets under administration.",
+        "Use independent callback and dual authorization for new payment instructions, payee changes and beneficiary distributions.",
+        "Reconcile bank and custodian completeness, dates, duplicate notices, unsettled items and ownership exceptions.",
+        "Require supported cost drivers; isolate personal costs, unapproved fees and unmatched reciprocal balances.",
+        "Limit access by entity and need; use synthetic identifiers, redact tax IDs and bank details, and retain a review log.",
+        "Do not finalize the supplemental statement while ownership, valuation or material reconciliation exceptions remain unresolved."
+      ],
+      "exceptions": [
+        "Assets under administration are not necessarily owned by the office or available to the individual.",
+        "An unreconciled transfer must not be plugged into income.",
+        "A stale private-fund NAV prevents a claim of complete current measurement."
+      ],
+      "remaining_gaps": [
+        "Selected source passages and synthetic bookkeeping do not establish current consolidated GAAP, entity-specific legal or tax conclusions, or professional review.",
+        "Private-fund measurement, standalone interest measurement, tax elections, governing documents and actual ownership/control require further evidence.",
+        "No operational financial data or empirical agent performance is established. Source rights and later source currency remain unresolved."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Selected primary passages and original synthetic accounting. The worked example tests reconciliation, not professional or operational validity.",
+      "example_id": "example-family-office-four-entity-close"
     }
   ]
 }

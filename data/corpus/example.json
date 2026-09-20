@@ -21500,5 +21500,1368 @@
         "External source rights and current source currency remain unknown; publisher text is not stored."
       ]
     }
+  },
+  {
+    "id": "example-family-office-four-entity-close",
+    "kind": "example",
+    "title": "Synthetic family office four-entity close and supplemental statement",
+    "summary": "Separate office, investment, Texas trust and personal books reconcile investment notices, shared costs and beneficiary activity without duplicate family-view assets.",
+    "topics": [
+      "Family office accounting",
+      "Scoped research"
+    ],
+    "industries": [],
+    "jurisdiction": "United States; selected Texas fiduciary branch",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_family_office_sec_2011_rule",
+      "src_fasb_201502",
+      "src_fasb_asu_201601_equity_investments",
+      "src_family_office_irs_k1_1065_2025",
+      "src_aa_i123_fas57",
+      "src_family_office_texas_principal_income",
+      "src_family_office_irs_1041_2025",
+      "src_family_office_irs_k1_1041_2025",
+      "src_family_office_irs_p559_2025",
+      "src_aa122_irs_i1120_2025"
+    ],
+    "related_ids": [
+      "guide-family-office-us-accounting",
+      "workflow-family-office-entity-close",
+      "control-family-office-ownership-payments"
+    ],
+    "reviewed_at": "2026-09-19",
+    "review_status": "editorially-reviewed",
+    "provenance": {
+      "added_on": "2026-09-19",
+      "reviewer": "Codex AI-assisted original-source research",
+      "scope": "Issue 163 six bounded questions and original connected four-entity example",
+      "note": "Source checks and synthetic arithmetic are distinct from professional review; no publisher full text."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "External publications remain subject to their own terms; no publisher full text is stored.",
+      "full_text_stored": false
+    },
+    "data": {
+      "id": "example-family-office-four-entity-close",
+      "examples": [
+        {
+          "id": "connected-family-office-close",
+          "description": "Synthetic four-entity connected bookkeeping case; full inputs, journals and supplemental adjustments follow."
+        }
+      ],
+      "case": {
+        "id": "connected-family-office-close",
+        "currency": "USD",
+        "unit": "integer cents",
+        "period": "2026-09-01 through 2026-09-30",
+        "basis": "Original provisional bookkeeping and supplemental carrying-value aggregation; not finalized GAAP statements, current fair-value wealth, or a tax return.",
+        "entities": [
+          {
+            "id": "O",
+            "name": "Office service C corporation",
+            "role": "Separate office company, owned 100% by P; C-corporation tax status is a supplied assumption.",
+            "opening": [
+              {
+                "account": "cash",
+                "debit_cents": 5000000,
+                "credit_cents": 0
+              },
+              {
+                "account": "capital",
+                "debit_cents": 0,
+                "credit_cents": 5000000
+              }
+            ],
+            "account_types": {
+              "cash": "asset",
+              "due_I": "asset",
+              "due_T": "asset",
+              "due_P": "asset",
+              "capital": "equity",
+              "accounting_expense": "expense",
+              "management_fee_income": "income",
+              "wages_expense": "expense",
+              "withholding_payable": "liability",
+              "employer_payroll_tax_expense": "expense",
+              "employer_tax_payable": "liability"
+            },
+            "closing_trial_balance": [
+              {
+                "account": "cash",
+                "debit_cents": 4300000,
+                "credit_cents": 0
+              },
+              {
+                "account": "due_I",
+                "debit_cents": 100000,
+                "credit_cents": 0
+              },
+              {
+                "account": "due_T",
+                "debit_cents": 0,
+                "credit_cents": 0
+              },
+              {
+                "account": "due_P",
+                "debit_cents": 0,
+                "credit_cents": 0
+              },
+              {
+                "account": "capital",
+                "debit_cents": 0,
+                "credit_cents": 5000000
+              },
+              {
+                "account": "accounting_expense",
+                "debit_cents": 400000,
+                "credit_cents": 0
+              },
+              {
+                "account": "management_fee_income",
+                "debit_cents": 0,
+                "credit_cents": 600000
+              },
+              {
+                "account": "wages_expense",
+                "debit_cents": 1000000,
+                "credit_cents": 0
+              },
+              {
+                "account": "withholding_payable",
+                "debit_cents": 0,
+                "credit_cents": 200000
+              },
+              {
+                "account": "employer_payroll_tax_expense",
+                "debit_cents": 100000,
+                "credit_cents": 0
+              },
+              {
+                "account": "employer_tax_payable",
+                "debit_cents": 0,
+                "credit_cents": 100000
+              }
+            ],
+            "closing_bank_statement_cents": 4300000,
+            "bank_reconciling_items": []
+          },
+          {
+            "id": "I",
+            "name": "Family investment LLC",
+            "role": "Domestic LLC taxed as a partnership; P owns 90%, T owns 10%; assumed outside investment-company accounting for this illustration. Portfolio holdings have no control or significant influence under supplied facts.",
+            "opening": [
+              {
+                "account": "cash",
+                "debit_cents": 20000000,
+                "credit_cents": 0
+              },
+              {
+                "account": "quoted_equity",
+                "debit_cents": 30000000,
+                "credit_cents": 0
+              },
+              {
+                "account": "private_fund_provisional",
+                "debit_cents": 10000000,
+                "credit_cents": 0
+              },
+              {
+                "account": "capital_P",
+                "debit_cents": 0,
+                "credit_cents": 54000000
+              },
+              {
+                "account": "capital_T",
+                "debit_cents": 0,
+                "credit_cents": 6000000
+              }
+            ],
+            "account_types": {
+              "cash": "asset",
+              "quoted_equity": "asset",
+              "private_fund_provisional": "asset",
+              "capital_P": "equity",
+              "capital_T": "equity",
+              "accounting_expense": "expense",
+              "due_O": "liability",
+              "management_fee_expense": "expense",
+              "dividend_income": "income",
+              "custodian_fee_expense": "expense",
+              "fund_income_provisional": "income",
+              "unrealized_gain": "income"
+            },
+            "closing_trial_balance": [
+              {
+                "account": "cash",
+                "debit_cents": 13100000,
+                "credit_cents": 0
+              },
+              {
+                "account": "quoted_equity",
+                "debit_cents": 36050000,
+                "credit_cents": 0
+              },
+              {
+                "account": "private_fund_provisional",
+                "debit_cents": 12000000,
+                "credit_cents": 0
+              },
+              {
+                "account": "capital_P",
+                "debit_cents": 0,
+                "credit_cents": 54000000
+              },
+              {
+                "account": "capital_T",
+                "debit_cents": 0,
+                "credit_cents": 6000000
+              },
+              {
+                "account": "accounting_expense",
+                "debit_cents": 300000,
+                "credit_cents": 0
+              },
+              {
+                "account": "due_O",
+                "debit_cents": 0,
+                "credit_cents": 100000
+              },
+              {
+                "account": "management_fee_expense",
+                "debit_cents": 600000,
+                "credit_cents": 0
+              },
+              {
+                "account": "dividend_income",
+                "debit_cents": 0,
+                "credit_cents": 500000
+              },
+              {
+                "account": "custodian_fee_expense",
+                "debit_cents": 100000,
+                "credit_cents": 0
+              },
+              {
+                "account": "fund_income_provisional",
+                "debit_cents": 0,
+                "credit_cents": 500000
+              },
+              {
+                "account": "unrealized_gain",
+                "debit_cents": 0,
+                "credit_cents": 1050000
+              }
+            ],
+            "closing_bank_statement_cents": 13100000,
+            "bank_reconciling_items": []
+          },
+          {
+            "id": "T",
+            "name": "Texas family trust",
+            "role": "Domestic irrevocable non-grantor complex trust. Instrument permits discretionary income distributions and accumulation; all current/remainder beneficiaries are family clients for the assumed SEC case. It follows selected Chapter 116 defaults and makes no adjustment or unitrust election. P is an income beneficiary, not outright owner of trust assets.",
+            "opening": [
+              {
+                "account": "cash",
+                "debit_cents": 10000000,
+                "credit_cents": 0
+              },
+              {
+                "account": "bonds",
+                "debit_cents": 20000000,
+                "credit_cents": 0
+              },
+              {
+                "account": "interest_I",
+                "debit_cents": 6000000,
+                "credit_cents": 0
+              },
+              {
+                "account": "opening_principal",
+                "debit_cents": 0,
+                "credit_cents": 36000000
+              }
+            ],
+            "account_types": {
+              "cash": "asset",
+              "bonds": "asset",
+              "interest_I": "asset",
+              "opening_principal": "equity",
+              "accounting_expense_income": "expense",
+              "accounting_expense_principal": "expense",
+              "due_O": "liability",
+              "interest_income": "income",
+              "realized_gain_principal": "income",
+              "beneficiary_distribution": "distribution"
+            },
+            "closing_trial_balance": [
+              {
+                "account": "cash",
+                "debit_cents": 12500000,
+                "credit_cents": 0
+              },
+              {
+                "account": "bonds",
+                "debit_cents": 18000000,
+                "credit_cents": 0
+              },
+              {
+                "account": "interest_I",
+                "debit_cents": 6000000,
+                "credit_cents": 0
+              },
+              {
+                "account": "opening_principal",
+                "debit_cents": 0,
+                "credit_cents": 36000000
+              },
+              {
+                "account": "accounting_expense_income",
+                "debit_cents": 100000,
+                "credit_cents": 0
+              },
+              {
+                "account": "accounting_expense_principal",
+                "debit_cents": 100000,
+                "credit_cents": 0
+              },
+              {
+                "account": "due_O",
+                "debit_cents": 0,
+                "credit_cents": 0
+              },
+              {
+                "account": "interest_income",
+                "debit_cents": 0,
+                "credit_cents": 600000
+              },
+              {
+                "account": "realized_gain_principal",
+                "debit_cents": 0,
+                "credit_cents": 500000
+              },
+              {
+                "account": "beneficiary_distribution",
+                "debit_cents": 400000,
+                "credit_cents": 0
+              }
+            ],
+            "closing_bank_statement_cents": 12500000,
+            "bank_reconciling_items": []
+          },
+          {
+            "id": "P",
+            "name": "Individual personal account",
+            "role": "Individual personal bookkeeping, not office-company accounting or a tax return. P owns O and 90% of I; trust beneficial rights are recorded separately without an assigned asset value.",
+            "opening": [
+              {
+                "account": "cash",
+                "debit_cents": 10000000,
+                "credit_cents": 0
+              },
+              {
+                "account": "interest_O",
+                "debit_cents": 5000000,
+                "credit_cents": 0
+              },
+              {
+                "account": "interest_I",
+                "debit_cents": 54000000,
+                "credit_cents": 0
+              },
+              {
+                "account": "opening_net_assets",
+                "debit_cents": 0,
+                "credit_cents": 69000000
+              }
+            ],
+            "account_types": {
+              "cash": "asset",
+              "interest_O": "asset",
+              "interest_I": "asset",
+              "opening_net_assets": "equity",
+              "personal_accounting_cost": "expense",
+              "due_O": "liability",
+              "trust_receipt": "income"
+            },
+            "closing_trial_balance": [
+              {
+                "account": "cash",
+                "debit_cents": 10100000,
+                "credit_cents": 0
+              },
+              {
+                "account": "interest_O",
+                "debit_cents": 5000000,
+                "credit_cents": 0
+              },
+              {
+                "account": "interest_I",
+                "debit_cents": 54000000,
+                "credit_cents": 0
+              },
+              {
+                "account": "opening_net_assets",
+                "debit_cents": 0,
+                "credit_cents": 69000000
+              },
+              {
+                "account": "personal_accounting_cost",
+                "debit_cents": 300000,
+                "credit_cents": 0
+              },
+              {
+                "account": "due_O",
+                "debit_cents": 0,
+                "credit_cents": 0
+              },
+              {
+                "account": "trust_receipt",
+                "debit_cents": 0,
+                "credit_cents": 400000
+              }
+            ],
+            "closing_bank_statement_cents": 10100000,
+            "bank_reconciling_items": []
+          }
+        ],
+        "journals": [
+          {
+            "id": "O1",
+            "entity_id": "O",
+            "date": "2026-09-30",
+            "evidence_id": "VENDOR-12K",
+            "lines": [
+              {
+                "account": "accounting_expense",
+                "debit_cents": 400000,
+                "credit_cents": 0
+              },
+              {
+                "account": "due_I",
+                "debit_cents": 300000,
+                "credit_cents": 0
+              },
+              {
+                "account": "due_T",
+                "debit_cents": 200000,
+                "credit_cents": 0
+              },
+              {
+                "account": "due_P",
+                "debit_cents": 300000,
+                "credit_cents": 0
+              },
+              {
+                "account": "cash",
+                "debit_cents": 0,
+                "credit_cents": 1200000
+              }
+            ]
+          },
+          {
+            "id": "I1",
+            "entity_id": "I",
+            "date": "2026-09-30",
+            "evidence_id": "VENDOR-12K",
+            "lines": [
+              {
+                "account": "accounting_expense",
+                "debit_cents": 300000,
+                "credit_cents": 0
+              },
+              {
+                "account": "due_O",
+                "debit_cents": 0,
+                "credit_cents": 300000
+              }
+            ],
+            "internal_transfer_id": "ALLOC-I"
+          },
+          {
+            "id": "T1",
+            "entity_id": "T",
+            "date": "2026-09-30",
+            "evidence_id": "VENDOR-12K",
+            "lines": [
+              {
+                "account": "accounting_expense_income",
+                "debit_cents": 100000,
+                "credit_cents": 0
+              },
+              {
+                "account": "accounting_expense_principal",
+                "debit_cents": 100000,
+                "credit_cents": 0
+              },
+              {
+                "account": "due_O",
+                "debit_cents": 0,
+                "credit_cents": 200000
+              }
+            ],
+            "internal_transfer_id": "ALLOC-T"
+          },
+          {
+            "id": "P1",
+            "entity_id": "P",
+            "date": "2026-09-30",
+            "evidence_id": "VENDOR-12K",
+            "lines": [
+              {
+                "account": "personal_accounting_cost",
+                "debit_cents": 300000,
+                "credit_cents": 0
+              },
+              {
+                "account": "due_O",
+                "debit_cents": 0,
+                "credit_cents": 300000
+              }
+            ],
+            "internal_transfer_id": "ALLOC-P"
+          },
+          {
+            "id": "I2",
+            "entity_id": "I",
+            "date": "2026-09-30",
+            "evidence_id": "BANK-I-REIMB",
+            "lines": [
+              {
+                "account": "due_O",
+                "debit_cents": 200000,
+                "credit_cents": 0
+              },
+              {
+                "account": "cash",
+                "debit_cents": 0,
+                "credit_cents": 200000
+              }
+            ],
+            "internal_transfer_id": "REIMB-I"
+          },
+          {
+            "id": "O2",
+            "entity_id": "O",
+            "date": "2026-09-30",
+            "evidence_id": "BANK-O-REIMB-I",
+            "lines": [
+              {
+                "account": "cash",
+                "debit_cents": 200000,
+                "credit_cents": 0
+              },
+              {
+                "account": "due_I",
+                "debit_cents": 0,
+                "credit_cents": 200000
+              }
+            ],
+            "internal_transfer_id": "REIMB-I"
+          },
+          {
+            "id": "T2",
+            "entity_id": "T",
+            "date": "2026-09-30",
+            "evidence_id": "BANK-T-REIMB",
+            "lines": [
+              {
+                "account": "due_O",
+                "debit_cents": 200000,
+                "credit_cents": 0
+              },
+              {
+                "account": "cash",
+                "debit_cents": 0,
+                "credit_cents": 200000
+              }
+            ],
+            "internal_transfer_id": "REIMB-T"
+          },
+          {
+            "id": "O3",
+            "entity_id": "O",
+            "date": "2026-09-30",
+            "evidence_id": "BANK-O-REIMB-T",
+            "lines": [
+              {
+                "account": "cash",
+                "debit_cents": 200000,
+                "credit_cents": 0
+              },
+              {
+                "account": "due_T",
+                "debit_cents": 0,
+                "credit_cents": 200000
+              }
+            ],
+            "internal_transfer_id": "REIMB-T"
+          },
+          {
+            "id": "P2",
+            "entity_id": "P",
+            "date": "2026-09-30",
+            "evidence_id": "BANK-P-REIMB",
+            "lines": [
+              {
+                "account": "due_O",
+                "debit_cents": 300000,
+                "credit_cents": 0
+              },
+              {
+                "account": "cash",
+                "debit_cents": 0,
+                "credit_cents": 300000
+              }
+            ],
+            "internal_transfer_id": "REIMB-P"
+          },
+          {
+            "id": "O4",
+            "entity_id": "O",
+            "date": "2026-09-30",
+            "evidence_id": "BANK-O-REIMB-P",
+            "lines": [
+              {
+                "account": "cash",
+                "debit_cents": 300000,
+                "credit_cents": 0
+              },
+              {
+                "account": "due_P",
+                "debit_cents": 0,
+                "credit_cents": 300000
+              }
+            ],
+            "internal_transfer_id": "REIMB-P"
+          },
+          {
+            "id": "I3",
+            "entity_id": "I",
+            "date": "2026-09-30",
+            "evidence_id": "AGREEMENT-MGMT",
+            "lines": [
+              {
+                "account": "management_fee_expense",
+                "debit_cents": 600000,
+                "credit_cents": 0
+              },
+              {
+                "account": "cash",
+                "debit_cents": 0,
+                "credit_cents": 600000
+              }
+            ],
+            "internal_transfer_id": "MGMT"
+          },
+          {
+            "id": "O5",
+            "entity_id": "O",
+            "date": "2026-09-30",
+            "evidence_id": "AGREEMENT-MGMT",
+            "lines": [
+              {
+                "account": "cash",
+                "debit_cents": 600000,
+                "credit_cents": 0
+              },
+              {
+                "account": "management_fee_income",
+                "debit_cents": 0,
+                "credit_cents": 600000
+              }
+            ],
+            "internal_transfer_id": "MGMT"
+          },
+          {
+            "id": "O6",
+            "entity_id": "O",
+            "date": "2026-09-30",
+            "evidence_id": "PAYROLL-O",
+            "lines": [
+              {
+                "account": "wages_expense",
+                "debit_cents": 1000000,
+                "credit_cents": 0
+              },
+              {
+                "account": "cash",
+                "debit_cents": 0,
+                "credit_cents": 800000
+              },
+              {
+                "account": "withholding_payable",
+                "debit_cents": 0,
+                "credit_cents": 200000
+              }
+            ]
+          },
+          {
+            "id": "O7",
+            "entity_id": "O",
+            "date": "2026-09-30",
+            "evidence_id": "PAYROLL-O",
+            "lines": [
+              {
+                "account": "employer_payroll_tax_expense",
+                "debit_cents": 100000,
+                "credit_cents": 0
+              },
+              {
+                "account": "employer_tax_payable",
+                "debit_cents": 0,
+                "credit_cents": 100000
+              }
+            ]
+          },
+          {
+            "id": "I4",
+            "entity_id": "I",
+            "date": "2026-09-30",
+            "evidence_id": "CUSTODIAN-I-BUY",
+            "lines": [
+              {
+                "account": "quoted_equity",
+                "debit_cents": 5000000,
+                "credit_cents": 0
+              },
+              {
+                "account": "cash",
+                "debit_cents": 0,
+                "credit_cents": 5000000
+              }
+            ]
+          },
+          {
+            "id": "I5",
+            "entity_id": "I",
+            "date": "2026-09-30",
+            "evidence_id": "CUSTODIAN-I-DIV",
+            "lines": [
+              {
+                "account": "cash",
+                "debit_cents": 500000,
+                "credit_cents": 0
+              },
+              {
+                "account": "dividend_income",
+                "debit_cents": 0,
+                "credit_cents": 500000
+              }
+            ]
+          },
+          {
+            "id": "I6",
+            "entity_id": "I",
+            "date": "2026-09-30",
+            "evidence_id": "CUSTODIAN-I-FEE",
+            "lines": [
+              {
+                "account": "custodian_fee_expense",
+                "debit_cents": 100000,
+                "credit_cents": 0
+              },
+              {
+                "account": "cash",
+                "debit_cents": 0,
+                "credit_cents": 100000
+              }
+            ]
+          },
+          {
+            "id": "I7",
+            "entity_id": "I",
+            "date": "2026-09-30",
+            "evidence_id": "FUND-CALL",
+            "lines": [
+              {
+                "account": "private_fund_provisional",
+                "debit_cents": 4000000,
+                "credit_cents": 0
+              },
+              {
+                "account": "cash",
+                "debit_cents": 0,
+                "credit_cents": 4000000
+              }
+            ]
+          },
+          {
+            "id": "I8",
+            "entity_id": "I",
+            "date": "2026-09-30",
+            "evidence_id": "FUND-DISTRIBUTION",
+            "lines": [
+              {
+                "account": "cash",
+                "debit_cents": 2500000,
+                "credit_cents": 0
+              },
+              {
+                "account": "private_fund_provisional",
+                "debit_cents": 0,
+                "credit_cents": 2000000
+              },
+              {
+                "account": "fund_income_provisional",
+                "debit_cents": 0,
+                "credit_cents": 500000
+              }
+            ]
+          },
+          {
+            "id": "I9",
+            "entity_id": "I",
+            "date": "2026-09-30",
+            "evidence_id": "CUSTODIAN-I-QUOTE",
+            "lines": [
+              {
+                "account": "quoted_equity",
+                "debit_cents": 1050000,
+                "credit_cents": 0
+              },
+              {
+                "account": "unrealized_gain",
+                "debit_cents": 0,
+                "credit_cents": 1050000
+              }
+            ]
+          },
+          {
+            "id": "T3",
+            "entity_id": "T",
+            "date": "2026-09-30",
+            "evidence_id": "BANK-T-INTEREST",
+            "lines": [
+              {
+                "account": "cash",
+                "debit_cents": 600000,
+                "credit_cents": 0
+              },
+              {
+                "account": "interest_income",
+                "debit_cents": 0,
+                "credit_cents": 600000
+              }
+            ]
+          },
+          {
+            "id": "T4",
+            "entity_id": "T",
+            "date": "2026-09-30",
+            "evidence_id": "BOND-SALE",
+            "lines": [
+              {
+                "account": "cash",
+                "debit_cents": 2500000,
+                "credit_cents": 0
+              },
+              {
+                "account": "bonds",
+                "debit_cents": 0,
+                "credit_cents": 2000000
+              },
+              {
+                "account": "realized_gain_principal",
+                "debit_cents": 0,
+                "credit_cents": 500000
+              }
+            ]
+          },
+          {
+            "id": "T5",
+            "entity_id": "T",
+            "date": "2026-09-30",
+            "evidence_id": "TRUST-AUTH-DIST",
+            "lines": [
+              {
+                "account": "beneficiary_distribution",
+                "debit_cents": 400000,
+                "credit_cents": 0
+              },
+              {
+                "account": "cash",
+                "debit_cents": 0,
+                "credit_cents": 400000
+              }
+            ],
+            "internal_transfer_id": "BENEFICIARY"
+          },
+          {
+            "id": "P3",
+            "entity_id": "P",
+            "date": "2026-09-30",
+            "evidence_id": "BANK-P-DIST",
+            "lines": [
+              {
+                "account": "cash",
+                "debit_cents": 400000,
+                "credit_cents": 0
+              },
+              {
+                "account": "trust_receipt",
+                "debit_cents": 0,
+                "credit_cents": 400000
+              }
+            ],
+            "internal_transfer_id": "BENEFICIARY"
+          }
+        ],
+        "evidence_inputs": {
+          "vendor_bill_cents": 1200000,
+          "time_units": {
+            "O": 4,
+            "I": 3,
+            "T": 2,
+            "P": 3
+          },
+          "allocated_cents": {
+            "O": 400000,
+            "I": 300000,
+            "T": 200000,
+            "P": 300000
+          },
+          "vendor_scope": "External accounting services. The T portion specifically prepares principal/income accounts concerning both income and remainder interests; no contrary instrument direction.",
+          "payroll": {
+            "gross_cents": 1000000,
+            "employee_withholding_cents": 200000,
+            "net_cash_cents": 800000,
+            "employer_tax_cents": 100000,
+            "assumption": "Illustrative supplied payroll register; no tax-rate, benefit or worker-status conclusion."
+          },
+          "liquid_investment": {
+            "opening_shares": 3000,
+            "opening_price_cents": 10000,
+            "purchased_shares": 500,
+            "purchase_price_cents": 10000,
+            "closing_price_cents": 10300,
+            "closing_shares": 3500,
+            "closing_statement_value_cents": 36050000
+          },
+          "private_fund": {
+            "commitment_cents": 25000000,
+            "opening_funded_cents": 10000000,
+            "call_cents": 4000000,
+            "ending_funded_cents": 14000000,
+            "unfunded_cents": 11000000,
+            "distribution_cash_cents": 2500000,
+            "supplied_return_of_capital_cents": 2000000,
+            "supplied_income_cents": 500000,
+            "provisional_book_carry_cents": 12000000,
+            "last_nav_statement_date": "2026-06-30",
+            "last_nav_statement_cents": 14000000,
+            "unposted_measurement_difference_cents": 2000000,
+            "measurement_status": "unresolved-stale-valuation",
+            "tax_basis_workpaper": {
+              "opening_basis_cents": 9000000,
+              "contribution_cents": 4000000,
+              "assumed_allocable_tax_income_cents": 500000,
+              "distribution_cents": 2500000,
+              "illustrative_ending_basis_cents": 11000000,
+              "assumptions": "Separate hypothetical tax-basis branch; no liabilities, partner adjustments or other items. Final K-1 character and taxpayer-year evidence remain required. This is not a 2026 return computation."
+            },
+            "assumptions": [
+              "Distribution notice splits capital and income only for the provisional book worksheet.",
+              "No recycling or recall of distributions is assumed in unfunded commitment.",
+              "No private-fund current fair-value, NAV practical-expedient or measurement-alternative conclusion is made."
+            ]
+          },
+          "trust": {
+            "bond_acquired": "2024-07-01",
+            "bond_sale": "2026-09-30",
+            "bond_contractual_maturity": "2030-07-01",
+            "sold_carry_cents": 2000000,
+            "sale_cash_cents": 2500000,
+            "interest_cash_cents": 600000,
+            "accounting_fee_cents": 200000,
+            "income_fee_cents": 100000,
+            "principal_fee_cents": 100000,
+            "authorized_income_distribution_cents": 400000,
+            "ending_principal_cents": 36400000,
+            "ending_undistributed_income_cents": 100000,
+            "assumptions": "Ordinary long-term obligation held more than one year; no special receipt under 116.163(c), no adjustment election, governing instrument permits a discretionary $4,000 income distribution and accumulation. No estate is administered in this case."
+          },
+          "management_fee": {
+            "amount_cents": 600000,
+            "assumption": "The agreed $6,000 fee is for September services fully performed and accepted by I; O and I record it separately. No arm’s-length, tax-deduction or regulatory conclusion follows."
+          }
+        },
+        "internal_matching": [
+          {
+            "id": "REIMB-I",
+            "payer": "I",
+            "payee": "O",
+            "amount_cents": 200000
+          },
+          {
+            "id": "REIMB-T",
+            "payer": "T",
+            "payee": "O",
+            "amount_cents": 200000
+          },
+          {
+            "id": "REIMB-P",
+            "payer": "P",
+            "payee": "O",
+            "amount_cents": 300000
+          },
+          {
+            "id": "MGMT",
+            "payer": "I",
+            "payee": "O",
+            "amount_cents": 600000
+          },
+          {
+            "id": "BENEFICIARY",
+            "payer": "T",
+            "payee": "P",
+            "amount_cents": 400000
+          }
+        ],
+        "supplemental_view": {
+          "included_entities": [
+            "O",
+            "I",
+            "T",
+            "P"
+          ],
+          "purpose": "Family administration view of the four defined ledgers, with underlying O/I included and duplicated interests removed. Not P-owned wealth, GAAP consolidation, legal availability or current valuation. Trust resources and beneficiary rights remain restricted and separately identifiable.",
+          "adjustments": [
+            {
+              "id": "SUP-INTERESTS",
+              "purpose": "Remove matching inception interests and investee opening capital only because both sides are included. This is a supplemental presentation adjustment.",
+              "lines": [
+                {
+                  "entity_id": "O",
+                  "account": "capital",
+                  "debit_cents": 5000000,
+                  "credit_cents": 0
+                },
+                {
+                  "entity_id": "I",
+                  "account": "capital_P",
+                  "debit_cents": 54000000,
+                  "credit_cents": 0
+                },
+                {
+                  "entity_id": "I",
+                  "account": "capital_T",
+                  "debit_cents": 6000000,
+                  "credit_cents": 0
+                },
+                {
+                  "entity_id": "P",
+                  "account": "interest_O",
+                  "debit_cents": 0,
+                  "credit_cents": 5000000
+                },
+                {
+                  "entity_id": "P",
+                  "account": "interest_I",
+                  "debit_cents": 0,
+                  "credit_cents": 54000000
+                },
+                {
+                  "entity_id": "T",
+                  "account": "interest_I",
+                  "debit_cents": 0,
+                  "credit_cents": 6000000
+                }
+              ]
+            },
+            {
+              "id": "SUP-RECEIVABLE",
+              "purpose": "Match the outstanding I reimbursement payable with O receivable.",
+              "lines": [
+                {
+                  "entity_id": "I",
+                  "account": "due_O",
+                  "debit_cents": 100000,
+                  "credit_cents": 0
+                },
+                {
+                  "entity_id": "O",
+                  "account": "due_I",
+                  "debit_cents": 0,
+                  "credit_cents": 100000
+                }
+              ]
+            },
+            {
+              "id": "SUP-FEE",
+              "purpose": "Remove earned internal fee from income and expense only in the supplemental view.",
+              "lines": [
+                {
+                  "entity_id": "O",
+                  "account": "management_fee_income",
+                  "debit_cents": 600000,
+                  "credit_cents": 0
+                },
+                {
+                  "entity_id": "I",
+                  "account": "management_fee_expense",
+                  "debit_cents": 0,
+                  "credit_cents": 600000
+                }
+              ]
+            },
+            {
+              "id": "SUP-BENEFICIARY",
+              "purpose": "Remove internal beneficiary receipt and distribution from supplemental changes in net assets. It remains on T and P books.",
+              "lines": [
+                {
+                  "entity_id": "P",
+                  "account": "trust_receipt",
+                  "debit_cents": 400000,
+                  "credit_cents": 0
+                },
+                {
+                  "entity_id": "T",
+                  "account": "beneficiary_distribution",
+                  "debit_cents": 0,
+                  "credit_cents": 400000
+                }
+              ]
+            }
+          ],
+          "expected": {
+            "opening_raw_assets_cents": 170000000,
+            "opening_duplicate_interests_cents": 65000000,
+            "opening_supplemental_net_assets_cents": 105000000,
+            "ending_raw_assets_cents": 171150000,
+            "ending_raw_liabilities_cents": 400000,
+            "duplicate_interests_cents": 65000000,
+            "reciprocal_receivable_payable_cents": 100000,
+            "ending_assets_cents": 106050000,
+            "ending_external_liabilities_cents": 300000,
+            "ending_net_assets_cents": 105750000,
+            "net_change_cents": 750000,
+            "opening_cash_cents": 45000000,
+            "ending_cash_cents": 40000000,
+            "external_cash_inflows_cents": 6100000,
+            "external_cash_outflows_cents": 11100000,
+            "external_income_and_gains_cents": 3150000,
+            "external_costs_cents": 2400000
+          },
+          "asset_components_cents": {
+            "cash": 40000000,
+            "I_quoted_equity": 36050000,
+            "I_provisional_private_fund": 12000000,
+            "T_bonds": 18000000
+          },
+          "restriction_note": "T retains $365,000 of separate-book net assets and its 10% I interest. The aggregate is not an allocation of wealth to P; no beneficial-interest value is invented."
+        },
+        "exceptions": [
+          {
+            "id": "VAL-I-PRIVATE",
+            "status": "open",
+            "reason": "June 30 NAV is stale at September 30; $20,000 numerical difference is not an approved adjustment."
+          },
+          {
+            "id": "OWN-T",
+            "status": "retained-boundary",
+            "reason": "P has an income beneficiary interest; no outright ownership of T assets is inferred."
+          },
+          {
+            "id": "REC-I-O",
+            "status": "matched-unpaid",
+            "reason": "$1,000 reimbursement remains due on both entity books and is eliminated only in the supplemental view."
+          }
+        ],
+        "synthetic_documents": [
+          {
+            "id": "VENDOR-12K",
+            "synthetic": true,
+            "purpose": "Illustrative transaction evidence linked to journal and stated inputs; no operational document is represented."
+          },
+          {
+            "id": "BANK-I-REIMB",
+            "synthetic": true,
+            "purpose": "Illustrative transaction evidence linked to journal and stated inputs; no operational document is represented."
+          },
+          {
+            "id": "BANK-O-REIMB-I",
+            "synthetic": true,
+            "purpose": "Illustrative transaction evidence linked to journal and stated inputs; no operational document is represented."
+          },
+          {
+            "id": "BANK-T-REIMB",
+            "synthetic": true,
+            "purpose": "Illustrative transaction evidence linked to journal and stated inputs; no operational document is represented."
+          },
+          {
+            "id": "BANK-O-REIMB-T",
+            "synthetic": true,
+            "purpose": "Illustrative transaction evidence linked to journal and stated inputs; no operational document is represented."
+          },
+          {
+            "id": "BANK-P-REIMB",
+            "synthetic": true,
+            "purpose": "Illustrative transaction evidence linked to journal and stated inputs; no operational document is represented."
+          },
+          {
+            "id": "BANK-O-REIMB-P",
+            "synthetic": true,
+            "purpose": "Illustrative transaction evidence linked to journal and stated inputs; no operational document is represented."
+          },
+          {
+            "id": "AGREEMENT-MGMT",
+            "synthetic": true,
+            "purpose": "Illustrative transaction evidence linked to journal and stated inputs; no operational document is represented."
+          },
+          {
+            "id": "PAYROLL-O",
+            "synthetic": true,
+            "purpose": "Illustrative transaction evidence linked to journal and stated inputs; no operational document is represented."
+          },
+          {
+            "id": "CUSTODIAN-I-BUY",
+            "synthetic": true,
+            "purpose": "Illustrative transaction evidence linked to journal and stated inputs; no operational document is represented."
+          },
+          {
+            "id": "CUSTODIAN-I-DIV",
+            "synthetic": true,
+            "purpose": "Illustrative transaction evidence linked to journal and stated inputs; no operational document is represented."
+          },
+          {
+            "id": "CUSTODIAN-I-FEE",
+            "synthetic": true,
+            "purpose": "Illustrative transaction evidence linked to journal and stated inputs; no operational document is represented."
+          },
+          {
+            "id": "FUND-CALL",
+            "synthetic": true,
+            "purpose": "Illustrative transaction evidence linked to journal and stated inputs; no operational document is represented."
+          },
+          {
+            "id": "FUND-DISTRIBUTION",
+            "synthetic": true,
+            "purpose": "Illustrative transaction evidence linked to journal and stated inputs; no operational document is represented."
+          },
+          {
+            "id": "CUSTODIAN-I-QUOTE",
+            "synthetic": true,
+            "purpose": "Illustrative transaction evidence linked to journal and stated inputs; no operational document is represented."
+          },
+          {
+            "id": "BANK-T-INTEREST",
+            "synthetic": true,
+            "purpose": "Illustrative transaction evidence linked to journal and stated inputs; no operational document is represented."
+          },
+          {
+            "id": "BOND-SALE",
+            "synthetic": true,
+            "purpose": "Illustrative transaction evidence linked to journal and stated inputs; no operational document is represented."
+          },
+          {
+            "id": "TRUST-AUTH-DIST",
+            "synthetic": true,
+            "purpose": "Illustrative transaction evidence linked to journal and stated inputs; no operational document is represented."
+          },
+          {
+            "id": "BANK-P-DIST",
+            "synthetic": true,
+            "purpose": "Illustrative transaction evidence linked to journal and stated inputs; no operational document is represented."
+          }
+        ],
+        "tax_handoff_register": [
+          {
+            "taxpayer": "I",
+            "tax_year": 2025,
+            "route": "Form 1065 and separate Schedule K-1 for P and T",
+            "inputs": [
+              "2025 entity trial balance and tax adjustments",
+              "90/10 supplied ownership plus allocation-agreement review",
+              "Tax items, distributions, liabilities and each recipient identity"
+            ],
+            "status": "Information route only; 2026 example amounts are not copied to 2025 returns."
+          },
+          {
+            "taxpayer": "T",
+            "tax_year": 2025,
+            "route": "Form 1041, Schedule B and beneficiary K-1 to P",
+            "inputs": [
+              "Trust instrument and non-grantor/complex status evidence",
+              "2025 principal/income account, received partnership K-1 and tax adjustments",
+              "DNI and distribution-deduction workpapers separately prepared"
+            ],
+            "status": "No trust tax or beneficiary taxable amount calculated."
+          },
+          {
+            "taxpayer": "P",
+            "tax_year": 2025,
+            "route": "Form 1040 or 1040-SR with applicable partner and beneficiary K-1 items",
+            "inputs": [
+              "Separate I and T K-1 by issuer and year",
+              "Individual outside-basis rollforward and other tax facts"
+            ],
+            "status": "Received forms require identity, year, completeness and correction checks."
+          },
+          {
+            "taxpayer": "O",
+            "tax_year": 2025,
+            "route": "Form 1120 under supplied separate C-corporation assumption",
+            "inputs": [
+              "2025 office ledger, payroll reporting and book-to-tax evidence"
+            ],
+            "status": "Entity classification is assumed for routing; no return prepared."
+          },
+          {
+            "taxpayer": "Donor or decedent to be identified",
+            "tax_year": null,
+            "route": "Form 709 or Form 706 information review; a decedent final Form 1040 and estate Form 1041 are separate",
+            "inputs": [
+              "Actual transfer or death date and citizenship/residence",
+              "Donor/donee or decedent/executor identities",
+              "Ownership, valuations, prior gifts, basis and relevant elections/instruments"
+            ],
+            "status": "No gift or death occurs in the synthetic September close. Applicability, year-specific thresholds and filing requirements remain undetermined."
+          }
+        ],
+        "entity_book_measurement_note": "P and T retain inception cost amounts for the O/I interests only as supplied supplemental-workpaper inputs. Their required standalone measurement is not determined. These interests are removed only from the defined look-through administration view, and I private-fund carrying value remains provisional."
+      },
+      "scope_counterexamples": [
+        {
+          "id": "custody-ownership",
+          "rejected_inference": "Assets administered by O are O-owned assets.",
+          "reason": "Account title and ownership evidence keep I, T and P holdings outside O books."
+        },
+        {
+          "id": "consolidation-aggregation",
+          "rejected_inference": "The family supplemental view establishes GAAP consolidation.",
+          "reason": "Its defined presentation adjustments do not replace the entity-specific control and scope analysis."
+        },
+        {
+          "id": "personal-office",
+          "rejected_inference": "Personal accounting costs are automatically office expenses or deductible.",
+          "reason": "The supplied personal share remains P expense, with a reimbursement receivable in O; tax treatment remains unresolved."
+        },
+        {
+          "id": "commitment-funded",
+          "rejected_inference": "The full private-fund commitment is already funded capital.",
+          "reason": "Only the opening funded amount and paid call enter funded capital; uncalled commitment remains a separate schedule."
+        },
+        {
+          "id": "principal-income-tax",
+          "rejected_inference": "Texas principal or income classification settles federal taxable income.",
+          "reason": "Separate Schedule B, DNI, K-1, year and taxpayer facts are required."
+        },
+        {
+          "id": "single-multi-family",
+          "rejected_inference": "An office serving unrelated families automatically qualifies for the single-family exclusion.",
+          "reason": "The historical rule excludes only its defined qualifying family office; multifamily and adviser status need separate analysis."
+        }
+      ],
+      "limitations": [
+        "Synthetic evidence only. Selected source passages and synthetic bookkeeping do not establish current consolidated GAAP, entity-specific legal or tax conclusions, or professional review.",
+        "Synthetic evidence only. Private-fund measurement, standalone interest measurement, tax elections, governing documents and actual ownership/control require further evidence.",
+        "Synthetic evidence only. No operational financial data or empirical agent performance is established. Source rights and later source currency remain unresolved."
+      ]
+    }
   }
 ]

@@ -1,12 +1,12 @@
 {
   "schema_version": "1.0.0",
-  "mapping_version": "2026-09-19.12426",
+  "mapping_version": "2026-09-19.12427",
   "topology_version": "2026-09-11.1",
-  "corpus_version": "2026-09-19.12426",
+  "corpus_version": "2026-09-19.12427",
   "generated_at": "2026-09-19",
-  "corpus_sha256": "53edcde595d02ec9c3d26f1739faf0cd91a301a03e0071faa20b23f6ddbda980",
+  "corpus_sha256": "a40154f545706f0040db1dd701bab1cdc1465bb2d70d5f064acd355e7895f02b",
   "rules_sha256": "550b2bb485399af996bac6ed34542d7a91170d4b31b5e5026e0e9c2c32068b9d",
-  "overrides_sha256": "b9e1a70937b51ee3939b509e4510c02cf9121c4da168e25e4a23f7ae5922cb32",
+  "overrides_sha256": "7d368243a503b6b02815bd0f9774c0e4775f13fa6f644201b01f6e891dfa9a56",
   "method": "Deterministic title/topic associations, conservative industry crosswalk, and explicit editorial additions. All initial links are candidates; source review status is unchanged.",
   "mappings": [
     {
@@ -3676,6 +3676,25 @@
         }
       ],
       "note": "Candidate association with this industry scope; applicability and depth are not inferred."
+    },
+    {
+      "record_id": "control-family-office-ownership-payments",
+      "question_mappings": [
+        {
+          "question_id": "q-cash-settlement",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "payment",
+              "rule": "title:cash-settlement"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "Shared context; no industry-specific coverage credit."
     },
     {
       "record_id": "control-transport-role-ownership",
@@ -8653,6 +8672,25 @@
       "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
     },
     {
+      "record_id": "example-family-office-four-entity-close",
+      "question_mappings": [
+        {
+          "question_id": "q-evaluation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Synthetic",
+              "rule": "title:evaluation"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "Shared context; no industry-specific coverage credit."
+    },
+    {
       "record_id": "example-government-fund-federal-bridge",
       "question_mappings": [
         {
@@ -13099,6 +13137,13 @@
       "industry_scope": "shared-context",
       "industry_mappings": [],
       "note": "Reviewed association with the original editorial content. This does not validate accounting treatment or the adequacy of its external references."
+    },
+    {
+      "record_id": "guide-family-office-us-accounting",
+      "question_mappings": [],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "Shared context; no industry-specific coverage credit."
     },
     {
       "record_id": "guide-financial-dataset-selection",
@@ -47499,6 +47544,60 @@
       "note": "Shared context; no industry-specific coverage credit."
     },
     {
+      "record_id": "src_family_office_irs_1041_2025",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_family_office_irs_k1_1041_2025",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_family_office_irs_k1_1065_2025",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_family_office_irs_p559_2025",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_family_office_sec_2011_rule",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_family_office_texas_principal_income",
+      "question_mappings": [
+        {
+          "question_id": "q-provisions",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "provisions",
+              "rule": "title:provisions"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
       "record_id": "src_far_31203_indirect_costs",
       "question_mappings": [
         {
@@ -65603,6 +65702,13 @@
         }
       ],
       "note": "Candidate association with this industry scope; applicability and depth are not inferred."
+    },
+    {
+      "record_id": "workflow-family-office-entity-close",
+      "question_mappings": [],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "Shared context; no industry-specific coverage credit."
     },
     {
       "record_id": "workflow-transport-event-to-ledger",
