@@ -1,0 +1,2570 @@
+{
+  "schema_version": "1.0.0",
+  "package_name": "aa-i108-professional-services",
+  "package_version": "2026-09-19.108-source.3",
+  "current_corpus_version": "2026-09-19.12420",
+  "status": "source-only-pending-integration",
+  "reviewed_at": "2026-09-19",
+  "baseline": {
+    "associated_record_count": 7,
+    "associated_records": [
+      {
+        "id": "guide-industry-naics2022-541",
+        "kind": "guide",
+        "reason": "Issue108 NAICS54 baseline inventory; retained for coordinator application."
+      },
+      {
+        "id": "guide-jurisdiction-ca-construction-service",
+        "kind": "guide",
+        "reason": "Issue108 NAICS54 baseline inventory; retained for coordinator application."
+      },
+      {
+        "id": "guide-jurisdiction-tx-construction-service",
+        "kind": "guide",
+        "reason": "Issue108 NAICS54 baseline inventory; retained for coordinator application."
+      },
+      {
+        "id": "guide-jurisdiction-uk-construction-service",
+        "kind": "guide",
+        "reason": "Issue108 NAICS54 baseline inventory; retained for coordinator application."
+      },
+      {
+        "id": "guide-professional-services",
+        "kind": "guide",
+        "reason": "Issue108 NAICS54 baseline inventory; retained for coordinator application."
+      },
+      {
+        "id": "guide-software-subscriptions",
+        "kind": "guide",
+        "reason": "Issue108 NAICS54 baseline inventory; retained for coordinator application."
+      },
+      {
+        "id": "src_digitalktp",
+        "kind": "source",
+        "reason": "Issue108 NAICS54 baseline inventory; retained for coordinator application."
+      }
+    ],
+    "linked_question_count": 6,
+    "linked_questions": [
+      "rq-services-time-material",
+      "rq-services-fixed-fee-wip",
+      "rq-services-principal-agent-staffing",
+      "rq-services-retainers",
+      "rq-services-credit-costs",
+      "rq-services-wip-controls"
+    ],
+    "baseline_note": "Baseline inventory is intentionally bounded. Existing professional-services guide and six questions remain preserved; this package supplies an additive route."
+  },
+  "scope": {
+    "jurisdiction": "United States primary; one California legal client-fund example only",
+    "selected_roles": [
+      "legal services provider",
+      "accounting and tax services provider",
+      "engineering/design/technical services provider",
+      "consulting or R&D provider",
+      "staffing or PEO intermediary",
+      "customer or payer",
+      "subcontractor",
+      "California lawyer holding client or third-party funds"
+    ],
+    "selected_naics_codes": [
+      "541110",
+      "541211",
+      "541330",
+      "541611",
+      "541715",
+      "561320",
+      "561330"
+    ],
+    "excluded": [
+      "50-state professional-conduct survey",
+      "international expansion",
+      "current consolidated ASC claim",
+      "professional sign-off",
+      "production posting"
+    ],
+    "named_outcome": "Connect contract, time and project evidence to revenue, WIP/unbilled, payroll, settlement and a client-funds or variable-estimate exception."
+  },
+  "reused_source_ids": [
+    "src_construction_fasb_2014_09",
+    "src_fasb_asu2016_08_principal_agent",
+    "src_roadmap_naics2022_manual",
+    "src_irs_pub15_2026",
+    "src_dol_factsheet21_recordkeeping",
+    "src_dol_factsheet23_overtime",
+    "src_irs_pub15t_2026",
+    "src_irs_pub15b_2026"
+  ],
+  "sources": [
+    {
+      "id": "src_professional_irs_pub15a_2026",
+      "kind": "source",
+      "title": "Publication 15-A (2026), Employer’s Supplemental Tax Guide",
+      "summary": "IRS 15-A supplies federal worker-classification and withholding context: the substance of control, financial factors and relationship matters, and labels alone do not decide employee status.",
+      "topics": [
+        "Accounting and reporting",
+        "Professional services"
+      ],
+      "industries": [
+        "Professional, Scientific, and Technical Services"
+      ],
+      "jurisdiction": "United States federal employment taxes",
+      "source_type": "Official guidance",
+      "publisher": "Internal Revenue Service",
+      "source_url": "https://www.irs.gov/publications/p15a",
+      "source_ids": [],
+      "related_ids": [
+        "guide-us-professional-services-contract-to-ledger",
+        "workflow-us-professional-services-contract-to-ledger",
+        "ctrl-us-professional-services-contract-and-funds",
+        "example-us-professional-services-connected-close"
+      ],
+      "review_status": "source-checked",
+      "reviewed_at": "2026-09-19",
+      "provenance": {
+        "added_on": "2026-09-19",
+        "reviewer": "Codex AI-assisted original-source research",
+        "scope": "Employee or Independent Contractor classification; common-law rules; Behavioral control, financial control, and type of relationship factors; Example: law firm hires an attorney; substance of relationship controls",
+        "evidence_urls": [
+          "https://www.irs.gov/publications/p15a"
+        ],
+        "outcome": "Official publisher page or issued update was read at the listed bounded locators; no professional verification or operational validation.",
+        "note": "Source-only issue108 research. Public access does not establish reuse rights."
+      },
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "Not included; publisher terms apply",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": null
+      },
+      "data": {
+        "edition": "Publication 15-A (2026), Employer’s Supplemental Tax Guide",
+        "publication": {
+          "published_at": null,
+          "status": "Publication 15-A (2026), Employer’s Supplemental Tax Guide"
+        },
+        "frameworks": [
+          "US federal employment-tax guidance"
+        ],
+        "evidence": [
+          {
+            "claim": "IRS 15-A supplies federal worker-classification and withholding context: the substance of control, financial factors and relationship matters, and labels alone do not decide employee status.",
+            "classification": "publisher-documented",
+            "source": {
+              "title": "Publication 15-A (2026), Employer’s Supplemental Tax Guide",
+              "url": "https://www.irs.gov/publications/p15a"
+            }
+          }
+        ],
+        "limitations": [
+          "Tax guidance does not determine US GAAP revenue, WIP, gross-versus-net presentation or legal trust accounting.",
+          "No worker, payroll file, state-law classification or professional tax review was tested.",
+          "Publication rights remain unknown; full text is not stored."
+        ],
+        "access_note": "Official publisher material read 2026-09-19 at the selected locators; full text is linked, not stored.",
+        "source_currency": "Publication 15-A (2026) selected material rechecked 2026-09-19; later IRS updates require recheck.",
+        "published_or_status": "Publication 15-A (2026), Employer’s Supplemental Tax Guide",
+        "version": "1.0.0",
+        "locators": [
+          {
+            "locator": "Publication 15-A (2026), Employer’s Supplemental Tax Guide; sections “Employee or Independent Contractor,” “Common-Law Rules,” and the law-firm attorney example",
+            "url": "https://www.irs.gov/publications/p15a",
+            "section": "Employee or Independent Contractor; Common-Law Rules; Examples",
+            "source_period": "Publication 15-A (2026), 2026 federal employment-tax reporting year; worker-specific, state and later-development checks remain required"
+          }
+        ],
+        "source_review": {
+          "record_id": "src_professional_irs_pub15a_2026",
+          "disposition": "supported-scope",
+          "review_level": "substantive-excerpt",
+          "checked_url": "https://www.irs.gov/publications/p15a",
+          "source_locator": "Publication 15-A (2026), Employer’s Supplemental Tax Guide; sections “Employee or Independent Contractor,” “Common-Law Rules,” and the law-firm attorney example",
+          "publication_or_edition": "Publication 15-A (2026), Employer’s Supplemental Tax Guide",
+          "jurisdiction": "United States federal employment taxes",
+          "effective_period": "Publication 15-A (2026), 2026 federal employment-tax reporting year; worker-specific, state and later-development checks remain required",
+          "evidence_summary": "IRS 15-A supplies federal worker-classification and withholding context: the substance of control, financial factors and relationship matters, and labels alone do not decide employee status.",
+          "limitations": [
+            "Tax guidance does not determine US GAAP revenue, WIP, gross-versus-net presentation or legal trust accounting.",
+            "No worker, payroll file, state-law classification or professional tax review was tested.",
+            "Publication rights remain unknown; full text is not stored."
+          ],
+          "checks": [
+            {
+              "url": "https://www.irs.gov/publications/p15a",
+              "method": "official publisher selected material read",
+              "outcome": "Selected locators inspected; no full current consolidated accounting or legal review.",
+              "material_read": true
+            }
+          ],
+          "rights_review": {
+            "status": "unresolved",
+            "license": null,
+            "license_url": null,
+            "scope": null,
+            "note": "Public accessibility does not establish redistribution or training permission; full text is not stored."
+          }
+        },
+        "id": "src_professional_irs_pub15a_2026"
+      }
+    },
+    {
+      "id": "src_professional_california_rule_115",
+      "kind": "source",
+      "title": "California Rule of Professional Conduct 1.15: Safekeeping Funds and Property of Clients and Other Persons",
+      "summary": "California Rule 1.15 requires separation, accounting and timely treatment of client or third-party funds in the selected California lawyer route.",
+      "topics": [
+        "Accounting and reporting",
+        "Professional services"
+      ],
+      "industries": [
+        "Professional, Scientific, and Technical Services"
+      ],
+      "jurisdiction": "California legal services; selected state example only",
+      "source_type": "Current professional-conduct rule",
+      "publisher": "State Bar of California",
+      "source_url": "https://www.calbar.ca.gov/legal-professionals/rules/rules-professional-conduct/current-rules-professional-conduct/chapter-1-lawyer-client-relationship",
+      "source_ids": [],
+      "related_ids": [
+        "guide-us-professional-services-contract-to-ledger",
+        "workflow-us-professional-services-contract-to-ledger",
+        "ctrl-us-professional-services-contract-and-funds",
+        "example-us-professional-services-connected-close"
+      ],
+      "review_status": "source-checked",
+      "reviewed_at": "2026-09-19",
+      "provenance": {
+        "added_on": "2026-09-19",
+        "reviewer": "Codex AI-assisted original-source research",
+        "scope": "Rule 1.15(a)-(b) trust-account and advance-fee conditions; (c) no commingling and disputed portion; (d)(1)-(7) notice, records, accounting, five-year retention and prompt distribution; (f) 45-day rebuttable presumption tied to (d)(7); (g) undisputed-funds definition; publisher note amendment effective January 1, 2023",
+        "evidence_urls": [
+          "https://www.calbar.ca.gov/legal-professionals/rules/rules-professional-conduct/current-rules-professional-conduct/chapter-1-lawyer-client-relationship"
+        ],
+        "outcome": "Official publisher page or issued update was read at the listed bounded locators; no professional verification or operational validation.",
+        "note": "Source-only issue108 research. Public access does not establish reuse rights."
+      },
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "Not included; publisher terms apply",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": null
+      },
+      "data": {
+        "edition": "California Rules of Professional Conduct, Rule 1.15, current online edition amended effective January 1, 2023",
+        "publication": {
+          "published_at": null,
+          "status": "California Rules of Professional Conduct, Rule 1.15, current online edition amended effective January 1, 2023"
+        },
+        "frameworks": [
+          "California professional-conduct rule"
+        ],
+        "evidence": [
+          {
+            "claim": "California Rule 1.15 requires separation, accounting and timely treatment of client or third-party funds in the selected California lawyer route.",
+            "classification": "publisher-documented",
+            "source": {
+              "title": "California Rule of Professional Conduct 1.15: Safekeeping Funds and Property of Clients and Other Persons",
+              "url": "https://www.calbar.ca.gov/legal-professionals/rules/rules-professional-conduct/current-rules-professional-conduct/chapter-1-lawyer-client-relationship"
+            }
+          }
+        ],
+        "limitations": [
+          "This is one California example, not a nationwide legal rule and not an ABA Model Rule.",
+          "The governing law, client agreement, dispute facts and lawyer status must be established.",
+          "Professional conduct requirements do not by themselves determine revenue recognition or balance-sheet presentation; source rights remain unknown."
+        ],
+        "access_note": "Official publisher material read 2026-09-19 at the selected locators; full text is linked, not stored.",
+        "source_currency": "Selected California Rule 1.15 text and publisher amendment note rechecked 2026-09-19.",
+        "published_or_status": "California Rules of Professional Conduct, Rule 1.15, current online edition",
+        "version": "1.0.0",
+        "locators": [
+          {
+            "locator": "Rule 1.15(a)-(b): trust account for client or other-person funds, advance fees, flat-fee operating-account conditions and written disclosure",
+            "url": "https://www.calbar.ca.gov/legal-professionals/rules/rules-professional-conduct/current-rules-professional-conduct/chapter-1-lawyer-client-relationship",
+            "section": "Rule 1.15(a)-(b)",
+            "source_period": "California Rule 1.15 as amended effective January 1, 2023 per publisher note; selected current online text read 2026-09-19; California governing law and engagement facts must be established"
+          },
+          {
+            "locator": "Rule 1.15(c): no commingling; lawyer or firm portion withdrawn when fixed; disputed portion remains until resolved",
+            "url": "https://www.calbar.ca.gov/legal-professionals/rules/rules-professional-conduct/current-rules-professional-conduct/chapter-1-lawyer-client-relationship",
+            "section": "Rule 1.15(c)",
+            "source_period": "California Rule 1.15 as amended effective January 1, 2023 per publisher note; selected current online text read 2026-09-19; California governing law and engagement facts must be established"
+          },
+          {
+            "locator": "Rule 1.15(d)(1)-(7): notice, identification, complete records, written accounting, five-year retention, audit and prompt distribution of undisputed funds",
+            "url": "https://www.calbar.ca.gov/legal-professionals/rules/rules-professional-conduct/current-rules-professional-conduct/chapter-1-lawyer-client-relationship",
+            "section": "Rule 1.15(d)(1)-(7)",
+            "source_period": "California Rule 1.15 as amended effective January 1, 2023 per publisher note; selected current online text read 2026-09-19; California governing law and engagement facts must be established"
+          },
+          {
+            "locator": "Rule 1.15(f), tied to paragraph (d)(7): rebuttable 45-day presumption after funds become undisputed under paragraph (g)",
+            "url": "https://www.calbar.ca.gov/legal-professionals/rules/rules-professional-conduct/current-rules-professional-conduct/chapter-1-lawyer-client-relationship",
+            "section": "Rule 1.15(f) and (d)(7)",
+            "source_period": "California Rule 1.15 as amended effective January 1, 2023 per publisher note; selected current online text read 2026-09-19; California governing law and engagement facts must be established"
+          },
+          {
+            "locator": "Rule 1.15(g): undisputed funds or property means ownership is fixed and no unresolved entitlement dispute remains",
+            "url": "https://www.calbar.ca.gov/legal-professionals/rules/rules-professional-conduct/current-rules-professional-conduct/chapter-1-lawyer-client-relationship",
+            "section": "Rule 1.15(g)",
+            "source_period": "California Rule 1.15 as amended effective January 1, 2023 per publisher note; selected current online text read 2026-09-19; California governing law and engagement facts must be established"
+          },
+          {
+            "locator": "Publisher’s Note: Rule 1.15 was amended by order of the Supreme Court, effective January 1, 2023",
+            "url": "https://www.calbar.ca.gov/legal-professionals/rules/rules-professional-conduct/current-rules-professional-conduct/chapter-1-lawyer-client-relationship",
+            "section": "Publisher’s Note after Rule 1.15",
+            "source_period": "California Rule 1.15 as amended effective January 1, 2023 per publisher note; selected current online text read 2026-09-19; California governing law and engagement facts must be established"
+          }
+        ],
+        "source_review": {
+          "record_id": "src_professional_california_rule_115",
+          "disposition": "supported-scope",
+          "review_level": "substantive-excerpt",
+          "checked_url": "https://www.calbar.ca.gov/legal-professionals/rules/rules-professional-conduct/current-rules-professional-conduct/chapter-1-lawyer-client-relationship",
+          "source_locator": "Rule 1.15(a)-(b): trust account for client or other-person funds, advance fees, flat-fee operating-account conditions and written disclosure; Rule 1.15(c): no commingling; lawyer or firm portion withdrawn when fixed; disputed portion remains until resolved; Rule 1.15(d)(1)-(7): notice, identification, complete records, written accounting, five-year retention, audit and prompt distribution of undisputed funds; Rule 1.15(f), tied to paragraph (d)(7): rebuttable 45-day presumption after funds become undisputed under paragraph (g); Rule 1.15(g): undisputed funds or property means ownership is fixed and no unresolved entitlement dispute remains; Publisher’s Note: Rule 1.15 was amended by order of the Supreme Court, effective January 1, 2023",
+          "publication_or_edition": "California Rules of Professional Conduct, Rule 1.15, current online edition amended effective January 1, 2023",
+          "jurisdiction": "California legal services; selected state example only",
+          "effective_period": "California Rule 1.15 as amended effective January 1, 2023 per publisher note; selected current online text read 2026-09-19; California governing law and engagement facts must be established",
+          "evidence_summary": "California Rule 1.15(a)-(d) governs separation, accounting and distribution duties; paragraph (f) supplies a rebuttable 45-day presumption tied to (d)(7) when funds become undisputed under (g). The publisher note identifies an amendment effective January 1, 2023.",
+          "limitations": [
+            "This is one California example, not a nationwide legal rule and not an ABA Model Rule.",
+            "The governing law, client agreement, dispute facts and lawyer status must be established.",
+            "Professional conduct requirements do not by themselves determine revenue recognition or balance-sheet presentation; source rights remain unknown."
+          ],
+          "checks": [
+            {
+              "url": "https://www.calbar.ca.gov/legal-professionals/rules/rules-professional-conduct/current-rules-professional-conduct/chapter-1-lawyer-client-relationship",
+              "method": "official publisher selected material read",
+              "outcome": "Selected locators inspected; no full current consolidated accounting or legal review.",
+              "material_read": true
+            }
+          ],
+          "rights_review": {
+            "status": "unresolved",
+            "license": null,
+            "license_url": null,
+            "scope": null,
+            "note": "Public accessibility does not establish redistribution or training permission; full text is not stored."
+          }
+        },
+        "id": "src_professional_california_rule_115"
+      }
+    }
+  ],
+  "records": [
+    {
+      "id": "guide-us-professional-services-contract-to-ledger",
+      "kind": "guide",
+      "title": "US professional services contract-to-ledger evidence route",
+      "summary": "Bounded issue108 source-only supplement connecting professional-services evidence to revenue, WIP, payroll, settlement and selected California client funds.",
+      "topics": [
+        "Accounting and reporting",
+        "Professional services",
+        "Revenue and customer contracts",
+        "Payroll and labor costing",
+        "Project WIP and estimates",
+        "Client funds and controls"
+      ],
+      "industries": [
+        "Professional, Scientific, and Technical Services"
+      ],
+      "jurisdiction": "United States primary; California legal-funds example only",
+      "source_type": null,
+      "publisher": "Accounting Agents contributors",
+      "source_url": null,
+      "source_ids": [
+        "src_professional_irs_pub15a_2026",
+        "src_professional_california_rule_115",
+        "src_construction_fasb_2014_09",
+        "src_fasb_asu2016_08_principal_agent",
+        "src_roadmap_naics2022_manual",
+        "src_irs_pub15_2026",
+        "src_dol_factsheet21_recordkeeping"
+      ],
+      "related_ids": [
+        "guide-professional-services",
+        "workflow-us-professional-services-contract-to-ledger",
+        "ctrl-us-professional-services-contract-and-funds",
+        "example-us-professional-services-connected-close"
+      ],
+      "review_status": "editorially-reviewed",
+      "reviewed_at": "2026-09-19",
+      "provenance": {
+        "added_on": "2026-09-19",
+        "reviewer": "Codex AI-assisted original-source research",
+        "note": "Bounded source-only issue108 synthesis. No professional sign-off, current consolidated Codification review, operational validation or source-rights upgrade is asserted."
+      },
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "Not stored; original publisher rights apply",
+        "full_text_stored": false
+      },
+      "data": {
+        "version": "1.0.0",
+        "guide_id": "guide-us-professional-services-contract-to-ledger",
+        "title": "US professional services contract-to-ledger evidence route",
+        "scope": "Bounded US research for legal, accounting, engineering, consulting/R&D and staffing or technical-service roles. It connects contract, time, project cost, payroll, billing, settlement and selected California client-fund evidence. It is a source-only supplement to the existing guide-professional-services six-question package, not whole-subsector sufficiency or a current consolidated ASC claim.",
+        "roles": [
+          "legal services provider",
+          "accounting and tax services provider",
+          "engineering/design/technical services provider",
+          "consulting or R&D provider",
+          "staffing or PEO intermediary",
+          "customer or payer",
+          "subcontractor",
+          "California lawyer holding client or third-party funds"
+        ],
+        "frameworks": [
+          "US GAAP ASC 606 source boundary; current consolidated Codification and entity adoption must be checked",
+          "IRS federal employment-tax guidance for payroll and worker-status context",
+          "California Rule 1.15 for the selected California legal client-fund example only"
+        ],
+        "as_of": "2026-09-19",
+        "naics_leaf_scope": [
+          {
+            "code": "541110",
+            "role": "legal services",
+            "source": "src_roadmap_naics2022_manual",
+            "classification_scope": "NAICS classification only; not an accounting, payroll or legal conclusion."
+          },
+          {
+            "code": "541211",
+            "role": "accounting services",
+            "source": "src_roadmap_naics2022_manual",
+            "classification_scope": "NAICS classification only; not an accounting, payroll or legal conclusion."
+          },
+          {
+            "code": "541330",
+            "role": "engineering services",
+            "source": "src_roadmap_naics2022_manual",
+            "classification_scope": "NAICS classification only; not an accounting, payroll or legal conclusion."
+          },
+          {
+            "code": "541611",
+            "role": "management consulting",
+            "source": "src_roadmap_naics2022_manual",
+            "classification_scope": "NAICS classification only; not an accounting, payroll or legal conclusion."
+          },
+          {
+            "code": "541715",
+            "role": "R&D services",
+            "source": "src_roadmap_naics2022_manual",
+            "classification_scope": "NAICS classification only; not an accounting, payroll or legal conclusion."
+          },
+          {
+            "code": "561320",
+            "role": "temporary help services",
+            "source": "src_roadmap_naics2022_manual",
+            "classification_scope": "NAICS classification only; not an accounting, payroll or legal conclusion."
+          },
+          {
+            "code": "561330",
+            "role": "professional employer organizations",
+            "source": "src_roadmap_naics2022_manual",
+            "classification_scope": "NAICS classification only; not an accounting, payroll or legal conclusion."
+          }
+        ],
+        "workflow": {
+          "evidence_inputs": [
+            "executed engagement/SOW and amendments",
+            "approved time, project, vendor and payroll records",
+            "invoice, WIP, settlement and client-fund reconciliations",
+            "entity, reporting framework, governing-law and effective-period memo",
+            "source URL, locator, edition and rights metadata"
+          ],
+          "controls": [
+            "contract and role gate",
+            "source locator and evidence-ID capture",
+            "time-to-project-to-payroll reconciliation",
+            "gross/net and worker-status human review",
+            "client-fund segregation and disputed-balance exception queue"
+          ],
+          "material_exceptions": [
+            "retainer versus earned fee",
+            "reimbursable gross/net role",
+            "fixed-fee enforceability and measure",
+            "subcontractor versus employee",
+            "staffing principal/agent and payroll responsibility",
+            "California governing law and disputed client funds"
+          ],
+          "unresolved_limits": [
+            "No professional sign-off, live transaction population, current consolidated Codification review or operating-effectiveness evidence."
+          ]
+        },
+        "professional_review": "not-performed",
+        "empirical_support": "not-established",
+        "question_family_ids": [
+          "q-revenue",
+          "q-project-wip",
+          "q-payroll",
+          "q-receivables-credit",
+          "q-data-lineage",
+          "q-cash-settlement",
+          "q-cost-allocation",
+          "q-human-authority",
+          "q-compliance-assurance"
+        ],
+        "industry_codes": [
+          "541",
+          "561"
+        ],
+        "research_questions": [
+          {
+            "id": "rq-us-professional-services-retainer-boundary",
+            "question": "How should an advance retainer be connected to revenue and settlement?",
+            "answer": "A retainer is evidence of cash and contract terms, not automatic earned revenue. Identify the promised stand-ready or specified services, the service period and any refund or termination rights; recognize only the amount supported by satisfied performance and retain the remainder as a contract liability or other required balance pending the applicable framework.",
+            "answer_status": "sourced-answer-bounded",
+            "source_ids": [
+              "src_construction_fasb_2014_09"
+            ],
+            "source_locators": [
+              {
+                "source_id": "src_construction_fasb_2014_09",
+                "url": "https://storage.fasb.org/ASU%202014-09_Section%20A.pdf",
+                "locator": "ASU 2014-09 Section A, ASC 606-10-25-1 through 25-2, 25-27 through 25-37, 32-1 through 32-6, 45-1 through 45-5",
+                "source_period": "May 2014 original issued text; original effective dates later deferred by ASU 2015-14; current effective requirements and entity adoption remain to be confirmed"
+              }
+            ],
+            "inputs": [
+              "retainer agreement",
+              "service period",
+              "refund/termination terms",
+              "cash receipt",
+              "approved work or availability evidence"
+            ],
+            "workflow": [
+              "Capture contract, source version, role and jurisdiction before posting.",
+              "Reconcile operational evidence to the proposed accounting route."
+            ],
+            "controls": [
+              "Preserve source locator, evidence IDs and reviewer identity.",
+              "Require human approval for framework, principal/agent, worker-status and client-fund judgments."
+            ],
+            "exceptions": [
+              "Recognize a period-supported amount; reconcile cash, contract liability and billed/earned balances."
+            ],
+            "remaining_gaps": [
+              "The engagement may be a deposit, advance fee, stand-ready service or another arrangement; current consolidated GAAP and legal enforceability were not reviewed.",
+              "No professional sign-off or production validation was performed."
+            ],
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "assessment": {
+              "status": "partial",
+              "professional_review": "not-performed",
+              "empirical_support": "not-established",
+              "basis": "Partial reflects selected primary-source coverage, original workflow and synthetic worked material; it does not establish accounting correctness, legal advice or operational sufficiency.",
+              "dimensions": {
+                "accounting-question": "partial",
+                "evidence-inputs": "partial",
+                "workflow": "partial",
+                "controls": "partial",
+                "worked-material": "partial",
+                "empirical-support": "not-assessed",
+                "scope": "partial"
+              }
+            },
+            "family_ids": [
+              "q-revenue",
+              "q-cash-settlement"
+            ]
+          },
+          {
+            "id": "rq-us-professional-services-reimbursables",
+            "question": "When are reimbursables revenue, expense, receivable or a pass-through?",
+            "answer": "Classify the purchased item, promise and entity role before posting. A customer invoice or reimbursement label does not establish gross or net presentation; principal-versus-agent control, contract terms and who obtains the service determine the route, while incurred cost and recoverability remain separately evidenced.",
+            "answer_status": "sourced-answer-bounded",
+            "source_ids": [
+              "src_construction_fasb_2014_09",
+              "src_fasb_asu2016_08_principal_agent"
+            ],
+            "source_locators": [
+              {
+                "source_id": "src_construction_fasb_2014_09",
+                "url": "https://storage.fasb.org/ASU%202014-09_Section%20A.pdf",
+                "locator": "ASU 2014-09 Section A, ASC 606-10-25-1 through 25-2, 25-27 through 25-37, 32-1 through 32-6, 45-1 through 45-5",
+                "source_period": "May 2014 original issued text; original effective dates later deferred by ASU 2015-14; current effective requirements and entity adoption remain to be confirmed"
+              },
+              {
+                "source_id": "src_fasb_asu2016_08_principal_agent",
+                "url": "https://storage.fasb.org/ASU%202016-08.pdf",
+                "locator": "ASU 2016-08 Summary pp. 1-5; ASC 606-10-55-36 through 55-40",
+                "source_period": "March 2016; effective with Topic 606 adoption and ASU 2014-09 transition provisions; current effective requirements and entity adoption remain to be confirmed"
+              }
+            ],
+            "inputs": [
+              "reimbursable clause",
+              "vendor invoice",
+              "client approval",
+              "control before transfer",
+              "billing and collection"
+            ],
+            "workflow": [
+              "Capture contract, source version, role and jurisdiction before posting.",
+              "Reconcile operational evidence to the proposed accounting route."
+            ],
+            "controls": [
+              "Preserve source locator, evidence IDs and reviewer identity.",
+              "Require human approval for framework, principal/agent, worker-status and client-fund judgments."
+            ],
+            "exceptions": [
+              "Route reimbursable cost through a documented gross/net assessment and reconcile vendor cost, customer charge and settlement."
+            ],
+            "remaining_gaps": [
+              "No current consolidated Topic 606 review or real contract population was performed; tax treatment is separate.",
+              "No professional sign-off or production validation was performed."
+            ],
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "assessment": {
+              "status": "partial",
+              "professional_review": "not-performed",
+              "empirical_support": "not-established",
+              "basis": "Partial reflects selected primary-source coverage, original workflow and synthetic worked material; it does not establish accounting correctness, legal advice or operational sufficiency.",
+              "dimensions": {
+                "accounting-question": "partial",
+                "evidence-inputs": "partial",
+                "workflow": "partial",
+                "controls": "partial",
+                "worked-material": "partial",
+                "empirical-support": "not-assessed",
+                "scope": "partial"
+              }
+            },
+            "family_ids": [
+              "q-revenue",
+              "q-cost-allocation",
+              "q-data-lineage"
+            ]
+          },
+          {
+            "id": "rq-us-professional-services-fixed-fee-wip",
+            "question": "How should a fixed-fee or time-and-material project connect time, WIP, unbilled revenue and billing?",
+            "answer": "Use approved time, cost-to-complete and contract-right evidence to select and measure the performance obligation. Billing alone does not establish transfer; when the bounded over-time conditions and a depicting measure are established, cumulative earned revenue may exceed billings as a contract asset, while advance billing may be a contract liability.",
+            "answer_status": "sourced-answer-bounded",
+            "source_ids": [
+              "src_construction_fasb_2014_09"
+            ],
+            "source_locators": [
+              {
+                "source_id": "src_construction_fasb_2014_09",
+                "url": "https://storage.fasb.org/ASU%202014-09_Section%20A.pdf",
+                "locator": "ASU 2014-09 Section A, ASC 606-10-25-1 through 25-2, 25-27 through 25-37, 32-1 through 32-6, 45-1 through 45-5",
+                "source_period": "May 2014 original issued text; original effective dates later deferred by ASU 2015-14; current effective requirements and entity adoption remain to be confirmed"
+              }
+            ],
+            "inputs": [
+              "signed SOW",
+              "approved time",
+              "cost ledger",
+              "estimate to complete",
+              "milestone or acceptance evidence",
+              "billings and cash"
+            ],
+            "workflow": [
+              "Capture contract, source version, role and jurisdiction before posting.",
+              "Reconcile operational evidence to the proposed accounting route."
+            ],
+            "controls": [
+              "Preserve source locator, evidence IDs and reviewer identity.",
+              "Require human approval for framework, principal/agent, worker-status and client-fund judgments."
+            ],
+            "exceptions": [
+              "Roll forward approved hours/cost, estimate, cumulative revenue, WIP or contract asset, billings, receivable and cash; escalate estimate changes."
+            ],
+            "remaining_gaps": [
+              "No current consolidated Codification or contract-enforceability conclusion; alternative-use, termination, loss and acceptance facts can change the result.",
+              "No professional sign-off or production validation was performed."
+            ],
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "assessment": {
+              "status": "partial",
+              "professional_review": "not-performed",
+              "empirical_support": "not-established",
+              "basis": "Partial reflects selected primary-source coverage, original workflow and synthetic worked material; it does not establish accounting correctness, legal advice or operational sufficiency.",
+              "dimensions": {
+                "accounting-question": "partial",
+                "evidence-inputs": "partial",
+                "workflow": "partial",
+                "controls": "partial",
+                "worked-material": "partial",
+                "empirical-support": "not-assessed",
+                "scope": "partial"
+              }
+            },
+            "family_ids": [
+              "q-project-wip",
+              "q-revenue",
+              "q-data-lineage"
+            ]
+          },
+          {
+            "id": "rq-us-professional-services-subcontractor-staffing",
+            "question": "How should subcontractor costs and staffing arrangements be separated?",
+            "answer": "A subcontractor invoice is not payroll merely because work supports a project, and a staffing label does not decide employee status or gross/net presentation. Assess the service contract and control/principal facts for revenue, then separately classify workers and payroll obligations using the federal tax source and actual control, financial and relationship evidence.",
+            "answer_status": "sourced-answer-bounded",
+            "source_ids": [
+              "src_fasb_asu2016_08_principal_agent",
+              "src_professional_irs_pub15a_2026",
+              "src_roadmap_naics2022_manual"
+            ],
+            "source_locators": [
+              {
+                "source_id": "src_fasb_asu2016_08_principal_agent",
+                "url": "https://storage.fasb.org/ASU%202016-08.pdf",
+                "locator": "ASU 2016-08 Summary pp. 1-5; ASC 606-10-55-36 through 55-40",
+                "source_period": "March 2016; effective with Topic 606 adoption and ASU 2014-09 transition provisions; current effective requirements and entity adoption remain to be confirmed"
+              },
+              {
+                "source_id": "src_professional_irs_pub15a_2026",
+                "url": "https://www.irs.gov/publications/p15a",
+                "locator": "Publication 15-A (2026), Employer’s Supplemental Tax Guide; sections “Employee or Independent Contractor,” “Common-Law Rules,” and the law-firm attorney example",
+                "source_period": "Publication 15-A (2026), 2026 federal employment-tax reporting year; worker-specific, state and later-development checks remain required"
+              },
+              {
+                "source_id": "src_roadmap_naics2022_manual",
+                "url": "https://www.census.gov/naics/reference_files_tools/2022_NAICS_Manual.pdf",
+                "locator": "2022 NAICS Manual, Part I, Sector 54—Professional, Scientific, and Technical Services; selected 5411 Legal Services, 5412 Accounting, Tax Preparation, Bookkeeping and Payroll Services, 5413 Architectural, Engineering and Related Services, 5416 Management, Scientific and Technical Consulting Services, and 5417 Scientific Research and Development Services",
+                "source_period": "2022 NAICS Manual, NAICS 2022 classification edition; classification only and current leaf definitions require recheck"
+              }
+            ],
+            "inputs": [
+              "subcontract/SOW",
+              "worker agreement",
+              "who directs work",
+              "rate and margin",
+              "payroll records",
+              "vendor invoice"
+            ],
+            "workflow": [
+              "Capture contract, source version, role and jurisdiction before posting.",
+              "Reconcile operational evidence to the proposed accounting route."
+            ],
+            "controls": [
+              "Preserve source locator, evidence IDs and reviewer identity.",
+              "Require human approval for framework, principal/agent, worker-status and client-fund judgments."
+            ],
+            "exceptions": [
+              "Keep subcontractor AP, employee payroll and staffing settlement evidence distinct; route gross/net and worker-status exceptions for human review."
+            ],
+            "remaining_gaps": [
+              "IRS classification is tax guidance, not a GAAP or state-law conclusion; no particular worker or staffing contract was tested.",
+              "No professional sign-off or production validation was performed."
+            ],
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "assessment": {
+              "status": "partial",
+              "professional_review": "not-performed",
+              "empirical_support": "not-established",
+              "basis": "Partial reflects selected primary-source coverage, original workflow and synthetic worked material; it does not establish accounting correctness, legal advice or operational sufficiency.",
+              "dimensions": {
+                "accounting-question": "partial",
+                "evidence-inputs": "partial",
+                "workflow": "partial",
+                "controls": "partial",
+                "worked-material": "partial",
+                "empirical-support": "not-assessed",
+                "scope": "partial"
+              }
+            },
+            "family_ids": [
+              "q-revenue",
+              "q-payroll",
+              "q-cost-allocation"
+            ]
+          },
+          {
+            "id": "rq-us-professional-services-payroll-project",
+            "question": "How should project time connect to payroll and period-end settlement?",
+            "answer": "Approved time and project codes provide an evidence bridge from labor to project cost, payroll payable and the revenue or WIP analysis. Payroll tax guidance identifies employer responsibilities and worker status, but the accounting entry still requires the entity’s reporting framework, payroll period, accrual completeness and project allocation controls.",
+            "answer_status": "sourced-answer-bounded",
+            "source_ids": [
+              "src_professional_irs_pub15a_2026",
+              "src_irs_pub15_2026",
+              "src_dol_factsheet21_recordkeeping"
+            ],
+            "source_locators": [
+              {
+                "source_id": "src_professional_irs_pub15a_2026",
+                "url": "https://www.irs.gov/publications/p15a",
+                "locator": "Publication 15-A (2026), Employer’s Supplemental Tax Guide; sections “Employee or Independent Contractor,” “Common-Law Rules,” and the law-firm attorney example",
+                "source_period": "Publication 15-A (2026), 2026 federal employment-tax reporting year; worker-specific, state and later-development checks remain required"
+              },
+              {
+                "source_id": "src_irs_pub15_2026",
+                "url": "https://www.irs.gov/publications/p15",
+                "locator": "Publication 15 (2026), Circular E, Employer’s Tax Guide; employer employment-tax, withholding, deposit, reporting and recordkeeping sections",
+                "source_period": "Publication 15 (2026), 2026 federal employment-tax reporting year; rates, thresholds, later developments and taxpayer-specific rules require recheck"
+              },
+              {
+                "source_id": "src_dol_factsheet21_recordkeeping",
+                "url": "https://www.dol.gov/agencies/whd/fact-sheets/21-flsa-recordkeeping",
+                "locator": "Fact Sheet #21, revised July 2008: required identity, hours, wage and deduction records; three-year payroll and two-year wage-computation retention summary; 29 CFR Part 516 controls",
+                "source_period": "Fact Sheet #21 revised July 2008; current DOL summary accessed 2026-09-19; underlying 29 CFR Part 516 and current law control"
+              }
+            ],
+            "inputs": [
+              "approved timecard",
+              "project code",
+              "payroll register",
+              "payroll tax calculation",
+              "payroll cutoff",
+              "bank settlement"
+            ],
+            "workflow": [
+              "Capture contract, source version, role and jurisdiction before posting.",
+              "Reconcile operational evidence to the proposed accounting route."
+            ],
+            "controls": [
+              "Preserve source locator, evidence IDs and reviewer identity.",
+              "Require human approval for framework, principal/agent, worker-status and client-fund judgments."
+            ],
+            "exceptions": [
+              "Reconcile time to payroll register and project ledger, accrue approved unprocessed time, then tie payroll liabilities and cash settlement to source reports."
+            ],
+            "remaining_gaps": [
+              "No employee population, tax calculation, state payroll rule or operating-effectiveness test was performed.",
+              "No professional sign-off or production validation was performed."
+            ],
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "assessment": {
+              "status": "partial",
+              "professional_review": "not-performed",
+              "empirical_support": "not-established",
+              "basis": "Partial reflects selected primary-source coverage, original workflow and synthetic worked material; it does not establish accounting correctness, legal advice or operational sufficiency.",
+              "dimensions": {
+                "accounting-question": "partial",
+                "evidence-inputs": "partial",
+                "workflow": "partial",
+                "controls": "partial",
+                "worked-material": "partial",
+                "empirical-support": "not-assessed",
+                "scope": "partial"
+              }
+            },
+            "family_ids": [
+              "q-payroll",
+              "q-data-lineage",
+              "q-cost-allocation"
+            ]
+          },
+          {
+            "id": "rq-us-professional-services-client-trust-funds",
+            "question": "How should a legal firm route client or trust money?",
+            "answer": "For the selected California lawyer route, determine governing law and engagement facts first. Rule 1.15 requires funds held for a client or other person to be separated and accounted for, with no commingling and disputed portions retained; a firm fee is recognized or released only when the engagement and applicable accounting framework support it.",
+            "answer_status": "sourced-answer-bounded",
+            "source_ids": [
+              "src_professional_california_rule_115"
+            ],
+            "source_locators": [
+              {
+                "source_id": "src_professional_california_rule_115",
+                "url": "https://www.calbar.ca.gov/legal-professionals/rules/rules-professional-conduct/current-rules-professional-conduct/chapter-1-lawyer-client-relationship",
+                "locator": "Rule 1.15(a)-(d), (f) and (g), including (d)(7) distribution duty, 45-day presumption and definition of undisputed funds; publisher amendment note effective January 1, 2023",
+                "source_period": "California Rule 1.15 as amended effective January 1, 2023 per publisher note; selected current online text read 2026-09-19; California governing law and engagement facts must be established"
+              }
+            ],
+            "inputs": [
+              "governing-law memo",
+              "engagement letter",
+              "trust-bank statement",
+              "client ledger",
+              "fee invoice",
+              "dispute notice",
+              "written accounting"
+            ],
+            "workflow": [
+              "Capture contract, source version, role and jurisdiction before posting.",
+              "Reconcile operational evidence to the proposed accounting route."
+            ],
+            "controls": [
+              "Preserve source locator, evidence IDs and reviewer identity.",
+              "Require human approval for framework, principal/agent, worker-status and client-fund judgments."
+            ],
+            "exceptions": [
+              "Reconcile trust cash to client subledger, preserve disputed balances, document fee release and require lawyer review before transfer to operating cash."
+            ],
+            "remaining_gaps": [
+              "California is a selected state example only; Rule 1.15 is not nationwide law or an ABA Model Rule, and no client-money population was tested.",
+              "No professional sign-off or production validation was performed."
+            ],
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "assessment": {
+              "status": "partial",
+              "professional_review": "not-performed",
+              "empirical_support": "not-established",
+              "basis": "Partial reflects selected primary-source coverage, original workflow and synthetic worked material; it does not establish accounting correctness, legal advice or operational sufficiency.",
+              "dimensions": {
+                "accounting-question": "partial",
+                "evidence-inputs": "partial",
+                "workflow": "partial",
+                "controls": "partial",
+                "worked-material": "partial",
+                "empirical-support": "not-assessed",
+                "scope": "partial"
+              }
+            },
+            "family_ids": [
+              "q-cash-settlement",
+              "q-compliance-assurance",
+              "q-human-authority"
+            ]
+          }
+        ],
+        "source_periods": [
+          {
+            "source_id": "src_professional_irs_pub15a_2026",
+            "effective_period": "Publication 15-A (2026), 2026 federal employment-tax reporting year; worker-specific, state and later-development checks remain required",
+            "locator": "Publication 15-A (2026), Employer’s Supplemental Tax Guide; sections “Employee or Independent Contractor,” “Common-Law Rules,” and the law-firm attorney example",
+            "url": "https://www.irs.gov/publications/p15a",
+            "source_period": "Publication 15-A (2026), 2026 federal employment-tax reporting year; worker-specific, state and later-development checks remain required"
+          },
+          {
+            "source_id": "src_professional_california_rule_115",
+            "effective_period": "California Rule 1.15 as amended effective January 1, 2023 per publisher note; selected current online text read 2026-09-19; California governing law and engagement facts must be established",
+            "locator": "Rule 1.15(a)-(d), (f) and (g), including (d)(7) distribution duty, 45-day presumption and definition of undisputed funds; publisher amendment note effective January 1, 2023",
+            "url": "https://www.calbar.ca.gov/legal-professionals/rules/rules-professional-conduct/current-rules-professional-conduct/chapter-1-lawyer-client-relationship",
+            "source_period": "California Rule 1.15 as amended effective January 1, 2023 per publisher note; selected current online text read 2026-09-19; California governing law and engagement facts must be established"
+          },
+          {
+            "source_id": "src_construction_fasb_2014_09",
+            "effective_period": "May 2014 original issued update; current consolidated requirements open",
+            "locator": "ASC 606-10-25, 32, 45; 340-40"
+          }
+        ],
+        "coverage_gaps": [
+          "Seven baseline NAICS 54 records and six existing questions are preserved as context; this package adds a bounded supplement.",
+          "California client-fund evidence is one selected state example; no 50-state survey is attempted.",
+          "Synthetic calculations and source review do not establish professional or operational sufficiency."
+        ],
+        "id": "guide-us-professional-services-contract-to-ledger"
+      }
+    },
+    {
+      "id": "workflow-us-professional-services-contract-to-ledger",
+      "kind": "workflow",
+      "title": "Professional services evidence to ledger workflow",
+      "summary": "Proposed evidence workflow for selected professional-service roles and exceptions.",
+      "topics": [
+        "Accounting and reporting",
+        "Professional services",
+        "Evidence and controls"
+      ],
+      "industries": [
+        "Professional, Scientific, and Technical Services"
+      ],
+      "jurisdiction": "United States primary; California legal-funds example only",
+      "source_type": null,
+      "publisher": "Accounting Agents contributors",
+      "source_url": null,
+      "source_ids": [
+        "src_professional_irs_pub15a_2026",
+        "src_professional_california_rule_115",
+        "src_construction_fasb_2014_09",
+        "src_fasb_asu2016_08_principal_agent",
+        "src_roadmap_naics2022_manual",
+        "src_irs_pub15_2026",
+        "src_dol_factsheet21_recordkeeping"
+      ],
+      "related_ids": [
+        "guide-us-professional-services-contract-to-ledger",
+        "ctrl-us-professional-services-contract-and-funds",
+        "example-us-professional-services-connected-close"
+      ],
+      "review_status": "editorially-reviewed",
+      "reviewed_at": "2026-09-19",
+      "provenance": {
+        "added_on": "2026-09-19",
+        "reviewer": "Codex AI-assisted original-source research",
+        "note": "Bounded source-only issue108 synthesis. No professional sign-off, current consolidated Codification review, operational validation or source-rights upgrade is asserted."
+      },
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "Not stored; original publisher rights apply",
+        "full_text_stored": false
+      },
+      "data": {
+        "version": "1.0.0",
+        "accounting_objective": "Connect contract, role, time, project cost, payroll, billing, settlement and selected client-fund evidence before a proposed posting.",
+        "scope": "Research reference only; no posting or legal conclusion.",
+        "inputs": [
+          "executed engagement/SOW and amendments",
+          "approved time, project, vendor and payroll records",
+          "invoice, WIP, settlement and client-fund reconciliations",
+          "entity, reporting framework, governing-law and effective-period memo",
+          "source URL, locator, edition and rights metadata"
+        ],
+        "steps": [
+          {
+            "id": "S1",
+            "action": "Identify entity, framework, role, contract version, governing law and source period."
+          },
+          {
+            "id": "S2",
+            "action": "Capture approved time, project cost, vendor, payroll, billing, cash and client-fund evidence."
+          },
+          {
+            "id": "S3",
+            "action": "Assess performance, WIP/contract balance, gross/net, worker status and client-fund segregation."
+          },
+          {
+            "id": "S4",
+            "action": "Prepare proposed entries and reconciliations, then route unresolved judgments to human review."
+          }
+        ],
+        "outputs": [
+          "evidence map",
+          "proposed ledger bridge",
+          "reconciliation and exception register"
+        ],
+        "human_judgments": [
+          "current consolidated GAAP and enforceability",
+          "principal/agent",
+          "worker status and payroll obligations",
+          "California client-fund release or dispute"
+        ],
+        "limitations": [
+          "Source-only synthetic workflow; no professional sign-off, production validation or operating-effectiveness test."
+        ],
+        "id": "workflow-us-professional-services-contract-to-ledger"
+      }
+    },
+    {
+      "id": "ctrl-us-professional-services-contract-and-funds",
+      "kind": "control",
+      "title": "Professional services contract, labor and client-fund evidence control",
+      "summary": "Proposed control to keep contract revenue, project WIP, payroll, settlement and selected California client funds traceable.",
+      "topics": [
+        "Accounting and reporting",
+        "Professional services",
+        "Internal control"
+      ],
+      "industries": [
+        "Professional, Scientific, and Technical Services"
+      ],
+      "jurisdiction": "United States primary; California legal-funds example only",
+      "source_type": null,
+      "publisher": "Accounting Agents contributors",
+      "source_url": null,
+      "source_ids": [
+        "src_professional_irs_pub15a_2026",
+        "src_professional_california_rule_115",
+        "src_construction_fasb_2014_09",
+        "src_fasb_asu2016_08_principal_agent",
+        "src_roadmap_naics2022_manual",
+        "src_irs_pub15_2026",
+        "src_dol_factsheet21_recordkeeping"
+      ],
+      "related_ids": [
+        "guide-us-professional-services-contract-to-ledger",
+        "workflow-us-professional-services-contract-to-ledger",
+        "example-us-professional-services-connected-close"
+      ],
+      "review_status": "editorially-reviewed",
+      "reviewed_at": "2026-09-19",
+      "provenance": {
+        "added_on": "2026-09-19",
+        "reviewer": "Codex AI-assisted original-source research",
+        "note": "Bounded source-only issue108 synthesis. No professional sign-off, current consolidated Codification review, operational validation or source-rights upgrade is asserted."
+      },
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "Not stored; original publisher rights apply",
+        "full_text_stored": false
+      },
+      "data": {
+        "version": "1.0.0",
+        "control_objective": "Prevent unsupported revenue, WIP, payroll, gross/net and client-fund postings.",
+        "control_steps": [
+          {
+            "id": "C1",
+            "action": "Approve contract, role, framework, governing-law and source-period metadata."
+          },
+          {
+            "id": "C2",
+            "action": "Match time/project/vendor/payroll evidence to the contract and approved rates."
+          },
+          {
+            "id": "C3",
+            "action": "Reconcile earned revenue, WIP or contract balance, billing, AR and cash."
+          },
+          {
+            "id": "C4",
+            "action": "Segregate California client funds, retain disputed balances and obtain lawyer review before release."
+          },
+          {
+            "id": "C5",
+            "action": "Preserve locator, evidence, reviewer, rights and unresolved-gap metadata."
+          }
+        ],
+        "evidence": [
+          "contract/SOW and amendments",
+          "time/project ledger",
+          "vendor and payroll register",
+          "billing/AR/cash rollforward",
+          "trust-bank and client ledger where applicable",
+          "source and governing-law memo"
+        ],
+        "failure_response": "Hold or reverse the proposed posting and escalate the missing framework, role, enforceability, worker-status or client-fund evidence.",
+        "limitations": [
+          "Synthetic proposal only; operating effectiveness and legal compliance were not tested."
+        ],
+        "id": "ctrl-us-professional-services-contract-and-funds"
+      }
+    },
+    {
+      "id": "example-us-professional-services-connected-close",
+      "kind": "example",
+      "title": "Professional services connected close: time to ledger, payroll and client funds",
+      "summary": "Original synthetic issue108 worked example connecting project evidence to revenue, WIP, payroll, settlement, staffing and a California-only client-fund exception.",
+      "topics": [
+        "Accounting and reporting",
+        "Professional services",
+        "Synthetic example",
+        "Revenue and customer contracts",
+        "Payroll",
+        "Client funds"
+      ],
+      "industries": [
+        "Professional, Scientific, and Technical Services"
+      ],
+      "jurisdiction": "United States primary; California legal-funds example only",
+      "source_type": null,
+      "publisher": "Accounting Agents contributors",
+      "source_url": null,
+      "source_ids": [
+        "src_professional_irs_pub15a_2026",
+        "src_professional_california_rule_115",
+        "src_construction_fasb_2014_09",
+        "src_fasb_asu2016_08_principal_agent",
+        "src_roadmap_naics2022_manual",
+        "src_irs_pub15_2026",
+        "src_dol_factsheet21_recordkeeping"
+      ],
+      "related_ids": [
+        "guide-us-professional-services-contract-to-ledger",
+        "workflow-us-professional-services-contract-to-ledger",
+        "ctrl-us-professional-services-contract-and-funds"
+      ],
+      "review_status": "editorially-reviewed",
+      "reviewed_at": "2026-09-19",
+      "provenance": {
+        "added_on": "2026-09-19",
+        "reviewer": "Codex AI-assisted original-source research",
+        "note": "Bounded source-only issue108 synthesis. No professional sign-off, current consolidated Codification review, operational validation or source-rights upgrade is asserted."
+      },
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "Not stored; original publisher rights apply",
+        "full_text_stored": false
+      },
+      "data": {
+        "version": "1.0.0",
+        "prepared_at": "2026-09-19",
+        "origin": "Original synthetic issue108 example; no publisher scenario or customer data reproduced.",
+        "scope": "Synthetic US professional-services close with explicit legal, accounting, engineering/technical, consulting/R&D and staffing role branches. The selected California lawyer branch is jurisdiction-specific. Amounts are USD and illustrative only.",
+        "assumptions": [
+          "Principal entity is a professional-services firm for the fixed-fee project, retainer, subcontractor and reimbursable branches; enforceability and transfer are assumed only for this synthetic base case.",
+          "The $45,000 project cost population is fully identified as $20,000 approved labor, $12,000 subcontractor cost, $8,000 selected gross-principal reimbursable cost and $5,000 other direct project cost. Estimated total cost is $90,000, so cost-to-cost progress is 45,000/90,000 = 50% and earned fixed-fee revenue is $60,000.",
+          "The project has $30,000 billed and collected, so the $60,000 earned amount less $30,000 settled billing leaves a $30,000 contract asset before later entries.",
+          "A $24,000 three-month stand-ready retainer is received into operating cash; $8,000 is earned in the current period and $16,000 remains a contract liability.",
+          "The selected reimbursable case assumes the firm controls the vendor service and is principal: $8,000 vendor cost is included in project cost and the $8,000 customer charge is included in the fixed-fee transaction price. The countercase assumes an agent pass-through with $8,000 vendor cost and $8,000 customer charge, with no net revenue and no project-cost progress credit.",
+          "The staffing branch is a separate staffing agency entity assumed principal for this selected case: it invoices $50,000, records $38,000 worker payroll, receives the invoice settlement and pays payroll, producing $12,000 gross margin before other costs. A counter-role keeps principal/agent presentation unresolved pending control facts.",
+          "Approved time is 400 hours at $50 per hour for $20,000 direct labor. Employer payroll tax of $1,530 is an arithmetic illustration only and not a tax-rate conclusion.",
+          "For the selected California lawyer branch, $25,000 of client funds is received into trust. $5,000 becomes fixed and undisputed, is transferred to operating cash and recognized as earned fee; $20,000 remains a client-fund liability. A $5,000 disputed-fund counterexample remains in trust."
+        ],
+        "calculation": {
+          "fixed_fee": 120000,
+          "approved_time_hours": 400,
+          "direct_labor_cost": 20000,
+          "subcontractor_cost": 12000,
+          "reimbursable_cost": 8000,
+          "other_direct_project_cost": 5000,
+          "costs_incurred": 45000,
+          "estimated_total_cost": 90000,
+          "remaining_estimated_cost": 45000,
+          "progress": 0.5,
+          "earned_revenue": 60000,
+          "billed": 30000,
+          "cash_settled_on_billing": 30000,
+          "contract_asset": 30000,
+          "retainer_cash": 24000,
+          "retainer_months": 3,
+          "retainer_month_recognized": 8000,
+          "retainer_contract_liability": 16000,
+          "staffing_invoice": 50000,
+          "staffing_worker_payroll": 38000,
+          "staffing_cash_collected": 50000,
+          "staffing_payroll_cash_paid": 38000,
+          "staffing_gross_margin": 12000,
+          "employer_payroll_tax": 1530,
+          "client_trust_received": 25000,
+          "client_funds_transferred_to_operating_cash": 5000,
+          "legal_fee_earned_and_released": 5000,
+          "disputed_client_funds": 5000,
+          "client_fund_liability": 20000
+        },
+        "proposed_entries": [
+          {
+            "id": "P1",
+            "event_id": "approved-time-cost",
+            "status": "proposed-synthetic",
+            "lines": [
+              {
+                "account": "project_labor_cost",
+                "side": "debit",
+                "amount": 20000,
+                "memo": "400 approved hours at $50/hour"
+              },
+              {
+                "account": "payroll_payable",
+                "side": "credit",
+                "amount": 20000,
+                "memo": "Direct labor accrued"
+              }
+            ]
+          },
+          {
+            "id": "P2",
+            "event_id": "subcontractor-cost",
+            "status": "proposed-synthetic",
+            "lines": [
+              {
+                "account": "project_subcontractor_cost",
+                "side": "debit",
+                "amount": 12000,
+                "memo": "Approved subcontractor invoice"
+              },
+              {
+                "account": "accounts_payable",
+                "side": "credit",
+                "amount": 12000,
+                "memo": "Subcontractor payable"
+              }
+            ]
+          },
+          {
+            "id": "P3",
+            "event_id": "reimbursable-gross-principal-cost",
+            "status": "proposed-synthetic",
+            "lines": [
+              {
+                "account": "project_reimbursable_cost",
+                "side": "debit",
+                "amount": 8000,
+                "memo": "Firm controls vendor service in selected principal case"
+              },
+              {
+                "account": "accounts_payable",
+                "side": "credit",
+                "amount": 8000,
+                "memo": "Vendor payable"
+              }
+            ]
+          },
+          {
+            "id": "P4",
+            "event_id": "other-direct-project-cost",
+            "status": "proposed-synthetic",
+            "lines": [
+              {
+                "account": "other_direct_project_cost",
+                "side": "debit",
+                "amount": 5000,
+                "memo": "Other approved direct project cost"
+              },
+              {
+                "account": "accounts_payable",
+                "side": "credit",
+                "amount": 5000,
+                "memo": "Other vendor payable"
+              }
+            ]
+          },
+          {
+            "id": "P5",
+            "event_id": "fixed-fee-earned",
+            "status": "proposed-synthetic",
+            "lines": [
+              {
+                "account": "contract_asset",
+                "side": "debit",
+                "amount": 60000,
+                "memo": "50% cost-to-cost earned amount"
+              },
+              {
+                "account": "professional_services_revenue",
+                "side": "credit",
+                "amount": 60000,
+                "memo": "Cumulative earned fixed-fee revenue"
+              }
+            ]
+          },
+          {
+            "id": "P6",
+            "event_id": "project-billing",
+            "status": "proposed-synthetic",
+            "lines": [
+              {
+                "account": "trade_receivable",
+                "side": "debit",
+                "amount": 30000,
+                "memo": "Approved billing"
+              },
+              {
+                "account": "contract_asset",
+                "side": "credit",
+                "amount": 30000,
+                "memo": "Reclassify billed portion"
+              }
+            ]
+          },
+          {
+            "id": "P7",
+            "event_id": "project-cash-settlement",
+            "status": "proposed-synthetic",
+            "lines": [
+              {
+                "account": "operating_cash",
+                "side": "debit",
+                "amount": 30000,
+                "memo": "Customer settles project billing"
+              },
+              {
+                "account": "trade_receivable",
+                "side": "credit",
+                "amount": 30000,
+                "memo": "Project receivable settled"
+              }
+            ]
+          },
+          {
+            "id": "P8",
+            "event_id": "retainer-receipt",
+            "status": "proposed-synthetic",
+            "lines": [
+              {
+                "account": "operating_cash",
+                "side": "debit",
+                "amount": 24000,
+                "memo": "Three-month stand-ready retainer received"
+              },
+              {
+                "account": "retainer_contract_liability",
+                "side": "credit",
+                "amount": 24000,
+                "memo": "Unearned retainer balance"
+              }
+            ]
+          },
+          {
+            "id": "P9",
+            "event_id": "retainer-earned",
+            "status": "proposed-synthetic",
+            "lines": [
+              {
+                "account": "retainer_contract_liability",
+                "side": "debit",
+                "amount": 8000,
+                "memo": "Current-period service earned"
+              },
+              {
+                "account": "retainer_revenue",
+                "side": "credit",
+                "amount": 8000,
+                "memo": "Current-period retainer revenue"
+              }
+            ]
+          },
+          {
+            "id": "P10",
+            "event_id": "client-fund-receipt",
+            "status": "proposed-synthetic",
+            "lines": [
+              {
+                "account": "trust_cash",
+                "side": "debit",
+                "amount": 25000,
+                "memo": "Client funds received into identified trust account"
+              },
+              {
+                "account": "client_funds_liability",
+                "side": "credit",
+                "amount": 25000,
+                "memo": "Funds held for client"
+              }
+            ]
+          },
+          {
+            "id": "P11",
+            "event_id": "client-fund-cash-transfer",
+            "status": "proposed-synthetic",
+            "lines": [
+              {
+                "account": "operating_cash",
+                "side": "debit",
+                "amount": 5000,
+                "memo": "Fixed undisputed fee transferred from trust"
+              },
+              {
+                "account": "trust_cash",
+                "side": "credit",
+                "amount": 5000,
+                "memo": "Trust cash distributed to operating account"
+              }
+            ]
+          },
+          {
+            "id": "P12",
+            "event_id": "client-fee-recognition",
+            "status": "proposed-synthetic",
+            "lines": [
+              {
+                "account": "client_funds_liability",
+                "side": "debit",
+                "amount": 5000,
+                "memo": "Client liability released only for fixed undisputed fee"
+              },
+              {
+                "account": "legal_fee_revenue",
+                "side": "credit",
+                "amount": 5000,
+                "memo": "Earned legal fee recognized"
+              }
+            ]
+          },
+          {
+            "id": "P13",
+            "event_id": "staffing-invoice",
+            "status": "proposed-synthetic",
+            "lines": [
+              {
+                "account": "staffing_trade_receivable",
+                "side": "debit",
+                "amount": 50000,
+                "memo": "Staffing client invoice; selected principal case"
+              },
+              {
+                "account": "staffing_service_revenue",
+                "side": "credit",
+                "amount": 50000,
+                "memo": "Gross staffing service revenue"
+              }
+            ]
+          },
+          {
+            "id": "P14",
+            "event_id": "staffing-payroll-accrual",
+            "status": "proposed-synthetic",
+            "lines": [
+              {
+                "account": "staffing_wage_expense",
+                "side": "debit",
+                "amount": 38000,
+                "memo": "Worker payroll cost"
+              },
+              {
+                "account": "staffing_payroll_payable",
+                "side": "credit",
+                "amount": 38000,
+                "memo": "Staffing payroll payable"
+              }
+            ]
+          },
+          {
+            "id": "P15",
+            "event_id": "staffing-cash-settlement",
+            "status": "proposed-synthetic",
+            "lines": [
+              {
+                "account": "staffing_cash",
+                "side": "debit",
+                "amount": 50000,
+                "memo": "Staffing client settles invoice"
+              },
+              {
+                "account": "staffing_trade_receivable",
+                "side": "credit",
+                "amount": 50000,
+                "memo": "Staffing receivable settled"
+              }
+            ]
+          },
+          {
+            "id": "P16",
+            "event_id": "staffing-payroll-settlement",
+            "status": "proposed-synthetic",
+            "lines": [
+              {
+                "account": "staffing_payroll_payable",
+                "side": "debit",
+                "amount": 38000,
+                "memo": "Payroll paid"
+              },
+              {
+                "account": "staffing_cash",
+                "side": "credit",
+                "amount": 38000,
+                "memo": "Staffing payroll cash settlement"
+              }
+            ]
+          },
+          {
+            "id": "P17",
+            "event_id": "employer-payroll-tax-accrual",
+            "status": "proposed-synthetic",
+            "lines": [
+              {
+                "account": "employer_payroll_tax_expense",
+                "side": "debit",
+                "amount": 1530,
+                "memo": "Illustrative employer tax accrual"
+              },
+              {
+                "account": "payroll_tax_payable",
+                "side": "credit",
+                "amount": 1530,
+                "memo": "Illustrative tax payable"
+              }
+            ]
+          }
+        ],
+        "reconciliation": {
+          "cost_population": {
+            "approved_time_labor": 20000,
+            "subcontractor": 12000,
+            "reimbursable": 8000,
+            "other_direct": 5000,
+            "total": 45000
+          },
+          "fixed_fee_progress": 0.5,
+          "earned_revenue": 60000,
+          "billed": 30000,
+          "cash_settled_on_billing": 30000,
+          "contract_asset": 30000,
+          "retainer_cash": 24000,
+          "retainer_revenue": 8000,
+          "retainer_liability": 16000,
+          "staffing_invoice": 50000,
+          "staffing_payroll": 38000,
+          "staffing_cash_collected": 50000,
+          "staffing_payroll_cash_paid": 38000,
+          "staffing_gross_margin": 12000,
+          "client_funds_received": 25000,
+          "client_funds_transferred_to_operating_cash": 5000,
+          "legal_fee_revenue": 5000,
+          "client_funds_remaining_liability": 20000
+        },
+        "numeric_counterexamples": [
+          {
+            "id": "ADVANCE-RETAINER",
+            "difference": {
+              "cash_received": 24000,
+              "revenue_if_wrongly_all_recognized": 24000,
+              "revenue_supported_current_period": 8000,
+              "overstatement": 16000
+            },
+            "why": "Cash receipt is not the same as earned stand-ready service."
+          },
+          {
+            "id": "BILLING-CUTOFF",
+            "difference": {
+              "earned_revenue": 60000,
+              "billed": 30000,
+              "contract_asset": 30000,
+              "wrong_revenue_if_billing_only": 30000
+            },
+            "why": "Billing and settlement evidence do not replace approved progress evidence."
+          },
+          {
+            "id": "REIMBURSABLE-GROSS-NET",
+            "selected_case": {
+              "vendor_cost": 8000,
+              "customer_charge": 8000,
+              "presentation": "gross principal case",
+              "net_revenue": 8000
+            },
+            "countercase": {
+              "vendor_cost": 8000,
+              "customer_charge": 8000,
+              "presentation": "agent pass-through",
+              "net_revenue": 0
+            },
+            "why": "Control of the vendor service and responsibility for fulfillment must be established."
+          },
+          {
+            "id": "STAFFING-PRINCIPAL-AGENT",
+            "selected_case": {
+              "invoice": 50000,
+              "payroll": 38000,
+              "gross_margin": 12000,
+              "presentation": "principal case"
+            },
+            "countercase": {
+              "customer_bill": 50000,
+              "worker_cost": 38000,
+              "presentation": "agent or net case remains unresolved"
+            },
+            "why": "Worker status, control and contractual responsibility are separate facts."
+          },
+          {
+            "id": "CLIENT-FUND-DISPUTE",
+            "selected_case": {
+              "received": 25000,
+              "fixed_undisputed_fee": 5000,
+              "remaining_liability": 20000
+            },
+            "countercase": {
+              "disputed_amount": 5000,
+              "operating_receipt": 0,
+              "trust_balance": 5000
+            },
+            "why": "Disputed funds remain in trust in the selected branch pending resolution."
+          }
+        ],
+        "scope_counterexamples": [
+          {
+            "id": "NONCALIFORNIA-CLIENT-FUNDS",
+            "claim": "California Rule 1.15 cannot be generalized as nationwide client-money law.",
+            "route": "Establish governing law, engagement facts, lawyer status and applicable professional rule before using a client-funds branch."
+          },
+          {
+            "id": "DISPUTED-FEE",
+            "claim": "A disputed client fee is not automatically available operating cash.",
+            "route": "Keep the disputed $5,000 in trust and obtain the applicable legal/accounting review."
+          },
+          {
+            "id": "TAX-GAAP-SPLIT",
+            "claim": "IRS worker-status and payroll evidence does not decide GAAP revenue or WIP.",
+            "route": "Run tax, accounting and legal analyses separately."
+          },
+          {
+            "id": "OTHER-ROLE",
+            "claim": "Engineering or accounting customer funds are not automatically legal trust funds.",
+            "route": "Identify contract, ownership, custody and applicable law."
+          }
+        ],
+        "limitations": [
+          "Synthetic calculation only; no real transaction, payroll, trust-bank or project population was tested.",
+          "All journal entries are review-only proposals under stated principal/agent, cost-to-cost, retainer and California assumptions; they are not approved postings.",
+          "The selected California source is jurisdiction-specific and does not establish a nationwide professional-funds rule.",
+          "The example uses issued and agency source summaries but does not state current consolidated ASC requirements or professional conclusions.",
+          "Professional review, empirical support, governing-law confirmation and source reuse rights remain unresolved."
+        ],
+        "id": "example-us-professional-services-connected-close",
+        "examples": [
+          {
+            "id": "fixed-fee-retainer-and-cost-bridge",
+            "basis": "Original synthetic calculation, not source-derived",
+            "facts": [
+              "$45,000 cost population: $20,000 approved labor + $12,000 subcontractor + $8,000 reimbursable + $5,000 other direct cost; fixed fee $120,000; estimated total cost $90,000; billing and cash settlement $30,000.",
+              "$24,000 retainer received; $8,000 current-period service and $16,000 contract liability."
+            ],
+            "calculation": [
+              "Progress 45,000/90,000=50%; earned revenue 50% x 120,000=$60,000; billing and cash settlement=$30,000; contract asset=$60,000-$30,000=$30,000.",
+              "Cost-to-complete remaining estimate=$90,000-$45,000=$45,000."
+            ],
+            "tieout": "Independent tests recompute journal lines, cost population, progress, earned revenue, billing, settlement, retainer and balances from the input fields."
+          },
+          {
+            "id": "staffing-and-payroll-principal-branch",
+            "basis": "Original synthetic calculation, not source-derived",
+            "facts": [
+              "$50,000 staffing invoice is settled; $38,000 staffing payroll is accrued and paid; $20,000 approved project labor is separate."
+            ],
+            "calculation": [
+              "Staffing gross margin before other costs=$50,000-$38,000=$12,000.",
+              "Illustrative employer payroll tax=$1,530; no tax rate conclusion."
+            ],
+            "tieout": "Explicit entity-specific cash, receivable, revenue, payroll expense and payroll payable lines are balanced independently."
+          },
+          {
+            "id": "california-trust-branch-and-dispute",
+            "basis": "Original synthetic calculation, not source-derived",
+            "facts": [
+              "$25,000 client funds enter trust; $5,000 fixed and undisputed fee transfers to operating cash and is recognized; $5,000 disputed counterexample remains in trust."
+            ],
+            "calculation": [
+              "Trust cash after transfer=$25,000-$5,000=$20,000; client-funds liability after fee recognition=$25,000-$5,000=$20,000; operating cash receipt for earned fee=$5,000."
+            ],
+            "tieout": "Separate trust cash, operating cash, client-funds liability and legal-fee revenue lines prevent custody and operating funds from being conflated."
+          }
+        ]
+      }
+    }
+  ],
+  "question_rows": [
+    {
+      "id": "rq-us-professional-services-retainer-boundary",
+      "record_id": "guide-us-professional-services-contract-to-ledger",
+      "pointer": "/data/research_questions/0",
+      "family_ids": [
+        "q-revenue",
+        "q-cash-settlement"
+      ],
+      "question": "How should an advance retainer be connected to revenue and settlement?",
+      "scope": "Selected US professional, scientific and technical service roles under the stated framework and effective period; legal client-fund route is California only when governing law is established.",
+      "answer": "A retainer is evidence of cash and contract terms, not automatic earned revenue. Identify the promised stand-ready or specified services, the service period and any refund or termination rights; recognize only the amount supported by satisfied performance and retain the remainder as a contract liability or other required balance pending the applicable framework.",
+      "answer_status": "sourced-answer-bounded",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_construction_fasb_2014_09"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_construction_fasb_2014_09",
+          "url": "https://storage.fasb.org/ASU%202014-09_Section%20A.pdf",
+          "locator": "ASU 2014-09 Section A, ASC 606-10-25-1 through 25-2, 25-27 through 25-37, 32-1 through 32-6, 45-1 through 45-5",
+          "source_period": "May 2014 original issued text; original effective dates later deferred by ASU 2015-14; current effective requirements and entity adoption remain to be confirmed"
+        }
+      ],
+      "inputs": [
+        "retainer agreement",
+        "service period",
+        "refund/termination terms",
+        "cash receipt",
+        "approved work or availability evidence"
+      ],
+      "workflow": [
+        "Capture contract, source version, role and jurisdiction before posting.",
+        "Reconcile operational evidence to the proposed accounting route."
+      ],
+      "controls": [
+        "Preserve source locator, evidence IDs and reviewer identity.",
+        "Require human approval for framework, principal/agent, worker-status and client-fund judgments."
+      ],
+      "exceptions": [
+        "Recognize a period-supported amount; reconcile cash, contract liability and billed/earned balances."
+      ],
+      "remaining_gaps": [
+        "The engagement may be a deposit, advance fee, stand-ready service or another arrangement; current consolidated GAAP and legal enforceability were not reviewed.",
+        "No professional sign-off or production validation was performed."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "accounting-question": "partial",
+        "evidence-inputs": "partial",
+        "workflow": "partial",
+        "controls": "partial",
+        "worked-material": "partial",
+        "empirical-support": "not-assessed",
+        "scope": "partial"
+      },
+      "dimension_basis": "Partial reflects selected primary-source coverage, original workflow and synthetic worked material; it does not establish accounting correctness, legal advice or operational sufficiency."
+    },
+    {
+      "id": "rq-us-professional-services-reimbursables",
+      "record_id": "guide-us-professional-services-contract-to-ledger",
+      "pointer": "/data/research_questions/1",
+      "family_ids": [
+        "q-revenue",
+        "q-cost-allocation",
+        "q-data-lineage"
+      ],
+      "question": "When are reimbursables revenue, expense, receivable or a pass-through?",
+      "scope": "Selected US professional, scientific and technical service roles under the stated framework and effective period; legal client-fund route is California only when governing law is established.",
+      "answer": "Classify the purchased item, promise and entity role before posting. A customer invoice or reimbursement label does not establish gross or net presentation; principal-versus-agent control, contract terms and who obtains the service determine the route, while incurred cost and recoverability remain separately evidenced.",
+      "answer_status": "sourced-answer-bounded",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_construction_fasb_2014_09",
+        "src_fasb_asu2016_08_principal_agent"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_construction_fasb_2014_09",
+          "url": "https://storage.fasb.org/ASU%202014-09_Section%20A.pdf",
+          "locator": "ASU 2014-09 Section A, ASC 606-10-25-1 through 25-2, 25-27 through 25-37, 32-1 through 32-6, 45-1 through 45-5",
+          "source_period": "May 2014 original issued text; original effective dates later deferred by ASU 2015-14; current effective requirements and entity adoption remain to be confirmed"
+        },
+        {
+          "source_id": "src_fasb_asu2016_08_principal_agent",
+          "url": "https://storage.fasb.org/ASU%202016-08.pdf",
+          "locator": "ASU 2016-08 Summary pp. 1-5; ASC 606-10-55-36 through 55-40",
+          "source_period": "March 2016; effective with Topic 606 adoption and ASU 2014-09 transition provisions; current effective requirements and entity adoption remain to be confirmed"
+        }
+      ],
+      "inputs": [
+        "reimbursable clause",
+        "vendor invoice",
+        "client approval",
+        "control before transfer",
+        "billing and collection"
+      ],
+      "workflow": [
+        "Capture contract, source version, role and jurisdiction before posting.",
+        "Reconcile operational evidence to the proposed accounting route."
+      ],
+      "controls": [
+        "Preserve source locator, evidence IDs and reviewer identity.",
+        "Require human approval for framework, principal/agent, worker-status and client-fund judgments."
+      ],
+      "exceptions": [
+        "Route reimbursable cost through a documented gross/net assessment and reconcile vendor cost, customer charge and settlement."
+      ],
+      "remaining_gaps": [
+        "No current consolidated Topic 606 review or real contract population was performed; tax treatment is separate.",
+        "No professional sign-off or production validation was performed."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "accounting-question": "partial",
+        "evidence-inputs": "partial",
+        "workflow": "partial",
+        "controls": "partial",
+        "worked-material": "partial",
+        "empirical-support": "not-assessed",
+        "scope": "partial"
+      },
+      "dimension_basis": "Partial reflects selected primary-source coverage, original workflow and synthetic worked material; it does not establish accounting correctness, legal advice or operational sufficiency."
+    },
+    {
+      "id": "rq-us-professional-services-fixed-fee-wip",
+      "record_id": "guide-us-professional-services-contract-to-ledger",
+      "pointer": "/data/research_questions/2",
+      "family_ids": [
+        "q-project-wip",
+        "q-revenue",
+        "q-data-lineage"
+      ],
+      "question": "How should a fixed-fee or time-and-material project connect time, WIP, unbilled revenue and billing?",
+      "scope": "Selected US professional, scientific and technical service roles under the stated framework and effective period; legal client-fund route is California only when governing law is established.",
+      "answer": "Use approved time, cost-to-complete and contract-right evidence to select and measure the performance obligation. Billing alone does not establish transfer; when the bounded over-time conditions and a depicting measure are established, cumulative earned revenue may exceed billings as a contract asset, while advance billing may be a contract liability.",
+      "answer_status": "sourced-answer-bounded",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_construction_fasb_2014_09"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_construction_fasb_2014_09",
+          "url": "https://storage.fasb.org/ASU%202014-09_Section%20A.pdf",
+          "locator": "ASU 2014-09 Section A, ASC 606-10-25-1 through 25-2, 25-27 through 25-37, 32-1 through 32-6, 45-1 through 45-5",
+          "source_period": "May 2014 original issued text; original effective dates later deferred by ASU 2015-14; current effective requirements and entity adoption remain to be confirmed"
+        }
+      ],
+      "inputs": [
+        "signed SOW",
+        "approved time",
+        "cost ledger",
+        "estimate to complete",
+        "milestone or acceptance evidence",
+        "billings and cash"
+      ],
+      "workflow": [
+        "Capture contract, source version, role and jurisdiction before posting.",
+        "Reconcile operational evidence to the proposed accounting route."
+      ],
+      "controls": [
+        "Preserve source locator, evidence IDs and reviewer identity.",
+        "Require human approval for framework, principal/agent, worker-status and client-fund judgments."
+      ],
+      "exceptions": [
+        "Roll forward approved hours/cost, estimate, cumulative revenue, WIP or contract asset, billings, receivable and cash; escalate estimate changes."
+      ],
+      "remaining_gaps": [
+        "No current consolidated Codification or contract-enforceability conclusion; alternative-use, termination, loss and acceptance facts can change the result.",
+        "No professional sign-off or production validation was performed."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "accounting-question": "partial",
+        "evidence-inputs": "partial",
+        "workflow": "partial",
+        "controls": "partial",
+        "worked-material": "partial",
+        "empirical-support": "not-assessed",
+        "scope": "partial"
+      },
+      "dimension_basis": "Partial reflects selected primary-source coverage, original workflow and synthetic worked material; it does not establish accounting correctness, legal advice or operational sufficiency."
+    },
+    {
+      "id": "rq-us-professional-services-subcontractor-staffing",
+      "record_id": "guide-us-professional-services-contract-to-ledger",
+      "pointer": "/data/research_questions/3",
+      "family_ids": [
+        "q-revenue",
+        "q-payroll",
+        "q-cost-allocation"
+      ],
+      "question": "How should subcontractor costs and staffing arrangements be separated?",
+      "scope": "Selected US professional, scientific and technical service roles under the stated framework and effective period; legal client-fund route is California only when governing law is established.",
+      "answer": "A subcontractor invoice is not payroll merely because work supports a project, and a staffing label does not decide employee status or gross/net presentation. Assess the service contract and control/principal facts for revenue, then separately classify workers and payroll obligations using the federal tax source and actual control, financial and relationship evidence.",
+      "answer_status": "sourced-answer-bounded",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_fasb_asu2016_08_principal_agent",
+        "src_professional_irs_pub15a_2026",
+        "src_roadmap_naics2022_manual"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_fasb_asu2016_08_principal_agent",
+          "url": "https://storage.fasb.org/ASU%202016-08.pdf",
+          "locator": "ASU 2016-08 Summary pp. 1-5; ASC 606-10-55-36 through 55-40",
+          "source_period": "March 2016; effective with Topic 606 adoption and ASU 2014-09 transition provisions; current effective requirements and entity adoption remain to be confirmed"
+        },
+        {
+          "source_id": "src_professional_irs_pub15a_2026",
+          "url": "https://www.irs.gov/publications/p15a",
+          "locator": "Publication 15-A (2026), Employer’s Supplemental Tax Guide; sections “Employee or Independent Contractor,” “Common-Law Rules,” and the law-firm attorney example",
+          "source_period": "Publication 15-A (2026), 2026 federal employment-tax reporting year; worker-specific, state and later-development checks remain required"
+        },
+        {
+          "source_id": "src_roadmap_naics2022_manual",
+          "url": "https://www.census.gov/naics/reference_files_tools/2022_NAICS_Manual.pdf",
+          "locator": "2022 NAICS Manual, Part I, Sector 54—Professional, Scientific, and Technical Services; selected 5411 Legal Services, 5412 Accounting, Tax Preparation, Bookkeeping and Payroll Services, 5413 Architectural, Engineering and Related Services, 5416 Management, Scientific and Technical Consulting Services, and 5417 Scientific Research and Development Services",
+          "source_period": "2022 NAICS Manual, NAICS 2022 classification edition; classification only and current leaf definitions require recheck"
+        }
+      ],
+      "inputs": [
+        "subcontract/SOW",
+        "worker agreement",
+        "who directs work",
+        "rate and margin",
+        "payroll records",
+        "vendor invoice"
+      ],
+      "workflow": [
+        "Capture contract, source version, role and jurisdiction before posting.",
+        "Reconcile operational evidence to the proposed accounting route."
+      ],
+      "controls": [
+        "Preserve source locator, evidence IDs and reviewer identity.",
+        "Require human approval for framework, principal/agent, worker-status and client-fund judgments."
+      ],
+      "exceptions": [
+        "Keep subcontractor AP, employee payroll and staffing settlement evidence distinct; route gross/net and worker-status exceptions for human review."
+      ],
+      "remaining_gaps": [
+        "IRS classification is tax guidance, not a GAAP or state-law conclusion; no particular worker or staffing contract was tested.",
+        "No professional sign-off or production validation was performed."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "accounting-question": "partial",
+        "evidence-inputs": "partial",
+        "workflow": "partial",
+        "controls": "partial",
+        "worked-material": "partial",
+        "empirical-support": "not-assessed",
+        "scope": "partial"
+      },
+      "dimension_basis": "Partial reflects selected primary-source coverage, original workflow and synthetic worked material; it does not establish accounting correctness, legal advice or operational sufficiency."
+    },
+    {
+      "id": "rq-us-professional-services-payroll-project",
+      "record_id": "guide-us-professional-services-contract-to-ledger",
+      "pointer": "/data/research_questions/4",
+      "family_ids": [
+        "q-payroll",
+        "q-data-lineage",
+        "q-cost-allocation"
+      ],
+      "question": "How should project time connect to payroll and period-end settlement?",
+      "scope": "Selected US professional, scientific and technical service roles under the stated framework and effective period; legal client-fund route is California only when governing law is established.",
+      "answer": "Approved time and project codes provide an evidence bridge from labor to project cost, payroll payable and the revenue or WIP analysis. Payroll tax guidance identifies employer responsibilities and worker status, but the accounting entry still requires the entity’s reporting framework, payroll period, accrual completeness and project allocation controls.",
+      "answer_status": "sourced-answer-bounded",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_professional_irs_pub15a_2026",
+        "src_irs_pub15_2026",
+        "src_dol_factsheet21_recordkeeping"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_professional_irs_pub15a_2026",
+          "url": "https://www.irs.gov/publications/p15a",
+          "locator": "Publication 15-A (2026), Employer’s Supplemental Tax Guide; sections “Employee or Independent Contractor,” “Common-Law Rules,” and the law-firm attorney example",
+          "source_period": "Publication 15-A (2026), 2026 federal employment-tax reporting year; worker-specific, state and later-development checks remain required"
+        },
+        {
+          "source_id": "src_irs_pub15_2026",
+          "url": "https://www.irs.gov/publications/p15",
+          "locator": "Publication 15 (2026), Circular E, Employer’s Tax Guide; employer employment-tax, withholding, deposit, reporting and recordkeeping sections",
+          "source_period": "Publication 15 (2026), 2026 federal employment-tax reporting year; rates, thresholds, later developments and taxpayer-specific rules require recheck"
+        },
+        {
+          "source_id": "src_dol_factsheet21_recordkeeping",
+          "url": "https://www.dol.gov/agencies/whd/fact-sheets/21-flsa-recordkeeping",
+          "locator": "Fact Sheet #21, revised July 2008: required identity, hours, wage and deduction records; three-year payroll and two-year wage-computation retention summary; 29 CFR Part 516 controls",
+          "source_period": "Fact Sheet #21 revised July 2008; current DOL summary accessed 2026-09-19; underlying 29 CFR Part 516 and current law control"
+        }
+      ],
+      "inputs": [
+        "approved timecard",
+        "project code",
+        "payroll register",
+        "payroll tax calculation",
+        "payroll cutoff",
+        "bank settlement"
+      ],
+      "workflow": [
+        "Capture contract, source version, role and jurisdiction before posting.",
+        "Reconcile operational evidence to the proposed accounting route."
+      ],
+      "controls": [
+        "Preserve source locator, evidence IDs and reviewer identity.",
+        "Require human approval for framework, principal/agent, worker-status and client-fund judgments."
+      ],
+      "exceptions": [
+        "Reconcile time to payroll register and project ledger, accrue approved unprocessed time, then tie payroll liabilities and cash settlement to source reports."
+      ],
+      "remaining_gaps": [
+        "No employee population, tax calculation, state payroll rule or operating-effectiveness test was performed.",
+        "No professional sign-off or production validation was performed."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "accounting-question": "partial",
+        "evidence-inputs": "partial",
+        "workflow": "partial",
+        "controls": "partial",
+        "worked-material": "partial",
+        "empirical-support": "not-assessed",
+        "scope": "partial"
+      },
+      "dimension_basis": "Partial reflects selected primary-source coverage, original workflow and synthetic worked material; it does not establish accounting correctness, legal advice or operational sufficiency."
+    },
+    {
+      "id": "rq-us-professional-services-client-trust-funds",
+      "record_id": "guide-us-professional-services-contract-to-ledger",
+      "pointer": "/data/research_questions/5",
+      "family_ids": [
+        "q-cash-settlement",
+        "q-compliance-assurance",
+        "q-human-authority"
+      ],
+      "question": "How should a legal firm route client or trust money?",
+      "scope": "Selected US professional, scientific and technical service roles under the stated framework and effective period; legal client-fund route is California only when governing law is established.",
+      "answer": "For the selected California lawyer route, determine governing law and engagement facts first. Rule 1.15 requires funds held for a client or other person to be separated and accounted for, with no commingling and disputed portions retained; a firm fee is recognized or released only when the engagement and applicable accounting framework support it.",
+      "answer_status": "sourced-answer-bounded",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_professional_california_rule_115"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_professional_california_rule_115",
+          "url": "https://www.calbar.ca.gov/legal-professionals/rules/rules-professional-conduct/current-rules-professional-conduct/chapter-1-lawyer-client-relationship",
+          "locator": "Rule 1.15(a)-(d), (f) and (g), including (d)(7) distribution duty, 45-day presumption and definition of undisputed funds; publisher amendment note effective January 1, 2023",
+          "source_period": "California Rule 1.15 as amended effective January 1, 2023 per publisher note; selected current online text read 2026-09-19; California governing law and engagement facts must be established"
+        }
+      ],
+      "inputs": [
+        "governing-law memo",
+        "engagement letter",
+        "trust-bank statement",
+        "client ledger",
+        "fee invoice",
+        "dispute notice",
+        "written accounting"
+      ],
+      "workflow": [
+        "Capture contract, source version, role and jurisdiction before posting.",
+        "Reconcile operational evidence to the proposed accounting route."
+      ],
+      "controls": [
+        "Preserve source locator, evidence IDs and reviewer identity.",
+        "Require human approval for framework, principal/agent, worker-status and client-fund judgments."
+      ],
+      "exceptions": [
+        "Reconcile trust cash to client subledger, preserve disputed balances, document fee release and require lawyer review before transfer to operating cash."
+      ],
+      "remaining_gaps": [
+        "California is a selected state example only; Rule 1.15 is not nationwide law or an ABA Model Rule, and no client-money population was tested.",
+        "No professional sign-off or production validation was performed."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "accounting-question": "partial",
+        "evidence-inputs": "partial",
+        "workflow": "partial",
+        "controls": "partial",
+        "worked-material": "partial",
+        "empirical-support": "not-assessed",
+        "scope": "partial"
+      },
+      "dimension_basis": "Partial reflects selected primary-source coverage, original workflow and synthetic worked material; it does not establish accounting correctness, legal advice or operational sufficiency."
+    }
+  ],
+  "assessments": [
+    {
+      "id": "assessment-rq-us-professional-services-retainer-boundary",
+      "scope_kind": "industry",
+      "industry_code": "541",
+      "question_id": "q-revenue",
+      "family_ids": [
+        "q-revenue",
+        "q-cash-settlement"
+      ],
+      "status": "partial",
+      "scope": "Selected US professional, scientific and technical service roles under the stated framework and effective period; legal client-fund route is California only when governing law is established.",
+      "jurisdictions": [
+        "US"
+      ],
+      "frameworks": [
+        "US GAAP ASC 606 where applicable",
+        "US federal employment-tax guidance where applicable"
+      ],
+      "effective_from": "2026-01-01",
+      "effective_to": null,
+      "reviewed_at": "2026-09-19",
+      "reviewer": "Codex AI-assisted source review",
+      "review_basis": "Named question linked to bounded original-source locators, workflow, controls and synthetic material.",
+      "source_currency": "verified-within-stated-scope",
+      "evidence_record_ids": [
+        "src_construction_fasb_2014_09"
+      ],
+      "dimensions": {
+        "accounting-question": "partial",
+        "evidence-inputs": "partial",
+        "workflow": "partial",
+        "controls": "partial",
+        "worked-material": "partial",
+        "empirical-support": "not-assessed",
+        "scope": "partial"
+      },
+      "gaps": [
+        "The engagement may be a deposit, advance fee, stand-ready service or another arrangement; current consolidated GAAP and legal enforceability were not reviewed.",
+        "No professional sign-off or production validation was performed."
+      ],
+      "rights": {
+        "source_status": "unknown",
+        "full_text_stored": false
+      },
+      "professional_review": "not-performed",
+      "empirical_support": "not-established"
+    },
+    {
+      "id": "assessment-rq-us-professional-services-reimbursables",
+      "scope_kind": "industry",
+      "industry_code": "541",
+      "question_id": "q-revenue",
+      "family_ids": [
+        "q-revenue",
+        "q-cost-allocation",
+        "q-data-lineage"
+      ],
+      "status": "partial",
+      "scope": "Selected US professional, scientific and technical service roles under the stated framework and effective period; legal client-fund route is California only when governing law is established.",
+      "jurisdictions": [
+        "US"
+      ],
+      "frameworks": [
+        "US GAAP ASC 606 where applicable",
+        "US federal employment-tax guidance where applicable"
+      ],
+      "effective_from": "2026-01-01",
+      "effective_to": null,
+      "reviewed_at": "2026-09-19",
+      "reviewer": "Codex AI-assisted source review",
+      "review_basis": "Named question linked to bounded original-source locators, workflow, controls and synthetic material.",
+      "source_currency": "verified-within-stated-scope",
+      "evidence_record_ids": [
+        "src_construction_fasb_2014_09",
+        "src_fasb_asu2016_08_principal_agent"
+      ],
+      "dimensions": {
+        "accounting-question": "partial",
+        "evidence-inputs": "partial",
+        "workflow": "partial",
+        "controls": "partial",
+        "worked-material": "partial",
+        "empirical-support": "not-assessed",
+        "scope": "partial"
+      },
+      "gaps": [
+        "No current consolidated Topic 606 review or real contract population was performed; tax treatment is separate.",
+        "No professional sign-off or production validation was performed."
+      ],
+      "rights": {
+        "source_status": "unknown",
+        "full_text_stored": false
+      },
+      "professional_review": "not-performed",
+      "empirical_support": "not-established"
+    },
+    {
+      "id": "assessment-rq-us-professional-services-fixed-fee-wip",
+      "scope_kind": "industry",
+      "industry_code": "541",
+      "question_id": "q-project-wip",
+      "family_ids": [
+        "q-project-wip",
+        "q-revenue",
+        "q-data-lineage"
+      ],
+      "status": "partial",
+      "scope": "Selected US professional, scientific and technical service roles under the stated framework and effective period; legal client-fund route is California only when governing law is established.",
+      "jurisdictions": [
+        "US"
+      ],
+      "frameworks": [
+        "US GAAP ASC 606 where applicable",
+        "US federal employment-tax guidance where applicable"
+      ],
+      "effective_from": "2026-01-01",
+      "effective_to": null,
+      "reviewed_at": "2026-09-19",
+      "reviewer": "Codex AI-assisted source review",
+      "review_basis": "Named question linked to bounded original-source locators, workflow, controls and synthetic material.",
+      "source_currency": "verified-within-stated-scope",
+      "evidence_record_ids": [
+        "src_construction_fasb_2014_09"
+      ],
+      "dimensions": {
+        "accounting-question": "partial",
+        "evidence-inputs": "partial",
+        "workflow": "partial",
+        "controls": "partial",
+        "worked-material": "partial",
+        "empirical-support": "not-assessed",
+        "scope": "partial"
+      },
+      "gaps": [
+        "No current consolidated Codification or contract-enforceability conclusion; alternative-use, termination, loss and acceptance facts can change the result.",
+        "No professional sign-off or production validation was performed."
+      ],
+      "rights": {
+        "source_status": "unknown",
+        "full_text_stored": false
+      },
+      "professional_review": "not-performed",
+      "empirical_support": "not-established"
+    },
+    {
+      "id": "assessment-rq-us-professional-services-subcontractor-staffing",
+      "scope_kind": "industry",
+      "industry_code": "541",
+      "question_id": "q-revenue",
+      "family_ids": [
+        "q-revenue",
+        "q-payroll",
+        "q-cost-allocation"
+      ],
+      "status": "partial",
+      "scope": "Selected US professional, scientific and technical service roles under the stated framework and effective period; legal client-fund route is California only when governing law is established.",
+      "jurisdictions": [
+        "US"
+      ],
+      "frameworks": [
+        "US GAAP ASC 606 where applicable",
+        "US federal employment-tax guidance where applicable"
+      ],
+      "effective_from": "2026-01-01",
+      "effective_to": null,
+      "reviewed_at": "2026-09-19",
+      "reviewer": "Codex AI-assisted source review",
+      "review_basis": "Named question linked to bounded original-source locators, workflow, controls and synthetic material.",
+      "source_currency": "verified-within-stated-scope",
+      "evidence_record_ids": [
+        "src_fasb_asu2016_08_principal_agent",
+        "src_professional_irs_pub15a_2026",
+        "src_roadmap_naics2022_manual"
+      ],
+      "dimensions": {
+        "accounting-question": "partial",
+        "evidence-inputs": "partial",
+        "workflow": "partial",
+        "controls": "partial",
+        "worked-material": "partial",
+        "empirical-support": "not-assessed",
+        "scope": "partial"
+      },
+      "gaps": [
+        "IRS classification is tax guidance, not a GAAP or state-law conclusion; no particular worker or staffing contract was tested.",
+        "No professional sign-off or production validation was performed."
+      ],
+      "rights": {
+        "source_status": "unknown",
+        "full_text_stored": false
+      },
+      "professional_review": "not-performed",
+      "empirical_support": "not-established"
+    },
+    {
+      "id": "assessment-rq-us-professional-services-payroll-project",
+      "scope_kind": "industry",
+      "industry_code": "541",
+      "question_id": "q-payroll",
+      "family_ids": [
+        "q-payroll",
+        "q-data-lineage",
+        "q-cost-allocation"
+      ],
+      "status": "partial",
+      "scope": "Selected US professional, scientific and technical service roles under the stated framework and effective period; legal client-fund route is California only when governing law is established.",
+      "jurisdictions": [
+        "US"
+      ],
+      "frameworks": [
+        "US GAAP ASC 606 where applicable",
+        "US federal employment-tax guidance where applicable"
+      ],
+      "effective_from": "2026-01-01",
+      "effective_to": null,
+      "reviewed_at": "2026-09-19",
+      "reviewer": "Codex AI-assisted source review",
+      "review_basis": "Named question linked to bounded original-source locators, workflow, controls and synthetic material.",
+      "source_currency": "verified-within-stated-scope",
+      "evidence_record_ids": [
+        "src_professional_irs_pub15a_2026",
+        "src_irs_pub15_2026",
+        "src_dol_factsheet21_recordkeeping"
+      ],
+      "dimensions": {
+        "accounting-question": "partial",
+        "evidence-inputs": "partial",
+        "workflow": "partial",
+        "controls": "partial",
+        "worked-material": "partial",
+        "empirical-support": "not-assessed",
+        "scope": "partial"
+      },
+      "gaps": [
+        "No employee population, tax calculation, state payroll rule or operating-effectiveness test was performed.",
+        "No professional sign-off or production validation was performed."
+      ],
+      "rights": {
+        "source_status": "unknown",
+        "full_text_stored": false
+      },
+      "professional_review": "not-performed",
+      "empirical_support": "not-established"
+    },
+    {
+      "id": "assessment-rq-us-professional-services-client-trust-funds",
+      "scope_kind": "industry",
+      "industry_code": "541",
+      "question_id": "q-cash-settlement",
+      "family_ids": [
+        "q-cash-settlement",
+        "q-compliance-assurance",
+        "q-human-authority"
+      ],
+      "status": "partial",
+      "scope": "Selected US professional, scientific and technical service roles under the stated framework and effective period; legal client-fund route is California only when governing law is established.",
+      "jurisdictions": [
+        "US"
+      ],
+      "frameworks": [
+        "US GAAP ASC 606 where applicable",
+        "US federal employment-tax guidance where applicable"
+      ],
+      "effective_from": "2026-01-01",
+      "effective_to": null,
+      "reviewed_at": "2026-09-19",
+      "reviewer": "Codex AI-assisted source review",
+      "review_basis": "Named question linked to bounded original-source locators, workflow, controls and synthetic material.",
+      "source_currency": "verified-within-stated-scope",
+      "evidence_record_ids": [
+        "src_professional_california_rule_115"
+      ],
+      "dimensions": {
+        "accounting-question": "partial",
+        "evidence-inputs": "partial",
+        "workflow": "partial",
+        "controls": "partial",
+        "worked-material": "partial",
+        "empirical-support": "not-assessed",
+        "scope": "partial"
+      },
+      "gaps": [
+        "California is a selected state example only; Rule 1.15 is not nationwide law or an ABA Model Rule, and no client-money population was tested.",
+        "No professional sign-off or production validation was performed."
+      ],
+      "rights": {
+        "source_status": "unknown",
+        "full_text_stored": false
+      },
+      "professional_review": "not-performed",
+      "empirical_support": "not-established"
+    }
+  ],
+  "mapping_overrides": {
+    "guide-us-professional-services-contract-to-ledger": {
+      "industry_codes": [
+        "541"
+      ],
+      "replace_question_ids": false,
+      "question_ids": [
+        "q-revenue",
+        "q-project-wip",
+        "q-payroll",
+        "q-cash-settlement",
+        "q-data-lineage",
+        "q-cost-allocation",
+        "q-human-authority",
+        "q-compliance-assurance"
+      ],
+      "basis_field": "/industries/0",
+      "reason": "Issue108 selected professional-services role route; applicability and depth remain bounded."
+    },
+    "workflow-us-professional-services-contract-to-ledger": {
+      "industry_codes": [
+        "541"
+      ],
+      "replace_question_ids": false,
+      "question_ids": [],
+      "basis_field": "/industries/0",
+      "reason": "Issue108 selected professional-services role route; applicability and depth remain bounded."
+    },
+    "ctrl-us-professional-services-contract-and-funds": {
+      "industry_codes": [
+        "541"
+      ],
+      "replace_question_ids": false,
+      "question_ids": [],
+      "basis_field": "/industries/0",
+      "reason": "Issue108 selected professional-services role route; applicability and depth remain bounded."
+    },
+    "example-us-professional-services-connected-close": {
+      "industry_codes": [
+        "541"
+      ],
+      "replace_question_ids": false,
+      "question_ids": [],
+      "basis_field": "/industries/0",
+      "reason": "Issue108 selected professional-services role route; applicability and depth remain bounded."
+    },
+    "src_professional_irs_pub15a_2026": {
+      "industry_codes": [
+        "541"
+      ],
+      "replace_question_ids": false,
+      "question_ids": [],
+      "basis_field": "/industries/0",
+      "reason": "Official source is mapped to the selected issue108 professional-services route; source scope remains explicit."
+    },
+    "src_professional_california_rule_115": {
+      "industry_codes": [
+        "541"
+      ],
+      "replace_question_ids": false,
+      "question_ids": [],
+      "basis_field": "/industries/0",
+      "reason": "Official source is mapped to the selected issue108 professional-services route; source scope remains explicit."
+    }
+  },
+  "common_limits": [
+    "Source rights remain unknown and publisher full text is not stored.",
+    "Current consolidated US GAAP and entity adoption were not reviewed.",
+    "Synthetic numbers are original illustrations, not empirical evidence or operational validation.",
+    "California Rule 1.15 is a selected state route only; governing law must be established.",
+    "No ABA Model Rule is used as all-states binding law."
+  ],
+  "integration_contract": {
+    "source_only": true,
+    "additive_only": true,
+    "catalog_write": false,
+    "release_write": false,
+    "canonical_write": false,
+    "required_base_commit": "45ab4c64672cbbae76b790f1215e00d0dfd35c78",
+    "expected_named_question_count_before": 309,
+    "expected_named_question_count_after": 315,
+    "preflight_all_conflicts_before_writes": true,
+    "preserve_existing_primary_metadata": true,
+    "preserve_existing_stable_ids": true,
+    "replay_byte_stable": true,
+    "package_version_distinct_from_corpus_version": true,
+    "apply_requires_explicit_expected_base": true
+  },
+  "retrieval_fixtures": {
+    "search": [
+      {
+        "id": "professional-services-california-client-funds",
+        "query": "California trust funds Rule 1.15 undisputed 45-day",
+        "limit": 20,
+        "expected_record_ids": [
+          "guide-us-professional-services-contract-to-ledger",
+          "src_professional_california_rule_115"
+        ],
+        "excluded_record_ids": [
+          "guide-professional-services"
+        ],
+        "required_citations": [
+          "guide-us-professional-services-contract-to-ledger",
+          "src_professional_california_rule_115"
+        ],
+        "scope_assertion": "Selected California lawyer funds route only; governing law and engagement facts remain required."
+      },
+      {
+        "id": "professional-services-nationwide-counter-role",
+        "query": "engineering accounting customer funds not legal trust staffing principal agent",
+        "limit": 20,
+        "expected_record_ids": [
+          "guide-us-professional-services-contract-to-ledger",
+          "example-us-professional-services-connected-close"
+        ],
+        "excluded_record_ids": [
+          "src_professional_california_rule_115"
+        ],
+        "required_citations": [
+          "guide-us-professional-services-contract-to-ledger",
+          "example-us-professional-services-connected-close"
+        ],
+        "scope_assertion": "Nationwide counter-role route tests that California legal client-fund rules do not transfer to engineering, accounting or staffing roles."
+      }
+    ],
+    "get": [
+      {
+        "id": "professional-services-guide-get",
+        "record_id": "guide-us-professional-services-contract-to-ledger",
+        "limit": 20,
+        "required_source_ids": [
+          "src_construction_fasb_2014_09",
+          "src_professional_california_rule_115"
+        ]
+      }
+    ],
+    "context": [
+      {
+        "id": "professional-services-context-roles",
+        "record_ids": [
+          "guide-us-professional-services-contract-to-ledger",
+          "example-us-professional-services-connected-close"
+        ],
+        "include_sources": true,
+        "max_chars": 40000,
+        "required_record_ids": [
+          "guide-us-professional-services-contract-to-ledger",
+          "example-us-professional-services-connected-close",
+          "src_professional_california_rule_115"
+        ]
+      }
+    ]
+  },
+  "dispositions": {
+    "a1": "Complete: seven baseline records and six linked questions inventoried; accepted guide and source foundations reused.",
+    "a2": "Complete within bounded scope: IRS Publication 15-A and California Rule 1.15 were read live at exact selected locators; existing FASB, IRS 15, DOL and Census records reused with inherited limits.",
+    "a3": "Complete: connected synthetic arithmetic includes retainer, fixed fee/WIP, reimbursable, subcontractor, staffing, payroll and client-fund branches with proposed entries and tie-outs.",
+    "a4": "Explicit partial: professional review, empirical support, current consolidated GAAP, all-state law, worker facts and operational effectiveness remain open.",
+    "a5": "Source helper and focused tests supplied; coordinator must apply in disposable harness and run standard corpus checks."
+  },
+  "integration_source_amendment": {
+    "policy": "Additive only. Coordinator may apply records, questions, assessments and mappings after full conflict preflight; no catalog or release write belongs to this source package.",
+    "existing_guide": "Reuse guide-professional-services and its six questions by stable ID; add the new guide as a bounded supplement.",
+    "primary_metadata": "New source records retain stable IDs, source URLs and unknown rights metadata. Existing records must not be rewritten."
+  }
+}
