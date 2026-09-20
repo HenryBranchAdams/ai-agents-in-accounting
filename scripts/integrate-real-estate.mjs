@@ -12,7 +12,7 @@ const files = {
 };
 const readFrom = root => file => JSON.parse(fs.readFileSync(path.join(root, file), 'utf8'));
 
-export function applyToRoot(root, { expectedVersion, dryRun = false } = {}) {
+export function applyToRoot(root, { expectedVersion, dryRun = false, currentMode = false } = {}) {
   const read = readFrom(root);
   const packet = read(packetFile);
   const catalog = read('data/catalog.json');
@@ -22,7 +22,9 @@ export function applyToRoot(root, { expectedVersion, dryRun = false } = {}) {
   assert.equal(packet.integration_contract.release_write, false);
   assert.equal(packet.integration_contract.snapshot_write, false);
   assert.equal(packet.integration_contract.archive_write, false);
-  assert.equal(catalog.corpus_version, expectedVersion || packet.current_corpus_version, 'Refuse unexpected real-estate integration edition before writes');
+  const version='2026-09-19.12425';
+  if(currentMode)assert.ok(['2026-09-19.12424',version].includes(catalog.corpus_version),'Refuse unexpected real-estate current edition');
+  else assert.equal(catalog.corpus_version, expectedVersion || packet.current_corpus_version, 'Refuse unexpected real-estate integration edition before writes');
   for (const file of Object.values(files)) assert.ok(fs.existsSync(path.join(root, file)), `Missing integration target ${file}`);
 
   const stage = new Map();
@@ -84,6 +86,24 @@ export function applyToRoot(root, { expectedVersion, dryRun = false } = {}) {
   stage.set(files.assessments, assessments);
   stage.set(files.mappings, mappings);
 
+    if (currentMode) {
+    const note = ` Edition ${version} adds selected US real-estate, accommodation, food-service and government research, with separate entity roles and source limits.`;
+    const review = ` Edition ${version} retains prior rights and history and documents a narrow correction to the ASU 2016-10 publication month.`;
+    if (!catalog.coverage_note.includes(note)) catalog.coverage_note += note;
+    if (!catalog.review_note.includes(review)) catalog.review_note += review;
+    catalog.corpus_version=version; stage.set('data/catalog.json',catalog);
+    const registry=stage.get('data/coverage/research-questions.json'); registry.corpus_version=version; registry.question_set_version=version;
+    stage.get('data/coverage/assessments.json').assessment_version=version;
+    const overrides=stage.get('data/coverage/mapping-overrides.json'); overrides.mapping_version=version; overrides.updated_at=packet.reviewed_at;
+    const criteria=read('data/coverage/research-criteria.json'); criteria.population.named_research_questions=registry.questions.length; stage.set('data/coverage/research-criteria.json',criteria);
+    for (const file of ['data/coverage/subsector-profiles.json','data/coverage/subsector-screening.json']) { const value=read(file); value.corpus_version=version; stage.set(file,value); }
+    const file='data/research-questions.json', fixtures=read(file);
+    for (const row of read('data/research/real-estate-retrieval-2026-09-19.json')) {
+      const old=fixtures.find(x=>x.id===row.id); assert.ok(!old||isDeepStrictEqual(old,row),`Retrieval conflict ${row.id}`); if(!old)fixtures.push(structuredClone(row));
+    }
+    stage.set(file,fixtures);
+  }
+
   let changed = 0;
   for (const [file, value] of stage) {
     const original = fs.readFileSync(path.join(root, file), 'utf8');
@@ -98,6 +118,6 @@ export function applyToRoot(root, { expectedVersion, dryRun = false } = {}) {
 if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) {
   const value = flag => { const i = process.argv.indexOf(flag); return i < 0 ? undefined : process.argv[i + 1]; };
   const dryRun = process.argv.includes('--dry-run');
-  assert.ok(dryRun || process.argv.includes('--apply-source-fixture'), 'Refusing to write without --apply-source-fixture');
-  console.log(JSON.stringify(applyToRoot(value('--root') || process.cwd(), { expectedVersion: value('--expected-version'), dryRun }), null, 2));
+  assert.ok(dryRun || process.argv.includes('--apply-source-fixture') || process.argv.includes('--current'), 'Refusing to write without --apply-source-fixture');
+  console.log(JSON.stringify(applyToRoot(value('--root') || process.cwd(), { expectedVersion: value('--expected-version'), dryRun, currentMode: process.argv.includes('--current') }), null, 2));
 }
