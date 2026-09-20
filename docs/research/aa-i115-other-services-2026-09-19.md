@@ -9,12 +9,12 @@ federal tax, and consumer-protection routes remain separate.
 ## Research evidence
 
 The package adds two primary-source records. The Federal Trade Commission
-Funeral Rule page records its pre-need and at-need scope, general price-list and
-consumer-choice provisions, and the limit that those disclosures do not decide
+detailed “Complying with the Funeral Rule” guide records its pre-need and at-need
+scope, general price-list and consumer-choice provisions, and the limit that those disclosures do not decide
 GAAP recognition, trust treatment, or perpetual-care accounting. The IRS
 Publication 926 page records the household-employee determination, employment
-tax, withholding, and Schedule H routes, with revision year, thresholds, state
-rules, and actual worker facts left open.
+tax, withholding, and Schedule H routes, as Publication 926 (2026), for use in 2026, with thresholds, state rules, and actual
+worker facts left open.
 
 Accepted FASB revenue, nonprofit presentation and contribution, IRS Form 990,
 principal-agent, and NAICS source IDs are reused with their existing primary
@@ -28,7 +28,8 @@ example records. The connected synthetic cases cover repair parts and labor
 with an assurance warranty estimate, laundry batch completion with
 customer-goods custody, funeral pre-need deposit and service milestone,
 membership dues split between benefits and contribution plus restricted
-program support, and household employee payroll with a contractor
+program support; the restriction release is a net-asset reclassification with no
+second revenue, and household employee payroll with a contractor
 counterbranch. All journals use integer cents and independently reconcile.
 
 The six named questions and six partial assessments preserve remaining branch
