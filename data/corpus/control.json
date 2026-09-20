@@ -3588,5 +3588,204 @@
         "Publisher rights remain unknown and full text is not stored; selected roles do not establish whole-sector sufficiency or state-law coverage."
       ]
     }
+  },
+  {
+    "id": "ctrl-real-estate-role-and-settlement",
+    "kind": "control",
+    "title": "Role, source and settlement controls for real estate research",
+    "summary": "Controls keep property-owner assets, contractor services, manager settlements, tenant deposits, lease consideration and license rights from being merged by industry label.",
+    "topics": [
+      "Controls and governance",
+      "Source data, lineage and reconciliation",
+      "Accounting and reporting"
+    ],
+    "industries": [
+      "real-estate-sector"
+    ],
+    "jurisdiction": "United States; selected roles and reporting purposes only",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_roadmap_naics2022_manual",
+      "src_fasb_asu201602_leases",
+      "src_i120_asu202005_lease_dates",
+      "src_construction_fasb_2014_09",
+      "src_fasb_asu2016_08_principal_agent",
+      "src_aa_i105_fasb_2016_10",
+      "src_1os761s",
+      "src_aa_i107_fas67_real_estate_costs",
+      "src_aa_i107_fas66_real_estate_sales"
+    ],
+    "related_ids": [
+      "guide-real-estate-us-roles",
+      "wf-real-estate-property-to-ledger"
+    ],
+    "review_status": "source-reviewed",
+    "reviewed_at": "2026-09-19",
+    "provenance": {
+      "added_on": "2026-09-19",
+      "reviewer": "Codex AI-assisted bounded source research",
+      "note": "Source-only candidate for issue 107. Original publisher text is not stored; no professional signoff is asserted."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "External publisher text is not stored; publisher terms and source rights remain separate and unresolved.",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "control_points": [
+        "Role control: require owner/developer, contractor, manager/broker, lessor or rights-licensor designation.",
+        "Source control: stable source ID, exact locator and locator URL equality.",
+        "Contract control: immutable contract version and amendment sequence.",
+        "Settlement control: separate owner funds, tenant deposits and manager fee populations.",
+        "Calculation control: cents-level schedule and independently recomputed totals.",
+        "Release control: current consolidated authority and professional review remain explicit gates."
+      ],
+      "failure_behavior": "Stage all additions and validate conflicts before any write; reject unknown source IDs, duplicate URLs, stable-ID differences, unresolved locators or arithmetic mismatch."
+    }
+  },
+  {
+    "id": "ctrl-accommodation-food-roles",
+    "kind": "control",
+    "title": "Hospitality entity and settlement controls",
+    "summary": "Controls test cutoff, role, tax and tip categories, inventory and reciprocal owner/manager activity.",
+    "topics": [
+      "Accounting and reporting",
+      "Accommodation and food services",
+      "Cash settlement"
+    ],
+    "industries": [
+      "accommodation-food-services"
+    ],
+    "jurisdiction": "United States; selected operator, owner, manager and franchise roles",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_construction_fasb_2014_09",
+      "src_aa_i114_irs_tips",
+      "src_irs_pub15_2026",
+      "src_fasb_asu2016_08_principal_agent",
+      "src_fasb_asu2015_11_inventory",
+      "src_aa_i114_fasb_2021_02",
+      "src_aa_i105_fasb_2016_10"
+    ],
+    "related_ids": [
+      "guide-accommodation-food-us-close",
+      "wf-accommodation-food-settlement",
+      "example-accommodation-food-connected-close"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-19",
+    "provenance": {
+      "added_on": "2026-09-19",
+      "reviewer": "Codex AI-assisted selected-source and editorial review",
+      "scope": "Original publisher passages and independently created synthetic worksheets; no professional review.",
+      "note": "Source-only proposal pending independent review and integration."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "External publisher text is not stored; publisher terms and source rights remain separate and unresolved.",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "controls": [
+        "Reservation cutoff and refund obligation review",
+        "POS category-to-bank reconciliation without netting employee or tax liabilities into sales",
+        "Payroll-input and tip-category checks separate from individual tax deductions",
+        "Platform control assessment independent of payment timing",
+        "Physical count, disposal and NRV evidence with cost-method gate",
+        "Separate franchisor and franchisee framework decisions",
+        "Owner/manager reciprocal balance and fee-base match"
+      ],
+      "failure_conditions": [
+        "Missing performance or refund facts",
+        "Unmatched payment or interentity balance",
+        "Unsupported payroll, stock or royalty input"
+      ],
+      "limitations": [
+        "Current consolidated ASC, later amendments, actual contracts, tax and wage applicability and local lodging/deposit rules remain unverified.",
+        "These synthetic worksheets are not operating records, payroll advice, approved postings or empirical agent evidence; no professional review was performed.",
+        "External rights remain unknown with no full text stored. Selected roles and assumptions do not establish whole-industry sufficiency."
+      ]
+    }
+  },
+  {
+    "id": "control-us-government-framework-routing",
+    "kind": "control",
+    "title": "US government framework and population controls",
+    "summary": "Controls for separating GASB, FASAB, federal-award compliance, proprietary, governmental and fiduciary populations.",
+    "topics": [
+      "Scoped research",
+      "Public sector and government accounting"
+    ],
+    "industries": [
+      "92"
+    ],
+    "jurisdiction": "United States; selected public-administration roles",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_roadmap_gasb34_basis",
+      "src_roadmap_gasb103",
+      "src_roadmap_fasab34",
+      "src_roadmap_fasab53",
+      "src_cfr200grants",
+      "src_gaogb25",
+      "src_gaofam26",
+      "src_education_gasb35"
+    ],
+    "related_ids": [
+      "guide-us-government-public-administration",
+      "workflow-us-government-close"
+    ],
+    "reviewed_at": "2026-09-19",
+    "review_status": "editorially-reviewed",
+    "provenance": {
+      "added_on": "2026-09-19",
+      "reviewer": "Codex AI-assisted original-source research",
+      "note": "Original bounded synthesis from selected official source passages. No professional sign-off or full publisher text is stored.",
+      "scope": "Issue 116 selected federal and state/local public-administration roles; source access and transfer limits are recorded in the packet."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "External source text is not included; publisher terms remain record-specific.",
+      "full_text_stored": false
+    },
+    "data": {
+      "id": "control-us-government-framework-routing",
+      "control_objectives": [
+        "Prevent a NAICS or customer relationship from selecting a reporting framework.",
+        "Preserve budgetary, GAAP, award-compliance and custodial populations separately.",
+        "Make every source locator and bridge amount reviewable."
+      ],
+      "control_activities": [
+        "Framework and entity-role approval before mapping.",
+        "Original/final budget and actual-to-ledger reconciliation.",
+        "Federal net-cost/net-outlay and state fund-to-government-wide tie-out.",
+        "Custodial beneficiary and remittance reconciliation.",
+        "Late-source, duplicate, unsupported and rights-unknown hold."
+      ],
+      "evidence": [
+        "Source URL, edition, locator, effective period, access limits and review marker.",
+        "Balanced journal, bridge formula, counterexample result and human-review disposition."
+      ],
+      "limitations": [
+        "These are editorial control proposals, not GAO Green Book operating-effectiveness evidence or professional assurance."
+      ]
+    }
   }
 ]

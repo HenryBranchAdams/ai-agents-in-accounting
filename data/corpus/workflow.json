@@ -27345,5 +27345,235 @@
         "Publisher rights remain unknown and full text is not stored; selected roles do not establish whole-sector sufficiency or state-law coverage."
       ]
     }
+  },
+  {
+    "id": "wf-real-estate-property-to-ledger",
+    "kind": "workflow",
+    "title": "Real estate contract and property evidence to ledger proposal",
+    "summary": "A review workflow that routes owner/developer, manager/broker, equipment-lessor and rights-licensor evidence into separate accounting populations before an authorized conclusion.",
+    "topics": [
+      "Accounting and reporting",
+      "Source data, lineage and reconciliation",
+      "Controls and governance"
+    ],
+    "industries": [
+      "real-estate-sector"
+    ],
+    "jurisdiction": "United States; selected roles and reporting purposes only",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_roadmap_naics2022_manual",
+      "src_fasb_asu201602_leases",
+      "src_i120_asu202005_lease_dates",
+      "src_construction_fasb_2014_09",
+      "src_fasb_asu2016_08_principal_agent",
+      "src_aa_i105_fasb_2016_10",
+      "src_1os761s",
+      "src_aa_i107_fas67_real_estate_costs",
+      "src_aa_i107_fas66_real_estate_sales"
+    ],
+    "related_ids": [
+      "guide-real-estate-us-roles"
+    ],
+    "review_status": "source-reviewed",
+    "reviewed_at": "2026-09-19",
+    "provenance": {
+      "added_on": "2026-09-19",
+      "reviewer": "Codex AI-assisted bounded source research",
+      "note": "Source-only candidate for issue 107. Original publisher text is not stored; no professional signoff is asserted."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "External publisher text is not stored; publisher terms and source rights remain separate and unresolved.",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "steps": [
+        "Inventory entity role, reporting framework, period and contract version.",
+        "Classify property, lease, service, sale, settlement or rights population.",
+        "Capture original evidence and exact source locator or document reference.",
+        "Reconcile contract terms, schedules, deposits, owner funds and usage data to a control total.",
+        "Record proposed treatment with current-topic and professional-review gates.",
+        "Release only an authorized, reviewable conclusion; preserve unresolved items."
+      ],
+      "inputs": [
+        "Executed contract and amendments",
+        "Title, possession, financing and closing evidence where relevant",
+        "Payment, deposit, incentive, fee, usage and settlement schedules",
+        "Entity adoption, election and policy evidence",
+        "Source and rights metadata"
+      ],
+      "outputs": [
+        "Proposed classification and treatment route",
+        "Reconciled control totals",
+        "Open-exception queue",
+        "Evidence-linked review receipt"
+      ],
+      "stop_conditions": [
+        "Missing contract or role evidence",
+        "Unresolved source URL or rights mismatch",
+        "Unknown current authority or effective period",
+        "Control total does not reconcile",
+        "Principal-versus-agent or owner-versus-contractor facts are unresolved"
+      ]
+    }
+  },
+  {
+    "id": "wf-accommodation-food-settlement",
+    "kind": "workflow",
+    "title": "Reservation, POS and platform settlement workflow",
+    "summary": "A descriptive evidence chain separates earned activity and employee, guest, government or owner liabilities before reconciling bank cash.",
+    "topics": [
+      "Accounting and reporting",
+      "Accommodation and food services",
+      "Cash settlement"
+    ],
+    "industries": [
+      "accommodation-food-services"
+    ],
+    "jurisdiction": "United States; selected operator, owner, manager and franchise roles",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_construction_fasb_2014_09",
+      "src_aa_i114_irs_tips",
+      "src_irs_pub15_2026",
+      "src_fasb_asu2016_08_principal_agent",
+      "src_fasb_asu2015_11_inventory",
+      "src_aa_i114_fasb_2021_02",
+      "src_aa_i105_fasb_2016_10"
+    ],
+    "related_ids": [
+      "guide-accommodation-food-us-close",
+      "ctrl-accommodation-food-roles",
+      "example-accommodation-food-connected-close"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-19",
+    "provenance": {
+      "added_on": "2026-09-19",
+      "reviewer": "Codex AI-assisted selected-source and editorial review",
+      "scope": "Original publisher passages and independently created synthetic worksheets; no professional review.",
+      "note": "Source-only proposal pending independent review and integration."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "External publisher text is not stored; publisher terms and source rights remain separate and unresolved.",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "inputs": [
+        "Legal entity, role, contract version, accounting basis and source period",
+        "Reservation dates, occupancy and cancellation/refund obligations",
+        "POS sales, compulsory service charges, voluntary tips and separately supported collected taxes",
+        "Card/platform settlement, refund identifiers, fees and bank trace",
+        "Payroll register, worker tip reports, withholding and employer-tax inputs",
+        "Inventory count, ownership, cost method, disposal and remaining-stock NRV",
+        "Franchise eligibility, licensed right, standalone prices, services and royalty report",
+        "Owner-management agreement, fee base and interentity settlement"
+      ],
+      "steps": [
+        "Select role and scope before combining evidence.",
+        "Match booking, POS or sales-report identifiers to the performance and settlement dates.",
+        "Separate customer liabilities, employee tips and government collections from earned revenue.",
+        "Reconcile each gross activity population, adjustments, retained fees and net bank amount.",
+        "Tie inventory, payroll and interentity subledgers to independently balanced books.",
+        "Hold unsupported rights, taxes, allocations and recognition judgments for review."
+      ],
+      "outputs": [
+        "Reconciled selected ledgers and exceptions",
+        "Source, contract and transaction lineage"
+      ],
+      "limitations": [
+        "Current consolidated ASC, later amendments, actual contracts, tax and wage applicability and local lodging/deposit rules remain unverified.",
+        "These synthetic worksheets are not operating records, payroll advice, approved postings or empirical agent evidence; no professional review was performed.",
+        "External rights remain unknown with no full text stored. Selected roles and assumptions do not establish whole-industry sufficiency."
+      ]
+    }
+  },
+  {
+    "id": "workflow-us-government-close",
+    "kind": "workflow",
+    "title": "US government framework and fund close workflow",
+    "summary": "A staged public-administration close that pins role/framework, reconciles budgets and fund statements, and stops for legal or professional review.",
+    "topics": [
+      "Scoped research",
+      "Public sector and government accounting"
+    ],
+    "industries": [
+      "92"
+    ],
+    "jurisdiction": "United States; selected public-administration roles",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_roadmap_gasb34_basis",
+      "src_roadmap_gasb103",
+      "src_roadmap_fasab34",
+      "src_roadmap_fasab53",
+      "src_cfr200grants",
+      "src_gaogb25",
+      "src_gaofam26",
+      "src_education_gasb35"
+    ],
+    "related_ids": [
+      "guide-us-government-public-administration",
+      "example-government-fund-federal-bridge"
+    ],
+    "reviewed_at": "2026-09-19",
+    "review_status": "editorially-reviewed",
+    "provenance": {
+      "added_on": "2026-09-19",
+      "reviewer": "Codex AI-assisted original-source research",
+      "note": "Original bounded synthesis from selected official source passages. No professional sign-off or full publisher text is stored.",
+      "scope": "Issue 116 selected federal and state/local public-administration roles; source access and transfer limits are recorded in the packet."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "External source text is not included; publisher terms remain record-specific.",
+      "full_text_stored": false
+    },
+    "data": {
+      "id": "workflow-us-government-close",
+      "purpose": "Resolve selected federal or state/local government accounting questions without crossing framework boundaries.",
+      "inputs": [
+        "Reporting entity and role",
+        "Jurisdiction, reporting period and framework edition",
+        "Budget authority, adopted and final budget, actual inflows/outflows",
+        "Fund type, source document, restriction and custody facts",
+        "Dated source locator, rights status and reviewer evidence"
+      ],
+      "steps": [
+        "Resolve entity role, jurisdiction, framework, period and budget basis before coding.",
+        "Separate federal FASAB from state/local GASB and separate proprietary, governmental and fiduciary resources.",
+        "Join appropriations, awards, tax or transfer evidence to the fund or component ledger.",
+        "Recompute budget variances, bridge entries and custody balances from inputs, then preserve the cited source version.",
+        "Stop for missing adoption, award, legal-authority, custody or materiality evidence and route the item for human review."
+      ],
+      "outputs": [
+        "Dated source-to-question evidence",
+        "Balanced synthetic bridge or an explicit stop",
+        "Exception and professional-review queue"
+      ],
+      "exceptions": [
+        "Missing legal budget, award terms, custody agreement, entity perimeter or current adoption stops the route."
+      ],
+      "human_gate": "No journal posting, award draw, appropriation decision, tax filing or government-wide statement is executed by this research workflow."
+    }
   }
 ]

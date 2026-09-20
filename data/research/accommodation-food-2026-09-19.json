@@ -1,0 +1,4084 @@
+{
+  "schema_version": "1.0.0",
+  "package_name": "accommodation-food-us-source-only",
+  "package_version": "2026-09-19.114.1",
+  "current_corpus_version": "2026-09-19.12422",
+  "status": "source-only-pending-integration",
+  "reviewed_at": "2026-09-19",
+  "base_commit": "e3ebb24341fc8f2f8cf02b2a8d6e029bd8af32ba",
+  "baseline": {
+    "base_commit": "e3ebb24341fc8f2f8cf02b2a8d6e029bd8af32ba",
+    "corpus_version": "2026-09-19.12422",
+    "associated_record_count": 2,
+    "associated_records": [
+      {
+        "id": "guide-industry-naics2022-721",
+        "title": "Accommodation: roles, transactions and open accounting questions"
+      },
+      {
+        "id": "guide-industry-naics2022-722",
+        "title": "Food Services and Drinking Places: roles, transactions and open accounting questions"
+      }
+    ],
+    "linked_question_count": 98,
+    "linked_questions": [
+      {
+        "id": "rq-revenue-scope-treatment",
+        "record_id": "guide-q-revenue",
+        "family_ids": [
+          "q-revenue"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-revenue-evidence-controls",
+        "record_id": "guide-q-revenue",
+        "family_ids": [
+          "q-revenue"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-us-revenue-contract-control",
+        "record_id": "guide-q-revenue",
+        "family_ids": [
+          "q-revenue"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-us-revenue-presentation-refunds",
+        "record_id": "guide-q-revenue",
+        "family_ids": [
+          "q-revenue"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-cash-settlement-scope-treatment",
+        "record_id": "guide-q-cash-settlement",
+        "family_ids": [
+          "q-cash-settlement"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-cash-settlement-evidence-controls",
+        "record_id": "guide-q-cash-settlement",
+        "family_ids": [
+          "q-cash-settlement"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-us-cash-settlement-gross-to-bank",
+        "record_id": "guide-q-cash-settlement",
+        "family_ids": [
+          "q-cash-settlement"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-us-cash-settlement-clearing",
+        "record_id": "guide-q-cash-settlement",
+        "family_ids": [
+          "q-cash-settlement"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-inventory-scope-treatment",
+        "record_id": "guide-q-inventory",
+        "family_ids": [
+          "q-inventory"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-inventory-evidence-controls",
+        "record_id": "guide-q-inventory",
+        "family_ids": [
+          "q-inventory"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-us-inventory-landed-cost",
+        "record_id": "guide-q-inventory",
+        "family_ids": [
+          "q-inventory"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-us-inventory-ownership-rollforward",
+        "record_id": "guide-q-inventory",
+        "family_ids": [
+          "q-inventory"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-payroll-scope-treatment",
+        "record_id": "guide-q-payroll",
+        "family_ids": [
+          "q-payroll"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-payroll-evidence-controls",
+        "record_id": "guide-q-payroll",
+        "family_ids": [
+          "q-payroll"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-licensed-content-rights-territory",
+        "record_id": "guide-q-licensed-content",
+        "family_ids": [
+          "q-licensed-content"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-licensed-content-royalty",
+        "record_id": "guide-q-licensed-content",
+        "family_ids": [
+          "q-licensed-content"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-cost-allocation-allocation-base",
+        "record_id": "guide-q-cost-allocation",
+        "family_ids": [
+          "q-cost-allocation"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-cost-allocation-unit-cost",
+        "record_id": "guide-q-cost-allocation",
+        "family_ids": [
+          "q-cost-allocation"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-data-lineage-lineage-reproduction",
+        "record_id": "guide-q-data-lineage",
+        "family_ids": [
+          "q-data-lineage"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-data-lineage-data-quality",
+        "record_id": "guide-q-data-lineage",
+        "family_ids": [
+          "q-data-lineage"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-mfg-cost",
+        "record_id": "guide-manufacturing-conversion",
+        "family_ids": [
+          "q-inventory",
+          "q-cost-allocation"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-mfg-nrv",
+        "record_id": "guide-manufacturing-conversion",
+        "family_ids": [
+          "q-inventory"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-mfg-outsourced",
+        "record_id": "guide-manufacturing-conversion",
+        "family_ids": [
+          "q-inventory",
+          "q-purchasing-payables"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-mfg-longterm",
+        "record_id": "guide-manufacturing-conversion",
+        "family_ids": [
+          "q-revenue",
+          "q-project-wip",
+          "q-provisions"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-mfg-completeness",
+        "record_id": "guide-manufacturing-conversion",
+        "family_ids": [
+          "q-inventory",
+          "q-data-lineage",
+          "q-ledger-close"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-trade-control",
+        "record_id": "guide-wholesale-retail",
+        "family_ids": [
+          "q-revenue",
+          "q-inventory"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-trade-principal",
+        "record_id": "guide-wholesale-retail",
+        "family_ids": [
+          "q-revenue"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-trade-returns",
+        "record_id": "guide-wholesale-retail",
+        "family_ids": [
+          "q-revenue",
+          "q-receivables-credit",
+          "q-purchasing-payables"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-trade-cutoff",
+        "record_id": "guide-wholesale-retail",
+        "family_ids": [
+          "q-inventory",
+          "q-cash-settlement",
+          "q-data-lineage"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-trade-inventory",
+        "record_id": "guide-wholesale-retail",
+        "family_ids": [
+          "q-inventory"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-trade-intermediary",
+        "record_id": "guide-wholesale-retail",
+        "family_ids": [
+          "q-revenue"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-software-role-boundary",
+        "record_id": "guide-software-subscriptions",
+        "family_ids": [
+          "q-intangibles-software",
+          "q-revenue"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-software-provider-principal-agent",
+        "record_id": "guide-software-subscriptions",
+        "family_ids": [
+          "q-revenue"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-software-subscription-timing",
+        "record_id": "guide-software-subscriptions",
+        "family_ids": [
+          "q-revenue"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-software-controls-agent",
+        "record_id": "guide-software-subscriptions",
+        "family_ids": [
+          "q-intangibles-software",
+          "q-data-lineage"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-services-time-material",
+        "record_id": "guide-professional-services",
+        "family_ids": [
+          "q-revenue",
+          "q-project-wip"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-services-fixed-fee-wip",
+        "record_id": "guide-professional-services",
+        "family_ids": [
+          "q-project-wip",
+          "q-revenue"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-services-principal-agent-staffing",
+        "record_id": "guide-professional-services",
+        "family_ids": [
+          "q-revenue",
+          "q-payroll"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-services-retainers",
+        "record_id": "guide-professional-services",
+        "family_ids": [
+          "q-revenue",
+          "q-cash-settlement"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-services-wip-controls",
+        "record_id": "guide-professional-services",
+        "family_ids": [
+          "q-project-wip",
+          "q-data-lineage"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-tx-public-payroll",
+        "record_id": "guide-jurisdiction-tx-construction-service",
+        "family_ids": [
+          "q-payroll",
+          "q-compliance-assurance"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-tx-payment",
+        "record_id": "guide-jurisdiction-tx-construction-service",
+        "family_ids": [
+          "q-cash-settlement",
+          "q-receivables-credit"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-tx-payment-dispute-chain",
+        "record_id": "guide-jurisdiction-tx-construction-service",
+        "family_ids": [
+          "q-cash-settlement",
+          "q-purchasing-payables"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-ca-cpr",
+        "record_id": "guide-jurisdiction-ca-construction-service",
+        "family_ids": [
+          "q-payroll",
+          "q-compliance-assurance"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-ca-wage",
+        "record_id": "guide-jurisdiction-ca-construction-service",
+        "family_ids": [
+          "q-payroll"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-ca-cpr-correction",
+        "record_id": "guide-jurisdiction-ca-construction-service",
+        "family_ids": [
+          "q-payroll",
+          "q-data-lineage"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-uk-cis-payroll",
+        "record_id": "guide-jurisdiction-uk-construction-service",
+        "family_ids": [
+          "q-payroll",
+          "q-tax-returns"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-construction-tax-source-conflict",
+        "record_id": "guide-construction-tax-transitions",
+        "family_ids": [
+          "q-tax-methods",
+          "q-data-lineage"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-construction-connected-facts",
+        "record_id": "guide-construction-connected-close",
+        "family_ids": [
+          "q-revenue",
+          "q-estimates",
+          "q-project-wip"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-construction-connected-population",
+        "record_id": "guide-construction-connected-close",
+        "family_ids": [
+          "q-purchasing-payables",
+          "q-payroll",
+          "q-data-lineage"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-construction-connected-progress",
+        "record_id": "guide-construction-connected-close",
+        "family_ids": [
+          "q-project-wip",
+          "q-revenue",
+          "q-receivables-credit",
+          "q-cash-settlement"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-aa-i127-lineage-completeness",
+        "record_id": "guide-us-accounting-agent-evidence-boundaries",
+        "family_ids": [
+          "q-data-lineage",
+          "q-interfaces",
+          "q-audit-assertions"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-aa-i127-corrections-tombstones",
+        "record_id": "guide-us-accounting-agent-evidence-boundaries",
+        "family_ids": [
+          "q-data-lineage",
+          "q-ledger-close",
+          "q-interfaces"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-aa-i127-rights-provenance",
+        "record_id": "guide-us-accounting-agent-evidence-boundaries",
+        "family_ids": [
+          "q-reuse-rights",
+          "q-data-lineage"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-us-nonprofit-award-close",
+        "record_id": "guide-us-nonprofit-contributions-close",
+        "family_ids": [
+          "q-grants-contributions",
+          "q-ledger-close",
+          "q-cost-allocation",
+          "q-tax-returns"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-us-education-tuition-term",
+        "record_id": "guide-us-education-tuition-aid",
+        "family_ids": [
+          "q-revenue",
+          "q-grants-contributions"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-us-education-aid-payment",
+        "record_id": "guide-us-education-tuition-aid",
+        "family_ids": [
+          "q-revenue",
+          "q-grants-contributions"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-us-education-withdrawal-return",
+        "record_id": "guide-us-education-tuition-aid",
+        "family_ids": [
+          "q-revenue",
+          "q-grants-contributions"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-us-education-framework-routing",
+        "record_id": "guide-us-education-tuition-aid",
+        "family_ids": [
+          "q-revenue",
+          "q-grants-contributions"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-aa-i124-licensed-content",
+        "record_id": "guide-aa-i124-institutional",
+        "family_ids": [
+          "q-licensed-content"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-us-extractive-royalty-reporting",
+        "record_id": "guide-us-extractive-production-settlement",
+        "family_ids": [
+          "q-revenue"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-us-extractive-revenue-presentation",
+        "record_id": "guide-us-extractive-production-settlement",
+        "family_ids": [
+          "q-revenue"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-i97-crop-stage-cost",
+        "record_id": "guide-i97-crop-producer",
+        "family_ids": [
+          "q-inventory",
+          "q-natural-resources"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-i97-crop-cutoff-quality",
+        "record_id": "guide-i97-crop-producer",
+        "family_ids": [
+          "q-inventory",
+          "q-revenue",
+          "q-data-lineage"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-i97-support-service-revenue",
+        "record_id": "guide-i97-harvesting-contractor",
+        "family_ids": [
+          "q-revenue",
+          "q-project-wip"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-i97-support-cost-custody",
+        "record_id": "guide-i97-harvesting-contractor",
+        "family_ids": [
+          "q-project-wip",
+          "q-payroll",
+          "q-data-lineage"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-i97-animal-disposition",
+        "record_id": "guide-i97-resource-dispositions",
+        "family_ids": [
+          "q-natural-resources",
+          "q-capital-assets",
+          "q-inventory"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-i97-timber-disposition",
+        "record_id": "guide-i97-resource-dispositions",
+        "family_ids": [
+          "q-natural-resources",
+          "q-capital-assets",
+          "q-revenue"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-i97-wild-catch-disposition",
+        "record_id": "guide-i97-resource-dispositions",
+        "family_ids": [
+          "q-natural-resources",
+          "q-inventory",
+          "q-revenue"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-utilities-role-regulatory-route",
+        "record_id": "guide-utilities-us-regulated-close",
+        "family_ids": [
+          "q-rate-regulation",
+          "q-data-lineage"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-utilities-metered-unbilled-cutoff",
+        "record_id": "guide-utilities-us-regulated-close",
+        "family_ids": [
+          "q-revenue",
+          "q-data-lineage",
+          "q-interfaces"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-utilities-plant-cost-lineage",
+        "record_id": "guide-utilities-us-regulated-close",
+        "family_ids": [
+          "q-capital-assets",
+          "q-data-lineage",
+          "q-interfaces"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-utilities-retirement-obligation-boundary",
+        "record_id": "guide-utilities-us-regulated-close",
+        "family_ids": [
+          "q-environmental",
+          "q-capital-assets",
+          "q-data-lineage"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-utilities-purchased-power-settlement",
+        "record_id": "guide-utilities-us-regulated-close",
+        "family_ids": [
+          "q-purchasing-payables",
+          "q-data-lineage",
+          "q-revenue"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-us-i120-payroll-scope-treatment",
+        "record_id": "guide-q-payroll",
+        "family_ids": [
+          "q-payroll"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-us-i120-payroll-evidence-controls",
+        "record_id": "guide-q-payroll",
+        "family_ids": [
+          "q-payroll"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-transport-role-event-boundary",
+        "record_id": "guide-transport-role-routing",
+        "family_ids": [
+          "q-revenue",
+          "q-data-lineage",
+          "q-inventory"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-transport-freight-passenger-cutoff-surcharge",
+        "record_id": "guide-transport-role-routing",
+        "family_ids": [
+          "q-revenue",
+          "q-cash-settlement",
+          "q-data-lineage"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-transport-carrier-settlement-claims",
+        "record_id": "guide-transport-role-routing",
+        "family_ids": [
+          "q-purchasing-payables",
+          "q-receivables-credit",
+          "q-provisions",
+          "q-cash-settlement"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-transport-customer-owned-warehouse-claims",
+        "record_id": "guide-transport-role-routing",
+        "family_ids": [
+          "q-inventory",
+          "q-revenue",
+          "q-provisions",
+          "q-data-lineage"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-information-provider-usage-subscription",
+        "record_id": "guide-information-us-provider-customer",
+        "family_ids": [
+          "q-revenue",
+          "q-data-lineage"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-information-bundle-principal-customer-expense",
+        "record_id": "guide-information-us-provider-customer",
+        "family_ids": [
+          "q-revenue",
+          "q-intangibles-software",
+          "q-licensed-content"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-information-content-software-costs",
+        "record_id": "guide-information-us-provider-customer",
+        "family_ids": [
+          "q-cost-allocation",
+          "q-intangibles-software",
+          "q-licensed-content"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-information-royalty-rights-period",
+        "record_id": "guide-information-us-provider-customer",
+        "family_ids": [
+          "q-licensed-content",
+          "q-reuse-rights",
+          "q-data-lineage"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-information-sector-role-route",
+        "record_id": "guide-information-us-provider-customer",
+        "family_ids": [
+          "q-data-lineage",
+          "q-interfaces",
+          "q-licensed-content"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-information-retrieval-lineage",
+        "record_id": "guide-information-us-provider-customer",
+        "family_ids": [
+          "q-data-lineage",
+          "q-interfaces"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-us-nonprofit-federal-reporting",
+        "record_id": "guide-us-nonprofit-federal-reporting",
+        "family_ids": [
+          "q-tax-returns",
+          "q-grants-contributions",
+          "q-cost-allocation",
+          "q-compliance-assurance",
+          "q-presentation"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-us-nonprofit-cross-industry-routing",
+        "record_id": "guide-us-nonprofit-cross-industry-routing",
+        "family_ids": [
+          "q-reporting-basis",
+          "q-grants-contributions",
+          "q-government-funds",
+          "q-revenue"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-us-education-auxiliary-services",
+        "record_id": "guide-us-education-auxiliary-services",
+        "family_ids": [
+          "q-revenue",
+          "q-grants-contributions",
+          "q-reporting-basis"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-us-education-federal-grants",
+        "record_id": "guide-us-education-federal-grants",
+        "family_ids": [
+          "q-revenue",
+          "q-grants-contributions",
+          "q-reporting-basis"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-us-education-public-appropriations",
+        "record_id": "guide-us-education-public-appropriations",
+        "family_ids": [
+          "q-revenue",
+          "q-grants-contributions",
+          "q-reporting-basis"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-us-education-endowment-routing",
+        "record_id": "guide-us-education-endowment-routing",
+        "family_ids": [
+          "q-revenue",
+          "q-grants-contributions",
+          "q-reporting-basis"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-holding-us-services",
+        "record_id": "guide-holding-management-us-close",
+        "family_ids": [
+          "q-cost-allocation",
+          "q-revenue",
+          "q-related-parties"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-holding-us-close",
+        "record_id": "guide-holding-management-us-close",
+        "family_ids": [
+          "q-consolidation",
+          "q-data-lineage"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-support-waste-staffing-gross-net",
+        "record_id": "guide-support-waste-us-close",
+        "family_ids": [
+          "q-revenue",
+          "q-payroll"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-support-waste-cpeo-tax-role",
+        "record_id": "guide-support-waste-us-close",
+        "family_ids": [
+          "q-payroll",
+          "q-human-authority"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-support-waste-support-cutoff",
+        "record_id": "guide-support-waste-us-close",
+        "family_ids": [
+          "q-revenue",
+          "q-payroll",
+          "q-ledger-close"
+        ],
+        "assessment_status": "partial"
+      },
+      {
+        "id": "rq-support-waste-collection-cutoff",
+        "record_id": "guide-support-waste-us-close",
+        "family_ids": [
+          "q-revenue",
+          "q-receivables-credit"
+        ],
+        "assessment_status": "partial"
+      }
+    ],
+    "inventory_method": "NAICS 72 associations and selected shared-family context are inventory, not sufficiency."
+  },
+  "scope": {
+    "jurisdiction": "United States",
+    "selected_roles": [
+      "Lodging operator and property owner",
+      "Restaurant operator and franchisee",
+      "Fee-only property manager",
+      "Nonpublic franchisor and delivery-platform counterroles"
+    ],
+    "framework": "Selected nongovernmental US GAAP research; IRS guidance supplies tax/reporting distinctions, not GAAP revenue recognition.",
+    "period": "Synthetic September 2026 monthly close; issued FASB amendments and live IRS guidance are dated separately.",
+    "population": "Six questions connect booking/POS evidence, tips and payroll, platform settlements, inventory loss, franchise consideration, and owner/manager books.",
+    "exclusions": [
+      "Current consolidated ASC, later amendments, actual contracts, tax and wage applicability and local lodging/deposit rules remain unverified.",
+      "These synthetic worksheets are not operating records, payroll advice, approved postings or empirical agent evidence; no professional review was performed.",
+      "External rights remain unknown with no full text stored. Selected roles and assumptions do not establish whole-industry sufficiency."
+    ]
+  },
+  "sources": [
+    {
+      "id": "src_aa_i114_irs_tips",
+      "kind": "source",
+      "title": "IRS tip recordkeeping, employer reporting and service charges",
+      "summary": "The IRS distinguishes discretionary customer tips from mandatory service charges and identifies employer tax and reporting duties.",
+      "topics": [
+        "Accounting and reporting",
+        "Accommodation and food services",
+        "Cash settlement"
+      ],
+      "industries": [],
+      "jurisdiction": "United States; selected operator, owner, manager and franchise roles",
+      "source_type": "Official tax guidance",
+      "publisher": "Internal Revenue Service",
+      "source_url": "https://www.irs.gov/businesses/small-businesses-self-employed/tip-recordkeeping-and-reporting",
+      "source_ids": [],
+      "related_ids": [],
+      "review_status": "source-checked",
+      "reviewed_at": "2026-09-19",
+      "provenance": {
+        "added_on": "2026-09-19",
+        "reviewer": "Codex AI-assisted selected-source and editorial review",
+        "scope": "Original publisher passages and independently created synthetic worksheets; no professional review.",
+        "note": "Source-only proposal pending independent review and integration.",
+        "evidence_urls": [
+          "https://www.irs.gov/businesses/small-businesses-self-employed/tip-recordkeeping-and-reporting"
+        ]
+      },
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External publisher text is not stored; publisher terms and source rights remain separate and unresolved.",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": null
+      },
+      "data": {
+        "edition": "Living page accessed September 19, 2026; page revision date not stated in the fetched text. The page separately discusses the 2025-2028 qualified-tip deduction, which this payroll case does not calculate.",
+        "effective_period": "Living page accessed September 19, 2026; page revision date not stated in the fetched text. The page separately discusses the 2025-2028 qualified-tip deduction, which this payroll case does not calculate.",
+        "locators": [
+          {
+            "url": "https://www.irs.gov/businesses/small-businesses-self-employed/tip-recordkeeping-and-reporting",
+            "locator": "If you are an employee; Service charges are not tips; Employer and other payor responsibilities"
+          }
+        ],
+        "access_note": "Selected public source text read 2026-09-19; full text not stored.",
+        "limitations": "Federal tax guidance, not financial-reporting or wage-law authority. The page does not resolve local service-charge ownership, tip pools, minimum wage or employer-specific payroll calculations."
+      }
+    },
+    {
+      "id": "src_aa_i114_fasb_2021_02",
+      "kind": "source",
+      "title": "ASU 2021-02: nonpublic franchisor pre-opening service expedient",
+      "summary": "The issued amendment offers an eligible nonpublic franchisor a limited expedient for identifying specified pre-opening services as distinct from a franchise license.",
+      "topics": [
+        "Accounting and reporting",
+        "Accommodation and food services",
+        "Cash settlement"
+      ],
+      "industries": [],
+      "jurisdiction": "United States; selected operator, owner, manager and franchise roles",
+      "source_type": "Issued accounting standard update",
+      "publisher": "Financial Accounting Standards Board",
+      "source_url": "https://storage.fasb.org/ASU%202021-02.pdf",
+      "source_ids": [],
+      "related_ids": [],
+      "review_status": "source-checked",
+      "reviewed_at": "2026-09-19",
+      "provenance": {
+        "added_on": "2026-09-19",
+        "reviewer": "Codex AI-assisted selected-source and editorial review",
+        "scope": "Original publisher passages and independently created synthetic worksheets; no professional review.",
+        "note": "Source-only proposal pending independent review and integration.",
+        "evidence_urls": [
+          "https://storage.fasb.org/ASU%202021-02.pdf"
+        ]
+      },
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External publisher text is not stored; publisher terms and source rights remain separate and unresolved.",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": null
+      },
+      "data": {
+        "edition": "Issued January 28, 2021. Already-adopted Topic 606 entities: fiscal years beginning after December 15, 2020, including interim periods; early application permitted. Other eligible entities follow their initial Topic 606 adoption and transition under 65-1(a).",
+        "effective_period": "Issued January 28, 2021. Already-adopted Topic 606 entities: fiscal years beginning after December 15, 2020, including interim periods; early application permitted. Other eligible entities follow their initial Topic 606 adoption and transition under 65-1(a).",
+        "locators": [
+          {
+            "url": "https://storage.fasb.org/ASU%202021-02.pdf",
+            "locator": "952-606-15-1 through 15-2; 25-1 through 25-4 and 50-1 through 50-2, printed pages 5 and 9 / PDF pages 11 and 15; 65-1, printed page 11 / PDF page 17"
+          }
+        ],
+        "access_note": "Selected public source text read 2026-09-19; full text not stored.",
+        "limitations": "Franchisor-side expedient only; not a franchisee capitalization rule or automatic fee recognition. Current consolidated guidance and entity eligibility remain unverified."
+      }
+    }
+  ],
+  "records": [
+    {
+      "id": "guide-accommodation-food-us-close",
+      "kind": "guide",
+      "title": "US accommodation and food-service close research",
+      "summary": "Six selected questions connect reservations, POS receipts, payroll, platforms, inventory and franchise or property-management roles.",
+      "topics": [
+        "Accounting and reporting",
+        "Accommodation and food services",
+        "Cash settlement"
+      ],
+      "industries": [
+        "accommodation-food-services"
+      ],
+      "jurisdiction": "United States; selected operator, owner, manager and franchise roles",
+      "source_type": null,
+      "publisher": "Accounting Agents contributors",
+      "source_url": null,
+      "source_ids": [
+        "src_construction_fasb_2014_09",
+        "src_aa_i114_irs_tips",
+        "src_irs_pub15_2026",
+        "src_fasb_asu2016_08_principal_agent",
+        "src_fasb_asu2015_11_inventory",
+        "src_aa_i114_fasb_2021_02",
+        "src_aa_i105_fasb_2016_10"
+      ],
+      "related_ids": [
+        "wf-accommodation-food-settlement",
+        "ctrl-accommodation-food-roles",
+        "example-accommodation-food-connected-close"
+      ],
+      "review_status": "editorially-reviewed",
+      "reviewed_at": "2026-09-19",
+      "provenance": {
+        "added_on": "2026-09-19",
+        "reviewer": "Codex AI-assisted selected-source and editorial review",
+        "scope": "Original publisher passages and independently created synthetic worksheets; no professional review.",
+        "note": "Source-only proposal pending independent review and integration."
+      },
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External publisher text is not stored; publisher terms and source rights remain separate and unresolved.",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": null
+      },
+      "data": {
+        "version": "2026-09-19.114.1",
+        "research_package": "AA-I114",
+        "scope": {
+          "jurisdiction": "United States",
+          "selected_roles": [
+            "Lodging operator and property owner",
+            "Restaurant operator and franchisee",
+            "Fee-only property manager",
+            "Nonpublic franchisor and delivery-platform counterroles"
+          ],
+          "framework": "Selected nongovernmental US GAAP research; IRS guidance supplies tax/reporting distinctions, not GAAP revenue recognition.",
+          "period": "Synthetic September 2026 monthly close; issued FASB amendments and live IRS guidance are dated separately.",
+          "population": "Six questions connect booking/POS evidence, tips and payroll, platform settlements, inventory loss, franchise consideration, and owner/manager books.",
+          "exclusions": [
+            "Current consolidated ASC, later amendments, actual contracts, tax and wage applicability and local lodging/deposit rules remain unverified.",
+            "These synthetic worksheets are not operating records, payroll advice, approved postings or empirical agent evidence; no professional review was performed.",
+            "External rights remain unknown with no full text stored. Selected roles and assumptions do not establish whole-industry sufficiency."
+          ]
+        },
+        "professional_review": "not-performed",
+        "empirical_support": "not-established",
+        "research_questions": [
+          {
+            "id": "rq-accommodation-food-booking-cancellation",
+            "record_id": "guide-accommodation-food-us-close",
+            "pointer": "/data/research_questions/0",
+            "family_ids": [
+              "q-revenue",
+              "q-cash-settlement"
+            ],
+            "question": "When do reservation deposits and cancellation payments become lodging revenue?",
+            "scope": "Selected US lodging and food-service roles, September 2026 synthetic close; framework and contract assumptions are explicit.",
+            "answer": "Link consideration to delivered nights and surviving refund or service obligations. The selected cancellation recognizes only a documented retained amount after all performance and refund obligations end.",
+            "answer_status": "sourced-answer-and-original-example",
+            "assessment_status": "partial",
+            "source_ids": [
+              "src_construction_fasb_2014_09"
+            ],
+            "source_locators": [
+              {
+                "source_id": "src_construction_fasb_2014_09",
+                "url": "https://storage.fasb.org/ASU%202014-09_Section%20A.pdf",
+                "locator": "606-10-25-1 through 25-2, contract criteria; 25-27(a) and 25-31, service progress; 45-1 through 45-4, printed pages 42-43 / PDF pages 48-49; 55-46 through 55-53, unexercised rights and upfront fees",
+                "effective_period": "Issued May 2014; original adoption dates were subsequently deferred. Synthetic 2026 cases assume adopted applicable revenue guidance.",
+                "access_limits": "Selected issued text and accepted revenue foundation; current Codification and later amendments not fully reviewed. Contract enforceability and satisfaction are stated synthetic predicates."
+              }
+            ],
+            "inputs": [
+              "Legal entity, role, contract version, accounting basis and source period",
+              "Reservation dates, occupancy and cancellation/refund obligations",
+              "POS sales, compulsory service charges, voluntary tips and separately supported collected taxes",
+              "Card/platform settlement, refund identifiers, fees and bank trace",
+              "Payroll register, worker tip reports, withholding and employer-tax inputs",
+              "Inventory count, ownership, cost method, disposal and remaining-stock NRV",
+              "Franchise eligibility, licensed right, standalone prices, services and royalty report",
+              "Owner-management agreement, fee base and interentity settlement"
+            ],
+            "workflow": [
+              "Select role and scope before combining evidence.",
+              "Match booking, POS or sales-report identifiers to the performance and settlement dates.",
+              "Separate customer liabilities, employee tips and government collections from earned revenue.",
+              "Reconcile each gross activity population, adjustments, retained fees and net bank amount.",
+              "Tie inventory, payroll and interentity subledgers to independently balanced books.",
+              "Hold unsupported rights, taxes, allocations and recognition judgments for review."
+            ],
+            "controls": [
+              "Reservation cutoff and refund obligation review",
+              "POS category-to-bank reconciliation without netting employee or tax liabilities into sales",
+              "Payroll-input and tip-category checks separate from individual tax deductions",
+              "Platform control assessment independent of payment timing",
+              "Physical count, disposal and NRV evidence with cost-method gate",
+              "Separate franchisor and franchisee framework decisions",
+              "Owner/manager reciprocal balance and fee-base match"
+            ],
+            "exceptions": [
+              "Prepaid future nights, disputed cancellations, loyalty awards and refundable damage deposits need separate populations."
+            ],
+            "remaining_gaps": [
+              "Current consolidated ASC, later amendments, actual contracts, tax and wage applicability and local lodging/deposit rules remain unverified.",
+              "These synthetic worksheets are not operating records, payroll advice, approved postings or empirical agent evidence; no professional review was performed.",
+              "External rights remain unknown with no full text stored. Selected roles and assumptions do not establish whole-industry sufficiency."
+            ],
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "dimensions": {
+              "scope": "present",
+              "accounting-question": "partial",
+              "evidence-inputs": "present",
+              "workflow": "present",
+              "controls": "present",
+              "worked-material": "present",
+              "empirical-support": "not-assessed"
+            },
+            "dimension_basis": "Selected primary-source evidence, accepted shared foundations and original traceable ledgers; not current authority or professional verification.",
+            "example_id": "example-accommodation-food-connected-close",
+            "example_subcase": "lodging-reservations"
+          },
+          {
+            "id": "rq-accommodation-food-pos-tips-payroll",
+            "record_id": "guide-accommodation-food-us-close",
+            "pointer": "/data/research_questions/1",
+            "family_ids": [
+              "q-revenue",
+              "q-payroll"
+            ],
+            "question": "How do POS tips and mandatory service charges reach the ledger and payroll?",
+            "scope": "Selected US lodging and food-service roles, September 2026 synthetic close; framework and contract assumptions are explicit.",
+            "answer": "Classify employee-directed voluntary tips separately from the selected operator service charge. IRS wage/reporting classification is a separate source question from GAAP control. Match the payroll register to the liabilities and cash paid.",
+            "answer_status": "sourced-answer-and-original-example",
+            "assessment_status": "partial",
+            "source_ids": [
+              "src_aa_i114_irs_tips",
+              "src_irs_pub15_2026",
+              "src_construction_fasb_2014_09"
+            ],
+            "source_locators": [
+              {
+                "source_id": "src_aa_i114_irs_tips",
+                "url": "https://www.irs.gov/businesses/small-businesses-self-employed/tip-recordkeeping-and-reporting",
+                "locator": "If you are an employee; Service charges are not tips; Employer and other payor responsibilities",
+                "effective_period": "Living page accessed September 19, 2026; page revision date not stated in the fetched text. The page separately discusses the 2025-2028 qualified-tip deduction, which this payroll case does not calculate.",
+                "access_limits": "Federal tax guidance, not financial-reporting or wage-law authority. The page does not resolve local service-charge ownership, tip pools, minimum wage or employer-specific payroll calculations."
+              },
+              {
+                "source_id": "src_irs_pub15_2026",
+                "url": "https://www.irs.gov/publications/p15",
+                "locator": "Publication 15 (2026), sections 6, Tips, and 9, Withholding From Employees Wages, plus payroll reporting sections",
+                "effective_period": "2026 employer guide; example withholding and employer taxes are supplied payroll-register inputs, not derived rates or eligibility conclusions.",
+                "access_limits": "Reuse accepted 2026 federal employer foundation. State/local payroll, wage law, credits, thresholds and individual deductions require separate verification."
+              },
+              {
+                "source_id": "src_construction_fasb_2014_09",
+                "url": "https://storage.fasb.org/ASU%202014-09_Section%20A.pdf",
+                "locator": "606-10-25-1 through 25-2, contract criteria; 25-27(a) and 25-31, service progress; 45-1 through 45-4, printed pages 42-43 / PDF pages 48-49; 55-46 through 55-53, unexercised rights and upfront fees",
+                "effective_period": "Issued May 2014; original adoption dates were subsequently deferred. Synthetic 2026 cases assume adopted applicable revenue guidance.",
+                "access_limits": "Selected issued text and accepted revenue foundation; current Codification and later amendments not fully reviewed. Contract enforceability and satisfaction are stated synthetic predicates."
+              }
+            ],
+            "inputs": [
+              "Legal entity, role, contract version, accounting basis and source period",
+              "Reservation dates, occupancy and cancellation/refund obligations",
+              "POS sales, compulsory service charges, voluntary tips and separately supported collected taxes",
+              "Card/platform settlement, refund identifiers, fees and bank trace",
+              "Payroll register, worker tip reports, withholding and employer-tax inputs",
+              "Inventory count, ownership, cost method, disposal and remaining-stock NRV",
+              "Franchise eligibility, licensed right, standalone prices, services and royalty report",
+              "Owner-management agreement, fee base and interentity settlement"
+            ],
+            "workflow": [
+              "Select role and scope before combining evidence.",
+              "Match booking, POS or sales-report identifiers to the performance and settlement dates.",
+              "Separate customer liabilities, employee tips and government collections from earned revenue.",
+              "Reconcile each gross activity population, adjustments, retained fees and net bank amount.",
+              "Tie inventory, payroll and interentity subledgers to independently balanced books.",
+              "Hold unsupported rights, taxes, allocations and recognition judgments for review."
+            ],
+            "controls": [
+              "Reservation cutoff and refund obligation review",
+              "POS category-to-bank reconciliation without netting employee or tax liabilities into sales",
+              "Payroll-input and tip-category checks separate from individual tax deductions",
+              "Platform control assessment independent of payment timing",
+              "Physical count, disposal and NRV evidence with cost-method gate",
+              "Separate franchisor and franchisee framework decisions",
+              "Owner/manager reciprocal balance and fee-base match"
+            ],
+            "exceptions": [
+              "Local ownership, tip pooling and wage law can change the facts. No minimum-wage, overtime, tax-credit or individual-deduction calculation is included."
+            ],
+            "remaining_gaps": [
+              "Current consolidated ASC, later amendments, actual contracts, tax and wage applicability and local lodging/deposit rules remain unverified.",
+              "These synthetic worksheets are not operating records, payroll advice, approved postings or empirical agent evidence; no professional review was performed.",
+              "External rights remain unknown with no full text stored. Selected roles and assumptions do not establish whole-industry sufficiency."
+            ],
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "dimensions": {
+              "scope": "present",
+              "accounting-question": "partial",
+              "evidence-inputs": "present",
+              "workflow": "present",
+              "controls": "present",
+              "worked-material": "present",
+              "empirical-support": "not-assessed"
+            },
+            "dimension_basis": "Selected primary-source evidence, accepted shared foundations and original traceable ledgers; not current authority or professional verification.",
+            "example_id": "example-accommodation-food-connected-close",
+            "example_subcase": "restaurant-pos-payroll"
+          },
+          {
+            "id": "rq-accommodation-food-platform-settlement",
+            "record_id": "guide-accommodation-food-us-close",
+            "pointer": "/data/research_questions/2",
+            "family_ids": [
+              "q-revenue",
+              "q-cash-settlement"
+            ],
+            "question": "How does a restaurant reconcile delivery-platform sales, refunds and fees?",
+            "scope": "Selected US lodging and food-service roles, September 2026 synthetic close; framework and contract assumptions are explicit.",
+            "answer": "For an assumed food principal, trace gross fulfilled orders less supported food refunds to revenue and record a separate platform-service expense. Reconcile the resulting platform balance to cash; use control facts before considering an agent alternative.",
+            "answer_status": "sourced-answer-and-original-example",
+            "assessment_status": "partial",
+            "source_ids": [
+              "src_fasb_asu2016_08_principal_agent",
+              "src_construction_fasb_2014_09"
+            ],
+            "source_locators": [
+              {
+                "source_id": "src_fasb_asu2016_08_principal_agent",
+                "url": "https://storage.fasb.org/ASU%202016-08.pdf",
+                "locator": "606-10-55-36 through 55-40, identification of the specified good/service, control and principal-versus-agent indicators",
+                "effective_period": "Issued March 2016; effective with the Topic 606 adoption requirements specified in the update.",
+                "access_limits": "Reuse the accepted source reading; control facts determine gross/net presentation, not the net bank settlement or platform label."
+              },
+              {
+                "source_id": "src_construction_fasb_2014_09",
+                "url": "https://storage.fasb.org/ASU%202014-09_Section%20A.pdf",
+                "locator": "606-10-25-1 through 25-2, contract criteria; 25-27(a) and 25-31, service progress; 45-1 through 45-4, printed pages 42-43 / PDF pages 48-49; 55-46 through 55-53, unexercised rights and upfront fees",
+                "effective_period": "Issued May 2014; original adoption dates were subsequently deferred. Synthetic 2026 cases assume adopted applicable revenue guidance.",
+                "access_limits": "Selected issued text and accepted revenue foundation; current Codification and later amendments not fully reviewed. Contract enforceability and satisfaction are stated synthetic predicates."
+              }
+            ],
+            "inputs": [
+              "Legal entity, role, contract version, accounting basis and source period",
+              "Reservation dates, occupancy and cancellation/refund obligations",
+              "POS sales, compulsory service charges, voluntary tips and separately supported collected taxes",
+              "Card/platform settlement, refund identifiers, fees and bank trace",
+              "Payroll register, worker tip reports, withholding and employer-tax inputs",
+              "Inventory count, ownership, cost method, disposal and remaining-stock NRV",
+              "Franchise eligibility, licensed right, standalone prices, services and royalty report",
+              "Owner-management agreement, fee base and interentity settlement"
+            ],
+            "workflow": [
+              "Select role and scope before combining evidence.",
+              "Match booking, POS or sales-report identifiers to the performance and settlement dates.",
+              "Separate customer liabilities, employee tips and government collections from earned revenue.",
+              "Reconcile each gross activity population, adjustments, retained fees and net bank amount.",
+              "Tie inventory, payroll and interentity subledgers to independently balanced books.",
+              "Hold unsupported rights, taxes, allocations and recognition judgments for review."
+            ],
+            "controls": [
+              "Reservation cutoff and refund obligation review",
+              "POS category-to-bank reconciliation without netting employee or tax liabilities into sales",
+              "Payroll-input and tip-category checks separate from individual tax deductions",
+              "Platform control assessment independent of payment timing",
+              "Physical count, disposal and NRV evidence with cost-method gate",
+              "Separate franchisor and franchisee framework decisions",
+              "Owner/manager reciprocal balance and fee-base match"
+            ],
+            "exceptions": [
+              "A marketplace, delivery provider or restaurant may control different promises. Net cash alone does not select gross/net revenue."
+            ],
+            "remaining_gaps": [
+              "Current consolidated ASC, later amendments, actual contracts, tax and wage applicability and local lodging/deposit rules remain unverified.",
+              "These synthetic worksheets are not operating records, payroll advice, approved postings or empirical agent evidence; no professional review was performed.",
+              "External rights remain unknown with no full text stored. Selected roles and assumptions do not establish whole-industry sufficiency."
+            ],
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "dimensions": {
+              "scope": "present",
+              "accounting-question": "partial",
+              "evidence-inputs": "present",
+              "workflow": "present",
+              "controls": "present",
+              "worked-material": "present",
+              "empirical-support": "not-assessed"
+            },
+            "dimension_basis": "Selected primary-source evidence, accepted shared foundations and original traceable ledgers; not current authority or professional verification.",
+            "example_id": "example-accommodation-food-connected-close",
+            "example_subcase": "delivery-platform-restaurant"
+          },
+          {
+            "id": "rq-accommodation-food-inventory-waste",
+            "record_id": "guide-accommodation-food-us-close",
+            "pointer": "/data/research_questions/3",
+            "family_ids": [
+              "q-inventory",
+              "q-cost-allocation"
+            ],
+            "question": "How do food use, disposal and remaining-stock write-downs differ?",
+            "scope": "Selected US lodging and food-service roles, September 2026 synthetic close; framework and contract assumptions are explicit.",
+            "answer": "Reconcile beginning owned stock plus purchases to consumption, recorded disposal and remaining cost. Under the selected FIFO case, compare remaining cost with its supported NRV; do not write down disposed units twice.",
+            "answer_status": "sourced-answer-and-original-example",
+            "assessment_status": "partial",
+            "source_ids": [
+              "src_fasb_asu2015_11_inventory"
+            ],
+            "source_locators": [
+              {
+                "source_id": "src_fasb_asu2015_11_inventory",
+                "url": "https://storage.fasb.org/ASU_2015-11.pdf",
+                "locator": "330-10-35-1A through 35-1C, printed page 4 / PDF page 10; 330-10-65-1, printed page 8 / PDF page 14",
+                "effective_period": "Issued July 2015. Public entities: fiscal years after December 15, 2016 including interim periods. Other entities: same annual date, interim periods in fiscal years after December 15, 2017. Prospective upon adoption.",
+                "access_limits": "Selected issued amendment freshly read. FIFO/average-cost lower-of-cost-and-NRV does not replace the distinct LIFO or retail-inventory method route."
+              }
+            ],
+            "inputs": [
+              "Legal entity, role, contract version, accounting basis and source period",
+              "Reservation dates, occupancy and cancellation/refund obligations",
+              "POS sales, compulsory service charges, voluntary tips and separately supported collected taxes",
+              "Card/platform settlement, refund identifiers, fees and bank trace",
+              "Payroll register, worker tip reports, withholding and employer-tax inputs",
+              "Inventory count, ownership, cost method, disposal and remaining-stock NRV",
+              "Franchise eligibility, licensed right, standalone prices, services and royalty report",
+              "Owner-management agreement, fee base and interentity settlement"
+            ],
+            "workflow": [
+              "Select role and scope before combining evidence.",
+              "Match booking, POS or sales-report identifiers to the performance and settlement dates.",
+              "Separate customer liabilities, employee tips and government collections from earned revenue.",
+              "Reconcile each gross activity population, adjustments, retained fees and net bank amount.",
+              "Tie inventory, payroll and interentity subledgers to independently balanced books.",
+              "Hold unsupported rights, taxes, allocations and recognition judgments for review."
+            ],
+            "controls": [
+              "Reservation cutoff and refund obligation review",
+              "POS category-to-bank reconciliation without netting employee or tax liabilities into sales",
+              "Payroll-input and tip-category checks separate from individual tax deductions",
+              "Platform control assessment independent of payment timing",
+              "Physical count, disposal and NRV evidence with cost-method gate",
+              "Separate franchisor and franchisee framework decisions",
+              "Owner/manager reciprocal balance and fee-base match"
+            ],
+            "exceptions": [
+              "LIFO/retail cost methods, consigned stock, byproducts and recoveries need separate analysis."
+            ],
+            "remaining_gaps": [
+              "Current consolidated ASC, later amendments, actual contracts, tax and wage applicability and local lodging/deposit rules remain unverified.",
+              "These synthetic worksheets are not operating records, payroll advice, approved postings or empirical agent evidence; no professional review was performed.",
+              "External rights remain unknown with no full text stored. Selected roles and assumptions do not establish whole-industry sufficiency."
+            ],
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "dimensions": {
+              "scope": "present",
+              "accounting-question": "partial",
+              "evidence-inputs": "present",
+              "workflow": "present",
+              "controls": "present",
+              "worked-material": "present",
+              "empirical-support": "not-assessed"
+            },
+            "dimension_basis": "Selected primary-source evidence, accepted shared foundations and original traceable ledgers; not current authority or professional verification.",
+            "example_id": "example-accommodation-food-connected-close",
+            "example_subcase": "food-inventory-waste"
+          },
+          {
+            "id": "rq-accommodation-food-franchise-roles",
+            "record_id": "guide-accommodation-food-us-close",
+            "pointer": "/data/research_questions/4",
+            "family_ids": [
+              "q-licensed-content",
+              "q-revenue"
+            ],
+            "question": "How do franchise fees and royalties differ for a franchisor and restaurant franchisee?",
+            "scope": "Selected US lodging and food-service roles, September 2026 synthetic close; framework and contract assumptions are explicit.",
+            "answer": "An eligible nonpublic franchisor may use the specified pre-opening identification expedient; allocation and revenue timing still require Topic 606. The original assumed service-access example separates delivered training, license months and qualifying sales royalties. The franchisee has a separately stated purchasing analysis.",
+            "answer_status": "sourced-answer-and-original-example",
+            "assessment_status": "partial",
+            "source_ids": [
+              "src_aa_i114_fasb_2021_02",
+              "src_aa_i105_fasb_2016_10",
+              "src_construction_fasb_2014_09"
+            ],
+            "source_locators": [
+              {
+                "source_id": "src_aa_i114_fasb_2021_02",
+                "url": "https://storage.fasb.org/ASU%202021-02.pdf",
+                "locator": "952-606-15-1 through 15-2; 25-1 through 25-4 and 50-1 through 50-2, printed pages 5 and 9 / PDF pages 11 and 15; 65-1, printed page 11 / PDF page 17",
+                "effective_period": "Issued January 28, 2021. Already-adopted Topic 606 entities: fiscal years beginning after December 15, 2020, including interim periods; early application permitted. Other eligible entities follow their initial Topic 606 adoption and transition under 65-1(a).",
+                "access_limits": "Franchisor-side expedient only; not a franchisee capitalization rule or automatic fee recognition. Current consolidated guidance and entity eligibility remain unverified."
+              },
+              {
+                "source_id": "src_aa_i105_fasb_2016_10",
+                "url": "https://storage.fasb.org/ASU%202016-10.pdf",
+                "locator": "606-10-55-58A through 55-60 and 55-65 through 55-65B; sales/usage-based royalty text printed page 19 / PDF page 25",
+                "effective_period": "Issued April 2016; transition linked to Topic 606. Selected 2026 assumed-adoption case.",
+                "access_limits": "Selected original licensing amendment and accepted source review. A trademark license assumption is not a conclusion for every franchise contract or renewal."
+              },
+              {
+                "source_id": "src_construction_fasb_2014_09",
+                "url": "https://storage.fasb.org/ASU%202014-09_Section%20A.pdf",
+                "locator": "606-10-25-1 through 25-2, contract criteria; 25-27(a) and 25-31, service progress; 45-1 through 45-4, printed pages 42-43 / PDF pages 48-49; 55-46 through 55-53, unexercised rights and upfront fees",
+                "effective_period": "Issued May 2014; original adoption dates were subsequently deferred. Synthetic 2026 cases assume adopted applicable revenue guidance.",
+                "access_limits": "Selected issued text and accepted revenue foundation; current Codification and later amendments not fully reviewed. Contract enforceability and satisfaction are stated synthetic predicates."
+              }
+            ],
+            "inputs": [
+              "Legal entity, role, contract version, accounting basis and source period",
+              "Reservation dates, occupancy and cancellation/refund obligations",
+              "POS sales, compulsory service charges, voluntary tips and separately supported collected taxes",
+              "Card/platform settlement, refund identifiers, fees and bank trace",
+              "Payroll register, worker tip reports, withholding and employer-tax inputs",
+              "Inventory count, ownership, cost method, disposal and remaining-stock NRV",
+              "Franchise eligibility, licensed right, standalone prices, services and royalty report",
+              "Owner-management agreement, fee base and interentity settlement"
+            ],
+            "workflow": [
+              "Select role and scope before combining evidence.",
+              "Match booking, POS or sales-report identifiers to the performance and settlement dates.",
+              "Separate customer liabilities, employee tips and government collections from earned revenue.",
+              "Reconcile each gross activity population, adjustments, retained fees and net bank amount.",
+              "Tie inventory, payroll and interentity subledgers to independently balanced books.",
+              "Hold unsupported rights, taxes, allocations and recognition judgments for review."
+            ],
+            "controls": [
+              "Reservation cutoff and refund obligation review",
+              "POS category-to-bank reconciliation without netting employee or tax liabilities into sales",
+              "Payroll-input and tip-category checks separate from individual tax deductions",
+              "Platform control assessment independent of payment timing",
+              "Physical count, disposal and NRV evidence with cost-method gate",
+              "Separate franchisor and franchisee framework decisions",
+              "Owner/manager reciprocal balance and fee-base match"
+            ],
+            "exceptions": [
+              "Public-business franchisors, nonlisted pre-opening activities, renewal rights, purchased intangible assets and franchisee cost rules are not answered by the expedient."
+            ],
+            "remaining_gaps": [
+              "Current consolidated ASC, later amendments, actual contracts, tax and wage applicability and local lodging/deposit rules remain unverified.",
+              "These synthetic worksheets are not operating records, payroll advice, approved postings or empirical agent evidence; no professional review was performed.",
+              "External rights remain unknown with no full text stored. Selected roles and assumptions do not establish whole-industry sufficiency."
+            ],
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "dimensions": {
+              "scope": "present",
+              "accounting-question": "partial",
+              "evidence-inputs": "present",
+              "workflow": "present",
+              "controls": "present",
+              "worked-material": "present",
+              "empirical-support": "not-assessed"
+            },
+            "dimension_basis": "Selected primary-source evidence, accepted shared foundations and original traceable ledgers; not current authority or professional verification.",
+            "example_id": "example-accommodation-food-connected-close",
+            "example_subcase": "franchisor-license-training"
+          },
+          {
+            "id": "rq-accommodation-food-owner-manager",
+            "record_id": "guide-accommodation-food-us-close",
+            "pointer": "/data/research_questions/5",
+            "family_ids": [
+              "q-revenue",
+              "q-data-lineage"
+            ],
+            "question": "How does an owner distinguish hotel room receipts from a manager settlement?",
+            "scope": "Selected US lodging and food-service roles, September 2026 synthetic close; framework and contract assumptions are explicit.",
+            "answer": "Under the stated principal/agent facts the owner records earned rooms and management expense; the manager records its fee and owner payable. Reconcile reciprocal activity and the remittance without treating owner cash as manager revenue.",
+            "answer_status": "sourced-answer-and-original-example",
+            "assessment_status": "partial",
+            "source_ids": [
+              "src_fasb_asu2016_08_principal_agent",
+              "src_construction_fasb_2014_09"
+            ],
+            "source_locators": [
+              {
+                "source_id": "src_fasb_asu2016_08_principal_agent",
+                "url": "https://storage.fasb.org/ASU%202016-08.pdf",
+                "locator": "606-10-55-36 through 55-40, identification of the specified good/service, control and principal-versus-agent indicators",
+                "effective_period": "Issued March 2016; effective with the Topic 606 adoption requirements specified in the update.",
+                "access_limits": "Reuse the accepted source reading; control facts determine gross/net presentation, not the net bank settlement or platform label."
+              },
+              {
+                "source_id": "src_construction_fasb_2014_09",
+                "url": "https://storage.fasb.org/ASU%202014-09_Section%20A.pdf",
+                "locator": "606-10-25-1 through 25-2, contract criteria; 25-27(a) and 25-31, service progress; 45-1 through 45-4, printed pages 42-43 / PDF pages 48-49; 55-46 through 55-53, unexercised rights and upfront fees",
+                "effective_period": "Issued May 2014; original adoption dates were subsequently deferred. Synthetic 2026 cases assume adopted applicable revenue guidance.",
+                "access_limits": "Selected issued text and accepted revenue foundation; current Codification and later amendments not fully reviewed. Contract enforceability and satisfaction are stated synthetic predicates."
+              }
+            ],
+            "inputs": [
+              "Legal entity, role, contract version, accounting basis and source period",
+              "Reservation dates, occupancy and cancellation/refund obligations",
+              "POS sales, compulsory service charges, voluntary tips and separately supported collected taxes",
+              "Card/platform settlement, refund identifiers, fees and bank trace",
+              "Payroll register, worker tip reports, withholding and employer-tax inputs",
+              "Inventory count, ownership, cost method, disposal and remaining-stock NRV",
+              "Franchise eligibility, licensed right, standalone prices, services and royalty report",
+              "Owner-management agreement, fee base and interentity settlement"
+            ],
+            "workflow": [
+              "Select role and scope before combining evidence.",
+              "Match booking, POS or sales-report identifiers to the performance and settlement dates.",
+              "Separate customer liabilities, employee tips and government collections from earned revenue.",
+              "Reconcile each gross activity population, adjustments, retained fees and net bank amount.",
+              "Tie inventory, payroll and interentity subledgers to independently balanced books.",
+              "Hold unsupported rights, taxes, allocations and recognition judgments for review."
+            ],
+            "controls": [
+              "Reservation cutoff and refund obligation review",
+              "POS category-to-bank reconciliation without netting employee or tax liabilities into sales",
+              "Payroll-input and tip-category checks separate from individual tax deductions",
+              "Platform control assessment independent of payment timing",
+              "Physical count, disposal and NRV evidence with cost-method gate",
+              "Separate franchisor and franchisee framework decisions",
+              "Owner/manager reciprocal balance and fee-base match"
+            ],
+            "exceptions": [
+              "A hotel lessee, management contract with broader control, incentive fee or owner financing changes the selected role and needs separate treatment."
+            ],
+            "remaining_gaps": [
+              "Current consolidated ASC, later amendments, actual contracts, tax and wage applicability and local lodging/deposit rules remain unverified.",
+              "These synthetic worksheets are not operating records, payroll advice, approved postings or empirical agent evidence; no professional review was performed.",
+              "External rights remain unknown with no full text stored. Selected roles and assumptions do not establish whole-industry sufficiency."
+            ],
+            "professional_review": "not-performed",
+            "empirical_support": "not-established",
+            "dimensions": {
+              "scope": "present",
+              "accounting-question": "partial",
+              "evidence-inputs": "present",
+              "workflow": "present",
+              "controls": "present",
+              "worked-material": "present",
+              "empirical-support": "not-assessed"
+            },
+            "dimension_basis": "Selected primary-source evidence, accepted shared foundations and original traceable ledgers; not current authority or professional verification.",
+            "example_id": "example-accommodation-food-connected-close",
+            "example_subcase": "managed-hotel-owner"
+          }
+        ],
+        "inputs": [
+          "Legal entity, role, contract version, accounting basis and source period",
+          "Reservation dates, occupancy and cancellation/refund obligations",
+          "POS sales, compulsory service charges, voluntary tips and separately supported collected taxes",
+          "Card/platform settlement, refund identifiers, fees and bank trace",
+          "Payroll register, worker tip reports, withholding and employer-tax inputs",
+          "Inventory count, ownership, cost method, disposal and remaining-stock NRV",
+          "Franchise eligibility, licensed right, standalone prices, services and royalty report",
+          "Owner-management agreement, fee base and interentity settlement"
+        ],
+        "workflows": [
+          "Select role and scope before combining evidence.",
+          "Match booking, POS or sales-report identifiers to the performance and settlement dates.",
+          "Separate customer liabilities, employee tips and government collections from earned revenue.",
+          "Reconcile each gross activity population, adjustments, retained fees and net bank amount.",
+          "Tie inventory, payroll and interentity subledgers to independently balanced books.",
+          "Hold unsupported rights, taxes, allocations and recognition judgments for review."
+        ],
+        "controls": [
+          "Reservation cutoff and refund obligation review",
+          "POS category-to-bank reconciliation without netting employee or tax liabilities into sales",
+          "Payroll-input and tip-category checks separate from individual tax deductions",
+          "Platform control assessment independent of payment timing",
+          "Physical count, disposal and NRV evidence with cost-method gate",
+          "Separate franchisor and franchisee framework decisions",
+          "Owner/manager reciprocal balance and fee-base match"
+        ],
+        "coverage_gaps": [
+          "Current consolidated ASC, later amendments, actual contracts, tax and wage applicability and local lodging/deposit rules remain unverified.",
+          "These synthetic worksheets are not operating records, payroll advice, approved postings or empirical agent evidence; no professional review was performed.",
+          "External rights remain unknown with no full text stored. Selected roles and assumptions do not establish whole-industry sufficiency."
+        ]
+      }
+    },
+    {
+      "id": "wf-accommodation-food-settlement",
+      "kind": "workflow",
+      "title": "Reservation, POS and platform settlement workflow",
+      "summary": "A descriptive evidence chain separates earned activity and employee, guest, government or owner liabilities before reconciling bank cash.",
+      "topics": [
+        "Accounting and reporting",
+        "Accommodation and food services",
+        "Cash settlement"
+      ],
+      "industries": [
+        "accommodation-food-services"
+      ],
+      "jurisdiction": "United States; selected operator, owner, manager and franchise roles",
+      "source_type": null,
+      "publisher": "Accounting Agents contributors",
+      "source_url": null,
+      "source_ids": [
+        "src_construction_fasb_2014_09",
+        "src_aa_i114_irs_tips",
+        "src_irs_pub15_2026",
+        "src_fasb_asu2016_08_principal_agent",
+        "src_fasb_asu2015_11_inventory",
+        "src_aa_i114_fasb_2021_02",
+        "src_aa_i105_fasb_2016_10"
+      ],
+      "related_ids": [
+        "guide-accommodation-food-us-close",
+        "ctrl-accommodation-food-roles",
+        "example-accommodation-food-connected-close"
+      ],
+      "review_status": "editorially-reviewed",
+      "reviewed_at": "2026-09-19",
+      "provenance": {
+        "added_on": "2026-09-19",
+        "reviewer": "Codex AI-assisted selected-source and editorial review",
+        "scope": "Original publisher passages and independently created synthetic worksheets; no professional review.",
+        "note": "Source-only proposal pending independent review and integration."
+      },
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External publisher text is not stored; publisher terms and source rights remain separate and unresolved.",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": null
+      },
+      "data": {
+        "inputs": [
+          "Legal entity, role, contract version, accounting basis and source period",
+          "Reservation dates, occupancy and cancellation/refund obligations",
+          "POS sales, compulsory service charges, voluntary tips and separately supported collected taxes",
+          "Card/platform settlement, refund identifiers, fees and bank trace",
+          "Payroll register, worker tip reports, withholding and employer-tax inputs",
+          "Inventory count, ownership, cost method, disposal and remaining-stock NRV",
+          "Franchise eligibility, licensed right, standalone prices, services and royalty report",
+          "Owner-management agreement, fee base and interentity settlement"
+        ],
+        "steps": [
+          "Select role and scope before combining evidence.",
+          "Match booking, POS or sales-report identifiers to the performance and settlement dates.",
+          "Separate customer liabilities, employee tips and government collections from earned revenue.",
+          "Reconcile each gross activity population, adjustments, retained fees and net bank amount.",
+          "Tie inventory, payroll and interentity subledgers to independently balanced books.",
+          "Hold unsupported rights, taxes, allocations and recognition judgments for review."
+        ],
+        "outputs": [
+          "Reconciled selected ledgers and exceptions",
+          "Source, contract and transaction lineage"
+        ],
+        "limitations": [
+          "Current consolidated ASC, later amendments, actual contracts, tax and wage applicability and local lodging/deposit rules remain unverified.",
+          "These synthetic worksheets are not operating records, payroll advice, approved postings or empirical agent evidence; no professional review was performed.",
+          "External rights remain unknown with no full text stored. Selected roles and assumptions do not establish whole-industry sufficiency."
+        ]
+      }
+    },
+    {
+      "id": "ctrl-accommodation-food-roles",
+      "kind": "control",
+      "title": "Hospitality entity and settlement controls",
+      "summary": "Controls test cutoff, role, tax and tip categories, inventory and reciprocal owner/manager activity.",
+      "topics": [
+        "Accounting and reporting",
+        "Accommodation and food services",
+        "Cash settlement"
+      ],
+      "industries": [
+        "accommodation-food-services"
+      ],
+      "jurisdiction": "United States; selected operator, owner, manager and franchise roles",
+      "source_type": null,
+      "publisher": "Accounting Agents contributors",
+      "source_url": null,
+      "source_ids": [
+        "src_construction_fasb_2014_09",
+        "src_aa_i114_irs_tips",
+        "src_irs_pub15_2026",
+        "src_fasb_asu2016_08_principal_agent",
+        "src_fasb_asu2015_11_inventory",
+        "src_aa_i114_fasb_2021_02",
+        "src_aa_i105_fasb_2016_10"
+      ],
+      "related_ids": [
+        "guide-accommodation-food-us-close",
+        "wf-accommodation-food-settlement",
+        "example-accommodation-food-connected-close"
+      ],
+      "review_status": "editorially-reviewed",
+      "reviewed_at": "2026-09-19",
+      "provenance": {
+        "added_on": "2026-09-19",
+        "reviewer": "Codex AI-assisted selected-source and editorial review",
+        "scope": "Original publisher passages and independently created synthetic worksheets; no professional review.",
+        "note": "Source-only proposal pending independent review and integration."
+      },
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External publisher text is not stored; publisher terms and source rights remain separate and unresolved.",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": null
+      },
+      "data": {
+        "controls": [
+          "Reservation cutoff and refund obligation review",
+          "POS category-to-bank reconciliation without netting employee or tax liabilities into sales",
+          "Payroll-input and tip-category checks separate from individual tax deductions",
+          "Platform control assessment independent of payment timing",
+          "Physical count, disposal and NRV evidence with cost-method gate",
+          "Separate franchisor and franchisee framework decisions",
+          "Owner/manager reciprocal balance and fee-base match"
+        ],
+        "failure_conditions": [
+          "Missing performance or refund facts",
+          "Unmatched payment or interentity balance",
+          "Unsupported payroll, stock or royalty input"
+        ],
+        "limitations": [
+          "Current consolidated ASC, later amendments, actual contracts, tax and wage applicability and local lodging/deposit rules remain unverified.",
+          "These synthetic worksheets are not operating records, payroll advice, approved postings or empirical agent evidence; no professional review was performed.",
+          "External rights remain unknown with no full text stored. Selected roles and assumptions do not establish whole-industry sufficiency."
+        ]
+      }
+    },
+    {
+      "id": "example-accommodation-food-connected-close",
+      "kind": "example",
+      "title": "Accommodation and food services: connected synthetic close",
+      "summary": "Eight separate original ledgers connect reservations, POS/payroll, platform payments, inventory, franchisor/franchisee and hotel owner/manager evidence.",
+      "topics": [
+        "Accounting and reporting",
+        "Accommodation and food services",
+        "Cash settlement"
+      ],
+      "industries": [
+        "accommodation-food-services"
+      ],
+      "jurisdiction": "United States; selected operator, owner, manager and franchise roles",
+      "source_type": null,
+      "publisher": "Accounting Agents contributors",
+      "source_url": null,
+      "source_ids": [
+        "src_construction_fasb_2014_09",
+        "src_fasb_asu2016_08_principal_agent",
+        "src_fasb_asu2015_11_inventory",
+        "src_aa_i105_fasb_2016_10",
+        "src_aa_i114_irs_tips",
+        "src_aa_i114_fasb_2021_02",
+        "src_irs_pub15_2026"
+      ],
+      "related_ids": [
+        "guide-accommodation-food-us-close",
+        "wf-accommodation-food-settlement",
+        "ctrl-accommodation-food-roles"
+      ],
+      "review_status": "editorially-reviewed",
+      "reviewed_at": "2026-09-19",
+      "provenance": {
+        "added_on": "2026-09-19",
+        "reviewer": "Codex AI-assisted selected-source and editorial review",
+        "scope": "Original publisher passages and independently created synthetic worksheets; no professional review.",
+        "note": "Source-only proposal pending independent review and integration."
+      },
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External publisher text is not stored; publisher terms and source rights remain separate and unresolved.",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": null
+      },
+      "data": {
+        "fixture_type": "original-synthetic-connected-ledgers",
+        "currency": "USD",
+        "unit": "integer cents",
+        "period": "Synthetic September 2026",
+        "accounts": {
+          "cash": "asset",
+          "card_receivable": "asset",
+          "platform_receivable": "asset",
+          "inventory": "asset",
+          "franchise_prepaid": "asset",
+          "royalty_receivable": "asset",
+          "due_from_manager": "asset",
+          "contract_liability": "liability",
+          "tips_payable": "liability",
+          "sales_tax_payable": "liability",
+          "wages_payable": "liability",
+          "payroll_taxes_payable": "liability",
+          "accounts_payable": "liability",
+          "royalty_payable": "liability",
+          "owner_payable": "liability",
+          "opening_equity": "equity",
+          "room_revenue": "revenue",
+          "cancellation_revenue": "revenue",
+          "food_revenue": "revenue",
+          "service_charge_revenue": "revenue",
+          "license_revenue": "revenue",
+          "royalty_revenue": "revenue",
+          "training_revenue": "revenue",
+          "management_fee_revenue": "revenue",
+          "processing_expense": "expense",
+          "service_wage_expense": "expense",
+          "payroll_tax_expense": "expense",
+          "platform_expense": "expense",
+          "food_cost": "expense",
+          "waste_expense": "expense",
+          "inventory_write_down": "expense",
+          "license_expense": "expense",
+          "royalty_expense": "expense",
+          "training_expense": "expense",
+          "management_fee_expense": "expense"
+        },
+        "cases": [
+          {
+            "id": "lodging-reservations",
+            "synthetic": true,
+            "assumptions": [
+              "Hotel operator controls the promised accommodation and has enforceable contracts; no accommodation lease or tax computation is included.",
+              "Reservation A is four equal $300 nights with three delivered by cutoff; its final night remains owed. Reservation B is cancelled, with documented entitlement to retain $200 and refund $400, no further service, refund or credit obligation."
+            ],
+            "inputs": {
+              "reservation_a_cents": 120000,
+              "reserved_nights": 4,
+              "delivered_nights": 3,
+              "night_rate_cents": 30000,
+              "reservation_b_cents": 60000,
+              "refund_cents": 40000,
+              "entitled_cancellation_cents": 20000
+            },
+            "journals": [
+              {
+                "id": "L1",
+                "memo": "Two reservation deposits received",
+                "status": "proposed-synthetic",
+                "lines": [
+                  {
+                    "account": "cash",
+                    "debit_cents": 180000,
+                    "credit_cents": 0
+                  },
+                  {
+                    "account": "contract_liability",
+                    "debit_cents": 0,
+                    "credit_cents": 180000
+                  }
+                ]
+              },
+              {
+                "id": "L2",
+                "memo": "Three nights delivered",
+                "status": "proposed-synthetic",
+                "lines": [
+                  {
+                    "account": "contract_liability",
+                    "debit_cents": 90000,
+                    "credit_cents": 0
+                  },
+                  {
+                    "account": "room_revenue",
+                    "debit_cents": 0,
+                    "credit_cents": 90000
+                  }
+                ]
+              },
+              {
+                "id": "L3",
+                "memo": "Cancelled booking closes with supported refund and fee",
+                "status": "proposed-synthetic",
+                "lines": [
+                  {
+                    "account": "contract_liability",
+                    "debit_cents": 60000,
+                    "credit_cents": 0
+                  },
+                  {
+                    "account": "cash",
+                    "debit_cents": 0,
+                    "credit_cents": 40000
+                  },
+                  {
+                    "account": "cancellation_revenue",
+                    "debit_cents": 0,
+                    "credit_cents": 20000
+                  }
+                ]
+              }
+            ],
+            "trial_balance": {
+              "cash": 140000,
+              "contract_liability": -30000,
+              "room_revenue": -90000,
+              "cancellation_revenue": -20000
+            },
+            "reconciliation": {
+              "assets_cents": 140000,
+              "liabilities_cents": 30000,
+              "net_income_cents": 110000,
+              "opening_equity_cents": 0
+            },
+            "evidence_chain": [
+              {
+                "document_id": "SYN-lodging-reservations",
+                "journal_ids": [
+                  "L1",
+                  "L2",
+                  "L3"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "restaurant-pos-payroll",
+            "synthetic": true,
+            "assumptions": [
+              "Restaurant controls food and selected mandatory service and has the contractual right to the service charge; tax and wage labels alone do not establish that revenue conclusion.",
+              "The POS tax amount is a supplied collection for government under the selected tax facts, not a jurisdictional rate. Voluntary tips belong to workers.",
+              "A supported payroll register supplies service-charge wages of $100 and combined withholding $34 and employer taxes $16.83. These are given inputs, not a calculation of legal wages, tip credits or tax liabilities. No other base wages are included in this incremental worksheet."
+            ],
+            "inputs": {
+              "food_sales_cents": 100000,
+              "mandatory_service_cents": 15000,
+              "voluntary_tips_cents": 12000,
+              "collected_tax_cents": 9200,
+              "card_gross_cents": 136200,
+              "processor_fee_cents": 2700,
+              "service_charge_wages_cents": 10000,
+              "withholding_cents": 3400,
+              "employer_taxes_cents": 1683,
+              "employee_net_cents": 18600
+            },
+            "journals": [
+              {
+                "id": "P1",
+                "memo": "POS records separate sales, service, tax and tips",
+                "status": "proposed-synthetic",
+                "lines": [
+                  {
+                    "account": "card_receivable",
+                    "debit_cents": 136200,
+                    "credit_cents": 0
+                  },
+                  {
+                    "account": "food_revenue",
+                    "debit_cents": 0,
+                    "credit_cents": 100000
+                  },
+                  {
+                    "account": "service_charge_revenue",
+                    "debit_cents": 0,
+                    "credit_cents": 15000
+                  },
+                  {
+                    "account": "tips_payable",
+                    "debit_cents": 0,
+                    "credit_cents": 12000
+                  },
+                  {
+                    "account": "sales_tax_payable",
+                    "debit_cents": 0,
+                    "credit_cents": 9200
+                  }
+                ]
+              },
+              {
+                "id": "P2",
+                "memo": "Processor settlement",
+                "status": "proposed-synthetic",
+                "lines": [
+                  {
+                    "account": "cash",
+                    "debit_cents": 133500,
+                    "credit_cents": 0
+                  },
+                  {
+                    "account": "processing_expense",
+                    "debit_cents": 2700,
+                    "credit_cents": 0
+                  },
+                  {
+                    "account": "card_receivable",
+                    "debit_cents": 0,
+                    "credit_cents": 136200
+                  }
+                ]
+              },
+              {
+                "id": "P3",
+                "memo": "Supported service-charge wages accrued",
+                "status": "proposed-synthetic",
+                "lines": [
+                  {
+                    "account": "service_wage_expense",
+                    "debit_cents": 10000,
+                    "credit_cents": 0
+                  },
+                  {
+                    "account": "wages_payable",
+                    "debit_cents": 0,
+                    "credit_cents": 10000
+                  }
+                ]
+              },
+              {
+                "id": "P4",
+                "memo": "Tips and service wages paid with payroll withholding",
+                "status": "proposed-synthetic",
+                "lines": [
+                  {
+                    "account": "tips_payable",
+                    "debit_cents": 12000,
+                    "credit_cents": 0
+                  },
+                  {
+                    "account": "wages_payable",
+                    "debit_cents": 10000,
+                    "credit_cents": 0
+                  },
+                  {
+                    "account": "cash",
+                    "debit_cents": 0,
+                    "credit_cents": 18600
+                  },
+                  {
+                    "account": "payroll_taxes_payable",
+                    "debit_cents": 0,
+                    "credit_cents": 3400
+                  }
+                ]
+              },
+              {
+                "id": "P5",
+                "memo": "Supplied employer tax register",
+                "status": "proposed-synthetic",
+                "lines": [
+                  {
+                    "account": "payroll_tax_expense",
+                    "debit_cents": 1683,
+                    "credit_cents": 0
+                  },
+                  {
+                    "account": "payroll_taxes_payable",
+                    "debit_cents": 0,
+                    "credit_cents": 1683
+                  }
+                ]
+              }
+            ],
+            "trial_balance": {
+              "food_revenue": -100000,
+              "service_charge_revenue": -15000,
+              "sales_tax_payable": -9200,
+              "cash": 114900,
+              "processing_expense": 2700,
+              "service_wage_expense": 10000,
+              "payroll_taxes_payable": -5083,
+              "payroll_tax_expense": 1683
+            },
+            "reconciliation": {
+              "assets_cents": 114900,
+              "liabilities_cents": 14283,
+              "net_income_cents": 100617,
+              "opening_equity_cents": 0
+            },
+            "evidence_chain": [
+              {
+                "document_id": "SYN-restaurant-pos-payroll",
+                "journal_ids": [
+                  "P1",
+                  "P2",
+                  "P3",
+                  "P4",
+                  "P5"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "delivery-platform-restaurant",
+            "synthetic": true,
+            "assumptions": [
+              "Restaurant controls $2,000 of food delivered to customers. The platform collects and retains a separately supported $400 service fee. Delivery, taxes and tips are excluded from this order population.",
+              "A supported $100 food refund reduces this same order population. Platform own books are not implied by the restaurant entries."
+            ],
+            "inputs": {
+              "gross_food_cents": 200000,
+              "refund_cents": 10000,
+              "platform_fee_cents": 40000,
+              "net_bank_cents": 150000
+            },
+            "journals": [
+              {
+                "id": "D1",
+                "memo": "Fulfilled food orders",
+                "status": "proposed-synthetic",
+                "lines": [
+                  {
+                    "account": "platform_receivable",
+                    "debit_cents": 200000,
+                    "credit_cents": 0
+                  },
+                  {
+                    "account": "food_revenue",
+                    "debit_cents": 0,
+                    "credit_cents": 200000
+                  }
+                ]
+              },
+              {
+                "id": "D2",
+                "memo": "Supported food refund",
+                "status": "proposed-synthetic",
+                "lines": [
+                  {
+                    "account": "food_revenue",
+                    "debit_cents": 10000,
+                    "credit_cents": 0
+                  },
+                  {
+                    "account": "platform_receivable",
+                    "debit_cents": 0,
+                    "credit_cents": 10000
+                  }
+                ]
+              },
+              {
+                "id": "D3",
+                "memo": "Platform remits after its fee",
+                "status": "proposed-synthetic",
+                "lines": [
+                  {
+                    "account": "cash",
+                    "debit_cents": 150000,
+                    "credit_cents": 0
+                  },
+                  {
+                    "account": "platform_expense",
+                    "debit_cents": 40000,
+                    "credit_cents": 0
+                  },
+                  {
+                    "account": "platform_receivable",
+                    "debit_cents": 0,
+                    "credit_cents": 190000
+                  }
+                ]
+              }
+            ],
+            "trial_balance": {
+              "food_revenue": -190000,
+              "cash": 150000,
+              "platform_expense": 40000
+            },
+            "reconciliation": {
+              "assets_cents": 150000,
+              "liabilities_cents": 0,
+              "net_income_cents": 150000,
+              "opening_equity_cents": 0
+            },
+            "evidence_chain": [
+              {
+                "document_id": "SYN-delivery-platform-restaurant",
+                "journal_ids": [
+                  "D1",
+                  "D2",
+                  "D3"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "food-inventory-waste",
+            "synthetic": true,
+            "assumptions": [
+              "Separate inventory worksheet uses FIFO and owned food stock. Consumption, verified waste and remaining-stock NRV are distinct quantities.",
+              "NRV is a supplied supportable estimate for the remaining stock; the case does not calculate forecast selling prices. No recovery of already-disposed food is assumed."
+            ],
+            "inputs": {
+              "opening_cost_cents": 10000,
+              "purchases_cents": 30000,
+              "consumed_cost_cents": 25000,
+              "disposed_cost_cents": 2000,
+              "remaining_cost_cents": 13000,
+              "supported_nrv_cents": 12000
+            },
+            "journals": [
+              {
+                "id": "I0",
+                "memo": "Opening owned inventory",
+                "status": "proposed-synthetic",
+                "lines": [
+                  {
+                    "account": "inventory",
+                    "debit_cents": 10000,
+                    "credit_cents": 0
+                  },
+                  {
+                    "account": "opening_equity",
+                    "debit_cents": 0,
+                    "credit_cents": 10000
+                  }
+                ]
+              },
+              {
+                "id": "I1",
+                "memo": "Purchases on account",
+                "status": "proposed-synthetic",
+                "lines": [
+                  {
+                    "account": "inventory",
+                    "debit_cents": 30000,
+                    "credit_cents": 0
+                  },
+                  {
+                    "account": "accounts_payable",
+                    "debit_cents": 0,
+                    "credit_cents": 30000
+                  }
+                ]
+              },
+              {
+                "id": "I2",
+                "memo": "Food consumed",
+                "status": "proposed-synthetic",
+                "lines": [
+                  {
+                    "account": "food_cost",
+                    "debit_cents": 25000,
+                    "credit_cents": 0
+                  },
+                  {
+                    "account": "inventory",
+                    "debit_cents": 0,
+                    "credit_cents": 25000
+                  }
+                ]
+              },
+              {
+                "id": "I3",
+                "memo": "Verified disposal",
+                "status": "proposed-synthetic",
+                "lines": [
+                  {
+                    "account": "waste_expense",
+                    "debit_cents": 2000,
+                    "credit_cents": 0
+                  },
+                  {
+                    "account": "inventory",
+                    "debit_cents": 0,
+                    "credit_cents": 2000
+                  }
+                ]
+              },
+              {
+                "id": "I4",
+                "memo": "Remaining stock NRV adjustment",
+                "status": "proposed-synthetic",
+                "lines": [
+                  {
+                    "account": "inventory_write_down",
+                    "debit_cents": 1000,
+                    "credit_cents": 0
+                  },
+                  {
+                    "account": "inventory",
+                    "debit_cents": 0,
+                    "credit_cents": 1000
+                  }
+                ]
+              }
+            ],
+            "trial_balance": {
+              "inventory": 12000,
+              "opening_equity": -10000,
+              "accounts_payable": -30000,
+              "food_cost": 25000,
+              "waste_expense": 2000,
+              "inventory_write_down": 1000
+            },
+            "reconciliation": {
+              "assets_cents": 12000,
+              "liabilities_cents": 30000,
+              "net_income_cents": -28000,
+              "opening_equity_cents": 10000
+            },
+            "evidence_chain": [
+              {
+                "document_id": "SYN-food-inventory-waste",
+                "journal_ids": [
+                  "I0",
+                  "I1",
+                  "I2",
+                  "I3",
+                  "I4"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "franchisor-license-training",
+            "synthetic": true,
+            "assumptions": [
+              "Eligible nonpublic franchisor has adopted Topic 606 and elects the ASU 2021-02 expedient for specified pre-opening training. Training is delivered, the symbolic license is assumed to provide access evenly for 24 months, and month one is completed.",
+              "The $12,000 fixed fee is allocated using supplied standalone prices: $2,400 training and $9,600 license. The $500 royalty is 5% of separately supported $10,000 franchisee sales and relates only to the qualifying license.",
+              "The example is independently created. The expedient identifies performance obligations; it does not supply the allocation or recognition conclusion."
+            ],
+            "inputs": {
+              "fixed_fee_cents": 1200000,
+              "training_allocation_cents": 240000,
+              "license_allocation_cents": 960000,
+              "license_months": 24,
+              "completed_months": 1,
+              "franchisee_sales_cents": 1000000,
+              "royalty_rate_bps": 500
+            },
+            "journals": [
+              {
+                "id": "F1",
+                "memo": "Fixed fee received before performance",
+                "status": "proposed-synthetic",
+                "lines": [
+                  {
+                    "account": "cash",
+                    "debit_cents": 1200000,
+                    "credit_cents": 0
+                  },
+                  {
+                    "account": "contract_liability",
+                    "debit_cents": 0,
+                    "credit_cents": 1200000
+                  }
+                ]
+              },
+              {
+                "id": "F2",
+                "memo": "Training delivered",
+                "status": "proposed-synthetic",
+                "lines": [
+                  {
+                    "account": "contract_liability",
+                    "debit_cents": 240000,
+                    "credit_cents": 0
+                  },
+                  {
+                    "account": "training_revenue",
+                    "debit_cents": 0,
+                    "credit_cents": 240000
+                  }
+                ]
+              },
+              {
+                "id": "F3",
+                "memo": "One license-access month provided",
+                "status": "proposed-synthetic",
+                "lines": [
+                  {
+                    "account": "contract_liability",
+                    "debit_cents": 40000,
+                    "credit_cents": 0
+                  },
+                  {
+                    "account": "license_revenue",
+                    "debit_cents": 0,
+                    "credit_cents": 40000
+                  }
+                ]
+              },
+              {
+                "id": "F4",
+                "memo": "Supported sales-based royalty earned",
+                "status": "proposed-synthetic",
+                "lines": [
+                  {
+                    "account": "royalty_receivable",
+                    "debit_cents": 50000,
+                    "credit_cents": 0
+                  },
+                  {
+                    "account": "royalty_revenue",
+                    "debit_cents": 0,
+                    "credit_cents": 50000
+                  }
+                ]
+              }
+            ],
+            "trial_balance": {
+              "cash": 1200000,
+              "contract_liability": -920000,
+              "training_revenue": -240000,
+              "license_revenue": -40000,
+              "royalty_receivable": 50000,
+              "royalty_revenue": -50000
+            },
+            "reconciliation": {
+              "assets_cents": 1250000,
+              "liabilities_cents": 920000,
+              "net_income_cents": 330000,
+              "opening_equity_cents": 0
+            },
+            "evidence_chain": [
+              {
+                "document_id": "SYN-franchisor-license-training",
+                "journal_ids": [
+                  "F1",
+                  "F2",
+                  "F3",
+                  "F4"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "franchisee-service-license",
+            "synthetic": true,
+            "assumptions": [
+              "Separate restaurant franchisee assumes the same training and service-access components and allocation are supported for its purchasing analysis.",
+              "This is a prepaid service-access arrangement with no controlled purchased intangible asserted. Franchisee asset classification and renewal terms need separate guidance. The franchisor expedient is not a franchisee election."
+            ],
+            "inputs": {
+              "fixed_fee_cents": 1200000,
+              "training_allocation_cents": 240000,
+              "license_allocation_cents": 960000,
+              "license_months": 24,
+              "completed_months": 1,
+              "franchisee_sales_cents": 1000000,
+              "royalty_rate_bps": 500
+            },
+            "journals": [
+              {
+                "id": "E0",
+                "memo": "Opening funds",
+                "status": "proposed-synthetic",
+                "lines": [
+                  {
+                    "account": "cash",
+                    "debit_cents": 1200000,
+                    "credit_cents": 0
+                  },
+                  {
+                    "account": "opening_equity",
+                    "debit_cents": 0,
+                    "credit_cents": 1200000
+                  }
+                ]
+              },
+              {
+                "id": "E1",
+                "memo": "Prepaid selected services",
+                "status": "proposed-synthetic",
+                "lines": [
+                  {
+                    "account": "franchise_prepaid",
+                    "debit_cents": 1200000,
+                    "credit_cents": 0
+                  },
+                  {
+                    "account": "cash",
+                    "debit_cents": 0,
+                    "credit_cents": 1200000
+                  }
+                ]
+              },
+              {
+                "id": "E2",
+                "memo": "Training received",
+                "status": "proposed-synthetic",
+                "lines": [
+                  {
+                    "account": "training_expense",
+                    "debit_cents": 240000,
+                    "credit_cents": 0
+                  },
+                  {
+                    "account": "franchise_prepaid",
+                    "debit_cents": 0,
+                    "credit_cents": 240000
+                  }
+                ]
+              },
+              {
+                "id": "E3",
+                "memo": "One month access received",
+                "status": "proposed-synthetic",
+                "lines": [
+                  {
+                    "account": "license_expense",
+                    "debit_cents": 40000,
+                    "credit_cents": 0
+                  },
+                  {
+                    "account": "franchise_prepaid",
+                    "debit_cents": 0,
+                    "credit_cents": 40000
+                  }
+                ]
+              },
+              {
+                "id": "E4",
+                "memo": "Supported royalty payable",
+                "status": "proposed-synthetic",
+                "lines": [
+                  {
+                    "account": "royalty_expense",
+                    "debit_cents": 50000,
+                    "credit_cents": 0
+                  },
+                  {
+                    "account": "royalty_payable",
+                    "debit_cents": 0,
+                    "credit_cents": 50000
+                  }
+                ]
+              }
+            ],
+            "trial_balance": {
+              "opening_equity": -1200000,
+              "franchise_prepaid": 920000,
+              "training_expense": 240000,
+              "license_expense": 40000,
+              "royalty_expense": 50000,
+              "royalty_payable": -50000
+            },
+            "reconciliation": {
+              "assets_cents": 920000,
+              "liabilities_cents": 50000,
+              "net_income_cents": -330000,
+              "opening_equity_cents": 1200000
+            },
+            "evidence_chain": [
+              {
+                "document_id": "SYN-franchisee-service-license",
+                "journal_ids": [
+                  "E0",
+                  "E1",
+                  "E2",
+                  "E3",
+                  "E4"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "managed-hotel-owner",
+            "synthetic": true,
+            "assumptions": [
+              "Separate property-owner worksheet: owner controls and earns $3,000 room revenue; manager only collects and remits for the owner. No property asset or lease accounting is implied.",
+              "The 4% fee applies only to this selected earned room revenue; no incentive fee, tax or guest deposit is in this batch."
+            ],
+            "inputs": {
+              "collected_room_cents": 300000,
+              "fee_rate_bps": 400,
+              "fee_cents": 12000,
+              "net_remit_cents": 288000
+            },
+            "journals": [
+              {
+                "id": "O1",
+                "memo": "Earned rooms collected by manager",
+                "status": "proposed-synthetic",
+                "lines": [
+                  {
+                    "account": "due_from_manager",
+                    "debit_cents": 300000,
+                    "credit_cents": 0
+                  },
+                  {
+                    "account": "room_revenue",
+                    "debit_cents": 0,
+                    "credit_cents": 300000
+                  }
+                ]
+              },
+              {
+                "id": "O2",
+                "memo": "Manager fee deducted",
+                "status": "proposed-synthetic",
+                "lines": [
+                  {
+                    "account": "management_fee_expense",
+                    "debit_cents": 12000,
+                    "credit_cents": 0
+                  },
+                  {
+                    "account": "due_from_manager",
+                    "debit_cents": 0,
+                    "credit_cents": 12000
+                  }
+                ]
+              },
+              {
+                "id": "O3",
+                "memo": "Owner receives settlement",
+                "status": "proposed-synthetic",
+                "lines": [
+                  {
+                    "account": "cash",
+                    "debit_cents": 288000,
+                    "credit_cents": 0
+                  },
+                  {
+                    "account": "due_from_manager",
+                    "debit_cents": 0,
+                    "credit_cents": 288000
+                  }
+                ]
+              }
+            ],
+            "trial_balance": {
+              "room_revenue": -300000,
+              "management_fee_expense": 12000,
+              "cash": 288000
+            },
+            "reconciliation": {
+              "assets_cents": 288000,
+              "liabilities_cents": 0,
+              "net_income_cents": 288000,
+              "opening_equity_cents": 0
+            },
+            "evidence_chain": [
+              {
+                "document_id": "SYN-managed-hotel-owner",
+                "journal_ids": [
+                  "O1",
+                  "O2",
+                  "O3"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "managed-hotel-manager",
+            "synthetic": true,
+            "assumptions": [
+              "Independent manager worksheet for the same batch; owner remains the accommodation principal. Manager controls only its management service.",
+              "All collected money is tracked to the owner, then an earned 4% fee is deducted and the rest remitted."
+            ],
+            "inputs": {
+              "collected_room_cents": 300000,
+              "fee_rate_bps": 400,
+              "fee_cents": 12000,
+              "net_remit_cents": 288000
+            },
+            "journals": [
+              {
+                "id": "M1",
+                "memo": "Receive owner funds",
+                "status": "proposed-synthetic",
+                "lines": [
+                  {
+                    "account": "cash",
+                    "debit_cents": 300000,
+                    "credit_cents": 0
+                  },
+                  {
+                    "account": "owner_payable",
+                    "debit_cents": 0,
+                    "credit_cents": 300000
+                  }
+                ]
+              },
+              {
+                "id": "M2",
+                "memo": "Earn management fee",
+                "status": "proposed-synthetic",
+                "lines": [
+                  {
+                    "account": "owner_payable",
+                    "debit_cents": 12000,
+                    "credit_cents": 0
+                  },
+                  {
+                    "account": "management_fee_revenue",
+                    "debit_cents": 0,
+                    "credit_cents": 12000
+                  }
+                ]
+              },
+              {
+                "id": "M3",
+                "memo": "Remit balance",
+                "status": "proposed-synthetic",
+                "lines": [
+                  {
+                    "account": "owner_payable",
+                    "debit_cents": 288000,
+                    "credit_cents": 0
+                  },
+                  {
+                    "account": "cash",
+                    "debit_cents": 0,
+                    "credit_cents": 288000
+                  }
+                ]
+              }
+            ],
+            "trial_balance": {
+              "cash": 12000,
+              "management_fee_revenue": -12000
+            },
+            "reconciliation": {
+              "assets_cents": 12000,
+              "liabilities_cents": 0,
+              "net_income_cents": 12000,
+              "opening_equity_cents": 0
+            },
+            "evidence_chain": [
+              {
+                "document_id": "SYN-managed-hotel-manager",
+                "journal_ids": [
+                  "M1",
+                  "M2",
+                  "M3"
+                ]
+              }
+            ]
+          }
+        ],
+        "examples": [
+          {
+            "id": "lodging-reservations",
+            "synthetic": true,
+            "scenario_type": "positive",
+            "description": "Hotel operator controls the promised accommodation and has enforceable contracts; no accommodation lease or tax computation is included."
+          },
+          {
+            "id": "restaurant-pos-payroll",
+            "synthetic": true,
+            "scenario_type": "positive",
+            "description": "Restaurant controls food and selected mandatory service and has the contractual right to the service charge; tax and wage labels alone do not establish that revenue conclusion."
+          },
+          {
+            "id": "delivery-platform-restaurant",
+            "synthetic": true,
+            "scenario_type": "positive",
+            "description": "Restaurant controls $2,000 of food delivered to customers. The platform collects and retains a separately supported $400 service fee. Delivery, taxes and tips are excluded from this order population."
+          },
+          {
+            "id": "food-inventory-waste",
+            "synthetic": true,
+            "scenario_type": "positive",
+            "description": "Separate inventory worksheet uses FIFO and owned food stock. Consumption, verified waste and remaining-stock NRV are distinct quantities."
+          },
+          {
+            "id": "franchisor-license-training",
+            "synthetic": true,
+            "scenario_type": "positive",
+            "description": "Eligible nonpublic franchisor has adopted Topic 606 and elects the ASU 2021-02 expedient for specified pre-opening training. Training is delivered, the symbolic license is assumed to provide access evenly for 24 months, and month one is completed."
+          },
+          {
+            "id": "franchisee-service-license",
+            "synthetic": true,
+            "scenario_type": "positive",
+            "description": "Separate restaurant franchisee assumes the same training and service-access components and allocation are supported for its purchasing analysis."
+          },
+          {
+            "id": "managed-hotel-owner",
+            "synthetic": true,
+            "scenario_type": "positive",
+            "description": "Separate property-owner worksheet: owner controls and earns $3,000 room revenue; manager only collects and remits for the owner. No property asset or lease accounting is implied."
+          },
+          {
+            "id": "managed-hotel-manager",
+            "synthetic": true,
+            "scenario_type": "positive",
+            "description": "Independent manager worksheet for the same batch; owner remains the accommodation principal. Manager controls only its management service."
+          },
+          {
+            "id": "DEPOSIT-AS-REVENUE",
+            "synthetic": true,
+            "scenario_type": "negative",
+            "description": "A reservation payment remains a liability until the selected service or supported termination condition is met."
+          },
+          {
+            "id": "CANCELLATION-WITH-REFUND",
+            "synthetic": true,
+            "scenario_type": "negative",
+            "description": "Do not recognize a retained fee while a refund or future credit remains owed."
+          },
+          {
+            "id": "MANDATORY-AS-TIP",
+            "synthetic": true,
+            "scenario_type": "negative",
+            "description": "A compulsory service charge is not converted into a voluntary tip by its label."
+          },
+          {
+            "id": "DEDUCTION-AS-PAYROLL-EXEMPTION",
+            "synthetic": true,
+            "scenario_type": "negative",
+            "description": "An individual qualified-tip deduction does not by itself erase employer reporting or payroll obligations."
+          },
+          {
+            "id": "NET-SETTLEMENT-AS-REVENUE",
+            "synthetic": true,
+            "scenario_type": "negative",
+            "description": "Platform net cash does not establish whether the restaurant is principal or agent."
+          },
+          {
+            "id": "FIFO-AS-LIFO",
+            "synthetic": true,
+            "scenario_type": "negative",
+            "description": "The selected lower-of-cost-and-NRV amendment does not apply unchanged to LIFO or the retail inventory method."
+          },
+          {
+            "id": "FRANCHISOR-AS-FRANCHISEE",
+            "synthetic": true,
+            "scenario_type": "negative",
+            "description": "The nonpublic franchisor expedient is not a franchisee election or automatic recognition of an upfront fee."
+          },
+          {
+            "id": "MANAGER-AS-OWNER",
+            "synthetic": true,
+            "scenario_type": "negative",
+            "description": "A fee-only manager does not recognize collected owner room revenue or the hotel asset solely because it controls a bank account."
+          }
+        ],
+        "scope_counterexamples": [
+          {
+            "id": "DEPOSIT-AS-REVENUE",
+            "outcome": "A reservation payment remains a liability until the selected service or supported termination condition is met."
+          },
+          {
+            "id": "CANCELLATION-WITH-REFUND",
+            "outcome": "Do not recognize a retained fee while a refund or future credit remains owed."
+          },
+          {
+            "id": "MANDATORY-AS-TIP",
+            "outcome": "A compulsory service charge is not converted into a voluntary tip by its label."
+          },
+          {
+            "id": "DEDUCTION-AS-PAYROLL-EXEMPTION",
+            "outcome": "An individual qualified-tip deduction does not by itself erase employer reporting or payroll obligations."
+          },
+          {
+            "id": "NET-SETTLEMENT-AS-REVENUE",
+            "outcome": "Platform net cash does not establish whether the restaurant is principal or agent."
+          },
+          {
+            "id": "FIFO-AS-LIFO",
+            "outcome": "The selected lower-of-cost-and-NRV amendment does not apply unchanged to LIFO or the retail inventory method."
+          },
+          {
+            "id": "FRANCHISOR-AS-FRANCHISEE",
+            "outcome": "The nonpublic franchisor expedient is not a franchisee election or automatic recognition of an upfront fee."
+          },
+          {
+            "id": "MANAGER-AS-OWNER",
+            "outcome": "A fee-only manager does not recognize collected owner room revenue or the hotel asset solely because it controls a bank account."
+          }
+        ],
+        "limitations": [
+          "Synthetic example only; each worksheet is a separate entity or stated incremental population.",
+          "Current consolidated ASC, later amendments, actual contracts, tax and wage applicability and local lodging/deposit rules remain unverified.",
+          "These synthetic worksheets are not operating records, payroll advice, approved postings or empirical agent evidence; no professional review was performed.",
+          "External rights remain unknown with no full text stored. Selected roles and assumptions do not establish whole-industry sufficiency."
+        ]
+      }
+    }
+  ],
+  "question_rows": [
+    {
+      "id": "rq-accommodation-food-booking-cancellation",
+      "record_id": "guide-accommodation-food-us-close",
+      "pointer": "/data/research_questions/0",
+      "family_ids": [
+        "q-revenue",
+        "q-cash-settlement"
+      ],
+      "question": "When do reservation deposits and cancellation payments become lodging revenue?",
+      "scope": "Selected US lodging and food-service roles, September 2026 synthetic close; framework and contract assumptions are explicit.",
+      "answer": "Link consideration to delivered nights and surviving refund or service obligations. The selected cancellation recognizes only a documented retained amount after all performance and refund obligations end.",
+      "answer_status": "sourced-answer-and-original-example",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_construction_fasb_2014_09"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_construction_fasb_2014_09",
+          "url": "https://storage.fasb.org/ASU%202014-09_Section%20A.pdf",
+          "locator": "606-10-25-1 through 25-2, contract criteria; 25-27(a) and 25-31, service progress; 45-1 through 45-4, printed pages 42-43 / PDF pages 48-49; 55-46 through 55-53, unexercised rights and upfront fees",
+          "effective_period": "Issued May 2014; original adoption dates were subsequently deferred. Synthetic 2026 cases assume adopted applicable revenue guidance.",
+          "access_limits": "Selected issued text and accepted revenue foundation; current Codification and later amendments not fully reviewed. Contract enforceability and satisfaction are stated synthetic predicates."
+        }
+      ],
+      "inputs": [
+        "Legal entity, role, contract version, accounting basis and source period",
+        "Reservation dates, occupancy and cancellation/refund obligations",
+        "POS sales, compulsory service charges, voluntary tips and separately supported collected taxes",
+        "Card/platform settlement, refund identifiers, fees and bank trace",
+        "Payroll register, worker tip reports, withholding and employer-tax inputs",
+        "Inventory count, ownership, cost method, disposal and remaining-stock NRV",
+        "Franchise eligibility, licensed right, standalone prices, services and royalty report",
+        "Owner-management agreement, fee base and interentity settlement"
+      ],
+      "workflow": [
+        "Select role and scope before combining evidence.",
+        "Match booking, POS or sales-report identifiers to the performance and settlement dates.",
+        "Separate customer liabilities, employee tips and government collections from earned revenue.",
+        "Reconcile each gross activity population, adjustments, retained fees and net bank amount.",
+        "Tie inventory, payroll and interentity subledgers to independently balanced books.",
+        "Hold unsupported rights, taxes, allocations and recognition judgments for review."
+      ],
+      "controls": [
+        "Reservation cutoff and refund obligation review",
+        "POS category-to-bank reconciliation without netting employee or tax liabilities into sales",
+        "Payroll-input and tip-category checks separate from individual tax deductions",
+        "Platform control assessment independent of payment timing",
+        "Physical count, disposal and NRV evidence with cost-method gate",
+        "Separate franchisor and franchisee framework decisions",
+        "Owner/manager reciprocal balance and fee-base match"
+      ],
+      "exceptions": [
+        "Prepaid future nights, disputed cancellations, loyalty awards and refundable damage deposits need separate populations."
+      ],
+      "remaining_gaps": [
+        "Current consolidated ASC, later amendments, actual contracts, tax and wage applicability and local lodging/deposit rules remain unverified.",
+        "These synthetic worksheets are not operating records, payroll advice, approved postings or empirical agent evidence; no professional review was performed.",
+        "External rights remain unknown with no full text stored. Selected roles and assumptions do not establish whole-industry sufficiency."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Selected primary-source evidence, accepted shared foundations and original traceable ledgers; not current authority or professional verification.",
+      "example_id": "example-accommodation-food-connected-close",
+      "example_subcase": "lodging-reservations"
+    },
+    {
+      "id": "rq-accommodation-food-pos-tips-payroll",
+      "record_id": "guide-accommodation-food-us-close",
+      "pointer": "/data/research_questions/1",
+      "family_ids": [
+        "q-revenue",
+        "q-payroll"
+      ],
+      "question": "How do POS tips and mandatory service charges reach the ledger and payroll?",
+      "scope": "Selected US lodging and food-service roles, September 2026 synthetic close; framework and contract assumptions are explicit.",
+      "answer": "Classify employee-directed voluntary tips separately from the selected operator service charge. IRS wage/reporting classification is a separate source question from GAAP control. Match the payroll register to the liabilities and cash paid.",
+      "answer_status": "sourced-answer-and-original-example",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_aa_i114_irs_tips",
+        "src_irs_pub15_2026",
+        "src_construction_fasb_2014_09"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_aa_i114_irs_tips",
+          "url": "https://www.irs.gov/businesses/small-businesses-self-employed/tip-recordkeeping-and-reporting",
+          "locator": "If you are an employee; Service charges are not tips; Employer and other payor responsibilities",
+          "effective_period": "Living page accessed September 19, 2026; page revision date not stated in the fetched text. The page separately discusses the 2025-2028 qualified-tip deduction, which this payroll case does not calculate.",
+          "access_limits": "Federal tax guidance, not financial-reporting or wage-law authority. The page does not resolve local service-charge ownership, tip pools, minimum wage or employer-specific payroll calculations."
+        },
+        {
+          "source_id": "src_irs_pub15_2026",
+          "url": "https://www.irs.gov/publications/p15",
+          "locator": "Publication 15 (2026), sections 6, Tips, and 9, Withholding From Employees Wages, plus payroll reporting sections",
+          "effective_period": "2026 employer guide; example withholding and employer taxes are supplied payroll-register inputs, not derived rates or eligibility conclusions.",
+          "access_limits": "Reuse accepted 2026 federal employer foundation. State/local payroll, wage law, credits, thresholds and individual deductions require separate verification."
+        },
+        {
+          "source_id": "src_construction_fasb_2014_09",
+          "url": "https://storage.fasb.org/ASU%202014-09_Section%20A.pdf",
+          "locator": "606-10-25-1 through 25-2, contract criteria; 25-27(a) and 25-31, service progress; 45-1 through 45-4, printed pages 42-43 / PDF pages 48-49; 55-46 through 55-53, unexercised rights and upfront fees",
+          "effective_period": "Issued May 2014; original adoption dates were subsequently deferred. Synthetic 2026 cases assume adopted applicable revenue guidance.",
+          "access_limits": "Selected issued text and accepted revenue foundation; current Codification and later amendments not fully reviewed. Contract enforceability and satisfaction are stated synthetic predicates."
+        }
+      ],
+      "inputs": [
+        "Legal entity, role, contract version, accounting basis and source period",
+        "Reservation dates, occupancy and cancellation/refund obligations",
+        "POS sales, compulsory service charges, voluntary tips and separately supported collected taxes",
+        "Card/platform settlement, refund identifiers, fees and bank trace",
+        "Payroll register, worker tip reports, withholding and employer-tax inputs",
+        "Inventory count, ownership, cost method, disposal and remaining-stock NRV",
+        "Franchise eligibility, licensed right, standalone prices, services and royalty report",
+        "Owner-management agreement, fee base and interentity settlement"
+      ],
+      "workflow": [
+        "Select role and scope before combining evidence.",
+        "Match booking, POS or sales-report identifiers to the performance and settlement dates.",
+        "Separate customer liabilities, employee tips and government collections from earned revenue.",
+        "Reconcile each gross activity population, adjustments, retained fees and net bank amount.",
+        "Tie inventory, payroll and interentity subledgers to independently balanced books.",
+        "Hold unsupported rights, taxes, allocations and recognition judgments for review."
+      ],
+      "controls": [
+        "Reservation cutoff and refund obligation review",
+        "POS category-to-bank reconciliation without netting employee or tax liabilities into sales",
+        "Payroll-input and tip-category checks separate from individual tax deductions",
+        "Platform control assessment independent of payment timing",
+        "Physical count, disposal and NRV evidence with cost-method gate",
+        "Separate franchisor and franchisee framework decisions",
+        "Owner/manager reciprocal balance and fee-base match"
+      ],
+      "exceptions": [
+        "Local ownership, tip pooling and wage law can change the facts. No minimum-wage, overtime, tax-credit or individual-deduction calculation is included."
+      ],
+      "remaining_gaps": [
+        "Current consolidated ASC, later amendments, actual contracts, tax and wage applicability and local lodging/deposit rules remain unverified.",
+        "These synthetic worksheets are not operating records, payroll advice, approved postings or empirical agent evidence; no professional review was performed.",
+        "External rights remain unknown with no full text stored. Selected roles and assumptions do not establish whole-industry sufficiency."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Selected primary-source evidence, accepted shared foundations and original traceable ledgers; not current authority or professional verification.",
+      "example_id": "example-accommodation-food-connected-close",
+      "example_subcase": "restaurant-pos-payroll"
+    },
+    {
+      "id": "rq-accommodation-food-platform-settlement",
+      "record_id": "guide-accommodation-food-us-close",
+      "pointer": "/data/research_questions/2",
+      "family_ids": [
+        "q-revenue",
+        "q-cash-settlement"
+      ],
+      "question": "How does a restaurant reconcile delivery-platform sales, refunds and fees?",
+      "scope": "Selected US lodging and food-service roles, September 2026 synthetic close; framework and contract assumptions are explicit.",
+      "answer": "For an assumed food principal, trace gross fulfilled orders less supported food refunds to revenue and record a separate platform-service expense. Reconcile the resulting platform balance to cash; use control facts before considering an agent alternative.",
+      "answer_status": "sourced-answer-and-original-example",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_fasb_asu2016_08_principal_agent",
+        "src_construction_fasb_2014_09"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_fasb_asu2016_08_principal_agent",
+          "url": "https://storage.fasb.org/ASU%202016-08.pdf",
+          "locator": "606-10-55-36 through 55-40, identification of the specified good/service, control and principal-versus-agent indicators",
+          "effective_period": "Issued March 2016; effective with the Topic 606 adoption requirements specified in the update.",
+          "access_limits": "Reuse the accepted source reading; control facts determine gross/net presentation, not the net bank settlement or platform label."
+        },
+        {
+          "source_id": "src_construction_fasb_2014_09",
+          "url": "https://storage.fasb.org/ASU%202014-09_Section%20A.pdf",
+          "locator": "606-10-25-1 through 25-2, contract criteria; 25-27(a) and 25-31, service progress; 45-1 through 45-4, printed pages 42-43 / PDF pages 48-49; 55-46 through 55-53, unexercised rights and upfront fees",
+          "effective_period": "Issued May 2014; original adoption dates were subsequently deferred. Synthetic 2026 cases assume adopted applicable revenue guidance.",
+          "access_limits": "Selected issued text and accepted revenue foundation; current Codification and later amendments not fully reviewed. Contract enforceability and satisfaction are stated synthetic predicates."
+        }
+      ],
+      "inputs": [
+        "Legal entity, role, contract version, accounting basis and source period",
+        "Reservation dates, occupancy and cancellation/refund obligations",
+        "POS sales, compulsory service charges, voluntary tips and separately supported collected taxes",
+        "Card/platform settlement, refund identifiers, fees and bank trace",
+        "Payroll register, worker tip reports, withholding and employer-tax inputs",
+        "Inventory count, ownership, cost method, disposal and remaining-stock NRV",
+        "Franchise eligibility, licensed right, standalone prices, services and royalty report",
+        "Owner-management agreement, fee base and interentity settlement"
+      ],
+      "workflow": [
+        "Select role and scope before combining evidence.",
+        "Match booking, POS or sales-report identifiers to the performance and settlement dates.",
+        "Separate customer liabilities, employee tips and government collections from earned revenue.",
+        "Reconcile each gross activity population, adjustments, retained fees and net bank amount.",
+        "Tie inventory, payroll and interentity subledgers to independently balanced books.",
+        "Hold unsupported rights, taxes, allocations and recognition judgments for review."
+      ],
+      "controls": [
+        "Reservation cutoff and refund obligation review",
+        "POS category-to-bank reconciliation without netting employee or tax liabilities into sales",
+        "Payroll-input and tip-category checks separate from individual tax deductions",
+        "Platform control assessment independent of payment timing",
+        "Physical count, disposal and NRV evidence with cost-method gate",
+        "Separate franchisor and franchisee framework decisions",
+        "Owner/manager reciprocal balance and fee-base match"
+      ],
+      "exceptions": [
+        "A marketplace, delivery provider or restaurant may control different promises. Net cash alone does not select gross/net revenue."
+      ],
+      "remaining_gaps": [
+        "Current consolidated ASC, later amendments, actual contracts, tax and wage applicability and local lodging/deposit rules remain unverified.",
+        "These synthetic worksheets are not operating records, payroll advice, approved postings or empirical agent evidence; no professional review was performed.",
+        "External rights remain unknown with no full text stored. Selected roles and assumptions do not establish whole-industry sufficiency."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Selected primary-source evidence, accepted shared foundations and original traceable ledgers; not current authority or professional verification.",
+      "example_id": "example-accommodation-food-connected-close",
+      "example_subcase": "delivery-platform-restaurant"
+    },
+    {
+      "id": "rq-accommodation-food-inventory-waste",
+      "record_id": "guide-accommodation-food-us-close",
+      "pointer": "/data/research_questions/3",
+      "family_ids": [
+        "q-inventory",
+        "q-cost-allocation"
+      ],
+      "question": "How do food use, disposal and remaining-stock write-downs differ?",
+      "scope": "Selected US lodging and food-service roles, September 2026 synthetic close; framework and contract assumptions are explicit.",
+      "answer": "Reconcile beginning owned stock plus purchases to consumption, recorded disposal and remaining cost. Under the selected FIFO case, compare remaining cost with its supported NRV; do not write down disposed units twice.",
+      "answer_status": "sourced-answer-and-original-example",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_fasb_asu2015_11_inventory"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_fasb_asu2015_11_inventory",
+          "url": "https://storage.fasb.org/ASU_2015-11.pdf",
+          "locator": "330-10-35-1A through 35-1C, printed page 4 / PDF page 10; 330-10-65-1, printed page 8 / PDF page 14",
+          "effective_period": "Issued July 2015. Public entities: fiscal years after December 15, 2016 including interim periods. Other entities: same annual date, interim periods in fiscal years after December 15, 2017. Prospective upon adoption.",
+          "access_limits": "Selected issued amendment freshly read. FIFO/average-cost lower-of-cost-and-NRV does not replace the distinct LIFO or retail-inventory method route."
+        }
+      ],
+      "inputs": [
+        "Legal entity, role, contract version, accounting basis and source period",
+        "Reservation dates, occupancy and cancellation/refund obligations",
+        "POS sales, compulsory service charges, voluntary tips and separately supported collected taxes",
+        "Card/platform settlement, refund identifiers, fees and bank trace",
+        "Payroll register, worker tip reports, withholding and employer-tax inputs",
+        "Inventory count, ownership, cost method, disposal and remaining-stock NRV",
+        "Franchise eligibility, licensed right, standalone prices, services and royalty report",
+        "Owner-management agreement, fee base and interentity settlement"
+      ],
+      "workflow": [
+        "Select role and scope before combining evidence.",
+        "Match booking, POS or sales-report identifiers to the performance and settlement dates.",
+        "Separate customer liabilities, employee tips and government collections from earned revenue.",
+        "Reconcile each gross activity population, adjustments, retained fees and net bank amount.",
+        "Tie inventory, payroll and interentity subledgers to independently balanced books.",
+        "Hold unsupported rights, taxes, allocations and recognition judgments for review."
+      ],
+      "controls": [
+        "Reservation cutoff and refund obligation review",
+        "POS category-to-bank reconciliation without netting employee or tax liabilities into sales",
+        "Payroll-input and tip-category checks separate from individual tax deductions",
+        "Platform control assessment independent of payment timing",
+        "Physical count, disposal and NRV evidence with cost-method gate",
+        "Separate franchisor and franchisee framework decisions",
+        "Owner/manager reciprocal balance and fee-base match"
+      ],
+      "exceptions": [
+        "LIFO/retail cost methods, consigned stock, byproducts and recoveries need separate analysis."
+      ],
+      "remaining_gaps": [
+        "Current consolidated ASC, later amendments, actual contracts, tax and wage applicability and local lodging/deposit rules remain unverified.",
+        "These synthetic worksheets are not operating records, payroll advice, approved postings or empirical agent evidence; no professional review was performed.",
+        "External rights remain unknown with no full text stored. Selected roles and assumptions do not establish whole-industry sufficiency."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Selected primary-source evidence, accepted shared foundations and original traceable ledgers; not current authority or professional verification.",
+      "example_id": "example-accommodation-food-connected-close",
+      "example_subcase": "food-inventory-waste"
+    },
+    {
+      "id": "rq-accommodation-food-franchise-roles",
+      "record_id": "guide-accommodation-food-us-close",
+      "pointer": "/data/research_questions/4",
+      "family_ids": [
+        "q-licensed-content",
+        "q-revenue"
+      ],
+      "question": "How do franchise fees and royalties differ for a franchisor and restaurant franchisee?",
+      "scope": "Selected US lodging and food-service roles, September 2026 synthetic close; framework and contract assumptions are explicit.",
+      "answer": "An eligible nonpublic franchisor may use the specified pre-opening identification expedient; allocation and revenue timing still require Topic 606. The original assumed service-access example separates delivered training, license months and qualifying sales royalties. The franchisee has a separately stated purchasing analysis.",
+      "answer_status": "sourced-answer-and-original-example",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_aa_i114_fasb_2021_02",
+        "src_aa_i105_fasb_2016_10",
+        "src_construction_fasb_2014_09"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_aa_i114_fasb_2021_02",
+          "url": "https://storage.fasb.org/ASU%202021-02.pdf",
+          "locator": "952-606-15-1 through 15-2; 25-1 through 25-4 and 50-1 through 50-2, printed pages 5 and 9 / PDF pages 11 and 15; 65-1, printed page 11 / PDF page 17",
+          "effective_period": "Issued January 28, 2021. Already-adopted Topic 606 entities: fiscal years beginning after December 15, 2020, including interim periods; early application permitted. Other eligible entities follow their initial Topic 606 adoption and transition under 65-1(a).",
+          "access_limits": "Franchisor-side expedient only; not a franchisee capitalization rule or automatic fee recognition. Current consolidated guidance and entity eligibility remain unverified."
+        },
+        {
+          "source_id": "src_aa_i105_fasb_2016_10",
+          "url": "https://storage.fasb.org/ASU%202016-10.pdf",
+          "locator": "606-10-55-58A through 55-60 and 55-65 through 55-65B; sales/usage-based royalty text printed page 19 / PDF page 25",
+          "effective_period": "Issued April 2016; transition linked to Topic 606. Selected 2026 assumed-adoption case.",
+          "access_limits": "Selected original licensing amendment and accepted source review. A trademark license assumption is not a conclusion for every franchise contract or renewal."
+        },
+        {
+          "source_id": "src_construction_fasb_2014_09",
+          "url": "https://storage.fasb.org/ASU%202014-09_Section%20A.pdf",
+          "locator": "606-10-25-1 through 25-2, contract criteria; 25-27(a) and 25-31, service progress; 45-1 through 45-4, printed pages 42-43 / PDF pages 48-49; 55-46 through 55-53, unexercised rights and upfront fees",
+          "effective_period": "Issued May 2014; original adoption dates were subsequently deferred. Synthetic 2026 cases assume adopted applicable revenue guidance.",
+          "access_limits": "Selected issued text and accepted revenue foundation; current Codification and later amendments not fully reviewed. Contract enforceability and satisfaction are stated synthetic predicates."
+        }
+      ],
+      "inputs": [
+        "Legal entity, role, contract version, accounting basis and source period",
+        "Reservation dates, occupancy and cancellation/refund obligations",
+        "POS sales, compulsory service charges, voluntary tips and separately supported collected taxes",
+        "Card/platform settlement, refund identifiers, fees and bank trace",
+        "Payroll register, worker tip reports, withholding and employer-tax inputs",
+        "Inventory count, ownership, cost method, disposal and remaining-stock NRV",
+        "Franchise eligibility, licensed right, standalone prices, services and royalty report",
+        "Owner-management agreement, fee base and interentity settlement"
+      ],
+      "workflow": [
+        "Select role and scope before combining evidence.",
+        "Match booking, POS or sales-report identifiers to the performance and settlement dates.",
+        "Separate customer liabilities, employee tips and government collections from earned revenue.",
+        "Reconcile each gross activity population, adjustments, retained fees and net bank amount.",
+        "Tie inventory, payroll and interentity subledgers to independently balanced books.",
+        "Hold unsupported rights, taxes, allocations and recognition judgments for review."
+      ],
+      "controls": [
+        "Reservation cutoff and refund obligation review",
+        "POS category-to-bank reconciliation without netting employee or tax liabilities into sales",
+        "Payroll-input and tip-category checks separate from individual tax deductions",
+        "Platform control assessment independent of payment timing",
+        "Physical count, disposal and NRV evidence with cost-method gate",
+        "Separate franchisor and franchisee framework decisions",
+        "Owner/manager reciprocal balance and fee-base match"
+      ],
+      "exceptions": [
+        "Public-business franchisors, nonlisted pre-opening activities, renewal rights, purchased intangible assets and franchisee cost rules are not answered by the expedient."
+      ],
+      "remaining_gaps": [
+        "Current consolidated ASC, later amendments, actual contracts, tax and wage applicability and local lodging/deposit rules remain unverified.",
+        "These synthetic worksheets are not operating records, payroll advice, approved postings or empirical agent evidence; no professional review was performed.",
+        "External rights remain unknown with no full text stored. Selected roles and assumptions do not establish whole-industry sufficiency."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Selected primary-source evidence, accepted shared foundations and original traceable ledgers; not current authority or professional verification.",
+      "example_id": "example-accommodation-food-connected-close",
+      "example_subcase": "franchisor-license-training"
+    },
+    {
+      "id": "rq-accommodation-food-owner-manager",
+      "record_id": "guide-accommodation-food-us-close",
+      "pointer": "/data/research_questions/5",
+      "family_ids": [
+        "q-revenue",
+        "q-data-lineage"
+      ],
+      "question": "How does an owner distinguish hotel room receipts from a manager settlement?",
+      "scope": "Selected US lodging and food-service roles, September 2026 synthetic close; framework and contract assumptions are explicit.",
+      "answer": "Under the stated principal/agent facts the owner records earned rooms and management expense; the manager records its fee and owner payable. Reconcile reciprocal activity and the remittance without treating owner cash as manager revenue.",
+      "answer_status": "sourced-answer-and-original-example",
+      "assessment_status": "partial",
+      "source_ids": [
+        "src_fasb_asu2016_08_principal_agent",
+        "src_construction_fasb_2014_09"
+      ],
+      "source_locators": [
+        {
+          "source_id": "src_fasb_asu2016_08_principal_agent",
+          "url": "https://storage.fasb.org/ASU%202016-08.pdf",
+          "locator": "606-10-55-36 through 55-40, identification of the specified good/service, control and principal-versus-agent indicators",
+          "effective_period": "Issued March 2016; effective with the Topic 606 adoption requirements specified in the update.",
+          "access_limits": "Reuse the accepted source reading; control facts determine gross/net presentation, not the net bank settlement or platform label."
+        },
+        {
+          "source_id": "src_construction_fasb_2014_09",
+          "url": "https://storage.fasb.org/ASU%202014-09_Section%20A.pdf",
+          "locator": "606-10-25-1 through 25-2, contract criteria; 25-27(a) and 25-31, service progress; 45-1 through 45-4, printed pages 42-43 / PDF pages 48-49; 55-46 through 55-53, unexercised rights and upfront fees",
+          "effective_period": "Issued May 2014; original adoption dates were subsequently deferred. Synthetic 2026 cases assume adopted applicable revenue guidance.",
+          "access_limits": "Selected issued text and accepted revenue foundation; current Codification and later amendments not fully reviewed. Contract enforceability and satisfaction are stated synthetic predicates."
+        }
+      ],
+      "inputs": [
+        "Legal entity, role, contract version, accounting basis and source period",
+        "Reservation dates, occupancy and cancellation/refund obligations",
+        "POS sales, compulsory service charges, voluntary tips and separately supported collected taxes",
+        "Card/platform settlement, refund identifiers, fees and bank trace",
+        "Payroll register, worker tip reports, withholding and employer-tax inputs",
+        "Inventory count, ownership, cost method, disposal and remaining-stock NRV",
+        "Franchise eligibility, licensed right, standalone prices, services and royalty report",
+        "Owner-management agreement, fee base and interentity settlement"
+      ],
+      "workflow": [
+        "Select role and scope before combining evidence.",
+        "Match booking, POS or sales-report identifiers to the performance and settlement dates.",
+        "Separate customer liabilities, employee tips and government collections from earned revenue.",
+        "Reconcile each gross activity population, adjustments, retained fees and net bank amount.",
+        "Tie inventory, payroll and interentity subledgers to independently balanced books.",
+        "Hold unsupported rights, taxes, allocations and recognition judgments for review."
+      ],
+      "controls": [
+        "Reservation cutoff and refund obligation review",
+        "POS category-to-bank reconciliation without netting employee or tax liabilities into sales",
+        "Payroll-input and tip-category checks separate from individual tax deductions",
+        "Platform control assessment independent of payment timing",
+        "Physical count, disposal and NRV evidence with cost-method gate",
+        "Separate franchisor and franchisee framework decisions",
+        "Owner/manager reciprocal balance and fee-base match"
+      ],
+      "exceptions": [
+        "A hotel lessee, management contract with broader control, incentive fee or owner financing changes the selected role and needs separate treatment."
+      ],
+      "remaining_gaps": [
+        "Current consolidated ASC, later amendments, actual contracts, tax and wage applicability and local lodging/deposit rules remain unverified.",
+        "These synthetic worksheets are not operating records, payroll advice, approved postings or empirical agent evidence; no professional review was performed.",
+        "External rights remain unknown with no full text stored. Selected roles and assumptions do not establish whole-industry sufficiency."
+      ],
+      "professional_review": "not-performed",
+      "empirical_support": "not-established",
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "dimension_basis": "Selected primary-source evidence, accepted shared foundations and original traceable ledgers; not current authority or professional verification.",
+      "example_id": "example-accommodation-food-connected-close",
+      "example_subcase": "managed-hotel-owner"
+    }
+  ],
+  "assessments": [
+    {
+      "id": "coverage-accommodation-food-booking-cancellation",
+      "scope_kind": "industry",
+      "industry_code": "721",
+      "question_id": "q-revenue",
+      "family_ids": [
+        "q-revenue",
+        "q-cash-settlement"
+      ],
+      "status": "partial",
+      "scope": "Selected US lodging and food-service roles, September 2026 synthetic close; framework and contract assumptions are explicit.",
+      "jurisdictions": [
+        "United States"
+      ],
+      "frameworks": [
+        "Selected nongovernmental US GAAP research; IRS guidance supplies tax/reporting distinctions, not GAAP revenue recognition."
+      ],
+      "effective_from": null,
+      "effective_to": null,
+      "reviewed_at": "2026-09-19",
+      "reviewer": "Codex AI-assisted bounded source review",
+      "review_basis": "Selected question rq-accommodation-food-booking-cancellation with original source-linked synthetic close evidence.",
+      "source_currency": "unknown",
+      "evidence_record_ids": [
+        "guide-accommodation-food-us-close",
+        "wf-accommodation-food-settlement",
+        "ctrl-accommodation-food-roles",
+        "example-accommodation-food-connected-close",
+        "src_construction_fasb_2014_09"
+      ],
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "gaps": [
+        "Prepaid future nights, disputed cancellations, loyalty awards and refundable damage deposits need separate populations.",
+        "Current consolidated ASC, later amendments, actual contracts, tax and wage applicability and local lodging/deposit rules remain unverified.",
+        "These synthetic worksheets are not operating records, payroll advice, approved postings or empirical agent evidence; no professional review was performed.",
+        "External rights remain unknown with no full text stored. Selected roles and assumptions do not establish whole-industry sufficiency."
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External publisher text is not stored; publisher terms and source rights remain separate and unresolved.",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": null
+      },
+      "professional_review": "not-performed",
+      "empirical_support": "not-established"
+    },
+    {
+      "id": "coverage-accommodation-food-pos-tips-payroll",
+      "scope_kind": "industry",
+      "industry_code": "722",
+      "question_id": "q-revenue",
+      "family_ids": [
+        "q-revenue",
+        "q-payroll"
+      ],
+      "status": "partial",
+      "scope": "Selected US lodging and food-service roles, September 2026 synthetic close; framework and contract assumptions are explicit.",
+      "jurisdictions": [
+        "United States"
+      ],
+      "frameworks": [
+        "Selected nongovernmental US GAAP research; IRS guidance supplies tax/reporting distinctions, not GAAP revenue recognition."
+      ],
+      "effective_from": null,
+      "effective_to": null,
+      "reviewed_at": "2026-09-19",
+      "reviewer": "Codex AI-assisted bounded source review",
+      "review_basis": "Selected question rq-accommodation-food-pos-tips-payroll with original source-linked synthetic close evidence.",
+      "source_currency": "unknown",
+      "evidence_record_ids": [
+        "guide-accommodation-food-us-close",
+        "wf-accommodation-food-settlement",
+        "ctrl-accommodation-food-roles",
+        "example-accommodation-food-connected-close",
+        "src_aa_i114_irs_tips",
+        "src_irs_pub15_2026",
+        "src_construction_fasb_2014_09"
+      ],
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "gaps": [
+        "Local ownership, tip pooling and wage law can change the facts. No minimum-wage, overtime, tax-credit or individual-deduction calculation is included.",
+        "Current consolidated ASC, later amendments, actual contracts, tax and wage applicability and local lodging/deposit rules remain unverified.",
+        "These synthetic worksheets are not operating records, payroll advice, approved postings or empirical agent evidence; no professional review was performed.",
+        "External rights remain unknown with no full text stored. Selected roles and assumptions do not establish whole-industry sufficiency."
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External publisher text is not stored; publisher terms and source rights remain separate and unresolved.",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": null
+      },
+      "professional_review": "not-performed",
+      "empirical_support": "not-established"
+    },
+    {
+      "id": "coverage-accommodation-food-platform-settlement",
+      "scope_kind": "industry",
+      "industry_code": "722",
+      "question_id": "q-revenue",
+      "family_ids": [
+        "q-revenue",
+        "q-cash-settlement"
+      ],
+      "status": "partial",
+      "scope": "Selected US lodging and food-service roles, September 2026 synthetic close; framework and contract assumptions are explicit.",
+      "jurisdictions": [
+        "United States"
+      ],
+      "frameworks": [
+        "Selected nongovernmental US GAAP research; IRS guidance supplies tax/reporting distinctions, not GAAP revenue recognition."
+      ],
+      "effective_from": null,
+      "effective_to": null,
+      "reviewed_at": "2026-09-19",
+      "reviewer": "Codex AI-assisted bounded source review",
+      "review_basis": "Selected question rq-accommodation-food-platform-settlement with original source-linked synthetic close evidence.",
+      "source_currency": "unknown",
+      "evidence_record_ids": [
+        "guide-accommodation-food-us-close",
+        "wf-accommodation-food-settlement",
+        "ctrl-accommodation-food-roles",
+        "example-accommodation-food-connected-close",
+        "src_fasb_asu2016_08_principal_agent",
+        "src_construction_fasb_2014_09"
+      ],
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "gaps": [
+        "A marketplace, delivery provider or restaurant may control different promises. Net cash alone does not select gross/net revenue.",
+        "Current consolidated ASC, later amendments, actual contracts, tax and wage applicability and local lodging/deposit rules remain unverified.",
+        "These synthetic worksheets are not operating records, payroll advice, approved postings or empirical agent evidence; no professional review was performed.",
+        "External rights remain unknown with no full text stored. Selected roles and assumptions do not establish whole-industry sufficiency."
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External publisher text is not stored; publisher terms and source rights remain separate and unresolved.",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": null
+      },
+      "professional_review": "not-performed",
+      "empirical_support": "not-established"
+    },
+    {
+      "id": "coverage-accommodation-food-inventory-waste",
+      "scope_kind": "industry",
+      "industry_code": "722",
+      "question_id": "q-inventory",
+      "family_ids": [
+        "q-inventory",
+        "q-cost-allocation"
+      ],
+      "status": "partial",
+      "scope": "Selected US lodging and food-service roles, September 2026 synthetic close; framework and contract assumptions are explicit.",
+      "jurisdictions": [
+        "United States"
+      ],
+      "frameworks": [
+        "Selected nongovernmental US GAAP research; IRS guidance supplies tax/reporting distinctions, not GAAP revenue recognition."
+      ],
+      "effective_from": null,
+      "effective_to": null,
+      "reviewed_at": "2026-09-19",
+      "reviewer": "Codex AI-assisted bounded source review",
+      "review_basis": "Selected question rq-accommodation-food-inventory-waste with original source-linked synthetic close evidence.",
+      "source_currency": "unknown",
+      "evidence_record_ids": [
+        "guide-accommodation-food-us-close",
+        "wf-accommodation-food-settlement",
+        "ctrl-accommodation-food-roles",
+        "example-accommodation-food-connected-close",
+        "src_fasb_asu2015_11_inventory"
+      ],
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "gaps": [
+        "LIFO/retail cost methods, consigned stock, byproducts and recoveries need separate analysis.",
+        "Current consolidated ASC, later amendments, actual contracts, tax and wage applicability and local lodging/deposit rules remain unverified.",
+        "These synthetic worksheets are not operating records, payroll advice, approved postings or empirical agent evidence; no professional review was performed.",
+        "External rights remain unknown with no full text stored. Selected roles and assumptions do not establish whole-industry sufficiency."
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External publisher text is not stored; publisher terms and source rights remain separate and unresolved.",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": null
+      },
+      "professional_review": "not-performed",
+      "empirical_support": "not-established"
+    },
+    {
+      "id": "coverage-accommodation-food-franchise-roles",
+      "scope_kind": "industry",
+      "industry_code": "722",
+      "question_id": "q-licensed-content",
+      "family_ids": [
+        "q-licensed-content",
+        "q-revenue"
+      ],
+      "status": "partial",
+      "scope": "Selected US lodging and food-service roles, September 2026 synthetic close; framework and contract assumptions are explicit.",
+      "jurisdictions": [
+        "United States"
+      ],
+      "frameworks": [
+        "Selected nongovernmental US GAAP research; IRS guidance supplies tax/reporting distinctions, not GAAP revenue recognition."
+      ],
+      "effective_from": null,
+      "effective_to": null,
+      "reviewed_at": "2026-09-19",
+      "reviewer": "Codex AI-assisted bounded source review",
+      "review_basis": "Selected question rq-accommodation-food-franchise-roles with original source-linked synthetic close evidence.",
+      "source_currency": "unknown",
+      "evidence_record_ids": [
+        "guide-accommodation-food-us-close",
+        "wf-accommodation-food-settlement",
+        "ctrl-accommodation-food-roles",
+        "example-accommodation-food-connected-close",
+        "src_aa_i114_fasb_2021_02",
+        "src_aa_i105_fasb_2016_10",
+        "src_construction_fasb_2014_09"
+      ],
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "gaps": [
+        "Public-business franchisors, nonlisted pre-opening activities, renewal rights, purchased intangible assets and franchisee cost rules are not answered by the expedient.",
+        "Current consolidated ASC, later amendments, actual contracts, tax and wage applicability and local lodging/deposit rules remain unverified.",
+        "These synthetic worksheets are not operating records, payroll advice, approved postings or empirical agent evidence; no professional review was performed.",
+        "External rights remain unknown with no full text stored. Selected roles and assumptions do not establish whole-industry sufficiency."
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External publisher text is not stored; publisher terms and source rights remain separate and unresolved.",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": null
+      },
+      "professional_review": "not-performed",
+      "empirical_support": "not-established"
+    },
+    {
+      "id": "coverage-accommodation-food-owner-manager",
+      "scope_kind": "industry",
+      "industry_code": "721",
+      "question_id": "q-revenue",
+      "family_ids": [
+        "q-revenue",
+        "q-data-lineage"
+      ],
+      "status": "partial",
+      "scope": "Selected US lodging and food-service roles, September 2026 synthetic close; framework and contract assumptions are explicit.",
+      "jurisdictions": [
+        "United States"
+      ],
+      "frameworks": [
+        "Selected nongovernmental US GAAP research; IRS guidance supplies tax/reporting distinctions, not GAAP revenue recognition."
+      ],
+      "effective_from": null,
+      "effective_to": null,
+      "reviewed_at": "2026-09-19",
+      "reviewer": "Codex AI-assisted bounded source review",
+      "review_basis": "Selected question rq-accommodation-food-owner-manager with original source-linked synthetic close evidence.",
+      "source_currency": "unknown",
+      "evidence_record_ids": [
+        "guide-accommodation-food-us-close",
+        "wf-accommodation-food-settlement",
+        "ctrl-accommodation-food-roles",
+        "example-accommodation-food-connected-close",
+        "src_fasb_asu2016_08_principal_agent",
+        "src_construction_fasb_2014_09"
+      ],
+      "dimensions": {
+        "scope": "present",
+        "accounting-question": "partial",
+        "evidence-inputs": "present",
+        "workflow": "present",
+        "controls": "present",
+        "worked-material": "present",
+        "empirical-support": "not-assessed"
+      },
+      "gaps": [
+        "A hotel lessee, management contract with broader control, incentive fee or owner financing changes the selected role and needs separate treatment.",
+        "Current consolidated ASC, later amendments, actual contracts, tax and wage applicability and local lodging/deposit rules remain unverified.",
+        "These synthetic worksheets are not operating records, payroll advice, approved postings or empirical agent evidence; no professional review was performed.",
+        "External rights remain unknown with no full text stored. Selected roles and assumptions do not establish whole-industry sufficiency."
+      ],
+      "rights": {
+        "metadata": "CC0-1.0",
+        "content": "CC-BY-4.0",
+        "external_content": "External publisher text is not stored; publisher terms and source rights remain separate and unresolved.",
+        "full_text_stored": false,
+        "source_status": "unknown",
+        "source_license": null,
+        "source_license_url": null,
+        "source_permission_scope": null
+      },
+      "professional_review": "not-performed",
+      "empirical_support": "not-established"
+    }
+  ],
+  "mapping_overrides": {
+    "guide-accommodation-food-us-close": {
+      "replace_question_ids": false,
+      "question_ids": [
+        "q-revenue",
+        "q-cash-settlement",
+        "q-payroll",
+        "q-inventory",
+        "q-cost-allocation",
+        "q-licensed-content",
+        "q-data-lineage"
+      ],
+      "industry_codes": [
+        "721",
+        "722"
+      ],
+      "industry_scope": "specific",
+      "basis_field": "/data/research_questions",
+      "reason": "Selected accommodation and food-service roles, not industry sufficiency.",
+      "reviewed_question_ids": [
+        "q-revenue",
+        "q-cash-settlement",
+        "q-payroll",
+        "q-inventory",
+        "q-cost-allocation",
+        "q-licensed-content",
+        "q-data-lineage"
+      ],
+      "reviewed_industry_codes": [
+        "721",
+        "722"
+      ],
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded primary-source and synthetic application; no professional or operational verification."
+    },
+    "wf-accommodation-food-settlement": {
+      "replace_question_ids": false,
+      "question_ids": [
+        "q-revenue",
+        "q-cash-settlement",
+        "q-payroll",
+        "q-inventory",
+        "q-cost-allocation",
+        "q-licensed-content",
+        "q-data-lineage"
+      ],
+      "industry_codes": [
+        "721",
+        "722"
+      ],
+      "industry_scope": "specific",
+      "basis_field": "/data",
+      "reason": "Selected accommodation and food-service roles, not industry sufficiency.",
+      "reviewed_question_ids": [
+        "q-revenue",
+        "q-cash-settlement",
+        "q-payroll",
+        "q-inventory",
+        "q-cost-allocation",
+        "q-licensed-content",
+        "q-data-lineage"
+      ],
+      "reviewed_industry_codes": [
+        "721",
+        "722"
+      ],
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded primary-source and synthetic application; no professional or operational verification."
+    },
+    "ctrl-accommodation-food-roles": {
+      "replace_question_ids": false,
+      "question_ids": [
+        "q-revenue",
+        "q-cash-settlement",
+        "q-payroll",
+        "q-inventory",
+        "q-cost-allocation",
+        "q-licensed-content",
+        "q-data-lineage"
+      ],
+      "industry_codes": [
+        "721",
+        "722"
+      ],
+      "industry_scope": "specific",
+      "basis_field": "/data",
+      "reason": "Selected accommodation and food-service roles, not industry sufficiency.",
+      "reviewed_question_ids": [
+        "q-revenue",
+        "q-cash-settlement",
+        "q-payroll",
+        "q-inventory",
+        "q-cost-allocation",
+        "q-licensed-content",
+        "q-data-lineage"
+      ],
+      "reviewed_industry_codes": [
+        "721",
+        "722"
+      ],
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded primary-source and synthetic application; no professional or operational verification."
+    },
+    "example-accommodation-food-connected-close": {
+      "replace_question_ids": false,
+      "question_ids": [
+        "q-revenue",
+        "q-cash-settlement",
+        "q-payroll",
+        "q-inventory",
+        "q-cost-allocation",
+        "q-licensed-content",
+        "q-data-lineage"
+      ],
+      "industry_codes": [
+        "721",
+        "722"
+      ],
+      "industry_scope": "specific",
+      "basis_field": "/data",
+      "reason": "Selected accommodation and food-service roles, not industry sufficiency.",
+      "reviewed_question_ids": [
+        "q-revenue",
+        "q-cash-settlement",
+        "q-payroll",
+        "q-inventory",
+        "q-cost-allocation",
+        "q-licensed-content",
+        "q-data-lineage"
+      ],
+      "reviewed_industry_codes": [
+        "721",
+        "722"
+      ],
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded primary-source and synthetic application; no professional or operational verification."
+    },
+    "src_aa_i114_irs_tips": {
+      "replace_question_ids": false,
+      "question_ids": [
+        "q-revenue",
+        "q-payroll"
+      ],
+      "industry_codes": [
+        "722"
+      ],
+      "industry_scope": "specific",
+      "basis_field": "/data",
+      "reason": "Selected accommodation and food-service roles, not industry sufficiency.",
+      "reviewed_question_ids": [
+        "q-revenue",
+        "q-payroll"
+      ],
+      "reviewed_industry_codes": [
+        "722"
+      ],
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded primary-source and synthetic application; no professional or operational verification."
+    },
+    "src_aa_i114_fasb_2021_02": {
+      "replace_question_ids": false,
+      "question_ids": [
+        "q-licensed-content",
+        "q-revenue"
+      ],
+      "industry_codes": [
+        "722"
+      ],
+      "industry_scope": "specific",
+      "basis_field": "/data",
+      "reason": "Selected accommodation and food-service roles, not industry sufficiency.",
+      "reviewed_question_ids": [
+        "q-licensed-content",
+        "q-revenue"
+      ],
+      "reviewed_industry_codes": [
+        "722"
+      ],
+      "reviewed_at": "2026-09-19",
+      "review_note": "Bounded primary-source and synthetic application; no professional or operational verification."
+    }
+  },
+  "common_limits": [
+    "Current consolidated ASC, later amendments, actual contracts, tax and wage applicability and local lodging/deposit rules remain unverified.",
+    "These synthetic worksheets are not operating records, payroll advice, approved postings or empirical agent evidence; no professional review was performed.",
+    "External rights remain unknown with no full text stored. Selected roles and assumptions do not establish whole-industry sufficiency."
+  ],
+  "integration_contract": {
+    "target_files": [
+      "data/corpus/source.json",
+      "data/corpus/guide.json",
+      "data/corpus/example.json",
+      "data/corpus/workflow.json",
+      "data/corpus/control.json",
+      "data/coverage/research-questions.json",
+      "data/coverage/assessments.json",
+      "data/coverage/mapping-overrides.json"
+    ],
+    "additive_only": true,
+    "preserve_primary_metadata": true,
+    "source_url_conflict": "reuse existing source ID and add only bounded review supplement; refuse different stable ID for same URL",
+    "preflight_before_write": true,
+    "replay_safe": true,
+    "corpus_version_update": "coordinator-controlled only; helper preserves current corpus version by default",
+    "catalog_write": false,
+    "release_write": false
+  },
+  "selected_reused_source_reviews": [
+    {
+      "source_id": "src_construction_fasb_2014_09",
+      "url": "https://storage.fasb.org/ASU%202014-09_Section%20A.pdf",
+      "locator": "606-10-25-1 through 25-2, contract criteria; 25-27(a) and 25-31, service progress; 45-1 through 45-4, printed pages 42-43 / PDF pages 48-49; 55-46 through 55-53, unexercised rights and upfront fees",
+      "effective_period": "Issued May 2014; original adoption dates were subsequently deferred. Synthetic 2026 cases assume adopted applicable revenue guidance.",
+      "access_limits": "Selected issued text and accepted revenue foundation; current Codification and later amendments not fully reviewed. Contract enforceability and satisfaction are stated synthetic predicates.",
+      "reviewed_at": "2026-09-19",
+      "primary_metadata_mutation": false
+    },
+    {
+      "source_id": "src_fasb_asu2016_08_principal_agent",
+      "url": "https://storage.fasb.org/ASU%202016-08.pdf",
+      "locator": "606-10-55-36 through 55-40, identification of the specified good/service, control and principal-versus-agent indicators",
+      "effective_period": "Issued March 2016; effective with the Topic 606 adoption requirements specified in the update.",
+      "access_limits": "Reuse the accepted source reading; control facts determine gross/net presentation, not the net bank settlement or platform label.",
+      "reviewed_at": "2026-09-19",
+      "primary_metadata_mutation": false
+    },
+    {
+      "source_id": "src_fasb_asu2015_11_inventory",
+      "url": "https://storage.fasb.org/ASU_2015-11.pdf",
+      "locator": "330-10-35-1A through 35-1C, printed page 4 / PDF page 10; 330-10-65-1, printed page 8 / PDF page 14",
+      "effective_period": "Issued July 2015. Public entities: fiscal years after December 15, 2016 including interim periods. Other entities: same annual date, interim periods in fiscal years after December 15, 2017. Prospective upon adoption.",
+      "access_limits": "Selected issued amendment freshly read. FIFO/average-cost lower-of-cost-and-NRV does not replace the distinct LIFO or retail-inventory method route.",
+      "reviewed_at": "2026-09-19",
+      "primary_metadata_mutation": false
+    },
+    {
+      "source_id": "src_aa_i105_fasb_2016_10",
+      "url": "https://storage.fasb.org/ASU%202016-10.pdf",
+      "locator": "606-10-55-58A through 55-60 and 55-65 through 55-65B; sales/usage-based royalty text printed page 19 / PDF page 25",
+      "effective_period": "Issued April 2016; transition linked to Topic 606. Selected 2026 assumed-adoption case.",
+      "access_limits": "Selected original licensing amendment and accepted source review. A trademark license assumption is not a conclusion for every franchise contract or renewal.",
+      "reviewed_at": "2026-09-19",
+      "primary_metadata_mutation": false
+    },
+    {
+      "source_id": "src_irs_pub15_2026",
+      "url": "https://www.irs.gov/publications/p15",
+      "locator": "Publication 15 (2026), sections 6, Tips, and 9, Withholding From Employees Wages, plus payroll reporting sections",
+      "effective_period": "2026 employer guide; example withholding and employer taxes are supplied payroll-register inputs, not derived rates or eligibility conclusions.",
+      "access_limits": "Reuse accepted 2026 federal employer foundation. State/local payroll, wage law, credits, thresholds and individual deductions require separate verification.",
+      "reviewed_at": "2026-09-19",
+      "primary_metadata_mutation": false
+    }
+  ],
+  "retrieval_fixtures": {
+    "search": [
+      {
+        "query": "accommodation food services reservation POS close",
+        "limit": 20,
+        "expected_record_ids": [
+          "guide-accommodation-food-us-close"
+        ]
+      },
+      {
+        "query": "accommodation food connected synthetic close",
+        "limit": 20,
+        "expected_record_ids": [
+          "example-accommodation-food-connected-close"
+        ]
+      },
+      {
+        "query": "franchisor pre opening service expedient",
+        "limit": 20,
+        "expected_record_ids": [
+          "src_aa_i114_fasb_2021_02"
+        ]
+      }
+    ],
+    "get": [
+      {
+        "id": "guide-accommodation-food-us-close",
+        "limit": 20
+      },
+      {
+        "id": "example-accommodation-food-connected-close",
+        "limit": 20
+      }
+    ]
+  },
+  "dispositions": {
+    "reuse": "Existing revenue, principal/agent, inventory, licensing and employer foundations retain stable source identities and primary reviews.",
+    "remaining_branches": "Lodging leases, gaming, alcohol regulations, loyalty programs, local taxes, all-state wage/deposit law and complex franchise renewals remain outside the selected answers.",
+    "preserve": "All prior records, rights, questions, assessments and frozen history."
+  }
+}

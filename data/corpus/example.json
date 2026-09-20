@@ -16742,5 +16742,1939 @@
         "Publisher rights remain unknown and full text is not stored; selected roles do not establish whole-sector sufficiency or state-law coverage."
       ]
     }
+  },
+  {
+    "id": "example-real-estate-owner-manager-close",
+    "kind": "example",
+    "title": "Synthetic real estate role and settlement close",
+    "summary": "Synthetic worked examples for an owner/developer cost bridge, owner-versus-manager settlement, property sale hold, equipment lessor components and nonfinancial-rights license. These figures are review fixtures, not operational evidence or posting instructions.",
+    "topics": [
+      "Synthetic examples",
+      "Real estate, rental and leasing",
+      "Revenue and customer contracts",
+      "Leases"
+    ],
+    "industries": [
+      "real-estate-sector"
+    ],
+    "jurisdiction": "United States; selected roles and reporting purposes only",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_roadmap_naics2022_manual",
+      "src_fasb_asu201602_leases",
+      "src_i120_asu202005_lease_dates",
+      "src_construction_fasb_2014_09",
+      "src_fasb_asu2016_08_principal_agent",
+      "src_aa_i105_fasb_2016_10",
+      "src_1os761s",
+      "src_aa_i107_fas67_real_estate_costs",
+      "src_aa_i107_fas66_real_estate_sales"
+    ],
+    "related_ids": [
+      "guide-real-estate-us-roles",
+      "wf-real-estate-property-to-ledger",
+      "ctrl-real-estate-role-and-settlement"
+    ],
+    "review_status": "source-reviewed",
+    "reviewed_at": "2026-09-19",
+    "provenance": {
+      "added_on": "2026-09-19",
+      "reviewer": "Codex AI-assisted bounded source research",
+      "note": "Source-only candidate for issue 107. Original publisher text is not stored; no professional signoff is asserted."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "External publisher text is not stored; publisher terms and source rights remain separate and unresolved.",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "synthetic": true,
+      "currency": "USD",
+      "owner_manager": {
+        "rent_collected_cents": 12000000,
+        "management_fee_rate_bps": 500,
+        "management_fee_cents": 600000,
+        "owner_settlement_liability_cents": 11400000,
+        "refundable_deposit_cents": 2000000,
+        "check": "12000000 = 600000 + 11400000; deposit is separate",
+        "fee_check": "12000000 * 500 / 10000 = 600000",
+        "cash_receipt_check": "12000000 rent + 2000000 deposit = 14000000 cash",
+        "owner_remit_check": "12000000 rent - 600000 fee = 11400000 remit",
+        "balanced_books": true,
+        "owner_book": {
+          "entries": [
+            {
+              "id": "owner-rent-receivable",
+              "lines": [
+                {
+                  "account": "due_from_manager",
+                  "debit_cents": 12000000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "rental_revenue",
+                  "debit_cents": 0,
+                  "credit_cents": 12000000
+                }
+              ]
+            },
+            {
+              "id": "owner-deposit-receivable",
+              "lines": [
+                {
+                  "account": "due_from_manager",
+                  "debit_cents": 2000000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "tenant_deposit_liability",
+                  "debit_cents": 0,
+                  "credit_cents": 2000000
+                }
+              ]
+            },
+            {
+              "id": "owner-fee",
+              "lines": [
+                {
+                  "account": "management_fee_expense",
+                  "debit_cents": 600000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "due_from_manager",
+                  "debit_cents": 0,
+                  "credit_cents": 600000
+                }
+              ]
+            },
+            {
+              "id": "owner-remit",
+              "lines": [
+                {
+                  "account": "cash",
+                  "debit_cents": 11400000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "due_from_manager",
+                  "debit_cents": 0,
+                  "credit_cents": 11400000
+                }
+              ]
+            }
+          ],
+          "ending_balances": {
+            "cash": 11400000,
+            "due_from_manager": 2000000,
+            "rental_revenue": -12000000,
+            "management_fee_expense": 600000,
+            "tenant_deposit_liability": -2000000
+          }
+        },
+        "manager_book": {
+          "entries": [
+            {
+              "id": "manager-receipt",
+              "lines": [
+                {
+                  "account": "cash",
+                  "debit_cents": 14000000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "owner_settlement_liability",
+                  "debit_cents": 0,
+                  "credit_cents": 12000000
+                },
+                {
+                  "account": "owner_deposit_custody_liability",
+                  "debit_cents": 0,
+                  "credit_cents": 2000000
+                }
+              ]
+            },
+            {
+              "id": "manager-fee",
+              "lines": [
+                {
+                  "account": "owner_settlement_liability",
+                  "debit_cents": 600000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "management_fee_revenue",
+                  "debit_cents": 0,
+                  "credit_cents": 600000
+                }
+              ]
+            },
+            {
+              "id": "manager-remit",
+              "lines": [
+                {
+                  "account": "owner_settlement_liability",
+                  "debit_cents": 11400000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "cash",
+                  "debit_cents": 0,
+                  "credit_cents": 11400000
+                }
+              ]
+            }
+          ],
+          "ending_balances": {
+            "cash": 2600000,
+            "owner_settlement_liability": 0,
+            "management_fee_revenue": -600000,
+            "owner_deposit_custody_liability": -2000000
+          },
+          "deposit_custody_note": "The manager holds the tenant deposit as agent for the owner and owes the custody amount to the owner; the owner separately recognizes the tenant deposit liability."
+        }
+      },
+      "developer_cost_bridge": {
+        "land_cents": 240000000,
+        "closing_costs_cents": 6000000,
+        "direct_development_cents": 120000000,
+        "project_cost_population_cents": 366000000,
+        "unresolved_common_overhead_cents": 40000000,
+        "check": "240000000 + 6000000 + 120000000 = 366000000; overhead remains a current-authority review item",
+        "allocation_review": "FAS 67 paragraph 11 supports specific identification or relative-value allocation; 40000000 cents common overhead remains pending current review."
+      },
+      "property_sale_hold": {
+        "contract_price_cents": 150000000,
+        "deposit_cents": 15000000,
+        "status": "pending-transfer-evidence",
+        "counterexample": "deposit received before authorized transfer or while substantial continuing involvement remains"
+      },
+      "equipment_lessor": {
+        "fixed_payments_cents": 9000000,
+        "refundable_deposit_cents": 500000,
+        "maintenance_cents": 1800000,
+        "check": "9000000 + 500000 + 1800000 are separate populations; classification and allocation remain open",
+        "months": 36,
+        "monthly_payment_cents": 250000,
+        "payment_schedule_check": "36 * 250000 = 9000000; $90,000 total fixed payments"
+      },
+      "rights_license": {
+        "fixed_fee_cents": 10000000,
+        "usage_units": 80000,
+        "royalty_rate_cents_per_unit": 50,
+        "royalty_cents": 4000000,
+        "total_consideration_cents": 14000000,
+        "counterexample": "usage report covers an expired territory and must be rejected pending contract match",
+        "royalty_check": "80000 units * 50 cents = 4000000 cents; fixed fee 10000000 cents; total 14000000 cents"
+      },
+      "proposed_entries": [
+        {
+          "id": "owner-manager-fee",
+          "status": "proposed-synthetic",
+          "amount_cents": 600000
+        },
+        {
+          "id": "owner-settlement",
+          "status": "proposed-synthetic",
+          "amount_cents": 11400000
+        },
+        {
+          "id": "deposit-liability",
+          "status": "proposed-synthetic",
+          "amount_cents": 2000000
+        },
+        {
+          "id": "developer-project-population",
+          "status": "proposed-synthetic",
+          "amount_cents": 366000000
+        }
+      ],
+      "scope_counterexamples": [
+        "OWNER-AS-CONTRACTOR: owner hires contractor; contractor revenue does not become owner property-sale revenue",
+        "DEPOSIT-AS-RENT: refundable deposit received before conditions are met",
+        "MANAGER-GROSS: manager collects owner rent but lacks control facts for gross presentation",
+        "EXPIRED-LICENSE-TERRITORY: usage report outside licensed territory"
+      ],
+      "limitations": [
+        "No external full text, entity ledger, live contract, title file or professional approval is included.",
+        "Synthetic example only: no posting, live ledger, title file, contract approval or professional conclusion is included."
+      ],
+      "examples": [
+        {
+          "id": "owner-manager-books",
+          "scenario_type": "positive",
+          "synthetic": true,
+          "description": "Separate owner and manager books connect receipt, fee, owner remit and tenant deposit; both books balance."
+        },
+        {
+          "scenario": "rental-incentives-deposits",
+          "scenario_type": "positive",
+          "synthetic": true,
+          "case_pointer": "/data/rental_incentives_deposits"
+        },
+        {
+          "id": "owner-as-contractor",
+          "scenario_type": "negative",
+          "synthetic": true,
+          "description": "An owner hiring a contractor does not turn contractor revenue into owner property-sale revenue."
+        },
+        {
+          "id": "expired-license-territory",
+          "scenario_type": "negative",
+          "synthetic": true,
+          "description": "Usage outside the licensed territory is rejected pending contract match."
+        }
+      ],
+      "rental_incentives_deposits": {
+        "term_months": 24,
+        "stated_monthly_rent_cents": 120000,
+        "concession": {
+          "type": "one_month_free",
+          "month": 1,
+          "amount_cents": 120000
+        },
+        "cash_rent_total_cents": 2760000,
+        "straight_line_lease_income_cents_per_month": 115000,
+        "refundable_deposit_cents": 240000,
+        "monthly_schedule": [
+          {
+            "month": 1,
+            "cash_rent_cents": 0,
+            "straight_line_lease_income_cents": 115000,
+            "refundable_deposit_liability_cents": 240000
+          },
+          {
+            "month": 2,
+            "cash_rent_cents": 120000,
+            "straight_line_lease_income_cents": 115000,
+            "refundable_deposit_liability_cents": 240000
+          },
+          {
+            "month": 3,
+            "cash_rent_cents": 120000,
+            "straight_line_lease_income_cents": 115000,
+            "refundable_deposit_liability_cents": 240000
+          },
+          {
+            "month": 4,
+            "cash_rent_cents": 120000,
+            "straight_line_lease_income_cents": 115000,
+            "refundable_deposit_liability_cents": 240000
+          },
+          {
+            "month": 5,
+            "cash_rent_cents": 120000,
+            "straight_line_lease_income_cents": 115000,
+            "refundable_deposit_liability_cents": 240000
+          },
+          {
+            "month": 6,
+            "cash_rent_cents": 120000,
+            "straight_line_lease_income_cents": 115000,
+            "refundable_deposit_liability_cents": 240000
+          },
+          {
+            "month": 7,
+            "cash_rent_cents": 120000,
+            "straight_line_lease_income_cents": 115000,
+            "refundable_deposit_liability_cents": 240000
+          },
+          {
+            "month": 8,
+            "cash_rent_cents": 120000,
+            "straight_line_lease_income_cents": 115000,
+            "refundable_deposit_liability_cents": 240000
+          },
+          {
+            "month": 9,
+            "cash_rent_cents": 120000,
+            "straight_line_lease_income_cents": 115000,
+            "refundable_deposit_liability_cents": 240000
+          },
+          {
+            "month": 10,
+            "cash_rent_cents": 120000,
+            "straight_line_lease_income_cents": 115000,
+            "refundable_deposit_liability_cents": 240000
+          },
+          {
+            "month": 11,
+            "cash_rent_cents": 120000,
+            "straight_line_lease_income_cents": 115000,
+            "refundable_deposit_liability_cents": 240000
+          },
+          {
+            "month": 12,
+            "cash_rent_cents": 120000,
+            "straight_line_lease_income_cents": 115000,
+            "refundable_deposit_liability_cents": 240000
+          },
+          {
+            "month": 13,
+            "cash_rent_cents": 120000,
+            "straight_line_lease_income_cents": 115000,
+            "refundable_deposit_liability_cents": 240000
+          },
+          {
+            "month": 14,
+            "cash_rent_cents": 120000,
+            "straight_line_lease_income_cents": 115000,
+            "refundable_deposit_liability_cents": 240000
+          },
+          {
+            "month": 15,
+            "cash_rent_cents": 120000,
+            "straight_line_lease_income_cents": 115000,
+            "refundable_deposit_liability_cents": 240000
+          },
+          {
+            "month": 16,
+            "cash_rent_cents": 120000,
+            "straight_line_lease_income_cents": 115000,
+            "refundable_deposit_liability_cents": 240000
+          },
+          {
+            "month": 17,
+            "cash_rent_cents": 120000,
+            "straight_line_lease_income_cents": 115000,
+            "refundable_deposit_liability_cents": 240000
+          },
+          {
+            "month": 18,
+            "cash_rent_cents": 120000,
+            "straight_line_lease_income_cents": 115000,
+            "refundable_deposit_liability_cents": 240000
+          },
+          {
+            "month": 19,
+            "cash_rent_cents": 120000,
+            "straight_line_lease_income_cents": 115000,
+            "refundable_deposit_liability_cents": 240000
+          },
+          {
+            "month": 20,
+            "cash_rent_cents": 120000,
+            "straight_line_lease_income_cents": 115000,
+            "refundable_deposit_liability_cents": 240000
+          },
+          {
+            "month": 21,
+            "cash_rent_cents": 120000,
+            "straight_line_lease_income_cents": 115000,
+            "refundable_deposit_liability_cents": 240000
+          },
+          {
+            "month": 22,
+            "cash_rent_cents": 120000,
+            "straight_line_lease_income_cents": 115000,
+            "refundable_deposit_liability_cents": 240000
+          },
+          {
+            "month": 23,
+            "cash_rent_cents": 120000,
+            "straight_line_lease_income_cents": 115000,
+            "refundable_deposit_liability_cents": 240000
+          },
+          {
+            "month": 24,
+            "cash_rent_cents": 120000,
+            "straight_line_lease_income_cents": 115000,
+            "refundable_deposit_liability_cents": 240000
+          }
+        ],
+        "lessor_treatment": "Selected operating-lessor branch: spread the total fixed lease consideration after the one-month concession over 24 months at 115000 cents per month; retain the refundable deposit as a separate custody liability and do not include it in lease income.",
+        "lessee_counterrole": "If the entity is lessee, apply the separately identified 842-20 route and do not reuse this lessor income schedule.",
+        "checks": {
+          "cash_schedule_check": "0 + (23 * 120000) = 2760000 cents",
+          "straight_line_check": "24 * 115000 = 2760000 cents",
+          "deposit_separation_check": "240000 refundable deposit cents are excluded from both cash rent and straight-line lease income."
+        }
+      }
+    }
+  },
+  {
+    "id": "example-accommodation-food-connected-close",
+    "kind": "example",
+    "title": "Accommodation and food services: connected synthetic close",
+    "summary": "Eight separate original ledgers connect reservations, POS/payroll, platform payments, inventory, franchisor/franchisee and hotel owner/manager evidence.",
+    "topics": [
+      "Accounting and reporting",
+      "Accommodation and food services",
+      "Cash settlement"
+    ],
+    "industries": [
+      "accommodation-food-services"
+    ],
+    "jurisdiction": "United States; selected operator, owner, manager and franchise roles",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_construction_fasb_2014_09",
+      "src_fasb_asu2016_08_principal_agent",
+      "src_fasb_asu2015_11_inventory",
+      "src_aa_i105_fasb_2016_10",
+      "src_aa_i114_irs_tips",
+      "src_aa_i114_fasb_2021_02",
+      "src_irs_pub15_2026"
+    ],
+    "related_ids": [
+      "guide-accommodation-food-us-close",
+      "wf-accommodation-food-settlement",
+      "ctrl-accommodation-food-roles"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-19",
+    "provenance": {
+      "added_on": "2026-09-19",
+      "reviewer": "Codex AI-assisted selected-source and editorial review",
+      "scope": "Original publisher passages and independently created synthetic worksheets; no professional review.",
+      "note": "Source-only proposal pending independent review and integration."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "External publisher text is not stored; publisher terms and source rights remain separate and unresolved.",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "fixture_type": "original-synthetic-connected-ledgers",
+      "currency": "USD",
+      "unit": "integer cents",
+      "period": "Synthetic September 2026",
+      "accounts": {
+        "cash": "asset",
+        "card_receivable": "asset",
+        "platform_receivable": "asset",
+        "inventory": "asset",
+        "franchise_prepaid": "asset",
+        "royalty_receivable": "asset",
+        "due_from_manager": "asset",
+        "contract_liability": "liability",
+        "tips_payable": "liability",
+        "sales_tax_payable": "liability",
+        "wages_payable": "liability",
+        "payroll_taxes_payable": "liability",
+        "accounts_payable": "liability",
+        "royalty_payable": "liability",
+        "owner_payable": "liability",
+        "opening_equity": "equity",
+        "room_revenue": "revenue",
+        "cancellation_revenue": "revenue",
+        "food_revenue": "revenue",
+        "service_charge_revenue": "revenue",
+        "license_revenue": "revenue",
+        "royalty_revenue": "revenue",
+        "training_revenue": "revenue",
+        "management_fee_revenue": "revenue",
+        "processing_expense": "expense",
+        "service_wage_expense": "expense",
+        "payroll_tax_expense": "expense",
+        "platform_expense": "expense",
+        "food_cost": "expense",
+        "waste_expense": "expense",
+        "inventory_write_down": "expense",
+        "license_expense": "expense",
+        "royalty_expense": "expense",
+        "training_expense": "expense",
+        "management_fee_expense": "expense"
+      },
+      "cases": [
+        {
+          "id": "lodging-reservations",
+          "synthetic": true,
+          "assumptions": [
+            "Hotel operator controls the promised accommodation and has enforceable contracts; no accommodation lease or tax computation is included.",
+            "Reservation A is four equal $300 nights with three delivered by cutoff; its final night remains owed. Reservation B is cancelled, with documented entitlement to retain $200 and refund $400, no further service, refund or credit obligation."
+          ],
+          "inputs": {
+            "reservation_a_cents": 120000,
+            "reserved_nights": 4,
+            "delivered_nights": 3,
+            "night_rate_cents": 30000,
+            "reservation_b_cents": 60000,
+            "refund_cents": 40000,
+            "entitled_cancellation_cents": 20000
+          },
+          "journals": [
+            {
+              "id": "L1",
+              "memo": "Two reservation deposits received",
+              "status": "proposed-synthetic",
+              "lines": [
+                {
+                  "account": "cash",
+                  "debit_cents": 180000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "contract_liability",
+                  "debit_cents": 0,
+                  "credit_cents": 180000
+                }
+              ]
+            },
+            {
+              "id": "L2",
+              "memo": "Three nights delivered",
+              "status": "proposed-synthetic",
+              "lines": [
+                {
+                  "account": "contract_liability",
+                  "debit_cents": 90000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "room_revenue",
+                  "debit_cents": 0,
+                  "credit_cents": 90000
+                }
+              ]
+            },
+            {
+              "id": "L3",
+              "memo": "Cancelled booking closes with supported refund and fee",
+              "status": "proposed-synthetic",
+              "lines": [
+                {
+                  "account": "contract_liability",
+                  "debit_cents": 60000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "cash",
+                  "debit_cents": 0,
+                  "credit_cents": 40000
+                },
+                {
+                  "account": "cancellation_revenue",
+                  "debit_cents": 0,
+                  "credit_cents": 20000
+                }
+              ]
+            }
+          ],
+          "trial_balance": {
+            "cash": 140000,
+            "contract_liability": -30000,
+            "room_revenue": -90000,
+            "cancellation_revenue": -20000
+          },
+          "reconciliation": {
+            "assets_cents": 140000,
+            "liabilities_cents": 30000,
+            "net_income_cents": 110000,
+            "opening_equity_cents": 0
+          },
+          "evidence_chain": [
+            {
+              "document_id": "SYN-lodging-reservations",
+              "journal_ids": [
+                "L1",
+                "L2",
+                "L3"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "restaurant-pos-payroll",
+          "synthetic": true,
+          "assumptions": [
+            "Restaurant controls food and selected mandatory service and has the contractual right to the service charge; tax and wage labels alone do not establish that revenue conclusion.",
+            "The POS tax amount is a supplied collection for government under the selected tax facts, not a jurisdictional rate. Voluntary tips belong to workers.",
+            "A supported payroll register supplies service-charge wages of $100 and combined withholding $34 and employer taxes $16.83. These are given inputs, not a calculation of legal wages, tip credits or tax liabilities. No other base wages are included in this incremental worksheet."
+          ],
+          "inputs": {
+            "food_sales_cents": 100000,
+            "mandatory_service_cents": 15000,
+            "voluntary_tips_cents": 12000,
+            "collected_tax_cents": 9200,
+            "card_gross_cents": 136200,
+            "processor_fee_cents": 2700,
+            "service_charge_wages_cents": 10000,
+            "withholding_cents": 3400,
+            "employer_taxes_cents": 1683,
+            "employee_net_cents": 18600
+          },
+          "journals": [
+            {
+              "id": "P1",
+              "memo": "POS records separate sales, service, tax and tips",
+              "status": "proposed-synthetic",
+              "lines": [
+                {
+                  "account": "card_receivable",
+                  "debit_cents": 136200,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "food_revenue",
+                  "debit_cents": 0,
+                  "credit_cents": 100000
+                },
+                {
+                  "account": "service_charge_revenue",
+                  "debit_cents": 0,
+                  "credit_cents": 15000
+                },
+                {
+                  "account": "tips_payable",
+                  "debit_cents": 0,
+                  "credit_cents": 12000
+                },
+                {
+                  "account": "sales_tax_payable",
+                  "debit_cents": 0,
+                  "credit_cents": 9200
+                }
+              ]
+            },
+            {
+              "id": "P2",
+              "memo": "Processor settlement",
+              "status": "proposed-synthetic",
+              "lines": [
+                {
+                  "account": "cash",
+                  "debit_cents": 133500,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "processing_expense",
+                  "debit_cents": 2700,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "card_receivable",
+                  "debit_cents": 0,
+                  "credit_cents": 136200
+                }
+              ]
+            },
+            {
+              "id": "P3",
+              "memo": "Supported service-charge wages accrued",
+              "status": "proposed-synthetic",
+              "lines": [
+                {
+                  "account": "service_wage_expense",
+                  "debit_cents": 10000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "wages_payable",
+                  "debit_cents": 0,
+                  "credit_cents": 10000
+                }
+              ]
+            },
+            {
+              "id": "P4",
+              "memo": "Tips and service wages paid with payroll withholding",
+              "status": "proposed-synthetic",
+              "lines": [
+                {
+                  "account": "tips_payable",
+                  "debit_cents": 12000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "wages_payable",
+                  "debit_cents": 10000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "cash",
+                  "debit_cents": 0,
+                  "credit_cents": 18600
+                },
+                {
+                  "account": "payroll_taxes_payable",
+                  "debit_cents": 0,
+                  "credit_cents": 3400
+                }
+              ]
+            },
+            {
+              "id": "P5",
+              "memo": "Supplied employer tax register",
+              "status": "proposed-synthetic",
+              "lines": [
+                {
+                  "account": "payroll_tax_expense",
+                  "debit_cents": 1683,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "payroll_taxes_payable",
+                  "debit_cents": 0,
+                  "credit_cents": 1683
+                }
+              ]
+            }
+          ],
+          "trial_balance": {
+            "food_revenue": -100000,
+            "service_charge_revenue": -15000,
+            "sales_tax_payable": -9200,
+            "cash": 114900,
+            "processing_expense": 2700,
+            "service_wage_expense": 10000,
+            "payroll_taxes_payable": -5083,
+            "payroll_tax_expense": 1683
+          },
+          "reconciliation": {
+            "assets_cents": 114900,
+            "liabilities_cents": 14283,
+            "net_income_cents": 100617,
+            "opening_equity_cents": 0
+          },
+          "evidence_chain": [
+            {
+              "document_id": "SYN-restaurant-pos-payroll",
+              "journal_ids": [
+                "P1",
+                "P2",
+                "P3",
+                "P4",
+                "P5"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "delivery-platform-restaurant",
+          "synthetic": true,
+          "assumptions": [
+            "Restaurant controls $2,000 of food delivered to customers. The platform collects and retains a separately supported $400 service fee. Delivery, taxes and tips are excluded from this order population.",
+            "A supported $100 food refund reduces this same order population. Platform own books are not implied by the restaurant entries."
+          ],
+          "inputs": {
+            "gross_food_cents": 200000,
+            "refund_cents": 10000,
+            "platform_fee_cents": 40000,
+            "net_bank_cents": 150000
+          },
+          "journals": [
+            {
+              "id": "D1",
+              "memo": "Fulfilled food orders",
+              "status": "proposed-synthetic",
+              "lines": [
+                {
+                  "account": "platform_receivable",
+                  "debit_cents": 200000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "food_revenue",
+                  "debit_cents": 0,
+                  "credit_cents": 200000
+                }
+              ]
+            },
+            {
+              "id": "D2",
+              "memo": "Supported food refund",
+              "status": "proposed-synthetic",
+              "lines": [
+                {
+                  "account": "food_revenue",
+                  "debit_cents": 10000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "platform_receivable",
+                  "debit_cents": 0,
+                  "credit_cents": 10000
+                }
+              ]
+            },
+            {
+              "id": "D3",
+              "memo": "Platform remits after its fee",
+              "status": "proposed-synthetic",
+              "lines": [
+                {
+                  "account": "cash",
+                  "debit_cents": 150000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "platform_expense",
+                  "debit_cents": 40000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "platform_receivable",
+                  "debit_cents": 0,
+                  "credit_cents": 190000
+                }
+              ]
+            }
+          ],
+          "trial_balance": {
+            "food_revenue": -190000,
+            "cash": 150000,
+            "platform_expense": 40000
+          },
+          "reconciliation": {
+            "assets_cents": 150000,
+            "liabilities_cents": 0,
+            "net_income_cents": 150000,
+            "opening_equity_cents": 0
+          },
+          "evidence_chain": [
+            {
+              "document_id": "SYN-delivery-platform-restaurant",
+              "journal_ids": [
+                "D1",
+                "D2",
+                "D3"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "food-inventory-waste",
+          "synthetic": true,
+          "assumptions": [
+            "Separate inventory worksheet uses FIFO and owned food stock. Consumption, verified waste and remaining-stock NRV are distinct quantities.",
+            "NRV is a supplied supportable estimate for the remaining stock; the case does not calculate forecast selling prices. No recovery of already-disposed food is assumed."
+          ],
+          "inputs": {
+            "opening_cost_cents": 10000,
+            "purchases_cents": 30000,
+            "consumed_cost_cents": 25000,
+            "disposed_cost_cents": 2000,
+            "remaining_cost_cents": 13000,
+            "supported_nrv_cents": 12000
+          },
+          "journals": [
+            {
+              "id": "I0",
+              "memo": "Opening owned inventory",
+              "status": "proposed-synthetic",
+              "lines": [
+                {
+                  "account": "inventory",
+                  "debit_cents": 10000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "opening_equity",
+                  "debit_cents": 0,
+                  "credit_cents": 10000
+                }
+              ]
+            },
+            {
+              "id": "I1",
+              "memo": "Purchases on account",
+              "status": "proposed-synthetic",
+              "lines": [
+                {
+                  "account": "inventory",
+                  "debit_cents": 30000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "accounts_payable",
+                  "debit_cents": 0,
+                  "credit_cents": 30000
+                }
+              ]
+            },
+            {
+              "id": "I2",
+              "memo": "Food consumed",
+              "status": "proposed-synthetic",
+              "lines": [
+                {
+                  "account": "food_cost",
+                  "debit_cents": 25000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "inventory",
+                  "debit_cents": 0,
+                  "credit_cents": 25000
+                }
+              ]
+            },
+            {
+              "id": "I3",
+              "memo": "Verified disposal",
+              "status": "proposed-synthetic",
+              "lines": [
+                {
+                  "account": "waste_expense",
+                  "debit_cents": 2000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "inventory",
+                  "debit_cents": 0,
+                  "credit_cents": 2000
+                }
+              ]
+            },
+            {
+              "id": "I4",
+              "memo": "Remaining stock NRV adjustment",
+              "status": "proposed-synthetic",
+              "lines": [
+                {
+                  "account": "inventory_write_down",
+                  "debit_cents": 1000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "inventory",
+                  "debit_cents": 0,
+                  "credit_cents": 1000
+                }
+              ]
+            }
+          ],
+          "trial_balance": {
+            "inventory": 12000,
+            "opening_equity": -10000,
+            "accounts_payable": -30000,
+            "food_cost": 25000,
+            "waste_expense": 2000,
+            "inventory_write_down": 1000
+          },
+          "reconciliation": {
+            "assets_cents": 12000,
+            "liabilities_cents": 30000,
+            "net_income_cents": -28000,
+            "opening_equity_cents": 10000
+          },
+          "evidence_chain": [
+            {
+              "document_id": "SYN-food-inventory-waste",
+              "journal_ids": [
+                "I0",
+                "I1",
+                "I2",
+                "I3",
+                "I4"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "franchisor-license-training",
+          "synthetic": true,
+          "assumptions": [
+            "Eligible nonpublic franchisor has adopted Topic 606 and elects the ASU 2021-02 expedient for specified pre-opening training. Training is delivered, the symbolic license is assumed to provide access evenly for 24 months, and month one is completed.",
+            "The $12,000 fixed fee is allocated using supplied standalone prices: $2,400 training and $9,600 license. The $500 royalty is 5% of separately supported $10,000 franchisee sales and relates only to the qualifying license.",
+            "The example is independently created. The expedient identifies performance obligations; it does not supply the allocation or recognition conclusion."
+          ],
+          "inputs": {
+            "fixed_fee_cents": 1200000,
+            "training_allocation_cents": 240000,
+            "license_allocation_cents": 960000,
+            "license_months": 24,
+            "completed_months": 1,
+            "franchisee_sales_cents": 1000000,
+            "royalty_rate_bps": 500
+          },
+          "journals": [
+            {
+              "id": "F1",
+              "memo": "Fixed fee received before performance",
+              "status": "proposed-synthetic",
+              "lines": [
+                {
+                  "account": "cash",
+                  "debit_cents": 1200000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "contract_liability",
+                  "debit_cents": 0,
+                  "credit_cents": 1200000
+                }
+              ]
+            },
+            {
+              "id": "F2",
+              "memo": "Training delivered",
+              "status": "proposed-synthetic",
+              "lines": [
+                {
+                  "account": "contract_liability",
+                  "debit_cents": 240000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "training_revenue",
+                  "debit_cents": 0,
+                  "credit_cents": 240000
+                }
+              ]
+            },
+            {
+              "id": "F3",
+              "memo": "One license-access month provided",
+              "status": "proposed-synthetic",
+              "lines": [
+                {
+                  "account": "contract_liability",
+                  "debit_cents": 40000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "license_revenue",
+                  "debit_cents": 0,
+                  "credit_cents": 40000
+                }
+              ]
+            },
+            {
+              "id": "F4",
+              "memo": "Supported sales-based royalty earned",
+              "status": "proposed-synthetic",
+              "lines": [
+                {
+                  "account": "royalty_receivable",
+                  "debit_cents": 50000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "royalty_revenue",
+                  "debit_cents": 0,
+                  "credit_cents": 50000
+                }
+              ]
+            }
+          ],
+          "trial_balance": {
+            "cash": 1200000,
+            "contract_liability": -920000,
+            "training_revenue": -240000,
+            "license_revenue": -40000,
+            "royalty_receivable": 50000,
+            "royalty_revenue": -50000
+          },
+          "reconciliation": {
+            "assets_cents": 1250000,
+            "liabilities_cents": 920000,
+            "net_income_cents": 330000,
+            "opening_equity_cents": 0
+          },
+          "evidence_chain": [
+            {
+              "document_id": "SYN-franchisor-license-training",
+              "journal_ids": [
+                "F1",
+                "F2",
+                "F3",
+                "F4"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "franchisee-service-license",
+          "synthetic": true,
+          "assumptions": [
+            "Separate restaurant franchisee assumes the same training and service-access components and allocation are supported for its purchasing analysis.",
+            "This is a prepaid service-access arrangement with no controlled purchased intangible asserted. Franchisee asset classification and renewal terms need separate guidance. The franchisor expedient is not a franchisee election."
+          ],
+          "inputs": {
+            "fixed_fee_cents": 1200000,
+            "training_allocation_cents": 240000,
+            "license_allocation_cents": 960000,
+            "license_months": 24,
+            "completed_months": 1,
+            "franchisee_sales_cents": 1000000,
+            "royalty_rate_bps": 500
+          },
+          "journals": [
+            {
+              "id": "E0",
+              "memo": "Opening funds",
+              "status": "proposed-synthetic",
+              "lines": [
+                {
+                  "account": "cash",
+                  "debit_cents": 1200000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "opening_equity",
+                  "debit_cents": 0,
+                  "credit_cents": 1200000
+                }
+              ]
+            },
+            {
+              "id": "E1",
+              "memo": "Prepaid selected services",
+              "status": "proposed-synthetic",
+              "lines": [
+                {
+                  "account": "franchise_prepaid",
+                  "debit_cents": 1200000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "cash",
+                  "debit_cents": 0,
+                  "credit_cents": 1200000
+                }
+              ]
+            },
+            {
+              "id": "E2",
+              "memo": "Training received",
+              "status": "proposed-synthetic",
+              "lines": [
+                {
+                  "account": "training_expense",
+                  "debit_cents": 240000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "franchise_prepaid",
+                  "debit_cents": 0,
+                  "credit_cents": 240000
+                }
+              ]
+            },
+            {
+              "id": "E3",
+              "memo": "One month access received",
+              "status": "proposed-synthetic",
+              "lines": [
+                {
+                  "account": "license_expense",
+                  "debit_cents": 40000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "franchise_prepaid",
+                  "debit_cents": 0,
+                  "credit_cents": 40000
+                }
+              ]
+            },
+            {
+              "id": "E4",
+              "memo": "Supported royalty payable",
+              "status": "proposed-synthetic",
+              "lines": [
+                {
+                  "account": "royalty_expense",
+                  "debit_cents": 50000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "royalty_payable",
+                  "debit_cents": 0,
+                  "credit_cents": 50000
+                }
+              ]
+            }
+          ],
+          "trial_balance": {
+            "opening_equity": -1200000,
+            "franchise_prepaid": 920000,
+            "training_expense": 240000,
+            "license_expense": 40000,
+            "royalty_expense": 50000,
+            "royalty_payable": -50000
+          },
+          "reconciliation": {
+            "assets_cents": 920000,
+            "liabilities_cents": 50000,
+            "net_income_cents": -330000,
+            "opening_equity_cents": 1200000
+          },
+          "evidence_chain": [
+            {
+              "document_id": "SYN-franchisee-service-license",
+              "journal_ids": [
+                "E0",
+                "E1",
+                "E2",
+                "E3",
+                "E4"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "managed-hotel-owner",
+          "synthetic": true,
+          "assumptions": [
+            "Separate property-owner worksheet: owner controls and earns $3,000 room revenue; manager only collects and remits for the owner. No property asset or lease accounting is implied.",
+            "The 4% fee applies only to this selected earned room revenue; no incentive fee, tax or guest deposit is in this batch."
+          ],
+          "inputs": {
+            "collected_room_cents": 300000,
+            "fee_rate_bps": 400,
+            "fee_cents": 12000,
+            "net_remit_cents": 288000
+          },
+          "journals": [
+            {
+              "id": "O1",
+              "memo": "Earned rooms collected by manager",
+              "status": "proposed-synthetic",
+              "lines": [
+                {
+                  "account": "due_from_manager",
+                  "debit_cents": 300000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "room_revenue",
+                  "debit_cents": 0,
+                  "credit_cents": 300000
+                }
+              ]
+            },
+            {
+              "id": "O2",
+              "memo": "Manager fee deducted",
+              "status": "proposed-synthetic",
+              "lines": [
+                {
+                  "account": "management_fee_expense",
+                  "debit_cents": 12000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "due_from_manager",
+                  "debit_cents": 0,
+                  "credit_cents": 12000
+                }
+              ]
+            },
+            {
+              "id": "O3",
+              "memo": "Owner receives settlement",
+              "status": "proposed-synthetic",
+              "lines": [
+                {
+                  "account": "cash",
+                  "debit_cents": 288000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "due_from_manager",
+                  "debit_cents": 0,
+                  "credit_cents": 288000
+                }
+              ]
+            }
+          ],
+          "trial_balance": {
+            "room_revenue": -300000,
+            "management_fee_expense": 12000,
+            "cash": 288000
+          },
+          "reconciliation": {
+            "assets_cents": 288000,
+            "liabilities_cents": 0,
+            "net_income_cents": 288000,
+            "opening_equity_cents": 0
+          },
+          "evidence_chain": [
+            {
+              "document_id": "SYN-managed-hotel-owner",
+              "journal_ids": [
+                "O1",
+                "O2",
+                "O3"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "managed-hotel-manager",
+          "synthetic": true,
+          "assumptions": [
+            "Independent manager worksheet for the same batch; owner remains the accommodation principal. Manager controls only its management service.",
+            "All collected money is tracked to the owner, then an earned 4% fee is deducted and the rest remitted."
+          ],
+          "inputs": {
+            "collected_room_cents": 300000,
+            "fee_rate_bps": 400,
+            "fee_cents": 12000,
+            "net_remit_cents": 288000
+          },
+          "journals": [
+            {
+              "id": "M1",
+              "memo": "Receive owner funds",
+              "status": "proposed-synthetic",
+              "lines": [
+                {
+                  "account": "cash",
+                  "debit_cents": 300000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "owner_payable",
+                  "debit_cents": 0,
+                  "credit_cents": 300000
+                }
+              ]
+            },
+            {
+              "id": "M2",
+              "memo": "Earn management fee",
+              "status": "proposed-synthetic",
+              "lines": [
+                {
+                  "account": "owner_payable",
+                  "debit_cents": 12000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "management_fee_revenue",
+                  "debit_cents": 0,
+                  "credit_cents": 12000
+                }
+              ]
+            },
+            {
+              "id": "M3",
+              "memo": "Remit balance",
+              "status": "proposed-synthetic",
+              "lines": [
+                {
+                  "account": "owner_payable",
+                  "debit_cents": 288000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "cash",
+                  "debit_cents": 0,
+                  "credit_cents": 288000
+                }
+              ]
+            }
+          ],
+          "trial_balance": {
+            "cash": 12000,
+            "management_fee_revenue": -12000
+          },
+          "reconciliation": {
+            "assets_cents": 12000,
+            "liabilities_cents": 0,
+            "net_income_cents": 12000,
+            "opening_equity_cents": 0
+          },
+          "evidence_chain": [
+            {
+              "document_id": "SYN-managed-hotel-manager",
+              "journal_ids": [
+                "M1",
+                "M2",
+                "M3"
+              ]
+            }
+          ]
+        }
+      ],
+      "examples": [
+        {
+          "id": "lodging-reservations",
+          "synthetic": true,
+          "scenario_type": "positive",
+          "description": "Hotel operator controls the promised accommodation and has enforceable contracts; no accommodation lease or tax computation is included."
+        },
+        {
+          "id": "restaurant-pos-payroll",
+          "synthetic": true,
+          "scenario_type": "positive",
+          "description": "Restaurant controls food and selected mandatory service and has the contractual right to the service charge; tax and wage labels alone do not establish that revenue conclusion."
+        },
+        {
+          "id": "delivery-platform-restaurant",
+          "synthetic": true,
+          "scenario_type": "positive",
+          "description": "Restaurant controls $2,000 of food delivered to customers. The platform collects and retains a separately supported $400 service fee. Delivery, taxes and tips are excluded from this order population."
+        },
+        {
+          "id": "food-inventory-waste",
+          "synthetic": true,
+          "scenario_type": "positive",
+          "description": "Separate inventory worksheet uses FIFO and owned food stock. Consumption, verified waste and remaining-stock NRV are distinct quantities."
+        },
+        {
+          "id": "franchisor-license-training",
+          "synthetic": true,
+          "scenario_type": "positive",
+          "description": "Eligible nonpublic franchisor has adopted Topic 606 and elects the ASU 2021-02 expedient for specified pre-opening training. Training is delivered, the symbolic license is assumed to provide access evenly for 24 months, and month one is completed."
+        },
+        {
+          "id": "franchisee-service-license",
+          "synthetic": true,
+          "scenario_type": "positive",
+          "description": "Separate restaurant franchisee assumes the same training and service-access components and allocation are supported for its purchasing analysis."
+        },
+        {
+          "id": "managed-hotel-owner",
+          "synthetic": true,
+          "scenario_type": "positive",
+          "description": "Separate property-owner worksheet: owner controls and earns $3,000 room revenue; manager only collects and remits for the owner. No property asset or lease accounting is implied."
+        },
+        {
+          "id": "managed-hotel-manager",
+          "synthetic": true,
+          "scenario_type": "positive",
+          "description": "Independent manager worksheet for the same batch; owner remains the accommodation principal. Manager controls only its management service."
+        },
+        {
+          "id": "DEPOSIT-AS-REVENUE",
+          "synthetic": true,
+          "scenario_type": "negative",
+          "description": "A reservation payment remains a liability until the selected service or supported termination condition is met."
+        },
+        {
+          "id": "CANCELLATION-WITH-REFUND",
+          "synthetic": true,
+          "scenario_type": "negative",
+          "description": "Do not recognize a retained fee while a refund or future credit remains owed."
+        },
+        {
+          "id": "MANDATORY-AS-TIP",
+          "synthetic": true,
+          "scenario_type": "negative",
+          "description": "A compulsory service charge is not converted into a voluntary tip by its label."
+        },
+        {
+          "id": "DEDUCTION-AS-PAYROLL-EXEMPTION",
+          "synthetic": true,
+          "scenario_type": "negative",
+          "description": "An individual qualified-tip deduction does not by itself erase employer reporting or payroll obligations."
+        },
+        {
+          "id": "NET-SETTLEMENT-AS-REVENUE",
+          "synthetic": true,
+          "scenario_type": "negative",
+          "description": "Platform net cash does not establish whether the restaurant is principal or agent."
+        },
+        {
+          "id": "FIFO-AS-LIFO",
+          "synthetic": true,
+          "scenario_type": "negative",
+          "description": "The selected lower-of-cost-and-NRV amendment does not apply unchanged to LIFO or the retail inventory method."
+        },
+        {
+          "id": "FRANCHISOR-AS-FRANCHISEE",
+          "synthetic": true,
+          "scenario_type": "negative",
+          "description": "The nonpublic franchisor expedient is not a franchisee election or automatic recognition of an upfront fee."
+        },
+        {
+          "id": "MANAGER-AS-OWNER",
+          "synthetic": true,
+          "scenario_type": "negative",
+          "description": "A fee-only manager does not recognize collected owner room revenue or the hotel asset solely because it controls a bank account."
+        }
+      ],
+      "scope_counterexamples": [
+        {
+          "id": "DEPOSIT-AS-REVENUE",
+          "outcome": "A reservation payment remains a liability until the selected service or supported termination condition is met."
+        },
+        {
+          "id": "CANCELLATION-WITH-REFUND",
+          "outcome": "Do not recognize a retained fee while a refund or future credit remains owed."
+        },
+        {
+          "id": "MANDATORY-AS-TIP",
+          "outcome": "A compulsory service charge is not converted into a voluntary tip by its label."
+        },
+        {
+          "id": "DEDUCTION-AS-PAYROLL-EXEMPTION",
+          "outcome": "An individual qualified-tip deduction does not by itself erase employer reporting or payroll obligations."
+        },
+        {
+          "id": "NET-SETTLEMENT-AS-REVENUE",
+          "outcome": "Platform net cash does not establish whether the restaurant is principal or agent."
+        },
+        {
+          "id": "FIFO-AS-LIFO",
+          "outcome": "The selected lower-of-cost-and-NRV amendment does not apply unchanged to LIFO or the retail inventory method."
+        },
+        {
+          "id": "FRANCHISOR-AS-FRANCHISEE",
+          "outcome": "The nonpublic franchisor expedient is not a franchisee election or automatic recognition of an upfront fee."
+        },
+        {
+          "id": "MANAGER-AS-OWNER",
+          "outcome": "A fee-only manager does not recognize collected owner room revenue or the hotel asset solely because it controls a bank account."
+        }
+      ],
+      "limitations": [
+        "Synthetic example only; each worksheet is a separate entity or stated incremental population.",
+        "Current consolidated ASC, later amendments, actual contracts, tax and wage applicability and local lodging/deposit rules remain unverified.",
+        "These synthetic worksheets are not operating records, payroll advice, approved postings or empirical agent evidence; no professional review was performed.",
+        "External rights remain unknown with no full text stored. Selected roles and assumptions do not establish whole-industry sufficiency."
+      ]
+    }
+  },
+  {
+    "id": "example-government-fund-federal-bridge",
+    "kind": "example",
+    "title": "Synthetic federal and state/local government fund bridges",
+    "summary": "Original cents-based federal and state/local public-administration worksheets with budget-to-actual, fund-to-government-wide, custodial and federal budget-to-accrual branches.",
+    "topics": [
+      "Scoped research",
+      "Public sector and government accounting"
+    ],
+    "industries": [
+      "92"
+    ],
+    "jurisdiction": "United States; selected public-administration roles",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_roadmap_gasb34_basis",
+      "src_roadmap_gasb103",
+      "src_roadmap_fasab34",
+      "src_roadmap_fasab53",
+      "src_cfr200grants",
+      "src_gaogb25",
+      "src_gaofam26",
+      "src_education_gasb35"
+    ],
+    "related_ids": [
+      "guide-us-government-public-administration",
+      "workflow-us-government-close",
+      "control-us-government-framework-routing"
+    ],
+    "reviewed_at": "2026-09-19",
+    "review_status": "editorially-reviewed",
+    "provenance": {
+      "added_on": "2026-09-19",
+      "reviewer": "Codex AI-assisted original-source research",
+      "note": "Original bounded synthesis from selected official source passages. No professional sign-off or full publisher text is stored.",
+      "scope": "Issue 116 selected federal and state/local public-administration roles; source access and transfer limits are recorded in the packet."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "External source text is not included; publisher terms remain record-specific.",
+      "full_text_stored": false
+    },
+    "data": {
+      "id": "example-government-fund-federal-bridge",
+      "accounts": {
+        "cash": "asset",
+        "taxes_receivable": "asset",
+        "capital_assets": "asset",
+        "accumulated_depreciation": "contra_asset",
+        "governmental_expenditures": "expense",
+        "depreciation_expense": "expense",
+        "federal_net_cost": "expense",
+        "federal_capital_acquisition": "asset",
+        "federal_payable": "liability",
+        "long_term_debt": "liability",
+        "custodial_payable": "liability",
+        "fund_balance": "equity",
+        "government_wide_net_position": "equity",
+        "federal_appropriations": "budgetary",
+        "federal_obligations": "budgetary",
+        "federal_outlays": "budgetary",
+        "tax_revenue": "revenue",
+        "transfer_in": "other_financing",
+        "award_revenue": "revenue"
+      },
+      "cases": [
+        {
+          "id": "state-local-general-fund",
+          "role": "US city general fund with separate enterprise and custodial counterexamples",
+          "framework": "GASB selected historical/current-transition passages",
+          "inputs": {
+            "original_budget_inflows_cents": 100000000,
+            "final_budget_inflows_cents": 105000000,
+            "actual_inflows_cents": 103000000,
+            "original_budget_outflows_cents": 101000000,
+            "final_budget_outflows_cents": 102000000,
+            "actual_outflows_cents": 99500000,
+            "beginning_fund_balance_cents": 12000000,
+            "capital_asset_additions_cents": 20000000,
+            "depreciation_cents": 6000000,
+            "long_term_debt_issued_cents": 10000000,
+            "fund_expenditure_included_capital_cents": 20000000,
+            "government_wide_long_term_debt_cents": 10000000
+          },
+          "budget_bridge": {
+            "actual_surplus_cents": 3500000,
+            "inflow_variance_cents": -2000000,
+            "outflow_variance_cents": 2500000,
+            "ending_fund_balance_cents": 15500000,
+            "government_wide_net_position_bridge_cents": 19500000
+          },
+          "journals": [
+            {
+              "id": "state-tax-and-transfer",
+              "lines": [
+                {
+                  "account": "cash",
+                  "debit_cents": 103000000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "tax_revenue",
+                  "debit_cents": 0,
+                  "credit_cents": 85000000
+                },
+                {
+                  "account": "transfer_in",
+                  "debit_cents": 0,
+                  "credit_cents": 18000000
+                }
+              ]
+            },
+            {
+              "id": "state-current-expenditures",
+              "lines": [
+                {
+                  "account": "governmental_expenditures",
+                  "debit_cents": 79500000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "cash",
+                  "debit_cents": 0,
+                  "credit_cents": 79500000
+                }
+              ]
+            },
+            {
+              "id": "state-capital-expenditure",
+              "lines": [
+                {
+                  "account": "governmental_expenditures",
+                  "debit_cents": 20000000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "cash",
+                  "debit_cents": 0,
+                  "credit_cents": 20000000
+                }
+              ]
+            },
+            {
+              "id": "state-debt-proceeds",
+              "lines": [
+                {
+                  "account": "cash",
+                  "debit_cents": 10000000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "long_term_debt",
+                  "debit_cents": 0,
+                  "credit_cents": 10000000
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "federal-component-award-and-budget",
+          "role": "US federal component reporting entity with an award-control branch",
+          "framework": "SFFAS 34 and SFFAS 53 selected passages; 2 CFR Part 200 branch",
+          "inputs": {
+            "appropriation_authority_cents": 120000000,
+            "obligations_cents": 105000000,
+            "outlays_cents": 100000000,
+            "net_cost_cents": 100000000,
+            "depreciation_cents": 10000000,
+            "increase_unpaid_current_expense_cents": 5000000,
+            "capital_acquisitions_cents": 25000000,
+            "federal_award_cents": 30000000,
+            "allowable_award_costs_cents": 24000000,
+            "unspent_award_cents": 6000000
+          },
+          "budget_accrual_bridge": {
+            "net_outlays_cents": 110000000,
+            "calculation": "100000000 - 10000000 - 5000000 + 25000000 = 110000000",
+            "unobligated_authority_cents": 15000000
+          },
+          "journals": [
+            {
+              "id": "federal-award-cost",
+              "lines": [
+                {
+                  "account": "federal_net_cost",
+                  "debit_cents": 24000000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "federal_payable",
+                  "debit_cents": 0,
+                  "credit_cents": 24000000
+                }
+              ]
+            },
+            {
+              "id": "federal-capital-acquisition",
+              "lines": [
+                {
+                  "account": "federal_capital_acquisition",
+                  "debit_cents": 25000000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "cash",
+                  "debit_cents": 0,
+                  "credit_cents": 25000000
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "local-custodial-tax",
+          "role": "Local government collects property tax for another taxing body",
+          "inputs": {
+            "tax_collected_cents": 9000000,
+            "remitted_cents": 8500000,
+            "ending_custodial_payable_cents": 500000
+          },
+          "journals": [
+            {
+              "id": "custodial-collection",
+              "lines": [
+                {
+                  "account": "cash",
+                  "debit_cents": 9000000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "custodial_payable",
+                  "debit_cents": 0,
+                  "credit_cents": 9000000
+                }
+              ]
+            },
+            {
+              "id": "custodial-remittance",
+              "lines": [
+                {
+                  "account": "custodial_payable",
+                  "debit_cents": 8500000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "cash",
+                  "debit_cents": 0,
+                  "credit_cents": 8500000
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "examples": [
+        {
+          "id": "government-state-local-balanced",
+          "scenario_type": "golden",
+          "case_id": "state-local-general-fund",
+          "objective": "Recompute budget variance, balanced entries and fund-to-government-wide bridge from stated inputs.",
+          "reference_expectations": {
+            "journals_balance": true,
+            "budget_actual_recomputed": true,
+            "bridge_recomputed": true,
+            "executed_actions_must_be_empty": true
+          }
+        },
+        {
+          "id": "government-federal-budget-accrual",
+          "scenario_type": "golden",
+          "case_id": "federal-component-award-and-budget",
+          "objective": "Recompute net-cost-to-net-outlay bridge and keep appropriation, obligation, outlay and award populations separate.",
+          "reference_expectations": {
+            "journals_balance": true,
+            "net_outlays_cents": 110000000,
+            "authority_not_proven": true
+          }
+        },
+        {
+          "id": "government-custody-counterexample",
+          "scenario_type": "negative",
+          "case_id": "local-custodial-tax",
+          "objective": "Keep beneficiary tax collections in a custodial payable rather than government revenue.",
+          "reference_expectations": {
+            "custodial_ending_payable_cents": 500000,
+            "government_revenue_cents": 0
+          }
+        }
+      ],
+      "scope_counterexamples": [
+        {
+          "id": "private-company-fasb",
+          "input": "A private company has a government customer.",
+          "outcome": "Do not infer FASAB or GASB from the customer industry; establish the reporting entity and framework."
+        },
+        {
+          "id": "enterprise-utility-fee",
+          "input": "A city utility charges external users.",
+          "outcome": "Evaluate proprietary activity and accrual reporting separately from a governmental tax fund."
+        },
+        {
+          "id": "custodial-tax",
+          "input": "A government collects property tax for another body.",
+          "outcome": "Record custody and beneficiary obligation; collection alone is not government revenue."
+        },
+        {
+          "id": "award-compliance",
+          "input": "A federal award has allowable-cost and reporting terms.",
+          "outcome": "Apply Part 200 controls separately from the entity’s GAAP recognition model."
+        },
+        {
+          "id": "appropriation-authority",
+          "input": "An appropriation is shown in a synthetic worksheet.",
+          "outcome": "Treat the amount as a fixture input, not legal evidence of spending authority."
+        }
+      ],
+      "limitations": [
+        "Synthetic examples: all amounts, entities, approvals and journals are original educational data.",
+        "The worksheets demonstrate arithmetic and control boundaries, not a live financial statement, agency budget, award compliance result or professional sign-off.",
+        "Current consolidated GASB/FASAB, local law, OMB/Treasury instructions, award terms and rights remain record-specific."
+      ],
+      "source_lineage": {
+        "state_local": [
+          "src_roadmap_gasb34_basis",
+          "src_roadmap_gasb103"
+        ],
+        "federal": [
+          "src_roadmap_fasab34",
+          "src_roadmap_fasab53",
+          "src_gaogb25",
+          "src_cfr200grants"
+        ],
+        "custodial": [
+          "src_roadmap_gasb34_basis"
+        ]
+      }
+    }
   }
 ]
