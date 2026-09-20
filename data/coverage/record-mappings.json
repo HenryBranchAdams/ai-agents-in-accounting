@@ -1,12 +1,12 @@
 {
   "schema_version": "1.0.0",
-  "mapping_version": "2026-09-19.12425",
+  "mapping_version": "2026-09-19.12427",
   "topology_version": "2026-09-11.1",
-  "corpus_version": "2026-09-19.12425",
+  "corpus_version": "2026-09-19.12427",
   "generated_at": "2026-09-19",
-  "corpus_sha256": "4cc17deb74e66b86b5a4aab0703011ab6815b7b9af43683b9026ff1ee468b487",
+  "corpus_sha256": "a40154f545706f0040db1dd701bab1cdc1465bb2d70d5f064acd355e7895f02b",
   "rules_sha256": "550b2bb485399af996bac6ed34542d7a91170d4b31b5e5026e0e9c2c32068b9d",
-  "overrides_sha256": "5dfdea762b5cb947caedf7a949816591b965ba383629943074f5de5031003a13",
+  "overrides_sha256": "7d368243a503b6b02815bd0f9774c0e4775f13fa6f644201b01f6e891dfa9a56",
   "method": "Deterministic title/topic associations, conservative industry crosswalk, and explicit editorial additions. All initial links are candidates; source review status is unchanged.",
   "mappings": [
     {
@@ -3678,6 +3678,25 @@
       "note": "Candidate association with this industry scope; applicability and depth are not inferred."
     },
     {
+      "record_id": "control-family-office-ownership-payments",
+      "question_mappings": [
+        {
+          "question_id": "q-cash-settlement",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "payment",
+              "rule": "title:cash-settlement"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "Shared context; no industry-specific coverage credit."
+    },
+    {
       "record_id": "control-transport-role-ownership",
       "question_mappings": [
         {
@@ -4016,6 +4035,207 @@
         }
       ],
       "note": "Bounded primary-source and synthetic application; no professional or operational verification."
+    },
+    {
+      "record_id": "ctrl-arts-recreation-role-and-settlement",
+      "question_mappings": [
+        {
+          "question_id": "q-cash-settlement",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-funds-custody",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-grants-contributions",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-licensed-content",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-presentation",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-provisions",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-reuse-rights",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-revenue",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-tax-returns",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "711",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "industry_code": "712",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "industry_code": "713",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "note": "Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification."
     },
     {
       "record_id": "ctrl-assessment-separation",
@@ -5092,6 +5312,255 @@
       "industry_scope": "shared-context",
       "industry_mappings": [],
       "note": "Reviewed association with the original editorial content. This does not validate accounting treatment or the adequacy of its external references."
+    },
+    {
+      "record_id": "ctrl-other-services-role-cutoff",
+      "question_mappings": [
+        {
+          "question_id": "q-benefits",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-controls-fraud",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-cost-allocation",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-funds-custody",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "custody",
+              "rule": "title:funds-custody"
+            },
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-grants-contributions",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-inventory",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-ledger-close",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "cutoff",
+              "rule": "title:ledger-close"
+            }
+          ]
+        },
+        {
+          "question_id": "q-payroll",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-provisions",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-revenue",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-tax-returns",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "811",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "industry_code": "812",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "industry_code": "813",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "industry_code": "814",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "note": "Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification."
     },
     {
       "record_id": "ctrl-override-monitoring",
@@ -6239,6 +6708,25 @@
       "note": "Candidate association with this industry scope; applicability and depth are not inferred."
     },
     {
+      "record_id": "ctrl-us-professional-services-contract-and-funds",
+      "question_mappings": [],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "541",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/industries/0",
+              "matched": "Issue108 selected professional-services role route; applicability and depth remain bounded.",
+              "rule": "editorial-association"
+            }
+          ]
+        }
+      ],
+      "note": "Candidate association with this industry scope; applicability and depth are not inferred."
+    },
+    {
       "record_id": "ctrl-us-project-wip-estimate",
       "question_mappings": [
         {
@@ -7268,6 +7756,435 @@
       "note": "Reviewed association with the original editorial content. This does not validate accounting treatment or the adequacy of its external references."
     },
     {
+      "record_id": "example-arts-recreation-event-and-museum-close",
+      "question_mappings": [
+        {
+          "question_id": "q-cash-settlement",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-evaluation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "synthetic",
+              "rule": "title:evaluation"
+            }
+          ]
+        },
+        {
+          "question_id": "q-funds-custody",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-grants-contributions",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-licensed-content",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-presentation",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-provisions",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-reuse-rights",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-revenue",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-tax-returns",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "711",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "industry_code": "712",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "industry_code": "713",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "note": "Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification."
+    },
+    {
+      "record_id": "example-arts-recreation-gaming-close",
+      "question_mappings": [
+        {
+          "question_id": "q-cash-settlement",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-evaluation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "synthetic",
+              "rule": "title:evaluation"
+            }
+          ]
+        },
+        {
+          "question_id": "q-funds-custody",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "custody",
+              "rule": "title:funds-custody"
+            },
+            {
+              "field": "/data",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-grants-contributions",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-licensed-content",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-presentation",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-provisions",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-reuse-rights",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-revenue",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-tax-returns",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "711",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "industry_code": "712",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "industry_code": "713",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "note": "Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification."
+    },
+    {
       "record_id": "example-assurance-evidence-packet",
       "question_mappings": [],
       "industry_scope": "unassigned",
@@ -7753,6 +8670,25 @@
       "industry_scope": "unassigned",
       "industry_mappings": [],
       "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "example-family-office-four-entity-close",
+      "question_mappings": [
+        {
+          "question_id": "q-evaluation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Synthetic",
+              "rule": "title:evaluation"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "Shared context; no industry-specific coverage credit."
     },
     {
       "record_id": "example-government-fund-federal-bridge",
@@ -8536,6 +9472,477 @@
         }
       ],
       "note": "Bounded source and synthetic application review; no current consolidated ASC conclusion, professional verification, operational evidence or rights upgrade."
+    },
+    {
+      "record_id": "example-other-services-membership-household-close",
+      "question_mappings": [
+        {
+          "question_id": "q-benefits",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-controls-fraud",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-cost-allocation",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-funds-custody",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-grants-contributions",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-inventory",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-payroll",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "payroll",
+              "rule": "title:payroll"
+            },
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-provisions",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-revenue",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-tax-returns",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "811",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "industry_code": "812",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "industry_code": "813",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "industry_code": "814",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "note": "Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification."
+    },
+    {
+      "record_id": "example-other-services-repair-funeral-close",
+      "question_mappings": [
+        {
+          "question_id": "q-benefits",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-controls-fraud",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-cost-allocation",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-funds-custody",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-grants-contributions",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-inventory",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-payroll",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-provisions",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-revenue",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-tax-returns",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "811",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "industry_code": "812",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "industry_code": "813",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "industry_code": "814",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "note": "Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification."
     },
     {
       "record_id": "example-period-close-variance",
@@ -9985,6 +11392,37 @@
       "note": "Association reviewed for the named US operating-transaction questions; it does not establish accounting adequacy, industry coverage or professional verification."
     },
     {
+      "record_id": "example-us-professional-services-connected-close",
+      "question_mappings": [
+        {
+          "question_id": "q-payroll",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "payroll",
+              "rule": "title:payroll"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "541",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/industries/0",
+              "matched": "Issue108 selected professional-services role route; applicability and depth remain bounded.",
+              "rule": "editorial-association"
+            }
+          ]
+        }
+      ],
+      "note": "Candidate association with this industry scope; applicability and depth are not inferred."
+    },
+    {
       "record_id": "example-us-project-wip-ledger",
       "question_mappings": [
         {
@@ -11093,6 +12531,207 @@
       "note": "Reviewed association with the original editorial content. This does not validate accounting treatment or the adequacy of its external references."
     },
     {
+      "record_id": "guide-arts-recreation-us-close",
+      "question_mappings": [
+        {
+          "question_id": "q-cash-settlement",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-funds-custody",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-grants-contributions",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-licensed-content",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-presentation",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-provisions",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-reuse-rights",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-revenue",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-tax-returns",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "711",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "industry_code": "712",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "industry_code": "713",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "note": "Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification."
+    },
+    {
       "record_id": "guide-construction-connected-close",
       "question_mappings": [
         {
@@ -11498,6 +13137,13 @@
       "industry_scope": "shared-context",
       "industry_mappings": [],
       "note": "Reviewed association with the original editorial content. This does not validate accounting treatment or the adequacy of its external references."
+    },
+    {
+      "record_id": "guide-family-office-us-accounting",
+      "question_mappings": [],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "Shared context; no industry-specific coverage credit."
     },
     {
       "record_id": "guide-financial-dataset-selection",
@@ -23651,6 +25297,239 @@
       "note": "Reviewed association with the original editorial content. This does not validate accounting treatment or the adequacy of its external references."
     },
     {
+      "record_id": "guide-other-services-us-close",
+      "question_mappings": [
+        {
+          "question_id": "q-benefits",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-controls-fraud",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-cost-allocation",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-funds-custody",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-grants-contributions",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-inventory",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-payroll",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-provisions",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-revenue",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-tax-returns",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "811",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "industry_code": "812",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "industry_code": "813",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "industry_code": "814",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "note": "Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification."
+    },
+    {
       "record_id": "guide-pilot",
       "question_mappings": [
         {
@@ -26791,6 +28670,114 @@
             {
               "field": "/data",
               "matched": "Issue #117 selected nonprofit Form 990 and Federal-award reporting package; NAICS 813 is a discovery association only and tax, GAAP and award conclusions remain separate.",
+              "rule": "editorial-association"
+            }
+          ]
+        }
+      ],
+      "note": "Candidate association with this industry scope; applicability and depth are not inferred."
+    },
+    {
+      "record_id": "guide-us-professional-services-contract-to-ledger",
+      "question_mappings": [
+        {
+          "question_id": "q-cash-settlement",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/industries/0",
+              "matched": "Issue108 selected professional-services role route; applicability and depth remain bounded.",
+              "rule": "editorial-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-compliance-assurance",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/industries/0",
+              "matched": "Issue108 selected professional-services role route; applicability and depth remain bounded.",
+              "rule": "editorial-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-cost-allocation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/industries/0",
+              "matched": "Issue108 selected professional-services role route; applicability and depth remain bounded.",
+              "rule": "editorial-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-data-lineage",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/industries/0",
+              "matched": "Issue108 selected professional-services role route; applicability and depth remain bounded.",
+              "rule": "editorial-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-human-authority",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/industries/0",
+              "matched": "Issue108 selected professional-services role route; applicability and depth remain bounded.",
+              "rule": "editorial-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-payroll",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/industries/0",
+              "matched": "Issue108 selected professional-services role route; applicability and depth remain bounded.",
+              "rule": "editorial-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-project-wip",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/industries/0",
+              "matched": "Issue108 selected professional-services role route; applicability and depth remain bounded.",
+              "rule": "editorial-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-revenue",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/industries/0",
+              "matched": "Issue108 selected professional-services role route; applicability and depth remain bounded.",
+              "rule": "editorial-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "541",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/industries/0",
+              "matched": "Issue108 selected professional-services role route; applicability and depth remain bounded.",
               "rule": "editorial-association"
             }
           ]
@@ -40005,6 +41992,13 @@
       "note": "Bounded source-linked synthetic application, not professional or operational verification."
     },
     {
+      "record_id": "src_aa_i113_irs_gaming_ubti",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
       "record_id": "src_aa_i114_fasb_2021_02",
       "question_mappings": [
         {
@@ -40117,6 +42111,32 @@
         }
       ],
       "note": "Bounded primary-source and synthetic application; no professional or operational verification."
+    },
+    {
+      "record_id": "src_aa_i115_ftc_funeral_rule",
+      "question_mappings": [
+        {
+          "question_id": "q-presentation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "disclosure",
+              "rule": "title:presentation"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_aa_i115_irs_household_employer",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
     },
     {
       "record_id": "src_aa_i123_201408",
@@ -45522,6 +47542,60 @@
       "industry_scope": "shared-context",
       "industry_mappings": [],
       "note": "Shared context; no industry-specific coverage credit."
+    },
+    {
+      "record_id": "src_family_office_irs_1041_2025",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_family_office_irs_k1_1041_2025",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_family_office_irs_k1_1065_2025",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_family_office_irs_p559_2025",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_family_office_sec_2011_rule",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_family_office_texas_principal_income",
+      "question_mappings": [
+        {
+          "question_id": "q-provisions",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "provisions",
+              "rule": "title:provisions"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
     },
     {
       "record_id": "src_far_31203_indirect_costs",
@@ -51867,6 +53941,44 @@
       "industry_scope": "shared-context",
       "industry_mappings": [],
       "note": "The reviewed source concerns ss1/23, model risk management principles for banks in United Kingdom banks within stated scope; the material does not establish an industry-specific accounting treatment, so it remains shared context. Association review scope: substantive-excerpt; supported-scope. This does not establish accounting adequacy."
+    },
+    {
+      "record_id": "src_professional_california_rule_115",
+      "question_mappings": [],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "541",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/industries/0",
+              "matched": "Official source is mapped to the selected issue108 professional-services route; source scope remains explicit.",
+              "rule": "editorial-association"
+            }
+          ]
+        }
+      ],
+      "note": "Candidate association with this industry scope; applicability and depth are not inferred."
+    },
+    {
+      "record_id": "src_professional_irs_pub15a_2026",
+      "question_mappings": [],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "541",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/industries/0",
+              "matched": "Official source is mapped to the selected issue108 professional-services route; source scope remains explicit.",
+              "rule": "editorial-association"
+            }
+          ]
+        }
+      ],
+      "note": "Candidate association with this industry scope; applicability and depth are not inferred."
     },
     {
       "record_id": "src_prophixagents25",
@@ -58451,6 +60563,207 @@
       "note": "Bounded primary-source and synthetic application; no professional or operational verification."
     },
     {
+      "record_id": "wf-arts-recreation-event-to-close",
+      "question_mappings": [
+        {
+          "question_id": "q-cash-settlement",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-funds-custody",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-grants-contributions",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-licensed-content",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-presentation",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-provisions",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-reuse-rights",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-revenue",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-tax-returns",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "711",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "industry_code": "712",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "industry_code": "713",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected arts, museum and recreation application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "note": "Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification."
+    },
+    {
       "record_id": "wf-assets-cogs",
       "question_mappings": [
         {
@@ -60909,6 +63222,239 @@
       "note": "Reviewed association with the original editorial content. This does not validate accounting treatment or the adequacy of its external references."
     },
     {
+      "record_id": "wf-other-services-evidence-close",
+      "question_mappings": [
+        {
+          "question_id": "q-benefits",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-controls-fraud",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-cost-allocation",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-funds-custody",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-grants-contributions",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-inventory",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-payroll",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-provisions",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-revenue",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-tax-returns",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "811",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "industry_code": "812",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "industry_code": "813",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "industry_code": "814",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Original selected residual other-services application; association is not industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "note": "Bounded source-linked synthetic application with explicit role, tax, consumer-protection, rights and jurisdiction limits; not professional or empirical verification."
+    },
+    {
       "record_id": "wf-p2p-ap-exceptions",
       "question_mappings": [
         {
@@ -63158,6 +65704,13 @@
       "note": "Candidate association with this industry scope; applicability and depth are not inferred."
     },
     {
+      "record_id": "workflow-family-office-entity-close",
+      "question_mappings": [],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "Shared context; no industry-specific coverage credit."
+    },
+    {
       "record_id": "workflow-transport-event-to-ledger",
       "question_mappings": [
         {
@@ -63790,6 +66343,25 @@
             {
               "field": "/data",
               "matched": "Issue #117 read-only Form 990 and Federal-award workflow; filing and compliance conclusions remain human-owned.",
+              "rule": "editorial-association"
+            }
+          ]
+        }
+      ],
+      "note": "Candidate association with this industry scope; applicability and depth are not inferred."
+    },
+    {
+      "record_id": "workflow-us-professional-services-contract-to-ledger",
+      "question_mappings": [],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "541",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/industries/0",
+              "matched": "Issue108 selected professional-services role route; applicability and depth remain bounded.",
               "rule": "editorial-association"
             }
           ]

@@ -18676,5 +18676,4192 @@
         ]
       }
     }
+  },
+  {
+    "id": "example-us-professional-services-connected-close",
+    "kind": "example",
+    "title": "Professional services connected close: time to ledger, payroll and client funds",
+    "summary": "Original synthetic issue108 worked example connecting project evidence to revenue, WIP, payroll, settlement, staffing and a California-only client-fund exception.",
+    "topics": [
+      "Accounting and reporting",
+      "Professional services",
+      "Synthetic example",
+      "Revenue and customer contracts",
+      "Payroll",
+      "Client funds"
+    ],
+    "industries": [
+      "Professional, Scientific, and Technical Services"
+    ],
+    "jurisdiction": "United States primary; California legal-funds example only",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_professional_irs_pub15a_2026",
+      "src_professional_california_rule_115",
+      "src_construction_fasb_2014_09",
+      "src_fasb_asu2016_08_principal_agent",
+      "src_roadmap_naics2022_manual",
+      "src_irs_pub15_2026",
+      "src_dol_factsheet21_recordkeeping"
+    ],
+    "related_ids": [
+      "guide-us-professional-services-contract-to-ledger",
+      "workflow-us-professional-services-contract-to-ledger",
+      "ctrl-us-professional-services-contract-and-funds"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-19",
+    "provenance": {
+      "added_on": "2026-09-19",
+      "reviewer": "Codex AI-assisted original-source research",
+      "note": "Bounded source-only issue108 synthesis. No professional sign-off, current consolidated Codification review, operational validation or source-rights upgrade is asserted."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not stored; original publisher rights apply",
+      "full_text_stored": false
+    },
+    "data": {
+      "version": "1.0.0",
+      "prepared_at": "2026-09-19",
+      "origin": "Original synthetic issue108 example; no publisher scenario or customer data reproduced.",
+      "scope": "Synthetic US professional-services close with explicit legal, accounting, engineering/technical, consulting/R&D and staffing role branches. The selected California lawyer branch is jurisdiction-specific. Amounts are USD and illustrative only.",
+      "assumptions": [
+        "Principal entity is a professional-services firm for the fixed-fee project, retainer, subcontractor and reimbursable branches; enforceability and transfer are assumed only for this synthetic base case.",
+        "The $45,000 project cost population is fully identified as $20,000 approved labor, $12,000 subcontractor cost, $8,000 selected gross-principal reimbursable cost and $5,000 other direct project cost. Estimated total cost is $90,000, so cost-to-cost progress is 45,000/90,000 = 50% and earned fixed-fee revenue is $60,000.",
+        "The project has $30,000 billed and collected, so the $60,000 earned amount less $30,000 settled billing leaves a $30,000 contract asset before later entries.",
+        "A $24,000 three-month stand-ready retainer is received into operating cash; $8,000 is earned in the current period and $16,000 remains a contract liability.",
+        "The selected reimbursable case assumes the firm controls the vendor service and is principal: $8,000 vendor cost is included in project cost and the $8,000 customer charge is included in the fixed-fee transaction price. The countercase assumes an agent pass-through with $8,000 vendor cost and $8,000 customer charge, with no net revenue and no project-cost progress credit.",
+        "The staffing branch is a separate staffing agency entity assumed principal for this selected case: it invoices $50,000, records $38,000 worker payroll, receives the invoice settlement and pays payroll, producing $12,000 gross margin before other costs. A counter-role keeps principal/agent presentation unresolved pending control facts.",
+        "Approved time is 400 hours at $50 per hour for $20,000 direct labor. Employer payroll tax of $1,530 is an arithmetic illustration only and not a tax-rate conclusion.",
+        "For the selected California lawyer branch, $25,000 of client funds is received into trust. $5,000 becomes fixed and undisputed, is transferred to operating cash and recognized as earned fee; $20,000 remains a client-fund liability. A $5,000 disputed-fund counterexample remains in trust."
+      ],
+      "calculation": {
+        "fixed_fee": 120000,
+        "approved_time_hours": 400,
+        "direct_labor_cost": 20000,
+        "subcontractor_cost": 12000,
+        "reimbursable_cost": 8000,
+        "other_direct_project_cost": 5000,
+        "costs_incurred": 45000,
+        "estimated_total_cost": 90000,
+        "remaining_estimated_cost": 45000,
+        "progress": 0.5,
+        "earned_revenue": 60000,
+        "billed": 30000,
+        "cash_settled_on_billing": 30000,
+        "contract_asset": 30000,
+        "retainer_cash": 24000,
+        "retainer_months": 3,
+        "retainer_month_recognized": 8000,
+        "retainer_contract_liability": 16000,
+        "staffing_invoice": 50000,
+        "staffing_worker_payroll": 38000,
+        "staffing_cash_collected": 50000,
+        "staffing_payroll_cash_paid": 38000,
+        "staffing_gross_margin": 12000,
+        "employer_payroll_tax": 1530,
+        "client_trust_received": 25000,
+        "client_funds_transferred_to_operating_cash": 5000,
+        "legal_fee_earned_and_released": 5000,
+        "disputed_client_funds": 5000,
+        "client_fund_liability": 20000
+      },
+      "proposed_entries": [
+        {
+          "id": "P1",
+          "event_id": "approved-time-cost",
+          "status": "proposed-synthetic",
+          "lines": [
+            {
+              "account": "project_labor_cost",
+              "side": "debit",
+              "amount": 20000,
+              "memo": "400 approved hours at $50/hour"
+            },
+            {
+              "account": "payroll_payable",
+              "side": "credit",
+              "amount": 20000,
+              "memo": "Direct labor accrued"
+            }
+          ]
+        },
+        {
+          "id": "P2",
+          "event_id": "subcontractor-cost",
+          "status": "proposed-synthetic",
+          "lines": [
+            {
+              "account": "project_subcontractor_cost",
+              "side": "debit",
+              "amount": 12000,
+              "memo": "Approved subcontractor invoice"
+            },
+            {
+              "account": "accounts_payable",
+              "side": "credit",
+              "amount": 12000,
+              "memo": "Subcontractor payable"
+            }
+          ]
+        },
+        {
+          "id": "P3",
+          "event_id": "reimbursable-gross-principal-cost",
+          "status": "proposed-synthetic",
+          "lines": [
+            {
+              "account": "project_reimbursable_cost",
+              "side": "debit",
+              "amount": 8000,
+              "memo": "Firm controls vendor service in selected principal case"
+            },
+            {
+              "account": "accounts_payable",
+              "side": "credit",
+              "amount": 8000,
+              "memo": "Vendor payable"
+            }
+          ]
+        },
+        {
+          "id": "P4",
+          "event_id": "other-direct-project-cost",
+          "status": "proposed-synthetic",
+          "lines": [
+            {
+              "account": "other_direct_project_cost",
+              "side": "debit",
+              "amount": 5000,
+              "memo": "Other approved direct project cost"
+            },
+            {
+              "account": "accounts_payable",
+              "side": "credit",
+              "amount": 5000,
+              "memo": "Other vendor payable"
+            }
+          ]
+        },
+        {
+          "id": "P5",
+          "event_id": "fixed-fee-earned",
+          "status": "proposed-synthetic",
+          "lines": [
+            {
+              "account": "contract_asset",
+              "side": "debit",
+              "amount": 60000,
+              "memo": "50% cost-to-cost earned amount"
+            },
+            {
+              "account": "professional_services_revenue",
+              "side": "credit",
+              "amount": 60000,
+              "memo": "Cumulative earned fixed-fee revenue"
+            }
+          ]
+        },
+        {
+          "id": "P6",
+          "event_id": "project-billing",
+          "status": "proposed-synthetic",
+          "lines": [
+            {
+              "account": "trade_receivable",
+              "side": "debit",
+              "amount": 30000,
+              "memo": "Approved billing"
+            },
+            {
+              "account": "contract_asset",
+              "side": "credit",
+              "amount": 30000,
+              "memo": "Reclassify billed portion"
+            }
+          ]
+        },
+        {
+          "id": "P7",
+          "event_id": "project-cash-settlement",
+          "status": "proposed-synthetic",
+          "lines": [
+            {
+              "account": "operating_cash",
+              "side": "debit",
+              "amount": 30000,
+              "memo": "Customer settles project billing"
+            },
+            {
+              "account": "trade_receivable",
+              "side": "credit",
+              "amount": 30000,
+              "memo": "Project receivable settled"
+            }
+          ]
+        },
+        {
+          "id": "P8",
+          "event_id": "retainer-receipt",
+          "status": "proposed-synthetic",
+          "lines": [
+            {
+              "account": "operating_cash",
+              "side": "debit",
+              "amount": 24000,
+              "memo": "Three-month stand-ready retainer received"
+            },
+            {
+              "account": "retainer_contract_liability",
+              "side": "credit",
+              "amount": 24000,
+              "memo": "Unearned retainer balance"
+            }
+          ]
+        },
+        {
+          "id": "P9",
+          "event_id": "retainer-earned",
+          "status": "proposed-synthetic",
+          "lines": [
+            {
+              "account": "retainer_contract_liability",
+              "side": "debit",
+              "amount": 8000,
+              "memo": "Current-period service earned"
+            },
+            {
+              "account": "retainer_revenue",
+              "side": "credit",
+              "amount": 8000,
+              "memo": "Current-period retainer revenue"
+            }
+          ]
+        },
+        {
+          "id": "P10",
+          "event_id": "client-fund-receipt",
+          "status": "proposed-synthetic",
+          "lines": [
+            {
+              "account": "trust_cash",
+              "side": "debit",
+              "amount": 25000,
+              "memo": "Client funds received into identified trust account"
+            },
+            {
+              "account": "client_funds_liability",
+              "side": "credit",
+              "amount": 25000,
+              "memo": "Funds held for client"
+            }
+          ]
+        },
+        {
+          "id": "P11",
+          "event_id": "client-fund-cash-transfer",
+          "status": "proposed-synthetic",
+          "lines": [
+            {
+              "account": "operating_cash",
+              "side": "debit",
+              "amount": 5000,
+              "memo": "Fixed undisputed fee transferred from trust"
+            },
+            {
+              "account": "trust_cash",
+              "side": "credit",
+              "amount": 5000,
+              "memo": "Trust cash distributed to operating account"
+            }
+          ]
+        },
+        {
+          "id": "P12",
+          "event_id": "client-fee-recognition",
+          "status": "proposed-synthetic",
+          "lines": [
+            {
+              "account": "client_funds_liability",
+              "side": "debit",
+              "amount": 5000,
+              "memo": "Client liability released only for fixed undisputed fee"
+            },
+            {
+              "account": "legal_fee_revenue",
+              "side": "credit",
+              "amount": 5000,
+              "memo": "Earned legal fee recognized"
+            }
+          ]
+        },
+        {
+          "id": "P13",
+          "event_id": "staffing-invoice",
+          "status": "proposed-synthetic",
+          "lines": [
+            {
+              "account": "staffing_trade_receivable",
+              "side": "debit",
+              "amount": 50000,
+              "memo": "Staffing client invoice; selected principal case"
+            },
+            {
+              "account": "staffing_service_revenue",
+              "side": "credit",
+              "amount": 50000,
+              "memo": "Gross staffing service revenue"
+            }
+          ]
+        },
+        {
+          "id": "P14",
+          "event_id": "staffing-payroll-accrual",
+          "status": "proposed-synthetic",
+          "lines": [
+            {
+              "account": "staffing_wage_expense",
+              "side": "debit",
+              "amount": 38000,
+              "memo": "Worker payroll cost"
+            },
+            {
+              "account": "staffing_payroll_payable",
+              "side": "credit",
+              "amount": 38000,
+              "memo": "Staffing payroll payable"
+            }
+          ]
+        },
+        {
+          "id": "P15",
+          "event_id": "staffing-cash-settlement",
+          "status": "proposed-synthetic",
+          "lines": [
+            {
+              "account": "staffing_cash",
+              "side": "debit",
+              "amount": 50000,
+              "memo": "Staffing client settles invoice"
+            },
+            {
+              "account": "staffing_trade_receivable",
+              "side": "credit",
+              "amount": 50000,
+              "memo": "Staffing receivable settled"
+            }
+          ]
+        },
+        {
+          "id": "P16",
+          "event_id": "staffing-payroll-settlement",
+          "status": "proposed-synthetic",
+          "lines": [
+            {
+              "account": "staffing_payroll_payable",
+              "side": "debit",
+              "amount": 38000,
+              "memo": "Payroll paid"
+            },
+            {
+              "account": "staffing_cash",
+              "side": "credit",
+              "amount": 38000,
+              "memo": "Staffing payroll cash settlement"
+            }
+          ]
+        },
+        {
+          "id": "P17",
+          "event_id": "employer-payroll-tax-accrual",
+          "status": "proposed-synthetic",
+          "lines": [
+            {
+              "account": "employer_payroll_tax_expense",
+              "side": "debit",
+              "amount": 1530,
+              "memo": "Illustrative employer tax accrual"
+            },
+            {
+              "account": "payroll_tax_payable",
+              "side": "credit",
+              "amount": 1530,
+              "memo": "Illustrative tax payable"
+            }
+          ]
+        }
+      ],
+      "reconciliation": {
+        "cost_population": {
+          "approved_time_labor": 20000,
+          "subcontractor": 12000,
+          "reimbursable": 8000,
+          "other_direct": 5000,
+          "total": 45000
+        },
+        "fixed_fee_progress": 0.5,
+        "earned_revenue": 60000,
+        "billed": 30000,
+        "cash_settled_on_billing": 30000,
+        "contract_asset": 30000,
+        "retainer_cash": 24000,
+        "retainer_revenue": 8000,
+        "retainer_liability": 16000,
+        "staffing_invoice": 50000,
+        "staffing_payroll": 38000,
+        "staffing_cash_collected": 50000,
+        "staffing_payroll_cash_paid": 38000,
+        "staffing_gross_margin": 12000,
+        "client_funds_received": 25000,
+        "client_funds_transferred_to_operating_cash": 5000,
+        "legal_fee_revenue": 5000,
+        "client_funds_remaining_liability": 20000
+      },
+      "numeric_counterexamples": [
+        {
+          "id": "ADVANCE-RETAINER",
+          "difference": {
+            "cash_received": 24000,
+            "revenue_if_wrongly_all_recognized": 24000,
+            "revenue_supported_current_period": 8000,
+            "overstatement": 16000
+          },
+          "why": "Cash receipt is not the same as earned stand-ready service."
+        },
+        {
+          "id": "BILLING-CUTOFF",
+          "difference": {
+            "earned_revenue": 60000,
+            "billed": 30000,
+            "contract_asset": 30000,
+            "wrong_revenue_if_billing_only": 30000
+          },
+          "why": "Billing and settlement evidence do not replace approved progress evidence."
+        },
+        {
+          "id": "REIMBURSABLE-GROSS-NET",
+          "selected_case": {
+            "vendor_cost": 8000,
+            "customer_charge": 8000,
+            "presentation": "gross principal case",
+            "net_revenue": 8000
+          },
+          "countercase": {
+            "vendor_cost": 8000,
+            "customer_charge": 8000,
+            "presentation": "agent pass-through",
+            "net_revenue": 0
+          },
+          "why": "Control of the vendor service and responsibility for fulfillment must be established."
+        },
+        {
+          "id": "STAFFING-PRINCIPAL-AGENT",
+          "selected_case": {
+            "invoice": 50000,
+            "payroll": 38000,
+            "gross_margin": 12000,
+            "presentation": "principal case"
+          },
+          "countercase": {
+            "customer_bill": 50000,
+            "worker_cost": 38000,
+            "presentation": "agent or net case remains unresolved"
+          },
+          "why": "Worker status, control and contractual responsibility are separate facts."
+        },
+        {
+          "id": "CLIENT-FUND-DISPUTE",
+          "selected_case": {
+            "received": 25000,
+            "fixed_undisputed_fee": 5000,
+            "remaining_liability": 20000
+          },
+          "countercase": {
+            "disputed_amount": 5000,
+            "operating_receipt": 0,
+            "trust_balance": 5000
+          },
+          "why": "Disputed funds remain in trust in the selected branch pending resolution."
+        }
+      ],
+      "scope_counterexamples": [
+        {
+          "id": "NONCALIFORNIA-CLIENT-FUNDS",
+          "claim": "California Rule 1.15 cannot be generalized as nationwide client-money law.",
+          "route": "Establish governing law, engagement facts, lawyer status and applicable professional rule before using a client-funds branch."
+        },
+        {
+          "id": "DISPUTED-FEE",
+          "claim": "A disputed client fee is not automatically available operating cash.",
+          "route": "Keep the disputed $5,000 in trust and obtain the applicable legal/accounting review."
+        },
+        {
+          "id": "TAX-GAAP-SPLIT",
+          "claim": "IRS worker-status and payroll evidence does not decide GAAP revenue or WIP.",
+          "route": "Run tax, accounting and legal analyses separately."
+        },
+        {
+          "id": "OTHER-ROLE",
+          "claim": "Engineering or accounting customer funds are not automatically legal trust funds.",
+          "route": "Identify contract, ownership, custody and applicable law."
+        }
+      ],
+      "limitations": [
+        "Synthetic calculation only; no real transaction, payroll, trust-bank or project population was tested.",
+        "All journal entries are review-only proposals under stated principal/agent, cost-to-cost, retainer and California assumptions; they are not approved postings.",
+        "The selected California source is jurisdiction-specific and does not establish a nationwide professional-funds rule.",
+        "The example uses issued and agency source summaries but does not state current consolidated ASC requirements or professional conclusions.",
+        "Professional review, empirical support, governing-law confirmation and source reuse rights remain unresolved."
+      ],
+      "id": "example-us-professional-services-connected-close",
+      "examples": [
+        {
+          "id": "fixed-fee-retainer-and-cost-bridge",
+          "basis": "Original synthetic calculation, not source-derived",
+          "facts": [
+            "$45,000 cost population: $20,000 approved labor + $12,000 subcontractor + $8,000 reimbursable + $5,000 other direct cost; fixed fee $120,000; estimated total cost $90,000; billing and cash settlement $30,000.",
+            "$24,000 retainer received; $8,000 current-period service and $16,000 contract liability."
+          ],
+          "calculation": [
+            "Progress 45,000/90,000=50%; earned revenue 50% x 120,000=$60,000; billing and cash settlement=$30,000; contract asset=$60,000-$30,000=$30,000.",
+            "Cost-to-complete remaining estimate=$90,000-$45,000=$45,000."
+          ],
+          "tieout": "Independent tests recompute journal lines, cost population, progress, earned revenue, billing, settlement, retainer and balances from the input fields."
+        },
+        {
+          "id": "staffing-and-payroll-principal-branch",
+          "basis": "Original synthetic calculation, not source-derived",
+          "facts": [
+            "$50,000 staffing invoice is settled; $38,000 staffing payroll is accrued and paid; $20,000 approved project labor is separate."
+          ],
+          "calculation": [
+            "Staffing gross margin before other costs=$50,000-$38,000=$12,000.",
+            "Illustrative employer payroll tax=$1,530; no tax rate conclusion."
+          ],
+          "tieout": "Explicit entity-specific cash, receivable, revenue, payroll expense and payroll payable lines are balanced independently."
+        },
+        {
+          "id": "california-trust-branch-and-dispute",
+          "basis": "Original synthetic calculation, not source-derived",
+          "facts": [
+            "$25,000 client funds enter trust; $5,000 fixed and undisputed fee transfers to operating cash and is recognized; $5,000 disputed counterexample remains in trust."
+          ],
+          "calculation": [
+            "Trust cash after transfer=$25,000-$5,000=$20,000; client-funds liability after fee recognition=$25,000-$5,000=$20,000; operating cash receipt for earned fee=$5,000."
+          ],
+          "tieout": "Separate trust cash, operating cash, client-funds liability and legal-fee revenue lines prevent custody and operating funds from being conflated."
+        }
+      ]
+    }
+  },
+  {
+    "id": "example-arts-recreation-event-and-museum-close",
+    "kind": "example",
+    "title": "Arts event and museum access: synthetic ticket, refund and restricted-donor close",
+    "summary": "Synthetic separate ledgers connect event ticket cash, refund, deferred revenue and cost settlement with a museum membership access period and donor-restricted exhibit gift.",
+    "topics": [
+      "Accounting and reporting",
+      "Industry research"
+    ],
+    "industries": [
+      "arts-entertainment-recreation"
+    ],
+    "jurisdiction": "United States; selected US GAAP and nongovernmental NFP research",
+    "source_type": "Synthetic example",
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_construction_fasb_2014_09",
+      "src_nonprofit_fasb_2018_08",
+      "src_nonprofit_fasb_2016_14"
+    ],
+    "related_ids": [
+      "guide-arts-recreation-us-close",
+      "wf-arts-recreation-event-to-close",
+      "ctrl-arts-recreation-role-and-settlement"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-19",
+    "provenance": {
+      "added_on": "2026-09-19",
+      "reviewer": "Codex AI-assisted bounded original-source research",
+      "scope": "Original synthetic event and museum application; no real transaction evidence.",
+      "evidence_urls": [
+        "https://github.com/HenryBranchAdams/ai-agents-in-accounting/issues/113"
+      ],
+      "note": "Selected public source review and original synthetic accounting research. No professional sign-off, current consolidated Codification access, legal opinion or operational evidence is asserted."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "External publisher text is not stored; publisher terms and source rights remain separate and unresolved.",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "version": "1.0.0",
+      "issue_id": "AA-I113",
+      "accounts": {
+        "cash": "asset",
+        "capital": "equity",
+        "contract_liability": "liability",
+        "ticket_revenue": "revenue",
+        "event_expense": "expense",
+        "accounts_payable": "liability",
+        "deferred_membership": "liability",
+        "membership_revenue": "revenue",
+        "contribution_revenue_with_restrictions": "revenue",
+        "program_expense": "expense",
+        "net_assets_with_restrictions": "equity",
+        "net_assets_without_restrictions": "equity",
+        "gross_gaming_receipts": "revenue",
+        "prizes_expense": "expense",
+        "gaming_tax_expense": "expense",
+        "gaming_tax_payable": "liability",
+        "wager_liability": "liability"
+      },
+      "cases": [
+        {
+          "id": "event-producer-ticket-refund",
+          "synthetic": true,
+          "role": "Event producer controlling the promised live-event service",
+          "assumptions": [
+            "The producer controls the promised admission service and is not a ticket agent.",
+            "100 tickets are sold at 7,500 cents each; 20 tickets are refunded before the event and 80 tickets are delivered.",
+            "Event cost is incurred before settlement; only 250,000 cents is paid by close."
+          ],
+          "inputs": {
+            "tickets_sold": 100,
+            "ticket_price_cents": 7500,
+            "refunded_tickets": 20,
+            "delivered_tickets": 80,
+            "event_cost_cents": 300000,
+            "event_cost_paid_cents": 250000,
+            "opening_capital_cents": 1000000
+          },
+          "journals": [
+            {
+              "id": "E0",
+              "entity": "E",
+              "lines": [
+                {
+                  "account": "cash",
+                  "debit_cents": 1000000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "capital",
+                  "debit_cents": 0,
+                  "credit_cents": 1000000
+                }
+              ]
+            },
+            {
+              "id": "E1",
+              "entity": "E",
+              "lines": [
+                {
+                  "account": "cash",
+                  "debit_cents": 750000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "contract_liability",
+                  "debit_cents": 0,
+                  "credit_cents": 750000
+                }
+              ]
+            },
+            {
+              "id": "E2",
+              "entity": "E",
+              "lines": [
+                {
+                  "account": "contract_liability",
+                  "debit_cents": 150000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "cash",
+                  "debit_cents": 0,
+                  "credit_cents": 150000
+                }
+              ]
+            },
+            {
+              "id": "E3",
+              "entity": "E",
+              "lines": [
+                {
+                  "account": "contract_liability",
+                  "debit_cents": 600000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "ticket_revenue",
+                  "debit_cents": 0,
+                  "credit_cents": 600000
+                }
+              ]
+            },
+            {
+              "id": "E4",
+              "entity": "E",
+              "lines": [
+                {
+                  "account": "event_expense",
+                  "debit_cents": 300000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "accounts_payable",
+                  "debit_cents": 0,
+                  "credit_cents": 300000
+                }
+              ]
+            },
+            {
+              "id": "E5",
+              "entity": "E",
+              "lines": [
+                {
+                  "account": "accounts_payable",
+                  "debit_cents": 250000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "cash",
+                  "debit_cents": 0,
+                  "credit_cents": 250000
+                }
+              ]
+            }
+          ],
+          "trial_balance": {
+            "cash": 1350000,
+            "capital": -1000000,
+            "contract_liability": 0,
+            "ticket_revenue": -600000,
+            "event_expense": 300000,
+            "accounts_payable": -50000
+          },
+          "reconciliation": {
+            "assets_cents": 1350000,
+            "liabilities_cents": 50000,
+            "net_income_cents": 300000
+          }
+        },
+        {
+          "id": "museum-membership-restricted-donor",
+          "synthetic": true,
+          "role": "Museum or mission-based nonprofit with membership access and a donor-restricted exhibit gift",
+          "assumptions": [
+            "Membership cash is exchange consideration for a 12-month access promise; one month is delivered in the close.",
+            "The donor gift is restricted to the exhibit program; the release is an equity reclassification after 300,000 cents of eligible spending, not additional contribution revenue.",
+            "This is a nongovernmental NFP research worksheet; donor instrument and entity adoption are assumed for the illustration."
+          ],
+          "inputs": {
+            "membership_cash_cents": 1200000,
+            "membership_months": 12,
+            "months_delivered": 1,
+            "donor_restricted_cash_cents": 800000,
+            "eligible_program_spend_cents": 300000,
+            "program_spend_paid_cents": 300000,
+            "opening_net_assets_cents": 2000000
+          },
+          "journals": [
+            {
+              "id": "M0",
+              "entity": "M",
+              "lines": [
+                {
+                  "account": "cash",
+                  "debit_cents": 2000000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "net_assets_without_restrictions",
+                  "debit_cents": 0,
+                  "credit_cents": 2000000
+                }
+              ]
+            },
+            {
+              "id": "M1",
+              "entity": "M",
+              "lines": [
+                {
+                  "account": "cash",
+                  "debit_cents": 1200000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "deferred_membership",
+                  "debit_cents": 0,
+                  "credit_cents": 1200000
+                }
+              ]
+            },
+            {
+              "id": "M2",
+              "entity": "M",
+              "lines": [
+                {
+                  "account": "deferred_membership",
+                  "debit_cents": 100000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "membership_revenue",
+                  "debit_cents": 0,
+                  "credit_cents": 100000
+                }
+              ]
+            },
+            {
+              "id": "M3",
+              "entity": "M",
+              "lines": [
+                {
+                  "account": "cash",
+                  "debit_cents": 800000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "contribution_revenue_with_restrictions",
+                  "debit_cents": 0,
+                  "credit_cents": 800000
+                }
+              ]
+            },
+            {
+              "id": "M4",
+              "entity": "M",
+              "lines": [
+                {
+                  "account": "program_expense",
+                  "debit_cents": 300000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "accounts_payable",
+                  "debit_cents": 0,
+                  "credit_cents": 300000
+                }
+              ]
+            },
+            {
+              "id": "M5",
+              "entity": "M",
+              "lines": [
+                {
+                  "account": "accounts_payable",
+                  "debit_cents": 300000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "cash",
+                  "debit_cents": 0,
+                  "credit_cents": 300000
+                }
+              ]
+            },
+            {
+              "id": "M6",
+              "entity": "M",
+              "lines": [
+                {
+                  "account": "net_assets_with_restrictions",
+                  "debit_cents": 300000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "net_assets_without_restrictions",
+                  "debit_cents": 0,
+                  "credit_cents": 300000
+                }
+              ]
+            }
+          ],
+          "trial_balance": {
+            "cash": 3700000,
+            "net_assets_without_restrictions": -2300000,
+            "deferred_membership": -1100000,
+            "membership_revenue": -100000,
+            "contribution_revenue_with_restrictions": -800000,
+            "program_expense": 300000,
+            "accounts_payable": 0,
+            "net_assets_with_restrictions": 300000
+          },
+          "reconciliation": {
+            "assets_cents": 3700000,
+            "liabilities_cents": 1100000,
+            "net_income_cents": 600000,
+            "net_assets_cents": 2000000,
+            "restricted_unreleased_cents": 500000
+          }
+        }
+      ],
+      "examples": [
+        {
+          "scenario": "EVENT-TICKET-REFUND",
+          "scenario_type": "positive",
+          "case_id": "event-producer-ticket-refund",
+          "expected": "Advance ticket cash, refund, delivered admissions, cost and settlement remain connected."
+        },
+        {
+          "scenario": "MUSEUM-DONOR-RESTRICTION",
+          "scenario_type": "positive",
+          "case_id": "museum-membership-restricted-donor",
+          "expected": "Membership access and donor restriction are separate populations; the release follows eligible spending."
+        },
+        {
+          "scenario": "VENUE-AGENT-CUSTODY",
+          "scenario_type": "negative",
+          "case_id": null,
+          "expected": "A venue or ticket agent receiving customer money does not become the event producer by cash receipt alone."
+        }
+      ],
+      "scope_counterexamples": [
+        {
+          "id": "VENUE-AGENT-CUSTODY",
+          "outcome": "A platform or venue may arrange admission and remit cash for a producer; do not infer producer revenue from settlement cash."
+        },
+        {
+          "id": "SPONSORSHIP-AS-DONATION",
+          "outcome": "An acknowledgment alone does not establish an exchange. Apply 958-605-15-5A to the actual facts: commensurate goods or services to the resource provider, intent, agreed consideration and the donor or sponsor arrangement must be distinguished from an incidental acknowledgment or public benefit."
+        },
+        {
+          "id": "MEMBERSHIP-AS-DONOR-GIFT",
+          "outcome": "Museum access membership and donor-restricted exhibit support require separate contract and restriction evidence."
+        }
+      ],
+      "limitations": [
+        "Synthetic scenarios and ledgers are labeled research material, not operational evidence.",
+        "All amounts and journal lines are synthetic integer cents.",
+        "Current consolidated Topic 606 and Topic 958, actual agreements, rights and donor instruments remain unverified.",
+        "The ledgers are not operational evidence or professional review."
+      ]
+    }
+  },
+  {
+    "id": "example-arts-recreation-gaming-close",
+    "kind": "example",
+    "title": "Arts and recreation gaming: synthetic federal tax route and custody counterrole",
+    "summary": "Synthetic separate ledgers keep gross gaming receipts, prize payouts, an illustrative tax estimate and customer wager custody distinct. The IRS route is federal tax guidance, not a US GAAP gaming conclusion.",
+    "topics": [
+      "Federal tax reporting",
+      "Accounting and reporting"
+    ],
+    "industries": [
+      "arts-entertainment-recreation"
+    ],
+    "jurisdiction": "United States; selected federal tax and custody research",
+    "source_type": "Synthetic example",
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_aa_i113_irs_gaming_ubti",
+      "src_nonprofit_irs_990_2025"
+    ],
+    "related_ids": [
+      "guide-arts-recreation-us-close",
+      "wf-arts-recreation-event-to-close",
+      "ctrl-arts-recreation-role-and-settlement"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-19",
+    "provenance": {
+      "added_on": "2026-09-19",
+      "reviewer": "Codex AI-assisted bounded original-source research",
+      "scope": "Original synthetic federal tax-routing and custody application; no filing or professional evidence.",
+      "evidence_urls": [
+        "https://github.com/HenryBranchAdams/ai-agents-in-accounting/issues/113"
+      ],
+      "note": "Selected public source review and original synthetic accounting research. No professional sign-off, current consolidated Codification access, legal opinion or operational evidence is asserted."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "External publisher text is not stored; publisher terms and source rights remain separate and unresolved.",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "version": "1.0.0",
+      "issue_id": "AA-I113",
+      "accounts": {
+        "cash": "asset",
+        "capital": "equity",
+        "contract_liability": "liability",
+        "ticket_revenue": "revenue",
+        "event_expense": "expense",
+        "accounts_payable": "liability",
+        "deferred_membership": "liability",
+        "membership_revenue": "revenue",
+        "contribution_revenue_with_restrictions": "revenue",
+        "program_expense": "expense",
+        "net_assets_with_restrictions": "equity",
+        "net_assets_without_restrictions": "equity",
+        "gross_gaming_receipts": "revenue",
+        "prizes_expense": "expense",
+        "gaming_tax_expense": "expense",
+        "gaming_tax_payable": "liability",
+        "wager_liability": "liability"
+      },
+      "cases": [
+        {
+          "id": "charitable-gaming-tax-route",
+          "synthetic": true,
+          "role": "Tax-exempt organization retaining gross gaming and prize evidence for federal reporting route",
+          "assumptions": [
+            "The worksheet keeps gross receipts and prizes separate for a federal tax-routing memorandum; it does not decide US GAAP gaming revenue presentation.",
+            "A 60,000-cent tax estimate is an illustrative input, not a tax calculation or filing conclusion.",
+            "The organization is assumed to have a qualifying federal filing population; state/local license and legality remain unverified."
+          ],
+          "inputs": {
+            "gross_gaming_receipts_cents": 1000000,
+            "prizes_paid_cents": 700000,
+            "estimated_gaming_tax_cents": 60000,
+            "tax_paid_cents": 40000,
+            "opening_capital_cents": 2000000
+          },
+          "journals": [
+            {
+              "id": "G0",
+              "entity": "G",
+              "lines": [
+                {
+                  "account": "cash",
+                  "debit_cents": 2000000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "capital",
+                  "debit_cents": 0,
+                  "credit_cents": 2000000
+                }
+              ]
+            },
+            {
+              "id": "G1",
+              "entity": "G",
+              "lines": [
+                {
+                  "account": "cash",
+                  "debit_cents": 1000000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "gross_gaming_receipts",
+                  "debit_cents": 0,
+                  "credit_cents": 1000000
+                }
+              ]
+            },
+            {
+              "id": "G2",
+              "entity": "G",
+              "lines": [
+                {
+                  "account": "prizes_expense",
+                  "debit_cents": 700000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "cash",
+                  "debit_cents": 0,
+                  "credit_cents": 700000
+                }
+              ]
+            },
+            {
+              "id": "G3",
+              "entity": "G",
+              "lines": [
+                {
+                  "account": "gaming_tax_expense",
+                  "debit_cents": 60000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "gaming_tax_payable",
+                  "debit_cents": 0,
+                  "credit_cents": 60000
+                }
+              ]
+            },
+            {
+              "id": "G4",
+              "entity": "G",
+              "lines": [
+                {
+                  "account": "gaming_tax_payable",
+                  "debit_cents": 40000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "cash",
+                  "debit_cents": 0,
+                  "credit_cents": 40000
+                }
+              ]
+            }
+          ],
+          "trial_balance": {
+            "cash": 2260000,
+            "capital": -2000000,
+            "gross_gaming_receipts": -1000000,
+            "prizes_expense": 700000,
+            "gaming_tax_expense": 60000,
+            "gaming_tax_payable": -20000
+          },
+          "reconciliation": {
+            "assets_cents": 2260000,
+            "liabilities_cents": 20000,
+            "net_income_cents": 240000
+          }
+        },
+        {
+          "id": "gaming-custody-counterrole",
+          "synthetic": true,
+          "role": "Venue or agent holding customer wagers as a custody population before remittance",
+          "assumptions": [
+            "The venue or agent does not control the underlying gaming promise in this counterrole and records customer wagers as a payable population.",
+            "No gaming revenue is inferred from custody cash; a principal or regulator-specific accounting analysis would be separate."
+          ],
+          "inputs": {
+            "customer_wagers_received_cents": 500000,
+            "customer_wagers_remitted_cents": 300000,
+            "opening_capital_cents": 1000000
+          },
+          "journals": [
+            {
+              "id": "C0",
+              "entity": "C",
+              "lines": [
+                {
+                  "account": "cash",
+                  "debit_cents": 1000000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "capital",
+                  "debit_cents": 0,
+                  "credit_cents": 1000000
+                }
+              ]
+            },
+            {
+              "id": "C1",
+              "entity": "C",
+              "lines": [
+                {
+                  "account": "cash",
+                  "debit_cents": 500000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "wager_liability",
+                  "debit_cents": 0,
+                  "credit_cents": 500000
+                }
+              ]
+            },
+            {
+              "id": "C2",
+              "entity": "C",
+              "lines": [
+                {
+                  "account": "wager_liability",
+                  "debit_cents": 300000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "cash",
+                  "debit_cents": 0,
+                  "credit_cents": 300000
+                }
+              ]
+            }
+          ],
+          "trial_balance": {
+            "cash": 1200000,
+            "capital": -1000000,
+            "wager_liability": -200000
+          },
+          "reconciliation": {
+            "assets_cents": 1200000,
+            "liabilities_cents": 200000,
+            "net_income_cents": 0
+          }
+        }
+      ],
+      "examples": [
+        {
+          "scenario": "GAMING-TAX-ROUTE",
+          "scenario_type": "positive",
+          "case_id": "charitable-gaming-tax-route",
+          "expected": "Gross receipts, prizes, tax estimate and payments remain separately traceable."
+        },
+        {
+          "scenario": "GAMING-CUSTODY-COUNTERROLE",
+          "scenario_type": "negative",
+          "case_id": "gaming-custody-counterrole",
+          "expected": "Custody cash produces a wager liability and no inferred gaming revenue."
+        }
+      ],
+      "scope_counterexamples": [
+        {
+          "id": "GAMING-CUSTODY-COUNTERROLE",
+          "outcome": "Customer wagers held by an agent or venue are not automatically earned revenue."
+        },
+        {
+          "id": "BINGO-EXCEPTION-UNVERIFIED",
+          "outcome": "A bingo label does not establish the federal exception without presence, legality and jurisdiction evidence."
+        },
+        {
+          "id": "PUBLIC-MEMBER-ROUTE",
+          "outcome": "Member, guest and general-public gaming populations can route differently under federal tax guidance."
+        }
+      ],
+      "limitations": [
+        "Synthetic scenarios and ledgers are labeled research material, not operational evidence.",
+        "The gaming tax estimate is an illustrative assumption, not a tax computation.",
+        "State/local law, license, exemption section, current tax forms and entity facts remain open.",
+        "The custody counterrole does not decide principal/operator GAAP presentation."
+      ]
+    }
+  },
+  {
+    "id": "example-other-services-repair-funeral-close",
+    "kind": "example",
+    "title": "Repair, laundry and funeral connected service ledgers",
+    "summary": "Synthetic connected cases for repair/warranty, personal/laundry custody and funeral pre-need deposit or milestone boundaries.",
+    "topics": [
+      "Industry research",
+      "Accounting and reporting",
+      "Other services"
+    ],
+    "industries": [
+      "other-services"
+    ],
+    "jurisdiction": "United States; selected nongovernmental US GAAP and federal routes",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_construction_fasb_2014_09",
+      "src_roadmap_naics2022_manual",
+      "src_aa_i115_ftc_funeral_rule"
+    ],
+    "related_ids": [
+      "guide-other-services-us-close",
+      "wf-other-services-evidence-close",
+      "ctrl-other-services-role-cutoff"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-19",
+    "provenance": {
+      "added_on": "2026-09-19",
+      "reviewer": "Codex AI-assisted bounded original-source research",
+      "scope": "Bounded selected-role application for Issue 115; no whole-industry sufficiency.",
+      "evidence_urls": [
+        "https://github.com/HenryBranchAdams/ai-agents-in-accounting/issues/115"
+      ],
+      "note": "Selected public source review and original synthetic accounting research. No professional sign-off, current consolidated Codification access, legal opinion or operational evidence is asserted."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "External publisher text is not stored; publisher terms and source rights remain separate and unresolved.",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "version": "1.0.0",
+      "synthetic": true,
+      "source_ids": [
+        "src_construction_fasb_2014_09",
+        "src_roadmap_naics2022_manual",
+        "src_aa_i115_ftc_funeral_rule"
+      ],
+      "accounts": {
+        "cash": "asset",
+        "accounts_receivable": "asset",
+        "parts_inventory": "asset",
+        "supplies_inventory": "asset",
+        "restricted_custody_asset": "asset",
+        "repair_revenue": "revenue",
+        "parts_revenue": "revenue",
+        "laundry_revenue": "revenue",
+        "funeral_revenue": "revenue",
+        "membership_revenue": "revenue",
+        "contribution_revenue": "revenue",
+        "restricted_contribution": "revenue",
+        "parts_expense": "expense",
+        "labor_expense": "expense",
+        "warranty_expense": "expense",
+        "laundry_supplies_expense": "expense",
+        "claims_expense": "expense",
+        "program_expense": "expense",
+        "wages_expense": "expense",
+        "employer_tax_expense": "expense",
+        "household_service_expense": "expense",
+        "accounts_payable": "liability",
+        "warranty_liability": "liability",
+        "claims_payable": "liability",
+        "preneed_liability": "liability",
+        "employee_tax_payable": "liability",
+        "federal_withholding_payable": "liability",
+        "employer_tax_payable": "liability",
+        "opening_equity": "equity",
+        "restricted_net_assets": "equity",
+        "household_equity": "equity",
+        "net_assets_without_donor_restrictions": "equity"
+      },
+      "cases": [
+        {
+          "id": "repair-parts-labor-warranty",
+          "scenario_type": "positive",
+          "title": "Repair parts, labor and assurance warranty",
+          "synthetic": true,
+          "source_ids": [
+            "src_construction_fasb_2014_09",
+            "src_roadmap_naics2022_manual"
+          ],
+          "summary": "Connected repair work order, parts issue, labor completion, assurance estimate and settlement.",
+          "assumptions": [
+            "All amounts are illustrative integer cents; actual contracts, worker facts and legal terms are not supplied."
+          ],
+          "inputs": {
+            "parts_revenue_cents": 400000,
+            "service_revenue_cents": 900000,
+            "parts_cost_cents": 250000,
+            "labor_cost_cents": 500000,
+            "warranty_estimate_cents": 100000,
+            "cash_collected_cents": 1000000
+          },
+          "journals": [
+            {
+              "id": "R0",
+              "lines": [
+                {
+                  "account": "parts_inventory",
+                  "debit_cents": 400000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "opening_equity",
+                  "debit_cents": 0,
+                  "credit_cents": 400000
+                }
+              ]
+            },
+            {
+              "id": "R1",
+              "lines": [
+                {
+                  "account": "accounts_receivable",
+                  "debit_cents": 1300000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "parts_revenue",
+                  "debit_cents": 0,
+                  "credit_cents": 400000
+                },
+                {
+                  "account": "repair_revenue",
+                  "debit_cents": 0,
+                  "credit_cents": 900000
+                }
+              ]
+            },
+            {
+              "id": "R2",
+              "lines": [
+                {
+                  "account": "parts_expense",
+                  "debit_cents": 250000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "parts_inventory",
+                  "debit_cents": 0,
+                  "credit_cents": 250000
+                }
+              ]
+            },
+            {
+              "id": "R3",
+              "lines": [
+                {
+                  "account": "labor_expense",
+                  "debit_cents": 500000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "accounts_payable",
+                  "debit_cents": 0,
+                  "credit_cents": 500000
+                }
+              ]
+            },
+            {
+              "id": "R4",
+              "lines": [
+                {
+                  "account": "warranty_expense",
+                  "debit_cents": 100000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "warranty_liability",
+                  "debit_cents": 0,
+                  "credit_cents": 100000
+                }
+              ]
+            },
+            {
+              "id": "R5",
+              "lines": [
+                {
+                  "account": "cash",
+                  "debit_cents": 1000000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "accounts_receivable",
+                  "debit_cents": 0,
+                  "credit_cents": 1000000
+                }
+              ]
+            }
+          ],
+          "trial_balance": {
+            "parts_inventory": 150000,
+            "opening_equity": -400000,
+            "accounts_receivable": 300000,
+            "parts_revenue": -400000,
+            "repair_revenue": -900000,
+            "parts_expense": 250000,
+            "labor_expense": 500000,
+            "accounts_payable": -500000,
+            "warranty_expense": 100000,
+            "warranty_liability": -100000,
+            "cash": 1000000
+          },
+          "reconciliation": {
+            "assets_cents": 1450000,
+            "liabilities_cents": 600000,
+            "net_income_cents": 450000,
+            "equity_cents": 400000
+          },
+          "counterexamples": [
+            {
+              "id": "CUSTOMER-AS-PROVIDER-INVENTORY",
+              "outcome": "Customer-owned repaired equipment remains a custody population; do not add it to provider parts inventory."
+            },
+            {
+              "id": "SEPARATELY-PRICED-WARRANTY",
+              "outcome": "A separately priced warranty is a distinct service branch requiring separate allocation and review."
+            }
+          ],
+          "approval": {
+            "status": "synthetic-assumption-only",
+            "evidence": "SYN-REPAIR-PARTS-LABOR-WARRANTY; no operational or professional approval"
+          }
+        },
+        {
+          "id": "laundry-customer-custody",
+          "scenario_type": "positive",
+          "title": "Laundry batch and customer-goods custody",
+          "synthetic": true,
+          "source_ids": [
+            "src_construction_fasb_2014_09",
+            "src_roadmap_naics2022_manual"
+          ],
+          "summary": "Connected batch completion, supplies, labor, cash and customer-goods claim case.",
+          "assumptions": [
+            "All amounts are illustrative integer cents; actual contracts, worker facts and legal terms are not supplied."
+          ],
+          "inputs": {
+            "laundry_revenue_cents": 600000,
+            "supplies_cost_cents": 120000,
+            "labor_cost_cents": 200000,
+            "cash_collected_cents": 500000,
+            "claims_estimate_cents": 80000
+          },
+          "journals": [
+            {
+              "id": "L0",
+              "lines": [
+                {
+                  "account": "supplies_inventory",
+                  "debit_cents": 100000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "opening_equity",
+                  "debit_cents": 0,
+                  "credit_cents": 100000
+                }
+              ]
+            },
+            {
+              "id": "L1",
+              "lines": [
+                {
+                  "account": "accounts_receivable",
+                  "debit_cents": 600000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "laundry_revenue",
+                  "debit_cents": 0,
+                  "credit_cents": 600000
+                }
+              ]
+            },
+            {
+              "id": "L2",
+              "lines": [
+                {
+                  "account": "laundry_supplies_expense",
+                  "debit_cents": 120000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "supplies_inventory",
+                  "debit_cents": 0,
+                  "credit_cents": 120000
+                }
+              ]
+            },
+            {
+              "id": "L3",
+              "lines": [
+                {
+                  "account": "labor_expense",
+                  "debit_cents": 200000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "accounts_payable",
+                  "debit_cents": 0,
+                  "credit_cents": 200000
+                }
+              ]
+            },
+            {
+              "id": "L4",
+              "lines": [
+                {
+                  "account": "cash",
+                  "debit_cents": 500000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "accounts_receivable",
+                  "debit_cents": 0,
+                  "credit_cents": 500000
+                }
+              ]
+            },
+            {
+              "id": "L5",
+              "lines": [
+                {
+                  "account": "claims_expense",
+                  "debit_cents": 80000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "claims_payable",
+                  "debit_cents": 0,
+                  "credit_cents": 80000
+                }
+              ]
+            }
+          ],
+          "trial_balance": {
+            "supplies_inventory": -20000,
+            "opening_equity": -100000,
+            "accounts_receivable": 100000,
+            "laundry_revenue": -600000,
+            "laundry_supplies_expense": 120000,
+            "labor_expense": 200000,
+            "accounts_payable": -200000,
+            "cash": 500000,
+            "claims_expense": 80000,
+            "claims_payable": -80000
+          },
+          "reconciliation": {
+            "assets_cents": 580000,
+            "liabilities_cents": 280000,
+            "net_income_cents": 200000,
+            "equity_cents": 100000
+          },
+          "counterexamples": [
+            {
+              "id": "LINEN-SUPPLY-INVENTORY",
+              "outcome": "A provider-owned linen rental branch needs an inventory and lease analysis rather than the customer-goods custody route."
+            },
+            {
+              "id": "CLAIM-AS-REVENUE-OFFSET",
+              "outcome": "A loss claim is kept separate from laundry service revenue and requires fact-specific liability analysis."
+            }
+          ],
+          "approval": {
+            "status": "synthetic-assumption-only",
+            "evidence": "SYN-LAUNDRY-CUSTOMER-CUSTODY; no operational or professional approval"
+          }
+        },
+        {
+          "id": "funeral-preneed-deposit",
+          "scenario_type": "positive",
+          "title": "Funeral pre-need deposit and milestone",
+          "synthetic": true,
+          "source_ids": [
+            "src_construction_fasb_2014_09",
+            "src_aa_i115_ftc_funeral_rule"
+          ],
+          "summary": "Connected pre-need receipt, administered-fund transfer, milestone and remaining liability.",
+          "assumptions": [
+            "Synthetic provider-owned restricted deposit assumption: the funeral provider controls the administered $4,500.00 restricted deposit and remains responsible for the promised pre-need service.",
+            "A third party owns and controls the custody countercase, which changes the asset-control conclusion and is retained as a boundary case.",
+            "A distinct service milestone was completed and $1,000.00 of consideration became eligible for recognition; the remaining $4,000.00 stays a pre-need liability.",
+            "No claim is made about every state pre-need trust or funeral arrangement."
+          ],
+          "inputs": {
+            "preneed_cash_received_cents": 500000,
+            "fund_administered_cents": 450000,
+            "service_milestone_delivered_cents": 100000,
+            "preneed_liability_remaining_cents": 400000,
+            "provider_owned_restricted_deposit": true,
+            "service_milestone": "distinct service milestone completed",
+            "recognized_milestone_consideration_cents": 100000
+          },
+          "journals": [
+            {
+              "id": "F0",
+              "lines": [
+                {
+                  "account": "cash",
+                  "debit_cents": 500000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "preneed_liability",
+                  "debit_cents": 0,
+                  "credit_cents": 500000
+                }
+              ]
+            },
+            {
+              "id": "F1",
+              "lines": [
+                {
+                  "account": "restricted_custody_asset",
+                  "debit_cents": 450000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "cash",
+                  "debit_cents": 0,
+                  "credit_cents": 450000
+                }
+              ]
+            },
+            {
+              "id": "F2",
+              "lines": [
+                {
+                  "account": "preneed_liability",
+                  "debit_cents": 100000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "funeral_revenue",
+                  "debit_cents": 0,
+                  "credit_cents": 100000
+                }
+              ]
+            }
+          ],
+          "trial_balance": {
+            "cash": 50000,
+            "preneed_liability": -400000,
+            "restricted_custody_asset": 450000,
+            "funeral_revenue": -100000
+          },
+          "reconciliation": {
+            "assets_cents": 500000,
+            "liabilities_cents": 400000,
+            "net_income_cents": 100000,
+            "equity_cents": 0
+          },
+          "counterexamples": [
+            {
+              "id": "PRENEED-AS-IMMEDIATE-REVENUE",
+              "outcome": "Receipt alone does not deliver the selected funeral goods or services."
+            },
+            {
+              "id": "PRICE-LIST-AS-GAAP",
+              "outcome": "FTC price-list and choice disclosures are contract inputs; they do not decide GAAP revenue or trust accounting."
+            }
+          ],
+          "approval": {
+            "status": "synthetic-assumption-only",
+            "evidence": "SYN-FUNERAL-PRENEED-DEPOSIT; no operational or professional approval"
+          }
+        }
+      ],
+      "examples": [
+        {
+          "id": "repair-parts-labor-warranty",
+          "scenario_type": "positive",
+          "title": "Repair parts, labor and assurance warranty",
+          "synthetic": true,
+          "source_ids": [
+            "src_construction_fasb_2014_09",
+            "src_roadmap_naics2022_manual"
+          ],
+          "summary": "Connected repair work order, parts issue, labor completion, assurance estimate and settlement.",
+          "assumptions": [
+            "All amounts are illustrative integer cents; actual contracts, worker facts and legal terms are not supplied."
+          ],
+          "inputs": {
+            "parts_revenue_cents": 400000,
+            "service_revenue_cents": 900000,
+            "parts_cost_cents": 250000,
+            "labor_cost_cents": 500000,
+            "warranty_estimate_cents": 100000,
+            "cash_collected_cents": 1000000
+          },
+          "journals": [
+            {
+              "id": "R0",
+              "lines": [
+                {
+                  "account": "parts_inventory",
+                  "debit_cents": 400000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "opening_equity",
+                  "debit_cents": 0,
+                  "credit_cents": 400000
+                }
+              ]
+            },
+            {
+              "id": "R1",
+              "lines": [
+                {
+                  "account": "accounts_receivable",
+                  "debit_cents": 1300000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "parts_revenue",
+                  "debit_cents": 0,
+                  "credit_cents": 400000
+                },
+                {
+                  "account": "repair_revenue",
+                  "debit_cents": 0,
+                  "credit_cents": 900000
+                }
+              ]
+            },
+            {
+              "id": "R2",
+              "lines": [
+                {
+                  "account": "parts_expense",
+                  "debit_cents": 250000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "parts_inventory",
+                  "debit_cents": 0,
+                  "credit_cents": 250000
+                }
+              ]
+            },
+            {
+              "id": "R3",
+              "lines": [
+                {
+                  "account": "labor_expense",
+                  "debit_cents": 500000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "accounts_payable",
+                  "debit_cents": 0,
+                  "credit_cents": 500000
+                }
+              ]
+            },
+            {
+              "id": "R4",
+              "lines": [
+                {
+                  "account": "warranty_expense",
+                  "debit_cents": 100000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "warranty_liability",
+                  "debit_cents": 0,
+                  "credit_cents": 100000
+                }
+              ]
+            },
+            {
+              "id": "R5",
+              "lines": [
+                {
+                  "account": "cash",
+                  "debit_cents": 1000000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "accounts_receivable",
+                  "debit_cents": 0,
+                  "credit_cents": 1000000
+                }
+              ]
+            }
+          ],
+          "trial_balance": {
+            "parts_inventory": 150000,
+            "opening_equity": -400000,
+            "accounts_receivable": 300000,
+            "parts_revenue": -400000,
+            "repair_revenue": -900000,
+            "parts_expense": 250000,
+            "labor_expense": 500000,
+            "accounts_payable": -500000,
+            "warranty_expense": 100000,
+            "warranty_liability": -100000,
+            "cash": 1000000
+          },
+          "reconciliation": {
+            "assets_cents": 1450000,
+            "liabilities_cents": 600000,
+            "net_income_cents": 450000,
+            "equity_cents": 400000
+          },
+          "counterexamples": [
+            {
+              "id": "CUSTOMER-AS-PROVIDER-INVENTORY",
+              "outcome": "Customer-owned repaired equipment remains a custody population; do not add it to provider parts inventory."
+            },
+            {
+              "id": "SEPARATELY-PRICED-WARRANTY",
+              "outcome": "A separately priced warranty is a distinct service branch requiring separate allocation and review."
+            }
+          ],
+          "approval": {
+            "status": "synthetic-assumption-only",
+            "evidence": "SYN-REPAIR-PARTS-LABOR-WARRANTY; no operational or professional approval"
+          }
+        },
+        {
+          "id": "laundry-customer-custody",
+          "scenario_type": "positive",
+          "title": "Laundry batch and customer-goods custody",
+          "synthetic": true,
+          "source_ids": [
+            "src_construction_fasb_2014_09",
+            "src_roadmap_naics2022_manual"
+          ],
+          "summary": "Connected batch completion, supplies, labor, cash and customer-goods claim case.",
+          "assumptions": [
+            "All amounts are illustrative integer cents; actual contracts, worker facts and legal terms are not supplied."
+          ],
+          "inputs": {
+            "laundry_revenue_cents": 600000,
+            "supplies_cost_cents": 120000,
+            "labor_cost_cents": 200000,
+            "cash_collected_cents": 500000,
+            "claims_estimate_cents": 80000
+          },
+          "journals": [
+            {
+              "id": "L0",
+              "lines": [
+                {
+                  "account": "supplies_inventory",
+                  "debit_cents": 100000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "opening_equity",
+                  "debit_cents": 0,
+                  "credit_cents": 100000
+                }
+              ]
+            },
+            {
+              "id": "L1",
+              "lines": [
+                {
+                  "account": "accounts_receivable",
+                  "debit_cents": 600000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "laundry_revenue",
+                  "debit_cents": 0,
+                  "credit_cents": 600000
+                }
+              ]
+            },
+            {
+              "id": "L2",
+              "lines": [
+                {
+                  "account": "laundry_supplies_expense",
+                  "debit_cents": 120000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "supplies_inventory",
+                  "debit_cents": 0,
+                  "credit_cents": 120000
+                }
+              ]
+            },
+            {
+              "id": "L3",
+              "lines": [
+                {
+                  "account": "labor_expense",
+                  "debit_cents": 200000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "accounts_payable",
+                  "debit_cents": 0,
+                  "credit_cents": 200000
+                }
+              ]
+            },
+            {
+              "id": "L4",
+              "lines": [
+                {
+                  "account": "cash",
+                  "debit_cents": 500000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "accounts_receivable",
+                  "debit_cents": 0,
+                  "credit_cents": 500000
+                }
+              ]
+            },
+            {
+              "id": "L5",
+              "lines": [
+                {
+                  "account": "claims_expense",
+                  "debit_cents": 80000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "claims_payable",
+                  "debit_cents": 0,
+                  "credit_cents": 80000
+                }
+              ]
+            }
+          ],
+          "trial_balance": {
+            "supplies_inventory": -20000,
+            "opening_equity": -100000,
+            "accounts_receivable": 100000,
+            "laundry_revenue": -600000,
+            "laundry_supplies_expense": 120000,
+            "labor_expense": 200000,
+            "accounts_payable": -200000,
+            "cash": 500000,
+            "claims_expense": 80000,
+            "claims_payable": -80000
+          },
+          "reconciliation": {
+            "assets_cents": 580000,
+            "liabilities_cents": 280000,
+            "net_income_cents": 200000,
+            "equity_cents": 100000
+          },
+          "counterexamples": [
+            {
+              "id": "LINEN-SUPPLY-INVENTORY",
+              "outcome": "A provider-owned linen rental branch needs an inventory and lease analysis rather than the customer-goods custody route."
+            },
+            {
+              "id": "CLAIM-AS-REVENUE-OFFSET",
+              "outcome": "A loss claim is kept separate from laundry service revenue and requires fact-specific liability analysis."
+            }
+          ],
+          "approval": {
+            "status": "synthetic-assumption-only",
+            "evidence": "SYN-LAUNDRY-CUSTOMER-CUSTODY; no operational or professional approval"
+          }
+        },
+        {
+          "id": "funeral-preneed-deposit",
+          "scenario_type": "positive",
+          "title": "Funeral pre-need deposit and milestone",
+          "synthetic": true,
+          "source_ids": [
+            "src_construction_fasb_2014_09",
+            "src_aa_i115_ftc_funeral_rule"
+          ],
+          "summary": "Connected pre-need receipt, administered-fund transfer, milestone and remaining liability.",
+          "assumptions": [
+            "Synthetic provider-owned restricted deposit assumption: the funeral provider controls the administered $4,500.00 restricted deposit and remains responsible for the promised pre-need service.",
+            "A third party owns and controls the custody countercase, which changes the asset-control conclusion and is retained as a boundary case.",
+            "A distinct service milestone was completed and $1,000.00 of consideration became eligible for recognition; the remaining $4,000.00 stays a pre-need liability.",
+            "No claim is made about every state pre-need trust or funeral arrangement."
+          ],
+          "inputs": {
+            "preneed_cash_received_cents": 500000,
+            "fund_administered_cents": 450000,
+            "service_milestone_delivered_cents": 100000,
+            "preneed_liability_remaining_cents": 400000,
+            "provider_owned_restricted_deposit": true,
+            "service_milestone": "distinct service milestone completed",
+            "recognized_milestone_consideration_cents": 100000
+          },
+          "journals": [
+            {
+              "id": "F0",
+              "lines": [
+                {
+                  "account": "cash",
+                  "debit_cents": 500000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "preneed_liability",
+                  "debit_cents": 0,
+                  "credit_cents": 500000
+                }
+              ]
+            },
+            {
+              "id": "F1",
+              "lines": [
+                {
+                  "account": "restricted_custody_asset",
+                  "debit_cents": 450000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "cash",
+                  "debit_cents": 0,
+                  "credit_cents": 450000
+                }
+              ]
+            },
+            {
+              "id": "F2",
+              "lines": [
+                {
+                  "account": "preneed_liability",
+                  "debit_cents": 100000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "funeral_revenue",
+                  "debit_cents": 0,
+                  "credit_cents": 100000
+                }
+              ]
+            }
+          ],
+          "trial_balance": {
+            "cash": 50000,
+            "preneed_liability": -400000,
+            "restricted_custody_asset": 450000,
+            "funeral_revenue": -100000
+          },
+          "reconciliation": {
+            "assets_cents": 500000,
+            "liabilities_cents": 400000,
+            "net_income_cents": 100000,
+            "equity_cents": 0
+          },
+          "counterexamples": [
+            {
+              "id": "PRENEED-AS-IMMEDIATE-REVENUE",
+              "outcome": "Receipt alone does not deliver the selected funeral goods or services."
+            },
+            {
+              "id": "PRICE-LIST-AS-GAAP",
+              "outcome": "FTC price-list and choice disclosures are contract inputs; they do not decide GAAP revenue or trust accounting."
+            }
+          ],
+          "approval": {
+            "status": "synthetic-assumption-only",
+            "evidence": "SYN-FUNERAL-PRENEED-DEPOSIT; no operational or professional approval"
+          }
+        }
+      ],
+      "scope_counterexamples": [
+        {
+          "id": "REPAIR-CUSTOMER-CUSTODY",
+          "outcome": "Customer-owned repaired goods remain custody, not parts inventory."
+        },
+        {
+          "id": "PRENEED-DEPOSIT-NOT-REVENUE",
+          "outcome": "A pre-need receipt remains a separate obligation population until the selected service milestone."
+        },
+        {
+          "id": "LAUNDRY-LINEN-OWNER",
+          "outcome": "Provider-owned linen supply is a separate inventory and lease branch."
+        }
+      ],
+      "limitations": [
+        "Synthetic examples are illustrative integer-cent cases, not operational evidence or posting authorization.",
+        "Current consolidated standards, actual contracts, state/local rules, filing status and professional review remain open.",
+        "External source rights and current source currency remain unknown; publisher text is not stored."
+      ]
+    }
+  },
+  {
+    "id": "example-other-services-membership-household-close",
+    "kind": "example",
+    "title": "Membership restrictions and household payroll ledgers",
+    "summary": "Synthetic connected cases for membership dues, restricted program support, household employee payroll and contractor or reimbursement counterbranches.",
+    "topics": [
+      "Industry research",
+      "Accounting and reporting",
+      "Other services"
+    ],
+    "industries": [
+      "other-services"
+    ],
+    "jurisdiction": "United States; selected nongovernmental US GAAP and federal routes",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_nonprofit_fasb_2018_08",
+      "src_nonprofit_fasb_2016_14",
+      "src_nonprofit_irs_990_2025",
+      "src_aa_i115_irs_household_employer",
+      "src_roadmap_naics2022_manual"
+    ],
+    "related_ids": [
+      "guide-other-services-us-close",
+      "wf-other-services-evidence-close",
+      "ctrl-other-services-role-cutoff"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-19",
+    "provenance": {
+      "added_on": "2026-09-19",
+      "reviewer": "Codex AI-assisted bounded original-source research",
+      "scope": "Bounded selected-role application for Issue 115; no whole-industry sufficiency.",
+      "evidence_urls": [
+        "https://github.com/HenryBranchAdams/ai-agents-in-accounting/issues/115"
+      ],
+      "note": "Selected public source review and original synthetic accounting research. No professional sign-off, current consolidated Codification access, legal opinion or operational evidence is asserted."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "External publisher text is not stored; publisher terms and source rights remain separate and unresolved.",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "version": "1.0.0",
+      "synthetic": true,
+      "source_ids": [
+        "src_nonprofit_fasb_2018_08",
+        "src_nonprofit_fasb_2016_14",
+        "src_nonprofit_irs_990_2025",
+        "src_aa_i115_irs_household_employer",
+        "src_roadmap_naics2022_manual"
+      ],
+      "accounts": {
+        "cash": "asset",
+        "accounts_receivable": "asset",
+        "parts_inventory": "asset",
+        "supplies_inventory": "asset",
+        "restricted_custody_asset": "asset",
+        "repair_revenue": "revenue",
+        "parts_revenue": "revenue",
+        "laundry_revenue": "revenue",
+        "funeral_revenue": "revenue",
+        "membership_revenue": "revenue",
+        "contribution_revenue": "revenue",
+        "restricted_contribution": "revenue",
+        "parts_expense": "expense",
+        "labor_expense": "expense",
+        "warranty_expense": "expense",
+        "laundry_supplies_expense": "expense",
+        "claims_expense": "expense",
+        "program_expense": "expense",
+        "wages_expense": "expense",
+        "employer_tax_expense": "expense",
+        "household_service_expense": "expense",
+        "accounts_payable": "liability",
+        "warranty_liability": "liability",
+        "claims_payable": "liability",
+        "preneed_liability": "liability",
+        "employee_tax_payable": "liability",
+        "federal_withholding_payable": "liability",
+        "employer_tax_payable": "liability",
+        "opening_equity": "equity",
+        "restricted_net_assets": "equity",
+        "household_equity": "equity",
+        "net_assets_without_donor_restrictions": "equity"
+      },
+      "cases": [
+        {
+          "id": "membership-dues-restricted-support",
+          "scenario_type": "positive",
+          "title": "Membership dues and restricted program support",
+          "synthetic": true,
+          "source_ids": [
+            "src_nonprofit_fasb_2018_08",
+            "src_nonprofit_fasb_2016_14",
+            "src_nonprofit_irs_990_2025"
+          ],
+          "summary": "Connected dues benefit allocation, restricted support, eligible program spend and release.",
+          "assumptions": [
+            "All amounts are illustrative integer cents; actual contracts, worker facts and legal terms are not supplied.",
+            "Synthetic membership agreement provides a 12-month benefit; 4 months of member access are delivered by the close. The 400,000-cent benefit allocation is the delivered exchange portion.",
+            "The remaining 800,000 cents is an unconditional contribution portion. The separate 600,000-cent support transfer is donor-restricted, and 300,000 cents of eligible program spending fulfills that restriction by the close."
+          ],
+          "inputs": {
+            "membership_cash_cents": 1200000,
+            "membership_benefit_value_cents": 400000,
+            "membership_contribution_cents": 800000,
+            "restricted_support_cents": 600000,
+            "eligible_program_spend_cents": 300000,
+            "membership_months": 12,
+            "membership_months_delivered": 4
+          },
+          "journals": [
+            {
+              "id": "M0",
+              "lines": [
+                {
+                  "account": "cash",
+                  "debit_cents": 1200000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "membership_revenue",
+                  "debit_cents": 0,
+                  "credit_cents": 400000
+                },
+                {
+                  "account": "contribution_revenue",
+                  "debit_cents": 0,
+                  "credit_cents": 800000
+                }
+              ]
+            },
+            {
+              "id": "M1",
+              "lines": [
+                {
+                  "account": "cash",
+                  "debit_cents": 600000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "restricted_contribution",
+                  "debit_cents": 0,
+                  "credit_cents": 600000
+                }
+              ]
+            },
+            {
+              "id": "M2",
+              "lines": [
+                {
+                  "account": "program_expense",
+                  "debit_cents": 300000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "cash",
+                  "debit_cents": 0,
+                  "credit_cents": 300000
+                }
+              ]
+            },
+            {
+              "id": "M3",
+              "lines": [
+                {
+                  "account": "restricted_net_assets",
+                  "debit_cents": 300000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "net_assets_without_donor_restrictions",
+                  "debit_cents": 0,
+                  "credit_cents": 300000
+                }
+              ]
+            }
+          ],
+          "trial_balance": {
+            "cash": 1500000,
+            "membership_revenue": -400000,
+            "contribution_revenue": -800000,
+            "restricted_contribution": -600000,
+            "program_expense": 300000,
+            "restricted_net_assets": 300000,
+            "net_assets_without_donor_restrictions": -300000
+          },
+          "reconciliation": {
+            "assets_cents": 1500000,
+            "liabilities_cents": 0,
+            "net_income_cents": 1500000,
+            "equity_cents": 0
+          },
+          "counterexamples": [
+            {
+              "id": "ALL-DUES-AS-CONTRIBUTION",
+              "outcome": "Dues benefits are separated from the contribution portion under the stated facts."
+            },
+            {
+              "id": "RELIGIOUS-LABEL-AS-EXEMPTION",
+              "outcome": "A religious or membership label does not establish tax status or accounting treatment."
+            }
+          ],
+          "approval": {
+            "status": "synthetic-assumption-only",
+            "evidence": "SYN-MEMBERSHIP-DUES-RESTRICTED-SUPPORT; no operational or professional approval"
+          }
+        },
+        {
+          "id": "household-employer-payroll",
+          "scenario_type": "positive",
+          "title": "Household employer payroll and contractor counterbranch",
+          "synthetic": true,
+          "source_ids": [
+            "src_aa_i115_irs_household_employer",
+            "src_roadmap_naics2022_manual"
+          ],
+          "summary": "Connected household cash, gross-to-net employee payroll, employer tax and contractor counterbranch.",
+          "assumptions": [
+            "All amounts are illustrative integer cents; actual contracts, worker facts and legal terms are not supplied.",
+            "Synthetic household-employer agreement requests federal income-tax withholding. The 30,000-cent withholding and payroll-tax amounts are supplied illustrative inputs, not automatic withholding or a complete payroll calculation; actual Form W-4, thresholds and filing facts control."
+          ],
+          "inputs": {
+            "opening_cash_cents": 1000000,
+            "gross_wages_cents": 600000,
+            "employee_fica_cents": 45900,
+            "federal_withholding_cents": 30000,
+            "employer_fica_cents": 45900,
+            "contractor_invoice_cents": 200000,
+            "contractor_paid_cents": 150000,
+            "tax_year": 2026,
+            "federal_withholding_agreed": true
+          },
+          "journals": [
+            {
+              "id": "H0",
+              "lines": [
+                {
+                  "account": "cash",
+                  "debit_cents": 1000000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "household_equity",
+                  "debit_cents": 0,
+                  "credit_cents": 1000000
+                }
+              ]
+            },
+            {
+              "id": "H1",
+              "lines": [
+                {
+                  "account": "wages_expense",
+                  "debit_cents": 600000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "employee_tax_payable",
+                  "debit_cents": 0,
+                  "credit_cents": 45900
+                },
+                {
+                  "account": "federal_withholding_payable",
+                  "debit_cents": 0,
+                  "credit_cents": 30000
+                },
+                {
+                  "account": "cash",
+                  "debit_cents": 0,
+                  "credit_cents": 524100
+                }
+              ]
+            },
+            {
+              "id": "H2",
+              "lines": [
+                {
+                  "account": "employer_tax_expense",
+                  "debit_cents": 45900,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "employer_tax_payable",
+                  "debit_cents": 0,
+                  "credit_cents": 45900
+                }
+              ]
+            },
+            {
+              "id": "H3",
+              "lines": [
+                {
+                  "account": "household_service_expense",
+                  "debit_cents": 200000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "accounts_payable",
+                  "debit_cents": 0,
+                  "credit_cents": 200000
+                }
+              ]
+            },
+            {
+              "id": "H4",
+              "lines": [
+                {
+                  "account": "accounts_payable",
+                  "debit_cents": 150000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "cash",
+                  "debit_cents": 0,
+                  "credit_cents": 150000
+                }
+              ]
+            }
+          ],
+          "trial_balance": {
+            "cash": 325900,
+            "household_equity": -1000000,
+            "wages_expense": 600000,
+            "employee_tax_payable": -45900,
+            "federal_withholding_payable": -30000,
+            "employer_tax_expense": 45900,
+            "employer_tax_payable": -45900,
+            "household_service_expense": 200000,
+            "accounts_payable": -50000
+          },
+          "reconciliation": {
+            "assets_cents": 325900,
+            "liabilities_cents": 171800,
+            "net_income_cents": -845900,
+            "equity_cents": 1000000
+          },
+          "counterexamples": [
+            {
+              "id": "HOUSEHOLD-CONTRACTOR-AS-EMPLOYEE",
+              "outcome": "The contractor counterbranch is kept separate; worker control and facts must be established before payroll treatment."
+            },
+            {
+              "id": "HOUSEHOLD-AS-COMMERCIAL-BUSINESS",
+              "outcome": "NAICS 814 does not presume commercial revenue, inventory or business consolidation."
+            }
+          ],
+          "approval": {
+            "status": "synthetic-assumption-only",
+            "evidence": "SYN-HOUSEHOLD-EMPLOYER-PAYROLL; no operational or professional approval"
+          }
+        }
+      ],
+      "examples": [
+        {
+          "id": "membership-dues-restricted-support",
+          "scenario_type": "positive",
+          "title": "Membership dues and restricted program support",
+          "synthetic": true,
+          "source_ids": [
+            "src_nonprofit_fasb_2018_08",
+            "src_nonprofit_fasb_2016_14",
+            "src_nonprofit_irs_990_2025"
+          ],
+          "summary": "Connected dues benefit allocation, restricted support, eligible program spend and release.",
+          "assumptions": [
+            "All amounts are illustrative integer cents; actual contracts, worker facts and legal terms are not supplied.",
+            "Synthetic membership agreement provides a 12-month benefit; 4 months of member access are delivered by the close. The 400,000-cent benefit allocation is the delivered exchange portion.",
+            "The remaining 800,000 cents is an unconditional contribution portion. The separate 600,000-cent support transfer is donor-restricted, and 300,000 cents of eligible program spending fulfills that restriction by the close."
+          ],
+          "inputs": {
+            "membership_cash_cents": 1200000,
+            "membership_benefit_value_cents": 400000,
+            "membership_contribution_cents": 800000,
+            "restricted_support_cents": 600000,
+            "eligible_program_spend_cents": 300000,
+            "membership_months": 12,
+            "membership_months_delivered": 4
+          },
+          "journals": [
+            {
+              "id": "M0",
+              "lines": [
+                {
+                  "account": "cash",
+                  "debit_cents": 1200000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "membership_revenue",
+                  "debit_cents": 0,
+                  "credit_cents": 400000
+                },
+                {
+                  "account": "contribution_revenue",
+                  "debit_cents": 0,
+                  "credit_cents": 800000
+                }
+              ]
+            },
+            {
+              "id": "M1",
+              "lines": [
+                {
+                  "account": "cash",
+                  "debit_cents": 600000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "restricted_contribution",
+                  "debit_cents": 0,
+                  "credit_cents": 600000
+                }
+              ]
+            },
+            {
+              "id": "M2",
+              "lines": [
+                {
+                  "account": "program_expense",
+                  "debit_cents": 300000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "cash",
+                  "debit_cents": 0,
+                  "credit_cents": 300000
+                }
+              ]
+            },
+            {
+              "id": "M3",
+              "lines": [
+                {
+                  "account": "restricted_net_assets",
+                  "debit_cents": 300000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "net_assets_without_donor_restrictions",
+                  "debit_cents": 0,
+                  "credit_cents": 300000
+                }
+              ]
+            }
+          ],
+          "trial_balance": {
+            "cash": 1500000,
+            "membership_revenue": -400000,
+            "contribution_revenue": -800000,
+            "restricted_contribution": -600000,
+            "program_expense": 300000,
+            "restricted_net_assets": 300000,
+            "net_assets_without_donor_restrictions": -300000
+          },
+          "reconciliation": {
+            "assets_cents": 1500000,
+            "liabilities_cents": 0,
+            "net_income_cents": 1500000,
+            "equity_cents": 0
+          },
+          "counterexamples": [
+            {
+              "id": "ALL-DUES-AS-CONTRIBUTION",
+              "outcome": "Dues benefits are separated from the contribution portion under the stated facts."
+            },
+            {
+              "id": "RELIGIOUS-LABEL-AS-EXEMPTION",
+              "outcome": "A religious or membership label does not establish tax status or accounting treatment."
+            }
+          ],
+          "approval": {
+            "status": "synthetic-assumption-only",
+            "evidence": "SYN-MEMBERSHIP-DUES-RESTRICTED-SUPPORT; no operational or professional approval"
+          }
+        },
+        {
+          "id": "household-employer-payroll",
+          "scenario_type": "positive",
+          "title": "Household employer payroll and contractor counterbranch",
+          "synthetic": true,
+          "source_ids": [
+            "src_aa_i115_irs_household_employer",
+            "src_roadmap_naics2022_manual"
+          ],
+          "summary": "Connected household cash, gross-to-net employee payroll, employer tax and contractor counterbranch.",
+          "assumptions": [
+            "All amounts are illustrative integer cents; actual contracts, worker facts and legal terms are not supplied.",
+            "Synthetic household-employer agreement requests federal income-tax withholding. The 30,000-cent withholding and payroll-tax amounts are supplied illustrative inputs, not automatic withholding or a complete payroll calculation; actual Form W-4, thresholds and filing facts control."
+          ],
+          "inputs": {
+            "opening_cash_cents": 1000000,
+            "gross_wages_cents": 600000,
+            "employee_fica_cents": 45900,
+            "federal_withholding_cents": 30000,
+            "employer_fica_cents": 45900,
+            "contractor_invoice_cents": 200000,
+            "contractor_paid_cents": 150000,
+            "tax_year": 2026,
+            "federal_withholding_agreed": true
+          },
+          "journals": [
+            {
+              "id": "H0",
+              "lines": [
+                {
+                  "account": "cash",
+                  "debit_cents": 1000000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "household_equity",
+                  "debit_cents": 0,
+                  "credit_cents": 1000000
+                }
+              ]
+            },
+            {
+              "id": "H1",
+              "lines": [
+                {
+                  "account": "wages_expense",
+                  "debit_cents": 600000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "employee_tax_payable",
+                  "debit_cents": 0,
+                  "credit_cents": 45900
+                },
+                {
+                  "account": "federal_withholding_payable",
+                  "debit_cents": 0,
+                  "credit_cents": 30000
+                },
+                {
+                  "account": "cash",
+                  "debit_cents": 0,
+                  "credit_cents": 524100
+                }
+              ]
+            },
+            {
+              "id": "H2",
+              "lines": [
+                {
+                  "account": "employer_tax_expense",
+                  "debit_cents": 45900,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "employer_tax_payable",
+                  "debit_cents": 0,
+                  "credit_cents": 45900
+                }
+              ]
+            },
+            {
+              "id": "H3",
+              "lines": [
+                {
+                  "account": "household_service_expense",
+                  "debit_cents": 200000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "accounts_payable",
+                  "debit_cents": 0,
+                  "credit_cents": 200000
+                }
+              ]
+            },
+            {
+              "id": "H4",
+              "lines": [
+                {
+                  "account": "accounts_payable",
+                  "debit_cents": 150000,
+                  "credit_cents": 0
+                },
+                {
+                  "account": "cash",
+                  "debit_cents": 0,
+                  "credit_cents": 150000
+                }
+              ]
+            }
+          ],
+          "trial_balance": {
+            "cash": 325900,
+            "household_equity": -1000000,
+            "wages_expense": 600000,
+            "employee_tax_payable": -45900,
+            "federal_withholding_payable": -30000,
+            "employer_tax_expense": 45900,
+            "employer_tax_payable": -45900,
+            "household_service_expense": 200000,
+            "accounts_payable": -50000
+          },
+          "reconciliation": {
+            "assets_cents": 325900,
+            "liabilities_cents": 171800,
+            "net_income_cents": -845900,
+            "equity_cents": 1000000
+          },
+          "counterexamples": [
+            {
+              "id": "HOUSEHOLD-CONTRACTOR-AS-EMPLOYEE",
+              "outcome": "The contractor counterbranch is kept separate; worker control and facts must be established before payroll treatment."
+            },
+            {
+              "id": "HOUSEHOLD-AS-COMMERCIAL-BUSINESS",
+              "outcome": "NAICS 814 does not presume commercial revenue, inventory or business consolidation."
+            }
+          ],
+          "approval": {
+            "status": "synthetic-assumption-only",
+            "evidence": "SYN-HOUSEHOLD-EMPLOYER-PAYROLL; no operational or professional approval"
+          }
+        }
+      ],
+      "scope_counterexamples": [
+        {
+          "id": "DUES-ALL-CONTRIBUTION",
+          "outcome": "Membership benefits and contribution portions remain separate under the selected facts."
+        },
+        {
+          "id": "HOUSEHOLD-CONTRACTOR-BRANCH",
+          "outcome": "A contractor invoice is not employee payroll without supporting worker-control facts."
+        },
+        {
+          "id": "PERSONAL-SPEND-AS-BUSINESS",
+          "outcome": "Household personal spending is not presumed commercial expense or inventory."
+        }
+      ],
+      "limitations": [
+        "Synthetic examples are illustrative integer-cent cases, not operational evidence or posting authorization.",
+        "Current consolidated standards, actual contracts, state/local rules, filing status and professional review remain open.",
+        "External source rights and current source currency remain unknown; publisher text is not stored."
+      ]
+    }
+  },
+  {
+    "id": "example-family-office-four-entity-close",
+    "kind": "example",
+    "title": "Synthetic family office four-entity close and supplemental statement",
+    "summary": "Separate office, investment, Texas trust and personal books reconcile investment notices, shared costs and beneficiary activity without duplicate family-view assets.",
+    "topics": [
+      "Family office accounting",
+      "Scoped research"
+    ],
+    "industries": [],
+    "jurisdiction": "United States; selected Texas fiduciary branch",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_family_office_sec_2011_rule",
+      "src_fasb_201502",
+      "src_fasb_asu_201601_equity_investments",
+      "src_family_office_irs_k1_1065_2025",
+      "src_aa_i123_fas57",
+      "src_family_office_texas_principal_income",
+      "src_family_office_irs_1041_2025",
+      "src_family_office_irs_k1_1041_2025",
+      "src_family_office_irs_p559_2025",
+      "src_aa122_irs_i1120_2025"
+    ],
+    "related_ids": [
+      "guide-family-office-us-accounting",
+      "workflow-family-office-entity-close",
+      "control-family-office-ownership-payments"
+    ],
+    "reviewed_at": "2026-09-19",
+    "review_status": "editorially-reviewed",
+    "provenance": {
+      "added_on": "2026-09-19",
+      "reviewer": "Codex AI-assisted original-source research",
+      "scope": "Issue 163 six bounded questions and original connected four-entity example",
+      "note": "Source checks and synthetic arithmetic are distinct from professional review; no publisher full text."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "External publications remain subject to their own terms; no publisher full text is stored.",
+      "full_text_stored": false
+    },
+    "data": {
+      "id": "example-family-office-four-entity-close",
+      "examples": [
+        {
+          "id": "connected-family-office-close",
+          "description": "Synthetic four-entity connected bookkeeping case; full inputs, journals and supplemental adjustments follow."
+        }
+      ],
+      "case": {
+        "id": "connected-family-office-close",
+        "currency": "USD",
+        "unit": "integer cents",
+        "period": "2026-09-01 through 2026-09-30",
+        "basis": "Original provisional bookkeeping and supplemental carrying-value aggregation; not finalized GAAP statements, current fair-value wealth, or a tax return.",
+        "entities": [
+          {
+            "id": "O",
+            "name": "Office service C corporation",
+            "role": "Separate office company, owned 100% by P; C-corporation tax status is a supplied assumption.",
+            "opening": [
+              {
+                "account": "cash",
+                "debit_cents": 5000000,
+                "credit_cents": 0
+              },
+              {
+                "account": "capital",
+                "debit_cents": 0,
+                "credit_cents": 5000000
+              }
+            ],
+            "account_types": {
+              "cash": "asset",
+              "due_I": "asset",
+              "due_T": "asset",
+              "due_P": "asset",
+              "capital": "equity",
+              "accounting_expense": "expense",
+              "management_fee_income": "income",
+              "wages_expense": "expense",
+              "withholding_payable": "liability",
+              "employer_payroll_tax_expense": "expense",
+              "employer_tax_payable": "liability"
+            },
+            "closing_trial_balance": [
+              {
+                "account": "cash",
+                "debit_cents": 4300000,
+                "credit_cents": 0
+              },
+              {
+                "account": "due_I",
+                "debit_cents": 100000,
+                "credit_cents": 0
+              },
+              {
+                "account": "due_T",
+                "debit_cents": 0,
+                "credit_cents": 0
+              },
+              {
+                "account": "due_P",
+                "debit_cents": 0,
+                "credit_cents": 0
+              },
+              {
+                "account": "capital",
+                "debit_cents": 0,
+                "credit_cents": 5000000
+              },
+              {
+                "account": "accounting_expense",
+                "debit_cents": 400000,
+                "credit_cents": 0
+              },
+              {
+                "account": "management_fee_income",
+                "debit_cents": 0,
+                "credit_cents": 600000
+              },
+              {
+                "account": "wages_expense",
+                "debit_cents": 1000000,
+                "credit_cents": 0
+              },
+              {
+                "account": "withholding_payable",
+                "debit_cents": 0,
+                "credit_cents": 200000
+              },
+              {
+                "account": "employer_payroll_tax_expense",
+                "debit_cents": 100000,
+                "credit_cents": 0
+              },
+              {
+                "account": "employer_tax_payable",
+                "debit_cents": 0,
+                "credit_cents": 100000
+              }
+            ],
+            "closing_bank_statement_cents": 4300000,
+            "bank_reconciling_items": []
+          },
+          {
+            "id": "I",
+            "name": "Family investment LLC",
+            "role": "Domestic LLC taxed as a partnership; P owns 90%, T owns 10%; assumed outside investment-company accounting for this illustration. Portfolio holdings have no control or significant influence under supplied facts.",
+            "opening": [
+              {
+                "account": "cash",
+                "debit_cents": 20000000,
+                "credit_cents": 0
+              },
+              {
+                "account": "quoted_equity",
+                "debit_cents": 30000000,
+                "credit_cents": 0
+              },
+              {
+                "account": "private_fund_provisional",
+                "debit_cents": 10000000,
+                "credit_cents": 0
+              },
+              {
+                "account": "capital_P",
+                "debit_cents": 0,
+                "credit_cents": 54000000
+              },
+              {
+                "account": "capital_T",
+                "debit_cents": 0,
+                "credit_cents": 6000000
+              }
+            ],
+            "account_types": {
+              "cash": "asset",
+              "quoted_equity": "asset",
+              "private_fund_provisional": "asset",
+              "capital_P": "equity",
+              "capital_T": "equity",
+              "accounting_expense": "expense",
+              "due_O": "liability",
+              "management_fee_expense": "expense",
+              "dividend_income": "income",
+              "custodian_fee_expense": "expense",
+              "fund_income_provisional": "income",
+              "unrealized_gain": "income"
+            },
+            "closing_trial_balance": [
+              {
+                "account": "cash",
+                "debit_cents": 13100000,
+                "credit_cents": 0
+              },
+              {
+                "account": "quoted_equity",
+                "debit_cents": 36050000,
+                "credit_cents": 0
+              },
+              {
+                "account": "private_fund_provisional",
+                "debit_cents": 12000000,
+                "credit_cents": 0
+              },
+              {
+                "account": "capital_P",
+                "debit_cents": 0,
+                "credit_cents": 54000000
+              },
+              {
+                "account": "capital_T",
+                "debit_cents": 0,
+                "credit_cents": 6000000
+              },
+              {
+                "account": "accounting_expense",
+                "debit_cents": 300000,
+                "credit_cents": 0
+              },
+              {
+                "account": "due_O",
+                "debit_cents": 0,
+                "credit_cents": 100000
+              },
+              {
+                "account": "management_fee_expense",
+                "debit_cents": 600000,
+                "credit_cents": 0
+              },
+              {
+                "account": "dividend_income",
+                "debit_cents": 0,
+                "credit_cents": 500000
+              },
+              {
+                "account": "custodian_fee_expense",
+                "debit_cents": 100000,
+                "credit_cents": 0
+              },
+              {
+                "account": "fund_income_provisional",
+                "debit_cents": 0,
+                "credit_cents": 500000
+              },
+              {
+                "account": "unrealized_gain",
+                "debit_cents": 0,
+                "credit_cents": 1050000
+              }
+            ],
+            "closing_bank_statement_cents": 13100000,
+            "bank_reconciling_items": []
+          },
+          {
+            "id": "T",
+            "name": "Texas family trust",
+            "role": "Domestic irrevocable non-grantor complex trust. Instrument permits discretionary income distributions and accumulation; all current/remainder beneficiaries are family clients for the assumed SEC case. It follows selected Chapter 116 defaults and makes no adjustment or unitrust election. P is an income beneficiary, not outright owner of trust assets.",
+            "opening": [
+              {
+                "account": "cash",
+                "debit_cents": 10000000,
+                "credit_cents": 0
+              },
+              {
+                "account": "bonds",
+                "debit_cents": 20000000,
+                "credit_cents": 0
+              },
+              {
+                "account": "interest_I",
+                "debit_cents": 6000000,
+                "credit_cents": 0
+              },
+              {
+                "account": "opening_principal",
+                "debit_cents": 0,
+                "credit_cents": 36000000
+              }
+            ],
+            "account_types": {
+              "cash": "asset",
+              "bonds": "asset",
+              "interest_I": "asset",
+              "opening_principal": "equity",
+              "accounting_expense_income": "expense",
+              "accounting_expense_principal": "expense",
+              "due_O": "liability",
+              "interest_income": "income",
+              "realized_gain_principal": "income",
+              "beneficiary_distribution": "distribution"
+            },
+            "closing_trial_balance": [
+              {
+                "account": "cash",
+                "debit_cents": 12500000,
+                "credit_cents": 0
+              },
+              {
+                "account": "bonds",
+                "debit_cents": 18000000,
+                "credit_cents": 0
+              },
+              {
+                "account": "interest_I",
+                "debit_cents": 6000000,
+                "credit_cents": 0
+              },
+              {
+                "account": "opening_principal",
+                "debit_cents": 0,
+                "credit_cents": 36000000
+              },
+              {
+                "account": "accounting_expense_income",
+                "debit_cents": 100000,
+                "credit_cents": 0
+              },
+              {
+                "account": "accounting_expense_principal",
+                "debit_cents": 100000,
+                "credit_cents": 0
+              },
+              {
+                "account": "due_O",
+                "debit_cents": 0,
+                "credit_cents": 0
+              },
+              {
+                "account": "interest_income",
+                "debit_cents": 0,
+                "credit_cents": 600000
+              },
+              {
+                "account": "realized_gain_principal",
+                "debit_cents": 0,
+                "credit_cents": 500000
+              },
+              {
+                "account": "beneficiary_distribution",
+                "debit_cents": 400000,
+                "credit_cents": 0
+              }
+            ],
+            "closing_bank_statement_cents": 12500000,
+            "bank_reconciling_items": []
+          },
+          {
+            "id": "P",
+            "name": "Individual personal account",
+            "role": "Individual personal bookkeeping, not office-company accounting or a tax return. P owns O and 90% of I; trust beneficial rights are recorded separately without an assigned asset value.",
+            "opening": [
+              {
+                "account": "cash",
+                "debit_cents": 10000000,
+                "credit_cents": 0
+              },
+              {
+                "account": "interest_O",
+                "debit_cents": 5000000,
+                "credit_cents": 0
+              },
+              {
+                "account": "interest_I",
+                "debit_cents": 54000000,
+                "credit_cents": 0
+              },
+              {
+                "account": "opening_net_assets",
+                "debit_cents": 0,
+                "credit_cents": 69000000
+              }
+            ],
+            "account_types": {
+              "cash": "asset",
+              "interest_O": "asset",
+              "interest_I": "asset",
+              "opening_net_assets": "equity",
+              "personal_accounting_cost": "expense",
+              "due_O": "liability",
+              "trust_receipt": "income"
+            },
+            "closing_trial_balance": [
+              {
+                "account": "cash",
+                "debit_cents": 10100000,
+                "credit_cents": 0
+              },
+              {
+                "account": "interest_O",
+                "debit_cents": 5000000,
+                "credit_cents": 0
+              },
+              {
+                "account": "interest_I",
+                "debit_cents": 54000000,
+                "credit_cents": 0
+              },
+              {
+                "account": "opening_net_assets",
+                "debit_cents": 0,
+                "credit_cents": 69000000
+              },
+              {
+                "account": "personal_accounting_cost",
+                "debit_cents": 300000,
+                "credit_cents": 0
+              },
+              {
+                "account": "due_O",
+                "debit_cents": 0,
+                "credit_cents": 0
+              },
+              {
+                "account": "trust_receipt",
+                "debit_cents": 0,
+                "credit_cents": 400000
+              }
+            ],
+            "closing_bank_statement_cents": 10100000,
+            "bank_reconciling_items": []
+          }
+        ],
+        "journals": [
+          {
+            "id": "O1",
+            "entity_id": "O",
+            "date": "2026-09-30",
+            "evidence_id": "VENDOR-12K",
+            "lines": [
+              {
+                "account": "accounting_expense",
+                "debit_cents": 400000,
+                "credit_cents": 0
+              },
+              {
+                "account": "due_I",
+                "debit_cents": 300000,
+                "credit_cents": 0
+              },
+              {
+                "account": "due_T",
+                "debit_cents": 200000,
+                "credit_cents": 0
+              },
+              {
+                "account": "due_P",
+                "debit_cents": 300000,
+                "credit_cents": 0
+              },
+              {
+                "account": "cash",
+                "debit_cents": 0,
+                "credit_cents": 1200000
+              }
+            ]
+          },
+          {
+            "id": "I1",
+            "entity_id": "I",
+            "date": "2026-09-30",
+            "evidence_id": "VENDOR-12K",
+            "lines": [
+              {
+                "account": "accounting_expense",
+                "debit_cents": 300000,
+                "credit_cents": 0
+              },
+              {
+                "account": "due_O",
+                "debit_cents": 0,
+                "credit_cents": 300000
+              }
+            ],
+            "internal_transfer_id": "ALLOC-I"
+          },
+          {
+            "id": "T1",
+            "entity_id": "T",
+            "date": "2026-09-30",
+            "evidence_id": "VENDOR-12K",
+            "lines": [
+              {
+                "account": "accounting_expense_income",
+                "debit_cents": 100000,
+                "credit_cents": 0
+              },
+              {
+                "account": "accounting_expense_principal",
+                "debit_cents": 100000,
+                "credit_cents": 0
+              },
+              {
+                "account": "due_O",
+                "debit_cents": 0,
+                "credit_cents": 200000
+              }
+            ],
+            "internal_transfer_id": "ALLOC-T"
+          },
+          {
+            "id": "P1",
+            "entity_id": "P",
+            "date": "2026-09-30",
+            "evidence_id": "VENDOR-12K",
+            "lines": [
+              {
+                "account": "personal_accounting_cost",
+                "debit_cents": 300000,
+                "credit_cents": 0
+              },
+              {
+                "account": "due_O",
+                "debit_cents": 0,
+                "credit_cents": 300000
+              }
+            ],
+            "internal_transfer_id": "ALLOC-P"
+          },
+          {
+            "id": "I2",
+            "entity_id": "I",
+            "date": "2026-09-30",
+            "evidence_id": "BANK-I-REIMB",
+            "lines": [
+              {
+                "account": "due_O",
+                "debit_cents": 200000,
+                "credit_cents": 0
+              },
+              {
+                "account": "cash",
+                "debit_cents": 0,
+                "credit_cents": 200000
+              }
+            ],
+            "internal_transfer_id": "REIMB-I"
+          },
+          {
+            "id": "O2",
+            "entity_id": "O",
+            "date": "2026-09-30",
+            "evidence_id": "BANK-O-REIMB-I",
+            "lines": [
+              {
+                "account": "cash",
+                "debit_cents": 200000,
+                "credit_cents": 0
+              },
+              {
+                "account": "due_I",
+                "debit_cents": 0,
+                "credit_cents": 200000
+              }
+            ],
+            "internal_transfer_id": "REIMB-I"
+          },
+          {
+            "id": "T2",
+            "entity_id": "T",
+            "date": "2026-09-30",
+            "evidence_id": "BANK-T-REIMB",
+            "lines": [
+              {
+                "account": "due_O",
+                "debit_cents": 200000,
+                "credit_cents": 0
+              },
+              {
+                "account": "cash",
+                "debit_cents": 0,
+                "credit_cents": 200000
+              }
+            ],
+            "internal_transfer_id": "REIMB-T"
+          },
+          {
+            "id": "O3",
+            "entity_id": "O",
+            "date": "2026-09-30",
+            "evidence_id": "BANK-O-REIMB-T",
+            "lines": [
+              {
+                "account": "cash",
+                "debit_cents": 200000,
+                "credit_cents": 0
+              },
+              {
+                "account": "due_T",
+                "debit_cents": 0,
+                "credit_cents": 200000
+              }
+            ],
+            "internal_transfer_id": "REIMB-T"
+          },
+          {
+            "id": "P2",
+            "entity_id": "P",
+            "date": "2026-09-30",
+            "evidence_id": "BANK-P-REIMB",
+            "lines": [
+              {
+                "account": "due_O",
+                "debit_cents": 300000,
+                "credit_cents": 0
+              },
+              {
+                "account": "cash",
+                "debit_cents": 0,
+                "credit_cents": 300000
+              }
+            ],
+            "internal_transfer_id": "REIMB-P"
+          },
+          {
+            "id": "O4",
+            "entity_id": "O",
+            "date": "2026-09-30",
+            "evidence_id": "BANK-O-REIMB-P",
+            "lines": [
+              {
+                "account": "cash",
+                "debit_cents": 300000,
+                "credit_cents": 0
+              },
+              {
+                "account": "due_P",
+                "debit_cents": 0,
+                "credit_cents": 300000
+              }
+            ],
+            "internal_transfer_id": "REIMB-P"
+          },
+          {
+            "id": "I3",
+            "entity_id": "I",
+            "date": "2026-09-30",
+            "evidence_id": "AGREEMENT-MGMT",
+            "lines": [
+              {
+                "account": "management_fee_expense",
+                "debit_cents": 600000,
+                "credit_cents": 0
+              },
+              {
+                "account": "cash",
+                "debit_cents": 0,
+                "credit_cents": 600000
+              }
+            ],
+            "internal_transfer_id": "MGMT"
+          },
+          {
+            "id": "O5",
+            "entity_id": "O",
+            "date": "2026-09-30",
+            "evidence_id": "AGREEMENT-MGMT",
+            "lines": [
+              {
+                "account": "cash",
+                "debit_cents": 600000,
+                "credit_cents": 0
+              },
+              {
+                "account": "management_fee_income",
+                "debit_cents": 0,
+                "credit_cents": 600000
+              }
+            ],
+            "internal_transfer_id": "MGMT"
+          },
+          {
+            "id": "O6",
+            "entity_id": "O",
+            "date": "2026-09-30",
+            "evidence_id": "PAYROLL-O",
+            "lines": [
+              {
+                "account": "wages_expense",
+                "debit_cents": 1000000,
+                "credit_cents": 0
+              },
+              {
+                "account": "cash",
+                "debit_cents": 0,
+                "credit_cents": 800000
+              },
+              {
+                "account": "withholding_payable",
+                "debit_cents": 0,
+                "credit_cents": 200000
+              }
+            ]
+          },
+          {
+            "id": "O7",
+            "entity_id": "O",
+            "date": "2026-09-30",
+            "evidence_id": "PAYROLL-O",
+            "lines": [
+              {
+                "account": "employer_payroll_tax_expense",
+                "debit_cents": 100000,
+                "credit_cents": 0
+              },
+              {
+                "account": "employer_tax_payable",
+                "debit_cents": 0,
+                "credit_cents": 100000
+              }
+            ]
+          },
+          {
+            "id": "I4",
+            "entity_id": "I",
+            "date": "2026-09-30",
+            "evidence_id": "CUSTODIAN-I-BUY",
+            "lines": [
+              {
+                "account": "quoted_equity",
+                "debit_cents": 5000000,
+                "credit_cents": 0
+              },
+              {
+                "account": "cash",
+                "debit_cents": 0,
+                "credit_cents": 5000000
+              }
+            ]
+          },
+          {
+            "id": "I5",
+            "entity_id": "I",
+            "date": "2026-09-30",
+            "evidence_id": "CUSTODIAN-I-DIV",
+            "lines": [
+              {
+                "account": "cash",
+                "debit_cents": 500000,
+                "credit_cents": 0
+              },
+              {
+                "account": "dividend_income",
+                "debit_cents": 0,
+                "credit_cents": 500000
+              }
+            ]
+          },
+          {
+            "id": "I6",
+            "entity_id": "I",
+            "date": "2026-09-30",
+            "evidence_id": "CUSTODIAN-I-FEE",
+            "lines": [
+              {
+                "account": "custodian_fee_expense",
+                "debit_cents": 100000,
+                "credit_cents": 0
+              },
+              {
+                "account": "cash",
+                "debit_cents": 0,
+                "credit_cents": 100000
+              }
+            ]
+          },
+          {
+            "id": "I7",
+            "entity_id": "I",
+            "date": "2026-09-30",
+            "evidence_id": "FUND-CALL",
+            "lines": [
+              {
+                "account": "private_fund_provisional",
+                "debit_cents": 4000000,
+                "credit_cents": 0
+              },
+              {
+                "account": "cash",
+                "debit_cents": 0,
+                "credit_cents": 4000000
+              }
+            ]
+          },
+          {
+            "id": "I8",
+            "entity_id": "I",
+            "date": "2026-09-30",
+            "evidence_id": "FUND-DISTRIBUTION",
+            "lines": [
+              {
+                "account": "cash",
+                "debit_cents": 2500000,
+                "credit_cents": 0
+              },
+              {
+                "account": "private_fund_provisional",
+                "debit_cents": 0,
+                "credit_cents": 2000000
+              },
+              {
+                "account": "fund_income_provisional",
+                "debit_cents": 0,
+                "credit_cents": 500000
+              }
+            ]
+          },
+          {
+            "id": "I9",
+            "entity_id": "I",
+            "date": "2026-09-30",
+            "evidence_id": "CUSTODIAN-I-QUOTE",
+            "lines": [
+              {
+                "account": "quoted_equity",
+                "debit_cents": 1050000,
+                "credit_cents": 0
+              },
+              {
+                "account": "unrealized_gain",
+                "debit_cents": 0,
+                "credit_cents": 1050000
+              }
+            ]
+          },
+          {
+            "id": "T3",
+            "entity_id": "T",
+            "date": "2026-09-30",
+            "evidence_id": "BANK-T-INTEREST",
+            "lines": [
+              {
+                "account": "cash",
+                "debit_cents": 600000,
+                "credit_cents": 0
+              },
+              {
+                "account": "interest_income",
+                "debit_cents": 0,
+                "credit_cents": 600000
+              }
+            ]
+          },
+          {
+            "id": "T4",
+            "entity_id": "T",
+            "date": "2026-09-30",
+            "evidence_id": "BOND-SALE",
+            "lines": [
+              {
+                "account": "cash",
+                "debit_cents": 2500000,
+                "credit_cents": 0
+              },
+              {
+                "account": "bonds",
+                "debit_cents": 0,
+                "credit_cents": 2000000
+              },
+              {
+                "account": "realized_gain_principal",
+                "debit_cents": 0,
+                "credit_cents": 500000
+              }
+            ]
+          },
+          {
+            "id": "T5",
+            "entity_id": "T",
+            "date": "2026-09-30",
+            "evidence_id": "TRUST-AUTH-DIST",
+            "lines": [
+              {
+                "account": "beneficiary_distribution",
+                "debit_cents": 400000,
+                "credit_cents": 0
+              },
+              {
+                "account": "cash",
+                "debit_cents": 0,
+                "credit_cents": 400000
+              }
+            ],
+            "internal_transfer_id": "BENEFICIARY"
+          },
+          {
+            "id": "P3",
+            "entity_id": "P",
+            "date": "2026-09-30",
+            "evidence_id": "BANK-P-DIST",
+            "lines": [
+              {
+                "account": "cash",
+                "debit_cents": 400000,
+                "credit_cents": 0
+              },
+              {
+                "account": "trust_receipt",
+                "debit_cents": 0,
+                "credit_cents": 400000
+              }
+            ],
+            "internal_transfer_id": "BENEFICIARY"
+          }
+        ],
+        "evidence_inputs": {
+          "vendor_bill_cents": 1200000,
+          "time_units": {
+            "O": 4,
+            "I": 3,
+            "T": 2,
+            "P": 3
+          },
+          "allocated_cents": {
+            "O": 400000,
+            "I": 300000,
+            "T": 200000,
+            "P": 300000
+          },
+          "vendor_scope": "External accounting services. The T portion specifically prepares principal/income accounts concerning both income and remainder interests; no contrary instrument direction.",
+          "payroll": {
+            "gross_cents": 1000000,
+            "employee_withholding_cents": 200000,
+            "net_cash_cents": 800000,
+            "employer_tax_cents": 100000,
+            "assumption": "Illustrative supplied payroll register; no tax-rate, benefit or worker-status conclusion."
+          },
+          "liquid_investment": {
+            "opening_shares": 3000,
+            "opening_price_cents": 10000,
+            "purchased_shares": 500,
+            "purchase_price_cents": 10000,
+            "closing_price_cents": 10300,
+            "closing_shares": 3500,
+            "closing_statement_value_cents": 36050000
+          },
+          "private_fund": {
+            "commitment_cents": 25000000,
+            "opening_funded_cents": 10000000,
+            "call_cents": 4000000,
+            "ending_funded_cents": 14000000,
+            "unfunded_cents": 11000000,
+            "distribution_cash_cents": 2500000,
+            "supplied_return_of_capital_cents": 2000000,
+            "supplied_income_cents": 500000,
+            "provisional_book_carry_cents": 12000000,
+            "last_nav_statement_date": "2026-06-30",
+            "last_nav_statement_cents": 14000000,
+            "unposted_measurement_difference_cents": 2000000,
+            "measurement_status": "unresolved-stale-valuation",
+            "tax_basis_workpaper": {
+              "opening_basis_cents": 9000000,
+              "contribution_cents": 4000000,
+              "assumed_allocable_tax_income_cents": 500000,
+              "distribution_cents": 2500000,
+              "illustrative_ending_basis_cents": 11000000,
+              "assumptions": "Separate hypothetical tax-basis branch; no liabilities, partner adjustments or other items. Final K-1 character and taxpayer-year evidence remain required. This is not a 2026 return computation."
+            },
+            "assumptions": [
+              "Distribution notice splits capital and income only for the provisional book worksheet.",
+              "No recycling or recall of distributions is assumed in unfunded commitment.",
+              "No private-fund current fair-value, NAV practical-expedient or measurement-alternative conclusion is made."
+            ]
+          },
+          "trust": {
+            "bond_acquired": "2024-07-01",
+            "bond_sale": "2026-09-30",
+            "bond_contractual_maturity": "2030-07-01",
+            "sold_carry_cents": 2000000,
+            "sale_cash_cents": 2500000,
+            "interest_cash_cents": 600000,
+            "accounting_fee_cents": 200000,
+            "income_fee_cents": 100000,
+            "principal_fee_cents": 100000,
+            "authorized_income_distribution_cents": 400000,
+            "ending_principal_cents": 36400000,
+            "ending_undistributed_income_cents": 100000,
+            "assumptions": "Ordinary long-term obligation held more than one year; no special receipt under 116.163(c), no adjustment election, governing instrument permits a discretionary $4,000 income distribution and accumulation. No estate is administered in this case."
+          },
+          "management_fee": {
+            "amount_cents": 600000,
+            "assumption": "The agreed $6,000 fee is for September services fully performed and accepted by I; O and I record it separately. No arm’s-length, tax-deduction or regulatory conclusion follows."
+          }
+        },
+        "internal_matching": [
+          {
+            "id": "REIMB-I",
+            "payer": "I",
+            "payee": "O",
+            "amount_cents": 200000
+          },
+          {
+            "id": "REIMB-T",
+            "payer": "T",
+            "payee": "O",
+            "amount_cents": 200000
+          },
+          {
+            "id": "REIMB-P",
+            "payer": "P",
+            "payee": "O",
+            "amount_cents": 300000
+          },
+          {
+            "id": "MGMT",
+            "payer": "I",
+            "payee": "O",
+            "amount_cents": 600000
+          },
+          {
+            "id": "BENEFICIARY",
+            "payer": "T",
+            "payee": "P",
+            "amount_cents": 400000
+          }
+        ],
+        "supplemental_view": {
+          "included_entities": [
+            "O",
+            "I",
+            "T",
+            "P"
+          ],
+          "purpose": "Family administration view of the four defined ledgers, with underlying O/I included and duplicated interests removed. Not P-owned wealth, GAAP consolidation, legal availability or current valuation. Trust resources and beneficiary rights remain restricted and separately identifiable.",
+          "adjustments": [
+            {
+              "id": "SUP-INTERESTS",
+              "purpose": "Remove matching inception interests and investee opening capital only because both sides are included. This is a supplemental presentation adjustment.",
+              "lines": [
+                {
+                  "entity_id": "O",
+                  "account": "capital",
+                  "debit_cents": 5000000,
+                  "credit_cents": 0
+                },
+                {
+                  "entity_id": "I",
+                  "account": "capital_P",
+                  "debit_cents": 54000000,
+                  "credit_cents": 0
+                },
+                {
+                  "entity_id": "I",
+                  "account": "capital_T",
+                  "debit_cents": 6000000,
+                  "credit_cents": 0
+                },
+                {
+                  "entity_id": "P",
+                  "account": "interest_O",
+                  "debit_cents": 0,
+                  "credit_cents": 5000000
+                },
+                {
+                  "entity_id": "P",
+                  "account": "interest_I",
+                  "debit_cents": 0,
+                  "credit_cents": 54000000
+                },
+                {
+                  "entity_id": "T",
+                  "account": "interest_I",
+                  "debit_cents": 0,
+                  "credit_cents": 6000000
+                }
+              ]
+            },
+            {
+              "id": "SUP-RECEIVABLE",
+              "purpose": "Match the outstanding I reimbursement payable with O receivable.",
+              "lines": [
+                {
+                  "entity_id": "I",
+                  "account": "due_O",
+                  "debit_cents": 100000,
+                  "credit_cents": 0
+                },
+                {
+                  "entity_id": "O",
+                  "account": "due_I",
+                  "debit_cents": 0,
+                  "credit_cents": 100000
+                }
+              ]
+            },
+            {
+              "id": "SUP-FEE",
+              "purpose": "Remove earned internal fee from income and expense only in the supplemental view.",
+              "lines": [
+                {
+                  "entity_id": "O",
+                  "account": "management_fee_income",
+                  "debit_cents": 600000,
+                  "credit_cents": 0
+                },
+                {
+                  "entity_id": "I",
+                  "account": "management_fee_expense",
+                  "debit_cents": 0,
+                  "credit_cents": 600000
+                }
+              ]
+            },
+            {
+              "id": "SUP-BENEFICIARY",
+              "purpose": "Remove internal beneficiary receipt and distribution from supplemental changes in net assets. It remains on T and P books.",
+              "lines": [
+                {
+                  "entity_id": "P",
+                  "account": "trust_receipt",
+                  "debit_cents": 400000,
+                  "credit_cents": 0
+                },
+                {
+                  "entity_id": "T",
+                  "account": "beneficiary_distribution",
+                  "debit_cents": 0,
+                  "credit_cents": 400000
+                }
+              ]
+            }
+          ],
+          "expected": {
+            "opening_raw_assets_cents": 170000000,
+            "opening_duplicate_interests_cents": 65000000,
+            "opening_supplemental_net_assets_cents": 105000000,
+            "ending_raw_assets_cents": 171150000,
+            "ending_raw_liabilities_cents": 400000,
+            "duplicate_interests_cents": 65000000,
+            "reciprocal_receivable_payable_cents": 100000,
+            "ending_assets_cents": 106050000,
+            "ending_external_liabilities_cents": 300000,
+            "ending_net_assets_cents": 105750000,
+            "net_change_cents": 750000,
+            "opening_cash_cents": 45000000,
+            "ending_cash_cents": 40000000,
+            "external_cash_inflows_cents": 6100000,
+            "external_cash_outflows_cents": 11100000,
+            "external_income_and_gains_cents": 3150000,
+            "external_costs_cents": 2400000
+          },
+          "asset_components_cents": {
+            "cash": 40000000,
+            "I_quoted_equity": 36050000,
+            "I_provisional_private_fund": 12000000,
+            "T_bonds": 18000000
+          },
+          "restriction_note": "T retains $365,000 of separate-book net assets and its 10% I interest. The aggregate is not an allocation of wealth to P; no beneficial-interest value is invented."
+        },
+        "exceptions": [
+          {
+            "id": "VAL-I-PRIVATE",
+            "status": "open",
+            "reason": "June 30 NAV is stale at September 30; $20,000 numerical difference is not an approved adjustment."
+          },
+          {
+            "id": "OWN-T",
+            "status": "retained-boundary",
+            "reason": "P has an income beneficiary interest; no outright ownership of T assets is inferred."
+          },
+          {
+            "id": "REC-I-O",
+            "status": "matched-unpaid",
+            "reason": "$1,000 reimbursement remains due on both entity books and is eliminated only in the supplemental view."
+          }
+        ],
+        "synthetic_documents": [
+          {
+            "id": "VENDOR-12K",
+            "synthetic": true,
+            "purpose": "Illustrative transaction evidence linked to journal and stated inputs; no operational document is represented."
+          },
+          {
+            "id": "BANK-I-REIMB",
+            "synthetic": true,
+            "purpose": "Illustrative transaction evidence linked to journal and stated inputs; no operational document is represented."
+          },
+          {
+            "id": "BANK-O-REIMB-I",
+            "synthetic": true,
+            "purpose": "Illustrative transaction evidence linked to journal and stated inputs; no operational document is represented."
+          },
+          {
+            "id": "BANK-T-REIMB",
+            "synthetic": true,
+            "purpose": "Illustrative transaction evidence linked to journal and stated inputs; no operational document is represented."
+          },
+          {
+            "id": "BANK-O-REIMB-T",
+            "synthetic": true,
+            "purpose": "Illustrative transaction evidence linked to journal and stated inputs; no operational document is represented."
+          },
+          {
+            "id": "BANK-P-REIMB",
+            "synthetic": true,
+            "purpose": "Illustrative transaction evidence linked to journal and stated inputs; no operational document is represented."
+          },
+          {
+            "id": "BANK-O-REIMB-P",
+            "synthetic": true,
+            "purpose": "Illustrative transaction evidence linked to journal and stated inputs; no operational document is represented."
+          },
+          {
+            "id": "AGREEMENT-MGMT",
+            "synthetic": true,
+            "purpose": "Illustrative transaction evidence linked to journal and stated inputs; no operational document is represented."
+          },
+          {
+            "id": "PAYROLL-O",
+            "synthetic": true,
+            "purpose": "Illustrative transaction evidence linked to journal and stated inputs; no operational document is represented."
+          },
+          {
+            "id": "CUSTODIAN-I-BUY",
+            "synthetic": true,
+            "purpose": "Illustrative transaction evidence linked to journal and stated inputs; no operational document is represented."
+          },
+          {
+            "id": "CUSTODIAN-I-DIV",
+            "synthetic": true,
+            "purpose": "Illustrative transaction evidence linked to journal and stated inputs; no operational document is represented."
+          },
+          {
+            "id": "CUSTODIAN-I-FEE",
+            "synthetic": true,
+            "purpose": "Illustrative transaction evidence linked to journal and stated inputs; no operational document is represented."
+          },
+          {
+            "id": "FUND-CALL",
+            "synthetic": true,
+            "purpose": "Illustrative transaction evidence linked to journal and stated inputs; no operational document is represented."
+          },
+          {
+            "id": "FUND-DISTRIBUTION",
+            "synthetic": true,
+            "purpose": "Illustrative transaction evidence linked to journal and stated inputs; no operational document is represented."
+          },
+          {
+            "id": "CUSTODIAN-I-QUOTE",
+            "synthetic": true,
+            "purpose": "Illustrative transaction evidence linked to journal and stated inputs; no operational document is represented."
+          },
+          {
+            "id": "BANK-T-INTEREST",
+            "synthetic": true,
+            "purpose": "Illustrative transaction evidence linked to journal and stated inputs; no operational document is represented."
+          },
+          {
+            "id": "BOND-SALE",
+            "synthetic": true,
+            "purpose": "Illustrative transaction evidence linked to journal and stated inputs; no operational document is represented."
+          },
+          {
+            "id": "TRUST-AUTH-DIST",
+            "synthetic": true,
+            "purpose": "Illustrative transaction evidence linked to journal and stated inputs; no operational document is represented."
+          },
+          {
+            "id": "BANK-P-DIST",
+            "synthetic": true,
+            "purpose": "Illustrative transaction evidence linked to journal and stated inputs; no operational document is represented."
+          }
+        ],
+        "tax_handoff_register": [
+          {
+            "taxpayer": "I",
+            "tax_year": 2025,
+            "route": "Form 1065 and separate Schedule K-1 for P and T",
+            "inputs": [
+              "2025 entity trial balance and tax adjustments",
+              "90/10 supplied ownership plus allocation-agreement review",
+              "Tax items, distributions, liabilities and each recipient identity"
+            ],
+            "status": "Information route only; 2026 example amounts are not copied to 2025 returns."
+          },
+          {
+            "taxpayer": "T",
+            "tax_year": 2025,
+            "route": "Form 1041, Schedule B and beneficiary K-1 to P",
+            "inputs": [
+              "Trust instrument and non-grantor/complex status evidence",
+              "2025 principal/income account, received partnership K-1 and tax adjustments",
+              "DNI and distribution-deduction workpapers separately prepared"
+            ],
+            "status": "No trust tax or beneficiary taxable amount calculated."
+          },
+          {
+            "taxpayer": "P",
+            "tax_year": 2025,
+            "route": "Form 1040 or 1040-SR with applicable partner and beneficiary K-1 items",
+            "inputs": [
+              "Separate I and T K-1 by issuer and year",
+              "Individual outside-basis rollforward and other tax facts"
+            ],
+            "status": "Received forms require identity, year, completeness and correction checks."
+          },
+          {
+            "taxpayer": "O",
+            "tax_year": 2025,
+            "route": "Form 1120 under supplied separate C-corporation assumption",
+            "inputs": [
+              "2025 office ledger, payroll reporting and book-to-tax evidence"
+            ],
+            "status": "Entity classification is assumed for routing; no return prepared."
+          },
+          {
+            "taxpayer": "Donor or decedent to be identified",
+            "tax_year": null,
+            "route": "Form 709 or Form 706 information review; a decedent final Form 1040 and estate Form 1041 are separate",
+            "inputs": [
+              "Actual transfer or death date and citizenship/residence",
+              "Donor/donee or decedent/executor identities",
+              "Ownership, valuations, prior gifts, basis and relevant elections/instruments"
+            ],
+            "status": "No gift or death occurs in the synthetic September close. Applicability, year-specific thresholds and filing requirements remain undetermined."
+          }
+        ],
+        "entity_book_measurement_note": "P and T retain inception cost amounts for the O/I interests only as supplied supplemental-workpaper inputs. Their required standalone measurement is not determined. These interests are removed only from the defined look-through administration view, and I private-fund carrying value remains provisional."
+      },
+      "scope_counterexamples": [
+        {
+          "id": "custody-ownership",
+          "rejected_inference": "Assets administered by O are O-owned assets.",
+          "reason": "Account title and ownership evidence keep I, T and P holdings outside O books."
+        },
+        {
+          "id": "consolidation-aggregation",
+          "rejected_inference": "The family supplemental view establishes GAAP consolidation.",
+          "reason": "Its defined presentation adjustments do not replace the entity-specific control and scope analysis."
+        },
+        {
+          "id": "personal-office",
+          "rejected_inference": "Personal accounting costs are automatically office expenses or deductible.",
+          "reason": "The supplied personal share remains P expense, with a reimbursement receivable in O; tax treatment remains unresolved."
+        },
+        {
+          "id": "commitment-funded",
+          "rejected_inference": "The full private-fund commitment is already funded capital.",
+          "reason": "Only the opening funded amount and paid call enter funded capital; uncalled commitment remains a separate schedule."
+        },
+        {
+          "id": "principal-income-tax",
+          "rejected_inference": "Texas principal or income classification settles federal taxable income.",
+          "reason": "Separate Schedule B, DNI, K-1, year and taxpayer facts are required."
+        },
+        {
+          "id": "single-multi-family",
+          "rejected_inference": "An office serving unrelated families automatically qualifies for the single-family exclusion.",
+          "reason": "The historical rule excludes only its defined qualifying family office; multifamily and adviser status need separate analysis."
+        }
+      ],
+      "limitations": [
+        "Synthetic evidence only. Selected source passages and synthetic bookkeeping do not establish current consolidated GAAP, entity-specific legal or tax conclusions, or professional review.",
+        "Synthetic evidence only. Private-fund measurement, standalone interest measurement, tax elections, governing documents and actual ownership/control require further evidence.",
+        "Synthetic evidence only. No operational financial data or empirical agent performance is established. Source rights and later source currency remain unresolved."
+      ]
+    }
   }
 ]
