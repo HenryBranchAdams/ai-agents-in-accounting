@@ -18,6 +18,15 @@ the page is federal tax guidance rather than a US GAAP revenue or liability
 conclusion. State and local legality, licenses, entity status and actual game
 facts remain open.
 
+The owned source copies correct the selected locator details: ASU 2016-10 is
+identified as issued in April 2016; ASU 2018-08 paragraph 958-605-15-5A is
+located at PDF page 15, with the selected 958-605-25-5A through 25-5F
+material at PDF pages 17-21; and the 2025 Form 990 gaming and expense routes
+are separated at PDF page 84 and pages 41-43. The sponsorship counterexample
+states that an acknowledgment alone does not establish an exchange and
+requires the actual commensurate goods or services and agreed consideration
+facts.
+
 Accepted reusable sources retain their existing source IDs and primary
 metadata. The selected questions carry source locators, source URL identity,
 effective or publication-period notes, access limits and explicit currentness

@@ -62,7 +62,7 @@ test('event, museum, gaming and custody ledgers balance from connected inputs',(
 
 test('examples and counterroles keep scope boundaries explicit',()=>{
  assert.ok(examples.every(example=>example.data.cases.every(c=>c.synthetic)));
- for(const id of ['VENUE-AGENT-CUSTODY','SPONSORSHIP-AS-DONATION','MEMBERSHIP-AS-DONOR-GIFT'])assert.ok(examples[0].data.scope_counterexamples.some(c=>c.id===id&&c.outcome));
+ for(const id of ['VENUE-AGENT-CUSTODY','SPONSORSHIP-AS-DONATION','MEMBERSHIP-AS-DONOR-GIFT'])assert.ok(examples[0].data.scope_counterexamples.some(c=>c.id===id&&c.outcome));assert.match(examples[0].data.scope_counterexamples.find(c=>c.id==='SPONSORSHIP-AS-DONATION').outcome,/acknowledgment alone does not establish an exchange/i);
  for(const id of ['GAMING-CUSTODY-COUNTERROLE','BINGO-EXCEPTION-UNVERIFIED','PUBLIC-MEMBER-ROUTE'])assert.ok(examples[1].data.scope_counterexamples.some(c=>c.id===id&&c.outcome));
  assert.ok(examples[1].data.limitations.some(x=>x.includes('State/local')));assert.ok(packet.common_limits.some(x=>x.includes('professional')));
 });
