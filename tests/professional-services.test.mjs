@@ -27,12 +27,14 @@ const resolveRefs = (value, schema) => Array.isArray(value)
     : value;
 const harness = () => {
   const cwd = fs.mkdtempSync(path.join(os.tmpdir(), 'professional-services-integration-'));
+  const distRoot = path.join(root, 'dist');
   // Keep current scripts, schemas and source code, but reconstruct every data
   // input from the packet's required base before overlaying this packet.
   fs.cpSync(root, cwd, {
     recursive: true,
-    filter: source => !source.includes(`${path.sep}.git${path.sep}`) && !source.endsWith(`${path.sep}.git`) && !source.includes(`${path.sep}node_modules${path.sep}`) && source !== path.join(root, 'node_modules') && source !== path.join(root, 'data'),
+    filter: source => !source.includes(`${path.sep}.git${path.sep}`) && !source.endsWith(`${path.sep}.git`) && !source.includes(`${path.sep}node_modules${path.sep}`) && source !== path.join(root, 'node_modules') && source !== path.join(root, 'data') && source !== distRoot && !source.startsWith(`${distRoot}${path.sep}`),
   });
+  assert.equal(fs.existsSync(path.join(cwd, 'dist')), false, 'disposable source harness must exclude root/dist');
   fs.rmSync(path.join(cwd, 'data'), { recursive: true, force: true });
   const archivePath = path.join(cwd, 'baseline-data.tar');
   const archiveFd = fs.openSync(archivePath, 'w');
