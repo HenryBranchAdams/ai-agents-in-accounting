@@ -10,6 +10,7 @@ import { validateSchema } from '../scripts/validate.mjs';
 const root = process.cwd();
 const packetPath = 'data/research/professional-services-2026-09-19.json';
 const packet = JSON.parse(fs.readFileSync(path.join(root, packetPath), 'utf8'));
+const baselineCommit = packet.integration_contract.required_base_commit;
 const read = file => JSON.parse(fs.readFileSync(path.join(root, file), 'utf8'));
 const targetFiles = [
   'data/catalog.json', 'data/corpus/source.json', 'data/corpus/guide.json',
@@ -24,16 +25,26 @@ const resolveRefs = (value, schema) => Array.isArray(value)
       ? resolveRefs(schema.$defs[value.$ref.split('/').at(-1)], schema)
       : Object.fromEntries(Object.entries(value).filter(([key]) => key !== '$defs').map(([key, child]) => [key, resolveRefs(child, schema)]))
     : value;
-const copy = (from, to) => {
-  fs.mkdirSync(path.dirname(to), { recursive: true });
-  fs.copyFileSync(path.join(root, from), to);
-};
 const harness = () => {
   const cwd = fs.mkdtempSync(path.join(os.tmpdir(), 'professional-services-integration-'));
+  // Keep current scripts, schemas and source code, but reconstruct every data
+  // input from the packet's required base before overlaying this packet.
   fs.cpSync(root, cwd, {
     recursive: true,
-    filter: source => !source.includes(`${path.sep}.git${path.sep}`) && !source.endsWith(`${path.sep}.git`) && !source.includes(`${path.sep}node_modules${path.sep}`) && source !== path.join(root, 'node_modules'),
+    filter: source => !source.includes(`${path.sep}.git${path.sep}`) && !source.endsWith(`${path.sep}.git`) && !source.includes(`${path.sep}node_modules${path.sep}`) && source !== path.join(root, 'node_modules') && source !== path.join(root, 'data'),
   });
+  fs.rmSync(path.join(cwd, 'data'), { recursive: true, force: true });
+  const archivePath = path.join(cwd, 'baseline-data.tar');
+  const archiveFd = fs.openSync(archivePath, 'w');
+  try {
+    execFileSync('git', ['archive', '--format=tar', baselineCommit, 'data'], { cwd: root, stdio: ['ignore', archiveFd, 'pipe'] });
+  } finally {
+    fs.closeSync(archiveFd);
+  }
+  execFileSync('tar', ['-xf', archivePath, '-C', cwd]);
+  fs.rmSync(archivePath, { force: true });
+  fs.mkdirSync(path.dirname(path.join(cwd, packetPath)), { recursive: true });
+  fs.copyFileSync(path.join(root, packetPath), path.join(cwd, packetPath));
   fs.symlinkSync(path.resolve(root, 'node_modules'), path.join(cwd, 'node_modules'), 'dir');
   return cwd;
 };
@@ -43,15 +54,19 @@ const run = (cwd, ...args) => execFileSync(process.execPath, [path.join(cwd, 'sc
   encoding: 'utf8',
 });
 const runScript = (cwd, script) => execFileSync(process.execPath, [`scripts/${script}`], { cwd, encoding: 'utf8', timeout: 180000 });
-const appliedBuild = cwd => {
-  const catalogPath = path.join(cwd, 'data/catalog.json');
-  const catalog = JSON.parse(fs.readFileSync(catalogPath, 'utf8'));
-  catalog.corpus_version = '2026-09-19.12421';
-  fs.writeFileSync(catalogPath, JSON.stringify(catalog, null, 2) + '\n');
+const appliedFixture = cwd => {
+  // Validate the applied corpus and bundle the real agent without forcing a
+  // catalog edition or running the repository-wide build pipeline.
   runScript(cwd, 'coverage-mappings.mjs');
   const validation = runScript(cwd, 'validate.mjs');
   assert.match(validation, /Corpus integrity verified/);
-  return runScript(cwd, 'build.mjs');
+  const bundle = path.join(cwd, 'agent.mjs');
+  execFileSync(path.resolve(root, 'node_modules/.bin/esbuild'), ['src/agent.ts', '--bundle', '--platform=node', '--format=esm', `--outfile=${bundle}`], {
+    cwd,
+    encoding: 'utf8',
+    timeout: 180000,
+  });
+  return bundle;
 };
 const lineTotals = entry => {
   const debit = entry.lines.filter(line => line.side === 'debit').reduce((sum, line) => sum + line.amount, 0);
@@ -69,6 +84,7 @@ const accountBalances = entries => {
 
 test('packet inventories the seven NAICS 54 baseline records and six existing questions', () => {
   assert.equal(packet.status, 'source-only-pending-integration');
+  assert.equal(baselineCommit, '45ab4c64672cbbae76b790f1215e00d0dfd35c78');
   assert.notEqual(packet.package_version, packet.current_corpus_version);
   assert.equal(packet.baseline.associated_record_count, 7);
   assert.equal(packet.baseline.associated_records.length, 7);
@@ -172,12 +188,12 @@ test('source-only helper stages conflicts, preserves catalog, applies in a dispo
     assert.deepEqual(fs.readFileSync(path.join(cwd, 'data/catalog.json')), catalogBefore);
     run(cwd, '--apply', '--applied');
     assert.deepEqual(fs.readFileSync(path.join(cwd, 'data/catalog.json')), catalogBefore);
-    appliedBuild(cwd);
+    appliedFixture(cwd);
     const afterFirst = new Map(targetFiles.map(file => [file, fs.readFileSync(path.join(cwd, file))]));
     assert.equal(JSON.parse(fs.readFileSync(path.join(cwd, 'data/corpus/guide.json'))).some(row => row.id === 'guide-us-professional-services-contract-to-ledger'), true);
     assert.equal(JSON.parse(fs.readFileSync(path.join(cwd, 'data/corpus/source.json'))).filter(row => packet.sources.some(source => source.id === row.id)).length, 2);
     run(cwd, '--apply', '--applied');
-    appliedBuild(cwd);
+    appliedFixture(cwd);
     for (const [file, bytes] of afterFirst) assert.deepEqual(fs.readFileSync(path.join(cwd, file)), bytes, `replay changed ${file}`);
   } finally {
     fs.rmSync(cwd, { recursive: true, force: true });
@@ -203,8 +219,8 @@ test('applied validated fixture uses real agent search, context and get for Cali
   const cwd = harness();
   try {
     run(cwd, '--apply', '--applied');
-    appliedBuild(cwd);
-    const { executeAgent } = await import(`${pathToFileURL(path.join(cwd, 'dist/internal/agent.mjs')).href}?professional=${Date.now()}`);
+    const bundle = appliedFixture(cwd);
+    const { executeAgent } = await import(`${pathToFileURL(bundle).href}?professional=${Date.now()}`);
     const fixtures = JSON.parse(fs.readFileSync(path.join(cwd, packetPath), 'utf8')).retrieval_fixtures;
     for (const fixture of fixtures.search) {
       const result = executeAgent('search', { q: fixture.query, limit: fixture.limit });
