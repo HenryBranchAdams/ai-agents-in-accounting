@@ -1,12 +1,12 @@
 {
   "schema_version": "1.0.0",
-  "mapping_version": "2026-09-19.12422",
+  "mapping_version": "2026-09-19.12424",
   "topology_version": "2026-09-11.1",
-  "corpus_version": "2026-09-19.12422",
+  "corpus_version": "2026-09-19.12424",
   "generated_at": "2026-09-19",
-  "corpus_sha256": "1a36f2bc734a923988fec3409fb7b4ae84d0c339f2a90467cc4725ecd49edca2",
+  "corpus_sha256": "357d5f3a3286c22226e0f708ae3f6cc8371cba47bbe0202a82a39f12401b274c",
   "rules_sha256": "550b2bb485399af996bac6ed34542d7a91170d4b31b5e5026e0e9c2c32068b9d",
-  "overrides_sha256": "1a9323001458a3f84d826fed53dbbc742b96a3db28d66844f4609a203bd95d61",
+  "overrides_sha256": "d1a73a5e599da5d17a5a6f6114692018d14c26e431e215763b4153fcb4acc1a8",
   "method": "Deterministic title/topic associations, conservative industry crosswalk, and explicit editorial additions. All initial links are candidates; source review status is unchanged.",
   "mappings": [
     {
@@ -3625,6 +3625,59 @@
       "note": "Reviewed association with the original editorial content. This does not validate accounting treatment or the adequacy of its external references."
     },
     {
+      "record_id": "control-aa-i106-source-bridge",
+      "question_mappings": [
+        {
+          "question_id": "q-data-lineage",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data/control_objective",
+              "matched": "Shared control context only; no industry-specific accounting conclusion.",
+              "rule": "editorial-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-human-authority",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data/control_objective",
+              "matched": "Shared control context only; no industry-specific accounting conclusion.",
+              "rule": "editorial-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-security",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data/control_objective",
+              "matched": "Shared control context only; no industry-specific accounting conclusion.",
+              "rule": "editorial-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "52",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data/control_objective",
+              "matched": "Shared control context only; no industry-specific accounting conclusion.",
+              "rule": "editorial-association"
+            }
+          ]
+        }
+      ],
+      "note": "Candidate association with this industry scope; applicability and depth are not inferred."
+    },
+    {
       "record_id": "control-transport-role-ownership",
       "question_mappings": [
         {
@@ -4067,6 +4120,212 @@
       "industry_scope": "shared-context",
       "industry_mappings": [],
       "note": "Reviewed association with the original editorial content. This does not validate accounting treatment or the adequacy of its external references."
+    },
+    {
+      "record_id": "ctrl-healthcare-payer-role-and-reconciliation",
+      "question_mappings": [
+        {
+          "question_id": "q-cash-settlement",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-cost-allocation",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-data-lineage",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "reconcil",
+              "rule": "title:data-lineage"
+            },
+            {
+              "field": "/data",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-estimates",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-grants-contributions",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-ledger-close",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-receivables-credit",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-revenue",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "621",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "industry_code": "622",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "industry_code": "623",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "industry_code": "624",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "note": "Bounded source-linked synthetic application, not professional or operational verification."
     },
     {
       "record_id": "ctrl-holding-perimeter-and-matches",
@@ -6246,6 +6505,92 @@
       "note": "Reviewed issue 101 scope, examples and explicit counterexamples; this association does not establish accounting adequacy."
     },
     {
+      "record_id": "example-aa-i106-role-branches",
+      "question_mappings": [
+        {
+          "question_id": "q-credit-intermediation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data/fixture",
+              "matched": "Original synthetic example association; not operational evidence.",
+              "rule": "editorial-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-evaluation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "synthetic",
+              "rule": "title:evaluation"
+            }
+          ]
+        },
+        {
+          "question_id": "q-funds-custody",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data/fixture",
+              "matched": "Original synthetic example association; not operational evidence.",
+              "rule": "editorial-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-insurance-policyholder",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data/fixture",
+              "matched": "Original synthetic example association; not operational evidence.",
+              "rule": "editorial-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-insurer",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data/fixture",
+              "matched": "Original synthetic example association; not operational evidence.",
+              "rule": "editorial-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-investments",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data/fixture",
+              "matched": "Original synthetic example association; not operational evidence.",
+              "rule": "editorial-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "52",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data/fixture",
+              "matched": "Original synthetic example association; not operational evidence.",
+              "rule": "editorial-association"
+            }
+          ]
+        }
+      ],
+      "note": "Candidate association with this industry scope; applicability and depth are not inferred."
+    },
+    {
       "record_id": "example-aa-i123-entity-events",
       "question_mappings": [
         {
@@ -7065,6 +7410,207 @@
       "industry_scope": "unassigned",
       "industry_mappings": [],
       "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "example-healthcare-claims-and-provider-roles",
+      "question_mappings": [
+        {
+          "question_id": "q-cash-settlement",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-cost-allocation",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-data-lineage",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-estimates",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-grants-contributions",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-ledger-close",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-receivables-credit",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-revenue",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "621",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "industry_code": "622",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "industry_code": "623",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "industry_code": "624",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "note": "Bounded source-linked synthetic application, not professional or operational verification."
     },
     {
       "record_id": "example-holding-parent-subsidiary-close",
@@ -9684,6 +10230,92 @@
       "note": "Source-linked bounded research and synthetic examples; no professional or empirical verification."
     },
     {
+      "record_id": "guide-aa-i106-finance-insurance",
+      "question_mappings": [
+        {
+          "question_id": "q-credit-intermediation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data/roles",
+              "matched": "Source-only selected-role association; industry mapping is discovery context, not adequacy.",
+              "rule": "editorial-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-funds-custody",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data/roles",
+              "matched": "Source-only selected-role association; industry mapping is discovery context, not adequacy.",
+              "rule": "editorial-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-insurance-policyholder",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data/roles",
+              "matched": "Source-only selected-role association; industry mapping is discovery context, not adequacy.",
+              "rule": "editorial-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-insurer",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data/roles",
+              "matched": "Source-only selected-role association; industry mapping is discovery context, not adequacy.",
+              "rule": "editorial-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-investments",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data/roles",
+              "matched": "Source-only selected-role association; industry mapping is discovery context, not adequacy.",
+              "rule": "editorial-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-security",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data/roles",
+              "matched": "Source-only selected-role association; industry mapping is discovery context, not adequacy.",
+              "rule": "editorial-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "52",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data/roles",
+              "matched": "Source-only selected-role association; industry mapping is discovery context, not adequacy.",
+              "rule": "editorial-association"
+            }
+          ]
+        }
+      ],
+      "note": "Candidate association with this industry scope; applicability and depth are not inferred."
+    },
+    {
       "record_id": "guide-aa-i124-institutional",
       "question_mappings": [
         {
@@ -10435,6 +11067,207 @@
       "industry_scope": "shared-context",
       "industry_mappings": [],
       "note": "Reviewed association with the original editorial content. This does not validate accounting treatment or the adequacy of its external references."
+    },
+    {
+      "record_id": "guide-healthcare-us-claim-close",
+      "question_mappings": [
+        {
+          "question_id": "q-cash-settlement",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-cost-allocation",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-data-lineage",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-estimates",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-grants-contributions",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-ledger-close",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-receivables-credit",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-revenue",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "621",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "industry_code": "622",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "industry_code": "623",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "industry_code": "624",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data/research_questions",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data/research_questions",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "note": "Bounded source-linked synthetic application, not professional or operational verification."
     },
     {
       "record_id": "guide-holding-management-us-close",
@@ -38046,6 +38879,94 @@
       "note": "Bounded source and synthetic application review; no current consolidated ASC conclusion, professional verification, operational evidence or rights upgrade."
     },
     {
+      "record_id": "src_aa_i106_naic_appm_2026",
+      "question_mappings": [
+        {
+          "question_id": "q-insurer",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "NAIC",
+              "rule": "title:insurer"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "524",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/industries/0",
+              "matched": "insurance",
+              "rule": "legacy-tag-crosswalk"
+            }
+          ]
+        }
+      ],
+      "note": "Candidate association with this industry scope; applicability and depth are not inferred."
+    },
+    {
+      "record_id": "src_aa_i106_occ_acl_2026",
+      "question_mappings": [
+        {
+          "question_id": "q-receivables-credit",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "credit loss",
+              "rule": "title:receivables-credit"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "522",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/industries/0",
+              "matched": "banking-credit-unions",
+              "rule": "legacy-tag-crosswalk"
+            }
+          ]
+        }
+      ],
+      "note": "Candidate association with this industry scope; applicability and depth are not inferred."
+    },
+    {
+      "record_id": "src_aa_i106_sec_15c3_3",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_aa_i106_sec_2a5_2020",
+      "question_mappings": [
+        {
+          "question_id": "q-valuation-impairment",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "fair-value",
+              "rule": "title:valuation-impairment"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
       "record_id": "src_aa_i109_arb51_amended",
       "question_mappings": [
         {
@@ -38219,6 +39140,226 @@
         }
       ],
       "note": "Source-linked bounded research and synthetic examples; no professional or empirical verification."
+    },
+    {
+      "record_id": "src_aa_i112_cms_remittance",
+      "question_mappings": [
+        {
+          "question_id": "q-cash-settlement",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "payment",
+              "rule": "title:cash-settlement"
+            },
+            {
+              "field": "/data",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-data-lineage",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-reimbursement",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Medicare",
+              "rule": "title:reimbursement"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "622",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "note": "Bounded source-linked synthetic application, not professional or operational verification."
+    },
+    {
+      "record_id": "src_aa_i112_cms_subcapitation_v4",
+      "question_mappings": [
+        {
+          "question_id": "q-cash-settlement",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "payment",
+              "rule": "title:cash-settlement"
+            }
+          ]
+        },
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "api",
+              "rule": "title:interfaces"
+            }
+          ]
+        },
+        {
+          "question_id": "q-ledger-close",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-revenue",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "621",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "note": "Bounded source-linked synthetic application, not professional or operational verification."
+    },
+    {
+      "record_id": "src_aa_i112_fasb_2010_23",
+      "question_mappings": [
+        {
+          "question_id": "q-cost-allocation",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-presentation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "disclosure",
+              "rule": "title:presentation"
+            }
+          ]
+        },
+        {
+          "question_id": "q-revenue",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "622",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "note": "Bounded source-linked synthetic application, not professional or operational verification."
     },
     {
       "record_id": "src_aa_i123_201408",
@@ -57897,6 +59038,207 @@
       "note": "Candidate association with this industry scope; applicability and depth are not inferred."
     },
     {
+      "record_id": "wf-healthcare-encounter-to-close",
+      "question_mappings": [
+        {
+          "question_id": "q-cash-settlement",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-cost-allocation",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-data-lineage",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-estimates",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-grants-contributions",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-ledger-close",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-receivables-credit",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "question_id": "q-revenue",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "621",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "industry_code": "622",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "industry_code": "623",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        },
+        {
+          "industry_code": "624",
+          "status": "reviewed",
+          "basis": [
+            {
+              "field": "/data",
+              "matched": "Selected provider-role research and explicit counterroles, not whole-industry sufficiency.",
+              "rule": "editorial-association"
+            },
+            {
+              "field": "/data",
+              "matched": "2026-09-19: Bounded source-linked synthetic application, not professional or operational verification.",
+              "rule": "editorial-review"
+            }
+          ]
+        }
+      ],
+      "note": "Bounded source-linked synthetic application, not professional or operational verification."
+    },
+    {
       "record_id": "wf-holding-entity-to-consolidated",
       "question_mappings": [
         {
@@ -60799,6 +62141,81 @@
         }
       ],
       "note": "Original workflow proposal; implementation and operating effectiveness remain untested."
+    },
+    {
+      "record_id": "workflow-aa-i106-role-ledger-routing",
+      "question_mappings": [
+        {
+          "question_id": "q-credit-intermediation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data/inputs",
+              "matched": "Source-only workflow association; no coverage sufficiency claim.",
+              "rule": "editorial-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-data-lineage",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data/inputs",
+              "matched": "Source-only workflow association; no coverage sufficiency claim.",
+              "rule": "editorial-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-funds-custody",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data/inputs",
+              "matched": "Source-only workflow association; no coverage sufficiency claim.",
+              "rule": "editorial-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-insurer",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data/inputs",
+              "matched": "Source-only workflow association; no coverage sufficiency claim.",
+              "rule": "editorial-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-security",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data/inputs",
+              "matched": "Source-only workflow association; no coverage sufficiency claim.",
+              "rule": "editorial-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "specific",
+      "industry_mappings": [
+        {
+          "industry_code": "52",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/data/inputs",
+              "matched": "Source-only workflow association; no coverage sufficiency claim.",
+              "rule": "editorial-association"
+            }
+          ]
+        }
+      ],
+      "note": "Candidate association with this industry scope; applicability and depth are not inferred."
     },
     {
       "record_id": "workflow-transport-event-to-ledger",

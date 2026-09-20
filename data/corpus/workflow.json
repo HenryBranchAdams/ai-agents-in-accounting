@@ -27174,5 +27174,176 @@
         "Source rights remain unknown; external full text is not stored. Selected questions do not establish industry sufficiency or a state-law survey."
       ]
     }
+  },
+  {
+    "id": "workflow-aa-i106-role-ledger-routing",
+    "kind": "workflow",
+    "title": "Finance and insurance transaction-to-ledger routing",
+    "summary": "A read-only evidence workflow that classifies role and reporting purpose before connecting source-backed events to ledger populations and exceptions.",
+    "topics": [
+      "Accounting and reporting",
+      "Finance and insurance"
+    ],
+    "industries": [
+      "Finance and insurance"
+    ],
+    "jurisdiction": "United States; selected roles and reporting purposes only",
+    "source_type": "Original bounded synthesis",
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_aa_i106_occ_acl_2026",
+      "src_aa_i106_sec_2a5_2020",
+      "src_aa_i106_sec_15c3_3",
+      "src_aa_i106_naic_appm_2026",
+      "src_occ_baas_2026",
+      "src_ffiec051_instructions_2025",
+      "src_fasb_asu_201613_credit_losses",
+      "src_fasb_asc820_fair_value",
+      "src_aa_i124_custody",
+      "src_naic_sap_hierarchy_2026",
+      "src_aa_i124_naic"
+    ],
+    "related_ids": [],
+    "reviewed_at": "2026-09-19",
+    "review_status": "editorially-reviewed",
+    "provenance": {
+      "added_on": "2026-09-19",
+      "reviewer": "Codex AI-assisted source and editorial review",
+      "issue_id": "AA-I106",
+      "note": "Source-only package. Official source summaries and original synthetic facts are bounded to the selected roles; no professional sign-off or operational validation."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "External text is not stored; publisher terms apply. Public access does not establish reuse permission.",
+      "full_text_stored": false
+    },
+    "data": {
+      "id": "workflow-aa-i106-role-ledger-routing",
+      "version": "1.0.0",
+      "scope": "Selected US finance and insurance roles for calendar 2026 research. Identify legal entity, role, reporting purpose, jurisdiction, framework, reporting date and source edition before routing. This package is a bounded research reference, not a whole-industry or professional conclusion.",
+      "purpose": "Prepare a source-linked review packet without posting or filing.",
+      "inputs": [
+        "legal entity and actual role",
+        "contract or account terms",
+        "ownership/custody or reserve evidence",
+        "reporting framework and purpose",
+        "reporting date and source edition",
+        "transaction, subledger and reconciliation data"
+      ],
+      "steps": [
+        "Classify one of the four selected roles and reporting purpose.",
+        "Pin the source URL, locator, effective period and access limit.",
+        "Separate owned assets, customer assets, liabilities, fees, claims, reserves and regulatory populations.",
+        "Recalculate synthetic or supplied amounts and tie each proposed population to a source and evidence item.",
+        "Stop on framework, ownership, effective-date, rights or source-currency conflict before suggesting a ledger route.",
+        "Record unresolved items and require accountable human disposition."
+      ],
+      "outputs": [
+        "role and framework matrix",
+        "source locator ledger",
+        "proposed ledger-population map",
+        "exception register",
+        "no-execution review packet"
+      ],
+      "controls": [
+        "stable source IDs and original publisher URLs",
+        "source-version and effective-date pin",
+        "separate GAAP, regulatory and statutory columns",
+        "conflict-before-write staging",
+        "human review for unresolved judgment"
+      ],
+      "exceptions": [
+        "custody is not ownership",
+        "regulatory reporting is not automatically GAAP",
+        "SAP does not replace US GAAP",
+        "same transaction amount can route differently by entity role",
+        "unknown rights or stale source currency"
+      ],
+      "limitations": [
+        "This is a research workflow, not a posting policy or professional review.",
+        "No live population, operational control test or production retrieval was performed."
+      ]
+    }
+  },
+  {
+    "id": "wf-healthcare-encounter-to-close",
+    "kind": "workflow",
+    "title": "Encounter-to-claim, cash and provider-close workflow",
+    "summary": "A descriptive evidence chain ties service and payer identifiers to cash while keeping cost reports, capitation, deposits and awards separate.",
+    "topics": [
+      "Accounting and reporting",
+      "Health care and social assistance",
+      "Payer settlement and revenue"
+    ],
+    "industries": [
+      "health-care-social-assistance"
+    ],
+    "jurisdiction": "United States; selected provider, payer and entity roles",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_construction_fasb_2014_09",
+      "src_fasb_asu_201613_credit_losses",
+      "src_aa_i112_cms_remittance",
+      "src_cms_hcris_cost_reports_2026",
+      "src_aa_i112_cms_subcapitation_v4",
+      "src_aa_i112_fasb_2010_23",
+      "src_nonprofit_fasb_2018_08",
+      "src_nonprofit_fasb_2016_14"
+    ],
+    "related_ids": [
+      "guide-healthcare-us-claim-close",
+      "ctrl-healthcare-payer-role-and-reconciliation",
+      "example-healthcare-claims-and-provider-roles"
+    ],
+    "review_status": "editorially-reviewed",
+    "reviewed_at": "2026-09-19",
+    "provenance": {
+      "added_on": "2026-09-19",
+      "reviewer": "Codex AI-assisted bounded source and editorial review",
+      "scope": "Selected primary-source passages and original synthetic provider worksheets; not professional verification.",
+      "note": "Source-only proposal pending independent acceptance and current integration."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "External publisher text is not stored; publisher terms and source rights remain separate and unresolved.",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "inputs": [
+        "Provider identity, entity form, payer contract, patient policy and service dates",
+        "Encounter and claim identifiers, charges, allowed amounts, concession estimates and responsibility assignment",
+        "ERA line/claim adjustments, PLB details, claim references and EFT trace tied to bank",
+        "Member roster and covered period for capitation; resident contract and refundable deposit register",
+        "GL cost centers, cost-report form and fiscal year, MAC settlement and prior estimate",
+        "Award conditions, eligible units, return rights and donor restrictions; charity cost method and separate funding"
+      ],
+      "steps": [
+        "Select the provider, payer, reporting basis and source period before comparing amounts.",
+        "Match encounters to submitted claims; separate charges from expected consideration and charity activity.",
+        "Resolve adjustments and denials by reason, legal responsibility and evidence; separate credit deterioration.",
+        "Reconcile remittance claim amounts and provider-level items to the net bank deposit and ledgers.",
+        "Keep cost-report, member-month, resident and contribution populations separate with their own cutoffs.",
+        "Recompute closing balances and disclosures; retain unresolved facts for authorized review without a plug."
+      ],
+      "outputs": [
+        "Reconciled provider trial balances and source-linked exceptions",
+        "Claim/ERA/EFT and cost-report lineage"
+      ],
+      "human_review": "Actual contract, financial, billing, privacy and legal responsibilities require authorized reviewers; none performed here.",
+      "limitations": [
+        "Current consolidated ASC, later amendments, actual payer contracts, patient financial-assistance policy and provider-specific reporting obligations remain unverified.",
+        "Synthetic cases contain no patient data, live claims or actual cost reports; professional review and empirical performance are not established.",
+        "Publisher rights remain unknown and full text is not stored; selected roles do not establish whole-sector sufficiency or state-law coverage."
+      ]
+    }
   }
 ]
