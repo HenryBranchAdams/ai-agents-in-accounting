@@ -1,3 +1,4 @@
+import { prepareStorage } from "./release-storage.mjs";
 import { readSnapshotHistory } from "./snapshot-history.mjs";
 import { execFileSync } from "node:child_process";
 import fs from "node:fs";
@@ -18,6 +19,12 @@ import {
 } from "./source-archive.mjs";
 
 console.log("Validated", validateCorpus());
+// Full snapshots are export artifacts, never executable application data.
+const history = readSnapshotHistory();
+const historySummary = { ...history, snapshots: history.snapshots.map(({ id, recorded_at, corpus_version, topology_version, mapping_version, summary }) => ({ id, recorded_at, corpus_version, topology_version, mapping_version, summary })) };
+const historyPlugin = { name: "coverage-summary", setup(builder) {
+  builder.onLoad({ filter: /coverage-history-data\.js$/ }, () => ({ contents: `export default ${JSON.stringify(historySummary)}`, loader: "js" }));
+} };
 fs.rmSync("dist", { recursive: true, force: true });
 fs.mkdirSync("dist/client/downloads", { recursive: true });
 fs.mkdirSync("dist/server", { recursive: true });
@@ -26,6 +33,7 @@ await build({
   entryPoints: ["src/corpus.ts"],
   outfile: "dist/internal/corpus.mjs",
   bundle: true,
+  plugins: [historyPlugin],
   format: "esm",
   platform: "neutral",
   target: "es2023",
@@ -36,6 +44,7 @@ await build({
   entryPoints: ["src/agent.ts"],
   outfile: "dist/internal/agent.mjs",
   bundle: true,
+  plugins: [historyPlugin],
   format: "esm",
   platform: "neutral",
   target: "es2023",
@@ -44,6 +53,7 @@ await build({
   entryPoints: ["src/agent-contract.ts"],
   outfile: "dist/internal/agent-contract.mjs",
   bundle: true,
+  plugins: [historyPlugin],
   format: "esm",
   platform: "neutral",
   target: "es2023",
@@ -68,6 +78,7 @@ const clientBuild = await build({
   outdir: "dist/client/assets",
   entryNames: "[name]-[hash]",
   bundle: true,
+  plugins: [historyPlugin],
   format: "esm",
   platform: "browser",
   target: "es2022",
@@ -182,7 +193,7 @@ write(
 );
 write(
   "downloads/coverage-history.json",
-  JSON.stringify(readSnapshotHistory(), null, 2) + "\n",
+  JSON.stringify(history, null, 2) + "\n",
 );
 write(
   "downloads/coverage.schema.json",
@@ -269,28 +280,6 @@ const entries = fs
       sha256: createHash("sha256").update(body).digest("hex"),
     };
   });
-// Keep logical download bytes and hashes stable while respecting the host's
-// 25 MiB static-asset limit. Oversized downloads are streamed from gzip storage.
-const packagedDownloads = {};
-for (const entry of entries) {
-  if (entry.bytes <= 25 * 1024 * 1024) continue;
-  const source = `dist/client${entry.path}`;
-  const asset = `/assets/downloads/${path.basename(entry.path)}.gz`;
-  const compressed = gzipSync(fs.readFileSync(source), { level: 9 });
-  if (compressed.length > 25 * 1024 * 1024)
-    throw new Error(`Download exceeds hosting limit even after compression: ${entry.path}`);
-  fs.mkdirSync(path.dirname(`dist/client${asset}`), { recursive: true });
-  write(asset.slice(1), compressed);
-  fs.unlinkSync(source);
-  packagedDownloads[entry.path] = {
-    asset,
-    bytes: entry.bytes,
-    sha256: entry.sha256,
-    contentType: entry.path.endsWith(".jsonl")
-      ? "application/x-ndjson; charset=utf-8"
-      : "application/octet-stream",
-  };
-}
 write(
   "downloads/manifest.json",
   JSON.stringify(
@@ -325,14 +314,29 @@ write(
   entries.map((f) => `${f.sha256}  ${f.path.split("/").at(-1)}`).join("\n") +
     "\n",
 );
-await build({
-  entryPoints: { index: "src/entry.ts" },
-  mainFields: ["module", "main"],
-  conditions: ["browser"],
+const runtimeDataKeys = new Set();
+const runtimeDataPlugin = { name: "immutable-runtime-data", setup(builder) {
+  builder.onLoad({ filter: /\.json$/ }, ({ path: file }) => {
+    if (!file.includes("/data/") || fs.statSync(file).size < 100000) return;
+    const body = Buffer.from(JSON.stringify(JSON.parse(fs.readFileSync(file, "utf8"))));
+    const key = createHash("sha256").update(body).digest("hex");
+    fs.mkdirSync("dist/client/assets/data", { recursive: true });
+    fs.writeFileSync(`dist/client/assets/data/${key}.gz`, gzipSync(body, { level: 9 }));
+    runtimeDataKeys.add(key);
+    return { contents: `export default RUNTIME_DATA[${JSON.stringify(key)}]`, loader: "js" };
+  });
+} };
+const releaseStorage = prepareStorage();
+const releaseMeta = { corpus_version: meta.corpus_version, source_revision: execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim(), storage_manifest: releaseStorage.id };
+fs.writeFileSync("dist/internal/release-meta.json", JSON.stringify(releaseMeta));
+const applicationBuild = await build({
+  entryPoints: ["src/worker.ts"],
+  mainFields: ["module", "main"], conditions: ["browser"],
   define: {
     "process.env.NODE_ENV": '"production"',
     NAVIGATION_SCRIPT: JSON.stringify(navigationScript),
-    PACKAGED_DOWNLOADS: JSON.stringify(packagedDownloads),
+    RELEASE_STORAGE: JSON.stringify(releaseStorage),
+    RELEASE_META: JSON.stringify(releaseMeta),
     PUBLICATION_DATA: JSON.stringify(publication),
     STYLE_VERSION: JSON.stringify(
       createHash("sha256")
@@ -341,16 +345,21 @@ await build({
         .slice(0, 12),
     ),
   },
-  outdir: "dist/server",
-  splitting: true,
-  chunkNames: "application-[hash]",
-  bundle: true,
-  format: "esm",
-  platform: "neutral",
-  target: "es2023",
-  minify: true,
-  legalComments: "eof",
+  bundle: true, plugins: [historyPlugin, runtimeDataPlugin],
+  format: "iife", globalName: "compiledApplication", platform: "neutral",
+  target: "es2023", minify: true, legalComments: "eof", write: false, metafile: true,
 });
+fs.writeFileSync("dist/internal/runtime-application.mjs", `export function createApplication(RUNTIME_DATA) { ${applicationBuild.outputFiles[0].text}; return compiledApplication.default; }`);
+await build({
+  entryPoints: { index: "src/entry.ts" },
+  define: { RELEASE_STORAGE: JSON.stringify(releaseStorage), RELEASE_META: JSON.stringify(releaseMeta), RUNTIME_DATA_KEYS: JSON.stringify([...runtimeDataKeys]) },
+  plugins: [{ name: "runtime-factory", setup(builder) {
+    builder.onResolve({ filter: /runtime-application$/ }, () => ({ path: path.resolve("dist/internal/runtime-application.mjs") }));
+  } }],
+  outdir: "dist/server", splitting: true, chunkNames: "application-[hash]",
+  bundle: true, format: "esm", platform: "neutral", target: "es2023", minify: true,
+  legalComments: "eof", metafile: true,
+}).then(result => fs.writeFileSync("dist/internal/server-meta.json", JSON.stringify({ inputs: { ...applicationBuild.metafile.inputs, ...result.metafile.inputs }, outputs: result.metafile.outputs })));
 fs.writeFileSync(
   "dist/server/wrangler.json",
   JSON.stringify(
@@ -359,6 +368,8 @@ fs.writeFileSync(
       main: "index.js",
       compatibility_date: "2026-09-07",
       no_bundle: true,
+      find_additional_modules: true,
+      rules: [{ type: "ESModule", globs: ["**/*.js"] }],
       assets: {
         directory: "../client",
         binding: "ASSETS",

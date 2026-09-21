@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import {createHash} from 'node:crypto';
 import {records,coverage,search} from '../dist/internal/corpus.mjs';
 import {executeAgent} from '../dist/internal/agent.mjs';
-import worker from '../dist/server/index.js';
+import worker from './worker-fixture.mjs';
 import {validateResearch} from '../scripts/validate-research.mjs';
 import {validateSchema} from '../scripts/validate.mjs';
 import {checkSources} from '../scripts/maintenance.mjs';

@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
-import worker from "../dist/server/index.js";
+import worker from "./worker-fixture.mjs";
 import { records } from "../dist/internal/corpus.mjs";
 const page = async (route) =>
   (await worker.fetch(new Request("https://corpus.example" + route))).text();

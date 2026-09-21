@@ -23,7 +23,7 @@ import {
   outputSchemas,
   agentSchemaVersion,
 } from "../dist/internal/agent-contract.mjs";
-import worker from "../dist/server/index.js";
+import worker from "./worker-fixture.mjs";
 
 const canonical = loadRecords(),
   byId = new Map(canonical.map((r) => [r.id, r]));

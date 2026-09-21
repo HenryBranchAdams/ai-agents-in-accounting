@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {executeAgent} from '../dist/internal/agent.mjs';
-import worker from '../dist/server/index.js';
+import worker from './worker-fixture.mjs';
 const read=p=>JSON.parse(fs.readFileSync(p));
 const data=read('data/corpus/example.json').find(r=>r.id==='example-construction-contract-ledger').data;
 const branch=id=>data.examples.find(x=>x.id===id);

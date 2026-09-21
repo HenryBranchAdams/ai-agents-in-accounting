@@ -4,7 +4,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { createHash } from "node:crypto";
 import { gunzipSync, gzipSync, inflateRawSync } from "node:zlib";
-import worker from "../dist/server/index.js";
+import worker from "./worker-fixture.mjs";
 import {
   loadRecords,
   validateCorpus,
@@ -476,8 +476,12 @@ test("multipart source parts use binary MIME with stable GET, HEAD, and cache he
 test("oversized download storage stays within host limits and preserves streaming HTTP semantics", async () => {
   const file = (await read("/downloads/manifest.json")).files.find((f) => f.path === "/downloads/agent-passages.jsonl");
   assert.ok(file.bytes > 25 * 1024 * 1024);
-  assert.equal(fs.existsSync(`dist/client${file.path}`), false);
-  assert.ok(fs.statSync("dist/client/assets/downloads/agent-passages.jsonl.gz").size <= 25 * 1024 * 1024);
+  const storage = JSON.parse(fs.readFileSync("dist/storage/manifest.json"));
+  const stored = storage.files[file.path];
+  assert.equal(stored.sha256, file.sha256);
+  assert.equal(stored.bytes, file.bytes);
+  assert.ok(stored.chunks.length > 1);
+  for (const key of stored.chunks) assert.ok(fs.statSync(`dist/client/assets/objects/${key}`).size <= 5 * 1024 * 1024);
   let fetched = false;
   const noFetch = { ASSETS: { fetch() { fetched = true; throw new Error("Unexpected body read"); } } };
   const head = await worker.fetch(new Request(`https://corpus.test${file.path}`, { method: "HEAD" }), noFetch);

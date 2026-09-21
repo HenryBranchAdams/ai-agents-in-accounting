@@ -1,0 +1,25 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import { hash } from './release-storage.mjs';
+const files = root => fs.readdirSync(root,{recursive:true}).map(p=>`${root}/${p}`).filter(p=>fs.statSync(p).isFile());
+const server = files('dist/server').filter(p=>p.endsWith('.js'));
+const assets = files('dist/client').filter(p=>!/^dist\/client\/(downloads|releases|assets\/objects)\//.test(p));
+const runtime = JSON.parse(fs.readFileSync('dist/internal/server-meta.json'));
+assert.ok(!Object.keys(runtime.inputs).some(p=>/data\/(coverage\/snapshots[/.]|releases\/)/.test(p)), 'Historical payload imported into runtime');
+const workerBytes=server.reduce((n,p)=>n+fs.statSync(p).size,0);
+assert.ok(workerBytes < 64*1024*1024,'Worker exceeds documented 64 MiB module limit');
+for(const file of assets) assert.ok(fs.statSync(file).size <= 25*1024*1024,`Static asset exceeds 25 MiB: ${file}`);
+const applicationBytes=[...server,...assets].reduce((n,p)=>n+fs.statSync(p).size,0);
+// A successfully saved/deployed transition archive is evidence of support at this size,
+// not a claim that it is the platform maximum. Do not regress beyond that known working size.
+const knownWorkingExpandedBytes=237793280;
+assert.ok(applicationBytes < knownWorkingExpandedBytes,'Application exceeds previously proven deployment size');
+const storageBody=fs.readFileSync('dist/storage/manifest.json');
+const storage=JSON.parse(storageBody);
+const current=JSON.parse(fs.readFileSync('dist/client/downloads/corpus.json'));
+const source=Object.values(Object.fromEntries(files('data/corpus').map(p=>[p,JSON.parse(fs.readFileSync(p))]))).flat();
+assert.deepEqual(current.records.map(r=>r.id).sort(),source.map(r=>r.id).sort());
+for(const record of source) assert.deepEqual(current.records.find(r=>r.id===record.id),record);
+const report={source_revision:JSON.parse(fs.readFileSync('dist/internal/release-meta.json')).source_revision,corpus_version:current.corpus_version,record_count:source.length,worker_bytes:workerBytes,application_bytes:applicationBytes,known_working_expanded_bytes:knownWorkingExpandedBytes,static_asset_count:assets.length,storage_manifest:hash(storageBody),storage_objects:Object.keys(storage.objects).length,storage_bytes:Object.values(storage.objects).reduce((a,b)=>a+b,0),logical_files:Object.keys(storage.files).length};
+fs.writeFileSync('dist/storage/qualification.json',JSON.stringify(report,null,2)+'\n');
+console.log(report);
