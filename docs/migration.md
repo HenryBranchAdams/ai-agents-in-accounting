@@ -37,3 +37,7 @@ The public interface now uses server-rendered React TSX, official shadcn/ui regi
 Only navigation hydrates, including the accessible mobile Sheet. Native details/links provide a no-JavaScript fallback; search, filters and pagination remain GET forms and links. Stable rendering exports remain in `src/render.ts`, with page and component source split into TSX modules. The Worker serves the hashed navigation asset as well as existing pages, API and downloads. No canonical record, ID, rights, agent operation or public URL is changed by this presentation migration.
 
 See [the design system](design-system.md), [contributor requirements](../CONTRIBUTING.md#interface-changes) and [verification](../TESTING.md) for the current implementation. Earlier checkpoint counts, rendering descriptions and publication statements describe their dates, not the current deployment.
+
+## September 21, 2026 editorial entry point
+
+The unfiltered `/` now introduces two edited workflow explanations. `/library` provides complete browsing. Root URLs with any query parameters, including `/?q=` and legacy filters/pagination, retain library behavior; no search state is redirected away. Native forms, filter links and pagination target `/library`. Stable `/records/{id}`, `/briefs`, collections, coverage, publication, API and download paths remain. Complete record details begin collapsed, and existing fragment anchors remain in the document. Only the existing navigation island hydrates.

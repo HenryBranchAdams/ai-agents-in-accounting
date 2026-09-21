@@ -33,7 +33,7 @@ const queryLink = (
     if (value) p.set(key, value);
     else p.delete(key);
   }
-  return `/?${p.toString()}`;
+  return `/library${p.size ? "?" + p.toString() : ""}`;
 };
 export function browse(params: URLSearchParams) {
   const result = search(params);
@@ -58,7 +58,7 @@ export function browse(params: URLSearchParams) {
   const title =
     kind === "context"
       ? "Accounting context"
-      : kinds[kind] || "Explore the corpus";
+      : kinds[kind] || "Research library";
   const commonKinds = [
     "",
     "source",
@@ -139,7 +139,8 @@ export function browse(params: URLSearchParams) {
           </div>
         )}
       </section>
-      <form action="/" method="get" role="search">
+      <form action="/library" method="get" role="search">
+        {params.has("limit") && <input type="hidden" name="limit" value={params.get("limit")!} />}
         <FieldGroup className="mb-7">
           <Field orientation="horizontal">
             <FieldLabel className="sr-only" htmlFor="q">
@@ -372,6 +373,7 @@ export function browse(params: URLSearchParams) {
         </div>
       </form>
     </>,
-    kind === "source" ? "sources" : kind === "context" ? "context" : "",
+    "library",
+    "/library",
   );
 }

@@ -1,3 +1,4 @@
+import { editorialReviewReport } from "./editorial-review.mjs";
 import { prepareStorage } from "./release-storage.mjs";
 import { readSnapshotHistory } from "./snapshot-history.mjs";
 import { execFileSync } from "node:child_process";
@@ -118,7 +119,10 @@ const previous = JSON.parse(
   ),
 );
 const prepared = preparePublication(records, previous, loadObservations());
+const editorial_reviews = editorialReviewReport(records);
+for (const review of editorial_reviews) console.log("Editorial dependency review:", review);
 const publication = {
+  editorial_reviews,
   previous_version: previousVersion,
   versions: [...new Set([...preservedVersions, meta.corpus_version])],
   changes: prepared.changes,

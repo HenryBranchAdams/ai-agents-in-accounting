@@ -26,3 +26,13 @@ Read [the design system](docs/design-system.md) and use the shadcn skill when av
 7. Complete the desktop/mobile and keyboard checks in [TESTING.md](TESTING.md). Build downloads and the source ZIP together. Include verification evidence and update affected contributor and architecture guidance.
 
 Typography, spacing and reading widths include application-owned choices; do not describe every token or HTML element as supplied by shadcn. Canonical records, rights, stable URLs and agent contracts are outside a presentation-only change.
+
+## Edited workflow explanations
+
+Use optional `data.editorial_brief.reading` for a finished answer-first explanation. Reuse `question`, `answer`, `findings`, `unknowns` and `reading_order`; add `reading_notes` for source-specific reasons to read. The schema describes scope, critical limitation, narrative sections, synthetic example table, responsibility rows, exception and scoped dependency review. Do not infer professional review or empirical performance from the template.
+
+Keep sourced claims linked to canonical source IDs and exact available locators. State a missing locator or failed source fetch rather than inventing precision. Label proposed controls and synthetic examples locally. Keep the edited HTML and Markdown aligned through `src/editorial.ts` and `BriefReading`.
+
+Declare relevant dependencies, including the host record, in `reading.review.dependencies`. `editorialHash` in `scripts/editorial-review.mjs` hashes sorted object keys and ordered arrays from the complete canonical record except `data.editorial_brief` (excluded to avoid self-reference). Recompute declarations only after inspecting the changed material and recording the actual review scope. The build reports `editorial-review-needed` when a dependency changes and publishes the same report in `/downloads/maintenance.json`; it never approves or rewrites an answer. An unchanged hash establishes content parity only. Do not change source review dates/statuses to acknowledge an editorial check.
+
+Apply the [unslop writing gate](https://github.com/cursor/plugins/blob/main/pstack/skills/unslop/SKILL.md) to new site writing. Use concrete accounting facts, plain sentences and straight quotes. Remove generic slogans and filler without weakening source qualifications or changing historical quotations.

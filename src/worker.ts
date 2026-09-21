@@ -16,6 +16,7 @@ import coverageSchema from "../schemas/coverage.schema.json";
 import researchSchema from '../schemas/research.schema.json';
 import {
   browse,
+  homePage,
   briefsPage,
   recordPage,
   collectionsPage,
@@ -381,7 +382,8 @@ async function route(request: Request, env: Env) {
   const alias = (redirects as Record<string, string>)[path];
   if (alias)
     return new Response(null, { status: 308, headers: { Location: alias } });
-  if (path === "/") return html(browse(url.searchParams));
+  if (path === "/" && url.searchParams.size === 0) return html(homePage());
+  if (path === "/" || path === "/library") return html(browse(url.searchParams));
   if (path === "/briefs") return html(briefsPage());
   if (path === "/coverage") return html(coveragePage(url.searchParams));
   if (path === "/schemas/coverage.schema.json") return json(coverageSchema);

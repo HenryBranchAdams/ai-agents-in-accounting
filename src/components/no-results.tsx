@@ -11,7 +11,7 @@ import {
 export function NoResults({
   title = "No records match these filters.",
   description = "Try fewer words or broaden the topic and source filters.",
-  href = "/",
+  href = "/library",
   action = "Browse all records",
 }: {
   title?: string;
