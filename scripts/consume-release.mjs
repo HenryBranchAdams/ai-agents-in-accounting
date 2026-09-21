@@ -56,6 +56,19 @@ export function inspectProvenance({runId,revision,attempt}) {
  const proof=validateProvenance({run,jobs,artifact,main,revision,attempt,commit});
  return {proof,run,jobs,artifact,main,commit};
 }
+// Resume without downloading or rebuilding, but never trust a saved receipt.
+// Authenticate the live GitHub state again, bind the local manifest to the
+// platform-digested ZIP, then validate the actual extracted application/storage.
+export async function authenticateExistingRelease({runId,revision,attempt,directory,archive}) {
+ const evidence=inspectProvenance({runId,revision,attempt});
+ assert.equal(fs.statSync(archive).size,evidence.artifact.size_in_bytes,"Cached ZIP length differs from platform");
+ const verifier=fileURLToPath(new URL("./verify-release-archive.py",import.meta.url));
+ const bound=JSON.parse(execFileSync("python3",[verifier,archive,directory,evidence.artifact.digest],{encoding:"utf8",maxBuffer:1024*1024}));
+ const result=validatePackage(directory);
+ for(const [key,expected] of Object.entries({repository,workflow_path:workflowPath,event:"push",ref:"refs/heads/main",source_revision:revision,source_tree:evidence.proof.source_tree,run_id:runId,run_attempt:attempt}))assert.equal(result.manifest[key],expected,`Cached package provenance mismatch: ${key}`);
+ const fresh=inspectProvenance({runId,revision,attempt});assert.deepEqual(fresh.proof,evidence.proof,"Authoritative state changed during cached validation");
+ return {...result,proof:evidence.proof,...bound};
+}
 const download = (artifact,file)=>new Promise((resolve,reject)=>{
  const fd=fs.openSync(file,"wx",0o600);
  const child=spawn("gh",["api",`repos/${repository}/actions/artifacts/${artifact.id}/zip`],{stdio:["ignore",fd,"pipe"]});
