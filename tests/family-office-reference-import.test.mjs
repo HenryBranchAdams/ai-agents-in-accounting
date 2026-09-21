@@ -8,7 +8,7 @@ const read = p => JSON.parse(fs.readFileSync(p, 'utf8'));
 function fixture() {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'fo-reference-'));
   const copy = p => { fs.mkdirSync(path.dirname(path.join(root, p)), {recursive: true}); fs.cpSync(p, path.join(root, p), {recursive: true}); };
-  for (const p of ['data/corpus', packetPath, 'schemas/record.schema.json', 'data/catalog.json', 'data/coverage/mapping-overrides.json', 'data/coverage/research-questions.json', 'data/coverage/subsector-profiles.json', 'data/coverage/subsector-screening.json']) copy(p);
+  for (const p of ['data/corpus', packetPath, 'schemas/record.schema.json', 'data/catalog.json', 'data/coverage/mapping-overrides.json', 'data/coverage/research-questions.json', 'data/coverage/subsector-profiles.json', 'data/coverage/subsector-screening.json', 'data/coverage/assessments.json']) copy(p);
   // The same tests work before import and against the integrated edition.
   return root;
 }
@@ -41,9 +41,13 @@ test('planning validates all records and references without changing canonical b
 test('import preserves every existing record and named answer, then replays without changes', () => {
   const root=fixture(); try {
     const before=fileSnapshot(root), questions=read(path.join(root,'data/coverage/research-questions.json')).questions;
+    const assessments=read(path.join(root,'data/coverage/assessments.json')).assessments;
     applyIntegration(root,{apply:true});
     for (const [f,b] of before) { const after=read(path.join(root,f)); for (const old of JSON.parse(b)) assert.deepEqual(after.find(r=>r.id===old.id),old,old.id); }
     assert.deepEqual(read(path.join(root,'data/coverage/research-questions.json')).questions,questions);
+    assert.deepEqual(read(path.join(root,'data/coverage/assessments.json')).assessments,assessments);
+    assert.equal(read(path.join(root,'data/coverage/assessments.json')).assessment_version,'2026-09-21.5');
+    assert.equal(read(path.join(root,'data/coverage/research-questions.json')).question_set_version,'2026-09-21.5');
     const first=fileSnapshot(root), replay=applyIntegration(root,{apply:true});
     assert.equal(replay.changed.length,0); assert.equal(replay.written.length,0);
     for (const [f,b] of first) assert.deepEqual(fs.readFileSync(path.join(root,f)),b);
@@ -62,7 +66,7 @@ test('unexpected edition and a late mapping conflict fail before any write', () 
       const f=path.join(root,mode==='edition'?'data/catalog.json':'data/coverage/mapping-overrides.json'),v=read(f);
       if(mode==='edition')v.corpus_version='2099-01-01.1';else v.records['collection-family-office-reference']={note:'conflicting decision'};
       fs.writeFileSync(f,JSON.stringify(v)); const before=fileSnapshot(root);
-      assert.throws(()=>applyIntegration(root,{apply:true}));
+      assert.throws(()=>applyIntegration(root,{apply:true}),mode==='edition'?/Unexpected corpus edition/:/Mapping conflict/);
       for(const[f,b]of before)assert.deepEqual(fs.readFileSync(path.join(root,f)),b);
     } finally {fs.rmSync(root,{recursive:true,force:true});}
   }
