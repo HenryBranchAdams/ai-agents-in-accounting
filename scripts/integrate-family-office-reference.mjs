@@ -60,13 +60,13 @@ const rights = {metadata: 'CC0-1.0', content: 'CC-BY-4.0', external_content: 'Ex
 function record(id, kind, title, summary, sourceIds, relatedIds, data, topics = []) {
   return {id, kind, title, summary, topics: unique(['Family office accounting', 'Source discovery', ...topics]), industries: [], jurisdiction: 'United States; selected named state and international interfaces', source_type: null, publisher: 'Accounting Agents contributors', source_url: null, source_ids: unique(sourceIds), related_ids: unique(relatedIds), reviewed_at: null, review_status: 'discovery-imported-not-reverified', provenance: {added_on: date, research_package: '2026-09-21.source-library.1', integration_method: 'Guarded additive import with explicit identity decisions', note: 'Imported source-discovery annotations and editorial reading paths. Original discovery dates are retained in the data; no new publisher, professional or accounting review is asserted.'}, rights: clone(rights), data: {id, ...data}};
 }
-export function planIntegration(root, {edition = '2026-09-21.4'} = {}) {
+export function planIntegration(root, {edition = '2026-09-21.5'} = {}) {
   assert.match(edition, /^\d{4}-\d{2}-\d{2}\.\d+$/);
   const packet = loadPacket(root);
   const read = relative => JSON.parse(fs.readFileSync(path.join(root, relative), 'utf8'));
   const meta = read('data/catalog.json');
-  assert.ok(['2026-09-21.3', edition].includes(meta.corpus_version), 'Unexpected corpus edition; reconcile against current main before importing');
-  if (meta.corpus_version === edition) assert.equal(meta.family_office_reference?.source_digest, packet.meta.sources_sha256, 'Edition already belongs to another change');
+  assert.ok(['2026-09-21.3', '2026-09-21.4', edition].includes(meta.corpus_version), 'Unexpected corpus edition; reconcile against current main before importing');
+  if (meta.corpus_version !== '2026-09-21.3') assert.equal(meta.family_office_reference?.source_digest, packet.meta.sources_sha256, 'Edition already belongs to another change');
   const files = ['source', 'guide', 'collection'];
   const byKind = Object.fromEntries(files.map(kind => [kind, read(`data/corpus/${kind}.json`)]));
   const all = fs.readdirSync(path.join(root, 'data/corpus')).filter(f => f.endsWith('.json')).flatMap(f => read(`data/corpus/${f}`));
@@ -130,9 +130,9 @@ export function planIntegration(root, {edition = '2026-09-21.4'} = {}) {
   meta.family_office_reference = {source_digest: packet.meta.sources_sha256, entry_id: entryId, package: packet.meta.edition};
   const writes = new Map(files.map(kind => [`data/corpus/${kind}.json`, byKind[kind]]));
   writes.set('data/catalog.json', meta); writes.set('data/coverage/mapping-overrides.json', overrides);
-  for (const file of ['research-questions', 'subsector-profiles', 'subsector-screening']) {
+  for (const file of ['research-questions', 'subsector-profiles', 'subsector-screening', 'assessments']) {
     const relative = `data/coverage/${file}.json`, value = read(relative);
-    value.corpus_version = edition; writes.set(relative, value);
+    if (Object.hasOwn(value, 'corpus_version')) value.corpus_version = edition; if (file === 'research-questions') value.question_set_version = edition; if (file === 'assessments') value.assessment_version = edition; writes.set(relative, value);
   }
   return {writes, additions, changed, counts: {sources_reused: packet.decisions.rows.filter(r => r.disposition === 'reuse').length, sources_added: additions.filter(r => r.kind === 'source').length, guides: additions.filter(r => r.kind === 'guide').length, collections: 1, changed_records: changed.length}, edition};
 }
@@ -165,7 +165,7 @@ export function applyIntegration(root, options = {}) {
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   try {
     const args = process.argv.slice(2); const allowed = new Set(['--apply', '--root', '--edition']);
-    let root = process.cwd(), edition = '2026-09-21.4', apply = false;
+    let root = process.cwd(), edition = '2026-09-21.5', apply = false;
     for (let i = 0; i < args.length; i++) {
       assert.ok(allowed.has(args[i]), `Unknown option ${args[i]}`);
       if (args[i] === '--apply') apply = true;

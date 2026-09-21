@@ -41,7 +41,7 @@ const before = JSON.parse(fs.readFileSync('data/releases/2026-09-21.3/corpus.jso
 const historical = execFileSync('git', ['ls-files', '-z', 'data/releases', 'data/coverage/snapshots'], {encoding: 'utf8'}).split('\0').filter(Boolean).filter(p => p !== 'data/releases/index.json');
 const previousHashes = new Map(historical.map(p => [p, hash(fs.readFileSync(p))]));
 const questions = JSON.parse(fs.readFileSync('data/coverage/research-questions.json')).questions;
-const assessments = fs.readFileSync('data/coverage/assessments.json');
+const assessments = JSON.parse(fs.readFileSync('data/coverage/assessments.json')).assessments;
 run('--test', 'tests/family-office-reference-import.test.mjs');
 console.log(applyIntegration(process.cwd(), {apply: true}).counts);
 const page = 'src/pages/record.tsx';
@@ -53,7 +53,7 @@ if (!source.includes('<FamilyOfficeReference record={r} />')) {
   fs.writeFileSync(page, source);
 }
 run('scripts/coverage-mappings.mjs');
-run('scripts/coverage-snapshot.mjs', '2026-09-21.4');
+run('scripts/coverage-snapshot.mjs', '2026-09-21.5');
 const temporary = fs.mkdtempSync(path.join(os.tmpdir(), 'fo-reference-export-'));
 try {
   const {build} = await import('esbuild');
@@ -64,10 +64,10 @@ try {
   assert.equal(current.records.length, 1479);
   for (const old of before.records) assert.deepEqual(current.records.find(r => r.id === old.id), old, `Existing record changed: ${old.id}`);
   const {writeReleaseArtifacts} = await import('./release-history.mjs');
-  writeReleaseArtifacts(current, 'data/releases', {previousExport: before});
+  writeReleaseArtifacts(current, 'data/releases', {previousExport: JSON.parse(fs.readFileSync('data/releases/2026-09-21.4/corpus.json', 'utf8'))});
 } finally {fs.rmSync(temporary, {recursive: true, force: true});}
 assert.deepEqual(JSON.parse(fs.readFileSync('data/coverage/research-questions.json')).questions, questions);
-assert.deepEqual(fs.readFileSync('data/coverage/assessments.json'), assessments);
+assert.deepEqual(JSON.parse(fs.readFileSync('data/coverage/assessments.json')).assessments, assessments);
 for (const [file, value] of previousHashes) assert.equal(hash(fs.readFileSync(file)), value, `Historical artifact changed: ${file}`);
 run('scripts/validate.mjs');
 run('--test', 'tests/family-office-reference-import.test.mjs');
