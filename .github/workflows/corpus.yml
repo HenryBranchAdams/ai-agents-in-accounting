@@ -48,6 +48,14 @@ jobs:
           compression-level: 0
           if-no-files-found: error
           retention-days: 14
+      - name: Retain browser screenshots and input identity
+        if: always() && hashFiles('outputs/browser/**') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: corpus-browser-${{ github.sha }}
+          path: outputs/browser/
+          if-no-files-found: error
+          retention-days: 14
       - name: Retain source and generated verification output
         if: always()
         uses: actions/upload-artifact@v4
@@ -63,6 +71,5 @@ jobs:
             dist/storage/manifest.json
             dist/storage/qualification.json
             outputs/verification/
-            outputs/browser/
           if-no-files-found: error
           retention-days: 14
