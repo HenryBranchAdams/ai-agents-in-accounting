@@ -32,7 +32,7 @@ These are documentation changes only. Corpus records, assessments, stable URLs, 
 | Agriculture draft `/private/tmp/aa-int97-agriculture` | Superseded by accepted agriculture integration. The local pause marker and placeholder test are historical incomplete work, not another intended release. |
 | `/private/tmp/aa-information-applied-20260919` | Partial application experiment, including deleted historical release files. Accepted information integration is in main; its destructive draft deletions are not propagated. |
 | Property/services/government worktree's three dirty importers | Duplicate current-mode blocks and a repeated option already represented once in main. Do not duplicate the implementation. |
-| Older operating-transactions review checkout | Review-time guide source-link additions are covered by accepted later canonical records. Preserve the diagnostic checkout. |
+| Older operating-transactions review checkout | Generator mutation reproduced a reported scope bug. The final accepted correction deliberately excludes these three sources from industry guides236/237/238 and keeps them on the connected construction guide. Preserve the diagnostic checkout; see the recovered AA-R119 review receipt. |
 | Unactivated institutional draft releases18.124/19.124 | Retained in source branches; replaced by accepted current-main releases12401 and later. They are not retroactively represented as published editions. |
 | Old branches, detached reviews and worktree registrations | Retained without deletion or rewriting. Relevant content is integrated or explicitly superseded; missing temporary checkout remains a registration only. |
 
