@@ -147,7 +147,7 @@ function runAppliedValidation(sourceRoot) {
   const tempRoot = path.join(os.tmpdir(), `aa-i117-applied-${process.pid}-${Date.now()}`);
   let cloned = false;
   try {
-    execFileSync("git", ["clone", "--local", "--no-hardlinks", sourceRoot, tempRoot], { stdio: "pipe" });
+    execFileSync("git", ["clone", "--local", "--no-hardlinks", "--no-checkout", sourceRoot, tempRoot], { stdio: "pipe" });
     cloned = true;
     execFileSync("git", ["-C", tempRoot, "checkout", "--detach", pkg.base_commit], { stdio: "pipe" });
     copyPackageAndScript(sourceRoot, tempRoot);
@@ -156,16 +156,14 @@ function runAppliedValidation(sourceRoot) {
     execFileSync(process.execPath, ["scripts/coverage-mappings.mjs"], { cwd: tempRoot, stdio: "pipe" });
     const validated = execFileSync(process.execPath, ["scripts/validate.mjs"], { cwd: tempRoot, encoding: "utf8" });
     assertSnapshotSelfMetadata(tempRoot);
-    const corpusVersion = read(rel(tempRoot, "data/catalog.json")).corpus_version;
-    const currentRelease = rel(tempRoot, `data/releases/${corpusVersion}`);
-    assert.ok(fs.existsSync(currentRelease), `expected preserved current release input: ${corpusVersion}`);
-    fs.rmSync(currentRelease, { recursive: true, force: true });
-    execFileSync(process.execPath, ["scripts/build.mjs"], { cwd: tempRoot, stdio: "pipe" });
+    const retrievalBuild = JSON.parse(execFileSync(process.execPath,
+      [path.join(sourceRoot, "scripts/build-applied-agent.mjs")],
+      { cwd: tempRoot, encoding: "utf8" }));
     const lint = execFileSync("npm", ["run", "lint"], { cwd: tempRoot, encoding: "utf8" });
     const retrieval = execFileSync(process.execPath, ["--input-type=module", "-e", `import { executeAgent } from './dist/internal/agent.mjs';\nconst search=executeAgent('search',{q:'nonprofit endowment spending',limit:20});\nif(!search.results.some(r=>r.id==='guide-us-nonprofit-endowment-spending')) throw new Error('new guide not retrievable');\nconst got=executeAgent('get',{id:'guide-us-nonprofit-endowment-spending',limit:20});\nif(got.record.id!=='guide-us-nonprofit-endowment-spending') throw new Error('new guide get failed');\nif(!got.passages.some(p=>p.text.includes('underwater'))) throw new Error('expected passage missing');\ntry { executeAgent('search',{q:'nonprofit',limit:21}); throw new Error('limit 21 unexpectedly accepted'); } catch (error) { if (!String(error.message).match(/limit|20|maximum/i)) throw error; }\nconsole.log(JSON.stringify({search:search.results.length,passages:got.passages.length}));`], { cwd: tempRoot, encoding: "utf8" }).trim();
     const after = execFileSync("git", ["-C", sourceRoot, "status", "--porcelain"], { encoding: "utf8" });
     assert.equal(after, before, "applied validation changed the source worktree");
-    return { temp_git_worktree: true, applied: result, validator_output: validated.trim(), lint_output: lint.trim(), snapshot_count: assertSnapshotSelfMetadata(tempRoot), build_staging: `removed only disposable current release ${corpusVersion}`, retrieval_output: retrieval };
+    return { temp_git_worktree: true, applied: result, validator_output: validated.trim(), lint_output: lint.trim(), snapshot_count: assertSnapshotSelfMetadata(tempRoot), build_staging: "retrieval-only bundle; immutable releases retained", retrieval_build: retrievalBuild, retrieval_output: retrieval };
   } finally {
     if (cloned) fs.rmSync(tempRoot, { recursive: true, force: true });
     else fs.rmSync(tempRoot, { recursive: true, force: true });

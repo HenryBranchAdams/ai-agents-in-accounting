@@ -85,6 +85,8 @@ test("disposable applied validation stages shared nonprofit dependencies and lea
   const before = execFileSync("git", ["status", "--porcelain"], { cwd: root, encoding: "utf8" });
   const proof = runAppliedValidation(root);
   assert.equal(proof.temp_git_worktree, true);
+  assert.equal(proof.retrieval_build.contract, "applied-retrieval-build");
+  assert.ok(proof.retrieval_build.bytes > 0 && proof.retrieval_build.bytes < 32 * 1024 * 1024);
   assert.match(proof.validator_output, /Corpus integrity verified/);
   assert.match(proof.retrieval_output, /search/);
   assert.equal(execFileSync("git", ["status", "--porcelain"], { cwd: root, encoding: "utf8" }), before);
