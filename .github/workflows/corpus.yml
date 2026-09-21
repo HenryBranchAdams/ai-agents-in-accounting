@@ -8,7 +8,7 @@ permissions:
 jobs:
   verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
         with:
@@ -28,6 +28,12 @@ jobs:
           name: corpus-verification-${{ github.sha }}
           path: |
             ${{ runner.temp }}/repository-source.zip
-            dist/
+            dist/server/
+            dist/.openai/
+            dist/client/assets/data/
+            dist/client/assets/navigation-*.js
+            dist/client/style.css
+            dist/storage/manifest.json
+            dist/storage/qualification.json
           if-no-files-found: error
           retention-days: 14
