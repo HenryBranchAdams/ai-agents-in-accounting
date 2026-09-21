@@ -59,7 +59,7 @@ test('lost PUT responses reconcile before retry; seal is revalidated on every re
   assert.equal(first.sealed,true);assert.equal(first.activation_authority,false);assert.equal(first.retries,2);assert.ok(mock.peak()<=4);
   for(const key of Object.keys(objects))assert.equal(mock.calls.filter(call=>call.key===`/_release/objects/${key}`&&call.method==='PUT').length,1);
   const before=mock.calls.length,again=await importStorage(options);
-  assert.equal(again.objects_reused,5);assert.equal(again.objects_uploaded,0);
+  assert.equal(again.objects_confirmed_by_initial_head,5);assert.equal(again.object_put_acknowledgments,0);
   assert.equal(mock.calls.slice(before).filter(call=>call.key.includes('/manifests/')&&call.method==='PUT').length,1);
   assert.equal(JSON.stringify(first).includes(token),false);
  }finally{fs.rmSync(directory,{recursive:true,force:true});}

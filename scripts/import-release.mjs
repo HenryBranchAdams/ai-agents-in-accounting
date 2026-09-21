@@ -25,10 +25,10 @@ export async function importStorage({origin,directory,token,fetchImpl=fetch,dela
   const manifestBody=fs.readFileSync(path.join(directory,'manifest.json'));
   assert.equal(sha256(manifestBody),verified.manifest,'Manifest changed after validation');
   const manifest=JSON.parse(manifestBody);
-  const stats={requests:0,retries:0,objects_reused:0,objects_uploaded:0,uploaded_bytes:0,request_body_bytes:0};
+  const stats={requests:0,retries:0,objects_confirmed_by_initial_head:0,object_put_acknowledgments:0,object_put_acknowledged_bytes:0,request_body_bytes_attempted:0};
   const retryable=status=>[408,429,500,502,503,504].includes(status);
   async function request(kind,key,method,body) {
-    stats.requests++;stats.request_body_bytes+=body?.byteLength||0;
+    stats.requests++;stats.request_body_bytes_attempted+=body?.byteLength||0;
     let response;
     try {
       response=await fetchImpl(`${origin}/_release/${kind}/${key}`,{method,headers:{Authorization:`Bearer ${token}`},body,redirect:'manual',signal:AbortSignal.timeout(120000)});
@@ -46,13 +46,13 @@ export async function importStorage({origin,directory,token,fetchImpl=fetch,dela
       try {
         // Reconcile first, including after a lost PUT response or resumed run.
         const head=await request('objects',key,'HEAD');
-        if(head.ok){stats.objects_reused++;return;}
+        if(head.ok){stats.objects_confirmed_by_initial_head++;return;}
         if(head.status!==404)throw Object.assign(new Error(`Object preflight returned HTTP ${head.status}`),{transient:retryable(head.status)});
         const bytes=fs.readFileSync(path.join(directory,'objects',key));
         assert.equal(bytes.length,size);assert.equal(sha256(bytes),key,'Object changed before upload');
         const put=await request('objects',key,'PUT',bytes);
         if(!put.ok)throw Object.assign(new Error(`Object import returned HTTP ${put.status}`),{transient:retryable(put.status)});
-        stats.objects_uploaded++;stats.uploaded_bytes+=bytes.length;
+        stats.object_put_acknowledgments++;stats.object_put_acknowledged_bytes+=bytes.length;
         const confirmed=await request('objects',key,'HEAD');
         if(!confirmed.ok)throw Object.assign(new Error(`Object confirmation returned HTTP ${confirmed.status}`),{transient:retryable(confirmed.status)||confirmed.status===404});
         return;

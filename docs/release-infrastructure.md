@@ -22,6 +22,8 @@ Git is the authoritative source for records, stable IDs, relationships, coverage
 8. Observe terminal native deployment success, then verify live graph/reading/search/filter journeys, research content, API/corpus/index identity, runtime assets, security headers and download integrity against the intended package. A saved version or green local check is not publication evidence.
 9. Remove the temporary import secret through native environment tools, preserve unrelated values, and redeploy the same saved version if needed to apply the final environment revision. Confirm terminal success, native environment state and live behavior after cleanup. Retain prior saved versions, all immutable storage objects, and failed-attempt evidence.
 
+Import measurements distinguish payload bytes attempted, acknowledged object PUT bytes, read-back confirmations and retries; they are not a measurement of TLS overhead or provider billing. A lost response can be reconciled without another object PUT.
+
 The `.stage.json` sidecar is a compact record of inputs, hashes, import measurements and copied members, not future deployment authority. Resume from the last valid stage by rereading remote state. Cached-artifact authentication avoids retransferring an unchanged ZIP but still hashes it and validates the extracted bytes. Missing/corrupt caches or expired/missing artifacts require the recovery described in `release-artifact.md`. Stage, native save/deploy and final cleanup results belong in the operational checkpoint outside the source inventory.
 
 ## Failure and rollback
