@@ -41110,7 +41110,7 @@
     "source_url": "https://doi.org/10.1007/s11142-024-09822-y",
     "source_ids": [],
     "related_ids": [],
-    "review_status": "inherited-not-reverified",
+    "review_status": "draft-methods-review-in-progress",
     "reviewed_at": null,
     "provenance": {
       "imported_on": "2026-09-07",
@@ -41136,15 +41136,15 @@
     },
     "data": {
       "id": "src_095yto0",
-      "record_version": "1",
-      "record_updated_at": "2026-09-11",
+      "record_version": "2",
+      "record_updated_at": "2026-09-21",
       "topic": "Accounting and reporting",
       "source_type": "Research paper",
       "owner": "Musaib Ashraf",
       "title": "Does automation improve financial reporting? Evidence from internal controls",
       "published_or_status": "Peer-reviewed; 2025",
       "jurisdiction": "United States public companies and ICFR",
-      "access": "Abstract open; article access varies",
+      "access": "Author-hosted published PDF read in selected methods/results sections; online appendix not reviewed.",
       "summary": "Archival evidence associates disclosed accounting automation with fewer ICFR material weaknesses, while later monitoring declines and remaining failures can be more consequential. Automation is text-inferred and combines several technologies, so the study does not isolate generative agents or prove causality.",
       "curation": {
         "applicability": [],
@@ -41239,7 +41239,41 @@
       "limitations": [
         "Full text was not readable from the supplied locator after a bounded exact-title/identifier recovery search.",
         "Scope is limited to the stated jurisdiction or population; transfer to other accounting settings requires local validation."
-      ]
+      ],
+      "empirical_review_173": {
+        "status": "Partial methods review; package synthesis pending",
+        "reviewed_on": "2026-09-21",
+        "version": "Published online 2024-04-23; journal issue 2025, 30:436–479",
+        "url": "https://pubs.musaibashraf.com/Ashraf_2025.pdf",
+        "sha256": "625b27b61b71f23de416acb5548dd37e1188a8d9b488c7971bead641a61dc4de",
+        "read_scope": "Sections 4–6.2, 6.4, selected section 7; Tables 1, 4, 6–7 visually inspected.",
+        "population": "US public-company firm-years, 2009–2019, requiring SOX404(b) opinions.",
+        "sample": {
+          "initial": 39888,
+          "missing_disclosures": 7203,
+          "missing_controls_or_singletons": 7081,
+          "final": 25604,
+          "locator": "Table 1, p.447"
+        },
+        "intervention": "Disclosure keyword screening plus manual reading identifies material accounting automation; underlying technologies usually unspecified.",
+        "design": "Observational firm/year fixed-effects linear probability model; firm-clustered errors. Separate changes and matched difference-in-differences checks.",
+        "result": {
+          "outcome": "SOX404(b) material weakness",
+          "coefficient": -0.0745,
+          "t_statistic": -3.3,
+          "p": "<=0.01",
+          "locator": "Table 4A, p.453",
+          "interpretation": "Association in probability units; not an odds ratio or randomized treatment effect."
+        },
+        "human_work": "Audit fees and committee meetings are monitoring proxies, not measured preparation/review/rework hours. Tables 6–7 show positive initial associations and negative interactions with normalized adoption age.",
+        "limits": "Not generative-agent evidence. Disclosure selection, missing observations, concurrent remediation and unobserved changes constrain causality. Appendix robustness, raw data and code not independently verified.",
+        "rights": "Exclusive Springer licence stated; no corpus full text, dataset or training permission inferred.",
+        "application": "Motivates retaining oversight and separately measuring review burden; does not validate an automated close.",
+        "uncertainty": "Directional hypotheses use one-sided tests; other tests are two-sided (Table 4 note).",
+        "tool_version": "Not identified; broad automation classification.",
+        "funding_conflicts": "Not evaluated in this scoped reading.",
+        "comparison": "Firm-years without preceding disclosed automation; no randomized allocation."
+      }
     }
   },
   {
