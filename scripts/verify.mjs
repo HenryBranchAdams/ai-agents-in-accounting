@@ -80,29 +80,35 @@ export async function runVerification({root=process.cwd(),revision,mode="release
   }finally{fs.unlinkSync(lock);}
 }
 
-export async function checkWorkingCopy({root=process.cwd(),destination}={}) {
+export async function checkWorkingCopy({root=process.cwd(),destination,candidate}={}) {
+  if(candidate) {
+    const capturedRoot=path.resolve(root,candidate);
+    const captured=JSON.parse(fs.readFileSync(path.join(capturedRoot,"outputs/candidate.json")));
+    return runVerification({root:capturedRoot,revision:captured.source_revision,mode:"working-copy"});
+  }
   const checked=await preflight({root,mode:"working-copy"});
   if(!checked.ok)throw new Error(`Working-copy preflight refused: ${checked.problems.join("; ")}`);
-  const candidate=captureCandidate({root,destination:destination||path.join(root,"outputs/candidates",`${checked.input_digest.slice(0,16)}-${Date.now()}`)});
+  const snapshot=captureCandidate({root,destination:destination||path.join(root,"outputs/candidates",`${checked.input_digest.slice(0,16)}-${Date.now()}`)});
   // npm ci is performed inside the independent capture; no mutable shared modules.
-  const log=path.join(candidate.destination,"outputs/install.log");
-  const installed=await execute(["npm","ci","--offline"],candidate.destination,log);
+  const log=path.join(snapshot.destination,"outputs/install.log");
+  const installed=await execute(["npm","ci","--offline"],snapshot.destination,log);
   if(installed.status!==0)throw new Error(`Candidate install failed; retain ${log}. Populate the npm cache with npm ci in the source checkout and retry a fresh candidate.`);
-  return runVerification({root:candidate.destination,revision:candidate.source_revision,mode:"working-copy"});
+  return runVerification({root:snapshot.destination,revision:snapshot.source_revision,mode:"working-copy"});
 }
 
 if(import.meta.url===pathToFileURL(process.argv[1]||"").href){
   try{
     const args=process.argv.slice(2);const options={};let preflightOnly=false,working=false;
     for(let i=0;i<args.length;i++){
-      if(args[i]==="--revision"||args[i]==="--phase"){const key=args[i].slice(2);if(!args[i+1]||args[i+1].startsWith("--"))throw new Error(`Missing ${key}`);options[key]=args[++i];}
+      if(args[i]==="--revision"||args[i]==="--phase"||args[i]==="--candidate"){const key=args[i].slice(2);if(!args[i+1]||args[i+1].startsWith("--"))throw new Error(`Missing ${key}`);options[key]=args[++i];}
       else if(args[i]==="--preflight")preflightOnly=true;
       else if(args[i]==="--working-copy")working=true;
       else throw new Error(`Unknown verification argument: ${args[i]}`);
     }
+    if(options.candidate && (!working || preflightOnly))throw new Error("--candidate requires --working-copy verification");
     if(preflightOnly){
       const revision=options.revision||execFileSync("git",["rev-parse","HEAD"],{encoding:"utf8"}).trim();
       const result=await preflight({revision});console.log(JSON.stringify(result,null,2));process.exitCode=result.ok?0:1;
-    }else console.log(JSON.stringify(working?await checkWorkingCopy():await runVerification(options),null,2));
+    }else console.log(JSON.stringify(working?await checkWorkingCopy(options):await runVerification(options),null,2));
   }catch(error){console.error(error.message);process.exitCode=1;}
 }
