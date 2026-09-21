@@ -6,7 +6,11 @@ import { once } from "node:events";
 import { pathToFileURL } from "node:url";
 import { previewInventory, loopbackCapability, sha256 } from "./release-inputs.mjs";
 
-const fileEntries = root => fs.readdirSync(root,{recursive:true}).sort().filter(name=>fs.lstatSync(path.join(root,name)).isFile()).map(name=>({path:name,sha256:sha256(fs.readFileSync(path.join(root,name)))}));
+const fileEntries = root => fs.readdirSync(root,{recursive:true}).sort().flatMap(name=>{
+ const file=path.join(root,name),stat=fs.lstatSync(file);
+ if(stat.isSymbolicLink()||(!stat.isFile()&&!stat.isDirectory()))throw new Error(`Nonregular preview output: ${name}`);
+ return stat.isFile()?[{path:name,sha256:sha256(fs.readFileSync(file))}]:[];
+});
 const sameFiles = (root,files) => JSON.stringify(fileEntries(root))===JSON.stringify(files);
 const sourcePath = file => /^(src|data|public|schemas|scripts|tests|docs|LICENSES|\.github|\.openai)\//.test(file) || /^(package(?:-lock)?\.json|tsconfig\.json|eslint\.config\.mjs|components\.json|\.gitignore|LICENSE|[^/]+\.(md|cff))$/.test(file);
 
@@ -21,10 +25,12 @@ export async function buildPreview({root=process.cwd(),directory=path.join(root,
  const lockFd=fs.openSync(lock,"wx",0o600);fs.writeFileSync(lockFd,String(process.pid));fs.closeSync(lockFd);
  try {
  const receiptPath=path.join(destination,"preview-build.json");
- if(fs.existsSync(receiptPath)){
-  const cached=JSON.parse(fs.readFileSync(receiptPath));
-  if(cached.identity===identity && cached.input_digest===before.digest && sameFiles(path.join(destination,"dist"),cached.files))
-   return {...cached,directory:destination,reused:true,seconds:(performance.now()-started)/1000};
+ if(fs.existsSync(destination)){
+  try {
+   const cached=JSON.parse(fs.readFileSync(receiptPath));
+   if(cached.identity===identity && cached.input_digest===before.digest && sameFiles(path.join(destination,"dist"),cached.files))
+    return {...cached,directory:destination,reused:true,seconds:(performance.now()-started)/1000};
+  } catch { /* Missing/corrupt cache is evidence to preserve and rebuild. */ }
   // Preserve corrupted evidence; a fresh attempt replaces only the cache name.
   fs.renameSync(destination,`${destination}.invalid-${Date.now()}`);
  }
@@ -120,10 +126,10 @@ export async function startPreview({root=process.cwd(),port=0,watch=true}={}){
  const scheduleRebuild=()=>{const task=rebuild();rebuilding.add(task);void task.finally(()=>rebuilding.delete(task)).catch(()=>{});return task;};
  const close=async()=>{closed=true;clearTimeout(timer);watcher?.close();controller.abort();for(const child of owned)child.stop();await Promise.allSettled([...rebuilding]);server.closeAllConnections();await new Promise(resolve=>server.close(resolve));};
  try{
-  await scheduleRebuild();
   if(watch)watcher=fs.watch(root,{recursive:true},(_,name)=>{
    if(name&&sourcePath(String(name))){clearTimeout(timer);timer=setTimeout(()=>void scheduleRebuild().catch(error=>console.error(error.message)),180);}
   });
+  await scheduleRebuild();
   return {origin,close,rebuild:scheduleRebuild,get identity(){return current?.build.identity;}};
  }catch(error){await close();throw error;}
 }

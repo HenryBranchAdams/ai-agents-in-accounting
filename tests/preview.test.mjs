@@ -37,6 +37,9 @@ test('preview cache binds source, revision and output bytes; failed candidates p
   fs.writeFileSync(path.join(initial.directory,'dist/server/index.js'),'corruption');
   assert.equal((await buildPreview({root})).reused,false);
   assert.ok(fs.readdirSync(path.join(root,'outputs/previews')).some(name=>name.includes('.invalid-')));
+  fs.writeFileSync(path.join(initial.directory,'preview-build.json'),'broken JSON');assert.equal((await buildPreview({root})).reused,false);
+  fs.unlinkSync(path.join(initial.directory,'preview-build.json'));assert.equal((await buildPreview({root})).reused,false);
+  fs.symlinkSync('/etc/hosts',path.join(initial.directory,'dist/client/unexpected-link'));assert.equal((await buildPreview({root})).reused,false);
   git(['-c','user.name=Fixture','-c','user.email=fixture@example.invalid','commit','--allow-empty','-m','new identity']);
   const newRevision=await buildPreview({root});assert.notEqual(newRevision.identity,initial.identity);
   fs.writeFileSync(path.join(root,'src/text.txt'),'fail');await assert.rejects(buildPreview({root}),/build failed/);
