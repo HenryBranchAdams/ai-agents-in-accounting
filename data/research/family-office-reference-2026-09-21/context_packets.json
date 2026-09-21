@@ -1,0 +1,161 @@
+{
+  "schema_version": "1.0.0",
+  "context_packets": [
+    {
+      "id": "CTX-01",
+      "title": "Reporting mandate and basis",
+      "required_context": [
+        "Who is the reporting entity and intended reader?",
+        "Report purpose: entity statements, personal finances, fiduciary account, tax, investment performance or administration",
+        "Period, currency, materiality policy and issued/unissued status",
+        "Declared GAAP, tax, cash or other basis and prior accounting policies",
+        "Engagement and approval responsibilities"
+      ],
+      "privacy_boundary": "Use role labels and document IDs; do not put names or private balances in public search prompts.",
+      "status": "Checklist only; no private family documents collected"
+    },
+    {
+      "id": "CTX-02",
+      "title": "Entity, ownership and authority",
+      "required_context": [
+        "Executed organizational documents and amendments",
+        "Dated legal and economic ownership register, including outside investors",
+        "Tax classification and elections for each entity",
+        "Control, voting, removal and substantive participation rights",
+        "Account title, beneficiary and authorized signer evidence"
+      ],
+      "privacy_boundary": "Separate taxpayer identifiers and signed instruments from the public reference package.",
+      "status": "Checklist only; no private family documents collected"
+    },
+    {
+      "id": "CTX-03",
+      "title": "Banking, custody and transactions",
+      "required_context": [
+        "Complete bank and custodian account population",
+        "Statements, confirmations, transaction dates and settlement dates",
+        "Bank-feed source IDs, corrected/deleted records and duplicates",
+        "Restrictions, liens and third-party access rights",
+        "Independent payee verification and payment-approval evidence"
+      ],
+      "privacy_boundary": "Never provide credentials, signing keys or payment instructions to a public catalogue or unauthorised agent.",
+      "status": "Checklist only; no private family documents collected"
+    },
+    {
+      "id": "CTX-04",
+      "title": "Investment and fund agreements",
+      "required_context": [
+        "Executed subscription agreement, LPA and side letters",
+        "Commitment, calls, distribution notices, recall rights and fee terms",
+        "Capital account statements and audited financials with period labels",
+        "Asset or security identifiers, lot records and ownership percentages",
+        "Transfers, redemptions, preferred returns, carried interest and waterfall terms"
+      ],
+      "privacy_boundary": "Actual private offering and manager records may be confidential; retain entitlement and access restrictions.",
+      "status": "Checklist only; no private family documents collected"
+    },
+    {
+      "id": "CTX-05",
+      "title": "Valuation and measurement",
+      "required_context": [
+        "Applicable accounting or other valuation basis",
+        "Valuation date, unit of account and ownership restrictions",
+        "Pricing sources, appraisals and manager NAV dates",
+        "Subsequent transactions, market conditions and stale evidence",
+        "Assumptions, models, sensitivity and independent review"
+      ],
+      "privacy_boundary": "Do not publish private company models or appraisals; expose assumptions only to authorized reviewers.",
+      "status": "Checklist only; no private family documents collected"
+    },
+    {
+      "id": "CTX-06",
+      "title": "Trusts, estates and beneficiary rights",
+      "required_context": [
+        "Executed instrument, amendments and governing law",
+        "Trustee powers, income/remainder interests and beneficiary provisions",
+        "Grantor/nongrantor and domestic/foreign classifications with support",
+        "Death-date or transfer-date inventory and valuations",
+        "Principal/income schedules, distributions, elections and prior accounts"
+      ],
+      "privacy_boundary": "Beneficiary identities, incapacity, deaths and succession documents need especially limited access.",
+      "status": "Checklist only; no private family documents collected"
+    },
+    {
+      "id": "CTX-07",
+      "title": "Expenses, payroll and shared services",
+      "required_context": [
+        "Invoices, contracts, service periods and benefiting parties",
+        "Time records or other documented allocation drivers",
+        "Office vs household employer, duties and hours",
+        "Payroll registers, benefits and remittance confirmations",
+        "Reimbursements, management-fee agreements, disputes and related parties"
+      ],
+      "privacy_boundary": "Payroll and household details are private; use anonymized service types for source discovery.",
+      "status": "Checklist only; no private family documents collected"
+    },
+    {
+      "id": "CTX-08",
+      "title": "Taxpayer-year evidence",
+      "required_context": [
+        "Taxpayer, entity classification and exact tax year",
+        "Prior returns, elections, carryovers, basis and capital workpapers",
+        "K-1 and information-return issuer, recipient, period and correction status",
+        "Income character, residency, liability allocations and passive/at-risk facts",
+        "Filing, extension and payment records; reviewer instructions"
+      ],
+      "privacy_boundary": "No Social Security numbers, employer IDs or full returns belong in the public source register.",
+      "status": "Checklist only; no private family documents collected"
+    },
+    {
+      "id": "CTX-09",
+      "title": "Debt, collateral and liquidity",
+      "required_context": [
+        "Executed notes, guarantees and credit facilities",
+        "Interest, fees, maturity, modifications and covenants",
+        "Payment schedule, lender statements and accrued-interest support",
+        "Pledged or restricted assets and legal ability to transfer cash",
+        "Capital commitments, forecast dates and actual-to-plan differences"
+      ],
+      "privacy_boundary": "Source discovery requires instrument features, not bank account numbers or wire credentials.",
+      "status": "Checklist only; no private family documents collected"
+    },
+    {
+      "id": "CTX-10",
+      "title": "Property, personal assets and charity",
+      "required_context": [
+        "Title, acquisition/disposal records and entity vs personal use",
+        "Property-manager statements, leases, deposits and capital projects",
+        "Insurance owner, insured, beneficiary, cash value and policy loans",
+        "Charitable entity type, donor restrictions, grant agreements and approvals",
+        "Appraisals, retirement beneficiary records and contingent obligations"
+      ],
+      "privacy_boundary": "Charity, trust and personal ownership must remain distinct; restrict household/beneficiary details.",
+      "status": "Checklist only; no private family documents collected"
+    },
+    {
+      "id": "CTX-11",
+      "title": "State and cross-border facts",
+      "required_context": [
+        "Tax and legal residence for relevant persons and entities",
+        "Trust administration, trustee/beneficiary location and governing law",
+        "Income source, property situs, foreign accounts and signature authority",
+        "Foreign entity classification, ownership chains and treaty eligibility",
+        "Reporting year, local-law advice and applicable withholding documents"
+      ],
+      "privacy_boundary": "Use jurisdiction and role facts for initial search; share actual forms only in an authorized environment.",
+      "status": "Checklist only; no private family documents collected"
+    },
+    {
+      "id": "CTX-12",
+      "title": "Systems, controls and assurance",
+      "required_context": [
+        "System-of-record ownership and data dictionary",
+        "Import/export populations, duplicates, corrections and reconciliation totals",
+        "Roles, segregation, approvals and audit trails",
+        "Vendor contracts, SOC report scope/period, user controls and exceptions",
+        "Retention, backup restoration, incident response and AI evaluation evidence"
+      ],
+      "privacy_boundary": "Never put live secrets or production credentials into examples, logs or reference metadata.",
+      "status": "Checklist only; no private family documents collected"
+    }
+  ]
+}

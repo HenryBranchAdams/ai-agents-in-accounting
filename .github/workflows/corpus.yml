@@ -27,6 +27,8 @@ jobs:
         run: npm run preflight
       - name: Lint, typecheck, data validation and design-rule probes
         run: node scripts/verify.mjs --phase lint
+      - name: Install the pinned Chromium browser and system dependencies
+        run: npx --no-install playwright install --with-deps chromium
       - name: Build application and exports once
         run: node scripts/verify.mjs --phase build
       - name: Run every test against the primary build
@@ -44,6 +46,14 @@ jobs:
           path: outputs/ci-release/
           include-hidden-files: true
           compression-level: 0
+          if-no-files-found: error
+          retention-days: 14
+      - name: Retain browser screenshots and input identity
+        if: always() && hashFiles('outputs/browser/**') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: corpus-browser-${{ github.sha }}
+          path: outputs/browser/
           if-no-files-found: error
           retention-days: 14
       - name: Retain source and generated verification output
