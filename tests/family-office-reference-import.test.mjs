@@ -9,7 +9,12 @@ function fixture() {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'fo-reference-'));
   const copy = p => { fs.mkdirSync(path.dirname(path.join(root, p)), {recursive: true}); fs.cpSync(p, path.join(root, p), {recursive: true}); };
   for (const p of ['data/corpus', packetPath, 'schemas/record.schema.json', 'data/catalog.json', 'data/coverage/mapping-overrides.json', 'data/coverage/research-questions.json', 'data/coverage/subsector-profiles.json', 'data/coverage/subsector-screening.json', 'data/coverage/assessments.json']) copy(p);
-  // The same tests work before import and against the integrated edition.
+  // Isolate the historical importer from later corpus editions. Extra current
+  // records remain in the fixture and must be preserved, but its edition
+  // header is pinned to the importer target rather than authorizing a downgrade.
+  const catalogPath=path.join(root, 'data/catalog.json'), catalog=read(catalogPath);
+  catalog.corpus_version='2026-09-21.5';
+  fs.writeFileSync(catalogPath,JSON.stringify(catalog));
   return root;
 }
 const fileSnapshot = root => new Map(['source','guide','collection'].map(k => [`data/corpus/${k}.json`, fs.readFileSync(path.join(root, `data/corpus/${k}.json`))]));
@@ -70,4 +75,16 @@ test('unexpected edition and a late mapping conflict fail before any write', () 
       for(const[f,b]of before)assert.deepEqual(fs.readFileSync(path.join(root,f)),b);
     } finally {fs.rmSync(root,{recursive:true,force:true});}
   }
+});
+
+
+test('historical import cannot retarget an older or newer edition through its option',()=>{
+ const root=fixture();try{
+  const before=fileSnapshot(root),catalog=fs.readFileSync(path.join(root,'data/catalog.json'));
+  for(const edition of ['2026-09-21.3','2026-09-21.4','2026-09-21.6','2099-01-01.1']){
+   assert.throws(()=>applyIntegration(root,{apply:true,edition}),/historical importer only targets/);
+   assert.deepEqual(fs.readFileSync(path.join(root,'data/catalog.json')),catalog);
+   for(const [file,bytes]of before)assert.deepEqual(fs.readFileSync(path.join(root,file)),bytes);
+  }
+ }finally{fs.rmSync(root,{recursive:true,force:true});}
 });

@@ -53,3 +53,12 @@ Review journeys: find the collection through library search; follow FO-13 privat
 ## Coordination
 
 This builds on issue 163's family-office package and issue 170's answer-first reading architecture. Main advanced to `ba8be737bba6a4c71be508f7bd6eec8599de8e89` with release infrastructure while the PR was being prepared; that change did not allocate a different corpus edition. Final PR CI must test the integration with current main. Graph, evidence-preview and other research assignments remain separate. No unrelated issue is closed, no merge is performed and no deployment is authorized by this PR.
+
+
+## Combined-release amendment
+
+The active five-issue assignment now includes this PR by explicit maintainer instruction. Astra retains ownership of shared corpus editions and publication. Main `f9024592d158ddc4cd28f8c29959e2f710a4d1bb` was merged into this branch without conflicts. Its successful 404-test main run verifies that earlier source revision, not the larger family-office corpus or the eventual combined UI.
+
+Review identified that a caller-supplied `--edition` could bypass the historical edition boundary. The importer is now pinned to its original `.5` target; later amendments must use the current edition-preparation path. Tests exercise refusal for both older and newer requested targets, and historical-import fixtures explicitly pin their own header so future corpus editions do not silently authorize import into production data.
+
+Preserve both `.4` and `.5` historical bytes. The final research edition must follow `.5`. Recheck source identity conflicts, combined retrieval/exports, graph density, page and browser behavior, artifact sizes and release timings against the eventual combined corpus. Existing CI or review does not prove those future inputs. Native browser review and final publication remain pending.

@@ -61,7 +61,7 @@ function record(id, kind, title, summary, sourceIds, relatedIds, data, topics = 
   return {id, kind, title, summary, topics: unique(['Family office accounting', 'Source discovery', ...topics]), industries: [], jurisdiction: 'United States; selected named state and international interfaces', source_type: null, publisher: 'Accounting Agents contributors', source_url: null, source_ids: unique(sourceIds), related_ids: unique(relatedIds), reviewed_at: null, review_status: 'discovery-imported-not-reverified', provenance: {added_on: date, research_package: '2026-09-21.source-library.1', integration_method: 'Guarded additive import with explicit identity decisions', note: 'Imported source-discovery annotations and editorial reading paths. Original discovery dates are retained in the data; no new publisher, professional or accounting review is asserted.'}, rights: clone(rights), data: {id, ...data}};
 }
 export function planIntegration(root, {edition = '2026-09-21.5'} = {}) {
-  assert.match(edition, /^\d{4}-\d{2}-\d{2}\.\d+$/);
+  assert.equal(edition, '2026-09-21.5', 'This historical importer only targets edition 2026-09-21.5; use edition preparation for later changes');
   const packet = loadPacket(root);
   const read = relative => JSON.parse(fs.readFileSync(path.join(root, relative), 'utf8'));
   const meta = read('data/catalog.json');
