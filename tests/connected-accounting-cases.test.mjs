@@ -149,3 +149,31 @@ test('bounded extensions preserve dated knowledge, reciprocal scope and approved
  assert.notEqual(changed.catch_up_minor,payload.catch_up_minor);
  assert.notEqual(createHash('sha256').update(JSON.stringify({...payload,estimated_total_cost_minor:changed.estimated_total_cost_minor})).digest('hex'),approval.sha256);
 });
+
+test('completed comparison packets trace real case inputs without implying human signoff',async()=>{
+ const {createHash}=await import('node:crypto');
+ const sort=value=>Array.isArray(value)?value.map(sort):value&&typeof value==='object'?Object.fromEntries(Object.keys(value).sort().map(key=>[key,sort(value[key])])):value;
+ for(const record of cases){
+  const data=record.data,packet=data.review_packets.stronger,weak=data.review_packets.inadequate;
+  const identity={record_id:record.id,case_version:data.version,documents:data.documents,events:data.events,journals:data.journals,opening_balances_minor:data.opening_balances_minor,assumptions:data.assumptions,chart_of_accounts:data.chart_of_accounts,entity:data.entity,period:data.period,currency:data.currency,amount_unit:data.amount_unit,rounding:data.rounding};
+  const digest=value=>createHash('sha256').update(JSON.stringify(sort(value))).digest('hex');
+  assert.equal(packet.case_input_sha256,digest(identity));
+  const changed=structuredClone(identity);changed.journals[0].lines[0].debit_minor++;
+  assert.notEqual(packet.case_input_sha256,digest(changed));
+  assert.deepEqual(packet.population.document_ids,data.documents.map(d=>d.id));
+  assert.equal(packet.population.document_count,data.documents.length);assert.equal(packet.population.journal_count,data.journals.length);
+  for(const assertion of packet.assertion_traces){
+   for(const id of assertion.documents)assert.ok(data.documents.some(d=>d.id===id));
+   for(const id of assertion.journal_ids)assert.ok(data.journals.some(j=>j.id===id));
+  }
+  for(const exception of packet.exceptions)for(const id of exception.evidence_ids)assert.ok(data.documents.some(d=>d.id===id));
+  assert.equal(packet.preparation.actual_professional_reviewer,null);assert.equal(packet.execution_authority,false);
+  assert.ok(packet.synthetic_reviewer_decisions.every(d=>d.actual_signoff===false));
+  assert.equal(packet.post_approval_change.approval_still_applies,false);
+  assert.match(weak.label,/DELIBERATELY INADEQUATE/);assert.equal(weak.execution_authority,false);
+ }
+ const guide=JSON.parse(fs.readFileSync('data/corpus/guide.json')).find(r=>r.id==='guide-connected-close-review');
+ validateSchema(guide,JSON.parse(fs.readFileSync('schemas/record.schema.json')),guide.id);
+ assert.equal(guide.data.human_evaluation_protocol.measures.length,6);
+ assert.equal(guide.data.human_evaluation_protocol.status,'PROPOSAL ONLY; not run');
+});
