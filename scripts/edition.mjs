@@ -13,7 +13,7 @@ const atomic = (file, value) => {
 const git = (root, args) => execFileSync('git', ['-C', root, ...args], {encoding:'utf8'}).trim();
 const area = root => path.join(root, 'outputs/editions');
 const mutable = new Set(['data/catalog.json','data/coverage/mapping-overrides.json','data/coverage/assessments.json','data/coverage/research-questions.json','data/coverage/subsector-profiles.json','data/coverage/subsector-screening.json','data/coverage/record-mappings.json','data/coverage/snapshots.json','data/coverage/snapshots.generated.ts','data/releases/index.json']);
-const allowed = (file, version) => mutable.has(file) || file.startsWith(`data/releases/${version}/`) || file === `data/coverage/snapshots/${version}.json`;
+const allowed = (file, version) => typeof file === 'string' && !file.includes('\\') && file.split('/').every(part=>part && part!=='.' && part!=='..') && (mutable.has(file) || file.startsWith(`data/releases/${version}/`) || file === `data/coverage/snapshots/${version}.json`);
 const entryEqual = (a,b) => JSON.stringify(a) === JSON.stringify(b);
 
 // The commit that incorporated the current immutable release is the baseline
@@ -100,7 +100,8 @@ export function finalizeEdition({root=process.cwd(),id,afterWrite=()=>{}}={}) {
     const actual=inputInventory(root);
     const original=new Map(prepared.inputs.map(f=>[f.path,f]));
     const updates=new Map(prepared.changes.map(c=>[c.path,c]));
-    for(const change of updates.values())if(!allowed(change.path,prepared.version) || (!mutable.has(change.path)&&change.before))throw new Error('Unsafe finalization target');
+    if(updates.size!==prepared.changes.length)throw new Error('Duplicate finalization target');
+    for(const change of updates.values())if(!allowed(change.path,prepared.version) || change.after.path!==change.path || (change.before && change.before.path!==change.path) || (!mutable.has(change.path)&&change.before))throw new Error('Unsafe finalization target');
     // A prior journal permits exactly old or new bytes for changed paths. It
     // never permits an unrelated changed, new, missing or executable input.
     for(const file of actual.files) {

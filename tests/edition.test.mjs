@@ -97,3 +97,19 @@ test('an active operation lock prevents promotion without changing inputs',()=>{
     assert.equal(JSON.parse(fs.readFileSync(path.join(root,'outputs/editions/operation.lock'))).id,'other');
   }finally{fs.rmSync(root,{recursive:true,force:true});}
 });
+
+test('tampered finalization paths and duplicate targets are rejected before writes',()=>{
+  for(const defect of ['traversal','duplicate','identity']){
+    const {root,id,directory}=preparedFixture();
+    try{
+      const receipt=path.join(root,directory,'prepared.json'),saved=JSON.parse(fs.readFileSync(receipt));
+      if(defect==='traversal')saved.changes[0].path='data/releases/2099-01-01.2/../../catalog.json';
+      if(defect==='duplicate')saved.changes.push(saved.changes[0]);
+      if(defect==='identity')saved.changes[0].after.path='data/catalog-other.json';
+      fs.writeFileSync(receipt,JSON.stringify(saved));
+      const before=inputInventory(root).digest;
+      assert.throws(()=>finalizeEdition({root,id}),/Unsafe|Duplicate/);
+      assert.equal(inputInventory(root).digest,before);
+    }finally{fs.rmSync(root,{recursive:true,force:true});}
+  }
+});
