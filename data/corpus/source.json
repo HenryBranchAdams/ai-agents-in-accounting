@@ -74394,7 +74394,7 @@
       "wf-r2r-journal-entry"
     ],
     "review_status": "source-checked",
-    "reviewed_at": "2026-09-07",
+    "reviewed_at": "2026-09-21",
     "provenance": {
       "added_on": "2026-09-07",
       "reviewer": "Codex (AI-assisted source check)",
@@ -74403,7 +74403,7 @@
         "https://developer.xero.com/documentation/api/accounting/journals"
       ],
       "outcome": "The reviewed publisher material supports this bounded annotation. No professional accounting review, independent replication, or live-system validation was performed.",
-      "note": "New source research for corpus version 2026-09-07.3. This check covers the cited edition and annotated claims, not the entire publication or later changes."
+      "note": "New source research for corpus version 2026-09-07.3. This check covers the cited edition and annotated claims, not the entire publication or later changes. Narrow recheck2026-09-21 read GET fields, cursor stopping rule and basis from publisher page-data; no tenant observation."
     },
     "rights": {
       "metadata": "CC0-1.0",
@@ -74418,7 +74418,7 @@
     "data": {
       "publication": {
         "published_at": null,
-        "edition": "Documentation observed 7 September 2026",
+        "edition": "Documentation read2026-09-21 from publisher page-data",
         "status": "Technical reference"
       },
       "evidence": [
@@ -74437,6 +74437,24 @@
             "title": "Xero Journals API — extraction and access conditions",
             "url": "https://developer.xero.com/documentation/api/accounting/journals"
           }
+        },
+        {
+          "claim": "Collection responses provide SourceID/SourceType where available; individual JournalID/JournalNumber requests omit those fields. JournalDate is posting date, CreatedDateUTC is creation time. Net amounts are in organisation base currency, positive debit and negative credit.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "Xero Journals API — extraction and access conditions",
+            "url": "https://developer.xero.com/documentation/api/accounting/journals",
+            "locator": "GET Journals response fields and journal lines"
+          }
+        },
+        {
+          "claim": "The default journal basis is accrual; paymentsOnly=true selects cash basis. Journals is read-only; manual-journal creation uses a separate endpoint.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "Xero Journals API — extraction and access conditions",
+            "url": "https://developer.xero.com/documentation/api/accounting/journals",
+            "locator": "Overview and Optional parameters"
+          }
         }
       ],
       "limitations": [
@@ -74448,7 +74466,11 @@
       "supporting_resources": [],
       "editorial_accounting_relevance": "Useful for investigating silent omissions caused by generic pagination or incremental-sync logic.",
       "accounting_relevance_basis": "Editorial inference from the described scope.",
-      "published_or_status": "Documentation observed 7 September 2026"
+      "published_or_status": "Documentation observed 7 September 2026",
+      "reviewed_object": {
+        "url": "https://developer.xero.com/__gatsby/page-data/documentation/api/accounting/journals/page-data.json",
+        "sha256": "1698a60ac60e75aa659387cb0e0e091064d09998fb1b497028d9ddcf2a4684b4"
+      }
     }
   },
   {
@@ -97881,6 +97903,336 @@
       "access_note": "Original publisher markdown sections read on 2026-09-21. No external full text stored.",
       "review_trigger": "Recheck relevant payload, report, identifier and recovery contracts before implementation.",
       "commercial_interest": "First-party platform documentation; not independent operating evidence."
+    }
+  },
+  {
+    "id": "src_xero_manual_journals_2026",
+    "kind": "source",
+    "title": "Xero manual journals: statuses, line detail and write boundary",
+    "summary": "ManualJournals covers manually entered journals, including draft and posted states. Paging includes line details. UpdatedDateUTC and the posting Date are separate fields.",
+    "topics": [
+      "Agent engineering",
+      "Accounting and reporting"
+    ],
+    "industries": [
+      "general"
+    ],
+    "jurisdiction": "Xero developer platform; connection and product scope must be established",
+    "source_type": "Technical reference",
+    "publisher": "Xero",
+    "source_url": "https://developer.xero.com/documentation/api/accounting/manualjournals",
+    "source_ids": [],
+    "related_ids": [
+      "wf-r2r-journal-entry",
+      "wf-audit-population-evidence"
+    ],
+    "review_status": "source-checked",
+    "reviewed_at": "2026-09-21",
+    "provenance": {
+      "added_on": "2026-09-21",
+      "reviewer": "Codex (AI-assisted source review)",
+      "scope": "Named original-publisher Markdown sections read from the public Gatsby page-data used by the documentation site; no authenticated API test.",
+      "evidence_urls": [
+        "https://developer.xero.com/documentation/api/accounting/manualjournals"
+      ],
+      "outcome": "Supports the bounded documented observations; API operation, legal applicability and permissions for an actual app remain untested.",
+      "note": "Issue 173 P1 source review. This dated documentation check does not establish tenant behavior, professional acceptance or reuse permission."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "publication": {
+        "published_at": null,
+        "edition": "Mutable publisher documentation read2026-09-21"
+      },
+      "evidence": [
+        {
+          "claim": "ManualJournals covers manually entered journals, including draft and posted states. Paging includes line details. UpdatedDateUTC and the posting Date are separate fields.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "Xero manual journals: statuses, line detail and write boundary",
+            "url": "https://developer.xero.com/documentation/api/accounting/manualjournals",
+            "locator": "Overview; GET ManualJournals; paging"
+          }
+        },
+        {
+          "claim": "POST creates or updates; PUT creates only. Explicit posting dates avoid the documented current-date default. Reserved system and bank accounts cannot be used; the reference describes a validation error.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "Xero manual journals: statuses, line detail and write boundary",
+            "url": "https://developer.xero.com/documentation/api/accounting/manualjournals",
+            "locator": "POST and PUT ManualJournals"
+          }
+        },
+        {
+          "claim": "Lines use signed amounts and at most two tracking categories; tax and cash-basis-report settings must be retained.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "Xero manual journals: statuses, line detail and write boundary",
+            "url": "https://developer.xero.com/documentation/api/accounting/manualjournals",
+            "locator": "GET/POST line elements"
+          }
+        }
+      ],
+      "limitations": [
+        "No tenant requests, writes, credential access or professional review. Product, role, scope and app entitlement still require a named-environment check."
+      ],
+      "access_note": "Public site page-data content retrieved after ordinary web readers returned a JavaScript shell. Only original annotations and hashes are stored.",
+      "reviewed_object": {
+        "url": "https://developer.xero.com/__gatsby/page-data/documentation/api/accounting/manualjournals/page-data.json",
+        "sha256": "01a0a7f691002eee68f7ac159b715d98ee3a82660267ee840846d37b966a8d91"
+      }
+    }
+  },
+  {
+    "id": "src_xero_journal_types_2026",
+    "kind": "source",
+    "title": "Xero journal source types and missing lineage",
+    "summary": "Journal source types distinguish invoices, credits, payments, bank activity and manual journals. Conversion balances, payruns, bank reconciliation adjustments and fixed assets can omit SourceType and SourceID.",
+    "topics": [
+      "Agent engineering",
+      "Accounting and reporting"
+    ],
+    "industries": [
+      "general"
+    ],
+    "jurisdiction": "Xero developer platform; connection and product scope must be established",
+    "source_type": "Technical reference",
+    "publisher": "Xero",
+    "source_url": "https://developer.xero.com/documentation/api/accounting/types",
+    "source_ids": [],
+    "related_ids": [
+      "wf-r2r-journal-entry",
+      "wf-audit-population-evidence"
+    ],
+    "review_status": "source-checked",
+    "reviewed_at": "2026-09-21",
+    "provenance": {
+      "added_on": "2026-09-21",
+      "reviewer": "Codex (AI-assisted source review)",
+      "scope": "Named original-publisher Markdown sections read from the public Gatsby page-data used by the documentation site; no authenticated API test.",
+      "evidence_urls": [
+        "https://developer.xero.com/documentation/api/accounting/types"
+      ],
+      "outcome": "Supports the bounded documented observations; API operation, legal applicability and permissions for an actual app remain untested.",
+      "note": "Issue 173 P1 source review. This dated documentation check does not establish tenant behavior, professional acceptance or reuse permission."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "publication": {
+        "published_at": null,
+        "edition": "Mutable publisher documentation read2026-09-21"
+      },
+      "evidence": [
+        {
+          "claim": "Journal source types distinguish invoices, credits, payments, bank activity and manual journals. Conversion balances, payruns, bank reconciliation adjustments and fixed assets can omit SourceType and SourceID.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "Xero journal source types and missing lineage",
+            "url": "https://developer.xero.com/documentation/api/accounting/types",
+            "locator": "Journals: Journal Source Types"
+          }
+        },
+        {
+          "claim": "DRAFT is the default manual-journal state; POSTED, DELETED (draft) and VOIDED (posted) have distinct meanings. A status list does not establish every permitted transition.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "Xero journal source types and missing lineage",
+            "url": "https://developer.xero.com/documentation/api/accounting/types",
+            "locator": "Manual Journals: status codes"
+          }
+        }
+      ],
+      "limitations": [
+        "No tenant requests, writes, credential access or professional review. Product, role, scope and app entitlement still require a named-environment check."
+      ],
+      "access_note": "Public site page-data content retrieved after ordinary web readers returned a JavaScript shell. Only original annotations and hashes are stored.",
+      "reviewed_object": {
+        "url": "https://developer.xero.com/__gatsby/page-data/documentation/api/accounting/types/page-data.json",
+        "sha256": "9e47bde5764e2999a1e0b3a4703c7acfac929530aaeaf896f77243d4c999b001"
+      }
+    }
+  },
+  {
+    "id": "src_xero_document_history_2026",
+    "kind": "source",
+    "title": "Xero document history and notes boundary",
+    "summary": "The endpoint retrieves changes for a single existing supported document, with UTC time, user and description. API changes use System Generated as the displayed user.",
+    "topics": [
+      "Agent engineering",
+      "Accounting and reporting"
+    ],
+    "industries": [
+      "general"
+    ],
+    "jurisdiction": "Xero developer platform; connection and product scope must be established",
+    "source_type": "Technical reference",
+    "publisher": "Xero",
+    "source_url": "https://developer.xero.com/documentation/api/accounting/historyandnotes",
+    "source_ids": [],
+    "related_ids": [
+      "wf-r2r-journal-entry",
+      "wf-audit-population-evidence"
+    ],
+    "review_status": "source-checked",
+    "reviewed_at": "2026-09-21",
+    "provenance": {
+      "added_on": "2026-09-21",
+      "reviewer": "Codex (AI-assisted source review)",
+      "scope": "Named original-publisher Markdown sections read from the public Gatsby page-data used by the documentation site; no authenticated API test.",
+      "evidence_urls": [
+        "https://developer.xero.com/documentation/api/accounting/historyandnotes"
+      ],
+      "outcome": "Supports the bounded documented observations; API operation, legal applicability and permissions for an actual app remain untested.",
+      "note": "Issue 173 P1 source review. This dated documentation check does not establish tenant behavior, professional acceptance or reuse permission."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "publication": {
+        "published_at": null,
+        "edition": "Mutable publisher documentation read2026-09-21"
+      },
+      "evidence": [
+        {
+          "claim": "The endpoint retrieves changes for a single existing supported document, with UTC time, user and description. API changes use System Generated as the displayed user.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "Xero document history and notes boundary",
+            "url": "https://developer.xero.com/documentation/api/accounting/historyandnotes",
+            "locator": "Overview; GET History; supported document types"
+          }
+        },
+        {
+          "claim": "Clients can add notes; existing history and notes cannot be updated through this operation. This is not documented as a full before/after record archive or a general deleted-document discovery feed.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "Xero document history and notes boundary",
+            "url": "https://developer.xero.com/documentation/api/accounting/historyandnotes",
+            "locator": "PUT/POST History"
+          }
+        }
+      ],
+      "limitations": [
+        "No tenant requests, writes, credential access or professional review. Product, role, scope and app entitlement still require a named-environment check."
+      ],
+      "access_note": "Public site page-data content retrieved after ordinary web readers returned a JavaScript shell. Only original annotations and hashes are stored.",
+      "reviewed_object": {
+        "url": "https://developer.xero.com/__gatsby/page-data/documentation/api/accounting/historyandnotes/page-data.json",
+        "sha256": "2ab2a13c4ff6ec2c2a6596ad49e618a0ac33a4a6d3590e7aaf0bb114f89d3477"
+      }
+    }
+  },
+  {
+    "id": "src_xero_rate_limits_2026",
+    "kind": "source",
+    "title": "Xero tier-dependent rate limits and backoff",
+    "summary": "Per app/tenant connection: five concurrent calls,60 per minute,1,000 daily on Starter and5,000 on higher tiers; app-wide minute limit10,000.",
+    "topics": [
+      "Agent engineering",
+      "Accounting and reporting"
+    ],
+    "industries": [
+      "general"
+    ],
+    "jurisdiction": "Xero developer platform; connection and product scope must be established",
+    "source_type": "Technical reference",
+    "publisher": "Xero",
+    "source_url": "https://developer.xero.com/documentation/best-practices/api-call-efficiencies/rate-limits",
+    "source_ids": [],
+    "related_ids": [
+      "wf-r2r-journal-entry",
+      "wf-audit-population-evidence"
+    ],
+    "review_status": "source-checked",
+    "reviewed_at": "2026-09-21",
+    "provenance": {
+      "added_on": "2026-09-21",
+      "reviewer": "Codex (AI-assisted source review)",
+      "scope": "Named original-publisher Markdown sections read from the public Gatsby page-data used by the documentation site; no authenticated API test.",
+      "evidence_urls": [
+        "https://developer.xero.com/documentation/best-practices/api-call-efficiencies/rate-limits"
+      ],
+      "outcome": "Supports the bounded documented observations; API operation, legal applicability and permissions for an actual app remain untested.",
+      "note": "Issue 173 P1 source review. This dated documentation check does not establish tenant behavior, professional acceptance or reuse permission."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "publication": {
+        "published_at": null,
+        "edition": "Mutable publisher documentation read2026-09-21"
+      },
+      "evidence": [
+        {
+          "claim": "Per app/tenant connection: five concurrent calls,60 per minute,1,000 daily on Starter and5,000 on higher tiers; app-wide minute limit10,000.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "Xero tier-dependent rate limits and backoff",
+            "url": "https://developer.xero.com/documentation/best-practices/api-call-efficiencies/rate-limits",
+            "locator": "API rate limits"
+          }
+        },
+        {
+          "claim": "HTTP429 includes the exceeded-limit indicator and Retry-After seconds. Use the actual response and tenant window.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "Xero tier-dependent rate limits and backoff",
+            "url": "https://developer.xero.com/documentation/best-practices/api-call-efficiencies/rate-limits",
+            "locator": "Rate Limit Response Headers; Exceeding a rate limit"
+          }
+        },
+        {
+          "claim": "Later generic prose still says5,000 daily without the Starter qualification. Preserve the tier distinction instead of treating the generic sentence as universal.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "Xero tier-dependent rate limits and backoff",
+            "url": "https://developer.xero.com/documentation/best-practices/api-call-efficiencies/rate-limits",
+            "locator": "API rate limits versus response-header table and later advice"
+          }
+        }
+      ],
+      "limitations": [
+        "No tenant requests, writes, credential access or professional review. Product, role, scope and app entitlement still require a named-environment check."
+      ],
+      "access_note": "Public site page-data content retrieved after ordinary web readers returned a JavaScript shell. Only original annotations and hashes are stored.",
+      "reviewed_object": {
+        "url": "https://developer.xero.com/__gatsby/page-data/documentation/best-practices/api-call-efficiencies/rate-limits/page-data.json",
+        "sha256": "6b6ac38ad76746c42869f02343648dfb7c073ba315377c94077e2542c109d7ac"
+      }
     }
   }
 ]

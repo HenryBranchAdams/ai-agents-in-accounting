@@ -71208,5 +71208,506 @@
         "Canonical retrieval, readable packet presentation, export integration and final editorial acceptance remain pending."
       ]
     }
+  },
+  {
+    "id": "guide-xero-ledger-completeness",
+    "kind": "guide",
+    "title": "Extract a Xero ledger without losing source lineage",
+    "summary": "Define the tenant, basis and population; follow journal-number cursors through empty termination; reconcile source documents and preserve unresolved lineage.",
+    "topics": [
+      "Accounting and reporting",
+      "Evidence and reconciliation",
+      "Controls and governance"
+    ],
+    "industries": [],
+    "jurisdiction": "Xero Accounting API; proposed US-business extraction, actual tenant edition untested",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_xero_journals_completeness",
+      "src_xero_efficient_retrieval",
+      "src_xero_bank_statement_boundary",
+      "src_xero_permissions_faq_2026",
+      "src_xero_granular_scopes_2026",
+      "src_xero_platform_terms_20251204",
+      "src_xero_pricing_policy_2026",
+      "src_xero_manual_journals_2026",
+      "src_xero_journal_types_2026",
+      "src_xero_document_history_2026",
+      "src_xero_rate_limits_2026"
+    ],
+    "related_ids": [
+      "collection-erp-extraction-completeness",
+      "wf-audit-population-evidence",
+      "wf-r2r-journal-entry",
+      "example-connected-purchase-to-payment"
+    ],
+    "review_status": "draft-editorial-review-pending",
+    "reviewed_at": null,
+    "provenance": {
+      "added_on": "2026-09-21",
+      "reviewer": "Codex original synthesis",
+      "scope": "Original dossier grounded in named documentation, with separately labeled project proposals and unknown tenant behavior.",
+      "note": "Issue173 P1 draft. No API execution or professional acceptance; source locators identify the exact evidence boundary."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false
+    },
+    "data": {
+      "version": "issue-173-draft",
+      "answer": "A manual-journal list is not the entire ledger. Retrieve the Journals population on an explicit basis, retain collection-level source fields, and continue offsets until an empty page. Completeness still requires independent totals and documented exceptions for source links the API does not expose.",
+      "scope": {
+        "connection": "OAuth app and tenant identity must be recorded; no connection exists for this research.",
+        "country_product": "US business is the proposed test scope; Cashbook, Payroll and other country editions are not silently included.",
+        "evidence_status": "Documentation and original proposals only; no observed named test environment."
+      },
+      "object_purpose_table": [
+        {
+          "id": "xero-population",
+          "status": "documented",
+          "question": "Which endpoint is the ledger population?",
+          "answer": "GET Journals includes journal lines; ManualJournals is a distinct subset. Preserve accrual versus paymentsOnly cash basis.",
+          "source_ids": [
+            "src_xero_journals_completeness",
+            "src_xero_manual_journals_2026"
+          ],
+          "locator": "Overview; GET fields; optional parameters"
+        },
+        {
+          "id": "xero-lineage",
+          "status": "documented",
+          "question": "How are source objects identified?",
+          "answer": "Use tenant,SourceType,SourceID with JournalID and JournalLineID. Individual journal reads omit source fields; several system-origin types omit them even in collection results. Do not manufacture a document match.",
+          "source_ids": [
+            "src_xero_journals_completeness",
+            "src_xero_journal_types_2026"
+          ],
+          "locator": "GET response fields; Journal Source Types"
+        },
+        {
+          "id": "xero-manual",
+          "status": "documented",
+          "question": "What is a manual journal?",
+          "answer": "Draft/posted manual entries have status,posting date,modified UTC time,tax/basis settings and tracking. Paged reads return lines. Draft is not evidence of posting.",
+          "source_ids": [
+            "src_xero_manual_journals_2026",
+            "src_xero_journal_types_2026"
+          ],
+          "locator": "GET/POST ManualJournals; status codes"
+        },
+        {
+          "id": "xero-history",
+          "status": "documented",
+          "question": "Is document history an immutable raw snapshot?",
+          "answer": "History exposes descriptions for existing supported documents; API actions display System Generated. It does not promise all historical field values or all deleted objects.",
+          "source_ids": [
+            "src_xero_document_history_2026"
+          ],
+          "locator": "GET History and supported types"
+        },
+        {
+          "id": "xero-bank",
+          "status": "documented",
+          "question": "Do bank transactions establish statement completeness?",
+          "answer": "The earlier checked public boundary excludes unreconciled statement data and API reconciliation. Obtain an independently authorized statement population; a transaction list alone is insufficient.",
+          "source_ids": [
+            "src_xero_bank_statement_boundary"
+          ],
+          "locator": "Documented boundary checked2026-09-07; recheck before actual integration"
+        },
+        {
+          "id": "xero-reports",
+          "status": "project proposal",
+          "question": "How should source objects and reports reconcile?",
+          "answer": "Compare source-type counts and signed account/period totals to independently obtained ledger and trial-balance reports with identical basis,currency,dates and tracking filters. Resolve missing SourceID as exceptions, not dropped rows.",
+          "source_ids": [
+            "src_xero_journals_completeness"
+          ],
+          "locator": "Original reconciliation design; report parameters and total equivalence remain to be tested"
+        }
+      ],
+      "access_and_change_rows": [
+        {
+          "id": "xero-access",
+          "status": "documented",
+          "question": "What gates access?",
+          "answer": "Connecting-user role and Reports permission,OAuth scopes,tenant and endpoint entitlement are distinct gates. Journals requires Advanced tier,use-case approval and initial/annual security assessment.",
+          "source_ids": [
+            "src_xero_permissions_faq_2026",
+            "src_xero_granular_scopes_2026",
+            "src_xero_journals_completeness"
+          ],
+          "locator": "FAQ permissions; granular-scope cohort questions; Journals Overview"
+        },
+        {
+          "id": "xero-cursor",
+          "status": "documented",
+          "question": "What is the stop rule?",
+          "answer": "At most100 journals; next offset is the last JournalNumber. Continue after a short page until empty. If-Modified-Since is specifically discouraged for Journals.",
+          "source_ids": [
+            "src_xero_journals_completeness"
+          ],
+          "locator": "GET Journals and offset examples"
+        },
+        {
+          "id": "xero-dates",
+          "status": "project proposal",
+          "question": "How are backdated corrections handled?",
+          "answer": "Store posting date separately from creation/update UTC and extraction time. A newly retrieved journal can affect an earlier period; rerun affected-period reconciliation. Do not equate a creation-time watermark with a closed accounting period.",
+          "source_ids": [
+            "src_xero_journals_completeness",
+            "src_xero_manual_journals_2026"
+          ],
+          "locator": "Field definitions plus original reconciliation procedure"
+        },
+        {
+          "id": "xero-write",
+          "status": "documented",
+          "question": "Does a posted manual entry imply approval?",
+          "answer": "POST can create/update and PUT creates only; reserved bank/system accounts reject manual use. These write capabilities do not establish a separate human approval barrier.",
+          "source_ids": [
+            "src_xero_manual_journals_2026"
+          ],
+          "locator": "POST/PUT and reserved-account validation"
+        },
+        {
+          "id": "xero-recovery",
+          "status": "unknown",
+          "question": "Can a lost write response be retried safely?",
+          "answer": "Endpoint-specific idempotency retention,changed-payload treatment,concurrent edits,partial-success semantics and period-lock enforcement have not been verified here. Stop uncertain writes for authorized read-back and review; do not infer safety from balanced lines.",
+          "source_ids": [
+            "src_xero_manual_journals_2026"
+          ],
+          "locator": "Reviewed create/update text does not establish these guarantees"
+        },
+        {
+          "id": "xero-events",
+          "status": "unknown",
+          "question": "Are webhooks a complete recovery log?",
+          "answer": "Webhook entity coverage,retry horizon,ordering and reconnection gap behavior require additional original-document review and a named test. This dossier never treats notifications as the complete journal population.",
+          "source_ids": [
+            "src_xero_journals_completeness"
+          ],
+          "locator": "No webhook behavior observed or claimed"
+        },
+        {
+          "id": "xero-limits",
+          "status": "documented",
+          "question": "How does rate limiting affect completion?",
+          "answer": "Budget against app/tenant tier,remaining-limit headers and Retry-After. A429 is an incomplete extraction stage, not an empty terminal page.",
+          "source_ids": [
+            "src_xero_rate_limits_2026"
+          ],
+          "locator": "API limits and response headers"
+        },
+        {
+          "id": "xero-rights",
+          "status": "documented",
+          "question": "May extracted data train a model or be redistributed?",
+          "answer": "The reviewed terms restrict API-data purpose and model training and condition third-party passthrough. Endpoint access is not permission to publish records or benchmark the platform.",
+          "source_ids": [
+            "src_xero_platform_terms_20251204"
+          ],
+          "locator": "Clauses7(b),29 and effective-date cohorts"
+        }
+      ],
+      "completeness_recovery_procedure": [
+        "Project proposal: record tenant,app identity,scope/role evidence,entitlement,basis,base currency,timezone,period filters and source contract dates before extraction. Retain no credentials in the evidence packet.",
+        "Fetch the collection at offset0 for a new population. Persist each successful page and source links before atomically advancing its last-JournalNumber checkpoint. Retain request identity,status and source digest; a failed page cannot advance it.",
+        "Resume from the last committed cursor after a crash; deduplicate by tenant and JournalID while comparing content changes. A nonadvancing cursor,unparseable page,authorization failure or429 is an exception, never successful completion.",
+        "Continue through short pages to an explicit empty response. Record extraction interval and catch-up pass. The endpoint does not establish a frozen cross-request snapshot, so concurrent changes require reconciliation and a declared cutoff.",
+        "Resolve available source IDs with typed document reads and separately retain attachments/history. Record inaccessible or absent source links. Compare opening balance plus period movement to closing totals on the same basis.",
+        "On reconnection,revalidate permissions and entitlement,retain previous checkpoints and rerun affected-period totals. If completeness cannot be established,mark the population incomplete and escalate; do not create a balancing plug."
+      ],
+      "synthetic_counterexample": {
+        "id": "XERO-SHORT-PAGE-1",
+        "classification": "project proposal",
+        "meaning": "Original normalized fixture, not captured Xero traffic or an executable API client. Sparse journal numbers are intentional.",
+        "pages": [
+          {
+            "offset": 0,
+            "journal_numbers": [
+              1,
+              37
+            ]
+          },
+          {
+            "offset": 37,
+            "journal_numbers": [
+              38,
+              80
+            ]
+          },
+          {
+            "offset": 80,
+            "journal_numbers": []
+          }
+        ],
+        "naive_short_page_stop_count": 2,
+        "correct_empty_termination_count": 4,
+        "lost_journal_numbers": [
+          38,
+          80
+        ],
+        "conclusion": "A short-page stop loses two journal objects even though every received journal could balance."
+      },
+      "authorized_test_protocol": {
+        "status": "project proposal; not run",
+        "prerequisites": [
+          "Separate authorization for a named sandbox/demo tenant and each write action",
+          "Applicable terms/entitlements and owner-approved synthetic records",
+          "Known country/product,roles,scopes,period locks,basis and currency; redacted evidence storage"
+        ],
+        "cases": [
+          "Short and empty pagination,nonadvancing cursor,crash before checkpoint commit and429",
+          "Backdated manual adjustment and source-generated bill/payment,with before/after account totals",
+          "Missing source links,attachments and history; draft/delete versus posted/void distinctions",
+          "Duplicate/out-of-order notification and reconnection gap,only after documented coverage review",
+          "Lost write response,concurrent payload change and locked period under separate write authorization"
+        ],
+        "required_receipt": "Exact app/tenant cohort,request/response identities and dates,expected versus actual population/totals,exceptions and reviewer decision. Strip credentials and private data before sharing."
+      },
+      "limitations": [
+        "Draft P1 dossier: source-object endpoint details,webhooks,exact OAuth map,report comparison,concurrency and lock behavior remain unresolved.",
+        "No live accounting operations,API tests or professional review occurred. Synthetic replay cannot establish vendor behavior.",
+        "Historical September7 bank-boundary annotation is inherited and needs recheck before operation.",
+        "Oracle/NetSuite comparison and final canonical relationships,reader presentation and exports remain pending."
+      ]
+    }
+  },
+  {
+    "id": "guide-qbo-ledger-completeness",
+    "kind": "guide",
+    "title": "Reconcile a QuickBooks Online extraction across gaps and corrections",
+    "summary": "Separate typed transaction queries, reports, change-data capture and notifications; reconcile the intended company population before calling an extract complete.",
+    "topics": [
+      "Accounting and reporting",
+      "Evidence and reconciliation",
+      "Controls and governance"
+    ],
+    "industries": [],
+    "jurisdiction": "QuickBooks Online; proposed US-company task, actual country/product/app cohort untested",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_qbo_cdc_guidance_2023",
+      "src_qbo_webhook_cloudevents_2026",
+      "src_qbo_reports_migration_2026",
+      "src_qbo_id_request_semantics",
+      "src_qbo_cdc_reference",
+      "src_qbo_query_reference"
+    ],
+    "related_ids": [
+      "collection-erp-extraction-completeness",
+      "wf-audit-population-evidence",
+      "wf-r2r-journal-entry",
+      "example-connected-purchase-to-payment",
+      "example-connected-processor-settlement"
+    ],
+    "review_status": "draft-editorial-review-pending",
+    "reviewed_at": null,
+    "provenance": {
+      "added_on": "2026-09-21",
+      "reviewer": "Codex original synthesis",
+      "scope": "Original dossier grounded in named documentation, with separately labeled project proposals and unknown tenant behavior.",
+      "note": "Issue173 P1 draft: original QBO synthesis from named official sections. No API execution, tenant access or professional acceptance."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false
+    },
+    "data": {
+      "version": "issue-173-draft",
+      "answer": "A successful JournalEntry query is not proof of a complete general ledger. Define the company and all contributing transaction types, obtain a consistent report basis, reconcile counts and totals, and use change-data capture only inside its documented coverage/window. A webhook is a prompt to reconcile, not the accounting record.",
+      "scope": {
+        "environment": "No connected tenant. Proposed US QBO company, edition and enabled features must be recorded before any authorized test.",
+        "classification": "Documented behavior is separated from original recovery proposals and explicit unknowns; no observed API behavior."
+      },
+      "object_purpose_table": [
+        {
+          "id": "qbo-query",
+          "status": "documented",
+          "question": "What population does a query retrieve?",
+          "answer": "Queries page one typed entity, default100 and maximum1,000 results. STARTPOSITION/MAXRESULTS and COUNT operate on the selected criteria; joins and OR are unsupported.",
+          "source_ids": [
+            "src_qbo_query_reference"
+          ],
+          "locator": "Server responses,Pagination,Count and query limitations"
+        },
+        {
+          "id": "qbo-identity",
+          "status": "documented",
+          "question": "How are identities scoped?",
+          "answer": "realmID identifies the company. Preserve typed entity IDs as strings; DocNumber is a business number, not a global unique or idempotency key.",
+          "source_ids": [
+            "src_qbo_id_request_semantics"
+          ],
+          "locator": "Realm ID,Entity ID,DocNumber"
+        },
+        {
+          "id": "qbo-report",
+          "status": "documented",
+          "question": "What report evidence is available?",
+          "answer": "The current migration notice lists GeneralLedger,JournalReport and TrialBalance. Response nesting and row positions changed; missing values can be empty strings and daily summaries can group excess columns. A supported report name is not a completeness guarantee.",
+          "source_ids": [
+            "src_qbo_reports_migration_2026"
+          ],
+          "locator": "Response changes and supported-report appendix"
+        },
+        {
+          "id": "qbo-source",
+          "status": "unknown",
+          "question": "Which source transactions and links make up this company ledger?",
+          "answer": "Bill,Invoice,Payment,BillPayment,Purchase,Deposit,Transfer,CreditMemo,VendorCredit and JournalEntry are candidate object types to verify against the current entity references and enabled features. Their full membership,LinkedTxn fields,attachments and source-to-report joins are not established by the generic query reference. Do not substitute a manual journal list for this investigation.",
+          "source_ids": [
+            "src_qbo_query_reference"
+          ],
+          "locator": "Generic entity query contract; object-specific reference review still required"
+        },
+        {
+          "id": "qbo-cdc",
+          "status": "documented",
+          "question": "Does CDC recover all history?",
+          "answer": "CDC is limited to changes in the preceding30days and at most1,000 objects. JournalCode,TaxAgency,TimeActivity,TaxCode and TaxRate are excluded. Deletions have a Deleted marker.",
+          "source_ids": [
+            "src_qbo_cdc_reference"
+          ],
+          "locator": "How CDC works; excluded entities; Step1"
+        },
+        {
+          "id": "qbo-events",
+          "status": "documented",
+          "question": "What company owns a notification?",
+          "answer": "The CloudEvents example is an array whose events carry intuitaccountid and intuitentityid. One delivery can contain different companies. The updated migration deadline is July31,2026; older May15 prose is retained in the notice.",
+          "source_ids": [
+            "src_qbo_webhook_cloudevents_2026"
+          ],
+          "locator": "Updated notice and payload fields"
+        }
+      ],
+      "access_and_change_rows": [
+        {
+          "id": "qbo-consent",
+          "status": "unknown",
+          "question": "Does OAuth consent imply permission for every operation?",
+          "answer": "Current accounting scope,authorizing role,app commercial tier,country/product edition and feature restrictions require separate checks. No credentials,consent or tenant permissions were observed. Broad connection access must not be described as an enforced read-only or per-amount policy.",
+          "source_ids": [],
+          "locator": "No named environment or reviewed permission map yet"
+        },
+        {
+          "id": "qbo-retry",
+          "status": "documented",
+          "question": "How are write replays identified?",
+          "answer": "The official field reference describes same-request replay using requestid unique per company; batch replays retain request and batch IDs. It does not establish a retention period or changed-payload behavior in the reviewed section.",
+          "source_ids": [
+            "src_qbo_id_request_semantics"
+          ],
+          "locator": "Request ID"
+        },
+        {
+          "id": "qbo-concurrent",
+          "status": "unknown",
+          "question": "Can an update safely overwrite a concurrent edit?",
+          "answer": "Current SyncToken,partial-update,void/delete and journal-approval semantics require object-specific review and controlled tests. Read-back after a lost response is a proposed recovery step, not proof of atomicity or race freedom.",
+          "source_ids": [],
+          "locator": "Unresolved object-specific contract"
+        },
+        {
+          "id": "qbo-time",
+          "status": "project proposal",
+          "question": "What if a change is backdated?",
+          "answer": "Store transaction/posting dates separately from modification and extraction timestamps. Reconcile the affected accounting period even when the change arrives later. Confirm timezone and CDC boundary inclusivity before using a watermark.",
+          "source_ids": [
+            "src_qbo_cdc_reference"
+          ],
+          "locator": "Original procedure; timestamp-boundary behavior remains untested"
+        },
+        {
+          "id": "qbo-dimensions",
+          "status": "unknown",
+          "question": "Are classes,locations,currency and locks complete?",
+          "answer": "Record enabled features,entity IDs,account currency,functional/report currency,rounding,basis and period-lock settings. Do not infer support or enforcement from generic SDK fields or a successful query.",
+          "source_ids": [],
+          "locator": "Country/product/entity-specific documentation and authorized test pending"
+        },
+        {
+          "id": "qbo-limits-rights",
+          "status": "unknown",
+          "question": "What commercial,data-use and request limits apply?",
+          "answer": "Current rate limits,app-plan entitlements,data processing,training,redistribution and benchmark permissions need original terms review for the app cohort. No private extraction or platform benchmark is authorized by this dossier.",
+          "source_ids": [],
+          "locator": "No terms equivalence inferred from Xero or another Intuit product"
+        }
+      ],
+      "completeness_recovery_procedure": [
+        "Project proposal: define realmID,country/product,enabled features,accounting basis,timezone,currencies and period. Inventory every contributing object type and independent report controls; leave the extraction incomplete if that inventory is unresolved.",
+        "Acquire typed entity pages with documented filters. Preserve raw response identity and deduplicate by company,type,id. Explicitly include inactive list records where supported. A COUNT is a diagnostic for its filter,not proof of a frozen cross-page snapshot.",
+        "Record extraction start/end and perform overlapping CDC catch-up for covered types inside the30-day horizon. Divide crowded windows; if a same-timestamp interval still saturates1,000 objects,stop and require another validated recovery method rather than advance past unknown omissions.",
+        "Persist data and checkpoint together. Retain deletion tombstones,source links and prior versions under an authorized retention policy. Empty CDC means no reported covered changes in that interval,not no accounting activity or no exclusions.",
+        "Route each CloudEvent by company and typed object; deduplicate event IDs but reread relevant source state. Out-of-order delivery cannot justify overwriting newer state. Verify signature,delivery retry and retention contracts before implementing a receiver; this research runs none.",
+        "On a gap exceeding30days,reconcile a new full eligible population and independently obtained report totals. CDC cannot certify the missing interval or recover every deleted historical state. Retain that unresolved history explicitly.",
+        "Compare period/account movement and closing balances with the same report basis and dimensions. Parse semantic rows,not fixed row positions. Trace each difference to an entity,report filter,conversion,rounding or unresolved exception; never add a plug.",
+        "For an uncertain authorized write,retain exact payload,company and requestid; reconcile read-back before considering a retry. A changed destination,amount,period or entity invalidates prior approval. Unproven server idempotency behavior requires human resolution."
+      ],
+      "synthetic_counterexample": {
+        "id": "QBO-CDC-GAP-1",
+        "classification": "project proposal",
+        "meaning": "Original normalized fixture; not an Intuit response or observed tenant.",
+        "last_complete_checkpoint": "2026-04-01T00:00:00Z",
+        "reconnected_at": "2026-05-15T00:00:00Z",
+        "documented_lookback_days": 30,
+        "events": [
+          {
+            "id": "BILL-OLD",
+            "modified_at": "2026-04-05T00:00:00Z",
+            "amount_minor": 12000
+          },
+          {
+            "id": "BILL-RECENT",
+            "modified_at": "2026-05-10T00:00:00Z",
+            "amount_minor": 8000
+          }
+        ],
+        "inside_window_ids": [
+          "BILL-RECENT"
+        ],
+        "outside_window_ids": [
+          "BILL-OLD"
+        ],
+        "naive_observed_amount_minor": 8000,
+        "full_fixture_amount_minor": 20000,
+        "currency": "USD",
+        "conclusion": "A plausible successful CDC response misses the older change; a fresh population/report reconciliation and explicit history limitation are required."
+      },
+      "authorized_test_protocol": {
+        "status": "project proposal; not run",
+        "prerequisites": [
+          "Explicit named-sandbox authorization for each read/write scenario",
+          "Verified terms and product/feature/role/scope configuration",
+          "Owner-approved synthetic population with independent expected totals and no client data"
+        ],
+        "cases": [
+          "Paging with concurrent edits and inactive lists",
+          "CDC empty interval,deletion,30-day boundary and saturated same-timestamp change set",
+          "Mixed-company,duplicate,out-of-order and missed notifications after signature-contract review",
+          "Backdated source transaction versus report period and changed report nesting",
+          "Lost-response identical replay,changed payload,stale version and lock enforcement under separate write authority"
+        ],
+        "receipt": "Bind environment,date,documentation version,source population,request/response digests and actual outcomes. No credentials or private records in public exports."
+      },
+      "limitations": [
+        "Draft P1 dossier: current entity references,permission/terms/limits,webhook delivery and write contracts still require focused original-source review.",
+        "No source-to-GL completeness claim,professional signoff,tenant access or observed API test.",
+        "Synthetic arithmetic establishes only the stated counterexample; it cannot verify Intuit CDC behavior.",
+        "Final narrow ERP comparison,relationship/editorial integration and export verification remain pending."
+      ]
+    }
   }
 ]

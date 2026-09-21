@@ -124,3 +124,43 @@ The publisher identifies Choi and Xie, *Human + AI in Accounting: Early Evidence
 The basic reader denied the Stanford pages and Wiley full-text route; Exa full-page fetch returned an internal tool error. ResearchGate's article page explicitly labels its full text as supplied by Wiley and exposes the published article, including its received/accepted dates and open-access notice. The title page and introduction were read there. Its PDF download link returned 404 in the current reader, and the journal supplement landing page was not yet readable. Methods, tables, appendix, working-paper differences and comparison studies have not yet been reviewed. No numerical outcome claims have been upgraded on this basis.
 
 Recovery entry points: `https://onlinelibrary.wiley.com/doi/abs/10.1111/1475-679x.70052`, `https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5240924`, `https://www.researchgate.net/publication/403886266_Human_AI_in_Accounting_Early_Evidence_from_the_Field`, and `https://www.chicagobooth.edu/jar-online-supplements`. PDF skill read for methods/table inspection; no PDF layout review is yet claimed.
+
+### September21 methods and P1 dossier progress
+
+The earlier P3 access paragraph is historical. Selected published Choi methods,
+Tables9-11, the primary journal supplement, data sheet and supplied experiment
+code/log were subsequently read. The99-observation analytic sample follows an
+accuracy restriction from102 loaded observations. Review time is categorized
+self-report, not stopwatch time. No private inputs or independent execution were
+obtained. Canonical profiles preserve exact locators, object hashes and unresolved
+prior-version/preregistration limits. Ashraf, Fedyk and Blankespoor have scoped
+primary methods profiles; six additional studies were screened with explicit
+retain/defer decisions. The guide's earlier abstract-only wording was reconciled,
+but full editorial, relationship and export integration remains pending.
+
+The public Xero Gatsby page-data supplies the documentation content that basic
+readers missed behind a JavaScript shell. `guide-xero-ledger-completeness` now
+contains a task-led object/purpose table, access/change classifications,
+checkpoint/reconciliation procedure, short-page counterexample and proposed
+named-environment test protocol. Four canonical source annotations cover manual
+journals, type/status codes, document history and tier-dependent rate limits.
+The existing Journals source was rechecked, preserving its stable identity.
+The ledger collection includes source fields omitted by single-journal reads;
+some system-origin journals omit source IDs by design. Neither missing link nor
+short response may be silently treated as a complete population.
+
+This remains draft P1 work. QBO's full dossier, source-object specifics, webhook
+and concurrency semantics, exact permission mapping, report equivalence and a
+narrow existing ERP comparison remain to be completed or precisely bounded after
+source investigation. No authenticated accounting-system request was performed.
+Canonical schema validation reaches the expected stale draft coverage mappings;
+no immutable edition has been finalized for these draft changes.
+
+The QBO draft dossier is now canonical as `guide-qbo-ledger-completeness`. It
+separates typed entity pagination, report parsing, CDC coverage, company-scoped
+notification routing and uncertain writes. Its original44-day reconnection-gap
+example shows why a30-day CDC response can omit an older modification. Both
+system counterexamples pass local deterministic checks; they are explicitly
+normalized synthetic fixtures, not captured vendor traffic. Current QBO entity,
+permission,terms,webhook-delivery and write contracts remain research work, not
+completed by marking them unknown.
