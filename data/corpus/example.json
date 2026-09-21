@@ -24316,7 +24316,8 @@
       "src_stripe_balance_reporting",
       "src_stripe_payout_reconciliation",
       "src_stripe_refund_lifecycle",
-      "src_stripe_dispute_lifecycle"
+      "src_stripe_dispute_lifecycle",
+      "src_stripe_currency_units"
     ],
     "related_ids": [
       "example-us-operating-transactions-ledger",
@@ -25709,6 +25710,257 @@
           "decision": "Reject. Matching one net amount is insufficient to support the assertions.",
           "execution_authority": false
         }
+      },
+      "currency_variant": {
+        "id": "B-CURRENCY-JPY-USD",
+        "classification": "original-synthetic-independent-variant",
+        "source_ids": [
+          "src_stripe_currency_units"
+        ],
+        "boundary": "USD-functional-currency fictional US seller. JPY presentment converts immediately into USD settlement at a stipulated rate at the same recognition/capture time. No foreign-currency balance remains overnight, no refund/dispute and no customer card FX-fee accounting. Do not combine with the baseline.",
+        "amount_unit": "USD ledger integer cents; separate JPY presentment integer yen",
+        "rounding": "JPY exponent 0; USD exponent 2. Use exact rational integer conversion, round half-up only at the declared conversion boundary. This fixture has no fractional-cent remainder; it establishes no provider rounding policy.",
+        "assumptions": [
+          "Completed service recognition and functional currency are declared fixture assumptions, not professionally assessed facts.",
+          "The conversion rate and 200-cent processing fee are fictional, not Stripe price or observed API output.",
+          "No deferred payment, tax, separate conversion fee or later FX remeasurement. Such facts require a different accounting case.",
+          "Account-country and payment-method eligibility for actual JPY presentment require separate verification."
+        ],
+        "conversion": {
+          "presentment_currency": "JPY",
+          "presentment_amount_minor": 10000,
+          "presentment_minor_per_major": 1,
+          "settlement_currency": "USD",
+          "settlement_minor_per_major": 100,
+          "usd_cents_numerator_per_jpy": 67,
+          "denominator": 100,
+          "expected_gross_usd_cents": 6700,
+          "processing_fee_usd_cents": 200,
+          "expected_net_usd_cents": 6500
+        },
+        "chart_of_accounts": {
+          "bank": "USD settlement bank asset",
+          "receivable": "USD-measured customer receivable",
+          "processor_clearing": "USD settlement processor asset",
+          "cash_in_transit": "USD payout pending bank settlement",
+          "revenue": "USD service revenue under declared recognition assumption",
+          "processing_fees": "Fictional USD processor expense"
+        },
+        "opening_balances_minor": {
+          "bank": 0,
+          "receivable": 0,
+          "processor_clearing": 0,
+          "cash_in_transit": 0,
+          "revenue": 0,
+          "processing_fees": 0
+        },
+        "documents": [
+          {
+            "id": "B-FX-D1",
+            "date": "2026-07-01",
+            "kind": "original synthetic currency-variant document",
+            "authorship": "original-synthetic",
+            "content": {
+              "description": "Invoice and completed service: JPY 10,000 measured at fictional USD 67.00.",
+              "usd_amount_minor": 6700
+            }
+          },
+          {
+            "id": "B-FX-D2",
+            "date": "2026-07-01",
+            "kind": "original synthetic currency-variant document",
+            "authorship": "original-synthetic",
+            "content": {
+              "description": "Capture converts JPY 10,000 to USD 67.00 under the stipulated exact rate.",
+              "usd_amount_minor": 6700
+            }
+          },
+          {
+            "id": "B-FX-D3",
+            "date": "2026-07-01",
+            "kind": "original synthetic currency-variant document",
+            "authorship": "original-synthetic",
+            "content": {
+              "description": "Fictional processor fee USD 2.00.",
+              "usd_amount_minor": 200
+            }
+          },
+          {
+            "id": "B-FX-D4",
+            "date": "2026-07-01",
+            "kind": "original synthetic currency-variant document",
+            "authorship": "original-synthetic",
+            "content": {
+              "description": "USD 65.00 payout debited by processor; not yet bank cash.",
+              "usd_amount_minor": 6500
+            }
+          },
+          {
+            "id": "B-FX-D5",
+            "date": "2026-07-02",
+            "kind": "original synthetic currency-variant document",
+            "authorship": "original-synthetic",
+            "content": {
+              "description": "USD bank credit of 65.00 matches the payout identity.",
+              "usd_amount_minor": 6500
+            }
+          }
+        ],
+        "events": [
+          {
+            "id": "B-FX-E1",
+            "date": "2026-07-01",
+            "document_ids": [
+              "B-FX-D1"
+            ],
+            "description": "Invoice and completed service: JPY 10,000 measured at fictional USD 67.00."
+          },
+          {
+            "id": "B-FX-E2",
+            "date": "2026-07-01",
+            "document_ids": [
+              "B-FX-D2"
+            ],
+            "description": "Capture converts JPY 10,000 to USD 67.00 under the stipulated exact rate."
+          },
+          {
+            "id": "B-FX-E3",
+            "date": "2026-07-01",
+            "document_ids": [
+              "B-FX-D3"
+            ],
+            "description": "Fictional processor fee USD 2.00."
+          },
+          {
+            "id": "B-FX-E4",
+            "date": "2026-07-01",
+            "document_ids": [
+              "B-FX-D4"
+            ],
+            "description": "USD 65.00 payout debited by processor; not yet bank cash."
+          },
+          {
+            "id": "B-FX-E5",
+            "date": "2026-07-02",
+            "document_ids": [
+              "B-FX-D5"
+            ],
+            "description": "USD bank credit of 65.00 matches the payout identity."
+          }
+        ],
+        "journals": [
+          {
+            "id": "B-FX-J1",
+            "date": "2026-07-01",
+            "event_id": "B-FX-E1",
+            "document_ids": [
+              "B-FX-D1"
+            ],
+            "lines": [
+              {
+                "account": "receivable",
+                "debit_minor": 6700,
+                "credit_minor": 0
+              },
+              {
+                "account": "revenue",
+                "debit_minor": 0,
+                "credit_minor": 6700
+              }
+            ]
+          },
+          {
+            "id": "B-FX-J2",
+            "date": "2026-07-01",
+            "event_id": "B-FX-E2",
+            "document_ids": [
+              "B-FX-D2"
+            ],
+            "lines": [
+              {
+                "account": "processor_clearing",
+                "debit_minor": 6700,
+                "credit_minor": 0
+              },
+              {
+                "account": "receivable",
+                "debit_minor": 0,
+                "credit_minor": 6700
+              }
+            ]
+          },
+          {
+            "id": "B-FX-J3",
+            "date": "2026-07-01",
+            "event_id": "B-FX-E3",
+            "document_ids": [
+              "B-FX-D3"
+            ],
+            "lines": [
+              {
+                "account": "processing_fees",
+                "debit_minor": 200,
+                "credit_minor": 0
+              },
+              {
+                "account": "processor_clearing",
+                "debit_minor": 0,
+                "credit_minor": 200
+              }
+            ]
+          },
+          {
+            "id": "B-FX-J4",
+            "date": "2026-07-01",
+            "event_id": "B-FX-E4",
+            "document_ids": [
+              "B-FX-D4"
+            ],
+            "lines": [
+              {
+                "account": "cash_in_transit",
+                "debit_minor": 6500,
+                "credit_minor": 0
+              },
+              {
+                "account": "processor_clearing",
+                "debit_minor": 0,
+                "credit_minor": 6500
+              }
+            ]
+          },
+          {
+            "id": "B-FX-J5",
+            "date": "2026-07-02",
+            "event_id": "B-FX-E5",
+            "document_ids": [
+              "B-FX-D5"
+            ],
+            "lines": [
+              {
+                "account": "bank",
+                "debit_minor": 6500,
+                "credit_minor": 0
+              },
+              {
+                "account": "cash_in_transit",
+                "debit_minor": 0,
+                "credit_minor": 6500
+              }
+            ]
+          }
+        ],
+        "expected_period_balances_minor": {
+          "2026-07-02": {
+            "bank": 6500,
+            "receivable": 0,
+            "processor_clearing": 0,
+            "cash_in_transit": 0,
+            "revenue": -6700,
+            "processing_fees": 200
+          }
+        },
+        "unresolved_item": "Real recognition, functional-currency measurement, rate provenance, provider rounding and eligibility are untested. A rate quoted without units or the capture/settlement facts cannot support the same conclusion."
       }
     }
   }

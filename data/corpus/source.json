@@ -97494,5 +97494,82 @@
       "review_trigger": "Recheck relevant payload, report, identifier and recovery contracts before implementation.",
       "commercial_interest": "First-party platform documentation; not independent operating evidence."
     }
+  },
+  {
+    "id": "src_stripe_currency_units",
+    "kind": "source",
+    "title": "Stripe presentment, settlement and currency units",
+    "summary": "Presentment and settlement currencies can differ. API amounts use the relevant currency minor unit; JPY is zero-decimal while USD uses cents. Country and payment-method availability remain separate.",
+    "topics": [
+      "Agent engineering",
+      "Accounting and reporting"
+    ],
+    "industries": [
+      "general"
+    ],
+    "jurisdiction": "Processor documentation; account country, payment method, payout mode and contract affect applicability",
+    "source_type": "Technical reference",
+    "publisher": "Stripe",
+    "source_url": "https://docs.stripe.com/currencies",
+    "source_ids": [],
+    "related_ids": [
+      "wf-r2r-journal-entry",
+      "wf-audit-population-evidence"
+    ],
+    "review_status": "source-checked",
+    "reviewed_at": "2026-09-21",
+    "provenance": {
+      "added_on": "2026-09-21",
+      "reviewer": "Codex (AI-assisted source review)",
+      "scope": "Named original-publisher sections read through web extraction on 2026-09-21; no tenant test or professional review.",
+      "evidence_urls": [
+        "https://docs.stripe.com/currencies"
+      ],
+      "outcome": "Supports the bounded documented observations; API operation, legal applicability and permissions for an actual app remain untested.",
+      "note": "Issue 173 P2 source context. Documentation review is separate from synthetic arithmetic, tenant observations and professional review."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "publication": {
+        "published_at": null,
+        "edition": "Publisher page checked 21 September 2026",
+        "status": "First-party guidance; mutable page"
+      },
+      "evidence": [
+        {
+          "claim": "Presentment and settlement currencies can differ. API amounts use the relevant currency minor unit; JPY is zero-decimal while USD uses cents. Country and payment-method availability remain separate.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "Stripe presentment, settlement and currency units",
+            "url": "https://docs.stripe.com/currencies",
+            "locator": "Currency presentment and settlement; Specify amounts in API requests; Zero-decimal currencies"
+          }
+        },
+        {
+          "claim": "Currency conversion and special charge/payout rules must be read for the particular account and currency. Documentation examples do not establish an observed exchange rate, merchant eligibility or an accounting measurement policy.",
+          "classification": "editorial-scope-limitation",
+          "source": {
+            "title": "Stripe presentment, settlement and currency units",
+            "url": "https://docs.stripe.com/currencies",
+            "locator": "Currency presentment and settlement; Special cases"
+          }
+        }
+      ],
+      "limitations": [
+        "Only the named documentation sections were reviewed. No API, merchant account, payment, refund, dispute or bank operation was executed. Fictional case amounts and journal recognition policies are separate project assumptions."
+      ],
+      "access_note": "Original publisher markdown sections read on 2026-09-21. No external full text stored.",
+      "review_trigger": "Recheck relevant payload, report, identifier and recovery contracts before implementation.",
+      "commercial_interest": "First-party platform documentation; not independent operating evidence."
+    }
   }
 ]

@@ -177,3 +177,17 @@ test('completed comparison packets trace real case inputs without implying human
  assert.equal(guide.data.human_evaluation_protocol.measures.length,6);
  assert.equal(guide.data.human_evaluation_protocol.status,'PROPOSAL ONLY; not run');
 });
+
+test('currency variant keeps JPY units separate from USD ledger and net settlement',()=>{
+ const variant=cases[1].data.currency_variant,c=variant.conversion;
+ const numerator=BigInt(c.presentment_amount_minor)*BigInt(c.usd_cents_numerator_per_jpy),denominator=BigInt(c.denominator);
+ const gross=(numerator+denominator/2n)/denominator;
+ assert.equal(Number(gross),6700);assert.equal(c.expected_gross_usd_cents,6700);
+ assert.equal(c.presentment_minor_per_major,1);assert.equal(c.settlement_minor_per_major,100);
+ assert.equal(c.expected_gross_usd_cents-c.processing_fee_usd_cents,c.expected_net_usd_cents);
+ assert.equal(replay(variant,'2026-07-01').cash_in_transit,6500);assert.equal(replay(variant,'2026-07-01').bank,0);
+ assert.deepEqual(replay(variant,'2026-07-02'),variant.expected_period_balances_minor['2026-07-02']);
+ assert.notEqual(c.presentment_amount_minor,c.expected_gross_usd_cents,'Raw JPY amount must not be posted as USD cents');
+ const source=JSON.parse(fs.readFileSync('data/corpus/source.json')).find(r=>r.id==='src_stripe_currency_units');
+ validateSchema(source,JSON.parse(fs.readFileSync('schemas/record.schema.json')),source.id);
+});
