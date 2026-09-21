@@ -28,7 +28,9 @@ export const SOURCE_HOST_LIMIT_BYTES = 25 * 1024 * 1024;
 export const SOURCE_PART_LIMIT_BYTES = 24 * 1024 * 1024;
 export const SOURCE_ARCHIVE_NAME = "accounting-agents-source.zip";
 export const SOURCE_EXPORT_MANIFEST_NAME = "accounting-agents-source.manifest.json";
-export const currentCorpusVersion = JSON.parse(fs.readFileSync("data/catalog.json", "utf8")).corpus_version;
+// Legacy metadata exports describe this helper checkout. Explicit-root APIs below
+// resolve their own edition and reconstruction can run from an empty directory.
+export const currentCorpusVersion = JSON.parse(fs.readFileSync(new URL("../data/catalog.json", import.meta.url), "utf8")).corpus_version;
 export const currentReleaseGzipPath = `data/releases/${currentCorpusVersion}/corpus.json.gz`;
 
 const sha256 = (body) => createHash("sha256").update(body).digest("hex");
