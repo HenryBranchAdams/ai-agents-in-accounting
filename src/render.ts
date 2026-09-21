@@ -5,3 +5,5 @@ export { browse } from "./pages/library";
 export { recordPage } from "./pages/record";
 export { briefsPage, collectionsPage } from "./pages/collections";
 export { aboutPage, usePage, errorPage } from "./pages/information";
+
+export { homePage } from "./pages/home";

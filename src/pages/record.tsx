@@ -1,3 +1,5 @@
+import { editedBrief } from "../editorial";
+import { BriefReading } from "../components/brief-reading";
 import { Alert, AlertTitle, AlertDescription } from "../components/ui/alert";
 import { Badge } from "../components/ui/badge";
 import {
@@ -176,6 +178,9 @@ function sourceEvidence(r: CorpusRecord) {
           </>
         )}
         <p className="text-sm text-muted-foreground">
+          Source rights: {displayText(r.rights.source_status || "unknown")}. {displayText(r.rights.source_permission_scope || "External publisher terms apply; public access is not reuse permission.")}
+        </p>
+        <p className="text-sm text-muted-foreground">
           {"These are recorded annotations. "}
           {r.review_status.startsWith("inherited")
             ? "Inherited claims have not been reverified."
@@ -277,19 +282,39 @@ export function recordPage(r: CorpusRecord) {
     ([key]) => !skippedKeys.has(key),
   );
   const brief = r.data.editorial_brief;
+  const edited = editedBrief(brief);
   const researchQuestions = Array.isArray(r.data.research_questions)
     ? r.data.research_questions
     : [];
-  const workedBranches = r.id === "example-construction-contract-ledger" && Array.isArray(r.data.examples)
-    ? r.data.examples as Record<string, Json>[]
-    : [];
-  const constructionSections = r.id === "example-construction-contract-ledger"
-    ? [["journals", "Base journals"], ["examples", "Calculations and branches"], ["same_job_case", "Same-job evidence"], ["transaction_evidence", "Corrections and completeness"], ["observed_evidence", "Aggregate evidence"]]
-    : r.id === "guide-construction-connected-close"
-      ? [["local_completion", "Local completion"], ["four_gap_ledger", "Four-gap outcomes"], ["authority_matrix", "Authority questions"], ["professional_review_packet", "Review packet"], ["evidence_closure", "Earlier gap outcomes"], ["public_evidence_intake", "Public evidence intake"]]
-      : r.id === "guide-construction-tax-transitions"
-        ? [["conflict_resolution", "Source disagreements"], ["method_change_path", "Method-change scope"]]
-        : [];
+  const workedBranches =
+    r.id === "example-construction-contract-ledger" &&
+    Array.isArray(r.data.examples)
+      ? (r.data.examples as Record<string, Json>[])
+      : [];
+  const constructionSections =
+    r.id === "example-construction-contract-ledger"
+      ? [
+          ["journals", "Base journals"],
+          ["examples", "Calculations and branches"],
+          ["same_job_case", "Same-job evidence"],
+          ["transaction_evidence", "Corrections and completeness"],
+          ["observed_evidence", "Aggregate evidence"],
+        ]
+      : r.id === "guide-construction-connected-close"
+        ? [
+            ["local_completion", "Local completion"],
+            ["four_gap_ledger", "Four-gap outcomes"],
+            ["authority_matrix", "Authority questions"],
+            ["professional_review_packet", "Review packet"],
+            ["evidence_closure", "Earlier gap outcomes"],
+            ["public_evidence_intake", "Public evidence intake"],
+          ]
+        : r.id === "guide-construction-tax-transitions"
+          ? [
+              ["conflict_resolution", "Source disagreements"],
+              ["method_change_path", "Method-change scope"],
+            ]
+          : [];
   const edges = knowledge
     .relations(r.id)
     .filter((e) => !["cites", "cited_by"].includes(e.type));
@@ -300,6 +325,14 @@ export function recordPage(r: CorpusRecord) {
         className="grid gap-1 [&_a]:py-2 [&_a]:no-underline hover:[&_a]:underline"
       >
         {[
+          ...(edited
+            ? [
+                ["answer", "Answer"],
+                ["worked-example", "Worked example"],
+                ["responsibility", "Who does what"],
+                ["findings", "Evidence"],
+              ]
+            : []),
           ...(researchQuestions.length
             ? [["research-questions", "Research questions"]]
             : []),
@@ -311,14 +344,19 @@ export function recordPage(r: CorpusRecord) {
               ]
             : researchQuestions.length
               ? []
-              : brief
+              : edited
                 ? [
-                    ["answer", "Answer in context"],
-                    ["findings", "Findings"],
                     ["qualifications", "Qualifications"],
                     ["unknowns", "Unknowns"],
                   ]
-                : [["record-content", "Reference details"]]),
+                : brief
+                  ? [
+                      ["answer", "Answer in context"],
+                      ["findings", "Findings"],
+                      ["qualifications", "Qualifications"],
+                      ["unknowns", "Unknowns"],
+                    ]
+                  : [["record-content", "Reference details"]]),
           ...constructionSections.map(([id, title]) => ["detail-" + id, title]),
           ...(cited.length && r.kind !== "collection"
             ? [["sources", "Cited sources"]]
@@ -343,7 +381,7 @@ export function recordPage(r: CorpusRecord) {
         {"\n    "}
         <article className="reading min-w-0 lg:col-span-3">
           {"\n      "}
-          <Breadcrumb className="mb-8">
+          <Breadcrumb className="mb-4">
             <BreadcrumbList>
               <BreadcrumbItem>
                 <BreadcrumbLink href="/">Corpus</BreadcrumbLink>
@@ -357,110 +395,24 @@ export function recordPage(r: CorpusRecord) {
             </BreadcrumbList>
           </Breadcrumb>
           {"\n      "}
-          <div className="mb-4">
-            <Badge variant="secondary">
-              {displayText(r.source_type || kinds[r.kind])}
-            </Badge>
-          </div>
+          {!edited && (
+            <div className="mb-4">
+              <Badge variant="secondary">
+                {displayText(r.source_type || kinds[r.kind])}
+              </Badge>
+            </div>
+          )}
+          <h1>{edited?.question || displayText(r.title)}</h1>
           {"\n      "}
-          <h1>{displayText(r.title)}</h1>
-          {"\n      "}
-          <p className="mb-6 max-w-3xl text-lg leading-relaxed text-muted-foreground">
-            {displayText(r.summary)}
-          </p>
-          {"\n      "}
-          <div className="my-6 flex flex-wrap items-center gap-5 text-sm">
-            {"\n        "}
-            {r.source_url ? (
-              <>
-                <Button asChild>
-                  <a href={displayText(r.source_url)} rel="noreferrer">
-                    Read the original source
-                    <ExternalLinkIcon data-icon="inline-end" />
-                  </a>
-                </Button>
-              </>
+          <>
+            {edited ? (
+              renderBrief(brief, true)
             ) : (
-              ""
+              <p className="mb-6 max-w-3xl text-lg leading-relaxed text-muted-foreground">
+                {displayText(r.summary)}
+              </p>
             )}
-            <a href={"/records/" + r.id + ".md"}>{"Markdown"}</a>
-            <a href={"/api/v1/records/" + r.id}>{"JSON"}</a>
-            {r.kind === "collection" ? (
-              <>
-                <a href={"/api/v1/collections/" + r.id}>
-                  {"Download bibliography"}
-                </a>
-              </>
-            ) : (
-              ""
-            )}
-            {"\n      "}
-          </div>
-          {"\n      "}
-          <Alert role="note" aria-label="Review and rights">
-            <AlertTitle>Review and rights</AlertTitle>
-            <AlertDescription>
-              {"\n        "}
-              <div className="grid gap-3 text-sm sm:grid-cols-2">
-                <span>
-                  <strong>{displayText(label(r.review_status))}</strong>
-                  {r.reviewed_at
-                    ? ` · ${displayText(r.reviewed_at)}`
-                    : " · Review date unknown"}
-                </span>
-                <span>
-                  {"Source rights: "}
-                  <strong>
-                    {displayText(
-                      r.rights.source_status ||
-                        (r.kind === "source"
-                          ? "unknown"
-                          : "publisher terms apply"),
-                    )}
-                  </strong>
-                  {r.rights.source_license
-                    ? ` · ${displayText(r.rights.source_license)}`
-                    : ""}
-                </span>
-              </div>
-              {"\n        "}
-              <details>
-                <summary>{"Review scope and reuse details"}</summary>
-                <p>
-                  {displayText(
-                    r.provenance.scope ||
-                      r.provenance.review_scope ||
-                      r.provenance.note ||
-                      "Review scope not recorded.",
-                  )}
-                </p>
-                {r.provenance.reviewer ? (
-                  <>
-                    <p>
-                      {"Reviewer: "}
-                      {displayText(r.provenance.reviewer)}
-                    </p>
-                  </>
-                ) : (
-                  ""
-                )}
-                <p>{displayText(r.provenance.outcome || "")}</p>
-                <p>
-                  {"Project metadata: "}
-                  {displayText(r.rights.metadata)}
-                  {"; editorial content: "}
-                  {displayText(r.rights.content)}
-                  {". External full text is not included."}
-                </p>
-              </details>
-              {"\n      "}
-            </AlertDescription>
-          </Alert>
-          {"\n      "}
-          <details className="lg:hidden">
-            <summary>{"On this page"}</summary>
-            {contents}
-          </details>
+          </>
           {"\n      "}
           {r.kind === "source" ? sourceEvidence(r) : ""}
           {"\n      "}
@@ -563,7 +515,7 @@ export function recordPage(r: CorpusRecord) {
                 ""
               )}
             </>
-          ) : brief ? (
+          ) : brief && !edited ? (
             renderBrief(brief)
           ) : (
             ""
@@ -582,23 +534,136 @@ export function recordPage(r: CorpusRecord) {
             ""
           )}
           {"\n      "}
+          <div
+            id="record-actions"
+            className="my-6 flex flex-wrap items-center gap-5 text-sm"
+          >
+            {"\n        "}
+            {r.source_url ? (
+              <>
+                <Button asChild>
+                  <a href={displayText(r.source_url)} rel="noreferrer">
+                    Read the original source
+                    <ExternalLinkIcon data-icon="inline-end" />
+                  </a>
+                </Button>
+              </>
+            ) : (
+              ""
+            )}
+            <a href={"/records/" + r.id + ".md"}>{"Markdown"}</a>
+            <a href={"/api/v1/records/" + r.id}>{"JSON"}</a>
+            {r.kind === "collection" ? (
+              <>
+                <a href={"/api/v1/collections/" + r.id}>
+                  {"Download bibliography"}
+                </a>
+              </>
+            ) : (
+              ""
+            )}
+            {"\n      "}
+          </div>
+          {"\n      "}
+          <Alert role="note" aria-label="Review and rights">
+            <AlertTitle>Review and rights</AlertTitle>
+            <AlertDescription>
+              {"\n        "}
+              <div className="grid gap-3 text-sm sm:grid-cols-2">
+                <span>
+                  <strong>{displayText(label(r.review_status))}</strong>
+                  {r.reviewed_at
+                    ? ` · ${displayText(r.reviewed_at)}`
+                    : " · Review date unknown"}
+                </span>
+                <span>
+                  {"Source rights: "}
+                  <strong>
+                    {displayText(
+                      r.rights.source_status ||
+                        (r.kind === "source"
+                          ? "unknown"
+                          : "publisher terms apply"),
+                    )}
+                  </strong>
+                  {r.rights.source_license
+                    ? ` · ${displayText(r.rights.source_license)}`
+                    : ""}
+                </span>
+              </div>
+              {"\n        "}
+              <details>
+                <summary>{"Review scope and reuse details"}</summary>
+                <p>
+                  {displayText(
+                    r.provenance.scope ||
+                      r.provenance.review_scope ||
+                      r.provenance.note ||
+                      "Review scope not recorded.",
+                  )}
+                </p>
+                {r.provenance.reviewer ? (
+                  <>
+                    <p>
+                      {"Reviewer: "}
+                      {displayText(r.provenance.reviewer)}
+                    </p>
+                  </>
+                ) : (
+                  ""
+                )}
+                <p>{displayText(r.provenance.outcome || "")}</p>
+                <p>
+                  {"Project metadata: "}
+                  {displayText(r.rights.metadata)}
+                  {"; editorial content: "}
+                  {displayText(r.rights.content)}
+                  {". External full text is not included."}
+                </p>
+              </details>
+              {"\n      "}
+            </AlertDescription>
+          </Alert>
+          {"\n      "}
+          <details className="lg:hidden">
+            <summary>{"On this page"}</summary>
+            {contents}
+          </details>
+          {"\n      "}
           <div className="min-w-0" id="record-content">
             {"\n        "}
-            <details open={!(r.kind === "source" || brief)}>
+            <details>
               <summary>{"Complete record details"}</summary>
               {"\n        "}
               {fields.map(([key, value]) =>
                 key === "examples" && workedBranches.length ? (
                   <section id="detail-examples">
                     <h2>Calculations and branches</h2>
-                    <p>Each branch states its own assumptions. Follow one branch at a time; the original closes remain separate.</p>
-                    <nav aria-label="Worked branches"><ul>{workedBranches.map((branch) => (
-                      <li><a href={"#" + displayText(branch.id)}>{displayText(branch.title)}</a></li>
-                    ))}</ul></nav>
+                    <p>
+                      Each branch states its own assumptions. Follow one branch
+                      at a time; the original closes remain separate.
+                    </p>
+                    <nav aria-label="Worked branches">
+                      <ul>
+                        {workedBranches.map((branch) => (
+                          <li>
+                            <a href={"#" + displayText(branch.id)}>
+                              {displayText(branch.title)}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </nav>
                     {workedBranches.map((branch) => (
                       <section id={displayText(branch.id)}>
                         <h3>{displayText(branch.title)}</h3>
-                        {structured(Object.fromEntries(Object.entries(branch).filter(([k]) => !["id", "title"].includes(k))))}
+                        {structured(
+                          Object.fromEntries(
+                            Object.entries(branch).filter(
+                              ([k]) => !["id", "title"].includes(k),
+                            ),
+                          ),
+                        )}
                       </section>
                     ))}
                   </section>
@@ -616,7 +681,15 @@ export function recordPage(r: CorpusRecord) {
                 ) : (
                   <>
                     <section>
-                      <h2 id={constructionSections.some(([id]) => id === key) ? "detail-" + key : undefined}>{displayText(label(key))}</h2>
+                      <h2
+                        id={
+                          constructionSections.some(([id]) => id === key)
+                            ? "detail-" + key
+                            : undefined
+                        }
+                      >
+                        {displayText(label(key))}
+                      </h2>
                       {structured(value)}
                     </section>
                   </>
@@ -885,7 +958,8 @@ export function recordPage(r: CorpusRecord) {
     `/records/${r.id}`,
   );
 }
-function renderBrief(value: Json) {
+function renderBrief(value: Json, answerFirst = false) {
+  const edited = editedBrief(value);
   const b = value as {
     [key: string]: Json;
   };
@@ -898,11 +972,18 @@ function renderBrief(value: Json) {
           return (
             <>
               <article className="my-5 border-l-2 border-border pl-5">
+                <p className="text-sm text-muted-foreground">
+                  {displayText(f.classification || "Recorded synthesis")}
+                </p>
                 <p>{displayText(f.claim)}</p>
                 <p className="text-sm text-muted-foreground">
                   {displayText(f.qualification)}
                 </p>
                 <p>
+                  {displayText(
+                    f.locator ||
+                      "Precise passage locator not recorded in this brief; inspect the canonical source review.",
+                  )}{" "}
                   {Array.isArray(f.source_ids)
                     ? intersperse(
                         f.source_ids.map((id) =>
@@ -922,18 +1003,22 @@ function renderBrief(value: Json) {
       : "";
   return (
     <>
-      <section id="answer">
-        <Card>
-          <CardHeader>
-            <CardTitle role="heading" aria-level={2}>
-              Answer in context
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p>{displayText(b.answer)}</p>
-          </CardContent>
-        </Card>
-      </section>
+      {answerFirst && edited ? (
+        <BriefReading brief={edited} />
+      ) : (
+        <section id="answer">
+          <Card>
+            <CardHeader>
+              <CardTitle role="heading" aria-level={2}>
+                Answer in context
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p>{displayText(b.answer)}</p>
+            </CardContent>
+          </Card>
+        </section>
+      )}
       <section id="findings">
         <h2>{"Findings across sources"}</h2>
         {findings(b.findings)}
@@ -953,7 +1038,26 @@ function renderBrief(value: Json) {
       </section>
       <section>
         <h2>{"Suggested reading order"}</h2>
-        {structured(b.reading_order)}
+        {edited?.reading_notes && (
+          <ol>
+            {edited.reading_notes.map((n) => (
+              <li key={n.record_id}>
+                <a href={`/records/${n.record_id}`}>
+                  {getRecord(n.record_id)?.title || n.record_id}
+                </a>
+                : {n.reason}
+              </li>
+            ))}
+          </ol>
+        )}
+        {edited ? (
+          <details>
+            <summary>Complete reading order</summary>
+            {structured(b.reading_order)}
+          </details>
+        ) : (
+          structured(b.reading_order)
+        )}
       </section>
     </>
   );

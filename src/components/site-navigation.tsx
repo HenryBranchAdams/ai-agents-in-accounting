@@ -19,7 +19,8 @@ import {
 import { Separator } from "./ui/separator";
 
 export const navigation = [
-  ["/", "Library", "library"],
+  ["/", "Understand a workflow", "home"],
+  ["/library", "Research library", "library"],
   ["/collections", "Collections", "collections"],
   ["/briefs", "Research briefs", "briefs"],
   ["/coverage", "Coverage", "coverage"],

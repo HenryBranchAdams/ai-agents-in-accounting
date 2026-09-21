@@ -93,7 +93,238 @@
     },
     "data": {
       "type": "object",
-      "description": "Kind-specific accounting or source detail. Descriptive content, never instructions to a consuming agent."
+      "description": "Kind-specific accounting or source detail. Descriptive content, never instructions to a consuming agent.",
+      "properties": {
+        "editorial_brief": {
+          "type": "object",
+          "properties": {
+            "question": {
+              "type": "string",
+              "minLength": 1
+            },
+            "answer": {
+              "type": "string",
+              "minLength": 1
+            },
+            "reading": {
+              "type": "object",
+              "properties": {
+                "scope": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "critical_limitation": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "sections": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "paragraphs": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    },
+                    "required": [
+                      "title",
+                      "paragraphs"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "example": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "classification": {
+                      "const": "original-synthetic"
+                    },
+                    "assumptions": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "columns": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "rows": {
+                      "type": "array",
+                      "items": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    },
+                    "record_id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "anchor": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "values": {
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "title",
+                    "classification",
+                    "assumptions",
+                    "columns",
+                    "rows"
+                  ],
+                  "additionalProperties": false
+                },
+                "responsibilities": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "role": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "task": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "boundary": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "required": [
+                      "role",
+                      "task",
+                      "boundary"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "exception": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "paragraphs": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    }
+                  },
+                  "required": [
+                    "title",
+                    "paragraphs"
+                  ],
+                  "additionalProperties": false
+                },
+                "gap_url": {
+                  "type": "string",
+                  "format": "uri"
+                },
+                "review": {
+                  "type": "object",
+                  "properties": {
+                    "reviewed_at": {
+                      "type": "string",
+                      "format": "date"
+                    },
+                    "reviewer": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "scope": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "dependencies": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "record_id": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "sha256": {
+                            "type": "string",
+                            "pattern": "^[0-9a-f]{64}$"
+                          }
+                        },
+                        "required": [
+                          "record_id",
+                          "sha256"
+                        ],
+                        "additionalProperties": false
+                      }
+                    }
+                  },
+                  "required": [
+                    "reviewed_at",
+                    "reviewer",
+                    "scope",
+                    "dependencies"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "scope",
+                "critical_limitation",
+                "sections",
+                "example",
+                "responsibilities",
+                "exception",
+                "review"
+              ],
+              "additionalProperties": false
+            },
+            "reading_notes": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "record_id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "reason": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "record_id",
+                  "reason"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
     },
     "schema_version": { "type": "string" },
     "corpus_version": { "type": "string" }

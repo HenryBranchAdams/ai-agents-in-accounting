@@ -1746,6 +1746,156 @@
           "review_status": "inherited-not-reverified",
           "reviewed_at": null
         }
+      },
+      "editorial_brief": {
+        "question": "What should an agent do with an unmatched bank fee?",
+        "answer": "Prepare an explanation and a proposed entry, then stop for review. In this synthetic example, a $35 bank fee explains why statement cash is below book cash. Software checks the records and arithmetic; an agent links the fee to its evidence; an authorized reviewer decides whether the expense and period are right. A balanced proposal does not grant permission to post it.",
+        "findings": [
+          {
+            "claim": "AS 1105 treats evidence quality as relevance and reliability and requires the auditor to address conflicting evidence.",
+            "classification": "authority-requirement",
+            "source_ids": [
+              "src_0vf7hhg"
+            ],
+            "locator": "AS 1105 paragraphs .06, .08 and .29; publisher page inspected 2026-09-21.",
+            "qualification": "Requirements for PCAOB engagements, used here as an evidence-design lens. They do not prescribe this agent workflow or prove its effectiveness."
+          },
+          {
+            "claim": "AS 1215 requires a record of procedures, evidence, conclusions, preparers and reviewers.",
+            "classification": "authority-requirement",
+            "source_ids": [
+              "src_1l45nk0"
+            ],
+            "locator": "AS 1215 paragraphs .04, .06 and .06A; publisher page inspected 2026-09-21.",
+            "qualification": "PCAOB audit documentation scope. This proposed internal workpaper is not an audit or a finding that the standard applies to every entity."
+          }
+        ],
+        "disagreements": [],
+        "unknowns": [
+          "No independent production study or measured error rate for this proposed bank-fee workflow is supplied by its linked material.",
+          "Entity-specific accounting policy, authorization limits, statement completeness and fraud risk require actual evidence. The small fee is not a universal approval threshold."
+        ],
+        "reading_order": [
+          "src_0vf7hhg",
+          "src_1l45nk0"
+        ],
+        "reading_notes": [
+          {
+            "record_id": "src_0vf7hhg",
+            "reason": "Read .06, .08 and .29 for evidence reliability and conflicting information, within PCAOB scope."
+          },
+          {
+            "record_id": "src_1l45nk0",
+            "reason": "Read .04 and .06 through .06A for traceable work and review, not posting permission."
+          }
+        ],
+        "reading": {
+          "scope": "One entity, one USD bank account and one September 2026 close; complete statement and cash-ledger populations are assumed.",
+          "critical_limitation": "Original synthetic example and project-proposed controls. The linked audit standards do not validate an accounting agent or authorize posting.",
+          "sections": [
+            {
+              "title": "Start with the difference, not an entry",
+              "paragraphs": [
+                "Assume book cash is $10,000 and the statement closes at $9,965. The statement includes line BANK-SEP-30-035, \"Monthly account fee\", for a $35 debit on September 30. The cash ledger has no corresponding entry. There are no outstanding checks, deposits in transit, other reconciling items or currency differences in this isolated example. These are invented facts, not a client record or a tested agent result.",
+                "Before suggesting an adjustment, deterministic software checks the account, entity, date range, opening balance, transaction count and movement totals against the authorized extracts. It preserves statement-line identifiers and the ledger query used. Arithmetic alone establishes a $35 difference; it cannot establish that the fee belongs to this entity, was charged correctly, or has not already been recorded under another description."
+              ]
+            },
+            {
+              "title": "Propose a resolution with its evidence",
+              "paragraphs": [
+                "The agent assembles a proposed explanation: this statement debit may be the missing fee. It links the statement line, the ledger search and the proposed expense account rather than replacing an unmatched item with an unexplained balancing amount. Under the example's assumptions, the proposal debits bank-fee expense and credits cash by $35. Book cash would become $9,965. No entry has been executed by this research example.",
+                "The accounting manager, controller or designated financial-reporting reviewer inspects the fee, the entity's account mapping and the period. If the reviewer accepts it, the approved entry still needs the entity's separate posting authorization and controls. The proposal, approval and actual posting result are distinct records. A changed amount, account or period requires renewed review under this project design; a model cannot infer permission from an earlier approval."
+              ]
+            }
+          ],
+          "example": {
+            "title": "How the $35 fee changes book cash",
+            "classification": "original-synthetic",
+            "assumptions": "USD; no other reconciling items; the fee is genuinely absent from the ledger. Proposed debit and credit are equal.",
+            "columns": [
+              "Item",
+              "Before review",
+              "If separately approved and posted"
+            ],
+            "rows": [
+              [
+                "Statement line BANK-SEP-30-035",
+                "September 30 fee: −$35",
+                "Unchanged"
+              ],
+              [
+                "Statement closing cash",
+                "$9,965",
+                "$9,965"
+              ],
+              [
+                "Book cash",
+                "$10,000",
+                "$9,965"
+              ],
+              [
+                "Proposed entry",
+                "Debit fee expense $35; credit cash $35",
+                "Posting receipt required"
+              ],
+              [
+                "Unexplained difference",
+                "$35",
+                "$0"
+              ]
+            ],
+            "values": {
+              "book_cash": 10000,
+              "statement_cash": 9965,
+              "fee": 35,
+              "proposed_debit": 35,
+              "proposed_credit": 35
+            }
+          },
+          "responsibilities": [
+            {
+              "role": "Deterministic software",
+              "task": "Check extracts, identifiers, control totals and $10,000 − $35 = $9,965.",
+              "boundary": "Matching and balanced arithmetic do not establish entitlement or approval."
+            },
+            {
+              "role": "Agent proposal",
+              "task": "Explain the unmatched fee and attach evidence to the proposed entry.",
+              "boundary": "No posting permission and no silent balancing entry."
+            },
+            {
+              "role": "Authorized reviewer and posting process",
+              "task": "Decide account, period, duplicate risk and authorization; retain disposition and posting receipt.",
+              "boundary": "Review acceptance and posting authority remain separate."
+            }
+          ],
+          "exception": {
+            "title": "Exception: the fee may already be in the books",
+            "paragraphs": [
+              "Suppose the reviewer finds a $35 \"account service\" entry in another cash-ledger extract, or the feed has delivered the same statement line twice. A second fee entry could make the selected extracts appear to agree while understating cash in the complete ledger. Stop the proposal, reconcile the complete set of records and retain both candidate matches. Do not treat the repeated amount as proof that the records are the same transaction.",
+              "The audit-evidence and documentation passages below explain why reliability, contradictions and a traceable review matter within their audit scope. This project translates those ideas into a proposed handoff. Neither passage supplies an agent accuracy rate, evidence that automation outperforms a reviewer, or assurance that an apparently small difference is harmless. A pilot would need its own complete sets of records, missed-error measures and reviewer outcomes."
+            ]
+          },
+          "review": {
+            "reviewed_at": "2026-09-21",
+            "reviewer": "Codex AI-assisted editorial preparation; human acceptance pending",
+            "scope": "Selected publisher passages and canonical example checked for this explanation only. No source-review upgrade, professional sign-off or operational validation.",
+            "dependencies": [
+              {
+                "record_id": "wf-r2r-bank-reconciliations",
+                "sha256": "783ca18a6868ca19f9c44096cb1f11003fa8edc3c6a0c33fbfa368dd3b7e50cc"
+              },
+              {
+                "record_id": "src_0vf7hhg",
+                "sha256": "735836e88254ef10261e3181ba1fe0a1471ebfe9de92e99c54d9cd6e7f21b5c2"
+              },
+              {
+                "record_id": "src_1l45nk0",
+                "sha256": "515f22d9266e54ac777cb333b3a12f4d00a36614f93b56966165a122b48f4ae1"
+              }
+            ]
+          }
+        }
       }
     }
   },

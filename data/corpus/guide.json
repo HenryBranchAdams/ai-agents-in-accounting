@@ -3540,24 +3540,35 @@
       ],
       "scope": "Selected US GAAP contractor research, rechecked 2026-09-14. Federal tax and procurement terms have separate applicability; developer and owner accounting remain distinct.",
       "editorial_brief": {
-        "question": "How can construction research connect contract facts to a reconciled close?",
-        "answer": "Follow one contract ID through approved terms and estimate versions, complete job costs, progress, revenue, billings and collections. The linked original example supplies two complete closes and separate exception branches. The controls below test whether the arithmetic rests on the intended evidence population.",
+        "question": "Why can a higher cost estimate reduce revenue already earned?",
+        "answer": "Under this synthetic contractor's cost-to-cost assumptions, a higher total cost estimate reduces measured progress even when no new work occurs. Raising the estimate from $900,000 to $1,000,000 reduces cumulative revenue from $360,000 to $324,000. That is a $36,000 downward adjustment. Billing, receivables and cash do not change. An agent can recompute and explain the change; a reviewer must decide whether the new estimate, recognition assumptions and proposed adjustment are appropriate.",
         "findings": [
+          {
+            "claim": "The original revenue amendments update measured progress when circumstances change and distinguish unconditional receivables from contract balances.",
+            "classification": "historical-authority",
+            "source_ids": [
+              "src_construction_fasb_2014_09"
+            ],
+            "locator": "ASU 2014-09 Section A, ASC 606-10-25-35 (printed p.31; PDF p.37) and 45-1 through 45-4 (printed p.42; PDF p.48); selected passages inspected 2026-09-21.",
+            "qualification": "Original issued amendments only, not current consolidated GAAP. Later amendments and entity-period applicability remain unverified here."
+          },
           {
             "claim": "A non-distinct approved modification of a partially satisfied obligation produces a cumulative catch-up. Cost inputs that fail to depict performance require adjustment; specified uninstalled goods can earn no margin initially.",
             "source_ids": [
               "src_roadmap_ey_revenue_2026"
             ],
-            "classification": "source-backed-synthesis",
-            "qualification": "ASC 606 conditions and the stated contractual facts control the result."
+            "classification": "professional-commentary",
+            "qualification": "ASC 606 conditions and the stated contractual facts control the result. Firm interpretation, not authoritative Codification; the earlier selected review remains the evidence basis.",
+            "locator": "Retained September 14 source review: EY sections 3.4.2.2 (printed p.60) and 7.1.4.2 (printed pp.302 through 303). Publisher PDF could not be reopened in the September 21 browser fetch; not freshly verified."
           },
           {
             "claim": "Loss-contract scope is a separate decision. In-scope anticipated losses are recognized when evident; additional loss cost must avoid duplicating loss already recognized.",
             "source_ids": [
               "src_roadmap_kpmg_revenue_2025"
             ],
-            "classification": "source-backed-synthesis",
-            "qualification": "ASC 605-35 contains exclusions; over-time revenue alone is insufficient."
+            "classification": "professional-commentary",
+            "qualification": "ASC 605-35 contains exclusions; over-time revenue alone is insufficient. Firm interpretation is not current consolidated authority.",
+            "locator": "KPMG December 2025 handbook, section 13.4.10 through 13.4.20, construction- and production-type contracts. Selected loss-recognition passage reopened September 21; not a full handbook review."
           },
           {
             "claim": "Unconditional payment rights are receivables. Other earned rights can be contract assets; billing ahead of performance can create a contract liability.",
@@ -3566,7 +3577,8 @@
               "src_roadmap_ey_revenue_2026"
             ],
             "classification": "source-backed-synthesis",
-            "qualification": "Retention terms must be inspected, with separate credit-loss analysis."
+            "qualification": "Retention terms must be inspected, with separate credit-loss analysis.",
+            "locator": "ASU 2014-09 Section A, ASC 606-10-45-1 through 45-4, printed p.42 (PDF p.48). EY section 10.1 is retained from the earlier source register; not freshly rechecked."
           }
         ],
         "unknowns": [
@@ -3586,7 +3598,192 @@
           "src_construction_fasb_2014_09",
           "src_roadmap_ey_revenue_2026",
           "src_roadmap_kpmg_revenue_2025"
-        ]
+        ],
+        "reading_notes": [
+          {
+            "record_id": "example-construction-contract-ledger",
+            "reason": "Start with construction-close-one and construction-estimate-revision. The other branches are independent, not extra steps to add to this result."
+          },
+          {
+            "record_id": "src_construction_fasb_2014_09",
+            "reason": "Inspect the historical progress and presentation paragraphs above, with the current-consolidation limitation."
+          },
+          {
+            "record_id": "src_roadmap_ey_revenue_2026",
+            "reason": "The retained guide uses selected firm interpretations for modifications and uninstalled goods; these are not current authoritative Codification."
+          }
+        ],
+        "reading": {
+          "scope": "Synthetic private US GAAP contractor, July 2026; one performance obligation assumed to qualify for over-time recognition. Not developer inventory or owner accounting.",
+          "critical_limitation": "The arithmetic is checked, but current consolidated GAAP, complete same-job operating evidence and professional review remain unavailable. This is an independent synthetic branch, not a validated close.",
+          "sections": [
+            {
+              "title": "Hold the job facts constant",
+              "paragraphs": [
+                "Use CONTRACT-J01 from the complete example. Its July base assumes a $1,200,000 contract price, $270,000 of qualifying costs and a $900,000 total cost estimate. Cost-to-cost is assumed to depict performance. The resulting 30% progress gives $360,000 cumulative revenue and $90,000 profit. Billings of $300,000 and receipts of $240,000 leave $60,000 receivable and a separate $60,000 contract asset under the example's payment-right assumptions.",
+                "Now use only the existing estimate-revision branch. New information raises the estimate to $1,000,000; contract price, costs incurred, billing and collections stay fixed. Progress becomes 27%, so cumulative revenue becomes $324,000. Subtract the $360,000 previously recognized to obtain a negative $36,000 catch-up. Profit falls to $54,000 and the contract asset to $24,000. This is an alternative to July, not an adjustment to add to the separate August modification case."
+              ]
+            },
+            {
+              "title": "Connect the WIP calculation to the ledger",
+              "paragraphs": [
+                "The synthetic journal debits revenue and credits the contract asset by $36,000. Receivables remain $60,000 because neither unconditional billing rights nor collections changed; cash remains $130,000. The decrease in measured performance is not a refund, a new invoice or a cash payment. The WIP calculation separates earned revenue, billed amounts and collected cash instead of using any one as a substitute for the others.",
+                "Deterministic software should recompute the amounts from the approved versioned inputs and compare the result with the ledger. The agent can assemble the old and new estimates, explain which input changed and prepare the proposed entry. The designated reviewer must assess the estimate's support, completeness of qualifying costs, selected progress measure and period treatment before approving a proposal. Actual posting still depends on the entity's authorization process; the corpus performs none."
+              ]
+            }
+          ],
+          "example": {
+            "title": "Estimate-only revision: July alternative",
+            "classification": "original-synthetic",
+            "record_id": "example-construction-contract-ledger",
+            "anchor": "construction-estimate-revision",
+            "assumptions": "All amounts USD. No new work, contract modification, billing or cash movement. New estimate information, not correction of known prior facts. The complete example retains all exclusions.",
+            "columns": [
+              "Measure",
+              "July base",
+              "Revised estimate"
+            ],
+            "rows": [
+              [
+                "Total cost estimate",
+                "$900,000",
+                "$1,000,000"
+              ],
+              [
+                "Cost incurred",
+                "$270,000",
+                "$270,000"
+              ],
+              [
+                "Measured progress",
+                "30%",
+                "27%"
+              ],
+              [
+                "Cumulative revenue",
+                "$360,000",
+                "$324,000"
+              ],
+              [
+                "Cumulative profit",
+                "$90,000",
+                "$54,000"
+              ],
+              [
+                "Billings / receipts",
+                "$300,000 / $240,000",
+                "$300,000 / $240,000"
+              ],
+              [
+                "Contract asset",
+                "$60,000",
+                "$24,000"
+              ],
+              [
+                "Receivable / cash",
+                "$60,000 / $130,000",
+                "$60,000 / $130,000"
+              ],
+              [
+                "Proposed journal",
+                "No estimate-only adjustment",
+                "Debit revenue $36,000; credit contract asset $36,000"
+              ]
+            ]
+          },
+          "responsibilities": [
+            {
+              "role": "Deterministic software",
+              "task": "Recompute cost-to-cost, revenue, profit and contract balance using the selected estimate version.",
+              "boundary": "The formula does not validate qualifying costs or recognition criteria."
+            },
+            {
+              "role": "Agent proposal",
+              "task": "Explain the $36,000 change and attach the estimate change and ledger evidence.",
+              "boundary": "Do not overwrite July history or mix independent branches."
+            },
+            {
+              "role": "Designated reviewer and authorized posting process",
+              "task": "Evaluate estimate versus error, source completeness, period and journal; preserve approval and actual result.",
+              "boundary": "Neither an agent explanation nor a reconciled workpaper supplies posting permission."
+            }
+          ],
+          "exception": {
+            "title": "Exception: a late invoice is not automatically new estimate information",
+            "paragraphs": [
+              "The complete example also contains a $15,000 invoice for July services discovered in September. The reviewer must determine whether the cost was already accrued, omitted from earlier records, or incurred in another period. If already accrued, recording expense again duplicates cost. Preserve service dates, prior information, issuance facts and approval history. Do not label the discovery an estimate change to reuse the negative catch-up formula; error treatment and disclosure need separate assessment.",
+              "The original ASU passage below is a historical basis for the estimate illustration, not a current consolidated review. Issue 100 still requires a reusable complete same-job evidence package, permitted current consolidated GAAP review, clarification of four IRS discrepancies and attributable professional review. The tax questions do not enter this isolated book calculation, and this page resolves none of those gaps. Passing arithmetic checks establishes internal consistency, not operational completeness or accounting agent effectiveness."
+            ]
+          },
+          "gap_url": "https://github.com/HenryBranchAdams/ai-agents-in-accounting/issues/100",
+          "review": {
+            "reviewed_at": "2026-09-21",
+            "reviewer": "Codex AI-assisted editorial preparation; human acceptance pending",
+            "scope": "Selected publisher passages and canonical example checked for this explanation only. No source-review upgrade, professional sign-off or operational validation.",
+            "dependencies": [
+              {
+                "record_id": "guide-construction-connected-close",
+                "sha256": "1fd1424366b5b8de48147f36d6adb344a7823c677ec5a3dc21b1a7410ad07cdd"
+              },
+              {
+                "record_id": "example-construction-contract-ledger",
+                "sha256": "e10f4b7c5cd04cf97fc4819644480e8cc166e50e696889ea335efb30a4343e24"
+              },
+              {
+                "record_id": "src_construction_fasb_2014_09",
+                "sha256": "5903c386c0b2508db39f0381e348804b58b4b61ca7d2aa6c6990742eb7aebd7f"
+              },
+              {
+                "record_id": "src_roadmap_ey_revenue_2026",
+                "sha256": "467ec0b6e18f6cf4268ac59fe8d92f6fc2cb79bc317b3e873781c2bff39002ce"
+              },
+              {
+                "record_id": "src_roadmap_kpmg_revenue_2025",
+                "sha256": "0730758915cc249b2b8fb88260b7743db4f0f568e0920ae6c33d354c98fb4fa3"
+              },
+              {
+                "record_id": "src_roadmap_naics2022_manual",
+                "sha256": "f56bb8f030c4d7d0a95437dc39c24fec4a6b6946a0f4d871978cc781c517c0cc"
+              },
+              {
+                "record_id": "src_construction_aicpa_wip",
+                "sha256": "09dbea16c2009e8d05222a22d60adfc4e912edfc78715f9c7f58723fdcf09959"
+              },
+              {
+                "record_id": "src_construction_fasb_retainage_staff",
+                "sha256": "f64e8e0be63b6b2b368b355b9c5a8ec3e2fa1e8e775fcb18e0f9e3c25e8470aa"
+              },
+              {
+                "record_id": "src_construction_gao_25107258",
+                "sha256": "31d215abd9d917cf4689a3e666445815868e45390f8d5da839d5ceda306199d2"
+              },
+              {
+                "record_id": "src_construction_gsa184_2025",
+                "sha256": "567805df3d1b6b01d806e586915bf9bdbfda30a515f716c6388a8eb63dd44fd2"
+              },
+              {
+                "record_id": "src_construction_gsa184a_2015",
+                "sha256": "204d6f424c7206097dd2091c93cce773bf1730b9a57c2746150e3912d900df2c"
+              },
+              {
+                "record_id": "src_construction_far_522325",
+                "sha256": "a99ae03cb628759f6fd50420fdf79c1a9f00dc51a15a8fedcf65330a11f6efb1"
+              },
+              {
+                "record_id": "src_construction_asbca_51759",
+                "sha256": "62c79950bfb56b5f52b8369f8a3f4f3cd021a80ae481048d4e92652569441007"
+              },
+              {
+                "record_id": "src_construction_fasb_codification_access",
+                "sha256": "01d71d8e6aec02f9220684e5d671f964d7bdd79c1c60e229017c8039d5b94162"
+              },
+              {
+                "record_id": "src_construction_fasb_202505",
+                "sha256": "3fd64e41d3c34148fade0da71ef7b8c365b2a488f3fc8a3ac73036dc24ba765f"
+              }
+            ]
+          }
+        }
       },
       "business_roles": [
         {

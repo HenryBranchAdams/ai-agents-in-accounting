@@ -23,3 +23,11 @@ Source IDs remain stable. The September 2026 schema and retired routes are docum
 Oversized generated downloads are stored as gzip assets below the host’s 25 MiB per-file limit. The source export uses the existing ZIP when it fits; otherwise consumers download the source-export manifest and its ordered raw ZIP parts, then run `node scripts/reconstruct-source-archive.mjs` to verify every part, the reconstructed archive SHA-256, and complete ZIP membership. The current release gzip is the only separately published source path omitted from the ZIP, and every prior release byte remains included. The Worker streams oversized logical downloads at their public URLs, using manifest hashes as ETags. Downloads and the source export still come from one build.
 
 `src/entry.ts` is a small Worker entrypoint that loads the immutable application module on the first request. The build keeps its static module chunk beside `dist/server/index.js`; deploy the whole server directory. This avoids corpus/index initialization during the host’s startup budget. The first request in a fresh isolate still pays initialization cost; later requests reuse the module. No request-specific mutable state is stored globally.
+
+## September 21, 2026 local editorial candidate
+
+Corpus `2026-09-21.3` adds two answer-first explanations to the existing bank-reconciliation workflow and construction connected-close guide. The editorial homepage and `/library` preserve legacy root query behavior, record anchors, rights and retrieval/export interfaces. The outgoing `2026-09-19.12427` snapshot remains intact. Optional kind-specific reading fields use the existing schema 2.0.0 open-data contract; no source review or rights status is upgraded.
+
+This is a local review candidate for #170, not publication or issue resolution. See `docs/issue-170-implementation.md` for evidence and acceptance boundaries. #100 remains open. Human acceptance, hosted CI, merge and deployment are separate gates. Follow the existing release-infrastructure procedure only when publication is authorized.
+
+The unpublished editorial drafts `2026-09-21.1` and `2026-09-21.2` remain retained. Edition `.3` includes the plain-writing pass and synchronized coverage registry headers. Assessment contents and review dates are unchanged.

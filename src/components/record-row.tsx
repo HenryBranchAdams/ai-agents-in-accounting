@@ -18,8 +18,8 @@ export function RecordRow({ record: r }: { record: CorpusRecord }) {
     <Card>
       <CardHeader>
         <div className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
-          <Badge variant="secondary">
-            {r.kind === "source" ? r.source_type : kinds[r.kind]}
+          <Badge variant="secondary" className="max-w-full">
+            <span className="whitespace-normal">{r.kind === "source" ? r.source_type : kinds[r.kind]}</span>
           </Badge>
           <span>
             {r.kind === "source"

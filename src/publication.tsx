@@ -62,7 +62,7 @@ export function changesPage() {
         <h2>{"This release"}</h2>
         <p>
           {
-            "Added normalized scope and vocabulary, source evidence views, three cross-source briefs, typed relationships, maintenance observations, and retrieval regression coverage. These derived views do not change inherited review status or publisher rights."
+            "The changes below compare this corpus edition with its preserved predecessor. Read each record's history for the changed content; a new edition does not by itself establish source review, professional verification or a change in publisher rights."
           }
         </p>
         <ul>

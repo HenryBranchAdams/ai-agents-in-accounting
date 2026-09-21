@@ -1,3 +1,4 @@
+import { editedBrief, briefMarkdown } from "./editorial";
 import catalog from "../data/catalog.json";
 import sources from "../data/corpus/source.json";
 import workflows from "../data/corpus/workflow.json";
@@ -202,7 +203,8 @@ export function search(params: URLSearchParams) {
   };
 }
 export function recordMarkdown(r: CorpusRecord): string {
-  return `# ${r.title}\n\n${r.summary}\n\n- Record: ${r.id}\n- Kind: ${r.kind}\n- Version: ${meta.corpus_version}\n- Citation: ${meta.site_url}/records/${r.id}\n- Publisher: ${r.publisher}\n- Original source: ${r.source_url || "Project editorial reference"}\n- Review: ${r.review_status}\n\n## Rights\n\n${meta.rights_note}\n\n## Record data\n\n\`\`\`json\n${JSON.stringify(r, null, 2)}\n\`\`\`\n\n## Cited sources\n\n${references(
+  const brief = editedBrief(r.data.editorial_brief);
+  return `# ${r.title}\n\n${r.summary}\n\n${brief ? briefMarkdown(brief, meta.site_url) : ""}- Record: ${r.id}\n- Kind: ${r.kind}\n- Version: ${meta.corpus_version}\n- Citation: ${meta.site_url}/records/${r.id}\n- Publisher: ${r.publisher}\n- Original source: ${r.source_url || "Project editorial reference"}\n- Review: ${r.review_status}\n\n## Rights\n\n${meta.rights_note}\n\n## Record data\n\n\`\`\`json\n${JSON.stringify(r, null, 2)}\n\`\`\`\n\n## Cited sources\n\n${references(
     r,
   )
     .map((s) => `- [${s.title}](${s.source_url}) (${s.id})`)

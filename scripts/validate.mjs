@@ -90,6 +90,24 @@ export function validateCorpus() {
       );
     for (const id of r.related_ids)
       assert.ok(ids.has(id), `${r.id}: unresolved related record ${id}`);
+    const brief = r.data.editorial_brief;
+    if (brief?.reading) {
+      assert.ok(brief.question?.trim() && brief.answer?.trim(), `${r.id}: edited question and answer required`);
+      const reading = brief.reading;
+      assert.ok(reading.sections.length && reading.example.rows.length && reading.responsibilities.length, `${r.id}: empty edited explanation`);
+      assert.ok(reading.review.dependencies.some(d => d.record_id === r.id), `${r.id}: declare self dependency`);
+      const dependencyIds = new Set(reading.review.dependencies.map(d => d.record_id));
+      assert.equal(dependencyIds.size, reading.review.dependencies.length, `${r.id}: duplicate dependency`);
+      for (const d of reading.review.dependencies) assert.ok(ids.has(d.record_id), `${r.id}: unresolved dependency ${d.record_id}`);
+      for (const f of brief.findings) for (const id of f.source_ids) {
+        assert.equal(ids.get(id)?.kind, "source", `${r.id}: unresolved finding source ${id}`);
+        assert.ok(r.source_ids.includes(id) && dependencyIds.has(id), `${r.id}: undeclared finding dependency ${id}`);
+      }
+      for (const id of brief.reading_order) assert.ok(ids.has(id), `${r.id}: unresolved reading ${id}`);
+      for (const n of brief.reading_notes || []) assert.ok(brief.reading_order.includes(n.record_id), `${r.id}: reading note outside reading order`);
+      for (const row of reading.example.rows) assert.equal(row.length, reading.example.columns.length, `${r.id}: mismatched table cells`);
+      if (reading.example.record_id) assert.ok(ids.has(reading.example.record_id) && dependencyIds.has(reading.example.record_id), `${r.id}: missing example dependency`);
+    }
     if (r.kind === "source") {
       assert.ok(r.source_url, `${r.id}: original publisher URL required`);
       assert.ok(r.source_type, `${r.id}: source type required`);
