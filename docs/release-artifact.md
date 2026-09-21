@@ -1,8 +1,6 @@
 # Authoritative main artifact
 
-This is the artifact and preview foundation of issue #176. Edition finalization,
-resumable native publication, import metrics/credentials, and final browser/live
-acceptance remain separate required work. An extracted artifact is not a deployment.
+This describes the authoritative artifact and authenticated staging path for issue #176. Native publication, final environment cleanup and browser/live acceptance remain separate required gates. An extracted artifact is not a deployment.
 
 The existing read-only `verify` job runs preflight, lint, one primary build, every
 test and qualification on PRs and main. The shared phase runner binds results to
@@ -37,6 +35,13 @@ It downloads the exact platform archive, checks its digest, extracts only declar
 regular files with safe paths, then checks every package byte and logical storage
 file. It never executes downloaded code. Main/run state is checked again after the
 transfer. A JSON receipt alone cannot replace these authenticated platform reads.
+
+An unchanged cached ZIP can be reused by `stage-release.mjs` without downloading it
+again. The staging path still authenticates current GitHub state, hashes that ZIP
+against the platform digest, compares its package manifest with the extracted one,
+and validates the actual application and storage bytes. A forged local manifest or
+receipt cannot substitute for that binding. If main advanced, stop and select the
+new intended artifact. Staging also checks main again after import.
 
 The extracted `application/` is the Sites packaging input; `storage/` is the complete
 sidecar for staged import. Native Sites source ancestry is distinct from the GitHub
