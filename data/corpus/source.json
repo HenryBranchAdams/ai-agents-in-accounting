@@ -25160,12 +25160,17 @@
           {
             "version": "3 May 2025 working paper",
             "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5240924",
-            "access": "Metadata discovered; full text not compared."
+            "access": "SSRN metadata reports written May3,2025, posted May7 and revised October13,2025 (109pages). Stanford Preserve retains the May7 abstract; its numbers must not substitute for published2026 estimates. Full prior manuscript not obtained."
           },
           {
-            "version": "online appendix",
-            "url": "https://www.chicagobooth.edu/jar-online-supplements",
-            "access": "Not obtained; do not substitute another paper version appendix."
+            "version": "Published-article online appendix",
+            "url": "https://www.chicagobooth.edu/-/media/research/arc/docs/journal/online-supplements/cx-online-appendix.pdf",
+            "access": "Retrieved from the journal volume64 supplement directory; selected methods and Table13 read, PDF pages2 and27 visually inspected."
+          },
+          {
+            "version": "Published-article data sheet, code and author logs",
+            "url": "https://www.chicagobooth.edu/-/media/research/arc/docs/journal/online-supplements/cx-datasheet-code-and-log-files.zip",
+            "access": "Data sheet, README, experiment analysis code and author log inspected without executing code. Archive inventory contains no input data files."
           }
         ],
         "reviewed_material": {
@@ -25183,10 +25188,11 @@
           ],
           "format": "HTML full-text extraction; no PDF visual-table inspection claimed",
           "not_yet_reviewed": [
-            "Complete intermediate tables and regressions",
-            "Online supplementary instruments and robustness analyses",
+            "Complete intermediate article tables and regressions",
+            "All survey instruments and supplementary robustness analyses",
             "Prior-version changes",
-            "Available code/data and exact model versions"
+            "Preregistration and its correspondence to final exclusions",
+            "Exact proprietary model versions, private raw data and independent execution"
           ]
         },
         "designs": [
@@ -25218,7 +25224,7 @@
             "period": "January2023-March2025",
             "comparison": "Single-platform observational adoption; endogenous uptake remains possible.",
             "human_role": "Accountants cover the full workflow; recommendations are subject to review.",
-            "model_version": "Not established in sections reviewed; supplementary architecture pending.",
+            "model_version": "Appendix1 describes multiple commercial LLMs with contextual retrieval and human approval, but does not identify exact models or versions.",
             "transfer_limit": "US private SME clients; sector composition differs from national firms.",
             "locator": "Section4.1 pp.1349-1350; Section4.4 p.1360"
           },
@@ -25226,21 +25232,22 @@
             "id": "experiment",
             "task": "One transaction-classification assignment, not a complete close",
             "population": {
-              "completers": 99,
               "ai_assisted": 52,
               "manual": 47,
               "transactions_per_person": 43,
               "credit_card_transactions": 34,
               "bank_transactions": 9,
-              "account_categories": 153
+              "account_categories": 153,
+              "analytic_sample": 99,
+              "observations_loaded_in_author_log": 102
             },
             "period": "June-July2025; four technically supported rounds",
             "sampling": "Professional accountants recruited through Connect; participation-level randomization.",
             "comparison": "Same task with or without platform recommendations.",
             "incentives": "Base payment plus correctness bonus; no speed bonus.",
-            "attrition": "Authors mention differential participation attrition; assignment-stage denominator not established in reviewed material.",
+            "attrition": "Author log loads102 observations; code winsorizes variables at1st/99th percentiles and restricts analyses to flexible_accuracy>=0.2, leaving99. This is an outcome-based analytic restriction, not a documented count of all randomized completers. Recruitment and assignment-stage attrition remain unestablished.",
             "overlap": "21 participants also took the survey; exclusion robustness reported but supplementary result not independently inspected.",
-            "locator": "Section4.5, Table9 pp.1362-1363 and footnotes19-20"
+            "locator": "Section4.5, Table9 pp.1362-1363 and footnotes19-20; supplied experiment code lines10,56-61,80-86 and author log import/Table10"
           }
         ],
         "outcome_definitions": [
@@ -25268,13 +25275,19 @@
             "not_equivalent_to": "Seconds per correct item in a 43-item task; the paper narrative uses different phrasing.",
             "locator": "Table10 note p.1364; AppendixA variable36 p.1370",
             "interpretation": "Retain the stated formula and flag the unit discrepancy; do not silently convert the narrative into a general time-saving claim."
+          },
+          {
+            "metric": "Experimental review time",
+            "definition": "Self-reported time bins mapped to representative minutes (2.5,7.5,15,25,37.5,52.5), then multiplied by60 for main analysis.",
+            "not_equivalent_to": "Observed stopwatch review duration or a continuous precise measurement. The highest bin is open-ended.",
+            "locator": "experiment_analysis_final.do lines44-50; Online Appendix Table13 p.27 labels its review-time outcome in minutes."
           }
         ],
         "selected_author_reported_result": {
           "table": "Table10 p.1364",
-          "population": "99 completing accountants; 43 classification items each",
+          "population": "99 analytic observations following the stated accuracy restriction, from102 loaded observations; 43 classification items each",
           "unit": "Accountant",
-          "specification": "OLS with CPA, education and experience controls; robust standard errors.",
+          "specification": "OLS with CPA, education and experience controls; robust standard errors. Supplied code winsorizes variables and applies flexible_accuracy>=0.2 before estimation.",
           "accuracy": {
             "coefficient_fraction": 0.175,
             "robust_standard_error": 0.024
@@ -25294,7 +25307,7 @@
             "robust_standard_error": 5.073,
             "unit": "Published duration/(accuracy×100) metric; narrative-unit discrepancy flagged"
           },
-          "verification": "Read from published HTML table; not replicated, not yet visually checked against PDF."
+          "verification": "Published HTML coefficients agree after rounding with supplied Table10 log; no independent replication. Main-table PDF not obtained; supplemental Table13 PDF reviewed for its distinct specification and minute units."
         },
         "funding_and_conflicts": {
           "authors_statement": "No conflicts declared; StanfordGSB and MITSloan support, with Stanford behavioral-lab research support. Partner provided proprietary data; authors state independent design, analysis and reporting.",
@@ -25314,8 +25327,38 @@
         "limitations": [
           "Selected substantive sections are read; the full bounded P3 study profile and comparison matrix are unfinished.",
           "Survey, platform proxies and randomized narrow task outcomes must remain separate.",
-          "Proprietary raw data were not obtained; no result independently reproduced."
-        ]
+          "Proprietary raw data were not obtained; no result independently reproduced.",
+          "Post-outcome accuracy exclusion may affect treatment comparisons; raw data and preregistration comparison are unavailable in this review. Author logs cannot establish robustness to restoring excluded observations."
+        ],
+        "supplement_review": {
+          "reviewed_on": "2026-09-21",
+          "directory_url": "https://www.chicagobooth.edu/research/chookaszian/journal-of-accounting-research/online-supplements-and-datasheets/volume-64",
+          "objects": [
+            {
+              "url": "https://www.chicagobooth.edu/-/media/research/arc/docs/journal/online-supplements/cx-online-appendix.pdf",
+              "sha256": "b30b57e44d5e3bbd835908fa1e7ce839cdad973c022c8d9574a1808dd6ea934b"
+            },
+            {
+              "url": "https://www.chicagobooth.edu/-/media/research/arc/docs/journal/online-supplements/cx-datasheet-code-and-log-files.zip",
+              "sha256": "327867b6c73154df9617e759dee97dd0a6bb9eff7b48f9a1821ae0e182ff3315"
+            }
+          ],
+          "locators": [
+            "Online Appendix1 p.2: platform architecture",
+            "Online Appendix Table13 p.27: sample and review-time definition",
+            "Data sheet: collection periods, access restrictions and retention",
+            "final_code/table91011/experiment_analysis_final.do lines10,44-61,80-86",
+            "logs/tables9_10_11_experiment_analysis_final.log: import, Table10 adjusted regressions"
+          ],
+          "procedure": "Read code as evidence; did not install its packages, run it or obtain private inputs. Author log is supplied evidence, not an independent reproduction.",
+          "data_access": "The ZIP has empty data directories and no input observations. Data sheet limits field-data sharing to aggregates; raw inputs remain unavailable.",
+          "rights": "Store original annotations and object hashes only; no inferred redistribution permission for code, supplement, participant or platform data.",
+          "preregistration_access": {
+            "url": "https://www.socialscienceregistry.org/trials/14740",
+            "checked_on": "2026-09-21",
+            "result": "HTTP403; preregistration/exclusion correspondence not verified."
+          }
+        }
       }
     }
   },
