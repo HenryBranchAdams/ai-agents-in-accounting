@@ -40,8 +40,8 @@ test("multipart source export reconstructs in a clean temp directory with comple
     const output = path.join(root, "reconstructed-accounting-agents-source.zip");
     const result = execFileSync(
       process.execPath,
-      ["scripts/reconstruct-source-archive.mjs", path.join(root, SOURCE_EXPORT_MANIFEST_NAME), output],
-      { cwd: process.cwd(), encoding: "utf8" },
+      [path.resolve("scripts/reconstruct-source-archive.mjs"), path.join(root, SOURCE_EXPORT_MANIFEST_NAME), output],
+      { cwd: root, encoding: "utf8" },
     );
     const summary = JSON.parse(result);
     const archive = fs.readFileSync(output);
@@ -67,7 +67,7 @@ test("source reconstruction rejects a missing part and a corrupted part", () => 
     const output = path.join(root, "reconstructed.zip");
     fs.rmSync(path.join(root, manifest.parts[0].name));
     assert.throws(
-      () => execFileSync(process.execPath, [script, path.join(root, SOURCE_EXPORT_MANIFEST_NAME), output], { cwd: process.cwd(), stdio: "pipe" }),
+      () => execFileSync(process.execPath, [script, path.join(root, SOURCE_EXPORT_MANIFEST_NAME), output], { cwd: root, stdio: "pipe" }),
       /Missing source export part/,
     );
 
@@ -77,7 +77,7 @@ test("source reconstruction rejects a missing part and a corrupted part", () => 
     corrupted[0] ^= 0xff;
     fs.writeFileSync(corruptedPath, corrupted);
     assert.throws(
-      () => execFileSync(process.execPath, [script, path.join(root, SOURCE_EXPORT_MANIFEST_NAME), output], { cwd: process.cwd(), stdio: "pipe" }),
+      () => execFileSync(process.execPath, [script, path.join(root, SOURCE_EXPORT_MANIFEST_NAME), output], { cwd: root, stdio: "pipe" }),
       /SHA-256 does not match/,
     );
   } finally {
@@ -184,7 +184,7 @@ test("fixture export validates limits, exact boundaries, ordered parts and symli
       return body;
     })), archive.bytes);
     const reconstruct = path.resolve("scripts/reconstruct-source-archive.mjs");
-    const run = () => execFileSync(process.execPath, [reconstruct, path.join(output, SOURCE_EXPORT_MANIFEST_NAME), path.join(temp, "restored.zip")], { stdio: "pipe" });
+    const run = () => execFileSync(process.execPath, [reconstruct, path.join(output, SOURCE_EXPORT_MANIFEST_NAME), path.join(temp, "restored.zip")], { cwd: temp, stdio: "pipe" });
     run();
     assert.deepEqual(fs.readFileSync(path.join(temp, "restored.zip")), archive.bytes);
     for (const mutate of [m => { m.parts.reverse(); }, m => { m.parts[0].name = "../escape"; }, m => { m.parts[0].sha256 = "0".repeat(64); }]) {
