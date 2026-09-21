@@ -26,3 +26,14 @@ Created data/research/extractive-2026-09-18.json with explicit ownership bases, 
 PR148 source head78bf0aa794fa02867d9362e085dda305a5910eee contains the source-qualified production settlement, separate ownership/control recognition, joint costs, depletion sensitivity, retirement, royalty reporting, cost-stage and support-role branches. Five named questions are connected to canonical guides and registry entries. All153 checks passed in both the author and saved independent check logs, and CI35453515709 passed for that exact head. Those checks do not establish independent substantive acceptance.
 
 The follow-up corrects the package draft label and three stale assessment gaps that still described delivered revenue/royalty and cross-role branches as absent. Current consolidated authority, actual entity and contract facts, external rights, professional review and operational evidence remain explicitly limited. The correction requires its own coherent release, checks and independent review; earlier frozen releases and snapshots are preserved.
+
+
+The following recovered local checkpoint is historical. Later accepted integrations and the September 21 reconciliation supersede its pending-work statements.
+
+## Integrated review candidate, September 19
+
+Coordinator integration checkout is based on accepted main fc78d465. Scoped three-way record changes preserve education and all untouched main records; existing release files are not replaced. The named population is five questions: oil/gas cost stage, retirement, other-mining boundary, principal/agent recognition and royalty reporting. Four new partial assessments retain current-authority, entity-fact, rights and empirical limitations. The package supplies producer, mineral-owner and support-service roles, and separate synthetic cost-stage, maintenance, depletion, retirement and federal-reporting branches. Their distinct periods and populations must not be summed as one income statement.
+
+Original issue98 criteria A1-A4 are represented by the baseline inventory, canonical questions/sources, linked guide/example inputs and controls, and partial assessments. This is an author mapping for independent review, not acceptance. A5 has durable representative and scope-counterexample retrieval fixtures; final build/history/full checks remain pending. Current hard-rock policy and consolidated standards are not inferred from a historical SEC project-request letter.
+
+Draft snapshot2026-09-19.9801 remains as recorded. Final candidate9802 also versions mappings and assessments under the coverage-model contract and follows accepted education1114 in release ordering. No draft release9801 was persisted. Final source packaging must be rebuilt after persistence. No deployment or original issue closure.
