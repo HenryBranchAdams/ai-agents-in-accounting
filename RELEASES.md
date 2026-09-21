@@ -1,5 +1,7 @@
 # Corpus and interface releases
 
+Use the [draft and edition preparation path](docs/edition-preparation.md) for new corpus editions. Preliminary captures remain outside canonical history; deliberate finalization precedes committed verification.
+
 ## September 14, 2026 interface release
 
 The shadcn reading surface uses 15 official registry components, Tailwind v4 Slate semantic tokens, server-rendered React and a hydrated navigation island. It covers search, filters, records, collections, briefs, coverage and publication views. Contributor, testing, migration and agent-development guidance now state the component and lint requirements. See [the design system](docs/design-system.md).
