@@ -24294,7 +24294,39 @@
           "decision": "Reject as insufficient even if visually polished or arithmetically balanced.",
           "execution_authority": false
         }
-      }
+      },
+      "limitations": [
+        "Synthetic original teaching case, not observed API behavior, a professional accounting opinion or evidence of production effectiveness.",
+        "All amounts, documents, entities, approvals and outcomes are fictional. Apply the stated assumptions before interpreting a balanced journal.",
+        "The baseline, alternative branches and bounded extensions have separate facts and must not be combined into one ledger."
+      ],
+      "examples": [
+        {
+          "id": "example-connected-purchase-to-payment-baseline",
+          "title": "Purchase to payment across a month-end baseline",
+          "scenario_type": "connected_synthetic_ledger",
+          "objective": "Trace each fictional event through its retained document, proposed journal and independently stated period balance.",
+          "input": {
+            "record_id": "example-connected-purchase-to-payment",
+            "document_locator": "data.documents",
+            "event_locator": "data.events",
+            "opening_balance_locator": "data.opening_balances_minor",
+            "assumption_locator": "data.assumptions"
+          },
+          "reference_expectations": {
+            "journal_locator": "data.journals",
+            "period_balance_locator": "data.expected_period_balances_minor",
+            "review_packet_locator": "data.review_packets",
+            "review_required": true,
+            "executed_actions_must_be_empty": true
+          },
+          "limitations": [
+            "Synthetic original teaching case, not observed API behavior, a professional accounting opinion or evidence of production effectiveness.",
+            "All amounts, documents, entities, approvals and outcomes are fictional. Apply the stated assumptions before interpreting a balanced journal.",
+            "The baseline, alternative branches and bounded extensions have separate facts and must not be combined into one ledger."
+          ]
+        }
+      ]
     }
   },
   {
@@ -25961,7 +25993,39 @@
           }
         },
         "unresolved_item": "Real recognition, functional-currency measurement, rate provenance, provider rounding and eligibility are untested. A rate quoted without units or the capture/settlement facts cannot support the same conclusion."
-      }
+      },
+      "limitations": [
+        "Synthetic original teaching case, not observed API behavior, a professional accounting opinion or evidence of production effectiveness.",
+        "All amounts, documents, entities, approvals and outcomes are fictional. Apply the stated assumptions before interpreting a balanced journal.",
+        "The baseline, alternative branches and bounded extensions have separate facts and must not be combined into one ledger."
+      ],
+      "examples": [
+        {
+          "id": "example-connected-processor-settlement-baseline",
+          "title": "Customer receipts, refunds and a later dispute decision baseline",
+          "scenario_type": "connected_synthetic_ledger",
+          "objective": "Trace each fictional event through its retained document, proposed journal and independently stated period balance.",
+          "input": {
+            "record_id": "example-connected-processor-settlement",
+            "document_locator": "data.documents",
+            "event_locator": "data.events",
+            "opening_balance_locator": "data.opening_balances_minor",
+            "assumption_locator": "data.assumptions"
+          },
+          "reference_expectations": {
+            "journal_locator": "data.journals",
+            "period_balance_locator": "data.expected_period_balances_minor",
+            "review_packet_locator": "data.review_packets",
+            "review_required": true,
+            "executed_actions_must_be_empty": true
+          },
+          "limitations": [
+            "Synthetic original teaching case, not observed API behavior, a professional accounting opinion or evidence of production effectiveness.",
+            "All amounts, documents, entities, approvals and outcomes are fictional. Apply the stated assumptions before interpreting a balanced journal.",
+            "The baseline, alternative branches and bounded extensions have separate facts and must not be combined into one ledger."
+          ]
+        }
+      ]
     }
   }
 ]

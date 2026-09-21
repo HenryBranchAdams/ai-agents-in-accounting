@@ -24945,8 +24945,8 @@
     "source_url": "https://doi.org/10.1111/1475-679X.70052",
     "source_ids": [],
     "related_ids": [],
-    "review_status": "source-checked",
-    "reviewed_at": "2026-09-17",
+    "review_status": "draft-methods-review-in-progress",
+    "reviewed_at": null,
     "provenance": {
       "imported_on": "2026-09-07",
       "previous_corpus_version": "2026-08-25.2",
@@ -24971,15 +24971,15 @@
     },
     "data": {
       "id": "src_1sbtyzp",
-      "record_version": "1",
-      "record_updated_at": "2026-09-17",
+      "record_version": "2",
+      "record_updated_at": "2026-09-21",
       "topic": "Evaluation and evidence",
       "source_type": "Research paper",
       "owner": "Journal of Accounting Research",
       "title": "Human + AI in Accounting: Early Evidence from the Field",
       "published_or_status": "Apr 2026",
       "jurisdiction": "SME accounting platform",
-      "access": "Abstract open; article may be paid",
+      "access": "Selected published full-text HTML sections read through the Wiley-supplied ResearchGate article. Direct publisher PDF denied; linked PDF returned 404. Online supplement and prior working-paper full text pending.",
       "summary": "Field evidence across surveys, platform records, and an experiment on categorization, intervention, task allocation, ledger granularity, and close timing.",
       "curation": {
         "applicability": [],
@@ -25113,7 +25113,186 @@
             "note": "No full-text, raw-data, or training permission was established."
           }
         }
-      ]
+      ],
+      "empirical_review_173": {
+        "status": "partial substantive review; not package completion",
+        "reviewed_on": "2026-09-21",
+        "publication": {
+          "doi": "10.1111/1475-679X.70052",
+          "journal": "Journal of Accounting Research",
+          "volume": 64,
+          "issue": 3,
+          "pages": "1333-1373",
+          "first_published": "2026-04-16",
+          "received": "2024-12-01",
+          "accepted": "2026-02-04"
+        },
+        "versions": [
+          {
+            "version": "published 2026 article",
+            "url": "https://onlinelibrary.wiley.com/doi/abs/10.1111/1475-679x.70052",
+            "access": "Publisher metadata read; selected full text from publisher-supplied mirror."
+          },
+          {
+            "version": "3 May 2025 working paper",
+            "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5240924",
+            "access": "Metadata discovered; full text not compared."
+          },
+          {
+            "version": "online appendix",
+            "url": "https://www.chicagobooth.edu/jar-online-supplements",
+            "access": "Not obtained; do not substitute another paper version appendix."
+          }
+        ],
+        "reviewed_material": {
+          "url": "https://www.researchgate.net/publication/403886266_Human_AI_in_Accounting_Early_Evidence_from_the_Field",
+          "provenance": "Page explicitly identifies Wiley as full-text provider; title page matches published DOI, volume and pages.",
+          "locators": [
+            "Title page p.1333",
+            "Section3.1 and Table1 pp.1340-1343",
+            "Section4.1 pp.1349-1350",
+            "Section4.3 pp.1354-1355",
+            "Section4.4 pp.1359-1361",
+            "Section4.5 and Tables9-11 pp.1362-1365",
+            "Conclusion p.1366",
+            "AppendixA variables21,29,34-37 pp.1368-1370"
+          ],
+          "format": "HTML full-text extraction; no PDF visual-table inspection claimed",
+          "not_yet_reviewed": [
+            "Complete intermediate tables and regressions",
+            "Online supplementary instruments and robustness analyses",
+            "Prior-version changes",
+            "Available code/data and exact model versions"
+          ]
+        },
+        "designs": [
+          {
+            "id": "survey",
+            "task": "Self-reported adoption, clients, work hours and task allocation",
+            "population": {
+              "external": 268,
+              "partner_internal": 9
+            },
+            "sampling": "Professional online-panel respondents plus partner employees; not a representative probability sample.",
+            "period": "November2024 and March2025",
+            "comparison": "Observed differences in AI use, not randomized adoption.",
+            "attrition": {
+              "completed_weekly_responses": 1038,
+              "theoretical_weekly_responses": 1662,
+              "reason": "Attrition and partial completion; complete responses used."
+            },
+            "locator": "Section3.1, Table1 p.1342 and footnotes3-4"
+          },
+          {
+            "id": "field",
+            "task": "Bookkeeping platform use and transaction categorization",
+            "population": {
+              "clients": 79,
+              "internal_accountants": 9,
+              "approximate_transaction_records": 200000
+            },
+            "period": "January2023-March2025",
+            "comparison": "Single-platform observational adoption; endogenous uptake remains possible.",
+            "human_role": "Accountants cover the full workflow; recommendations are subject to review.",
+            "model_version": "Not established in sections reviewed; supplementary architecture pending.",
+            "transfer_limit": "US private SME clients; sector composition differs from national firms.",
+            "locator": "Section4.1 pp.1349-1350; Section4.4 p.1360"
+          },
+          {
+            "id": "experiment",
+            "task": "One transaction-classification assignment, not a complete close",
+            "population": {
+              "completers": 99,
+              "ai_assisted": 52,
+              "manual": 47,
+              "transactions_per_person": 43,
+              "credit_card_transactions": 34,
+              "bank_transactions": 9,
+              "account_categories": 153
+            },
+            "period": "June-July2025; four technically supported rounds",
+            "sampling": "Professional accountants recruited through Connect; participation-level randomization.",
+            "comparison": "Same task with or without platform recommendations.",
+            "incentives": "Base payment plus correctness bonus; no speed bonus.",
+            "attrition": "Authors mention differential participation attrition; assignment-stage denominator not established in reviewed material.",
+            "overlap": "21 participants also took the survey; exclusion robustness reported but supplementary result not independently inspected.",
+            "locator": "Section4.5, Table9 pp.1362-1363 and footnotes19-20"
+          }
+        ],
+        "outcome_definitions": [
+          {
+            "metric": "Field reporting timeliness",
+            "definition": "AppendixA variable21: mean ledger-entry date relative to month-end, truncated at ±31days.",
+            "not_equivalent_to": "Audited elapsed time for an end-to-end close.",
+            "locator": "AppendixA p.1368; compare Section4.3 wording p.1355"
+          },
+          {
+            "metric": "Field auto-categorization overall accuracy",
+            "definition": "Share of bank transactions with AI categories unchanged by accountants, including matched/auto-approved items.",
+            "not_equivalent_to": "Independent ground-truth accuracy or evidence of control effectiveness.",
+            "locator": "AppendixA variable29 p.1369"
+          },
+          {
+            "metric": "Experimental accuracy",
+            "definition": "Fraction matching prespecified categories supported by experienced accountants.",
+            "not_equivalent_to": "Compliance with every accounting policy, journal completeness or statement correctness.",
+            "locator": "AppendixA variable34 p.1370"
+          },
+          {
+            "metric": "Experimental efficiency",
+            "definition": "Duration in seconds divided by (accuracy fraction ×100).",
+            "not_equivalent_to": "Seconds per correct item in a 43-item task; the paper narrative uses different phrasing.",
+            "locator": "Table10 note p.1364; AppendixA variable36 p.1370",
+            "interpretation": "Retain the stated formula and flag the unit discrepancy; do not silently convert the narrative into a general time-saving claim."
+          }
+        ],
+        "selected_author_reported_result": {
+          "table": "Table10 p.1364",
+          "population": "99 completing accountants; 43 classification items each",
+          "unit": "Accountant",
+          "specification": "OLS with CPA, education and experience controls; robust standard errors.",
+          "accuracy": {
+            "coefficient_fraction": 0.175,
+            "robust_standard_error": 0.024
+          },
+          "duration": {
+            "coefficient_seconds": 92.36,
+            "robust_standard_error_seconds": 320.3,
+            "authors_significance": "not statistically significant"
+          },
+          "review": {
+            "coefficient_seconds": 172.8,
+            "robust_standard_error_seconds": 109.6,
+            "authors_significance": "not statistically significant"
+          },
+          "efficiency": {
+            "coefficient": -10.2,
+            "robust_standard_error": 5.073,
+            "unit": "Published duration/(accuracy×100) metric; narrative-unit discrepancy flagged"
+          },
+          "verification": "Read from published HTML table; not replicated, not yet visually checked against PDF."
+        },
+        "funding_and_conflicts": {
+          "authors_statement": "No conflicts declared; StanfordGSB and MITSloan support, with Stanford behavioral-lab research support. Partner provided proprietary data; authors state independent design, analysis and reporting.",
+          "locator": "Title-page acknowledgments p.1333; footnote6 p.1349",
+          "independent_verification": false
+        },
+        "rights": {
+          "observed": "Published title page identifies an open-access Creative Commons Attribution article; mirror metadata labels CC-BY4.0.",
+          "stored_material": "Original annotations only; no article full text included.",
+          "limits": "No inferred rights to proprietary platform records, participant records, supplements or earlier manuscript."
+        },
+        "missing_outcomes": [
+          "Independent professional accounting-quality adjudication across the entire close",
+          "Production exception/recovery reliability and unauthorized-action rates",
+          "Comparable end-to-end preparation plus review plus rework measurements"
+        ],
+        "limitations": [
+          "Selected substantive sections are read; the full bounded P3 study profile and comparison matrix are unfinished.",
+          "Survey, platform proxies and randomized narrow task outcomes must remain separate.",
+          "Proprietary raw data were not obtained; no result independently reproduced."
+        ]
+      }
     }
   },
   {
