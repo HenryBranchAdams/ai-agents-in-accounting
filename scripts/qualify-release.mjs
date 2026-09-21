@@ -6,7 +6,9 @@ const files = root => fs.readdirSync(root,{recursive:true}).map(p=>`${root}/${p}
 const server = files('dist/server').filter(p=>p.endsWith('.js'));
 const assets = files('dist/client').filter(p=>!/^dist\/client\/(downloads|releases|assets\/objects)\//.test(p));
 const revision = execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim();
-assert.equal(JSON.parse(fs.readFileSync("dist/internal/release-meta.json")).source_revision, revision, "Build revision is stale");
+const releaseMeta = JSON.parse(fs.readFileSync("dist/internal/release-meta.json"));
+assert.equal(releaseMeta.build_mode, "release", "Draft previews cannot qualify for publication");
+assert.equal(releaseMeta.source_revision, revision, "Build revision is stale");
 assert.equal(execFileSync("git", ["diff", "HEAD", "--name-only"], { encoding: "utf8" }).trim(), "", "Tracked source changed after commit");
 const runtime = JSON.parse(fs.readFileSync('dist/internal/server-meta.json'));
 assert.ok(!Object.keys(runtime.inputs).some(p=>/data\/(coverage\/snapshots[/.]|releases\/)/.test(p)), 'Historical payload imported into runtime');

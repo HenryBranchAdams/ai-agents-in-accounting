@@ -1,9 +1,11 @@
+import { Alert, AlertTitle, AlertDescription } from "./ui/alert";
 import type { ReactNode } from "react";
 import { renderToString } from "react-dom/server.edge";
 import { SiteNavigation } from "./site-navigation";
 import { meta } from "../corpus";
 declare const STYLE_VERSION: string;
 declare const NAVIGATION_SCRIPT: string;
+declare const PREVIEW_BUILD: boolean;
 export function shell(
   title: string,
   description: string,
@@ -71,6 +73,14 @@ export function shell(
             tabIndex={-1}
             className="mx-auto min-h-screen max-w-library px-5 pb-16 md:px-10"
           >
+            {typeof PREVIEW_BUILD !== "undefined" && PREVIEW_BUILD ? (
+              <Alert className="mt-6" role="status">
+                <AlertTitle>Draft preview</AlertTitle>
+                <AlertDescription>
+                  These working changes are not a published corpus edition. Release downloads and history are unavailable in this preview.
+                </AlertDescription>
+              </Alert>
+            ) : null}
             {body}
           </main>
           <footer className="border-t border-border bg-card">

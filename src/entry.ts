@@ -1,6 +1,6 @@
 import { storedDownload, importRelease, type StorageEnv, type StorageManifest } from "./release-storage";
 declare const RELEASE_STORAGE: StorageManifest;
-declare const RELEASE_META: { corpus_version: string; source_revision: string; storage_manifest: string };
+declare const RELEASE_META: { corpus_version: string; source_revision: string; storage_manifest: string; build_mode?: string; input_digest?: string | null };
 declare const RUNTIME_DATA_KEYS: string[];
 // Only immutable build data is retained. No request, environment or credentials
 // are captured. In-flight initialization is deliberately not shared across requests.
@@ -8,6 +8,8 @@ let application: ReturnType<typeof import("./runtime-application").createApplica
 export default {
   async fetch(request: Request, env: StorageEnv = {}) {
     const path = new URL(request.url).pathname;
+    if (RELEASE_META.build_mode === "preview" && (path.startsWith("/downloads/") || path.startsWith("/releases/") || path === "/api/v1/coverage/history" || path.startsWith("/_release/")))
+      return new Response("Release artifacts are unavailable in a draft preview.\n", { status: 503, headers: { "Cache-Control": "no-store", "X-Build-Mode": "preview", "X-Content-Type-Options": "nosniff" } });
     if (path.startsWith("/_release/")) return importRelease(request, env);
     if (env.BUCKET && !await env.BUCKET.head(`manifests/${RELEASE_STORAGE.id}`))
       return new Response("Release unavailable.\n", { status: 503, headers: { "Cache-Control": "no-store" } });

@@ -50,11 +50,12 @@ const env = {
 };
 const port = Number(process.env.PORT || 5177),
   hostname = process.env.HOST || "127.0.0.1";
-if (!Number.isInteger(port) || port < 1 || port > 65535)
+if (!Number.isInteger(port) || port < 0 || port > 65535)
   throw new Error("Invalid PORT");
 const server = http.createServer(async (req, res) => {
   try {
-    const request = new Request(`http://${hostname}:${port}${req.url}`, {
+    const actualPort = server.address()?.port || port;
+    const request = new Request(`http://${hostname}:${actualPort}${req.url}`, {
       method: req.method,
       headers: req.headers,
     });
@@ -68,6 +69,12 @@ const server = http.createServer(async (req, res) => {
     res.end("Server error");
   }
 });
-server.listen(port, hostname, () =>
-  console.log(`Accounting Agents corpus: http://${hostname}:${port}`),
-);
+server.listen(port, hostname, () => {
+  const origin = `http://${hostname}:${server.address().port}`;
+  console.log(`Accounting Agents corpus: ${origin}`);
+  process.send?.({ type: "ready", origin });
+});
+for (const signal of ["SIGINT", "SIGTERM"]) process.once(signal, () => {
+  server.closeAllConnections();
+  server.close(() => process.exit(0));
+});

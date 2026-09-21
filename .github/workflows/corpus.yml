@@ -23,14 +23,29 @@ jobs:
           node-version: "22"
           cache: npm
       - run: npm ci
+      - name: Preflight pinned verification inputs
+        run: npm run preflight
       - name: Lint, typecheck, data validation and design-rule probes
-        run: npm run lint
+        run: node scripts/verify.mjs --phase lint
       - name: Build application and exports once
-        run: npm run build
+        run: node scripts/verify.mjs --phase build
       - name: Run every test against the primary build
-        run: npm run test:only
+        run: node scripts/verify.mjs --phase tests
       - name: Qualify the tested release
-        run: npm run qualify
+        run: node scripts/verify.mjs --phase qualification
+      - name: Package the verified main release
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: npm run release:package
+      - name: Retain authoritative main release
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: actions/upload-artifact@v4
+        with:
+          name: corpus-release-${{ github.sha }}-attempt-${{ github.run_attempt }}
+          path: outputs/ci-release/
+          include-hidden-files: true
+          compression-level: 0
+          if-no-files-found: error
+          retention-days: 14
       - name: Retain source and generated verification output
         if: always()
         uses: actions/upload-artifact@v4
@@ -45,5 +60,6 @@ jobs:
             dist/client/style.css
             dist/storage/manifest.json
             dist/storage/qualification.json
+            outputs/verification/
           if-no-files-found: error
           retention-days: 14

@@ -20,9 +20,12 @@ import {
   writeSourceExport,
 } from "./source-archive.mjs";
 
-console.log("Validated", validateCorpus());
+const preview = process.argv.includes("--preview");
+if (process.argv.slice(2).some(arg => arg !== "--preview")) throw new Error("Usage: build.mjs [--preview]");
+const buildStarted = performance.now();
+console.log("Validated", validateCorpus({ includeHistory: !preview }));
 // Full snapshots are export artifacts, never executable application data.
-const history = readSnapshotHistory();
+const history = preview ? { schema_version: "1.0.0", snapshots: [] } : readSnapshotHistory();
 const historyPlugin = historySummaryPlugin({ history });
 fs.rmSync("dist", { recursive: true, force: true });
 fs.mkdirSync("dist/client/downloads", { recursive: true });
@@ -39,6 +42,8 @@ await build({
 });
 const { meta, records, corpusExport, corpusMarkdown, knowledge, coverage } =
   await import("../dist/internal/corpus.mjs");
+let agentIndexRows, agentPassageRows, agentJsonSchema;
+if (!preview) {
 await build({
   entryPoints: ["src/agent.ts"],
   outfile: "dist/internal/agent.mjs",
@@ -57,8 +62,9 @@ await build({
   platform: "neutral",
   target: "es2023",
 });
-const { agentIndexRows, agentPassageRows, agentJsonSchema } =
-  await import("../dist/internal/agent.mjs");
+({ agentIndexRows, agentPassageRows, agentJsonSchema } =
+  await import("../dist/internal/agent.mjs"));
+}
 fs.cpSync("public", "dist/client", { recursive: true });
 execFileSync(
   process.execPath,
@@ -93,7 +99,7 @@ const navigationScript =
       file.endsWith(".js"),
     ),
   );
-const preservedVersions = fs
+const preservedVersions = preview ? JSON.parse(fs.readFileSync("data/releases/index.json", "utf8")).versions : fs
   .readdirSync("data/releases", { withFileTypes: true })
   .filter(
     (entry) =>
@@ -111,12 +117,12 @@ if (!previousVersion)
   throw new Error(
     "A preserved predecessor is required for corpus release history",
   );
-const previous = JSON.parse(
+const previous = preview ? null : JSON.parse(
   gunzipSync(
     fs.readFileSync(`data/releases/${previousVersion}/corpus.json.gz`),
   ),
 );
-const prepared = preparePublication(records, previous, loadObservations());
+const prepared = preview ? { changes: [], queue: [] } : preparePublication(records, previous, loadObservations());
 const editorial_reviews = editorialReviewReport(records);
 for (const review of editorial_reviews) console.log("Editorial dependency review:", review);
 const publication = {
@@ -126,6 +132,9 @@ const publication = {
   changes: prepared.changes,
   queue: prepared.queue,
 };
+let sourceExport;
+let entries = [];
+if (!preview) {
 fs.cpSync("data/releases", "dist/client/releases", { recursive: true });
 writeReleaseArtifacts(corpusExport(), "dist/client/releases", {
   previousExport: previous,
@@ -270,8 +279,8 @@ write(
   "downloads/agent.schema.json",
   JSON.stringify(agentJsonSchema, null, 2) + "\n",
 );
-const sourceExport = writeSourceExport("dist/client/downloads");
-const entries = fs
+sourceExport = writeSourceExport("dist/client/downloads");
+entries = fs
   .readdirSync("dist/client/downloads")
   .sort()
   .map((name) => {
@@ -316,6 +325,7 @@ write(
   entries.map((f) => `${f.sha256}  ${f.path.split("/").at(-1)}`).join("\n") +
     "\n",
 );
+}
 const runtimeDataKeys = new Set();
 const runtimeDataPlugin = { name: "immutable-runtime-data", setup(builder) {
   builder.onLoad({ filter: /\.json$/ }, ({ path: file }) => {
@@ -328,8 +338,8 @@ const runtimeDataPlugin = { name: "immutable-runtime-data", setup(builder) {
     return { contents: `export default RUNTIME_DATA[${JSON.stringify(key)}]`, loader: "js" };
   });
 } };
-const releaseStorage = prepareStorage();
-const releaseMeta = { corpus_version: meta.corpus_version, source_revision: execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim(), storage_manifest: releaseStorage.id };
+const releaseStorage = preview ? { id: "preview", files: {} } : prepareStorage();
+const releaseMeta = { build_mode: preview ? "preview" : "release", input_digest: preview ? process.env.PREVIEW_INPUT_DIGEST || null : null, corpus_version: meta.corpus_version, source_revision: (preview ? process.env.PREVIEW_SOURCE_REVISION : null) || execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim(), storage_manifest: releaseStorage.id };
 fs.writeFileSync("dist/internal/release-meta.json", JSON.stringify(releaseMeta));
 const applicationBuild = await build({
   entryPoints: ["src/worker.ts"],
@@ -337,6 +347,7 @@ const applicationBuild = await build({
   define: {
     "process.env.NODE_ENV": '"production"',
     NAVIGATION_SCRIPT: JSON.stringify(navigationScript),
+    PREVIEW_BUILD: JSON.stringify(preview),
     RELEASE_STORAGE: JSON.stringify(releaseStorage),
     RELEASE_META: JSON.stringify(releaseMeta),
     PUBLICATION_DATA: JSON.stringify(publication),
@@ -386,5 +397,7 @@ fs.writeFileSync(
 fs.mkdirSync("dist/.openai", { recursive: true });
 fs.copyFileSync(".openai/hosting.json", "dist/.openai/hosting.json");
 console.log(
-  `Built ${records.length} records, ${entries.length} downloads, and a ${sourceExport.included_source_file_count}-file ${sourceExport.mode} source export.`,
+  preview ? `Built draft preview of ${records.length} records without release exports.` : `Built ${records.length} records, ${entries.length} downloads, and a ${sourceExport.included_source_file_count}-file ${sourceExport.mode} source export.`,
 );
+
+console.log(JSON.stringify({ build_mode: preview ? "preview" : "release", seconds: (performance.now() - buildStarted) / 1000, source_exports: preview ? 0 : 1 }));
