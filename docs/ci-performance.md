@@ -43,7 +43,7 @@ those later revisions.
 | Dependency installation | 5 | 3 |
 | Lint/typecheck/validation/probes | Within 607-second full check | 20 |
 | Primary build | Within full check | 87 |
-| Tests | About 476 | 268 |
+| Tests | 480 | 268 |
 | Qualification | Less than 1 | Less than 1 |
 | Artifact upload | 7 | 7 |
 | Entire verify job | 659 | 420 |
@@ -52,6 +52,9 @@ The entire-job figure includes setup, checkout, source preservation, dependency
 installation and artifact transfer. Job topology remains one runner, so measured
 runner time is also 659 versus 420 seconds, not a displacement to extra runners.
 Cancellation saves superseded work; it is not counted as individual-run speedup.
+The retained artifact was 189,571,893 bytes before and 189,577,895 bytes after
+(about 6 KB growth); upload stayed seven seconds. Retention stays fourteen days.
+No storage/import workload is removed by this CI-only change.
 
 | Targeted test | Main baseline seconds | First implementation seconds |
 | --- | ---: | ---: |
