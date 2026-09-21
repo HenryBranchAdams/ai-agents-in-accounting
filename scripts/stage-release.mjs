@@ -1,3 +1,4 @@
+import { execFileSync } from "node:child_process";
 import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
@@ -6,6 +7,7 @@ import { hash } from './release-storage.mjs';
 const manifestBody = fs.readFileSync('dist/storage/manifest.json');
 const manifest = JSON.parse(manifestBody);
 const qualification = JSON.parse(fs.readFileSync('dist/storage/qualification.json'));
+assert.equal(qualification.source_revision, execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim(), 'Qualified revision is stale');
 assert.equal(qualification.storage_manifest, hash(manifestBody), 'Qualification is stale');
 const local = process.argv.includes('--local');
 if (!local) {

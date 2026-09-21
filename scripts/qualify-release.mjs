@@ -1,9 +1,13 @@
+import { execFileSync } from "node:child_process";
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import { hash } from './release-storage.mjs';
 const files = root => fs.readdirSync(root,{recursive:true}).map(p=>`${root}/${p}`).filter(p=>fs.statSync(p).isFile());
 const server = files('dist/server').filter(p=>p.endsWith('.js'));
 const assets = files('dist/client').filter(p=>!/^dist\/client\/(downloads|releases|assets\/objects)\//.test(p));
+const revision = execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim();
+assert.equal(JSON.parse(fs.readFileSync("dist/internal/release-meta.json")).source_revision, revision, "Build revision is stale");
+assert.equal(execFileSync("git", ["diff", "HEAD", "--name-only"], { encoding: "utf8" }).trim(), "", "Tracked source changed after commit");
 const runtime = JSON.parse(fs.readFileSync('dist/internal/server-meta.json'));
 assert.ok(!Object.keys(runtime.inputs).some(p=>/data\/(coverage\/snapshots[/.]|releases\/)/.test(p)), 'Historical payload imported into runtime');
 const workerBytes=server.reduce((n,p)=>n+fs.statSync(p).size,0);
