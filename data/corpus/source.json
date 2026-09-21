@@ -1669,7 +1669,7 @@
         "read_scope": "Sections3–5, conclusion, AppendixA, Tables1–4 and footnotes3/17/19.",
         "population": "US company disclosures, 2010–2024; four main document types, separately sampled. Excludes missing financial/disclosure data, unsuitable shares, delayed filings, extreme lengths and transition-period dates (Table1).",
         "design": "Within-firm fiscal-quarter OLS before/after November2022, controls and year-quarter clustered errors; detector validation uses modified historical documents.",
-        "tool_version": "GPTZero June2025; GPT-3.5 validation. Firms’ actual models and human editing are unobserved.",
+        "tool_version": "GPTZero June2025; main validation uses GPT-3.5 Turbo. Online AppendixS1 also names4o mini and gemini-1.5-flash-001 despite its abbreviated GPT-4o/Gemini table labels. Actual issuer models and human editing remain unobserved.",
         "result": {
           "locator": "Table4A column(i), risk factors",
           "n": 100070,
@@ -1682,8 +1682,15 @@
         "outcome": "Detected authorship and linguistic features, not preparation/review time, ledger correctness or operational reliability.",
         "limits": "Detector error, temporal trends, editing and model updates constrain interpretation. Table1 denominators differ from regressions after singleton removal (footnote19).",
         "funding_conflicts": "GPTZero provided detector access; authors declare no conflicts. Funding not established.",
-        "availability": "GenScore data and online appendix announced; not downloaded or independently reproduced. Source rights remain separately unresolved.",
-        "application": "Measure document provenance separately from substantive accounting quality."
+        "availability": "Primary journal online appendix retrieved; selected S1-S3 reviewed. GenScore data and code have not been inspected or reproduced. Source rights remain separately unresolved.",
+        "application": "Measure document provenance separately from substantive accounting quality.",
+        "supplement": {
+          "url": "https://www.chicagobooth.edu/-/media/research/arc/docs/journal/online-supplements/bdl-online-appendix.pdf",
+          "sha256": "aba673a92b36a23ab0c56301c5bdc3b9bec5ee4fa9bb310b1f5446a04a3e5f02",
+          "locators": "S1 pp.ii-iv, S2-S3 pp.iv-vii",
+          "method_limit": "Binary classification uses either a threshold calibrated from human-written documents or extreme terciles omitting the middle group. These are different selection tasks; stronger extreme-group discrimination does not prove complete individual-document authorship detection. Appendix numeric tables were not independently reproduced.",
+          "read_method": "PDF text extraction of methods; no supplementary numerical table result adopted."
+        }
       }
     }
   },
