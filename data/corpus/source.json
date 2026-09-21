@@ -96371,5 +96371,1128 @@
         }
       }
     }
+  },
+  {
+    "id": "src_xero_permissions_faq_2026",
+    "kind": "source",
+    "title": "Xero API permissions and connecting-user roles",
+    "summary": "Xero documents connecting-user conditions and separate Reports access for journal and reporting endpoints.",
+    "topics": [
+      "Agent engineering",
+      "Accounting and reporting"
+    ],
+    "industries": [
+      "general"
+    ],
+    "jurisdiction": "Xero developer platform; connection and product scope must be established",
+    "source_type": "Technical reference",
+    "publisher": "Xero",
+    "source_url": "https://developer.xero.com/faq/permissions",
+    "source_ids": [],
+    "related_ids": [
+      "wf-r2r-journal-entry",
+      "wf-audit-population-evidence"
+    ],
+    "review_status": "source-checked",
+    "reviewed_at": "2026-09-21",
+    "provenance": {
+      "added_on": "2026-09-21",
+      "reviewer": "Codex (AI-assisted source review)",
+      "scope": "Original publisher HTML sections named in the evidence locators; no tenant test or professional review.",
+      "evidence_urls": [
+        "https://developer.xero.com/faq/permissions"
+      ],
+      "outcome": "Supports the bounded documented observations; API operation, legal applicability and permissions for an actual app remain untested.",
+      "note": "Issue 173 P1 source review. This dated documentation check does not establish tenant behavior, professional acceptance or reuse permission."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "publication": {
+        "published_at": null,
+        "edition": "Permissions FAQ, checked 21 September 2026",
+        "status": "Official publisher documentation; mutable page"
+      },
+      "evidence": [
+        {
+          "claim": "The connecting user needs the documented Standard, Adviser or Administrator role and Connected Apps permission.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "Xero API permissions and connecting-user roles",
+            "url": "https://developer.xero.com/faq/permissions",
+            "locator": "What permissions does a user need to connect an App via the API?"
+          }
+        },
+        {
+          "claim": "The FAQ describes Standard/Adviser-equivalent API access; the authorising user needs Reports access for Reporting APIs, ManualJournals and Journals.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "Xero API permissions and connecting-user roles",
+            "url": "https://developer.xero.com/faq/permissions",
+            "locator": "What permissions does an app have when using the API?"
+          }
+        }
+      ],
+      "limitations": [
+        "Role and Reports access are not a substitute for OAuth scope, endpoint entitlement or connection-cohort checks. No tenant permissions were observed."
+      ],
+      "access_note": "Relevant original HTML sections read on 2026-09-21. No third-party full text stored.",
+      "review_trigger": "Recheck if scope, role, connection cohort, entitlement, terms or rate-limit policy changes.",
+      "commercial_interest": "First-party platform documentation; not independent operating evidence."
+    }
+  },
+  {
+    "id": "src_xero_granular_scopes_2026",
+    "kind": "source",
+    "title": "Xero granular OAuth scopes and reauthorisation cohorts",
+    "summary": "Xero distinguishes app-creation cohorts and requires renewed consent when moving users to granular permissions.",
+    "topics": [
+      "Agent engineering",
+      "Accounting and reporting"
+    ],
+    "industries": [
+      "general"
+    ],
+    "jurisdiction": "Xero developer platform; connection and product scope must be established",
+    "source_type": "Technical reference",
+    "publisher": "Xero",
+    "source_url": "https://developer.xero.com/faq/granular-scopes",
+    "source_ids": [],
+    "related_ids": [
+      "wf-r2r-journal-entry",
+      "wf-audit-population-evidence"
+    ],
+    "review_status": "source-checked",
+    "reviewed_at": "2026-09-21",
+    "provenance": {
+      "added_on": "2026-09-21",
+      "reviewer": "Codex (AI-assisted source review)",
+      "scope": "Original publisher HTML sections named in the evidence locators; no tenant test or professional review.",
+      "evidence_urls": [
+        "https://developer.xero.com/faq/granular-scopes"
+      ],
+      "outcome": "Supports the bounded documented observations; API operation, legal applicability and permissions for an actual app remain untested.",
+      "note": "Issue 173 P1 source review. This dated documentation check does not establish tenant behavior, professional acceptance or reuse permission."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "publication": {
+        "published_at": null,
+        "edition": "Granular Scopes FAQ, checked 21 September 2026",
+        "status": "Official publisher documentation; mutable page"
+      },
+      "evidence": [
+        {
+          "claim": "The FAQ distinguishes apps created before 2 March 2026 from newer apps. Older apps have a stated September 2027 migration deadline; existing tokens do not automatically acquire newly requested granular scopes.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "Xero granular OAuth scopes and reauthorisation cohorts",
+            "url": "https://developer.xero.com/faq/granular-scopes",
+            "locator": "Questions 1 and 5: changes and automatic application"
+          }
+        },
+        {
+          "claim": "The documented older-app reconnection path can retain broad scopes during transition. Migrating permissions requires an updated authorisation request and explicit user consent.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "Xero granular OAuth scopes and reauthorisation cohorts",
+            "url": "https://developer.xero.com/faq/granular-scopes",
+            "locator": "Questions 4, 6 and 7: reconnection and migration"
+          }
+        }
+      ],
+      "limitations": [
+        "This is the documented migration policy, not evidence that a particular connection has a scope. The exact endpoint/scope map and special connection types require their own checks."
+      ],
+      "access_note": "Relevant original HTML sections read on 2026-09-21. No third-party full text stored.",
+      "review_trigger": "Recheck if scope, role, connection cohort, entitlement, terms or rate-limit policy changes.",
+      "commercial_interest": "First-party platform documentation; not independent operating evidence."
+    }
+  },
+  {
+    "id": "src_xero_platform_terms_20251204",
+    "kind": "source",
+    "title": "Xero Developer Platform Terms: API data and permitted use",
+    "summary": "The terms distinguish approved app use from model training, third-party passthrough and platform benchmarking.",
+    "topics": [
+      "Agent engineering",
+      "Accounting and reporting"
+    ],
+    "industries": [
+      "general"
+    ],
+    "jurisdiction": "Xero developer platform; connection and product scope must be established",
+    "source_type": "Official developer terms",
+    "publisher": "Xero",
+    "source_url": "https://developer.xero.com/xero-developer-platform-terms-conditions",
+    "source_ids": [],
+    "related_ids": [
+      "wf-r2r-journal-entry",
+      "wf-audit-population-evidence"
+    ],
+    "review_status": "source-checked",
+    "reviewed_at": "2026-09-21",
+    "provenance": {
+      "added_on": "2026-09-21",
+      "reviewer": "Codex (AI-assisted source review)",
+      "scope": "Original publisher HTML sections named in the evidence locators; no tenant test or professional review.",
+      "evidence_urls": [
+        "https://developer.xero.com/xero-developer-platform-terms-conditions"
+      ],
+      "outcome": "Supports the bounded documented observations; API operation, legal applicability and permissions for an actual app remain untested.",
+      "note": "Issue 173 P1 source review. This dated documentation check does not establish tenant behavior, professional acceptance or reuse permission."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "publication": {
+        "published_at": "2025-12-04",
+        "edition": "Terms last updated 4 December 2025",
+        "status": "Official publisher documentation; mutable page"
+      },
+      "evidence": [
+        {
+          "claim": "The terms restrict API Data to approved app development, testing and support, prohibit training, fine-tuning, adaptation or enhancement of AI models with it, and condition third-party passthrough on user consent and consistency with the terms.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "Xero Developer Platform Terms: API data and permitted use",
+            "url": "https://developer.xero.com/xero-developer-platform-terms-conditions",
+            "locator": "Introduction and clause 7(b)"
+          }
+        },
+        {
+          "claim": "The restrictions include unauthorised system access, website/content scraping, bypassing limits and use of the developer platform for competitive analysis or performance benchmarking.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "Xero Developer Platform Terms: API data and permitted use",
+            "url": "https://developer.xero.com/xero-developer-platform-terms-conditions",
+            "locator": "Clause 29"
+          }
+        },
+        {
+          "claim": "The stated effective dates distinguish registrations on or after 4 December 2025 from earlier registrations, for which the revised terms apply from 2 March 2026.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "Xero Developer Platform Terms: API data and permitted use",
+            "url": "https://developer.xero.com/xero-developer-platform-terms-conditions",
+            "locator": "Last-updated notice"
+          }
+        }
+      ],
+      "limitations": [
+        "Selected terms were reviewed, not the legal applicability of an actual app or contract. Documentation access grants no dataset, training or redistribution permission; no tenant use or benchmark was performed."
+      ],
+      "access_note": "Relevant original HTML sections read on 2026-09-21. No third-party full text stored.",
+      "review_trigger": "Recheck if scope, role, connection cohort, entitlement, terms or rate-limit policy changes.",
+      "commercial_interest": "First-party platform documentation; not independent operating evidence."
+    }
+  },
+  {
+    "id": "src_xero_pricing_policy_2026",
+    "kind": "source",
+    "title": "Xero endpoint entitlements and pricing-policy cohorts",
+    "summary": "The FAQ separates premium Journals access from Manual Journals and specifies assessment and use-case conditions.",
+    "topics": [
+      "Agent engineering",
+      "Accounting and reporting"
+    ],
+    "industries": [
+      "general"
+    ],
+    "jurisdiction": "Xero developer platform; connection and product scope must be established",
+    "source_type": "Technical reference",
+    "publisher": "Xero",
+    "source_url": "https://developer.xero.com/faq/pricing-and-policy-updates",
+    "source_ids": [],
+    "related_ids": [
+      "wf-r2r-journal-entry",
+      "wf-audit-population-evidence"
+    ],
+    "review_status": "source-checked",
+    "reviewed_at": "2026-09-21",
+    "provenance": {
+      "added_on": "2026-09-21",
+      "reviewer": "Codex (AI-assisted source review)",
+      "scope": "Original publisher HTML sections named in the evidence locators; no tenant test or professional review.",
+      "evidence_urls": [
+        "https://developer.xero.com/faq/pricing-and-policy-updates"
+      ],
+      "outcome": "Supports the bounded documented observations; API operation, legal applicability and permissions for an actual app remain untested.",
+      "note": "Issue 173 P1 source review. This dated documentation check does not establish tenant behavior, professional acceptance or reuse permission."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "publication": {
+        "published_at": null,
+        "edition": "Pricing and Policy Updates FAQ, checked 21 September 2026",
+        "status": "Official publisher documentation; mutable page"
+      },
+      "evidence": [
+        {
+          "claim": "Manual Journals is a separate endpoint available across app tiers; access to it does not establish entitlement to the premium Journals endpoint.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "Xero endpoint entitlements and pricing-policy cohorts",
+            "url": "https://developer.xero.com/faq/pricing-and-policy-updates",
+            "locator": "Question 7: manual journals"
+          }
+        },
+        {
+          "claim": "Journals requires the Advanced tier or above, initial and annual security assessment, and use-case approval. Approval criteria/timing are referred to support rather than established in this FAQ.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "Xero endpoint entitlements and pricing-policy cohorts",
+            "url": "https://developer.xero.com/faq/pricing-and-policy-updates",
+            "locator": "Questions 20 and 21: premium features"
+          }
+        },
+        {
+          "claim": "The FAQ states five concurrent calls, 60 calls per minute, daily per-organisation limits of 1,000 for Starter or 5,000 for higher tiers, and an app-wide minute limit of 10,000.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "Xero endpoint entitlements and pricing-policy cohorts",
+            "url": "https://developer.xero.com/faq/pricing-and-policy-updates",
+            "locator": "Question 27: additional limits"
+          }
+        }
+      ],
+      "limitations": [
+        "This is a dated policy observation, not a price quote, purchased entitlement, approved use case or observed rate-limit test. Custom connections and exemptions need separate cohort review."
+      ],
+      "access_note": "Relevant original HTML sections read on 2026-09-21. No third-party full text stored.",
+      "review_trigger": "Recheck if scope, role, connection cohort, entitlement, terms or rate-limit policy changes.",
+      "commercial_interest": "First-party platform documentation; not independent operating evidence."
+    }
+  },
+  {
+    "id": "src_qbo_cdc_guidance_2023",
+    "kind": "source",
+    "title": "QuickBooks Online change-data capture and reconciliation guidance",
+    "summary": "The 2023 guidance describes full changed-entity payloads within a 30-day lookback, a 1,000-object response cap, grouping by entity type and update time, and deleted objects after active objects.",
+    "topics": [
+      "Agent engineering",
+      "Accounting and reporting"
+    ],
+    "industries": [
+      "general"
+    ],
+    "jurisdiction": "QuickBooks Online; company, country, product and app scope require separate confirmation",
+    "source_type": "Technical reference",
+    "publisher": "Intuit Developer",
+    "source_url": "https://medium.com/intuitdev/building-smarter-with-intuit-stay-in-sync-with-cdc-171f8094dd37",
+    "source_ids": [],
+    "related_ids": [
+      "wf-r2r-journal-entry",
+      "wf-audit-population-evidence"
+    ],
+    "review_status": "source-checked",
+    "reviewed_at": "2026-09-21",
+    "provenance": {
+      "added_on": "2026-09-21",
+      "reviewer": "Codex (AI-assisted source review)",
+      "scope": "Named original-publisher sections read through web extraction on 2026-09-21; no tenant test or professional review.",
+      "evidence_urls": [
+        "https://medium.com/intuitdev/building-smarter-with-intuit-stay-in-sync-with-cdc-171f8094dd37"
+      ],
+      "outcome": "Supports the bounded documented observations; API operation, legal applicability and permissions for an actual app remain untested.",
+      "note": "Issue 173 P1 source review. This dated documentation check does not establish tenant behavior, professional acceptance or reuse permission."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "publication": {
+        "published_at": "2023-08-24",
+        "edition": "Publisher page checked 21 September 2026",
+        "status": "First-party guidance; mutable page"
+      },
+      "evidence": [
+        {
+          "claim": "The 2023 guidance describes full changed-entity payloads within a 30-day lookback, a 1,000-object response cap, grouping by entity type and update time, and deleted objects after active objects.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "QuickBooks Online change-data capture and reconciliation guidance",
+            "url": "https://medium.com/intuitdev/building-smarter-with-intuit-stay-in-sync-with-cdc-171f8094dd37",
+            "locator": "CDC characteristics"
+          }
+        },
+        {
+          "claim": "The publisher recommends reconciling webhook processing against periodic CDC by entity ID and update time. This is a documented design recommendation, not proof that every accounting population is covered.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "QuickBooks Online change-data capture and reconciliation guidance",
+            "url": "https://medium.com/intuitdev/building-smarter-with-intuit-stay-in-sync-with-cdc-171f8094dd37",
+            "locator": "Use case 3: durable architecture using webhooks + CDC"
+          }
+        }
+      ],
+      "limitations": [
+        "The extracted entity-exclusion list is incomplete. This dated article does not establish current exclusions, complete report populations, retained audit history or recovery beyond its lookback. No API requests were executed."
+      ],
+      "access_note": "Relevant source sections read; no external full text stored. Intuit Developer publishes the linked Medium articles as its official blog.",
+      "review_trigger": "Recheck relevant payload, report, identifier and recovery contracts before implementation.",
+      "commercial_interest": "First-party platform documentation; not independent operating evidence."
+    }
+  },
+  {
+    "id": "src_qbo_webhook_cloudevents_2026",
+    "kind": "source",
+    "title": "QuickBooks Online CloudEvents webhook migration",
+    "summary": "The updated deadline is July 31, 2026; older body paragraphs retain May 15. Preserve that discrepancy rather than quoting the superseded date as current.",
+    "topics": [
+      "Agent engineering",
+      "Accounting and reporting"
+    ],
+    "industries": [
+      "general"
+    ],
+    "jurisdiction": "QuickBooks Online; company, country, product and app scope require separate confirmation",
+    "source_type": "Technical reference",
+    "publisher": "Intuit Developer",
+    "source_url": "https://medium.com/intuitdev/upcoming-change-to-webhooks-payload-structure-2a87dab642d0",
+    "source_ids": [],
+    "related_ids": [
+      "wf-r2r-journal-entry",
+      "wf-audit-population-evidence"
+    ],
+    "review_status": "source-checked",
+    "reviewed_at": "2026-09-21",
+    "provenance": {
+      "added_on": "2026-09-21",
+      "reviewer": "Codex (AI-assisted source review)",
+      "scope": "Named original-publisher sections read through web extraction on 2026-09-21; no tenant test or professional review.",
+      "evidence_urls": [
+        "https://medium.com/intuitdev/upcoming-change-to-webhooks-payload-structure-2a87dab642d0"
+      ],
+      "outcome": "Supports the bounded documented observations; API operation, legal applicability and permissions for an actual app remain untested.",
+      "note": "Issue 173 P1 source review. This dated documentation check does not establish tenant behavior, professional acceptance or reuse permission."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "publication": {
+        "published_at": "2025-11-12",
+        "edition": "Publisher page checked 21 September 2026",
+        "status": "First-party guidance; mutable page"
+      },
+      "evidence": [
+        {
+          "claim": "The updated deadline is July 31, 2026; older body paragraphs retain May 15. Preserve that discrepancy rather than quoting the superseded date as current.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "QuickBooks Online CloudEvents webhook migration",
+            "url": "https://medium.com/intuitdev/upcoming-change-to-webhooks-payload-structure-2a87dab642d0",
+            "locator": "Update banner and May 5, 2026 editor update"
+          }
+        },
+        {
+          "claim": "The new example is an event array with specversion, id, source, type, time, intuitentityid and intuitaccountid. A notification can contain events for different QBO companies; route each event by its company identity.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "QuickBooks Online CloudEvents webhook migration",
+            "url": "https://medium.com/intuitdev/upcoming-change-to-webhooks-payload-structure-2a87dab642d0",
+            "locator": "New CloudEvents payload and field discussion"
+          }
+        }
+      ],
+      "limitations": [
+        "The announcement demonstrates a payload shape, not observed delivery, ordering, completeness or rollout success. SDK versions named in the post are historical recommendations. No sandbox or production webhook was received."
+      ],
+      "access_note": "Relevant source sections read; no external full text stored. Intuit Developer publishes the linked Medium articles as its official blog.",
+      "review_trigger": "Recheck relevant payload, report, identifier and recovery contracts before implementation.",
+      "commercial_interest": "First-party platform documentation; not independent operating evidence."
+    }
+  },
+  {
+    "id": "src_qbo_reports_migration_2026",
+    "kind": "source",
+    "title": "QuickBooks Online modern reports response migration",
+    "summary": "The notice describes empty strings for missing values, changing row positions, consistent parent-child nesting, and daily summaries limited to 200 columns with remaining days grouped as Others.",
+    "topics": [
+      "Agent engineering",
+      "Accounting and reporting"
+    ],
+    "industries": [
+      "general"
+    ],
+    "jurisdiction": "QuickBooks Online; company, country, product and app scope require separate confirmation",
+    "source_type": "Technical reference",
+    "publisher": "Intuit Developer",
+    "source_url": "https://medium.com/intuitdev/upcoming-changes-to-reports-apis-5083ec9aadce",
+    "source_ids": [],
+    "related_ids": [
+      "wf-r2r-journal-entry",
+      "wf-audit-population-evidence"
+    ],
+    "review_status": "source-checked",
+    "reviewed_at": "2026-09-21",
+    "provenance": {
+      "added_on": "2026-09-21",
+      "reviewer": "Codex (AI-assisted source review)",
+      "scope": "Named original-publisher sections read through web extraction on 2026-09-21; no tenant test or professional review.",
+      "evidence_urls": [
+        "https://medium.com/intuitdev/upcoming-changes-to-reports-apis-5083ec9aadce"
+      ],
+      "outcome": "Supports the bounded documented observations; API operation, legal applicability and permissions for an actual app remain untested.",
+      "note": "Issue 173 P1 source review. This dated documentation check does not establish tenant behavior, professional acceptance or reuse permission."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "publication": {
+        "published_at": "2026-03-30",
+        "edition": "Publisher page checked 21 September 2026",
+        "status": "First-party guidance; mutable page"
+      },
+      "evidence": [
+        {
+          "claim": "The notice describes empty strings for missing values, changing row positions, consistent parent-child nesting, and daily summaries limited to 200 columns with remaining days grouped as Others.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "QuickBooks Online modern reports response migration",
+            "url": "https://medium.com/intuitdev/upcoming-changes-to-reports-apis-5083ec9aadce",
+            "locator": "Response changes 1, 3, 4 and 6; June 23 update"
+          }
+        },
+        {
+          "claim": "Only documented reports are supported. The updated group_by exception covers four transaction-list reports; GeneralLedger, JournalReport and TrialBalance are in the supported list.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "QuickBooks Online modern reports response migration",
+            "url": "https://medium.com/intuitdev/upcoming-changes-to-reports-apis-5083ec9aadce",
+            "locator": "Response changes 12 and 13; May 21 update; appendix"
+          }
+        },
+        {
+          "claim": "The updated transition deadline is August 31, 2026, superseding June 30. The announcement says requests need no URL/body change but responses do change.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "QuickBooks Online modern reports response migration",
+            "url": "https://medium.com/intuitdev/upcoming-changes-to-reports-apis-5083ec9aadce",
+            "locator": "Implementation date and June 26 update"
+          }
+        }
+      ],
+      "limitations": [
+        "No tenant report was executed. A listed report or preserved endpoint does not prove row completeness, unchanged totals, stable positions or matching accounting basis. Current rollout exceptions remain unobserved."
+      ],
+      "access_note": "Relevant source sections read; no external full text stored. Intuit Developer publishes the linked Medium articles as its official blog.",
+      "review_trigger": "Recheck relevant payload, report, identifier and recovery contracts before implementation.",
+      "commercial_interest": "First-party platform documentation; not independent operating evidence."
+    }
+  },
+  {
+    "id": "src_qbo_id_request_semantics",
+    "kind": "source",
+    "title": "QuickBooks Online company, entity and request identifiers",
+    "summary": "realmID identifies a company file; entity IDs identify typed objects and should be treated as strings. Do not infer one global transaction identifier across companies.",
+    "topics": [
+      "Agent engineering",
+      "Accounting and reporting"
+    ],
+    "industries": [
+      "general"
+    ],
+    "jurisdiction": "QuickBooks Online; company, country, product and app scope require separate confirmation",
+    "source_type": "Technical reference",
+    "publisher": "Intuit Developer",
+    "source_url": "https://developer.intuit.com/app/developer/qbo/docs/learn/learn-basic-field-definitions",
+    "source_ids": [],
+    "related_ids": [
+      "wf-r2r-journal-entry",
+      "wf-audit-population-evidence"
+    ],
+    "review_status": "source-checked",
+    "reviewed_at": "2026-09-21",
+    "provenance": {
+      "added_on": "2026-09-21",
+      "reviewer": "Codex (AI-assisted source review)",
+      "scope": "Named original-publisher sections read through web extraction on 2026-09-21; no tenant test or professional review.",
+      "evidence_urls": [
+        "https://developer.intuit.com/app/developer/qbo/docs/learn/learn-basic-field-definitions"
+      ],
+      "outcome": "Supports the bounded documented observations; API operation, legal applicability and permissions for an actual app remain untested.",
+      "note": "Issue 173 P1 source review. This dated documentation check does not establish tenant behavior, professional acceptance or reuse permission."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "publication": {
+        "published_at": null,
+        "edition": "Publisher page checked 21 September 2026",
+        "status": "First-party guidance; mutable page"
+      },
+      "evidence": [
+        {
+          "claim": "realmID identifies a company file; entity IDs identify typed objects and should be treated as strings. Do not infer one global transaction identifier across companies.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "QuickBooks Online company, entity and request identifiers",
+            "url": "https://developer.intuit.com/app/developer/qbo/docs/learn/learn-basic-field-definitions",
+            "locator": "Realm ID and Entity ID"
+          }
+        },
+        {
+          "claim": "The reference documents requestid-based replay for repeated identical requests, recommends it for writes, and requires uniqueness per company. Batch retries must retain both request and batch identifiers.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "QuickBooks Online company, entity and request identifiers",
+            "url": "https://developer.intuit.com/app/developer/qbo/docs/learn/learn-basic-field-definitions",
+            "locator": "Request ID"
+          }
+        },
+        {
+          "claim": "DocNumber is a business-facing transaction number, not a system idempotency key. The page separately proposes querying by this number before retrying.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "QuickBooks Online company, entity and request identifiers",
+            "url": "https://developer.intuit.com/app/developer/qbo/docs/learn/learn-basic-field-definitions",
+            "locator": "DocNumber"
+          }
+        }
+      ],
+      "limitations": [
+        "Request-ID retention duration and changed-payload behavior are not established by the reviewed section. Query-before-retry advice does not establish freedom from races or delayed visibility. No lost-response behavior was observed."
+      ],
+      "access_note": "Relevant source sections read; no external full text stored. Intuit Developer publishes the linked Medium articles as its official blog.",
+      "review_trigger": "Recheck relevant payload, report, identifier and recovery contracts before implementation.",
+      "commercial_interest": "First-party platform documentation; not independent operating evidence."
+    }
+  },
+  {
+    "id": "src_qbo_cdc_reference",
+    "kind": "source",
+    "title": "QuickBooks Online CDC coverage and deletion markers",
+    "summary": "CDC returns changed entity payloads within 30 days and at most 1,000 objects per response; the reference recommends shorter windows when necessary.",
+    "topics": [
+      "Agent engineering",
+      "Accounting and reporting"
+    ],
+    "industries": [
+      "general"
+    ],
+    "jurisdiction": "QuickBooks Online; company, country, product and app scope require separate confirmation",
+    "source_type": "Technical reference",
+    "publisher": "Intuit Developer",
+    "source_url": "https://developer.intuit.com/app/developer/qbo/docs/develop/explore-the-quickbooks-online-api/change-data-capture",
+    "source_ids": [],
+    "related_ids": [
+      "wf-r2r-journal-entry",
+      "wf-audit-population-evidence"
+    ],
+    "review_status": "source-checked",
+    "reviewed_at": "2026-09-21",
+    "provenance": {
+      "added_on": "2026-09-21",
+      "reviewer": "Codex (AI-assisted source review)",
+      "scope": "Named original-publisher sections read through web extraction on 2026-09-21; no tenant test or professional review.",
+      "evidence_urls": [
+        "https://developer.intuit.com/app/developer/qbo/docs/develop/explore-the-quickbooks-online-api/change-data-capture"
+      ],
+      "outcome": "Supports the bounded documented observations; API operation, legal applicability and permissions for an actual app remain untested.",
+      "note": "Issue 173 P1 source review. This dated documentation check does not establish tenant behavior, professional acceptance or reuse permission."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "publication": {
+        "published_at": null,
+        "edition": "Publisher page checked 21 September 2026",
+        "status": "First-party guidance; mutable page"
+      },
+      "evidence": [
+        {
+          "claim": "CDC returns changed entity payloads within 30 days and at most 1,000 objects per response; the reference recommends shorter windows when necessary.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "QuickBooks Online CDC coverage and deletion markers",
+            "url": "https://developer.intuit.com/app/developer/qbo/docs/develop/explore-the-quickbooks-online-api/change-data-capture",
+            "locator": "How change data capture works"
+          }
+        },
+        {
+          "claim": "JournalCode, TaxAgency, TimeActivity, TaxCode and TaxRate are excluded. Deleted entities carry status Deleted; a quiet interval may return an empty response.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "QuickBooks Online CDC coverage and deletion markers",
+            "url": "https://developer.intuit.com/app/developer/qbo/docs/develop/explore-the-quickbooks-online-api/change-data-capture",
+            "locator": "Excluded entities and Step 1"
+          }
+        }
+      ],
+      "limitations": [
+        "The example has inconsistent timestamp/offset prose and should not be copied as an executable recovery protocol. Retention beyond 30 days, exact boundary inclusivity, same-timestamp overflow and point-in-time snapshot behavior remain untested."
+      ],
+      "access_note": "Named original Intuit developer-reference sections read through Exa page extraction on 2026-09-21 after the basic web reader returned a JavaScript shell. No external full text stored.",
+      "review_trigger": "Recheck relevant payload, report, identifier and recovery contracts before implementation.",
+      "commercial_interest": "First-party platform documentation; not independent operating evidence."
+    }
+  },
+  {
+    "id": "src_qbo_query_reference",
+    "kind": "source",
+    "title": "QuickBooks Online query population and pagination",
+    "summary": "Queries return at most 1,000 entities, defaulting to 100. STARTPOSITION and MAXRESULTS page one entity type; COUNT returns a population count for the selected criteria.",
+    "topics": [
+      "Agent engineering",
+      "Accounting and reporting"
+    ],
+    "industries": [
+      "general"
+    ],
+    "jurisdiction": "QuickBooks Online; company, country, product and app scope require separate confirmation",
+    "source_type": "Technical reference",
+    "publisher": "Intuit Developer",
+    "source_url": "https://developer.intuit.com/app/developer/qbo/docs/develop/explore-the-quickbooks-online-api/data-queries",
+    "source_ids": [],
+    "related_ids": [
+      "wf-r2r-journal-entry",
+      "wf-audit-population-evidence"
+    ],
+    "review_status": "source-checked",
+    "reviewed_at": "2026-09-21",
+    "provenance": {
+      "added_on": "2026-09-21",
+      "reviewer": "Codex (AI-assisted source review)",
+      "scope": "Named original-publisher sections read through web extraction on 2026-09-21; no tenant test or professional review.",
+      "evidence_urls": [
+        "https://developer.intuit.com/app/developer/qbo/docs/develop/explore-the-quickbooks-online-api/data-queries"
+      ],
+      "outcome": "Supports the bounded documented observations; API operation, legal applicability and permissions for an actual app remain untested.",
+      "note": "Issue 173 P1 source review. This dated documentation check does not establish tenant behavior, professional acceptance or reuse permission."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "publication": {
+        "published_at": null,
+        "edition": "Publisher page checked 21 September 2026",
+        "status": "First-party guidance; mutable page"
+      },
+      "evidence": [
+        {
+          "claim": "Queries return at most 1,000 entities, defaulting to 100. STARTPOSITION and MAXRESULTS page one entity type; COUNT returns a population count for the selected criteria.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "QuickBooks Online query population and pagination",
+            "url": "https://developer.intuit.com/app/developer/qbo/docs/develop/explore-the-quickbooks-online-api/data-queries",
+            "locator": "Server responses; Pagination; Count"
+          }
+        },
+        {
+          "claim": "Queries do not support joins or OR. ID filtering permits equality and IN, not range comparisons. Entity-specific filter and sort support must be checked.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "QuickBooks Online query population and pagination",
+            "url": "https://developer.intuit.com/app/developer/qbo/docs/develop/explore-the-quickbooks-online-api/data-queries",
+            "locator": "Query limitations and Filters"
+          }
+        },
+        {
+          "claim": "For list entities such as Customer, explicit Active IN (true, false) includes active and inactive records.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "QuickBooks Online query population and pagination",
+            "url": "https://developer.intuit.com/app/developer/qbo/docs/develop/explore-the-quickbooks-online-api/data-queries",
+            "locator": "More filter examples"
+          }
+        }
+      ],
+      "limitations": [
+        "The reference does not promise a stable cross-page snapshot during edits. A count alone does not prove a complete accounting population, deletion history or source-to-ledger reconciliation. Formatting and case descriptions in examples require separate validation."
+      ],
+      "access_note": "Named original Intuit developer-reference sections read through Exa page extraction on 2026-09-21 after the basic web reader returned a JavaScript shell. No external full text stored.",
+      "review_trigger": "Recheck relevant payload, report, identifier and recovery contracts before implementation.",
+      "commercial_interest": "First-party platform documentation; not independent operating evidence."
+    }
+  },
+  {
+    "id": "src_stripe_balance_reporting",
+    "kind": "source",
+    "title": "Stripe balance report populations and dates",
+    "summary": "The balance report covers activity and payouts in a selected period, but does not map each payout to its payment population. Itemized PDF output includes only the first 5,000 activity rows; CSV is the documented route for all itemized rows.",
+    "topics": [
+      "Agent engineering",
+      "Accounting and reporting"
+    ],
+    "industries": [
+      "general"
+    ],
+    "jurisdiction": "Processor documentation; account country, payment method, payout mode and contract affect applicability",
+    "source_type": "Technical reference",
+    "publisher": "Stripe",
+    "source_url": "https://docs.stripe.com/reports/balance",
+    "source_ids": [],
+    "related_ids": [
+      "wf-r2r-journal-entry",
+      "wf-audit-population-evidence"
+    ],
+    "review_status": "source-checked",
+    "reviewed_at": "2026-09-21",
+    "provenance": {
+      "added_on": "2026-09-21",
+      "reviewer": "Codex (AI-assisted source review)",
+      "scope": "Named original-publisher sections read through web extraction on 2026-09-21; no tenant test or professional review.",
+      "evidence_urls": [
+        "https://docs.stripe.com/reports/balance"
+      ],
+      "outcome": "Supports the bounded documented observations; API operation, legal applicability and permissions for an actual app remain untested.",
+      "note": "Issue 173 P2 source context. Documentation review is separate from synthetic arithmetic, tenant observations and professional review."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "publication": {
+        "published_at": null,
+        "edition": "Publisher page checked 21 September 2026",
+        "status": "First-party guidance; mutable page"
+      },
+      "evidence": [
+        {
+          "claim": "The balance report covers activity and payouts in a selected period, but does not map each payout to its payment population. Itemized PDF output includes only the first 5,000 activity rows; CSV is the documented route for all itemized rows.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "Stripe balance report populations and dates",
+            "url": "https://docs.stripe.com/reports/balance",
+            "locator": "Overview; export PDF/CSV"
+          }
+        },
+        {
+          "claim": "The documented fields distinguish creation, availability, payout-related dates, source IDs and settlement currency. Monetary report columns use currency major units.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "Stripe balance report populations and dates",
+            "url": "https://docs.stripe.com/reports/balance",
+            "locator": "Itemized balance change from activity columns"
+          }
+        }
+      ],
+      "limitations": [
+        "Only the named documentation sections were reviewed. No API, merchant account, payment, refund, dispute or bank operation was executed. Fictional case amounts and journal recognition policies are separate project assumptions."
+      ],
+      "access_note": "Original publisher markdown sections read on 2026-09-21. No external full text stored.",
+      "review_trigger": "Recheck relevant payload, report, identifier and recovery contracts before implementation.",
+      "commercial_interest": "First-party platform documentation; not independent operating evidence."
+    }
+  },
+  {
+    "id": "src_stripe_payout_reconciliation",
+    "kind": "source",
+    "title": "Stripe automatic payout reconciliation and unmatched activity",
+    "summary": "Payout reconciliation maps automatic payouts to their settlement batches. Manual and instant payout populations have different reconciliation limits; instant payouts cannot be assigned a transaction batch by Stripe.",
+    "topics": [
+      "Agent engineering",
+      "Accounting and reporting"
+    ],
+    "industries": [
+      "general"
+    ],
+    "jurisdiction": "Processor documentation; account country, payment method, payout mode and contract affect applicability",
+    "source_type": "Technical reference",
+    "publisher": "Stripe",
+    "source_url": "https://docs.stripe.com/reports/payout-reconciliation",
+    "source_ids": [],
+    "related_ids": [
+      "wf-r2r-journal-entry",
+      "wf-audit-population-evidence"
+    ],
+    "review_status": "source-checked",
+    "reviewed_at": "2026-09-21",
+    "provenance": {
+      "added_on": "2026-09-21",
+      "reviewer": "Codex (AI-assisted source review)",
+      "scope": "Named original-publisher sections read through web extraction on 2026-09-21; no tenant test or professional review.",
+      "evidence_urls": [
+        "https://docs.stripe.com/reports/payout-reconciliation"
+      ],
+      "outcome": "Supports the bounded documented observations; API operation, legal applicability and permissions for an actual app remain untested.",
+      "note": "Issue 173 P2 source context. Documentation review is separate from synthetic arithmetic, tenant observations and professional review."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "publication": {
+        "published_at": null,
+        "edition": "Publisher page checked 21 September 2026",
+        "status": "First-party guidance; mutable page"
+      },
+      "evidence": [
+        {
+          "claim": "Payout reconciliation maps automatic payouts to their settlement batches. Manual and instant payout populations have different reconciliation limits; instant payouts cannot be assigned a transaction batch by Stripe.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "Stripe automatic payout reconciliation and unmatched activity",
+            "url": "https://docs.stripe.com/reports/payout-reconciliation",
+            "locator": "Overview and instant-payout note"
+          }
+        },
+        {
+          "claim": "Unsettled transactions remain in the ending-balance reconciliation. Reporting is generated later than underlying activity, with documented exceptions to normal availability timing.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "Stripe automatic payout reconciliation and unmatched activity",
+            "url": "https://docs.stripe.com/reports/payout-reconciliation",
+            "locator": "Ending balance reconciliation; Data availability"
+          }
+        }
+      ],
+      "limitations": [
+        "Only the named documentation sections were reviewed. No API, merchant account, payment, refund, dispute or bank operation was executed. Fictional case amounts and journal recognition policies are separate project assumptions."
+      ],
+      "access_note": "Original publisher markdown sections read on 2026-09-21. No external full text stored.",
+      "review_trigger": "Recheck relevant payload, report, identifier and recovery contracts before implementation.",
+      "commercial_interest": "First-party platform documentation; not independent operating evidence."
+    }
+  },
+  {
+    "id": "src_stripe_refund_lifecycle",
+    "kind": "source",
+    "title": "Stripe refund requests, available funds and completion",
+    "summary": "Refunds use available rather than pending balance. Insufficient funds leave card refunds pending, while other payment-method refunds may fail. A request therefore is not evidence of completed settlement.",
+    "topics": [
+      "Agent engineering",
+      "Accounting and reporting"
+    ],
+    "industries": [
+      "general"
+    ],
+    "jurisdiction": "Processor documentation; account country, payment method, payout mode and contract affect applicability",
+    "source_type": "Technical reference",
+    "publisher": "Stripe",
+    "source_url": "https://docs.stripe.com/refunds",
+    "source_ids": [],
+    "related_ids": [
+      "wf-r2r-journal-entry",
+      "wf-audit-population-evidence"
+    ],
+    "review_status": "source-checked",
+    "reviewed_at": "2026-09-21",
+    "provenance": {
+      "added_on": "2026-09-21",
+      "reviewer": "Codex (AI-assisted source review)",
+      "scope": "Named original-publisher sections read through web extraction on 2026-09-21; no tenant test or professional review.",
+      "evidence_urls": [
+        "https://docs.stripe.com/refunds"
+      ],
+      "outcome": "Supports the bounded documented observations; API operation, legal applicability and permissions for an actual app remain untested.",
+      "note": "Issue 173 P2 source context. Documentation review is separate from synthetic arithmetic, tenant observations and professional review."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "publication": {
+        "published_at": null,
+        "edition": "Publisher page checked 21 September 2026",
+        "status": "First-party guidance; mutable page"
+      },
+      "evidence": [
+        {
+          "claim": "Refunds use available rather than pending balance. Insufficient funds leave card refunds pending, while other payment-method refunds may fail. A request therefore is not evidence of completed settlement.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "Stripe refund requests, available funds and completion",
+            "url": "https://docs.stripe.com/refunds",
+            "locator": "Introduction; Refund requests; Issue refunds"
+          }
+        },
+        {
+          "claim": "Original processing fees are not returned. Partial refund API amounts use the currency smallest unit, and the destination is the original payment method.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "Stripe refund requests, available funds and completion",
+            "url": "https://docs.stripe.com/refunds",
+            "locator": "Introduction; API partial refunds; Refund destinations"
+          }
+        }
+      ],
+      "limitations": [
+        "Only the named documentation sections were reviewed. No API, merchant account, payment, refund, dispute or bank operation was executed. Fictional case amounts and journal recognition policies are separate project assumptions."
+      ],
+      "access_note": "Original publisher markdown sections read on 2026-09-21. No external full text stored.",
+      "review_trigger": "Recheck relevant payload, report, identifier and recovery contracts before implementation.",
+      "commercial_interest": "First-party platform documentation; not independent operating evidence."
+    }
+  },
+  {
+    "id": "src_stripe_dispute_lifecycle",
+    "kind": "source",
+    "title": "Stripe disputed funds, decisions and fee distinctions",
+    "summary": "A formal dispute can debit the disputed amount and fees before the issuer decides the outcome. The processor facilitates evidence submission but does not decide the dispute.",
+    "topics": [
+      "Agent engineering",
+      "Accounting and reporting"
+    ],
+    "industries": [
+      "general"
+    ],
+    "jurisdiction": "Processor documentation; account country, payment method, payout mode and contract affect applicability",
+    "source_type": "Technical reference",
+    "publisher": "Stripe",
+    "source_url": "https://docs.stripe.com/disputes/how-disputes-work",
+    "source_ids": [],
+    "related_ids": [
+      "wf-r2r-journal-entry",
+      "wf-audit-population-evidence"
+    ],
+    "review_status": "source-checked",
+    "reviewed_at": "2026-09-21",
+    "provenance": {
+      "added_on": "2026-09-21",
+      "reviewer": "Codex (AI-assisted source review)",
+      "scope": "Named original-publisher sections read through web extraction on 2026-09-21; no tenant test or professional review.",
+      "evidence_urls": [
+        "https://docs.stripe.com/disputes/how-disputes-work"
+      ],
+      "outcome": "Supports the bounded documented observations; API operation, legal applicability and permissions for an actual app remain untested.",
+      "note": "Issue 173 P2 source context. Documentation review is separate from synthetic arithmetic, tenant observations and professional review."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "publication": {
+        "published_at": null,
+        "edition": "Publisher page checked 21 September 2026",
+        "status": "First-party guidance; mutable page"
+      },
+      "evidence": [
+        {
+          "claim": "A formal dispute can debit the disputed amount and fees before the issuer decides the outcome. The processor facilitates evidence submission but does not decide the dispute.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "Stripe disputed funds, decisions and fee distinctions",
+            "url": "https://docs.stripe.com/disputes/how-disputes-work",
+            "locator": "Introduction; During the dispute; Receive a dispute"
+          }
+        },
+        {
+          "claim": "An overturned dispute returns the disputed funds; an upheld dispute does not create another merchant debit at final decision. Dispute-received and dispute-countered fees have different refund conditions, with country and contract exceptions.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "Stripe disputed funds, decisions and fee distinctions",
+            "url": "https://docs.stripe.com/disputes/how-disputes-work",
+            "locator": "End of dispute; Dispute fees"
+          }
+        }
+      ],
+      "limitations": [
+        "Only the named documentation sections were reviewed. No API, merchant account, payment, refund, dispute or bank operation was executed. Fictional case amounts and journal recognition policies are separate project assumptions."
+      ],
+      "access_note": "Original publisher markdown sections read on 2026-09-21. No external full text stored.",
+      "review_trigger": "Recheck relevant payload, report, identifier and recovery contracts before implementation.",
+      "commercial_interest": "First-party platform documentation; not independent operating evidence."
+    }
   }
 ]
