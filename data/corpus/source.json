@@ -18685,7 +18685,24 @@
       "limitations": [
         "The inspected material is a guidance page, catalog/abstract, or vendor account and does not establish independent production accounting accuracy.",
         "Scope is limited to the stated jurisdiction or population; transfer to other accounting settings requires local validation."
-      ]
+      ],
+      "issue_173_identity_review": {
+        "reviewed_on": "2026-09-21",
+        "publication": "February2026 draft concept paper",
+        "current_project_status": "Reviewing Comments; comment period closed. This remains project-scoping material,not a finalized accounting requirement.",
+        "status_url": "https://www.nccoe.nist.gov/projects/software-and-ai-agent-identity-and-authorization",
+        "pdf_sha256": "b303f7fba8c916f440a9435fa48d0e4465553f6b974d3157a1494747589e0b71",
+        "read_scope": "Printed pp.1-8: abstract/disclaimer,review questions,project scope,areas of interest and contemplated standards/use cases; Figure1 p.5 visually inspected.",
+        "findings": [
+          "The proposed enterprise project distinguishes agent identification,authorization,delegation,action logging and input-data provenance.",
+          "Its questions include linking human authority to agent identity and managing issuance,revocation and indirect prompt injection. These are research questions,not implemented guarantees.",
+          "The initial scope excludes managing external untrusted agents. A concept diagram does not validate a deployed accounting workflow."
+        ],
+        "limitations": [
+          "No NCCoE reference implementation or final practice guide was established by this review.",
+          "No professional review or production accounting test. Source reuse rights remain separately unresolved."
+        ]
+      }
     }
   },
   {
@@ -98233,6 +98250,803 @@
         "url": "https://developer.xero.com/__gatsby/page-data/documentation/best-practices/api-call-efficiencies/rate-limits/page-data.json",
         "sha256": "6b6ac38ad76746c42869f02343648dfb7c073ba315377c94077e2542c109d7ac"
       }
+    }
+  },
+  {
+    "id": "src_xero_webhook_recovery_2026",
+    "kind": "source",
+    "title": "Xero webhook categories, signatures and recovery",
+    "summary": "The listed categories are contacts,credit notes,invoices,overpayments,prepayments and app-store subscriptions. This is not a general journal-change feed; payloads include sequence bounds.",
+    "topics": [
+      "Agent engineering",
+      "Accounting and reporting"
+    ],
+    "industries": [
+      "general"
+    ],
+    "jurisdiction": "Xero developer platform; connection and product scope must be established",
+    "source_type": "Technical reference",
+    "publisher": "Xero",
+    "source_url": "https://developer.xero.com/documentation/guides/webhooks/overview",
+    "source_ids": [],
+    "related_ids": [
+      "wf-r2r-journal-entry",
+      "wf-audit-population-evidence"
+    ],
+    "review_status": "source-checked",
+    "reviewed_at": "2026-09-21",
+    "provenance": {
+      "added_on": "2026-09-21",
+      "reviewer": "Codex (AI-assisted source review)",
+      "scope": "Named original-publisher Markdown sections read from the public Gatsby page-data used by the documentation site; no authenticated API test.",
+      "evidence_urls": [
+        "https://developer.xero.com/documentation/guides/webhooks/overview"
+      ],
+      "outcome": "Supports the bounded documented observations; API operation, legal applicability and permissions for an actual app remain untested.",
+      "note": "Issue 173 P1 source review. This dated documentation check does not establish tenant behavior, professional acceptance or reuse permission."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "publication": {
+        "published_at": null,
+        "edition": "Mutable publisher documentation read2026-09-21"
+      },
+      "evidence": [
+        {
+          "claim": "The listed categories are contacts,credit notes,invoices,overpayments,prepayments and app-store subscriptions. This is not a general journal-change feed; payloads include sequence bounds.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "Xero webhook categories, signatures and recovery",
+            "url": "https://developer.xero.com/documentation/guides/webhooks/overview",
+            "locator": "Events and Payloads"
+          }
+        },
+        {
+          "claim": "The receiver must use HTTPS,respond within five seconds,and verify the base64 HMAC-SHA256 payload signature; invalid signatures require401.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "Xero webhook categories, signatures and recovery",
+            "url": "https://developer.xero.com/documentation/guides/webhooks/overview",
+            "locator": "Setup your Server; Intent to receive"
+          }
+        },
+        {
+          "claim": "The detailed section describes immediate retry,then15-minute spacing,disablement after24hours,and storage for up to31days while Retry/Disabled with ordered replay after recovery. Higher-level prose instead says decreasing frequency; no precise schedule was observed.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "Xero webhook categories, signatures and recovery",
+            "url": "https://developer.xero.com/documentation/guides/webhooks/overview",
+            "locator": "Delivery failures"
+          }
+        },
+        {
+          "claim": "Consumers must support replay and idempotency; documented ordered recovery is not a universal exactly-once guarantee.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "Xero webhook categories, signatures and recovery",
+            "url": "https://developer.xero.com/documentation/guides/webhooks/overview",
+            "locator": "Error handling"
+          }
+        }
+      ],
+      "limitations": [
+        "No authenticated API requests or webhook delivery observed. Documentation inconsistencies and untested environment behavior remain explicit."
+      ],
+      "access_note": "Named sections read from public original Gatsby page-data; no publisher full text stored in corpus.",
+      "reviewed_object": {
+        "url": "https://developer.xero.com/__gatsby/page-data/documentation/guides/webhooks/overview/page-data.json",
+        "sha256": "f26963938ce9db1db37c17b2c95817216642c2c60b8a89fc5c56ebe463f68f69"
+      }
+    }
+  },
+  {
+    "id": "src_xero_idempotency_2026",
+    "kind": "source",
+    "title": "Xero idempotent requests and six-minute expiry",
+    "summary": "POST,PUT and PATCH requests use Idempotency-Key. Same-key repetitions reuse the cached result; changed URL,body or method conflicts. Keys expire six minutes after the first request and later reuse can execute again.",
+    "topics": [
+      "Agent engineering",
+      "Accounting and reporting"
+    ],
+    "industries": [
+      "general"
+    ],
+    "jurisdiction": "Xero developer platform; connection and product scope must be established",
+    "source_type": "Technical reference",
+    "publisher": "Xero",
+    "source_url": "https://developer.xero.com/documentation/guides/idempotent-requests/idempotency",
+    "source_ids": [],
+    "related_ids": [
+      "wf-r2r-journal-entry",
+      "wf-audit-population-evidence"
+    ],
+    "review_status": "source-checked",
+    "reviewed_at": "2026-09-21",
+    "provenance": {
+      "added_on": "2026-09-21",
+      "reviewer": "Codex (AI-assisted source review)",
+      "scope": "Named original-publisher Markdown sections read from the public Gatsby page-data used by the documentation site; no authenticated API test.",
+      "evidence_urls": [
+        "https://developer.xero.com/documentation/guides/idempotent-requests/idempotency"
+      ],
+      "outcome": "Supports the bounded documented observations; API operation, legal applicability and permissions for an actual app remain untested.",
+      "note": "Issue 173 P1 source review. This dated documentation check does not establish tenant behavior, professional acceptance or reuse permission."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "publication": {
+        "published_at": null,
+        "edition": "Mutable publisher documentation read2026-09-21"
+      },
+      "evidence": [
+        {
+          "claim": "POST,PUT and PATCH requests use Idempotency-Key. Same-key repetitions reuse the cached result; changed URL,body or method conflicts. Keys expire six minutes after the first request and later reuse can execute again.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "Xero idempotent requests and six-minute expiry",
+            "url": "https://developer.xero.com/documentation/guides/idempotent-requests/idempotency",
+            "locator": "How it Works; Key Re-Use"
+          }
+        },
+        {
+          "claim": "Internal errors can be cached. The guidance recommends resource read-back after repeated errors; duplicate attempts still consume rate limits. Keys over128characters are rejected.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "Xero idempotent requests and six-minute expiry",
+            "url": "https://developer.xero.com/documentation/guides/idempotent-requests/idempotency",
+            "locator": "Error Handling; Rate limiting"
+          }
+        },
+        {
+          "claim": "The example says to change the key each time,contradicting same-key retry instructions. The recommendation to concatenate four UUIDs can also exceed128characters with conventional hyphenation. These ambiguities are recorded,not copied into a retry algorithm.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "Xero idempotent requests and six-minute expiry",
+            "url": "https://developer.xero.com/documentation/guides/idempotent-requests/idempotency",
+            "locator": "Example Use Case versus Getting Started and Best Practices"
+          }
+        }
+      ],
+      "limitations": [
+        "No authenticated API requests or webhook delivery observed. Documentation inconsistencies and untested environment behavior remain explicit."
+      ],
+      "access_note": "Named sections read from public original Gatsby page-data; no publisher full text stored in corpus.",
+      "reviewed_object": {
+        "url": "https://developer.xero.com/__gatsby/page-data/documentation/guides/idempotent-requests/idempotency/page-data.json",
+        "sha256": "29bb369a99d08125c508afa2f232160c5542e0f90fcd7ddea0248e09bdb5612d"
+      }
+    }
+  },
+  {
+    "id": "src_xero_request_response_2026",
+    "kind": "source",
+    "title": "Xero modified-resource and per-item batch-response limits",
+    "summary": "If-Modified-Since is second-precision; some non-journal-generating edits and derived contact fields do not update UpdatedDateUTC. This general guidance does not override the journal-specific offset rule.",
+    "topics": [
+      "Agent engineering",
+      "Accounting and reporting"
+    ],
+    "industries": [
+      "general"
+    ],
+    "jurisdiction": "Xero developer platform; connection and product scope must be established",
+    "source_type": "Technical reference",
+    "publisher": "Xero",
+    "source_url": "https://developer.xero.com/documentation/api/accounting/requests-and-responses",
+    "source_ids": [],
+    "related_ids": [
+      "wf-r2r-journal-entry",
+      "wf-audit-population-evidence"
+    ],
+    "review_status": "source-checked",
+    "reviewed_at": "2026-09-21",
+    "provenance": {
+      "added_on": "2026-09-21",
+      "reviewer": "Codex (AI-assisted source review)",
+      "scope": "Named original-publisher Markdown sections read from the public Gatsby page-data used by the documentation site; no authenticated API test.",
+      "evidence_urls": [
+        "https://developer.xero.com/documentation/api/accounting/requests-and-responses"
+      ],
+      "outcome": "Supports the bounded documented observations; API operation, legal applicability and permissions for an actual app remain untested.",
+      "note": "Issue 173 P1 source review. This dated documentation check does not establish tenant behavior, professional acceptance or reuse permission."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "publication": {
+        "published_at": null,
+        "edition": "Mutable publisher documentation read2026-09-21"
+      },
+      "evidence": [
+        {
+          "claim": "If-Modified-Since is second-precision; some non-journal-generating edits and derived contact fields do not update UpdatedDateUTC. This general guidance does not override the journal-specific offset rule.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "Xero modified-resource and per-item batch-response limits",
+            "url": "https://developer.xero.com/documentation/api/accounting/requests-and-responses",
+            "locator": "Retrieving modified resources"
+          }
+        },
+        {
+          "claim": "With summarizeErrors=false,the response exposes per-entity OK,WARNING or ERROR; validation errors can occur under HTTP200. WARNING means processed with warnings; ERROR means not saved. Whole-request success cannot establish every item succeeded.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "Xero modified-resource and per-item batch-response limits",
+            "url": "https://developer.xero.com/documentation/api/accounting/requests-and-responses",
+            "locator": "Creating many resources"
+          }
+        }
+      ],
+      "limitations": [
+        "No authenticated API requests or webhook delivery observed. Documentation inconsistencies and untested environment behavior remain explicit."
+      ],
+      "access_note": "Named sections read from public original Gatsby page-data; no publisher full text stored in corpus.",
+      "reviewed_object": {
+        "url": "https://developer.xero.com/__gatsby/page-data/documentation/api/accounting/requests-and-responses/page-data.json",
+        "sha256": "6ee077dacebfa4a4e7e72f3533455ee62a74f3f2f91fbe94141417bdc1aaf785"
+      }
+    }
+  },
+  {
+    "id": "src_xero_invoice_lineage_2026",
+    "kind": "source",
+    "title": "Xero invoice detail and currency boundary",
+    "summary": "Unpaged multi-invoice responses omit line detail; individual,status-filtered or paged requests include it. Amounts are in invoice currency,so they cannot be directly compared with base-currency journal amounts without the relevant conversion and rounding context.",
+    "topics": [
+      "Agent engineering",
+      "Accounting and reporting"
+    ],
+    "industries": [
+      "general"
+    ],
+    "jurisdiction": "Xero developer platform; connection and product scope must be established",
+    "source_type": "Technical reference",
+    "publisher": "Xero",
+    "source_url": "https://developer.xero.com/documentation/api/accounting/invoices",
+    "source_ids": [],
+    "related_ids": [
+      "wf-r2r-journal-entry",
+      "wf-audit-population-evidence"
+    ],
+    "review_status": "source-checked",
+    "reviewed_at": "2026-09-21",
+    "provenance": {
+      "added_on": "2026-09-21",
+      "reviewer": "Codex (AI-assisted source review)",
+      "scope": "Named original-publisher Markdown sections read from the public Gatsby page-data used by the documentation site; no authenticated API test.",
+      "evidence_urls": [
+        "https://developer.xero.com/documentation/api/accounting/invoices"
+      ],
+      "outcome": "Supports the bounded documented observations; API operation, legal applicability and permissions for an actual app remain untested.",
+      "note": "Issue 173 P1 source review. This dated documentation check does not establish tenant behavior, professional acceptance or reuse permission."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "publication": {
+        "published_at": null,
+        "edition": "Mutable publisher documentation read2026-09-21"
+      },
+      "evidence": [
+        {
+          "claim": "Unpaged multi-invoice responses omit line detail; individual,status-filtered or paged requests include it. Amounts are in invoice currency,so they cannot be directly compared with base-currency journal amounts without the relevant conversion and rounding context.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "Xero invoice detail and currency boundary",
+            "url": "https://developer.xero.com/documentation/api/accounting/invoices",
+            "locator": "GET Invoices introductory notes and response fields"
+          }
+        }
+      ],
+      "limitations": [
+        "No authenticated API requests or webhook delivery observed. Documentation inconsistencies and untested environment behavior remain explicit."
+      ],
+      "access_note": "Named sections read from public original Gatsby page-data; no publisher full text stored in corpus.",
+      "reviewed_object": {
+        "url": "https://developer.xero.com/__gatsby/page-data/documentation/api/accounting/invoices/page-data.json",
+        "sha256": "6e22cfd0c4602bf825dd35623599fccfbd9c0374f986a80ff759e2301a9f903d"
+      }
+    }
+  },
+  {
+    "id": "src_xero_payment_lineage_2026",
+    "kind": "source",
+    "title": "Xero payment source,bank amount and reversal scope",
+    "summary": "Payments reference invoices and accounts. Amount is in invoice currency; BankAmount is in account currency. The endpoint supports deleting/reversing a payment. A recorded payment is not independently observed bank settlement.",
+    "topics": [
+      "Agent engineering",
+      "Accounting and reporting"
+    ],
+    "industries": [
+      "general"
+    ],
+    "jurisdiction": "Xero developer platform; connection and product scope must be established",
+    "source_type": "Technical reference",
+    "publisher": "Xero",
+    "source_url": "https://developer.xero.com/documentation/api/accounting/payments",
+    "source_ids": [],
+    "related_ids": [
+      "wf-r2r-journal-entry",
+      "wf-audit-population-evidence"
+    ],
+    "review_status": "source-checked",
+    "reviewed_at": "2026-09-21",
+    "provenance": {
+      "added_on": "2026-09-21",
+      "reviewer": "Codex (AI-assisted source review)",
+      "scope": "Named original-publisher Markdown sections read from the public Gatsby page-data used by the documentation site; no authenticated API test.",
+      "evidence_urls": [
+        "https://developer.xero.com/documentation/api/accounting/payments"
+      ],
+      "outcome": "Supports the bounded documented observations; API operation, legal applicability and permissions for an actual app remain untested.",
+      "note": "Issue 173 P1 source review. This dated documentation check does not establish tenant behavior, professional acceptance or reuse permission."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "publication": {
+        "published_at": null,
+        "edition": "Mutable publisher documentation read2026-09-21"
+      },
+      "evidence": [
+        {
+          "claim": "Payments reference invoices and accounts. Amount is in invoice currency; BankAmount is in account currency. The endpoint supports deleting/reversing a payment. A recorded payment is not independently observed bank settlement.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "Xero payment source,bank amount and reversal scope",
+            "url": "https://developer.xero.com/documentation/api/accounting/payments",
+            "locator": "Overview; GET Payments fields"
+          }
+        },
+        {
+          "claim": "Paging prose refers to contacts inside the payments table,an apparent copy error. Page-size behavior needs validation rather than extrapolation from this wording.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "Xero payment source,bank amount and reversal scope",
+            "url": "https://developer.xero.com/documentation/api/accounting/payments",
+            "locator": "GET Payments optional parameters"
+          }
+        }
+      ],
+      "limitations": [
+        "No authenticated API requests or webhook delivery observed. Documentation inconsistencies and untested environment behavior remain explicit."
+      ],
+      "access_note": "Named sections read from public original Gatsby page-data; no publisher full text stored in corpus.",
+      "reviewed_object": {
+        "url": "https://developer.xero.com/__gatsby/page-data/documentation/api/accounting/payments/page-data.json",
+        "sha256": "f5552e716c556e5a419c8c7998215999861226f97676eb17e6a4966bbd4ee98a"
+      }
+    }
+  },
+  {
+    "id": "src_qbo_minor_versions_2026",
+    "kind": "source",
+    "title": "QuickBooks Online minor-version floor and schema changes",
+    "summary": "The current notice makes75 the default and floor after retirement of minor versions1-74; older generic prose still describes a base version.",
+    "topics": [
+      "Agent engineering",
+      "Accounting and reporting"
+    ],
+    "industries": [
+      "general"
+    ],
+    "jurisdiction": "QuickBooks Online; company, country, product and app scope require separate confirmation",
+    "source_type": "Technical reference",
+    "publisher": "Intuit Developer",
+    "source_url": "https://developer.intuit.com/app/developer/qbo/docs/develop/explore-the-quickbooks-online-api/minor-versions",
+    "source_ids": [],
+    "related_ids": [
+      "wf-r2r-journal-entry",
+      "wf-audit-population-evidence"
+    ],
+    "review_status": "source-checked",
+    "reviewed_at": "2026-09-21",
+    "provenance": {
+      "added_on": "2026-09-21",
+      "reviewer": "Codex (AI-assisted source review)",
+      "scope": "Named original-publisher sections read through web extraction on 2026-09-21; no tenant test or professional review.",
+      "evidence_urls": [
+        "https://developer.intuit.com/app/developer/qbo/docs/develop/explore-the-quickbooks-online-api/minor-versions"
+      ],
+      "outcome": "Supports the bounded documented observations; API operation, legal applicability and permissions for an actual app remain untested.",
+      "note": "Issue 173 P1 source review. This dated documentation check does not establish tenant behavior, professional acceptance or reuse permission."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "publication": {
+        "published_at": null,
+        "edition": "Official mutable reference checked2026-09-21"
+      },
+      "evidence": [
+        {
+          "claim": "Support for1-74 ended beginningAugust1,2025; omitted or lower minorversion values return75 according to the current important notice. The older base-version paragraph conflicts with that notice.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "QuickBooks Online minor-version floor and schema changes",
+            "url": "https://developer.intuit.com/app/developer/qbo/docs/develop/explore-the-quickbooks-online-api/minor-versions",
+            "locator": "Important notice; How minor versions work"
+          }
+        },
+        {
+          "claim": "The version75 row adds CompanyInfo.DefaultTimeZone; older release rows describe country- and entity-specific changes. Pin request and SDK versions and validate the actual response rather than assuming all schemas are equivalent.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "QuickBooks Online minor-version floor and schema changes",
+            "url": "https://developer.intuit.com/app/developer/qbo/docs/develop/explore-the-quickbooks-online-api/minor-versions",
+            "locator": "See all minor versions; SDK guidance"
+          }
+        }
+      ],
+      "limitations": [
+        "No API version behavior observed; notice and historical prose differ. Version metadata does not establish tenant feature availability."
+      ],
+      "access_note": "Original reference extracted through Exa; named current notice,SDK guidance and table entries read. No external full text retained in corpus."
+    }
+  },
+  {
+    "id": "src_qbo_webhook_contract_2026",
+    "kind": "source",
+    "title": "QuickBooks Online webhook delivery,signature and coverage",
+    "summary": "OAuth authorization and separate sandbox/production configuration are required. The entity/operation table includes JournalEntry create/update/delete but is not identical to CDC coverage. HMAC-SHA256 verification uses the app verifier and intuit-signature.",
+    "topics": [
+      "Agent engineering",
+      "Accounting and reporting"
+    ],
+    "industries": [
+      "general"
+    ],
+    "jurisdiction": "QuickBooks Online; company, country, product and app scope require separate confirmation",
+    "source_type": "Technical reference",
+    "publisher": "Intuit Developer",
+    "source_url": "https://developer.intuit.com/app/developer/qbo/docs/develop/webhooks/configure-webhooks",
+    "source_ids": [],
+    "related_ids": [
+      "wf-r2r-journal-entry",
+      "wf-audit-population-evidence"
+    ],
+    "review_status": "source-checked",
+    "reviewed_at": "2026-09-21",
+    "provenance": {
+      "added_on": "2026-09-21",
+      "reviewer": "Codex (AI-assisted source review)",
+      "scope": "Named original-publisher sections read through web extraction on 2026-09-21; no tenant test or professional review.",
+      "evidence_urls": [
+        "https://developer.intuit.com/app/developer/qbo/docs/develop/webhooks/configure-webhooks",
+        "https://developer.intuit.com/app/developer/qbo/docs/develop/webhooks/best-practices"
+      ],
+      "outcome": "Supports the bounded documented observations; API operation, legal applicability and permissions for an actual app remain untested.",
+      "note": "Issue 173 P1 source review. This dated documentation check does not establish tenant behavior, professional acceptance or reuse permission."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "publication": {
+        "published_at": null,
+        "edition": "Publisher material checked2026-09-21"
+      },
+      "evidence": [
+        {
+          "claim": "OAuth authorization and separate sandbox/production configuration are required. The entity/operation table includes JournalEntry create/update/delete but is not identical to CDC coverage. HMAC-SHA256 verification uses the app verifier and intuit-signature.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "QuickBooks Online webhook delivery,signature and coverage",
+            "url": "https://developer.intuit.com/app/developer/qbo/docs/develop/webhooks/configure-webhooks",
+            "locator": "Configure webhooks steps1,3-6"
+          }
+        },
+        {
+          "claim": "Current CloudEvents notifications can mix companies in one array and use time. Older closing prose mentions lastUpdated and multiple entities; do not silently merge those shapes.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "QuickBooks Online webhook delivery,signature and coverage",
+            "url": "https://developer.intuit.com/app/developer/qbo/docs/develop/webhooks/configure-webhooks",
+            "locator": "Configure webhooks step6"
+          }
+        },
+        {
+          "claim": "Acknowledgment is HTTP200 within three seconds. Retries progress10s,20s,30s,5m,20m,2h,4h,6h then six-hour intervals; later events may wait. Events may arrive out of order.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "QuickBooks Online webhook delivery,signature and coverage",
+            "url": "https://developer.intuit.com/app/developer/qbo/docs/develop/webhooks/best-practices",
+            "locator": "Best practices: Respond promptly; notification ordering"
+          }
+        },
+        {
+          "claim": "Best-practice prose still says one realm per notification and timestamp,conflicting with the newer mixed-company/time payload. CDC reconciliation remains limited by its separate30-day and entity exclusions.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "QuickBooks Online webhook delivery,signature and coverage",
+            "url": "https://developer.intuit.com/app/developer/qbo/docs/develop/webhooks/best-practices",
+            "locator": "Best practices versus current configuration"
+          }
+        }
+      ],
+      "limitations": [
+        "Only named original sections reviewed. No connected tenant,observed delivery/write,professional or legal applicability review. Incorporated policies and specific account configuration remain separate."
+      ],
+      "access_note": "Original Intuit page content read through Exa after generic landing routes returned shells; no external full text stored."
+    }
+  },
+  {
+    "id": "src_qbo_stale_object_2026",
+    "kind": "source",
+    "title": "QuickBooks Online stale object updates and SyncToken",
+    "summary": "Error5010 indicates a stale object version. The official remedy retrieves the latest object and uses its SyncToken for the update or delete. This version check is not approval of changed accounting content.",
+    "topics": [
+      "Agent engineering",
+      "Accounting and reporting"
+    ],
+    "industries": [
+      "general"
+    ],
+    "jurisdiction": "QuickBooks Online; company, country, product and app scope require separate confirmation",
+    "source_type": "Technical reference",
+    "publisher": "Intuit Developer",
+    "source_url": "https://help.developer.intuit.com/s/article/5010-Stale-Object-Error",
+    "source_ids": [],
+    "related_ids": [
+      "wf-r2r-journal-entry",
+      "wf-audit-population-evidence"
+    ],
+    "review_status": "source-checked",
+    "reviewed_at": "2026-09-21",
+    "provenance": {
+      "added_on": "2026-09-21",
+      "reviewer": "Codex (AI-assisted source review)",
+      "scope": "Named original-publisher sections read through web extraction on 2026-09-21; no tenant test or professional review.",
+      "evidence_urls": [
+        "https://help.developer.intuit.com/s/article/5010-Stale-Object-Error"
+      ],
+      "outcome": "Supports the bounded documented observations; API operation, legal applicability and permissions for an actual app remain untested.",
+      "note": "Issue 173 P1 source review. This dated documentation check does not establish tenant behavior, professional acceptance or reuse permission."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "publication": {
+        "published_at": null,
+        "edition": "Publisher material checked2026-09-21"
+      },
+      "evidence": [
+        {
+          "claim": "Error5010 indicates a stale object version. The official remedy retrieves the latest object and uses its SyncToken for the update or delete. This version check is not approval of changed accounting content.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "QuickBooks Online stale object updates and SyncToken",
+            "url": "https://help.developer.intuit.com/s/article/5010-Stale-Object-Error",
+            "locator": "Article Body and Solutions"
+          }
+        }
+      ],
+      "limitations": [
+        "Only named original sections reviewed. No connected tenant,observed delivery/write,professional or legal applicability review. Incorporated policies and specific account configuration remain separate."
+      ],
+      "access_note": "Original Intuit page content read through Exa after generic landing routes returned shells; no external full text stored."
+    }
+  },
+  {
+    "id": "src_qbo_oauth_contract_2026",
+    "kind": "source",
+    "title": "QuickBooks Online OAuth scope,token and revocation boundaries",
+    "summary": "com.intuit.quickbooks.accounting permits Accounting API calls. Scope changes require renewed authorization. This section does not define a read-only or per-amount accounting permission.",
+    "topics": [
+      "Agent engineering",
+      "Accounting and reporting"
+    ],
+    "industries": [
+      "general"
+    ],
+    "jurisdiction": "QuickBooks Online; company, country, product and app scope require separate confirmation",
+    "source_type": "Technical reference",
+    "publisher": "Intuit Developer",
+    "source_url": "https://developer.intuit.com/app/developer/qbo/docs/develop/authentication-and-authorization/faq",
+    "source_ids": [],
+    "related_ids": [
+      "wf-r2r-journal-entry",
+      "wf-audit-population-evidence"
+    ],
+    "review_status": "source-checked",
+    "reviewed_at": "2026-09-21",
+    "provenance": {
+      "added_on": "2026-09-21",
+      "reviewer": "Codex (AI-assisted source review)",
+      "scope": "Named original-publisher sections read through web extraction on 2026-09-21; no tenant test or professional review.",
+      "evidence_urls": [
+        "https://developer.intuit.com/app/developer/qbo/docs/develop/authentication-and-authorization/faq"
+      ],
+      "outcome": "Supports the bounded documented observations; API operation, legal applicability and permissions for an actual app remain untested.",
+      "note": "Issue 173 P1 source review. This dated documentation check does not establish tenant behavior, professional acceptance or reuse permission."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "publication": {
+        "published_at": null,
+        "edition": "Publisher material checked2026-09-21"
+      },
+      "evidence": [
+        {
+          "claim": "com.intuit.quickbooks.accounting permits Accounting API calls. Scope changes require renewed authorization. This section does not define a read-only or per-amount accounting permission.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "QuickBooks Online OAuth scope,token and revocation boundaries",
+            "url": "https://developer.intuit.com/app/developer/qbo/docs/develop/authentication-and-authorization/faq",
+            "locator": "Current scopes; accounting connection example"
+          }
+        },
+        {
+          "claim": "Access tokens last one hour; refresh tokens have a100-day rolling expiry and five-year maximum. Use the latest returned token and serialize refreshes. Revocation can invalidate both tokens; reauthorization may be needed.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "QuickBooks Online OAuth scope,token and revocation boundaries",
+            "url": "https://developer.intuit.com/app/developer/qbo/docs/develop/authentication-and-authorization/faq",
+            "locator": "Token lifetimes; invalid tokens; invalid_grant"
+          }
+        }
+      ],
+      "limitations": [
+        "Only named original sections reviewed. No connected tenant,observed delivery/write,professional or legal applicability review. Incorporated policies and specific account configuration remain separate."
+      ],
+      "access_note": "Original Intuit page content read through Exa after generic landing routes returned shells; no external full text stored."
+    }
+  },
+  {
+    "id": "src_qbo_developer_terms_20251014",
+    "kind": "source",
+    "title": "Intuit developer terms: app purpose,third parties and benchmarking",
+    "summary": "The page is datedOctober14,2025. Applicable policies/program guides are incorporated; platform use may involve monthly and usage fees. This annotation does not establish a specific app tier or price.",
+    "topics": [
+      "Agent engineering",
+      "Accounting and reporting"
+    ],
+    "industries": [
+      "general"
+    ],
+    "jurisdiction": "QuickBooks Online; company, country, product and app scope require separate confirmation",
+    "source_type": "Technical reference",
+    "publisher": "Intuit Developer",
+    "source_url": "https://developer.intuit.com/app/developer/qbo/docs/legal-agreements/intuit-terms-of-service-for-intuit-developer-services",
+    "source_ids": [],
+    "related_ids": [
+      "wf-r2r-journal-entry",
+      "wf-audit-population-evidence"
+    ],
+    "review_status": "source-checked",
+    "reviewed_at": "2026-09-21",
+    "provenance": {
+      "added_on": "2026-09-21",
+      "reviewer": "Codex (AI-assisted source review)",
+      "scope": "Named original-publisher sections read through web extraction on 2026-09-21; no tenant test or professional review.",
+      "evidence_urls": [
+        "https://developer.intuit.com/app/developer/qbo/docs/legal-agreements/intuit-terms-of-service-for-intuit-developer-services"
+      ],
+      "outcome": "Supports the bounded documented observations; API operation, legal applicability and permissions for an actual app remain untested.",
+      "note": "Issue 173 P1 source review. This dated documentation check does not establish tenant behavior, professional acceptance or reuse permission."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "publication": {
+        "published_at": "2025-10-14",
+        "edition": "Publisher material checked2026-09-21"
+      },
+      "evidence": [
+        {
+          "claim": "The page is datedOctober14,2025. Applicable policies/program guides are incorporated; platform use may involve monthly and usage fees. This annotation does not establish a specific app tier or price.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "Intuit developer terms: app purpose,third parties and benchmarking",
+            "url": "https://developer.intuit.com/app/developer/qbo/docs/legal-agreements/intuit-terms-of-service-for-intuit-developer-services",
+            "locator": "Dated heading; sections1.1,1.4,5.1"
+          }
+        },
+        {
+          "claim": "The terms restrict benchmarking and wholesale/general-archive uses. User data must serve the app functionality within consent; unrelated third-party use is restricted and processors require written safeguards. AI/NIST and Responsible AI requirements are referenced.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "Intuit developer terms: app purpose,third parties and benchmarking",
+            "url": "https://developer.intuit.com/app/developer/qbo/docs/legal-agreements/intuit-terms-of-service-for-intuit-developer-services",
+            "locator": "Section3.1; sections11.7,12.2"
+          }
+        },
+        {
+          "claim": "Consent withdrawal requires stopping access/processing and deletion duties have stated legal-recordkeeping qualifications. No blanket model-training or redistribution permission follows from OAuth consent.",
+          "classification": "publisher-documented",
+          "source": {
+            "title": "Intuit developer terms: app purpose,third parties and benchmarking",
+            "url": "https://developer.intuit.com/app/developer/qbo/docs/legal-agreements/intuit-terms-of-service-for-intuit-developer-services",
+            "locator": "Section12.2"
+          }
+        }
+      ],
+      "limitations": [
+        "Only named original sections reviewed. No connected tenant,observed delivery/write,professional or legal applicability review. Incorporated policies and specific account configuration remain separate."
+      ],
+      "access_note": "Original Intuit page content read through Exa after generic landing routes returned shells; no external full text stored."
     }
   }
 ]

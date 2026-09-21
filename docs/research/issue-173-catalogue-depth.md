@@ -164,3 +164,32 @@ system counterexamples pass local deterministic checks; they are explicitly
 normalized synthetic fixtures, not captured vendor traffic. Current QBO entity,
 permission,terms,webhook-delivery and write contracts remain research work, not
 completed by marking them unknown.
+
+### System contracts and action boundaries
+
+Further original-source review replaces several draft unknowns with narrowly
+documented contracts. Xero annotations now cover webhook categories/signatures,
+24-hour failure disablement and up-to31-day replay retention, six-minute
+idempotency-key expiry, cached errors, per-item batch failures under HTTP200,
+invoice line-detail retrieval and differing invoice/bank/base currencies.
+Contradictory retry/key-generation wording remains visible. QBO annotations cover
+current CloudEvents versus stale best-practice wording, delivery acknowledgment
+and retry behavior, stale-object SyncToken handling, OAuth lifecycle, the current
+minor-version floor, and scoped October14,2025 developer terms. No tenant behavior
+was observed. Role/feature maps,object-specific contracts,incorporated policies,
+rate/pricing cohorts and the narrow ERP comparison remain work.
+
+`guide-accounting-action-boundaries` drafts the five-action matrix and three
+substantive dossiers: journal proposal/posting,vendor change/payment release,and
+period reopening/post-approval modification. Each names a proposed external
+permission boundary and states what the documented platform mechanism cannot
+establish. Seven inspectable synthetic exception records are linked from both
+P2/P7 cases without changing their baseline accounting payloads. All nine existing
+case/packet/arithmetic tests still pass. These examples are not a production
+executor or proof of operating effectiveness.
+
+The February2026 NCCoE concept PDF was read at printed pages1-8 and its Figure1
+visually inspected. The live project is still Reviewing Comments. Its status and
+enterprise scope remain distinct from adopted requirements. Finalized-standards
+comparison,control-record/editorial integration and independent policy-fixture
+checks are still required before P6 acceptance.
