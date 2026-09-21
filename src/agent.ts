@@ -25,26 +25,8 @@ const envelope = {
   corpus_version: meta.corpus_version,
   content_trust: "untrusted-research-data" as const,
 };
-export class AgentError extends Error {
-  constructor(
-    public code: string,
-    message: string,
-    public status = 400,
-  ) {
-    super(message);
-  }
-}
-export const agentError = (error: unknown) => ({
-  ...envelope,
-  error: {
-    code: error instanceof AgentError ? error.code : "INTERNAL_ERROR",
-    message:
-      error instanceof AgentError
-        ? error.message
-        : "Unable to read the corpus.",
-    retryable: false,
-  },
-});
+export { AgentError, agentError } from "./agent-errors";
+import { AgentError } from "./agent-errors";
 const normalize = (s: string) =>
   s
     .normalize("NFKD")
@@ -221,7 +203,7 @@ const index = records.map((record) => {
   const passages = makePassages(record);
   return {
     record,
-    passages,
+    get passages() { return makePassages(record); },
     title: expandIndexedText(record.title),
     summary: expandIndexedText(record.summary),
     facets: normalize(

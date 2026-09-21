@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { createHash } from 'node:crypto';
 import { gunzipSync } from 'node:zlib';
-import worker from '../dist/server/index.js';
+import worker from './worker-fixture.mjs';
 import { records, meta } from '../dist/internal/corpus.mjs';
 const fetchPage = p => worker.fetch(new Request('https://corpus.example'+p));
 const sha256 = file => createHash('sha256').update(fs.readFileSync(file)).digest('hex');

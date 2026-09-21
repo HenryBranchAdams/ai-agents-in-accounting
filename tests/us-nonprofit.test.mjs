@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {records, coverage, meta} from '../dist/internal/corpus.mjs';
 import {executeAgent} from '../dist/internal/agent.mjs';
-import worker from '../dist/server/index.js';
+import worker from './worker-fixture.mjs';
 
 const read=file=>JSON.parse(fs.readFileSync(file,'utf8'));
 const byId=new Map(records.map(record=>[record.id,record]));

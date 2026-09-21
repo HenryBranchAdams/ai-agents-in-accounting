@@ -98,7 +98,7 @@ test('reading refuses changed content, missing files, escaped paths and stale ru
 
 test('public history keeps the full flat download contract and matches the runtime history', async () => {
   const history = readSnapshotHistory();
-  const { default: worker } = await import('../dist/server/index.js');
+  const { default: worker } = await import('./worker-fixture.mjs');
   const downloadResponse = await worker.fetch(new Request('https://corpus.example/downloads/coverage-history.json'), {
     ASSETS: { fetch: async request => {
       const file = `dist/client${new URL(request.url).pathname}`;
@@ -107,7 +107,7 @@ test('public history keeps the full flat download contract and matches the runti
   });
   assert.equal(downloadResponse.status, 200);
   const download = await downloadResponse.json();
-  const response = await worker.fetch(new Request('https://corpus.example/api/v1/coverage/history'));
+  const response = await worker.fetch(new Request('https://corpus.example/api/v1/coverage/history'), { ASSETS: { fetch: async request => new Response(fs.readFileSync(`dist/client${new URL(request.url).pathname}`)) } });
   assert.equal(download.schema_version, '1.0.0');
   assert.deepEqual(download, history);
   assert.equal(response.status, 200);

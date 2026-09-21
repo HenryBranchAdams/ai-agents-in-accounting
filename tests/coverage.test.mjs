@@ -5,7 +5,7 @@ import fs from "node:fs";
 import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
 import { coverage, records, meta } from "../dist/internal/corpus.mjs";
-import worker from "../dist/server/index.js";
+import worker from "./worker-fixture.mjs";
 import { validateSchema } from "../scripts/validate.mjs";
 import { coverageInputs } from "../scripts/validate-coverage.mjs";
 
