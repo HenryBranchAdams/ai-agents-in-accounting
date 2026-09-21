@@ -71800,7 +71800,8 @@
       "src_xero_manual_journals_2026",
       "src_qbo_stale_object_2026",
       "src_qbo_oauth_contract_2026",
-      "src_qbo_id_request_semantics"
+      "src_qbo_id_request_semantics",
+      "src_0pywo86"
     ],
     "related_ids": [
       "ctrl-human-approval",
@@ -71817,7 +71818,7 @@
       "added_on": "2026-09-21",
       "reviewer": "Codex original synthesis",
       "scope": "Original proposed action boundaries informed by separately scoped platform documents and emerging NCCoE concepts.",
-      "note": "Draft issue173 P6. No executor,bank connection,production operation or real approval is supplied. Final standards comparison,editorial review and integration pending."
+      "note": "Draft issue 173 P6. No executor, bank connection, production operation or real approval is supplied. Final editorial review and control-record integration remain pending."
     },
     "rights": {
       "metadata": "CC0-1.0",
@@ -72011,10 +72012,104 @@
       ],
       "limitations": [
         "All action boundaries and exception outcomes are original design proposals,not operating controls or real human approvals.",
-        "Current NCCoE project material remains a draft concept; finalized standards applicability comparison is still pending.",
+        "Final NIST base-control guidance and emerging NCCoE concepts are scoped separately; neither establishes this design as implemented or compliant.",
         "No executor,credential issuance,payment integration or live accounting tests.",
-        "Final P6 control-record integration,synthetic packet links and independent policy-fixture checks remain pending."
-      ]
+        "Final P6 control-record integration and editorial review remain pending. Synthetic packet links and offline mutation checks do not establish operating effectiveness."
+      ],
+      "standards_comparison": [
+        {
+          "source_id": "src_0pywo86",
+          "status": "final control catalog, electronic release 5.2.0",
+          "locators": [
+            "AC-3 statement/guidance",
+            "AC-5 statement/guidance",
+            "AC-6 statement/guidance",
+            "AU-3 statement/guidance"
+          ],
+          "supports": "General access enforcement, incompatible-duty separation, necessary privileges and attributable event records.",
+          "does_not_establish": "An implemented accounting approval gateway, bank mandate, prescribed payload format, compliance or professional approval."
+        },
+        {
+          "source_id": "src_06fwpim",
+          "status": "February 2026 draft concept; project page reviewing comments at source check",
+          "locators": [
+            "Concept paper printed pages 1-8",
+            "Figure 1, printed page 5"
+          ],
+          "supports": "Emerging enterprise software/agent identity, delegation and authorization design discussion.",
+          "does_not_establish": "A finalized standard or implemented reference solution; external untrusted agents are outside the stated project scope."
+        },
+        {
+          "source_id": null,
+          "status": "original project proposal",
+          "locators": [
+            "approval_binding",
+            "action_matrix",
+            "dossiers"
+          ],
+          "supports": "A reviewable accounting-specific mapping with exact-action approval and explicit recovery states.",
+          "does_not_establish": "Effective production controls, tenant access, cryptographic authentication or human acceptance."
+        }
+      ],
+      "approval_fixture": {
+        "classification": "original synthetic review illustration; no real permission or credentials",
+        "source_case_id": "example-connected-purchase-to-payment",
+        "case_packet_pointer": "/data/review_packets/stronger",
+        "source_document_ids": [
+          "A-I1",
+          "A-CN1",
+          "A-APP1",
+          "A-PAY1"
+        ],
+        "payload": {
+          "principal_id": "SYNTHETIC-TREASURY-EXECUTOR",
+          "delegating_human_id": "SYNTHETIC-CONTROLLER",
+          "reviewer_id": "SYNTHETIC-TREASURY-REVIEWER",
+          "legal_entity": "Harbor Tools LLC (fictional)",
+          "action": "release_payment",
+          "amount_minor": 50000,
+          "currency": "USD",
+          "destination_ref": "SYNTHETIC-HARBOR-SUPPLIER-DESTINATION-V1",
+          "accounting_period": "2026-06",
+          "source_version": "A-I1+A-CN1+A-APP1/A-PAY1-v1",
+          "evidence_digest": "4ae9cffab1fb1b7428f069b252ab7fe03fce59904bad0bc8d85105f6246289ae",
+          "policy_version": "SYNTHETIC-POLICY-1",
+          "expires_at": "2026-06-02T12:00:00Z",
+          "single_use_intent_id": "SYNTHETIC-A-PAY1"
+        },
+        "payload_digest": "bd6932d8910acb140674bfb3264e5e0cc0e76eff780c5123115a6107fd2eee22",
+        "digest_definition": "SHA-256 of UTF-8 JSON with recursively sorted object keys, compact separators and literal Unicode for payload only; payload_digest is outside its own preimage.",
+        "fictional_approval": {
+          "decision": "approved for illustration only",
+          "approved_payload_digest": "bd6932d8910acb140674bfb3264e5e0cc0e76eff780c5123115a6107fd2eee22",
+          "reviewer_id": "SYNTHETIC-TREASURY-REVIEWER",
+          "actual_human_approval": null
+        },
+        "nominal_check_time": "2026-06-02T11:00:00Z",
+        "states": [
+          {
+            "state": "prepared",
+            "next": "authorized only after independent current-authority and exact-payload checks"
+          },
+          {
+            "state": "submitted",
+            "next": "verified or rejected from authoritative read-back; ambiguous if outcome uncertain"
+          },
+          {
+            "state": "ambiguous",
+            "next": "reconcile existing intent; block any new write"
+          },
+          {
+            "state": "verified",
+            "next": "return existing receipt on duplicate; never resubmit consumed approval"
+          }
+        ],
+        "limits": [
+          "A hash is not a signature, identity proof, accounting judgment or authorization.",
+          "The offline tests exercise illustrative mutation detection and decision rules only. They do not test a gateway, bank, vendor API, concurrent transaction or revocation race.",
+          "The destination is an opaque fictional reference, not an account. Approval does not prove payment settlement."
+        ]
+      }
     }
   }
 ]

@@ -193,3 +193,10 @@ visually inspected. The live project is still Reviewing Comments. Its status and
 enterprise scope remain distinct from adopted requirements. Finalized-standards
 comparison,control-record/editorial integration and independent policy-fixture
 checks are still required before P6 acceptance.
+
+
+### P6 finalized guidance comparison
+
+Read NIST SP 800-53 Revision 5 final landing page and official OSCAL release 5.2.0 base statements/guidance for AC-3, AC-5, AC-6 and AU-3. Enriched existing stable source src_0pywo86 with versioned object digest and bounded locators, and a three-way comparison of final controls, the February 2026 NCCoE draft concept, and the original accounting proposal. No enhancements, assessment procedures, operating controls or compliance conclusion are claimed. External source text stays outside exports. Control-record integration, concrete approval fixture checks and final editorial acceptance remain pending.
+
+Added an explicit fictional payment-approval payload tied to the purchase case packet and four source documents. Its hash uses a declared canonical preimage; actual human approval remains null. Two offline tests verify identity and mutation detection across every bound field, expiry, absent authority and ambiguous/consumed intent handling. Together with the nine connected-case checks, 11 tests pass. This is an inspectable design illustration, not an executor or bank/API test.

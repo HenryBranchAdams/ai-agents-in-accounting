@@ -18870,7 +18870,9 @@
       "review_scope": "abstract-or-landing: Publisher page title plus accessible abstract/metadata for “Security and Privacy Controls for Information Systems and Organizations”. The live publisher page identifies “Security and Privacy Controls for Information Systems and Organizations” under NIST and exposes the publication or resource form recorded here (SP 800-53 Rev. 5; update Aug 2025). Its accessible abstract, summary, or page metadata describes a detailed control catalog for access, logging, separation of duties, change control, privacy, contingency planning, and suppliers. This supports a rule or standard association while leaving the source's stated design, sample, and transfer limits intact.",
       "outcome": "supported-scope. Source currency, accounting applicability, professional review and reuse permission are not inferred from this check.",
       "source_review_attempted_at": "2026-09-11",
-      "source_review_evidence_pointer": "/data/source_review"
+      "source_review_evidence_pointer": "/data/source_review",
+      "issue_173_review_pointer": "/data/issue_173_control_review",
+      "review_history_note": "The September 11 landing-page review remains historical; the September 21 bounded control review is separately recorded."
     },
     "rights": {
       "metadata": "CC0-1.0",
@@ -18986,7 +18988,66 @@
       ],
       "frameworks": [
         "NIST AI RMF / SP 800-53"
-      ]
+      ],
+      "issue_173_control_review": {
+        "publication": {
+          "published_at": "2020-09",
+          "edition": "Revision 5, updated December 10, 2020; electronic control release 5.2.0 announced August 27, 2025"
+        },
+        "evidence": [
+          {
+            "claim": "Enforce approved access policies at the relevant system, application or service boundary.",
+            "classification": "final-control-catalog-guidance",
+            "source": {
+              "title": "NIST SP 800-53: access, separation of duties and audit-record controls",
+              "url": "https://raw.githubusercontent.com/usnistgov/oscal-content/v1.4.0/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+              "locator": "AC-3 statement and guidance"
+            }
+          },
+          {
+            "claim": "Identify incompatible duties and give roles the access needed to keep them separate, considering conflicts across systems.",
+            "classification": "final-control-catalog-guidance",
+            "source": {
+              "title": "NIST SP 800-53: access, separation of duties and audit-record controls",
+              "url": "https://raw.githubusercontent.com/usnistgov/oscal-content/v1.4.0/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+              "locator": "AC-5 statement and guidance"
+            }
+          },
+          {
+            "claim": "Limit users and processes to authorized access needed for assigned tasks.",
+            "classification": "final-control-catalog-guidance",
+            "source": {
+              "title": "NIST SP 800-53: access, separation of duties and audit-record controls",
+              "url": "https://raw.githubusercontent.com/usnistgov/oscal-content/v1.4.0/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+              "locator": "AC-6 statement and guidance"
+            }
+          },
+          {
+            "claim": "Audit records identify event type, time, location, source, outcome and associated identities. Log content can create privacy risks.",
+            "classification": "final-control-catalog-guidance",
+            "source": {
+              "title": "NIST SP 800-53: access, separation of duties and audit-record controls",
+              "url": "https://raw.githubusercontent.com/usnistgov/oscal-content/v1.4.0/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+              "locator": "AU-3 statement and guidance"
+            }
+          }
+        ],
+        "reviewed_object": {
+          "url": "https://raw.githubusercontent.com/usnistgov/oscal-content/v1.4.0/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+          "sha256": "1645df6a370dcb931db2e2d5d70c2f77bc89c38499a416c23a70eb2c0e595bcc",
+          "catalog_version": "5.2.0",
+          "repository_tag": "v1.4.0"
+        },
+        "limitations": [
+          "Only named base-control statements and guidance reviewed; enhancements and assessment procedures were not assessed.",
+          "The catalog is adaptable. Selection, tailoring, applicability and operating effectiveness are separate questions.",
+          "The exact-payload approval design in the linked guide is project synthesis, not a prescribed NIST accounting workflow."
+        ],
+        "access_note": "Official machine-readable catalog reviewed locally; publisher full text is not included in corpus exports.",
+        "reviewed_at": "2026-09-21",
+        "reviewer": "Codex AI-assisted source review",
+        "scope": "Read the final publication landing page and statements/guidance for AC-3, AC-5, AC-6 and AU-3 in the official versioned OSCAL catalog."
+      }
     }
   },
   {
