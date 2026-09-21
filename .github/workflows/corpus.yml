@@ -27,6 +27,8 @@ jobs:
         run: npm run preflight
       - name: Lint, typecheck, data validation and design-rule probes
         run: node scripts/verify.mjs --phase lint
+      - name: Install the pinned Chromium browser and system dependencies
+        run: npx --no-install playwright install --with-deps chromium
       - name: Build application and exports once
         run: node scripts/verify.mjs --phase build
       - name: Run every test against the primary build
@@ -61,5 +63,6 @@ jobs:
             dist/storage/manifest.json
             dist/storage/qualification.json
             outputs/verification/
+            outputs/browser/
           if-no-files-found: error
           retention-days: 14
