@@ -22887,7 +22887,9 @@
     ],
     "related_ids": [
       "example-us-operating-transactions-ledger",
-      "wf-r2r-bank-reconciliations"
+      "wf-r2r-bank-reconciliations",
+      "example-holding-parent-subsidiary-close",
+      "example-construction-contract-ledger"
     ],
     "review_status": "draft-editorial-review-pending",
     "reviewed_at": null,
@@ -23801,6 +23803,255 @@
             "A-BANK2",
             "A-STMT-JUNE"
           ]
+        }
+      ],
+      "bounded_extensions": [
+        {
+          "id": "connected-accrual-resolution",
+          "classification": "original-synthetic-extension",
+          "linked_record_id": "example-connected-purchase-to-payment",
+          "linked_branch_id": "A-ALT-LATE-INVOICE",
+          "boundary": "The late-invoice alternative only: first 60 units, no return, remaining 40 unreceived. Receipt establishes the assumed obligation, not invoice arrival.",
+          "knowledge_by_date": [
+            {
+              "date": "2026-05-31",
+              "known_document_ids": [
+                "A-PO1",
+                "A-R1"
+              ],
+              "unknown": [
+                "supplier invoice identifier and issue date",
+                "bank settlement"
+              ],
+              "decision": "Retain inventory and received-not-invoiced liability of 60,000 cents from the May receipt. No fictitious invoice or payment.",
+              "balances_minor": {
+                "inventory": 60000,
+                "received_not_invoiced": -60000,
+                "accounts_payable": 0,
+                "bank": 200000
+              }
+            },
+            {
+              "date": "2026-06-06",
+              "known_document_ids": [
+                "A-PO1",
+                "A-R1",
+                "A-LATE-I1"
+              ],
+              "unknown": [
+                "bank settlement"
+              ],
+              "decision": "The 60,000-cent invoice matches the prior receipt. Transfer the existing receipt liability to AP, adding no second inventory cost.",
+              "balances_minor": {
+                "inventory": 60000,
+                "received_not_invoiced": 0,
+                "accounts_payable": -60000,
+                "bank": 200000
+              }
+            },
+            {
+              "date": "2026-06-10",
+              "known_document_ids": [
+                "A-PO1",
+                "A-R1",
+                "A-LATE-I1",
+                "A-LATE-BANK"
+              ],
+              "unknown": [],
+              "decision": "Bank settlement clears AP once; retain the original May recognition and June evidence timestamps.",
+              "balances_minor": {
+                "inventory": 60000,
+                "received_not_invoiced": 0,
+                "accounts_payable": 0,
+                "bank": 140000
+              }
+            }
+          ],
+          "counterexample": "An invoice for a new June service, disputed price or another entity cannot automatically resolve this May receipt. Match identity, quantity, price, entity and period; leave differences visible.",
+          "limits": "The fixture assumes the receipt and agreed price establish recognition. No actual receipt, tenant population or professional conclusion is supplied."
+        },
+        {
+          "id": "connected-intercompany-mismatch",
+          "classification": "original-synthetic-extension",
+          "linked_record_id": "example-holding-parent-subsidiary-close",
+          "linked_journal_ids": [
+            "P05",
+            "S05",
+            "E03",
+            "E04"
+          ],
+          "boundary": "Reuse the existing controlled P/S service case and its declared framework assumptions. Isolate SERVICE-1; do not recalculate acquisitions, control or transfer pricing.",
+          "documents": [
+            {
+              "id": "IC-SERVICE-1",
+              "authorship": "original-synthetic",
+              "content": "Completed service and allocation worksheet: 1,000 processing units, 600 for S, 400 for P; total external cost 200,000 cents, S allocation 120,000 cents."
+            },
+            {
+              "id": "IC-P-STATEMENT",
+              "authorship": "original-synthetic",
+              "content": "P records SERVICE-1 receivable and service revenue of 120,000 cents on 31 December 2025."
+            },
+            {
+              "id": "IC-S-EXTRACT",
+              "authorship": "original-synthetic",
+              "content": "S initial 31 December extract lacks SERVICE-1; no payable or service expense exists in this isolated population."
+            },
+            {
+              "id": "IC-MATCH-REVIEW",
+              "authorship": "original-synthetic",
+              "content": "2 January 2026 review confirms service received in December, entity identities P/S and 120,000-cent allocation. December remains open. Reviewer has not signed off; this is proposed case evidence."
+            }
+          ],
+          "before": {
+            "parent_receivable_minor": 120000,
+            "subsidiary_payable_minor": 0,
+            "unmatched_minor": 120000
+          },
+          "proposed_entity_correction": {
+            "id": "S05",
+            "match_id": "SERVICE-1",
+            "description": "Accrue received processing service",
+            "status": "proposed-synthetic-workpaper-only",
+            "lines": [
+              {
+                "entity": "S",
+                "account": "service_expense",
+                "debit_cents": 120000,
+                "credit_cents": 0
+              },
+              {
+                "entity": "S",
+                "account": "service_payable_P",
+                "debit_cents": 0,
+                "credit_cents": 120000
+              }
+            ]
+          },
+          "after": {
+            "parent_receivable_minor": 120000,
+            "subsidiary_payable_minor": -120000,
+            "unmatched_minor": 0
+          },
+          "consolidation_entries": [
+            {
+              "id": "E03",
+              "match_id": "SERVICE-1",
+              "description": "Remove reciprocal service balances",
+              "status": "proposed-synthetic-consolidation-column-only",
+              "source_locator": {
+                "source_id": "src_aa_i109_arb51_amended",
+                "url": "https://storage.fasb.org/ARB%2051.pdf",
+                "locator": "After FAS 160 paragraph 6, PDF page 7; paragraph 24, PDF page 8",
+                "effective_period": "ARB 51 issued August 1959; selected After FAS 160 text applies after adoption of that statement; FAS 160 effective for fiscal years beginning on or after December 15, 2008.",
+                "access_limits": "Historical pre-Codification text, not current ASC 810. The separate Before FAS 160 passage is not the selected procedure. NCI, acquisition accounting and current applicability require separate review."
+              },
+              "lines": [
+                {
+                  "entity": "S",
+                  "account": "service_payable_P",
+                  "debit_cents": 120000,
+                  "credit_cents": 0
+                },
+                {
+                  "entity": "P",
+                  "account": "service_receivable_S",
+                  "debit_cents": 0,
+                  "credit_cents": 120000
+                }
+              ]
+            },
+            {
+              "id": "E04",
+              "match_id": "SERVICE-1",
+              "description": "Remove internal service activity; external pool costs remain",
+              "status": "proposed-synthetic-consolidation-column-only",
+              "source_locator": {
+                "source_id": "src_aa_i109_arb51_amended",
+                "url": "https://storage.fasb.org/ARB%2051.pdf",
+                "locator": "After FAS 160 paragraph 6, PDF page 7; paragraph 24, PDF page 8",
+                "effective_period": "ARB 51 issued August 1959; selected After FAS 160 text applies after adoption of that statement; FAS 160 effective for fiscal years beginning on or after December 15, 2008.",
+                "access_limits": "Historical pre-Codification text, not current ASC 810. The separate Before FAS 160 passage is not the selected procedure. NCI, acquisition accounting and current applicability require separate review."
+              },
+              "lines": [
+                {
+                  "entity": "P",
+                  "account": "service_revenue",
+                  "debit_cents": 120000,
+                  "credit_cents": 0
+                },
+                {
+                  "entity": "S",
+                  "account": "service_expense",
+                  "debit_cents": 0,
+                  "credit_cents": 120000
+                }
+              ]
+            }
+          ],
+          "expected_consolidated_service_balances_minor": {
+            "service_receivable_S": 0,
+            "service_payable_P": 0,
+            "service_revenue": 0,
+            "service_expense": 0
+          },
+          "external_pool_cost_retained_minor": 200000,
+          "decision": "First resolve the missing subsidiary recognition using service evidence. Only then eliminate reciprocal balances and internal activity in the consolidation column. Do not erase the parent receivable or create an unexplained consolidation plug.",
+          "counterexample": "If S disputes receiving the service, matching the parent amount does not establish an S obligation. If S is outside the assumed consolidation perimeter, these eliminations do not follow.",
+          "review_boundary": "Proposed synthetic correction and eliminations only. Reuses the existing record source scope, including historical authority limitations; no new professional review or current ASC conclusion."
+        },
+        {
+          "id": "connected-construction-approval-change",
+          "classification": "original-synthetic-extension",
+          "linked_record_id": "example-construction-contract-ledger",
+          "linked_example_id": "construction-estimate-revision",
+          "boundary": "Reuse the existing July J01 base and the existing estimate-only alternative. A new estimate learned in August changes expected cost from 900,000 to 1,000,000 dollars, with no new work, billing or price change. This alternative is not combined with the ordinary August modification close.",
+          "knowledge_by_date": [
+            {
+              "date": "2026-07-31",
+              "estimate_id": "EST-J01-V1",
+              "cost_minor": 27000000,
+              "price_minor": 120000000,
+              "estimated_total_cost_minor": 90000000,
+              "cumulative_revenue_minor": 36000000
+            },
+            {
+              "date": "2026-08-15",
+              "estimate_id": "EST-J01-ALTERNATIVE-V2",
+              "cost_minor": 27000000,
+              "price_minor": 120000000,
+              "estimated_total_cost_minor": 100000000,
+              "cumulative_revenue_minor": 32400000
+            }
+          ],
+          "proposed_journal": {
+            "debit": "revenue",
+            "credit": "contract_asset",
+            "amount_minor": 3600000
+          },
+          "expected": {
+            "current_period_catch_up_minor": -3600000,
+            "cumulative_revenue_minor": 32400000,
+            "contract_asset_minor": 2400000,
+            "profit_minor": 5400000
+          },
+          "synthetic_approval": {
+            "state": "illustrative approved payload; no real approver",
+            "serialized_payload": "{\"accounting_period\":\"2026-08\",\"catch_up_minor\":-3600000,\"contract\":\"CONTRACT-J01\",\"cost_minor\":27000000,\"cumulative_revenue_minor\":32400000,\"entity\":\"CONTRACTOR-SYNTHETIC\",\"estimate_id\":\"EST-J01-ALTERNATIVE-V2\",\"estimated_total_cost_minor\":100000000,\"price_minor\":120000000,\"prior_revenue_minor\":36000000}",
+            "sha256": "7385006150d3ec9802f8eb76d2d990a86bc974b047b6f585330d78d0d0439419",
+            "preparer": "fictional-preparer",
+            "reviewer": "fictional-distinct-reviewer",
+            "expires_at": "2026-08-16T00:00:00Z"
+          },
+          "post_approval_change": {
+            "estimated_total_cost_minor": 108000000,
+            "cumulative_revenue_minor": 30000000,
+            "catch_up_minor": -6000000,
+            "status": "unapproved; stop and obtain new evidence and approval",
+            "difference_from_approved_catch_up_minor": -2400000
+          },
+          "decision": "Version the estimate and workpaper. The original approval is bound to the 1,000,000-dollar estimate and 36,000-dollar negative catch-up. Changing the estimate to 1,080,000 changes the payload and invalidates that approval. Arithmetic does not authorize posting.",
+          "limits": "This adds an original approval-change trace to an existing synthetic calculation. It does not establish enforceable authorization, observed accounting operations, professional review or a newly reviewed accounting standard."
         }
       ]
     }

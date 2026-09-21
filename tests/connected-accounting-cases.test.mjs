@@ -111,3 +111,41 @@ test('processor alternatives preserve settlement timing, duplicate identity and 
  const duplicate=byId['B-ALT-DUPLICATE-NOTIFICATION'].synthetic_exchange;
  assert.equal(duplicate.original_event_id,duplicate.redelivered_event_id);assert.equal(duplicate.second_delivery_journal,null);
 });
+
+test('bounded extensions preserve dated knowledge, reciprocal scope and approved construction inputs',async()=>{
+ const {createHash}=await import('node:crypto');
+ const data=cases[0].data,extensions=data.bounded_extensions;assert.equal(extensions.length,3);
+ const accrual=extensions.find(e=>e.id==='connected-accrual-resolution');
+ const branch=data.alternative_branches.find(b=>b.id===accrual.linked_branch_id);
+ const selected=structuredClone(data);
+ selected.journals=branch.baseline_journal_ids.map(id=>data.journals.find(j=>j.id===id)).concat(branch.additional_journals);
+ selected.documents.push(...branch.additional_documents);selected.events.push(...branch.additional_events);
+ for(const knowledge of accrual.knowledge_by_date){
+  const balances=replay(selected,knowledge.date);
+  for(const [account,value]of Object.entries(knowledge.balances_minor))assert.equal(balances[account],value);
+  for(const id of knowledge.known_document_ids){const doc=selected.documents.find(d=>d.id===id);assert.ok(doc&&doc.date<=knowledge.date);}
+ }
+ const ic=extensions.find(e=>e.id==='connected-intercompany-mismatch');
+ const original=examples.find(r=>r.id===ic.linked_record_id).data;
+ assert.deepEqual(ic.proposed_entity_correction,original.journals.find(j=>j.id==='S05'));
+ assert.deepEqual(ic.consolidation_entries,original.elimination_journals.filter(j=>['E03','E04'].includes(j.id)));
+ const combined={};
+ for(const j of [original.journals.find(j=>j.id==='P05'),ic.proposed_entity_correction,...ic.consolidation_entries]){
+  let total=0;for(const line of j.lines){const amount=line.debit_cents-line.credit_cents;combined[line.account]=(combined[line.account]||0)+amount;total+=amount;}assert.equal(total,0);
+ }
+ assert.deepEqual(combined,ic.expected_consolidated_service_balances_minor);
+ assert.equal(ic.external_pool_cost_retained_minor,original.journals.find(j=>j.id==='P04').lines[0].debit_cents);
+ const c=extensions.find(e=>e.id==='connected-construction-approval-change');
+ const existing=examples.find(r=>r.id===c.linked_record_id).data.examples.find(e=>e.id===c.linked_example_id);
+ assert.equal(existing.result.catch_up*100,c.expected.current_period_catch_up_minor);
+ const approval=c.synthetic_approval,payload=JSON.parse(approval.serialized_payload);
+ assert.equal(createHash('sha256').update(approval.serialized_payload).digest('hex'),approval.sha256);
+ const revenue=BigInt(payload.cost_minor)*BigInt(payload.price_minor)/BigInt(payload.estimated_total_cost_minor);
+ assert.equal(Number(revenue),c.expected.cumulative_revenue_minor);
+ assert.equal(Number(revenue)-payload.prior_revenue_minor,c.expected.current_period_catch_up_minor);
+ const changed=c.post_approval_change;
+ assert.equal(Number(BigInt(payload.cost_minor)*BigInt(payload.price_minor)/BigInt(changed.estimated_total_cost_minor)),changed.cumulative_revenue_minor);
+ assert.equal(changed.cumulative_revenue_minor-payload.prior_revenue_minor,changed.catch_up_minor);
+ assert.notEqual(changed.catch_up_minor,payload.catch_up_minor);
+ assert.notEqual(createHash('sha256').update(JSON.stringify({...payload,estimated_total_cost_minor:changed.estimated_total_cost_minor})).digest('hex'),approval.sha256);
+});
