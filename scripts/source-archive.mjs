@@ -33,14 +33,17 @@ export const currentReleaseGzipPath = `data/releases/${currentCorpusVersion}/cor
 
 const sha256 = (body) => createHash("sha256").update(body).digest("hex");
 
-export function allSourceFiles() {
+const corpusVersionAt = (root) => JSON.parse(fs.readFileSync(path.join(root, "data/catalog.json"), "utf8")).corpus_version;
+const currentGzipAt = (root) => `data/releases/${corpusVersionAt(root)}/corpus.json.gz`;
+
+export function allSourceFiles(root = ".") {
   const files = [
     ...rootFiles,
-    ...fs.readdirSync(".").filter((f) => /\.(md|cff)$/.test(f)),
+    ...fs.readdirSync(root).filter((f) => /\.(md|cff)$/.test(f)),
   ];
   function walk(dir) {
     for (const e of fs
-      .readdirSync(dir, { withFileTypes: true })
+      .readdirSync(path.join(root, dir), { withFileTypes: true })
       .sort((a, b) => a.name.localeCompare(b.name))) {
       const file = path.posix.join(dir, e.name);
       if (e.isSymbolicLink())
@@ -49,20 +52,26 @@ export function allSourceFiles() {
       else if (e.isFile()) files.push(file);
     }
   }
-  for (const dir of roots) if (fs.existsSync(dir)) walk(dir);
-  return [...new Set(files)].sort();
+  for (const dir of roots) if (fs.existsSync(path.join(root, dir))) {
+    if (fs.lstatSync(path.join(root, dir)).isSymbolicLink()) throw new Error(`Source archive disallows symlinks: ${dir}`);
+    walk(dir);
+  }
+  return [...new Set(files)].sort().map(file => {
+    if (fs.lstatSync(path.join(root, file)).isSymbolicLink()) throw new Error(`Source archive disallows symlinks: ${file}`);
+    return file;
+  });
 }
 
-export function sourceFiles() {
+export function sourceFiles(root = ".") {
   // The current release gzip is published separately in the release bundle;
   // omit only that duplicate from the reconstructed source ZIP.
-  return allSourceFiles().filter((file) => file !== currentReleaseGzipPath);
+  return allSourceFiles(root).filter((file) => file !== currentGzipAt(root));
 }
 
-export function sourceMembership() {
-  const included = new Set(sourceFiles());
-  return allSourceFiles().map((file) => {
-    const body = fs.readFileSync(file);
+export function sourceMembership(root = ".") {
+  const included = new Set(sourceFiles(root));
+  return allSourceFiles(root).map((file) => {
+    const body = fs.readFileSync(path.join(root, file));
     const entry = {
       path: file,
       bytes: body.length,
@@ -70,7 +79,7 @@ export function sourceMembership() {
       included: included.has(file),
     };
     if (!entry.included) {
-      entry.provided_by = currentReleaseGzipPath;
+      entry.provided_by = currentGzipAt(root);
       entry.reason = "Duplicate current release gzip is provided by the release bundle.";
     }
     return entry;
@@ -89,13 +98,13 @@ const crc32 = (buffer) => {
 };
 
 // Deterministic ZIP with UTF-8 names and a fixed DOS date.
-export function createSourceArchive() {
+export function createSourceArchive(root = ".") {
   const locals = [],
     central = [],
     entries = [];
   let offset = 0;
-  for (const file of sourceFiles()) {
-    const body = fs.readFileSync(file);
+  for (const file of sourceFiles(root)) {
+    const body = fs.readFileSync(path.join(root, file));
     const name = Buffer.from(file);
     const compressed = deflateRawSync(body, { level: 9 });
     const crc = crc32(body);
@@ -194,13 +203,15 @@ const cleanupGeneratedOutput = (directory) => {
 const manifestPath = (name) => `/downloads/${name}`;
 const membershipDigest = (membership) => sha256(Buffer.from(JSON.stringify(membership)));
 
-export function writeSourceExport(directory, { hostLimitBytes = SOURCE_HOST_LIMIT_BYTES } = {}) {
-  if (!Number.isInteger(hostLimitBytes) || hostLimitBytes <= SOURCE_PART_LIMIT_BYTES)
-    throw new Error("Source export host limit must exceed the 24 MiB part limit.");
+export function writeSourceExport(directory, { root = ".", hostLimitBytes = SOURCE_HOST_LIMIT_BYTES, partLimitBytes = SOURCE_PART_LIMIT_BYTES } = {}) {
+  if (!Number.isSafeInteger(partLimitBytes) || partLimitBytes <= 0 || partLimitBytes > SOURCE_PART_LIMIT_BYTES)
+    throw new Error("Source export part limit must be positive and at most 24 MiB.");
+  if (!Number.isSafeInteger(hostLimitBytes) || hostLimitBytes <= partLimitBytes)
+    throw new Error("Source export host limit must exceed the part limit.");
   fs.mkdirSync(directory, { recursive: true });
   cleanupGeneratedOutput(directory);
-  const archive = createSourceArchive();
-  const membership = sourceMembership();
+  const archive = createSourceArchive(root);
+  const membership = sourceMembership(root);
   const includedMembership = membership
     .filter((entry) => entry.included)
     .map(({ path: file, bytes, sha256: digest }) => ({ path: file, bytes, sha256: digest }));
@@ -209,13 +220,13 @@ export function writeSourceExport(directory, { hostLimitBytes = SOURCE_HOST_LIMI
   const base = {
     schema_version: "1.0.0",
     contract: "accounting-agents-source-export",
-    corpus_version: currentCorpusVersion,
+    corpus_version: corpusVersionAt(root),
     archive_name: SOURCE_ARCHIVE_NAME,
     archive_format: "deterministic-zip",
     archive_bytes: archive.bytes.length,
     archive_sha256: sha256(archive.bytes),
     host_limit_bytes: hostLimitBytes,
-    part_limit_bytes: SOURCE_PART_LIMIT_BYTES,
+    part_limit_bytes: partLimitBytes,
     source_file_count: membership.length,
     included_source_file_count: includedMembership.length,
     omitted_source_file_count: membership.length - includedMembership.length,
@@ -236,13 +247,13 @@ export function writeSourceExport(directory, { hostLimitBytes = SOURCE_HOST_LIMI
       parts: [],
     };
   } else {
-    const count = Math.ceil(archive.bytes.length / SOURCE_PART_LIMIT_BYTES);
+    const count = Math.ceil(archive.bytes.length / partLimitBytes);
     const width = Math.max(3, String(count).length);
     const parts = [];
     for (let index = 0; index < count; index++) {
-      const start = index * SOURCE_PART_LIMIT_BYTES;
-      const chunk = archive.bytes.subarray(start, Math.min(start + SOURCE_PART_LIMIT_BYTES, archive.bytes.length));
-      if (chunk.length > SOURCE_PART_LIMIT_BYTES || chunk.length > hostLimitBytes)
+      const start = index * partLimitBytes;
+      const chunk = archive.bytes.subarray(start, Math.min(start + partLimitBytes, archive.bytes.length));
+      if (chunk.length > partLimitBytes || chunk.length > hostLimitBytes)
         throw new Error(`Source archive part exceeds its deterministic limit: ${index + 1}`);
       const name = `${SOURCE_ARCHIVE_NAME}.part-${String(index + 1).padStart(width, "0")}`;
       fs.writeFileSync(path.join(directory, name), chunk);

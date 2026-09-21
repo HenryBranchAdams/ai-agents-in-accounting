@@ -25,3 +25,32 @@ Oversized generated downloads are stored as gzip assets below the host’s 25 Mi
 ## Editorial reading regression coverage
 
 `tests/editorial-reading.test.mjs` covers the homepage/library split, legacy queries, combined filters and pagination state, answer/limitation ordering, complete-record fallback, canonical synthetic arithmetic, HTML/Markdown parity, optional schema validation, changed/unchanged dependency hashes, rights/provenance preservation and public read-only methods. The ordinary API/CLI/MCP and source-export suites remain required. Inspect both pilots at 1440×1000, 390×844 and 320px; confirm useful first-viewport text and scrollable tables. Follow the human review script in `docs/issue-170-implementation.md` separately from automated checks.
+
+## CI phase and fixture commands
+
+`npm test` builds once and runs every `tests/*.test.mjs` file. `npm run test:only`
+executes that same discovery without a build, and therefore requires a current
+primary build. `npm run check` remains the complete lint, build, test and release
+qualification path. CI exposes these gates separately in the existing `verify`
+job; a failure stops later verification gates while failure artifacts remain
+available. Only superseded runs for the same PR are canceled. Every main push
+uses its own concurrency key.
+
+Archive unit tests use an isolated source root and deliberately small part/host
+limits through the production archive implementation. Production defaults remain
+24 MiB parts, a 25 MiB host limit, and level-nine deterministic compression. The
+primary-build integration still reconstructs the actual complete source export,
+checks membership and historical bytes, and rejects missing/corrupted parts.
+
+Applied nonprofit/education tests retain disposable detached historical clones,
+real application, validators, source-preservation/conflict checks, and retrieval
+against the applied data. Their retrieval-only build uses the same history-summary
+plugin as production, without generating unrelated website/export artifacts or
+removing a historical release. The nonprofit historical lint remains required.
+These fixtures cannot reuse the main agent bundle because their inputs differ.
+
+For comparable timings, freeze the checkout and use the same machine/runtime,
+lockfile and concurrency. Record separate lint, build, test-only and qualification
+wall times, retain TAP test durations, and keep raw logs outside source inputs.
+Do not edit a checkout while its source-preservation or archive tests are running.
+See `docs/ci-performance.md` for measurement status and assertion mapping.

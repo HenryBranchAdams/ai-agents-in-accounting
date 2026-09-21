@@ -1,3 +1,4 @@
+import { historySummaryPlugin } from "./history-summary.mjs";
 import { editorialReviewReport } from "./editorial-review.mjs";
 import { prepareStorage } from "./release-storage.mjs";
 import { readSnapshotHistory } from "./snapshot-history.mjs";
@@ -22,10 +23,7 @@ import {
 console.log("Validated", validateCorpus());
 // Full snapshots are export artifacts, never executable application data.
 const history = readSnapshotHistory();
-const historySummary = { ...history, snapshots: history.snapshots.map(({ id, recorded_at, corpus_version, topology_version, mapping_version, summary }) => ({ id, recorded_at, corpus_version, topology_version, mapping_version, summary })) };
-const historyPlugin = { name: "coverage-summary", setup(builder) {
-  builder.onLoad({ filter: /coverage-history-data\.js$/ }, () => ({ contents: `export default ${JSON.stringify(historySummary)}`, loader: "js" }));
-} };
+const historyPlugin = historySummaryPlugin({ history });
 fs.rmSync("dist", { recursive: true, force: true });
 fs.mkdirSync("dist/client/downloads", { recursive: true });
 fs.mkdirSync("dist/server", { recursive: true });

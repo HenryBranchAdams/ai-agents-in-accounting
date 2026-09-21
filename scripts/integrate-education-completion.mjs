@@ -172,7 +172,7 @@ function runAppliedValidation(sourceRoot) {
   // The disposable copy is pinned to the package base; the source checkout may be a later integration.
   const tempRoot = path.join(os.tmpdir(), `aa-i111-applied-${process.pid}-${Date.now()}`);
   try {
-    execFileSync("git", ["clone", "--local", "--no-hardlinks", sourceRoot, tempRoot], { stdio: "pipe" });
+    execFileSync("git", ["clone", "--local", "--no-hardlinks", "--no-checkout", sourceRoot, tempRoot], { stdio: "pipe" });
     execFileSync("git", ["-C", tempRoot, "checkout", "--detach", pkg.base_commit], { stdio: "pipe" });
     copyPackageAndScript(sourceRoot, tempRoot);
     seedPendingNonprofitSources(sourceRoot, tempRoot);
@@ -180,15 +180,13 @@ function runAppliedValidation(sourceRoot) {
     const result = applyToRoot(tempRoot);
     execFileSync(process.execPath, ["scripts/coverage-mappings.mjs"], { cwd: tempRoot, stdio: "pipe" });
     const validated = execFileSync(process.execPath, ["scripts/validate.mjs"], { cwd: tempRoot, encoding: "utf8" });
-    const catalog = read(rel(tempRoot, "data/catalog.json"));
-    const currentRelease = rel(tempRoot, `data/releases/${catalog.corpus_version}`);
-    assert.ok(fs.existsSync(currentRelease), `expected preserved current release input: ${catalog.corpus_version}`);
-    fs.rmSync(currentRelease, { recursive: true, force: true });
-    execFileSync(process.execPath, ["scripts/build.mjs"], { cwd: tempRoot, stdio: "pipe" });
+    const retrievalBuild = JSON.parse(execFileSync(process.execPath,
+      [path.join(sourceRoot, "scripts/build-applied-agent.mjs")],
+      { cwd: tempRoot, encoding: "utf8" }));
     const retrieval = execFileSync(process.execPath, ["--input-type=module", "-e", `import { executeAgent } from './dist/internal/agent.mjs';\nconst ids=['guide-us-education-auxiliary-services','guide-us-education-federal-grants','guide-us-education-public-appropriations','guide-us-education-endowment-routing'];\nfor (const id of ids) { const got=executeAgent('get',{id,limit:20}); if (got.record.id !== id) throw new Error('guide get failed: '+id); }\nconst search=executeAgent('search',{q:'auxiliary services',limit:20});\nif (!search.results.some(r => r.id === 'guide-us-education-auxiliary-services')) throw new Error('auxiliary guide search failed');\ntry { executeAgent('search',{q:'education',limit:21}); throw new Error('limit 21 unexpectedly accepted'); } catch (error) { if (!String(error.message).match(/limit|20|maximum/i)) throw error; }\nconsole.log(JSON.stringify({search:search.results.length,got:ids.length}));`], { cwd: tempRoot, encoding: "utf8" }).trim();
     const after = execFileSync("git", ["-C", sourceRoot, "status", "--porcelain"], { encoding: "utf8" });
     assert.equal(after, before, "applied validation changed the source worktree");
-    return { temp_git_worktree: true, applied: result, validator_output: validated.trim(), build: true, retrieval_output: retrieval };
+    return { temp_git_worktree: true, applied: result, validator_output: validated.trim(), build: true, retrieval_build: retrievalBuild, retrieval_output: retrieval };
   } finally {
     fs.rmSync(tempRoot, { recursive: true, force: true });
   }

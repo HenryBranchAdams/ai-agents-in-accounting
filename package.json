@@ -14,7 +14,7 @@
     "validate": "node scripts/validate.mjs",
     "typecheck": "tsc --noEmit",
     "lint": "npm run typecheck && npm run validate && npm run lint:ui && node scripts/verify-design-lint.mjs",
-    "test": "npm run build && node --test --test-concurrency=2 tests/*.test.mjs",
+    "test": "npm run build && npm run test:only",
     "check": "npm run lint && npm test && npm run qualify",
     "qualify": "node scripts/qualify-release.mjs",
     "cli": "node scripts/corpus.mjs",
@@ -24,7 +24,8 @@
     "sources:check": "node scripts/maintenance.mjs --check",
     "coverage:map": "node scripts/coverage-mappings.mjs",
     "coverage:snapshot": "node scripts/coverage-snapshot.mjs",
-    "lint:ui": "eslint src --max-warnings 0"
+    "lint:ui": "eslint src --max-warnings 0",
+    "test:only": "node --test --test-concurrency=2 tests/*.test.mjs"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "5.20260907.1",
