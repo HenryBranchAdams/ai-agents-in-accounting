@@ -1530,8 +1530,8 @@
     "source_url": "https://doi.org/10.1111/1475-679X.70050",
     "source_ids": [],
     "related_ids": [],
-    "review_status": "source-checked",
-    "reviewed_at": "2026-09-11",
+    "review_status": "draft-methods-review-in-progress",
+    "reviewed_at": null,
     "provenance": {
       "imported_on": "2026-09-07",
       "previous_corpus_version": "2026-08-25.2",
@@ -1556,8 +1556,8 @@
     },
     "data": {
       "id": "src_1rrurlr",
-      "record_version": "1",
-      "record_updated_at": "2026-09-11",
+      "record_version": "2",
+      "record_updated_at": "2026-09-21",
       "topic": "Accounting and reporting",
       "source_type": "Research paper",
       "owner": "Journal of Accounting Research",
@@ -1660,7 +1660,31 @@
       "limitations": [
         "Review scope is limited to the cited landing, abstract, metadata, or named sections; it is not a full-text professional review.",
         "Publisher, sample, model, jurisdiction, and transfer limits remain as stated in the source or inherited record."
-      ]
+      ],
+      "empirical_review_173": {
+        "status": "Scoped published-HTML methods review; synthesis pending",
+        "reviewed_on": "2026-09-21",
+        "version": "Published 2026-04-07, JAR64(3):1189–1232",
+        "url": "https://onlinelibrary.wiley.com/doi/full/10.1111/1475-679x.70050",
+        "read_scope": "Sections3–5, conclusion, AppendixA, Tables1–4 and footnotes3/17/19.",
+        "population": "US company disclosures, 2010–2024; four main document types, separately sampled. Excludes missing financial/disclosure data, unsuitable shares, delayed filings, extreme lengths and transition-period dates (Table1).",
+        "design": "Within-firm fiscal-quarter OLS before/after November2022, controls and year-quarter clustered errors; detector validation uses modified historical documents.",
+        "tool_version": "GPTZero June2025; GPT-3.5 validation. Firms’ actual models and human editing are unobserved.",
+        "result": {
+          "locator": "Table4A column(i), risk factors",
+          "n": 100070,
+          "coefficient": 0.318,
+          "t_statistic": 5.08,
+          "p": "<0.01",
+          "unit": "GenScore percentage-point change, not accounting accuracy",
+          "status": "Author-reported; not reproduced"
+        },
+        "outcome": "Detected authorship and linguistic features, not preparation/review time, ledger correctness or operational reliability.",
+        "limits": "Detector error, temporal trends, editing and model updates constrain interpretation. Table1 denominators differ from regressions after singleton removal (footnote19).",
+        "funding_conflicts": "GPTZero provided detector access; authors declare no conflicts. Funding not established.",
+        "availability": "GenScore data and online appendix announced; not downloaded or independently reproduced. Source rights remain separately unresolved.",
+        "application": "Measure document provenance separately from substantive accounting quality."
+      }
     }
   },
   {
