@@ -2,8 +2,8 @@
 
 Issue #174 starts from `e1e4d1719b5efc6858ffc1a29bd9d9aa5cb8dba2`, including
 #170 via PR #172. This change does not alter canonical content or historical
-release bytes. Measurement and acceptance remain pending until the equivalent
-workload runs and hosted checks are complete.
+release bytes. PR #177 merged at `941cdb1c01af10065ad3b02712a121ff24e15d18`.
+The full measured result below supersedes the initial two-sample summary.
 
 ## Preserved assertions
 
@@ -31,11 +31,21 @@ experiment. Existing npm caching and artifact retention remain unchanged.
 
 [Implementation run 35651608868](https://github.com/HenryBranchAdams/ai-agents-in-accounting/actions/runs/35651608868)
 for head `07f61644098c0870aa569a43d872cf115d33a8b5` passed 380 tests and
-qualification in 420 seconds. The single measured after run is 36.2% faster than
-the baseline median, exceeding the 30% target. The required real archive
-reconstruction and all prior tests remain, with four new boundary/gate tests.
-Later source changes require their own passing CI; this run does not certify
-those later revisions.
+qualification in 420 seconds. The final PR run
+[35652691969](https://github.com/HenryBranchAdams/ai-agents-in-accounting/actions/runs/35652691969)
+passed all 380 tests in 490 seconds. The merged-main run
+[35654346610](https://github.com/HenryBranchAdams/ai-agents-in-accounting/actions/runs/35654346610)
+passed all 380 in 485 seconds. After median: **485 seconds**, range 420–490;
+before median: 658.5, range 658–659. Improvement: **26.3%**, below the 30% target.
+The initial two-after-sample median of 455 seconds (30.9%) is not the final result.
+The third sample had a 104-second build and 302-second tests versus 87 and 268
+in the first implementation run. This explains the measured difference without
+claiming a controlled explanation for hosted runner variability. Full production
+archives and real integration checks remain; no extra runners were introduced.
+Review of the target miss is recorded in issue #174 separately from merge permission.
+The real archive integration and prior behavioral assertions remain, with four
+additional archive/gate tests in this PR. Later #176 runner tests replace the shell
+leaf-command fixture with shared-state-machine failure injection; they do not waive gates.
 
 | Phase | Main baseline seconds | First implementation seconds |
 | --- | ---: | ---: |
@@ -84,6 +94,8 @@ failed source-preservation assertions because its source checkout was edited.
 Those runs are retained outside source and excluded from comparative claims.
 Operational receipts and screenshots do not enter source/export inventory.
 
-Concurrency two is retained. The bounded alternative-concurrency experiment and
-additional final-revision evidence are tracked in the PR before acceptance.
+Concurrency two is retained. A frozen local final-head build took 78.996 seconds.
+Concurrency one took 381.405 seconds versus 210.015 seconds at two. Both ran
+380 tests with 379 passes and the identical MCP listener EPERM limitation.
+This comparison supports the existing setting; the hosted runs provide full passes.
 Performance acceptance, merge, successful main CI and publication remain separate.

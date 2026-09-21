@@ -70,7 +70,7 @@ export function validateSchema(value, schema, at = "$") {
     }
   }
 }
-export function validateCorpus() {
+export function validateCorpus({ includeHistory = true } = {}) {
   const all = loadRecords(),
     schema = read("schemas/record.schema.json"),
     meta = read("data/catalog.json");
@@ -148,7 +148,7 @@ export function validateCorpus() {
     assert.ok(Number.isFinite(Date.parse(o.checked_at)), "Invalid observation date");
     assert.ok(["public", "broken", "blocked", "indeterminate", "access-restricted"].includes(o.access), "Unknown access observation");
   }
-  validateCoverage(all);
+  validateCoverage(all, { includeHistory });
   return {
     records: all.length,
     sources: all.filter((r) => r.kind === "source").length,

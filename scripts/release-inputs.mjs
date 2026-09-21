@@ -9,8 +9,8 @@ export const sha256 = body => createHash("sha256").update(body).digest("hex");
 const json = file => JSON.parse(fs.readFileSync(file, "utf8"));
 const git = (root, args) => execFileSync("git", ["-C", root, ...args], { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] }).trim();
 
-export function inputInventory(root = process.cwd()) {
-  const files = allSourceFiles(root).map(file => {
+export function inputInventory(root = process.cwd(), { include = () => true } = {}) {
+  const files = allSourceFiles(root).filter(include).map(file => {
     const absolute = path.join(root, file);
     const before = fs.statSync(absolute);
     const bytes = fs.readFileSync(absolute);
@@ -20,6 +20,23 @@ export function inputInventory(root = process.cwd()) {
     return { path: file, bytes: bytes.length, sha256: sha256(bytes), executable: Boolean(after.mode & 0o111) };
   });
   return { files, digest: sha256(JSON.stringify(files)) };
+}
+
+// Preview does not serve historical payloads or release exports. Their bytes are
+// not runtime inputs; full verification always inventories and validates them.
+export function previewInventory(root = process.cwd()) {
+  return inputInventory(root, {include:file=>!/^data\/releases\/\d{4}-/.test(file)&&!file.startsWith("data/coverage/snapshots/")});
+}
+
+export function buildInventory(root = process.cwd()) {
+  const directory=path.join(root,"dist");
+  const files=fs.readdirSync(directory,{recursive:true}).sort().flatMap(file=>{
+    const absolute=path.join(directory,file),stat=fs.lstatSync(absolute);
+    if(stat.isSymbolicLink()||(!stat.isFile()&&!stat.isDirectory()))throw new Error(`Nonregular build input: ${file}`);
+    if(!stat.isFile()||file==="storage/qualification.json")return [];
+    return [{path:file,bytes:stat.size,sha256:sha256(fs.readFileSync(absolute)),executable:Boolean(stat.mode&0o111)}];
+  });
+  return {files,digest:sha256(JSON.stringify(files))};
 }
 
 export function editionProblems(root) {

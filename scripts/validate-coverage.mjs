@@ -8,7 +8,7 @@ export function coverageInputs() {
   return Object.fromEntries(["data/coverage/topology.json", "data/coverage/record-mappings.json", "data/coverage/assessments.json", "data/coverage/metrics.json", "src/coverage.ts", "src/research.ts", "data/coverage/research-questions.json", "data/coverage/subsector-profiles.json", "data/coverage/subsector-screening.json", "data/coverage/industry-exception-reviews.json", "data/coverage/research-criteria.json", "data/coverage/classification-relationships.json"].map(file => [file, hash(fs.readFileSync(file))]));
 }
 
-export function validateCoverage(records) {
+export function validateCoverage(records, { includeHistory = true } = {}) {
   validateResearch(records);
   const topology = read("data/coverage/topology.json"), mappings = read("data/coverage/record-mappings.json"), assessmentData = read("data/coverage/assessments.json"), criteria = read("data/coverage/research-criteria.json"), questionData = read("data/coverage/research-questions.json");
   const ids = new Set(records.map(r => r.id)), recordMap = new Map(records.map(r => [r.id,r]));
@@ -74,7 +74,7 @@ export function validateCoverage(records) {
     for (const d of topology.depth_dimensions) assert.ok(["present","partial","missing","not-assessed","not-applicable"].includes(a.dimensions[d.id]));
     if (a.status === "partial") assert.ok(a.gaps.length&&a.evidence_record_ids.length);
   }
-  const history = readSnapshotHistory().snapshots;
+  const history = includeHistory ? readSnapshotHistory().snapshots : [];
   assert.equal(new Set(history.map(s=>s.id)).size,history.length,"Duplicate coverage snapshot");
   for (const snapshot of history) assert.ok(snapshot.recorded_at&&snapshot.topology_version&&snapshot.corpus_version&&snapshot.inputs_sha256&&snapshot.summary);
   return { mapped_records: mappings.mappings.length, assessments: assessmentData.assessments.length, snapshots: history.length };
