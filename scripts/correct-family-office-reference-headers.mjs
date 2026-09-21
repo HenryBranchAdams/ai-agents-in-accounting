@@ -18,5 +18,6 @@ patch('scripts/integrate-family-office-reference.mjs', [
 patch('scripts/prepare-family-office-reference.mjs', [
   ["'2026-09-21.4'", "'2026-09-21.5'", 1],
   ["const assessments = fs.readFileSync('data/coverage/assessments.json');", "const assessments = JSON.parse(fs.readFileSync('data/coverage/assessments.json')).assessments;", 1],
-  ["assert.deepEqual(fs.readFileSync('data/coverage/assessments.json'), assessments);", "assert.deepEqual(JSON.parse(fs.readFileSync('data/coverage/assessments.json')).assessments, assessments);", 1]
+  ["assert.deepEqual(fs.readFileSync('data/coverage/assessments.json'), assessments);", "assert.deepEqual(JSON.parse(fs.readFileSync('data/coverage/assessments.json')).assessments, assessments);", 1],
+  ["writeReleaseArtifacts(current, 'data/releases', {previousExport: before});", "writeReleaseArtifacts(current, 'data/releases', {previousExport: JSON.parse(fs.readFileSync('data/releases/2026-09-21.4/corpus.json', 'utf8'))});", 1]
 ]);
