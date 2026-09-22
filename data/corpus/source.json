@@ -27076,7 +27076,8 @@
       "review_scope": "abstract-or-landing: Publisher page title plus accessible abstract/metadata for “FinBalance: A Multi-Document Accounting Reconciliation Benchmark”. The live publisher page identifies “FinBalance: A Multi-Document Accounting Reconciliation Benchmark” under FinBalance research team and exposes the publication or resource form recorded here (Preprint, Jun 2026). Its accessible abstract, summary, or page metadata describes tests documents to cited entries to balance sheet across long workflows. the best reported model reached 46% exact final-balance-sheet accuracy. This supports a research paper association while leaving the source's stated design, sample, and transfer limits intact.",
       "outcome": "supported-scope. Source currency, accounting applicability, professional review and reuse permission are not inferred from this check.",
       "source_review_attempted_at": "2026-09-11",
-      "source_review_evidence_pointer": "/data/source_review"
+      "source_review_evidence_pointer": "/data/source_review",
+      "benchmark_review_pointer": "/data/benchmark_review_173"
     },
     "rights": {
       "metadata": "CC0-1.0",
@@ -27265,7 +27266,149 @@
       "limitations": [
         "Review was limited to the accessible publisher landing, abstract, or page excerpt; it does not establish full-text reuse rights.",
         "The source's own design, sample, jurisdiction, or product claims remain bounded as described in the inherited summary."
-      ]
+      ],
+      "benchmark_review_173": {
+        "reviewed_at": "2026-09-21",
+        "reviewer": "Codex AI-assisted primary-source and code inspection",
+        "status": "bounded draft assessment; no model run or independent accounting validation",
+        "paper": {
+          "url": "https://arxiv.org/abs/2606.15949v1",
+          "version": "v1, June 14, 2026",
+          "locators": [
+            "Sections 3-4",
+            "Appendix D, printed page 12",
+            "Appendices G-H, printed pages 15-17"
+          ],
+          "visual_review": "Printed page 12, Figure 7 and detailed metric definitions inspected as rendered PDF.",
+          "sha256": "c5b6b3da6c9560c27fc2fe1dfb277d0b0532dd6d60b076303d427bd7f5bac5bf"
+        },
+        "release": {
+          "repository": "https://github.com/Devansh1105/finbalance",
+          "revision": "a1062b7b392eaf53311308c2f63cf748b68bb8cf",
+          "package_version": "0.2.0",
+          "files_read": [
+            {
+              "path": "README.md",
+              "url": "https://github.com/Devansh1105/finbalance/blob/a1062b7b392eaf53311308c2f63cf748b68bb8cf/README.md",
+              "sha256": "490551e0f8cd9bc851c30c21055b75997417dc7cb42237119cf6b97dd40b1080"
+            },
+            {
+              "path": "LICENSE",
+              "url": "https://github.com/Devansh1105/finbalance/blob/a1062b7b392eaf53311308c2f63cf748b68bb8cf/LICENSE",
+              "sha256": "9568a2b155e66ac3e0ba1fd80b52b827b9460e6cf6f233125e7cbca8e206ddc3"
+            },
+            {
+              "path": "DATA_LICENSE.md",
+              "url": "https://github.com/Devansh1105/finbalance/blob/a1062b7b392eaf53311308c2f63cf748b68bb8cf/DATA_LICENSE.md",
+              "sha256": "c3103b5aac603bebc267ac4433b4840ec2b4eb342ba93fe16a530a9fc8f86c1b"
+            },
+            {
+              "path": "pyproject.toml",
+              "url": "https://github.com/Devansh1105/finbalance/blob/a1062b7b392eaf53311308c2f63cf748b68bb8cf/pyproject.toml",
+              "sha256": "7b10033a9ae77a683d851a9cbe7a7a1e99b3c2d7df5ed130c6de8de669823250"
+            },
+            {
+              "path": "finbalance/benchmark/scoring.py",
+              "url": "https://github.com/Devansh1105/finbalance/blob/a1062b7b392eaf53311308c2f63cf748b68bb8cf/finbalance/benchmark/scoring.py",
+              "sha256": "0517b0acfe950691936ef7e54b5f5d1f955c9a3f18490b03cddddacff569a8dc"
+            },
+            {
+              "path": "finbalance/benchmark/analysis.py",
+              "url": "https://github.com/Devansh1105/finbalance/blob/a1062b7b392eaf53311308c2f63cf748b68bb8cf/finbalance/benchmark/analysis.py",
+              "sha256": "a1d8356f88aa6772f648eb9138f68113e65731d0a897830f1afdcbb7bc9bf0fb"
+            },
+            {
+              "path": "finbalance/schemas.py",
+              "url": "https://github.com/Devansh1105/finbalance/blob/a1062b7b392eaf53311308c2f63cf748b68bb8cf/finbalance/schemas.py",
+              "sha256": "d401e6e34f3a57555d89b60e929def1a8456fee4781f3aea24c22a7016c17959"
+            },
+            {
+              "path": "finbalance/ledger.py",
+              "url": "https://github.com/Devansh1105/finbalance/blob/a1062b7b392eaf53311308c2f63cf748b68bb8cf/finbalance/ledger.py",
+              "sha256": "d91eebfecc6412812fa72933aab2adb8fb43e0d574b9630e0e4b6c2aa833b3f7"
+            },
+            {
+              "path": "data/coverage/manifest.json",
+              "url": "https://github.com/Devansh1105/finbalance/blob/a1062b7b392eaf53311308c2f63cf748b68bb8cf/data/coverage/manifest.json",
+              "sha256": "32504d828d38ab69664bdeebbdc74031aa159fe66a973fca2e5d671ce9619254"
+            },
+            {
+              "path": "data/coverage/records.jsonl",
+              "url": "https://github.com/Devansh1105/finbalance/blob/a1062b7b392eaf53311308c2f63cf748b68bb8cf/data/coverage/records.jsonl",
+              "sha256": "c1568a30ac43401047e3b1c19f672359ed2dadfd977aa0d1bc36dd6b2cd41580"
+            }
+          ],
+          "file_scope": "Scorer functions and Posting.key read; first coverage record structure/OCR inspected and all coverage records counted. Other dataset contents and all rendered document assets were not audited."
+        },
+        "capability": "Construct cited postings and a final balance sheet from a fictional source-document bundle, or flag an injected contradiction. Tests document grounding and aggregation under stipulated policies, not real source-population completeness.",
+        "inputs_outputs": {
+          "inputs": "Document IDs, OCR text, permitted accounts and opening balances; baseline includes document types and titles. Generator role labels and expected answers are hidden from solver prompts.",
+          "outputs": "JSON postings with document references, balance sheet and inconsistency flag/codes.",
+          "available_split": "143 coverage records actually read as JSONL: 120 standard and 23 contradiction records. Repository also lists 710-record main and fresh-seed splits; those records were not inspected.",
+          "private_split": "Paper and data license state no hidden split for reported results. A future private leaderboard cannot be inferred to be available."
+        },
+        "grading": [
+          {
+            "finding": "Reported and replayed balance sheets are distinct metrics. A correct reported total alone does not validate submitted entries.",
+            "locator": "Appendix D; analysis.py analyze_submission/reconstruct_balance_sheet"
+          },
+          {
+            "finding": "Strict matching uses document IDs, debit/credit accounts and rounded amount; lenient matching drops document IDs. Extra and missing postings have separate diagnostics.",
+            "locator": "analysis.py _match_entries; schemas.py Posting.key"
+          },
+          {
+            "finding": "Posting date is outside the match key. Replay applies known-account entries without using posting dates to filter the period. Thus headline success does not establish cutoff accuracy.",
+            "locator": "Appendix D; Posting.key; ledger.py apply_all/apply_posting"
+          },
+          {
+            "finding": "Unknown-account entries are excluded from replay and separately counted. A replay score must be read with invalid/extra-entry diagnostics.",
+            "locator": "analysis.py reconstruct_balance_sheet and analyze_submission"
+          },
+          {
+            "finding": "Contradiction code accuracy and empty-answer behavior are separate fields. Correct flag/code alone does not prove refusal to fabricate entries.",
+            "locator": "analysis.py expected_inconsistency branch"
+          },
+          {
+            "finding": "Reviewed metrics do not model actual user authority, approval, credential scopes or bank actions. Document-ID matching is not independent source authenticity.",
+            "locator": "Section 3 task; reviewed scorer metrics"
+          }
+        ],
+        "experiments": {
+          "paper_settings": "Six named model baselines on 710 records; temperature 0, GPT-5 low reasoning; selected ablations on 143. Best-of-three uses temperature 0.7. API identifiers and provider/token limits are in the paper reproducibility table. No current model ranking is inferred.",
+          "reliability": "Paired 5,000-resample bootstrap concerns saved-record sampling, not repeat-run stability. Best-of-three selection is not probability of consistently succeeding on repeated independent runs. Provider routing/model revisions remain limits.",
+          "feedback": "Ledger diagnostic compares submitted versus replayed totals without ground truth, allowing one revision. This can improve aggregation while degrading contradiction detection; no causal production-effectiveness claim."
+        },
+        "rights_access": {
+          "code": {
+            "license": "Apache-2.0",
+            "basis": "https://github.com/Devansh1105/finbalance/blob/a1062b7b392eaf53311308c2f63cf748b68bb8cf/LICENSE",
+            "scope": "Source/scripts/tests; preserve applicable notices and modification obligations for redistribution."
+          },
+          "generated_data": {
+            "license": "CC-BY-4.0",
+            "basis": "https://github.com/Devansh1105/finbalance/blob/a1062b7b392eaf53311308c2f63cf748b68bb8cf/DATA_LICENSE.md",
+            "scope": "Generated records, OCR, document artifacts, labels and verification packets; attribution required."
+          },
+          "excluded": "Raw model responses/provider metadata are outside the data grant and subject to provider terms. No results directory was present in the inspected tree, despite paper discussion of release artifacts.",
+          "transfer": "No publisher code or benchmark records are copied into corpus exports; this profile is original annotation."
+        },
+        "reproducibility_limits": [
+          "Public labeled records create contamination risk for later models; fresh seeds vary instances but do not establish independent unseen scenario coverage.",
+          "First coverage record asset_path has a docs_benchmark/ prefix absent from the repository root; the corresponding data/coverage/assets file is listed. A consumer must resolve release paths explicitly.",
+          "Repository revision is later than paper v1 and includes fresh-seed directories. Equivalence to the exact paper-run code and saved outputs has not been established.",
+          "No model API, hosted benchmark, generation or scorer execution was performed in this review."
+        ],
+        "case_links": [
+          {
+            "record_id": "example-connected-purchase-to-payment",
+            "overlap": "Document-to-posting lineage and cutoff; the case tests dates explicitly beyond the benchmark headline key."
+          },
+          {
+            "record_id": "example-connected-processor-settlement",
+            "overlap": "Replay versus final balance, source evidence and unresolved settlement; real payment authority remains outside both synthetic exercises."
+          }
+        ]
+      }
     }
   },
   {
