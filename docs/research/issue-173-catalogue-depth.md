@@ -288,3 +288,7 @@ Added answer-first briefs for evaluation selection, action boundaries and claim/
 ### P1 reading layer
 
 Added task-led Xero and QBO reading briefs over the detailed dossiers. Each presents its original incomplete-extraction counterexample, separates population/recovery/approval questions and retains named unresolved contract and runtime conditions. No endpoint test or tenant authority is implied. Structural validation reaches the expected draft coverage boundary; final combined browser and export checks remain pending.
+
+### P5/P9 collection reading layer
+
+Added readable synthesis to the failure casebook and usable-assets collection, preserving procedural posture, original proposed lessons, purpose-specific permissions and named exclusions. Historical source-review dates remain distinct from this editorial presentation review. Record validation reaches the draft coverage boundary. These additions do not finalize an edition or establish human, professional, rendered or deployment acceptance.
