@@ -8,6 +8,8 @@ let application: ReturnType<typeof import("./runtime-application").createApplica
 export default {
   async fetch(request: Request, env: StorageEnv = {}) {
     const path = new URL(request.url).pathname;
+    if (path.startsWith("/_runtime/") || path.startsWith("/assets/data/") || path.startsWith("/assets/connections/"))
+      return new Response("Not found\n", { status: 404, headers: { "Cache-Control": "no-store", "X-Content-Type-Options": "nosniff" } });
     if (RELEASE_META.build_mode === "preview" && (path.startsWith("/downloads/") || path.startsWith("/releases/") || path === "/api/v1/coverage/history" || path.startsWith("/_release/")))
       return new Response("Release artifacts are unavailable in a draft preview.\n", { status: 503, headers: { "Cache-Control": "no-store", "X-Build-Mode": "preview", "X-Content-Type-Options": "nosniff" } });
     if (path.startsWith("/_release/")) return importRelease(request, env);
@@ -26,14 +28,22 @@ export default {
         return new Response(request.method === "HEAD" ? null : response.body, { status: response.status, headers });
       }
     }
+    // Internal data is in the sealed object store, never the published static asset
+    // directory. Local previews may read the same private paths from their fixture.
+    const runtimeAssets = { async fetch(input: Request) {
+      if (new URL(input.url).pathname.startsWith("/_runtime/") && RELEASE_META.build_mode !== "preview") {
+        return await storedDownload(input, env, RELEASE_STORAGE) || new Response(null, { status: 404 });
+      }
+      return env.ASSETS ? env.ASSETS.fetch(input) : new Response(null, { status: 404 });
+    } } as Fetcher;
     if (!application) {
-      if (!env.ASSETS) return new Response("Application data unavailable.\n", { status: 503 });
+      if (!env.ASSETS && !env.BUCKET) return new Response("Application data unavailable.\n", { status: 503 });
       try {
         const data: Record<string, unknown> = {};
         // Limit concurrent reads and release response bodies before starting more.
         for (let i = 0; i < RUNTIME_DATA_KEYS.length; i += 4) {
           await Promise.all(RUNTIME_DATA_KEYS.slice(i, i + 4).map(async key => {
-            const response = await env.ASSETS!.fetch(new Request(new URL(`/assets/data/${key}.gz`, request.url)));
+            const response = await runtimeAssets.fetch(new Request(new URL(`/_runtime/data/${key}.gz`, request.url)));
             if (!response.ok || !response.body) throw new Error("Application data unavailable");
             data[key] = await new Response(response.body.pipeThrough(new DecompressionStream("gzip"))).json();
           }));
@@ -45,6 +55,6 @@ export default {
         return new Response("Application data unavailable.\n", { status: 503, headers: { "Cache-Control": "no-store" } });
       }
     }
-    return application.fetch(request, env);
+    return application.fetch(request, { ...env, ASSETS: runtimeAssets });
   },
 } satisfies ExportedHandler<StorageEnv>;

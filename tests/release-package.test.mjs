@@ -29,3 +29,14 @@ test('packaging refuses a preview, changed build, changed input, missing object,
  ];
  for(const change of changes){const x=fixture();try{change(x);assert.throws(()=>createReleasePackage({...x,destination:path.join(x.root,'outputs/package')}));assert.equal(fs.existsSync(path.join(x.root,'outputs/package')),false);}finally{fs.rmSync(x.root,{recursive:true,force:true});}}
 });
+
+test('private runtime bytes are sealed in storage and excluded from an asset-first public application',()=>{
+ const {root,env}=fixture({privateRuntime:true});try{
+  const destination=path.join(root,'outputs/private-package');const result=createReleasePackage({root,destination,env});assert.equal(result.storage.logical_files,4);
+  assert.equal(fs.existsSync(path.join(destination,'application/dist/client/_runtime')),false);
+  const manifest=JSON.parse(fs.readFileSync(path.join(destination,'storage/manifest.json')));assert.ok(Object.keys(manifest.files).some(name=>name.startsWith('/_runtime/data/')));
+  assert.equal(validatePackage(destination).storage.objects,4);
+  const leaked='application/dist/client/_runtime/data/'+ 'a'.repeat(64)+'.gz',body=Buffer.from('private');fs.mkdirSync(path.dirname(path.join(destination,leaked)),{recursive:true});fs.writeFileSync(path.join(destination,leaked),body);
+  const packagePath=path.join(destination,'release-package.json'),packageManifest=JSON.parse(fs.readFileSync(packagePath));packageManifest.files.push({path:leaked,bytes:body.length,sha256:sha256(body),mode:0o644});fs.writeFileSync(packagePath,JSON.stringify(packageManifest));assert.throws(()=>validatePackage(destination),/cannot be public application assets/);
+ }finally{fs.rmSync(root,{recursive:true,force:true});}
+});

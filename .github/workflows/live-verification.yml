@@ -17,6 +17,9 @@ on:
       download_manifest_sha256:
         description: Expected download manifest SHA256 from the verified artifact
         required: true
+      private_paths_json:
+        description: JSON array of internal paths from the authenticated artifact, plus previously exposed paths
+        required: true
 permissions:
   contents: read
 jobs:
@@ -35,6 +38,7 @@ jobs:
       - run: npx --no-install playwright install --with-deps chromium
       - name: Verify the existing public deployment without rebuilding
         env:
+          EXPECTED_PRIVATE_PATHS_JSON: ${{ inputs.private_paths_json }}
           EXPECTED_SOURCE_REVISION: ${{ inputs.source_revision }}
           EXPECTED_CORPUS_VERSION: ${{ inputs.corpus_version }}
           EXPECTED_INDEX_VERSION: ${{ inputs.index_version }}

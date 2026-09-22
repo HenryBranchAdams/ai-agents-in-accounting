@@ -32,7 +32,7 @@ export function validateStorage(directory) {
   }
   // Validate logical files without loading a whole source archive into memory.
   for(const [name,file] of Object.entries(manifest.files)) {
-    assert.match(name,/^\/(downloads|releases)\//);
+    assert.ok(/^\/(downloads|releases)\//.test(name)||/^\/_runtime\/(data|connections)\/[a-f0-9]{64}\.(?:json\.)?gz$/.test(name),"Unexpected logical storage path");
     assert.ok(!name.includes("\\")&&!name.split("/").slice(1).some(p=>!p||p==="."||p===".."));
     assert.match(file.sha256,hashPattern);assert.ok(Number.isSafeInteger(file.bytes)&&file.bytes>=0);
     assert.ok(Array.isArray(file.chunks));let total=0;const digest=createHash("sha256");
@@ -51,6 +51,7 @@ export function validatePackage(directory) {
   assert.equal(manifest.contract,"accounting-agents-ci-release");assert.equal(manifest.schema_version,1);
   const promised=manifest.files.map(file=>file.path);
   assert.equal(new Set(promised).size,promised.length);
+  assert.ok(!promised.some(name=>/^application\/dist\/client\/(?:_runtime|assets\/(?:data|connections|objects))\//.test(name)),"Private runtime or storage objects cannot be public application assets");
   assert.deepEqual(regularFiles(directory),[...promised,"release-package.json"].sort());
   for(const file of manifest.files) {
     assert.ok(file.path&&!path.isAbsolute(file.path)&&!file.path.includes("\\")&&!file.path.split("/").some(p=>!p||p==="."||p===".."));
@@ -94,7 +95,7 @@ export function createReleasePackage({root=process.cwd(),destination=path.join(r
     const copy=(source,target)=>{fs.mkdirSync(path.dirname(path.join(temp,target)),{recursive:true});fs.copyFileSync(path.join(root,source),path.join(temp,target));fs.chmodSync(path.join(temp,target),0o644);};
     for(const folder of ["server",".openai","client"])
       for(const file of regularFiles(path.join(root,"dist",folder))) {
-        if(folder==="client"&&/^(downloads|releases|assets\/objects)\//.test(file))continue;
+        if(folder==="client"&&/^(downloads|releases|_runtime|assets\/objects)\//.test(file))continue;
         copy(`dist/${folder}/${file}`,`application/dist/${folder}/${file}`);
       }
     copy(".openai/hosting.json","application/.openai/hosting.json");
