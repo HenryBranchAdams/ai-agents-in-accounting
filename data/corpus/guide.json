@@ -71240,7 +71240,9 @@
       "src_xero_idempotency_2026",
       "src_xero_request_response_2026",
       "src_xero_invoice_lineage_2026",
-      "src_xero_payment_lineage_2026"
+      "src_xero_payment_lineage_2026",
+      "src_xero_organisation_actions_2026",
+      "src_xero_tracking_mapping_2026"
     ],
     "related_ids": [
       "collection-erp-extraction-completeness",
@@ -71448,6 +71450,36 @@
             "src_xero_request_response_2026"
           ],
           "locator": "Creating many resources"
+        },
+        {
+          "id": "xero-context",
+          "status": "documented",
+          "question": "Where are entity, currency and lock settings identified?",
+          "answer": "GET Organisation returns metadata for the selected tenant or custom connection, including country, base currency, edition, class, timezone and optional lock dates. Capture the actual returned context; a missing field is not proof that no restriction applies.",
+          "source_ids": [
+            "src_xero_organisation_actions_2026"
+          ],
+          "locator": "Overview; GET Organisation field table"
+        },
+        {
+          "id": "xero-action-capability",
+          "status": "documented",
+          "question": "Does a plan or connecting role permit a selected action?",
+          "answer": "GET Organisation Actions combines plan features and connecting-user permission for selected actions. Its list is expressly incomplete. An ALLOWED action is not approval for this payload, and a lock date alone does not establish which actors can override it.",
+          "source_ids": [
+            "src_xero_organisation_actions_2026"
+          ],
+          "locator": "GET Organisation Actions"
+        },
+        {
+          "id": "xero-tracking-context",
+          "status": "documented",
+          "question": "Can tracking categories identify another legal entity?",
+          "answer": "Tracking categories are user-defined dimensions; mapping guidance describes two active and two archived categories. Preserve category and option identity. Project inference: do not substitute a Region or Department label for organisation/legal-entity identity.",
+          "source_ids": [
+            "src_xero_tracking_mapping_2026"
+          ],
+          "locator": "Using Xero tracking categories in your app"
         }
       ],
       "completeness_recovery_procedure": [

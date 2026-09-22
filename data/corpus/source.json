@@ -99958,5 +99958,161 @@
       },
       "rights_note": "Original annotation only; order text not included in exports. Public government access does not create a blanket grant over referenced third-party material."
     }
+  },
+  {
+    "id": "src_xero_organisation_actions_2026",
+    "kind": "source",
+    "title": "Xero organisation context and selected permitted actions",
+    "summary": "Organisation reads use the xero-tenant-id header, or the organisation bound to a custom connection. Returned metadata includes base currency, country, edition, class, timezone and lock dates when set.",
+    "topics": [
+      "Agent engineering",
+      "Accounting and reporting"
+    ],
+    "industries": [
+      "general"
+    ],
+    "jurisdiction": "Xero Accounting API",
+    "source_type": "Technical reference",
+    "publisher": "Xero",
+    "source_url": "https://developer.xero.com/documentation/api/accounting/organisation",
+    "source_ids": [],
+    "related_ids": [
+      "guide-xero-ledger-completeness",
+      "ctrl-tool-authorization"
+    ],
+    "review_status": "source-checked",
+    "reviewed_at": "2026-09-21",
+    "provenance": {
+      "added_on": "2026-09-21",
+      "reviewer": "Codex AI-assisted primary documentation review",
+      "scope": "Named text sections read from original publisher Gatsby payload; no tenant request or image-based inference.",
+      "evidence_urls": [
+        "https://developer.xero.com/documentation/api/accounting/organisation"
+      ],
+      "outcome": "Documents context and capability boundaries, not observed enforcement or transaction approval.",
+      "note": "Source text review only; no tenant access, professional acceptance or rights expansion."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "publication": {
+        "edition": "Publisher documentation read September21,2026",
+        "published_at": null
+      },
+      "evidence": [
+        {
+          "claim": "Organisation reads use the xero-tenant-id header, or the organisation bound to a custom connection. Returned metadata includes base currency, country, edition, class, timezone and lock dates when set.",
+          "classification": "publisher-documented with explicitly labeled editorial inference where stated",
+          "source": {
+            "url": "https://developer.xero.com/documentation/api/accounting/organisation",
+            "locator": "Overview; GET Organisation field table"
+          }
+        },
+        {
+          "claim": "Organisation Actions reports selected permissions based on both the organisation plan and the connecting user. The page expressly says the list is not comprehensive. Example action names include ViewJournals, CreateManualJournal and ApproveTransactionsBeforePeriodLockDate.",
+          "classification": "publisher-documented with explicitly labeled editorial inference where stated",
+          "source": {
+            "url": "https://developer.xero.com/documentation/api/accounting/organisation",
+            "locator": "GET Organisation Actions introduction and example"
+          }
+        }
+      ],
+      "reviewed_object": {
+        "url": "https://developer.xero.com/__gatsby/page-data/documentation/api/accounting/organisation/page-data.json",
+        "sha256": "8ee315ae53d7e280302b0110b7609c1f0eccc554f208e9ca5dff3eb54dd53320"
+      },
+      "limitations": [
+        "Documentation only; no actual organisation or permissions queried.",
+        "Examples are not an exhaustive contract or proof of enforcement across all roles and endpoints.",
+        "Terms, entitlement, current product cohort and required approval remain separate."
+      ],
+      "review_trigger": "Changed organisation feature, connecting role, scope, action contract or documentation edition."
+    }
+  },
+  {
+    "id": "src_xero_tracking_mapping_2026",
+    "kind": "source",
+    "title": "Xero tracking category mapping and capacity",
+    "summary": "Tracking categories and options provide user-defined transaction dimensions. The documented mapping guidance describes up to two active and two archived categories, so integrations must inspect existing choices before proposing another category.",
+    "topics": [
+      "Agent engineering",
+      "Accounting and reporting"
+    ],
+    "industries": [
+      "general"
+    ],
+    "jurisdiction": "Xero Accounting API",
+    "source_type": "Technical reference",
+    "publisher": "Xero",
+    "source_url": "https://developer.xero.com/documentation/best-practices/categorising-transactions/tracking-category-mapping",
+    "source_ids": [],
+    "related_ids": [
+      "guide-xero-ledger-completeness",
+      "ctrl-tool-authorization"
+    ],
+    "review_status": "source-checked",
+    "reviewed_at": "2026-09-21",
+    "provenance": {
+      "added_on": "2026-09-21",
+      "reviewer": "Codex AI-assisted primary documentation review",
+      "scope": "Named text sections read from original publisher Gatsby payload; no tenant request or image-based inference.",
+      "evidence_urls": [
+        "https://developer.xero.com/documentation/best-practices/categorising-transactions/tracking-category-mapping"
+      ],
+      "outcome": "Documents context and capability boundaries, not observed enforcement or transaction approval.",
+      "note": "Source text review only; no tenant access, professional acceptance or rights expansion."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "publication": {
+        "edition": "Publisher documentation read September21,2026",
+        "published_at": null
+      },
+      "evidence": [
+        {
+          "claim": "Tracking categories and options provide user-defined transaction dimensions. The documented mapping guidance describes up to two active and two archived categories, so integrations must inspect existing choices before proposing another category.",
+          "classification": "publisher-documented with explicitly labeled editorial inference where stated",
+          "source": {
+            "url": "https://developer.xero.com/documentation/best-practices/categorising-transactions/tracking-category-mapping",
+            "locator": "Overview; Using Xero tracking categories in your app"
+          }
+        },
+        {
+          "claim": "The guidance calls for correct creation and mapping when an app uses tracking categories during certification. A category such as Region is a transaction dimension, not proof of a separate legal entity.",
+          "classification": "publisher-documented with explicitly labeled editorial inference where stated",
+          "source": {
+            "url": "https://developer.xero.com/documentation/best-practices/categorising-transactions/tracking-category-mapping",
+            "locator": "Certification requirements for mapping; example, with entity distinction an original project inference"
+          }
+        }
+      ],
+      "reviewed_object": {
+        "url": "https://developer.xero.com/__gatsby/page-data/documentation/best-practices/categorising-transactions/tracking-category-mapping/page-data.json",
+        "sha256": "0da0ff6d7526fb9073c4b7c6c76ed5ccbefa9ce009168e8d06cd2262eea6a5c6"
+      },
+      "limitations": [
+        "Documentation only; no actual organisation or permissions queried.",
+        "Examples are not an exhaustive contract or proof of enforcement across all roles and endpoints.",
+        "Terms, entitlement, current product cohort and required approval remain separate."
+      ],
+      "review_trigger": "Changed organisation feature, connecting role, scope, action contract or documentation edition."
+    }
   }
 ]

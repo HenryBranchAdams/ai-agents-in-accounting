@@ -354,11 +354,16 @@
       "src_0zwe7na",
       "src_0pywo86",
       "src_06fwpim",
-      "src_1efrues"
+      "src_1efrues",
+      "src_qbo_oauth_contract_2026"
     ],
-    "related_ids": [],
-    "review_status": "editorially-reviewed",
-    "reviewed_at": "2026-09-11",
+    "related_ids": [
+      "guide-accounting-action-boundaries",
+      "example-connected-purchase-to-payment",
+      "example-connected-processor-settlement"
+    ],
+    "review_status": "draft-editorial-review-pending",
+    "reviewed_at": null,
     "provenance": {
       "imported_on": "2026-09-07",
       "previous_corpus_version": "2026-08-25.2",
@@ -366,7 +371,12 @@
       "previous_review_status": "published educational synthesis; professional sign-off not asserted",
       "note": "Migrated from the existing project corpus. Import and integrity checks are not source verification or professional review.",
       "editorial_review_pointer": "/data/editorial_review",
-      "editorial_review_scope": "Editorial content and mapping disposition; supporting source access, currency, rights and unresolved claims remain separate."
+      "editorial_review_scope": "Editorial content and mapping disposition; supporting source access, currency, rights and unresolved claims remain separate.",
+      "issue_173_previous_review": {
+        "review_status": "editorially-reviewed",
+        "reviewed_at": "2026-09-11",
+        "preserved_review_pointer": "/data/editorial_review"
+      }
     },
     "rights": {
       "metadata": "CC0-1.0",
@@ -402,7 +412,8 @@
         "src_0zwe7na",
         "src_0pywo86",
         "src_06fwpim",
-        "src_1efrues"
+        "src_1efrues",
+        "src_qbo_oauth_contract_2026"
       ],
       "editorial_review": {
         "record_id": "ctrl-tool-authorization",
@@ -455,6 +466,34 @@
           "review_status": "inherited-not-reverified",
           "reviewed_at": null
         }
+      },
+      "accounting_action_boundary_173": {
+        "classification": "original proposed control design; not deployed",
+        "procedures": [
+          "Bind service identity and tenant to an explicit action allowlist outside the model; evaluate current permission immediately before execution.",
+          "Treat a broad accounting OAuth scope as access, not a read-only or amount-limited approval boundary.",
+          "After permission revocation or an unexpected endpoint response, stop the pending intent and preserve read-back evidence."
+        ],
+        "required_evidence": [
+          "Effective principal, tenant, action and current policy decision",
+          "Denied/allowed decision and upstream response, with credentials omitted"
+        ],
+        "standards_scope": "NIST SP800-53 selected AC-3/AC-5/AC-6/AU-3 statements provide general control context. The February2026 NCCoE agent concept is draft. Neither prescribes this exact accounting workflow.",
+        "example_pointer": {
+          "record_id": "guide-accounting-action-boundaries",
+          "pointer": "/data/approval_fixture"
+        },
+        "limits": [
+          "Offline fixture checks are not enforcement or operating-effectiveness tests.",
+          "Actual human approval and professional review remain absent.",
+          "Platform documentation is not an observed tenant behavior."
+        ],
+        "review_triggers": [
+          "Changed service permissions or actor role",
+          "Changed payload, evidence, entity, period, amount or destination",
+          "Changed API concurrency, retry or batch contract",
+          "Changed policy/standard edition"
+        ]
       }
     }
   },
@@ -474,11 +513,17 @@
     "source_ids": [
       "src_1v1zwt5",
       "src_1i38fu6",
-      "src_1jqxy83"
+      "src_1jqxy83",
+      "src_0pywo86",
+      "src_xero_idempotency_2026"
     ],
-    "related_ids": [],
-    "review_status": "editorially-reviewed",
-    "reviewed_at": "2026-09-11",
+    "related_ids": [
+      "guide-accounting-action-boundaries",
+      "example-connected-purchase-to-payment",
+      "example-connected-processor-settlement"
+    ],
+    "review_status": "draft-editorial-review-pending",
+    "reviewed_at": null,
     "provenance": {
       "imported_on": "2026-09-07",
       "previous_corpus_version": "2026-08-25.2",
@@ -486,7 +531,12 @@
       "previous_review_status": "published educational synthesis; professional sign-off not asserted",
       "note": "Migrated from the existing project corpus. Import and integrity checks are not source verification or professional review.",
       "editorial_review_pointer": "/data/editorial_review",
-      "editorial_review_scope": "Editorial content and mapping disposition; supporting source access, currency, rights and unresolved claims remain separate."
+      "editorial_review_scope": "Editorial content and mapping disposition; supporting source access, currency, rights and unresolved claims remain separate.",
+      "issue_173_previous_review": {
+        "review_status": "editorially-reviewed",
+        "reviewed_at": "2026-09-11",
+        "preserved_review_pointer": "/data/editorial_review"
+      }
     },
     "rights": {
       "metadata": "CC0-1.0",
@@ -521,7 +571,9 @@
       "source_ids": [
         "src_1v1zwt5",
         "src_1i38fu6",
-        "src_1jqxy83"
+        "src_1jqxy83",
+        "src_0pywo86",
+        "src_xero_idempotency_2026"
       ],
       "editorial_review": {
         "record_id": "ctrl-human-approval",
@@ -568,6 +620,34 @@
           "review_status": "inherited-not-reverified",
           "reviewed_at": null
         }
+      },
+      "accounting_action_boundary_173": {
+        "classification": "original proposed control design; not deployed",
+        "procedures": [
+          "Bind approval to entity, amount, currency, destination, accounting period, evidence version, exact payload digest and expiry.",
+          "Authenticate the actual reviewer and current authority separately from a fictional fixture, chat wording or hash.",
+          "After changed evidence or payload, obtain a new decision. A retry key is not an approval token."
+        ],
+        "required_evidence": [
+          "Authenticated decision over the exact payload and evidence",
+          "Expired, changed, consumed or ambiguous intent disposition"
+        ],
+        "standards_scope": "NIST SP800-53 selected AC-3/AC-5/AC-6/AU-3 statements provide general control context. The February2026 NCCoE agent concept is draft. Neither prescribes this exact accounting workflow.",
+        "example_pointer": {
+          "record_id": "guide-accounting-action-boundaries",
+          "pointer": "/data/approval_fixture"
+        },
+        "limits": [
+          "Offline fixture checks are not enforcement or operating-effectiveness tests.",
+          "Actual human approval and professional review remain absent.",
+          "Platform documentation is not an observed tenant behavior."
+        ],
+        "review_triggers": [
+          "Changed service permissions or actor role",
+          "Changed payload, evidence, entity, period, amount or destination",
+          "Changed API concurrency, retry or batch contract",
+          "Changed policy/standard edition"
+        ]
       }
     }
   },
@@ -589,9 +669,13 @@
       "src_0pywo86",
       "src_122i1et"
     ],
-    "related_ids": [],
-    "review_status": "editorially-reviewed",
-    "reviewed_at": "2026-09-11",
+    "related_ids": [
+      "guide-accounting-action-boundaries",
+      "example-connected-purchase-to-payment",
+      "example-connected-processor-settlement"
+    ],
+    "review_status": "draft-editorial-review-pending",
+    "reviewed_at": null,
     "provenance": {
       "imported_on": "2026-09-07",
       "previous_corpus_version": "2026-08-25.2",
@@ -599,7 +683,12 @@
       "previous_review_status": "published educational synthesis; professional sign-off not asserted",
       "note": "Migrated from the existing project corpus. Import and integrity checks are not source verification or professional review.",
       "editorial_review_pointer": "/data/editorial_review",
-      "editorial_review_scope": "Editorial content and mapping disposition; supporting source access, currency, rights and unresolved claims remain separate."
+      "editorial_review_scope": "Editorial content and mapping disposition; supporting source access, currency, rights and unresolved claims remain separate.",
+      "issue_173_previous_review": {
+        "review_status": "editorially-reviewed",
+        "reviewed_at": "2026-09-11",
+        "preserved_review_pointer": "/data/editorial_review"
+      }
     },
     "rights": {
       "metadata": "CC0-1.0",
@@ -680,6 +769,34 @@
           "review_status": "inherited-not-reverified",
           "reviewed_at": null
         }
+      },
+      "accounting_action_boundary_173": {
+        "classification": "original proposed control design; not deployed",
+        "procedures": [
+          "Separate vendor-detail maintenance, journal preparation and payment release according to the defined risk and organizational roles.",
+          "Evaluate whether the same identity can bypass the separation through another tool or direct upstream access.",
+          "Keep exception approval and rationale attributable; a prompt asking the agent to seek review does not enforce separation."
+        ],
+        "required_evidence": [
+          "Role-to-action map and independently enforced policy",
+          "Reviewer identity and evidence of authority at execution"
+        ],
+        "standards_scope": "NIST SP800-53 selected AC-3/AC-5/AC-6/AU-3 statements provide general control context. The February2026 NCCoE agent concept is draft. Neither prescribes this exact accounting workflow.",
+        "example_pointer": {
+          "record_id": "guide-accounting-action-boundaries",
+          "pointer": "/data/approval_fixture"
+        },
+        "limits": [
+          "Offline fixture checks are not enforcement or operating-effectiveness tests.",
+          "Actual human approval and professional review remain absent.",
+          "Platform documentation is not an observed tenant behavior."
+        ],
+        "review_triggers": [
+          "Changed service permissions or actor role",
+          "Changed payload, evidence, entity, period, amount or destination",
+          "Changed API concurrency, retry or batch contract",
+          "Changed policy/standard edition"
+        ]
       }
     }
   },
@@ -813,11 +930,18 @@
     "source_ids": [
       "src_0nrsy1i",
       "src_1i38fu6",
-      "src_0d24qh0"
+      "src_0d24qh0",
+      "src_xero_request_response_2026",
+      "src_xero_idempotency_2026",
+      "src_qbo_stale_object_2026"
     ],
-    "related_ids": [],
-    "review_status": "editorially-reviewed",
-    "reviewed_at": "2026-09-11",
+    "related_ids": [
+      "guide-accounting-action-boundaries",
+      "example-connected-purchase-to-payment",
+      "example-connected-processor-settlement"
+    ],
+    "review_status": "draft-editorial-review-pending",
+    "reviewed_at": null,
     "provenance": {
       "imported_on": "2026-09-07",
       "previous_corpus_version": "2026-08-25.2",
@@ -825,7 +949,12 @@
       "previous_review_status": "published educational synthesis; professional sign-off not asserted",
       "note": "Migrated from the existing project corpus. Import and integrity checks are not source verification or professional review.",
       "editorial_review_pointer": "/data/editorial_review",
-      "editorial_review_scope": "Editorial content and mapping disposition; supporting source access, currency, rights and unresolved claims remain separate."
+      "editorial_review_scope": "Editorial content and mapping disposition; supporting source access, currency, rights and unresolved claims remain separate.",
+      "issue_173_previous_review": {
+        "review_status": "editorially-reviewed",
+        "reviewed_at": "2026-09-11",
+        "preserved_review_pointer": "/data/editorial_review"
+      }
     },
     "rights": {
       "metadata": "CC0-1.0",
@@ -860,7 +989,10 @@
       "source_ids": [
         "src_0nrsy1i",
         "src_1i38fu6",
-        "src_0d24qh0"
+        "src_0d24qh0",
+        "src_xero_request_response_2026",
+        "src_xero_idempotency_2026",
+        "src_qbo_stale_object_2026"
       ],
       "editorial_review": {
         "record_id": "ctrl-exception-routing",
@@ -907,6 +1039,34 @@
           "review_status": "inherited-not-reverified",
           "reviewed_at": null
         }
+      },
+      "accounting_action_boundary_173": {
+        "classification": "original proposed control design; not deployed",
+        "procedures": [
+          "Stop on lost response, expired retry retention, partial batch success or stale object version until the affected state is reconciled.",
+          "Keep successful batch items distinct from failed or uncertain items; do not blindly resubmit the entire approved batch.",
+          "Before resumption, recheck current authority and exact payload. Unknown execution outcome remains unknown until supported read-back resolves it."
+        ],
+        "required_evidence": [
+          "Per-item outcome and unresolved execution state",
+          "Read-back evidence and renewed authority for any changed intent"
+        ],
+        "standards_scope": "NIST SP800-53 selected AC-3/AC-5/AC-6/AU-3 statements provide general control context. The February2026 NCCoE agent concept is draft. Neither prescribes this exact accounting workflow.",
+        "example_pointer": {
+          "record_id": "guide-accounting-action-boundaries",
+          "pointer": "/data/approval_fixture"
+        },
+        "limits": [
+          "Offline fixture checks are not enforcement or operating-effectiveness tests.",
+          "Actual human approval and professional review remain absent.",
+          "Platform documentation is not an observed tenant behavior."
+        ],
+        "review_triggers": [
+          "Changed service permissions or actor role",
+          "Changed payload, evidence, entity, period, amount or destination",
+          "Changed API concurrency, retry or batch contract",
+          "Changed policy/standard edition"
+        ]
       }
     }
   },
@@ -1039,11 +1199,16 @@
     "source_ids": [
       "src_066cphd",
       "src_1l45nk0",
-      "src_1px43va"
+      "src_1px43va",
+      "src_0pywo86"
     ],
-    "related_ids": [],
-    "review_status": "editorially-reviewed",
-    "reviewed_at": "2026-09-11",
+    "related_ids": [
+      "guide-accounting-action-boundaries",
+      "example-connected-purchase-to-payment",
+      "example-connected-processor-settlement"
+    ],
+    "review_status": "draft-editorial-review-pending",
+    "reviewed_at": null,
     "provenance": {
       "imported_on": "2026-09-07",
       "previous_corpus_version": "2026-08-25.2",
@@ -1051,7 +1216,12 @@
       "previous_review_status": "published educational synthesis; professional sign-off not asserted",
       "note": "Migrated from the existing project corpus. Import and integrity checks are not source verification or professional review.",
       "editorial_review_pointer": "/data/editorial_review",
-      "editorial_review_scope": "Editorial content and mapping disposition; supporting source access, currency, rights and unresolved claims remain separate."
+      "editorial_review_scope": "Editorial content and mapping disposition; supporting source access, currency, rights and unresolved claims remain separate.",
+      "issue_173_previous_review": {
+        "review_status": "editorially-reviewed",
+        "reviewed_at": "2026-09-11",
+        "preserved_review_pointer": "/data/editorial_review"
+      }
     },
     "rights": {
       "metadata": "CC0-1.0",
@@ -1085,7 +1255,8 @@
       "source_ids": [
         "src_066cphd",
         "src_1l45nk0",
-        "src_1px43va"
+        "src_1px43va",
+        "src_0pywo86"
       ],
       "editorial_review": {
         "record_id": "ctrl-version-evidence",
@@ -1132,6 +1303,34 @@
           "review_status": "inherited-not-reverified",
           "reviewed_at": null
         }
+      },
+      "accounting_action_boundary_173": {
+        "classification": "original proposed control design; not deployed",
+        "procedures": [
+          "Record the exact source objects, document revisions, accounting assumptions and serialized payload used for the decision.",
+          "Keep prior versions and decisions when an estimate, source edition or report population changes.",
+          "Treat a content hash as identity evidence only, not proof of source truth, human review or execution success."
+        ],
+        "required_evidence": [
+          "Input and payload identity with canonicalization method",
+          "Changed-input record linked to affected prior decisions"
+        ],
+        "standards_scope": "NIST SP800-53 selected AC-3/AC-5/AC-6/AU-3 statements provide general control context. The February2026 NCCoE agent concept is draft. Neither prescribes this exact accounting workflow.",
+        "example_pointer": {
+          "record_id": "guide-accounting-action-boundaries",
+          "pointer": "/data/approval_fixture"
+        },
+        "limits": [
+          "Offline fixture checks are not enforcement or operating-effectiveness tests.",
+          "Actual human approval and professional review remain absent.",
+          "Platform documentation is not an observed tenant behavior."
+        ],
+        "review_triggers": [
+          "Changed service permissions or actor role",
+          "Changed payload, evidence, entity, period, amount or destination",
+          "Changed API concurrency, retry or batch contract",
+          "Changed policy/standard edition"
+        ]
       }
     }
   },

@@ -247,3 +247,10 @@ Added seven substantive pairs covering receipt knowledge, consolidation role, co
 Added an eight-candidate usable-assets collection with explicit access, quotation, redistribution, modification, evaluation, training and commercial dispositions. Reuses four P4 profiles and preserves TabFormer/BAF/FiFAR unresolved chains as exclusions. Project fixtures are the eighth candidate. No external files enter exports.
 
 `python3 scripts/check-research-asset-samples.py ASSET_DIRECTORY` reads these previously downloaded files: `finbalance-release/data/coverage/records.jsonl`, `apex-release/data/dev.jsonl`, `finqa-release/dataset/dev.json`, `cord-first-row.json`. It executes no external scripts or network requests. Counts were143 FinBalance IDs,10 APEX tasks/89 criteria,883 FinQA IDs and11 CORD preview lines. The scope is structural; no model/grader/accounting reproduction is claimed. Eleven project fixture/replay/approval tests passed at source revision88da116. Receipts remain outside the repository. Final editorial and retrieval integration remain pending.
+
+
+### P6 canonical controls and P1 organisation context
+
+Five existing controls now carry concrete action-boundary procedures and evidence requirements linked to the P6 guide and both cases. Historical editorial reviews are preserved; the amended records are explicitly draft pending renewed review. No control execution or actual approval is claimed.
+
+Read original Xero organisation/action and tracking-mapping payloads. Added source profiles and dossier rows separating tenant context, country/edition/currency/lock metadata, incomplete plan-plus-user capability lists, tracking dimensions and exact transaction approval. Intuit throttling support page rendered only a CSS error and the alternate API page only a loading shell; no third-party rate numbers were adopted. Remaining object contracts, narrow ERP comparison and final editorial integration remain pending.
