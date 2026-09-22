@@ -62,3 +62,10 @@ state and deterministic layouts. Browser journeys exercise desktop/mobile
 selection, global search outside a previous topic, evidence, reading and return,
 Map/List switching, history, resizing and failed loading. Screenshots and measured
 inputs belong in excluded operational output directories, not immutable editions.
+
+The map has its own conditional module entry. It shares React/Radix chunks with
+navigation without adding map modules to the ordinary-reading import closure.
+Loading the renderer and map island together avoids a second lazy boundary that
+split shared React code and exceeded the existing reading payload budget. The
+budget remains unchanged. Missing modules, stale topology and request failures
+retain the native List and its pagination.

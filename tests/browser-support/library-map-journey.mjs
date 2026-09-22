@@ -338,6 +338,33 @@ export async function libraryMapJourney(browser, origin, directory, receipt) {
   await failure.getByText(/interactive map could not load/).waitFor();
   assert.equal(await failure.locator("#map-record-list li").count(), 30);
   await failed.close();
+  for (const fault of ["stale-payload", "failed-module"]) {
+    const context = await browser.newContext(),
+      page = await context.newPage();
+    if (fault === "stale-payload")
+      await page.route("**/api/v1/library-map?*", (route) =>
+        route.fulfill({
+          status: 200,
+          contentType: "application/json",
+          body: JSON.stringify({ ...data, map_version: "0".repeat(64) }),
+        }),
+      );
+    else
+      await page.route("**/assets/library-map-*.js", (route) => route.abort());
+    await page.goto(origin + "/map");
+    if (fault === "stale-payload")
+      await page.getByText(/interactive map could not load/).waitFor();
+    assert.equal(await page.locator(".library-map-canvas").count(), 0);
+    assert.equal(await page.locator("#map-record-list li").count(), 30);
+    await page
+      .getByRole("navigation", { name: "Library map views" })
+      .getByRole("link", { name: "List", exact: true })
+      .click();
+    await page.waitForURL((url) => url.searchParams.get("mode") === "list");
+    await page.getByRole("link", { name: "Next page", exact: true }).click();
+    await page.waitForURL((url) => url.searchParams.get("page") === "2");
+    await context.close();
+  }
   const reading = await browser.newContext(),
     read = await reading.newPage(),
     readingRequests = [];
