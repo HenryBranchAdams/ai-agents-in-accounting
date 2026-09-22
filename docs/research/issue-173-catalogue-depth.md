@@ -235,3 +235,8 @@ Added Kraft Heinz corrected-order and Fluor company-order profiles, bringing the
 ### P5 six-case draft
 
 Added the KeyBanc company settlement and GAO-05-693R source-population/control observations. The company settlement is separate from allegations in an individual proceeding. GAO’s accessible primary report and recommendation follow-up distinguish a corrected revenue classification and unverified employee population from missing cash or proven fraud; later implementation is explicitly dated. Six cases now cover period errors, narrative omissions, supplier obligations/override, estimates, unsupported adjustments, and population verification. Final editorial, qualified relationship and combined retrieval/UI checks remain pending.
+
+
+### P8 scoped claim/counterexample draft
+
+Added seven substantive pairs covering receipt knowledge, consolidation role, contract/estimate changes, audit framework, payout mode, dispute timing and journal traversal. Each records required facts, changed fact, consequence, open questions and distinct publisher versus corpus locators. Explicit qualifies edges reuse the canonical format; citations do not become supports. Final brief freshness, retrieval fixtures and graph/List presentation remain pending.

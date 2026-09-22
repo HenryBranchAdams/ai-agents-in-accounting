@@ -72231,5 +72231,341 @@
         }
       ]
     }
+  },
+  {
+    "id": "guide-accounting-claim-counterexamples",
+    "kind": "guide",
+    "title": "Claims, changed facts and accounting counterexamples",
+    "summary": "Seven scoped pairs show how entity role, contract facts, reporting framework, decision date and source version can change a conclusion.",
+    "topics": [
+      "Accounting and reporting",
+      "Evidence and reconciliation",
+      "Controls and governance"
+    ],
+    "industries": [],
+    "jurisdiction": "United States; fictional internal close, not an audit engagement",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_0vf7hhg",
+      "src_aa_i109_arb51_amended",
+      "src_construction_fasb_2014_09",
+      "src_stripe_dispute_lifecycle",
+      "src_stripe_payout_reconciliation",
+      "src_xero_journals_completeness"
+    ],
+    "related_ids": [
+      "example-connected-purchase-to-payment",
+      "example-connected-processor-settlement",
+      "guide-connected-close-review",
+      "guide-accounting-action-boundaries",
+      "guide-xero-ledger-completeness"
+    ],
+    "review_status": "draft-editorial-review-pending",
+    "reviewed_at": null,
+    "provenance": {
+      "added_on": "2026-09-21",
+      "reviewer": "Codex original synthesis",
+      "scope": "Original synthesis of already scoped source reviews and connected synthetic cases; seven draft claim/counterexample pairs.",
+      "note": "No new professional acceptance, tenant observation, or claim that a citation supports every conclusion. Final editorial integration pending."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false
+    },
+    "data": {
+      "version": "issue-173-draft",
+      "answer": "A conclusion depends on its facts and scope. Preserve the original evidence, identify the changed fact, and reconsider the affected conclusion rather than carrying a prior answer into a different situation.",
+      "sections": [
+        {
+          "heading": "An invoice arriving later does not create a second receipt",
+          "body": "In the fictional late-invoice branch, May receipt evidence retains a 60,000-cent receipt liability; the matching June invoice transfers it to AP without another inventory cost. Changed fact: June document concerns another entity or a new service. Leave the May liability visible; investigate identity and recognition separately instead of clearing it automatically."
+        },
+        {
+          "heading": "Internal elimination depends on entity role",
+          "body": "The controlled P/S illustration corrects a missing 120,000-cent subsidiary service accrual before eliminating reciprocal balances in the consolidation column. Changed fact: S is an outside customer, or disputes having received the service. Reassess perimeter or disputed service; do not erase the parent balance with a consolidation plug."
+        },
+        {
+          "heading": "A revised estimate changes both revenue arithmetic and approval scope",
+          "body": "In the estimate-only construction alternative, 270,000 cost divided by 1,000,000 expected cost gives 324,000 cumulative revenue on the assumed 1,200,000 contract, a 36,000 reduction from the earlier 360,000. Changed fact: Expected cost changes again to 1,080,000 after the illustrated approval. Preserve the earlier estimate, recompute the affected workpaper and obtain a new decision; arithmetic does not authorize posting."
+        },
+        {
+          "heading": "Useful evidence design is not automatically a binding audit duty",
+          "body": "AS 1105 provides evidence requirements in applicable PCAOB audits. The connected internal-close packets borrow bounded evidence-design ideas. Changed fact: The user is a bookkeeper preparing an internal close, not an auditor in a PCAOB engagement. Keep the design analogy labeled; establish the actual framework and accountable reviewer before claiming compliance or assurance."
+        },
+        {
+          "heading": "Batch assignment depends on payout mode",
+          "body": "Stripe documents transaction-batch reconciliation for automatic payouts; the fictional processor case separately traces processor activity and bank settlement. Changed fact: The payout is instant instead of automatic. Reconcile the available balance and bank movement without asserting unsupported transaction membership."
+        },
+        {
+          "heading": "A later win does not establish earlier certainty",
+          "body": "The fictional processor case shows a disputed claim at April close and a later recovery. Recoverability at April is an explicit assumption requiring review. Changed fact: The reviewer uses the June favorable outcome as if it were already known in April, or the claim is ultimately lost. Preserve the decision-date evidence and distinguish reassessment or write-off from a duplicate cash posting."
+        },
+        {
+          "heading": "A short response is not proof of a completed journal traversal",
+          "body": "Xero’s journal-specific documented rule continues with the last JournalNumber until an empty response. Changed fact: A response has fewer than 100 journals and a generic paginator stops. Continue under the endpoint contract and reconcile the population; successful requests do not prove complete extraction."
+        }
+      ],
+      "claim_counterexample_pairs": [
+        {
+          "id": "receipt-knowledge",
+          "title": "An invoice arriving later does not create a second receipt",
+          "scoped_conclusion": "In the fictional late-invoice branch, May receipt evidence retains a 60,000-cent receipt liability; the matching June invoice transfers it to AP without another inventory cost.",
+          "required_facts": [
+            "A-R1 establishes receipt under the declared recognition assumption",
+            "Same entity, goods, quantity and agreed price",
+            "No return in this alternative"
+          ],
+          "changed_fact": "June document concerns another entity or a new service.",
+          "counterexample": "A matching amount alone cannot identify the May obligation or resolve the received-not-invoiced balance.",
+          "consequence": "Leave the May liability visible; investigate identity and recognition separately instead of clearing it automatically.",
+          "open_questions": [
+            "Was the obligation established at May close?",
+            "Which evidence existed then, rather than becoming available later?"
+          ],
+          "evidence": {
+            "record_id": "example-connected-purchase-to-payment",
+            "record_pointer": "/data/bounded_extensions/0",
+            "publisher_locator": null,
+            "classification": "original synthetic case and declared assumptions"
+          },
+          "relationship": {
+            "from_record": "example-connected-purchase-to-payment",
+            "to_record": "guide-accounting-claim-counterexamples",
+            "type": "qualifies",
+            "scope": "This pair only; not validation of other conclusions in the guide."
+          },
+          "review_trigger": "Re-review when the named facts, source edition, entity role, framework, decision date or cited record changes."
+        },
+        {
+          "id": "entity-perimeter",
+          "title": "Internal elimination depends on entity role",
+          "scoped_conclusion": "The controlled P/S illustration corrects a missing 120,000-cent subsidiary service accrual before eliminating reciprocal balances in the consolidation column.",
+          "required_facts": [
+            "P and S are inside the assumed consolidation perimeter",
+            "Service receipt and allocation are supported",
+            "External 200,000-cent pool cost remains"
+          ],
+          "changed_fact": "S is an outside customer, or disputes having received the service.",
+          "counterexample": "The same receivable amount does not establish an intercompany elimination or S obligation.",
+          "consequence": "Reassess perimeter or disputed service; do not erase the parent balance with a consolidation plug.",
+          "open_questions": [
+            "Is control established under the applicable current framework?",
+            "Does the historical source match this entity and reporting period?"
+          ],
+          "evidence": {
+            "record_id": "example-connected-purchase-to-payment",
+            "record_pointer": "/data/bounded_extensions/1",
+            "publisher_locator": {
+              "source_id": "src_aa_i109_arb51_amended",
+              "url": "https://storage.fasb.org/ARB%2051.pdf",
+              "locator": "Selected After FAS 160 paragraphs 6 and 24, PDF pages 7-8; historical pre-Codification text, not current ASC 810"
+            },
+            "classification": "original synthetic extension using explicitly limited historical reference"
+          },
+          "relationship": {
+            "from_record": "example-connected-purchase-to-payment",
+            "to_record": "guide-accounting-claim-counterexamples",
+            "type": "qualifies",
+            "scope": "This pair only; not validation of other conclusions in the guide."
+          },
+          "review_trigger": "Re-review when the named facts, source edition, entity role, framework, decision date or cited record changes."
+        },
+        {
+          "id": "estimate-version",
+          "title": "A revised estimate changes both revenue arithmetic and approval scope",
+          "scoped_conclusion": "In the estimate-only construction alternative, 270,000 cost divided by 1,000,000 expected cost gives 324,000 cumulative revenue on the assumed 1,200,000 contract, a 36,000 reduction from the earlier 360,000.",
+          "required_facts": [
+            "Over-time recognition and input method are assumed applicable",
+            "No additional work, billing or price change",
+            "This alternative is separate from the normal August modification close"
+          ],
+          "changed_fact": "Expected cost changes again to 1,080,000 after the illustrated approval.",
+          "counterexample": "Cumulative revenue becomes 300,000 and the reduction 60,000; the earlier approved payload is different.",
+          "consequence": "Preserve the earlier estimate, recompute the affected workpaper and obtain a new decision; arithmetic does not authorize posting.",
+          "open_questions": [
+            "Does the actual contract meet current over-time criteria?",
+            "Do costs faithfully depict progress?",
+            "Who can authorize the exact changed payload?"
+          ],
+          "evidence": {
+            "record_id": "example-connected-purchase-to-payment",
+            "record_pointer": "/data/bounded_extensions/2",
+            "publisher_locator": {
+              "source_id": "src_construction_fasb_2014_09",
+              "url": "https://storage.fasb.org/ASU%202014-09_Section%20A.pdf",
+              "locator": "Original ASC 606-10-25-27 through 25-37 and 55-21; original 2014 amendment, not consolidated current GAAP"
+            },
+            "classification": "synthetic arithmetic with framework and contract assumptions"
+          },
+          "relationship": {
+            "from_record": "example-connected-purchase-to-payment",
+            "to_record": "guide-accounting-claim-counterexamples",
+            "type": "qualifies",
+            "scope": "This pair only; not validation of other conclusions in the guide."
+          },
+          "review_trigger": "Re-review when the named facts, source edition, entity role, framework, decision date or cited record changes."
+        },
+        {
+          "id": "audit-scope",
+          "title": "Useful evidence design is not automatically a binding audit duty",
+          "scoped_conclusion": "AS 1105 provides evidence requirements in applicable PCAOB audits. The connected internal-close packets borrow bounded evidence-design ideas.",
+          "required_facts": [
+            "Engagement type and governing standard identified",
+            "Applicable effective text checked",
+            "Procedure tied to its objective and population"
+          ],
+          "changed_fact": "The user is a bookkeeper preparing an internal close, not an auditor in a PCAOB engagement.",
+          "counterexample": "Citing AS 1105 does not transform a close packet into audit evidence or impose every PCAOB requirement on that role.",
+          "consequence": "Keep the design analogy labeled; establish the actual framework and accountable reviewer before claiming compliance or assurance.",
+          "open_questions": [
+            "Which engagement and period apply?",
+            "Are other governing requirements relevant?"
+          ],
+          "evidence": {
+            "record_id": "guide-connected-close-review",
+            "record_pointer": "/data/source_review",
+            "publisher_locator": {
+              "source_id": "src_0vf7hhg",
+              "url": "https://pcaobus.org/oversight/standards/auditing-standards/details/AS1105",
+              "locator": "Selected paragraphs .02, .05-.10A, .27 and .29, scoped reading September 21, 2026; amendment applicability remains separate"
+            },
+            "classification": "scoped standard comparison, not universal bookkeeping authority"
+          },
+          "relationship": {
+            "from_record": "guide-connected-close-review",
+            "to_record": "guide-accounting-claim-counterexamples",
+            "type": "qualifies",
+            "scope": "This pair only; not validation of other conclusions in the guide."
+          },
+          "review_trigger": "Re-review when the named facts, source edition, entity role, framework, decision date or cited record changes."
+        },
+        {
+          "id": "payout-mode",
+          "title": "Batch assignment depends on payout mode",
+          "scoped_conclusion": "Stripe documents transaction-batch reconciliation for automatic payouts; the fictional processor case separately traces processor activity and bank settlement.",
+          "required_facts": [
+            "Automatic payout mode",
+            "Correct account, currency, report population and period",
+            "Separate bank evidence"
+          ],
+          "changed_fact": "The payout is instant instead of automatic.",
+          "counterexample": "Stripe cannot identify an instant payout’s transaction batch; copying the automatic-payout attribution would invent lineage.",
+          "consequence": "Reconcile the available balance and bank movement without asserting unsupported transaction membership.",
+          "open_questions": [
+            "Which payout mode and report availability apply?",
+            "What account-specific evidence supports attribution?"
+          ],
+          "evidence": {
+            "record_id": "src_stripe_payout_reconciliation",
+            "record_pointer": "/data/evidence/0",
+            "publisher_locator": {
+              "source_id": "src_stripe_payout_reconciliation",
+              "url": "https://docs.stripe.com/reports/payout-reconciliation",
+              "locator": "Overview and instant-payout note, read September 21, 2026"
+            },
+            "classification": "publisher-documented behavior; no observed tenant operation"
+          },
+          "relationship": {
+            "from_record": "src_stripe_payout_reconciliation",
+            "to_record": "guide-accounting-claim-counterexamples",
+            "type": "qualifies",
+            "scope": "This pair only; not validation of other conclusions in the guide."
+          },
+          "review_trigger": "Re-review when the named facts, source edition, entity role, framework, decision date or cited record changes."
+        },
+        {
+          "id": "dispute-knowledge",
+          "title": "A later win does not establish earlier certainty",
+          "scoped_conclusion": "The fictional processor case shows a disputed claim at April close and a later recovery. Recoverability at April is an explicit assumption requiring review.",
+          "required_facts": [
+            "Known debit and fee events",
+            "Separate dates for dispute and decision",
+            "Applicable recovery assessment and evidence"
+          ],
+          "changed_fact": "The reviewer uses the June favorable outcome as if it were already known in April, or the claim is ultimately lost.",
+          "counterexample": "A later outcome cannot by itself support the earlier conclusion; an upheld dispute does not necessarily create a second processor debit.",
+          "consequence": "Preserve the decision-date evidence and distinguish reassessment or write-off from a duplicate cash posting.",
+          "open_questions": [
+            "What was knowable at the reporting date?",
+            "What recognition or subsequent-event rules apply to the actual entity?"
+          ],
+          "evidence": {
+            "record_id": "src_stripe_dispute_lifecycle",
+            "record_pointer": "/data/evidence/1",
+            "publisher_locator": {
+              "source_id": "src_stripe_dispute_lifecycle",
+              "url": "https://docs.stripe.com/disputes/how-disputes-work",
+              "locator": "End of dispute and Dispute fees, read September 21, 2026"
+            },
+            "classification": "documented processor lifecycle; accounting recognition remains a case assumption"
+          },
+          "relationship": {
+            "from_record": "src_stripe_dispute_lifecycle",
+            "to_record": "guide-accounting-claim-counterexamples",
+            "type": "qualifies",
+            "scope": "This pair only; not validation of other conclusions in the guide."
+          },
+          "review_trigger": "Re-review when the named facts, source edition, entity role, framework, decision date or cited record changes."
+        },
+        {
+          "id": "journal-population",
+          "title": "A short response is not proof of a completed journal traversal",
+          "scoped_conclusion": "Xero’s journal-specific documented rule continues with the last JournalNumber until an empty response.",
+          "required_facts": [
+            "Authorized Journals access",
+            "Same organization and declared cash/accrual basis",
+            "Correct cursor and stable reconciliation boundary"
+          ],
+          "changed_fact": "A response has fewer than 100 journals and a generic paginator stops.",
+          "counterexample": "The original short-page fixture retrieves two records instead of four even though the returned page is valid.",
+          "consequence": "Continue under the endpoint contract and reconcile the population; successful requests do not prove complete extraction.",
+          "open_questions": [
+            "Were there concurrent or backdated changes?",
+            "Does documented access apply to the current app cohort?"
+          ],
+          "evidence": {
+            "record_id": "src_xero_journals_completeness",
+            "record_pointer": "/data/evidence/0",
+            "publisher_locator": {
+              "source_id": "src_xero_journals_completeness",
+              "url": "https://developer.xero.com/documentation/api/accounting/journals",
+              "locator": "GET Journals pagination and offset guidance; documentation read September 21, 2026"
+            },
+            "classification": "publisher-documented traversal rule and separate synthetic counterexample"
+          },
+          "relationship": {
+            "from_record": "src_xero_journals_completeness",
+            "to_record": "guide-accounting-claim-counterexamples",
+            "type": "qualifies",
+            "scope": "This pair only; not validation of other conclusions in the guide."
+          },
+          "review_trigger": "Re-review when the named facts, source edition, entity role, framework, decision date or cited record changes."
+        }
+      ],
+      "apparent_disagreements": [
+        {
+          "comparison": "Generic pagination versus Xero Journals",
+          "resolution": "Different endpoint contracts; the specific journal rule qualifies generic guidance, not a proven publisher contradiction."
+        },
+        {
+          "comparison": "PCAOB evidence requirement versus internal-close design",
+          "resolution": "Different roles and purposes; a useful analogy is not universal binding authority."
+        },
+        {
+          "comparison": "Original ASU or ARB passage versus current reporting requirements",
+          "resolution": "Different editions and effective periods; historical text cannot silently stand in for current consolidated authority."
+        }
+      ],
+      "limitations": [
+        "Original selected illustrations, not exhaustive accounting rules or evidence of operating effectiveness.",
+        "Publisher locators and corpus JSON pointers serve different purposes.",
+        "Automatic citations and incoming views add no independent evidential support.",
+        "Final editorial brief freshness and combined graph/List presentation remain pending."
+      ]
+    }
   }
 ]
