@@ -240,3 +240,10 @@ Added the KeyBanc company settlement and GAO-05-693R source-population/control o
 ### P8 scoped claim/counterexample draft
 
 Added seven substantive pairs covering receipt knowledge, consolidation role, contract/estimate changes, audit framework, payout mode, dispute timing and journal traversal. Each records required facts, changed fact, consequence, open questions and distinct publisher versus corpus locators. Explicit qualifies edges reuse the canonical format; citations do not become supports. Final brief freshness, retrieval fixtures and graph/List presentation remain pending.
+
+
+### P9 bounded asset screen and local checks
+
+Added an eight-candidate usable-assets collection with explicit access, quotation, redistribution, modification, evaluation, training and commercial dispositions. Reuses four P4 profiles and preserves TabFormer/BAF/FiFAR unresolved chains as exclusions. Project fixtures are the eighth candidate. No external files enter exports.
+
+`python3 scripts/check-research-asset-samples.py ASSET_DIRECTORY` reads these previously downloaded files: `finbalance-release/data/coverage/records.jsonl`, `apex-release/data/dev.jsonl`, `finqa-release/dataset/dev.json`, `cord-first-row.json`. It executes no external scripts or network requests. Counts were143 FinBalance IDs,10 APEX tasks/89 criteria,883 FinQA IDs and11 CORD preview lines. The scope is structural; no model/grader/accounting reproduction is claimed. Eleven project fixture/replay/approval tests passed at source revision88da116. Receipts remain outside the repository. Final editorial and retrieval integration remain pending.
