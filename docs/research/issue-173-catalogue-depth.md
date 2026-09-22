@@ -276,3 +276,7 @@ Added an answer-first reading brief for the two connected cases, including a syn
 ### P1 attachment lineage
 
 Read the original Intuit attachment tutorial and Xero attachment reference. Added two source profiles and dossier rows distinguishing metadata, typed parent linkage, file bytes, permissions and mutable or temporary URLs. Xero replacement behavior and QBO's absent reverse transaction link explain why a transaction list or saved URL is insufficient evidence. Authorized-test protocols now cover changed attachment bytes and inaccessible files; no API operations were run. Structural validation reaches the expected stale draft mapping boundary.
+
+### P3 synthesis and current review reconciliation
+
+Replaced the empirical guide's obsolete abstract-only description with a bounded four-profile synthesis and preserved the six-additional-record screening decisions. Current source summaries and review-ledger entries now point to the actual selected methods and supplementary material; previous source reviews remain in each record as historical evidence. Clarified Fedyk's coefficient as a probability difference equivalent to five percentage points, not a relative-percent effect. No unavailable methods, private-input replication, human acceptance or operating effectiveness is claimed. The new reading brief binds the reviewed profiles and proposed human-measurement protocol. Current editorial dependencies match; final rendering, retrieval and export acceptance remain pending.

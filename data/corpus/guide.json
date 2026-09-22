@@ -34262,7 +34262,7 @@
     "id": "guide-independent-deployment-evidence",
     "kind": "guide",
     "title": "What independent deployments and failures actually show",
-    "summary": "Two workplace studies, a limited-access chatbot incident, SEC settlements, FINRA guidance, a bounded accounting field study, and a vendor/customer reconciliation story, with measured outcomes and transfer limits kept separate.",
+    "summary": "Accounting studies measure different outcomes: transaction classification, disclosed control weaknesses, restatements and detected disclosure writing. Their populations, methods and human-work measures do not establish safe autonomous close performance.",
     "topics": [
       "Scoped research",
       "Deployment, incidents and independent evidence",
@@ -34309,7 +34309,7 @@
     "data": {
       "guide_id": "guide-independent-deployment-evidence",
       "title": "What independent deployments and failures actually show",
-      "summary": "Two workplace studies, a limited-access chatbot incident, SEC settlements, FINRA guidance, a bounded accounting field study, and a vendor/customer reconciliation story, with measured outcomes and transfer limits kept separate.",
+      "summary": "Accounting studies measure different outcomes: transaction classification, disclosed control weaknesses, restatements and detected disclosure writing. Their populations, methods and human-work measures do not establish safe autonomous close performance.",
       "scope": "Selected independent AI-assistance evidence, accounting field evidence, vendor/customer practice evidence, incidents and governance guidance from 2023–2026. The accounting items are bounded and do not establish end-to-end accounting-agent performance.",
       "question_family_ids": [
         "q-deployment-evidence",
@@ -34742,94 +34742,215 @@
       "professional_review": "not-performed",
       "empirical_support": "partial-within-stated-field-study-scope",
       "editorial_brief": {
-        "question": "What independent deployments and failures actually show",
-        "answer": "Two workplace studies, a limited-access chatbot incident, SEC settlements, FINRA guidance, a bounded accounting field study, and a vendor/customer reconciliation story, with measured outcomes and transfer limits kept separate.",
+        "question": "What has AI improved in accounting, and what human work remains unmeasured?",
+        "answer": "Accounting studies measure different outcomes: transaction classification, disclosed control weaknesses, restatements and detected disclosure writing. Their populations, methods and human-work measures do not establish safe autonomous close performance.",
         "findings": [
           {
-            "claim": "In a staggered workplace deployment, an AI chat assistant improved customer-support resolution productivity but effects varied sharply by worker skill, and the study did not measure accounting or aggregate employment outcomes.",
-            "source_ids": [
-              "src_1l0q90c"
-            ],
-            "classification": "sourced-answer-bounded",
-            "qualification": "Two original empirical studies reviewed from public NBER/arXiv and HBS/Organization Science materials; evidence concerns workplace AI assistance, not accounting-agent performance."
-          },
-          {
-            "claim": "A randomized field experiment with expert consultants found strong gains on tasks selected inside GPT-4 capability boundaries but materially worse correctness on one outside-frontier task, demonstrating task-level heterogeneity and overreliance risk.",
-            "source_ids": [
-              "src_1p2g6i1"
-            ],
-            "classification": "sourced-answer-bounded",
-            "qualification": "Two original empirical studies reviewed from public NBER/arXiv and HBS/Organization Science materials; evidence concerns workplace AI assistance, not accounting-agent performance."
-          },
-          {
-            "claim": "A deployed customer-facing chatbot can generate a concrete refund obligation when its inaccurate policy guidance causes reliance; the Air Canada tribunal record is a contrary case to treating the model as an accountability boundary.",
-            "source_ids": [
-              "src_empirical_aircanada_2024"
-            ],
-            "classification": "limited-access-incident-summary",
-            "qualification": "Independent deployment, incident and contrary evidence for accounting-agent governance; benchmark evidence and vendor claims excluded."
-          },
-          {
-            "claim": "Independent enforcement found that AI capability claims themselves can be false even when marketed as part of financial services; vendor or issuer claims of AI use should be treated as claims requiring evidence, not deployment proof.",
-            "source_ids": [
-              "src_06qnpc3"
-            ],
-            "classification": "sourced-answer-bounded",
-            "qualification": "Independent deployment, incident and contrary evidence for accounting-agent governance; benchmark evidence and vendor claims excluded."
-          },
-          {
-            "claim": "FINRA’s 2024 notice treats GenAI use as subject to existing supervisory and securities obligations, including when a third-party tool is used, and calls out reliability, accuracy, privacy/integrity, model risk and pre-deployment evaluation.",
-            "source_ids": [
-              "src_finra2409"
-            ],
-            "classification": "regulatory-guidance",
-            "qualification": "Independent deployment, incident and contrary evidence for accounting-agent governance; benchmark evidence and vendor claims excluded."
-          },
-          {
-            "claim": "The Human + AI in Accounting abstract is directly relevant field evidence with a reported population and outcomes, but its proprietary methods and records do not establish public end-to-end accounting-agent correctness or control effectiveness.",
+            "claim": "In the published Choi study, Table10 reports an adjusted classification-accuracy difference of 0.175, or 17.5 percentage points (robust SE0.024), in 99 analytic participants completing 43 items each.",
             "source_ids": [
               "src_1sbtyzp"
             ],
-            "classification": "sourced-accounting-field-evidence-bounded",
-            "qualification": "Abstract-level review; transfer to ERP population completeness, correction handling, rights, and professional review remains unestablished."
+            "classification": "author-reported narrow experiment",
+            "locator": "Published2026 article Table10 p.1364; author experiment code and log; canonical /data/empirical_review_173",
+            "qualification": "The analysis excludes observations below0.2 accuracy and uses winsorized variables. Duration and binned self-reported review-time differences are not statistically significant. Private inputs were not reproduced; this is not end-to-end close accuracy."
           },
           {
-            "claim": "The U.S. Venture customer story is a vendor/customer practice example with reported reconciliation savings, not independent accuracy or completeness evidence.",
+            "claim": "Ashraf studies accounting-automation disclosures and SOX404(b) weaknesses; Fedyk studies audit-firm AI workforce investment and subsequent restatements.",
             "source_ids": [
-              "src_1v8cm5i"
+              "src_095yto0",
+              "src_0eqyd2f"
             ],
-            "classification": "vendor-customer-practice-example",
-            "qualification": "Customer story attribution and the absence of a published independent comparator or error denominator are retained."
+            "classification": "observational accounting evidence",
+            "locator": "Ashraf Table4A p.453; Fedyk Table4 column1 PDF pp.21–22; canonical empirical profiles",
+            "qualification": "Different technology proxies, periods and selected populations. Neither observational association establishes a specific agent’s causal effect or observed review-hour savings."
           },
           {
-            "claim": "The reviewed public packet still has an evidence gap for an independent end-to-end accounting-agent deployment with ledger correctness, correction handling, population completeness, and human-control evidence.",
+            "claim": "Blankespoor studies detected writing and linguistic features in disclosures, including a 100,070-observation risk-factor regression.",
             "source_ids": [
-              "src_1sbtyzp",
-              "src_1v8cm5i",
-              "src_0w8mvx4"
+              "src_1rrurlr"
             ],
-            "classification": "evidence-gap",
-            "qualification": "General workplace studies, federal governance evidence, vendor stories, and synthetic fixtures are not substituted for accounting deployment proof."
+            "classification": "authorship measurement comparison",
+            "locator": "Published2026 Table4A column(i); sections3–5; Online Appendix S1–S3",
+            "qualification": "Detector output, validation selection and unobserved issuer editing constrain interpretation. Authorship detection is not accounting correctness."
           }
         ],
         "unknowns": [
-          "No independent end-to-end accounting-agent deployment is established by this packet.",
-          "The accounting field study is available at abstract level with proprietary methods and records.",
-          "The U.S. Venture item is vendor/customer reported and lacks an independent accuracy denominator.",
-          "Air Canada official decision remained inaccessible; the incident summary retains that dependency."
+          "Independent end-to-end preparation, review and rework measurements on a common accounting task.",
+          "Production exception recovery, unauthorized-action rates and complete-population evidence.",
+          "Private raw inputs, parts of the appendices and preregistration correspondence identified in the individual profiles.",
+          "Methods for three excluded comparison records remain inaccessible or outside the reviewed material."
         ],
         "reading_order": [
-          "src_1l0q90c",
-          "src_1p2g6i1",
-          "src_empirical_aircanada_2024",
-          "src_06qnpc3",
-          "src_finra2409",
           "src_1sbtyzp",
-          "src_1v8cm5i"
-        ]
+          "src_095yto0",
+          "src_0eqyd2f",
+          "src_1rrurlr",
+          "guide-connected-close-review"
+        ],
+        "reading_notes": [
+          {
+            "record_id": "src_1sbtyzp",
+            "reason": "Separate published experiment, observational platform data and self-reported survey results."
+          },
+          {
+            "record_id": "guide-connected-close-review",
+            "reason": "Inspect the proposed measurement protocol; no efficiency result has been measured."
+          }
+        ],
+        "reading": {
+          "scope": "A purposeful accounting-specific screen: one deepened field study, three retained method comparisons and three deferred comparisons. Earlier general-workplace, regulatory and vendor records remain linked context, not interchangeable accounting measurements.",
+          "critical_limitation": "These are scoped author-reported findings and project synthesis, not independent reproduction, a systematic review or professional acceptance.",
+          "sections": [
+            {
+              "title": "Match the outcome to the decision",
+              "paragraphs": [
+                "Classification against preset accounts, material-weakness reports, restatements and detected writing answer different questions. Do not average them or turn them into a model ranking."
+              ]
+            },
+            {
+              "title": "Count the human work",
+              "paragraphs": [
+                "Duration, self-reported review bins, fees and staffing proxies are different measures. The connected-case protocol proposes separate preparation, review, rework, escalations, missed exceptions and final quality measurements. It has not been run."
+              ]
+            },
+            {
+              "title": "Keep versions and missing evidence visible",
+              "paragraphs": [
+                "The published2026 Choi article, its available supplement and author logs support the selected synthesis. Its earlier working-paper abstract is not the result version used here. Prior-version differences, private records and unavailable preregistration details remain unresolved.",
+                "The screening matrix names every retained and deferred comparison and the missing material. A source’s abstract or vendor efficiency claim cannot replace an inspected method and denominator."
+              ]
+            }
+          ],
+          "example": {
+            "title": "Original review-planning contrast",
+            "classification": "original-synthetic",
+            "assumptions": "Illustrative decisions only; no measured participants or outcomes.",
+            "columns": [
+              "Observation",
+              "Permitted inference",
+              "Still needed"
+            ],
+            "rows": [
+              [
+                "More preset categories correct",
+                "Better classification on that task",
+                "Population, exceptions and treatment evidence"
+              ],
+              [
+                "Lower reported audit fee",
+                "Different observed price or cost proxy",
+                "Actual preparation/review/rework time"
+              ],
+              [
+                "Balanced synthetic ledger",
+                "Entries sum under stated assumptions",
+                "Recognition, period, entity and source sufficiency"
+              ]
+            ]
+          },
+          "responsibilities": [
+            {
+              "role": "Research reader",
+              "task": "Match version, population, denominator and outcome to the proposed use.",
+              "boundary": "Cannot promote a proxy into a measured operational result."
+            },
+            {
+              "role": "Evaluation owner",
+              "task": "Define a lawful task and measure all affected human work.",
+              "boundary": "The protocol is a proposal; no tenant or participant study is authorized here."
+            },
+            {
+              "role": "Accountable reviewer",
+              "task": "Assess applicability and unresolved evidence.",
+              "boundary": "Agent synthesis does not supply professional sign-off."
+            }
+          ],
+          "exception": {
+            "title": "When the supporting study changes",
+            "paragraphs": [
+              "A new version, changed analytic exclusions or corrected outcome definition requires renewed synthesis. Preserve the prior result’s version and do not refresh dependency hashes without checking the claim."
+            ]
+          },
+          "gap_url": "https://github.com/HenryBranchAdams/ai-agents-in-accounting/issues/173",
+          "review": {
+            "reviewed_at": "2026-09-21",
+            "reviewer": "Codex AI-assisted editorial synthesis review",
+            "scope": "Reconciled the selected published-study profiles, version/access statements, matrix and proposed review protocol. Previous abstract-only description replaced with the actual scoped review. No renewal of unrelated historical source reviews or human acceptance.",
+            "dependencies": [
+              {
+                "record_id": "guide-independent-deployment-evidence",
+                "sha256": "257b70942634341f6ba6bb809918c6ef539d54fb86a88028cb6adfb3683bf702"
+              },
+              {
+                "record_id": "src_1l0q90c",
+                "sha256": "6eb9e6100a1abe837407834d73237e7a6b9e4b0a6c127d42701d9439a72d12d1"
+              },
+              {
+                "record_id": "src_1p2g6i1",
+                "sha256": "e0851e82d766382df2f7b8cd053d061785bdd41226d8964ef46cebc007999e4f"
+              },
+              {
+                "record_id": "src_empirical_aircanada_2024",
+                "sha256": "d8f43b76c4935a84ca6d672d4edaf8817ce8f1e91b067b1666544c6af88b2b8e"
+              },
+              {
+                "record_id": "src_06qnpc3",
+                "sha256": "73b84d015fd6206d31384fdf12d6a96797f1cdee14004f631f5dd84d343d7c0b"
+              },
+              {
+                "record_id": "src_finra2409",
+                "sha256": "9c5285cc93ee6cc58ee10fa7860bf697f106a301ce1fecf1def77f618010e4c9"
+              },
+              {
+                "record_id": "src_1sbtyzp",
+                "sha256": "879a3c949cfef5e7e1ffa33f606be6496d90a61bec4f52994af38a79de7f862c"
+              },
+              {
+                "record_id": "src_1v8cm5i",
+                "sha256": "20b401a12e46321a4dcf41624f9f2767d4134930760b4c8d91bed3918a18243b"
+              },
+              {
+                "record_id": "src_038j28b",
+                "sha256": "34c1a3bfe1fbfdbc60dfe05f953b2f60375994ebcbcf94fb69230aa0fae6b86b"
+              },
+              {
+                "record_id": "src_0w8mvx4",
+                "sha256": "baa5ccf4d7ac7f1d4148c677fd220d8ab70b061e0b458614dcc95003cf5d25d0"
+              },
+              {
+                "record_id": "src_095yto0",
+                "sha256": "f5b83338283374eeac0ec2c0977fee87946d21c2c356bc6871a1e6daf05c856b"
+              },
+              {
+                "record_id": "src_0eqyd2f",
+                "sha256": "c946d79e1d3989c68b4c72c21813f45545a253ab26696e2292c074464dc46c27"
+              },
+              {
+                "record_id": "src_1rrurlr",
+                "sha256": "8393545bd7673381f5cc972b80f6306d5ef6b42cd5bdaa145883ad910d2849c2"
+              },
+              {
+                "record_id": "src_0p2iwpf",
+                "sha256": "0a9d1950af9430cfe7b9a46eb39ef1a5a497a377aa4de2cdd366feaf53d6b723"
+              },
+              {
+                "record_id": "src_1erdqmu",
+                "sha256": "432ce6e60c512ff958f66fa3f5f8fec0ed6e445fce0cd286935c07240dbbb6b3"
+              },
+              {
+                "record_id": "src_04xdzm4",
+                "sha256": "1be74f26acda6d63e07f46e4b1eaf190c6b220888c98f531f67357953f20f13d"
+              },
+              {
+                "record_id": "guide-connected-close-review",
+                "sha256": "97d2be8cb6f02a42ef49a779e44c0a750ca1a26826e9d7057bbbd4a677576b43"
+              }
+            ]
+          }
+        }
       },
       "accounting_evidence_update_173": {
-        "status": "Draft cross-study matrix; editorial reconciliation and primary-study version work pending",
+        "status": "Bounded four-profile synthesis with three additional screened records excluded from quantitative synthesis; final integration and acceptance pending",
         "screened_on": "2026-09-21",
         "question": "Which accounting outcomes are actually measured, and what human work remains unmeasured?",
         "selection_method": "Bounded purposeful comparison of six additional accounting-specific records already in the corpus. Primary publisher/author material was preferred. This is not a systematic review or an exhaustive search.",
@@ -34914,9 +35035,8 @@
         ],
         "review_protocol": "guide-connected-close-review",
         "remaining_work": [
-          "Complete the Choi published/working/supplement version reconciliation to the extent lawfully accessible.",
-          "Check all affected editorial prose, source summaries and relationship annotations against the revised primary profiles before edition finalization.",
-          "Complete editorial review, relationship semantics, retrieval and final export checks before counting P3 complete."
+          "Retain stated external full-text, private-input and preregistration dependencies; no quantitative conclusion is adopted from deferred studies.",
+          "Complete relationship, retrieval, export and maintainer acceptance checks against the final integrated corpus."
         ]
       }
     }
