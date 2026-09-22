@@ -215,3 +215,8 @@ Reviewed paper v1 methods, grading, limitations and worked example; pinned HF de
 ### P4 FinQA contrast
 
 Inspected publisher paper task/method/licensing sections, rendered Figure3 and pinned repository0f16e2867befa6840783e58be38c9efb9229d742. Read actual local evaluator and documented2022 leakage correction; counted883dev examples and inspected one schema/example. Recorded execution versus symbolic-program metrics and the local evaluator's supplied-prediction denominator, requiring independent population validation. Upstream report/data rights chain remains separate from MIT software license. No model/grader run or dataset redistribution. Document-extraction contrast and selection guide remain pending.
+
+
+### P4 document-extraction contrast and selection guide
+
+Added original CORD release profile and four-resource capability guide. CORD original README/license and HF metadata pinned; one preview schema row inspected, without asserting pinned Parquet identity. Primary paper browser check/403 is an unresolved methods dependency, not substituted with search snippets. Public1000-sample release and removed labels remain distinct from original collection. No fulltext or receipt assets enter exports. Selection guide links both connected cases and separates parsing, QA, ledger replay, source support and authorization. Final rights/relationship/editorial integration and broader P9 work remain pending.

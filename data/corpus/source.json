@@ -99454,5 +99454,108 @@
       ],
       "access_note": "Original Intuit page content read through Exa after generic landing routes returned shells; no external full text stored."
     }
+  },
+  {
+    "id": "src_cord_receipt_parsing",
+    "kind": "source",
+    "title": "CORD: receipt text and hierarchy extraction",
+    "summary": "Public Indonesian receipt samples with OCR boxes, text and semantic groups support parsing research. They do not supply a ledger, proof of payment, approval workflow or complete accounting population.",
+    "topics": [
+      "Agent engineering",
+      "Evidence and reconciliation"
+    ],
+    "industries": [],
+    "jurisdiction": "Indonesian receipt collection; not a US accounting-treatment authority",
+    "source_type": "Dataset documentation",
+    "publisher": "NAVER CLOVA AI",
+    "source_url": "https://github.com/clovaai/cord",
+    "source_ids": [],
+    "related_ids": [
+      "example-connected-purchase-to-payment"
+    ],
+    "review_status": "source-checked",
+    "reviewed_at": "2026-09-21",
+    "provenance": {
+      "added_on": "2026-09-21",
+      "reviewer": "Codex AI-assisted source review",
+      "scope": "Pinned original README, release tree, license and HF metadata plus one public preview row; paper access blocked.",
+      "evidence_urls": [
+        "https://github.com/clovaai/cord/blob/327310ce58c1623255821d062b3a759ff3789e3c/README.md",
+        "https://github.com/clovaai/cord/blob/327310ce58c1623255821d062b3a759ff3789e3c/LICENSE-CC-BY",
+        "https://huggingface.co/datasets/naver-clova-ix/cord-v2"
+      ],
+      "outcome": "Supports release/schema/access observations only. No model score, paper-method verification or full dataset audit.",
+      "benchmark_review_pointer": "/data/benchmark_review_173",
+      "note": "Release documentation and one preview annotation checked; unavailable primary paper methods remain unresolved. No accounting or professional validation."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false,
+      "source_status": "licensed",
+      "source_license": "CC-BY-4.0",
+      "source_license_url": "https://github.com/clovaai/cord/blob/327310ce58c1623255821d062b3a759ff3789e3c/LICENSE-CC-BY",
+      "source_permission_scope": "Publisher grants CC-BY-4.0 for released material; attribution, change notices and applicable third-party rights remain. Unreleased collection not included."
+    },
+    "data": {
+      "benchmark_review_173": {
+        "reviewed_at": "2026-09-21",
+        "status": "bounded release assessment; paper/grader-method dependency unresolved",
+        "release": {
+          "repository_revision": "327310ce58c1623255821d062b3a759ff3789e3c",
+          "hf_revision": "7f0115a4b758a71d6473b8d085751692da2fef98",
+          "version": "CORD v2, README release date July20,2022; preview meta.version2.0.0",
+          "objects": [
+            {
+              "path": "README.md",
+              "sha256": "827f4828fa7e8262cb942f424e0c2db695b8422636977537949a24e483e9e7f6"
+            },
+            {
+              "path": "LICENSE-CC-BY",
+              "sha256": "7e7170e3cebf88a9f60c7b8421418323c09304da1af4d5e90f4da1dc1c8a2661"
+            },
+            {
+              "path": "hf-metadata.json",
+              "sha256": "2ac47b006aac85376bc949b19bcb3b71b161cc2dc19d4ae930d6541059cf51ce"
+            },
+            {
+              "path": "hf-README.md",
+              "sha256": "835f3f7d88a86e05a882c6a6b6333da6ab874776385f85473798769d767c2fca"
+            },
+            {
+              "path": "hf-dataset_infos.json",
+              "sha256": "f6bf08c14985d5dfd9d26f7dcbfbe1f662891c6dadc284ecd3dc57716a49e7da"
+            }
+          ]
+        },
+        "capability": "Post-OCR semantic labeling and receipt-item hierarchy, distinguishable from arithmetic QA, ledger reconstruction and tool-using close tasks.",
+        "public_private": "Public release1000 samples, split800/100/100 according to original metadata. The larger11000-plus collection described in README is not the public release. No private evaluation labels acquired.",
+        "inputs_outputs": "Image and ground_truth JSON string; line words have quadrilateral coordinates, text, category, group/subgroup IDs; gt_parse is hierarchical. One test-preview row actually inspected. Preview service is mutable and was not proven identical to pinned Parquet bytes.",
+        "version_cautions": [
+          "README removed store_info/payment_info/etc classes before publication for stated Indonesian legal reasons. Do not infer the original five-superclass/42-subclass description matches released labels.",
+          "v2 corrects labels and adds subgroup structure; v1/v2 scores are not automatically comparable."
+        ],
+        "grading_and_limits": {
+          "verified": "Released schema describes labeled text and grouping; inspected repository contains documentation/license/sample figure, not an executable grader.",
+          "missing": "Primary paper redirected to browser verification; indexed PDF URL returned403. Exact original scoring, split construction, model/budget settings and repeat-run methodology were not verified.",
+          "not_established": "No journal replay, source completeness, cutoff, authorization, settlement, exception policy or production effectiveness metric is established by these release files.",
+          "next_evidence": "Readable original paper plus versioned evaluator and its normalization/group-matching rules are needed before reproducing or comparing scores."
+        },
+        "rights_access": {
+          "basis": "https://github.com/clovaai/cord/blob/327310ce58c1623255821d062b3a759ff3789e3c/LICENSE-CC-BY",
+          "license": "CC-BY-4.0",
+          "required": "Preserve attribution, license link and modification notices. The grant covers rights the licensor can grant; do not reconstruct removed labels or infer rights to unavailable collection material.",
+          "corpus_export": "Only original annotations and locators; no receipt image/text is exported.",
+          "bounded_use": "Inspect schema and plan a separately licensed parsing experiment. Do not claim benchmark reproduction or accounting readiness."
+        },
+        "case_links": [
+          {
+            "record_id": "example-connected-purchase-to-payment",
+            "overlap": "Receipt/invoice field capture precedes matching, ownership, cutoff and posting; none follows from parsing accuracy alone."
+          }
+        ]
+      }
+    }
   }
 ]

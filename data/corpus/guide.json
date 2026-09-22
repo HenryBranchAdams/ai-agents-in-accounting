@@ -72111,5 +72111,125 @@
         ]
       }
     }
+  },
+  {
+    "id": "guide-select-accounting-evaluations",
+    "kind": "guide",
+    "title": "Choose an evaluation for the accounting capability you need",
+    "summary": "Separate report arithmetic, receipt parsing, document-to-ledger reconstruction and tool-based close reasoning; inspect what each score omits before choosing a test.",
+    "topics": [
+      "Accounting and reporting",
+      "Evidence and reconciliation",
+      "Controls and governance"
+    ],
+    "industries": [],
+    "jurisdiction": "Original US internal-control design examples; system and engagement applicability require local review",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_finqa2021",
+      "src_cord_receipt_parsing",
+      "src_0qwi4ry",
+      "src_apexaccounting_paper2026"
+    ],
+    "related_ids": [
+      "example-connected-purchase-to-payment",
+      "example-connected-processor-settlement",
+      "guide-accounting-action-boundaries"
+    ],
+    "review_status": "draft-editorial-review-pending",
+    "reviewed_at": null,
+    "provenance": {
+      "added_on": "2026-09-21",
+      "reviewer": "Codex original comparative synthesis",
+      "scope": "Capability comparison based on individually scoped primary-source profiles; final editorial integration pending.",
+      "note": "No hosted evaluation, model ranking or production assurance."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false
+    },
+    "data": {
+      "version": "issue-173-draft",
+      "answer": "Choose the narrow capability and evidence contract first. A correct extracted value, numerical answer, balanced ledger and plausible final explanation are different outcomes; none alone proves complete evidence or authorized action.",
+      "selection_matrix": [
+        {
+          "need": "Question answering over a prepared report",
+          "resource": "src_finqa2021",
+          "use": "Inspect executable arithmetic and symbolic-program agreement, with complete prediction-ID coverage.",
+          "missing": "Transaction population, double-entry ledger, permissions and reconciliation. Verify corrected release and upstream report rights."
+        },
+        {
+          "need": "Receipt field and hierarchy extraction",
+          "resource": "src_cord_receipt_parsing",
+          "use": "Inspect released image/text/group schema; public1000-sample scope only.",
+          "missing": "Paper/grader access remains unresolved, so no verified score comparison. Parsing does not establish accounting or payment meaning."
+        },
+        {
+          "need": "Document-to-posting and statement consistency",
+          "resource": "src_0qwi4ry",
+          "use": "Read reported balance, replayed balance, strict document links and extra/missing entries together.",
+          "missing": "Headline entry key omits dates; correct replay can coexist with other diagnostics. No operational authority test."
+        },
+        {
+          "need": "Tool-assisted close reasoning across files",
+          "resource": "src_apexaccounting_paper2026",
+          "use": "Inspect public dev tasks and distinguish partial-criterion success, one-success-in-eight and all-eight success.",
+          "missing": "Private held-out tasks, tool layer and optimized grader are unavailable; final-answer score does not verify trajectory or actual accounting writes."
+        }
+      ],
+      "decision_protocol": [
+        "Specify output, source population, cutoff, units and permitted actions before selecting a score.",
+        "Pin dataset, grader, prompts, model identifier, budget and split; keep public development separate from held-out evaluation.",
+        "Inspect denominator, missing/duplicate submissions, invalid outputs and exception behavior. A high score on a selected subset is not full-population accuracy.",
+        "Test contradictory evidence and correct totals with unsupported entries separately from ordinary happy paths.",
+        "Keep parsing, arithmetic, ledger replay, source support, approval and settlement checks separate; require evidence for each claim.",
+        "Use repeated independent trials for reliability claims and report costs/exclusions. Do not treat best-of-k as consistent success."
+      ],
+      "case_connections": [
+        {
+          "record_id": "example-connected-purchase-to-payment",
+          "test": "Use document lineage, period cutoff, supplier credit and uncertain payment branches to expose gaps left by QA/parsing metrics."
+        },
+        {
+          "record_id": "example-connected-processor-settlement",
+          "test": "Compare recorded balances with event timing, refunds, disputes and bank evidence; ledger balance is not proof of settled cash."
+        }
+      ],
+      "limitations": [
+        "CORD assessment is complete only as a bounded public-release/schema review; primary methods/grader dependency remains explicit.",
+        "No model runs or independent score reproduction performed for these profiles.",
+        "Final P4 relationship and editorial integration remains pending. P9 broader asset screening and bounded reproduction remain separate."
+      ],
+      "rights_access_matrix": [
+        {
+          "source_id": "src_finqa2021",
+          "public": "Report excerpts, labels and program examples in public splits; private-test inputs omit references.",
+          "reuse": "MIT software notice; upstream FinTabNet/report rights chain unresolved for copied text or training recommendation.",
+          "recommended_now": "Inspect programs and grader; original project fixtures avoid copying report content."
+        },
+        {
+          "source_id": "src_cord_receipt_parsing",
+          "public": "1000 released samples, reduced labels; original larger collection not established available.",
+          "reuse": "CC-BY-4.0 publisher release; retain attribution/license/change notices and respect omitted material.",
+          "recommended_now": "Inspect schema; obtain original methods/evaluator before claiming reproduced metrics."
+        },
+        {
+          "source_id": "src_0qwi4ry",
+          "public": "Synthetic records, generated assets and code; paper-run provider outputs not established available in inspected tree.",
+          "reuse": "Apache-2.0 code, CC-BY-4.0 generated data; provider outputs excluded from data grant.",
+          "recommended_now": "Inspect or reproduce bounded offline synthetic checks under applicable notices; exact paper-run equivalence remains unverified."
+        },
+        {
+          "source_id": "src_apexaccounting_paper2026",
+          "public": "10-task dev world;160-task scored set, injected tool layer and optimized template unavailable.",
+          "reuse": "CC-BY-4.0 public dev data; separate Apache-2.0 framework; no private-set grant.",
+          "recommended_now": "Inspect tasks and rubric with attribution; do not report dev results as official scores."
+        }
+      ]
+    }
   }
 ]
