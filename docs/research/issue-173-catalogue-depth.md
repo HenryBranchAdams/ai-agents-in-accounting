@@ -230,3 +230,8 @@ Read original settled SEC company orders for Mattel(33-11122) and Under Armour(3
 ### P5 supplier and estimate cases
 
 Added Kraft Heinz corrected-order and Fluor company-order profiles, bringing the draft casebook to four entries. Read primary PDF text, distinguish Kraft transaction subsets and its limited bankruptcy admission, and separate Fluor cost estimates from unsupported recovery. Later fund evidence is dated and qualified: a forecast or distribution authorization does not prove investor payment. Local PDF access returned 403, so no downloaded-object digest is asserted. Original proposed lessons and unexecuted synthetic extensions remain distinct from settled findings. Two further cases and final editorial integration remain pending.
+
+
+### P5 six-case draft
+
+Added the KeyBanc company settlement and GAO-05-693R source-population/control observations. The company settlement is separate from allegations in an individual proceeding. GAO’s accessible primary report and recommendation follow-up distinguish a corrected revenue classification and unverified employee population from missing cash or proven fraud; later implementation is explicitly dated. Six cases now cover period errors, narrative omissions, supplier obligations/override, estimates, unsupported adjustments, and population verification. Final editorial, qualified relationship and combined retrieval/UI checks remain pending.

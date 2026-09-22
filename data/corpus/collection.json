@@ -3525,7 +3525,9 @@
       "src_sec_mattel_2022_order",
       "src_sec_under_armour_2021_order",
       "src_sec_kraft_2021_order",
-      "src_sec_fluor_2023_order"
+      "src_sec_fluor_2023_order",
+      "src_sec_keybanc_2016_order",
+      "src_gao_sec_2005_population_controls"
     ],
     "related_ids": [
       "wf-tax-income-tax-provision",
@@ -3537,7 +3539,10 @@
       "example-connected-purchase-to-payment",
       "wf-p2p-three-way-match",
       "wf-construction-wip-close",
-      "wf-construction-contract-intake"
+      "wf-construction-contract-intake",
+      "wf-r2r-balance-reconciliations",
+      "wf-audit-population-evidence",
+      "ctrl-input-completeness"
     ],
     "review_status": "draft-editorial-review-pending",
     "reviewed_at": null,
@@ -3555,8 +3560,8 @@
     },
     "data": {
       "version": "issue-173-draft",
-      "status": "Four substantive entries; required casebook coverage and final review not yet complete",
-      "reading_rule": "Distinguish settled findings, allegations, issuer statements and inspection observations. These entries describe historical human/company processes; no AI attribution.",
+      "status": "Six substantive primary-source cases; final editorial and relationship integration pending",
+      "reading_rule": "Distinguish settled findings, allegations, issuer statements and audit observations. Cases are selected illustrations, not a representative sample or incidence estimate. No AI attribution.",
       "cases": [
         {
           "id": "case-mattel_2022_order",
@@ -3685,9 +3690,68 @@
             "classification": "original proposed exercise, not executed or observed",
             "description": "Use the connected case’s original construction-estimate extension: attach an updated cost estimate and a customer message promising review, then require separate treatment of cost changes and unapproved recovery. The arithmetic fixture is synthetic and cannot establish contractual entitlement."
           }
+        },
+        {
+          "id": "case-sec_keybanc_2016_order",
+          "source_id": "src_sec_keybanc_2016_order",
+          "dated_facts": "The settled company order describes unsupported entries used to complete monthly closes before January 2011 through January 2012. Reported assets and income were overstated; the company later restated 2010 results. Required monthly certification that ledger balances agreed with back-office information did not establish support for the entries.",
+          "event_date": "2016-02-29",
+          "primary_locators": [
+            "Section II; Section III footnote 1 and paragraphs 3-5, 7-11",
+            "Section IV A-C"
+          ],
+          "procedural_posture": "Settled company findings without admitting or denying except jurisdiction; censure, cease-and-desist order and $175,000 penalty. Findings do not bind other persons.",
+          "does_not_establish": "This company order does not decide every allegation in the separate individual proceeding. No inference about present employment, current controls, penalty payment or AI involvement.",
+          "status_review": "Focused SEC search on September 21, 2026 identified the settled company order as the supported disposition; no later change established. This is not an exhaustive docket review.",
+          "mechanism": "Unsupported adjustments that conceal reconciliation exceptions",
+          "project_design_lesson": {
+            "classification": "original proposed control lesson",
+            "text": "Retain the pre-adjustment difference and evidence for each proposed resolution. A ledger forced to match another total is not substantiated merely because the final difference is zero. Reviewer certification must refer to the actual evidence and unresolved exceptions.",
+            "effectiveness": "Not tested and not claimed certain to prevent the historical event."
+          },
+          "workflow_control_ids": [
+            "wf-r2r-balance-reconciliations",
+            "ctrl-override-monitoring",
+            "ctrl-version-evidence"
+          ],
+          "connected_case_id": "example-connected-processor-settlement",
+          "synthetic_variant": {
+            "classification": "original proposed exercise, not executed or observed",
+            "description": "In the processor case, propose a fictional balancing entry for an unexplained bank difference without a supporting event. Require the workpaper to preserve the exception even if the arithmetic balances. This variant is unexecuted, not historical KeyBanc data."
+          }
+        },
+        {
+          "id": "case-gao_sec_2005_population_controls",
+          "source_id": "src_gao_sec_2005_population_controls",
+          "dated_facts": "GAO’s FY2004 audit follow-up found no reconciliation between successful EDGAR fee-bearing filings and filing-fee revenue. About $154 million had been recorded in a different revenue category and was corrected. GAO also found no documented verification that payroll-system employee lists matched current staff. These findings concern classification and assurance gaps, not proof of missing cash or fictitious employees.",
+          "event_date": "2005-08-12",
+          "primary_locators": [
+            "Introduction and Enclosure II: Details on Audit Scope and Methodology",
+            "Recording Filing Fee Revenue, recommendations 4-5",
+            "Review of Final Processed Payroll Data, recommendation 10"
+          ],
+          "procedural_posture": "Government audit management report, not an enforcement allegation or adjudication. This report addresses matters not material to the financial statements; separate material weaknesses are described in other reports.",
+          "does_not_establish": "Historical federal-agency context and test-based audit scope. It does not establish a universal error rate, present conditions, actual fraudulent payroll, or AI involvement.",
+          "status_review": "The GAO product page marks the selected recommendations implemented: filing-fee procedures in 2005 and reconciliation matrix in 2006; active-employee checking was found operating effectively in the 2006 audit. This dated follow-up does not establish present effectiveness.",
+          "mechanism": "Unverified system populations and misclassified source-to-ledger transfers",
+          "project_design_lesson": {
+            "classification": "original proposed control lesson",
+            "text": "Compare the defined source population to ledger classification and independent current-entity records. Successful batch transfer or aggregate agreement does not prove that every item belongs in the intended population or account.",
+            "effectiveness": "Not tested and not claimed certain to prevent the historical event."
+          },
+          "workflow_control_ids": [
+            "wf-audit-population-evidence",
+            "wf-r2r-balance-reconciliations",
+            "ctrl-input-completeness"
+          ],
+          "connected_case_id": "example-connected-purchase-to-payment",
+          "synthetic_variant": {
+            "classification": "original proposed exercise, not executed or observed",
+            "description": "In the purchase case, preserve a complete list of source documents while intentionally placing one event in the wrong account. Require both item coverage and account classification checks; a matching total alone must not clear the exception. This is an original unexecuted extension."
+          }
         }
       ],
-      "remaining_scope": "Expand to approximately six well-supported cases spanning at least four mechanisms, then editorially integrate qualified relationships and source freshness."
+      "remaining_scope": "Final editorial integration, relationship qualifications, freshness dependencies, retrieval and presentation verification with the combined corpus."
     }
   }
 ]
