@@ -225,3 +225,8 @@ Added original CORD release profile and four-resource capability guide. CORD ori
 ### P5 first substantive entries
 
 Read original settled SEC company orders for Mattel(33-11122) and Under Armour(33-10940), preserving the former's period-specific error and the latter's explicit no-GAAP-finding footnote. Added two source profiles and a draft casebook collection with precise locators, dispositions, limitations, separate proposed lessons and original unexecuted variants. No AI attribution, payment-status claim or finding about separate defendants/private litigation. P5 remains incomplete pending broader primary cases and final review.
+
+
+### P5 supplier and estimate cases
+
+Added Kraft Heinz corrected-order and Fluor company-order profiles, bringing the draft casebook to four entries. Read primary PDF text, distinguish Kraft transaction subsets and its limited bankruptcy admission, and separate Fluor cost estimates from unsupported recovery. Later fund evidence is dated and qualified: a forecast or distribution authorization does not prove investor payment. Local PDF access returned 403, so no downloaded-object digest is asserted. Original proposed lessons and unexecuted synthetic extensions remain distinct from settled findings. Two further cases and final editorial integration remain pending.

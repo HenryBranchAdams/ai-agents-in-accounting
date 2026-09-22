@@ -3523,7 +3523,9 @@
     "source_url": null,
     "source_ids": [
       "src_sec_mattel_2022_order",
-      "src_sec_under_armour_2021_order"
+      "src_sec_under_armour_2021_order",
+      "src_sec_kraft_2021_order",
+      "src_sec_fluor_2023_order"
     ],
     "related_ids": [
       "wf-tax-income-tax-provision",
@@ -3532,7 +3534,10 @@
       "example-connected-processor-settlement",
       "wf-us-contract-revenue-cutoff",
       "ctrl-version-evidence",
-      "example-connected-purchase-to-payment"
+      "example-connected-purchase-to-payment",
+      "wf-p2p-three-way-match",
+      "wf-construction-wip-close",
+      "wf-construction-contract-intake"
     ],
     "review_status": "draft-editorial-review-pending",
     "reviewed_at": null,
@@ -3550,7 +3555,7 @@
     },
     "data": {
       "version": "issue-173-draft",
-      "status": "Two substantive entries; required casebook coverage not yet complete",
+      "status": "Four substantive entries; required casebook coverage and final review not yet complete",
       "reading_rule": "Distinguish settled findings, allegations, issuer statements and inspection observations. These entries describe historical human/company processes; no AI attribution.",
       "cases": [
         {
@@ -3609,6 +3614,76 @@
           "synthetic_variant": {
             "classification": "original proposed exercise, not executed or observed",
             "description": "Original proposed exercise: shift a fictional order’s requested delivery date while retaining original and revised versions, then ask which narrative claims require review. Do not label the shift an accounting violation without recognition facts."
+          }
+        },
+        {
+          "id": "case-kraft_2021_order",
+          "source_id": "src_sec_kraft_2021_order",
+          "dated_facts": "The SEC found premature expense reductions from supplier arrangements during late 2015 through 2018. Documentation mischaracterized future commitments as current or past benefits. The order distinguishes approximately 59 transactions and $50 million in understated cost of goods sold from the broader 295-transaction, $208 million restatement population.",
+          "event_date": "2021-09-03",
+          "primary_locators": [
+            "Section II settlement terms",
+            "Section III paragraphs 1-6, 19-21, 25-36",
+            "Section IV B and F; Section V"
+          ],
+          "procedural_posture": "Settled administrative findings; KHC did not admit or deny except jurisdiction. The corrected order imposed a $62 million company penalty. Section V separately admits findings by Pelleissone solely for bankruptcy discharge exceptions, not a general admission by KHC.",
+          "does_not_establish": "Company case only; no inference about separate defendants or private class-action litigation. Historical expense recognition and documentation findings do not establish AI involvement or effectiveness of the proposed control.",
+          "later_status": {
+            "reviewed_at": "2026-09-21",
+            "summary": "Reviewed September 21, 2026: the fund administrator’s June 2026 update anticipates September distributions after claim review. This forecast is not confirmation that distribution occurred. Separate private class-action payments are not the SEC Fair Fund.",
+            "source_url": "https://khcfairfund.com/",
+            "locator": "June 2026 Update, read September 21, 2026"
+          },
+          "mechanism": "Mischaracterized supplier consideration and review override",
+          "project_design_lesson": {
+            "classification": "original proposed control lesson",
+            "text": "Preserve the complete supplier arrangement, including future volumes, repayment through pricing and side terms. Compare economic obligations with the accounting explanation; retain conflicting versions and the reason for any changed reviewer conclusion.",
+            "effectiveness": "Not tested and not claimed certain to prevent the historical event."
+          },
+          "workflow_control_ids": [
+            "wf-p2p-three-way-match",
+            "ctrl-override-monitoring",
+            "ctrl-version-evidence"
+          ],
+          "connected_case_id": "example-connected-purchase-to-payment",
+          "synthetic_variant": {
+            "classification": "original proposed exercise, not executed or observed",
+            "description": "Add an explicitly fictional supplier credit whose immediate benefit is offset by higher future prices. Keep the entire agreement in the review packet and flag a summary that omits the offset. This is an unexecuted extension, not a reconstruction of Kraft transactions."
+          }
+        },
+        {
+          "id": "case-fluor_2023_order",
+          "source_id": "src_sec_fluor_2023_order",
+          "dated_facts": "The SEC found deficient accounting for two fixed-price projects. Estimates omitted known or knowable costs and included unsupported recovery from change orders. A customer’s agreement to reassess requests was treated as stronger support than it provided. Fluor restated reporting from 2016 through Q3 2019; the separate $714 million review covered sixteen projects, not just these two.",
+          "event_date": "2023-09-06",
+          "primary_locators": [
+            "Section II and Section III footnote 1",
+            "Section III paragraphs 1-3, 6-16, 18-26, 31",
+            "Section IV A-C"
+          ],
+          "procedural_posture": "Settled SEC administrative findings, without admitting or denying except jurisdiction; company cease-and-desist order and $14.5 million penalty. Findings are not binding on other persons or entities.",
+          "does_not_establish": "The order distinguishes pre-2018 ASC 605 treatment from subsequent ASC 606 treatment. It is not current advice for every construction contract. No AI causation or inference about separate employee proceedings.",
+          "later_status": {
+            "reviewed_at": "2026-09-21",
+            "summary": "The SEC distribution page links June 29, 2026 order 34-105807. Its pages 3-4 authorize transfer and distribution from the combined Fair Fund after acceptance of a payment file. This is not independent proof of payment to individual investors.",
+            "source_url": "https://www.sec.gov/files/litigation/admin/2026/34-105807.pdf",
+            "locator": "June 29, 2026 disbursement order, pages 3-4; read September 21, 2026"
+          },
+          "mechanism": "Incomplete estimates and overstated evidential support for recovery",
+          "project_design_lesson": {
+            "classification": "original proposed control lesson",
+            "text": "Keep current cost evidence independent of hoped-for recoveries. Distinguish submitted, rejected, disputed and approved changes. A customer agreeing to review a request is not approval or payment evidence; changed estimates require renewed review of the affected conclusion.",
+            "effectiveness": "Not tested and not claimed certain to prevent the historical event."
+          },
+          "workflow_control_ids": [
+            "wf-construction-wip-close",
+            "wf-construction-contract-intake",
+            "ctrl-version-evidence"
+          ],
+          "connected_case_id": "example-connected-purchase-to-payment",
+          "synthetic_variant": {
+            "classification": "original proposed exercise, not executed or observed",
+            "description": "Use the connected case’s original construction-estimate extension: attach an updated cost estimate and a customer message promising review, then require separate treatment of cost changes and unapproved recovery. The arithmetic fixture is synthetic and cannot establish contractual entitlement."
           }
         }
       ],
