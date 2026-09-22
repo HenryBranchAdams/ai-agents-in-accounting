@@ -120,7 +120,7 @@ animation on the search dialog and mobile connection inspector.
 
 `/map` is the primary discovery route. Native GET controls and a complete paginated
 List render on the server. Its separate client island hydrates with a dedicated
-identifier prefix; the canvas is dynamically imported only in Map mode. Ordinary
+identifier prefix; a separate module entry loads the canvas only in Map mode. Ordinary
 record pages do not fetch map data or its renderer. The original focused connection
 routes remain compatible for existing links and evidence inspection.
 

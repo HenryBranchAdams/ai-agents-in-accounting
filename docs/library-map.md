@@ -25,7 +25,7 @@ confidence or authority scores.
 
 `scripts/library-map.mjs` runs a sorted, seeded fCoSE layout at build time. It binds
 positions to the projection inputs, algorithm/options and lockfile hash. Runtime
-browsers load Cytoscape only for the map canvas; they run no force simulation.
+browsers load the map island and Cytoscape together only in Map mode; they run no force simulation.
 Selection and filtering preserve positions. Only user dragging moves a node, and
 Whole library restores the prepared overview. Browser history and session storage
 preserve the map camera for a return from reading; unavailable storage degrades to

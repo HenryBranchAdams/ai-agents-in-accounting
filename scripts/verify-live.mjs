@@ -3,12 +3,13 @@ import path from 'node:path';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {chromium} from 'playwright';
+import {libraryMapJourney} from '../tests/browser-support/library-map-journey.mjs';
 import {observeAssetResponse,readPublicAssets} from './live-assets.mjs';
 import {readLiveSource,firstSuggestionHref} from './live-source.mjs';
 
 const origin='https://accounting-agents.madebyhenry.chatgpt.site';
 const directory=path.resolve('outputs/live-verification');fs.mkdirSync(directory,{recursive:true});
-const expected={source_revision:process.env.EXPECTED_SOURCE_REVISION,corpus_version:process.env.EXPECTED_CORPUS_VERSION,index_version:process.env.EXPECTED_INDEX_VERSION,storage_manifest:process.env.EXPECTED_STORAGE_MANIFEST,download_manifest_sha256:process.env.EXPECTED_DOWNLOAD_MANIFEST_SHA256};
+const expected={source_revision:process.env.EXPECTED_SOURCE_REVISION,corpus_version:process.env.EXPECTED_CORPUS_VERSION,index_version:process.env.EXPECTED_INDEX_VERSION,map_version:process.env.EXPECTED_MAP_VERSION,storage_manifest:process.env.EXPECTED_STORAGE_MANIFEST,download_manifest_sha256:process.env.EXPECTED_DOWNLOAD_MANIFEST_SHA256};
 const hash=bytes=>createHash('sha256').update(bytes).digest('hex');
 const receipt={status:'running',origin,expected,node:process.version,lockfile_sha256:hash(fs.readFileSync('package-lock.json')),journeys:[],downloads:[],assets:[],limitations:'Read-only public Chromium verification. Native deployment status, final environment readback and authoritative artifact authentication are separate required evidence.'};
 let browser;
@@ -16,13 +17,13 @@ async function get(route){const response=await fetch(origin+route,{redirect:'err
 async function release(){const body=await(await get('/api/v1/release')).json();for(const key of ['source_revision','corpus_version','storage_manifest'])assert.equal(body[key],expected[key],key);return body;}
 try{
  assert.match(expected.source_revision||'',/^[a-f0-9]{40}$/);assert.match(expected.corpus_version||'',/^\d{4}-\d{2}-\d{2}\.\d+$/);
- for(const key of ['index_version','storage_manifest','download_manifest_sha256'])assert.match(expected[key]||'',/^[a-f0-9]{64}$/);
+ for(const key of ['index_version','map_version','storage_manifest','download_manifest_sha256'])assert.match(expected[key]||'',/^[a-f0-9]{64}$/);
  const source=readLiveSource(expected.source_revision);receipt.verifier_revision=source.verifier_revision;receipt.release_lockfile_sha256=source.release_lockfile_sha256;
  receipt.release_before=await release();
  assert.equal((await(await get('/api/v1/meta')).json()).corpus_version,expected.corpus_version);
  const overview=await(await get('/api/v1/connections?focus=guide-construction-connected-close')).json();assert.equal(overview.corpus_version,expected.corpus_version);assert.equal(overview.index_version,expected.index_version);
  const privatePaths=JSON.parse(process.env.EXPECTED_PRIVATE_PATHS_JSON||'null');assert.ok(Array.isArray(privatePaths)&&privatePaths.length>0&&privatePaths.length<=100,'Artifact private paths are required');
- for(const route of privatePaths){assert.match(route,/^\/(?:_runtime|assets)\/(?:data|connections)\/[a-f0-9]{64}\.(?:json\.)?gz$/);const response=await fetch(origin+route,{redirect:'error',signal:AbortSignal.timeout(60000)});assert.equal(response.status,404,'Internal asset is public: '+route);await response.body?.cancel();}receipt.private_paths=privatePaths;
+ for(const route of privatePaths){assert.match(route,/^\/(?:_runtime|assets)\/(?:data|connections|library-map)\/[a-f0-9]{64}\.(?:json\.)?gz$/);const response=await fetch(origin+route,{redirect:'error',signal:AbortSignal.timeout(60000)});assert.equal(response.status,404,'Internal asset is public: '+route);await response.body?.cancel();}receipt.private_paths=privatePaths;
  const manifestBytes=Buffer.from(await(await get('/downloads/manifest.json')).arrayBuffer());assert.equal(hash(manifestBytes),expected.download_manifest_sha256,'Download manifest differs from authoritative package');const manifest=JSON.parse(manifestBytes);assert.equal(manifest.corpus_version,expected.corpus_version);
  assert.equal((await fetch(origin+'/_release/manifests/'+expected.storage_manifest,{method:'HEAD'})).status,404,'Import route must reject unauthenticated access');
  browser=await chromium.launch();receipt.browser=browser.version();
@@ -54,6 +55,14 @@ try{
   }catch(error){journey.status='failed';journey.error=error.message;await page.screenshot({path:path.join(directory,name+'-failure.png')}).catch(()=>{});throw error;}finally{await context.close();}
  }
  const native=await browser.newContext({javaScriptEnabled:false,viewport:{width:390,height:844}});try{const page=await native.newPage();await page.goto(origin+'/connections?focus=guide-construction-connected-close&mode=graph');await page.locator('#connection-list [data-connection-edge-id] > a').first().click();await page.getByText('Recorded reason 1',{exact:true}).waitFor();receipt.journeys.push({name:'native-list',status:'passed'});}finally{await native.close();}
+ // The complete topology identity comes from the authoritative package, not a live self-report.
+ const map=await(await get('/api/v1/library-map')).json();const {map_version,...mapInputs}=map;
+ assert.equal(map_version,expected.map_version);assert.equal(hash(Buffer.from(JSON.stringify(mapInputs))),expected.map_version);
+ assert.equal(map.corpus_version,expected.corpus_version);assert.equal(map.index_version,expected.index_version);
+ const mapReceipt={journeys:[]};await libraryMapJourney(browser,origin,directory,mapReceipt);
+ assert.equal(mapReceipt.map_version,expected.map_version);receipt.library_map={...mapReceipt,records:map.records.length,topics:map.topics.length};
+ const mapAssets=new Set(mapReceipt.journeys.flatMap(j=>j.initial.requests.filter(r=>r.name.startsWith('/assets/')).map(r=>origin+r.name)));
+ receipt.assets.push(...await readPublicAssets(mapAssets,origin));
  // Stream every declared current download. Manifest identity comes from the verified package,
  // not from trusting a live server's self-reported hashes. No accounting systems are contacted.
  for(const file of manifest.files){assert.match(file.path,/^\/downloads\/[A-Za-z0-9_.-]+$/);assert.ok(Number.isSafeInteger(file.bytes)&&file.bytes>=0);assert.match(file.sha256,/^[a-f0-9]{64}$/);const response=await get(file.path),digest=createHash('sha256');let bytes=0;for await(const chunk of response.body){bytes+=chunk.length;assert.ok(bytes<=file.bytes,file.path+' exceeds declared size');digest.update(chunk);}assert.equal(bytes,file.bytes,file.path);assert.equal(digest.digest('hex'),file.sha256,file.path);receipt.downloads.push({path:file.path,bytes,sha256:file.sha256});}

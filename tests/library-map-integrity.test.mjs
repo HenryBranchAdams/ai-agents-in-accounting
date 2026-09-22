@@ -133,6 +133,8 @@ test("map routes retain stable identity, cache validation, security headers and 
     ).status,
     400,
   );
+  const listHTML = await (await get('/map?mode=list')).text();
+  assert.ok(!/<script[^>]+src="[^"]*library-map/.test(listHTML), 'Initial List mode does not fetch map code');
   const hostile = "<img src=x onerror=alert(1)><script>alert(2)</script>";
   const html = await (
     await get("/map?" + new URLSearchParams({ q: hostile, mode: "list" }))

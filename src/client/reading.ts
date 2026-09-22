@@ -12,6 +12,9 @@ export function initializeReadingOutline() {
       else link.removeAttribute("aria-current");
     }
   };
+  // A long record header can place every section below the initial viewport.
+  // Keep its first reading destination identified until observation selects another.
+  if (targets.length) mark(targets[0].id);
   const refresh = () => {
     frame = 0;
     const candidates = [...visible].filter(element => element.getClientRects().length)

@@ -3,8 +3,6 @@ import {
   Component,
   type ErrorInfo,
   type ReactNode,
-  lazy,
-  Suspense,
   useEffect,
   useRef,
   useState,
@@ -24,11 +22,7 @@ import {
 } from "../library-map/contract";
 import { isConnectionEvidence } from "../connections/client-contract";
 import type { MapMemory } from "../components/library-map-canvas";
-const Canvas = lazy(() =>
-  import("../components/library-map-canvas").then((m) => ({
-    default: m.LibraryMapCanvas,
-  })),
-);
+import { LibraryMapCanvas as Canvas } from "../components/library-map-canvas";
 class CanvasBoundary extends Component<
   { children: ReactNode },
   { failed: boolean }
@@ -315,30 +309,22 @@ function Application({ initial }: { initial: Initial }) {
         graph={
           data && view.state.mode === "map" ? (
             <CanvasBoundary>
-              <Suspense
-                fallback={
-                  <p className="p-6">
-                    Preparing the map. The List is available below.
-                  </p>
+              <Canvas
+                data={data}
+                state={view.state}
+                onSelect={select}
+                onEdge={(id) =>
+                  navigate(
+                    new URL(
+                      mapURL({ ...view.state, edge: id }),
+                      location.origin,
+                    ),
+                  )
                 }
-              >
-                <Canvas
-                  data={data}
-                  state={view.state}
-                  onSelect={select}
-                  onEdge={(id) =>
-                    navigate(
-                      new URL(
-                        mapURL({ ...view.state, edge: id }),
-                        location.origin,
-                      ),
-                    )
-                  }
-                  memory={memory.current}
-                  reset={reset}
-                  restore={restore}
-                />
-              </Suspense>
+                memory={memory.current}
+                reset={reset}
+                restore={restore}
+              />
             </CanvasBoundary>
           ) : undefined
         }
@@ -346,7 +332,7 @@ function Application({ initial }: { initial: Initial }) {
     </div>
   );
 }
-export function initializeLibraryMap() {
+function initializeLibraryMap() {
   const root = document.getElementById("library-map");
   if (!root?.dataset.libraryMap) return;
   const initial = JSON.parse(root.dataset.libraryMap) as Initial;
@@ -354,3 +340,5 @@ export function initializeLibraryMap() {
     identifierPrefix: "library-map-",
   });
 }
+
+initializeLibraryMap();

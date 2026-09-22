@@ -158,7 +158,7 @@ export function LibraryExplorer({
             {graph || (
               <div className="library-map-placeholder">
                 <p>
-                  The interactive map is loading. Every record remains available
+                  The interactive map requires JavaScript. Every record is available
                   in the List below.
                 </p>
                 <a href={next({ mode: "list" })}>Use the accessible List</a>

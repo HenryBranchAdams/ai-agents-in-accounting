@@ -56,9 +56,3 @@ if (document.querySelector('[data-connections-initial]')) {
     // The server-rendered List and native GET actions remain usable.
   });
 }
-
-if (document.querySelector('[data-library-map][data-map-mode="map"]')) {
-  void import('./library-map').then(module => module.initializeLibraryMap()).catch(() => {
-    // Server-rendered List and native GET controls remain available.
-  });
-}

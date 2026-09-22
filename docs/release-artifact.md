@@ -63,7 +63,7 @@ against the fixed existing public origin. It checks out the exact dispatched ver
 revision to be that commit or its ancestor. The receipt records both identities and the
 release lockfile; comparison records are read from the published source commit. This
 allows a read-only verifier fix to be tried before another publication. A candidate
-verifier run does not substitute for the final combined-source run. Supply the exact source, corpus, index,
+verifier run does not substitute for the final combined-source run. Supply the exact source, corpus, connection-index, whole-library map,
 sealed storage-manifest and download-manifest identities from the authenticated
 main artifact, plus a JSON array of its private runtime paths and any previously exposed asset paths. It installs the pinned browser but performs no app build, package,
 import, environment mutation or publication.
@@ -81,3 +81,7 @@ A green live workflow cannot substitute for human acceptance or artifact provena
 The first integrated publication, version33 from GitHub `5c662e0`, revealed that Sites served `/assets/connections/` directly despite the emitted `run_worker_first: true`. This is public corpus material, but serving the full internal index bypassed the bounded browser interface contract. Publication now omits private runtime files from the static asset directory and carries them only in the authenticated, sealed storage package. A production-built test simulates asset-first hosting, proves ordinary reading does not fetch graph objects, and checks missing private objects fail visibly. The live workflow checks the actual private paths after deployment. The prior failed live run remains evidence, not acceptance.
 
 On macOS, invoke native packaging with `COPYFILE_DISABLE=1` to avoid AppleDouble metadata members. Compare every packaged runtime member to the authenticated CI package before native save. This container-only setting does not rebuild application bytes. Native save may normalize the tar container; retain its returned archive identity separately from the local tar and CI ZIP digests.
+
+The live check also authenticates the complete library-map projection against its
+artifact-derived identity and exercises the reusable full-library desktop/mobile
+journeys. New `/_runtime/library-map/` objects join the private-path deny checks.
