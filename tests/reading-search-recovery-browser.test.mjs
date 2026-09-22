@@ -26,6 +26,14 @@ test('search ignores delayed and closed requests and retains native recovery aft
  await input.fill('closing request');await closeStarted;await page.keyboard.press('Escape');await dialog.waitFor({state:'hidden'});closeRelease();await page.unrouteAll({behavior:'wait'});
  for(let i=0;i<3;i++){await trigger.click();await dialog.waitFor();assert.equal(await input.inputValue(),'');await page.keyboard.press('Escape');await dialog.waitFor({state:'hidden'});assert.equal(await trigger.evaluate(n=>document.activeElement===n),true);}
  assert.deepEqual(errors,[]);receipt.journeys.push({name:'delayed-response-close-and-reopen',status:'passed'});
+ const loading=await browser.newContext();try{
+  const p=await loading.newPage();let releaseImport,importStarted;const gate=new Promise(resolve=>releaseImport=resolve),started=new Promise(resolve=>importStarted=resolve);
+  await p.route('**/assets/search-palette-*.js',async route=>{const response=await route.fetch();importStarted(route.request().url());await gate;await route.fulfill({response});});
+  await p.goto(origin+'/records/src_stripe_balance_reporting');const trigger=p.getByRole('link',{name:'Search',exact:true});await trigger.click();const moduleURL=await started;await p.keyboard.press('Escape');releaseImport();
+  await p.evaluate(async url=>{await import(url);},moduleURL);await p.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
+  assert.equal(await p.getByRole('dialog',{name:'Search the corpus'}).count(),0,'Canceled module loading must not open a late dialog');assert.equal(new URL(p.url()).pathname,'/records/src_stripe_balance_reporting');
+  await trigger.click();await p.getByRole('dialog',{name:'Search the corpus'}).waitFor();await p.keyboard.press('Escape');receipt.journeys.push({name:'cancel-and-reopen-during-module-load',status:'passed'});
+ }finally{await loading.close();}
  const failed=await browser.newContext();try{
   const p=await failed.newPage();await p.route('**/assets/search-palette-*.js',route=>route.abort());await p.goto(origin+'/records/src_stripe_balance_reporting');await p.getByRole('link',{name:'Search',exact:true}).click();await p.waitForURL(origin+'/library');assert.ok(await p.locator('main').isVisible());receipt.journeys.push({name:'failed-lazy-chunk-native-library',status:'passed'});
  }finally{await failed.close();}
