@@ -1,8 +1,11 @@
 # Issue 173: bounded catalogue depth
 
-Status: initial reuse inventory, not completed research or acceptance. All nine
-packages remain mandatory. This file will be updated with implemented records,
-reviewed source locators, validation and remaining external dependencies.
+Status: all nine bounded packages have canonical material and reading paths in
+research edition2026-09-22.1. Hosted CI/browser checks, final171/175 integration,
+maintainer acceptance and publication remain pending. Read
+[the current validation register](issue-173-validation.md) for the exact evidence
+and unresolved dependencies. The dated entries below preserve the work history;
+earlier pending-work notes are not the current completion state.
 
 ## Starting identities and ownership
 
