@@ -2,9 +2,9 @@ import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
-import {execFileSync} from 'node:child_process';
 import {chromium} from 'playwright';
 import {observeAssetResponse,readPublicAssets} from './live-assets.mjs';
+import {readLiveSource,firstSuggestionHref} from './live-source.mjs';
 
 const origin='https://accounting-agents.madebyhenry.chatgpt.site';
 const directory=path.resolve('outputs/live-verification');fs.mkdirSync(directory,{recursive:true});
@@ -17,7 +17,7 @@ async function release(){const body=await(await get('/api/v1/release')).json();f
 try{
  assert.match(expected.source_revision||'',/^[a-f0-9]{40}$/);assert.match(expected.corpus_version||'',/^\d{4}-\d{2}-\d{2}\.\d+$/);
  for(const key of ['index_version','storage_manifest','download_manifest_sha256'])assert.match(expected[key]||'',/^[a-f0-9]{64}$/);
- assert.equal(execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),expected.source_revision,'Live verifier checkout must match the intended published main');
+ const source=readLiveSource(expected.source_revision);receipt.verifier_revision=source.verifier_revision;receipt.release_lockfile_sha256=source.release_lockfile_sha256;
  receipt.release_before=await release();
  assert.equal((await(await get('/api/v1/meta')).json()).corpus_version,expected.corpus_version);
  const overview=await(await get('/api/v1/connections?focus=guide-construction-connected-close')).json();assert.equal(overview.corpus_version,expected.corpus_version);assert.equal(overview.index_version,expected.index_version);
@@ -27,7 +27,7 @@ try{
  assert.equal((await fetch(origin+'/_release/manifests/'+expected.storage_manifest,{method:'HEAD'})).status,404,'Import route must reject unauthenticated access');
  browser=await chromium.launch();receipt.browser=browser.version();
  const ids=['guide-xero-ledger-completeness','guide-qbo-ledger-completeness','guide-connected-close-review','guide-independent-deployment-evidence','guide-select-accounting-evaluations','collection-accounting-failure-casebook','guide-accounting-action-boundaries','guide-accounting-claim-counterexamples','collection-usable-accounting-research-assets'];
- const records=['guide','collection','workflow'].flatMap(kind=>JSON.parse(fs.readFileSync(`data/corpus/${kind}.json`)));
+ const records=source.records;const suggestions=await(await get('/api/v1/search-suggestions?q=QuickBooks%20recovery')).json();assert.equal(suggestions.corpus_version,expected.corpus_version);const searchTarget=firstSuggestionHref(suggestions);
  for(const[name,viewport]of[['desktop',{width:1440,height:1000}],['mobile',{width:390,height:844}]]){
   const context=await browser.newContext({viewport}),page=await context.newPage();page.setDefaultTimeout(20000);
   const errors=[],requests=[],assetURLs=new Set();
@@ -41,7 +41,7 @@ try{
    const response=await page.goto(origin+'/records/'+pilot.id);for(const directive of ["default-src 'none'","connect-src 'self'","script-src 'self'","base-uri 'none'","frame-ancestors 'none'","form-action 'self'"])assert.ok(response.headers()['content-security-policy'].includes(directive),directive);assert.equal(response.headers()['x-content-type-options'],'nosniff');
    const preview=page.getByRole('button',{name:/Inspect .*referenced source/}).first();await preview.click();const popup=page.getByRole('dialog',{name:'Recorded evidence connection'});await popup.waitFor();assert.ok((await popup.innerText()).includes(finding.qualification));await popup.locator(`a[href="/records/${finding.source_ids[0]}"]`).click();await page.waitForURL(origin+'/records/'+finding.source_ids[0]);await page.goBack();
    if(name==='mobile')await page.locator('summary:visible').filter({hasText:/^On this page$/}).click();await page.locator('a[data-section-link="worked-example"]:visible').click();await page.waitForURL(url=>url.hash==='#worked-example');await page.goBack();
-   await page.getByRole('link',{name:'Search',exact:true}).click();const dialog=page.getByRole('dialog',{name:'Search the corpus'});await dialog.waitFor();await page.getByRole('combobox',{name:'Search every corpus record'}).fill('QuickBooks recovery');await dialog.getByText(/^Showing/).waitFor();await dialog.locator('[cmdk-item][aria-selected="true"]').waitFor();await page.keyboard.press('Enter');await page.waitForURL(url=>url.pathname.startsWith('/records/guide-qbo-'));
+   await page.getByRole('link',{name:'Search',exact:true}).click();const dialog=page.getByRole('dialog',{name:'Search the corpus'});await dialog.waitFor();await page.getByRole('combobox',{name:'Search every corpus record'}).fill('QuickBooks recovery');await dialog.getByText(/^Showing/).waitFor();const selected=dialog.locator('[cmdk-item][aria-selected="true"]');await selected.waitFor();assert.equal(await selected.getAttribute('href'),searchTarget);await page.keyboard.press('Enter');await page.waitForURL(origin+searchTarget);
    await page.goto(origin+'/library?q=bank&kind=source&jurisdiction=United+States&limit=1');await page.getByRole('link',{name:'Go to next page',exact:true}).click();await page.waitForURL(url=>url.searchParams.get('page')==='2');await page.getByRole('link',{name:'Remove Jurisdiction: United States'}).click();await page.waitForURL(url=>!url.searchParams.has('jurisdiction'));assert.equal(new URL(page.url()).searchParams.get('kind'),'source');await page.getByRole('link',{name:'Clear filters',exact:true}).click();await page.waitForURL(url=>!url.searchParams.has('kind'));assert.equal(new URL(page.url()).searchParams.get('q'),'bank');
    await page.goto(origin+'/connections?focus=guide-construction-connected-close&mode=graph');await page.locator('.connection-canvas').waitFor();await page.waitForFunction(()=>document.querySelector('.connection-canvas')?.dataset.positions);
    const edge=page.locator('#connection-list [data-connection-edge-id]').filter({hasText:': qualifies'}).first();await edge.locator(':scope > a').click();await page.getByText('Recorded reason 1',{exact:true}).waitFor();
