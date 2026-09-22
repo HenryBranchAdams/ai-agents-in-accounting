@@ -344,6 +344,7 @@ const applicationBuild = await build({
   define: {
     "process.env.NODE_ENV": '"production"',
     NAVIGATION_SCRIPT: JSON.stringify(navigationScript),
+    CLIENT_ASSETS: JSON.stringify(Object.keys(clientBuild.metafile.outputs).filter(file => file.endsWith(".js")).map(file => "/assets/" + path.basename(file))),
     PREVIEW_BUILD: JSON.stringify(preview),
     RELEASE_STORAGE: JSON.stringify(releaseStorage),
     RELEASE_META: JSON.stringify(releaseMeta),

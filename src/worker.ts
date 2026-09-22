@@ -1,3 +1,4 @@
+declare const CLIENT_ASSETS: readonly string[];
 import { searchSuggestions } from "./search-suggestions";
 import {
   meta,
@@ -551,7 +552,7 @@ async function route(request: Request, env: Env) {
     );
   if (
     env.ASSETS &&
-    /^\/(downloads\/[^/]+|releases\/\d{4}-\d{2}-\d{2}\.\d+\/(?:corpus\.json(?:\.gz|l)?|manifest\.json|changes\.json|record-history\.jsonl)|releases\/index\.json|assets\/navigation-[A-Z0-9]{8}\.js|style\.css|favicon\.svg|AGENTS\.md)$/.test(path)
+    ((typeof CLIENT_ASSETS !== "undefined" && CLIENT_ASSETS.includes(path)) || /^\/(downloads\/[^/]+|releases\/\d{4}-\d{2}-\d{2}\.\d+\/(?:corpus\.json(?:\.gz|l)?|manifest\.json|changes\.json|record-history\.jsonl)|releases\/index\.json|style\.css|favicon\.svg|AGENTS\.md)$/.test(path))
   ) {
     const asset = await env.ASSETS.fetch(new Request(request.url, { method: "GET" }));
     if (asset.status === 200 && isSourceArchivePartPath(path)) {
