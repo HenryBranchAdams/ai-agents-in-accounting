@@ -259,3 +259,8 @@ Read original Xero organisation/action and tracking-mapping payloads. Added sour
 ### P1 narrow ERP comparison
 
 Re-read existing Oracle26B journal-header index and25D collection paging/sort guidance, preserving their different edition scopes. Added one primary Stripe NetSuite deposit-workflow profile and the bounded comparison to both dossiers. Batch-child reads, generic pagination and connector settlement mapping remain distinct capabilities. No tenant, connector or banking operation occurred. Further dossier object/role/lock detail and final integration remain pending.
+
+
+### P1 QBO report and request contracts
+
+Recovered original Run reports and November2024 throttling notice through supported Exa fetch after web shells. Added report basis/filter/nesting/compliance-date and published production-limit profiles and dossier rows. JournalEntry, linked-transaction and authorization pages still returned loading/empty content through attempted routes; exact affected conclusions and needed evidence are recorded. No API request, load test or pricing entitlement was inferred.

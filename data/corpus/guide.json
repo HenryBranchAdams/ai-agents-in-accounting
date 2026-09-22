@@ -71617,7 +71617,9 @@
       "src_qbo_developer_terms_20251014",
       "src_oracle26b_journal_headers",
       "src_oracle_collection_paging_25d",
-      "src_stripe_netsuite_deposit_automation"
+      "src_stripe_netsuite_deposit_automation",
+      "src_qbo_report_structure_2026",
+      "src_qbo_request_limits_2024"
     ],
     "related_ids": [
       "collection-erp-extraction-completeness",
@@ -71788,6 +71790,26 @@
             "src_qbo_cdc_reference"
           ],
           "locator": "Configure webhooks steps3,5,6; Best practices"
+        },
+        {
+          "id": "qbo-report-context",
+          "status": "documented",
+          "question": "When does a report reconcile to the selected source population?",
+          "answer": "Match Header basis, period, currency and supplied filters. Parse nested Section/Data rows and cumulative summaries without double counting. NoReportData is scoped to the request; P&L excludes accounts without data. Preserve compliance-date versus source-transaction-date differences.",
+          "source_ids": [
+            "src_qbo_report_structure_2026"
+          ],
+          "locator": "Overview; Transaction compliance dates; report object structure"
+        },
+        {
+          "id": "qbo-production-throttling",
+          "status": "documented",
+          "question": "What request budget does the published production notice specify?",
+          "answer": "The November2024 notice states500requests/minute/realm,10concurrent requests in one second/realm/app,40batch requests/minute/realm and30payloads/batch. Treat429 as an unfinished stage. These published limits do not establish current commercial entitlement or observed load behavior.",
+          "source_ids": [
+            "src_qbo_request_limits_2024"
+          ],
+          "locator": "Production endpoints and re-enforcement history"
         }
       ],
       "completeness_recovery_procedure": [
@@ -71847,7 +71869,7 @@
         "receipt": "Bind environment,date,documentation version,source population,request/response digests and actual outcomes. No credentials or private records in public exports."
       },
       "limitations": [
-        "Draft P1 dossier: current entity references,exact authorizing-role/product map,rate/pricing cohorts,incorporated terms policies and object-specific write/lock contracts still require focused review. Webhook,SyncToken and OAuth sections were read; none was exercised.",
+        "Draft P1 dossier: current entity references, exact authorizing-role/product map, commercial pricing/cohorts, incorporated terms policies and object-specific write/lock contracts remain unresolved. Report structure, published production throttling, webhook, SyncToken and OAuth sections were read; none was exercised.",
         "No source-to-GL completeness claim,professional signoff,tenant access or observed API test.",
         "Synthetic arithmetic establishes only the stated counterexample; it cannot verify Intuit CDC behavior.",
         "Narrow ERP comparison is recorded; relationship/editorial integration and export verification remain pending."
@@ -71889,7 +71911,28 @@
         ],
         "decision": "Choose the extraction unit and recovery contract for the actual product and endpoint. Neither an ERP name nor a connector deposit establishes complete ledger lineage.",
         "observed_api_behavior": false
-      }
+      },
+      "documentation_access_dependencies": [
+        {
+          "question": "Object-specific JournalEntry fields, updates, void/delete and lock behavior",
+          "attempted_urls": [
+            "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/journalentry"
+          ],
+          "attempted_methods": "Ordinary web fetch and supported Exa fetch returned Intuit loading shell.",
+          "affected_conclusion": "No newly verified object-level write/lock contract; source-to-ledger completeness cannot be certified.",
+          "needed_evidence": "Readable current original entity reference plus separately authorized tenant evidence for enforcement."
+        },
+        {
+          "question": "Linked-transaction workflow and authorizing role details",
+          "attempted_urls": [
+            "https://developer.intuit.com/app/developer/qbo/docs/workflows/manage-linked-transactions",
+            "https://developer.intuit.com/app/developer/qbo/docs/develop/authentication-and-authorization/authorization"
+          ],
+          "attempted_methods": "Supported Exa fetch returned empty/loading content.",
+          "affected_conclusion": "Detailed entity lineage and role/product map remain unverified; no substituted desktop SDK or third-party contract.",
+          "needed_evidence": "Accessible original object/authorization documentation for the named product and cohort."
+        }
+      ]
     }
   },
   {

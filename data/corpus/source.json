@@ -100198,5 +100198,161 @@
       ],
       "review_trigger": "Changed connector behavior, account mappings, payout mode or supported subsidiary/currency configuration."
     }
+  },
+  {
+    "id": "src_qbo_report_structure_2026",
+    "kind": "source",
+    "title": "QuickBooks Online report context, nested rows and compliance dates",
+    "summary": "Reports are filtered presentations. The P&L omits accounts without data and preserves nested chart-of-account sections; absence from that report does not establish absence from the account master.",
+    "topics": [
+      "Agent engineering",
+      "Accounting and reporting"
+    ],
+    "industries": [
+      "general"
+    ],
+    "jurisdiction": "QuickBooks Online; company, country, product and app scope require separate confirmation",
+    "source_type": "Technical reference",
+    "publisher": "Intuit Developer",
+    "source_url": "https://developer.intuit.com/app/developer/qbo/docs/workflows/run-reports",
+    "source_ids": [],
+    "related_ids": [
+      "guide-qbo-ledger-completeness",
+      "wf-audit-population-evidence"
+    ],
+    "review_status": "source-checked",
+    "reviewed_at": "2026-09-21",
+    "provenance": {
+      "added_on": "2026-09-21",
+      "reviewer": "Codex AI-assisted source review",
+      "scope": "Named original Intuit content read through supported Exa fetch after ordinary web extraction returned loading/CSS shells.",
+      "evidence_urls": [
+        "https://developer.intuit.com/app/developer/qbo/docs/workflows/run-reports"
+      ],
+      "outcome": "Supports bounded documented contracts, not observed API behavior.",
+      "note": "No tenant requests, commercial plan verification or professional review."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "publication": {
+        "published_at": null,
+        "edition": "Named publisher content read September21,2026"
+      },
+      "evidence": [
+        {
+          "claim": "Reports are filtered presentations. The P&L omits accounts without data and preserves nested chart-of-account sections; absence from that report does not establish absence from the account master.",
+          "classification": "publisher-documented; reconciliation implications are project interpretation",
+          "source": {
+            "url": "https://developer.intuit.com/app/developer/qbo/docs/workflows/run-reports",
+            "locator": "Overview; report response"
+          }
+        },
+        {
+          "claim": "Header records basis, period, currency and supplied filters. NoReportData indicates empty report data. Section and Data rows differ; section summaries include subaccounts and must not be added again to their detail.",
+          "classification": "publisher-documented; reconciliation implications are project interpretation",
+          "source": {
+            "url": "https://developer.intuit.com/app/developer/qbo/docs/workflows/run-reports",
+            "locator": "The report object structure"
+          }
+        },
+        {
+          "claim": "The guide distinguishes compliance dates from transaction dates and illustrates prepaid versus later payments. Report-period reconciliation must preserve this distinction rather than assuming each row date equals the source transaction date.",
+          "classification": "publisher-documented; reconciliation implications are project interpretation",
+          "source": {
+            "url": "https://developer.intuit.com/app/developer/qbo/docs/workflows/run-reports",
+            "locator": "Transaction compliance dates"
+          }
+        }
+      ],
+      "limitations": [
+        "Documentation reviewed only; no tenant or request load test.",
+        "Confirm the specific report, product edition, current app cohort and runtime behavior before operational use.",
+        "Throttling limits are not a pricing entitlement or permission to extract or reuse data."
+      ],
+      "review_trigger": "Changed report schema, date semantics, rate policy, app tier or product configuration."
+    }
+  },
+  {
+    "id": "src_qbo_request_limits_2024",
+    "kind": "source",
+    "title": "QuickBooks Online production request and batch throttling",
+    "summary": "The notice specifies 500 requests/minute per realm, 10 concurrent requests in one second per realm and app, 40 batch requests/minute per realm and 30 payloads per batch.",
+    "topics": [
+      "Agent engineering",
+      "Accounting and reporting"
+    ],
+    "industries": [
+      "general"
+    ],
+    "jurisdiction": "QuickBooks Online; company, country, product and app scope require separate confirmation",
+    "source_type": "Technical reference",
+    "publisher": "Intuit Developer",
+    "source_url": "https://help.developer.intuit.com/s/article/API-call-limits-and-throttling",
+    "source_ids": [],
+    "related_ids": [
+      "guide-qbo-ledger-completeness",
+      "wf-audit-population-evidence"
+    ],
+    "review_status": "source-checked",
+    "reviewed_at": "2026-09-21",
+    "provenance": {
+      "added_on": "2026-09-21",
+      "reviewer": "Codex AI-assisted source review",
+      "scope": "Named original Intuit content read through supported Exa fetch after ordinary web extraction returned loading/CSS shells.",
+      "evidence_urls": [
+        "https://help.developer.intuit.com/s/article/API-call-limits-and-throttling"
+      ],
+      "outcome": "Supports bounded documented contracts, not observed API behavior.",
+      "note": "No tenant requests, commercial plan verification or professional review."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "publication": {
+        "published_at": "2024-11-14",
+        "edition": "Named publisher content read September21,2026"
+      },
+      "evidence": [
+        {
+          "claim": "The notice specifies 500 requests/minute per realm, 10 concurrent requests in one second per realm and app, 40 batch requests/minute per realm and 30 payloads per batch.",
+          "classification": "publisher-documented; reconciliation implications are project interpretation",
+          "source": {
+            "url": "https://help.developer.intuit.com/s/article/API-call-limits-and-throttling",
+            "locator": "Production endpoints; November14,2024 article"
+          }
+        },
+        {
+          "claim": "It documents resumed concurrent/batch enforcement from November18,2024 and HTTP429 responses when limits are exceeded. Delay, filtered pagination and scoped webhook/CDC use are suggested; none proves a population complete.",
+          "classification": "publisher-documented; reconciliation implications are project interpretation",
+          "source": {
+            "url": "https://help.developer.intuit.com/s/article/API-call-limits-and-throttling",
+            "locator": "Re-enforcement history and suggestions"
+          }
+        }
+      ],
+      "limitations": [
+        "Documentation reviewed only; no tenant or request load test.",
+        "Confirm the specific report, product edition, current app cohort and runtime behavior before operational use.",
+        "Throttling limits are not a pricing entitlement or permission to extract or reuse data."
+      ],
+      "review_trigger": "Changed report schema, date semantics, rate policy, app tier or product configuration."
+    }
   }
 ]
