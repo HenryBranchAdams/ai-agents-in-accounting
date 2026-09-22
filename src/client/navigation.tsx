@@ -47,3 +47,9 @@ if (document.querySelector("[data-page-outline]")) {
     // Native anchors and complete sections remain usable without highlighting.
   });
 }
+
+if (document.querySelector('[data-connections-initial]')) {
+  void import('./connections').then(module => module.initializeConnections()).catch(() => {
+    // The server-rendered List and native GET actions remain usable.
+  });
+}
