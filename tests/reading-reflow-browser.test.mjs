@@ -29,7 +29,10 @@ test('reading reflows at 320 CSS pixels and keeps active outlines and search foc
   const input=page.getByRole('combobox',{name:'Search every corpus record'});await input.fill('construction');await dialog.getByText(/^Showing/).waitFor();
   // Reduced viewport models the available layout area, without pretending to invoke a device keyboard.
   await page.setViewportSize({width:320,height:400});
-  assert.ok(await dialog.evaluate(node=>{const r=node.getBoundingClientRect();return r.left>=0&&r.right<=innerWidth&&r.top>=0&&r.bottom<=innerHeight+1;}));
+  // Dynamic viewport units settle on a rendering frame after the emulated resize.
+  // Require actual bounds, not a fixed delay; retain computed geometry if it fails.
+  try{await page.waitForFunction(()=>{const node=document.querySelector('[role="dialog"]');if(!node)return false;const r=node.getBoundingClientRect();return r.left>=0&&r.right<=innerWidth&&r.top>=0&&r.bottom<=innerHeight+1;},{},{timeout:5000,polling:'raf'});}
+  catch(error){journey.dialog_geometry=await dialog.evaluate(node=>{const r=node.getBoundingClientRect(),s=getComputedStyle(node);return {rect:r.toJSON(),innerWidth,innerHeight,visualHeight:visualViewport?.height,maxHeight:s.maxHeight,height:s.height,minHeight:s.minHeight,top:s.top,transform:s.transform,translate:s.translate,classes:node.className};});throw error;}
   for(let i=0;i<16;i++){await page.keyboard.press('Tab');assert.ok(await dialog.evaluate(node=>node.contains(document.activeElement)),'Focus escaped the open search dialog');}
   await page.screenshot({path:path.join(directory,'320-search-reduced-viewport.png')});
   await page.keyboard.press('Escape');await dialog.waitFor({state:'hidden'});
