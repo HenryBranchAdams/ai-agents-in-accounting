@@ -87155,7 +87155,7 @@
           "review": {
             "reviewed_at": "2026-09-21",
             "reviewer": "Codex AI-assisted editorial synthesis review",
-            "scope": "Read this guide, baseline balances, packet contrasts, connected extensions and source-scope limitations. New reading presentation reuses those scoped findings. Agent editorial review only; human/maintainer/professional acceptance remains pending.",
+            "scope": "Read this guide, baseline balances, packet contrasts, connected extensions and source-scope limitations. New reading presentation reuses those scoped findings. Agent editorial review only; human/maintainer/professional acceptance remains pending. Rechecked the linked action-boundary and counterexample presentations after their limitation statements were reconciled; synthetic approval and scope-change conclusions remain consistent.",
             "dependencies": [
               {
                 "record_id": "guide-connected-close-review",
@@ -87171,11 +87171,11 @@
               },
               {
                 "record_id": "guide-accounting-action-boundaries",
-                "sha256": "b0368a267f60d4504ba1340f3588e14752777af27ee874a2273ab525d880aafb"
+                "sha256": "bf279ae8c9c6b5114a55b9622145c5249092b2e29b2b54b34d1ed5f955dae507"
               },
               {
                 "record_id": "guide-accounting-claim-counterexamples",
-                "sha256": "5d5263b57c17baa938a4637c42d0a84af6622f82439159de78982b15f3c966d9"
+                "sha256": "b1562b4799fb19836f21a0c3f85ad47c5a1406381b67ea3ac8c293ae373da5d5"
               },
               {
                 "record_id": "src_0vf7hhg",
@@ -88206,10 +88206,9 @@
         }
       ],
       "limitations": [
-        "All action boundaries and exception outcomes are original design proposals,not operating controls or real human approvals.",
-        "Final NIST base-control guidance and emerging NCCoE concepts are scoped separately; neither establishes this design as implemented or compliant.",
-        "No executor,credential issuance,payment integration or live accounting tests.",
-        "Final P6 control-record integration and editorial review remain pending. Synthetic packet links and offline mutation checks do not establish operating effectiveness."
+        "Original proposed boundaries and offline mutation checks only.",
+        "No executor, credentials, tenant access or professional acceptance.",
+        "Control records are linked; final combined rendering and export checks pending."
       ],
       "standards_comparison": [
         {
@@ -88304,6 +88303,207 @@
           "The offline tests exercise illustrative mutation detection and decision rules only. They do not test a gateway, bank, vendor API, concurrent transaction or revocation race.",
           "The destination is an opaque fictional reference, not an account. Approval does not prove payment settlement."
         ]
+      },
+      "editorial_brief": {
+        "question": "What authorizes an accounting action, and what happens when execution is uncertain?",
+        "answer": "A model may propose an accounting action; only an independently enforced permission and an applicable exact-payload approval can authorize execution. When success is uncertain,stop new attempts and reconcile the original intent. A balanced journal,a valid token or a changed SyncToken is not human approval.",
+        "findings": [
+          {
+            "claim": "NIST catalog controls and the NCCoE draft have different status and scope.",
+            "source_ids": [
+              "src_0pywo86",
+              "src_06fwpim"
+            ],
+            "locator": "NIST AC-3, AC-5, AC-6, AU-3; NCCoE concept pp.1–8 and Figure1.",
+            "qualification": "Neither supplies an implemented accounting approval gateway or proof of compliance.",
+            "classification": "scoped source synthesis"
+          },
+          {
+            "claim": "Vendor retry and concurrency contracts must be checked independently of approval validity.",
+            "source_ids": [
+              "src_xero_idempotency_2026",
+              "src_xero_request_response_2026",
+              "src_qbo_stale_object_2026"
+            ],
+            "locator": "Xero idempotency limits and per-entity errors; Intuit stale-object5010 guidance.",
+            "qualification": "Documentation only; no tenant writes, payment operations or observed role enforcement.",
+            "classification": "scoped source synthesis"
+          }
+        ],
+        "unknowns": [
+          "Original proposed boundaries and offline mutation checks only.",
+          "No executor, credentials, tenant access or professional acceptance.",
+          "Control records are linked; final combined rendering and export checks pending."
+        ],
+        "reading_order": [
+          "src_06fwpim",
+          "src_xero_idempotency_2026",
+          "src_xero_request_response_2026",
+          "src_xero_manual_journals_2026",
+          "src_qbo_stale_object_2026",
+          "src_qbo_oauth_contract_2026",
+          "src_qbo_id_request_semantics",
+          "src_0pywo86",
+          "ctrl-human-approval",
+          "ctrl-tool-authorization",
+          "wf-r2r-journal-entry",
+          "wf-p2p-vendor-onboarding",
+          "guide-connected-close-review",
+          "example-connected-purchase-to-payment",
+          "example-connected-processor-settlement"
+        ],
+        "reading": {
+          "scope": "Separate preparation,approval and execution across journals,vendor changes,payments and period reopening; inspect synthetic failure records without running accounting operations.",
+          "critical_limitation": "Original proposed boundaries and offline mutation checks only.",
+          "sections": [
+            {
+              "title": "Separate proposal, approval and execution",
+              "paragraphs": [
+                "The five-action matrix distinguishes a journal proposal, posting, vendor-bank change, payment release and period reopening. Each action has a separate responsible actor and proposed enforcement boundary. One approval cannot silently authorize another action."
+              ]
+            },
+            {
+              "title": "Bind the decision to the actual intent",
+              "paragraphs": [
+                "The synthetic approval fixture binds entity, amount, currency, destination, evidence, payload version and expiry. A changed field, revoked authority, consumed intent or ambiguous result blocks reuse under the proposal. These are offline fixture checks, not cryptographic or production controls."
+              ]
+            },
+            {
+              "title": "Recover without inventing success",
+              "paragraphs": [
+                "For lost responses and partial batches, retain each item outcome and reconcile the original intent before any new attempt. A successful request, current token or balanced journal does not establish human approval or bank settlement."
+              ]
+            },
+            {
+              "title": "Separate final guidance, emerging concepts and this design",
+              "paragraphs": [
+                "Selected NIST control statements concern access, separation, privilege and audit records. The NCCoE concept is draft. The accounting-specific gateway and role design are original proposals whose operating enforcement remains unverified."
+              ]
+            }
+          ],
+          "example": {
+            "classification": "original-synthetic",
+            "title": "A fictional payment decision changes",
+            "assumptions": "Illustrative USD500 intent; no real bank destination, approval or execution.",
+            "columns": [
+              "State",
+              "Decision",
+              "Reason"
+            ],
+            "rows": [
+              [
+                "Exact intent reviewed",
+                "Eligible only under separately enforced authority",
+                "The fixture alone grants no authority"
+              ],
+              [
+                "Destination changes",
+                "Obtain a new decision",
+                "Prior payload approval no longer applies"
+              ],
+              [
+                "Response is lost",
+                "Reconcile the original intent",
+                "Do not assume failure and create a duplicate"
+              ]
+            ]
+          },
+          "responsibilities": [
+            {
+              "role": "Preparation agent",
+              "task": "Prepare evidence and exact proposed payload.",
+              "boundary": "No posting or release authority is inferred."
+            },
+            {
+              "role": "Independent reviewer",
+              "task": "Assess evidence and authorize the specific intent if empowered.",
+              "boundary": "No real reviewer signed this fixture."
+            },
+            {
+              "role": "System owner",
+              "task": "Enforce roles, expiry, revocation and auditability externally.",
+              "boundary": "The proposed gateway is not implemented here."
+            }
+          ],
+          "exception": {
+            "title": "Instruction-like invoice text is evidence data",
+            "paragraphs": [
+              "An attachment telling an agent to change bank details or bypass review is not a grant of authority. Preserve and flag it; the externally enforced action boundary must determine which operations are permitted."
+            ]
+          },
+          "gap_url": "https://github.com/HenryBranchAdams/ai-agents-in-accounting/issues/173",
+          "review": {
+            "reviewed_at": "2026-09-21",
+            "reviewer": "Codex AI-assisted editorial synthesis review",
+            "scope": "Reconciled this answer-first presentation with the canonical matrix, cases, source-scope limitations and recorded review material. Agent editorial review only; human acceptance and final rendered integration remain pending.",
+            "dependencies": [
+              {
+                "record_id": "guide-accounting-action-boundaries",
+                "sha256": "bf279ae8c9c6b5114a55b9622145c5249092b2e29b2b54b34d1ed5f955dae507"
+              },
+              {
+                "record_id": "src_06fwpim",
+                "sha256": "49fe2606a68c27a11163e8cdf1312322d6de0f498894c1a137a65e03fcc04ce8"
+              },
+              {
+                "record_id": "src_xero_idempotency_2026",
+                "sha256": "30cc8c119bbc66bca6e378465f4fc38a30de59be8541146188336e3ad61eeaf2"
+              },
+              {
+                "record_id": "src_xero_request_response_2026",
+                "sha256": "ef3562d9b56bb34aacae8cf15547ae4ffe33161ba6fa92fb32deeeb0a4a44bde"
+              },
+              {
+                "record_id": "src_xero_manual_journals_2026",
+                "sha256": "92f375ad964edad0a1c9f3b5cd5e707402a01b9aaf2530a41daf8c35eb5d9e79"
+              },
+              {
+                "record_id": "src_qbo_stale_object_2026",
+                "sha256": "d4eea5473dcf5d507f1e2167f96ab2b0f02bd97dd33c39b15118dd8ce3b14183"
+              },
+              {
+                "record_id": "src_qbo_oauth_contract_2026",
+                "sha256": "1504144e9c7a34f52090434a51af4ebe14651d12e833a518e3684ea4ee3dd2b9"
+              },
+              {
+                "record_id": "src_qbo_id_request_semantics",
+                "sha256": "bd04a9426d0a3f4684514045d8a9b60e18307d4f026f05bac9bc0cae6252c5dd"
+              },
+              {
+                "record_id": "src_0pywo86",
+                "sha256": "c032153602999d302632e5f930239998d8aa59406ff099e582cb14814222919b"
+              },
+              {
+                "record_id": "ctrl-human-approval",
+                "sha256": "1ff6c3e4e209eb743e4f0143f701739c50d1f2d2f2f23b657fdfbf705c0b77ab"
+              },
+              {
+                "record_id": "ctrl-tool-authorization",
+                "sha256": "f01faf17d0ddf2cb7036b3ff78cec15bc94ad65397e07ea245bf42baca7ea3b4"
+              },
+              {
+                "record_id": "wf-r2r-journal-entry",
+                "sha256": "02f998de9c5617809ccd75540ebbd11dc044eb6e0079094a146091294fe1602d"
+              },
+              {
+                "record_id": "wf-p2p-vendor-onboarding",
+                "sha256": "2d07c09cfed9877bc9f34f2379e4ccd367498defa6dbac53d2687d4d6ab2e764"
+              },
+              {
+                "record_id": "guide-connected-close-review",
+                "sha256": "97d2be8cb6f02a42ef49a779e44c0a750ca1a26826e9d7057bbbd4a677576b43"
+              },
+              {
+                "record_id": "example-connected-purchase-to-payment",
+                "sha256": "f21c05fb8c94c0dd8385022baa346e9c74de16ca83cd1cb9f1c72f3a8cfd5c60"
+              },
+              {
+                "record_id": "example-connected-processor-settlement",
+                "sha256": "c9b28e4260940291571c45d3500e86df8e182b95c22832a061ed5ec4e893db8f"
+              }
+            ]
+          }
+        }
       }
     }
   },
@@ -88395,9 +88595,9 @@
         }
       ],
       "limitations": [
-        "CORD assessment is complete only as a bounded public-release/schema review; primary methods/grader dependency remains explicit.",
-        "No model runs or independent score reproduction performed for these profiles.",
-        "Final P4 relationship and editorial integration remains pending. P9 broader asset screening and bounded reproduction remain separate."
+        "No hosted evaluation or independent score reproduction.",
+        "Private APEX components and CORD methods/grader access remain unresolved.",
+        "Final combined retrieval, rendering and export acceptance pending."
       ],
       "rights_access_matrix": [
         {
@@ -88424,7 +88624,156 @@
           "reuse": "CC-BY-4.0 public dev data; separate Apache-2.0 framework; no private-set grant.",
           "recommended_now": "Inspect tasks and rubric with attribution; do not report dev results as official scores."
         }
-      ]
+      ],
+      "editorial_brief": {
+        "question": "Which evaluation tests the capability this accounting task needs?",
+        "answer": "Choose the narrow capability and evidence contract first. A correct extracted value, numerical answer, balanced ledger and plausible final explanation are different outcomes; none alone proves complete evidence or authorized action.",
+        "findings": [
+          {
+            "claim": "FinBalance and APEX require different scoring interpretations: ledger diagnostics versus final-answer criteria with repeat-run summaries.",
+            "source_ids": [
+              "src_0qwi4ry",
+              "src_apexaccounting_paper2026"
+            ],
+            "locator": "Selected grading/code and paper locators in the canonical profiles.",
+            "qualification": "Neither score establishes complete source support or actual action authorization; neither result was independently reproduced.",
+            "classification": "scoped source synthesis"
+          },
+          {
+            "claim": "FinQA and CORD offer contrasting report-arithmetic and receipt-schema resources.",
+            "source_ids": [
+              "src_finqa2021",
+              "src_cord_receipt_parsing"
+            ],
+            "locator": "FinQA corrected release, paper and evaluator; CORD public release/schema profile.",
+            "qualification": "CORD methods/grader access and FinQA upstream report rights retain explicit dependencies. Schema checks are not model evaluation.",
+            "classification": "scoped source synthesis"
+          }
+        ],
+        "unknowns": [
+          "No hosted evaluation or independent score reproduction.",
+          "Private APEX components and CORD methods/grader access remain unresolved.",
+          "Final combined retrieval, rendering and export acceptance pending."
+        ],
+        "reading_order": [
+          "src_finqa2021",
+          "src_cord_receipt_parsing",
+          "src_0qwi4ry",
+          "src_apexaccounting_paper2026",
+          "example-connected-purchase-to-payment",
+          "example-connected-processor-settlement",
+          "guide-accounting-action-boundaries"
+        ],
+        "reading": {
+          "scope": "Separate report arithmetic, receipt parsing, document-to-ledger reconstruction and tool-based close reasoning; inspect what each score omits before choosing a test.",
+          "critical_limitation": "No hosted evaluation or independent score reproduction.",
+          "sections": [
+            {
+              "title": "Start with the output and the missing evidence",
+              "paragraphs": [
+                "FinQA concerns report-based numerical answers and programs; CORD concerns receipt parsing; FinBalance concerns document-to-posting and statement checks; APEX concerns tool-assisted close reasoning. The capability matrix records what each omits."
+              ]
+            },
+            {
+              "title": "Inspect the denominator and repeat-run claim",
+              "paragraphs": [
+                "A selected subset, missing prediction, invalid output or excluded run changes the question a score answers. Best-of-k success does not establish success on every attempt. Pin the public split, grader and budget; retain private or missing components as explicit limits."
+              ]
+            },
+            {
+              "title": "Carry the rights chain into the choice",
+              "paragraphs": [
+                "The source profiles and usable-assets collection separate code, public data, third-party report content and private evaluation material. A public development set does not authorize copying a private test set."
+              ]
+            }
+          ],
+          "example": {
+            "classification": "original-synthetic",
+            "title": "Choose checks for an original hypothetical task",
+            "assumptions": "A fictional team needs to review a receipt-to-ledger proposal; no model is run.",
+            "columns": [
+              "Needed result",
+              "Separate check",
+              "What remains"
+            ],
+            "rows": [
+              [
+                "Receipt amount extracted",
+                "Compare field and source region",
+                "Does not establish recognition"
+              ],
+              [
+                "Journal proposed",
+                "Replay and source-document match",
+                "Does not authorize posting"
+              ],
+              [
+                "Closing total correct",
+                "Population and exception reconciliation",
+                "Does not prove every entry is supported"
+              ]
+            ]
+          },
+          "responsibilities": [
+            {
+              "role": "Evaluation owner",
+              "task": "Define outputs, denominator, permitted actions and failure cases.",
+              "boundary": "Do not promote a convenient benchmark into a complete acceptance test."
+            },
+            {
+              "role": "Rights reviewer",
+              "task": "Check the exact version and intended use.",
+              "boundary": "Repository code rights do not clear every data artifact."
+            }
+          ],
+          "exception": {
+            "title": "A correct total can conceal the wrong evidence",
+            "paragraphs": [
+              "Retain separate checks for missing documents, unsupported entries, wrong dates, altered permissions and repeated-run failures even when the headline arithmetic score is high."
+            ]
+          },
+          "gap_url": "https://github.com/HenryBranchAdams/ai-agents-in-accounting/issues/173",
+          "review": {
+            "reviewed_at": "2026-09-21",
+            "reviewer": "Codex AI-assisted editorial synthesis review",
+            "scope": "Reconciled this answer-first presentation with the canonical matrix, cases, source-scope limitations and recorded review material. Agent editorial review only; human acceptance and final rendered integration remain pending.",
+            "dependencies": [
+              {
+                "record_id": "guide-select-accounting-evaluations",
+                "sha256": "f5f974dd59c7924fc5f72480bc4ca845a6e3feb5653ebb6373db081d5e895264"
+              },
+              {
+                "record_id": "src_finqa2021",
+                "sha256": "6ab7892edb9835798f601a6c64cf6eb2f873b262c9f2597df9b48a51842e447b"
+              },
+              {
+                "record_id": "src_cord_receipt_parsing",
+                "sha256": "ccd03e5b0d524df2fe3f5293e471796341af02c68ff7b8f0925b3e603bd4d436"
+              },
+              {
+                "record_id": "src_0qwi4ry",
+                "sha256": "65255f4fd702a2da216afff5d536ba5cd906ef8de6b67dd985904241426423ce"
+              },
+              {
+                "record_id": "src_apexaccounting_paper2026",
+                "sha256": "2a9fa1243a48d1b3b7f764486445da2d2965621173b2b83d4f6808f10254c110"
+              },
+              {
+                "record_id": "example-connected-purchase-to-payment",
+                "sha256": "f21c05fb8c94c0dd8385022baa346e9c74de16ca83cd1cb9f1c72f3a8cfd5c60"
+              },
+              {
+                "record_id": "example-connected-processor-settlement",
+                "sha256": "c9b28e4260940291571c45d3500e86df8e182b95c22832a061ed5ec4e893db8f"
+              },
+              {
+                "record_id": "guide-accounting-action-boundaries",
+                "sha256": "bf279ae8c9c6b5114a55b9622145c5249092b2e29b2b54b34d1ed5f955dae507"
+              }
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -88756,11 +89105,199 @@
         }
       ],
       "limitations": [
-        "Original selected illustrations, not exhaustive accounting rules or evidence of operating effectiveness.",
-        "Publisher locators and corpus JSON pointers serve different purposes.",
-        "Automatic citations and incoming views add no independent evidential support.",
-        "Final editorial brief freshness and combined graph/List presentation remain pending."
-      ]
+        "Selected original illustrations only; no exhaustive rules or operating-effectiveness claim.",
+        "Relationship direction and owner/locator meaning remain explicit.",
+        "Final combined graph/List, retrieval and export acceptance pending."
+      ],
+      "editorial_brief": {
+        "question": "Which changed fact makes a prior accounting conclusion unsafe to reuse?",
+        "answer": "A conclusion depends on its facts and scope. Preserve the original evidence, identify the changed fact, and reconsider the affected conclusion rather than carrying a prior answer into a different situation.",
+        "findings": [
+          {
+            "claim": "Seven selected pairs vary knowledge date, entity role, contract estimate, framework, payout mode, dispute outcome or endpoint traversal. ",
+            "source_ids": [],
+            "locator": "Canonical /data/claim_counterexample_pairs; each pair retains its own publisher and corpus locators.",
+            "qualification": "Original selected comparisons, not exhaustive accounting rules or observed operations.",
+            "classification": "original project synthesis"
+          },
+          {
+            "claim": "A qualification limits a scoped claim; a citation or incoming reference supplies no new independent support.",
+            "source_ids": [],
+            "locator": "Canonical /data/apparent_disagreements and data/relationships.json qualifies annotations.",
+            "qualification": "JSON pointers locate corpus annotations; they are not invented publisher passages.",
+            "classification": "original project synthesis"
+          }
+        ],
+        "unknowns": [
+          "Selected original illustrations only; no exhaustive rules or operating-effectiveness claim.",
+          "Relationship direction and owner/locator meaning remain explicit.",
+          "Final combined graph/List, retrieval and export acceptance pending."
+        ],
+        "reading_order": [
+          "src_0vf7hhg",
+          "src_aa_i109_arb51_amended",
+          "src_construction_fasb_2014_09",
+          "src_stripe_dispute_lifecycle",
+          "src_stripe_payout_reconciliation",
+          "src_xero_journals_completeness",
+          "example-connected-purchase-to-payment",
+          "example-connected-processor-settlement",
+          "guide-connected-close-review",
+          "guide-accounting-action-boundaries",
+          "guide-xero-ledger-completeness"
+        ],
+        "reading": {
+          "scope": "Seven scoped pairs show how entity role, contract facts, reporting framework, decision date and source version can change a conclusion.",
+          "critical_limitation": "Selected original illustrations only; no exhaustive rules or operating-effectiveness claim.",
+          "sections": [
+            {
+              "title": "An invoice arriving later does not create a second receipt",
+              "paragraphs": [
+                "In the fictional late-invoice branch, May receipt evidence retains a 60,000-cent receipt liability; the matching June invoice transfers it to AP without another inventory cost. Changed fact: June document concerns another entity or a new service. Leave the May liability visible; investigate identity and recognition separately instead of clearing it automatically."
+              ]
+            },
+            {
+              "title": "Internal elimination depends on entity role",
+              "paragraphs": [
+                "The controlled P/S illustration corrects a missing 120,000-cent subsidiary service accrual before eliminating reciprocal balances in the consolidation column. Changed fact: S is an outside customer, or disputes having received the service. Reassess perimeter or disputed service; do not erase the parent balance with a consolidation plug."
+              ]
+            },
+            {
+              "title": "A revised estimate changes both revenue arithmetic and approval scope",
+              "paragraphs": [
+                "In the estimate-only construction alternative, 270,000 cost divided by 1,000,000 expected cost gives 324,000 cumulative revenue on the assumed 1,200,000 contract, a 36,000 reduction from the earlier 360,000. Changed fact: Expected cost changes again to 1,080,000 after the illustrated approval. Preserve the earlier estimate, recompute the affected workpaper and obtain a new decision; arithmetic does not authorize posting."
+              ]
+            },
+            {
+              "title": "Useful evidence design is not automatically a binding audit duty",
+              "paragraphs": [
+                "AS 1105 provides evidence requirements in applicable PCAOB audits. The connected internal-close packets borrow bounded evidence-design ideas. Changed fact: The user is a bookkeeper preparing an internal close, not an auditor in a PCAOB engagement. Keep the design analogy labeled; establish the actual framework and accountable reviewer before claiming compliance or assurance."
+              ]
+            },
+            {
+              "title": "Batch assignment depends on payout mode",
+              "paragraphs": [
+                "Stripe documents transaction-batch reconciliation for automatic payouts; the fictional processor case separately traces processor activity and bank settlement. Changed fact: The payout is instant instead of automatic. Reconcile the available balance and bank movement without asserting unsupported transaction membership."
+              ]
+            },
+            {
+              "title": "A later win does not establish earlier certainty",
+              "paragraphs": [
+                "The fictional processor case shows a disputed claim at April close and a later recovery. Recoverability at April is an explicit assumption requiring review. Changed fact: The reviewer uses the June favorable outcome as if it were already known in April, or the claim is ultimately lost. Preserve the decision-date evidence and distinguish reassessment or write-off from a duplicate cash posting."
+              ]
+            },
+            {
+              "title": "A short response is not proof of a completed journal traversal",
+              "paragraphs": [
+                "Xero’s journal-specific documented rule continues with the last JournalNumber until an empty response. Changed fact: A response has fewer than 100 journals and a generic paginator stops. Continue under the endpoint contract and reconcile the population; successful requests do not prove complete extraction."
+              ]
+            }
+          ],
+          "example": {
+            "classification": "original-synthetic",
+            "title": "Original decision-date contrast",
+            "assumptions": "Use the fictional processor case. Recoverability at April remains an assumption requiring review.",
+            "columns": [
+              "Fact available",
+              "Decision scope",
+              "Invalid shortcut"
+            ],
+            "rows": [
+              [
+                "April dispute unresolved",
+                "Assess April evidence and uncertainty",
+                "Assume a later win was already known"
+              ],
+              [
+                "June recovery recorded",
+                "Reconcile the subsequent bank event",
+                "Duplicate the original sale or cash"
+              ],
+              [
+                "Alternative loss",
+                "Reassess the claim under applicable policy",
+                "Force the earlier favorable outcome"
+              ]
+            ],
+            "record_id": "example-connected-processor-settlement",
+            "anchor": "record-content"
+          },
+          "responsibilities": [
+            {
+              "role": "Reader",
+              "task": "Identify the changed fact and source scope.",
+              "boundary": "A similar label does not establish equivalent facts."
+            },
+            {
+              "role": "Reviewer",
+              "task": "Reconsider recognition and approval against current evidence.",
+              "boundary": "No project illustration is professional sign-off."
+            }
+          ],
+          "exception": {
+            "title": "Apparent disagreement may be a scope difference",
+            "paragraphs": [
+              "Check population, edition, framework, entity role and decision date before asserting a contradiction. Preserve any real unresolved disagreement instead of selecting the convenient conclusion."
+            ]
+          },
+          "gap_url": "https://github.com/HenryBranchAdams/ai-agents-in-accounting/issues/173",
+          "review": {
+            "reviewed_at": "2026-09-21",
+            "reviewer": "Codex AI-assisted editorial synthesis review",
+            "scope": "Reconciled this answer-first presentation with the canonical matrix, cases, source-scope limitations and recorded review material. Agent editorial review only; human acceptance and final rendered integration remain pending.",
+            "dependencies": [
+              {
+                "record_id": "guide-accounting-claim-counterexamples",
+                "sha256": "b1562b4799fb19836f21a0c3f85ad47c5a1406381b67ea3ac8c293ae373da5d5"
+              },
+              {
+                "record_id": "src_0vf7hhg",
+                "sha256": "735836e88254ef10261e3181ba1fe0a1471ebfe9de92e99c54d9cd6e7f21b5c2"
+              },
+              {
+                "record_id": "src_aa_i109_arb51_amended",
+                "sha256": "f766a8a4b836ebd76e1a86e089328daad4df79bba88ac6acf9b06798d91f94da"
+              },
+              {
+                "record_id": "src_construction_fasb_2014_09",
+                "sha256": "5903c386c0b2508db39f0381e348804b58b4b61ca7d2aa6c6990742eb7aebd7f"
+              },
+              {
+                "record_id": "src_stripe_dispute_lifecycle",
+                "sha256": "3529c8752c75f8e3d783c7c27a98e3382abba4524ae3dcd54908444e47a06775"
+              },
+              {
+                "record_id": "src_stripe_payout_reconciliation",
+                "sha256": "3399d24069b09cba19d7006e115020cdbdd89476457afa121196ad3e059b12d1"
+              },
+              {
+                "record_id": "src_xero_journals_completeness",
+                "sha256": "f9f1ae12d15d37bed94d2726e0e034321714d6afe5fb9610bbcf5020799bc351"
+              },
+              {
+                "record_id": "example-connected-purchase-to-payment",
+                "sha256": "f21c05fb8c94c0dd8385022baa346e9c74de16ca83cd1cb9f1c72f3a8cfd5c60"
+              },
+              {
+                "record_id": "example-connected-processor-settlement",
+                "sha256": "c9b28e4260940291571c45d3500e86df8e182b95c22832a061ed5ec4e893db8f"
+              },
+              {
+                "record_id": "guide-connected-close-review",
+                "sha256": "97d2be8cb6f02a42ef49a779e44c0a750ca1a26826e9d7057bbbd4a677576b43"
+              },
+              {
+                "record_id": "guide-accounting-action-boundaries",
+                "sha256": "bf279ae8c9c6b5114a55b9622145c5249092b2e29b2b54b34d1ed5f955dae507"
+              },
+              {
+                "record_id": "guide-xero-ledger-completeness",
+                "sha256": "e8e65c1d6ece150caa4a5311df0e9f8714e51f9e4dfbae35fe60fcced8810046"
+              }
+            ]
+          }
+        }
+      }
     }
   }
 ]

@@ -280,3 +280,7 @@ Read the original Intuit attachment tutorial and Xero attachment reference. Adde
 ### P3 synthesis and current review reconciliation
 
 Replaced the empirical guide's obsolete abstract-only description with a bounded four-profile synthesis and preserved the six-additional-record screening decisions. Current source summaries and review-ledger entries now point to the actual selected methods and supplementary material; previous source reviews remain in each record as historical evidence. Clarified Fedyk's coefficient as a probability difference equivalent to five percentage points, not a relative-percent effect. No unavailable methods, private-input replication, human acceptance or operating effectiveness is claimed. The new reading brief binds the reviewed profiles and proposed human-measurement protocol. Current editorial dependencies match; final rendering, retrieval and export acceptance remain pending.
+
+### P4/P6/P8 readable synthesis
+
+Added answer-first briefs for evaluation selection, action boundaries and claim/counterexample pairs. Original hypothetical tables remain separate from published findings and observed behavior. Reviewed the connected-close guide's affected links after the dependency check correctly flagged the revised limitation statements; renewed only those examined bindings. Detailed matrices, source pointers, exceptions and unresolved evidence remain in the canonical records. Structural record validation reaches the draft coverage boundary; final rendered and exported acceptance is pending.
