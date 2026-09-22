@@ -8,7 +8,7 @@ import { suggestionQueryLimit, isSearchSuggestions } from "../search-suggestion-
 const destinations = [
   ["/library", "Research library"], ["/briefs", "Research briefs"],
   ["/records/wf-r2r-bank-reconciliations", "Bank reconciliation"],
-  ["/records/guide-construction-wip", "Construction work in progress"],
+  ["/records/guide-construction-connected-close", "Construction work in progress"],
 ];
 
 function SearchPalette({ edition, trigger }: { edition: string; trigger: HTMLElement | null }) {
@@ -67,7 +67,7 @@ function SearchPalette({ edition, trigger }: { edition: string; trigger: HTMLEle
           <DialogTitle>Search the corpus</DialogTitle>
           <DialogDescription>Search every record. Library filters do not apply here.</DialogDescription>
         </DialogHeader>
-        <Command shouldFilter={false} label="Whole-corpus search" onKeyDownCapture={event => {
+        <Command shouldFilter={false} label="Search every corpus record" onKeyDownCapture={event => {
           keyboardSelection.current = event.key === "Enter" && !event.nativeEvent.isComposing;
           queueMicrotask(() => { keyboardSelection.current = false; });
         }}>
@@ -77,7 +77,7 @@ function SearchPalette({ edition, trigger }: { edition: string; trigger: HTMLEle
             {q && result?.query === q ? <CommandGroup heading="Records">{result.items.map(record => item(record.href, record.title, record.id, `${record.kind}${record.has_brief ? " · Research brief" : ""}. ${record.summary}`))}</CommandGroup> : null}
           </CommandList>
         </Command>
-        <p role="status" aria-live="polite">{status}</p>
+        {status ? <p role="status" aria-live="polite">{status}</p> : null}
         {mismatch ? <a href={window.location.href}>Reload this page</a> : <a href={q ? `/library?${new URLSearchParams({ q })}` : "/library"}>{q ? "Search all results" : "Open the research library"}</a>}
       </DialogContent>
     </Dialog>

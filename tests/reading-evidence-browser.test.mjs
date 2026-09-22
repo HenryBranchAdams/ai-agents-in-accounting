@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import path from 'node:path';
 import {getRecord} from '../dist/internal/corpus.mjs';
 import {productionBrowser} from './browser-support/production.mjs';
-const pilots=['wf-r2r-bank-reconciliations','guide-construction-wip'];
+const pilots=['wf-r2r-bank-reconciliations','guide-construction-connected-close'];
 test('evidence popovers and native outlines retain keyboard, touch, source and history paths', {timeout:180000},async t=>{
  const {browser,origin,directory,receipt}=await productionBrowser(t,'reading-evidence');
  for(const [name,viewport]of[['desktop',{width:1440,height:1000}],['mobile',{width:390,height:844}]]){
