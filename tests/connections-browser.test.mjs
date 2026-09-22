@@ -19,9 +19,15 @@ test('graph and native List share provenance, portable state and stable interact
     assert.ok(initialCount<=25);assert.equal(await page.locator('#connection-list [data-connection-node-id]').count(),initialCount);
     await page.getByRole('button',{name:'Recenter focus',exact:true}).click();await canvas.scrollIntoViewIfNeeded();
     await page.waitForFunction(()=>{const node=document.querySelector('.connection-canvas');if(!node)return false;const box=node.getBoundingClientRect();return Math.abs(Number(node.dataset.focusX)-box.width/2)<3&&Math.abs(Number(node.dataset.focusY)-box.height/2)<3;});
-    const box=await canvas.boundingBox(),point=await canvas.evaluate(node=>({x:Number(node.dataset.focusX),y:Number(node.dataset.focusY)}));
-    if(name==='mobile')await page.touchscreen.tap(box.x+point.x,box.y+point.y);else await page.mouse.click(box.x+point.x,box.y+point.y);
-    await page.waitForURL(url=>url.searchParams.get('selected')==='node:'+focus);
+    const point=await canvas.evaluate(node=>{
+     node.pointerTrace=[];for(const type of ['pointerdown','pointerup','mousedown','mouseup','click','touchstart','touchend'])node.addEventListener(type,event=>{const r=node.getBoundingClientRect();node.pointerTrace.push({type,x:event.clientX??event.changedTouches?.[0]?.clientX,y:event.clientY??event.changedTouches?.[0]?.clientY,target:event.target.tagName,rect:r.toJSON(),focusX:node.dataset.focusX,focusY:node.dataset.focusY});},{capture:true,once:true});
+     return {x:Number(node.dataset.focusX),y:Number(node.dataset.focusY)};
+    });
+    // Locator pointer actions wait for a stable, unobscured element and resolve its
+    // current viewport position, rather than reusing an earlier absolute box.
+    if(name==='mobile')await canvas.tap({position:point});else await canvas.click({position:point});
+    try{await page.waitForURL(url=>url.searchParams.get('selected')==='node:'+focus);}
+    catch(error){journey.pointer_failure={focus,point,url:page.url(),trace:await canvas.evaluate(node=>node.pointerTrace)};throw error;}
     assert.deepEqual(await positions(page),before,'Selecting a node must not move any node');
     if(name==='mobile'){const sheet=page.getByRole('dialog',{name:'Connection inspector'});await sheet.waitFor();assert.equal(await sheet.evaluate(node=>getComputedStyle(node).animationName),'none');await page.keyboard.press('Escape');await sheet.waitFor({state:'hidden'});await page.waitForFunction(()=>document.activeElement?.textContent==='Inspect selected item');assert.equal(new URL(page.url()).searchParams.get('selected'),'node:'+focus);}
     const edgeLink=page.locator('#connection-list [data-connection-edge-id] > a').first();await edgeLink.focus();await page.keyboard.press('Enter');
