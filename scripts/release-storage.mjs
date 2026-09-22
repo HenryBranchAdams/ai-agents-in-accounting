@@ -23,7 +23,8 @@ export function prepareStorage(root = 'dist/client') {
   const files = {};
   const objects = new Map();
   fs.mkdirSync(`${root}/assets/objects`, { recursive: true });
-  for (const folder of ['downloads', 'releases']) {
+  for (const folder of ['downloads', 'releases', '_runtime']) {
+    if (folder === '_runtime' && !fs.existsSync(`${root}/${folder}`)) continue;
     for (const name of fs.readdirSync(`${root}/${folder}`, { recursive: true }).sort()) {
       const file = `${root}/${folder}/${name}`;
       if (!fs.statSync(file).isFile()) continue;

@@ -13,7 +13,7 @@ Successful main pushes additionally run `npm run release:package`, producing
 all runtime data and client chunks, both hosting descriptors, qualification,
 source-input inventory and download manifests. Every required compressed storage
 object appears once. Expanded logical downloads/history are not duplicated in the
-application. The existing exact-source diagnostic artifact remains retained.
+application. Private corpus data and the lazy connection index are logical `/_runtime/` files in the sealed storage sidecar. They are excluded from the public static application even when a host serves matching assets before the Worker. The entrypoint rejects public requests for these paths and reads them internally through the same verified object manifest. Preview fixtures may hold these files locally; that does not make them publication assets. The existing exact-source diagnostic artifact remains retained.
 
 The package validates object hashes and reconstructs every logical file digest
 with bounded decompression. No installed dependency or source cache is needed in
@@ -62,13 +62,19 @@ The manual `Published corpus verification` workflow runs `scripts/verify-live.mj
 against the fixed existing public origin. It checks out main and refuses a source
 revision different from that checkout. Supply the exact source, corpus, index,
 sealed storage-manifest and download-manifest identities from the authenticated
-main artifact. It installs the pinned browser but performs no app build, package,
+main artifact, plus a JSON array of its private runtime paths and any previously exposed asset paths. It installs the pinned browser but performs no app build, package,
 import, environment mutation or publication.
 
 The script checks release identities before and after the run, actual desktop/mobile
 reading, research limitations, previews, search, Graph/List navigation and native
-fallback. It records loaded asset hashes and streams every current download against
+fallback. It records browser-observed JavaScript URLs and hashes separate public readbacks after navigation, avoiding browser response-body lifetime races. It checks PR #181 family-office reading and requires every artifact private path to return 404. It streams every current download against
 the artifact-bound manifest. Screenshots and a receipt are retained even on failure.
 Native deployment success and secret removal still require separate connector
 readback. An unauthenticated import-route404 alone does not prove secret removal.
 A green live workflow cannot substitute for human acceptance or artifact provenance.
+
+## Live hosting correction
+
+The first integrated publication, version33 from GitHub `5c662e0`, revealed that Sites served `/assets/connections/` directly despite the emitted `run_worker_first: true`. This is public corpus material, but serving the full internal index bypassed the bounded browser interface contract. Publication now omits private runtime files from the static asset directory and carries them only in the authenticated, sealed storage package. A production-built test simulates asset-first hosting, proves ordinary reading does not fetch graph objects, and checks missing private objects fail visibly. The live workflow checks the actual private paths after deployment. The prior failed live run remains evidence, not acceptance.
+
+On macOS, invoke native packaging with `COPYFILE_DISABLE=1` to avoid AppleDouble metadata members. Compare every packaged runtime member to the authenticated CI package before native save. This container-only setting does not rebuild application bytes. Native save may normalize the tar container; retain its returned archive identity separately from the local tar and CI ZIP digests.

@@ -4,6 +4,7 @@ import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {execFileSync} from 'node:child_process';
 import {chromium} from 'playwright';
+import {observeAssetResponse,readPublicAssets} from './live-assets.mjs';
 
 const origin='https://accounting-agents.madebyhenry.chatgpt.site';
 const directory=path.resolve('outputs/live-verification');fs.mkdirSync(directory,{recursive:true});
@@ -20,6 +21,8 @@ try{
  receipt.release_before=await release();
  assert.equal((await(await get('/api/v1/meta')).json()).corpus_version,expected.corpus_version);
  const overview=await(await get('/api/v1/connections?focus=guide-construction-connected-close')).json();assert.equal(overview.corpus_version,expected.corpus_version);assert.equal(overview.index_version,expected.index_version);
+ const privatePaths=JSON.parse(process.env.EXPECTED_PRIVATE_PATHS_JSON||'null');assert.ok(Array.isArray(privatePaths)&&privatePaths.length>0&&privatePaths.length<=100,'Artifact private paths are required');
+ for(const route of privatePaths){assert.match(route,/^\/(?:_runtime|assets)\/(?:data|connections)\/[a-f0-9]{64}\.(?:json\.)?gz$/);const response=await fetch(origin+route,{redirect:'error',signal:AbortSignal.timeout(60000)});assert.equal(response.status,404,'Internal asset is public: '+route);await response.body?.cancel();}receipt.private_paths=privatePaths;
  const manifestBytes=Buffer.from(await(await get('/downloads/manifest.json')).arrayBuffer());assert.equal(hash(manifestBytes),expected.download_manifest_sha256,'Download manifest differs from authoritative package');const manifest=JSON.parse(manifestBytes);assert.equal(manifest.corpus_version,expected.corpus_version);
  assert.equal((await fetch(origin+'/_release/manifests/'+expected.storage_manifest,{method:'HEAD'})).status,404,'Import route must reject unauthenticated access');
  browser=await chromium.launch();receipt.browser=browser.version();
@@ -27,10 +30,12 @@ try{
  const records=['guide','collection','workflow'].flatMap(kind=>JSON.parse(fs.readFileSync(`data/corpus/${kind}.json`)));
  for(const[name,viewport]of[['desktop',{width:1440,height:1000}],['mobile',{width:390,height:844}]]){
   const context=await browser.newContext({viewport}),page=await context.newPage();page.setDefaultTimeout(20000);
-  const errors=[],requests=[],assetReads=[];
-  page.on('pageerror',e=>errors.push(e.message));page.on('request',r=>requests.push(r.url()));page.on('response',r=>{if(r.status()>=400)errors.push(`HTTP ${r.status()} ${r.url()}`);if(new URL(r.url()).pathname.endsWith('.js'))assetReads.push(r.body().then(bytes=>receipt.assets.push({url:r.url(),sha256:hash(bytes),bytes:bytes.length})));});
+  const errors=[],requests=[],assetURLs=new Set();
+  page.on('pageerror',e=>errors.push(e.message));page.on('request',r=>requests.push(r.url()));page.on('response',r=>{if(r.status()>=400)errors.push(`HTTP ${r.status()} ${r.url()}`);observeAssetResponse(r,origin,assetURLs);});
   const journey={name,viewport,status:'running',records:[],errors};receipt.journeys.push(journey);
   try{
+   await page.goto(origin+'/records/collection-family-office-reference');await page.getByRole('heading',{name:'Find guidance for your question',exact:true}).waitFor();await page.getByText('All 112 source-discovery annotations',{exact:true}).click();
+   for(const number of ['13','22','27']){const record=records.find(r=>r.id===`guide-fo-reference-fo-${number}`);await page.goto(origin+'/records/'+record.id);await page.getByRole('heading',{name:record.data.family_office_reference.framing_question,exact:true}).waitFor();assert.ok((await page.locator('#family-office-reference').innerText()).includes(record.data.family_office_reference.boundary));journey.records.push(record.id);}
    for(const id of ids){await page.goto(origin+'/records/'+id);const brief=records.find(r=>r.id===id).data.editorial_brief;await page.getByRole('heading',{name:brief.question,exact:true}).waitFor();assert.ok((await page.locator('main').innerText()).includes(brief.reading.critical_limitation),id);journey.records.push(id);}
    const pilot=records.find(r=>r.id==='wf-r2r-bank-reconciliations'),finding=pilot.data.editorial_brief.findings.find(f=>f.source_ids.length);
    const response=await page.goto(origin+'/records/'+pilot.id);for(const directive of ["default-src 'none'","connect-src 'self'","script-src 'self'","base-uri 'none'","frame-ancestors 'none'","form-action 'self'"])assert.ok(response.headers()['content-security-policy'].includes(directive),directive);assert.equal(response.headers()['x-content-type-options'],'nosniff');
@@ -45,7 +50,7 @@ try{
    if(name==='mobile')await page.keyboard.press('Escape');
    const focusRow=page.locator('#connection-list [data-connection-node-id="guide-construction-connected-close"]');await focusRow.getByRole('link',{name:'Expand by up to 10 records',exact:true}).click();await page.waitForURL(url=>url.searchParams.has('expanded'));await focusRow.getByRole('link',{name:'Collapse this expansion',exact:true}).click();await page.waitForURL(url=>!url.searchParams.has('expanded'));
    await page.getByRole('link',{name:'List',exact:true}).click();await page.waitForURL(url=>url.searchParams.get('mode')!=='graph');assert.ok(await page.locator('#connection-list [data-connection-edge-id]').count());await page.goBack();await page.locator('.connection-canvas').waitFor();
-   assert.deepEqual(errors,[]);assert.ok(requests.every(url=>new URL(url).origin===origin));await Promise.all(assetReads);journey.status='passed';
+   assert.deepEqual(errors,[]);assert.ok(requests.every(url=>new URL(url).origin===origin));receipt.assets.push(...await readPublicAssets(assetURLs,origin));journey.status='passed';
   }catch(error){journey.status='failed';journey.error=error.message;await page.screenshot({path:path.join(directory,name+'-failure.png')}).catch(()=>{});throw error;}finally{await context.close();}
  }
  const native=await browser.newContext({javaScriptEnabled:false,viewport:{width:390,height:844}});try{const page=await native.newPage();await page.goto(origin+'/connections?focus=guide-construction-connected-close&mode=graph');await page.locator('#connection-list [data-connection-edge-id] > a').first().click();await page.getByText('Recorded reason 1',{exact:true}).waitFor();receipt.journeys.push({name:'native-list',status:'passed'});}finally{await native.close();}

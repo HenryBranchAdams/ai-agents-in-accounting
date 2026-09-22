@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import { hash } from './release-storage.mjs';
 const files = root => fs.readdirSync(root,{recursive:true}).map(p=>`${root}/${p}`).filter(p=>fs.statSync(p).isFile());
 const server = files('dist/server').filter(p=>p.endsWith('.js'));
-const assets = files('dist/client').filter(p=>!/^dist\/client\/(downloads|releases|assets\/objects)\//.test(p));
+const assets = files('dist/client').filter(p=>!/^dist\/client\/(downloads|releases|_runtime|assets\/objects)\//.test(p));
 const revision = execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim();
 const releaseMeta = JSON.parse(fs.readFileSync("dist/internal/release-meta.json"));
 assert.equal(releaseMeta.build_mode, "release", "Draft previews cannot qualify for publication");

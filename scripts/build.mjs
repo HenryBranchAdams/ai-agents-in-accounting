@@ -331,15 +331,12 @@ const runtimeDataPlugin = { name: "immutable-runtime-data", setup(builder) {
     if (!file.includes("/data/") || fs.statSync(file).size < 100000) return;
     const body = Buffer.from(JSON.stringify(JSON.parse(fs.readFileSync(file, "utf8"))));
     const key = createHash("sha256").update(body).digest("hex");
-    fs.mkdirSync("dist/client/assets/data", { recursive: true });
-    fs.writeFileSync(`dist/client/assets/data/${key}.gz`, gzipSync(body, { level: 9 }));
+    fs.mkdirSync("dist/client/_runtime/data", { recursive: true });
+    fs.writeFileSync(`dist/client/_runtime/data/${key}.gz`, gzipSync(body, { level: 9 }));
     runtimeDataKeys.add(key);
     return { contents: `export default RUNTIME_DATA[${JSON.stringify(key)}]`, loader: "js" };
   });
 } };
-const releaseStorage = preview ? { id: "preview", files: {} } : prepareStorage();
-const releaseMeta = { build_mode: preview ? "preview" : "release", input_digest: preview ? process.env.PREVIEW_INPUT_DIGEST || null : null, corpus_version: meta.corpus_version, source_revision: (preview ? process.env.PREVIEW_SOURCE_REVISION : null) || execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim(), storage_manifest: releaseStorage.id };
-fs.writeFileSync("dist/internal/release-meta.json", JSON.stringify(releaseMeta));
 const applicationBuild = await build({
   entryPoints: ["src/worker.ts"],
   mainFields: ["module", "main"], conditions: ["browser"],
@@ -349,8 +346,6 @@ const applicationBuild = await build({
     CONNECTION_INDEX: JSON.stringify(connectionIndex),
     CLIENT_ASSETS: JSON.stringify(Object.keys(clientBuild.metafile.outputs).filter(file => file.endsWith(".js")).map(file => "/assets/" + path.basename(file))),
     PREVIEW_BUILD: JSON.stringify(preview),
-    RELEASE_STORAGE: JSON.stringify(releaseStorage),
-    RELEASE_META: JSON.stringify(releaseMeta),
     PUBLICATION_DATA: JSON.stringify(publication),
     STYLE_VERSION: JSON.stringify(
       createHash("sha256")
@@ -363,6 +358,9 @@ const applicationBuild = await build({
   format: "iife", globalName: "compiledApplication", platform: "neutral",
   target: "es2023", minify: true, legalComments: "eof", write: false, metafile: true,
 });
+const releaseStorage = preview ? { id: "preview", files: {} } : prepareStorage();
+const releaseMeta = { build_mode: preview ? "preview" : "release", input_digest: preview ? process.env.PREVIEW_INPUT_DIGEST || null : null, corpus_version: meta.corpus_version, source_revision: (preview ? process.env.PREVIEW_SOURCE_REVISION : null) || execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim(), storage_manifest: releaseStorage.id };
+fs.writeFileSync("dist/internal/release-meta.json", JSON.stringify(releaseMeta));
 fs.writeFileSync("dist/internal/runtime-application.mjs", `export function createApplication(RUNTIME_DATA) { ${applicationBuild.outputFiles[0].text}; return compiledApplication.default; }`);
 await build({
   entryPoints: { index: "src/entry.ts" },

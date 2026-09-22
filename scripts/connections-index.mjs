@@ -10,8 +10,8 @@ export async function writeConnectionsIndex(records, corpusVersion) {
   const snapshot = await projectConnections(records, JSON.parse(fs.readFileSync('data/relationships.json', 'utf8')), corpusVersion);
   const body = Buffer.from(JSON.stringify(snapshot));
   const sha256 = createHash('sha256').update(body).digest('hex');
-  const assetPath = `/assets/connections/${sha256}.json.gz`;
-  fs.mkdirSync('dist/client/assets/connections', { recursive: true });
+  const assetPath = `/_runtime/connections/${sha256}.json.gz`;
+  fs.mkdirSync('dist/client/_runtime/connections', { recursive: true });
   fs.writeFileSync(`dist/client${assetPath}`, gzipSync(body, { level: 9 }));
   const metadata = { path: assetPath, sha256, bytes: body.length, schema_version: snapshot.schema_version, corpus_version: snapshot.corpus_version, index_version: snapshot.index_version, counts: snapshot.counts, diagnostics: snapshot.diagnostics };
   fs.writeFileSync('dist/internal/connections-index.json', JSON.stringify(metadata, null, 2) + '\n');
