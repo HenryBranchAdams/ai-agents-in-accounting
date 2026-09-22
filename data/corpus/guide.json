@@ -87260,7 +87260,8 @@
       "src_oracle26b_journal_headers",
       "src_oracle_collection_paging_25d",
       "src_stripe_netsuite_deposit_automation",
-      "src_xero_attachment_lineage_2026"
+      "src_xero_attachment_lineage_2026",
+      "src_xero_oauth_scope_map_2026"
     ],
     "related_ids": [
       "collection-erp-extraction-completeness",
@@ -87338,11 +87339,11 @@
           "id": "xero-bank",
           "status": "documented",
           "question": "Do bank transactions establish statement completeness?",
-          "answer": "The earlier checked public boundary excludes unreconciled statement data and API reconciliation. Obtain an independently authorized statement population; a transaction list alone is insufficient.",
+          "answer": "The September21 recheck confirms that public APIs do not expose unreconciled bank statement data and that bank reconciliation occurs inside Xero. Obtain an independently authorized statement population; a transaction list alone is insufficient.",
           "source_ids": [
             "src_xero_bank_statement_boundary"
           ],
-          "locator": "Documented boundary checked2026-09-07; recheck before actual integration"
+          "locator": "Reconcile via the API; original page rechecked2026-09-21"
         },
         {
           "id": "xero-reports",
@@ -87508,6 +87509,16 @@
             "src_xero_tracking_mapping_2026"
           ],
           "locator": "Using Xero tracking categories in your app"
+        },
+        {
+          "id": "xero-scope-map",
+          "status": "documented",
+          "question": "Which read scopes distinguish the populations?",
+          "answer": "The selected scope map separates Journals, ManualJournals, invoices, payments, bank transactions, reports, settings and attachments. Scope assignment, user consent and endpoint entitlement remain separate. Revocation and renewed authorization are required to reduce previously consented scopes.",
+          "source_ids": [
+            "src_xero_oauth_scope_map_2026"
+          ],
+          "locator": "Accounting API resource table; Scopes are additive"
         }
       ],
       "completeness_recovery_procedure": [
@@ -87569,9 +87580,9 @@
         "required_receipt": "Exact app/tenant cohort,request/response identities and dates,expected versus actual population/totals,exceptions and reviewer decision. Strip credentials and private data before sharing."
       },
       "limitations": [
-        "Draft P1 dossier: exact OAuth endpoint map,complete source-object coverage,report comparison,concurrent-edit and period-lock behavior remain unresolved. Webhook/retry documentation is now read but no delivery or write behavior was observed.",
+        "Exact deployed connection consent, role/entitlement, complete source-object population, report equivalence, concurrent edits and period-lock enforcement remain unverified. Selected endpoint/scope mappings are documented; no runtime behavior was observed.",
         "No live accounting operations,API tests or professional review occurred. Synthetic replay cannot establish vendor behavior.",
-        "Historical September7 bank-boundary annotation is inherited and needs recheck before operation.",
+        "The public bank-statement boundary was rechecked September21; it still does not provide an independent unreconciled statement population.",
         "Narrow Oracle/NetSuite comparison is recorded; final canonical relationships, reader presentation and exports remain pending."
       ],
       "narrow_erp_comparison": {
@@ -87636,9 +87647,9 @@
           }
         ],
         "unknowns": [
-          "Draft P1 dossier: exact OAuth endpoint map,complete source-object coverage,report comparison,concurrent-edit and period-lock behavior remain unresolved. Webhook/retry documentation is now read but no delivery or write behavior was observed.",
+          "Exact deployed connection consent, role/entitlement, complete source-object population, report equivalence, concurrent edits and period-lock enforcement remain unverified. Selected endpoint/scope mappings are documented; no runtime behavior was observed.",
           "No live accounting operations,API tests or professional review occurred. Synthetic replay cannot establish vendor behavior.",
-          "Historical September7 bank-boundary annotation is inherited and needs recheck before operation.",
+          "The public bank-statement boundary was rechecked September21; it still does not provide an independent unreconciled statement population.",
           "Narrow Oracle/NetSuite comparison is recorded; final canonical relationships, reader presentation and exports remain pending."
         ],
         "reading_order": [
@@ -87664,7 +87675,8 @@
           "src_oracle_collection_paging_25d",
           "src_stripe_netsuite_deposit_automation",
           "src_xero_attachment_lineage_2026",
-          "example-connected-purchase-to-payment"
+          "example-connected-purchase-to-payment",
+          "src_xero_oauth_scope_map_2026"
         ],
         "reading": {
           "scope": "Xero Accounting API documentation and original recovery design; no connected tenant.",
@@ -87749,11 +87761,11 @@
           "review": {
             "reviewed_at": "2026-09-21",
             "reviewer": "Codex AI-assisted editorial synthesis review",
-            "scope": "Reviewed the dossier rows, documented recovery boundaries and original counterexample against their scoped source profiles. Explicit unresolved contract and runtime questions remain; no human acceptance.",
+            "scope": "Reviewed the dossier rows, documented recovery boundaries and original counterexample against their scoped source profiles. Explicit unresolved contract and runtime questions remain; no human acceptance. Rechecked the scope-resource map, additive consent and the complete short bank-statement boundary page; no claim of observed token or tenant access. Checked the bounded dependency register against the documented rows: configuration, inaccessible entity contracts and intended-use questions remain explicit limitations, not silently completed runtime tests.",
             "dependencies": [
               {
                 "record_id": "guide-xero-ledger-completeness",
-                "sha256": "e8e65c1d6ece150caa4a5311df0e9f8714e51f9e4dfbae35fe60fcced8810046"
+                "sha256": "a68469cac3edc3c91a620d9e89e3bcd57119d1a36dd7de968af1ec80e490bcfd"
               },
               {
                 "record_id": "src_xero_journals_completeness",
@@ -87765,7 +87777,7 @@
               },
               {
                 "record_id": "src_xero_bank_statement_boundary",
-                "sha256": "d82de5415c4f3999d1eca2a47d4a3900b947e54912ee0c4dc7fc62d538420b8b"
+                "sha256": "b22706949ce0199a9be5fefccf2cf1d6a511e24c3343ac21bd25f448a2144a86"
               },
               {
                 "record_id": "src_xero_permissions_faq_2026",
@@ -87846,11 +87858,91 @@
               {
                 "record_id": "example-connected-purchase-to-payment",
                 "sha256": "f21c05fb8c94c0dd8385022baa346e9c74de16ca83cd1cb9f1c72f3a8cfd5c60"
+              },
+              {
+                "record_id": "src_xero_oauth_scope_map_2026",
+                "sha256": "7050e1c95fc85af1082fb1f29caa010a95e001efcda3cc870450bbc1f6a5077a"
               }
             ]
           }
         }
-      }
+      },
+      "oauth_scope_map": {
+        "status": "documented",
+        "source_id": "src_xero_oauth_scope_map_2026",
+        "locator": "Accounting API resource table",
+        "rows": [
+          {
+            "resources": "Journals",
+            "scope": "accounting.journals.read",
+            "method": "GET only"
+          },
+          {
+            "resources": "ManualJournals",
+            "scope": "accounting.manualjournals.read",
+            "method": "GET only"
+          },
+          {
+            "resources": "Invoices, CreditNotes, PurchaseOrders and LinkedTransactions",
+            "scope": "accounting.invoices.read",
+            "method": "GET only"
+          },
+          {
+            "resources": "Payments, BatchPayments, Overpayments and Prepayments",
+            "scope": "accounting.payments.read",
+            "method": "GET only"
+          },
+          {
+            "resources": "BankTransactions and BankTransfers",
+            "scope": "accounting.banktransactions.read",
+            "method": "GET only"
+          },
+          {
+            "resources": "TrialBalance",
+            "scope": "accounting.reports.trialbalance.read",
+            "method": "GET only"
+          },
+          {
+            "resources": "ProfitAndLoss",
+            "scope": "accounting.reports.profitandloss.read",
+            "method": "GET only"
+          },
+          {
+            "resources": "Organisation, Accounts and TrackingCategories",
+            "scope": "accounting.settings.read",
+            "method": "GET only"
+          },
+          {
+            "resources": "Attachments on supported parents",
+            "scope": "accounting.attachments.read",
+            "method": "GET only"
+          }
+        ],
+        "qualification": "Selected read-side map for this dossier. Read/write companion scopes and broader transition scopes are not requested or granted here. Confirm actual connection consent, role, endpoint entitlement and product support separately."
+      },
+      "bounded_review_dependencies": [
+        {
+          "question": "Actual connection permission and commercial access",
+          "reviewed_material": "Granular-scope FAQ, scope registry, permissions FAQ, Journals entitlement, pricing/policy FAQ and platform terms.",
+          "missing_evidence": "Named app creation/cohort, consented token scopes, current plan and authorized user/tenant configuration.",
+          "effect": "The dossier provides a documented decision map, not proof that any particular app can extract or write. No credentials or tenant tests were requested.",
+          "resolution": "Separate authorized configuration and synthetic test under the applicable terms."
+        },
+        {
+          "question": "Concurrent edits, source-object completeness and period-lock enforcement",
+          "reviewed_material": "Journals, source types, ManualJournals, invoices, payments, history, organisation actions, retry and batch contracts.",
+          "missing_evidence": "Complete configured source-object inventory, exact runtime role/lock behavior, full historical deletion states and independently matched report population.",
+          "effect": "Preserve unresolved source IDs, backdated changes and report differences. Do not certify a complete ledger or treat ALLOWED as payload approval.",
+          "resolution": "Use the named-sandbox protocol with independently known expected documents and balances; retain unknown history when no supported recovery exists."
+        },
+        {
+          "question": "Data-use terms and actual reuse rights",
+          "reviewed_material": "December4,2025 platform terms and dated pricing/scope migration material.",
+          "missing_evidence": "Specific contract/cohort, tenant authority and intended third-party processing or redistribution permission.",
+          "effect": "No model-training, public tenant-data export or platform benchmark permission is asserted.",
+          "resolution": "Review the actual intended use and controlling terms before an operational integration."
+        }
+      ]
     }
   },
   {
@@ -88342,11 +88434,11 @@
           "review": {
             "reviewed_at": "2026-09-21",
             "reviewer": "Codex AI-assisted editorial synthesis review",
-            "scope": "Reviewed the dossier rows, documented recovery boundaries and original counterexample against their scoped source profiles. Explicit unresolved contract and runtime questions remain; no human acceptance.",
+            "scope": "Reviewed the dossier rows, documented recovery boundaries and original counterexample against their scoped source profiles. Explicit unresolved contract and runtime questions remain; no human acceptance. Checked the bounded dependency register against the documented rows: configuration, inaccessible entity contracts and intended-use questions remain explicit limitations, not silently completed runtime tests.",
             "dependencies": [
               {
                 "record_id": "guide-qbo-ledger-completeness",
-                "sha256": "94b59e16ff4236a6c597a5c9d31bc34046206797738000061bbf589449ca3527"
+                "sha256": "c1625d9d250b272d898fdfc470bc9b07431dca426296434d16e8506bc44dab2e"
               },
               {
                 "record_id": "src_qbo_cdc_reference",
@@ -88423,7 +88515,30 @@
             ]
           }
         }
-      }
+      },
+      "bounded_review_dependencies": [
+        {
+          "question": "Object-specific lineage, JournalEntry writes and linked transactions",
+          "reviewed_material": "Typed-ID/request semantics, query, CDC, reports, attachments and stale-object guidance; attempted entity and linked-transaction documentation.",
+          "missing_evidence": "JournalEntry and linked-transaction pages returned loading or empty content through ordinary and supported Exa reads.",
+          "effect": "The dossier cannot establish object-specific void/delete, partial-update or complete source-to-ledger contracts. A JournalEntry list is not certified as the ledger population.",
+          "resolution": "Readable current original entity contract and independently authorized named-company evidence; no Desktop SDK or third-party documentation substituted."
+        },
+        {
+          "question": "Company country/product, classes, locations, currency and period locks",
+          "reviewed_material": "OAuth FAQ, report Header/filter/compliance-date contract, typed IDs and query behavior.",
+          "missing_evidence": "Actual enabled company features, authorizing role, country/product contract, detailed dimension/rounding rules and lock enforcement.",
+          "effect": "Dimensions and locks stay unknown. Returned report totals apply only to the requested basis, currency, filters and date semantics.",
+          "resolution": "Record configuration and test separately authorized synthetic cases; do not infer another legal entity from a class or location."
+        },
+        {
+          "question": "Commercial access, incorporated policies and model/data reuse",
+          "reviewed_material": "October14,2025 developer terms, published production throttling notice and current minor-version notice.",
+          "missing_evidence": "Current app-plan pricing/cohort, incorporated program-policy application and explicit intended training or redistribution basis.",
+          "effect": "Published request limits are not commercial entitlement. No blanket model-training grant or Xero-derived prohibition is asserted for Intuit.",
+          "resolution": "Review controlling agreements and the specific use before operational processing; no purchase, legal opinion or tenant access supplied."
+        }
+      ]
     }
   },
   {
@@ -88888,7 +89003,7 @@
           "review": {
             "reviewed_at": "2026-09-21",
             "reviewer": "Codex AI-assisted editorial synthesis review",
-            "scope": "Reconciled this answer-first presentation with the canonical matrix, cases, source-scope limitations and recorded review material. Agent editorial review only; human acceptance and final rendered integration remain pending.",
+            "scope": "Reconciled this answer-first presentation with the canonical matrix, cases, source-scope limitations and recorded review material. Agent editorial review only; human acceptance and final rendered integration remain pending. Rechecked the revised linked controls: current permission, exact-intent approval and evidence-version proposals remain unimplemented and do not strengthen this brief’s historical or operational claims.",
             "dependencies": [
               {
                 "record_id": "guide-accounting-action-boundaries",
@@ -88928,11 +89043,11 @@
               },
               {
                 "record_id": "ctrl-human-approval",
-                "sha256": "1ff6c3e4e209eb743e4f0143f701739c50d1f2d2f2f23b657fdfbf705c0b77ab"
+                "sha256": "b690948d81bd2ddea4d37d02efaad9a32832fb1423cfb790aefc54b08c1c5615"
               },
               {
                 "record_id": "ctrl-tool-authorization",
-                "sha256": "f01faf17d0ddf2cb7036b3ff78cec15bc94ad65397e07ea245bf42baca7ea3b4"
+                "sha256": "93a79f69cba714f08bec109c8cca73fb846998cce1c7b5179ce66abc21f19a85"
               },
               {
                 "record_id": "wf-r2r-journal-entry",
@@ -89697,7 +89812,7 @@
           "review": {
             "reviewed_at": "2026-09-21",
             "reviewer": "Codex AI-assisted editorial synthesis review",
-            "scope": "Reconciled this answer-first presentation with the canonical matrix, cases, source-scope limitations and recorded review material. Agent editorial review only; human acceptance and final rendered integration remain pending.",
+            "scope": "Reconciled this answer-first presentation with the canonical matrix, cases, source-scope limitations and recorded review material. Agent editorial review only; human acceptance and final rendered integration remain pending. Rechecked the Xero short-page pair after scope and bank-boundary additions; its journal cursor contract and counterexample remain unchanged.",
             "dependencies": [
               {
                 "record_id": "guide-accounting-claim-counterexamples",
@@ -89745,7 +89860,7 @@
               },
               {
                 "record_id": "guide-xero-ledger-completeness",
-                "sha256": "e8e65c1d6ece150caa4a5311df0e9f8714e51f9e4dfbae35fe60fcced8810046"
+                "sha256": "a68469cac3edc3c91a620d9e89e3bcd57119d1a36dd7de968af1ec80e490bcfd"
               }
             ]
           }

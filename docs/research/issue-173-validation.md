@@ -47,3 +47,9 @@ Complete source-scope reconciliation and affected editorial reviews; preserve re
 Operational logs, downloaded source material, screenshots and receipts remain in temporary/ignored output locations excluded from source/export inventory. This committed validation document and the reusable test code intentionally are source inputs.
 
 The source input inventory checked after adding these tests contains947 files and no `outputs/`, `.sites-runtime/`, `node_modules/` or `dist/` paths. `npm run check` refused before build/tests while the new source files were uncommitted and because loopback binding returnedEPERM. This refusal is not a test pass, and the listener check was not bypassed.
+
+## Subsequent source and control reconciliation
+
+The five control extensions received a scoped agent editorial review, preserved in `data/reviews/issue-173-control-editorial.json`; prior reviews remain in their canonical records. The action-boundary and failure-case briefs were rechecked against the changed controls before their bindings were renewed. This does not supply human or professional acceptance.
+
+Xero's scope-resource map and additive consent were read from the original public documentation, and the bank-statement boundary was rechecked. The resulting source profile and both dossiers' bounded dependency registers identify remaining configuration, inaccessible contract and intended-use evidence explicitly. The earlier1532-record preview is now superseded for affected content; its receipt remains evidence of that earlier input only. Eleven connected-case and approval-fixture checks passed after these changes. Final source counts, preview/build inputs, browser results and full CI must be renewed.

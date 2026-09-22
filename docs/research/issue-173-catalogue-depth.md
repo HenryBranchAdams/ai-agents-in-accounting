@@ -292,3 +292,9 @@ Added task-led Xero and QBO reading briefs over the detailed dossiers. Each pres
 ### P5/P9 collection reading layer
 
 Added readable synthesis to the failure casebook and usable-assets collection, preserving procedural posture, original proposed lessons, purpose-specific permissions and named exclusions. Historical source-review dates remain distinct from this editorial presentation review. Record validation reaches the draft coverage boundary. These additions do not finalize an edition or establish human, professional, rendered or deployment acceptance.
+
+### Control editorial review and P1 scope closure
+
+Reviewed the five action-boundary control extensions against their original objectives, exact-intent fixture, source distinctions and recovery limits. Added missing citations for shared NIST/NCCoE scope text. Preserved prior reviews separately and recorded a five-record current review batch; no historical ledger-wide date rewrite. Rechecked the two affected reading briefs before renewing their control bindings.
+
+Read Xero's current scope-resource table and additive-consent sections, adding a scoped read-side map and source profile. Re-read the complete short bank-statement boundary page; its prior restriction is unchanged. Both dossiers now have a bounded dependency register naming the reviewed material, missing evidence, affected conclusion and resolution path. Actual app/cohort/tenant configuration, inaccessible Intuit object contracts and intended-use permission remain unresolved. These limits constrain the delivered dossier; they do not stand in for unwritten sections or observed tests. The Xero counterexample still follows the same empty-page cursor rule.

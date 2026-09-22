@@ -75182,7 +75182,7 @@
       "wf-audit-population-evidence"
     ],
     "review_status": "source-checked",
-    "reviewed_at": "2026-09-07",
+    "reviewed_at": "2026-09-21",
     "provenance": {
       "added_on": "2026-09-07",
       "reviewer": "Codex (AI-assisted source check)",
@@ -75191,7 +75191,13 @@
         "https://developer.xero.com/documentation/api/accounting/bankstatements"
       ],
       "outcome": "The reviewed publisher material supports this bounded annotation. No professional accounting review, independent replication, or live-system validation was performed.",
-      "note": "New source research for corpus version 2026-09-07.3. This check covers the cited edition and annotated claims, not the entire publication or later changes."
+      "note": "New source research for corpus version 2026-09-07.3. This check covers the cited edition and annotated claims, not the entire publication or later changes.",
+      "issue_173_previous_review": {
+        "reviewed_at": "2026-09-07",
+        "review_status": "source-checked",
+        "access_note": "Original public material checked on 2026-09-07; only metadata and original annotations are stored."
+      },
+      "review_scope": "Re-read the complete short public bank-statements page, Reconcile via the API and Bank Statement lines import, from original Gatsby payload SHA256 ad35fc3e3fbf5241fb7e2cdd72b8ef2cbc380d1b8e05cff25354c8b9e08cb847."
     },
     "rights": {
       "metadata": "CC0-1.0",
@@ -75206,7 +75212,7 @@
     "data": {
       "publication": {
         "published_at": null,
-        "edition": "Documentation observed 7 September 2026",
+        "edition": "Documentation read September21,2026",
         "status": "Technical reference"
       },
       "evidence": [
@@ -75215,7 +75221,8 @@
           "classification": "publisher-documented",
           "source": {
             "title": "Xero bank statements — public API boundary",
-            "url": "https://developer.xero.com/documentation/api/accounting/bankstatements"
+            "url": "https://developer.xero.com/documentation/api/accounting/bankstatements",
+            "locator": "Reconcile via the API"
           }
         },
         {
@@ -75223,7 +75230,8 @@
           "classification": "publisher-documented",
           "source": {
             "title": "Xero bank statements — public API boundary",
-            "url": "https://developer.xero.com/documentation/api/accounting/bankstatements"
+            "url": "https://developer.xero.com/documentation/api/accounting/bankstatements",
+            "locator": "Reconcile via the API"
           }
         }
       ],
@@ -75232,11 +75240,12 @@
         "The documented boundary may change; no authenticated integration was tested."
       ],
       "commercial_interest": "First-party product boundary statement.",
-      "access_note": "Original public material checked on 2026-09-07; only metadata and original annotations are stored.",
+      "access_note": "Original short page rechecked September21,2026; previous September7 review retained. No tenant API test.",
       "supporting_resources": [],
       "editorial_accounting_relevance": "Useful for explaining unavailable evidence in bank-reconciliation integrations.",
       "accounting_relevance_basis": "Editorial inference from the described scope.",
-      "published_or_status": "Documentation observed 7 September 2026"
+      "published_or_status": "Documentation read September21,2026",
+      "review_trigger": "Changed public bank-statement exposure or reconciliation contract."
     }
   },
   {
@@ -110327,6 +110336,88 @@
         "The page does not establish immutable attachment history or permission to redistribute files."
       ],
       "review_trigger": "Changed attachment endpoints, replacement behavior, permissions, limits or product support."
+    }
+  },
+  {
+    "id": "src_xero_oauth_scope_map_2026",
+    "kind": "source",
+    "title": "Xero Accounting API scope-to-resource map and consent boundaries",
+    "summary": "The scope registry separates general-ledger reads, manual journals, source transactions, reports, settings and attachments. Assigned scopes, user consent, role permission and commercial entitlement are different conditions.",
+    "topics": [
+      "Agent engineering",
+      "Accounting and reporting"
+    ],
+    "industries": [
+      "general"
+    ],
+    "jurisdiction": "Xero Accounting API; tenant, country, product and access scope require separate confirmation",
+    "source_type": "Technical reference",
+    "publisher": "Xero Developer",
+    "source_url": "https://developer.xero.com/documentation/guides/oauth2/scopes",
+    "source_ids": [],
+    "related_ids": [
+      "guide-xero-ledger-completeness",
+      "ctrl-tool-authorization"
+    ],
+    "review_status": "source-checked",
+    "reviewed_at": "2026-09-21",
+    "provenance": {
+      "added_on": "2026-09-21",
+      "reviewer": "Codex AI-assisted source review",
+      "scope": "Read additive-scope, offline-access and Accounting API sections from the original public Gatsby payload. Raw payload SHA256 8a47ff292e9be85aba4e3db021b2d45b160bc7ca0b36a5f609af030d5458af39.",
+      "evidence_urls": [
+        "https://developer.xero.com/documentation/guides/oauth2/scopes"
+      ],
+      "outcome": "Supports bounded documented contracts, not observed API behavior.",
+      "note": "No tenant requests, commercial plan verification or professional review."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "publication": {
+        "published_at": null,
+        "edition": "Scope registry read September21,2026"
+      },
+      "evidence": [
+        {
+          "claim": "The scope registry separates general-ledger reads, manual journals, source transactions, reports, settings and attachments. Assigned scopes, user consent, role permission and commercial entitlement are different conditions.",
+          "classification": "publisher-documented mapping with project access-gate interpretation",
+          "source": {
+            "url": "https://developer.xero.com/documentation/guides/oauth2/scopes",
+            "locator": "Organisation scopes: Accounting API resource table"
+          }
+        },
+        {
+          "claim": "Consented scopes are additive. Reducing them requires revocation and a new authorization; offline_access requests a refresh token.",
+          "classification": "publisher-documented",
+          "source": {
+            "url": "https://developer.xero.com/documentation/guides/oauth2/scopes",
+            "locator": "Scopes are additive; Offline access"
+          }
+        },
+        {
+          "claim": "The page assigns granular scopes to Web/PKCE apps from March2026 and custom connections from April29,2026. Existing broad-scope use may continue until September2027. Assignment is not proof a token received consent.",
+          "classification": "publisher-documented; token conclusion is project interpretation",
+          "source": {
+            "url": "https://developer.xero.com/documentation/guides/oauth2/scopes",
+            "locator": "Accounting API migration notes"
+          }
+        }
+      ],
+      "limitations": [
+        "Selected Accounting API scopes only; no complete payroll, files or other product scope survey.",
+        "No token, tenant, role, app entitlement or endpoint request was tested.",
+        "A listed scope does not establish exact-payload approval, period-lock enforcement or permission to reuse tenant data."
+      ],
+      "review_trigger": "Changed scope map, app cohort, consent, role or entitlement."
     }
   }
 ]
