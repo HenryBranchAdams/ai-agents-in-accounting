@@ -25,7 +25,7 @@ export function ConnectionCanvas({ view, onSelect, memory }: { view: ConnectionV
   const [notice, setNotice] = useState('');
   const fit = () => {
     const cy = core.current; if (!cy) return;
-    cy.fit(undefined, 28);
+    cy.resize(); cy.fit(undefined, 28);
     const clipped = cy.zoom() <= minimumZoom;
     setNotice(clipped ? 'Fit reached the readable zoom limit. Pan to other nodes or use the List.' : 'All visible graph elements fit in the viewport.');
   };
@@ -101,7 +101,7 @@ export function ConnectionCanvas({ view, onSelect, memory }: { view: ConnectionV
   }, [view.state.selected, view.nodes, view.edges]);
   return <section aria-label="Connection graph">
     <div className="flex flex-wrap gap-2">
-      <Button type="button" variant="outline" size="sm" onClick={() => { const cy = core.current; if (cy && view.state.focus) { cy.zoom(1); cy.center(cy.getElementById(`n:${view.state.focus}`)); setNotice('Centered on the focus record at readable zoom.'); } }}>Recenter focus</Button>
+      <Button type="button" variant="outline" size="sm" onClick={() => { const cy = core.current; if (cy && view.state.focus) { cy.resize(); cy.zoom(1); cy.center(cy.getElementById(`n:${view.state.focus}`)); setNotice('Centered on the focus record at readable zoom.'); } }}>Recenter focus</Button>
       <Button type="button" variant="outline" size="sm" onClick={fit}>Fit visible graph</Button>
       <Button type="button" variant="outline" size="sm" onClick={() => { const cy = core.current; if (cy) cy.zoom(Math.min(cy.maxZoom(), cy.zoom() * 1.25)); }}>Zoom in</Button>
       <Button type="button" variant="outline" size="sm" onClick={() => { const cy = core.current; if (cy) cy.zoom(Math.max(minimumZoom, cy.zoom() / 1.25)); }}>Zoom out</Button>

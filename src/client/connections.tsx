@@ -74,7 +74,7 @@ function ConnectionsApplication({ initial }: { initial: Initial }) {
   }, [view.state.selected, view.index_version, view.corpus_version]);
   const click = (event: MouseEvent<HTMLDivElement>) => {
     const anchor = event.target instanceof Element ? event.target.closest<HTMLAnchorElement>('a[href]') : null;
-    if (anchor?.getAttribute('href')?.startsWith('#')) return;
+    if (anchor?.getAttribute('href')?.startsWith('#') || anchor?.hasAttribute('data-connection-reload')) return;
     if (!anchor || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.altKey || event.shiftKey || anchor.target || anchor.hasAttribute('download')) return;
     const url = new URL(anchor.href);
     if (url.origin === location.origin && url.pathname === '/connections' && url.search) { event.preventDefault(); void navigate(url, true); }
@@ -105,7 +105,7 @@ function ConnectionsApplication({ initial }: { initial: Initial }) {
     </section>;
   }
   return <div onClick={click} onSubmit={submit}>
-    {status ? <Alert><AlertTitle>Connection status</AlertTitle><AlertDescription><p role="status">{status}</p><a href={connectionURL({ ...view.state, corpus: null, index: null })}>Reload against the current corpus edition</a></AlertDescription></Alert> : null}
+    {status ? <Alert><AlertTitle>Connection status</AlertTitle><AlertDescription><p role="status">{status}</p><a data-connection-reload="" href={connectionURL({ ...view.state, corpus: null, index: null })}>Reload against the current corpus edition</a></AlertDescription></Alert> : null}
     <ConnectionsExplorer view={view} kindNames={kindNames} evidence={evidence} graph={graph} inspector={ready && view.state.mode === 'graph' ? null : undefined} />
   </div>;
 }

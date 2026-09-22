@@ -39,7 +39,7 @@ export function parseConnectionState(params: URLSearchParams, knownKinds: readon
   if (!['in', 'out', 'both'].includes(direction)) fail('Invalid connection direction');
   if (!['graph', 'list'].includes(mode)) fail('Invalid connection mode');
   const list = (key: string, allowed: readonly string[]) => {
-    if (!params.has(key)) return [...allowed];
+    if (!params.has(key)) return sorted([...allowed]);
     const values = params.get(key) === '' ? [] : params.get(key)!.split(',');
     if (values.length > allowed.length || values.some(value => !allowed.includes(value))) fail(`Invalid connection ${key}`);
     return sorted(values);

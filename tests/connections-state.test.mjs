@@ -21,6 +21,7 @@ test('portable URL preserves literal IDs, explicit empty filters, continuation o
   assert.deepEqual(parse(new URL(connectionURL(expected), 'https://example.test').search), expected);
   const canonical = connectionURL(state({ types: ['cites', 'qualifies', 'cites'], kinds: ['source', 'guide'] }));
   assert.equal(connectionURL(parse(new URL(canonical, 'https://example.test').search)), canonical);
+  const defaults=state({});const compact=connectionURL(defaults,['guide','source']);assert.ok(!compact.includes('kinds=')&&!compact.includes('types='));assert.deepEqual(parse(new URL(compact,'https://example.test').search),defaults);
 });
 
 test('untrusted URLs reject unknown and repeated keys, counts, malformed selections and expansions before resolution', () => {

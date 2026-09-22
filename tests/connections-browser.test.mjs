@@ -18,7 +18,7 @@ test('graph and native List share provenance, portable state and stable interact
     const before=await positions(page);const initialCount=Object.keys(before).length;
     assert.ok(initialCount<=25);assert.equal(await page.locator('#connection-list [data-connection-node-id]').count(),initialCount);
     await page.getByRole('button',{name:'Recenter focus',exact:true}).click();await canvas.scrollIntoViewIfNeeded();
-    await page.waitForFunction(()=>Number.isFinite(Number(document.querySelector('.connection-canvas')?.dataset.focusX)));
+    await page.waitForFunction(()=>{const node=document.querySelector('.connection-canvas');if(!node)return false;const box=node.getBoundingClientRect();return Math.abs(Number(node.dataset.focusX)-box.width/2)<3&&Math.abs(Number(node.dataset.focusY)-box.height/2)<3;});
     const box=await canvas.boundingBox(),point=await canvas.evaluate(node=>({x:Number(node.dataset.focusX),y:Number(node.dataset.focusY)}));
     if(name==='mobile')await page.touchscreen.tap(box.x+point.x,box.y+point.y);else await page.mouse.click(box.x+point.x,box.y+point.y);
     await page.waitForURL(url=>url.searchParams.get('selected')==='node:'+focus);
