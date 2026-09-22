@@ -134,6 +134,16 @@ export async function libraryMapJourney(browser, origin, directory, receipt) {
       await page
         .getByRole("region", { name: "Selected connection evidence" })
         .waitFor();
+      await page.waitForFunction(
+        () => document.activeElement?.id === "map-evidence-title",
+      );
+      const evidenceHeading = await page
+        .locator("#map-evidence-title")
+        .boundingBox();
+      assert.ok(
+        evidenceHeading.y >= 0 && evidenceHeading.y < viewport.height,
+        "Selected evidence is brought into view",
+      );
       assert.ok(await page.getByText(/Stored at/).count());
       const cameraBefore = JSON.parse(
         await canvas.getAttribute("data-viewport"),
@@ -149,6 +159,13 @@ export async function libraryMapJourney(browser, origin, directory, receipt) {
       assert.equal(
         new URL(page.url()).searchParams.get("record"),
         "wf-r2r-bank-reconciliations",
+      );
+      assert.equal(
+        await page
+          .locator("aside")
+          .evaluate((e) => e.contains(document.activeElement)),
+        true,
+        "Returning from reading restores inspector focus",
       );
       const cameraAfter = JSON.parse(
         await canvas.getAttribute("data-viewport"),
@@ -320,6 +337,13 @@ export async function libraryMapJourney(browser, origin, directory, receipt) {
   await keyboardPage
     .getByRole("heading", { name: "Bank reconciliations", exact: true })
     .waitFor();
+  assert.equal(
+    await keyboardPage
+      .locator("#map-selection-title")
+      .evaluate((e) => e === document.activeElement),
+    true,
+    "Keyboard reading return restores the selected title",
+  );
   await keyboardContext.close();
   const native = await browser.newContext({
       javaScriptEnabled: false,

@@ -62,6 +62,7 @@ function Application({ initial }: { initial: Initial }) {
   const dataRef = useRef(data);
   dataRef.current = data;
   const focusNext = useRef(false);
+  const focusEvidence = useRef(false);
   const storageKey = `library-map:${initial.view.map_version}`;
   function remember() {
     try {
@@ -90,6 +91,8 @@ function Application({ initial }: { initial: Initial }) {
       focusNext.current =
         next.state.record !== latest.current.state.record &&
         !!next.state.record;
+      focusEvidence.current =
+        !!next.state.edge && next.state.edge !== latest.current.state.edge;
       if (push) {
         history.replaceState({ mapMemory: memory.current }, "", location.href);
         history.pushState(null, "", mapURL(next.state));
@@ -140,6 +143,15 @@ function Application({ initial }: { initial: Initial }) {
       }
     } catch {
       /* Ignore invalid saved view. */
+    }
+    if (initial.view.state.record && document.activeElement === document.body) {
+      document
+        .getElementById(
+          initial.view.state.edge
+            ? "map-evidence-title"
+            : "map-selection-title",
+        )
+        ?.focus({ preventScroll: true });
     }
     const controller = new AbortController();
     void fetch(`/api/v1/library-map?map=${initial.view.map_version}`, {
@@ -203,6 +215,15 @@ function Application({ initial }: { initial: Initial }) {
         ?.focus({ preventScroll: matchMedia("(min-width: 960px)").matches });
     }
   }, [view.state.record]);
+  useEffect(() => {
+    if (focusEvidence.current && detail?.edge?.id === view.state.edge) {
+      const heading = document.getElementById("map-evidence-title");
+      if (heading) {
+        focusEvidence.current = false;
+        heading.focus();
+      }
+    }
+  }, [detail, view.state.edge]);
   useEffect(() => {
     if (!view.state.record) {
       setDetail(undefined);

@@ -158,8 +158,8 @@ export function LibraryExplorer({
             {graph || (
               <div className="library-map-placeholder">
                 <p>
-                  The interactive map requires JavaScript. Every record is available
-                  in the List below.
+                  The interactive map requires JavaScript. Every record is
+                  available in the List below.
                 </p>
                 <a href={next({ mode: "list" })}>Use the accessible List</a>
               </div>
@@ -228,7 +228,15 @@ export function LibraryExplorer({
                   </a>
                 </p>
               ) : null}
-              <details open={!!s.edge}>
+              {detail?.edge ? (
+                <section aria-label="Selected connection evidence">
+                  <h3 id="map-evidence-title" tabIndex={-1}>
+                    {detail.edge.type}
+                  </h3>
+                  <ConnectionEvidence edge={detail.edge} />
+                </section>
+              ) : null}
+              <details key={view.selected.id}>
                 <summary>{view.relations.length} recorded connections</summary>
                 <p>
                   Arrows follow the stored reference. Citation is not
@@ -237,19 +245,13 @@ export function LibraryExplorer({
                 <ul>
                   {view.relations.map((e) => (
                     <li key={e.id}>
-                      <a href={next({ edge: e.id })}>
+                      <a href={`${next({ edge: e.id })}#map-evidence-title`}>
                         {e.from_title} → {e.to_title}: {e.type}
                       </a>
                     </li>
                   ))}
                 </ul>
               </details>
-              {detail?.edge ? (
-                <section aria-label="Selected connection evidence">
-                  <h3>{detail.edge.type}</h3>
-                  <ConnectionEvidence edge={detail.edge} />
-                </section>
-              ) : null}
             </>
           ) : (
             <>
@@ -328,6 +330,7 @@ export function LibraryExplorer({
       </div>
       <section
         id="map-record-list"
+        tabIndex={-1}
         aria-label="Library map record list"
         className="py-6"
       >
@@ -351,7 +354,7 @@ export function LibraryExplorer({
             <li key={r.id}>
               <div>
                 <a
-                  href={next({ record: r.id, edge: "" })}
+                  href={`${next({ record: r.id, edge: "" })}#map-selection-title`}
                   aria-current={r.id === s.record ? "true" : undefined}
                 >
                   {r.title}
