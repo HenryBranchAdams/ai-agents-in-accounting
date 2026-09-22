@@ -1,3 +1,6 @@
+import { loadLibraryMap } from './library-map/service';
+import { mapState, mapView, type MapDetail } from './library-map/contract';
+import { libraryMapPage, libraryMapError } from './pages/library-map';
 import { connectionViewDTO } from './connections/view';
 import { parseConnectionState, ConnectionQueryError } from './connections/state';
 import { ConnectionSnapshotError } from './connections/select';
@@ -254,6 +257,15 @@ function openapi() {
           { type: "object" },
         ),
       },
+      "/api/v1/library-map": {
+        get: { operationId: "getLibraryMap", summary: "Read the complete library topology and prepared force-layout positions",
+          description: "All records and exact topic memberships, collection source order and recorded edge identities. Membership is not support. map optionally pins the immutable map identity; a stale version returns 409. Full record and edge evidence is loaded separately.",
+          parameters: [{name:"map",in:"query",schema:{type:"string"}}], responses: {"200":success({type:"object"}),"400":error,"409":error,"503":error} },
+      },
+      "/api/v1/library-map/record": {
+        get: {operationId:"getLibraryMapRecord",summary:"Inspect a map record and optional recorded connection",
+          parameters:["record","edge","map"].map(name=>({name,in:"query",required:name==="record",schema:{type:"string"}})),responses:{"200":success({type:"object"}),"400":error,"409":error,"503":error}},
+      },
       "/api/v1/connections": {
         get: {
           operationId: "getConnections", summary: "Read one bounded canonical connection neighborhood",
@@ -433,9 +445,22 @@ async function route(request: Request, env: Env) {
     return new Response(null, { status: 308, headers: { Location: alias } });
   if (path === "/" && url.searchParams.size === 0) return html(homePage());
   if (path === "/" || path === "/library") return html(browse(url.searchParams));
+  if (path === '/map' || path === '/api/v1/library-map' || path === '/api/v1/library-map/record') {
+    const state = mapState(url.searchParams);
+    const data = await loadLibraryMap(request, env.ASSETS, state.map);
+    if (path === '/api/v1/library-map') return new Response(JSON.stringify(data),{headers:{'Content-Type':'application/json; charset=utf-8'}});
+    const view = mapView(data, state);
+    let detail: MapDetail | undefined;
+    if (state.record) {
+      const index = await loadConnectionIndex(request, env.ASSETS);
+      detail = { node: index.node(state.record)!, edge: state.edge ? index.edge(state.edge) : undefined, corpus_version: data.corpus_version, index_version: data.index_version, map_version: data.map_version };
+    }
+    if (path.endsWith('/record')) return detail ? json(detail) : json({error:'Select a record.'},400);
+    return html(libraryMapPage(view,detail));
+  }
   if (path === '/connections' || path === '/api/v1/connections') {
     const state = parseConnectionState(url.searchParams, Object.keys(kinds));
-    if (!state.focus) return path.startsWith('/api/') ? json({ error: 'Choose a focus record.' }, 400) : html(connectionsPage(state));
+    if (!state.focus) return path.startsWith('/api/') ? json({ error: 'Choose a focus record.' }, 400) : new Response(null,{status:302,headers:{Location:'/map'+(state.query?'?'+new URLSearchParams({q:state.query}):'')}});
     if (!getRecord(state.focus)) return path.startsWith('/api/') ? json({ error: 'Unknown focus record. Search /connections for a current record.' }, 404) : html(connectionsErrorPage(404, 'Unknown focus record. Search for a current record.'), 404);
     const index = await loadConnectionIndex(request, env.ASSETS);
     const view = index.select(state);
@@ -574,7 +599,7 @@ async function route(request: Request, env: Env) {
   }
   if (path === "/sitemap.xml")
     return plain(
-      `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${["/", "/collections", "/briefs", "/coverage", "/changes", "/maintenance", "/about", "/use", ...records.map((r) => `/records/${r.id}`)].map((p) => `<url><loc>${esc(meta.site_url + p)}</loc><lastmod>${meta.updated_at}</lastmod></url>`).join("")}</urlset>`,
+      `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${["/", "/map", "/collections", "/briefs", "/coverage", "/changes", "/maintenance", "/about", "/use", ...records.map((r) => `/records/${r.id}`)].map((p) => `<url><loc>${esc(meta.site_url + p)}</loc><lastmod>${meta.updated_at}</lastmod></url>`).join("")}</urlset>`,
       "application/xml",
     );
   if (path === "/robots.txt")
@@ -617,6 +642,8 @@ export default {
     } catch (error) {
       if (error instanceof AgentError)
         response = json(agentError(error), error.status);
+      else if (new URL(request.url).pathname === '/map' && (error instanceof ConnectionIndexUnavailable || error instanceof ConnectionSnapshotError || error instanceof ConnectionQueryError))
+        response = html(libraryMapError(error.message), error instanceof ConnectionSnapshotError ? 409 : error instanceof ConnectionQueryError ? 400 : 503);
       else if (error instanceof ConnectionIndexUnavailable)
         response = new URL(request.url).pathname.startsWith('/api/') ? json({ error: error.message }, 503) : html(connectionsErrorPage(503, error.message, new URL(request.url).searchParams.get("focus")), 503);
       else if (error instanceof ConnectionSnapshotError)
