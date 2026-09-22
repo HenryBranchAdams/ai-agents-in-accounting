@@ -210,3 +210,8 @@ Enriched existing src_0qwi4ry with paper v1 methods/grading/reproducibility revi
 ### P4 APEX bounded primary assessment
 
 Reviewed paper v1 methods, grading, limitations and worked example; pinned HF dev release bf5e8c99117b7ee763d79ad2c64563ac844d77d2 and counted10 tasks/89 criteria. Read World9 Task14 full rubric/reference answer and visually inspected its fictional one-page addendum. Recorded final-answer-only scoring, private160-task split, excluded human-in-loop skills, easier dev-world selection, separate repeated-run metrics, and explicit missing tool layer/optimized grader template. Public Archipelago generic verifier is not claimed equivalent. No benchmark or provider call executed. Contrast profiles, selection guide and integrated rights/relationship/editorial work remain pending.
+
+
+### P4 FinQA contrast
+
+Inspected publisher paper task/method/licensing sections, rendered Figure3 and pinned repository0f16e2867befa6840783e58be38c9efb9229d742. Read actual local evaluator and documented2022 leakage correction; counted883dev examples and inspected one schema/example. Recorded execution versus symbolic-program metrics and the local evaluator's supplied-prediction denominator, requiring independent population validation. Upstream report/data rights chain remains separate from MIT software license. No model/grader run or dataset redistribution. Document-extraction contrast and selection guide remain pending.

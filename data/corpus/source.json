@@ -71674,7 +71674,8 @@
         "https://aclanthology.org/faq/copyright/"
       ],
       "outcome": "The reviewed publisher material supports this bounded annotation. No professional accounting review, independent replication, or live-system validation was performed.",
-      "note": "New source research for corpus version 2026-09-07.2. Source-checking does not certify currency beyond the reviewed edition or extend publisher permissions."
+      "note": "New source research for corpus version 2026-09-07.2. Source-checking does not certify currency beyond the reviewed edition or extend publisher permissions.",
+      "benchmark_review_pointer": "/data/benchmark_review_173"
     },
     "rights": {
       "metadata": "CC0-1.0",
@@ -71732,7 +71733,96 @@
         "note": "The repository displays an MIT code license. A dataset-specific grant was not established in the reviewed material."
       },
       "editorial_accounting_relevance": "Useful for separating source-fact retrieval from calculation and retaining an inspectable computation behind a reported amount.",
-      "published_or_status": "2021-11"
+      "published_or_status": "2021-11",
+      "benchmark_review_173": {
+        "reviewed_at": "2026-09-21",
+        "reviewer": "Codex AI-assisted primary-source and grader inspection",
+        "status": "bounded draft profile; no model training, submission or hosted run",
+        "paper": {
+          "url": "https://aclanthology.org/2021.emnlp-main.300.pdf",
+          "edition": "EMNLP2021 publisher PDF downloaded on review date; repository records later corrections, so do not assume original-publication bytes",
+          "sha256": "916b3fc7eb652311914784623b8be5879b50553efff727cede70db63060b0474",
+          "locators": [
+            "Section3 task and evaluations",
+            "Sections4.1 and4.4",
+            "Section6 experimental setup",
+            "Section8 data access/licensing"
+          ],
+          "visual_scope": "PDF page6 Figure3 and surrounding retriever/program-generator design inspected."
+        },
+        "release": {
+          "revision": "0f16e2867befa6840783e58be38c9efb9229d742",
+          "repository": "https://github.com/czyssrs/FinQA",
+          "files_inspected": [
+            {
+              "path": "README.md",
+              "url": "https://github.com/czyssrs/FinQA/blob/0f16e2867befa6840783e58be38c9efb9229d742/README.md",
+              "sha256": "eb86779cfed6f0a253913761d8e4fabe032a29d9fcf2944e56c23bf007064605"
+            },
+            {
+              "path": "LICENSE",
+              "url": "https://github.com/czyssrs/FinQA/blob/0f16e2867befa6840783e58be38c9efb9229d742/LICENSE",
+              "sha256": "92c0e67bd762c15c07ba60de09558338315a8ebf99aac4f51f487179809ac087"
+            },
+            {
+              "path": "code/evaluate/evaluate.py",
+              "url": "https://github.com/czyssrs/FinQA/blob/0f16e2867befa6840783e58be38c9efb9229d742/code/evaluate/evaluate.py",
+              "sha256": "845cd131cab843eceff256cf6d392978cc470a7da4a80107beb56027fdca5c13"
+            },
+            {
+              "path": "dataset/dev.json",
+              "url": "https://github.com/czyssrs/FinQA/blob/0f16e2867befa6840783e58be38c9efb9229d742/dataset/dev.json",
+              "sha256": "a847fb7e0d61a3125a1e2909852df6b89f1ee64d2c5ff1bf689e332214deee51"
+            }
+          ],
+          "scope": "README and LICENSE read; evaluator entrypoint, execution/equivalence logic inspected. Counted883 development examples and inspected first example fields/question/program/support. Other individual examples not reviewed."
+        },
+        "capability": "Retrieve facts and generate an arithmetic/table program to answer a question about a prepared report. This is financial question answering, not source-document bookkeeping or transaction execution.",
+        "inputs_outputs": {
+          "inputs": "Question, extracted table and surrounding report text. Curated pages exclude complex nested tables and tables above20 rows; paper source reports span1999-2019.",
+          "outputs": "Program tokens in the defined arithmetic/table DSL and its computed answer; intermediate gold facts available in public labeled data.",
+          "splits": "Paper reports6251train,883validation,1147test with nonoverlapping input reports. Repository distinguishes public labeled test from private-test inputs lacking reference answers; public inputs do not make private labels available."
+        },
+        "grading": [
+          {
+            "finding": "Execution accuracy checks the computed numerical result. Symbolic program equivalence is a separate metric; matching a number can happen by coincidence, while alternative valid derivations can fail a reference-program comparison.",
+            "locator": "Section3; evaluate.py eval_program/equal_program"
+          },
+          {
+            "finding": "The inspected evaluator iterates supplied predictions and divides by their count. It asserts uniqueness of reference IDs but does not establish full unique prediction coverage. Require an external complete-ID manifest check before treating a score as whole-split accuracy.",
+            "locator": "evaluate.py evaluate_result, lines389-505; static inspection, not an executed exploit"
+          },
+          {
+            "finding": "The scorer does not replay a double-entry ledger, reconcile balances, authenticate source documents or grade approval/unauthorized actions. Fact-retrieval fields are not an execution permission.",
+            "locator": "Section3 task; evaluate.py metrics"
+          },
+          {
+            "finding": "README dated May4,2022 reports a table-row formatting bug that leaked labels and inflated retrieval results; April29 update corrects positive/negative formatting. Use corrected code/results, not unqualified original headline comparisons.",
+            "locator": "README Updates"
+          }
+        ],
+        "experiment_scope": {
+          "models": "Historical BERT/RoBERTa/FinBERT retriever-generator comparisons, with top3 retrieved facts and Adam training in Section6; not a current frontier-model ranking.",
+          "budget": "No dollar-per-task deployment budget or operational latency guarantee established by these inspected sections.",
+          "repeatability": "No repeated independent agent-run success metric comparable to APEX Pass^8 established here. Public examples/answers and old report dates create contamination risk for later models."
+        },
+        "rights_access": {
+          "code": "Repository LICENSE is MIT, copyright2021 Zhiyu Chen; retain copyright/permission notice in software copies.",
+          "data": "Paper Section8 identifies FinTabNet provenance and CDLA-Permissive basis for added annotations. That statement is not a new grant over original issuer report copyrights.",
+          "unresolved": "Upstream FinTabNet license/version and underlying report reuse chain require a separate rights profile before recommending redistribution of report text or broader training use. Repository MIT software wording alone does not settle that chain.",
+          "export_policy": "Only original annotation and pointers exported; no report extracts or dataset examples copied."
+        },
+        "case_links": [
+          {
+            "record_id": "example-connected-purchase-to-payment",
+            "overlap": "Extracted values and arithmetic are prerequisites, but purchase population, cutoff, postings and approval require separate checks."
+          },
+          {
+            "record_id": "example-connected-processor-settlement",
+            "overlap": "Compute fees/refunds only after resolving source semantics; a QA answer cannot establish settlement or complete ledger evidence."
+          }
+        ]
+      }
     }
   },
   {
