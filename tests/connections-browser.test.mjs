@@ -44,7 +44,7 @@ test('graph and native List share provenance, portable state and stable interact
      const separator=page.getByRole('separator',{name:'Resize graph and inspector'}),width=(await canvas.boundingBox()).width;
      await separator.focus();await page.keyboard.press('ArrowLeft');await page.waitForFunction(previous=>document.querySelector('.connection-canvas').getBoundingClientRect().width!==previous,width);
      assert.deepEqual(await positions(page),before);await page.getByRole('button',{name:'Reset panel widths'}).click();
-     await page.setViewportSize({width:700,height:900});await page.waitForFunction(()=>document.querySelector('.connection-canvas')?.dataset.positions);if(await page.getByRole('dialog',{name:'Connection inspector'}).isVisible())await page.keyboard.press('Escape');await page.getByRole('button',{name:'Inspect selected item'}).waitFor();assert.deepEqual(await positions(page),before,'Responsive remount must retain model positions');
+     await page.setViewportSize({width:700,height:900});const resizedInspector=page.getByRole('dialog',{name:'Connection inspector'});await resizedInspector.waitFor();await page.keyboard.press('Escape');await resizedInspector.waitFor({state:'hidden'});await page.getByRole('button',{name:'Inspect selected item'}).waitFor();await page.waitForFunction(()=>document.querySelector('.connection-canvas')?.dataset.positions);assert.deepEqual(await positions(page),before,'Responsive remount must retain model positions');
      await page.setViewportSize(viewport);await page.getByRole('separator',{name:'Resize graph and inspector'}).waitFor();
     }
     await page.getByRole('button',{name:'Fit visible graph',exact:true}).click();
