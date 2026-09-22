@@ -109,3 +109,9 @@ The focused connection view is a separate bounded island. Its server-rendered Li
 Resizable was inspected with shadcn CLI `info`, registry search/view, current Radix docs and dry-run/diff before installation. The installed v4 wrapper uses `orientation`, explicit percentage defaults and pixel minimum widths; the group imperative API resets percentages. Its only source adaptation is the standard utils import. Cytoscape 3.34.3 is pinned; its MIT notice and react-resizable-panels' notice are preserved under `LICENSES/`. No lint exceptions were added.
 
 Canvas colors resolve the existing semantic CSS tokens through the browser color parser. Node shape and kind labels distinguish roles; directed labeled lines retain canonical relationship meaning. Coordinates are deterministic rings, not a force simulation or quality ranking. Selection changes the inspector and outline only. Resize calls the renderer's resize method; responsive remount preserves coordinates and viewport. Renderer cleanup disconnects observation, removes listeners, destroys the instance and releases references. Native link filters are navigation actions and remain usable without JavaScript; they do not imitate inert checkbox widgets.
+
+Reading and exploration overlays honor `prefers-reduced-motion: reduce` through a
+narrow data-slot rule for Dialog, Popover and Sheet content/overlays. It disables
+only their animation and transition, retaining Radix focus behavior, placement,
+semantic colors and upstream component source. Browser checks inspect the computed
+animation on the search dialog and mobile connection inspector.

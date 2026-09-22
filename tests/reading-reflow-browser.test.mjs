@@ -25,7 +25,7 @@ test('reading reflows at 320 CSS pixels and keeps active outlines and search foc
    journey.pages.push({id,active_section:target,resources});
   }
   await page.getByRole('link',{name:'Search',exact:true}).click();
-  const dialog=page.getByRole('dialog',{name:'Search the corpus'});await dialog.waitFor();
+  const dialog=page.getByRole('dialog',{name:'Search the corpus'});await dialog.waitFor();assert.equal(await dialog.evaluate(node=>getComputedStyle(node).animationName),'none','Reduced motion disables overlay entry animation');
   const input=page.getByRole('combobox',{name:'Search every corpus record'});await input.fill('construction');await dialog.getByText(/^Showing/).waitFor();
   // Reduced viewport models the available layout area, without pretending to invoke a device keyboard.
   await page.setViewportSize({width:320,height:400});

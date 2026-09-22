@@ -8,7 +8,7 @@ const positions=async page=>Object.fromEntries(JSON.parse(await page.locator('.c
 test('graph and native List share provenance, portable state and stable interaction across desktop and mobile', {timeout:240000}, async t=>{
  const {browser,origin,directory,receipt}=await productionBrowser(t,'connections');
  for(const[name,viewport]of[['desktop',{width:1440,height:1000}],['mobile',{width:390,height:844}]]){
-  const context=await browser.newContext({viewport,hasTouch:name==='mobile'}),page=await context.newPage();
+  const context=await browser.newContext({viewport,hasTouch:name==='mobile',reducedMotion:name==='mobile'?'reduce':'no-preference'}),page=await context.newPage();
   const errors=[],requests=[];page.on('pageerror',error=>errors.push(error.message));page.on('request',request=>requests.push(request.url()));
   const journey={name,viewport,status:'running',errors,requests,measurements:[]};receipt.journeys.push(journey);
   try{
@@ -23,7 +23,7 @@ test('graph and native List share provenance, portable state and stable interact
     if(name==='mobile')await page.touchscreen.tap(box.x+point.x,box.y+point.y);else await page.mouse.click(box.x+point.x,box.y+point.y);
     await page.waitForURL(url=>url.searchParams.get('selected')==='node:'+focus);
     assert.deepEqual(await positions(page),before,'Selecting a node must not move any node');
-    if(name==='mobile'){const sheet=page.getByRole('dialog',{name:'Connection inspector'});await sheet.waitFor();await page.keyboard.press('Escape');await sheet.waitFor({state:'hidden'});assert.equal(new URL(page.url()).searchParams.get('selected'),'node:'+focus);}
+    if(name==='mobile'){const sheet=page.getByRole('dialog',{name:'Connection inspector'});await sheet.waitFor();assert.equal(await sheet.evaluate(node=>getComputedStyle(node).animationName),'none');await page.keyboard.press('Escape');await sheet.waitFor({state:'hidden'});await page.waitForFunction(()=>document.activeElement?.textContent==='Inspect selected item');assert.equal(new URL(page.url()).searchParams.get('selected'),'node:'+focus);}
     const edgeLink=page.locator('#connection-list [data-connection-edge-id] > a').first();await edgeLink.focus();await page.keyboard.press('Enter');
     await page.getByText('Recorded reason 1',{exact:true}).waitFor();assert.ok(requests.some(url=>url.includes('/api/v1/connections/edge?')));
     assert.deepEqual(await positions(page),before,'Inspecting edge provenance must preserve positions');
