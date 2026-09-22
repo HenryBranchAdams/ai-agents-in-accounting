@@ -1,3 +1,4 @@
+import { writeConnectionsIndex } from "./connections-index.mjs";
 import { clientEntryUrl } from "./client-entries.mjs";
 import { historySummaryPlugin } from "./history-summary.mjs";
 import { editorialReviewReport } from "./editorial-review.mjs";
@@ -323,6 +324,7 @@ write(
     "\n",
 );
 }
+const connectionIndex = await writeConnectionsIndex(records, meta.corpus_version);
 const runtimeDataKeys = new Set();
 const runtimeDataPlugin = { name: "immutable-runtime-data", setup(builder) {
   builder.onLoad({ filter: /\.json$/ }, ({ path: file }) => {
@@ -344,6 +346,7 @@ const applicationBuild = await build({
   define: {
     "process.env.NODE_ENV": '"production"',
     NAVIGATION_SCRIPT: JSON.stringify(navigationScript),
+    CONNECTION_INDEX: JSON.stringify(connectionIndex),
     CLIENT_ASSETS: JSON.stringify(Object.keys(clientBuild.metafile.outputs).filter(file => file.endsWith(".js")).map(file => "/assets/" + path.basename(file))),
     PREVIEW_BUILD: JSON.stringify(preview),
     RELEASE_STORAGE: JSON.stringify(releaseStorage),

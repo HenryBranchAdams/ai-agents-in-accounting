@@ -1,7 +1,13 @@
+import { connectionViewDTO } from './connections/view';
+import { parseConnectionState, ConnectionQueryError } from './connections/state';
+import { ConnectionSnapshotError } from './connections/select';
+import { loadConnectionIndex, connectionIndexMetadata, ConnectionIndexUnavailable } from './connections/service';
+import { connectionsPage, connectionEdgePage } from './pages/connections';
 declare const CLIENT_ASSETS: readonly string[];
 import { searchSuggestions } from "./search-suggestions";
 import {
   meta,
+  kinds,
   records,
   taxonomy,
   search,
@@ -248,6 +254,21 @@ function openapi() {
           { type: "object" },
         ),
       },
+      "/api/v1/connections": {
+        get: {
+          operationId: "getConnections", summary: "Read one bounded canonical connection neighborhood",
+          description: "One focus, direction in/out/both, comma-separated types and kinds, ordered JSON expansion tuples, mode list/graph, initial budget 1-80 and optional corpus/index identities. Unknown or repeated parameters fail. Defaults to 25 records; expansion adds up to 10 per step; absolute caps 80 records/160 edges. Overview edges preserve canonical direction and provenance counts; evidence_href resolves full exact assertions. Record kinds and edge counts are not confidence scores. Empty filters hide all matching edges. A stale identity returns 409 and must be reloaded.",
+          parameters: ["focus", "direction", "types", "kinds", "expanded", "mode", "budget", "corpus", "index", "q", "selected"].map(name => ({ name, in: "query", required: name === "focus", schema: { type: "string" } })),
+          responses: { "200": success({ type: "object", required: ["corpus_version", "index_version", "state", "nodes", "edges", "counts", "hidden_material"] }), "400": error, "404": error, "409": error, "503": error },
+        },
+      },
+      "/api/v1/connections/edge": {
+        get: {
+          operationId: "getConnectionEvidence", summary: "Inspect exact recorded relationship assertions and locator ownership",
+          parameters: [{ name: "id", in: "query", required: true, schema: { type: "string" } }, { name: "index", in: "query", schema: { type: "string" } }],
+          responses: { "200": success({ type: "object", required: ["corpus_version", "index_version", "edge"] }), "400": error, "404": error, "409": error, "503": error },
+        },
+      },
       "/api/v1/search-suggestions": {
         get: {
           operationId: "searchSuggestions",
@@ -412,6 +433,23 @@ async function route(request: Request, env: Env) {
     return new Response(null, { status: 308, headers: { Location: alias } });
   if (path === "/" && url.searchParams.size === 0) return html(homePage());
   if (path === "/" || path === "/library") return html(browse(url.searchParams));
+  if (path === '/connections' || path === '/api/v1/connections') {
+    const state = parseConnectionState(url.searchParams, Object.keys(kinds));
+    if (!state.focus) return path.startsWith('/api/') ? json({ error: 'Choose a focus record.' }, 400) : html(connectionsPage(state));
+    if (!getRecord(state.focus)) return path.startsWith('/api/') ? json({ error: 'Unknown focus record. Search /connections for a current record.' }, 404) : html(errorPage(404, 'Unknown focus record. Search /connections for a current record.'), 404);
+    const index = await loadConnectionIndex(request, env.ASSETS);
+    const view = index.select(state);
+    return path.startsWith('/api/') ? json(connectionViewDTO(view)) : html(connectionsPage(view.state, view));
+  }
+  if (path === '/connections/edge' || path === '/api/v1/connections/edge') {
+    if ([...url.searchParams.keys()].some(key => key !== 'id' && key !== 'index') || url.searchParams.getAll('index').length > 1 || url.searchParams.getAll('id').length !== 1 || !url.searchParams.get('id') || url.searchParams.toString().length > 4096) throw new ConnectionQueryError('Provide one valid edge identifier.');
+    const index = await loadConnectionIndex(request, env.ASSETS);
+    const edge = index.edge(url.searchParams.get('id')!);
+    if (url.searchParams.has('index') && url.searchParams.get('index') !== connectionIndexMetadata().index_version) throw new ConnectionSnapshotError('The connection index changed. Reload the exploration before inspecting evidence.');
+    if (!edge) return path.startsWith('/api/') ? json({ error: 'Unknown recorded connection.' }, 404) : html(errorPage(404, 'Unknown recorded connection. Explore /connections for the current edition.'), 404);
+    if (path.startsWith('/api/')) return json({ corpus_version: meta.corpus_version, index_version: connectionIndexMetadata().index_version, edge });
+    return html(connectionEdgePage(edge, index.node(edge.from)!, index.node(edge.to)!, parseConnectionState(new URLSearchParams(), Object.keys(kinds))));
+  }
   if (path === "/briefs") return html(briefsPage());
   if (path === "/coverage") return html(coveragePage(url.searchParams));
   if (path === "/schemas/coverage.schema.json") return json(coverageSchema);
@@ -579,7 +617,11 @@ export default {
     } catch (error) {
       if (error instanceof AgentError)
         response = json(agentError(error), error.status);
-      else if (!(error instanceof QueryError) && !(error instanceof CoverageQueryError)) throw error;
+      else if (error instanceof ConnectionIndexUnavailable)
+        response = new URL(request.url).pathname.startsWith('/api/') ? json({ error: error.message }, 503) : html(errorPage(503, error.message), 503);
+      else if (error instanceof ConnectionSnapshotError)
+        response = new URL(request.url).pathname.startsWith('/api/') ? json({ error: error.message, reload: '/connections' }, 409) : html(errorPage(409, error.message + ' Open /connections to start with the current edition.'), 409);
+      else if (!(error instanceof ConnectionQueryError) && !(error instanceof QueryError) && !(error instanceof CoverageQueryError)) throw error;
       else
         response = new URL(request.url).pathname.startsWith("/api/")
           ? json({ error: error.message }, 400)

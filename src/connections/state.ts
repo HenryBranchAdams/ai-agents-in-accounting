@@ -2,6 +2,7 @@ import { connectionTypes, graphLimits, type ConnectionType } from './contract';
 
 export interface ConnectionState {
   focus: string | null;
+  query: string;
   selected: { kind: 'node' | 'edge'; id: string } | null;
   direction: 'in' | 'out' | 'both';
   types: ConnectionType[];
@@ -13,7 +14,7 @@ export interface ConnectionState {
   index: string | null;
 }
 export class ConnectionQueryError extends Error {}
-const keys = new Set(['focus', 'selected', 'direction', 'types', 'kinds', 'expanded', 'mode', 'budget', 'corpus', 'index']);
+const keys = new Set(['q', 'focus', 'selected', 'direction', 'types', 'kinds', 'expanded', 'mode', 'budget', 'corpus', 'index']);
 const fail = (message: string): never => { throw new ConnectionQueryError(message); };
 const text = (value: string, maximum = 240) => {
   if (!value || value.length > maximum || /[\u0000-\u001f\u007f]/u.test(value)) fail('Invalid connection identifier');
@@ -67,7 +68,7 @@ export function parseConnectionState(params: URLSearchParams, knownKinds: readon
   const focus = params.has('focus') ? text(params.get('focus')!) : null;
   if (!focus && (expanded.length || selected)) fail('Selection and expansion require a focus');
   return {
-    focus, selected, direction: direction as ConnectionState['direction'],
+    focus, query: params.get('q') ? text(params.get('q')!) : '', selected, direction: direction as ConnectionState['direction'],
     types: list('types', connectionTypes) as ConnectionType[], kinds: list('kinds', knownKinds),
     expanded, mode: mode as ConnectionState['mode'],
     budget: params.has('budget') ? integer(params.get('budget')!, 1, graphLimits.maxNodes) : graphLimits.defaultNodes,
@@ -79,6 +80,7 @@ export function parseConnectionState(params: URLSearchParams, knownKinds: readon
 /** The URL is the whole portable exploration state. Expansion order records ownership priority. */
 export function connectionURL(state: ConnectionState): string {
   const params = new URLSearchParams();
+  if (state.query) params.set('q', state.query);
   if (state.focus) params.set('focus', state.focus);
   if (state.selected) params.set('selected', `${state.selected.kind}:${state.selected.id}`);
   params.set('direction', state.direction);

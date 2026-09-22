@@ -8,6 +8,7 @@ export class ConnectionSnapshotError extends Error {}
 /** Build once for an immutable snapshot; callers cannot mutate the private adjacency maps. */
 export function createConnectionIndex(snapshot: GraphSnapshot) {
   const nodes = new Map(snapshot.nodes.map(node => [node.id, node]));
+  const edgesById = new Map(snapshot.edges.map(edge => [edge.id, edge]));
   const incoming = new Map<string, GraphEdge[]>();
   const outgoing = new Map<string, GraphEdge[]>();
   for (const edge of snapshot.edges) {
@@ -25,6 +26,7 @@ export function createConnectionIndex(snapshot: GraphSnapshot) {
   };
   return {
     node: (id: string) => nodes.get(id),
+    edge: (id: string) => edgesById.get(id),
     select(state: ConnectionState) {
       if ((state.corpus && state.corpus !== snapshot.corpus_version) || (state.index && state.index !== snapshot.index_version)) {
         throw new ConnectionSnapshotError('This connection URL describes another corpus snapshot. Reload against the current edition.');
