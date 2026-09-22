@@ -1,0 +1,50 @@
+name: Published corpus verification
+on:
+  workflow_dispatch:
+    inputs:
+      source_revision:
+        description: Exact published GitHub main revision
+        required: true
+      corpus_version:
+        description: Expected corpus edition
+        required: true
+      index_version:
+        description: Expected connection index SHA256
+        required: true
+      storage_manifest:
+        description: Expected sealed storage manifest SHA256
+        required: true
+      download_manifest_sha256:
+        description: Expected download manifest SHA256 from the verified artifact
+        required: true
+permissions:
+  contents: read
+jobs:
+  live:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npx --no-install playwright install --with-deps chromium
+      - name: Verify the existing public deployment without rebuilding
+        env:
+          EXPECTED_SOURCE_REVISION: ${{ inputs.source_revision }}
+          EXPECTED_CORPUS_VERSION: ${{ inputs.corpus_version }}
+          EXPECTED_INDEX_VERSION: ${{ inputs.index_version }}
+          EXPECTED_STORAGE_MANIFEST: ${{ inputs.storage_manifest }}
+          EXPECTED_DOWNLOAD_MANIFEST_SHA256: ${{ inputs.download_manifest_sha256 }}
+        run: node scripts/verify-live.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: live-verification-${{ github.run_id }}-attempt-${{ github.run_attempt }}
+          path: outputs/live-verification/
+          if-no-files-found: error
+          retention-days: 14

@@ -55,3 +55,20 @@ Failed and uncertain remote operations require read-back before retry. If the
 GitHub artifact expires, rerun verification on the still-intended main revision or
 verify a newer main revision; never promote the diagnostic artifact or a stale local
 build. Retain the prior saved Sites version and immutable objects for recovery.
+
+## Live verification after activation and cleanup
+
+The manual `Published corpus verification` workflow runs `scripts/verify-live.mjs`
+against the fixed existing public origin. It checks out main and refuses a source
+revision different from that checkout. Supply the exact source, corpus, index,
+sealed storage-manifest and download-manifest identities from the authenticated
+main artifact. It installs the pinned browser but performs no app build, package,
+import, environment mutation or publication.
+
+The script checks release identities before and after the run, actual desktop/mobile
+reading, research limitations, previews, search, Graph/List navigation and native
+fallback. It records loaded asset hashes and streams every current download against
+the artifact-bound manifest. Screenshots and a receipt are retained even on failure.
+Native deployment success and secret removal still require separate connector
+readback. An unauthenticated import-route404 alone does not prove secret removal.
+A green live workflow cannot substitute for human acceptance or artifact provenance.
