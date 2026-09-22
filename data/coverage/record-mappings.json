@@ -1,12 +1,12 @@
 {
   "schema_version": "1.0.0",
-  "mapping_version": "2026-09-21.6",
+  "mapping_version": "2026-09-22.2",
   "topology_version": "2026-09-11.1",
-  "corpus_version": "2026-09-21.6",
+  "corpus_version": "2026-09-22.2",
   "generated_at": "2026-09-19",
-  "corpus_sha256": "b89f3b2b4087e20dce8256ed616ca2db09955788f95a2fa8676b0fab8756dbe0",
+  "corpus_sha256": "25b8f4cb8908c08637e631b40d0efe4836307c63a1ab5a66de6360ab057b2bb7",
   "rules_sha256": "550b2bb485399af996bac6ed34542d7a91170d4b31b5e5026e0e9c2c32068b9d",
-  "overrides_sha256": "40858b77614a7ec3257d693d5d5bb30930e2067784e0de9f71cea0c04b553223",
+  "overrides_sha256": "71710686f261d9dd187ab70bf276c8a964508d419a4a827680df0ab7a2a89b89",
   "method": "Deterministic title/topic associations, conservative industry crosswalk, and explicit editorial additions. All initial links are candidates; source review status is unchanged.",
   "mappings": [
     {
@@ -2074,6 +2074,25 @@
       "note": "Reviewed association with the original editorial content. This does not validate accounting treatment or the adequacy of its external references."
     },
     {
+      "record_id": "collection-accounting-failure-casebook",
+      "question_mappings": [
+        {
+          "question_id": "q-controls-fraud",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Controls and governance",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
       "record_id": "collection-accounting-reporting-evidence",
       "question_mappings": [
         {
@@ -3574,6 +3593,25 @@
       "industry_scope": "unassigned",
       "industry_mappings": [],
       "note": "Reviewed association with the original editorial content. This does not validate accounting treatment or the adequacy of its external references."
+    },
+    {
+      "record_id": "collection-usable-accounting-research-assets",
+      "question_mappings": [
+        {
+          "question_id": "q-controls-fraud",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Controls and governance",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
     },
     {
       "record_id": "collection-work-design-identity",
@@ -8453,6 +8491,32 @@
       "note": "Reviewed association with the original editorial content. This does not validate accounting treatment or the adequacy of its external references."
     },
     {
+      "record_id": "example-connected-processor-settlement",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "example-connected-purchase-to-payment",
+      "question_mappings": [
+        {
+          "question_id": "q-cash-settlement",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "payment",
+              "rule": "title:cash-settlement"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
       "record_id": "example-construction-contract-ledger",
       "question_mappings": [
         {
@@ -12463,6 +12527,77 @@
       "note": "Bounded primary-source and synthetic application; no professional or operational verification."
     },
     {
+      "record_id": "guide-accounting-action-boundaries",
+      "question_mappings": [
+        {
+          "question_id": "q-controls-fraud",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/2",
+              "matched": "Controls and governance",
+              "rule": "topic-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-estimates",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "uncertainty",
+              "rule": "title:estimates"
+            }
+          ]
+        },
+        {
+          "question_id": "q-human-authority",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "approval",
+              "rule": "title:human-authority"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "guide-accounting-claim-counterexamples",
+      "question_mappings": [
+        {
+          "question_id": "q-controls-fraud",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/2",
+              "matched": "Controls and governance",
+              "rule": "topic-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-provisions",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Claims",
+              "rule": "title:provisions"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
       "record_id": "guide-accounting-llm-benchmark-claims",
       "question_mappings": [
         {
@@ -12737,6 +12872,25 @@
         }
       ],
       "note": "Bounded source-linked synthetic application with explicit role, tax, rights and jurisdiction limits; not professional or empirical verification."
+    },
+    {
+      "record_id": "guide-connected-close-review",
+      "question_mappings": [
+        {
+          "question_id": "q-controls-fraud",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/2",
+              "matched": "Controls and governance",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
     },
     {
       "record_id": "guide-construction-connected-close",
@@ -27859,6 +28013,36 @@
       "note": "Reviewed discovery relationship to the named questions and explicitly declared industry scope; does not confer accounting adequacy or professional verification. AA-I121 US-first shared-context review for Fair value and impairment; inherited IFRS questions remain separate."
     },
     {
+      "record_id": "guide-qbo-ledger-completeness",
+      "question_mappings": [
+        {
+          "question_id": "q-controls-fraud",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/2",
+              "matched": "Controls and governance",
+              "rule": "topic-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-data-lineage",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Reconcil",
+              "rule": "title:data-lineage"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
       "record_id": "guide-real-estate-us-roles",
       "question_mappings": [
         {
@@ -27985,6 +28169,36 @@
       "industry_scope": "shared-context",
       "industry_mappings": [],
       "note": "Reviewed association with the original editorial content. This does not validate accounting treatment or the adequacy of its external references."
+    },
+    {
+      "record_id": "guide-select-accounting-evaluations",
+      "question_mappings": [
+        {
+          "question_id": "q-controls-fraud",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/2",
+              "matched": "Controls and governance",
+              "rule": "topic-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-evaluation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "evaluat",
+              "rule": "title:evaluation"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
     },
     {
       "record_id": "guide-software-subscriptions",
@@ -29722,6 +29936,25 @@
         }
       ],
       "note": "Reviewed the additive US wholesale and retail package for AA-I102 and AA-I103; discovery mapping remains separate from accounting adequacy or professional verification."
+    },
+    {
+      "record_id": "guide-xero-ledger-completeness",
+      "question_mappings": [
+        {
+          "question_id": "q-controls-fraud",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/2",
+              "matched": "Controls and governance",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
     },
     {
       "record_id": "human-only",
@@ -47188,6 +47421,25 @@
       "note": "Shared context; no industry-specific coverage credit."
     },
     {
+      "record_id": "src_cord_receipt_parsing",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Agent engineering",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
       "record_id": "src_cra_t4_rc4120_2025",
       "question_mappings": [],
       "industry_scope": "shared-context",
@@ -51444,6 +51696,36 @@
       "industry_scope": "shared-context",
       "industry_mappings": [],
       "note": "Mapped to q-security because The publisher scope is cross-industry or does not justify a narrower NAICS-US2022 assignment. The source-specific subject is covers governance, due diligence, contracting, monitoring, incidents, concentration, continuity, and exit for external providers. it is technology-neutral but directly relevant to model, data, cloud, and agent-tool dependencies. Association review scope: substantive-excerpt; supported-scope. This does not establish accounting adequacy."
+    },
+    {
+      "record_id": "src_gao_sec_2005_population_controls",
+      "question_mappings": [
+        {
+          "question_id": "q-controls-fraud",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Controls and governance",
+              "rule": "topic-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-payroll",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "payroll",
+              "rule": "title:payroll"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
     },
     {
       "record_id": "src_gaofam26",
@@ -55823,6 +56105,305 @@
       "note": "The reviewed source concerns prophix one budgeting and reporting agents in Commercial financial-performance-management platform; the material does not establish an industry-specific accounting treatment, so it remains shared context. Association review scope: abstract-or-landing; supported-scope. This does not establish accounting adequacy."
     },
     {
+      "record_id": "src_qbo_attachment_lineage_2026",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Agent engineering",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "Shared context; no industry-specific coverage credit."
+    },
+    {
+      "record_id": "src_qbo_cdc_guidance_2023",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Agent engineering",
+              "rule": "topic-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-data-lineage",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "reconcil",
+              "rule": "title:data-lineage"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "Shared context; no industry-specific coverage credit."
+    },
+    {
+      "record_id": "src_qbo_cdc_reference",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Agent engineering",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "Shared context; no industry-specific coverage credit."
+    },
+    {
+      "record_id": "src_qbo_developer_terms_20251014",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Agent engineering",
+              "rule": "topic-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-evaluation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "benchmark",
+              "rule": "title:evaluation"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "Shared context; no industry-specific coverage credit."
+    },
+    {
+      "record_id": "src_qbo_id_request_semantics",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Agent engineering",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "Shared context; no industry-specific coverage credit."
+    },
+    {
+      "record_id": "src_qbo_minor_versions_2026",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Agent engineering",
+              "rule": "topic-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "schema",
+              "rule": "title:interfaces"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "Shared context; no industry-specific coverage credit."
+    },
+    {
+      "record_id": "src_qbo_oauth_contract_2026",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Agent engineering",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "Shared context; no industry-specific coverage credit."
+    },
+    {
+      "record_id": "src_qbo_query_reference",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Agent engineering",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "Shared context; no industry-specific coverage credit."
+    },
+    {
+      "record_id": "src_qbo_report_structure_2026",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Agent engineering",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "Shared context; no industry-specific coverage credit."
+    },
+    {
+      "record_id": "src_qbo_reports_migration_2026",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Agent engineering",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "Shared context; no industry-specific coverage credit."
+    },
+    {
+      "record_id": "src_qbo_request_limits_2024",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Agent engineering",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "Shared context; no industry-specific coverage credit."
+    },
+    {
+      "record_id": "src_qbo_stale_object_2026",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Agent engineering",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "Shared context; no industry-specific coverage credit."
+    },
+    {
+      "record_id": "src_qbo_webhook_cloudevents_2026",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Agent engineering",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "Shared context; no industry-specific coverage credit."
+    },
+    {
+      "record_id": "src_qbo_webhook_contract_2026",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Agent engineering",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "Shared context; no industry-specific coverage credit."
+    },
+    {
       "record_id": "src_react2023",
       "question_mappings": [
         {
@@ -58364,6 +58945,93 @@
       "note": "Shared context; no industry-specific coverage credit."
     },
     {
+      "record_id": "src_sec_fluor_2023_order",
+      "question_mappings": [
+        {
+          "question_id": "q-controls-fraud",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Controls and governance",
+              "rule": "topic-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-planning",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "forecast",
+              "rule": "title:planning"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_sec_keybanc_2016_order",
+      "question_mappings": [
+        {
+          "question_id": "q-controls-fraud",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Controls and governance",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_sec_kraft_2021_order",
+      "question_mappings": [
+        {
+          "question_id": "q-controls-fraud",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Controls and governance",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_sec_mattel_2022_order",
+      "question_mappings": [
+        {
+          "question_id": "q-controls-fraud",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Controls and governance",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
       "record_id": "src_sec_regsx",
       "question_mappings": [
         {
@@ -58410,6 +59078,47 @@
       "industry_scope": "shared-context",
       "industry_mappings": [],
       "note": "AA-I121 official-source review; shared-context only and no industry-specific coverage credit."
+    },
+    {
+      "record_id": "src_sec_under_armour_2021_order",
+      "question_mappings": [
+        {
+          "question_id": "q-controls-fraud",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Controls and governance",
+              "rule": "topic-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-presentation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "disclosure",
+              "rule": "title:presentation"
+            }
+          ]
+        },
+        {
+          "question_id": "q-revenue",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "revenue",
+              "rule": "title:revenue"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
     },
     {
       "record_id": "src_sec13a15",
@@ -58826,6 +59535,131 @@
       "industry_scope": "shared-context",
       "industry_mappings": [],
       "note": "The reviewed source concerns soc for supply chain in Production, manufacturing, and distribution systems; the material does not establish an industry-specific accounting treatment, so it remains shared context. Association review scope: abstract-or-landing; supported-scope. This does not establish accounting adequacy."
+    },
+    {
+      "record_id": "src_stripe_balance_reporting",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Agent engineering",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "Shared context; no industry-specific coverage credit."
+    },
+    {
+      "record_id": "src_stripe_currency_units",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Agent engineering",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "Shared context; no industry-specific coverage credit."
+    },
+    {
+      "record_id": "src_stripe_dispute_lifecycle",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Agent engineering",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "Shared context; no industry-specific coverage credit."
+    },
+    {
+      "record_id": "src_stripe_netsuite_deposit_automation",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Agent engineering",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "Shared context; no industry-specific coverage credit."
+    },
+    {
+      "record_id": "src_stripe_payout_reconciliation",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Agent engineering",
+              "rule": "topic-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-data-lineage",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "reconcil",
+              "rule": "title:data-lineage"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "Shared context; no industry-specific coverage credit."
+    },
+    {
+      "record_id": "src_stripe_refund_lifecycle",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Agent engineering",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "Shared context; no industry-specific coverage credit."
     },
     {
       "record_id": "src_tatqa2021",
@@ -59965,6 +60799,25 @@
       "note": "The reviewed source concerns xbrl validation in Global digital reporting; the material does not establish an industry-specific accounting treatment, so it remains shared context. Association review scope: substantive-excerpt; supported-scope. This does not establish accounting adequacy."
     },
     {
+      "record_id": "src_xero_attachment_lineage_2026",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Agent engineering",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "Shared context; no industry-specific coverage credit."
+    },
+    {
       "record_id": "src_xero_bank_statement_boundary",
       "question_mappings": [
         {
@@ -59995,6 +60848,25 @@
       "note": "Shared context; no industry-specific coverage credit."
     },
     {
+      "record_id": "src_xero_document_history_2026",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Agent engineering",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "Shared context; no industry-specific coverage credit."
+    },
+    {
       "record_id": "src_xero_efficient_retrieval",
       "question_mappings": [
         {
@@ -60006,6 +60878,93 @@
               "matched": "retrieval",
               "rule": "title:agent-design"
             },
+            {
+              "field": "/topics/0",
+              "matched": "Agent engineering",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "Shared context; no industry-specific coverage credit."
+    },
+    {
+      "record_id": "src_xero_granular_scopes_2026",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Agent engineering",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "Shared context; no industry-specific coverage credit."
+    },
+    {
+      "record_id": "src_xero_idempotency_2026",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Agent engineering",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "Shared context; no industry-specific coverage credit."
+    },
+    {
+      "record_id": "src_xero_invoice_lineage_2026",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Agent engineering",
+              "rule": "topic-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-purchasing-payables",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "invoice",
+              "rule": "title:purchasing-payables"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "Shared context; no industry-specific coverage credit."
+    },
+    {
+      "record_id": "src_xero_journal_types_2026",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "candidate",
+          "basis": [
             {
               "field": "/topics/0",
               "matched": "Agent engineering",
@@ -60040,6 +60999,259 @@
               "field": "/title",
               "matched": "API",
               "rule": "title:interfaces"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "Shared context; no industry-specific coverage credit."
+    },
+    {
+      "record_id": "src_xero_manual_journals_2026",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Agent engineering",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "Shared context; no industry-specific coverage credit."
+    },
+    {
+      "record_id": "src_xero_oauth_scope_map_2026",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Agent engineering",
+              "rule": "topic-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "API",
+              "rule": "title:interfaces"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "Shared context; no industry-specific coverage credit."
+    },
+    {
+      "record_id": "src_xero_organisation_actions_2026",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Agent engineering",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "Shared context; no industry-specific coverage credit."
+    },
+    {
+      "record_id": "src_xero_payment_lineage_2026",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Agent engineering",
+              "rule": "topic-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-cash-settlement",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "payment",
+              "rule": "title:cash-settlement"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "Shared context; no industry-specific coverage credit."
+    },
+    {
+      "record_id": "src_xero_permissions_faq_2026",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Agent engineering",
+              "rule": "topic-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "API",
+              "rule": "title:interfaces"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "Shared context; no industry-specific coverage credit."
+    },
+    {
+      "record_id": "src_xero_platform_terms_20251204",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Agent engineering",
+              "rule": "topic-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "API",
+              "rule": "title:interfaces"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "Shared context; no industry-specific coverage credit."
+    },
+    {
+      "record_id": "src_xero_pricing_policy_2026",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Agent engineering",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "Shared context; no industry-specific coverage credit."
+    },
+    {
+      "record_id": "src_xero_rate_limits_2026",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Agent engineering",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "Shared context; no industry-specific coverage credit."
+    },
+    {
+      "record_id": "src_xero_request_response_2026",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Agent engineering",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "Shared context; no industry-specific coverage credit."
+    },
+    {
+      "record_id": "src_xero_tracking_mapping_2026",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Agent engineering",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "shared-context",
+      "industry_mappings": [],
+      "note": "Shared context; no industry-specific coverage credit."
+    },
+    {
+      "record_id": "src_xero_webhook_recovery_2026",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Agent engineering",
+              "rule": "topic-association"
             }
           ]
         }

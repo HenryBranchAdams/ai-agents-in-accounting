@@ -1,0 +1,314 @@
+{
+  "schema_version": "1.0.0",
+  "reviewed_at": "2026-09-21",
+  "reviewer": "Codex AI-assisted accounting action-boundary editorial review",
+  "scope": "Five revised controls only; earlier September11 ledger remains historical and unchanged.",
+  "reviews": [
+    {
+      "record_id": "ctrl-tool-authorization",
+      "input_sha256": "d309aadd7a3c544d534e1ae581d1e0fa38f8d11eb7d3adbcd52bc26f5c681601",
+      "disposition": "corrected-association",
+      "review_summary": "The added accounting design separates app access from action authority and requires an external current principal/tenant/action decision. Revocation stops the intent. This is consistent with the existing least-privilege objective; no tenant enforcement is established.",
+      "question_ids": [
+        "q-security",
+        "q-human-authority",
+        "q-controls-fraud"
+      ],
+      "industry_codes": [],
+      "shared": true,
+      "remaining_limits": [
+        "Agent editorial review of the stated control proposal and its linked canonical evidence only; maintainer/human acceptance remains separate.",
+        "NIST selected final control statements, NCCoE draft concepts and project proposals are different evidence classes.",
+        "No production control, actual human approval, professional review or observed tenant behavior is established.",
+        "Inherited external source reviews, access limits and rights remain unchanged."
+      ],
+      "source_relationship_findings": [
+        {
+          "source_id": "src_0zwe7na",
+          "disposition": "contextual-reference-retained",
+          "limitation": "Retain the source-specific documented scope; no approval, operating effectiveness or renewed external examination inferred."
+        },
+        {
+          "source_id": "src_0pywo86",
+          "disposition": "contextual-reference-retained",
+          "limitation": "General control context or draft concept only; not a prescribed accounting implementation."
+        },
+        {
+          "source_id": "src_06fwpim",
+          "disposition": "contextual-reference-retained",
+          "limitation": "General control context or draft concept only; not a prescribed accounting implementation."
+        },
+        {
+          "source_id": "src_1efrues",
+          "disposition": "contextual-reference-retained",
+          "limitation": "Retain the source-specific documented scope; no approval, operating effectiveness or renewed external examination inferred."
+        },
+        {
+          "source_id": "src_qbo_oauth_contract_2026",
+          "disposition": "contextual-reference-retained",
+          "limitation": "Retain the source-specific documented scope; no approval, operating effectiveness or renewed external examination inferred."
+        }
+      ],
+      "previous_proposed_question_ids": [
+        "q-controls-fraud",
+        "q-human-authority"
+      ],
+      "source_relationship_review_scope": "Read the added procedures, required evidence, fixture pointer, standards distinctions and review triggers. Confirmed their scoped relationship to the named existing objective. All source links remain citations, not newly asserted support relationships.",
+      "researcher_input_hash": "d309aadd7a3c544d534e1ae581d1e0fa38f8d11eb7d3adbcd52bc26f5c681601",
+      "reviewed_at": "2026-09-21",
+      "reviewer": "Codex AI-assisted accounting action-boundary editorial review",
+      "previous_review": {
+        "review_status": "editorially-reviewed",
+        "reviewed_at": "2026-09-11",
+        "evidence_pointer": "/data/previous_editorial_review_173"
+      }
+    },
+    {
+      "record_id": "ctrl-human-approval",
+      "input_sha256": "4c7d81f13d54f3f3ff2208dabec7aa7de012f7de657d3aa910840f460264782d",
+      "disposition": "shared-relevance",
+      "review_summary": "The added design binds entity, amount, currency, destination, period, evidence and expiry to an exact intent. Changed or ambiguous intents cannot reuse a decision. The linked fixture has no real reviewer and its hash proves identity only, consistent with the original attributable-approval objective.",
+      "question_ids": [
+        "q-controls-fraud",
+        "q-human-authority"
+      ],
+      "industry_codes": [],
+      "shared": true,
+      "remaining_limits": [
+        "Agent editorial review of the stated control proposal and its linked canonical evidence only; maintainer/human acceptance remains separate.",
+        "NIST selected final control statements, NCCoE draft concepts and project proposals are different evidence classes.",
+        "No production control, actual human approval, professional review or observed tenant behavior is established.",
+        "Inherited external source reviews, access limits and rights remain unchanged."
+      ],
+      "source_relationship_findings": [
+        {
+          "source_id": "src_1v1zwt5",
+          "disposition": "contextual-reference-retained",
+          "limitation": "Retain the source-specific documented scope; no approval, operating effectiveness or renewed external examination inferred."
+        },
+        {
+          "source_id": "src_1i38fu6",
+          "disposition": "contextual-reference-retained",
+          "limitation": "Retain the source-specific documented scope; no approval, operating effectiveness or renewed external examination inferred."
+        },
+        {
+          "source_id": "src_1jqxy83",
+          "disposition": "contextual-reference-retained",
+          "limitation": "Retain the source-specific documented scope; no approval, operating effectiveness or renewed external examination inferred."
+        },
+        {
+          "source_id": "src_0pywo86",
+          "disposition": "contextual-reference-retained",
+          "limitation": "General control context or draft concept only; not a prescribed accounting implementation."
+        },
+        {
+          "source_id": "src_xero_idempotency_2026",
+          "disposition": "contextual-reference-retained",
+          "limitation": "Retain the source-specific documented scope; no approval, operating effectiveness or renewed external examination inferred."
+        },
+        {
+          "source_id": "src_06fwpim",
+          "disposition": "contextual-reference-retained",
+          "limitation": "General control context or draft concept only; not a prescribed accounting implementation."
+        }
+      ],
+      "previous_proposed_question_ids": [
+        "q-controls-fraud",
+        "q-human-authority"
+      ],
+      "source_relationship_review_scope": "Read the added procedures, required evidence, fixture pointer, standards distinctions and review triggers. Confirmed their scoped relationship to the named existing objective. All source links remain citations, not newly asserted support relationships.",
+      "researcher_input_hash": "4c7d81f13d54f3f3ff2208dabec7aa7de012f7de657d3aa910840f460264782d",
+      "reviewed_at": "2026-09-21",
+      "reviewer": "Codex AI-assisted accounting action-boundary editorial review",
+      "previous_review": {
+        "review_status": "editorially-reviewed",
+        "reviewed_at": "2026-09-11",
+        "evidence_pointer": "/data/previous_editorial_review_173"
+      }
+    },
+    {
+      "record_id": "ctrl-segregation-duties",
+      "input_sha256": "5956c797282bb9e690c8cb499178bc45d9492cc50ca3302e16a4cc4bbfc6e4db",
+      "disposition": "shared-relevance",
+      "review_summary": "The added design separates vendor maintenance, preparation and release and checks alternate routes that could defeat separation. Named roles remain proposals until a system enforces them; prompt instructions alone cannot satisfy the control objective.",
+      "question_ids": [
+        "q-controls-fraud",
+        "q-human-authority"
+      ],
+      "industry_codes": [],
+      "shared": true,
+      "remaining_limits": [
+        "Agent editorial review of the stated control proposal and its linked canonical evidence only; maintainer/human acceptance remains separate.",
+        "NIST selected final control statements, NCCoE draft concepts and project proposals are different evidence classes.",
+        "No production control, actual human approval, professional review or observed tenant behavior is established.",
+        "Inherited external source reviews, access limits and rights remain unchanged."
+      ],
+      "source_relationship_findings": [
+        {
+          "source_id": "src_1v1zwt5",
+          "disposition": "contextual-reference-retained",
+          "limitation": "Retain the source-specific documented scope; no approval, operating effectiveness or renewed external examination inferred."
+        },
+        {
+          "source_id": "src_0pywo86",
+          "disposition": "contextual-reference-retained",
+          "limitation": "General control context or draft concept only; not a prescribed accounting implementation."
+        },
+        {
+          "source_id": "src_122i1et",
+          "disposition": "contextual-reference-retained",
+          "limitation": "Retain the source-specific documented scope; no approval, operating effectiveness or renewed external examination inferred."
+        },
+        {
+          "source_id": "src_06fwpim",
+          "disposition": "contextual-reference-retained",
+          "limitation": "General control context or draft concept only; not a prescribed accounting implementation."
+        }
+      ],
+      "previous_proposed_question_ids": [
+        "q-controls-fraud",
+        "q-human-authority"
+      ],
+      "source_relationship_review_scope": "Read the added procedures, required evidence, fixture pointer, standards distinctions and review triggers. Confirmed their scoped relationship to the named existing objective. All source links remain citations, not newly asserted support relationships.",
+      "researcher_input_hash": "5956c797282bb9e690c8cb499178bc45d9492cc50ca3302e16a4cc4bbfc6e4db",
+      "reviewed_at": "2026-09-21",
+      "reviewer": "Codex AI-assisted accounting action-boundary editorial review",
+      "previous_review": {
+        "review_status": "editorially-reviewed",
+        "reviewed_at": "2026-09-11",
+        "evidence_pointer": "/data/previous_editorial_review_173"
+      }
+    },
+    {
+      "record_id": "ctrl-exception-routing",
+      "input_sha256": "5cea780bf8eb420d615f8548df0e8cd11157614d930c67c1a6719bef2d0c4ae0",
+      "disposition": "shared-relevance",
+      "review_summary": "The added design retains per-item batch results and lost-response uncertainty, reconciling before resumption. It avoids treating HTTP success or a refreshed version token as resolution and preserves the existing stop-and-route objective.",
+      "question_ids": [
+        "q-controls-fraud",
+        "q-human-authority"
+      ],
+      "industry_codes": [],
+      "shared": true,
+      "remaining_limits": [
+        "Agent editorial review of the stated control proposal and its linked canonical evidence only; maintainer/human acceptance remains separate.",
+        "NIST selected final control statements, NCCoE draft concepts and project proposals are different evidence classes.",
+        "No production control, actual human approval, professional review or observed tenant behavior is established.",
+        "Inherited external source reviews, access limits and rights remain unchanged."
+      ],
+      "source_relationship_findings": [
+        {
+          "source_id": "src_0nrsy1i",
+          "disposition": "contextual-reference-retained",
+          "limitation": "Retain the source-specific documented scope; no approval, operating effectiveness or renewed external examination inferred."
+        },
+        {
+          "source_id": "src_1i38fu6",
+          "disposition": "contextual-reference-retained",
+          "limitation": "Retain the source-specific documented scope; no approval, operating effectiveness or renewed external examination inferred."
+        },
+        {
+          "source_id": "src_0d24qh0",
+          "disposition": "contextual-reference-retained",
+          "limitation": "Retain the source-specific documented scope; no approval, operating effectiveness or renewed external examination inferred."
+        },
+        {
+          "source_id": "src_xero_request_response_2026",
+          "disposition": "contextual-reference-retained",
+          "limitation": "Retain the source-specific documented scope; no approval, operating effectiveness or renewed external examination inferred."
+        },
+        {
+          "source_id": "src_xero_idempotency_2026",
+          "disposition": "contextual-reference-retained",
+          "limitation": "Retain the source-specific documented scope; no approval, operating effectiveness or renewed external examination inferred."
+        },
+        {
+          "source_id": "src_qbo_stale_object_2026",
+          "disposition": "contextual-reference-retained",
+          "limitation": "Retain the source-specific documented scope; no approval, operating effectiveness or renewed external examination inferred."
+        },
+        {
+          "source_id": "src_0pywo86",
+          "disposition": "contextual-reference-retained",
+          "limitation": "General control context or draft concept only; not a prescribed accounting implementation."
+        },
+        {
+          "source_id": "src_06fwpim",
+          "disposition": "contextual-reference-retained",
+          "limitation": "General control context or draft concept only; not a prescribed accounting implementation."
+        }
+      ],
+      "previous_proposed_question_ids": [
+        "q-controls-fraud",
+        "q-human-authority"
+      ],
+      "source_relationship_review_scope": "Read the added procedures, required evidence, fixture pointer, standards distinctions and review triggers. Confirmed their scoped relationship to the named existing objective. All source links remain citations, not newly asserted support relationships.",
+      "researcher_input_hash": "5cea780bf8eb420d615f8548df0e8cd11157614d930c67c1a6719bef2d0c4ae0",
+      "reviewed_at": "2026-09-21",
+      "reviewer": "Codex AI-assisted accounting action-boundary editorial review",
+      "previous_review": {
+        "review_status": "editorially-reviewed",
+        "reviewed_at": "2026-09-11",
+        "evidence_pointer": "/data/previous_editorial_review_173"
+      }
+    },
+    {
+      "record_id": "ctrl-version-evidence",
+      "input_sha256": "3889bdca352034f882bd924e34555109ed56c34bf4752d00a7fd0921fb708b2a",
+      "disposition": "corrected-association",
+      "review_summary": "The added design retains the exact source objects, assumptions, payload and prior decisions. A hash is limited to identity; it does not prove truth, approval or execution. This is consistent with the existing provenance objective.",
+      "question_ids": [
+        "q-data-lineage",
+        "q-agent-design"
+      ],
+      "industry_codes": [],
+      "shared": true,
+      "remaining_limits": [
+        "Agent editorial review of the stated control proposal and its linked canonical evidence only; maintainer/human acceptance remains separate.",
+        "NIST selected final control statements, NCCoE draft concepts and project proposals are different evidence classes.",
+        "No production control, actual human approval, professional review or observed tenant behavior is established.",
+        "Inherited external source reviews, access limits and rights remain unchanged."
+      ],
+      "source_relationship_findings": [
+        {
+          "source_id": "src_066cphd",
+          "disposition": "contextual-reference-retained",
+          "limitation": "Retain the source-specific documented scope; no approval, operating effectiveness or renewed external examination inferred."
+        },
+        {
+          "source_id": "src_1l45nk0",
+          "disposition": "contextual-reference-retained",
+          "limitation": "Retain the source-specific documented scope; no approval, operating effectiveness or renewed external examination inferred."
+        },
+        {
+          "source_id": "src_1px43va",
+          "disposition": "contextual-reference-retained",
+          "limitation": "Retain the source-specific documented scope; no approval, operating effectiveness or renewed external examination inferred."
+        },
+        {
+          "source_id": "src_0pywo86",
+          "disposition": "contextual-reference-retained",
+          "limitation": "General control context or draft concept only; not a prescribed accounting implementation."
+        },
+        {
+          "source_id": "src_06fwpim",
+          "disposition": "contextual-reference-retained",
+          "limitation": "General control context or draft concept only; not a prescribed accounting implementation."
+        }
+      ],
+      "previous_proposed_question_ids": [
+        "q-controls-fraud",
+        "q-human-authority"
+      ],
+      "source_relationship_review_scope": "Read the added procedures, required evidence, fixture pointer, standards distinctions and review triggers. Confirmed their scoped relationship to the named existing objective. All source links remain citations, not newly asserted support relationships.",
+      "researcher_input_hash": "3889bdca352034f882bd924e34555109ed56c34bf4752d00a7fd0921fb708b2a",
+      "reviewed_at": "2026-09-21",
+      "reviewer": "Codex AI-assisted accounting action-boundary editorial review",
+      "previous_review": {
+        "review_status": "editorially-reviewed",
+        "reviewed_at": "2026-09-11",
+        "evidence_pointer": "/data/previous_editorial_review_173"
+      }
+    }
+  ]
+}

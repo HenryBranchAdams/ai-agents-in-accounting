@@ -3517,7 +3517,7 @@
     "id": "example-us-operating-transactions-ledger",
     "kind": "example",
     "title": "US operating transactions: receipt to sale, return and settlement",
-    "summary": "Original synthetic event-to-ledger fixture for inventory, payables cutoff, customer revenue, return, processor settlement, consignment and financing branches.",
+    "summary": "Original synthetic event-to-ledger fixture for inventory, payables cutoff, customer revenue and returns. Its processor settlement branch separates gross activity, third-party tax, fees, refund and bank cash; consignment and financing remain separate branches.",
     "topics": [
       "Accounting and reporting",
       "Operating transactions",
@@ -3942,7 +3942,17 @@
         "Synthetic example: no real customer, vendor, bank, processor or publisher scenario is reproduced.",
         "The values and treatments are bounded assumptions for retrieval and arithmetic checks, not professional advice, current consolidated GAAP or production validation.",
         "Current Codification, tax, contract, entity-policy, ownership and professional-review questions remain open."
-      ]
+      ],
+      "discovery_summary_review_173": {
+        "reviewed_at": "2026-09-22",
+        "previous_summary": "Original synthetic event-to-ledger fixture for inventory, payables cutoff, customer revenue, return, processor settlement, consignment and financing branches.",
+        "scope": "Metadata clarification against the existing settlement_branch, assumptions and independent branches; no arithmetic or accounting conclusion changed.",
+        "locators": [
+          "/data/settlement_branch",
+          "/data/assumptions"
+        ],
+        "limitation": "Original synthetic example, not observed accounting operations or professional acceptance."
+      }
     }
   },
   {
@@ -22862,6 +22872,3195 @@
         "Synthetic evidence only. Private-fund measurement, standalone interest measurement, tax elections, governing documents and actual ownership/control require further evidence.",
         "Synthetic evidence only. No operational financial data or empirical agent performance is established. Source rights and later source currency remain unresolved."
       ]
+    }
+  },
+  {
+    "id": "example-connected-purchase-to-payment",
+    "kind": "example",
+    "title": "Purchase to payment across a month-end",
+    "summary": "Trace two receipts, invoices, a supplier credit and bank settlements through one fictional entity ledger. Approval and instruction remain distinct from settlement.",
+    "topics": [
+      "Accounting and reporting",
+      "Synthetic examples",
+      "Evidence and reconciliation"
+    ],
+    "industries": [],
+    "jurisdiction": "United States; nongovernmental US GAAP illustration",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_construction_fasb_2014_09",
+      "src_fasb_asu2015_11_inventory",
+      "src_fasb_concepts8_elements",
+      "src_fasb_asu2016_13_credit_losses"
+    ],
+    "related_ids": [
+      "example-us-operating-transactions-ledger",
+      "wf-r2r-bank-reconciliations",
+      "example-holding-parent-subsidiary-close",
+      "example-construction-contract-ledger",
+      "tpl-reviewer-packet",
+      "example-assurance-evidence-packet",
+      "guide-accounting-action-boundaries"
+    ],
+    "review_status": "draft-editorial-review-pending",
+    "reviewed_at": null,
+    "provenance": {
+      "added_on": "2026-09-21",
+      "reviewer": "Codex (original synthetic authorship)",
+      "scope": "Original case documents and proposed entries. Arithmetic checks are separate from accounting policy, professional review and operating evidence.",
+      "note": "Draft P2 package. No real company, tenant, payment or bank data is used; no accounting operation is executed."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false
+    },
+    "data": {
+      "version": "0.1.0",
+      "example_type": "original-synthetic",
+      "package_status": "Draft cases, alternatives, linked extensions and completed synthetic review packets; editorial and corpus integration pending.",
+      "framework": "United States nongovernmental accrual illustration; recognition policies are explicit fixture assumptions, not authoritative guidance",
+      "currency": "USD",
+      "amount_unit": "integer cents",
+      "sign_convention": "debits positive, credits negative in reported account balances",
+      "rounding": "All base amounts are integral USD cents; no binary floating-point multiplication is used.",
+      "professional_review": "not performed",
+      "observed_api_behavior": "none",
+      "operating_effectiveness": "not established",
+      "entity": "Harbor Tools LLC (fictional)",
+      "period": "May and June 2026",
+      "assumptions": [
+        "Buyer obtains control on accepted receipt; goods remain on hand through June. No tax, freight, discounts, impairment or financing is included.",
+        "The unreceived purchase-order portion is an executory commitment in this fixture. It is not an AP entry merely because a PO exists.",
+        "Receipt liability transfers to AP when the matching invoice arrives. The May 30 accepted return establishes a recoverable supplier credit under this fixture assumption; the May 31 credit note applies it to AP. No actual recoverability assessment was performed.",
+        "All bank statement lines for the stated periods are supplied. This bounded complete synthetic population is not a claim about actual bank/API completeness."
+      ],
+      "chart_of_accounts": {
+        "bank": "asset",
+        "inventory": "asset",
+        "received_not_invoiced": "liability",
+        "accounts_payable": "liability",
+        "owner_capital": "equity",
+        "supplier_credit_receivable": "asset"
+      },
+      "opening_balances_minor": {
+        "bank": 200000,
+        "inventory": 0,
+        "received_not_invoiced": 0,
+        "accounts_payable": 0,
+        "owner_capital": -200000,
+        "supplier_credit_receivable": 0
+      },
+      "documents": [
+        {
+          "id": "A-OPEN",
+          "date": "2026-05-01",
+          "kind": "opening trial balance",
+          "authorship": "original-synthetic",
+          "content": {
+            "entity": "Harbor Tools LLC (fictional)",
+            "bank_minor": 200000,
+            "owner_capital_minor": 200000
+          }
+        },
+        {
+          "id": "A-PO1",
+          "date": "2026-05-25",
+          "kind": "purchase order",
+          "authorship": "original-synthetic",
+          "content": {
+            "vendor": "Fictional Supply Co",
+            "units": 100,
+            "unit_price_minor": 1000,
+            "total_minor": 100000,
+            "entity": "Harbor Tools LLC"
+          }
+        },
+        {
+          "id": "A-R1",
+          "date": "2026-05-27",
+          "kind": "signed receiving report",
+          "authorship": "original-synthetic",
+          "content": {
+            "purchase_order": "A-PO1",
+            "accepted_units": 60,
+            "unit_price_minor": 1000,
+            "control_transfer": "accepted delivery at buyer premises",
+            "unreceived_units": 40
+          }
+        },
+        {
+          "id": "A-I1",
+          "date": "2026-05-29",
+          "kind": "supplier invoice",
+          "authorship": "original-synthetic",
+          "content": {
+            "purchase_order": "A-PO1",
+            "receipt": "A-R1",
+            "units": 60,
+            "total_minor": 60000,
+            "business_invoice_number": "FS-1001",
+            "buyer": "Harbor Tools LLC"
+          }
+        },
+        {
+          "id": "A-RET1",
+          "date": "2026-05-30",
+          "kind": "return acknowledgment",
+          "authorship": "original-synthetic",
+          "content": {
+            "receipt": "A-R1",
+            "returned_units": 10,
+            "reason": "damaged items accepted back by supplier",
+            "amount_minor": 10000
+          }
+        },
+        {
+          "id": "A-CN1",
+          "date": "2026-05-31",
+          "kind": "supplier credit note",
+          "authorship": "original-synthetic",
+          "content": {
+            "invoice": "A-I1",
+            "return": "A-RET1",
+            "amount_minor": 10000,
+            "remaining_payable_minor": 50000
+          }
+        },
+        {
+          "id": "A-APP1",
+          "date": "2026-05-31",
+          "kind": "payment approval",
+          "authorship": "original-synthetic",
+          "content": {
+            "entity": "Harbor Tools LLC",
+            "invoice": "A-I1",
+            "credit_note": "A-CN1",
+            "amount_minor": 50000,
+            "beneficiary": "Fictional Supply Co",
+            "destination_fingerprint": "fictional-vendor-account-v1",
+            "payload_version": 1,
+            "scope": "one instruction; approval itself is not settlement"
+          }
+        },
+        {
+          "id": "A-PAY1",
+          "date": "2026-06-02",
+          "kind": "payment instruction",
+          "authorship": "original-synthetic",
+          "content": {
+            "approval": "A-APP1",
+            "amount_minor": 50000,
+            "instruction_id": "A-INSTRUCTION-1",
+            "state": "submitted, settlement unconfirmed"
+          }
+        },
+        {
+          "id": "A-BANK1",
+          "date": "2026-06-03",
+          "kind": "bank settlement line",
+          "authorship": "original-synthetic",
+          "content": {
+            "instruction_id": "A-INSTRUCTION-1",
+            "debit_minor": 50000,
+            "statement_line": "JUNE-001",
+            "bank_account": "fictional-bank-A"
+          }
+        },
+        {
+          "id": "A-R2",
+          "date": "2026-06-04",
+          "kind": "signed receiving report",
+          "authorship": "original-synthetic",
+          "content": {
+            "purchase_order": "A-PO1",
+            "accepted_units": 40,
+            "unit_price_minor": 1000,
+            "unreceived_units": 0
+          }
+        },
+        {
+          "id": "A-I2",
+          "date": "2026-06-06",
+          "kind": "supplier invoice",
+          "authorship": "original-synthetic",
+          "content": {
+            "purchase_order": "A-PO1",
+            "receipt": "A-R2",
+            "units": 40,
+            "total_minor": 40000,
+            "business_invoice_number": "FS-1002",
+            "buyer": "Harbor Tools LLC"
+          }
+        },
+        {
+          "id": "A-PAY2",
+          "date": "2026-06-09",
+          "kind": "approved payment instruction",
+          "authorship": "original-synthetic",
+          "content": {
+            "invoice": "A-I2",
+            "amount_minor": 40000,
+            "instruction_id": "A-INSTRUCTION-2",
+            "approval": "fictional controller authorization for the exact amount and vendor; no live authority"
+          }
+        },
+        {
+          "id": "A-BANK2",
+          "date": "2026-06-10",
+          "kind": "bank settlement line",
+          "authorship": "original-synthetic",
+          "content": {
+            "instruction_id": "A-INSTRUCTION-2",
+            "debit_minor": 40000,
+            "statement_line": "JUNE-002",
+            "bank_account": "fictional-bank-A"
+          }
+        },
+        {
+          "id": "A-STMT-MAY",
+          "date": "2026-05-31",
+          "kind": "complete synthetic bank statement",
+          "authorship": "original-synthetic",
+          "content": {
+            "opening_minor": 200000,
+            "lines": [],
+            "closing_minor": 200000
+          }
+        },
+        {
+          "id": "A-STMT-JUNE",
+          "date": "2026-06-30",
+          "kind": "complete synthetic bank statement",
+          "authorship": "original-synthetic",
+          "content": {
+            "opening_minor": 200000,
+            "line_document_ids": [
+              "A-BANK1",
+              "A-BANK2"
+            ],
+            "outflows_minor": 90000,
+            "closing_minor": 110000
+          }
+        }
+      ],
+      "events": [
+        {
+          "id": "A-E1",
+          "date": "2026-05-27",
+          "document_ids": [
+            "A-PO1",
+            "A-R1"
+          ],
+          "description": "Accept 60 units; recognize inventory and unbilled receipt liability."
+        },
+        {
+          "id": "A-E2",
+          "date": "2026-05-29",
+          "document_ids": [
+            "A-I1",
+            "A-R1"
+          ],
+          "description": "Match the first invoice to accepted units; transfer liability to AP."
+        },
+        {
+          "id": "A-E-RETURN",
+          "date": "2026-05-30",
+          "document_ids": [
+            "A-RET1"
+          ],
+          "description": "Supplier accepts returned goods at their original price; record the assumed recoverable credit before the formal credit note arrives."
+        },
+        {
+          "id": "A-E3",
+          "date": "2026-05-31",
+          "document_ids": [
+            "A-RET1",
+            "A-CN1"
+          ],
+          "description": "Apply the supplier credit note against AP and resolve the temporary credit receivable."
+        },
+        {
+          "id": "A-E4",
+          "date": "2026-06-03",
+          "document_ids": [
+            "A-APP1",
+            "A-PAY1",
+            "A-BANK1"
+          ],
+          "description": "Recognize settlement only after the bank line resolves the submitted instruction."
+        },
+        {
+          "id": "A-E5",
+          "date": "2026-06-04",
+          "document_ids": [
+            "A-R2"
+          ],
+          "description": "Accept remaining 40 units."
+        },
+        {
+          "id": "A-E6",
+          "date": "2026-06-06",
+          "document_ids": [
+            "A-I2",
+            "A-R2"
+          ],
+          "description": "Match remaining invoice."
+        },
+        {
+          "id": "A-E7",
+          "date": "2026-06-10",
+          "document_ids": [
+            "A-PAY2",
+            "A-BANK2"
+          ],
+          "description": "Recognize second bank settlement."
+        }
+      ],
+      "journals": [
+        {
+          "id": "A-J1",
+          "date": "2026-05-27",
+          "event_id": "A-E1",
+          "document_ids": [
+            "A-R1"
+          ],
+          "lines": [
+            {
+              "account": "inventory",
+              "debit_minor": 60000,
+              "credit_minor": 0
+            },
+            {
+              "account": "received_not_invoiced",
+              "debit_minor": 0,
+              "credit_minor": 60000
+            }
+          ]
+        },
+        {
+          "id": "A-J2",
+          "date": "2026-05-29",
+          "event_id": "A-E2",
+          "document_ids": [
+            "A-I1",
+            "A-R1"
+          ],
+          "lines": [
+            {
+              "account": "received_not_invoiced",
+              "debit_minor": 60000,
+              "credit_minor": 0
+            },
+            {
+              "account": "accounts_payable",
+              "debit_minor": 0,
+              "credit_minor": 60000
+            }
+          ]
+        },
+        {
+          "id": "A-J-RETURN",
+          "date": "2026-05-30",
+          "event_id": "A-E-RETURN",
+          "document_ids": [
+            "A-RET1"
+          ],
+          "lines": [
+            {
+              "account": "supplier_credit_receivable",
+              "debit_minor": 10000,
+              "credit_minor": 0
+            },
+            {
+              "account": "inventory",
+              "debit_minor": 0,
+              "credit_minor": 10000
+            }
+          ]
+        },
+        {
+          "id": "A-J3",
+          "date": "2026-05-31",
+          "event_id": "A-E3",
+          "document_ids": [
+            "A-RET1",
+            "A-CN1"
+          ],
+          "lines": [
+            {
+              "account": "accounts_payable",
+              "debit_minor": 10000,
+              "credit_minor": 0
+            },
+            {
+              "account": "supplier_credit_receivable",
+              "debit_minor": 0,
+              "credit_minor": 10000
+            }
+          ]
+        },
+        {
+          "id": "A-J4",
+          "date": "2026-06-03",
+          "event_id": "A-E4",
+          "document_ids": [
+            "A-BANK1",
+            "A-PAY1"
+          ],
+          "lines": [
+            {
+              "account": "accounts_payable",
+              "debit_minor": 50000,
+              "credit_minor": 0
+            },
+            {
+              "account": "bank",
+              "debit_minor": 0,
+              "credit_minor": 50000
+            }
+          ]
+        },
+        {
+          "id": "A-J5",
+          "date": "2026-06-04",
+          "event_id": "A-E5",
+          "document_ids": [
+            "A-R2"
+          ],
+          "lines": [
+            {
+              "account": "inventory",
+              "debit_minor": 40000,
+              "credit_minor": 0
+            },
+            {
+              "account": "received_not_invoiced",
+              "debit_minor": 0,
+              "credit_minor": 40000
+            }
+          ]
+        },
+        {
+          "id": "A-J6",
+          "date": "2026-06-06",
+          "event_id": "A-E6",
+          "document_ids": [
+            "A-I2"
+          ],
+          "lines": [
+            {
+              "account": "received_not_invoiced",
+              "debit_minor": 40000,
+              "credit_minor": 0
+            },
+            {
+              "account": "accounts_payable",
+              "debit_minor": 0,
+              "credit_minor": 40000
+            }
+          ]
+        },
+        {
+          "id": "A-J7",
+          "date": "2026-06-10",
+          "event_id": "A-E7",
+          "document_ids": [
+            "A-BANK2",
+            "A-PAY2"
+          ],
+          "lines": [
+            {
+              "account": "accounts_payable",
+              "debit_minor": 40000,
+              "credit_minor": 0
+            },
+            {
+              "account": "bank",
+              "debit_minor": 0,
+              "credit_minor": 40000
+            }
+          ]
+        }
+      ],
+      "nonposting_events": [
+        {
+          "date": "2026-05-25",
+          "document_id": "A-PO1",
+          "reason": "Commitment only under stated assumptions."
+        },
+        {
+          "date": "2026-05-31",
+          "document_id": "A-APP1",
+          "reason": "Approval authorizes a bounded instruction; no cash movement."
+        },
+        {
+          "date": "2026-06-02",
+          "document_id": "A-PAY1",
+          "reason": "Submission does not establish bank settlement."
+        }
+      ],
+      "expected_period_balances_minor": {
+        "2026-05-31": {
+          "bank": 200000,
+          "inventory": 50000,
+          "received_not_invoiced": 0,
+          "accounts_payable": -50000,
+          "owner_capital": -200000,
+          "supplier_credit_receivable": 0
+        },
+        "2026-06-30": {
+          "bank": 110000,
+          "inventory": 90000,
+          "received_not_invoiced": 0,
+          "accounts_payable": 0,
+          "owner_capital": -200000,
+          "supplier_credit_receivable": 0
+        }
+      },
+      "reconciliations": [
+        {
+          "id": "A-REC-AP",
+          "documents": [
+            "A-I1",
+            "A-I2",
+            "A-CN1",
+            "A-BANK1",
+            "A-BANK2"
+          ],
+          "calculation": "60000 + 40000 - 10000 - 50000 - 40000 = 0 cents payable"
+        },
+        {
+          "id": "A-REC-STOCK",
+          "documents": [
+            "A-R1",
+            "A-R2",
+            "A-RET1"
+          ],
+          "calculation": "60 + 40 - 10 = 90 units; 90 x 1000 = 90000 cents inventory"
+        },
+        {
+          "id": "A-REC-BANK",
+          "documents": [
+            "A-STMT-JUNE",
+            "A-BANK1",
+            "A-BANK2"
+          ],
+          "calculation": "200000 - 50000 - 40000 = 110000 cents bank"
+        }
+      ],
+      "alternative_branches": [
+        {
+          "id": "A-ALT-PARTIAL",
+          "classification": "original-synthetic alternative",
+          "combination_rule": "Independent alternative to the baseline; do not combine branches.",
+          "changed_fact": "Only 60 of the 100 ordered units have been received.",
+          "as_of": "2026-05-27",
+          "baseline_journal_ids": [
+            "A-J1"
+          ],
+          "expected_balances_minor": {
+            "bank": 200000,
+            "inventory": 60000,
+            "received_not_invoiced": -60000,
+            "accounts_payable": 0,
+            "owner_capital": -200000,
+            "supplier_credit_receivable": 0
+          },
+          "decision": "Post 60000 cents from A-R1, not the full 100000-cent PO.",
+          "unresolved_item": "40 unreceived units remain an open commitment, not a fabricated receipt.",
+          "evidence_document_ids": [
+            "A-PO1",
+            "A-R1"
+          ],
+          "rejected_proposal": {
+            "debit_inventory_minor": 100000,
+            "credit_received_not_invoiced_minor": 100000,
+            "defect": "Balanced entry overstates received inventory and liability by 40000 cents."
+          }
+        },
+        {
+          "id": "A-ALT-DUPLICATE",
+          "classification": "original-synthetic alternative",
+          "combination_rule": "Independent alternative to the baseline; do not combine branches.",
+          "changed_fact": "A second delivery of invoice FS-1001 has a new ingestion ID but the same supplier, buyer, business invoice and amount.",
+          "as_of": "2026-05-31",
+          "baseline_journal_ids": [
+            "A-J1",
+            "A-J2",
+            "A-J-RETURN",
+            "A-J3"
+          ],
+          "expected_balances_minor": {
+            "bank": 200000,
+            "inventory": 50000,
+            "received_not_invoiced": 0,
+            "accounts_payable": -50000,
+            "owner_capital": -200000,
+            "supplier_credit_receivable": 0
+          },
+          "decision": "Retain the duplicate document as evidence; do not create another payable or journal.",
+          "unresolved_item": "Investigate if substantive invoice content differs; a new ingestion ID alone does not establish a new obligation.",
+          "evidence_document_ids": [
+            "A-I1",
+            "A-CN1"
+          ],
+          "additional_documents": [
+            {
+              "id": "A-DUP-I1",
+              "date": "2026-05-30",
+              "kind": "duplicate invoice delivery",
+              "authorship": "original-synthetic",
+              "content": {
+                "business_invoice_number": "FS-1001",
+                "supplier": "Fictional Supply Co",
+                "buyer": "Harbor Tools LLC",
+                "total_minor": 60000,
+                "duplicates": "A-I1"
+              }
+            }
+          ]
+        },
+        {
+          "id": "A-ALT-CREDIT-PENDING",
+          "classification": "original-synthetic alternative",
+          "combination_rule": "Independent alternative to the baseline; do not combine branches.",
+          "changed_fact": "The ten units are only proposed for return and remain in the buyer warehouse; there is no supplier acceptance or credit note by May 31.",
+          "as_of": "2026-05-31",
+          "baseline_journal_ids": [
+            "A-J1",
+            "A-J2"
+          ],
+          "expected_balances_minor": {
+            "bank": 200000,
+            "inventory": 60000,
+            "received_not_invoiced": 0,
+            "accounts_payable": -60000,
+            "owner_capital": -200000,
+            "supplier_credit_receivable": 0
+          },
+          "decision": "Do not apply the baseline 10000-cent supplier credit. Review condition and impairment separately.",
+          "unresolved_item": "The 10000-cent requested credit is unresolved. This branch assumes no established impairment; that assumption needs evidence in real work.",
+          "evidence_document_ids": [
+            "A-R1",
+            "A-I1"
+          ],
+          "excluded_baseline_document_ids": [
+            "A-RET1",
+            "A-CN1"
+          ],
+          "additional_documents": [
+            {
+              "id": "A-RETURN-REQUEST",
+              "date": "2026-05-30",
+              "kind": "unaccepted return request",
+              "authorship": "original-synthetic",
+              "content": {
+                "units": 10,
+                "requested_credit_minor": 10000,
+                "goods_location": "buyer warehouse",
+                "supplier_response": null
+              }
+            }
+          ]
+        },
+        {
+          "id": "A-ALT-WRONG-ENTITY",
+          "classification": "original-synthetic alternative",
+          "combination_rule": "Independent alternative to the baseline; do not combine branches.",
+          "changed_fact": "The received invoice identifies fictional Sister Supply LLC as buyer, while the PO and accepted receipt belong to Harbor Tools LLC.",
+          "as_of": "2026-05-29",
+          "baseline_journal_ids": [
+            "A-J1"
+          ],
+          "expected_balances_minor": {
+            "bank": 200000,
+            "inventory": 60000,
+            "received_not_invoiced": -60000,
+            "accounts_payable": 0,
+            "owner_capital": -200000,
+            "supplier_credit_receivable": 0
+          },
+          "decision": "Hold invoice matching and request corrected evidence; do not transfer Harbor receipt liability to another entity or book a cross-entity journal.",
+          "unresolved_item": "Buyer/entity contradiction remains open; Harbor retains its documented receipt accrual.",
+          "evidence_document_ids": [
+            "A-PO1",
+            "A-R1"
+          ],
+          "excluded_baseline_document_ids": [
+            "A-I1"
+          ],
+          "additional_documents": [
+            {
+              "id": "A-WRONG-BUYER",
+              "date": "2026-05-29",
+              "kind": "invoice with contradictory buyer",
+              "authorship": "original-synthetic",
+              "content": {
+                "buyer": "Sister Supply LLC (fictional)",
+                "amount_minor": 60000,
+                "purported_receipt": "A-R1"
+              }
+            }
+          ]
+        },
+        {
+          "id": "A-ALT-WRONG-PERIOD",
+          "classification": "original-synthetic alternative",
+          "combination_rule": "Independent alternative to the baseline; do not combine branches.",
+          "changed_fact": "An agent proposes June 1 as the posting date for the May 29 matched invoice, without changing the receipt or invoice facts.",
+          "as_of": "2026-05-31",
+          "baseline_journal_ids": [
+            "A-J1",
+            "A-J2",
+            "A-J-RETURN",
+            "A-J3"
+          ],
+          "expected_balances_minor": {
+            "bank": 200000,
+            "inventory": 50000,
+            "received_not_invoiced": 0,
+            "accounts_payable": -50000,
+            "owner_capital": -200000,
+            "supplier_credit_receivable": 0
+          },
+          "decision": "Reject the unsupported date change and retain the May 29 liability classification in this fixture.",
+          "unresolved_item": "Any asserted later knowledge date or period lock requires a separate documented correction decision; do not silently rewrite a closed period.",
+          "evidence_document_ids": [
+            "A-I1",
+            "A-R1"
+          ],
+          "rejected_proposal": {
+            "invoice": "A-I1",
+            "posting_date": "2026-06-01",
+            "reason": "No evidence supporting a changed cutoff fact."
+          }
+        },
+        {
+          "id": "A-ALT-UNCERTAIN-PAYMENT",
+          "classification": "original-synthetic alternative",
+          "combination_rule": "Independent alternative to the baseline; do not combine branches.",
+          "changed_fact": "The response to submitted instruction A-INSTRUCTION-1 is lost. As of June 2 no bank settlement evidence is available.",
+          "as_of": "2026-06-02",
+          "baseline_journal_ids": [
+            "A-J1",
+            "A-J2",
+            "A-J-RETURN",
+            "A-J3"
+          ],
+          "expected_balances_minor": {
+            "bank": 200000,
+            "inventory": 50000,
+            "received_not_invoiced": 0,
+            "accounts_payable": -50000,
+            "owner_capital": -200000,
+            "supplier_credit_receivable": 0
+          },
+          "decision": "Keep the payable open and execution state unknown. Reconcile the original instruction before considering another submission.",
+          "unresolved_item": "50000-cent instruction may have executed; a retry with a new identity can duplicate payment.",
+          "evidence_document_ids": [
+            "A-APP1",
+            "A-PAY1"
+          ],
+          "synthetic_exchange": {
+            "system": "fictional adapter; not a vendor API observation",
+            "request": {
+              "instruction_id": "A-INSTRUCTION-1",
+              "entity": "Harbor Tools LLC",
+              "amount_minor": 50000,
+              "currency": "USD",
+              "destination_fingerprint": "fictional-vendor-account-v1",
+              "payload_version": 1
+            },
+            "response": null,
+            "known_result": "unknown"
+          },
+          "resolution": {
+            "date": "2026-06-03",
+            "evidence_document_id": "A-BANK1",
+            "journal_id": "A-J4",
+            "decision": "Resolve the original instruction as settled once. No second payment or duplicate journal."
+          }
+        },
+        {
+          "id": "A-ALT-LATE-INVOICE",
+          "classification": "original-synthetic alternative",
+          "combination_rule": "Independent alternative to the baseline; do not combine branches.",
+          "changed_fact": "The first receipt is valid in May, but its 60000-cent invoice arrives June 6. No return occurs and the remaining 40 units stay unreceived in this branch.",
+          "as_of": "2026-06-30",
+          "baseline_journal_ids": [
+            "A-J1"
+          ],
+          "expected_balances_minor": {
+            "bank": 140000,
+            "inventory": 60000,
+            "received_not_invoiced": 0,
+            "accounts_payable": 0,
+            "owner_capital": -200000,
+            "supplier_credit_receivable": 0
+          },
+          "decision": "Retain the May receipt accrual, transfer it to AP on the June invoice, then resolve it on actual bank settlement.",
+          "unresolved_item": "At May 31 the unbilled 60000 cents is supported by the receipt; the remaining 40-unit commitment stays open.",
+          "evidence_document_ids": [
+            "A-PO1",
+            "A-R1"
+          ],
+          "additional_documents": [
+            {
+              "id": "A-LATE-I1",
+              "date": "2026-06-06",
+              "kind": "late supplier invoice",
+              "authorship": "original-synthetic",
+              "content": {
+                "receipt": "A-R1",
+                "units": 60,
+                "total_minor": 60000
+              }
+            },
+            {
+              "id": "A-LATE-BANK",
+              "date": "2026-06-10",
+              "kind": "approved payment and bank settlement evidence",
+              "authorship": "original-synthetic",
+              "content": {
+                "invoice": "A-LATE-I1",
+                "debit_minor": 60000,
+                "instruction_id": "A-LATE-PAY1"
+              }
+            }
+          ],
+          "additional_events": [
+            {
+              "id": "A-LATE-E1",
+              "date": "2026-06-06",
+              "document_ids": [
+                "A-LATE-I1"
+              ],
+              "description": "The late invoice resolves the receipt accrual."
+            },
+            {
+              "id": "A-LATE-E2",
+              "date": "2026-06-10",
+              "document_ids": [
+                "A-LATE-BANK"
+              ],
+              "description": "Actual bank settlement resolves AP."
+            }
+          ],
+          "additional_journals": [
+            {
+              "id": "A-LATE-J1",
+              "date": "2026-06-06",
+              "event_id": "A-LATE-E1",
+              "document_ids": [
+                "A-LATE-I1"
+              ],
+              "lines": [
+                {
+                  "account": "received_not_invoiced",
+                  "debit_minor": 60000,
+                  "credit_minor": 0
+                },
+                {
+                  "account": "accounts_payable",
+                  "debit_minor": 0,
+                  "credit_minor": 60000
+                }
+              ]
+            },
+            {
+              "id": "A-LATE-J2",
+              "date": "2026-06-10",
+              "event_id": "A-LATE-E2",
+              "document_ids": [
+                "A-LATE-BANK"
+              ],
+              "lines": [
+                {
+                  "account": "accounts_payable",
+                  "debit_minor": 60000,
+                  "credit_minor": 0
+                },
+                {
+                  "account": "bank",
+                  "debit_minor": 0,
+                  "credit_minor": 60000
+                }
+              ]
+            }
+          ],
+          "prior_period_state": {
+            "as_of": "2026-05-31",
+            "expected_balances_minor": {
+              "bank": 200000,
+              "inventory": 60000,
+              "received_not_invoiced": -60000,
+              "accounts_payable": 0,
+              "owner_capital": -200000,
+              "supplier_credit_receivable": 0
+            }
+          },
+          "excluded_baseline_document_ids": [
+            "A-I1",
+            "A-RET1",
+            "A-CN1",
+            "A-APP1",
+            "A-PAY1",
+            "A-BANK1",
+            "A-R2",
+            "A-I2",
+            "A-PAY2",
+            "A-BANK2",
+            "A-STMT-JUNE"
+          ]
+        }
+      ],
+      "bounded_extensions": [
+        {
+          "id": "connected-accrual-resolution",
+          "classification": "original-synthetic-extension",
+          "linked_record_id": "example-connected-purchase-to-payment",
+          "linked_branch_id": "A-ALT-LATE-INVOICE",
+          "boundary": "The late-invoice alternative only: first 60 units, no return, remaining 40 unreceived. Receipt establishes the assumed obligation, not invoice arrival.",
+          "knowledge_by_date": [
+            {
+              "date": "2026-05-31",
+              "known_document_ids": [
+                "A-PO1",
+                "A-R1"
+              ],
+              "unknown": [
+                "supplier invoice identifier and issue date",
+                "bank settlement"
+              ],
+              "decision": "Retain inventory and received-not-invoiced liability of 60,000 cents from the May receipt. No fictitious invoice or payment.",
+              "balances_minor": {
+                "inventory": 60000,
+                "received_not_invoiced": -60000,
+                "accounts_payable": 0,
+                "bank": 200000
+              }
+            },
+            {
+              "date": "2026-06-06",
+              "known_document_ids": [
+                "A-PO1",
+                "A-R1",
+                "A-LATE-I1"
+              ],
+              "unknown": [
+                "bank settlement"
+              ],
+              "decision": "The 60,000-cent invoice matches the prior receipt. Transfer the existing receipt liability to AP, adding no second inventory cost.",
+              "balances_minor": {
+                "inventory": 60000,
+                "received_not_invoiced": 0,
+                "accounts_payable": -60000,
+                "bank": 200000
+              }
+            },
+            {
+              "date": "2026-06-10",
+              "known_document_ids": [
+                "A-PO1",
+                "A-R1",
+                "A-LATE-I1",
+                "A-LATE-BANK"
+              ],
+              "unknown": [],
+              "decision": "Bank settlement clears AP once; retain the original May recognition and June evidence timestamps.",
+              "balances_minor": {
+                "inventory": 60000,
+                "received_not_invoiced": 0,
+                "accounts_payable": 0,
+                "bank": 140000
+              }
+            }
+          ],
+          "counterexample": "An invoice for a new June service, disputed price or another entity cannot automatically resolve this May receipt. Match identity, quantity, price, entity and period; leave differences visible.",
+          "limits": "The fixture assumes the receipt and agreed price establish recognition. No actual receipt, tenant population or professional conclusion is supplied."
+        },
+        {
+          "id": "connected-intercompany-mismatch",
+          "classification": "original-synthetic-extension",
+          "linked_record_id": "example-holding-parent-subsidiary-close",
+          "linked_journal_ids": [
+            "P05",
+            "S05",
+            "E03",
+            "E04"
+          ],
+          "boundary": "Reuse the existing controlled P/S service case and its declared framework assumptions. Isolate SERVICE-1; do not recalculate acquisitions, control or transfer pricing.",
+          "documents": [
+            {
+              "id": "IC-SERVICE-1",
+              "authorship": "original-synthetic",
+              "content": "Completed service and allocation worksheet: 1,000 processing units, 600 for S, 400 for P; total external cost 200,000 cents, S allocation 120,000 cents."
+            },
+            {
+              "id": "IC-P-STATEMENT",
+              "authorship": "original-synthetic",
+              "content": "P records SERVICE-1 receivable and service revenue of 120,000 cents on 31 December 2025."
+            },
+            {
+              "id": "IC-S-EXTRACT",
+              "authorship": "original-synthetic",
+              "content": "S initial 31 December extract lacks SERVICE-1; no payable or service expense exists in this isolated population."
+            },
+            {
+              "id": "IC-MATCH-REVIEW",
+              "authorship": "original-synthetic",
+              "content": "2 January 2026 review confirms service received in December, entity identities P/S and 120,000-cent allocation. December remains open. Reviewer has not signed off; this is proposed case evidence."
+            }
+          ],
+          "before": {
+            "parent_receivable_minor": 120000,
+            "subsidiary_payable_minor": 0,
+            "unmatched_minor": 120000
+          },
+          "proposed_entity_correction": {
+            "id": "S05",
+            "match_id": "SERVICE-1",
+            "description": "Accrue received processing service",
+            "status": "proposed-synthetic-workpaper-only",
+            "lines": [
+              {
+                "entity": "S",
+                "account": "service_expense",
+                "debit_cents": 120000,
+                "credit_cents": 0
+              },
+              {
+                "entity": "S",
+                "account": "service_payable_P",
+                "debit_cents": 0,
+                "credit_cents": 120000
+              }
+            ]
+          },
+          "after": {
+            "parent_receivable_minor": 120000,
+            "subsidiary_payable_minor": -120000,
+            "unmatched_minor": 0
+          },
+          "consolidation_entries": [
+            {
+              "id": "E03",
+              "match_id": "SERVICE-1",
+              "description": "Remove reciprocal service balances",
+              "status": "proposed-synthetic-consolidation-column-only",
+              "source_locator": {
+                "source_id": "src_aa_i109_arb51_amended",
+                "url": "https://storage.fasb.org/ARB%2051.pdf",
+                "locator": "After FAS 160 paragraph 6, PDF page 7; paragraph 24, PDF page 8",
+                "effective_period": "ARB 51 issued August 1959; selected After FAS 160 text applies after adoption of that statement; FAS 160 effective for fiscal years beginning on or after December 15, 2008.",
+                "access_limits": "Historical pre-Codification text, not current ASC 810. The separate Before FAS 160 passage is not the selected procedure. NCI, acquisition accounting and current applicability require separate review."
+              },
+              "lines": [
+                {
+                  "entity": "S",
+                  "account": "service_payable_P",
+                  "debit_cents": 120000,
+                  "credit_cents": 0
+                },
+                {
+                  "entity": "P",
+                  "account": "service_receivable_S",
+                  "debit_cents": 0,
+                  "credit_cents": 120000
+                }
+              ]
+            },
+            {
+              "id": "E04",
+              "match_id": "SERVICE-1",
+              "description": "Remove internal service activity; external pool costs remain",
+              "status": "proposed-synthetic-consolidation-column-only",
+              "source_locator": {
+                "source_id": "src_aa_i109_arb51_amended",
+                "url": "https://storage.fasb.org/ARB%2051.pdf",
+                "locator": "After FAS 160 paragraph 6, PDF page 7; paragraph 24, PDF page 8",
+                "effective_period": "ARB 51 issued August 1959; selected After FAS 160 text applies after adoption of that statement; FAS 160 effective for fiscal years beginning on or after December 15, 2008.",
+                "access_limits": "Historical pre-Codification text, not current ASC 810. The separate Before FAS 160 passage is not the selected procedure. NCI, acquisition accounting and current applicability require separate review."
+              },
+              "lines": [
+                {
+                  "entity": "P",
+                  "account": "service_revenue",
+                  "debit_cents": 120000,
+                  "credit_cents": 0
+                },
+                {
+                  "entity": "S",
+                  "account": "service_expense",
+                  "debit_cents": 0,
+                  "credit_cents": 120000
+                }
+              ]
+            }
+          ],
+          "expected_consolidated_service_balances_minor": {
+            "service_receivable_S": 0,
+            "service_payable_P": 0,
+            "service_revenue": 0,
+            "service_expense": 0
+          },
+          "external_pool_cost_retained_minor": 200000,
+          "decision": "First resolve the missing subsidiary recognition using service evidence. Only then eliminate reciprocal balances and internal activity in the consolidation column. Do not erase the parent receivable or create an unexplained consolidation plug.",
+          "counterexample": "If S disputes receiving the service, matching the parent amount does not establish an S obligation. If S is outside the assumed consolidation perimeter, these eliminations do not follow.",
+          "review_boundary": "Proposed synthetic correction and eliminations only. Reuses the existing record source scope, including historical authority limitations; no new professional review or current ASC conclusion."
+        },
+        {
+          "id": "connected-construction-approval-change",
+          "classification": "original-synthetic-extension",
+          "linked_record_id": "example-construction-contract-ledger",
+          "linked_example_id": "construction-estimate-revision",
+          "boundary": "Reuse the existing July J01 base and the existing estimate-only alternative. A new estimate learned in August changes expected cost from 900,000 to 1,000,000 dollars, with no new work, billing or price change. This alternative is not combined with the ordinary August modification close.",
+          "knowledge_by_date": [
+            {
+              "date": "2026-07-31",
+              "estimate_id": "EST-J01-V1",
+              "cost_minor": 27000000,
+              "price_minor": 120000000,
+              "estimated_total_cost_minor": 90000000,
+              "cumulative_revenue_minor": 36000000
+            },
+            {
+              "date": "2026-08-15",
+              "estimate_id": "EST-J01-ALTERNATIVE-V2",
+              "cost_minor": 27000000,
+              "price_minor": 120000000,
+              "estimated_total_cost_minor": 100000000,
+              "cumulative_revenue_minor": 32400000
+            }
+          ],
+          "proposed_journal": {
+            "debit": "revenue",
+            "credit": "contract_asset",
+            "amount_minor": 3600000
+          },
+          "expected": {
+            "current_period_catch_up_minor": -3600000,
+            "cumulative_revenue_minor": 32400000,
+            "contract_asset_minor": 2400000,
+            "profit_minor": 5400000
+          },
+          "synthetic_approval": {
+            "state": "illustrative approved payload; no real approver",
+            "serialized_payload": "{\"accounting_period\":\"2026-08\",\"catch_up_minor\":-3600000,\"contract\":\"CONTRACT-J01\",\"cost_minor\":27000000,\"cumulative_revenue_minor\":32400000,\"entity\":\"CONTRACTOR-SYNTHETIC\",\"estimate_id\":\"EST-J01-ALTERNATIVE-V2\",\"estimated_total_cost_minor\":100000000,\"price_minor\":120000000,\"prior_revenue_minor\":36000000}",
+            "sha256": "7385006150d3ec9802f8eb76d2d990a86bc974b047b6f585330d78d0d0439419",
+            "preparer": "fictional-preparer",
+            "reviewer": "fictional-distinct-reviewer",
+            "expires_at": "2026-08-16T00:00:00Z"
+          },
+          "post_approval_change": {
+            "estimated_total_cost_minor": 108000000,
+            "cumulative_revenue_minor": 30000000,
+            "catch_up_minor": -6000000,
+            "status": "unapproved; stop and obtain new evidence and approval",
+            "difference_from_approved_catch_up_minor": -2400000
+          },
+          "decision": "Version the estimate and workpaper. The original approval is bound to the 1,000,000-dollar estimate and 36,000-dollar negative catch-up. Changing the estimate to 1,080,000 changes the payload and invalidates that approval. Arithmetic does not authorize posting.",
+          "limits": "This adds an original approval-change trace to an existing synthetic calculation. It does not establish enforceable authorization, observed accounting operations, professional review or a newly reviewed accounting standard."
+        }
+      ],
+      "review_packets": {
+        "stronger": {
+          "id": "A-REVIEW-STRONGER",
+          "label": "Completed original synthetic review packet; stronger comparison, not professional sign-off",
+          "status": "prepared for human review; no actual reviewer acceptance",
+          "engagement": "Fictional internal monthly close workpaper, not an audit, assurance report, filing or payment authorization.",
+          "entity": "Harbor Tools LLC (fictional)",
+          "period": "May and June 2026",
+          "currency": "USD",
+          "amount_unit": "integer cents",
+          "source_case_id": "example-connected-purchase-to-payment",
+          "case_input_sha256": "4ae9cffab1fb1b7428f069b252ab7fe03fce59904bad0bc8d85105f6246289ae",
+          "hash_definition": "SHA-256 of UTF-8 JSON with sorted object keys, compact separators and literal Unicode, covering record_id, case_version, documents, events, journals, opening_balances_minor, assumptions, chart_of_accounts, entity, period, currency, amount_unit, rounding. Approval binds this declared baseline scope; branches and changes need their own review.",
+          "population": {
+            "document_ids": [
+              "A-OPEN",
+              "A-PO1",
+              "A-R1",
+              "A-I1",
+              "A-RET1",
+              "A-CN1",
+              "A-APP1",
+              "A-PAY1",
+              "A-BANK1",
+              "A-R2",
+              "A-I2",
+              "A-PAY2",
+              "A-BANK2",
+              "A-STMT-MAY",
+              "A-STMT-JUNE"
+            ],
+            "document_count": 15,
+            "journal_ids": [
+              "A-J1",
+              "A-J2",
+              "A-J-RETURN",
+              "A-J3",
+              "A-J4",
+              "A-J5",
+              "A-J6",
+              "A-J7"
+            ],
+            "journal_count": 8,
+            "basis": "Complete only within the authored fictional manifest. Independent real-world completeness is not claimed.",
+            "real_world_missing": "Authorized source extraction scope, independent receiving/service and bank populations, pagination/watermarks, revision/deletion handling, authenticity and applicable accounting policy review."
+          },
+          "preparation": {
+            "actor": "Codex original synthetic author",
+            "actual_professional_preparer": null,
+            "actual_professional_reviewer": null,
+            "separation": "The author and automated arithmetic checks cannot supply independent professional approval. Fictional decisions below are examples, not actual sign-off."
+          },
+          "materiality": "No engagement materiality is set. Every seeded discrepancy is visible; this packet does not prescribe a real materiality threshold.",
+          "source_context": [
+            {
+              "record_id": "src_construction_fasb_2014_09",
+              "role": "source context, not proof of this fictional transaction or professional treatment"
+            },
+            {
+              "record_id": "src_fasb_asu2015_11_inventory",
+              "role": "source context, not proof of this fictional transaction or professional treatment"
+            },
+            {
+              "record_id": "src_fasb_concepts8_elements",
+              "role": "source context, not proof of this fictional transaction or professional treatment"
+            },
+            {
+              "record_id": "src_fasb_asu2016_13_credit_losses",
+              "role": "source context, not proof of this fictional transaction or professional treatment"
+            }
+          ],
+          "assumptions": [
+            "Buyer obtains control on accepted receipt; goods remain on hand through June. No tax, freight, discounts, impairment or financing is included.",
+            "The unreceived purchase-order portion is an executory commitment in this fixture. It is not an AP entry merely because a PO exists.",
+            "Receipt liability transfers to AP when the matching invoice arrives. The May 30 accepted return establishes a recoverable supplier credit under this fixture assumption; the May 31 credit note applies it to AP. No actual recoverability assessment was performed.",
+            "All bank statement lines for the stated periods are supplied. This bounded complete synthetic population is not a claim about actual bank/API completeness."
+          ],
+          "proposed_entries": [
+            "A-J1",
+            "A-J2",
+            "A-J-RETURN",
+            "A-J3",
+            "A-J4",
+            "A-J5",
+            "A-J6",
+            "A-J7"
+          ],
+          "period_balances_minor": {
+            "2026-05-31": {
+              "bank": 200000,
+              "inventory": 50000,
+              "received_not_invoiced": 0,
+              "accounts_payable": -50000,
+              "owner_capital": -200000,
+              "supplier_credit_receivable": 0
+            },
+            "2026-06-30": {
+              "bank": 110000,
+              "inventory": 90000,
+              "received_not_invoiced": 0,
+              "accounts_payable": 0,
+              "owner_capital": -200000,
+              "supplier_credit_receivable": 0
+            }
+          },
+          "execution_authority": false,
+          "executive_answer": "The declared baseline finishes June with 90 inventory units worth 90,000 cents, 110,000 cents cash and no AP or receipt liability. May still has a 50,000-cent payable. Settlement is supported by bank lines, not the approval or instruction.",
+          "assertion_traces": [
+            {
+              "assertion": "Only received goods enter this inventory population.",
+              "documents": [
+                "A-PO1",
+                "A-R1",
+                "A-R2",
+                "A-RET1"
+              ],
+              "journal_ids": [
+                "A-J1",
+                "A-J-RETURN",
+                "A-J5"
+              ],
+              "calculation": "60 + 40 - 10 = 90 units; 90 × 1,000 = 90,000 cents.",
+              "decision": "Accept arithmetic within stated fixture; real valuation and ownership remain separate."
+            },
+            {
+              "assertion": "The first payable is 50,000 cents after the supplier credit.",
+              "documents": [
+                "A-I1",
+                "A-RET1",
+                "A-CN1"
+              ],
+              "journal_ids": [
+                "A-J2",
+                "A-J-RETURN",
+                "A-J3"
+              ],
+              "calculation": "60,000 invoice - 10,000 credit = 50,000 payable; the 30 May supplier claim clears on 31 May.",
+              "decision": "Preserve receipt, return acceptance and credit dates separately."
+            },
+            {
+              "assertion": "June bank and AP reconcile without paying twice.",
+              "documents": [
+                "A-STMT-MAY",
+                "A-STMT-JUNE",
+                "A-BANK1",
+                "A-BANK2",
+                "A-I1",
+                "A-I2",
+                "A-CN1"
+              ],
+              "journal_ids": [
+                "A-J4",
+                "A-J7"
+              ],
+              "calculation": "Bank 200,000 - 50,000 - 40,000 = 110,000; AP 60,000 + 40,000 - 10,000 - 50,000 - 40,000 = 0.",
+              "decision": "Bank population is complete only by authorship assumption."
+            }
+          ],
+          "exceptions": [
+            {
+              "id": "A-REVIEW-X1",
+              "status": "resolved in baseline; open in named alternative",
+              "assertion": "A submitted payment equals settlement",
+              "contradiction": "A-PAY1 is dated 2 June, while A-BANK1 settles on 3 June. In A-ALT-UNCERTAIN-PAYMENT no response establishes an outcome.",
+              "evidence_ids": [
+                "A-PAY1",
+                "A-BANK1"
+              ],
+              "decision": "Do not clear bank/AP on instruction. If outcome is unknown, reconcile the existing instruction before any retry."
+            },
+            {
+              "id": "A-REVIEW-X2",
+              "status": "unresolved external applicability",
+              "assertion": "Inventory and supplier-credit recognition are professionally supported",
+              "contradiction": "The case assumes ownership, valuation and an enforceable credit; its documents are authored, not authenticated.",
+              "evidence_ids": [
+                "A-R1",
+                "A-RET1",
+                "A-CN1"
+              ],
+              "decision": "A real reviewer must establish those facts. Arithmetic acceptance is not recognition approval."
+            }
+          ],
+          "synthetic_reviewer_decisions": [
+            {
+              "question": "May the first payment clear at the approval date?",
+              "decision": "Reject; retain AP until bank settlement under this case policy.",
+              "actor": "fictional reviewer A",
+              "actual_signoff": false
+            },
+            {
+              "question": "May the pending-credit alternative use the baseline credit note?",
+              "decision": "Reject; the alternative expressly lacks accepted return/credit evidence.",
+              "actor": "fictional reviewer A",
+              "actual_signoff": false
+            }
+          ],
+          "post_approval_change": {
+            "original": "A-APP1: 50,000 cents, original destination fingerprint and payload version 1.",
+            "changed": "Payment request proposes 55,000 cents or a different destination after approval.",
+            "approval_still_applies": false,
+            "required_decision": "Stop. Resolve the invoice/credit/destination change, regenerate the exact proposed payload and obtain separate authorized review. Existing approval is not blanket permission.",
+            "enforcement": "Proposed external control, not implemented or tested against a payment system."
+          }
+        },
+        "inadequate": {
+          "id": "A-REVIEW-INADEQUATE",
+          "label": "DELIBERATELY INADEQUATE TEACHING COUNTEREXAMPLE",
+          "presented_claim": "AP is zero and the journal balances, so the purchase cycle is complete.",
+          "presented_evidence": [
+            "A-APP1"
+          ],
+          "missing": [
+            "Receiving population and return/credit timing",
+            "Both invoices and bank statements",
+            "Unknown payment outcome handling",
+            "Entity, period and approved destination checks"
+          ],
+          "concrete_defects": [
+            {
+              "defect": "Approval substituted for cash evidence",
+              "consequence": "Would clear May AP/cash before June settlement.",
+              "repair": "Use A-PAY1 only as instruction and A-BANK1 as settlement; retain dates."
+            },
+            {
+              "defect": "Zero AP asserted without population",
+              "consequence": "Could omit A-I2 and its 40,000-cent liability while remaining balanced.",
+              "repair": "Join both receipt and invoice populations by identity, then reconcile bank settlements."
+            },
+            {
+              "defect": "Unqualified approve label",
+              "consequence": "Hides assumed credit enforceability and permits changed payloads.",
+              "repair": "Expose A-REVIEW-X2 and bind any decision to reviewed inputs."
+            }
+          ],
+          "decision": "Reject as insufficient even if visually polished or arithmetically balanced.",
+          "execution_authority": false
+        }
+      },
+      "limitations": [
+        "Synthetic original teaching case, not observed API behavior, a professional accounting opinion or evidence of production effectiveness.",
+        "All amounts, documents, entities, approvals and outcomes are fictional. Apply the stated assumptions before interpreting a balanced journal.",
+        "The baseline, alternative branches and bounded extensions have separate facts and must not be combined into one ledger."
+      ],
+      "examples": [
+        {
+          "id": "example-connected-purchase-to-payment-baseline",
+          "title": "Purchase to payment across a month-end baseline",
+          "scenario_type": "connected_synthetic_ledger",
+          "objective": "Trace each fictional event through its retained document, proposed journal and independently stated period balance.",
+          "input": {
+            "record_id": "example-connected-purchase-to-payment",
+            "document_locator": "data.documents",
+            "event_locator": "data.events",
+            "opening_balance_locator": "data.opening_balances_minor",
+            "assumption_locator": "data.assumptions"
+          },
+          "reference_expectations": {
+            "journal_locator": "data.journals",
+            "period_balance_locator": "data.expected_period_balances_minor",
+            "review_packet_locator": "data.review_packets",
+            "review_required": true,
+            "executed_actions_must_be_empty": true
+          },
+          "limitations": [
+            "Synthetic original teaching case, not observed API behavior, a professional accounting opinion or evidence of production effectiveness.",
+            "All amounts, documents, entities, approvals and outcomes are fictional. Apply the stated assumptions before interpreting a balanced journal.",
+            "The baseline, alternative branches and bounded extensions have separate facts and must not be combined into one ledger."
+          ]
+        }
+      ],
+      "action_boundary_exceptions": {
+        "classification": "Original synthetic security scenarios; outside baseline accounting replay",
+        "guide_id": "guide-accounting-action-boundaries",
+        "scenario_ids": [
+          "AUTH-INVOICE-INSTRUCTION",
+          "AUTH-REPLAY",
+          "AUTH-LOST-RESPONSE",
+          "AUTH-DUPLICATE-EXPIRED"
+        ],
+        "packet_pointer": "/data/review_packets/stronger",
+        "approval_status": "No real approval or operating effectiveness established"
+      }
+    }
+  },
+  {
+    "id": "example-connected-processor-settlement",
+    "kind": "example",
+    "title": "Customer receipts, refunds and a later dispute decision",
+    "summary": "Trace gross receipts through processor activity, a pending refund, fees, payouts, bank evidence and a subsequent dispute resolution without equating net cash with revenue.",
+    "topics": [
+      "Accounting and reporting",
+      "Synthetic examples",
+      "Evidence and reconciliation"
+    ],
+    "industries": [],
+    "jurisdiction": "United States; nongovernmental US GAAP illustration",
+    "source_type": null,
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_stripe_balance_reporting",
+      "src_stripe_payout_reconciliation",
+      "src_stripe_refund_lifecycle",
+      "src_stripe_dispute_lifecycle",
+      "src_stripe_currency_units"
+    ],
+    "related_ids": [
+      "example-us-operating-transactions-ledger",
+      "wf-r2r-bank-reconciliations",
+      "tpl-reviewer-packet",
+      "example-assurance-evidence-packet",
+      "guide-accounting-action-boundaries"
+    ],
+    "review_status": "draft-editorial-review-pending",
+    "reviewed_at": null,
+    "provenance": {
+      "added_on": "2026-09-21",
+      "reviewer": "Codex (original synthetic authorship)",
+      "scope": "Original case documents and proposed entries. Arithmetic checks are separate from accounting policy, professional review and operating evidence.",
+      "note": "Draft P2 package. No real company, tenant, payment or bank data is used; no accounting operation is executed."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false
+    },
+    "data": {
+      "version": "0.1.0",
+      "example_type": "original-synthetic",
+      "package_status": "Draft cases, alternatives, linked extensions and completed synthetic review packets; editorial and corpus integration pending.",
+      "framework": "United States nongovernmental accrual illustration; recognition policies are explicit fixture assumptions, not authoritative guidance",
+      "currency": "USD",
+      "amount_unit": "integer cents",
+      "sign_convention": "debits positive, credits negative in reported account balances",
+      "rounding": "All base amounts are integral USD cents; no binary floating-point multiplication is used.",
+      "professional_review": "not performed",
+      "observed_api_behavior": "none",
+      "operating_effectiveness": "not established",
+      "entity": "Cedar Services LLC (fictional)",
+      "period": "March through June 2026",
+      "assumptions": [
+        "A completed service earns 100000 cents in March; no tax, inventory or financing is modeled. The approved April refund reduces consideration under the stated fixture policy.",
+        "The disputed principal is carried as a recoverable claim solely as a declared case assumption. A real entity must assess recognition, measurement and evidence; the alternative loss or unresolved-policy branch remains to be completed.",
+        "All fees and dates are invented, not a Stripe price quote or API replay. The received fee is not refunded; the countered fee is refunded on the fictional winning decision.",
+        "The fictional processor export explicitly records a payout debit before bank receipt. This does not assert the timing convention of a particular provider report.",
+        "May has no activity. Supplied bank lines are the complete bounded synthetic population; no actual account access occurred."
+      ],
+      "chart_of_accounts": {
+        "bank": "asset",
+        "receivable": "asset",
+        "processor_clearing": "asset",
+        "cash_in_transit": "asset",
+        "refund_payable": "liability",
+        "disputed_claim": "asset",
+        "revenue": "income",
+        "sales_returns": "contra-income",
+        "processing_fees": "expense",
+        "dispute_fees": "expense",
+        "dispute_loss": "Expense: fictional loss on the disputed principal when the alternative final decision removes the assumed recovery."
+      },
+      "opening_balances_minor": {
+        "bank": 0,
+        "receivable": 0,
+        "processor_clearing": 0,
+        "cash_in_transit": 0,
+        "refund_payable": 0,
+        "disputed_claim": 0,
+        "revenue": 0,
+        "sales_returns": 0,
+        "processing_fees": 0,
+        "dispute_fees": 0,
+        "dispute_loss": 0
+      },
+      "documents": [
+        {
+          "id": "B-D1",
+          "date": "2026-03-30",
+          "kind": "customer invoice and acceptance",
+          "authorship": "original-synthetic",
+          "content": {
+            "invoice_id": "B-INV1",
+            "customer": "Fictional Customer",
+            "service": "completed and accepted project",
+            "amount_minor": 100000
+          }
+        },
+        {
+          "id": "B-D2",
+          "date": "2026-03-31",
+          "kind": "processor capture activity",
+          "authorship": "original-synthetic",
+          "content": {
+            "source_invoice": "B-INV1",
+            "charge_id": "B-CHARGE1",
+            "balance_id": "B-BAL1",
+            "gross_minor": 100000,
+            "available_on": "2026-04-02"
+          }
+        },
+        {
+          "id": "B-D3",
+          "date": "2026-03-31",
+          "kind": "processor fee activity",
+          "authorship": "original-synthetic",
+          "content": {
+            "charge_id": "B-CHARGE1",
+            "balance_id": "B-FEE1",
+            "fee_minor": 3000
+          }
+        },
+        {
+          "id": "B-D4",
+          "date": "2026-04-01",
+          "kind": "approved partial refund request",
+          "authorship": "original-synthetic",
+          "content": {
+            "charge_id": "B-CHARGE1",
+            "refund_id": "B-REF1",
+            "amount_minor": 10000,
+            "status": "pending until funds are available"
+          }
+        },
+        {
+          "id": "B-D5",
+          "date": "2026-04-02",
+          "kind": "completed processor refund activity",
+          "authorship": "original-synthetic",
+          "content": {
+            "refund_id": "B-REF1",
+            "balance_id": "B-REF-BAL1",
+            "amount_minor": 10000,
+            "status": "completed"
+          }
+        },
+        {
+          "id": "B-D6",
+          "date": "2026-04-02",
+          "kind": "processor payout debit",
+          "authorship": "original-synthetic",
+          "content": {
+            "payout_id": "B-OUT1",
+            "included_balance_ids": [
+              "B-BAL1",
+              "B-FEE1",
+              "B-REF-BAL1"
+            ],
+            "amount_minor": 87000,
+            "bank_status": "not yet confirmed"
+          }
+        },
+        {
+          "id": "B-D7",
+          "date": "2026-04-03",
+          "kind": "bank credit",
+          "authorship": "original-synthetic",
+          "content": {
+            "payout_id": "B-OUT1",
+            "bank_line_id": "B-BANK1",
+            "credit_minor": 87000
+          }
+        },
+        {
+          "id": "B-D8",
+          "date": "2026-04-05",
+          "kind": "dispute debit and received fee",
+          "authorship": "original-synthetic",
+          "content": {
+            "charge_id": "B-CHARGE1",
+            "dispute_id": "B-DIS1",
+            "principal_minor": 20000,
+            "received_fee_minor": 1500
+          }
+        },
+        {
+          "id": "B-D9",
+          "date": "2026-04-06",
+          "kind": "bank funding debit",
+          "authorship": "original-synthetic",
+          "content": {
+            "dispute_id": "B-DIS1",
+            "bank_line_id": "B-BANK2",
+            "debit_minor": 21500
+          }
+        },
+        {
+          "id": "B-D10",
+          "date": "2026-04-07",
+          "kind": "dispute countered fee",
+          "authorship": "original-synthetic",
+          "content": {
+            "dispute_id": "B-DIS1",
+            "countered_fee_minor": 1500
+          }
+        },
+        {
+          "id": "B-D11",
+          "date": "2026-04-08",
+          "kind": "bank funding debit",
+          "authorship": "original-synthetic",
+          "content": {
+            "dispute_id": "B-DIS1",
+            "bank_line_id": "B-BANK3",
+            "debit_minor": 1500
+          }
+        },
+        {
+          "id": "B-D12",
+          "date": "2026-06-20",
+          "kind": "issuer decision and processor credit",
+          "authorship": "original-synthetic",
+          "content": {
+            "dispute_id": "B-DIS1",
+            "outcome": "merchant wins",
+            "principal_return_minor": 20000,
+            "countered_fee_return_minor": 1500,
+            "received_fee_return_minor": 0
+          }
+        },
+        {
+          "id": "B-D13",
+          "date": "2026-06-21",
+          "kind": "processor payout debit",
+          "authorship": "original-synthetic",
+          "content": {
+            "payout_id": "B-OUT2",
+            "dispute_id": "B-DIS1",
+            "amount_minor": 21500
+          }
+        },
+        {
+          "id": "B-D14",
+          "date": "2026-06-22",
+          "kind": "bank credit",
+          "authorship": "original-synthetic",
+          "content": {
+            "payout_id": "B-OUT2",
+            "bank_line_id": "B-BANK4",
+            "credit_minor": 21500
+          }
+        },
+        {
+          "id": "B-STMT-MARCH",
+          "date": "2026-03-31",
+          "kind": "complete synthetic bank statement",
+          "authorship": "original-synthetic",
+          "content": {
+            "opening_minor": 0,
+            "lines": [],
+            "closing_minor": 0
+          }
+        },
+        {
+          "id": "B-STMT-APRIL",
+          "date": "2026-04-30",
+          "kind": "complete synthetic bank statement",
+          "authorship": "original-synthetic",
+          "content": {
+            "opening_minor": 0,
+            "document_ids": [
+              "B-D7",
+              "B-D9",
+              "B-D11"
+            ],
+            "closing_minor": 64000
+          }
+        },
+        {
+          "id": "B-STMT-JUNE",
+          "date": "2026-06-30",
+          "kind": "complete synthetic bank statement",
+          "authorship": "original-synthetic",
+          "content": {
+            "opening_minor": 64000,
+            "document_ids": [
+              "B-D14"
+            ],
+            "closing_minor": 85500
+          }
+        }
+      ],
+      "events": [
+        {
+          "id": "B-E1",
+          "date": "2026-03-30",
+          "document_ids": [
+            "B-D1"
+          ],
+          "description": "Recognize the assumed earned consideration."
+        },
+        {
+          "id": "B-E2",
+          "date": "2026-03-31",
+          "document_ids": [
+            "B-D2"
+          ],
+          "description": "Customer pays; processor funds replace the customer receivable."
+        },
+        {
+          "id": "B-E3",
+          "date": "2026-03-31",
+          "document_ids": [
+            "B-D3"
+          ],
+          "description": "Record processing fee separately from gross revenue."
+        },
+        {
+          "id": "B-E4",
+          "date": "2026-04-01",
+          "document_ids": [
+            "B-D4"
+          ],
+          "description": "Recognize the agreed refund liability, not a completed processor payment."
+        },
+        {
+          "id": "B-E5",
+          "date": "2026-04-02",
+          "document_ids": [
+            "B-D5"
+          ],
+          "description": "Resolve the refund liability after documented processor completion."
+        },
+        {
+          "id": "B-E6",
+          "date": "2026-04-02",
+          "document_ids": [
+            "B-D6"
+          ],
+          "description": "Transfer the fictional processor debit to cash in transit."
+        },
+        {
+          "id": "B-E7",
+          "date": "2026-04-03",
+          "document_ids": [
+            "B-D7"
+          ],
+          "description": "Bank evidence resolves the payout in transit."
+        },
+        {
+          "id": "B-E8",
+          "date": "2026-04-05",
+          "document_ids": [
+            "B-D8"
+          ],
+          "description": "Track disputed principal separately under the explicit recoverability assumption."
+        },
+        {
+          "id": "B-E9",
+          "date": "2026-04-06",
+          "document_ids": [
+            "B-D9"
+          ],
+          "description": "Fund the negative processor balance; do not expense the principal again."
+        },
+        {
+          "id": "B-E10",
+          "date": "2026-04-07",
+          "document_ids": [
+            "B-D10"
+          ],
+          "description": "Record the separately imposed countered fee."
+        },
+        {
+          "id": "B-E11",
+          "date": "2026-04-08",
+          "document_ids": [
+            "B-D11"
+          ],
+          "description": "Resolve the second negative processor balance."
+        },
+        {
+          "id": "B-E12",
+          "date": "2026-06-20",
+          "document_ids": [
+            "B-D12"
+          ],
+          "description": "Resolve the claim and reverse only the refunded countered fee."
+        },
+        {
+          "id": "B-E13",
+          "date": "2026-06-21",
+          "document_ids": [
+            "B-D13"
+          ],
+          "description": "Transfer returned funds to cash in transit."
+        },
+        {
+          "id": "B-E14",
+          "date": "2026-06-22",
+          "document_ids": [
+            "B-D14"
+          ],
+          "description": "Bank evidence resolves the second payout."
+        }
+      ],
+      "journals": [
+        {
+          "id": "B-J1",
+          "date": "2026-03-30",
+          "event_id": "B-E1",
+          "document_ids": [
+            "B-D1"
+          ],
+          "lines": [
+            {
+              "account": "receivable",
+              "debit_minor": 100000,
+              "credit_minor": 0
+            },
+            {
+              "account": "revenue",
+              "debit_minor": 0,
+              "credit_minor": 100000
+            }
+          ]
+        },
+        {
+          "id": "B-J2",
+          "date": "2026-03-31",
+          "event_id": "B-E2",
+          "document_ids": [
+            "B-D2"
+          ],
+          "lines": [
+            {
+              "account": "processor_clearing",
+              "debit_minor": 100000,
+              "credit_minor": 0
+            },
+            {
+              "account": "receivable",
+              "debit_minor": 0,
+              "credit_minor": 100000
+            }
+          ]
+        },
+        {
+          "id": "B-J3",
+          "date": "2026-03-31",
+          "event_id": "B-E3",
+          "document_ids": [
+            "B-D3"
+          ],
+          "lines": [
+            {
+              "account": "processing_fees",
+              "debit_minor": 3000,
+              "credit_minor": 0
+            },
+            {
+              "account": "processor_clearing",
+              "debit_minor": 0,
+              "credit_minor": 3000
+            }
+          ]
+        },
+        {
+          "id": "B-J4",
+          "date": "2026-04-01",
+          "event_id": "B-E4",
+          "document_ids": [
+            "B-D4"
+          ],
+          "lines": [
+            {
+              "account": "sales_returns",
+              "debit_minor": 10000,
+              "credit_minor": 0
+            },
+            {
+              "account": "refund_payable",
+              "debit_minor": 0,
+              "credit_minor": 10000
+            }
+          ]
+        },
+        {
+          "id": "B-J5",
+          "date": "2026-04-02",
+          "event_id": "B-E5",
+          "document_ids": [
+            "B-D5"
+          ],
+          "lines": [
+            {
+              "account": "refund_payable",
+              "debit_minor": 10000,
+              "credit_minor": 0
+            },
+            {
+              "account": "processor_clearing",
+              "debit_minor": 0,
+              "credit_minor": 10000
+            }
+          ]
+        },
+        {
+          "id": "B-J6",
+          "date": "2026-04-02",
+          "event_id": "B-E6",
+          "document_ids": [
+            "B-D6"
+          ],
+          "lines": [
+            {
+              "account": "cash_in_transit",
+              "debit_minor": 87000,
+              "credit_minor": 0
+            },
+            {
+              "account": "processor_clearing",
+              "debit_minor": 0,
+              "credit_minor": 87000
+            }
+          ]
+        },
+        {
+          "id": "B-J7",
+          "date": "2026-04-03",
+          "event_id": "B-E7",
+          "document_ids": [
+            "B-D7"
+          ],
+          "lines": [
+            {
+              "account": "bank",
+              "debit_minor": 87000,
+              "credit_minor": 0
+            },
+            {
+              "account": "cash_in_transit",
+              "debit_minor": 0,
+              "credit_minor": 87000
+            }
+          ]
+        },
+        {
+          "id": "B-J8",
+          "date": "2026-04-05",
+          "event_id": "B-E8",
+          "document_ids": [
+            "B-D8"
+          ],
+          "lines": [
+            {
+              "account": "disputed_claim",
+              "debit_minor": 20000,
+              "credit_minor": 0
+            },
+            {
+              "account": "dispute_fees",
+              "debit_minor": 1500,
+              "credit_minor": 0
+            },
+            {
+              "account": "processor_clearing",
+              "debit_minor": 0,
+              "credit_minor": 21500
+            }
+          ]
+        },
+        {
+          "id": "B-J9",
+          "date": "2026-04-06",
+          "event_id": "B-E9",
+          "document_ids": [
+            "B-D9"
+          ],
+          "lines": [
+            {
+              "account": "processor_clearing",
+              "debit_minor": 21500,
+              "credit_minor": 0
+            },
+            {
+              "account": "bank",
+              "debit_minor": 0,
+              "credit_minor": 21500
+            }
+          ]
+        },
+        {
+          "id": "B-J10",
+          "date": "2026-04-07",
+          "event_id": "B-E10",
+          "document_ids": [
+            "B-D10"
+          ],
+          "lines": [
+            {
+              "account": "dispute_fees",
+              "debit_minor": 1500,
+              "credit_minor": 0
+            },
+            {
+              "account": "processor_clearing",
+              "debit_minor": 0,
+              "credit_minor": 1500
+            }
+          ]
+        },
+        {
+          "id": "B-J11",
+          "date": "2026-04-08",
+          "event_id": "B-E11",
+          "document_ids": [
+            "B-D11"
+          ],
+          "lines": [
+            {
+              "account": "processor_clearing",
+              "debit_minor": 1500,
+              "credit_minor": 0
+            },
+            {
+              "account": "bank",
+              "debit_minor": 0,
+              "credit_minor": 1500
+            }
+          ]
+        },
+        {
+          "id": "B-J12",
+          "date": "2026-06-20",
+          "event_id": "B-E12",
+          "document_ids": [
+            "B-D12"
+          ],
+          "lines": [
+            {
+              "account": "processor_clearing",
+              "debit_minor": 21500,
+              "credit_minor": 0
+            },
+            {
+              "account": "disputed_claim",
+              "debit_minor": 0,
+              "credit_minor": 20000
+            },
+            {
+              "account": "dispute_fees",
+              "debit_minor": 0,
+              "credit_minor": 1500
+            }
+          ]
+        },
+        {
+          "id": "B-J13",
+          "date": "2026-06-21",
+          "event_id": "B-E13",
+          "document_ids": [
+            "B-D13"
+          ],
+          "lines": [
+            {
+              "account": "cash_in_transit",
+              "debit_minor": 21500,
+              "credit_minor": 0
+            },
+            {
+              "account": "processor_clearing",
+              "debit_minor": 0,
+              "credit_minor": 21500
+            }
+          ]
+        },
+        {
+          "id": "B-J14",
+          "date": "2026-06-22",
+          "event_id": "B-E14",
+          "document_ids": [
+            "B-D14"
+          ],
+          "lines": [
+            {
+              "account": "bank",
+              "debit_minor": 21500,
+              "credit_minor": 0
+            },
+            {
+              "account": "cash_in_transit",
+              "debit_minor": 0,
+              "credit_minor": 21500
+            }
+          ]
+        }
+      ],
+      "expected_period_balances_minor": {
+        "2026-03-31": {
+          "bank": 0,
+          "receivable": 0,
+          "processor_clearing": 97000,
+          "cash_in_transit": 0,
+          "refund_payable": 0,
+          "disputed_claim": 0,
+          "revenue": -100000,
+          "sales_returns": 0,
+          "processing_fees": 3000,
+          "dispute_fees": 0,
+          "dispute_loss": 0
+        },
+        "2026-04-30": {
+          "bank": 64000,
+          "receivable": 0,
+          "processor_clearing": 0,
+          "cash_in_transit": 0,
+          "refund_payable": 0,
+          "disputed_claim": 20000,
+          "revenue": -100000,
+          "sales_returns": 10000,
+          "processing_fees": 3000,
+          "dispute_fees": 3000,
+          "dispute_loss": 0
+        },
+        "2026-06-30": {
+          "bank": 85500,
+          "receivable": 0,
+          "processor_clearing": 0,
+          "cash_in_transit": 0,
+          "refund_payable": 0,
+          "disputed_claim": 0,
+          "revenue": -100000,
+          "sales_returns": 10000,
+          "processing_fees": 3000,
+          "dispute_fees": 1500,
+          "dispute_loss": 0
+        }
+      },
+      "reconciliations": [
+        {
+          "id": "B-REC-FIRST-PAYOUT",
+          "documents": [
+            "B-D2",
+            "B-D3",
+            "B-D5",
+            "B-D6",
+            "B-D7"
+          ],
+          "calculation": "100000 - 3000 - 10000 = 87000 cents first payout and bank credit"
+        },
+        {
+          "id": "B-REC-FINAL-BANK",
+          "documents": [
+            "B-D7",
+            "B-D9",
+            "B-D11",
+            "B-D14"
+          ],
+          "calculation": "87000 - 21500 - 1500 + 21500 = 85500 cents bank"
+        },
+        {
+          "id": "B-REC-ECONOMIC",
+          "documents": [
+            "B-D1",
+            "B-D4",
+            "B-D3",
+            "B-D8",
+            "B-D10",
+            "B-D12"
+          ],
+          "calculation": "100000 revenue - 10000 refund - 3000 processing fee - 1500 net dispute fee = 85500 cents"
+        }
+      ],
+      "alternative_branches": [
+        {
+          "id": "B-ALT-DELAYED-BANK",
+          "classification": "original-synthetic-alternative",
+          "combination_rule": "Independent alternative; do not combine with other branches.",
+          "baseline_journal_ids": [
+            "B-J1",
+            "B-J2",
+            "B-J3",
+            "B-J4",
+            "B-J5",
+            "B-J6"
+          ],
+          "as_of": "2026-04-30",
+          "expected_balances_minor": {
+            "bank": 0,
+            "receivable": 0,
+            "processor_clearing": 0,
+            "cash_in_transit": 87000,
+            "refund_payable": 0,
+            "disputed_claim": 0,
+            "revenue": -100000,
+            "sales_returns": 10000,
+            "processing_fees": 3000,
+            "dispute_fees": 0,
+            "dispute_loss": 0
+          },
+          "changed_fact": "The processor has debited the payout but the complete April bank population contains no corresponding credit; disputes in the baseline do not occur in this isolated variant.",
+          "decision": "Retain 87,000 cents in cash in transit; a payout notification is not bank evidence. Investigate the unmatched item using payout identity and the complete bank population.",
+          "unresolved_item": "The destination and ultimate settlement of the payout remain unresolved; do not plug the difference into fees.",
+          "evidence_document_ids": [
+            "B-D6",
+            "B-DELAY-STMT"
+          ],
+          "excluded_baseline_document_ids": [
+            "B-D7",
+            "B-STMT-APRIL",
+            "B-STMT-JUNE"
+          ],
+          "additional_documents": [
+            {
+              "id": "B-DELAY-STMT",
+              "date": "2026-04-30",
+              "kind": "complete synthetic alternative bank statement",
+              "authorship": "original-synthetic",
+              "content": {
+                "opening_minor": 0,
+                "lines": [],
+                "closing_minor": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "B-ALT-PENDING-REFUND",
+          "classification": "original-synthetic-alternative",
+          "combination_rule": "Independent alternative; do not combine with other branches.",
+          "baseline_journal_ids": [
+            "B-J1",
+            "B-J2",
+            "B-J3",
+            "B-J4"
+          ],
+          "as_of": "2026-04-01",
+          "expected_balances_minor": {
+            "bank": 0,
+            "receivable": 0,
+            "processor_clearing": 97000,
+            "cash_in_transit": 0,
+            "refund_payable": -10000,
+            "disputed_claim": 0,
+            "revenue": -100000,
+            "sales_returns": 10000,
+            "processing_fees": 3000,
+            "dispute_fees": 0,
+            "dispute_loss": 0
+          },
+          "changed_fact": "The approved 10,000-cent partial refund remains pending.",
+          "decision": "Record the declared refund obligation, but do not reduce processor funds until the completion evidence arrives. The remaining customer consideration is 90,000 cents under this fixture policy.",
+          "unresolved_item": "Funding availability and refund completion are not established by approval.",
+          "evidence_document_ids": [
+            "B-D4"
+          ]
+        },
+        {
+          "id": "B-ALT-DUPLICATE-NOTIFICATION",
+          "classification": "original-synthetic-alternative",
+          "combination_rule": "Independent alternative; do not combine with other branches.",
+          "baseline_journal_ids": [
+            "B-J1",
+            "B-J2",
+            "B-J3",
+            "B-J4",
+            "B-J5",
+            "B-J6",
+            "B-J7"
+          ],
+          "as_of": "2026-04-03",
+          "expected_balances_minor": {
+            "bank": 87000,
+            "receivable": 0,
+            "processor_clearing": 0,
+            "cash_in_transit": 0,
+            "refund_payable": 0,
+            "disputed_claim": 0,
+            "revenue": -100000,
+            "sales_returns": 10000,
+            "processing_fees": 3000,
+            "dispute_fees": 0,
+            "dispute_loss": 0
+          },
+          "changed_fact": "The same payout event arrives twice with different delivery timestamps.",
+          "decision": "Deduplicate the same processor account, payout identity and event identity; the second delivery is not a second payout or bank receipt. If identity or amount differs, investigate rather than suppress.",
+          "unresolved_item": "This demonstrates a synthetic duplicate rule only; no observed provider delivery guarantee is asserted.",
+          "evidence_document_ids": [
+            "B-D6",
+            "B-D7"
+          ],
+          "synthetic_exchange": {
+            "original_event_id": "evt_original_B6",
+            "redelivered_event_id": "evt_original_B6",
+            "processor_account": "fictional-Cedar-USD",
+            "payout_id": "fictional-payout-B6",
+            "amount_minor": 87000,
+            "second_delivery_journal": null
+          }
+        },
+        {
+          "id": "B-ALT-CROSS-PERIOD-CORRECTION",
+          "classification": "original-synthetic-alternative",
+          "combination_rule": "Independent alternative; do not combine with other branches.",
+          "baseline_journal_ids": [
+            "B-J1",
+            "B-J2",
+            "B-J3",
+            "B-J4",
+            "B-J5",
+            "B-J6"
+          ],
+          "as_of": "2026-04-30",
+          "expected_balances_minor": {
+            "bank": 87000,
+            "receivable": 0,
+            "processor_clearing": 0,
+            "cash_in_transit": 0,
+            "refund_payable": 0,
+            "disputed_claim": 0,
+            "revenue": -100000,
+            "sales_returns": 10000,
+            "processing_fees": 3000,
+            "dispute_fees": 0,
+            "dispute_loss": 0
+          },
+          "changed_fact": "On 5 June a reviewer discovers that a genuine 3 April bank receipt was omitted. April books are explicitly still open and no statements have been issued; disputes do not occur in this isolated alternative.",
+          "decision": "Post the supported correction with accounting date 3 April and retain the 5 June discovery/audit date. Do not post new June revenue or overwrite the discovery trail.",
+          "unresolved_item": "If April is closed or statements issued, the correction path requires separate materiality, policy and authorized period decisions; this branch supplies no universal restatement rule.",
+          "evidence_document_ids": [
+            "B-D6",
+            "B-CORRECTION-BANK"
+          ],
+          "excluded_baseline_document_ids": [
+            "B-D7",
+            "B-STMT-APRIL",
+            "B-STMT-JUNE"
+          ],
+          "additional_documents": [
+            {
+              "id": "B-CORRECTION-BANK",
+              "date": "2026-04-03",
+              "kind": "synthetic omitted bank receipt with discovery trail",
+              "authorship": "original-synthetic",
+              "content": {
+                "credit_minor": 87000,
+                "payout_id": "fictional-payout-B6",
+                "discovered_at": "2026-06-05",
+                "period_status": "open; no statements issued"
+              }
+            }
+          ],
+          "additional_events": [
+            {
+              "id": "B-CORRECTION-E",
+              "date": "2026-04-03",
+              "document_ids": [
+                "B-CORRECTION-BANK"
+              ],
+              "description": "Omitted April settlement, discovered 5 June; preserve both dates."
+            }
+          ],
+          "additional_journals": [
+            {
+              "id": "B-CORRECTION-J",
+              "date": "2026-04-03",
+              "event_id": "B-CORRECTION-E",
+              "document_ids": [
+                "B-CORRECTION-BANK"
+              ],
+              "lines": [
+                {
+                  "account": "bank",
+                  "debit_minor": 87000,
+                  "credit_minor": 0
+                },
+                {
+                  "account": "cash_in_transit",
+                  "debit_minor": 0,
+                  "credit_minor": 87000
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "B-ALT-DISPUTE-LOST",
+          "classification": "original-synthetic-alternative",
+          "combination_rule": "Independent alternative; do not combine with other branches.",
+          "baseline_journal_ids": [
+            "B-J1",
+            "B-J2",
+            "B-J3",
+            "B-J4",
+            "B-J5",
+            "B-J6",
+            "B-J7",
+            "B-J8",
+            "B-J9",
+            "B-J10",
+            "B-J11"
+          ],
+          "as_of": "2026-06-30",
+          "expected_balances_minor": {
+            "bank": 64000,
+            "receivable": 0,
+            "processor_clearing": 0,
+            "cash_in_transit": 0,
+            "refund_payable": 0,
+            "disputed_claim": 0,
+            "revenue": -100000,
+            "sales_returns": 10000,
+            "processing_fees": 3000,
+            "dispute_fees": 3000,
+            "dispute_loss": 20000
+          },
+          "changed_fact": "The issuer final decision is a loss rather than a win. No principal or countered fee returns.",
+          "decision": "Derecognize the previously assumed recoverable claim into the declared dispute-loss account. Do not debit bank a second time: funding already occurred in April.",
+          "unresolved_item": "The original recoverability and ultimate loss classification are fixture policies requiring professional review in a real engagement.",
+          "evidence_document_ids": [
+            "B-LOSS-DECISION",
+            "B-D9",
+            "B-D11"
+          ],
+          "excluded_baseline_document_ids": [
+            "B-D12",
+            "B-D13",
+            "B-D14",
+            "B-STMT-JUNE"
+          ],
+          "additional_documents": [
+            {
+              "id": "B-LOSS-DECISION",
+              "date": "2026-06-20",
+              "kind": "synthetic final dispute loss",
+              "authorship": "original-synthetic",
+              "content": {
+                "principal_minor": 20000,
+                "principal_returned_minor": 0,
+                "countered_fee_returned_minor": 0,
+                "new_bank_debit_minor": 0
+              }
+            }
+          ],
+          "additional_events": [
+            {
+              "id": "B-LOSS-E",
+              "date": "2026-06-20",
+              "document_ids": [
+                "B-LOSS-DECISION"
+              ],
+              "description": "Final loss removes assumed recovery, with no new bank movement."
+            }
+          ],
+          "additional_journals": [
+            {
+              "id": "B-LOSS-J",
+              "date": "2026-06-20",
+              "event_id": "B-LOSS-E",
+              "document_ids": [
+                "B-LOSS-DECISION"
+              ],
+              "lines": [
+                {
+                  "account": "dispute_loss",
+                  "debit_minor": 20000,
+                  "credit_minor": 0
+                },
+                {
+                  "account": "disputed_claim",
+                  "debit_minor": 0,
+                  "credit_minor": 20000
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "B-ALT-DISPUTE-UNRESOLVED",
+          "classification": "original-synthetic-alternative",
+          "combination_rule": "Independent alternative; do not combine with other branches.",
+          "baseline_journal_ids": [
+            "B-J1",
+            "B-J2",
+            "B-J3",
+            "B-J4",
+            "B-J5",
+            "B-J6",
+            "B-J7",
+            "B-J8",
+            "B-J9",
+            "B-J10",
+            "B-J11"
+          ],
+          "as_of": "2026-06-30",
+          "expected_balances_minor": {
+            "bank": 64000,
+            "receivable": 0,
+            "processor_clearing": 0,
+            "cash_in_transit": 0,
+            "refund_payable": 0,
+            "disputed_claim": 20000,
+            "revenue": -100000,
+            "sales_returns": 10000,
+            "processing_fees": 3000,
+            "dispute_fees": 3000,
+            "dispute_loss": 0
+          },
+          "changed_fact": "No issuer decision is available by June close.",
+          "decision": "Keep the 20,000-cent claim only for the arithmetic under the explicitly unchanged recoverability assumption. Flag valuation and classification for review; absence of a decision does not establish recoverability.",
+          "unresolved_item": "Recoverability evidence is missing. The fixture cannot support an unqualified professional signoff or a production effectiveness conclusion.",
+          "evidence_document_ids": [
+            "B-D8",
+            "B-D9",
+            "B-D10",
+            "B-D11"
+          ],
+          "excluded_baseline_document_ids": [
+            "B-D12",
+            "B-D13",
+            "B-D14",
+            "B-STMT-JUNE"
+          ]
+        }
+      ],
+      "review_packets": {
+        "stronger": {
+          "id": "B-REVIEW-STRONGER",
+          "label": "Completed original synthetic review packet; stronger comparison, not professional sign-off",
+          "status": "prepared for human review; no actual reviewer acceptance",
+          "engagement": "Fictional internal monthly close workpaper, not an audit, assurance report, filing or payment authorization.",
+          "entity": "Cedar Services LLC (fictional)",
+          "period": "March through June 2026",
+          "currency": "USD",
+          "amount_unit": "integer cents",
+          "source_case_id": "example-connected-processor-settlement",
+          "case_input_sha256": "23c40f900709f94484cb1c7c147dfaeeffb03830e5fc895e93cbb2e1b5e78c4d",
+          "hash_definition": "SHA-256 of UTF-8 JSON with sorted object keys, compact separators and literal Unicode, covering record_id, case_version, documents, events, journals, opening_balances_minor, assumptions, chart_of_accounts, entity, period, currency, amount_unit, rounding. Approval binds this declared baseline scope; branches and changes need their own review.",
+          "population": {
+            "document_ids": [
+              "B-D1",
+              "B-D2",
+              "B-D3",
+              "B-D4",
+              "B-D5",
+              "B-D6",
+              "B-D7",
+              "B-D8",
+              "B-D9",
+              "B-D10",
+              "B-D11",
+              "B-D12",
+              "B-D13",
+              "B-D14",
+              "B-STMT-MARCH",
+              "B-STMT-APRIL",
+              "B-STMT-JUNE"
+            ],
+            "document_count": 17,
+            "journal_ids": [
+              "B-J1",
+              "B-J2",
+              "B-J3",
+              "B-J4",
+              "B-J5",
+              "B-J6",
+              "B-J7",
+              "B-J8",
+              "B-J9",
+              "B-J10",
+              "B-J11",
+              "B-J12",
+              "B-J13",
+              "B-J14"
+            ],
+            "journal_count": 14,
+            "basis": "Complete only within the authored fictional manifest. Independent real-world completeness is not claimed.",
+            "real_world_missing": "Authorized source extraction scope, independent receiving/service and bank populations, pagination/watermarks, revision/deletion handling, authenticity and applicable accounting policy review."
+          },
+          "preparation": {
+            "actor": "Codex original synthetic author",
+            "actual_professional_preparer": null,
+            "actual_professional_reviewer": null,
+            "separation": "The author and automated arithmetic checks cannot supply independent professional approval. Fictional decisions below are examples, not actual sign-off."
+          },
+          "materiality": "No engagement materiality is set. Every seeded discrepancy is visible; this packet does not prescribe a real materiality threshold.",
+          "source_context": [
+            {
+              "record_id": "src_stripe_balance_reporting",
+              "role": "source context, not proof of this fictional transaction or professional treatment"
+            },
+            {
+              "record_id": "src_stripe_payout_reconciliation",
+              "role": "source context, not proof of this fictional transaction or professional treatment"
+            },
+            {
+              "record_id": "src_stripe_refund_lifecycle",
+              "role": "source context, not proof of this fictional transaction or professional treatment"
+            },
+            {
+              "record_id": "src_stripe_dispute_lifecycle",
+              "role": "source context, not proof of this fictional transaction or professional treatment"
+            }
+          ],
+          "assumptions": [
+            "A completed service earns 100000 cents in March; no tax, inventory or financing is modeled. The approved April refund reduces consideration under the stated fixture policy.",
+            "The disputed principal is carried as a recoverable claim solely as a declared case assumption. A real entity must assess recognition, measurement and evidence; the alternative loss or unresolved-policy branch remains to be completed.",
+            "All fees and dates are invented, not a Stripe price quote or API replay. The received fee is not refunded; the countered fee is refunded on the fictional winning decision.",
+            "The fictional processor export explicitly records a payout debit before bank receipt. This does not assert the timing convention of a particular provider report.",
+            "May has no activity. Supplied bank lines are the complete bounded synthetic population; no actual account access occurred."
+          ],
+          "proposed_entries": [
+            "B-J1",
+            "B-J2",
+            "B-J3",
+            "B-J4",
+            "B-J5",
+            "B-J6",
+            "B-J7",
+            "B-J8",
+            "B-J9",
+            "B-J10",
+            "B-J11",
+            "B-J12",
+            "B-J13",
+            "B-J14"
+          ],
+          "period_balances_minor": {
+            "2026-03-31": {
+              "bank": 0,
+              "receivable": 0,
+              "processor_clearing": 97000,
+              "cash_in_transit": 0,
+              "refund_payable": 0,
+              "disputed_claim": 0,
+              "revenue": -100000,
+              "sales_returns": 0,
+              "processing_fees": 3000,
+              "dispute_fees": 0,
+              "dispute_loss": 0
+            },
+            "2026-04-30": {
+              "bank": 64000,
+              "receivable": 0,
+              "processor_clearing": 0,
+              "cash_in_transit": 0,
+              "refund_payable": 0,
+              "disputed_claim": 20000,
+              "revenue": -100000,
+              "sales_returns": 10000,
+              "processing_fees": 3000,
+              "dispute_fees": 3000,
+              "dispute_loss": 0
+            },
+            "2026-06-30": {
+              "bank": 85500,
+              "receivable": 0,
+              "processor_clearing": 0,
+              "cash_in_transit": 0,
+              "refund_payable": 0,
+              "disputed_claim": 0,
+              "revenue": -100000,
+              "sales_returns": 10000,
+              "processing_fees": 3000,
+              "dispute_fees": 1500,
+              "dispute_loss": 0
+            }
+          },
+          "execution_authority": false,
+          "executive_answer": "The baseline ends June with 85,500 cents cash: 100,000 gross consideration less 10,000 refund, 3,000 processing fees and 1,500 retained dispute fee. Payout totals do not equal revenue. The April 20,000-cent disputed claim depends on an explicit recoverability assumption.",
+          "assertion_traces": [
+            {
+              "assertion": "Revenue, processor balance and bank cash are distinct.",
+              "documents": [
+                "B-D1",
+                "B-D2",
+                "B-D3",
+                "B-D6",
+                "B-D7"
+              ],
+              "journal_ids": [
+                "B-J1",
+                "B-J2",
+                "B-J3",
+                "B-J6",
+                "B-J7"
+              ],
+              "calculation": "March processor balance 100,000 - 3,000 = 97,000; initial payout 97,000 - 10,000 completed refund = 87,000; bank receives it a day later.",
+              "decision": "Keep invoice, capture, availability, payout debit and bank date separate."
+            },
+            {
+              "assertion": "Pending refund is not a completed cash outflow.",
+              "documents": [
+                "B-D4",
+                "B-D5"
+              ],
+              "journal_ids": [
+                "B-J4",
+                "B-J5"
+              ],
+              "calculation": "1 April refund payable 10,000 and processor funds 97,000; completion on 2 April reduces both by 10,000.",
+              "decision": "Inspect lifecycle state; do not infer completion from request."
+            },
+            {
+              "assertion": "The dispute bridge includes both cash debits and later recoveries.",
+              "documents": [
+                "B-D8",
+                "B-D9",
+                "B-D10",
+                "B-D11",
+                "B-D12",
+                "B-D13",
+                "B-D14",
+                "B-STMT-APRIL",
+                "B-STMT-JUNE"
+              ],
+              "journal_ids": [
+                "B-J8",
+                "B-J9",
+                "B-J10",
+                "B-J11",
+                "B-J12",
+                "B-J13",
+                "B-J14"
+              ],
+              "calculation": "April bank 87,000 - 21,500 - 1,500 = 64,000. June 64,000 + 21,500 = 85,500. Fees remaining: processing 3,000 plus received dispute fee 1,500.",
+              "decision": "A final loss instead removes the claim; it does not create another bank debit."
+            }
+          ],
+          "exceptions": [
+            {
+              "id": "B-REVIEW-X1",
+              "status": "unresolved professional valuation",
+              "assertion": "The disputed principal is a recoverable asset at April close.",
+              "contradiction": "The bank has already funded the debit. The fixture assumes recovery but supplies no independently assessed evidence for recognition or measurement.",
+              "evidence_ids": [
+                "B-D8",
+                "B-D9"
+              ],
+              "decision": "Escalate valuation/classification before real close approval. The later winning baseline cannot retroactively prove the April assumption was supportable."
+            },
+            {
+              "id": "B-REVIEW-X2",
+              "status": "resolved only within baseline; open in delayed branch",
+              "assertion": "Payout debit proves receipt by bank.",
+              "contradiction": "B-D6 precedes B-D7; B-ALT-DELAYED-BANK has no bank receipt and retains 87,000 cents in transit.",
+              "evidence_ids": [
+                "B-D6",
+                "B-D7"
+              ],
+              "decision": "Require the independent bank population; investigate aged transit without plugging it to fees."
+            }
+          ],
+          "synthetic_reviewer_decisions": [
+            {
+              "question": "Can 87,000 cents net payout be recorded as sales?",
+              "decision": "Reject. Trace 100,000 gross invoice, 10,000 refund and 3,000 fee separately.",
+              "actor": "fictional reviewer B",
+              "actual_signoff": false
+            },
+            {
+              "question": "Does later winning the dispute establish April recoverability?",
+              "decision": "No. Review what was knowable at April close and retain the unresolved valuation exception.",
+              "actor": "fictional reviewer B",
+              "actual_signoff": false
+            }
+          ],
+          "post_approval_change": {
+            "original": "Illustrative review of the baseline winning-dispute packet and declared input digest.",
+            "changed": "Issuer outcome changes to loss, or a bank settlement document is removed or revised.",
+            "approval_still_applies": false,
+            "required_decision": "Invalidate affected conclusions and regenerate the dispute and cash bridge. Review the loss or delayed-settlement alternative with its own evidence; preserve earlier workpaper and decision history.",
+            "enforcement": "Proposed workpaper version control. No external approval enforcement or accounting-system execution tested."
+          }
+        },
+        "inadequate": {
+          "id": "B-REVIEW-INADEQUATE",
+          "label": "DELIBERATELY INADEQUATE TEACHING COUNTEREXAMPLE",
+          "presented_claim": "The 87,000-cent payout reconciles, therefore sales and cash are correct and the dispute is resolved.",
+          "presented_evidence": [
+            "B-D6"
+          ],
+          "missing": [
+            "Gross invoice/capture, refund states and fee details",
+            "Bank statement and availability/payout/bank dates",
+            "Dispute funding, decision and fee-return evidence",
+            "Contemporaneous recoverability assessment"
+          ],
+          "concrete_defects": [
+            {
+              "defect": "Net payout recorded as revenue",
+              "consequence": "Suppresses gross activity, refund and fee classification.",
+              "repair": "Trace B-D1 through B-D7 with separate clearing, refund and fee accounts."
+            },
+            {
+              "defect": "Payout treated as bank evidence",
+              "consequence": "Conceals delayed or misdirected settlement.",
+              "repair": "Use complete authored bank statements and matching bank-line identities; real work needs independent population proof."
+            },
+            {
+              "defect": "Later win used as blanket approval",
+              "consequence": "Hides April claim uncertainty and stale approval after a changed outcome.",
+              "repair": "Retain B-REVIEW-X1 and invalidate the decision after relevant changes."
+            }
+          ],
+          "decision": "Reject. Matching one net amount is insufficient to support the assertions.",
+          "execution_authority": false
+        }
+      },
+      "currency_variant": {
+        "id": "B-CURRENCY-JPY-USD",
+        "classification": "original-synthetic-independent-variant",
+        "source_ids": [
+          "src_stripe_currency_units"
+        ],
+        "boundary": "USD-functional-currency fictional US seller. JPY presentment converts immediately into USD settlement at a stipulated rate at the same recognition/capture time. No foreign-currency balance remains overnight, no refund/dispute and no customer card FX-fee accounting. Do not combine with the baseline.",
+        "amount_unit": "USD ledger integer cents; separate JPY presentment integer yen",
+        "rounding": "JPY exponent 0; USD exponent 2. Use exact rational integer conversion, round half-up only at the declared conversion boundary. This fixture has no fractional-cent remainder; it establishes no provider rounding policy.",
+        "assumptions": [
+          "Completed service recognition and functional currency are declared fixture assumptions, not professionally assessed facts.",
+          "The conversion rate and 200-cent processing fee are fictional, not Stripe price or observed API output.",
+          "No deferred payment, tax, separate conversion fee or later FX remeasurement. Such facts require a different accounting case.",
+          "Account-country and payment-method eligibility for actual JPY presentment require separate verification."
+        ],
+        "conversion": {
+          "presentment_currency": "JPY",
+          "presentment_amount_minor": 10000,
+          "presentment_minor_per_major": 1,
+          "settlement_currency": "USD",
+          "settlement_minor_per_major": 100,
+          "usd_cents_numerator_per_jpy": 67,
+          "denominator": 100,
+          "expected_gross_usd_cents": 6700,
+          "processing_fee_usd_cents": 200,
+          "expected_net_usd_cents": 6500
+        },
+        "chart_of_accounts": {
+          "bank": "USD settlement bank asset",
+          "receivable": "USD-measured customer receivable",
+          "processor_clearing": "USD settlement processor asset",
+          "cash_in_transit": "USD payout pending bank settlement",
+          "revenue": "USD service revenue under declared recognition assumption",
+          "processing_fees": "Fictional USD processor expense"
+        },
+        "opening_balances_minor": {
+          "bank": 0,
+          "receivable": 0,
+          "processor_clearing": 0,
+          "cash_in_transit": 0,
+          "revenue": 0,
+          "processing_fees": 0
+        },
+        "documents": [
+          {
+            "id": "B-FX-D1",
+            "date": "2026-07-01",
+            "kind": "original synthetic currency-variant document",
+            "authorship": "original-synthetic",
+            "content": {
+              "description": "Invoice and completed service: JPY 10,000 measured at fictional USD 67.00.",
+              "usd_amount_minor": 6700
+            }
+          },
+          {
+            "id": "B-FX-D2",
+            "date": "2026-07-01",
+            "kind": "original synthetic currency-variant document",
+            "authorship": "original-synthetic",
+            "content": {
+              "description": "Capture converts JPY 10,000 to USD 67.00 under the stipulated exact rate.",
+              "usd_amount_minor": 6700
+            }
+          },
+          {
+            "id": "B-FX-D3",
+            "date": "2026-07-01",
+            "kind": "original synthetic currency-variant document",
+            "authorship": "original-synthetic",
+            "content": {
+              "description": "Fictional processor fee USD 2.00.",
+              "usd_amount_minor": 200
+            }
+          },
+          {
+            "id": "B-FX-D4",
+            "date": "2026-07-01",
+            "kind": "original synthetic currency-variant document",
+            "authorship": "original-synthetic",
+            "content": {
+              "description": "USD 65.00 payout debited by processor; not yet bank cash.",
+              "usd_amount_minor": 6500
+            }
+          },
+          {
+            "id": "B-FX-D5",
+            "date": "2026-07-02",
+            "kind": "original synthetic currency-variant document",
+            "authorship": "original-synthetic",
+            "content": {
+              "description": "USD bank credit of 65.00 matches the payout identity.",
+              "usd_amount_minor": 6500
+            }
+          }
+        ],
+        "events": [
+          {
+            "id": "B-FX-E1",
+            "date": "2026-07-01",
+            "document_ids": [
+              "B-FX-D1"
+            ],
+            "description": "Invoice and completed service: JPY 10,000 measured at fictional USD 67.00."
+          },
+          {
+            "id": "B-FX-E2",
+            "date": "2026-07-01",
+            "document_ids": [
+              "B-FX-D2"
+            ],
+            "description": "Capture converts JPY 10,000 to USD 67.00 under the stipulated exact rate."
+          },
+          {
+            "id": "B-FX-E3",
+            "date": "2026-07-01",
+            "document_ids": [
+              "B-FX-D3"
+            ],
+            "description": "Fictional processor fee USD 2.00."
+          },
+          {
+            "id": "B-FX-E4",
+            "date": "2026-07-01",
+            "document_ids": [
+              "B-FX-D4"
+            ],
+            "description": "USD 65.00 payout debited by processor; not yet bank cash."
+          },
+          {
+            "id": "B-FX-E5",
+            "date": "2026-07-02",
+            "document_ids": [
+              "B-FX-D5"
+            ],
+            "description": "USD bank credit of 65.00 matches the payout identity."
+          }
+        ],
+        "journals": [
+          {
+            "id": "B-FX-J1",
+            "date": "2026-07-01",
+            "event_id": "B-FX-E1",
+            "document_ids": [
+              "B-FX-D1"
+            ],
+            "lines": [
+              {
+                "account": "receivable",
+                "debit_minor": 6700,
+                "credit_minor": 0
+              },
+              {
+                "account": "revenue",
+                "debit_minor": 0,
+                "credit_minor": 6700
+              }
+            ]
+          },
+          {
+            "id": "B-FX-J2",
+            "date": "2026-07-01",
+            "event_id": "B-FX-E2",
+            "document_ids": [
+              "B-FX-D2"
+            ],
+            "lines": [
+              {
+                "account": "processor_clearing",
+                "debit_minor": 6700,
+                "credit_minor": 0
+              },
+              {
+                "account": "receivable",
+                "debit_minor": 0,
+                "credit_minor": 6700
+              }
+            ]
+          },
+          {
+            "id": "B-FX-J3",
+            "date": "2026-07-01",
+            "event_id": "B-FX-E3",
+            "document_ids": [
+              "B-FX-D3"
+            ],
+            "lines": [
+              {
+                "account": "processing_fees",
+                "debit_minor": 200,
+                "credit_minor": 0
+              },
+              {
+                "account": "processor_clearing",
+                "debit_minor": 0,
+                "credit_minor": 200
+              }
+            ]
+          },
+          {
+            "id": "B-FX-J4",
+            "date": "2026-07-01",
+            "event_id": "B-FX-E4",
+            "document_ids": [
+              "B-FX-D4"
+            ],
+            "lines": [
+              {
+                "account": "cash_in_transit",
+                "debit_minor": 6500,
+                "credit_minor": 0
+              },
+              {
+                "account": "processor_clearing",
+                "debit_minor": 0,
+                "credit_minor": 6500
+              }
+            ]
+          },
+          {
+            "id": "B-FX-J5",
+            "date": "2026-07-02",
+            "event_id": "B-FX-E5",
+            "document_ids": [
+              "B-FX-D5"
+            ],
+            "lines": [
+              {
+                "account": "bank",
+                "debit_minor": 6500,
+                "credit_minor": 0
+              },
+              {
+                "account": "cash_in_transit",
+                "debit_minor": 0,
+                "credit_minor": 6500
+              }
+            ]
+          }
+        ],
+        "expected_period_balances_minor": {
+          "2026-07-02": {
+            "bank": 6500,
+            "receivable": 0,
+            "processor_clearing": 0,
+            "cash_in_transit": 0,
+            "revenue": -6700,
+            "processing_fees": 200
+          }
+        },
+        "unresolved_item": "Real recognition, functional-currency measurement, rate provenance, provider rounding and eligibility are untested. A rate quoted without units or the capture/settlement facts cannot support the same conclusion."
+      },
+      "limitations": [
+        "Synthetic original teaching case, not observed API behavior, a professional accounting opinion or evidence of production effectiveness.",
+        "All amounts, documents, entities, approvals and outcomes are fictional. Apply the stated assumptions before interpreting a balanced journal.",
+        "The baseline, alternative branches and bounded extensions have separate facts and must not be combined into one ledger."
+      ],
+      "examples": [
+        {
+          "id": "example-connected-processor-settlement-baseline",
+          "title": "Customer receipts, refunds and a later dispute decision baseline",
+          "scenario_type": "connected_synthetic_ledger",
+          "objective": "Trace each fictional event through its retained document, proposed journal and independently stated period balance.",
+          "input": {
+            "record_id": "example-connected-processor-settlement",
+            "document_locator": "data.documents",
+            "event_locator": "data.events",
+            "opening_balance_locator": "data.opening_balances_minor",
+            "assumption_locator": "data.assumptions"
+          },
+          "reference_expectations": {
+            "journal_locator": "data.journals",
+            "period_balance_locator": "data.expected_period_balances_minor",
+            "review_packet_locator": "data.review_packets",
+            "review_required": true,
+            "executed_actions_must_be_empty": true
+          },
+          "limitations": [
+            "Synthetic original teaching case, not observed API behavior, a professional accounting opinion or evidence of production effectiveness.",
+            "All amounts, documents, entities, approvals and outcomes are fictional. Apply the stated assumptions before interpreting a balanced journal.",
+            "The baseline, alternative branches and bounded extensions have separate facts and must not be combined into one ledger."
+          ]
+        }
+      ],
+      "action_boundary_exceptions": {
+        "classification": "Original synthetic security scenarios; outside baseline accounting replay",
+        "guide_id": "guide-accounting-action-boundaries",
+        "scenario_ids": [
+          "AUTH-PARTIAL-BATCH",
+          "AUTH-REVOKED",
+          "AUTH-STALE-PACKET"
+        ],
+        "packet_pointer": "/data/review_packets/stronger",
+        "approval_status": "No real approval or operating effectiveness established"
+      }
     }
   }
 ]

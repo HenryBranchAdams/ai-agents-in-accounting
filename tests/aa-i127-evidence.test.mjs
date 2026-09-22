@@ -118,6 +118,13 @@ test("AA-I127 shared assessments, cited locators, and empirical source reviews a
   for (const guideId of guideIds) {
     const guide = byId.get(guideId);
     const nestedSourceIds = new Set(guide.data.research_questions.flatMap((question) => question.source_ids));
+    // The original questions remain; issue173 adds a separately bounded methods
+    // comparison and screened-but-excluded sources, not new claims on old questions.
+    if (guideId === "guide-independent-deployment-evidence") {
+      for (const item of guide.data.accounting_evidence_update_173.screening) nestedSourceIds.add(item.source_id);
+      for (const finding of guide.data.editorial_brief.findings)
+        for (const id of finding.source_ids) nestedSourceIds.add(id);
+    }
     assert.deepEqual([...nestedSourceIds].sort(), [...guide.source_ids].sort(), `${guideId}: top-level source union`);
     for (const question of guide.data.research_questions) {
       assert.deepEqual(new Set(question.source_ids), new Set(question.source_locators.map((locator) => locator.source_id)), `${question.id}: cited locator union`);
@@ -145,16 +152,21 @@ test("AA-I127 shared assessments, cited locators, and empirical source reviews a
   const ledger = read("data/reviews/source-reviews.json").reviews;
   for (const input of empirical) {
     const source = sources.find((record) => record.id === input.id);
-    const review = source.data.source_review;
+    const review = input.id === "src_1sbtyzp" ? source.data.previous_source_review_173 : source.data.source_review;
     const supplemental = source.data.supplemental_reviews.find((candidate) => candidate.batch === "empirical" && candidate.checked_url === input.source_url);
     const ledgerReview = ledger.find((candidate) => candidate.record_id === input.id);
-    assert.equal(source.reviewed_at, "2026-09-17");
+    assert.equal(input.id === "src_1sbtyzp" ? review.reviewed_at : source.reviewed_at, "2026-09-17");
     assert.equal(review.checked_url, input.source_url);
     assert.equal(review.review_level, input.review_level);
     assert.equal(review.review_scope, input.review_scope);
     assert.equal(review.source_locator, input.source_locator);
     assert.deepEqual(supplemental, { batch: "empirical", reviewed_at: "2026-09-17", review_level: input.review_level, review_scope: input.review_scope || input.review_level, checked_url: input.source_url, locator: input.source_locator, publication_or_edition: input.publication_or_edition, effective_period: null, evidence_summary: input.evidence_summary, limitations: input.limitations, checks: input.checks, rights_review: input.rights_review });
-    assert.deepEqual(ledgerReview, review);
+    assert.deepEqual(ledgerReview, source.data.source_review);
+    if (input.id === "src_1sbtyzp") {
+      assert.equal(source.reviewed_at, "2026-09-21");
+      assert.ok(source.data.empirical_review_173);
+      assert.notEqual(source.data.source_review.review_level, "abstract-or-landing");
+    }
   }
   assert.equal(empirical.find((source) => source.id === "src_1sbtyzp").jurisdiction, "SME accounting platform; professional accountants");
 });
