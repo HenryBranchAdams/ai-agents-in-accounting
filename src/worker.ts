@@ -1,3 +1,4 @@
+import { searchSuggestions } from "./search-suggestions";
 import {
   meta,
   records,
@@ -246,6 +247,32 @@ function openapi() {
           { type: "object" },
         ),
       },
+      "/api/v1/search-suggestions": {
+        get: {
+          operationId: "searchSuggestions",
+          summary: "Preview at most 12 whole-corpus matches in canonical order",
+          description: "Only q is accepted, once. Empty input returns no items. Summaries are canonical plain text shortened to 280 characters. has_brief identifies an actual edited reading brief. total is the complete match count. Corpus version and ETag bind this projection to its edition.",
+          parameters: [{ name: "q", in: "query", schema: { type: "string", maxLength: 240 } }],
+          responses: {
+            "200": success({
+              type: "object", additionalProperties: false,
+              required: ["corpus_version", "query", "total", "items"],
+              properties: {
+                corpus_version: { type: "string" }, query: { type: "string" }, total: { type: "integer", minimum: 0 },
+                items: { type: "array", maxItems: 12, items: {
+                  type: "object", additionalProperties: false,
+                  required: ["id", "kind", "title", "summary", "has_brief", "href"],
+                  properties: {
+                    id: { type: "string" }, kind: { type: "string" }, title: { type: "string" },
+                    summary: { type: "string", maxLength: 280 }, has_brief: { type: "boolean" }, href: { type: "string" },
+                  },
+                } },
+              },
+            }),
+            "400": { description: "Invalid parameter or malformed search query" },
+          },
+        },
+      },
       "/api/v1/records": {
         get: searchOperation(
           "searchRecords",
@@ -440,6 +467,12 @@ async function route(request: Request, env: Env) {
       response.headers.set("Link", `<${result.next_url}>; rel="next"`);
     if ("total" in result)
       response.headers.set("X-Total-Count", String(result.total));
+    return response;
+  }
+  if (path === "/api/v1/search-suggestions") {
+    const result = searchSuggestions(url.searchParams);
+    const response = json(result);
+    response.headers.set("X-Total-Count", String(result.total));
     return response;
   }
   if (

@@ -1,3 +1,4 @@
+import { clientEntryUrl } from "./client-entries.mjs";
 import { historySummaryPlugin } from "./history-summary.mjs";
 import { editorialReviewReport } from "./editorial-review.mjs";
 import { prepareStorage } from "./release-storage.mjs";
@@ -92,13 +93,7 @@ const clientBuild = await build({
   legalComments: "eof",
   define: { "process.env.NODE_ENV": '"production"' },
 });
-const navigationScript =
-  "/assets/" +
-  path.basename(
-    Object.keys(clientBuild.metafile.outputs).find((file) =>
-      file.endsWith(".js"),
-    ),
-  );
+const navigationScript = clientEntryUrl(clientBuild.metafile, "src/client/navigation.tsx");
 const preservedVersions = preview ? JSON.parse(fs.readFileSync("data/releases/index.json", "utf8")).versions : fs
   .readdirSync("data/releases", { withFileTypes: true })
   .filter(
