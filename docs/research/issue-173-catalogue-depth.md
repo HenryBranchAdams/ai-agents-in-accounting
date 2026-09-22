@@ -272,3 +272,7 @@ Merged main186b6b14cc43f0d68c650e877d77719a075d4a72 into the research branch aft
 ### Connected-close reading brief
 
 Added an answer-first reading brief for the two connected cases, including a synthetic purchase-close table, responsibility boundaries, changed-approval exceptions, source qualifications and unresolved human/professional evidence. The brief declares its case, guide and primary-source dependencies; its current dependency hashes match the material reviewed. This is an agent editorial review of the stated presentation, not maintainer acceptance. Structural validation passes the record checks and stops at the expected stale draft coverage mapping. Final rendered, exported and browser checks remain pending.
+
+### P1 attachment lineage
+
+Read the original Intuit attachment tutorial and Xero attachment reference. Added two source profiles and dossier rows distinguishing metadata, typed parent linkage, file bytes, permissions and mutable or temporary URLs. Xero replacement behavior and QBO's absent reverse transaction link explain why a transaction list or saved URL is insufficient evidence. Authorized-test protocols now cover changed attachment bytes and inaccessible files; no API operations were run. Structural validation reaches the expected stale draft mapping boundary.

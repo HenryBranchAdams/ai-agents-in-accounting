@@ -109994,5 +109994,169 @@
       ],
       "review_trigger": "Changed report schema, date semantics, rate policy, app tier or product configuration."
     }
+  },
+  {
+    "id": "src_qbo_attachment_lineage_2026",
+    "kind": "source",
+    "title": "QuickBooks Online attachment relationships and temporary downloads",
+    "summary": "Attachment relationships reside in Attachable metadata, not a reverse link on the transaction. A transaction-only extract can therefore omit its supporting files.",
+    "topics": [
+      "Agent engineering",
+      "Accounting and reporting"
+    ],
+    "industries": [
+      "general"
+    ],
+    "jurisdiction": "QuickBooks Online; company, country, product and app scope require separate confirmation",
+    "source_type": "Technical reference",
+    "publisher": "Intuit Developer",
+    "source_url": "https://developer.intuit.com/app/developer/qbo/docs/workflows/attach-images-and-notes",
+    "source_ids": [],
+    "related_ids": [
+      "guide-qbo-ledger-completeness",
+      "guide-connected-close-review"
+    ],
+    "review_status": "source-checked",
+    "reviewed_at": "2026-09-21",
+    "provenance": {
+      "added_on": "2026-09-21",
+      "reviewer": "Codex AI-assisted source review",
+      "scope": "Original Intuit tutorial read through supported Exa fetch, including attachment relationships, query, upload and download sections. Sample requests were read, not run.",
+      "evidence_urls": [
+        "https://developer.intuit.com/app/developer/qbo/docs/workflows/attach-images-and-notes"
+      ],
+      "outcome": "Supports bounded documented contracts, not observed API behavior.",
+      "note": "No tenant requests, commercial plan verification or professional review."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "publication": {
+        "published_at": null,
+        "edition": "Publisher documentation read September21,2026"
+      },
+      "evidence": [
+        {
+          "claim": "Files and notes use Attachable metadata. Query by the target type and ID; the transaction has no reverse attachment link.",
+          "classification": "publisher-documented; evidence-integrity conclusions are project interpretation",
+          "source": {
+            "url": "https://developer.intuit.com/app/developer/qbo/docs/workflows/attach-images-and-notes",
+            "locator": "Attaching a file to an object; Listing attachments for a specific object"
+          }
+        },
+        {
+          "claim": "Download checks attachment and linked-entity permissions, then returns a temporary URL valid for 15 minutes; obtaining the URL and downloading the file are separate operations.",
+          "classification": "publisher-documented; evidence-integrity conclusions are project interpretation",
+          "source": {
+            "url": "https://developer.intuit.com/app/developer/qbo/docs/workflows/attach-images-and-notes",
+            "locator": "Downloading attachments"
+          }
+        },
+        {
+          "claim": "Multipart uploads can return individual success or Fault entries. Uploaded evidence does not prove the transaction is correct.",
+          "classification": "publisher-documented; evidence-integrity conclusions are project interpretation",
+          "source": {
+            "url": "https://developer.intuit.com/app/developer/qbo/docs/workflows/attach-images-and-notes",
+            "locator": "Uploading files to the attachment list"
+          }
+        }
+      ],
+      "limitations": [
+        "Tutorial examples are documentation, not observed company behavior.",
+        "Attachment presence does not establish authenticity, completeness, permission to redistribute or accounting support.",
+        "Exact entity support and current permissions require the named product contract and separately authorized test."
+      ],
+      "review_trigger": "Changed attachment endpoints, replacement behavior, permissions, limits or product support."
+    }
+  },
+  {
+    "id": "src_xero_attachment_lineage_2026",
+    "kind": "source",
+    "title": "Xero parent-document attachments and replacement semantics",
+    "summary": "Xero lists attachments beneath a known parent document and retrieves their bytes separately. A filename is not an immutable evidence version because uploads can replace existing content.",
+    "topics": [
+      "Agent engineering",
+      "Accounting and reporting"
+    ],
+    "industries": [
+      "general"
+    ],
+    "jurisdiction": "Xero Accounting API; tenant, country, product and access scope require separate confirmation",
+    "source_type": "Technical reference",
+    "publisher": "Xero Developer",
+    "source_url": "https://developer.xero.com/documentation/api/accounting/attachments",
+    "source_ids": [],
+    "related_ids": [
+      "guide-xero-ledger-completeness",
+      "guide-connected-close-review"
+    ],
+    "review_status": "source-checked",
+    "reviewed_at": "2026-09-21",
+    "provenance": {
+      "added_on": "2026-09-21",
+      "reviewer": "Codex AI-assisted source review",
+      "scope": "Full original Attachments Markdown read from the public Xero Gatsby page-data payload. Raw payload SHA256: 8e3b764a3b6c052517570638803e579a32376550c3f0f0971ecef34717b3f8fd. No API call.",
+      "evidence_urls": [
+        "https://developer.xero.com/documentation/api/accounting/attachments"
+      ],
+      "outcome": "Supports bounded documented contracts, not observed API behavior.",
+      "note": "No tenant requests, commercial plan verification or professional review."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "publication": {
+        "published_at": null,
+        "edition": "Publisher documentation read September21,2026"
+      },
+      "evidence": [
+        {
+          "claim": "List attachments under the parent endpoint and GUID; download returns raw bytes separately from metadata.",
+          "classification": "publisher-documented; evidence-integrity conclusions are project interpretation",
+          "source": {
+            "url": "https://developer.xero.com/documentation/api/accounting/attachments",
+            "locator": "GET Attachments; GET Attachment Content"
+          }
+        },
+        {
+          "claim": "Supported parent types include invoices, credit notes, bank transactions, manual journals and purchase orders. The page documents ten attachments per document, each up to 10MB.",
+          "classification": "publisher-documented; evidence-integrity conclusions are project interpretation",
+          "source": {
+            "url": "https://developer.xero.com/documentation/api/accounting/attachments",
+            "locator": "POST Attachments"
+          }
+        },
+        {
+          "claim": "POST or PUT can replace existing content at the document attachment URL.",
+          "classification": "publisher-documented; evidence-integrity conclusions are project interpretation",
+          "source": {
+            "url": "https://developer.xero.com/documentation/api/accounting/attachments",
+            "locator": "POST Attachments note; PUT Attachments"
+          }
+        }
+      ],
+      "limitations": [
+        "No tenant, upload, download or permission test was performed.",
+        "Supported document attachment access is not proof of every ledger source document or original supporting file.",
+        "The page does not establish immutable attachment history or permission to redistribute files."
+      ],
+      "review_trigger": "Changed attachment endpoints, replacement behavior, permissions, limits or product support."
+    }
   }
 ]

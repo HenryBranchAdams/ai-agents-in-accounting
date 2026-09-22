@@ -87139,7 +87139,8 @@
       "src_xero_tracking_mapping_2026",
       "src_oracle26b_journal_headers",
       "src_oracle_collection_paging_25d",
-      "src_stripe_netsuite_deposit_automation"
+      "src_stripe_netsuite_deposit_automation",
+      "src_xero_attachment_lineage_2026"
     ],
     "related_ids": [
       "collection-erp-extraction-completeness",
@@ -87252,6 +87253,16 @@
             "src_xero_payment_lineage_2026"
           ],
           "locator": "GET Payments fields"
+        },
+        {
+          "id": "xero-attachments",
+          "status": "documented",
+          "question": "Does the transaction extract include immutable supporting-file evidence?",
+          "answer": "Start with the known typed parent document, list attachment metadata and retrieve raw bytes separately. Uploads can replace content at an existing filename. Project proposal: bind reviewed evidence to the actual authorized bytes and collection time, not only a mutable filename or URL.",
+          "source_ids": [
+            "src_xero_attachment_lineage_2026"
+          ],
+          "locator": "GET Attachments; GET Attachment Content; POST Attachments; POST Attachments note; PUT Attachments"
         }
       ],
       "access_and_change_rows": [
@@ -87432,7 +87443,8 @@
           "Backdated manual adjustment and source-generated bill/payment,with before/after account totals",
           "Missing source links,attachments and history; draft/delete versus posted/void distinctions",
           "Duplicate/out-of-order notification and reconnection gap,only after documented coverage review",
-          "Lost write response,concurrent payload change and locked period under separate write authorization"
+          "Lost write response,concurrent payload change and locked period under separate write authorization",
+          "With separately authorized synthetic attachments, verify typed parent linkage, inaccessible-file handling, changed bytes and approval invalidation. Preserve no temporary download credential in public evidence."
         ],
         "required_receipt": "Exact app/tenant cohort,request/response identities and dates,expected versus actual population/totals,exceptions and reviewer decision. Strip credentials and private data before sharing."
       },
@@ -87513,7 +87525,8 @@
       "src_oracle_collection_paging_25d",
       "src_stripe_netsuite_deposit_automation",
       "src_qbo_report_structure_2026",
-      "src_qbo_request_limits_2024"
+      "src_qbo_request_limits_2024",
+      "src_qbo_attachment_lineage_2026"
     ],
     "related_ids": [
       "collection-erp-extraction-completeness",
@@ -87603,6 +87616,16 @@
             "src_qbo_webhook_cloudevents_2026"
           ],
           "locator": "Updated notice and payload fields"
+        },
+        {
+          "id": "qbo-attachments",
+          "status": "documented",
+          "question": "Does the transaction extract include immutable supporting-file evidence?",
+          "answer": "Retrieve attachment metadata by typed object identity; a transaction response has no reverse attachment link. Download authorization and short-lived URL retrieval are separate from receiving file bytes. Project proposal: record an authorized content digest and retrieval outcome, not a temporary URL as durable evidence.",
+          "source_ids": [
+            "src_qbo_attachment_lineage_2026"
+          ],
+          "locator": "Attaching a file to an object; Listing attachments for a specific object; Downloading attachments; Uploading files to the attachment list"
         }
       ],
       "access_and_change_rows": [
@@ -87758,7 +87781,8 @@
           "CDC empty interval,deletion,30-day boundary and saturated same-timestamp change set",
           "Mixed-company,duplicate,out-of-order and missed notifications after signature-contract review",
           "Backdated source transaction versus report period and changed report nesting",
-          "Lost-response identical replay,changed payload,stale version and lock enforcement under separate write authority"
+          "Lost-response identical replay,changed payload,stale version and lock enforcement under separate write authority",
+          "With separately authorized synthetic attachments, verify typed parent linkage, inaccessible-file handling, changed bytes and approval invalidation. Preserve no temporary download credential in public evidence."
         ],
         "receipt": "Bind environment,date,documentation version,source population,request/response digests and actual outcomes. No credentials or private records in public exports."
       },
