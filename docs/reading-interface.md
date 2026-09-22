@@ -17,3 +17,11 @@ The build selects navigation by esbuild's exact `entryPoint` metadata. Shared or
 ## Verification status
 
 Focused tests cover canonical search parity, compact response fields, representative payloads below 32 KiB, validation, read-only methods and cache identity. These tests do not establish browser behavior or publication. The remaining palette, evidence previews, outline, filter and graph integration require combined production browser verification and the human acceptance specified by the issues.
+
+## Palette implementation and remaining verification
+
+The palette is loaded on deliberate Search/Cmd+K/Ctrl+K intent. Native modifier-click follows the real Search or result anchor. Existing dialogs and editable fields prevent shortcut interception. Requests debounce for 180ms, abort on replacement or closure, and ignore late responses. Empty input shows real destinations without requesting records. Results retain canonical order through `shouldFilter={false}`. Invalid-query, zero-result, network-failure and edition-mismatch states are distinct; the full library remains the recovery route.
+
+A production-browser suite now covers desktop/mobile opening, canonical result order, aliases, quoted phrases, keyboard activation, Escape/focus restoration, Back, native no-JavaScript Search, and injected network/edition failures. Execution is pending hosted CI because this local environment denies browser/listener startup. These written tests are not browser acceptance evidence.
+
+A local esbuild preview measurement with the installed Node/lockfile compared the previous navigation asset (104,682 gzip bytes) with the palette implementation: navigation plus its shared eager chunk totals 105,922 gzip bytes, an increase of 1,240 bytes; the lazy palette adds 7,139 gzip bytes. The full final interface and production corpus need renewed measurement. No graph code or corpus index is bundled into these client assets.

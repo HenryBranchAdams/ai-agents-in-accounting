@@ -33,8 +33,9 @@ export function SiteNavigation({ active }: { active: string }) {
     setReady(true);
   }, []);
   return (
-    <>
-      <div className="hidden lg:block">
+    <div className="flex items-center gap-3">
+      <Button asChild variant="outline"><a href="/library" data-search-trigger="true">Search</a></Button>
+      <div className="hidden xl:block">
         <NavigationMenu aria-label="Main navigation" viewport={false}>
           <NavigationMenuList>
             {navigation.map(([href, title, key]) => (
@@ -52,7 +53,7 @@ export function SiteNavigation({ active }: { active: string }) {
           </NavigationMenuList>
         </NavigationMenu>
       </div>
-      <div className="lg:hidden">
+      <div className="xl:hidden">
         {ready ? (
           <Sheet>
             <SheetTrigger asChild>
@@ -111,6 +112,6 @@ export function SiteNavigation({ active }: { active: string }) {
           </details>
         )}
       </div>
-    </>
+    </div>
   );
 }

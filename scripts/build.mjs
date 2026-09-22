@@ -81,6 +81,7 @@ execFileSync(
 );
 const clientBuild = await build({
   entryPoints: { navigation: "src/client/navigation.tsx" },
+  splitting: true,
   outdir: "dist/client/assets",
   entryNames: "[name]-[hash]",
   bundle: true,
@@ -93,6 +94,7 @@ const clientBuild = await build({
   legalComments: "eof",
   define: { "process.env.NODE_ENV": '"production"' },
 });
+fs.writeFileSync("dist/internal/client-build.json", JSON.stringify(clientBuild.metafile, null, 2) + "\n");
 const navigationScript = clientEntryUrl(clientBuild.metafile, "src/client/navigation.tsx");
 const preservedVersions = preview ? JSON.parse(fs.readFileSync("data/releases/index.json", "utf8")).versions : fs
   .readdirSync("data/releases", { withFileTypes: true })
