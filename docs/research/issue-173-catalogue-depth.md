@@ -220,3 +220,8 @@ Inspected publisher paper task/method/licensing sections, rendered Figure3 and p
 ### P4 document-extraction contrast and selection guide
 
 Added original CORD release profile and four-resource capability guide. CORD original README/license and HF metadata pinned; one preview schema row inspected, without asserting pinned Parquet identity. Primary paper browser check/403 is an unresolved methods dependency, not substituted with search snippets. Public1000-sample release and removed labels remain distinct from original collection. No fulltext or receipt assets enter exports. Selection guide links both connected cases and separates parsing, QA, ledger replay, source support and authorization. Final rights/relationship/editorial integration and broader P9 work remain pending.
+
+
+### P5 first substantive entries
+
+Read original settled SEC company orders for Mattel(33-11122) and Under Armour(33-10940), preserving the former's period-specific error and the latter's explicit no-GAAP-finding footnote. Added two source profiles and a draft casebook collection with precise locators, dispositions, limitations, separate proposed lessons and original unexecuted variants. No AI attribution, payment-status claim or finding about separate defendants/private litigation. P5 remains incomplete pending broader primary cases and final review.
