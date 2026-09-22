@@ -87611,6 +87611,245 @@
         ],
         "decision": "Choose the extraction unit and recovery contract for the actual product and endpoint. Neither an ERP name nor a connector deposit establishes complete ledger lineage.",
         "observed_api_behavior": false
+      },
+      "editorial_brief": {
+        "question": "When is a Xero journal extract complete enough to reconcile?",
+        "answer": "A manual-journal list is not the entire ledger. Retrieve the Journals population on an explicit basis, retain collection-level source fields, and continue offsets until an empty page. Completeness still requires independent totals and documented exceptions for source links the API does not expose.",
+        "findings": [
+          {
+            "claim": "The journal cursor follows the last JournalNumber until an empty page, including after a short page.",
+            "source_ids": [
+              "src_xero_journals_completeness"
+            ],
+            "classification": "documented endpoint boundary",
+            "locator": "Journals GET and offset examples",
+            "qualification": "Documentation read, not observed API behavior. The original counterexample isolates this boundary; it is not captured vendor traffic."
+          },
+          {
+            "claim": "Attachment metadata, retrieved file bytes and mutable or temporary URLs are different evidence.",
+            "source_ids": [
+              "src_xero_attachment_lineage_2026"
+            ],
+            "classification": "documented attachment boundary",
+            "locator": "GET Attachment Content; POST and PUT replacement notes",
+            "qualification": "The proposed evidence-digest procedure does not establish authenticity, complete source population or redistribution permission."
+          }
+        ],
+        "unknowns": [
+          "Draft P1 dossier: exact OAuth endpoint map,complete source-object coverage,report comparison,concurrent-edit and period-lock behavior remain unresolved. Webhook/retry documentation is now read but no delivery or write behavior was observed.",
+          "No live accounting operations,API tests or professional review occurred. Synthetic replay cannot establish vendor behavior.",
+          "Historical September7 bank-boundary annotation is inherited and needs recheck before operation.",
+          "Narrow Oracle/NetSuite comparison is recorded; final canonical relationships, reader presentation and exports remain pending."
+        ],
+        "reading_order": [
+          "src_xero_journals_completeness",
+          "src_xero_efficient_retrieval",
+          "src_xero_bank_statement_boundary",
+          "src_xero_permissions_faq_2026",
+          "src_xero_granular_scopes_2026",
+          "src_xero_platform_terms_20251204",
+          "src_xero_pricing_policy_2026",
+          "src_xero_manual_journals_2026",
+          "src_xero_journal_types_2026",
+          "src_xero_document_history_2026",
+          "src_xero_rate_limits_2026",
+          "src_xero_webhook_recovery_2026",
+          "src_xero_idempotency_2026",
+          "src_xero_request_response_2026",
+          "src_xero_invoice_lineage_2026",
+          "src_xero_payment_lineage_2026",
+          "src_xero_organisation_actions_2026",
+          "src_xero_tracking_mapping_2026",
+          "src_oracle26b_journal_headers",
+          "src_oracle_collection_paging_25d",
+          "src_stripe_netsuite_deposit_automation",
+          "src_xero_attachment_lineage_2026",
+          "example-connected-purchase-to-payment"
+        ],
+        "reading": {
+          "scope": "Xero Accounting API documentation and original recovery design; no connected tenant.",
+          "critical_limitation": "No live API behavior, tenant-role enforcement, accounting applicability or professional acceptance was verified. Remaining contract and access dependencies are explicit below.",
+          "sections": [
+            {
+              "title": "Define the population before paging",
+              "paragraphs": [
+                "Record tenant, country/product, basis, currency and time context. System journals, manual journals, source transactions and bank evidence are different populations. Preserve source-type and source-ID gaps."
+              ]
+            },
+            {
+              "title": "Checkpoint only successful stages",
+              "paragraphs": [
+                "Persist source identity and successful page contents before advancing a checkpoint. Authorization failure, throttling, malformed data, nonadvancing cursors and ambiguous outcomes remain incomplete stages. Reconcile affected periods and source totals; never add a balancing plug."
+              ]
+            },
+            {
+              "title": "Do not collapse recovery and approval",
+              "paragraphs": [
+                "Keep token, request ID, idempotency or SyncToken behavior separate from permission and exact-payload approval. A changed amount, entity, destination, period or supporting evidence requires a renewed decision. The detailed rows distinguish documented behavior, project proposals and unknowns."
+              ]
+            },
+            {
+              "title": "Use the bounded test protocol only with separate authority",
+              "paragraphs": [
+                "The protocol names the sandbox, product, source contracts, independent expected totals and evidence needed for unresolved behavior. It was not run. This public research corpus contains no credentials, tenant payloads or accounting executor."
+              ]
+            }
+          ],
+          "example": {
+            "title": "Original sparse-journal traversal",
+            "classification": "original-synthetic",
+            "assumptions": "Original normalized fixture, not captured Xero traffic or an executable API client. Sparse journal numbers are intentional.",
+            "columns": [
+              "Stage",
+              "Naive result",
+              "Required response"
+            ],
+            "rows": [
+              [
+                "Two journals at offset0",
+                "Stop because the page is short",
+                "Continue at JournalNumber37"
+              ],
+              [
+                "Two journals at offset37",
+                "Never requested",
+                "Continue at JournalNumber80"
+              ],
+              [
+                "Empty page at offset80",
+                "No termination evidence retained",
+                "Record termination and reconcile all four"
+              ]
+            ]
+          },
+          "responsibilities": [
+            {
+              "role": "Extraction owner",
+              "task": "Specify population, product context and successful checkpoints.",
+              "boundary": "Cannot infer completeness from HTTP success."
+            },
+            {
+              "role": "Accounting reviewer",
+              "task": "Assess reconciliations, period and unresolved source differences.",
+              "boundary": "No professional sign-off is supplied here."
+            },
+            {
+              "role": "System owner",
+              "task": "Verify terms, roles, scopes and authorized recovery tests.",
+              "boundary": "Research permission is not tenant-operation authority."
+            }
+          ],
+          "exception": {
+            "title": "A backdated change can affect an earlier close",
+            "paragraphs": [
+              "Keep transaction/posting dates, modification timestamps and extraction time separate. A later-arriving record may alter earlier-period totals. Retain its lineage and changed evidence rather than treating a current watermark as proof the earlier period is unchanged."
+            ]
+          },
+          "gap_url": "https://github.com/HenryBranchAdams/ai-agents-in-accounting/issues/173",
+          "review": {
+            "reviewed_at": "2026-09-21",
+            "reviewer": "Codex AI-assisted editorial synthesis review",
+            "scope": "Reviewed the dossier rows, documented recovery boundaries and original counterexample against their scoped source profiles. Explicit unresolved contract and runtime questions remain; no human acceptance.",
+            "dependencies": [
+              {
+                "record_id": "guide-xero-ledger-completeness",
+                "sha256": "e8e65c1d6ece150caa4a5311df0e9f8714e51f9e4dfbae35fe60fcced8810046"
+              },
+              {
+                "record_id": "src_xero_journals_completeness",
+                "sha256": "f9f1ae12d15d37bed94d2726e0e034321714d6afe5fb9610bbcf5020799bc351"
+              },
+              {
+                "record_id": "src_xero_efficient_retrieval",
+                "sha256": "d4df3b5c0d857bb4a797250e7db14f8b895befa65e1aff60a53ad56a4157ef08"
+              },
+              {
+                "record_id": "src_xero_bank_statement_boundary",
+                "sha256": "d82de5415c4f3999d1eca2a47d4a3900b947e54912ee0c4dc7fc62d538420b8b"
+              },
+              {
+                "record_id": "src_xero_permissions_faq_2026",
+                "sha256": "c20c267a4b2fe910b867a1d6eecd63a03ab67f4d3358386a41db45ebb786ba91"
+              },
+              {
+                "record_id": "src_xero_granular_scopes_2026",
+                "sha256": "86a15acd191b66a42b476da79eff6c1cd80b17e57b0ec82bf167f37ddd4cd7f1"
+              },
+              {
+                "record_id": "src_xero_platform_terms_20251204",
+                "sha256": "a2d20b40295520af4fe003d238cbcc87a604d8045c24c103dcce902075bbaebc"
+              },
+              {
+                "record_id": "src_xero_pricing_policy_2026",
+                "sha256": "52f8225b6901d4c3c4fc9db1da7b282a5a03e6b0a4b9fe78cffd0c09198f7ef3"
+              },
+              {
+                "record_id": "src_xero_manual_journals_2026",
+                "sha256": "92f375ad964edad0a1c9f3b5cd5e707402a01b9aaf2530a41daf8c35eb5d9e79"
+              },
+              {
+                "record_id": "src_xero_journal_types_2026",
+                "sha256": "28444723147eea1fb3589d3f163485b12e860d93f1344225ecf1e5ab9d567a4d"
+              },
+              {
+                "record_id": "src_xero_document_history_2026",
+                "sha256": "f618bda7eafdfa6d4c9593a4b5dc415604291a133979d2a9faa418eea636bfe1"
+              },
+              {
+                "record_id": "src_xero_rate_limits_2026",
+                "sha256": "48c4456331cfb353f6b1b1bc864b6d3aa0d521eb228551419bd29f99e8e62ef8"
+              },
+              {
+                "record_id": "src_xero_webhook_recovery_2026",
+                "sha256": "515ff95dd26e49f6a043dd43d461cb11c9e3ce864e329fce0fada6c9a49760d2"
+              },
+              {
+                "record_id": "src_xero_idempotency_2026",
+                "sha256": "30cc8c119bbc66bca6e378465f4fc38a30de59be8541146188336e3ad61eeaf2"
+              },
+              {
+                "record_id": "src_xero_request_response_2026",
+                "sha256": "ef3562d9b56bb34aacae8cf15547ae4ffe33161ba6fa92fb32deeeb0a4a44bde"
+              },
+              {
+                "record_id": "src_xero_invoice_lineage_2026",
+                "sha256": "8764bed82f81d6bb35ca4709a84fc79227d31438a13cc75370811c0bc912f6dc"
+              },
+              {
+                "record_id": "src_xero_payment_lineage_2026",
+                "sha256": "d833eb2b43e834bd188267d27872c682bdc98482ddb076e74eb17ade0e7c2f89"
+              },
+              {
+                "record_id": "src_xero_organisation_actions_2026",
+                "sha256": "6b076c294b85ddee4b94b143fbc07238213850e96877abe5d71add758bc4c745"
+              },
+              {
+                "record_id": "src_xero_tracking_mapping_2026",
+                "sha256": "b24b528f7bf1e80a62fb25bbfbc5b29860f334402879dc9b3a8d1d2f76b811ed"
+              },
+              {
+                "record_id": "src_oracle26b_journal_headers",
+                "sha256": "3a54a8909faf09706c163dacaef526f7e12562dec1ddf4d93efdf9df3d5290a0"
+              },
+              {
+                "record_id": "src_oracle_collection_paging_25d",
+                "sha256": "c4b0b749ffeacda932fb211e40c5d7e40e26a9199933254d135cb38b71ab5e7c"
+              },
+              {
+                "record_id": "src_stripe_netsuite_deposit_automation",
+                "sha256": "bbd5994b910ba4b0c8248f9b017f79424664e88a2845d9732c6f3bc29a5999c9"
+              },
+              {
+                "record_id": "src_xero_attachment_lineage_2026",
+                "sha256": "e2cd47389217f8844ab40d7e6454deb32287888ff321e95815003d7eab504e90"
+              },
+              {
+                "record_id": "example-connected-purchase-to-payment",
+                "sha256": "f21c05fb8c94c0dd8385022baa346e9c74de16ca83cd1cb9f1c72f3a8cfd5c60"
+              }
+            ]
+          }
+        }
       }
     }
   },
@@ -87970,7 +88209,221 @@
           "affected_conclusion": "Detailed entity lineage and role/product map remain unverified; no substituted desktop SDK or third-party contract.",
           "needed_evidence": "Accessible original object/authorization documentation for the named product and cohort."
         }
-      ]
+      ],
+      "editorial_brief": {
+        "question": "When does a QuickBooks Online extract still leave a population gap?",
+        "answer": "A successful JournalEntry query is not proof of a complete general ledger. Define the company and all contributing transaction types, obtain a consistent report basis, reconcile counts and totals, and use change-data capture only inside its documented coverage/window. A webhook is a prompt to reconcile, not the accounting record.",
+        "findings": [
+          {
+            "claim": "CDC covers a bounded change horizon and supported entity types; a successful response cannot certify an older reconnection gap.",
+            "source_ids": [
+              "src_qbo_cdc_reference"
+            ],
+            "classification": "documented endpoint boundary",
+            "locator": "CDC endpoint limits and supported types",
+            "qualification": "Documentation read, not observed API behavior. The original counterexample isolates this boundary; it is not captured vendor traffic."
+          },
+          {
+            "claim": "Attachment metadata, retrieved file bytes and mutable or temporary URLs are different evidence.",
+            "source_ids": [
+              "src_qbo_attachment_lineage_2026"
+            ],
+            "classification": "documented attachment boundary",
+            "locator": "Attaching a file; Listing attachments; Downloading attachments",
+            "qualification": "The proposed evidence-digest procedure does not establish authenticity, complete source population or redistribution permission."
+          }
+        ],
+        "unknowns": [
+          "Draft P1 dossier: current entity references, exact authorizing-role/product map, commercial pricing/cohorts, incorporated terms policies and object-specific write/lock contracts remain unresolved. Report structure, published production throttling, webhook, SyncToken and OAuth sections were read; none was exercised.",
+          "No source-to-GL completeness claim,professional signoff,tenant access or observed API test.",
+          "Synthetic arithmetic establishes only the stated counterexample; it cannot verify Intuit CDC behavior.",
+          "Narrow ERP comparison is recorded; relationship/editorial integration and export verification remain pending."
+        ],
+        "reading_order": [
+          "src_qbo_cdc_reference",
+          "src_qbo_cdc_guidance_2023",
+          "src_qbo_webhook_cloudevents_2026",
+          "src_qbo_reports_migration_2026",
+          "src_qbo_id_request_semantics",
+          "src_qbo_query_reference",
+          "src_qbo_minor_versions_2026",
+          "src_qbo_webhook_contract_2026",
+          "src_qbo_stale_object_2026",
+          "src_qbo_oauth_contract_2026",
+          "src_qbo_developer_terms_20251014",
+          "src_oracle26b_journal_headers",
+          "src_oracle_collection_paging_25d",
+          "src_stripe_netsuite_deposit_automation",
+          "src_qbo_report_structure_2026",
+          "src_qbo_request_limits_2024",
+          "src_qbo_attachment_lineage_2026",
+          "example-connected-purchase-to-payment"
+        ],
+        "reading": {
+          "scope": "QuickBooks Online documentation and original recovery design; no connected company.",
+          "critical_limitation": "No live API behavior, tenant-role enforcement, accounting applicability or professional acceptance was verified. Remaining contract and access dependencies are explicit below.",
+          "sections": [
+            {
+              "title": "Define the population before paging",
+              "paragraphs": [
+                "Define company, country/product, enabled features, accounting basis and every contributing object type. A JournalEntry list, query count or filtered report alone is not a complete ledger population."
+              ]
+            },
+            {
+              "title": "Checkpoint only successful stages",
+              "paragraphs": [
+                "Persist source identity and successful page contents before advancing a checkpoint. Authorization failure, throttling, malformed data, nonadvancing cursors and ambiguous outcomes remain incomplete stages. Reconcile affected periods and source totals; never add a balancing plug."
+              ]
+            },
+            {
+              "title": "Do not collapse recovery and approval",
+              "paragraphs": [
+                "Keep token, request ID, idempotency or SyncToken behavior separate from permission and exact-payload approval. A changed amount, entity, destination, period or supporting evidence requires a renewed decision. The detailed rows distinguish documented behavior, project proposals and unknowns."
+              ]
+            },
+            {
+              "title": "Use the bounded test protocol only with separate authority",
+              "paragraphs": [
+                "The protocol names the sandbox, product, source contracts, independent expected totals and evidence needed for unresolved behavior. It was not run. This public research corpus contains no credentials, tenant payloads or accounting executor."
+              ]
+            }
+          ],
+          "example": {
+            "title": "Original reconnection gap",
+            "classification": "original-synthetic",
+            "assumptions": "Original normalized fixture; not an Intuit response or observed tenant.",
+            "columns": [
+              "Stage",
+              "Naive result",
+              "Required response"
+            ],
+            "rows": [
+              [
+                "Reconnect after44days",
+                "Ask only for the last30days",
+                "Retain older change-history gap"
+              ],
+              [
+                "Recent change8000minor units",
+                "Call8000 the complete amount",
+                "Older12000 remains outside the window"
+              ],
+              [
+                "Full fictional population20000",
+                "Patch the difference with a plug",
+                "Reconcile a fresh eligible population and preserve missing history"
+              ]
+            ]
+          },
+          "responsibilities": [
+            {
+              "role": "Extraction owner",
+              "task": "Specify population, product context and successful checkpoints.",
+              "boundary": "Cannot infer completeness from HTTP success."
+            },
+            {
+              "role": "Accounting reviewer",
+              "task": "Assess reconciliations, period and unresolved source differences.",
+              "boundary": "No professional sign-off is supplied here."
+            },
+            {
+              "role": "System owner",
+              "task": "Verify terms, roles, scopes and authorized recovery tests.",
+              "boundary": "Research permission is not tenant-operation authority."
+            }
+          ],
+          "exception": {
+            "title": "A backdated change can affect an earlier close",
+            "paragraphs": [
+              "Keep transaction/posting dates, modification timestamps and extraction time separate. A later-arriving record may alter earlier-period totals. Retain its lineage and changed evidence rather than treating a current watermark as proof the earlier period is unchanged."
+            ]
+          },
+          "gap_url": "https://github.com/HenryBranchAdams/ai-agents-in-accounting/issues/173",
+          "review": {
+            "reviewed_at": "2026-09-21",
+            "reviewer": "Codex AI-assisted editorial synthesis review",
+            "scope": "Reviewed the dossier rows, documented recovery boundaries and original counterexample against their scoped source profiles. Explicit unresolved contract and runtime questions remain; no human acceptance.",
+            "dependencies": [
+              {
+                "record_id": "guide-qbo-ledger-completeness",
+                "sha256": "94b59e16ff4236a6c597a5c9d31bc34046206797738000061bbf589449ca3527"
+              },
+              {
+                "record_id": "src_qbo_cdc_reference",
+                "sha256": "486732e68f44a5517a2b04cc7fd2af5212a8426769bb0de36208c4d0fd40b2ae"
+              },
+              {
+                "record_id": "src_qbo_cdc_guidance_2023",
+                "sha256": "cc489930b0f17da64f63ce612134b8f54ce7ae1a74407b26b21c9df34daf84dc"
+              },
+              {
+                "record_id": "src_qbo_webhook_cloudevents_2026",
+                "sha256": "8271f581ca213bc2e92bdac4f8e644aebeaf140bcdf35de312803ce50ce2e2b6"
+              },
+              {
+                "record_id": "src_qbo_reports_migration_2026",
+                "sha256": "021009acdd74ed8153d6169d137bd4089c9ca0365e22f7898839d693fac14ec2"
+              },
+              {
+                "record_id": "src_qbo_id_request_semantics",
+                "sha256": "bd04a9426d0a3f4684514045d8a9b60e18307d4f026f05bac9bc0cae6252c5dd"
+              },
+              {
+                "record_id": "src_qbo_query_reference",
+                "sha256": "62b20e02b1e981f95f87aae48d64973883f7a9fc6255a974567c1974ed422aaa"
+              },
+              {
+                "record_id": "src_qbo_minor_versions_2026",
+                "sha256": "0ea92358e90f2a4e310b5f633764c8fc14113c168bd75e8fa0ce1b2a91c5038a"
+              },
+              {
+                "record_id": "src_qbo_webhook_contract_2026",
+                "sha256": "a296e254748997fbc7e73406284efbeb49da1730cb52a124d37297695e68a370"
+              },
+              {
+                "record_id": "src_qbo_stale_object_2026",
+                "sha256": "d4eea5473dcf5d507f1e2167f96ab2b0f02bd97dd33c39b15118dd8ce3b14183"
+              },
+              {
+                "record_id": "src_qbo_oauth_contract_2026",
+                "sha256": "1504144e9c7a34f52090434a51af4ebe14651d12e833a518e3684ea4ee3dd2b9"
+              },
+              {
+                "record_id": "src_qbo_developer_terms_20251014",
+                "sha256": "ce6b2fe4fe6223f38ba90af7de49a03af1cc6ef67d25cdec7bce84088adb07fb"
+              },
+              {
+                "record_id": "src_oracle26b_journal_headers",
+                "sha256": "3a54a8909faf09706c163dacaef526f7e12562dec1ddf4d93efdf9df3d5290a0"
+              },
+              {
+                "record_id": "src_oracle_collection_paging_25d",
+                "sha256": "c4b0b749ffeacda932fb211e40c5d7e40e26a9199933254d135cb38b71ab5e7c"
+              },
+              {
+                "record_id": "src_stripe_netsuite_deposit_automation",
+                "sha256": "bbd5994b910ba4b0c8248f9b017f79424664e88a2845d9732c6f3bc29a5999c9"
+              },
+              {
+                "record_id": "src_qbo_report_structure_2026",
+                "sha256": "c13584a3b8cf1a92c38d996eab51f32340791cfa4e8abe206f4b8be986d81d7e"
+              },
+              {
+                "record_id": "src_qbo_request_limits_2024",
+                "sha256": "cad0c9885cb2c0fc6e74ae4d1d6b5818c8e9e953600410a0553a127c3b9a53e1"
+              },
+              {
+                "record_id": "src_qbo_attachment_lineage_2026",
+                "sha256": "bda0a82c12c428d793f02bba0d2cb07896ad709e1df5e5746180c74ed9f58cda"
+              },
+              {
+                "record_id": "example-connected-purchase-to-payment",
+                "sha256": "f21c05fb8c94c0dd8385022baa346e9c74de16ca83cd1cb9f1c72f3a8cfd5c60"
+              }
+            ]
+          }
+        }
+      }
     }
   },
   {

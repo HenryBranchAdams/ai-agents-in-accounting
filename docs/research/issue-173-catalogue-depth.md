@@ -284,3 +284,7 @@ Replaced the empirical guide's obsolete abstract-only description with a bounded
 ### P4/P6/P8 readable synthesis
 
 Added answer-first briefs for evaluation selection, action boundaries and claim/counterexample pairs. Original hypothetical tables remain separate from published findings and observed behavior. Reviewed the connected-close guide's affected links after the dependency check correctly flagged the revised limitation statements; renewed only those examined bindings. Detailed matrices, source pointers, exceptions and unresolved evidence remain in the canonical records. Structural record validation reaches the draft coverage boundary; final rendered and exported acceptance is pending.
+
+### P1 reading layer
+
+Added task-led Xero and QBO reading briefs over the detailed dossiers. Each presents its original incomplete-extraction counterexample, separates population/recovery/approval questions and retains named unresolved contract and runtime conditions. No endpoint test or tenant authority is implied. Structural validation reaches the expected draft coverage boundary; final combined browser and export checks remain pending.
