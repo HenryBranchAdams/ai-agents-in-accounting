@@ -193,19 +193,39 @@ test("pilot rights and historical records are preserved; public entry routes sta
   const prior = JSON.parse(
     fs.readFileSync("data/releases/2026-09-19.12427/corpus.json"),
   );
-  const old = new Map(prior.records.map((r) => [r.id, r]));
   const current = new Map(records.map((r) => [r.id, r]));
-  // This preservation contract covers the historical cohort. Later additions
-  // are validated by their own package tests and the shared record schema.
+  // Explicit issue173 amendments may deepen current records. They must not
+  // erase identity, rights or the reviewed historical statements. All other
+  // records retain the original pilot-only preservation contract.
+  const amendments = new Map([
+    ...['src_1rrurlr','src_1sbtyzp','src_0eqyd2f','src_095yto0'].map(id=>[id,'empirical_review_173']),
+    ...['src_0qwi4ry','src_finqa2021','src_apexaccounting_paper2026'].map(id=>[id,'benchmark_review_173']),
+    ...['ctrl-tool-authorization','ctrl-human-approval','ctrl-segregation-duties','ctrl-exception-routing','ctrl-version-evidence'].map(id=>[id,'accounting_action_boundary_173']),
+    ['src_06fwpim','issue_173_identity_review'],['src_0pywo86','issue_173_control_review'],
+    ['src_oracle26b_journal_headers','supplemental_reviews'],['src_oracle_collection_paging_25d','supplemental_reviews'],
+    ['src_xero_journals_completeness','reviewed_object'],['src_xero_bank_statement_boundary','review_trigger'],
+    ['guide-independent-deployment-evidence','accounting_evidence_update_173'],
+  ]);
   for (const previous of prior.records) {
     const r = current.get(previous.id);
     assert.ok(r, `Historical record removed: ${previous.id}`);
-    assert.deepEqual(r.rights, old.get(r.id).rights, r.id);
-    assert.deepEqual(r.provenance, old.get(r.id).provenance, r.id);
-    assert.equal(r.source_url, old.get(r.id).source_url);
-    assert.equal(r.review_status, old.get(r.id).review_status);
-    assert.equal(r.reviewed_at, old.get(r.id).reviewed_at);
-    if (!ids.includes(r.id)) assert.deepEqual(r, old.get(r.id), r.id);
+    assert.equal(r.kind, previous.kind);
+    assert.deepEqual(r.rights, previous.rights, r.id);
+    assert.equal(r.source_url, previous.source_url);
+    if (amendments.has(r.id)) {
+      assert.ok(r.data[amendments.get(r.id)], `${r.id}: missing scoped amendment evidence`);
+      assert.equal(r.provenance.imported_on, previous.provenance.imported_on);
+      assert.equal(r.provenance.previous_corpus_version, previous.provenance.previous_corpus_version);
+      if (r.data.empirical_review_173)
+        assert.deepEqual(r.data.previous_source_review_173, previous.data.source_review, `${r.id}: earlier source review lost`);
+      if (r.data.accounting_action_boundary_173)
+        assert.deepEqual(r.data.previous_editorial_review_173, previous.data.editorial_review, `${r.id}: earlier editorial review lost`);
+    } else {
+      assert.deepEqual(r.provenance, previous.provenance, r.id);
+      assert.equal(r.review_status, previous.review_status);
+      assert.equal(r.reviewed_at, previous.reviewed_at);
+      if (!ids.includes(r.id)) assert.deepEqual(r, previous, r.id);
+    }
   }
   for (const route of ["/", "/library", ...ids.map((id) => "/records/" + id)]) {
     for (const method of ["POST", "PUT", "PATCH", "DELETE"])
