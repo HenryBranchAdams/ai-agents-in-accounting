@@ -198,6 +198,7 @@ test("pilot rights and historical records are preserved; public entry routes sta
   // erase identity, rights or the reviewed historical statements. All other
   // records retain the original pilot-only preservation contract.
   const amendments = new Map([
+    ['example-us-operating-transactions-ledger','discovery_summary_review_173'],
     ...['src_1rrurlr','src_1sbtyzp','src_0eqyd2f','src_095yto0'].map(id=>[id,'empirical_review_173']),
     ...['src_0qwi4ry','src_finqa2021','src_apexaccounting_paper2026'].map(id=>[id,'benchmark_review_173']),
     ...['ctrl-tool-authorization','ctrl-human-approval','ctrl-segregation-duties','ctrl-exception-routing','ctrl-version-evidence'].map(id=>[id,'accounting_action_boundary_173']),
@@ -216,6 +217,12 @@ test("pilot rights and historical records are preserved; public entry routes sta
       assert.ok(r.data[amendments.get(r.id)], `${r.id}: missing scoped amendment evidence`);
       assert.equal(r.provenance.imported_on, previous.provenance.imported_on);
       assert.equal(r.provenance.previous_corpus_version, previous.provenance.previous_corpus_version);
+      if (r.data.discovery_summary_review_173) {
+        assert.equal(r.data.discovery_summary_review_173.previous_summary, previous.summary);
+        const retained = structuredClone(r); retained.summary = previous.summary;
+        delete retained.data.discovery_summary_review_173;
+        assert.deepEqual(retained, previous, "Settlement discovery amendment only changes its summary and review receipt");
+      }
       if (r.data.empirical_review_173)
         assert.deepEqual(r.data.previous_source_review_173, previous.data.source_review, `${r.id}: earlier source review lost`);
       if (r.data.accounting_action_boundary_173)

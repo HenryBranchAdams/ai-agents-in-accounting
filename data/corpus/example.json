@@ -3517,7 +3517,7 @@
     "id": "example-us-operating-transactions-ledger",
     "kind": "example",
     "title": "US operating transactions: receipt to sale, return and settlement",
-    "summary": "Original synthetic event-to-ledger fixture for inventory, payables cutoff, customer revenue, return, processor settlement, consignment and financing branches.",
+    "summary": "Original synthetic event-to-ledger fixture for inventory, payables cutoff, customer revenue and returns. Its processor settlement branch separates gross activity, third-party tax, fees, refund and bank cash; consignment and financing remain separate branches.",
     "topics": [
       "Accounting and reporting",
       "Operating transactions",
@@ -3942,7 +3942,17 @@
         "Synthetic example: no real customer, vendor, bank, processor or publisher scenario is reproduced.",
         "The values and treatments are bounded assumptions for retrieval and arithmetic checks, not professional advice, current consolidated GAAP or production validation.",
         "Current Codification, tax, contract, entity-policy, ownership and professional-review questions remain open."
-      ]
+      ],
+      "discovery_summary_review_173": {
+        "reviewed_at": "2026-09-22",
+        "previous_summary": "Original synthetic event-to-ledger fixture for inventory, payables cutoff, customer revenue, return, processor settlement, consignment and financing branches.",
+        "scope": "Metadata clarification against the existing settlement_branch, assumptions and independent branches; no arithmetic or accounting conclusion changed.",
+        "locators": [
+          "/data/settlement_branch",
+          "/data/assumptions"
+        ],
+        "limitation": "Original synthetic example, not observed accounting operations or professional acceptance."
+      }
     }
   },
   {
