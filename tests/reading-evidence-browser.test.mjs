@@ -21,7 +21,7 @@ test('evidence popovers and native outlines retain keyboard, touch, source and h
     await page.keyboard.press('Escape');await popup.waitFor({state:'hidden'});assert.equal(await button.evaluate(node=>document.activeElement===node),true);
     if(name==='mobile')await button.tap();else await button.click();await popup.waitFor();
     await popup.locator(`a[href="/records/${finding.source_ids[0]}"]`).click();await page.waitForURL(origin+'/records/'+finding.source_ids[0]);await page.goBack();await page.waitForURL(origin+'/records/'+id);
-    if(name==='mobile')await page.getByText('On this page',{exact:true}).click();
+    if(name==='mobile')await page.locator('summary:visible').filter({hasText:/^On this page$/}).click();
     await page.locator('a[data-section-link="worked-example"]:visible').click();await page.waitForURL(url=>url.hash==='#worked-example');
     const before=page.url();await page.evaluate(()=>window.scrollTo(0,document.body.scrollHeight));await page.waitForTimeout(100);assert.equal(page.url(),before,'Scroll must not rewrite fragment/history');
     await page.goBack();assert.equal(new URL(page.url()).hash,'');await page.goForward();await page.waitForURL(url=>url.hash==='#worked-example');

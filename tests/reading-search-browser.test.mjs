@@ -33,7 +33,7 @@ test('lazy whole-corpus palette preserves canonical results, focus, native readi
       await page.screenshot({path:path.join(directory,`${name}-palette.png`)});
       assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
       await page.keyboard.press('Escape');await dialog.waitFor({state:'hidden'});assert.equal(await trigger.evaluate(node=>node===document.activeElement),true);
-      await page.keyboard.press('Control+k');await dialog.waitFor();await input.fill('QuickBooks recovery');await dialog.getByText(/^Showing/).waitFor();await input.press('Enter');
+      await page.keyboard.press('Control+k');await dialog.waitFor();await input.fill('QuickBooks recovery');await dialog.getByText(/^Showing/).waitFor();await dialog.locator('[cmdk-item][aria-selected="true"]').waitFor();assert.equal(await dialog.locator('[cmdk-item][aria-selected="true"]').getAttribute('data-value'),expected[0].id);await input.press('Enter');
       await page.waitForURL(origin+'/records/'+expected[0].id);await page.goBack();await page.waitForURL(url=>url.pathname==='/library');
       await trigger.click();await dialog.waitFor();
       await page.route('**/api/v1/search-suggestions?*',route=>route.abort());

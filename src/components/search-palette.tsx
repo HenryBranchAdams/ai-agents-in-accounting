@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { createRoot, type Root } from "react-dom/client";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "./ui/dialog";
 import { Command, CommandGroup, CommandInput, CommandItem, CommandList } from "./ui/command";
@@ -17,10 +17,11 @@ function SearchPalette({ edition, trigger }: { edition: string; trigger: HTMLEle
   const [result, setResult] = useState<SearchSuggestions | null>(null);
   const [status, setStatus] = useState("");
   const [mismatch, setMismatch] = useState(false);
-  const keyboardSelection = useRef(false);
+  const [selected, setSelected] = useState(destinations[0][0]);
   const q = query.trim();
   useEffect(() => {
     setResult(null);
+    setSelected(q ? "" : destinations[0][0]);
     setMismatch(false);
     if (!open || !q) { setStatus(""); return; }
     let current = true;
@@ -42,6 +43,7 @@ function SearchPalette({ edition, trigger }: { edition: string; trigger: HTMLEle
           setMismatch(true); setStatus("The corpus has changed since this page loaded. Reload to search the current edition."); return;
         }
         setResult(body);
+        setSelected(body.items[0]?.id ?? "");
         setStatus(body.total ? `Showing ${body.items.length} of ${body.total} matches.` : "No records match this search.");
       } catch (error) {
         if (current && !abort.signal.aborted) setStatus("Search is unavailable. Check your connection or use the research library.");
@@ -50,11 +52,7 @@ function SearchPalette({ edition, trigger }: { edition: string; trigger: HTMLEle
     return () => { current = false; window.clearTimeout(timer); abort.abort(); };
   }, [q, edition, open]);
   const item = (href: string, title: string, value: string, detail?: string) => (
-    <CommandItem key={value} value={value} asChild onSelect={() => {
-      // Pointer activation keeps the anchor's native new-tab/modifier behavior.
-      // cmdk's keyboard selection dispatches a separate event, so navigate then.
-      if (keyboardSelection.current) window.location.assign(href);
-    }}>
+    <CommandItem key={value} value={value} asChild>
       <a href={href} className="flex flex-col items-start gap-1">
         <span>{title}</span>{detail ? <span>{detail}</span> : null}
       </a>
@@ -67,9 +65,15 @@ function SearchPalette({ edition, trigger }: { edition: string; trigger: HTMLEle
           <DialogTitle>Search the corpus</DialogTitle>
           <DialogDescription>Search every record. Library filters do not apply here.</DialogDescription>
         </DialogHeader>
-        <Command shouldFilter={false} label="Search every corpus record" onKeyDownCapture={event => {
-          keyboardSelection.current = event.key === "Enter" && !event.nativeEvent.isComposing;
-          queueMicrotask(() => { keyboardSelection.current = false; });
+        <Command shouldFilter={false} label="Search every corpus record" value={selected} onValueChange={setSelected} onKeyDown={event => {
+          if (event.key !== "Enter" || event.nativeEvent.isComposing || event.keyCode === 229) return;
+          const anchor = event.currentTarget.querySelector<HTMLAnchorElement>('a[cmdk-item][aria-selected="true"]');
+          if (anchor) {
+            event.preventDefault();
+            // Activate the selected native link in the same event handler. A capture
+            // flag cleared in a microtask can expire before cmdk's bubble handler.
+            anchor.click();
+          }
         }}>
           <CommandInput aria-label="Search every corpus record" placeholder="Search accounting research…" value={query} onValueChange={setQuery} maxLength={suggestionQueryLimit} />
           <CommandList>
