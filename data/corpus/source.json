@@ -74185,7 +74185,16 @@
       "access_note": "Public publisher page read on 2026-09-07; third-party full text is linked, not stored.",
       "supporting_resources": [],
       "editorial_accounting_relevance": "Useful for retaining batch and journal identifiers during ledger extraction and reconciliation research.",
-      "published_or_status": "26B documentation; REST resource version 11.13.18.05"
+      "published_or_status": "26B documentation; REST resource version 11.13.18.05",
+      "supplemental_reviews": [
+        {
+          "checked_at": "2026-09-21",
+          "reviewer": "Codex AI-assisted primary documentation review",
+          "scope": "Journal Headers endpoint index",
+          "finding": "Reconfirmed named batch-child GET paths; headers are not a complete ledger extraction.",
+          "limits": "No tenant request, permission verification or full API review."
+        }
+      ]
     }
   },
   {
@@ -75136,7 +75145,16 @@
       "supporting_resources": [],
       "editorial_accounting_relevance": "Useful for recording query scope, ordering and concurrent-change limits in evidence extraction.",
       "accounting_relevance_basis": "Editorial inference from the described scope.",
-      "published_or_status": "25D Manage Collections"
+      "published_or_status": "25D Manage Collections",
+      "supplemental_reviews": [
+        {
+          "checked_at": "2026-09-21",
+          "reviewer": "Codex AI-assisted primary documentation review",
+          "scope": "Manage Collections: Paginate and Sort",
+          "finding": "Reconfirmed limit/offset/hasMore, optional query count, unique ordering and concurrent-change warning. Generic25D guidance is not proof every26B endpoint has identical behavior.",
+          "limits": "No tenant request, permission verification or full API review."
+        }
+      ]
     }
   },
   {
@@ -100113,6 +100131,72 @@
         "Terms, entitlement, current product cohort and required approval remain separate."
       ],
       "review_trigger": "Changed organisation feature, connecting role, scope, action contract or documentation edition."
+    }
+  },
+  {
+    "id": "src_stripe_netsuite_deposit_automation",
+    "kind": "source",
+    "title": "Stripe NetSuite connector: deposit automation boundary",
+    "summary": "The connector documents deposits with separate fees and a remaining bank-statement match.",
+    "topics": [
+      "Agent engineering",
+      "Accounting and reporting"
+    ],
+    "industries": [
+      "general"
+    ],
+    "jurisdiction": "Processor documentation; account country, payment method, payout mode and contract affect applicability",
+    "source_type": "Technical reference",
+    "publisher": "Stripe",
+    "source_url": "https://docs.stripe.com/use-stripe-apps/netsuite/deposit-automation",
+    "source_ids": [],
+    "related_ids": [
+      "example-connected-processor-settlement",
+      "guide-xero-ledger-completeness",
+      "guide-qbo-ledger-completeness"
+    ],
+    "review_status": "source-checked",
+    "reviewed_at": "2026-09-21",
+    "provenance": {
+      "added_on": "2026-09-21",
+      "reviewer": "Codex (AI-assisted source review)",
+      "scope": "Original publisher Deposit automation overview and How it works read September21,2026.",
+      "evidence_urls": [
+        "https://docs.stripe.com/use-stripe-apps/netsuite/deposit-automation"
+      ],
+      "outcome": "Supports the bounded documented observations; API operation, legal applicability and permissions for an actual app remain untested.",
+      "note": "First-party connector description, not independent verification or installation."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Not included; publisher terms apply",
+      "full_text_stored": false,
+      "source_status": "unknown",
+      "source_license": null,
+      "source_license_url": null,
+      "source_permission_scope": null
+    },
+    "data": {
+      "publication": {
+        "published_at": null,
+        "edition": "Documentation read September21,2026"
+      },
+      "evidence": [
+        {
+          "claim": "The documented workflow routes payment/refund activity through Undeposited Funds and groups payout activity into deposits, with fees assigned separately. It describes currency and subsidiary handling. Users still match the deposit to bank-statement evidence.",
+          "classification": "publisher-documented product workflow",
+          "source": {
+            "url": "https://docs.stripe.com/use-stripe-apps/netsuite/deposit-automation",
+            "locator": "Overview; How it works steps1-5"
+          }
+        }
+      ],
+      "limitations": [
+        "No connector operation observed. Documentation does not prove complete source populations, accounting correctness or bank receipt for a specific payout.",
+        "Plan, mappings, currencies, subsidiaries and failure recovery need actual configuration review."
+      ],
+      "review_trigger": "Changed connector behavior, account mappings, payout mode or supported subsidiary/currency configuration."
     }
   }
 ]

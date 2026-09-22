@@ -254,3 +254,8 @@ Added an eight-candidate usable-assets collection with explicit access, quotatio
 Five existing controls now carry concrete action-boundary procedures and evidence requirements linked to the P6 guide and both cases. Historical editorial reviews are preserved; the amended records are explicitly draft pending renewed review. No control execution or actual approval is claimed.
 
 Read original Xero organisation/action and tracking-mapping payloads. Added source profiles and dossier rows separating tenant context, country/edition/currency/lock metadata, incomplete plan-plus-user capability lists, tracking dimensions and exact transaction approval. Intuit throttling support page rendered only a CSS error and the alternate API page only a loading shell; no third-party rate numbers were adopted. Remaining object contracts, narrow ERP comparison and final editorial integration remain pending.
+
+
+### P1 narrow ERP comparison
+
+Re-read existing Oracle26B journal-header index and25D collection paging/sort guidance, preserving their different edition scopes. Added one primary Stripe NetSuite deposit-workflow profile and the bounded comparison to both dossiers. Batch-child reads, generic pagination and connector settlement mapping remain distinct capabilities. No tenant, connector or banking operation occurred. Further dossier object/role/lock detail and final integration remain pending.
