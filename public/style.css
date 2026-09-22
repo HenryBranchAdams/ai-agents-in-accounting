@@ -244,3 +244,18 @@
     @apply text-2xl;
   }
 }
+
+/* Evidence is readable at browser zoom and small viewport sizes; qualifications
+   and rights scroll in full rather than being truncated. Radix owns placement. */
+[data-slot="popover-content"].evidence-preview {
+  width: min(38rem, calc(100vw - 2rem));
+  max-height: min(40rem, calc(100dvh - 2rem));
+  overflow: auto;
+  overflow-wrap: anywhere;
+}
+@media print {
+  [data-evidence-preview], [data-slot="popover-content"] { display: none; }
+}
+[data-record-outline-rail] { max-height: calc(100dvh - 4rem); overflow-y: auto; }
+[data-section-link][aria-current="location"] { font-weight: 700; text-decoration: underline; }
+.reading [id] { scroll-margin-top: 1rem; }

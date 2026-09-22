@@ -36,3 +36,14 @@ document.addEventListener("keydown", event => {
   event.preventDefault();
   void showSearch(document.activeElement instanceof HTMLElement ? document.activeElement : null);
 });
+
+if (document.querySelector("[data-evidence-preview]")) {
+  void import("../components/evidence-preview").then(module => module.initializeEvidencePreviews()).catch(() => {
+    // Canonical source links and qualifications remain complete in server HTML.
+  });
+}
+if (document.querySelector("[data-page-outline]")) {
+  void import("./reading").then(module => module.initializeReadingOutline()).catch(() => {
+    // Native anchors and complete sections remain usable without highlighting.
+  });
+}
