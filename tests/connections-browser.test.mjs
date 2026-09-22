@@ -27,7 +27,8 @@ test('graph and native List share provenance, portable state and stable interact
     const edgeLink=page.locator('#connection-list [data-connection-edge-id] > a').first();await edgeLink.focus();await page.keyboard.press('Enter');
     await page.getByText('Recorded reason 1',{exact:true}).waitFor();assert.ok(requests.some(url=>url.includes('/api/v1/connections/edge?')));
     assert.deepEqual(await positions(page),before,'Inspecting edge provenance must preserve positions');
-    await page.screenshot({path:path.join(directory,`${name}-${focus}-inspector.png`)});
+    if(name==='mobile') await page.getByRole('dialog',{name:'Connection inspector'}).evaluate(async node=>{await Promise.all(node.getAnimations().map(animation=>animation.finished.catch(()=>{})));});
+    await (name==='mobile'?page.getByRole('dialog',{name:'Connection inspector'}):page.locator('#connection-graph')).screenshot({path:path.join(directory,`${name}-${focus}-inspector.png`)});
     if(name==='mobile'){await page.keyboard.press('Escape');await page.getByRole('dialog',{name:'Connection inspector'}).waitFor({state:'hidden'});}
     const focusRow=page.locator('#connection-list [data-connection-node-id]').filter({has:page.locator(`a[href="/records/${focus}"]`)});
     await focusRow.getByRole('link',{name:'Expand by up to 10 records',exact:true}).click();await page.waitForURL(url=>url.searchParams.has('expanded'));
@@ -46,7 +47,8 @@ test('graph and native List share provenance, portable state and stable interact
      await page.setViewportSize({width:700,height:900});await page.waitForFunction(()=>document.querySelector('.connection-canvas')?.dataset.positions);if(await page.getByRole('dialog',{name:'Connection inspector'}).isVisible())await page.keyboard.press('Escape');await page.getByRole('button',{name:'Inspect selected item'}).waitFor();assert.deepEqual(await positions(page),before,'Responsive remount must retain model positions');
      await page.setViewportSize(viewport);await page.getByRole('separator',{name:'Resize graph and inspector'}).waitFor();
     }
-    await page.screenshot({path:path.join(directory,`${name}-${focus}-graph.png`)});
+    await page.getByRole('button',{name:'Fit visible graph',exact:true}).click();
+    await page.locator('#connection-graph').screenshot({path:path.join(directory,`${name}-${focus}-graph.png`)});
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
     journey.measurements.push({focus,...await canvas.evaluate(node=>({layout_ms:Number(node.dataset.layoutMs),selection_ms:Number(node.dataset.selectionMs),nodes:Number(node.dataset.nodes),edges:Number(node.dataset.edges)}))});
     const copied=await context.newPage();await copied.goto(page.url());await copied.locator('.connection-canvas').waitFor();await copied.waitForFunction(count=>Number(document.querySelector('.connection-canvas')?.dataset.nodes)===count,initialCount);assert.equal(await copied.locator('#connection-list [data-connection-edge-id]').count(),await page.locator('#connection-list [data-connection-edge-id]').count());await copied.close();

@@ -8,7 +8,7 @@ export function placeConnections(ids: string[], focus: string, saved = new Map<s
     let ring = 1, offset = slot;
     while (offset >= ring * 8) { offset -= ring * 8; ring++; }
     const angle = -Math.PI / 2 + 2 * Math.PI * offset / (ring * 8);
-    const radius = 180 + (ring - 1) * 160;
+    const radius = ring * 260;
     saved.set(id, { x: Math.cos(angle) * radius, y: Math.sin(angle) * radius });
     slot++;
   }

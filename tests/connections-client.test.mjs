@@ -11,6 +11,7 @@ test('preset placement preserves existing and restored branch positions without 
  placeConnections(['focus','b','e'],'focus',initial);placeConnections(['focus','a','b','c','d','e'],'focus',initial);for(const[id,point]of before)assert.deepEqual(initial.get(id),point);
  assert.deepEqual(initial.get('focus'),{x:0,y:0});assert.deepEqual(placeConnections(['c','focus','b','a'],'focus'),before);
  const eighty=placeConnections(Array.from({length:80},(_,i)=>String(i)),'0');assert.equal(eighty.size,80);assert.equal(new Set([...eighty.values()].map(p=>`${p.x},${p.y}`)).size,80);
+ const boxes=[...eighty.values()];for(let i=0;i<boxes.length;i++)for(let j=i+1;j<boxes.length;j++)assert.ok(Math.abs(boxes[i].x-boxes[j].x)>=180||Math.abs(boxes[i].y-boxes[j].y)>=96,`Node boxes ${i}/${j} overlap`);
 });
 
 test('browser contracts reject malformed, foreign-edition and foreign-origin responses while retaining exact assertions',()=>{

@@ -6,7 +6,7 @@ import { placeConnections, type GraphPosition } from '../connections/layout';
 import { Button } from './ui/button';
 
 export interface ConnectionCanvasMemory { positions: Map<string, GraphPosition>; focus: string | null; viewport?: { zoom: number; pan: GraphPosition } }
-const minimumZoom = 0.6;
+const minimumZoom = 0.55;
 function tokenColor(token: string) {
   // Resolve the project's semantic color through the browser's color parser.
   // Cytoscape's color parser does not support every modern CSS color syntax.
@@ -17,7 +17,7 @@ function tokenColor(token: string) {
   const [r, g, b] = context.getImageData(0, 0, 1, 1).data;
   return `rgb(${r},${g},${b})`;
 }
-const shortTitle = (title: string) => title.length > 46 ? title.slice(0, 43) + '…' : title;
+const shortTitle = (title: string) => title.length > 30 ? title.slice(0, 27) + '…' : title;
 export function ConnectionCanvas({ view, onSelect, memory }: { view: ConnectionViewDTO; onSelect: (selection: ConnectionState['selected']) => void; memory: ConnectionCanvasMemory }) {
   const container = useRef<HTMLDivElement>(null), core = useRef<Core | null>(null);
   const restoreViewport = useRef(true);
@@ -33,19 +33,20 @@ export function ConnectionCanvas({ view, onSelect, memory }: { view: ConnectionV
     if (!container.current) return;
     const foreground = tokenColor('--foreground'), background = tokenColor('--card'), border = tokenColor('--border'), selected = tokenColor('--primary');
     const style: StylesheetStyle[] = [
-      { selector: 'node', style: { width: 112, height: 48, 'background-color': background, 'border-color': border, 'border-width': 2, color: foreground, label: 'data(label)', 'font-size': 20, 'text-wrap': 'wrap', 'text-max-width': '150px', 'text-valign': 'bottom', 'text-margin-y': 6 } },
+      { selector: 'node', style: { width: 180, height: 96, 'background-color': background, 'border-color': border, 'border-width': 2, color: foreground, label: 'data(label)', 'font-size': 22, 'text-wrap': 'wrap', 'text-max-width': '160px', 'text-valign': 'center', 'text-margin-y': 0 } },
       { selector: 'node[role = "source"]', style: { shape: 'ellipse' } },
       { selector: 'node[role = "workflow"]', style: { shape: 'round-rectangle' } },
       { selector: 'node[role = "example"]', style: { shape: 'diamond' } },
       { selector: 'node[role = "guide"]', style: { shape: 'hexagon' } },
       { selector: 'node.focus', style: { 'border-width': 4, 'border-color': selected } },
-      { selector: 'edge', style: { width: 1.5, 'line-color': border, 'target-arrow-color': foreground, 'target-arrow-shape': 'triangle', 'curve-style': 'bezier', 'font-size': 16, color: foreground, 'text-background-color': background, 'text-background-opacity': 1, 'text-background-padding': '3px', 'text-rotation': 'autorotate', label: 'data(type)' } },
+      { selector: 'edge', style: { width: 1.5, 'line-color': border, 'target-arrow-color': foreground, 'target-arrow-shape': 'triangle', 'curve-style': 'bezier', 'font-size': 16, color: foreground, 'text-background-color': background, 'text-background-opacity': 1, 'text-background-padding': '3px', 'text-rotation': 'autorotate', label: '' } },
       { selector: 'edge[type = "cites"]', style: { 'line-style': 'dotted' } },
       { selector: 'edge[type = "related"]', style: { 'line-style': 'dashed' } },
-      { selector: 'edge[type = "qualifies"], edge[type = "contradicts"], edge[type = "supersedes"]', style: { width: 3, 'line-color': foreground } },
+      { selector: 'edge[type = "qualifies"], edge[type = "contradicts"], edge[type = "supersedes"]', style: { width: 3, 'line-color': foreground, label: 'data(type)' } },
       { selector: 'edge.incident', style: { width: 3, 'line-color': foreground, 'target-arrow-color': foreground } },
       { selector: '.inspected', style: { 'border-color': selected, 'border-width': 4, 'line-color': selected, width: 4 } },
-      { selector: 'node.inspected', style: { width: 112, label: 'data(fullLabel)', 'text-max-width': '260px', 'text-background-color': background, 'text-background-opacity': 1, 'text-background-padding': '5px' } },
+      { selector: 'node.inspected', style: { width: 180, label: 'data(label)' } },
+      { selector: 'edge.inspected', style: { label: 'data(type)', 'font-size': 22 } },
     ];
     const cy = cytoscape({ container: container.current, elements: [], style, layout: { name: 'preset' }, minZoom: minimumZoom, maxZoom: 2.5, wheelSensitivity: 0.2, autoungrabify: true, boxSelectionEnabled: false, autounselectify: true });
     core.current = cy;
@@ -72,7 +73,7 @@ export function ConnectionCanvas({ view, onSelect, memory }: { view: ConnectionV
       cy.elements().forEach(element => { if (!desired.has(element.id())) element.remove(); });
       for (const node of view.nodes) {
         const existing = cy.getElementById(`n:${node.id}`);
-        if (existing.empty()) cy.add({ group: 'nodes', data: { id: `n:${node.id}`, recordId: node.id, role: node.kind, label: `${node.kind}\n${shortTitle(node.title)}`, fullLabel: `${node.kind}\n${node.title}` }, position: memory.positions.get(node.id) });
+        if (existing.empty()) cy.add({ group: 'nodes', data: { id: `n:${node.id}`, recordId: node.id, role: node.kind, label: `${node.kind}\n${shortTitle(node.title)}`, fullLabel: node.title }, position: memory.positions.get(node.id) });
         else if (refocused) existing.position(memory.positions.get(node.id)!);
       }
       for (const edge of view.edges) if (cy.getElementById(`r:${edge.id}`).empty()) cy.add({ group: 'edges', data: { id: `r:${edge.id}`, edgeId: edge.id, source: `n:${edge.from}`, target: `n:${edge.to}`, type: edge.type } });
@@ -107,7 +108,7 @@ export function ConnectionCanvas({ view, onSelect, memory }: { view: ConnectionV
       <a href="#connection-list">Use accessible List</a>
     </div>
     <details><summary>Graph legend and navigation</summary>
-      <p>Arrows follow recorded direction. Circle: source; rounded rectangle: workflow; diamond: synthetic example; hexagon: guide. Other kinds use a circle and their kind label. Size does not indicate importance or confidence. Positions help navigation; distance is not measured similarity or evidence strength.</p>
+      <p>Arrows follow recorded direction. Dotted lines cite a source; dashed lines record a related item. Solid lines carry recorded annotations. Select a line for its exact type and scope. Circle: source; rounded rectangle: workflow; diamond: synthetic example; hexagon: guide. Other kinds use a circle and their kind label. Size does not indicate importance or confidence. Positions help navigation; distance is not measured similarity or evidence strength.</p>
       <p>Drag inside the graph to pan. Scroll outside the graph to read the page. Use these controls or the List without dragging.</p>
       <div className="flex flex-wrap gap-2">
         <Button type="button" variant="outline" size="sm" onClick={() => core.current?.panBy({ x: 120, y: 0 })}>Pan left</Button>
