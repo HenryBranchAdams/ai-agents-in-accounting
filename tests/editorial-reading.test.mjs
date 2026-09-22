@@ -194,7 +194,12 @@ test("pilot rights and historical records are preserved; public entry routes sta
     fs.readFileSync("data/releases/2026-09-19.12427/corpus.json"),
   );
   const old = new Map(prior.records.map((r) => [r.id, r]));
-  for (const r of records) {
+  const current = new Map(records.map((r) => [r.id, r]));
+  // This preservation contract covers the historical cohort. Later additions
+  // are validated by their own package tests and the shared record schema.
+  for (const previous of prior.records) {
+    const r = current.get(previous.id);
+    assert.ok(r, `Historical record removed: ${previous.id}`);
     assert.deepEqual(r.rights, old.get(r.id).rights, r.id);
     assert.deepEqual(r.provenance, old.get(r.id).provenance, r.id);
     assert.equal(r.source_url, old.get(r.id).source_url);

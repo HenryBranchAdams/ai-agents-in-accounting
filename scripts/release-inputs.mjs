@@ -43,6 +43,13 @@ export function editionProblems(root) {
   const problems = [];
   const catalog = json(path.join(root, "data/catalog.json"));
   const edition = catalog.corpus_version;
+  const preparations = path.join(root, "outputs/editions");
+  if (fs.existsSync(preparations)) {
+    for (const file of fs.readdirSync(preparations).filter(file => /^\d{4}-\d{2}-\d{2}\.\d+\.json$/.test(file))) {
+      if (json(path.join(preparations, file)).status === "promoting")
+        problems.push(`Interrupted edition finalization: ${file}; resume the same candidate before verification`);
+    }
+  }
   if (!/^\d{4}-\d{2}-\d{2}\.\d+$/.test(edition)) problems.push("data/catalog.json: invalid corpus_version");
   // These are synchronized current headers, not older independently reviewed
   // classification/exception versions or immutable historical snapshots.

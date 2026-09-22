@@ -264,3 +264,7 @@ Re-read existing Oracle26B journal-header index and25D collection paging/sort gu
 ### P1 QBO report and request contracts
 
 Recovered original Run reports and November2024 throttling notice through supported Exa fetch after web shells. Added report basis/filter/nesting/compliance-date and published production-limit profiles and dossier rows. JournalEntry, linked-transaction and authorization pages still returned loading/empty content through attempted routes; exact affected conclusions and needed evidence are recorded. No API request, load test or pricing entitlement was inferred.
+
+### Integration with PR181 main
+
+Merged main186b6b14cc43f0d68c650e877d77719a075d4a72 into the research branch after research98c58b7272791edfc8274ce58b26e5b91d37aec7. Three array insertion conflicts were resolved by stable record ID. No record was independently changed by both sides; every changed record from each side was compared against the resolved result and preserved exactly. Combined counts are904 sources,276 guides and38 collections. Historical release and snapshot paths match main without changes. Typecheck and all11 connected-case/approval tests passed. Record validation reaches the expected stale draft mapping boundary. This is source integration evidence, not final corpus edition, full CI, rendered compatibility, human acceptance or publication proof.

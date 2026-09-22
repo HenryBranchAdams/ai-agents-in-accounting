@@ -1,3 +1,4 @@
+import { FamilyOfficeReference } from "../components/family-office-reference";
 import { editedBrief } from "../editorial";
 import { BriefReading } from "../components/brief-reading";
 import { Alert, AlertTitle, AlertDescription } from "../components/ui/alert";
@@ -521,7 +522,8 @@ export function recordPage(r: CorpusRecord) {
             ""
           )}
           {"\n      "}
-          {r.kind === "collection" ? (
+          <FamilyOfficeReference record={r} />
+          {r.kind === "collection" && !r.data.family_office_reference ? (
             <>
               <section>
                 <h2>{"In this collection"}</h2>

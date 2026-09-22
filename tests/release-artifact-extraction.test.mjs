@@ -37,6 +37,10 @@ with zipfile.ZipFile(file,'w') as z:
     const result=JSON.parse(run());assert.equal(result.provenance_verified,false);
     assert.equal(fs.readFileSync(path.join(out,"application/dist/server/index.js"),"utf8"),'throw new Error("must never execute artifact code")');
     assert.throws(run,/fresh artifact destination/);
+    const rebind=()=>JSON.parse(execFileSync('python3',[path.resolve('scripts/verify-release-archive.py'),zip,out,hash],{encoding:'utf8',stdio:'pipe'}));
+    assert.equal(rebind().artifact_sha256,hash);
+    fs.writeFileSync(path.join(out,'release-package.json'),'{}');
+    assert.throws(rebind,/manifest differs/);
    }else{assert.throws(run);assert.equal(fs.existsSync(out),false);}
    assert.equal(fs.existsSync(out+".lock"),false);
    assert.throws(()=>execFileSync("python3",[extractor,zip,path.join(root,"wrong-digest"),"--sha256","0".repeat(64)],{stdio:"pipe"}),/digest differs/);

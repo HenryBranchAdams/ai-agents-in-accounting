@@ -1,42 +1,53 @@
-import { execFileSync } from "node:child_process";
 import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
-import { hash } from './release-storage.mjs';
-// Stage only executable code and small static UI assets. Keep storage outside dist.
-const manifestBody = fs.readFileSync('dist/storage/manifest.json');
-const manifest = JSON.parse(manifestBody);
-const qualification = JSON.parse(fs.readFileSync('dist/storage/qualification.json'));
-assert.equal(qualification.source_revision, execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim(), 'Qualified revision is stale');
-assert.equal(qualification.storage_manifest, hash(manifestBody), 'Qualification is stale');
-const local = process.argv.includes('--local');
-if (!local) {
-  const receipt = JSON.parse(fs.readFileSync('dist/storage/import-receipt.json'));
-  assert.equal(receipt.manifest, hash(manifestBody), 'Import is incomplete or stale');
+import {pathToFileURL} from 'node:url';
+import {authenticateExistingRelease,inspectProvenance} from './consume-release.mjs';
+import {importStorage} from './import-release.mjs';
+import {validatePackage,regularFiles} from './release-package.mjs';
+import {sha256} from './release-inputs.mjs';
+
+// The caller first reads the native Sites project/origin/audience and configures
+// the import secret. This stage cannot activate a saved version or change env.
+export async function stageRelease({runId,revision,attempt,directory,archive,destination,origin,projectId,token}={}, {authenticate=authenticateExistingRelease,importObjects=importStorage,inspect=inspectProvenance,validate=validatePackage}={}) {
+  assert.ok(destination&&!fs.existsSync(destination)&&!fs.existsSync(`${destination}.stage.json`),'Use a fresh staging destination');
+  const verified=await authenticate({runId,revision,attempt,directory,archive});
+  const hosting=JSON.parse(fs.readFileSync(path.join(directory,'application/.openai/hosting.json')));
+  assert.equal(hosting.project_id,projectId,'Artifact targets a different Sites project');
+  assert.equal(hosting.r2,'BUCKET');
+  const seal=await importObjects({origin,directory:path.join(directory,'storage'),token});
+  assert.equal(seal.manifest,verified.storage.manifest);
+  // Storage import can take minutes. Main/run/artifact identity is checked again
+  // before assembling the stage; a resumed old candidate cannot replace main.
+  const current=inspect({runId,revision,attempt});
+  assert.deepEqual(current.proof,verified.proof,'Main or authoritative artifact changed during import');
+  const checked=validate(directory);
+  assert.equal(sha256(fs.readFileSync(path.join(directory,'release-package.json'))),verified.package_sha256,'Package changed during import');
+  assert.equal(checked.storage.manifest,seal.manifest);
+  const parent=path.dirname(path.resolve(destination));fs.mkdirSync(parent,{recursive:true});
+  const temporary=fs.mkdtempSync(path.join(parent,'.release-stage-'));
+  try{
+    fs.cpSync(path.join(directory,'application'),temporary,{recursive:true,errorOnExist:true,force:false});
+    const expected=checked.manifest.files.filter(f=>f.path.startsWith('application/'));
+    assert.deepEqual(regularFiles(temporary),expected.map(f=>f.path.slice('application/'.length)).sort());
+    for(const file of expected){
+      const target=path.join(temporary,file.path.slice('application/'.length));
+      assert.equal(sha256(fs.readFileSync(target)),file.sha256);assert.equal(fs.statSync(target).mode&0o777,file.mode);
+    }
+    assert.ok(!fs.existsSync(destination),'Staging destination changed');fs.renameSync(temporary,destination);
+    const receipt={schema_version:1,status:'staged',project_id:projectId,origin,github:verified.proof,package_sha256:verified.package_sha256,storage:seal,staged_files:expected.map(f=>({path:f.path.slice('application/'.length),sha256:f.sha256,mode:f.mode})),activation_authority:false};
+    fs.writeFileSync(`${destination}.stage.json`,JSON.stringify(receipt,null,2)+'\n',{flag:'wx',mode:0o600});
+    return receipt;
+  }catch(error){
+    if(fs.existsSync(temporary))fs.renameSync(temporary,`${temporary}.failed`);
+    throw error;
+  }
 }
-const destination = process.argv[2] || 'outputs/release';
-assert.ok(!fs.existsSync(destination), 'Use a fresh staging destination');
-fs.mkdirSync(`${destination}/dist`, { recursive: true });
-fs.cpSync('dist/server', `${destination}/dist/server`, { recursive: true });
-fs.cpSync('dist/.openai', `${destination}/dist/.openai`, { recursive: true });
-fs.mkdirSync(`${destination}/.openai`, { recursive: true });
-fs.copyFileSync('.openai/hosting.json', `${destination}/.openai/hosting.json`);
-for (const name of fs.readdirSync('dist/client', { recursive: true })) {
-  const file = `dist/client/${name}`;
-  if (!fs.statSync(file).isFile() || /^(downloads|releases|assets\/objects)(\/|$)/.test(name)) continue;
-  const target = `${destination}/dist/client/${name}`;
-  fs.mkdirSync(path.dirname(target), { recursive: true }); fs.copyFileSync(file, target);
+if(import.meta.url===pathToFileURL(process.argv[1]||'').href){
+  try{
+    const [run,attempt,revision,directory,archive,destination,origin,projectId,...extra]=process.argv.slice(2);
+    assert.ok(projectId&&!extra.length,'Usage: stage-release.mjs RUN ATTEMPT SHA PACKAGE ZIP DESTINATION HTTPS_ORIGIN PROJECT_ID; credential on stdin');
+    let token='';for await(const chunk of process.stdin){token+=chunk;if(token.length>4097)throw new Error('Import credential too long');}
+    console.log(JSON.stringify(await stageRelease({runId:Number(run),attempt:Number(attempt),revision,directory,archive,destination,origin,projectId,token:token.trim()}),null,2));
+  }catch(error){console.error(error.message);process.exitCode=1;}
 }
-if (local) {
-  const configPath = `${destination}/dist/server/wrangler.json`;
-  const config = JSON.parse(fs.readFileSync(configPath));
-  config.find_additional_modules = true;
-  config.rules = [{ type: 'ESModule', globs: ['**/*.js'] }];
-  fs.writeFileSync(configPath, JSON.stringify(config));
-}
-if (local) fs.cpSync('dist/client/assets/objects', `${destination}/dist/client/assets/objects`, { recursive: true });
-for (const [key, size] of Object.entries(manifest.objects)) {
-  const body = fs.readFileSync(`dist/client/assets/objects/${key}`);
-  assert.equal(body.length, size); assert.equal(hash(body), key);
-}
-console.log(JSON.stringify({ staged: destination, storage_manifest: hash(manifestBody), objects: Object.keys(manifest.objects).length }));
