@@ -11,29 +11,30 @@ export const resetConnections = (state: ConnectionState, id: string): Connection
 const inspectURL = (edge: Pick<GraphEdge, 'id'>) => `/connections/edge?${new URLSearchParams({ id: edge.id })}`;
 export function ConnectionInspector({ view, evidence, status = '' }: { view: ConnectionViewDTO; evidence?: GraphEdge; status?: string }) {
   const selection = view.state.selected;
-  const node = selection?.kind === 'node' ? view.nodes.find(item => item.id === selection.id) : undefined;
+  const node = selection?.kind === 'node' ? view.nodes.find(item => item.id === selection.id) : !selection ? view.nodes.find(item => item.id === view.state.focus) : undefined;
   const edge = selection?.kind === 'edge' ? view.edges.find(item => item.id === selection.id) : undefined;
   if (node) {
     const expansion = view.state.expanded.find(item => item.id === node.id);
     const expanded = expansion ? view.state.expanded.map(item => item.id === node.id ? { ...item, steps: item.steps + 1 } : item) : [...view.state.expanded, { id: node.id, steps: 1 }];
     const canExpand = view.counts.capacity < graphLimits.maxNodes && (expansion?.steps ?? 0) < 8 && (expansion || view.state.expanded.length < graphLimits.maxExpansions);
-    return <><h3>{node.title}</h3><NodeContext node={node} /><p><a href={connectionURL(resetConnections(view.state, node.id))}>Refocus on this record</a>{canExpand ? <> · <a href={connectionURL({ ...view.state, expanded })}>Expand this record</a></> : null}</p></>;
+    return <><h3>{node.title}</h3><p>{node.id === view.state.focus ? 'This is the focus record.' : `Shown through recorded connections from ${(view.ownership[node.id] ?? []).map(id => view.nodes.find(item => item.id === id)?.title ?? id).join('; ')}.`}</p><NodeContext node={node} /><p><a href={connectionURL(resetConnections(view.state, node.id))}>Refocus on this record</a>{canExpand ? <> · <a href={connectionURL({ ...view.state, expanded })}>Expand this record</a></> : null}</p></>;
   }
-  if (edge) return <><h3>{view.nodes.find(node => node.id === edge.from)?.title} → {view.nodes.find(node => node.id === edge.to)?.title}: {edge.type}</h3>{evidence?.id === edge.id ? <ConnectionEvidence edge={evidence} /> : <p role="status">{status || 'Loading recorded evidence…'}</p>}<p><a href={inspectURL(edge)}>Open the complete connection evidence</a></p></>;
+  if (edge) return <><h3>{view.nodes.find(node => node.id === edge.from)?.title} → {view.nodes.find(node => node.id === edge.to)?.title}: {edge.type}</h3><p><a href={`/records/${encodeURIComponent(edge.from)}`}>Read the source record</a> · <a href={`/records/${encodeURIComponent(edge.to)}`}>Read the target record</a></p>{evidence?.id === edge.id ? <ConnectionEvidence edge={evidence} /> : <p role="status">{status || 'Loading recorded evidence…'}</p>}<p><a href={inspectURL(edge)}>Open the complete connection evidence</a></p></>;
   return <p>Select a record or relationship to inspect it without expanding or changing focus.</p>;
 }
 export function ConnectionsExplorer({ view, kindNames, evidence, graph, inspector }: { view: ConnectionViewDTO; kindNames: Record<string, string>; evidence?: GraphEdge; graph?: ReactNode; inspector?: ReactNode }) {
   const state = view.state;
   const focus = view.nodes.find(node => node.id === state.focus)!;
   const byId = new Map(view.nodes.map(node => [node.id, node]));
-  const link = (updates: Partial<ConnectionState>) => connectionURL({ ...state, ...updates });
-  const changeFocus = (id: string) => connectionURL(resetConnections(state, id));
+  const link = (updates: Partial<ConnectionState>) => connectionURL({ ...state, ...updates }, Object.keys(kindNames));
+  const changeFocus = (id: string) => connectionURL(resetConnections(state, id), Object.keys(kindNames));
   const expand = (id: string) => {
     const existing = state.expanded.find(item => item.id === id);
     if ((existing?.steps ?? 0) >= 8 || (!existing && state.expanded.length >= graphLimits.maxExpansions) || view.counts.capacity >= graphLimits.maxNodes) return null;
     return link({ expanded: existing ? state.expanded.map(item => item.id === id ? { ...item, steps: item.steps + 1 } : item) : [...state.expanded, { id, steps: 1 }] });
   };
   return <>
+      <p className="sr-only" role="status" aria-live="polite">{state.selected ? `Selected ${state.selected.kind}: ${state.selected.kind === 'node' ? byId.get(state.selected.id)?.title ?? state.selected.id : view.edges.find(edge => edge.id === state.selected!.id)?.type ?? 'relationship'}.` : `Focus details: ${focus.title}.`} {view.nodes.length} records and {view.edges.length} relationships visible.</p>
       <section className="max-w-reading"><h2>Focus: {focus.title}</h2><p><a href={focus.href}>Read this record</a></p>
         <p>{view.counts.visible_records} visible records of {view.counts.matching_records} matching records; {view.counts.visible_edges} visible relationships of {view.counts.matching_edges} matching relationships; {view.counts.assertions} provenance items.</p>
         <p>{view.counts.omitted_by_filter} relationships omitted by filters; {view.counts.omitted_by_budget} omitted by node or edge limits. Counts cover the focus and explicit expansion neighborhoods. The focus remains visible when its kind is filtered out.</p>
@@ -63,7 +64,9 @@ export function ConnectionsExplorer({ view, kindNames, evidence, graph, inspecto
             </FieldSet>
           </FieldGroup>
         </details>
-        <p><a href={link({ mode: 'list' })} aria-current={state.mode === 'list' ? 'page' : undefined}>List</a> · <a href={link({ mode: 'graph' })} aria-current={state.mode === 'graph' ? 'page' : undefined}>Graph</a> · <a href={connectionURL({ ...resetConnections(state, focus.id), types: [...connectionTypes], kinds: Object.keys(kindNames) })}>Reset exploration</a></p>
+        <p><a href={link({ mode: 'list' })} aria-current={state.mode === 'list' ? 'page' : undefined}>List</a> · <a href={link({ mode: 'graph' })} aria-current={state.mode === 'graph' ? 'page' : undefined}>Graph</a> · <a href={connectionURL({ ...resetConnections(state, focus.id), types: [...connectionTypes], kinds: Object.keys(kindNames) }, Object.keys(kindNames))}>Reset exploration</a></p>
+        <p><a href={connectionURL(state, Object.keys(kindNames))}>Link to this view</a></p>
+        {state.selected ? <p><a href={link({ selected: null })}>Clear selection and inspect focus</a></p> : null}
         {state.expanded.length ? <p><a href={link({ expanded: state.expanded.slice(0, -1) })}>Undo last expansion</a></p> : null}
         <p>Maximum: {graphLimits.maxNodes} records and {graphLimits.maxEdges} relationships. Refocus or narrow filters when the limit is reached.</p>
       </section>

@@ -42,9 +42,10 @@ export async function projectConnections(records: CorpusRecord[], annotations: u
     const file = `data/corpus/${record.kind}.json`, owner = record.id;
     const reference = (value: unknown, pointer: string, type: ConnectionType, origin: GraphAssertion["origin"], reason: string, limitations: string[] = [], findingLocator?: string) => {
       const ids = strings(value);
-      for (const [index, to] of ids.entries()) {
-        const locator = Array.isArray(value) ? `${pointer}/${index}` : pointer;
-        const locators: GraphLocator[] = [{ kind: "corpus-pointer", owner_id: owner, locator, status: pointerValue(record, locator) === to ? "resolved" : "unresolved", candidate_owners: [owner] }];
+      for (const to of new Set(ids)) {
+        const locations = ids.flatMap((id, index) => id === to ? [Array.isArray(value) ? `${pointer}/${index}` : pointer] : []);
+        const locator = locations[0];
+        const locators: GraphLocator[] = locations.map(location => ({ kind: "corpus-pointer", owner_id: owner, locator: location, status: pointerValue(record, location) === to ? "resolved" : "unresolved", candidate_owners: [owner] }));
         if (findingLocator) locators.push({ kind: "finding-locator", owner_id: owner, locator: findingLocator, status: "unresolved", candidate_owners: [] });
         add(owner, to, type, { origin, owner_file: file, stored_at: locator, reason, limitations, source_ids: [owner], locators });
       }

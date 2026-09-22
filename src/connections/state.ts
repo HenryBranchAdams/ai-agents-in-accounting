@@ -78,17 +78,17 @@ export function parseConnectionState(params: URLSearchParams, knownKinds: readon
 }
 
 /** The URL is the whole portable exploration state. Expansion order records ownership priority. */
-export function connectionURL(state: ConnectionState): string {
+export function connectionURL(state: ConnectionState, knownKinds?: readonly string[]): string {
   const params = new URLSearchParams();
   if (state.query) params.set('q', state.query);
   if (state.focus) params.set('focus', state.focus);
   if (state.selected) params.set('selected', `${state.selected.kind}:${state.selected.id}`);
-  params.set('direction', state.direction);
-  params.set('types', sorted(state.types).join(','));
-  params.set('kinds', sorted(state.kinds).join(','));
+  if (state.direction !== 'both') params.set('direction', state.direction);
+  if (sorted(state.types).join(',') !== sorted([...connectionTypes]).join(',')) params.set('types', sorted(state.types).join(','));
+  if (!knownKinds || sorted(state.kinds).join(',') !== sorted([...knownKinds]).join(',')) params.set('kinds', sorted(state.kinds).join(','));
   if (state.expanded.length) params.set('expanded', JSON.stringify(state.expanded.map(({ id, steps }) => [id, steps])));
-  params.set('mode', state.mode);
-  params.set('budget', String(state.budget));
+  if (state.mode !== 'list') params.set('mode', state.mode);
+  if (state.budget !== graphLimits.defaultNodes) params.set('budget', String(state.budget));
   if (state.corpus) params.set('corpus', state.corpus);
   if (state.index) params.set('index', state.index);
   return `/connections?${params}`;

@@ -43,6 +43,7 @@ export function ConnectionCanvas({ view, onSelect, memory }: { view: ConnectionV
       { selector: 'edge[type = "cites"]', style: { 'line-style': 'dotted' } },
       { selector: 'edge[type = "related"]', style: { 'line-style': 'dashed' } },
       { selector: 'edge[type = "qualifies"], edge[type = "contradicts"], edge[type = "supersedes"]', style: { width: 3, 'line-color': foreground } },
+      { selector: 'edge.incident', style: { width: 3, 'line-color': foreground, 'target-arrow-color': foreground } },
       { selector: '.inspected', style: { 'border-color': selected, 'border-width': 4, 'line-color': selected, width: 4 } },
       { selector: 'node.inspected', style: { width: 112, label: 'data(fullLabel)', 'text-max-width': '260px', 'text-background-color': background, 'text-background-opacity': 1, 'text-background-padding': '5px' } },
     ];
@@ -90,17 +91,31 @@ export function ConnectionCanvas({ view, onSelect, memory }: { view: ConnectionV
   useEffect(() => {
     const cy = core.current; if (!cy) return;
     const started = performance.now();
-    cy.elements().removeClass('inspected');
-    if (view.state.selected) cy.getElementById(`${view.state.selected.kind === 'node' ? 'n' : 'r'}:${view.state.selected.id}`).addClass('inspected');
+    cy.elements().removeClass('inspected incident');
+    if (view.state.selected) {
+      const selected = cy.getElementById(`${view.state.selected.kind === 'node' ? 'n' : 'r'}:${view.state.selected.id}`); selected.addClass('inspected');
+      if (view.state.selected.kind === 'node') selected.connectedEdges().addClass('incident');
+    }
     if (container.current) container.current.dataset.selectionMs = String(performance.now() - started);
   }, [view.state.selected, view.nodes, view.edges]);
   return <section aria-label="Connection graph">
     <div className="flex flex-wrap gap-2">
       <Button type="button" variant="outline" size="sm" onClick={() => { const cy = core.current; if (cy && view.state.focus) { cy.zoom(1); cy.center(cy.getElementById(`n:${view.state.focus}`)); setNotice('Centered on the focus record at readable zoom.'); } }}>Recenter focus</Button>
       <Button type="button" variant="outline" size="sm" onClick={fit}>Fit visible graph</Button>
+      <Button type="button" variant="outline" size="sm" onClick={() => { const cy = core.current; if (cy) cy.zoom(Math.min(cy.maxZoom(), cy.zoom() * 1.25)); }}>Zoom in</Button>
+      <Button type="button" variant="outline" size="sm" onClick={() => { const cy = core.current; if (cy) cy.zoom(Math.max(minimumZoom, cy.zoom() / 1.25)); }}>Zoom out</Button>
       <a href="#connection-list">Use accessible List</a>
     </div>
-    <p>Arrows follow recorded direction. Circle: source; rounded rectangle: workflow; diamond: example; hexagon: guide. Other kinds use a circle and their kind label. Size does not indicate importance or confidence.</p>
+    <details><summary>Graph legend and navigation</summary>
+      <p>Arrows follow recorded direction. Circle: source; rounded rectangle: workflow; diamond: synthetic example; hexagon: guide. Other kinds use a circle and their kind label. Size does not indicate importance or confidence. Positions help navigation; distance is not measured similarity or evidence strength.</p>
+      <p>Drag inside the graph to pan. Scroll outside the graph to read the page. Use these controls or the List without dragging.</p>
+      <div className="flex flex-wrap gap-2">
+        <Button type="button" variant="outline" size="sm" onClick={() => core.current?.panBy({ x: 120, y: 0 })}>Pan left</Button>
+        <Button type="button" variant="outline" size="sm" onClick={() => core.current?.panBy({ x: -120, y: 0 })}>Pan right</Button>
+        <Button type="button" variant="outline" size="sm" onClick={() => core.current?.panBy({ x: 0, y: 120 })}>Pan up</Button>
+        <Button type="button" variant="outline" size="sm" onClick={() => core.current?.panBy({ x: 0, y: -120 })}>Pan down</Button>
+      </div>
+    </details>
     <div ref={container} className="connection-canvas" role="img" aria-label="Recorded directed connections. Use the adjacent List for keyboard exploration." />
     <p role="status">{notice}</p>
   </section>;

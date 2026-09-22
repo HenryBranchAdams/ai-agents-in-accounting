@@ -16,8 +16,17 @@ async function readVerifiedIndex(request: Request, assets?: Fetcher) {
   if (!assets) throw new Error('Connection index unavailable');
   const response = await assets.fetch(new Request(new URL(CONNECTION_INDEX.path, request.url)));
   if (!response.ok || !response.body) throw new Error('Connection index unavailable');
-  const bytes = await new Response(response.body.pipeThrough(new DecompressionStream('gzip'))).arrayBuffer();
-  if (bytes.byteLength !== CONNECTION_INDEX.bytes) throw new Error('Connection index size mismatch');
+  const reader = response.body.pipeThrough(new DecompressionStream('gzip')).getReader();
+  const bytes = new Uint8Array(CONNECTION_INDEX.bytes);
+  let offset = 0;
+  try {
+    while (true) {
+      const { value, done } = await reader.read(); if (done) break;
+      if (offset + value.byteLength > bytes.byteLength) throw new Error('Connection index size mismatch');
+      bytes.set(value, offset); offset += value.byteLength;
+    }
+  } finally { await reader.cancel().catch(() => {}); reader.releaseLock(); }
+  if (offset !== CONNECTION_INDEX.bytes) throw new Error('Connection index size mismatch');
   const digest = [...new Uint8Array(await crypto.subtle.digest('SHA-256', bytes))].map(byte => byte.toString(16).padStart(2, '0')).join('');
   if (digest !== CONNECTION_INDEX.sha256) throw new Error('Connection index digest mismatch');
   const snapshot = JSON.parse(new TextDecoder().decode(bytes)) as GraphSnapshot;

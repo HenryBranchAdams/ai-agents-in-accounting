@@ -6,7 +6,7 @@ test('projection keeps canonical direction, parallel types, cycles, self referen
  const a=record('a',{source_ids:['b','b'],related_ids:['b','a']}),b=record('b',{source_ids:['a']});
  const annotations={edges:[{from:'b',to:'a',type:'supports',provenance:{source_ids:['a','b'],pointers:['/summary'],reason:'Bibliography membership only'}},{from:'b',to:'a',type:'supports',provenance:{source_ids:['b'],pointers:['/data'],reason:'A second limited assertion'}}]};
  const graph=await projectConnections([a,b],annotations,'edition');assert.equal(graph.nodes.length,2);assert.equal(graph.edges.length,5);assert.equal(graph.counts.self_references,1);
- const cited=graph.edges.find(e=>e.id===edgeIdentity('a','b','cites'));assert.equal(cited.assertions.length,2);assert.ok(graph.edges.every(e=>e.type!=='cited_by'));
+ const cited=graph.edges.find(e=>e.id===edgeIdentity('a','b','cites'));assert.equal(cited.assertions.length,1);assert.equal(cited.assertions[0].locators.length,2);assert.ok(graph.edges.every(e=>e.type!=='cited_by'));
  const support=graph.edges.find(e=>e.type==='supports');assert.equal(support.assertions.length,2);assert.ok(support.assertions.some(a=>a.reason==='Bibliography membership only'));
  const ambiguous=support.assertions.find(a=>a.reason==='Bibliography membership only').locators[0];assert.equal(ambiguous.owner_id,null);assert.equal(ambiguous.status,'ambiguous');assert.deepEqual(ambiguous.candidate_owners,['a','b']);
  assert.ok(graph.diagnostics.some(d=>d.code==='ambiguous-locator'));

@@ -46,7 +46,8 @@ test('generated index identity matches its bytes and bounded API/List facts agre
 
 test('connection routing rejects malformed state and stale identities and offers direct provenance inspection', async () => {
   for (const query of ['focus=a&focus=b', 'focus=a&budget=999', 'focus=a&types=inferred', 'focus=a&unknown=1']) assert.equal((await get('/connections?' + query)).status, 400, query);
-  assert.equal((await get('/connections?focus=unknown')).status, 404);
+  const unknown = await get('/connections?focus=unknown'); assert.equal(unknown.status, 404); assert.ok((await unknown.text()).includes('Find a current record'));
+  const stalePage = await get('/connections?focus=wf-r2r-bank-reconciliations&index=stale'); assert.equal(stalePage.status, 409); const staleHTML = await stalePage.text(); assert.ok(staleHTML.includes('Reload against the current corpus edition')); assert.ok(staleHTML.includes('focus=wf-r2r-bank-reconciliations&amp;mode=graph'));
   const stale = await get('/api/v1/connections?focus=wf-r2r-bank-reconciliations&index=stale'); assert.equal(stale.status, 409); assert.equal(stale.headers.get('Cache-Control'), 'no-store');
   const filtered = await (await get('/api/v1/connections?focus=guide-accounting-claim-counterexamples&types=cites')).json();
   assert.ok(filtered.hidden_material.length >= 5);

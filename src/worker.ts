@@ -2,7 +2,7 @@ import { connectionViewDTO } from './connections/view';
 import { parseConnectionState, ConnectionQueryError } from './connections/state';
 import { ConnectionSnapshotError } from './connections/select';
 import { loadConnectionIndex, connectionIndexMetadata, ConnectionIndexUnavailable } from './connections/service';
-import { connectionsPage, connectionEdgePage } from './pages/connections';
+import { connectionsPage, connectionEdgePage, connectionsErrorPage } from './pages/connections';
 declare const CLIENT_ASSETS: readonly string[];
 import { searchSuggestions } from "./search-suggestions";
 import {
@@ -436,7 +436,7 @@ async function route(request: Request, env: Env) {
   if (path === '/connections' || path === '/api/v1/connections') {
     const state = parseConnectionState(url.searchParams, Object.keys(kinds));
     if (!state.focus) return path.startsWith('/api/') ? json({ error: 'Choose a focus record.' }, 400) : html(connectionsPage(state));
-    if (!getRecord(state.focus)) return path.startsWith('/api/') ? json({ error: 'Unknown focus record. Search /connections for a current record.' }, 404) : html(errorPage(404, 'Unknown focus record. Search /connections for a current record.'), 404);
+    if (!getRecord(state.focus)) return path.startsWith('/api/') ? json({ error: 'Unknown focus record. Search /connections for a current record.' }, 404) : html(connectionsErrorPage(404, 'Unknown focus record. Search for a current record.'), 404);
     const index = await loadConnectionIndex(request, env.ASSETS);
     const view = index.select(state);
     return path.startsWith('/api/') ? json(connectionViewDTO(view)) : html(connectionsPage(view.state, view));
@@ -446,7 +446,7 @@ async function route(request: Request, env: Env) {
     const index = await loadConnectionIndex(request, env.ASSETS);
     const edge = index.edge(url.searchParams.get('id')!);
     if (url.searchParams.has('index') && url.searchParams.get('index') !== connectionIndexMetadata().index_version) throw new ConnectionSnapshotError('The connection index changed. Reload the exploration before inspecting evidence.');
-    if (!edge) return path.startsWith('/api/') ? json({ error: 'Unknown recorded connection.' }, 404) : html(errorPage(404, 'Unknown recorded connection. Explore /connections for the current edition.'), 404);
+    if (!edge) return path.startsWith('/api/') ? json({ error: 'Unknown recorded connection.' }, 404) : html(connectionsErrorPage(404, 'Unknown recorded connection. Search for a current record.'), 404);
     if (path.startsWith('/api/')) return json({ corpus_version: meta.corpus_version, index_version: connectionIndexMetadata().index_version, edge });
     return html(connectionEdgePage(edge, index.node(edge.from)!, index.node(edge.to)!, parseConnectionState(new URLSearchParams(), Object.keys(kinds))));
   }
@@ -618,10 +618,12 @@ export default {
       if (error instanceof AgentError)
         response = json(agentError(error), error.status);
       else if (error instanceof ConnectionIndexUnavailable)
-        response = new URL(request.url).pathname.startsWith('/api/') ? json({ error: error.message }, 503) : html(errorPage(503, error.message), 503);
+        response = new URL(request.url).pathname.startsWith('/api/') ? json({ error: error.message }, 503) : html(connectionsErrorPage(503, error.message, new URL(request.url).searchParams.get("focus")), 503);
       else if (error instanceof ConnectionSnapshotError)
-        response = new URL(request.url).pathname.startsWith('/api/') ? json({ error: error.message, reload: '/connections' }, 409) : html(errorPage(409, error.message + ' Open /connections to start with the current edition.'), 409);
-      else if (!(error instanceof ConnectionQueryError) && !(error instanceof QueryError) && !(error instanceof CoverageQueryError)) throw error;
+        response = new URL(request.url).pathname.startsWith('/api/') ? json({ error: error.message, reload: '/connections' }, 409) : html(connectionsErrorPage(409, error.message, new URL(request.url).searchParams.get('focus')), 409);
+      else if (error instanceof ConnectionQueryError)
+        response = new URL(request.url).pathname.startsWith('/api/') ? json({ error: error.message }, 400) : html(connectionsErrorPage(400, error.message), 400);
+      else if (!(error instanceof QueryError) && !(error instanceof CoverageQueryError)) throw error;
       else
         response = new URL(request.url).pathname.startsWith("/api/")
           ? json({ error: error.message }, 400)

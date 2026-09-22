@@ -19,6 +19,7 @@ test('index loading rejects absence, decompression errors, stale bytes and same-
   for (const response of [() => new Response(null, { status: 404 }), () => new Response('not gzip'), () => new Response(gzipSync('{}'))]) {
     await assert.rejects(loadConnectionIndex(request, { fetch: async () => response() }), /temporarily unavailable/);
   }
+  await assert.rejects(loadConnectionIndex(request, { fetch: async () => new Response(gzipSync(Buffer.alloc(metadata.bytes + 65536))) }), /temporarily unavailable/);
   const corrupted = gunzipSync(valid); corrupted[30] = corrupted[30] === 32 ? 33 : 32;
   await assert.rejects(loadConnectionIndex(request, { fetch: async () => new Response(gzipSync(corrupted)) }), /temporarily unavailable/);
   let calls = 0;
