@@ -33,7 +33,7 @@ export function shell(
           <link rel="alternate" type="application/json" href="/api/v1/meta" />
           <link rel="alternate" type="text/markdown" href="/llms.txt" />
         </head>
-        <body>
+        <body data-corpus-version={meta.corpus_version}>
           <a
             className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-md focus:bg-primary focus:p-4 focus:text-primary-foreground"
             href="#main"
@@ -41,7 +41,7 @@ export function shell(
             Skip to content
           </a>
           <header className="border-b border-border bg-card">
-            <div className="relative mx-auto flex min-h-20 max-w-library items-center justify-between gap-6 px-5 md:px-10">
+            <div className="relative mx-auto flex min-h-20 max-w-library flex-wrap items-center justify-between gap-3 px-5 py-3 md:px-10">
               <a
                 className="flex items-center gap-3 text-foreground no-underline"
                 href="/"

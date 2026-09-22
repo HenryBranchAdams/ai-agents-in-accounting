@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import type { EditedBrief, BriefSection } from "../editorial";
 import {
   Table,
@@ -7,9 +8,9 @@ import {
   TableRow,
   TableCell,
 } from "./ui/table";
-function ExplanationSection({ section }: { section: BriefSection }) {
+function ExplanationSection({ section, id }: { section: BriefSection; id?: string }) {
   return (
-    <section>
+    <section id={id}>
       <h2>{section.title}</h2>
       {section.paragraphs.map((p) => (
         <p key={p}>{p}</p>
@@ -17,7 +18,7 @@ function ExplanationSection({ section }: { section: BriefSection }) {
     </section>
   );
 }
-export function BriefReading({ brief }: { brief: EditedBrief }) {
+export function BriefReading({ brief, afterAnswer }: { brief: EditedBrief; afterAnswer?: ReactNode }) {
   const r = brief.reading;
   return (
     <>
@@ -32,6 +33,7 @@ export function BriefReading({ brief }: { brief: EditedBrief }) {
           {r.scope}
         </p>
       </section>
+      {afterAnswer}
       <div id="worked-explanation">
         {r.sections.map((section) => (
           <ExplanationSection key={section.title} section={section} />
@@ -112,7 +114,7 @@ export function BriefReading({ brief }: { brief: EditedBrief }) {
             </TableBody>
           </Table>
         </section>
-        <ExplanationSection section={r.exception} />
+        <ExplanationSection id="exception" section={r.exception} />
         {r.gap_url && (
           <p>
             <a href={r.gap_url}>

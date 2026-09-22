@@ -1,3 +1,4 @@
+import { clientEntryUrl } from "./client-entries.mjs";
 import { historySummaryPlugin } from "./history-summary.mjs";
 import { editorialReviewReport } from "./editorial-review.mjs";
 import { prepareStorage } from "./release-storage.mjs";
@@ -80,6 +81,7 @@ execFileSync(
 );
 const clientBuild = await build({
   entryPoints: { navigation: "src/client/navigation.tsx" },
+  splitting: true,
   outdir: "dist/client/assets",
   entryNames: "[name]-[hash]",
   bundle: true,
@@ -92,13 +94,8 @@ const clientBuild = await build({
   legalComments: "eof",
   define: { "process.env.NODE_ENV": '"production"' },
 });
-const navigationScript =
-  "/assets/" +
-  path.basename(
-    Object.keys(clientBuild.metafile.outputs).find((file) =>
-      file.endsWith(".js"),
-    ),
-  );
+fs.writeFileSync("dist/internal/client-build.json", JSON.stringify(clientBuild.metafile, null, 2) + "\n");
+const navigationScript = clientEntryUrl(clientBuild.metafile, "src/client/navigation.tsx");
 const preservedVersions = preview ? JSON.parse(fs.readFileSync("data/releases/index.json", "utf8")).versions : fs
   .readdirSync("data/releases", { withFileTypes: true })
   .filter(
@@ -347,6 +344,7 @@ const applicationBuild = await build({
   define: {
     "process.env.NODE_ENV": '"production"',
     NAVIGATION_SCRIPT: JSON.stringify(navigationScript),
+    CLIENT_ASSETS: JSON.stringify(Object.keys(clientBuild.metafile.outputs).filter(file => file.endsWith(".js")).map(file => "/assets/" + path.basename(file))),
     PREVIEW_BUILD: JSON.stringify(preview),
     RELEASE_STORAGE: JSON.stringify(releaseStorage),
     RELEASE_META: JSON.stringify(releaseMeta),

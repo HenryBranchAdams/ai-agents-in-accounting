@@ -1,3 +1,6 @@
+import { constructionSectionLinks, recordSectionLinks } from "../record-sections";
+import { PageOutline } from "../components/page-outline";
+import { buildEvidencePreview } from "../evidence-preview";
 import { FamilyOfficeReference } from "../components/family-office-reference";
 import { editedBrief } from "../editorial";
 import { BriefReading } from "../components/brief-reading";
@@ -292,89 +295,13 @@ export function recordPage(r: CorpusRecord) {
     Array.isArray(r.data.examples)
       ? (r.data.examples as Record<string, Json>[])
       : [];
-  const constructionSections =
-    r.id === "example-construction-contract-ledger"
-      ? [
-          ["journals", "Base journals"],
-          ["examples", "Calculations and branches"],
-          ["same_job_case", "Same-job evidence"],
-          ["transaction_evidence", "Corrections and completeness"],
-          ["observed_evidence", "Aggregate evidence"],
-        ]
-      : r.id === "guide-construction-connected-close"
-        ? [
-            ["local_completion", "Local completion"],
-            ["four_gap_ledger", "Four-gap outcomes"],
-            ["authority_matrix", "Authority questions"],
-            ["professional_review_packet", "Review packet"],
-            ["evidence_closure", "Earlier gap outcomes"],
-            ["public_evidence_intake", "Public evidence intake"],
-          ]
-        : r.id === "guide-construction-tax-transitions"
-          ? [
-              ["conflict_resolution", "Source disagreements"],
-              ["method_change_path", "Method-change scope"],
-            ]
-          : [];
+  const constructionSections = constructionSectionLinks(r);
   const edges = knowledge
     .relations(r.id)
     .filter((e) => !["cites", "cited_by"].includes(e.type));
-  const contents = (
-    <>
-      <nav
-        aria-label="Record sections"
-        className="grid gap-1 [&_a]:py-2 [&_a]:no-underline hover:[&_a]:underline"
-      >
-        {[
-          ...(edited
-            ? [
-                ["answer", "Answer"],
-                ["worked-example", "Worked example"],
-                ["responsibility", "Who does what"],
-                ["findings", "Evidence"],
-              ]
-            : []),
-          ...(researchQuestions.length
-            ? [["research-questions", "Research questions"]]
-            : []),
-          ...(r.kind === "source"
-            ? [
-                ["evidence", "Findings"],
-                ["applicability", "Applicability"],
-                ["limitations", "Limitations"],
-              ]
-            : researchQuestions.length
-              ? []
-              : edited
-                ? [
-                    ["qualifications", "Qualifications"],
-                    ["unknowns", "Unknowns"],
-                  ]
-                : brief
-                  ? [
-                      ["answer", "Answer in context"],
-                      ["findings", "Findings"],
-                      ["qualifications", "Qualifications"],
-                      ["unknowns", "Unknowns"],
-                    ]
-                  : [["record-content", "Reference details"]]),
-          ...constructionSections.map(([id, title]) => ["detail-" + id, title]),
-          ...(cited.length && r.kind !== "collection"
-            ? [["sources", "Cited sources"]]
-            : []),
-          ...(edges.length ? [["relationships", "Relationships"]] : []),
-          ["coverage", "Coverage mapping"],
-          ["citation", "Citation"],
-          ["record-information", "Record information"],
-          ["rights", "Rights and provenance"],
-        ].map(([id, title]) => (
-          <>
-            <a href={"#" + id}>{title}</a>
-          </>
-        ))}
-      </nav>
-    </>
-  );
+  const sections = recordSectionLinks(r);
+  const contents = <PageOutline sections={sections} />;
+  const mobileOutline = <details className="my-5 lg:hidden"><summary>On this page</summary>{contents}</details>;
   const citation = `Accounting Agents contributors. “${r.title}.” Accounting Agents research corpus, version ${meta.corpus_version}. ${meta.site_url}/records/${r.id}`;
   const body = (
     /* HTML */ <>
@@ -407,7 +334,7 @@ export function recordPage(r: CorpusRecord) {
           {"\n      "}
           <>
             {edited ? (
-              renderBrief(brief, true)
+              renderBrief(brief, r.id, true, mobileOutline)
             ) : (
               <p className="mb-6 max-w-3xl text-lg leading-relaxed text-muted-foreground">
                 {displayText(r.summary)}
@@ -415,6 +342,7 @@ export function recordPage(r: CorpusRecord) {
             )}
           </>
           {"\n      "}
+          {!edited && !(brief && !researchQuestions.length) ? mobileOutline : null}
           {r.kind === "source" ? sourceEvidence(r) : ""}
           {"\n      "}
           {r.data.source_review || r.data.supplemental_reviews ? (
@@ -517,7 +445,7 @@ export function recordPage(r: CorpusRecord) {
               )}
             </>
           ) : brief && !edited ? (
-            renderBrief(brief)
+            renderBrief(brief, r.id, false, mobileOutline)
           ) : (
             ""
           )}
@@ -627,10 +555,7 @@ export function recordPage(r: CorpusRecord) {
             </AlertDescription>
           </Alert>
           {"\n      "}
-          <details className="lg:hidden">
-            <summary>{"On this page"}</summary>
-            {contents}
-          </details>
+
           {"\n      "}
           <div className="min-w-0" id="record-content">
             {"\n        "}
@@ -934,7 +859,7 @@ export function recordPage(r: CorpusRecord) {
           {"\n    "}
         </article>
         {"\n    "}
-        <aside className="sticky top-8 hidden border-l border-border pl-6 text-sm lg:block">
+        <aside data-record-outline-rail="true" className="sticky top-8 hidden border-l border-border pl-6 text-sm lg:block">
           <h2 className="mb-4 font-sans text-xs font-semibold tracking-wider uppercase">
             On this page
           </h2>
@@ -960,7 +885,7 @@ export function recordPage(r: CorpusRecord) {
     `/records/${r.id}`,
   );
 }
-function renderBrief(value: Json, answerFirst = false) {
+function renderBrief(value: Json, ownerId: string, answerFirst = false, outline?: ReactNode) {
   const edited = editedBrief(value);
   const b = value as {
     [key: string]: Json;
@@ -978,6 +903,7 @@ function renderBrief(value: Json, answerFirst = false) {
                   {displayText(f.classification || "Recorded synthesis")}
                 </p>
                 <p>{displayText(f.claim)}</p>
+                {Array.isArray(f.source_ids) && f.source_ids.length ? <span data-evidence-preview={JSON.stringify(buildEvidencePreview(ownerId, meta.corpus_version, f, getRecord))} /> : null}
                 <p className="text-sm text-muted-foreground">
                   {displayText(f.qualification)}
                 </p>
@@ -1006,7 +932,7 @@ function renderBrief(value: Json, answerFirst = false) {
   return (
     <>
       {answerFirst && edited ? (
-        <BriefReading brief={edited} />
+        <BriefReading brief={edited} afterAnswer={outline} />
       ) : (
         <section id="answer">
           <Card>
@@ -1021,6 +947,7 @@ function renderBrief(value: Json, answerFirst = false) {
           </Card>
         </section>
       )}
+      {!answerFirst ? outline : null}
       <section id="findings">
         <h2>{"Findings across sources"}</h2>
         {findings(b.findings)}
@@ -1038,7 +965,7 @@ function renderBrief(value: Json, answerFirst = false) {
         <h2>{"What remains unknown"}</h2>
         {structured(b.unknowns)}
       </section>
-      <section>
+      <section id="suggested-reading">
         <h2>{"Suggested reading order"}</h2>
         {edited?.reading_notes && (
           <ol>

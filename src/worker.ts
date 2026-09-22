@@ -1,3 +1,5 @@
+declare const CLIENT_ASSETS: readonly string[];
+import { searchSuggestions } from "./search-suggestions";
 import {
   meta,
   records,
@@ -38,7 +40,7 @@ const commonHeaders = {
   "X-Content-Type-Options": "nosniff",
   "Referrer-Policy": "strict-origin-when-cross-origin",
   "Content-Security-Policy":
-    "default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; form-action 'self'; base-uri 'none'; frame-ancestors 'none'",
+    "default-src 'none'; connect-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; form-action 'self'; base-uri 'none'; frame-ancestors 'none'",
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Methods": "GET, HEAD, OPTIONS",
   "Access-Control-Allow-Headers": "Accept, If-None-Match",
@@ -246,6 +248,32 @@ function openapi() {
           { type: "object" },
         ),
       },
+      "/api/v1/search-suggestions": {
+        get: {
+          operationId: "searchSuggestions",
+          summary: "Preview at most 12 whole-corpus matches in canonical order",
+          description: "Only q is accepted, once. Empty input returns no items. Summaries are canonical plain text shortened to 280 characters. has_brief identifies an actual edited reading brief. total is the complete match count. Corpus version and ETag bind this projection to its edition.",
+          parameters: [{ name: "q", in: "query", schema: { type: "string", maxLength: 240 } }],
+          responses: {
+            "200": success({
+              type: "object", additionalProperties: false,
+              required: ["corpus_version", "query", "total", "items"],
+              properties: {
+                corpus_version: { type: "string" }, query: { type: "string" }, total: { type: "integer", minimum: 0 },
+                items: { type: "array", maxItems: 12, items: {
+                  type: "object", additionalProperties: false,
+                  required: ["id", "kind", "title", "summary", "has_brief", "href"],
+                  properties: {
+                    id: { type: "string" }, kind: { type: "string" }, title: { type: "string" },
+                    summary: { type: "string", maxLength: 280 }, has_brief: { type: "boolean" }, href: { type: "string" },
+                  },
+                } },
+              },
+            }),
+            "400": { description: "Invalid parameter or malformed search query" },
+          },
+        },
+      },
       "/api/v1/records": {
         get: searchOperation(
           "searchRecords",
@@ -442,6 +470,12 @@ async function route(request: Request, env: Env) {
       response.headers.set("X-Total-Count", String(result.total));
     return response;
   }
+  if (path === "/api/v1/search-suggestions") {
+    const result = searchSuggestions(url.searchParams);
+    const response = json(result);
+    response.headers.set("X-Total-Count", String(result.total));
+    return response;
+  }
   if (
     path === "/api/v1/records" ||
     path === "/api/v1/search" ||
@@ -518,7 +552,7 @@ async function route(request: Request, env: Env) {
     );
   if (
     env.ASSETS &&
-    /^\/(downloads\/[^/]+|releases\/\d{4}-\d{2}-\d{2}\.\d+\/(?:corpus\.json(?:\.gz|l)?|manifest\.json|changes\.json|record-history\.jsonl)|releases\/index\.json|assets\/navigation-[A-Z0-9]{8}\.js|style\.css|favicon\.svg|AGENTS\.md)$/.test(path)
+    ((typeof CLIENT_ASSETS !== "undefined" && CLIENT_ASSETS.includes(path)) || /^\/(downloads\/[^/]+|releases\/\d{4}-\d{2}-\d{2}\.\d+\/(?:corpus\.json(?:\.gz|l)?|manifest\.json|changes\.json|record-history\.jsonl)|releases\/index\.json|style\.css|favicon\.svg|AGENTS\.md)$/.test(path))
   ) {
     const asset = await env.ASSETS.fetch(new Request(request.url, { method: "GET" }));
     if (asset.status === 200 && isSourceArchivePartPath(path)) {

@@ -52,6 +52,7 @@ export function browse(params: URLSearchParams) {
     "as_of",
     "collection",
   ];
+  const filterLabels: Record<string, string> = { kind: "Type", naics: "Exact NAICS", question_family: "Question family", topic: "Topic", source_type: "Source type", industry: "Industry", jurisdiction: "Jurisdiction", framework: "Framework", entity: "Entity", product: "Product", as_of: "Effective on", collection: "Collection" };
   const activeFilters = filterNames.filter((key) => params.get(key));
   const hasFilters =
     !!result.query || activeFilters.length > 0 || result.page > 1;
@@ -70,7 +71,7 @@ export function browse(params: URLSearchParams) {
   const category = (key: string) => (
     <a
       key={key}
-      href={queryLink(params, { kind: key, collection: "" })}
+      href={queryLink(params, { kind: key })}
       aria-current={kind === key ? "page" : undefined}
       className="flex min-h-11 items-center justify-between gap-3 rounded-md px-3 py-2 text-sm text-muted-foreground no-underline hover:bg-muted current:bg-accent current:font-medium current:text-foreground"
     >
@@ -97,13 +98,15 @@ export function browse(params: URLSearchParams) {
       ? kinds[kind] || "Accounting context"
       : key === "collection"
         ? getRecord(params.get(key)!)?.title || params.get(key)
-        : params.get(key);
+        : key === "question_family"
+          ? coverage.questionById.get(params.get(key)!)?.title || params.get(key)
+          : params.get(key);
   const field = (name: string, title: string, values: string[]) => (
     <SelectField
       name={name}
       label={title}
       allLabel={`All ${title.toLowerCase()}`}
-      values={values.map((v) => [v, label(v)])}
+      values={[...new Set([...values, ...(params.get(name) ? [params.get(name)!] : [])])].map((v) => [v, label(v)])}
       selected={params.get(name) || ""}
     />
   );
@@ -203,6 +206,9 @@ export function browse(params: URLSearchParams) {
         )}
         <div className="grid items-start gap-8 lg:grid-cols-4 lg:gap-10">
           <aside className="min-w-0 lg:border-r lg:border-border lg:pr-6">
+            <details id="library-filters">
+              <summary>Filters and record types{activeFilters.length ? ` (${activeFilters.length} active)` : ""}</summary>
+              <p className="text-sm text-muted-foreground">Type counts cover the whole corpus before filters. Exact industry codes and known effective dates keep their recorded scope.</p>
             <details open className="mb-3">
               <summary className="pt-0 text-sm font-semibold">
                 Browse by type
@@ -282,6 +288,7 @@ export function browse(params: URLSearchParams) {
                   .map(category)}
               </nav>
             </details>
+            </details>
             <p className="mt-6 hidden text-xs leading-relaxed text-muted-foreground lg:block">
               A source’s inclusion is not an endorsement. Assess its evidence,
               applicability, and rights before reuse.
@@ -300,7 +307,7 @@ export function browse(params: URLSearchParams) {
                     : "All records"}
               </h2>
               <span className="text-sm text-muted-foreground">
-                {result.total.toLocaleString()} {result.total === 1 ? "record" : "records"}
+                {result.total.toLocaleString()} {result.total === 1 ? "record" : "records"} total · Showing {result.records.length} on this page
               </span>
             </div>
             {activeFilters.length > 0 && (
@@ -312,9 +319,9 @@ export function browse(params: URLSearchParams) {
                   <Button key={key} asChild variant="secondary" size="sm">
                     <a
                       href={queryLink(params, { [key]: "" })}
-                      aria-label={`Remove ${label(key)}: ${chipValue(key)}`}
+                      aria-label={`Remove ${filterLabels[key]}: ${chipValue(key)}`}
                     >
-                      {chipValue(key)} <XIcon data-icon="inline-end" />
+                      {filterLabels[key]}: {chipValue(key)} <XIcon data-icon="inline-end" />
                     </a>
                   </Button>
                 ))}
