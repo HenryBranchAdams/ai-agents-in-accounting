@@ -268,3 +268,7 @@ Recovered original Run reports and November2024 throttling notice through suppor
 ### Integration with PR181 main
 
 Merged main186b6b14cc43f0d68c650e877d77719a075d4a72 into the research branch after research98c58b7272791edfc8274ce58b26e5b91d37aec7. Three array insertion conflicts were resolved by stable record ID. No record was independently changed by both sides; every changed record from each side was compared against the resolved result and preserved exactly. Combined counts are904 sources,276 guides and38 collections. Historical release and snapshot paths match main without changes. Typecheck and all11 connected-case/approval tests passed. Record validation reaches the expected stale draft mapping boundary. This is source integration evidence, not final corpus edition, full CI, rendered compatibility, human acceptance or publication proof.
+
+### Connected-close reading brief
+
+Added an answer-first reading brief for the two connected cases, including a synthetic purchase-close table, responsibility boundaries, changed-approval exceptions, source qualifications and unresolved human/professional evidence. The brief declares its case, guide and primary-source dependencies; its current dependency hashes match the material reviewed. This is an agent editorial review of the stated presentation, not maintainer acceptance. Structural validation passes the record checks and stops at the expected stale draft coverage mapping. Final rendered, exported and browser checks remain pending.

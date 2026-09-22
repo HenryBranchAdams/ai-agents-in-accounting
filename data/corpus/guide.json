@@ -86763,7 +86763,10 @@
     "publisher": "Accounting Agents contributors",
     "source_url": null,
     "source_ids": [
-      "src_0vf7hhg"
+      "src_0vf7hhg",
+      "src_stripe_balance_reporting",
+      "src_stripe_payout_reconciliation",
+      "src_stripe_dispute_lifecycle"
     ],
     "related_ids": [
       "example-connected-purchase-to-payment",
@@ -86871,7 +86874,233 @@
       "limitations": [
         "Guide and packet authorship are distinct from arithmetic tests, source reading and qualified professional review.",
         "Canonical retrieval, readable packet presentation, export integration and final editorial acceptance remain pending."
-      ]
+      ],
+      "editorial_brief": {
+        "question": "What makes a purchase or processor close ready for review?",
+        "answer": "A balanced journal is only one check. Trace the complete document population into the correct entity and period, distinguish payment instructions from bank settlement, retain unresolved valuation and evidence questions, and identify exactly which inputs the reviewer considered. The two connected cases show both a stronger packet and a plausible-looking inadequate packet. Neither contains real human sign-off.",
+        "findings": [
+          {
+            "claim": "The purchase case closes May with $500 inventory and $500 payable; after the remaining June receipt and payments, June closes with $900 inventory, $1,100 bank cash and no payable.",
+            "classification": "original-synthetic arithmetic",
+            "source_ids": [],
+            "locator": "example-connected-purchase-to-payment: /data/expected_period_balances_minor; documents A-R1 through A-BANK2 and baseline journals.",
+            "qualification": "Fictional USD minor-unit fixture under declared recognition assumptions. Independent alternatives are not added to the baseline."
+          },
+          {
+            "claim": "The processor case separates $1,000 sales, fees, refund, payout, bank movement and later dispute activity. Its final $855 cash is not a sales figure.",
+            "classification": "original-synthetic arithmetic",
+            "source_ids": [
+              "src_stripe_balance_reporting",
+              "src_stripe_payout_reconciliation",
+              "src_stripe_dispute_lifecycle"
+            ],
+            "locator": "example-connected-processor-settlement: /data/journals, /data/reconciliations and /data/review_packets. Source locators in the linked primary-documentation profiles.",
+            "qualification": "The modelled April disputed claim is an assumption requiring review, not a Stripe accounting rule or proven recoverability. No merchant account was accessed."
+          },
+          {
+            "claim": "Evidence quality, conflicting information and population scope matter in applicable PCAOB audits.",
+            "classification": "scoped standard comparison",
+            "source_ids": [
+              "src_0vf7hhg"
+            ],
+            "locator": "AS1105 paragraphs .02, .05-.10A, .27 and .29; scoped September21 reading recorded at /data/source_review.",
+            "qualification": "These internal-close cases borrow evidence-design ideas. They are not PCAOB engagements or assurance conclusions."
+          }
+        ],
+        "unknowns": [
+          "Actual recognition and recoverability for a real entity and reporting framework.",
+          "Human usability, preparation/review time, professional acceptance and production effectiveness.",
+          "Tenant/API behavior, complete real-world populations and enforceable approval controls."
+        ],
+        "reading_order": [
+          "example-connected-purchase-to-payment",
+          "example-connected-processor-settlement",
+          "guide-accounting-claim-counterexamples",
+          "guide-accounting-action-boundaries",
+          "src_0vf7hhg"
+        ],
+        "reading_notes": [
+          {
+            "record_id": "example-connected-purchase-to-payment",
+            "reason": "Read the baseline first, then one alternative and its evidence at a time."
+          },
+          {
+            "record_id": "example-connected-processor-settlement",
+            "reason": "Follow processor and bank events separately; review the disputed-claim assumption."
+          },
+          {
+            "record_id": "guide-accounting-claim-counterexamples",
+            "reason": "Change one scope fact and identify the affected conclusion."
+          },
+          {
+            "record_id": "guide-accounting-action-boundaries",
+            "reason": "Separate a proposed journal and fictional approval from actual execution authority."
+          }
+        ],
+        "reading": {
+          "scope": "Two project-authored internal-close cases, fictional USD amounts, original review-packet comparisons and an unexecuted human-evaluation protocol.",
+          "critical_limitation": "The tests verify stated arithmetic, replay and payload identity. They do not establish human approval, accounting applicability, observed API behavior or control effectiveness.",
+          "sections": [
+            {
+              "title": "Purchase: what happened and when?",
+              "paragraphs": [
+                "Open example-connected-purchase-to-payment. May receipt A-R1 supports 60 units, A-I1 creates the invoice payable, A-RET1 removes 10 returned units into a supplier claim, and A-CN1 clears that claim against AP. May ends with 50,000 cents payable. A-APP1 is approval and A-PAY1 is instruction; A-BANK1 supplies the later settlement. The remaining June receipt and invoice resolve through A-BANK2. Read A-REVIEW-STRONGER for the full population and assertion traces."
+              ]
+            },
+            {
+              "title": "Processor: why does cash differ from sales?",
+              "paragraphs": [
+                "Open example-connected-processor-settlement. The fictional 100,000-cent invoice is separate from the 97,000-cent processor balance after fees. A completed 10,000-cent refund leaves the first payout of 87,000 cents, with a separate bank date. Later dispute debits and recoveries bring final cash to 85,500 cents. The April disputed claim is an assumed recoverable amount requiring separate professional assessment. B-REVIEW-STRONGER retains this unresolved matter."
+              ]
+            },
+            {
+              "title": "Read one alternative at a time",
+              "paragraphs": [
+                "Purchase alternatives change receipt, credit, identity, period or payment facts. Processor alternatives change settlement, notification, correction or dispute facts. Each declares its own baseline journal subset and added evidence. Never sum independent alternatives into a single ledger. The three linked extensions preserve the late-invoice knowledge timeline, resolve an intercompany mismatch before elimination, and invalidate a construction approval after an estimate change."
+              ]
+            },
+            {
+              "title": "Challenge the inadequate packet",
+              "paragraphs": [
+                "A-REVIEW-INADEQUATE offers an approval as cash evidence and claims zero AP without the full population. B-REVIEW-INADEQUATE treats one net payout as sales and bank proof. Both can look tidy while answering the wrong question. Use their defect-to-repair comparisons to identify what evidence is missing; do not adopt either packet as guidance."
+              ]
+            },
+            {
+              "title": "Distinguish requirements from useful analogies",
+              "paragraphs": [
+                "These cases are internal close illustrations. AS 1105 governs applicable PCAOB audit work; it is not asserted as a direct duty for every bookkeeper. The existing assurance record separates issuer, nonissuer and federal-award contexts. Establish the engagement, governing rules and period before importing a requirement."
+              ]
+            },
+            {
+              "title": "A changed input requires an affected decision to be reconsidered",
+              "paragraphs": [
+                "The packets identify their reviewed baseline and original digest. Changed documents, amounts, entity, destination, period or recognition assumptions invalidate affected conclusions. Preserve the earlier version and decision. A hash is an identity check, not evidence of human review, correct accounting or enforceable approval."
+              ]
+            }
+          ],
+          "example": {
+            "title": "Purchase close: instruction and settlement are different evidence",
+            "classification": "original-synthetic",
+            "assumptions": "Use only the Harbor Tools baseline. Amounts are USD; bank cash starts at $2,000. Receipt, return and credit assumptions are declared in the complete case.",
+            "columns": [
+              "Stage",
+              "Evidence",
+              "Review consequence"
+            ],
+            "rows": [
+              [
+                "May close",
+                "Receipt, supplier invoice, return and credit",
+                "Retain $500 inventory and $500 AP; bank remains $2,000."
+              ],
+              [
+                "June payment instruction",
+                "Approval and instruction",
+                "Do not call an instruction proof of bank settlement."
+              ],
+              [
+                "June close",
+                "Bank settlement plus remaining receipt and invoice",
+                "Bank $1,100; inventory $900; AP zero."
+              ]
+            ],
+            "record_id": "example-connected-purchase-to-payment",
+            "anchor": "record-content"
+          },
+          "responsibilities": [
+            {
+              "role": "Preparation agent",
+              "task": "Trace documents, compute balances and surface discrepancies.",
+              "boundary": "Cannot invent missing evidence or expand approval."
+            },
+            {
+              "role": "Accountable reviewer",
+              "task": "Assess recognition, exceptions and the exact evidence/payload.",
+              "boundary": "No real reviewer has signed these synthetic packets."
+            },
+            {
+              "role": "System owner",
+              "task": "Enforce current identity and action permissions outside the model.",
+              "boundary": "A fixture hash or reviewer packet is not a production enforcement mechanism."
+            }
+          ],
+          "exception": {
+            "title": "A changed estimate or unresolved payment stops reuse of the old decision",
+            "paragraphs": [
+              "The construction extension changes an expected-cost input after an illustrative approval, changing the proposed catch-up. Preserve the prior estimate and bind any new decision to the changed payload.",
+              "A lost payment response remains uncertain until supported read-back resolves it. Do not clear the exception merely because the workpaper balances."
+            ]
+          },
+          "gap_url": "https://github.com/HenryBranchAdams/ai-agents-in-accounting/issues/173",
+          "review": {
+            "reviewed_at": "2026-09-21",
+            "reviewer": "Codex AI-assisted editorial synthesis review",
+            "scope": "Read this guide, baseline balances, packet contrasts, connected extensions and source-scope limitations. New reading presentation reuses those scoped findings. Agent editorial review only; human/maintainer/professional acceptance remains pending.",
+            "dependencies": [
+              {
+                "record_id": "guide-connected-close-review",
+                "sha256": "97d2be8cb6f02a42ef49a779e44c0a750ca1a26826e9d7057bbbd4a677576b43"
+              },
+              {
+                "record_id": "example-connected-purchase-to-payment",
+                "sha256": "f21c05fb8c94c0dd8385022baa346e9c74de16ca83cd1cb9f1c72f3a8cfd5c60"
+              },
+              {
+                "record_id": "example-connected-processor-settlement",
+                "sha256": "c9b28e4260940291571c45d3500e86df8e182b95c22832a061ed5ec4e893db8f"
+              },
+              {
+                "record_id": "guide-accounting-action-boundaries",
+                "sha256": "b0368a267f60d4504ba1340f3588e14752777af27ee874a2273ab525d880aafb"
+              },
+              {
+                "record_id": "guide-accounting-claim-counterexamples",
+                "sha256": "5d5263b57c17baa938a4637c42d0a84af6622f82439159de78982b15f3c966d9"
+              },
+              {
+                "record_id": "src_0vf7hhg",
+                "sha256": "735836e88254ef10261e3181ba1fe0a1471ebfe9de92e99c54d9cd6e7f21b5c2"
+              },
+              {
+                "record_id": "src_construction_fasb_2014_09",
+                "sha256": "5903c386c0b2508db39f0381e348804b58b4b61ca7d2aa6c6990742eb7aebd7f"
+              },
+              {
+                "record_id": "src_fasb_asu2015_11_inventory",
+                "sha256": "a300608bff15bac9a1b301a7a3516bb3c20c6954d1af0ef3a6ac9e5d43ba10ad"
+              },
+              {
+                "record_id": "src_fasb_concepts8_elements",
+                "sha256": "44f2242897cf1bf330f8f2eda57d3afd73aa226a73ad5b295b7427e0335b8512"
+              },
+              {
+                "record_id": "src_fasb_asu2016_13_credit_losses",
+                "sha256": "b350eada99158077c5aafbee0bed460830bcae6aa829ac08164f0f54bda8b459"
+              },
+              {
+                "record_id": "src_stripe_balance_reporting",
+                "sha256": "672b367d6f3b850aec124d52d755788df50d48cb6604ccd667846d692952c2f6"
+              },
+              {
+                "record_id": "src_stripe_payout_reconciliation",
+                "sha256": "3399d24069b09cba19d7006e115020cdbdd89476457afa121196ad3e059b12d1"
+              },
+              {
+                "record_id": "src_stripe_refund_lifecycle",
+                "sha256": "b5a7bf6f658ec6ebf2ff63ede95cf3b7089b7faf3ffffea361577fe14ae6ab10"
+              },
+              {
+                "record_id": "src_stripe_dispute_lifecycle",
+                "sha256": "3529c8752c75f8e3d783c7c27a98e3382abba4524ae3dcd54908444e47a06775"
+              },
+              {
+                "record_id": "src_stripe_currency_units",
+                "sha256": "25cb1a3164d1e1de9b2f347656b021600ae15292da8d4d3b290f38c5a701c237"
+              }
+            ]
+          }
+        }
+      }
     }
   },
   {
