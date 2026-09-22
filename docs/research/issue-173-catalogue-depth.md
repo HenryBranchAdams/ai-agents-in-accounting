@@ -205,3 +205,8 @@ Added an explicit fictional payment-approval payload tied to the purchase case p
 ### P4 FinBalance bounded primary assessment
 
 Enriched existing src_0qwi4ry with paper v1 methods/grading/reproducibility review, rendered page 12 inspection, and pinned repository a1062b7b392eaf53311308c2f63cf748b68bb8cf. Read the actual scorer and data license; inspected a coverage record and counted 120 clean/23 contradiction records. Recorded date-exclusion, replay/invalid-account separation, independent contradiction-code and empty-output scores, provider-output exclusions, and asset-path/release-version limits. No benchmark code or model API was executed. APEX and contrasting evaluation profiles, selection guide, final rights matrix and editorial integration remain required.
+
+
+### P4 APEX bounded primary assessment
+
+Reviewed paper v1 methods, grading, limitations and worked example; pinned HF dev release bf5e8c99117b7ee763d79ad2c64563ac844d77d2 and counted10 tasks/89 criteria. Read World9 Task14 full rubric/reference answer and visually inspected its fictional one-page addendum. Recorded final-answer-only scoring, private160-task split, excluded human-in-loop skills, easier dev-world selection, separate repeated-run metrics, and explicit missing tool layer/optimized grader template. Public Archipelago generic verifier is not claimed equivalent. No benchmark or provider call executed. Contrast profiles, selection guide and integrated rights/relationship/editorial work remain pending.

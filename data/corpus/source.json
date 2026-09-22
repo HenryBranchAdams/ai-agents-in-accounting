@@ -72128,7 +72128,8 @@
         "https://arxiv.org/html/2607.27189v2"
       ],
       "outcome": "The reviewed publisher material supports this bounded annotation. No professional accounting review, independent replication, or live-system validation was performed.",
-      "note": "New source research for corpus version 2026-09-07.2. Source-checking does not certify currency beyond the reviewed edition or extend publisher permissions."
+      "note": "New source research for corpus version 2026-09-07.2. Source-checking does not certify currency beyond the reviewed edition or extend publisher permissions.",
+      "benchmark_review_pointer": "/data/benchmark_review_173"
     },
     "rights": {
       "metadata": "CC0-1.0",
@@ -72178,7 +72179,118 @@
         }
       ],
       "editorial_accounting_relevance": "Useful evidence for distinguishing an acceptable-looking reconciliation from reliable completion across repeated attempts.",
-      "published_or_status": "2026-07-29 · arXiv:2607.27189v2"
+      "published_or_status": "2026-07-29 · arXiv:2607.27189v2",
+      "benchmark_review_173": {
+        "reviewed_at": "2026-09-21",
+        "reviewer": "Codex AI-assisted source review",
+        "status": "bounded draft assessment; no agent/model execution or private evaluation access",
+        "paper": {
+          "url": "https://arxiv.org/html/2607.27189v1",
+          "version": "v1, July 29, 2026",
+          "locators": [
+            "Sections 2.2-2.3",
+            "Sections 3.1-3.5",
+            "Section 6",
+            "Appendix A worked example"
+          ],
+          "sha256": "a6f66591304fd5ad75c2ea1671738e31d93acc0b91d115cea7fbb3f8091abfbc",
+          "access": "Full primary HTML available; PDF request returned HTTP406. No table-score ranking or full-paper replication claimed."
+        },
+        "release": {
+          "revision": "bf5e8c99117b7ee763d79ad2c64563ac844d77d2",
+          "url": "https://huggingface.co/datasets/mercor/apex-accounting/blob/bf5e8c99117b7ee763d79ad2c64563ac844d77d2/",
+          "card": "README.md, Running the tasks; Splits and release policy; Intended use and licensing",
+          "files_inspected": [
+            {
+              "path": "LICENSE",
+              "url": "https://huggingface.co/datasets/mercor/apex-accounting/blob/bf5e8c99117b7ee763d79ad2c64563ac844d77d2/LICENSE",
+              "sha256": "12c890a60b809bab5b8df480d63d646498893a6d8a81c1079eefe29993942c80"
+            },
+            {
+              "path": "data/dev.jsonl",
+              "url": "https://huggingface.co/datasets/mercor/apex-accounting/blob/bf5e8c99117b7ee763d79ad2c64563ac844d77d2/data/dev.jsonl",
+              "sha256": "e7cb8a46dd1f1bde99621185b0b403d4f543519956cc247a6fd2cd15b2149fd3"
+            },
+            {
+              "path": "tasks/world_9_task_14.json",
+              "url": "https://huggingface.co/datasets/mercor/apex-accounting/blob/bf5e8c99117b7ee763d79ad2c64563ac844d77d2/tasks/world_9_task_14.json",
+              "sha256": "f222883efd9cb1cb3abae233d30a91fb1fdcb71df50bb285e83e0f0dd8aed0ef"
+            },
+            {
+              "path": "task_files/world_9_task_14/Whitfield_Contingency_Cost_Recovery_Addendum.pdf",
+              "url": "https://huggingface.co/datasets/mercor/apex-accounting/blob/bf5e8c99117b7ee763d79ad2c64563ac844d77d2/task_files/world_9_task_14/Whitfield_Contingency_Cost_Recovery_Addendum.pdf",
+              "sha256": "44c7b8fcf19b0d43a8a9231784c250b2c540d6ac364f1d20c07e62d6e5b857a8"
+            }
+          ],
+          "scope": "Counted all10 JSONL tasks/89 criteria. Read all24 criteria and gold answer for World9 Task14; read and visually inspected its one-page fictional cost-recovery addendum. Other workbook/source balances were not independently recalculated."
+        },
+        "capability": "Evidence-finding and accounting reasoning across files/tools in synthetic US-GAAP close environments. The final deliverable is console text; it is not verified production accounting execution.",
+        "access_matrix": [
+          {
+            "asset": "Public development world",
+            "access": "10 tasks in one synthetic law-firm world, December2024; static exports plus documents.",
+            "permission": "CC-BY-4.0 under pinned LICENSE, including prompts, rubrics, reference answers, metadata and synthetic source files; credit Mercor, link license, identify modifications."
+          },
+          {
+            "asset": "Scored held-out benchmark",
+            "access": "160 tasks across10 worlds remain private.",
+            "permission": "No access or redistribution grant established by public dev license."
+          },
+          {
+            "asset": "Runtime accounting tools and optimized judge template",
+            "access": "Dataset card explicitly says tools are not included and GEPA-optimized grading template is not released.",
+            "permission": "Cannot reproduce exact leaderboard environment from dataset alone."
+          },
+          {
+            "asset": "Archipelago framework",
+            "access": "Public minimal port; revision17368f988dbe9f2abb54899613b25c4bb933de4a inspected.",
+            "permission": "Repository LICENSE identifies Apache-2.0, separate from dev-data license. No bundled-service or private-tool grant inferred."
+          }
+        ],
+        "grading": [
+          {
+            "finding": "The paper judge receives prompt, individual criterion and final answer, without the trajectory. Binary criteria are unweighted and outcome-based.",
+            "locator": "Sections2.3,3.4; dataset card Running the tasks"
+          },
+          {
+            "finding": "No general deterministic replay of submitted postings or trajectory-level unauthorized-action penalty is established by this final-answer grading design. A correct console answer cannot prove authorized execution or real ledger state.",
+            "locator": "Section3.4; project inference limited to stated judge inputs"
+          },
+          {
+            "finding": "World9 Task14 can have matching zero subledger/GL balances while still containing a capitalization error. Its24 criteria explicitly require recognizing the matter-specific issue and a proposed correction; total reconciliation alone is insufficient.",
+            "locator": "tasks/world_9_task_14.json rubric and gold_output; fictional addendum page1"
+          },
+          {
+            "finding": "The public apex_v1_verifier prompt takes criterion and solution. Its presence does not establish equivalence to the unreleased optimized accounting judge.",
+            "locator": "Archipelago grading/runner/evals/apex_v1_verifier/main.py _build_criterion_judge_prompt; dataset card Grading"
+          }
+        ],
+        "reliability_and_budget": {
+          "design": "Each task run independently8 times;500-step/5-million-token cap,91 operational tools. Loop Harness supplies leaderboard runs; Ramp harness has additional orchestration tools and is a separate experiment.",
+          "metrics": "Mean Criteria@3 averages criterion percentages over3 selected runs; Pass@8 means at least one fully correct attempt and Pass^8 means all8. These answer different reliability questions.",
+          "uncertainty": "Paper uses10,000 task-level bootstrap samples. Model-caused incomplete runs score zero; externally caused failures are excluded. Coverage and exact exclusion effects require AppendixF/run artifacts, not a bare aggregate score.",
+          "judge": "DeepSeek-v4-Flash temperature0.1/high reasoning and optimized prompt; reported validation against expert majority labels does not make grading infallible. No judge validation reproduced."
+        },
+        "limitations": [
+          "Human-in-the-loop tasks are explicitly excluded, so the benchmark does not measure when to ask for authorization or clarification.",
+          "Tax, audit, consolidation, multi-entity, multi-currency and external reporting are outside the stated task scope.",
+          "Difficulty selection used low performance of three model families; the paper acknowledges potential selection bias.",
+          "The public world was the easiest qualifying world. Dev scores must not be represented as held-out leaderboard scores.",
+          "Authors screened documents against public material during construction; subsequent public release can create training/contamination exposure. No current model contamination audit performed.",
+          "The full private tool layer, optimized grading prompt and held-out tasks remain external dependencies. No outreach, paid evaluation or API execution was performed."
+        ],
+        "case_links": [
+          {
+            "record_id": "example-connected-purchase-to-payment",
+            "overlap": "Source support and proposed corrections despite plausible balances; our explicit authorization and cutoff variants go beyond final-answer grading."
+          },
+          {
+            "record_id": "example-connected-processor-settlement",
+            "overlap": "Reconciliation and unresolved evidence; settlement finality and approval must be tested separately."
+          }
+        ],
+        "rights_note": "Only original summaries and locators are exported. No full benchmark source document, reference answer or third-party code is copied into the corpus."
+      }
     }
   },
   {
