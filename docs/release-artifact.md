@@ -59,8 +59,11 @@ build. Retain the prior saved Sites version and immutable objects for recovery.
 ## Live verification after activation and cleanup
 
 The manual `Published corpus verification` workflow runs `scripts/verify-live.mjs`
-against the fixed existing public origin. It checks out main and refuses a source
-revision different from that checkout. Supply the exact source, corpus, index,
+against the fixed existing public origin. It checks out the exact dispatched verifier revision and requires the published source
+revision to be that commit or its ancestor. The receipt records both identities and the
+release lockfile; comparison records are read from the published source commit. This
+allows a read-only verifier fix to be tried before another publication. A candidate
+verifier run does not substitute for the final combined-source run. Supply the exact source, corpus, index,
 sealed storage-manifest and download-manifest identities from the authenticated
 main artifact, plus a JSON array of its private runtime paths and any previously exposed asset paths. It installs the pinned browser but performs no app build, package,
 import, environment mutation or publication.
