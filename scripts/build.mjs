@@ -1,3 +1,4 @@
+import { writeLibraryMap } from "./library-map.mjs";
 import { writeConnectionsIndex } from "./connections-index.mjs";
 import { clientEntryUrl } from "./client-entries.mjs";
 import { historySummaryPlugin } from "./history-summary.mjs";
@@ -81,7 +82,7 @@ execFileSync(
   { stdio: "inherit" },
 );
 const clientBuild = await build({
-  entryPoints: { navigation: "src/client/navigation.tsx" },
+  entryPoints: { navigation: "src/client/navigation.tsx", "library-map": "src/client/library-map.tsx" },
   splitting: true,
   outdir: "dist/client/assets",
   entryNames: "[name]-[hash]",
@@ -97,6 +98,7 @@ const clientBuild = await build({
 });
 fs.writeFileSync("dist/internal/client-build.json", JSON.stringify(clientBuild.metafile, null, 2) + "\n");
 const navigationScript = clientEntryUrl(clientBuild.metafile, "src/client/navigation.tsx");
+const libraryMapScript = clientEntryUrl(clientBuild.metafile, "src/client/library-map.tsx");
 const preservedVersions = preview ? JSON.parse(fs.readFileSync("data/releases/index.json", "utf8")).versions : fs
   .readdirSync("data/releases", { withFileTypes: true })
   .filter(
@@ -325,6 +327,7 @@ write(
 );
 }
 const connectionIndex = await writeConnectionsIndex(records, meta.corpus_version);
+const libraryMap = writeLibraryMap(records, connectionIndex);
 const runtimeDataKeys = new Set();
 const runtimeDataPlugin = { name: "immutable-runtime-data", setup(builder) {
   builder.onLoad({ filter: /\.json$/ }, ({ path: file }) => {
@@ -344,6 +347,8 @@ const applicationBuild = await build({
     "process.env.NODE_ENV": '"production"',
     NAVIGATION_SCRIPT: JSON.stringify(navigationScript),
     CONNECTION_INDEX: JSON.stringify(connectionIndex),
+    LIBRARY_MAP: JSON.stringify(libraryMap),
+    LIBRARY_MAP_SCRIPT: JSON.stringify(libraryMapScript),
     CLIENT_ASSETS: JSON.stringify(Object.keys(clientBuild.metafile.outputs).filter(file => file.endsWith(".js")).map(file => "/assets/" + path.basename(file))),
     PREVIEW_BUILD: JSON.stringify(preview),
     PUBLICATION_DATA: JSON.stringify(publication),

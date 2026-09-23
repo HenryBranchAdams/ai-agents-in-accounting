@@ -272,3 +272,31 @@
     transition: none;
   }
 }
+
+/* Library map: application-owned canvas layout, using the existing Slate tokens. */
+.library-map-controls { display: grid; gap: 1rem; grid-template-columns: minmax(16rem, 1fr) minmax(0, 1fr); align-items: end; }
+.library-map-workspace { display: grid; align-items: start; grid-template-columns: minmax(0, 1fr) 20rem; gap: 1.5rem; }
+.library-map-stage { min-width: 0; border: 1px solid var(--border); border-radius: var(--radius); background: var(--card); overflow: hidden; }
+.library-map-canvas { height: min(68vh, 44rem); min-height: 28rem; }
+.library-map-placeholder { min-height: 28rem; padding: 2rem; }
+.library-map-inspector { min-width: 0; overflow-wrap: anywhere; }
+.library-map-inspector h2 { font-size: 1.5rem; }
+.library-map-inspector details { margin-block: 1rem; }
+.library-map-inspector summary { cursor: pointer; }
+.library-map-inspector pre { white-space: pre-wrap; }
+.library-map-inspector ul { padding-left: 1.25rem; }
+.library-map-inspector li { margin-block: .5rem; }
+.library-list-workspace { max-width: 52rem; }
+.map-record-results { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; padding: 0; list-style: none; margin-block: 1.5rem; }
+.map-record-results > li { border-top: 1px solid var(--border); padding-top: 1rem; }
+.map-record-results > li > div { display: flex; align-items: start; flex-wrap: wrap; gap: .5rem; }
+.map-record-results p { margin-block: .5rem; }
+@media (max-width: 1100px) { .library-map-controls { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 959px) { .library-map-workspace { grid-template-columns: minmax(0, 1fr); } .library-map-canvas { height: 24rem; min-height: 22rem; } .map-record-results { grid-template-columns: minmax(0,1fr); } }
+
+.map-filter-disclosure > summary { cursor: pointer; padding-block: .5rem; }
+.map-filter-disclosure[open] { grid-column: 1 / -1; }
+.map-filter-disclosure > form { padding-block: 1rem; }
+.library-map-inspector .map-popular-topics { padding: 0; list-style: none; }
+.map-popular-topics li { display: flex; align-items: baseline; justify-content: space-between; gap: .75rem; border-bottom: 1px solid var(--border); padding-block: .5rem; }
+.map-popular-topics span { color: var(--muted-foreground); font-size: .875rem; }

@@ -28,7 +28,7 @@ export async function productionBrowser(t,name){
  });
  const browser=await chromium.launch();t.after(()=>browser.close());
  const hash=file=>createHash('sha256').update(fs.readFileSync(file)).digest('hex');
- const receipt={status:'running',source_revision:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),lockfile_sha256:hash('package-lock.json'),server_sha256:hash('dist/server/index.js'),corpus_version:JSON.parse(fs.readFileSync('data/catalog.json')).corpus_version,node:process.version,browser:browser.version(),origin,tool:'Playwright Chromium',fallback:'Browser plugin not available; hosted runner used because local browser and listener are denied',journeys:[]};
+ const receipt={status:'running',source_revision:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),lockfile_sha256:hash('package-lock.json'),server_sha256:hash('dist/server/index.js'),corpus_version:JSON.parse(fs.readFileSync('data/catalog.json')).corpus_version,node:process.version,browser:browser.version(),origin,tool:'Playwright Chromium',fallback:'Browser plugin not available; authorized Playwright Chromium fallback on the recorded local or hosted runner',journeys:[]};
  t.after(()=>fs.writeFileSync(path.join(directory,'receipt.json'),JSON.stringify(receipt,null,2)+'\n'));
  return {browser,origin,directory,receipt};
 }

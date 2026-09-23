@@ -123,6 +123,7 @@ export function browse(params: URLSearchParams) {
                 : title
               : "A reference library for accounting agents."}
           </h1>
+          <p><a href="/map">Explore the whole library on the map</a></p>
           {!hasFilters && (
             <p className="mb-0 max-w-2xl text-lg text-muted-foreground">
               Find sources, assess the evidence, and connect research to

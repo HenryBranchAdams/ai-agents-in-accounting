@@ -481,7 +481,8 @@ export function recordPage(r: CorpusRecord) {
             ) : (
               ""
             )}
-            {["guide", "workflow", "example", "source"].includes(r.kind) ? <a href={`/connections?${new URLSearchParams({ focus: r.id })}`}>Explore connections</a> : null}
+            <a href={`/map?${new URLSearchParams({ record: r.id })}`}>View on the library map</a>
+            <a href={`/connections?${new URLSearchParams({ focus: r.id })}`}>Explore connections</a>
             <a href={"/records/" + r.id + ".md"}>{"Markdown"}</a>
             <a href={"/api/v1/records/" + r.id}>{"JSON"}</a>
             {r.kind === "collection" ? (

@@ -11,6 +11,9 @@ on:
       index_version:
         description: Expected connection index SHA256
         required: true
+      map_version:
+        description: Expected whole-library map SHA256 from the verified artifact
+        required: true
       storage_manifest:
         description: Expected sealed storage manifest SHA256
         required: true
@@ -43,6 +46,7 @@ jobs:
           EXPECTED_SOURCE_REVISION: ${{ inputs.source_revision }}
           EXPECTED_CORPUS_VERSION: ${{ inputs.corpus_version }}
           EXPECTED_INDEX_VERSION: ${{ inputs.index_version }}
+          EXPECTED_MAP_VERSION: ${{ inputs.map_version }}
           EXPECTED_STORAGE_MANIFEST: ${{ inputs.storage_manifest }}
           EXPECTED_DOWNLOAD_MANIFEST_SHA256: ${{ inputs.download_manifest_sha256 }}
         run: node scripts/verify-live.mjs

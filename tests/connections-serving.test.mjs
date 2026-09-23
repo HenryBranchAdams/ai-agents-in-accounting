@@ -18,9 +18,9 @@ test('ordinary reading and unfocused connection search do not fetch the generate
   const record = await worker.fetch(new Request(origin + '/records/wf-r2r-bank-reconciliations'), env);
   assert.equal(record.status, 200); assert.ok((await record.text()).includes('Explore connections'));
   const page = await worker.fetch(new Request(origin + '/connections?q=bank+reconciliation'), env);
-  assert.equal(page.status, 200); assert.ok((await page.text()).includes('wf-r2r-bank-reconciliations'));
+  assert.equal(page.status, 302); assert.equal(page.headers.get('Location'), '/map?q=bank+reconciliation');
   assert.ok(!requested.some(path => path.includes('/_runtime/connections/')));
-  assert.equal((await get('/connections?q=')).status, 200);
+  assert.equal((await get('/connections?q=')).headers.get('Location'), '/map');
 });
 
 test('generated index identity matches its bytes and bounded API/List facts agree on the integrated corpus', async () => {

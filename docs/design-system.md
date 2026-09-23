@@ -115,3 +115,26 @@ narrow data-slot rule for Dialog, Popover and Sheet content/overlays. It disable
 only their animation and transition, retaining Radix focus behavior, placement,
 semantic colors and upstream component source. Browser checks inspect the computed
 animation on the search dialog and mobile connection inspector.
+
+## Whole-library map (issue 187)
+
+`/map` is the primary discovery route. Native GET controls and a complete paginated
+List render on the server. Its separate client island hydrates with a dedicated
+identifier prefix; a separate module entry loads the canvas only in Map mode. Ordinary
+record pages do not fetch map data or its renderer. The original focused connection
+routes remain compatible for existing links and evidence inspection.
+
+The layout uses build-time Cytoscape/fCoSE with sorted stable record IDs, exact-topic
+IDs, a fixed random seed, all topic memberships, locked dependencies and versioned
+inputs. No new topic hierarchy or synonym consolidation is inferred. Collections
+retain their canonical source order. Coordinates are presentation data, not
+confidence or support. Topic labels are culled by available screen space; underlying
+records and topics remain present. Topic membership edges have no arrowheads;
+recorded evidence edges retain their types and provenance and appear on selection.
+
+The existing official Button, Field, Input, NativeSelect, Badge and Alert components
+were inspected with shadcn CLI info/search/docs. They are composed without replacing
+registry source or adding lint exceptions. Canvas colors use the existing Slate
+semantic tokens, resolved to RGB by the browser for Cytoscape. Layout, responsive
+canvas sizing and record-list structure are application CSS. New layout dependencies
+retain their MIT notices in LICENSES. No runtime force-layout dependency is shipped.
