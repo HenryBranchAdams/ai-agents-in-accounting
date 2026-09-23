@@ -32,7 +32,7 @@ export function validateStorage(directory) {
   }
   // Validate logical files without loading a whole source archive into memory.
   for(const [name,file] of Object.entries(manifest.files)) {
-    assert.ok(/^\/(downloads|releases)\//.test(name)||/^\/_runtime\/(data|connections)\/[a-f0-9]{64}\.(?:json\.)?gz$/.test(name),"Unexpected logical storage path");
+    assert.ok(/^\/(downloads|releases)\//.test(name)||/^\/_runtime\/(data|connections|library-map)\/[a-f0-9]{64}\.(?:json\.)?gz$/.test(name),"Unexpected logical storage path");
     assert.ok(!name.includes("\\")&&!name.split("/").slice(1).some(p=>!p||p==="."||p===".."));
     assert.match(file.sha256,hashPattern);assert.ok(Number.isSafeInteger(file.bytes)&&file.bytes>=0);
     assert.ok(Array.isArray(file.chunks));let total=0;const digest=createHash("sha256");

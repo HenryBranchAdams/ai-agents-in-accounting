@@ -5,7 +5,7 @@ import os from 'node:os';
 import path from 'node:path';
 import {gzipSync} from 'node:zlib';
 import {execFileSync} from 'node:child_process';
-import {createReleasePackage,validatePackage,repository} from '../scripts/release-package.mjs';
+import {createReleasePackage,validatePackage,validateStorage,repository} from '../scripts/release-package.mjs';
 import {inputInventory,buildInventory,sha256} from '../scripts/release-inputs.mjs';
 import {requiredPhases} from '../scripts/verify.mjs';
 import {fixture} from './fixtures/release-package.mjs';
@@ -39,4 +39,23 @@ test('private runtime bytes are sealed in storage and excluded from an asset-fir
   const leaked='application/dist/client/_runtime/data/'+ 'a'.repeat(64)+'.gz',body=Buffer.from('private');fs.mkdirSync(path.dirname(path.join(destination,leaked)),{recursive:true});fs.writeFileSync(path.join(destination,leaked),body);
   const packagePath=path.join(destination,'release-package.json'),packageManifest=JSON.parse(fs.readFileSync(packagePath));packageManifest.files.push({path:leaked,bytes:body.length,sha256:sha256(body),mode:0o644});fs.writeFileSync(packagePath,JSON.stringify(packageManifest));assert.throws(()=>validatePackage(destination),/cannot be public application assets/);
  }finally{fs.rmSync(root,{recursive:true,force:true});}
+});
+
+
+test('the actual production storage manifest admits the private library map and rejects unknown runtime paths',()=>{
+ const directory=fs.mkdtempSync(path.join(os.tmpdir(),'aa-real-storage-'));
+ try{
+  fs.mkdirSync(path.join(directory,'objects'));
+  const manifest=JSON.parse(fs.readFileSync('dist/storage/manifest.json'));
+  const map=JSON.parse(fs.readFileSync('dist/internal/library-map.json'));
+  assert.ok(manifest.files[map.path],'Map must be in the sealed storage inventory');
+  for(const key of Object.keys(manifest.objects))fs.linkSync(path.resolve('dist/client/assets/objects',key),path.join(directory,'objects',key));
+  fs.writeFileSync(path.join(directory,'manifest.json'),JSON.stringify(manifest));
+  assert.equal(validateStorage(directory).logical_files,Object.keys(manifest.files).length);
+  const file=manifest.files[map.path];delete manifest.files[map.path];
+  for(const invalid of ['/_runtime/unknown/'+ 'a'.repeat(64)+'.json.gz','/_runtime/library-map/../map.json.gz','/_runtime/library-map/not-a-digest.json.gz']){
+   manifest.files[invalid]=file;fs.writeFileSync(path.join(directory,'manifest.json'),JSON.stringify(manifest));
+   assert.throws(()=>validateStorage(directory),/Unexpected logical storage path/);delete manifest.files[invalid];
+  }
+ }finally{fs.rmSync(directory,{recursive:true,force:true});}
 });
