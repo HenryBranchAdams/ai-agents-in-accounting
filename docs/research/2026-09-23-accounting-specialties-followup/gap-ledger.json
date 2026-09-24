@@ -1,0 +1,3070 @@
+[
+  {
+    "question_id": "A01-Q01",
+    "area": 1,
+    "question": "Are book capital, section 704(b) capital, tax-basis capital, and outside basis distinct?",
+    "before_status": "supported",
+    "prior_gap": "Current US GAAP partnership presentation remains unverified.",
+    "prior_source_keys": [
+      "cp_irs_k1",
+      "cp_irs_1065",
+      "cp_reg704"
+    ],
+    "initial_dependency_types": [
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "supported",
+    "disposition": "deepened",
+    "dependency_types": [
+      "research",
+      "entity-facts"
+    ],
+    "new_source_keys": [
+      "f2_capital_property_743_reg"
+    ],
+    "new_finding": "Tax measures remain distinct: §743(b) creates transferee-only partnership-property basis and tax-item adjustments; it does not change common inside basis or the transferee’s capital account. That answers the tax-basis distinction, not GAAP equity presentation.",
+    "evidence_delta": "Directly read 2025 §1.743-1(a), (j), clarifying special basis versus common basis/capital-account treatment.",
+    "remaining_gap": "Current US GAAP partnership presentation and partner-specific ledger/liability facts remain open.",
+    "group": "capital-property",
+    "inventory_ids": [
+      "R040",
+      "R049",
+      "R050",
+      "R121"
+    ]
+  },
+  {
+    "question_id": "A01-Q02",
+    "area": 1,
+    "question": "How do cash/noncash contributions and built-in gain/loss affect capital and later allocations?",
+    "before_status": "supported",
+    "prior_gap": "Worked multi-year book/tax 704(c) examples need further research.",
+    "prior_source_keys": [
+      "cp_irs_1065",
+      "cp_reg704"
+    ],
+    "initial_dependency_types": [
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "supported",
+    "disposition": "deepened",
+    "dependency_types": [
+      "research",
+      "entity-facts"
+    ],
+    "new_source_keys": [
+      "f2_capital_property_704c_reg"
+    ],
+    "new_finding": "A’s contributed property carries a $6,000 initial built-in gain; after first-year tax depreciation, a $9,000 year-two sale sends $5,400 gain to A. If AB then liquidates with $19,000 cash, A has $9,400 basis and $100 gain while B has $9,600 basis and $100 loss.",
+    "evidence_delta": "Added the official multiyear example with the sale-before-liquidation sequence, outside-basis rollforward and separate $10,000 sale variant.",
+    "remaining_gap": "The example is tax regulation, not client facts or a GAAP capital-account policy; agreement method choice and special 704(c) rules remain.",
+    "group": "capital-property",
+    "inventory_ids": [
+      "R040",
+      "R049",
+      "R120"
+    ]
+  },
+  {
+    "question_id": "A01-Q03",
+    "area": 1,
+    "question": "How are profits/losses allocated and midyear admissions/exits handled?",
+    "before_status": "supported",
+    "prior_gap": "Fact-specific agreement, safe harbors, and current tax elections unresolved.",
+    "prior_source_keys": [
+      "cp_irs_1065",
+      "cp_reg704"
+    ],
+    "initial_dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "supported",
+    "disposition": "already-supported",
+    "dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "new_source_keys": [],
+    "new_finding": "Prior sources still describe agreement-based allocations and varying-interest rules; this pass adds no new midyear-admission or safe-harbor evidence.",
+    "evidence_delta": "No new direct evidence for this question; prior bounded finding carried forward.",
+    "remaining_gap": "Actual allocations, admission/exit dates, agreement and applicable tax-year elections remain entity-specific.",
+    "group": "capital-property",
+    "inventory_ids": [
+      "R040",
+      "R049"
+    ]
+  },
+  {
+    "question_id": "A01-Q04",
+    "area": 1,
+    "question": "How do distributions, withdrawals, liability relief, and service payments affect partners?",
+    "before_status": "supported",
+    "prior_gap": "Complex property/liability distribution tax calculations remain open.",
+    "prior_source_keys": [
+      "cp_irs_pub541",
+      "cp_irs_1065",
+      "cp_irs_k1"
+    ],
+    "initial_dependency_types": [
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "supported",
+    "disposition": "deepened",
+    "dependency_types": [
+      "research",
+      "entity-facts"
+    ],
+    "new_source_keys": [
+      "f2_capital_property_distribution_regs",
+      "f2_capital_property_uscode_736"
+    ],
+    "new_finding": "General tax routes distinguish §734(b) common-basis adjustment from §743(b) transferee-only basis; §736 classifies full-interest retirement payments and §736(b)(2)-(3) has conditional receivables/goodwill scope.",
+    "evidence_delta": "Added direct Code §736 and 2025 CFR readings plus the explicit statutory general-partner/capital conditions and reasonable-goodwill-agreement exception.",
+    "remaining_gap": "Complex noncash/liability distributions and service payments require the actual facts, agreement, partner/entity status and current-year tax law.",
+    "group": "capital-property",
+    "inventory_ids": [
+      "R049",
+      "R050",
+      "R058",
+      "R119",
+      "R123"
+    ]
+  },
+  {
+    "question_id": "A01-Q05",
+    "area": 1,
+    "question": "How are transfers, retirement, liquidation and windup represented?",
+    "before_status": "partial",
+    "prior_gap": "Agreement rights and detailed liquidating-payment tax routes need case-specific research.",
+    "prior_source_keys": [
+      "cp_irs_pub541",
+      "cp_irs_1065"
+    ],
+    "initial_dependency_types": [
+      "entity-facts",
+      "rights",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "partial",
+    "disposition": "deepened",
+    "dependency_types": [
+      "entity-facts",
+      "rights",
+      "research"
+    ],
+    "new_source_keys": [
+      "f2_capital_property_distribution_regs",
+      "f2_capital_property_uscode_736"
+    ],
+    "new_finding": "General tax mechanics now separate a third-party transfer from partnership liquidation payments, distinguish §736(a) from §736(b), and reconcile final distributions to outside basis; the proposed windup schedule keeps tax and book measures separate.",
+    "evidence_delta": "Official 2025 §736 regulation, statutory subsections and IRS Pub. 541 (12/2025) were read; statutory scope limits are now explicit.",
+    "remaining_gap": "The question also asks how windup is represented: US GAAP presentation, legal transfer/windup rights, member status, and agreement-specific allocation/payment terms remain unresolved.",
+    "group": "capital-property",
+    "inventory_ids": [
+      "R049",
+      "R058",
+      "R119",
+      "R123"
+    ]
+  },
+  {
+    "question_id": "A02-Q01",
+    "area": 2,
+    "question": "How should a US fund close distinguish portfolio assets/NAV, investor capital, manager/GP, and portfolio-company books?",
+    "before_status": "supported",
+    "prior_gap": "Entity-specific ASC 810 consolidation and actual title/control still require contracts, org charts and ledger facts.",
+    "prior_source_keys": [
+      "cp_kpmg_investment_companies_2026",
+      "cp_sec_custody",
+      "cp_irs_1065"
+    ],
+    "initial_dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "supported",
+    "disposition": "already-supported",
+    "dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "new_source_keys": [],
+    "new_finding": "Prior ASC 946 and custody materials already distinguish fund assets/NAV and investor capital from GP/manager and portfolio-company reporting; this pass reinforces the boundary but adds no new consolidation evidence.",
+    "evidence_delta": "No new direct evidence for consolidation/title/control; prior bounded finding carried forward.",
+    "remaining_gap": "ASC 810 and legal title/control require the actual structure, contracts, and ledger.",
+    "group": "capital-property",
+    "inventory_ids": [
+      "R049",
+      "R068",
+      "R081"
+    ]
+  },
+  {
+    "question_id": "A02-Q02",
+    "area": 2,
+    "question": "What valuation evidence supports private investment fair value and NAV?",
+    "before_status": "partial",
+    "prior_gap": "Security-level private valuation calibration and current ASC 820 application remain open; IPEV content was not accessed or relied upon.",
+    "prior_source_keys": [
+      "cp_kpmg_investment_companies_2026",
+      "cp_sec_2a5"
+    ],
+    "initial_dependency_types": [
+      "restricted-authority",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "partial",
+    "disposition": "deepened",
+    "dependency_types": [
+      "research",
+      "entity-facts"
+    ],
+    "new_source_keys": [
+      "f2_capital_property_bdo_valuation"
+    ],
+    "new_finding": "BDO’s 2018 discussion of a working draft adds a general calibration and security-class method framework, but current authoritative security-class guidance is unverified and entity-specific value remains open.",
+    "evidence_delta": "Directly read BDO’s unit-of-account, calibration and complex-capital-structure sections; this fills the general methods gap using explicitly nonauthoritative commentary.",
+    "remaining_gap": "The source is a nonauthoritative 2018 discussion of an AICPA working draft; current authoritative security-class guidance, actual class rights, transaction orderliness, measurement-date inputs and professional valuation remain unverified; IPEV remains excluded.",
+    "group": "capital-property",
+    "inventory_ids": [
+      "R068",
+      "R082",
+      "R104"
+    ]
+  },
+  {
+    "question_id": "A02-Q03",
+    "area": 2,
+    "question": "How should commitments, capital calls, distributions and unfunded commitments reconcile?",
+    "before_status": "supported",
+    "prior_gap": "Contractual recognition and unusual call/distribution types depend on fund documents.",
+    "prior_source_keys": [
+      "cp_ilpa",
+      "cp_irs_1065"
+    ],
+    "initial_dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "supported",
+    "disposition": "already-supported",
+    "dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "new_source_keys": [],
+    "new_finding": "Prior ILPA notice examples and IRS tax reporting sources already provide the general call/distribution/unfunded commitment reconciliation scope.",
+    "evidence_delta": "No new direct evidence for commitment notices or recognition; prior bounded finding carried forward.",
+    "remaining_gap": "Actual commitment terms, call types, subsequent changes and unusual distributions remain agreement-dependent.",
+    "group": "capital-property",
+    "inventory_ids": [
+      "R046",
+      "R049"
+    ]
+  },
+  {
+    "question_id": "A02-Q04",
+    "area": 2,
+    "question": "How do carried-interest fees versus profit allocations affect fund, GP, and manager statements?",
+    "before_status": "partial",
+    "prior_gap": "Manager revenue/receivable and GP participation require separate reporting-entity and contract analysis; possible ASC 718/other compensation guidance was not resolved.",
+    "prior_source_keys": [
+      "cp_kpmg_investment_companies_2026",
+      "cp_kpmg_hedge_illustrative_2025"
+    ],
+    "initial_dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "partial",
+    "disposition": "deepened",
+    "dependency_types": [
+      "research",
+      "entity-facts"
+    ],
+    "new_source_keys": [
+      "f2_capital_property_fasb_revenue_qa",
+      "f2_capital_property_kpmg_revenue_2025",
+      "f2_capital_property_deloitte_carry_323",
+      "f2_capital_property_ares_2018_10q"
+    ],
+    "new_finding": "Fund class allocation and manager carry revenue are separate questions. FASB staff’s 2020 view is that service-compensation carry is within Topic 606 regardless of cash/equity form; KPMG’s 2025 interpretation of the 2016 TRG/SEC Observer comments allows a consistent ownership model on specific facts with full ASC 810/323 analysis. Ares used ASC 323 for carry and ASC 606 for incentive fees in 2018.",
+    "evidence_delta": "Added 2025 KPMG direct read and triangulated it against 2020 FASB staff Q&A, Deloitte interpretation and one SEC filing; corrected chronology and authority levels.",
+    "remaining_gap": "Not a universal policy choice or Board-level conclusion. Reporting-entity structure, contract substance, variable-consideration reversal, clawback, consolidation/equity-method facts and current Codification remain necessary.",
+    "group": "capital-property",
+    "inventory_ids": [
+      "R068",
+      "R071",
+      "R105",
+      "R132",
+      "R140",
+      "R148"
+    ]
+  },
+  {
+    "question_id": "A02-Q05",
+    "area": 2,
+    "question": "How do custody, investor delivery, and regulatory audit duties interact?",
+    "before_status": "partial",
+    "prior_gap": "Determine adviser and pool status, audit alternatives, deadlines, and current amendments.",
+    "prior_source_keys": [
+      "cp_sec_custody",
+      "cp_sec_vacatur"
+    ],
+    "initial_dependency_types": [
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "partial",
+    "disposition": "no-new-evidence",
+    "dependency_types": [
+      "research",
+      "entity-facts"
+    ],
+    "new_source_keys": [],
+    "new_finding": "Custody, audit, investor delivery and adviser obligations remain a separate regulatory analysis from fund accounting.",
+    "evidence_delta": "No new custody/regulatory source was researched in this pass.",
+    "remaining_gap": "Current adviser and pool status, custody, audit exception, delivery dates, Form PF/CFTC/ERISA facts and later legal developments require current review.",
+    "group": "capital-property",
+    "inventory_ids": [
+      "R081",
+      "R083"
+    ]
+  },
+  {
+    "question_id": "A02-Q06",
+    "area": 2,
+    "question": "How should ASC 946 fund financial statements present net assets, class NAV/capital activity, subscriptions, and realized/unrealized performance?",
+    "before_status": "supported",
+    "prior_gap": "Applicable statement set and registered-fund SEC presentation depend on fund status and reporting facts.",
+    "prior_source_keys": [
+      "cp_kpmg_investment_companies_2026",
+      "cp_kpmg_hedge_illustrative_2025"
+    ],
+    "initial_dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "supported",
+    "disposition": "already-supported",
+    "dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "new_source_keys": [],
+    "new_finding": "Prior ASC 946 technical material already supports the general fund financial-statement and class-capital presentation path.",
+    "evidence_delta": "No new direct ASC 946 fund-statement evidence; prior bounded finding carried forward.",
+    "remaining_gap": "Registered-fund requirements and applicable statement set depend on fund status and reporting facts; current Codification review remains.",
+    "group": "capital-property",
+    "inventory_ids": [
+      "R068",
+      "R071"
+    ]
+  },
+  {
+    "question_id": "A02-Q07",
+    "area": 2,
+    "question": "How are management fees, fee waivers, expense limitations, and offsets presented in an ASC 946 fund?",
+    "before_status": "supported",
+    "prior_gap": "The manager’s revenue recognition is in its own reporting entity and depends on contract, performance and consolidation facts; no fee agreement or manager ledger was reviewed.",
+    "prior_source_keys": [
+      "cp_kpmg_investment_companies_2026"
+    ],
+    "initial_dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "supported",
+    "disposition": "deepened",
+    "dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "new_source_keys": [
+      "f2_capital_property_kpmg_revenue_2025",
+      "f2_capital_property_deloitte_carry_323"
+    ],
+    "new_finding": "Fund management-fee expense/waiver/offset accounting is distinct from the manager’s contract revenue. The new manager-side evidence treats separate management services under Topic 606 while analyzing carried interest independently as service compensation or a possible equity ownership arrangement.",
+    "evidence_delta": "Added explicit fund-versus-manager reporting-entity distinction and direct interpretation on separate management fee versus carry accounting.",
+    "remaining_gap": "Fund fee terms, waiver/expense-cap mechanics, offsets, consolidation, manager contract and ledger remain unreviewed.",
+    "group": "capital-property",
+    "inventory_ids": [
+      "R068",
+      "R105",
+      "R132"
+    ]
+  },
+  {
+    "question_id": "A02-Q08",
+    "area": 2,
+    "question": "How should contractual waterfall distributions sequence return of capital, preferred return, catch-up, carry and clawback?",
+    "before_status": "partial",
+    "prior_gap": "ILPA terms are bracketed model language, not universal terms; no actual LPA, side letters, or realized/unrealized waterfall were tested.",
+    "prior_source_keys": [
+      "cp_ilpa_model_lpa_deal_by_deal"
+    ],
+    "initial_dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "partial",
+    "disposition": "no-new-evidence",
+    "dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "new_source_keys": [],
+    "new_finding": "Prior ILPA model LPA shows one waterfall sequence and bracketed alternatives; it remains an illustration, not a universal distribution rule.",
+    "evidence_delta": "No new LPA or waterfall example was researched in this pass.",
+    "remaining_gap": "No actual waterfall, side letters, preferred-return basis, clawback or realized/unrealized ledger was inspected.",
+    "group": "capital-property",
+    "inventory_ids": [
+      "R047"
+    ]
+  },
+  {
+    "question_id": "A02-Q09",
+    "area": 2,
+    "question": "How do hedge high-water marks, classes/series and side pockets affect investor NAV and incentive allocations?",
+    "before_status": "partial",
+    "prior_gap": "Actual equalization remains separately agreement/administrator-specific; do not generalize mutual-fund share equalization to private partnership subscription adjustments.",
+    "prior_source_keys": [
+      "cp_kpmg_hedge_illustrative_2025",
+      "cp_kpmg_investment_companies_2026"
+    ],
+    "initial_dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "partial",
+    "disposition": "deepened",
+    "dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "new_source_keys": [
+      "f2_capital_property_klgates_equalization",
+      "f2_capital_property_irishfunds_equalization"
+    ],
+    "new_finding": "Historical Irish/practitioner methods explain HWM equalization alternatives, but general side-pocket mechanics and private-partnership subscription entries are not fully resolved.",
+    "evidence_delta": "Added direct practitioner-method comparison and administrator-guide example, plus a transparently labeled $107 arithmetic illustration.",
+    "remaining_gap": "Actual side-pocket participation, dealing NAV, fee reversals, HWM, crystallization, and private-partnership subscription accounting depend on fund contracts and administrator records; the guide is historical Irish practice, not US authority.",
+    "group": "capital-property",
+    "inventory_ids": [
+      "R068",
+      "R071",
+      "R114",
+      "R115"
+    ]
+  },
+  {
+    "question_id": "A02-Q10",
+    "area": 2,
+    "question": "How do ASC 946 investor-class allocations reflect unrealized marks, carried interest and clawback at the reporting date?",
+    "before_status": "supported",
+    "prior_gap": "Actual fund agreement and facts determine fee versus allocation form; current Codification and any participant compensation analysis remain necessary.",
+    "prior_source_keys": [
+      "cp_kpmg_investment_companies_2026"
+    ],
+    "initial_dependency_types": [
+      "restricted-authority",
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "supported",
+    "disposition": "deepened",
+    "dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "new_source_keys": [
+      "f2_capital_property_fasb_revenue_qa",
+      "f2_capital_property_kpmg_revenue_2025"
+    ],
+    "new_finding": "ASC 946 fund-class allocation of marks, fees and carry is not the same reporting question as the GP/manager’s carry revenue or investment. The latter may involve Topic 606 or a fact-supported ownership model under interpretive sources.",
+    "evidence_delta": "New carry literature makes explicit the boundary left open in the prior class-allocation finding.",
+    "remaining_gap": "Actual fund agreement, carry classification in GP/manager statements, clawback and participant compensation require entity-specific analysis and current GAAP review.",
+    "group": "capital-property",
+    "inventory_ids": [
+      "R068",
+      "R132",
+      "R148"
+    ]
+  },
+  {
+    "question_id": "A02-Q11",
+    "area": 2,
+    "question": "How should ASC 946 subscription equalization and class capital transactions be reflected?",
+    "before_status": "partial",
+    "prior_gap": "Private-fund subscription equalization calculation and subsequent NAV adjustments depend on the LPA and administrator method; no actual subscription ledger was tested.",
+    "prior_source_keys": [
+      "cp_kpmg_investment_companies_2026",
+      "cp_kpmg_hedge_illustrative_2025"
+    ],
+    "initial_dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "partial",
+    "disposition": "deepened",
+    "dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "new_source_keys": [
+      "f2_capital_property_klgates_equalization",
+      "f2_capital_property_irishfunds_equalization"
+    ],
+    "new_finding": "Hedge-fund share equalization must preserve each subscriber’s issue NAV/HWM and accrued-fee position, but these administrator methods do not answer the ASC 946 entry or private partnership subscription equalization amount.",
+    "evidence_delta": "New equalization methods and example sharpen the difference between investor-fee adjustment and fund class-capital accounting.",
+    "remaining_gap": "Actual subscription ledger, LPA, administrator method, retroactive NAV adjustments and current ASC 946 treatment remain open.",
+    "group": "capital-property",
+    "inventory_ids": [
+      "R068",
+      "R071",
+      "R114",
+      "R115"
+    ]
+  },
+  {
+    "question_id": "A03-Q01",
+    "area": 3,
+    "question": "What work does forensic accounting commonly support across investigation, trial, and sentencing?",
+    "before_status": "supported",
+    "prior_gap": "",
+    "prior_source_keys": [
+      "specialist_reporting_doj_forensic"
+    ],
+    "initial_dependency_types": [],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "supported",
+    "disposition": "no-new-evidence",
+    "dependency_types": [
+      "research"
+    ],
+    "new_source_keys": [],
+    "new_finding": "The prior DOJ practice article supports a bounded description of investigation, trial and sentencing work, including records analysis, tracing and loss/restition/forfeiture estimates.",
+    "evidence_delta": "No new source observation; the prior package evidence remains the support.",
+    "remaining_gap": "General government-practice example only; not an engagement standard or a fact finding.",
+    "group": "specialist-reporting",
+    "inventory_ids": [
+      "R065"
+    ]
+  },
+  {
+    "question_id": "A03-Q02",
+    "area": 3,
+    "question": "What evidence and documentation supports a reproducible fraud trace?",
+    "before_status": "partial",
+    "prior_gap": "No general private forensic protocol, digital preservation or chain-of-custody standard was fully researched.",
+    "prior_source_keys": [
+      "specialist_reporting_doj_forensic",
+      "specialist_reporting_ssfs1",
+      "specialist_reporting_irs_irm_methods_of_proof"
+    ],
+    "initial_dependency_types": [
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "partial",
+    "disposition": "deepened",
+    "dependency_types": [
+      "research",
+      "entity-facts"
+    ],
+    "new_source_keys": [
+      "f2_specialist_reporting_nist_8387"
+    ],
+    "new_finding": "NIST IR 8387 adds direct technical guidance on acquisition, preservation, provenance, chain-of-custody documentation, hashes, original and working copies, access and storage/transfer. Existing IRS bank-deposits guidance gives a separate example of testing non-income and duplicate-deposit explanations.",
+    "evidence_delta": "NIST IR 8387 adds direct technical guidance on acquisition, preservation, provenance, chain-of-custody documentation, hashes, original and working copies, access and storage/transfer. Existing IRS bank-deposits guidance gives a separate example of testing non-income and duplicate-deposit explanations.",
+    "remaining_gap": "No general private forensic-accounting trace protocol was established; civil hold, custodian, platform and tribunal duties depend on the matter.",
+    "group": "specialist-reporting",
+    "inventory_ids": [
+      "R011",
+      "R053",
+      "R065",
+      "R134"
+    ]
+  },
+  {
+    "question_id": "A03-Q03",
+    "area": 3,
+    "question": "How should fraud loss, damages or asset dissipation be quantified?",
+    "before_status": "partial",
+    "prior_gap": "No universal method is established; legal theory, causation, date, mitigation and recoverability are matter-specific.",
+    "prior_source_keys": [
+      "specialist_reporting_doj_forensic",
+      "specialist_reporting_rule702"
+    ],
+    "initial_dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "partial",
+    "disposition": "deepened",
+    "dependency_types": [
+      "research",
+      "entity-facts"
+    ],
+    "new_source_keys": [
+      "f2_specialist_reporting_fjc_damages"
+    ],
+    "new_finding": "FJC Fourth Edition Guide to Economic Damages provides a nonbinding but-for comparison framework; lost-profit work requires evidence supporting counterfactual prices, units/market share and avoided costs.",
+    "evidence_delta": "FJC Fourth Edition Guide to Economic Damages provides a nonbinding but-for comparison framework; lost-profit work requires evidence supporting counterfactual prices, units/market share and avoided costs.",
+    "remaining_gap": "Legal measure, causation, valuation date, mitigation and recoverability remain claim- and case-dependent; no universal damages formula.",
+    "group": "specialist-reporting",
+    "inventory_ids": [
+      "R065",
+      "R097",
+      "R116"
+    ]
+  },
+  {
+    "question_id": "A03-Q04",
+    "area": 3,
+    "question": "What supports expert opinions and disclosures in federal civil litigation?",
+    "before_status": "supported",
+    "prior_gap": "Case orders, tribunal rules, state rules, privilege and legal admissibility questions require counsel and current text.",
+    "prior_source_keys": [
+      "specialist_reporting_rule702",
+      "specialist_reporting_frcp26"
+    ],
+    "initial_dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "supported",
+    "disposition": "deepened",
+    "dependency_types": [
+      "research",
+      "entity-facts"
+    ],
+    "new_source_keys": [
+      "f2_specialist_reporting_rule702_verified"
+    ],
+    "new_finding": "Directly read Rule 702 in the official U.S. Courts Rules of Evidence compilation dated Dec. 1, 2024. The proponent must show more likely than not that testimony will help, is based on sufficient facts/data and reliable methods, and reliably applies them; prior direct Rule 26 read covers expert disclosures.",
+    "evidence_delta": "Directly read Rule 702 in the official U.S. Courts Rules of Evidence compilation dated Dec. 1, 2024. The proponent must show more likely than not that testimony will help, is based on sufficient facts/data and reliable methods, and reliably applies them; prior direct Rule 26 read covers expert disclosures.",
+    "remaining_gap": "Verify current tribunal compilation, governing orders, state rules, case law, privilege and case facts.",
+    "group": "specialist-reporting",
+    "inventory_ids": [
+      "R097",
+      "R099",
+      "R150"
+    ]
+  },
+  {
+    "question_id": "A03-Q05",
+    "area": 3,
+    "question": "What professional standard applies to AICPA-member forensic services?",
+    "before_status": "supported",
+    "prior_gap": "Confirm current standard and member/service scope; it is not a universal legal requirement.",
+    "prior_source_keys": [
+      "specialist_reporting_ssfs1"
+    ],
+    "initial_dependency_types": [
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "supported",
+    "disposition": "no-new-evidence",
+    "dependency_types": [
+      "research"
+    ],
+    "new_source_keys": [],
+    "new_finding": "Prior direct read of public SSFS No. 1 supports a bounded standard for covered forensic services by AICPA members accepted on/after Jan. 1, 2020.",
+    "evidence_delta": "No new source observation; the prior package evidence remains the support.",
+    "remaining_gap": "Confirm current text, member/service scope and later amendments; SSFS is not a universal legal requirement.",
+    "group": "specialist-reporting",
+    "inventory_ids": [
+      "R011"
+    ]
+  },
+  {
+    "question_id": "A04-Q01",
+    "area": 4,
+    "question": "Which Chapter 11 operating report and reporting period apply to this debtor?",
+    "before_status": "supported",
+    "prior_gap": "Must verify current form, chapter status, local rule, district UST instructions and court orders.",
+    "prior_source_keys": [
+      "specialist_reporting_ust_ch11",
+      "specialist_reporting_mor_instructions"
+    ],
+    "initial_dependency_types": [
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "supported",
+    "disposition": "deepened",
+    "dependency_types": [
+      "research",
+      "entity-facts"
+    ],
+    "new_source_keys": [
+      "f2_specialist_reporting_ust_mor_workflow"
+    ],
+    "new_finding": "UST distinguishes 11-MOR/11-PCR from Official Form 425C for small-business/Subchapter V before confirmation and directs the post-confirmation route to the district UST; usual monthly deadline is the 21st following month, subject to local directions.",
+    "evidence_delta": "UST distinguishes 11-MOR/11-PCR from Official Form 425C for small-business/Subchapter V before confirmation and directs the post-confirmation route to the district UST; usual monthly deadline is the 21st following month, subject to local directions.",
+    "remaining_gap": "Confirm debtor classification, case phase, current form version, district UST, local rules and orders.",
+    "group": "specialist-reporting",
+    "inventory_ids": [
+      "R066",
+      "R067"
+    ]
+  },
+  {
+    "question_id": "A04-Q02",
+    "area": 4,
+    "question": "How should debtor statutory operating reports tie to books and supporting evidence?",
+    "before_status": "partial",
+    "prior_gap": "Line-by-line report basis, bank tie-outs, district requirements and retention specifics need case-level source review.",
+    "prior_source_keys": [
+      "specialist_reporting_mor_instructions"
+    ],
+    "initial_dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "supported",
+    "disposition": "resolved-general-question",
+    "dependency_types": [
+      "research",
+      "entity-facts"
+    ],
+    "new_source_keys": [
+      "f2_specialist_reporting_ust_mor_workflow"
+    ],
+    "new_finding": "Direct reading of the UST 11-MOR instructions adds book-to-report details: bank/investment cash totals, reconciliation and difference explanations, separated pre/postpetition obligations, cash receipts/disbursements, operations, and debtor-only centralized cash presentation.",
+    "evidence_delta": "Direct reading of the UST 11-MOR instructions adds book-to-report details: bank/investment cash totals, reconciliation and difference explanations, separated pre/postpetition obligations, cash receipts/disbursements, operations, and debtor-only centralized cash presentation.",
+    "remaining_gap": "Current version, district and court instructions determine the actual forms, attachments, accounts, basis and cutoff.",
+    "group": "specialist-reporting",
+    "inventory_ids": [
+      "R067"
+    ]
+  },
+  {
+    "question_id": "A04-Q03",
+    "area": 4,
+    "question": "How should debtor schedules and creditor claims be reconciled?",
+    "before_status": "partial",
+    "prior_gap": "Forms alone do not determine allowed amount, status, priority, security or distribution; current Bankruptcy Code/Rules and case orders remain to research.",
+    "prior_source_keys": [
+      "specialist_reporting_bankruptcy_forms"
+    ],
+    "initial_dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "supported",
+    "disposition": "resolved-general-question",
+    "dependency_types": [
+      "research",
+      "entity-facts"
+    ],
+    "new_source_keys": [
+      "f2_specialist_reporting_bankruptcy_rules_2025",
+      "f2_specialist_reporting_bankruptcy_code_502_506"
+    ],
+    "new_finding": "Rules 3001, 3003 and 3007 organize proof, Chapter 9/11 scheduled-claim treatment, case bar date and objections; 11 U.S.C. §§501-502 supply filing/allowance rules and §506(a) ties secured status to allowed-claim and collateral-value determinations.",
+    "evidence_delta": "Rules 3001, 3003 and 3007 organize proof, Chapter 9/11 scheduled-claim treatment, case bar date and objections; 11 U.S.C. §§501-502 supply filing/allowance rules and §506(a) ties secured status to allowed-claim and collateral-value determinations.",
+    "remaining_gap": "General path is supported; actual allowance, validity, priority, secured amount, value, distribution and post-2024 statutory changes depend on current law and the docket.",
+    "group": "specialist-reporting",
+    "inventory_ids": [
+      "R098",
+      "R122",
+      "R151"
+    ]
+  },
+  {
+    "question_id": "A04-Q04",
+    "area": 4,
+    "question": "What current US GAAP governs Chapter 11 reorganization and fresh-start accounting?",
+    "before_status": "partial",
+    "prior_gap": "Current consolidated ASC 852 and related Topics remain restricted. Confirm later amendments, detailed measurement/disclosures, date, valuation inputs and court-approved plan facts using current licensed authority and qualified review.",
+    "prior_source_keys": [
+      "specialist_reporting_ey_asc852",
+      "specialist_reporting_fasb_asu2025_12"
+    ],
+    "initial_dependency_types": [
+      "restricted-authority",
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "partial",
+    "disposition": "deepened",
+    "dependency_types": [
+      "research",
+      "restricted-authority",
+      "entity-facts"
+    ],
+    "new_source_keys": [
+      "f2_specialist_reporting_asc_access_boundary"
+    ],
+    "new_finding": "The prior directly read EY April 2026 guide provides bounded fresh-start criteria and allocation overview. The Codification site returned no readable text in this access attempt; no current consolidated ASC 852 conclusion is claimed.",
+    "evidence_delta": "The prior directly read EY April 2026 guide provides bounded fresh-start criteria and allocation overview. The Codification site returned no readable text in this access attempt; no current consolidated ASC 852 conclusion is claimed.",
+    "remaining_gap": "Current ASC 852 and related Topics, amendments, measurement/disclosure details and debtor plan/value facts remain unresolved; the access attempt is not evidence of a paywall.",
+    "group": "specialist-reporting",
+    "inventory_ids": [
+      "R009",
+      "R034",
+      "R091"
+    ]
+  },
+  {
+    "question_id": "A04-Q05",
+    "area": 4,
+    "question": "When does liquidation basis begin and how are assets/liabilities presented?",
+    "before_status": "supported",
+    "prior_gap": "Verify all current disclosures and subsequent amendments against current ASC 205-30.",
+    "prior_source_keys": [
+      "specialist_reporting_fasb_asu2013_07"
+    ],
+    "initial_dependency_types": [
+      "restricted-authority",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "supported",
+    "disposition": "deepened",
+    "dependency_types": [
+      "research",
+      "restricted-authority",
+      "entity-facts"
+    ],
+    "new_source_keys": [
+      "f2_specialist_reporting_asu2013_07_read",
+      "f2_specialist_reporting_asc_access_boundary"
+    ],
+    "new_finding": "Directly reread public ASU 2013-07 amendment paragraphs on imminent liquidation, prospective transition, expected disposal proceeds, disposal costs, continued liabilities absent legal release and the two liquidation-basis statements.",
+    "evidence_delta": "Directly reread public ASU 2013-07 amendment paragraphs on imminent liquidation, prospective transition, expected disposal proceeds, disposal costs, continued liabilities absent legal release and the two liquidation-basis statements.",
+    "remaining_gap": "Current consolidated ASC 205-30 amendments and full disclosure checklist remain unverified; distinguish current-GAAP application from the historical public ASU text.",
+    "group": "specialist-reporting",
+    "inventory_ids": [
+      "R009",
+      "R085"
+    ]
+  },
+  {
+    "question_id": "A05-Q01",
+    "area": 5,
+    "question": "How are employer accounting and plan accounting separated?",
+    "before_status": "supported",
+    "prior_gap": "Specific employer and plan GAAP entries require current standards and entity facts.",
+    "prior_source_keys": [
+      "specialist_reporting_benefits_form5500",
+      "specialist_reporting_benefits_dolaudit",
+      "specialist_reporting_fasb_asu2015_12"
+    ],
+    "initial_dependency_types": [
+      "restricted-authority",
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "supported",
+    "disposition": "deepened",
+    "dependency_types": [
+      "entity-facts",
+      "restricted-authority"
+    ],
+    "new_source_keys": [
+      "f2_specialist_reporting_irs_5500_corner",
+      "f2_specialist_reporting_pcusa_db_statements",
+      "f2_specialist_reporting_monro_11k"
+    ],
+    "new_finding": "A direct IRS Form 5500 Corner reread and actual DB/DC plan statements reinforce that sponsor/employer accounting, plan financial statements and regulatory Form 5500 reporting are separate reporting roles.",
+    "evidence_delta": "A direct IRS Form 5500 Corner reread and actual DB/DC plan statements reinforce that sponsor/employer accounting, plan financial statements and regulatory Form 5500 reporting are separate reporting roles.",
+    "remaining_gap": "Specific employer and plan entries depend on current standards, plan structure/documents and facts.",
+    "group": "specialist-reporting",
+    "inventory_ids": [
+      "R030",
+      "R063",
+      "R087",
+      "R135",
+      "R145"
+    ]
+  },
+  {
+    "question_id": "A05-Q02",
+    "area": 5,
+    "question": "What populations support plan financial statements and reporting?",
+    "before_status": "partial",
+    "prior_gap": "Need current Forms 5500 schedules and current ASC 960/962 to assert plan financial statement recognition/presentation.",
+    "prior_source_keys": [
+      "specialist_reporting_benefits_form5500",
+      "specialist_reporting_benefits_5500ez",
+      "specialist_reporting_benefits_dolaudit"
+    ],
+    "initial_dependency_types": [
+      "restricted-authority",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "partial",
+    "disposition": "deepened",
+    "dependency_types": [
+      "entity-facts",
+      "research",
+      "restricted-authority"
+    ],
+    "new_source_keys": [
+      "f2_specialist_reporting_irs_5500_corner",
+      "f2_specialist_reporting_5500_2025_instructions"
+    ],
+    "new_finding": "IRS overview plus direct 2025 DOL instructions identify the Form 5500 reporting purpose, filer/form routes, Schedule H/I populations and filing-year branches.",
+    "evidence_delta": "IRS overview plus direct 2025 DOL instructions identify the Form 5500 reporting purpose, filer/form routes, Schedule H/I populations and filing-year branches.",
+    "remaining_gap": "Current plan GAAP recognition/presentation and exact schedule population still depend on ASC 960/962/965, plan type, year and plan facts.",
+    "group": "specialist-reporting",
+    "inventory_ids": [
+      "R030",
+      "R032",
+      "R054",
+      "R063"
+    ]
+  },
+  {
+    "question_id": "A05-Q03",
+    "area": 5,
+    "question": "How are contributions, participant balances, investments and distributions evidenced?",
+    "before_status": "partial",
+    "prior_gap": "ASU and XBRL examples do not replace current ASC 960/962/965; check current recognition, measurement, master-trust and participant allocation requirements.",
+    "prior_source_keys": [
+      "specialist_reporting_fasb_asu2015_12",
+      "specialist_reporting_fasb_ebp_xbrl_guide",
+      "specialist_reporting_benefits_5500ez",
+      "specialist_reporting_benefits_dolaudit"
+    ],
+    "initial_dependency_types": [
+      "restricted-authority",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "partial",
+    "disposition": "deepened",
+    "dependency_types": [
+      "entity-facts",
+      "restricted-authority"
+    ],
+    "new_source_keys": [
+      "f2_specialist_reporting_monro_11k",
+      "f2_specialist_reporting_pcusa_db_statements"
+    ],
+    "new_finding": "Actual 2025 DC 11-K and DB statements provide source-backed examples of investment, receivable, participant loan, expense, contribution, benefit, rollforward and actuarial populations.",
+    "evidence_delta": "Actual 2025 DC 11-K and DB statements provide source-backed examples of investment, receivable, participant loan, expense, contribution, benefit, rollforward and actuarial populations.",
+    "remaining_gap": "Examples do not establish current recognition, measurement, master-trust or participant-allocation rules; current plan GAAP remains unverified.",
+    "group": "specialist-reporting",
+    "inventory_ids": [
+      "R030",
+      "R054",
+      "R087",
+      "R100",
+      "R135",
+      "R145"
+    ]
+  },
+  {
+    "question_id": "A05-Q04",
+    "area": 5,
+    "question": "When is a plan audit required and what can the audit address?",
+    "before_status": "partial",
+    "prior_gap": "DOL/AICPA audit rules, current year form instructions, plan classification, exceptions and any ERISA 103(a)(3)(C) election require current fact-specific review.",
+    "prior_source_keys": [
+      "specialist_reporting_benefits_dolaudit",
+      "specialist_reporting_dol_2023_dc_count",
+      "specialist_reporting_dol_form_selector",
+      "specialist_reporting_dol_waiver_faq"
+    ],
+    "initial_dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "partial",
+    "disposition": "deepened",
+    "dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "new_source_keys": [
+      "f2_specialist_reporting_5500_2025_instructions",
+      "f2_specialist_reporting_dol_small_pension_waiver"
+    ],
+    "new_finding": "2025 instructions add current-year schedule/audit and ERISA §103(a)(3)(C) election routing; current eCFR §2520.104-46 directly states qualifying small-pension waiver asset/bonding, disclosures and records conditions.",
+    "evidence_delta": "2025 instructions add current-year schedule/audit and ERISA §103(a)(3)(C) election routing; current eCFR §2520.104-46 directly states qualifying small-pension waiver asset/bonding, disclosures and records conditions.",
+    "remaining_gap": "Plan classification, audit standard details, election prerequisites, current-year facts and distinct welfare/other exceptions still require review.",
+    "group": "specialist-reporting",
+    "inventory_ids": [
+      "R010",
+      "R030",
+      "R031",
+      "R032",
+      "R041",
+      "R111"
+    ]
+  },
+  {
+    "question_id": "A05-Q05",
+    "area": 5,
+    "question": "What special requirements apply to a defined-benefit plan?",
+    "before_status": "partial",
+    "prior_gap": "Plan GAAP, actuarial obligations, minimum funding, PBGC and employer accounting need separate primary-source research.",
+    "prior_source_keys": [
+      "specialist_reporting_benefits_db"
+    ],
+    "initial_dependency_types": [
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "partial",
+    "disposition": "deepened",
+    "dependency_types": [
+      "entity-facts",
+      "restricted-authority"
+    ],
+    "new_source_keys": [
+      "f2_specialist_reporting_5500_2025_instructions",
+      "f2_specialist_reporting_pcusa_db_statements"
+    ],
+    "new_finding": "2025 instructions route single-employer DB plans to Schedule SB and multiemployer DB plans to Schedule MB with enrolled-actuary certification; an actual audited DB example illustrates plan-related assets/liabilities and accumulated benefit information.",
+    "evidence_delta": "2025 instructions route single-employer DB plans to Schedule SB and multiemployer DB plans to Schedule MB with enrolled-actuary certification; an actual audited DB example illustrates plan-related assets/liabilities and accumulated benefit information.",
+    "remaining_gap": "Current plan GAAP, actuarial measurement, minimum funding, PBGC coverage and sponsor accounting need separate authoritative and fact-specific review.",
+    "group": "specialist-reporting",
+    "inventory_ids": [
+      "R032",
+      "R062",
+      "R135"
+    ]
+  },
+  {
+    "question_id": "A05-Q06",
+    "area": 5,
+    "question": "How does the current Form 5500 small-plan count relate to an ERISA audit requirement or waiver?",
+    "before_status": "supported",
+    "prior_gap": "Confirm plan type, applicable count and waiver under current year Form 5500 instructions, regulation and plan facts; welfare, 403(b), one-participant, pooled/MEP/DCG and other exceptions have different branches.",
+    "prior_source_keys": [
+      "specialist_reporting_dol_2023_dc_count",
+      "specialist_reporting_dol_form_selector",
+      "specialist_reporting_dol_waiver_faq"
+    ],
+    "initial_dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "supported",
+    "disposition": "deepened",
+    "dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "new_source_keys": [
+      "f2_specialist_reporting_5500_2025_instructions",
+      "f2_specialist_reporting_dol_small_pension_waiver"
+    ],
+    "new_finding": "2025 instructions and current regulation confirm plan-year/type-specific count and filing routes and that the small pension audit waiver is a separate conditional branch; DC beginning-year account-balance count rule applies from plan years beginning Jan. 1, 2023.",
+    "evidence_delta": "2025 instructions and current regulation confirm plan-year/type-specific count and filing routes and that the small pension audit waiver is a separate conditional branch; DC beginning-year account-balance count rule applies from plan years beginning Jan. 1, 2023.",
+    "remaining_gap": "Apply the current year, plan type, count, assets/bonding, disclosures and other filing exceptions to the actual plan.",
+    "group": "specialist-reporting",
+    "inventory_ids": [
+      "R010",
+      "R031",
+      "R032",
+      "R041",
+      "R111"
+    ]
+  },
+  {
+    "question_id": "A06-Q01",
+    "area": 6,
+    "question": "How should cash, modified-cash, tax and US GAAP outputs be distinguished?",
+    "before_status": "partial",
+    "prior_gap": "Define each convention, reporting user, included/excluded topics and departures; validate the basis against the specific contract, applicable professional reporting standards and current authoritative requirements.",
+    "prior_source_keys": [
+      "specialist_reporting_smallbiz_pub538",
+      "specialist_reporting_smallbiz_pub583",
+      "specialist_reporting_deloitte_special_purpose"
+    ],
+    "initial_dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "partial",
+    "disposition": "deepened",
+    "dependency_types": [
+      "research",
+      "entity-facts"
+    ],
+    "new_source_keys": [
+      "f2_specialist_reporting_irs_pub334_2025"
+    ],
+    "new_finding": "IRS tax cash/accrual and inventory rules are tax-method guidance; Deloitte explains special-purpose cash, modified-cash, tax, regulatory and contractual bases and notes there is no standardized modified-cash recipe.",
+    "evidence_delta": "IRS tax cash/accrual and inventory rules are tax-method guidance; Deloitte explains special-purpose cash, modified-cash, tax, regulatory and contractual bases and notes there is no standardized modified-cash recipe.",
+    "remaining_gap": "Need the intended users, contract, included/excluded accruals and current SSARS/reporting rules to define the basis for the entity.",
+    "group": "specialist-reporting",
+    "inventory_ids": [
+      "R024",
+      "R057",
+      "R060",
+      "R130"
+    ]
+  },
+  {
+    "question_id": "A06-Q02",
+    "area": 6,
+    "question": "What bookkeeping evidence supports a small-business close and financial reports?",
+    "before_status": "supported",
+    "prior_gap": "Retention and tax requirements depend on current tax law; internal controls vary by entity.",
+    "prior_source_keys": [
+      "specialist_reporting_smallbiz_pub583"
+    ],
+    "initial_dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "supported",
+    "disposition": "no-new-evidence",
+    "dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "new_source_keys": [],
+    "new_finding": "Prior direct IRS Pub. 583 reading supports source documents, separate business banking, recordkeeping and bank reconciliation as useful tax-close evidence.",
+    "evidence_delta": "No new source observation; the prior package evidence remains the support.",
+    "remaining_gap": "Retention and control requirements remain tax-, contract-, employment-, litigation- and entity-dependent.",
+    "group": "specialist-reporting",
+    "inventory_ids": [
+      "R060"
+    ]
+  },
+  {
+    "question_id": "A06-Q03",
+    "area": 6,
+    "question": "When can a taxpayer use cash vs accrual and change methods?",
+    "before_status": "partial",
+    "prior_gap": "Publication is dated Jan. 2022 and thresholds are indexed; verify current law and tax year.",
+    "prior_source_keys": [
+      "specialist_reporting_smallbiz_pub538"
+    ],
+    "initial_dependency_types": [
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "partial",
+    "disposition": "deepened",
+    "dependency_types": [
+      "research",
+      "entity-facts"
+    ],
+    "new_source_keys": [
+      "f2_specialist_reporting_irs_2026_448c",
+      "f2_specialist_reporting_irs_pub334_2025"
+    ],
+    "new_finding": "For covered §448(c) corporation/partnership tests, Rev. Proc. 2025-32 states a $32 million average gross-receipts threshold for tax years beginning in 2026; Pub. 334 describes cash/accrual, inventory exception and Form 3115 method changes.",
+    "evidence_delta": "For covered §448(c) corporation/partnership tests, Rev. Proc. 2025-32 states a $32 million average gross-receipts threshold for tax years beginning in 2026; Pub. 334 describes cash/accrual, inventory exception and Form 3115 method changes.",
+    "remaining_gap": "The threshold is not universal cash-method permission; entity type, aggregated receipts, tax-shelter, inventory, contracts and tax year must be checked.",
+    "group": "specialist-reporting",
+    "inventory_ids": [
+      "R057",
+      "R128",
+      "R130"
+    ]
+  },
+  {
+    "question_id": "A06-Q04",
+    "area": 6,
+    "question": "What distinguishes preparation, compilation, review and audit engagements?",
+    "before_status": "partial",
+    "prior_gap": "Current full AR-C/AU-C requirements, including applicable preparation cases/exceptions, exact legend/report wording and management/independence requirements, still require current authoritative text review.",
+    "prior_source_keys": [
+      "specialist_reporting_ssars_current",
+      "specialist_reporting_aicpa_service_comparison",
+      "specialist_reporting_jofa_arc70_explanation"
+    ],
+    "initial_dependency_types": [
+      "restricted-authority",
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "partial",
+    "disposition": "deepened",
+    "dependency_types": [
+      "research",
+      "restricted-authority",
+      "entity-facts"
+    ],
+    "new_source_keys": [
+      "f2_specialist_reporting_aicpa_services_comparison",
+      "f2_specialist_reporting_ssars27_public_summary"
+    ],
+    "new_finding": "AICPA public comparison distinguishes no-assurance preparation/compilation, limited-assurance review and reasonable-assurance audit; SSARS 27 summary describes a narrow future-effective CS 100/AR-C 70 preparation exception.",
+    "evidence_delta": "AICPA public comparison distinguishes no-assurance preparation/compilation, limited-assurance review and reasonable-assurance audit; SSARS 27 summary describes a narrow future-effective CS 100/AR-C 70 preparation exception.",
+    "remaining_gap": "Full current AR-C/AU-C text, exact report legends, prerequisites and state overlays remain unread; SSARS 27 was available here only as a public summary.",
+    "group": "specialist-reporting",
+    "inventory_ids": [
+      "R006",
+      "R007",
+      "R064",
+      "R101",
+      "R103"
+    ]
+  },
+  {
+    "question_id": "A06-Q05",
+    "area": 6,
+    "question": "What is the accountant’s responsibility boundary for the requested service?",
+    "before_status": "partial",
+    "prior_gap": "Full current AR-C/AU-C standards, state law/ethics, engagement letter, client management responsibilities, independence and actual report wording need exact review.",
+    "prior_source_keys": [
+      "specialist_reporting_ssars_current",
+      "specialist_reporting_aicpa_service_comparison",
+      "specialist_reporting_jofa_arc70_explanation"
+    ],
+    "initial_dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "partial",
+    "disposition": "deepened",
+    "dependency_types": [
+      "research",
+      "restricted-authority",
+      "entity-facts"
+    ],
+    "new_source_keys": [
+      "f2_specialist_reporting_aicpa_services_comparison",
+      "f2_specialist_reporting_ssars27_public_summary"
+    ],
+    "new_finding": "Public AICPA service guidance supports stating the selected service and assurance boundary; SSARS 27 summary clarifies one narrow consulting-engagement exception.",
+    "evidence_delta": "Public AICPA service guidance supports stating the selected service and assurance boundary; SSARS 27 summary clarifies one narrow consulting-engagement exception.",
+    "remaining_gap": "Engagement letter, management responsibility, client records, independence, exact current standards, state law and actual service facts determine the accountant’s duties.",
+    "group": "specialist-reporting",
+    "inventory_ids": [
+      "R006",
+      "R007",
+      "R064",
+      "R101",
+      "R103"
+    ]
+  },
+  {
+    "question_id": "A07-Q01",
+    "area": 7,
+    "question": "How should job, process, standard and activity-based methods select cost objects and drivers?",
+    "before_status": "supported",
+    "prior_gap": "No authoritative US GAAP or current professional practice source was opened for external inventory costing; method selection examples are textbook scope.",
+    "prior_source_keys": [
+      "cca_openstax_managerial"
+    ],
+    "initial_dependency_types": [
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "supported",
+    "disposition": "deepened",
+    "dependency_types": [
+      "research",
+      "entity-facts"
+    ],
+    "new_source_keys": [
+      "f2_cost_ima_standard_abc_2020"
+    ],
+    "new_finding": "IMA practitioner article explains why a single volume base may obscure resource consumption and how ABC activity pools/drivers can coexist with standard rates; with prior educational job/process evidence, method selection can be answered at general level.",
+    "evidence_delta": "Added a non-OpenStax practitioner source read at its ABC/standard-cost sections; now clarifies cost-benefit and method coexistence.",
+    "remaining_gap": "IMA piece dates to May 2020 and its former source URL redirects; selected cost object and driver depend on product/service facts and measurement benefit.",
+    "group": "cost-contracts-associations",
+    "inventory_ids": [
+      "R075",
+      "R147"
+    ]
+  },
+  {
+    "question_id": "A07-Q02",
+    "area": 7,
+    "question": "How are variable and fixed production overhead treated, including normal capacity, idle capacity and abnormal waste?",
+    "before_status": "partial",
+    "prior_gap": "OpenStax is educational, FAS 151 is historical, and current ASC 330 detail has not been opened; do not conflate management overhead variances, GAAP inventory allocation and contract allowability.",
+    "prior_source_keys": [
+      "cca_openstax_managerial",
+      "cca_fas151",
+      "cca_far31"
+    ],
+    "initial_dependency_types": [
+      "restricted-authority",
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "supported",
+    "disposition": "deepened",
+    "dependency_types": [
+      "research",
+      "entity-facts"
+    ],
+    "new_source_keys": [
+      "f2_cost_kpmg_inventory_2025"
+    ],
+    "new_finding": "KPMG October 2025 handbook directly explains variable overhead at actual use, fixed overhead allocation using normal capacity, expensing unallocated overhead at abnormally low output, reducing per-unit allocation at abnormally high output, abnormal waste, and a numerical example.",
+    "evidence_delta": "Replaces only historical/textbook-level support with a dated professional interpretation quoting ASC 330; avoids mixing inventory allocation with FAR allowability or management variance.",
+    "remaining_gap": "Current FASB paragraphs were not extractable in the browser; normal capacity and actual entity treatment remain fact-specific.",
+    "group": "cost-contracts-associations",
+    "inventory_ids": [
+      "R002",
+      "R075",
+      "R095",
+      "R131"
+    ]
+  },
+  {
+    "question_id": "A07-Q03",
+    "area": 7,
+    "question": "How should standard costs and variances be reconciled to actual cost?",
+    "before_status": "supported",
+    "prior_gap": "Textbook formulas do not prescribe journal entries, a single variance convention, inventory adjustment method, or current GAAP treatment.",
+    "prior_source_keys": [
+      "cca_openstax_managerial",
+      "cca_far31"
+    ],
+    "initial_dependency_types": [
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "supported",
+    "disposition": "deepened",
+    "dependency_types": [
+      "research",
+      "entity-facts"
+    ],
+    "new_source_keys": [
+      "f2_cost_kpmg_inventory_2025"
+    ],
+    "new_finding": "KPMG quotes ASC 330-10-30-12 permitting standards only when periodically adjusted to approximate a recognized cost basis at balance-sheet date; FAR 31 separately governs variance adjustment in federal contract cost.",
+    "evidence_delta": "Direct source read adds a specific standard-cost-to-cost-basis condition absent from the earlier textbook formulas.",
+    "remaining_gap": "No universal variance journal-entry convention or entity inventory adjustment method was established; current Codification and entity policy require confirmation.",
+    "group": "cost-contracts-associations",
+    "inventory_ids": [
+      "R002",
+      "R075",
+      "R131"
+    ]
+  },
+  {
+    "question_id": "A07-Q04",
+    "area": 7,
+    "question": "How should customer, product, service and segment profitability use allocations?",
+    "before_status": "partial",
+    "prior_gap": "Worked customer/service/segment profitability, avoidable fixed cost, capacity and common-cost allocation cases remain thin in inspected sources.",
+    "prior_source_keys": [
+      "cca_openstax_managerial"
+    ],
+    "initial_dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "supported",
+    "disposition": "deepened",
+    "dependency_types": [
+      "research",
+      "entity-facts"
+    ],
+    "new_source_keys": [
+      "f2_cost_ima_standard_abc_2020"
+    ],
+    "new_finding": "IMA ABC discussion plus an original contribution/avoidable-cost example distinguishes fully allocated margin from incremental closure impact: stated $1m revenue case has $20k fully allocated profit but closing lowers company income $260k when only $120k fixed cost is avoidable.",
+    "evidence_delta": "Adds the requested original common-cost/avoidable-cost worked case and independent practitioner cost-driver rationale.",
+    "remaining_gap": "Illustration is not a real dealer/company or external reporting rule; demand, transferred sales, capacity and avoidable costs must be established.",
+    "group": "cost-contracts-associations",
+    "inventory_ids": [
+      "R075",
+      "R147"
+    ]
+  },
+  {
+    "question_id": "A08-Q01",
+    "area": 8,
+    "question": "How do PE/VC valuation and recent-round calibration support fair value by security class?",
+    "before_status": "partial",
+    "prior_gap": "Security-specific recent-round calibration, preference stack, instrument valuation and current ASC 820 analysis remain open; IPEV is not substantively relied upon.",
+    "prior_source_keys": [
+      "cp_kpmg_investment_companies_2026"
+    ],
+    "initial_dependency_types": [
+      "restricted-authority",
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "partial",
+    "disposition": "deepened",
+    "dependency_types": [
+      "research",
+      "entity-facts"
+    ],
+    "new_source_keys": [
+      "f2_capital_property_bdo_valuation"
+    ],
+    "new_finding": "BDO’s 2018 working-draft interpretation expands the unit-of-account, calibration and model-selection map; current authoritative security-class guidance and any specific valuation remain unverified.",
+    "evidence_delta": "Directly read BDO’s unit-of-account, calibration, and method-selection discussion.",
+    "remaining_gap": "Current authoritative security-class/fair-value guidance remains unverified; the BDO source summarizes a 2018 working draft, and actual rights, inputs and valuation require case-specific analysis; IPEV remains excluded.",
+    "group": "capital-property",
+    "inventory_ids": [
+      "R068",
+      "R104"
+    ]
+  },
+  {
+    "question_id": "A08-Q02",
+    "area": 8,
+    "question": "How do calls, distributions, unfunded commitments and investor notices reconcile?",
+    "before_status": "supported",
+    "prior_gap": "Cannot infer recognition or contract rights from template alone.",
+    "prior_source_keys": [
+      "cp_ilpa",
+      "cp_irs_1065"
+    ],
+    "initial_dependency_types": [
+      "entity-facts",
+      "rights",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "supported",
+    "disposition": "already-supported",
+    "dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "new_source_keys": [],
+    "new_finding": "Prior ILPA and IRS materials already support call, distribution, unfunded-commitment and investor-notice reconciliation.",
+    "evidence_delta": "No new direct evidence for notices or commitments.",
+    "remaining_gap": "Actual LPA and unusual call/distribution rights remain untested.",
+    "group": "capital-property",
+    "inventory_ids": [
+      "R046",
+      "R049"
+    ]
+  },
+  {
+    "question_id": "A08-Q03",
+    "area": 8,
+    "question": "How are preferred return, catch-up, carry, escrow and clawback modeled?",
+    "before_status": "partial",
+    "prior_gap": "The ILPA model has bracketed alternatives and is only one Delaware-based model; no actual agreement or GAAP classification for a specific carry arrangement was reviewed.",
+    "prior_source_keys": [
+      "cp_ilpa_model_lpa_deal_by_deal",
+      "cp_kpmg_investment_companies_2026"
+    ],
+    "initial_dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "partial",
+    "disposition": "no-new-evidence",
+    "dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "new_source_keys": [],
+    "new_finding": "Prior ILPA model LPA gives one preferred-return/catch-up/carry/clawback illustration; no new waterfall evidence was added.",
+    "evidence_delta": "No new waterfall source or contract inspected.",
+    "remaining_gap": "Escrow, clawback security, whole-fund versus deal-by-deal waterfall and actual carry terms remain agreement-specific.",
+    "group": "capital-property",
+    "inventory_ids": [
+      "R047",
+      "R068"
+    ]
+  },
+  {
+    "question_id": "A08-Q04",
+    "area": 8,
+    "question": "How do fund and adviser reporting requirements differ after the 2023 rule vacatur?",
+    "before_status": "supported",
+    "prior_gap": "Current adviser-specific obligations, thresholds, CFTC/ERISA facts require verification.",
+    "prior_source_keys": [
+      "cp_sec_vacatur",
+      "cp_sec_custody",
+      "cp_sec_formpf"
+    ],
+    "initial_dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "supported",
+    "disposition": "no-new-evidence",
+    "dependency_types": [
+      "research"
+    ],
+    "new_source_keys": [],
+    "new_finding": "Prior SEC vacatur and custody/Form PF sources remain the basis for the bounded fund/adviser regulatory distinction.",
+    "evidence_delta": "No new regulatory source or current amendment check was added.",
+    "remaining_gap": "Recheck adviser-specific custody, filing thresholds, CFTC/ERISA status and rule changes for the relevant date.",
+    "group": "capital-property",
+    "inventory_ids": [
+      "R081",
+      "R083",
+      "R084"
+    ]
+  },
+  {
+    "question_id": "A08-Q05",
+    "area": 8,
+    "question": "How should hedge fund dealing NAV, high-water marks, equalization and side pockets be computed?",
+    "before_status": "partial",
+    "prior_gap": "Actual HWM/equalization/dealing and private partnership subscription adjustment are contract-specific; mutual-fund equalization accounting is not a default for private funds.",
+    "prior_source_keys": [
+      "cp_kpmg_hedge_illustrative_2025",
+      "cp_kpmg_investment_companies_2026"
+    ],
+    "initial_dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "partial",
+    "disposition": "deepened",
+    "dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "new_source_keys": [
+      "f2_capital_property_klgates_equalization",
+      "f2_capital_property_irishfunds_equalization"
+    ],
+    "new_finding": "Historical Irish administrator/practitioner materials describe investor capital accounts, series accounting and equalization methods each preserve HWM/cohort fee history differently. A historical 2009 Irish administrator guide gives a $1,000 credit example and the brief derives a labeled later-$107 comparison.",
+    "evidence_delta": "Added primary-section reads of practitioner/administrator material with a worked, scoped arithmetic explanation.",
+    "remaining_gap": "Method selection, actual dealing NAV, fee reversals, side-pocket participation, crystallization, and redemption terms require the actual fund documents and administrator records.",
+    "group": "capital-property",
+    "inventory_ids": [
+      "R068",
+      "R071",
+      "R114",
+      "R115"
+    ]
+  },
+  {
+    "question_id": "A08-Q06",
+    "area": 8,
+    "question": "What does a new JV recognize at formation, and what is distinct for venturer accounting?",
+    "before_status": "supported",
+    "prior_gap": "Investor accounting remains a separate control/equity-method analysis.",
+    "prior_source_keys": [
+      "cp_fasb_jv"
+    ],
+    "initial_dependency_types": [
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "supported",
+    "disposition": "already-supported",
+    "dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "new_source_keys": [],
+    "new_finding": "Prior FASB joint-venture formation source supports the effective-date and formation-versus-venturer-accounting distinction.",
+    "evidence_delta": "No new JV source was researched.",
+    "remaining_gap": "Investor’s subsequent control/equity-method analysis remains separate and fact-dependent.",
+    "group": "capital-property",
+    "inventory_ids": [
+      "R089"
+    ]
+  },
+  {
+    "question_id": "A08-Q07",
+    "area": 8,
+    "question": "How do fund NAV and investor capital allocations reflect unrealized marks, fees, carry and clawback under ASC 946?",
+    "before_status": "supported",
+    "prior_gap": "Current Codification and agreement-specific fee/carry classification remain subject to professional review.",
+    "prior_source_keys": [
+      "cp_kpmg_investment_companies_2026"
+    ],
+    "initial_dependency_types": [
+      "restricted-authority",
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "supported",
+    "disposition": "deepened",
+    "dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "new_source_keys": [
+      "f2_capital_property_fasb_revenue_qa",
+      "f2_capital_property_kpmg_revenue_2025"
+    ],
+    "new_finding": "The fund’s ASC 946 investor-class allocation of fair-value changes, expenses and carry must be kept separate from a GP/manager’s carried-interest reporting as service revenue or an ownership interest.",
+    "evidence_delta": "Added direct carry classification materials to clarify the fund-versus-manager boundary.",
+    "remaining_gap": "The actual agreement determines the class allocation and carry amount; precise current ASC 946 treatment and GP/manager method remain to verify.",
+    "group": "capital-property",
+    "inventory_ids": [
+      "R068",
+      "R132",
+      "R148"
+    ]
+  },
+  {
+    "question_id": "A08-Q08",
+    "area": 8,
+    "question": "How should new subscriptions/redemptions and class/series equalization be tracked?",
+    "before_status": "partial",
+    "prior_gap": "Private fund equalization amount, method and retroactive NAV adjustments depend on governing documents.",
+    "prior_source_keys": [
+      "cp_kpmg_investment_companies_2026",
+      "cp_kpmg_hedge_illustrative_2025"
+    ],
+    "initial_dependency_types": [
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "partial",
+    "disposition": "deepened",
+    "dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "new_source_keys": [
+      "f2_capital_property_klgates_equalization",
+      "f2_capital_property_irishfunds_equalization"
+    ],
+    "new_finding": "Series/equalization structures explain how a new subscription can avoid bearing pre-entry appreciation fees, but they do not prescribe the ASC 946 transaction entry for a private partnership.",
+    "evidence_delta": "New methods explain general cohort/equalization mechanics, while preserving the prior warning against assuming mutual-fund procedures for private partnerships.",
+    "remaining_gap": "New-subscription pricing, share/interest issuance, retrospective equalization and redemption rights depend on LPA/PPM and actual subledger; GAAP entry not established.",
+    "group": "capital-property",
+    "inventory_ids": [
+      "R068",
+      "R071",
+      "R114",
+      "R115"
+    ]
+  },
+  {
+    "question_id": "A09-Q01",
+    "area": 9,
+    "question": "How should owner, developer, manager, broker, contractor and REIT roles route?",
+    "before_status": "partial",
+    "prior_gap": "The public technical sources cover bounded roles/examples but do not constitute a universal sector map or legal characterization; entity facts and consolidation remain necessary.",
+    "prior_source_keys": [
+      "cp_kpmg_real_estate_revenue_2026",
+      "cp_ey_real_estate_project_costs_2026",
+      "cp_irs_reit"
+    ],
+    "initial_dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "partial",
+    "disposition": "deepened",
+    "dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "new_source_keys": [
+      "f2_capital_property_ca_dre_trustregs_2026"
+    ],
+    "new_finding": "California provides a bounded role/accounting route when a licensed broker handles another person’s property-management funds: the broker must maintain trust-fund and separate beneficiary records and respect trust-fund deposit/disbursement rules. This does not define roles or law nationwide.",
+    "evidence_delta": "Directly read California DRE’s 2026 Real Estate Law trust-fund regulations; this adds a state example, not a general legal classification.",
+    "remaining_gap": "Owner/developer/manager/broker/contractor/REIT roles depend on entity chart, ownership, contracts, state licensing and law; the California broker rule does not cover every manager.",
+    "group": "capital-property",
+    "inventory_ids": [
+      "R035",
+      "R052",
+      "R069",
+      "R110"
+    ]
+  },
+  {
+    "question_id": "A09-Q02",
+    "area": 9,
+    "question": "How should acquisition and development costs, CIP, placed-in-service, depreciation, and sale be separated?",
+    "before_status": "supported",
+    "prior_gap": "Acquired operating properties/business combinations, own-use assets and current component tax/book timing require separate ASC 805/360/842 and federal tax facts.",
+    "prior_source_keys": [
+      "cp_ey_real_estate_project_costs_2026",
+      "cp_kpmg_real_estate_revenue_2026",
+      "cp_irs_946"
+    ],
+    "initial_dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "supported",
+    "disposition": "already-supported",
+    "dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "new_source_keys": [],
+    "new_finding": "Prior EY/KPMG and IRS sources already address development cost capitalization, book/tax depreciation and disposal; this pass adds no new cost guidance.",
+    "evidence_delta": "No new development-cost or placed-in-service source was added.",
+    "remaining_gap": "Property-use facts, component costs, acquired operating property, tax depreciation and exact current GAAP application remain.",
+    "group": "capital-property",
+    "inventory_ids": [
+      "R035",
+      "R061",
+      "R069"
+    ]
+  },
+  {
+    "question_id": "A09-Q03",
+    "area": 9,
+    "question": "How should rent, incentives, deposits, and lease components flow through a rent roll?",
+    "before_status": "partial",
+    "prior_gap": "CAM is handled separately; security-deposit law is state/local, and actual lease terms/lessor classification are unreviewed.",
+    "prior_source_keys": [
+      "cp_kpmg_real_estate_revenue_2026",
+      "cp_irs_527"
+    ],
+    "initial_dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "partial",
+    "disposition": "deepened",
+    "dependency_types": [
+      "research",
+      "entity-facts",
+      "rights"
+    ],
+    "new_source_keys": [
+      "f2_capital_property_bdo_leases_2026",
+      "f2_capital_property_deloitte_security_deposits"
+    ],
+    "new_finding": "Secondary GAAP interpretation describes operating-lessor straight-line rent when collection is probable, variable rent on occurrence/collection as applicable, and separates refundable deposits, nonrefundable consideration and deposit retention; IRS Pub. 527 separately treats refundable deposits and advance rent for tax.",
+    "evidence_delta": "Added direct BDO lessor recognition/presentation sections, Deloitte refundable/nonrefundable deposit analysis, and linked the prior 2025 IRS tax treatment.",
+    "remaining_gap": "Lease incentives, components/CAM and actual deposit rights require lease/state law facts; tax timing differs from book treatment; exact current Codification application remains.",
+    "group": "capital-property",
+    "inventory_ids": [
+      "R056",
+      "R069",
+      "R102",
+      "R106"
+    ]
+  },
+  {
+    "question_id": "A09-Q04",
+    "area": 9,
+    "question": "How should CAM/tenant recoveries reconcile and present?",
+    "before_status": "supported",
+    "prior_gap": "Professional interpretations are conditional examples; actual lease language, expedients, true-ups and current ASC text must be assessed.",
+    "prior_source_keys": [
+      "cp_deloitte_asc842_cam",
+      "cp_deloitte_asc842_lessor_reimbursements"
+    ],
+    "initial_dependency_types": [
+      "restricted-authority",
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "supported",
+    "disposition": "already-supported",
+    "dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "new_source_keys": [],
+    "new_finding": "Prior Deloitte lessor-reimbursement/CAM sources already support the bounded accounting route.",
+    "evidence_delta": "No new direct CAM or recovery evidence.",
+    "remaining_gap": "Actual lease terms, expedients, expense true-ups and allocation remain unreviewed.",
+    "group": "capital-property",
+    "inventory_ids": [
+      "R016",
+      "R017"
+    ]
+  },
+  {
+    "question_id": "A09-Q05",
+    "area": 9,
+    "question": "How should property-manager cash collection and owner settlement reconcile?",
+    "before_status": "partial",
+    "prior_gap": "Revenue recognition interpretation does not establish cash custody, bank controls, owner authorization or the legal trust-account treatment; no agreement or ledger tested.",
+    "prior_source_keys": [
+      "cp_kpmg_real_estate_revenue_2026"
+    ],
+    "initial_dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "partial",
+    "disposition": "deepened",
+    "dependency_types": [
+      "entity-facts",
+      "rights",
+      "research"
+    ],
+    "new_source_keys": [
+      "f2_capital_property_ca_dre_trustregs_2026",
+      "f2_capital_property_deloitte_security_deposits",
+      "f2_capital_property_bdo_leases_2026"
+    ],
+    "new_finding": "California’s 2026 broker rules require receipt/disbursement control records, separate beneficiary/transaction ledgers, monthly ledger-to-control reconciliation and written consent for a disbursement that would create a trust-fund shortfall. This supplies a jurisdiction-specific custody-accounting floor. A separate owner statement/remittance formula remains contract-dependent; the proposed property settlement schedule is an editorial control.",
+    "evidence_delta": "Added a direct read of current California DRE trust-fund regulations §§2831–2832.1 and 2835, including monthly reconciliation and shortfall consent, narrowing the open custody/control question while keeping scope state-specific.",
+    "remaining_gap": "The regulations do not establish a national rule or the contractual timing/calculation of owner remittances. Determine broker/license status, state/local law, agency and trust terms, owner approvals, fee rights, bank activity and tenant liabilities from the actual engagement.",
+    "group": "capital-property",
+    "inventory_ids": [
+      "R069",
+      "R102",
+      "R106",
+      "R110"
+    ]
+  },
+  {
+    "question_id": "A09-Q06",
+    "area": 9,
+    "question": "What current federal REIT qualification data is needed?",
+    "before_status": "partial",
+    "prior_gap": "Full current Code/regulations, attribution, look-through, TRS and distribution tests remain open.",
+    "prior_source_keys": [
+      "cp_irs_reit"
+    ],
+    "initial_dependency_types": [
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "partial",
+    "disposition": "deepened",
+    "dependency_types": [
+      "research",
+      "entity-facts"
+    ],
+    "new_source_keys": [
+      "f2_capital_property_uscode_reit"
+    ],
+    "new_finding": "The inspected Code and 2025 IRS instructions provide a general REIT threshold checklist, but the question asks for current qualification data and full consolidation-through date, attribution/look-through, TRS and cure details remain open.",
+    "evidence_delta": "Directly read 26 U.S.C. §§856–857 and paired the high-level thresholds with prior 2025 IRS Form 1120-REIT instructions.",
+    "remaining_gap": "GovInfo display did not show its consolidation-through date; 2025 instructions are not 2026 instructions. Verify the year’s statute, regulations, attribution/look-through, TRS, cure and current return requirements before concluding qualification.",
+    "group": "capital-property",
+    "inventory_ids": [
+      "R052",
+      "R124"
+    ]
+  },
+  {
+    "question_id": "A10-Q01",
+    "area": 10,
+    "question": "Which contract-specific rules determine allowability, allocability and record support?",
+    "before_status": "supported",
+    "prior_gap": "Agency supplements, award clause vintage, CAS coverage and selected cost edge cases require individual review.",
+    "prior_source_keys": [
+      "cca_far31",
+      "cca_dfars_2522427006"
+    ],
+    "initial_dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "supported",
+    "disposition": "deepened",
+    "dependency_types": [
+      "research",
+      "entity-facts"
+    ],
+    "new_source_keys": [
+      "f2_cost_dcaa_contractor_pamphlet_2012"
+    ],
+    "new_finding": "Directly read DCAA Manual No. 7641.90 (June 26, 2012), pp. 13-15, adding cost-object accumulation, GL reconciliation, timekeeping and labor-distribution controls. DCAA identifies supervisor cosignature as recommended; binding duties remain in applicable FAR/DFARS/CAS and the award.",
+    "evidence_delta": "Previously discovery-only due to then-available access; the full official PDF was opened and the assigned pages read.",
+    "remaining_gap": "DCAA manual is guidance, not an amendment to the contract. Applicable agency supplements, award wording, CAS and contractor records require review.",
+    "group": "cost-contracts-associations",
+    "inventory_ids": [
+      "R002",
+      "R005",
+      "R023"
+    ]
+  },
+  {
+    "question_id": "A10-Q02",
+    "area": 10,
+    "question": "How do provisional billing rates, final indirect rates and incurred-cost proposals reconcile?",
+    "before_status": "supported",
+    "prior_gap": "Need DCAA schedules/user manual and adequacy requirements in the applicable clause and auditor guidance.",
+    "prior_source_keys": [
+      "cca_far42",
+      "cca_far2167",
+      "cca_dcaaice"
+    ],
+    "initial_dependency_types": [
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "supported",
+    "disposition": "deepened",
+    "dependency_types": [
+      "research",
+      "entity-facts"
+    ],
+    "new_source_keys": [
+      "f2_cost_dcaa_ice_manual_2019",
+      "f2_cost_dcaa_ice_page_2026"
+    ],
+    "new_finding": "Directly read ICE manual v2.0.1h pp. 5-7 and the live 2026 DCAA ICE page listing Power Query v1.08 (July 2026) and Visual Basic v2.0.1h (May 2019), either accepted; page disclaims adequacy guarantee.",
+    "evidence_delta": "Adds actual official manual page reads and current live version discovery beyond the prior inaccessible workbook listing.",
+    "remaining_gap": "Current v1.08 manual was identified as inside the download package but not read. Actual proposal schedules and filing depend on FAR clause and disclosed practice.",
+    "group": "cost-contracts-associations",
+    "inventory_ids": [
+      "R001",
+      "R003",
+      "R022",
+      "R108"
+    ]
+  },
+  {
+    "question_id": "A10-Q03",
+    "area": 10,
+    "question": "What labor timekeeping records support direct labor and prevent inconsistent charging?",
+    "before_status": "partial",
+    "prior_gap": "DCAA pamphlet is discovery-only because the PDF could not be opened; its search snippets are not evidence. Detailed time-entry, certification, correction, overtime, labor-transfer, leave and subcontractor procedures need a full accessible source review.",
+    "prior_source_keys": [
+      "cca_dfars_2522427006",
+      "cca_far31"
+    ],
+    "initial_dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "supported",
+    "disposition": "deepened",
+    "dependency_types": [
+      "research",
+      "entity-facts"
+    ],
+    "new_source_keys": [
+      "f2_cost_dcaa_contractor_pamphlet_2012"
+    ],
+    "new_finding": "The 2012 DCAA pamphlet pp. 13-15 was directly read: actual-work-object daily employee entry, correction trail, all hours including uncompensated overtime, employee certification and recommended supervisor cosignature.",
+    "evidence_delta": "Direct reading closes the earlier full-source access gap for the cited pages; prior DFARS/FAR provisions remain the separate source of applicable binding requirements.",
+    "remaining_gap": "Historical guidance is not a universal rule; procedure must match clause/award, CAS coverage, current manual and the contractor system.",
+    "group": "cost-contracts-associations",
+    "inventory_ids": [
+      "R002",
+      "R005",
+      "R023"
+    ]
+  },
+  {
+    "question_id": "A10-Q04",
+    "area": 10,
+    "question": "How do cost-reimbursement invoices differ from cost-based progress financing?",
+    "before_status": "supported",
+    "prior_gap": "Executed clause/alternate, contract type, agency supplement and payment clause determine actual procedure.",
+    "prior_source_keys": [
+      "cca_far2167",
+      "cca_far23216"
+    ],
+    "initial_dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "supported",
+    "disposition": "already-supported",
+    "dependency_types": [
+      "entity-facts"
+    ],
+    "new_source_keys": [],
+    "new_finding": "Prior FAR 52.216-7 and 52.232-16 source reads already distinguish allowable incurred-cost reimbursement from clause-defined progress financing; this follow-up adds no evidence on the general difference.",
+    "evidence_delta": "No new source; maintained bounded prior supported status as requested.",
+    "remaining_gap": "Executed clause/alternate, contract type, agency supplement and financing terms govern the entity transaction.",
+    "group": "cost-contracts-associations",
+    "inventory_ids": [
+      "R001",
+      "R004"
+    ]
+  },
+  {
+    "question_id": "A10-Q05",
+    "area": 10,
+    "question": "How do contract-cost accounts relate to GAAP WIP, revenue and contract balances?",
+    "before_status": "partial",
+    "prior_gap": "A source-backed example bridging job cost subledger, invoice, billing, contract asset/liability and rate true-up remains needed.",
+    "prior_source_keys": [
+      "cca_far31",
+      "cca_far2167",
+      "cca_far23216",
+      "cca_dfars_2522427006"
+    ],
+    "initial_dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "supported",
+    "disposition": "resolved-general-question",
+    "dependency_types": [
+      "research",
+      "entity-facts"
+    ],
+    "new_source_keys": [
+      "f2_cost_kpmg_revenue_2025"
+    ],
+    "new_finding": "December 2025 KPMG Topic 606 examples bridge cost-to-cost progress and identified cost, revenue and contract balance. Contract asset/liability/receivable depend on performance, enforceable rights and conditionality; invoicing alone is not determinative. A rate adjustment requires a separate revenue assessment if customer transaction price changes.",
+    "evidence_delta": "Adds the missing numerical job-cost/revenue example, classifications and updated nuanced treatment of final-rate settlement.",
+    "remaining_gap": "KPMG is nonauthoritative interpretation, not current Codification verification. Actual awarded clauses, customer terms and performance/right facts were not reviewed.",
+    "group": "cost-contracts-associations",
+    "inventory_ids": [
+      "R001",
+      "R002",
+      "R004",
+      "R005",
+      "R132"
+    ]
+  },
+  {
+    "question_id": "A11-Q01",
+    "area": 11,
+    "question": "How should floorplan borrowing and manufacturer floorplan assistance be tracked and recognized?",
+    "before_status": "partial",
+    "prior_gap": "Neither is universal authority; direct floorplan debt/interest and program-specific terms across auto and equipment dealers remain open.",
+    "prior_source_keys": [
+      "cca_dealer-lithia-2025",
+      "cca_dealer-group1"
+    ],
+    "initial_dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "partial",
+    "disposition": "deepened",
+    "dependency_types": [
+      "research",
+      "entity-facts"
+    ],
+    "new_source_keys": [
+      "f2_cost_titan_10k_2026"
+    ],
+    "new_finding": "Titan FY2026 filing directly describes manufacturer and nonmanufacturer floorplan balances, terms, interest windows and repayment triggers; Lithia and Alta offer distinct issuer examples of unit/program relationships.",
+    "evidence_delta": "Adds a current equipment-dealer primary filing to earlier auto-focused issuer examples.",
+    "remaining_gap": "No universal policy: actual debt and manufacturer program agreements, interest, assistance, clawbacks and cash-flow classification require analysis.",
+    "group": "cost-contracts-associations",
+    "inventory_ids": [
+      "R077",
+      "R078",
+      "R141"
+    ]
+  },
+  {
+    "question_id": "A11-Q02",
+    "area": 11,
+    "question": "How are new and used vehicle/equipment inventory and trade-ins valued and cut off?",
+    "before_status": "partial",
+    "prior_gap": "Issuer policy is not universal; lien payoff/title/control timing, other cost items, write-down evidence and equipment units need current technical guidance.",
+    "prior_source_keys": [
+      "cca_dealer-lithia-2025",
+      "cca_dealer-nada"
+    ],
+    "initial_dependency_types": [
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "partial",
+    "disposition": "deepened",
+    "dependency_types": [
+      "research",
+      "entity-facts"
+    ],
+    "new_source_keys": [
+      "f2_cost_titan_10k_2026",
+      "f2_cost_altg_abl_agreement_2022",
+      "f2_cost_altg_sec_response_2024"
+    ],
+    "new_finding": "Titan reports serial-specific equipment cost/NRV, used trade-ins based on estimated resale less gross profit and reconditioning, and reconditioning WIP. Alta supplies rent-to-sell/rent-to-rent and lender inventory/demo/rental collateral definitions.",
+    "evidence_delta": "Adds direct equipment dealer measurement/cutoff and collateral evidence beyond prior auto sources.",
+    "remaining_gap": "Trade-in policy remains issuer-specific; title/control/payoff timing, used-equipment estimates, reconditioning and GAAP classification need entity facts.",
+    "group": "cost-contracts-associations",
+    "inventory_ids": [
+      "R073",
+      "R077",
+      "R141",
+      "R143",
+      "R144"
+    ]
+  },
+  {
+    "question_id": "A11-Q03",
+    "area": 11,
+    "question": "How should manufacturer holdback, sales incentives and co-op funds be classified?",
+    "before_status": "partial",
+    "prior_gap": "Other volume, co-op, conditional, clawback and customer rebate programs depend on actual arrangement and need separate analysis.",
+    "prior_source_keys": [
+      "cca_dealer-lithia-2025",
+      "cca_dealer-deere",
+      "cca_dealer-group1"
+    ],
+    "initial_dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "partial",
+    "disposition": "deepened",
+    "dependency_types": [
+      "research",
+      "entity-facts"
+    ],
+    "new_source_keys": [
+      "f2_cost_titan_10k_2026"
+    ],
+    "new_finding": "Titan reports inventory purchase incentives as inventory/COGS reduction and qualifying expense reimbursements as expense reductions; Lithia and Deere provide separate selected auto and OEM-side examples.",
+    "evidence_delta": "Adds equipment dealer and reimbursement evidence, keeping OEM accounting separate from dealer accounting.",
+    "remaining_gap": "Other volume, co-op, conditional, customer rebate and clawback terms were not examined.",
+    "group": "cost-contracts-associations",
+    "inventory_ids": [
+      "R077",
+      "R078",
+      "R079",
+      "R141"
+    ]
+  },
+  {
+    "question_id": "A11-Q04",
+    "area": 11,
+    "question": "How do manufacturer warranty claims differ from dealer-sold service contracts?",
+    "before_status": "partial",
+    "prior_gap": "Actual entitlement, denial/chargeback, warranty obligation, risk transfer and contract-liability facts need current ASC and contract evidence.",
+    "prior_source_keys": [
+      "cca_dealer-lithia-2025",
+      "cca_ftc-warranty"
+    ],
+    "initial_dependency_types": [
+      "restricted-authority",
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "partial",
+    "disposition": "deepened",
+    "dependency_types": [
+      "research",
+      "entity-facts"
+    ],
+    "new_source_keys": [
+      "f2_cost_titan_10k_2026"
+    ],
+    "new_finding": "Titan distinguishes OEM repair reimbursement, third-party used-equipment protection, service and parts; Lithia shows manufacturer warranty receivables and agent accounting for certain third-party service plans.",
+    "evidence_delta": "Adds equipment-specific warranty and service-contract disclosure.",
+    "remaining_gap": "Principal-agent, risk of denial, customer promises, settlement and current ASC application depend on contracts and facts.",
+    "group": "cost-contracts-associations",
+    "inventory_ids": [
+      "R014",
+      "R077",
+      "R141"
+    ]
+  },
+  {
+    "question_id": "A11-Q05",
+    "area": 11,
+    "question": "How should service, parts, internal labor and departmental profitability be reported?",
+    "before_status": "partial",
+    "prior_gap": "No substantive public dealer departmental cost-allocation/control manual or detailed service/parts profitability method was accessed.",
+    "prior_source_keys": [
+      "cca_dealer-lithia-2025",
+      "cca_dealer-nada"
+    ],
+    "initial_dependency_types": [
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "partial",
+    "disposition": "deepened",
+    "dependency_types": [
+      "research",
+      "entity-facts"
+    ],
+    "new_source_keys": [
+      "f2_cost_titan_10k_2026",
+      "f2_cost_ima_standard_abc_2020"
+    ],
+    "new_finding": "Titan adds substantive service/parts revenue timing (some service plus consumed parts over time; standalone parts point in time); Area 7 IMA/avoidable-cost work provides managerial allocation context.",
+    "evidence_delta": "Moves beyond NADA course locator to a public dealer statement and independent cost-driver explanation.",
+    "remaining_gap": "No dealer department manual or actual technician time, parts transfer, internal labor, rework, warranty or common allocation example was reviewed.",
+    "group": "cost-contracts-associations",
+    "inventory_ids": [
+      "R073",
+      "R077",
+      "R141",
+      "R147"
+    ]
+  },
+  {
+    "question_id": "A11-Q06",
+    "area": 11,
+    "question": "How do auto dealer examples transfer to equipment dealerships?",
+    "before_status": "partial",
+    "prior_gap": "Equipment serial inventory, rental/demo fleet, attachments, warranty and financing need a dealer-specific filing or technical source.",
+    "prior_source_keys": [
+      "cca_dealer-lithia-2025",
+      "cca_dealer-deere"
+    ],
+    "initial_dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "supported",
+    "disposition": "resolved-general-question",
+    "dependency_types": [
+      "research",
+      "entity-facts"
+    ],
+    "new_source_keys": [
+      "f2_cost_titan_10k_2026",
+      "f2_cost_altg_abl_agreement_2022",
+      "f2_cost_altg_sec_response_2024",
+      "f2_cost_altg_sec_followup_2024"
+    ],
+    "new_finding": "Equipment issuer and lender evidence now directly distinguishes serial inventory, rental fleet, demo collateral, rent-to-sell/rent-to-rent, financing, service and warranty; auto examples can be transferred as a record/checklist framework, not as the same accounting policy.",
+    "evidence_delta": "Closes the general comparison gap by adding multiple original equipment-dealer sources and the SEC follow-up caveat to an earlier auto example.",
+    "remaining_gap": "One equipment issuer and borrower agreement do not prove industry universality; contract facts and current authoritative GAAP remain needed.",
+    "group": "cost-contracts-associations",
+    "inventory_ids": [
+      "R077",
+      "R079",
+      "R141",
+      "R142",
+      "R143",
+      "R144"
+    ]
+  },
+  {
+    "question_id": "A12-Q01",
+    "area": 12,
+    "question": "How are assessments recognized and presented under US GAAP/Topic 972?",
+    "before_status": "partial",
+    "prior_gap": "Current ASC 972/606 and other specialist positions, including the PPC view cited but not independently inspected, must be read; assess actual member terms, obligations and restrictions.",
+    "prior_source_keys": [
+      "cca_hoa-fasb",
+      "cca_hoa_specialist_revenue"
+    ],
+    "initial_dependency_types": [
+      "restricted-authority",
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "partial",
+    "disposition": "deepened",
+    "dependency_types": [
+      "research",
+      "entity-facts"
+    ],
+    "new_source_keys": [
+      "f2_cost_florida_718111_2026",
+      "f2_cost_florida_718112_2026"
+    ],
+    "new_finding": "Current Florida condo statute supplies assessment/reserve powers; prior FASB handout and DesRoches article show one practitioner view and a secondhand-described competing PPC view, confirming no universal conclusion from the research.",
+    "evidence_delta": "Adds current legal context while preserving the difference between statute, Topic 972/606 analysis and nonauthoritative practitioner interpretations.",
+    "remaining_gap": "Current ASC 972/606 and the PPC Guide were not independently read; enforceability, promises, board/member rights and jurisdiction are entity dependent.",
+    "group": "cost-contracts-associations",
+    "inventory_ids": [
+      "R025",
+      "R037",
+      "R093",
+      "R117"
+    ]
+  },
+  {
+    "question_id": "A12-Q02",
+    "area": 12,
+    "question": "How do operating and reserve fund cash, fund balances and legal restrictions differ?",
+    "before_status": "partial",
+    "prior_gap": "HOACPA article dates from 2018, current Codification paragraph text was not verified, and state-law fund restrictions vary.",
+    "prior_source_keys": [
+      "cca_hoa-fasb",
+      "cca_hoa_specialist_reserve",
+      "cca_hoa-fl718112"
+    ],
+    "initial_dependency_types": [
+      "restricted-authority",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "partial",
+    "disposition": "deepened",
+    "dependency_types": [
+      "research",
+      "entity-facts"
+    ],
+    "new_source_keys": [
+      "f2_cost_florida_718111_2026",
+      "f2_cost_florida_718112_2026"
+    ],
+    "new_finding": "2026 Florida condo law directly addresses separately accounted reserve money, limited investment-only commingling and reserve-use rules; HOACPA provides a dated practitioner interpretation of quoted Topic 972 fund presentation.",
+    "evidence_delta": "Updates statutory evidence to 2026 and explicitly prevents treating the bank/restricted-use rule as a GAAP presentation answer.",
+    "remaining_gap": "Current ASC paragraphs, declarations, account structure and state-specific law remain open.",
+    "group": "cost-contracts-associations",
+    "inventory_ids": [
+      "R036",
+      "R037",
+      "R045",
+      "R093",
+      "R117"
+    ]
+  },
+  {
+    "question_id": "A12-Q03",
+    "area": 12,
+    "question": "What reserve-study, replacement and annual reporting information is required?",
+    "before_status": "supported",
+    "prior_gap": "Applicability thresholds, amendments and effective dates require current entity/state verification.",
+    "prior_source_keys": [
+      "cca_hoa-ca5550",
+      "cca_hoa-ca5300",
+      "cca_hoa-fl718112",
+      "cca_hoa_specialist_reserve"
+    ],
+    "initial_dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "supported",
+    "disposition": "deepened",
+    "dependency_types": [
+      "research",
+      "entity-facts"
+    ],
+    "new_source_keys": [
+      "f2_cost_florida_718111_2026",
+      "f2_cost_florida_718112_2026"
+    ],
+    "new_finding": "Current 2026 Florida condominium law directly supports bounded claims on reserve calculations/SIRS, statutory financial reporting tiers, special-assessment and reserve-use controls.",
+    "evidence_delta": "Adds directly read current statutes and updates earlier 2025 Florida evidence; California material remains a separate example.",
+    "remaining_gap": "Supported only as a Florida condominium legal baseline; HOA/Chapter 720 coverage, entity thresholds and GAAP liability recognition differ.",
+    "group": "cost-contracts-associations",
+    "inventory_ids": [
+      "R012",
+      "R033",
+      "R036",
+      "R037",
+      "R045",
+      "R117"
+    ]
+  },
+  {
+    "question_id": "A12-Q04",
+    "area": 12,
+    "question": "How are special assessments and future major-repair projects accounted for?",
+    "before_status": "partial",
+    "prior_gap": "Current Codification, governing-doc terms, approval/refund/use rights, promised services, project capitalization and cutoff require fact-specific review.",
+    "prior_source_keys": [
+      "cca_hoa-fasb",
+      "cca_hoa_specialist_reserve",
+      "cca_hoa_specialist_revenue",
+      "cca_hoa-ca5300",
+      "cca_hoa-ca5550"
+    ],
+    "initial_dependency_types": [
+      "restricted-authority",
+      "entity-facts",
+      "rights",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "partial",
+    "disposition": "deepened",
+    "dependency_types": [
+      "research",
+      "entity-facts"
+    ],
+    "new_source_keys": [
+      "f2_cost_florida_718112_2026"
+    ],
+    "new_finding": "The current statute directly adds selected Florida nonemergency notice, SIRS funding-vote and reserve-use conditions; prior FASB/practitioner material still shows disputed future replacement assessment treatment.",
+    "evidence_delta": "Adds up-to-date legal authorization context but does not treat votes or reserve study as GAAP recognition.",
+    "remaining_gap": "Current ASC, declaration, approvals, member rights, refund/reallocation terms, project promises, cost cutoff and capitalization facts remain unresolved.",
+    "group": "cost-contracts-associations",
+    "inventory_ids": [
+      "R012",
+      "R025",
+      "R033",
+      "R045",
+      "R093",
+      "R117"
+    ]
+  },
+  {
+    "question_id": "A12-Q05",
+    "area": 12,
+    "question": "What records and financial reporting accompany developer transition?",
+    "before_status": "supported",
+    "prior_gap": "No GAAP transition opening balance reconciliation guide or cross-state comparative legal study was reviewed.",
+    "prior_source_keys": [
+      "cca_hoa-fl718111",
+      "cca_hoa-fl718112"
+    ],
+    "initial_dependency_types": [
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "supported",
+    "disposition": "deepened",
+    "dependency_types": [
+      "research",
+      "entity-facts"
+    ],
+    "new_source_keys": [
+      "f2_cost_florida_718111_2026",
+      "f2_cost_florida_718301_2026"
+    ],
+    "new_finding": "Current Florida statute directly requires turnover records/source documents/property delivery and GAAP/GAAS audit for specified turnover periods; the section defines evidence and audit scope.",
+    "evidence_delta": "Adds current specific turnover text, replacing a broader existing records description with exact Florida requirements.",
+    "remaining_gap": "No GAAP opening-balance procedure or actual reconciliation was inspected; the statute is Florida-condominium-specific.",
+    "group": "cost-contracts-associations",
+    "inventory_ids": [
+      "R036",
+      "R037",
+      "R118"
+    ]
+  },
+  {
+    "question_id": "A12-Q06",
+    "area": 12,
+    "question": "How does §528 tax treatment differ from financial-statement accounting?",
+    "before_status": "supported",
+    "prior_gap": "Current tax-year forms, state tax and taxable-corporation alternative need separate case review.",
+    "prior_source_keys": [
+      "cca_hoa-irs1120h",
+      "cca_hoa-irs557"
+    ],
+    "initial_dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "supported",
+    "disposition": "already-supported",
+    "dependency_types": [
+      "entity-facts"
+    ],
+    "new_source_keys": [],
+    "new_finding": "Previously read IRS Form 1120-H instructions and Publication 557 already distinguish § 528 tax qualification/election and exempt-function income from financial-statement accounting; no new tax evidence added.",
+    "evidence_delta": "No new source; retain the prior bounded supported answer.",
+    "remaining_gap": "Tax year, election, statutory eligibility, state law and corporate tax alternative depend on the association.",
+    "group": "cost-contracts-associations",
+    "inventory_ids": [
+      "R051",
+      "R059"
+    ]
+  },
+  {
+    "question_id": "A13-Q01",
+    "area": 13,
+    "question": "How does advance billing/cash differ from earned deferred subscription revenue, and how do customer credits/refunds change the close?",
+    "before_status": "partial",
+    "prior_gap": "Credits can be breakage, refund, concession, service-level credit, or material right. Exact contract populations, current Codification, and unclaimed-property law remain untested.",
+    "prior_source_keys": [
+      "ov-saas-revcore",
+      "ov-saas-kpmg25",
+      "ov-saas-breakage"
+    ],
+    "initial_dependency_types": [
+      "restricted-authority",
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "partial",
+    "disposition": "deepened",
+    "dependency_types": [
+      "research",
+      "restricted-authority",
+      "entity-facts"
+    ],
+    "new_source_keys": [
+      "f2_operating-verticals_saas_ey-revenue-2026"
+    ],
+    "new_finding": "Current EY interpretation distinguishes advance contract liabilities, expected refunds, service-level concessions and material rights/options; unused future-service credits are not automatically refunds or revenue. This refines the general close classification without resolving any actual credit population.",
+    "evidence_delta": "Read EY September 2026 ASC 606 FRD sections 4.6 and 5.3-5.4, adding current selected interpretation on material rights, refund liabilities and return recovery assets to the prior breakage/advance-billing evidence.",
+    "remaining_gap": "No entity contract or refund/credit population, expected-refund estimate or unclaimed-property analysis was available. Current consolidated ASC 606 text was not directly verified; this web-view limit does not establish a license requirement.",
+    "group": "operating-verticals",
+    "inventory_ids": [
+      "R019",
+      "R072",
+      "R086",
+      "R113"
+    ]
+  },
+  {
+    "question_id": "A13-Q02",
+    "area": 13,
+    "question": "How are SaaS contract modifications and blend-and-extend renewals accounted for?",
+    "before_status": "supported",
+    "prior_gap": "Deloitte example is dated and nonauthoritative; current Codification, terms, and consistent policy need review.",
+    "prior_source_keys": [
+      "ov-saas-revcore",
+      "ov-saas-blend"
+    ],
+    "initial_dependency_types": [
+      "restricted-authority",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "supported",
+    "disposition": "deepened",
+    "dependency_types": [
+      "research",
+      "entity-facts"
+    ],
+    "new_source_keys": [
+      "f2_operating-verticals_saas_ey-revenue-2026"
+    ],
+    "new_finding": "Current interpretive guidance states that added distinct services at standalone selling price create a separate contract; otherwise remaining service distinctness determines prospective versus catch-up treatment. A blend-and-extend price alone does not select the method.",
+    "evidence_delta": "Read current EY September 2026 FRD section 3.4, providing current interpretive cross-check on the prior dated blend-and-extend example.",
+    "remaining_gap": "No actual renewal/modification contracts, enforceable approval evidence or entity policy were inspected. EY is interpretive rather than authoritative FASB text.",
+    "group": "operating-verticals",
+    "inventory_ids": [
+      "R021",
+      "R086",
+      "R113"
+    ]
+  },
+  {
+    "question_id": "A13-Q03",
+    "area": 13,
+    "question": "When should usage-based fees be recognized, and how do credits/minimums/rollovers affect it?",
+    "before_status": "partial",
+    "prior_gap": "No entity credit contract, rollover/minimum fact pattern, or authoritative current consolidated Topic 606 was tested.",
+    "prior_source_keys": [
+      "ov-saas-revcore",
+      "ov-saas-blend",
+      "ov-saas-usage",
+      "ov-saas-breakage"
+    ],
+    "initial_dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "partial",
+    "disposition": "deepened",
+    "dependency_types": [
+      "research",
+      "entity-facts",
+      "restricted-authority"
+    ],
+    "new_source_keys": [
+      "f2_operating-verticals_saas_ey-revenue-2026"
+    ],
+    "new_finding": "For a stand-ready service, current interpretation distinguishes usage amounts allocable to the service period when that allocation reflects value delivered from variable consideration estimated and recognized over the service period subject to the constraint. Minimums, tiers and rollover rights still require contract analysis.",
+    "evidence_delta": "Read EY September 2026 FRD section 6.3 and related material-right guidance, adding current interpretive criteria to prior usage/credit research.",
+    "remaining_gap": "No minimum/rollover contract or customer usage ledger was reviewed; no entity-specific usage, credit or material-right classification is resolved.",
+    "group": "operating-verticals",
+    "inventory_ids": [
+      "R018",
+      "R019",
+      "R021",
+      "R086",
+      "R113"
+    ]
+  },
+  {
+    "question_id": "A13-Q04",
+    "area": 13,
+    "question": "Which sales commissions qualify for capitalization and how should renewal commissions be amortized?",
+    "before_status": "supported",
+    "prior_gap": "Commission plan, renewal commensurateness, clawback, customer life and impairment are fact-specific; guide is nonauthoritative.",
+    "prior_source_keys": [
+      "ov-saas-commission"
+    ],
+    "initial_dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "supported",
+    "disposition": "already-supported",
+    "dependency_types": [
+      "entity-facts"
+    ],
+    "new_source_keys": [],
+    "new_finding": "No new evidence in this follow-up; the prior source-supported incremental-cost/recoverability rule and practical-expedient boundary remain the bounded general answer.",
+    "evidence_delta": "No new source read or conclusion added; prior commission research is carried forward unchanged.",
+    "remaining_gap": "Commission plan, renewal commensurateness, clawbacks, customer life and impairment remain entity-specific.",
+    "group": "operating-verticals",
+    "inventory_ids": [
+      "R020"
+    ]
+  },
+  {
+    "question_id": "A13-Q05",
+    "area": 13,
+    "question": "How do provider development, customer's hosted implementation and internal-use software capitalization differ?",
+    "before_status": "partial",
+    "prior_gap": "Hosted-only provider product classification and entity-specific 350-40/985-20 policy remain fact-sensitive; current Codification and entity adoption not accessed.",
+    "prior_source_keys": [
+      "ov-saas-asu2506",
+      "ov-saas-kpmg-software26"
+    ],
+    "initial_dependency_types": [
+      "restricted-authority",
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "partial",
+    "disposition": "deepened",
+    "dependency_types": [
+      "research",
+      "restricted-authority",
+      "entity-facts"
+    ],
+    "new_source_keys": [
+      "f2_operating-verticals_saas_asu2506-dates"
+    ],
+    "new_finding": "ASU 2025-06 requires management authorization/funding and probable completion/use, including assessment of significant development uncertainty. The probable threshold is not met until significant uncertainty resolves; factors include novel/unproven functionality not resolved through coding/testing or unidentified/substantially revised significant performance requirements.",
+    "evidence_delta": "Directly read the issued ASU amended ASC 350-40-25-12A and BC38-45, plus effective-date/transition sections, adding a specific uncertainty gate and current stated transition dates to prior software scope research.",
+    "remaining_gap": "The ASU is future-effective for most calendar-year companies unless early adopted. Provider 350-40 versus 985-20 scope, entity adoption, project stage evidence and the current consolidated Codification still require entity-specific verification.",
+    "group": "operating-verticals",
+    "inventory_ids": [
+      "R070",
+      "R090"
+    ]
+  },
+  {
+    "question_id": "A14-Q01",
+    "area": 14,
+    "question": "How does a marketplace/processor settlement reconcile to sales, returns, tax, fees, reserves, receivables and bank cash?",
+    "before_status": "partial",
+    "prior_gap": "No actual merchant export, account terms, or live reconciliation sample; schemas may change.",
+    "prior_source_keys": [
+      "ov-principal-agent",
+      "ov-ecom-cdtfa",
+      "ov-ecom-shopify-activity",
+      "ov-ecom-amazon-settlement",
+      "ov-ecom-stripe-balance",
+      "ov-ecom-shopify-refunds",
+      "ov-ecom-stripe-api"
+    ],
+    "initial_dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "partial",
+    "disposition": "deepened",
+    "dependency_types": [
+      "research",
+      "entity-facts"
+    ],
+    "new_source_keys": [
+      "f2_operating-verticals_ecom-stripe-balance",
+      "f2_operating-verticals_ecom-stripe-transactions",
+      "f2_operating-verticals_ecom-irs-1099k"
+    ],
+    "new_finding": "Stripe’s current report/API fields support tracing aggregate activity and transaction IDs through payout association and bank cash; a synthetic bridge ties to $8,985 under explicitly stated assumptions. The $250 reserve hold and $50 release are internal provider-balance transfers leaving $200 held, not costs. IRS 1099-K gross payment reporting is distinct from net payout and GAAP revenue.",
+    "evidence_delta": "Directly read current Stripe balance-report/API documentation, current IRS gross-payment guidance and recalculated/clarified the synthetic bridge; no live merchant evidence was added.",
+    "remaining_gap": "No actual merchant account, export, bank match, seller terms, transaction population or tax return was reviewed. Reserve rights/presentation and seller accounting remain entity-dependent; example arithmetic is synthetic.",
+    "group": "operating-verticals",
+    "inventory_ids": [
+      "R013",
+      "R026",
+      "R028",
+      "R029",
+      "R042",
+      "R043",
+      "R088",
+      "R127"
+    ]
+  },
+  {
+    "question_id": "A14-Q02",
+    "area": 14,
+    "question": "How should post-sale returns, refunds, credits, chargebacks and dispute fees be distinguished?",
+    "before_status": "partial",
+    "prior_gap": "No card-network rules, merchant agreement, case file, or actual dispute/return record inspected.",
+    "prior_source_keys": [
+      "ov-ecom-ftc",
+      "ov-saas-revcore",
+      "ov-ecom-stripe-balance",
+      "ov-ecom-shopify-refunds",
+      "ov-ecom-shopify-reserves",
+      "ov-ecom-stripe-balance",
+      "ov-ecom-stripe-api"
+    ],
+    "initial_dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "partial",
+    "disposition": "deepened",
+    "dependency_types": [
+      "research",
+      "entity-facts"
+    ],
+    "new_source_keys": [
+      "f2_operating-verticals_saas_ey-revenue-2026",
+      "f2_operating-verticals_ecom-shopify-refunding-orders",
+      "f2_operating-verticals_ecom-stripe-disputes"
+    ],
+    "new_finding": "Shopify distinguishes refund workflow from creating a physical return and optional restocking; Stripe describes a cardholder/issuer-network chargeback as a reversal/debit with dispute fees. EY’s current interpretive guide separately addresses a refund liability and an estimated recovery asset for expected product returns.",
+    "evidence_delta": "Read Shopify refund operations, Stripe dispute workflow and EY ASC 606 sections 5.3-5.4; added a supported workflow/financial-reporting distinction without treating platform events as GAAP outcomes.",
+    "remaining_gap": "No card-network rules, seller/processor agreement, case file, delivery/return inspection or customer evidence was examined. The accounting outcome of any specific refund/dispute remains fact-specific.",
+    "group": "operating-verticals",
+    "inventory_ids": [
+      "R028",
+      "R029",
+      "R038",
+      "R043",
+      "R044",
+      "R086",
+      "R109",
+      "R113",
+      "R125"
+    ]
+  },
+  {
+    "question_id": "A14-Q03",
+    "area": 14,
+    "question": "How should third-party fulfillment/custody, physical inventory and platform/storage/fulfillment fees be separated?",
+    "before_status": "partial",
+    "prior_gap": "No actual FBA ledger, seller-specific inventory response, 3PL confirmation, ownership terms or physical count examined.",
+    "prior_source_keys": [
+      "ov-ecom-inventory",
+      "ov-ecom-amazon-inventory"
+    ],
+    "initial_dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "partial",
+    "disposition": "deepened",
+    "dependency_types": [
+      "research",
+      "entity-facts"
+    ],
+    "new_source_keys": [
+      "f2_operating-verticals_ecom-amazon-fba-inventory"
+    ],
+    "new_finding": "Amazon FBA API status categories (fulfillable, inbound, reserved, unfulfillable and researching) provide operational populations for tie-out but do not establish title, physical existence, condition, valuation or cutoff. The opened AE/English historical contract is excluded as a foreign comparator, not support for U.S. seller terms.",
+    "evidence_delta": "Read current FBA Inventory API status definitions and explicitly limited ownership evidence to operational/custody status because no U.S. seller agreement was available.",
+    "remaining_gap": "No U.S. seller agreement, API response, inventory ledger, 3PL confirmation, unit count or physical count was inspected. Title/control and storage/fulfillment fee accrual remain unresolved for a real seller.",
+    "group": "operating-verticals",
+    "inventory_ids": [
+      "R027",
+      "R092"
+    ]
+  },
+  {
+    "question_id": "A14-Q04",
+    "area": 14,
+    "question": "Which party collects/remits sales tax on marketplace sales and what reporting obligations remain?",
+    "before_status": "partial",
+    "prior_gap": "California only; no 50-state survey or mutable thresholds checked. Tax treatment does not decide GAAP principal-agent presentation.",
+    "prior_source_keys": [
+      "ov-ecom-cdtfa"
+    ],
+    "initial_dependency_types": [
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "partial",
+    "disposition": "deepened",
+    "dependency_types": [
+      "research",
+      "entity-facts"
+    ],
+    "new_source_keys": [
+      "f2_operating-verticals_ecom-irs-1099k"
+    ],
+    "new_finding": "The IRS 1099-K page clarifies that gross processor-reported payments are not adjusted for fees, refunds, credits, shipping or discounts and are not equivalent to a net payout or taxable business income. Existing California facilitator guidance remains state-specific and separate from GAAP principal-agent presentation.",
+    "evidence_delta": "Read IRS public information-reporting and recordkeeping guidance; retained the prior California-only facilitator research and did not extrapolate a nationwide rule.",
+    "remaining_gap": "No other state/local tax authority, nexus threshold or product taxability was surveyed. Marketplace collection/remittance and seller duties require current jurisdiction, product, channel and seller facts.",
+    "group": "operating-verticals",
+    "inventory_ids": [
+      "R013",
+      "R127"
+    ]
+  },
+  {
+    "question_id": "A14-Q05",
+    "area": 14,
+    "question": "When is the seller/marketplace gross principal versus net agent?",
+    "before_status": "supported",
+    "prior_gap": "Specific marketplace/customer contracts and specified service facts are not available.",
+    "prior_source_keys": [
+      "ov-principal-agent"
+    ],
+    "initial_dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "supported",
+    "disposition": "already-supported",
+    "dependency_types": [
+      "entity-facts"
+    ],
+    "new_source_keys": [],
+    "new_finding": "No new source-backed change. The prior FASB ASU 2016-08 support remains: assess control of the specified good/service before transfer; neither settlement routing, tax facilitator status nor fulfillment alone determines gross-versus-net presentation.",
+    "evidence_delta": "No new evidence or status change; the prior principal-agent source and conclusion are carried forward.",
+    "remaining_gap": "Actual specified promise, marketplace agreement, seller/customer terms, inventory/control facts and transfer point were not inspected.",
+    "group": "operating-verticals",
+    "inventory_ids": [
+      "R088"
+    ]
+  },
+  {
+    "question_id": "A15-Q01",
+    "area": 15,
+    "question": "How should operator JIB chargeability and nonoperator review/audit connect to actual agreements and evidence?",
+    "before_status": "partial",
+    "prior_gap": "No evidence MFI-40 was adopted or published final, and no full paid COPAS text, executed JOA or JIB evidence was inspected. Apply only the signed contract.",
+    "prior_source_keys": [
+      "ov-oilgas-copas"
+    ],
+    "initial_dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "partial",
+    "disposition": "deepened",
+    "dependency_types": [
+      "research",
+      "entity-facts"
+    ],
+    "new_source_keys": [
+      "f2_operating-verticals_oilgas-nog-2025-10k",
+      "f2_operating-verticals_oilgas-sm-2025-10k"
+    ],
+    "new_finding": "2025 NOG and SM Energy filings demonstrate nonoperator advances applied to JIBs and operator co-owner JIB receivables. Those disclosures improve the role/population map but do not determine JIB chargeability, overhead, audit rights or adjustment periods under another JOA. MFI-40 remains a July 2023 committee-approved draft, with final adoption unverified.",
+    "evidence_delta": "Read actual original 2025 SEC filings for both a nonoperator and operator reporting role; preserved MFI-40’s draft-only status.",
+    "remaining_gap": "No signed JOA/accounting procedure, final MFI-40, invoice, support package or actual audit file was inspected. Contract terms continue to control application.",
+    "group": "operating-verticals",
+    "inventory_ids": [
+      "R015",
+      "R137",
+      "R146"
+    ]
+  },
+  {
+    "question_id": "A15-Q02",
+    "area": 15,
+    "question": "How do purchaser sales, operator cash, revenue distributions, royalty and transport differ?",
+    "before_status": "supported",
+    "prior_gap": "Entity contracts, purchaser terms, decimal decks and state/private royalty rights absent.",
+    "prior_source_keys": [
+      "ov-principal-agent",
+      "ov-oilgas-onrr"
+    ],
+    "initial_dependency_types": [
+      "entity-facts",
+      "rights",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "supported",
+    "disposition": "deepened",
+    "dependency_types": [
+      "research",
+      "entity-facts"
+    ],
+    "new_source_keys": [
+      "f2_operating-verticals_oilgas-sm-2025-10k"
+    ],
+    "new_finding": "SM Energy’s 2025 filing describes purchaser revenue at a control/transfer point and separately reports co-owner JIB receivables. Existing ONRR and principal-agent sources distinguish sale, cash routing, royalty reporting, allowances and GAAP revenue.",
+    "evidence_delta": "Read issuer-specific revenue recognition and operator receivable disclosures to add actual filing evidence to existing principal-agent and ONRR framework.",
+    "remaining_gap": "No actual purchaser contract, transport agreement, WI/NRI deck, royalty instrument or settlement was reviewed. Cash routing and contract-specific control remain entity dependent.",
+    "group": "operating-verticals",
+    "inventory_ids": [
+      "R074",
+      "R088",
+      "R146"
+    ]
+  },
+  {
+    "question_id": "A15-Q03",
+    "area": 15,
+    "question": "How do ownership changes affect billed costs, proceeds and mineral interests?",
+    "before_status": "partial",
+    "prior_gap": "No state title opinions, assignments, division orders or lease-specific responsibility records.",
+    "prior_source_keys": [
+      "ov-oilgas-copas",
+      "ov-oilgas-onrr"
+    ],
+    "initial_dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "partial",
+    "disposition": "deepened",
+    "dependency_types": [
+      "research",
+      "entity-facts"
+    ],
+    "new_source_keys": [
+      "f2_operating-verticals_oilgas-nog-2026-q2",
+      "f2_operating-verticals_oilgas-nog-2026-424b5",
+      "f2_operating-verticals_oilgas-rrc-division-orders"
+    ],
+    "new_finding": "NOG transaction disclosures show completion and stated effective dates can differ and separately distinguish nonoperator WI from operator role. Texas FAQ states a payor may require a division order with selected effective-date/decimal/type/title fields; it is informal, disclaims RRC authority over leases and royalties, and says the document does not amend a lease or JOA.",
+    "evidence_delta": "Read original SEC quarterly/offering transaction disclosures and the current Texas FAQ; added actual date/role examples and bounded one-state payor-document distinctions.",
+    "remaining_gap": "No assignment, purchase agreement, title opinion, signed JOA, actual division order, purchaser deck or ledger was inspected. Legal ownership and accounting cutover require transaction-specific documents; RRC FAQ is not title authority.",
+    "group": "operating-verticals",
+    "inventory_ids": [
+      "R015",
+      "R074",
+      "R136",
+      "R138",
+      "R139"
+    ]
+  },
+  {
+    "question_id": "A15-Q04",
+    "area": 15,
+    "question": "Which financial reporting cost method, depletion and abandonment rules apply?",
+    "before_status": "partial",
+    "prior_gap": "Current CFR/Codification, company method, proved reserves and taxpayer-specific basis/eligibility/limits remain unverified.",
+    "prior_source_keys": [
+      "ov-oilgas-sec",
+      "ov-oilgas-irs-k1",
+      "ov-oilgas-irs-pub535"
+    ],
+    "initial_dependency_types": [
+      "restricted-authority",
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "partial",
+    "disposition": "deepened",
+    "dependency_types": [
+      "research",
+      "restricted-authority",
+      "entity-facts"
+    ],
+    "new_source_keys": [
+      "f2_operating-verticals_oilgas-nog-2025-10k",
+      "f2_operating-verticals_oilgas-sm-2025-10k"
+    ],
+    "new_finding": "Actual 2025 issuer filings demonstrate NOG’s full-cost policy and SM Energy’s successful-efforts policy. SM specifies units-of-production bases by pool: estimated net proved developed reserves for drilling/completion/field development costs and total net proved reserves for proved leasehold costs. Existing dated SEC rules and IRS sources remain distinct regulatory and tax references.",
+    "evidence_delta": "Read original company 10-K method policies and exact reserve denominators, adding current issuer examples to the prior 2025 CFR/tax source framework.",
+    "remaining_gap": "No entity method election, current consolidated CFR/ASC review, reserve engineering, full-cost ceiling/impairment calculation or tax basis/eligibility was verified. A company’s method cannot be inferred from peers.",
+    "group": "operating-verticals",
+    "inventory_ids": [
+      "R039",
+      "R050",
+      "R055",
+      "R137",
+      "R146"
+    ]
+  },
+  {
+    "question_id": "A15-Q05",
+    "area": 15,
+    "question": "How are ARO and remediation distinguished, and how do GAAP, tax and royalty/regulatory amounts differ?",
+    "before_status": "partial",
+    "prior_gap": "Current ASC 410/450, state plugging/tax rules, taxpayer eligibility and measurements still require authoritative and entity-specific sources.",
+    "prior_source_keys": [
+      "ov-oilgas-aro-historical",
+      "ov-oilgas-sec",
+      "ov-oilgas-onrr",
+      "ov-oilgas-irs-pub535",
+      "ov-oilgas-irs-k1"
+    ],
+    "initial_dependency_types": [
+      "restricted-authority",
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "partial",
+    "disposition": "deepened",
+    "dependency_types": [
+      "research",
+      "restricted-authority",
+      "entity-facts"
+    ],
+    "new_source_keys": [
+      "f2_operating-verticals_oilgas-ey-aro-2026",
+      "f2_operating-verticals_oilgas-deloitte-aro-2025",
+      "f2_operating-verticals_oilgas-nog-2025-10k",
+      "f2_operating-verticals_oilgas-sm-2025-10k"
+    ],
+    "new_finding": "EY August 2026 and Deloitte public interpretation distinguish retirement-related legal ARO obligations from environmental remediation arising from improper operation/catastrophe; NOG and SM Energy provide current company policy/rollforward examples. Prior FAS 143 remains historical, not current ASC.",
+    "evidence_delta": "Read current 2026 EY interpretive sections, public Deloitte ASC 410-20 scope section and two current issuer ARO disclosures; no full Codification text or permit-specific obligation was examined.",
+    "remaining_gap": "Current authoritative ASC 410/450 application, legal obligor, asset-level estimate, discount inputs, later revisions, state plugging assurance, tax and ONRR populations still require source and entity evidence. Web-view limits do not establish that the Codification is paywalled.",
+    "group": "operating-verticals",
+    "inventory_ids": [
+      "R039",
+      "R050",
+      "R055",
+      "R074",
+      "R094",
+      "R107",
+      "R112",
+      "R137",
+      "R146"
+    ]
+  },
+  {
+    "question_id": "A15-Q06",
+    "area": 15,
+    "question": "Can ONRR royalty rate/allowance and gross transport amount be substituted with WI or division-order percentages?",
+    "before_status": "supported",
+    "prior_gap": "Only federal/Indian ONRR reporting was reviewed; state/private leases and current filing facts require their governing authority.",
+    "prior_source_keys": [
+      "ov-oilgas-onrr"
+    ],
+    "initial_dependency_types": [
+      "entity-facts",
+      "research"
+    ],
+    "selection_note": "Research the generalizable unresolved component; do not claim to resolve absent entity facts.",
+    "after_status": "supported",
+    "disposition": "deepened",
+    "dependency_types": [
+      "research",
+      "entity-facts"
+    ],
+    "new_source_keys": [
+      "f2_operating-verticals_oilgas-rrc-division-orders"
+    ],
+    "new_finding": "Existing ONRR Release 4.5 distinguishes federal/Indian payor, royalty rate and transport/processing allowance fields; Texas FAQ describes a separate may-required division-order/payee decimal and says it does not amend a lease or JOA. Neither can substitute for WI or GAAP revenue.",
+    "evidence_delta": "Read Texas statutory summary and explicit agency disclaimer, supplementing the existing federal ONRR field analysis without generalizing Texas rules nationally.",
+    "remaining_gap": "No private/state lease, other-state statute, actual Texas division order or ONRR filing was reviewed; use each governing authority and actual effective-dated title/contract evidence.",
+    "group": "operating-verticals",
+    "inventory_ids": [
+      "R074",
+      "R136"
+    ]
+  }
+]

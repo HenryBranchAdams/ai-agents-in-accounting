@@ -1,0 +1,344 @@
+[
+  {
+    "number": 7,
+    "title": "Cost and managerial accounting",
+    "brief": "7-cost-managerial.md",
+    "baseline_status": "partial; relevant inventory/allocation/planning/performance records, now supplemented with a substantive educational costing-method and variance treatment; GAAP and IMA report gaps remain",
+    "existing_record_ids": [
+      "guide-q-inventory",
+      "guide-q-cost-allocation",
+      "guide-q-planning",
+      "guide-q-performance",
+      "guide-manufacturing-conversion",
+      "rq-cost-allocation-allocation-base",
+      "rq-cost-allocation-unit-cost",
+      "rq-mfg-cost",
+      "rq-planning-driver-model",
+      "rq-performance-margin-definition",
+      "src_1os761s",
+      "src_aa_i101_fas151_inventory",
+      "src_far_31203_indirect_costs",
+      "src_fasb_asu2015_11_inventory"
+    ],
+    "baseline_summary": "Existing inventory/allocation/planning content is adjacent rather than comprehensive. OpenStax substantive educational material now explains job/process/hybrid systems, ABC versus traditional overhead, standard and overhead variances, and contribution margin. It is not normative GAAP; current ASC 330 remains uninspected.",
+    "questions": [
+      {
+        "question": "How should job, process, standard and activity-based methods select cost objects and drivers?",
+        "status": "supported",
+        "source_keys": [
+          "cca_openstax_managerial"
+        ],
+        "finding": "OpenStax textbook describes job-specific direct-cost accumulation, department/process averaging for homogeneous output, hybrids, and ABC activity pools/drivers versus a traditional single base. It is educational management guidance, not GAAP.",
+        "remaining_gap": "No authoritative US GAAP or current professional practice source was opened for external inventory costing; method selection examples are textbook scope."
+      },
+      {
+        "question": "How are variable and fixed production overhead treated, including normal capacity, idle capacity and abnormal waste?",
+        "status": "partial",
+        "source_keys": [
+          "cca_openstax_managerial",
+          "cca_fas151",
+          "cca_far31"
+        ],
+        "finding": "OpenStax teaches flexible budget overhead rates and variable spending/efficiency plus fixed spending/production-volume variances. Historical FAS 151 supplies normal-capacity/abnormal-idle-cost inventory context; FAR 31 is a separate contract cost rule.",
+        "remaining_gap": "OpenStax is educational, FAS 151 is historical, and current ASC 330 detail has not been opened; do not conflate management overhead variances, GAAP inventory allocation and contract allowability."
+      },
+      {
+        "question": "How should standard costs and variances be reconciled to actual cost?",
+        "status": "supported",
+        "source_keys": [
+          "cca_openstax_managerial",
+          "cca_far31"
+        ],
+        "finding": "OpenStax explains standards and material price/quantity, labor rate/time and overhead rate/efficiency plus fixed spending/volume variance analysis, including flexible-budget conventions and behavior cautions. FAR 31.201-1 separately calls for applicable variance adjustment when standard cost is used in contract total cost.",
+        "remaining_gap": "Textbook formulas do not prescribe journal entries, a single variance convention, inventory adjustment method, or current GAAP treatment."
+      },
+      {
+        "question": "How should customer, product, service and segment profitability use allocations?",
+        "status": "partial",
+        "source_keys": [
+          "cca_openstax_managerial"
+        ],
+        "finding": "OpenStax defines contribution as sales less variable cost, available for fixed costs/profit, and shows ABC allocation can change product unit economics. Distinguish this short-run decision measure from fully allocated margin and external gross margin.",
+        "remaining_gap": "Worked customer/service/segment profitability, avoidable fixed cost, capacity and common-cost allocation cases remain thin in inspected sources."
+      }
+    ],
+    "recommended_additions": [
+      "Management method-selection guide using a common fact pattern for job/process/standard/ABC, showing the appropriate cost object, data grain, driver and cost-benefit tradeoff.",
+      "Variance guide connecting standard input cards, actual results, overhead/capacity conventions and ledger reconciliation while labeling choices as management policy.",
+      "Check current ASC 330 and relevant exceptions before publishing external reporting instructions; OpenStax textbook is not authoritative GAAP."
+    ],
+    "unresolved_gaps": [
+      "Current detailed ASC 330 paragraphs and GAAP standard-cost inventory application were not accessed.",
+      "Full IMA report remains unread; only its public synopsis was inspected. OpenStax fills the basic educational mechanics gap, not current professional authority.",
+      "No empirical costing-system adoption, accuracy, or decision-error evidence was reviewed.",
+      "OpenStax rights are conditional CC BY-NC-SA and the site prohibits generative-AI training/ingestion without permission; repository reuse rights and terms need review."
+    ],
+    "priority_rationale": "Cost methods sit across the existing inventory and allocation corpus; stronger internal decision costing would clarify when management costs differ from US GAAP inventory and federal contract cost calculations."
+  },
+  {
+    "number": 10,
+    "title": "Government contractors",
+    "brief": "10-government-contractors.md",
+    "baseline_status": "partial; project WIP, allocation, FAR, DCAA preaward and federal-award adjacent material present",
+    "existing_record_ids": [
+      "guide-q-project-wip",
+      "guide-q-cost-allocation",
+      "rq-us-project-wip-contract-costs",
+      "rq-cost-allocation-allocation-base",
+      "rq-us-professional-services-reimbursables",
+      "rq-us-professional-services-fixed-fee-wip",
+      "src_far_31203_indirect_costs",
+      "src_construction_dcaa_accounting_system",
+      "src_construction_far_522325",
+      "src_cfr200grants"
+    ],
+    "baseline_summary": "Shared WIP, pool/base, DCAA preaward, FAR indirect costs and construction payment sources are adjacent. Supplement added detailed applicable DFARS system criteria and partial DCAA timekeeping pamphlet excerpts; these do not establish universal rules for all federal contractors.",
+    "questions": [
+      {
+        "question": "Which contract-specific rules determine allowability, allocability and record support?",
+        "status": "supported",
+        "source_keys": [
+          "cca_far31",
+          "cca_dfars_2522427006"
+        ],
+        "finding": "FAR 31.201-2 requires reasonable, allocable, contract-compliant costs and adequate supporting records; direct/indirect consistency and logical benefit-based pool bases are addressed by §§31.202-.203. Applicable DoD accounting-system clause adds contract-level accumulation, GL reconciliation, monthly determination, and billing reconciliation where incorporated.",
+        "remaining_gap": "Agency supplements, award clause vintage, CAS coverage and selected cost edge cases require individual review."
+      },
+      {
+        "question": "How do provisional billing rates, final indirect rates and incurred-cost proposals reconcile?",
+        "status": "supported",
+        "source_keys": [
+          "cca_far42",
+          "cca_far2167",
+          "cca_dcaaice"
+        ],
+        "finding": "Covered proposals generally are due within six months after fiscal year end; billing rates are provisional and final annual rates settle reimbursement. DCAA ICE listing offers a schedule tool, but its workbook was inaccessible. ICE workbook remains blocked, but it is a schedule tool rather than the source of filing duties; FAR 42.7 and 52.216-7 provide the core timing/rate rules.",
+        "remaining_gap": "Need DCAA schedules/user manual and adequacy requirements in the applicable clause and auditor guidance."
+      },
+      {
+        "question": "What labor timekeeping records support direct labor and prevent inconsistent charging?",
+        "status": "partial",
+        "source_keys": [
+          "cca_dfars_2522427006",
+          "cca_far31"
+        ],
+        "finding": "When incorporated into a DoD contract, DFARS 252.242-7006 requires employee labor identification by intermediate or final cost objective and labor distribution to appropriate objectives. FAR Part 31 supports adequate cost records and consistent direct/indirect treatment.",
+        "remaining_gap": "DCAA pamphlet is discovery-only because the PDF could not be opened; its search snippets are not evidence. Detailed time-entry, certification, correction, overtime, labor-transfer, leave and subcontractor procedures need a full accessible source review."
+      },
+      {
+        "question": "How do cost-reimbursement invoices differ from cost-based progress financing?",
+        "status": "supported",
+        "source_keys": [
+          "cca_far2167",
+          "cca_far23216"
+        ],
+        "finding": "52.216-7 reimburses allowable incurred costs with provisional indirect rates and final true-up. 52.232-16 is contract financing based on clause-defined costs incurred and exclusions, title/control and contract-value limits.",
+        "remaining_gap": "Executed clause/alternate, contract type, agency supplement and payment clause determine actual procedure."
+      },
+      {
+        "question": "How do contract-cost accounts relate to GAAP WIP, revenue and contract balances?",
+        "status": "partial",
+        "source_keys": [
+          "cca_far31",
+          "cca_far2167",
+          "cca_far23216",
+          "cca_dfars_2522427006"
+        ],
+        "finding": "FAR allowability/reimbursement and progress financing answer different questions from GAAP Topic 606/340-40 recognition and presentation; baseline project WIP guide supplies a selected GAAP branch.",
+        "remaining_gap": "A source-backed example bridging job cost subledger, invoice, billing, contract asset/liability and rate true-up remains needed."
+      }
+    ],
+    "recommended_additions": [
+      "Federal contractor cost-system workflow keyed by entity/business unit, contract type/clauses, CAS status, cost objective, timekeeping, pools/bases, provisional rates, incurred-cost filing, audit adjustment and closeout.",
+      "Primary CAS text and current DCAA incurred-cost/timekeeping audit materials, after full access and rights review.",
+      "A clear comparison of cost-reimbursement billing, cost-based progress payments and GAAP contract balances.",
+      "Add applicable DoD clause criteria as an explicit conditional branch and DCAA timekeeping as audit guidance, with accessible full pamphlet pages before a procedure guide is authored."
+    ],
+    "unresolved_gaps": [
+      "DCAA ICE workbook inaccessible.",
+      "DCAA contractor pamphlet could not be opened; indexed snippets are discovery-only and support no procedural claims.",
+      "Current detailed CAS text, DCAA audit-program guidance, civilian agency supplements and award-specific clauses remain to be inspected."
+    ],
+    "priority_rationale": "Contract-cost support, rate settlement and billing control are high-impact operational workflows, while the shared construction/WIP material currently gives only partial coverage and can blur GAAP with reimbursement rules."
+  },
+  {
+    "number": 11,
+    "title": "Auto and equipment dealerships",
+    "brief": "11-dealerships.md",
+    "baseline_status": "adjacent only; one NAICS classification guide and broad inventory/revenue references, with no dealer-specific questions or assessments",
+    "existing_record_ids": [
+      "guide-industry-naics2022-441",
+      "src_ias02inv",
+      "src_fasb_asu2015_11_inventory",
+      "src_fasb_asu2016_08_principal_agent",
+      "src_fasb_asu2016_04_gift_cards"
+    ],
+    "baseline_summary": "Classification, generic inventory/revenue/principal-agent records and a NADA course outline are adjacent only. Supplement adds a full-read public 2025 dealer-group 10-K with specific dealer policy for trade-ins, vehicle/parts inventory, incentives, manufacturer warranty receivables, F&I and aftersales.",
+    "questions": [
+      {
+        "question": "How should floorplan borrowing and manufacturer floorplan assistance be tracked and recognized?",
+        "status": "partial",
+        "source_keys": [
+          "cca_dealer-lithia-2025",
+          "cca_dealer-group1"
+        ],
+        "finding": "Lithia 2025 filing states vehicle-specific floorplan-interest assistance and related incentives reduce inventory and COGS when the vehicle sells; it separately classifies manufacturer receivables and floorplan notes. Group 1 provides older corroborating issuer evidence.",
+        "remaining_gap": "Neither is universal authority; direct floorplan debt/interest and program-specific terms across auto and equipment dealers remain open."
+      },
+      {
+        "question": "How are new and used vehicle/equipment inventory and trade-ins valued and cut off?",
+        "status": "partial",
+        "source_keys": [
+          "cca_dealer-lithia-2025",
+          "cca_dealer-nada"
+        ],
+        "finding": "Lithia reports new/used specific identification, lower of cost/NRV, capitalized vehicle equipment/reconditioning/transport, and trade-ins at stand-alone selling price using third-party pricing sources; sale cutoff follows its transfer-of-control facts.",
+        "remaining_gap": "Issuer policy is not universal; lien payoff/title/control timing, other cost items, write-down evidence and equipment units need current technical guidance."
+      },
+      {
+        "question": "How should manufacturer holdback, sales incentives and co-op funds be classified?",
+        "status": "partial",
+        "source_keys": [
+          "cca_dealer-lithia-2025",
+          "cca_dealer-deere",
+          "cca_dealer-group1"
+        ],
+        "finding": "Lithia’s dealer-side filing classifies manufacturer holdback, floorplan-interest/advertising assistance and vehicle-specific cash incentives as inventory/COGS reductions; manufacturer receivables include rebates and incentives. Deere offers manufacturer-side context only.",
+        "remaining_gap": "Other volume, co-op, conditional, clawback and customer rebate programs depend on actual arrangement and need separate analysis."
+      },
+      {
+        "question": "How do manufacturer warranty claims differ from dealer-sold service contracts?",
+        "status": "partial",
+        "source_keys": [
+          "cca_dealer-lithia-2025",
+          "cca_ftc-warranty"
+        ],
+        "finding": "Lithia includes OEM warranty claims in manufacturer receivables and reports acting as agent for specified third-party extended service contracts, net of estimated chargebacks; FTC distinguishes commercial warranty/service-contract roles.",
+        "remaining_gap": "Actual entitlement, denial/chargeback, warranty obligation, risk transfer and contract-liability facts need current ASC and contract evidence."
+      },
+      {
+        "question": "How should service, parts, internal labor and departmental profitability be reported?",
+        "status": "partial",
+        "source_keys": [
+          "cca_dealer-lithia-2025",
+          "cca_dealer-nada"
+        ],
+        "finding": "Lithia reports aftersales parts/service revenue on transfer of control and certain service contract liabilities recognized over service delivery. This gives substantive revenue evidence, while NADA course outline is only an operational locator.",
+        "remaining_gap": "No substantive public dealer departmental cost-allocation/control manual or detailed service/parts profitability method was accessed."
+      },
+      {
+        "question": "How do auto dealer examples transfer to equipment dealerships?",
+        "status": "partial",
+        "source_keys": [
+          "cca_dealer-lithia-2025",
+          "cca_dealer-deere"
+        ],
+        "finding": "Lithia provides auto dealer-side evidence; Deere is manufacturer-side equipment evidence, not equipment dealer treatment.",
+        "remaining_gap": "Equipment serial inventory, rental/demo fleet, attachments, warranty and financing need a dealer-specific filing or technical source."
+      }
+    ],
+    "recommended_additions": [
+      "Dealer close guide linking vehicle/equipment identifier, title/control, floorplan, trade-in, manufacturer program, retail/wholesale cutoff and service/warranty records.",
+      "Separate auto and equipment dealership modules; retain issuer filings as entity-specific examples and current GAAP as authority.",
+      "Review current ASC 330, 606, 460 and service-contract source text plus a current rights-cleared industry guide.",
+      "Use the Lithia 2025 10-K as an issuer-specific example for trade-ins, parts/reconditioning inventory, OEM receivables and aftersales; do not treat the filing as a GAAP standard."
+    ],
+    "unresolved_gaps": [
+      "No dealer-specific accounting guide was fully accessed.",
+      "Lithia issuer disclosure is substantive but entity-specific; no claims of universal treatment.",
+      "No equipment dealer filing or detailed service-department controls source was opened."
+    ],
+    "priority_rationale": "Dealerships have highly identifiable inventory, floorplan and incentive records, yet the existing industry entry is classification-only and generic standards do not explain the operational evidence chain."
+  },
+  {
+    "number": 12,
+    "title": "HOAs and condominium associations",
+    "brief": "12-hoa-condominium.md",
+    "baseline_status": "missing; no baseline sources, questions, guides or assessments for this area",
+    "existing_record_ids": [
+      "src_1os761s"
+    ],
+    "baseline_summary": "No CIRA-specific corpus packet existed. FASB 2024 agenda handout describes Topic 972 scope and open stakeholder questions. Two public CPA practice interpretations now supply paragraph-level fund reporting and assessment-revenue analysis, including conflicting positions, but current ASC text remains inaccessible.",
+    "questions": [
+      {
+        "question": "How are assessments recognized and presented under US GAAP/Topic 972?",
+        "status": "partial",
+        "source_keys": [
+          "cca_hoa-fasb",
+          "cca_hoa_specialist_revenue"
+        ],
+        "finding": "FASB 2024 agenda material reports stakeholder assessment recognition questions. DesRoches & Company argues regular assessments remain recognized when assessed and replacement amounts are not Topic 606 contract liabilities where board discretion remains. This is one practitioner interpretation, explicitly disputed, not authoritative GAAP.",
+        "remaining_gap": "Current ASC 972/606 and other specialist positions, including the PPC view cited but not independently inspected, must be read; assess actual member terms, obligations and restrictions."
+      },
+      {
+        "question": "How do operating and reserve fund cash, fund balances and legal restrictions differ?",
+        "status": "partial",
+        "source_keys": [
+          "cca_hoa-fasb",
+          "cca_hoa_specialist_reserve",
+          "cca_hoa-fl718112"
+        ],
+        "finding": "HOACPA quotes ASC 972-205-45-8/-9 and 972-720-25 for replacement-fund assets/liabilities/fund balance, operating-fund activity and major repair/replacement charges when fund accounting is used. Florida law constrains selected reserve uses; bank segregation and board designation remain separate questions.",
+        "remaining_gap": "HOACPA article dates from 2018, current Codification paragraph text was not verified, and state-law fund restrictions vary."
+      },
+      {
+        "question": "What reserve-study, replacement and annual reporting information is required?",
+        "status": "supported",
+        "source_keys": [
+          "cca_hoa-ca5550",
+          "cca_hoa-ca5300",
+          "cca_hoa-fl718112",
+          "cca_hoa_specialist_reserve"
+        ],
+        "finding": "California §§5550/5300 and Florida §718.112 show state-specific study, budget and reserve planning/disclosure requirements. The study is a planning/legal input, not an automatic GAAP liability.",
+        "remaining_gap": "Applicability thresholds, amendments and effective dates require current entity/state verification."
+      },
+      {
+        "question": "How are special assessments and future major-repair projects accounted for?",
+        "status": "partial",
+        "source_keys": [
+          "cca_hoa-fasb",
+          "cca_hoa_specialist_reserve",
+          "cca_hoa_specialist_revenue",
+          "cca_hoa-ca5300",
+          "cca_hoa-ca5550"
+        ],
+        "finding": "FASB agenda discussion leaves assessment questions open; CPA interpretations disagree whether future replacement assessments can be Topic 606 liabilities, and HOACPA interprets quoted Topic 972 fund presentation/charging rules. California annual disclosures surface anticipated special assessments but do not decide recognition.",
+        "remaining_gap": "Current Codification, governing-doc terms, approval/refund/use rights, promised services, project capitalization and cutoff require fact-specific review."
+      },
+      {
+        "question": "What records and financial reporting accompany developer transition?",
+        "status": "supported",
+        "source_keys": [
+          "cca_hoa-fl718111",
+          "cca_hoa-fl718112"
+        ],
+        "finding": "Florida law identifies accounting records, source documents, association financial reports and developer-controlled reserve restrictions; pre-turnover accounting records and audit payment are specifically addressed.",
+        "remaining_gap": "No GAAP transition opening balance reconciliation guide or cross-state comparative legal study was reviewed."
+      },
+      {
+        "question": "How does §528 tax treatment differ from financial-statement accounting?",
+        "status": "supported",
+        "source_keys": [
+          "cca_hoa-irs1120h",
+          "cca_hoa-irs557"
+        ],
+        "finding": "IRS instructions describe a §528 election, qualification tests and exempt-function income; sinking-fund interest is among income excluded from that category. This is tax law, not GAAP.",
+        "remaining_gap": "Current tax-year forms, state tax and taxable-corporation alternative need separate case review."
+      }
+    ],
+    "recommended_additions": [
+      "CIRA accounting guide centered on entity/governing documents, Topic 972, assessment lifecycle, operating/reserve funds, common property, future repairs and financial statement disclosure.",
+      "State-law overlays for reserve-study/funding, special assessments, financial statement thresholds, record retention and developer transition; mark jurisdiction/date clearly.",
+      "Separate §528/1120-H versus taxable Form 1120 federal tax branch.",
+      "Preserve both public CPA interpretations as conflicting, nonauthoritative positions alongside the FASB agenda discussion; neither resolves current GAAP without the ASC and facts."
+    ],
+    "unresolved_gaps": [
+      "Current ASC 972/606 text not accessed; FASB 2024 handout is agenda discussion only.",
+      "DesRoches view conflicts with PPC Guide position described by the authors; the PPC guide itself was not independently opened.",
+      "HOACPA specialist page is 2018; verify cited paragraphs and legal context against current sources.",
+      "Selected state law only: California §5300 used a secondary reproduction; Florida §718.112 source is 2025."
+    ],
+    "priority_rationale": "This area has no indexed coverage, although associations combine restricted operating/reserve funds, assessments, major asset planning and developer turnover with sharply varying state law."
+  }
+]

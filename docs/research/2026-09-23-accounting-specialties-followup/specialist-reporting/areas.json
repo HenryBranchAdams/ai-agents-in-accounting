@@ -1,0 +1,373 @@
+[
+  {
+    "number": 3,
+    "title": "Forensic accounting and litigation support",
+    "brief": "03-forensic-accounting-and-litigation-support.md",
+    "baseline_status": "Adjacent / partial",
+    "existing_record_ids": [
+      "guide-q-controls-fraud",
+      "src_1wj6irw",
+      "src_075usnq",
+      "src_0rs2kpd",
+      "src_05n7atb",
+      "src_0vf7hhg",
+      "src_gaogb25",
+      "src_cfr200grants",
+      "src_aa_i115_irs_household_employer"
+    ],
+    "baseline_summary": "Baseline selects a fraud/control guide and audit, federal-control and household-employer questions. These provide partial adjacent coverage for financial-statement fraud, control design/operation and evidence; the named source population does not cover forensic engagement methodology, transaction tracing, litigation damages or federal expert testimony requirements.",
+    "questions": [
+      {
+        "question": "What work does forensic accounting commonly support across investigation, trial, and sentencing?",
+        "status": "supported",
+        "source_keys": [
+          "specialist_reporting_doj_forensic"
+        ],
+        "finding": "The prior DOJ practice article supports a bounded description of investigation, trial and sentencing work, including records analysis, tracing and loss/restition/forfeiture estimates.",
+        "remaining_gap": "General government-practice example only; not an engagement standard or a fact finding."
+      },
+      {
+        "question": "What evidence and documentation supports a reproducible fraud trace?",
+        "status": "partial",
+        "source_keys": [
+          "specialist_reporting_doj_forensic",
+          "specialist_reporting_ssfs1",
+          "specialist_reporting_irs_irm_methods_of_proof",
+          "f2_specialist_reporting_nist_8387"
+        ],
+        "finding": "NIST IR 8387 adds direct technical guidance on acquisition, preservation, provenance, chain-of-custody documentation, hashes, original and working copies, access and storage/transfer. Existing IRS bank-deposits guidance gives a separate example of testing non-income and duplicate-deposit explanations.",
+        "remaining_gap": "No general private forensic-accounting trace protocol was established; civil hold, custodian, platform and tribunal duties depend on the matter."
+      },
+      {
+        "question": "How should fraud loss, damages or asset dissipation be quantified?",
+        "status": "partial",
+        "source_keys": [
+          "specialist_reporting_doj_forensic",
+          "specialist_reporting_rule702",
+          "f2_specialist_reporting_fjc_damages"
+        ],
+        "finding": "FJC Fourth Edition Guide to Economic Damages provides a nonbinding but-for comparison framework; lost-profit work requires evidence supporting counterfactual prices, units/market share and avoided costs.",
+        "remaining_gap": "Legal measure, causation, valuation date, mitigation and recoverability remain claim- and case-dependent; no universal damages formula."
+      },
+      {
+        "question": "What supports expert opinions and disclosures in federal civil litigation?",
+        "status": "supported",
+        "source_keys": [
+          "specialist_reporting_rule702",
+          "specialist_reporting_frcp26",
+          "f2_specialist_reporting_rule702_verified"
+        ],
+        "finding": "Directly read Rule 702 in the official U.S. Courts Rules of Evidence compilation dated Dec. 1, 2024. The proponent must show more likely than not that testimony will help, is based on sufficient facts/data and reliable methods, and reliably applies them; prior direct Rule 26 read covers expert disclosures.",
+        "remaining_gap": "Verify current tribunal compilation, governing orders, state rules, case law, privilege and case facts."
+      },
+      {
+        "question": "What professional standard applies to AICPA-member forensic services?",
+        "status": "supported",
+        "source_keys": [
+          "specialist_reporting_ssfs1"
+        ],
+        "finding": "Prior direct read of public SSFS No. 1 supports a bounded standard for covered forensic services by AICPA members accepted on/after Jan. 1, 2020.",
+        "remaining_gap": "Confirm current text, member/service scope and later amendments; SSFS is not a universal legal requirement."
+      }
+    ],
+    "recommended_additions": [
+      "Evidence intake and preservation guide linking original files, hashes, custody, source-to-ledger lineage, transformations, reconciliations and alternative explanations.",
+      "Damages and expert-report guide that records legal theory, but-for facts, valuation date, mitigation and recoverability without turning an economic reference guide into a universal legal formula."
+    ],
+    "unresolved_gaps": [
+      "No general private forensic trace protocol was established; NIST is technical handler guidance and the IRS bank-deposits method is limited to criminal tax investigations.",
+      "No state/arbitration/criminal-procedure survey or empirical error-rate comparison was completed.",
+      "Actual preservation, causation, damages and admissibility depend on evidence, legal theory, tribunal, counsel and case orders."
+    ],
+    "priority_rationale": "Audit-fraud coverage is materially adjacent but a person building a forensic agent needs distinct work products, evidence lineage, quantification assumptions and litigation constraints."
+  },
+  {
+    "number": 4,
+    "title": "Bankruptcy and restructuring accounting",
+    "brief": "04-bankruptcy-and-restructuring-accounting.md",
+    "baseline_status": "Adjacent / partial",
+    "existing_record_ids": [
+      "guide-q-events-going-concern",
+      "guide-q-restructuring-distress",
+      "src_roadmap_ias10_events_after_reporting_period",
+      "src_fasb_201009",
+      "src_fasb_201415",
+      "src_roadmap_ifrs5",
+      "src_roadmap_ias37_overview",
+      "src_aa_i123_fas146",
+      "src_aa_i123_201408",
+      "src_1os761s"
+    ],
+    "baseline_summary": "Baseline selects subsequent-event/going-concern and IFRS restructuring/disposal questions, with historical US exit/discontinued-operation sources and an ASC landing page. It does not directly cover debtor operating reports, claim populations, ASC 852, or liquidation-basis accounting.",
+    "questions": [
+      {
+        "question": "Which Chapter 11 operating report and reporting period apply to this debtor?",
+        "status": "supported",
+        "source_keys": [
+          "specialist_reporting_ust_ch11",
+          "specialist_reporting_mor_instructions",
+          "f2_specialist_reporting_ust_mor_workflow"
+        ],
+        "finding": "UST distinguishes 11-MOR/11-PCR from Official Form 425C for small-business/Subchapter V before confirmation and directs the post-confirmation route to the district UST; usual monthly deadline is the 21st following month, subject to local directions.",
+        "remaining_gap": "Confirm debtor classification, case phase, current form version, district UST, local rules and orders."
+      },
+      {
+        "question": "How should debtor statutory operating reports tie to books and supporting evidence?",
+        "status": "supported",
+        "source_keys": [
+          "specialist_reporting_mor_instructions",
+          "f2_specialist_reporting_ust_mor_workflow"
+        ],
+        "finding": "Direct reading of the UST 11-MOR instructions adds book-to-report details: bank/investment cash totals, reconciliation and difference explanations, separated pre/postpetition obligations, cash receipts/disbursements, operations, and debtor-only centralized cash presentation.",
+        "remaining_gap": "Current version, district and court instructions determine the actual forms, attachments, accounts, basis and cutoff."
+      },
+      {
+        "question": "How should debtor schedules and creditor claims be reconciled?",
+        "status": "supported",
+        "source_keys": [
+          "specialist_reporting_bankruptcy_forms",
+          "f2_specialist_reporting_bankruptcy_rules_2025",
+          "f2_specialist_reporting_bankruptcy_code_502_506"
+        ],
+        "finding": "Rules 3001, 3003 and 3007 organize proof, Chapter 9/11 scheduled-claim treatment, case bar date and objections; 11 U.S.C. §§501-502 supply filing/allowance rules and §506(a) ties secured status to allowed-claim and collateral-value determinations.",
+        "remaining_gap": "General path is supported; actual allowance, validity, priority, secured amount, value, distribution and post-2024 statutory changes depend on current law and the docket."
+      },
+      {
+        "question": "What current US GAAP governs Chapter 11 reorganization and fresh-start accounting?",
+        "status": "partial",
+        "source_keys": [
+          "specialist_reporting_ey_asc852",
+          "specialist_reporting_fasb_asu2025_12",
+          "f2_specialist_reporting_asc_access_boundary"
+        ],
+        "finding": "The prior directly read EY April 2026 guide provides bounded fresh-start criteria and allocation overview. The Codification site returned no readable text in this access attempt; no current consolidated ASC 852 conclusion is claimed.",
+        "remaining_gap": "Current ASC 852 and related Topics, amendments, measurement/disclosure details and debtor plan/value facts remain unresolved; the access attempt is not evidence of a paywall."
+      },
+      {
+        "question": "When does liquidation basis begin and how are assets/liabilities presented?",
+        "status": "supported",
+        "source_keys": [
+          "specialist_reporting_fasb_asu2013_07",
+          "f2_specialist_reporting_asu2013_07_read",
+          "f2_specialist_reporting_asc_access_boundary"
+        ],
+        "finding": "Directly reread public ASU 2013-07 amendment paragraphs on imminent liquidation, prospective transition, expected disposal proceeds, disposal costs, continued liabilities absent legal release and the two liquidation-basis statements.",
+        "remaining_gap": "Current consolidated ASC 205-30 amendments and full disclosure checklist remain unverified; distinguish current-GAAP application from the historical public ASU text."
+      }
+    ],
+    "recommended_additions": [
+      "Chapter 11 debtor reporting guide with form-selection, due date, book-to-form, bank/investment reconciliation, pre/postpetition split, support and signoff.",
+      "Claims reconciliation guide that retains scheduled amount, proof, asserted status, §502 allowance, §506 valuation, objections and court outcome separately.",
+      "Separate current-authority review for ASC 852 and ASC 205-30, with EY/ASU references labeled as nonauthoritative interpretation/historical amendment."
+    ],
+    "unresolved_gaps": [
+      "Current consolidated ASC 852 and ASC 205-30 were not directly read; the access attempt returned no readable text, which does not establish subscription or license status.",
+      "UST report instructions read are dated Dec. 7, 2022; current form, district UST, local orders and debtor classification can change exact routing.",
+      "Claims allowance, priority, lien validity, valuation, distribution and enactments after the 2024 U.S. Code edition require current rule/statute and docket review."
+    ],
+    "priority_rationale": "Current baseline is centered on going concern and restructuring concepts, while bankruptcy creates distinct statutory reporting and claims populations and separate US GAAP models."
+  },
+  {
+    "number": 5,
+    "title": "Employee benefit plan accounting",
+    "brief": "05-employee-benefit-plan-accounting.md",
+    "baseline_status": "Adjacent / partial",
+    "existing_record_ids": [
+      "guide-q-benefits",
+      "src_roadmap_ias19_overview",
+      "src_1os761s",
+      "src_fasb_asu201707_employee_benefits",
+      "src_i120_fas87_dc_contributions",
+      "src_dol_ebsa_reporting_disclosure_guide",
+      "src_irs_pub15b_2026"
+    ],
+    "baseline_summary": "Baseline contains employer-benefit and fringe-tax guidance, IAS 19, historical FAS 87 and DOL reporting/disclosure guidance. It does not directly address the plan as reporting entity, plan statements, Form 5500 schedules, plan assets/participant accounts or modern ERISA audit scope.",
+    "questions": [
+      {
+        "question": "How are employer accounting and plan accounting separated?",
+        "status": "supported",
+        "source_keys": [
+          "specialist_reporting_benefits_form5500",
+          "specialist_reporting_benefits_dolaudit",
+          "specialist_reporting_fasb_asu2015_12",
+          "f2_specialist_reporting_irs_5500_corner",
+          "f2_specialist_reporting_pcusa_db_statements",
+          "f2_specialist_reporting_monro_11k"
+        ],
+        "finding": "A direct IRS Form 5500 Corner reread and actual DB/DC plan statements reinforce that sponsor/employer accounting, plan financial statements and regulatory Form 5500 reporting are separate reporting roles.",
+        "remaining_gap": "Specific employer and plan entries depend on current standards, plan structure/documents and facts."
+      },
+      {
+        "question": "What populations support plan financial statements and reporting?",
+        "status": "partial",
+        "source_keys": [
+          "specialist_reporting_benefits_form5500",
+          "specialist_reporting_benefits_5500ez",
+          "specialist_reporting_benefits_dolaudit",
+          "f2_specialist_reporting_irs_5500_corner",
+          "f2_specialist_reporting_5500_2025_instructions"
+        ],
+        "finding": "IRS overview plus direct 2025 DOL instructions identify the Form 5500 reporting purpose, filer/form routes, Schedule H/I populations and filing-year branches.",
+        "remaining_gap": "Current plan GAAP recognition/presentation and exact schedule population still depend on ASC 960/962/965, plan type, year and plan facts."
+      },
+      {
+        "question": "How are contributions, participant balances, investments and distributions evidenced?",
+        "status": "partial",
+        "source_keys": [
+          "specialist_reporting_fasb_asu2015_12",
+          "specialist_reporting_fasb_ebp_xbrl_guide",
+          "specialist_reporting_benefits_5500ez",
+          "specialist_reporting_benefits_dolaudit",
+          "f2_specialist_reporting_monro_11k",
+          "f2_specialist_reporting_pcusa_db_statements"
+        ],
+        "finding": "Actual 2025 DC 11-K and DB statements provide source-backed examples of investment, receivable, participant loan, expense, contribution, benefit, rollforward and actuarial populations.",
+        "remaining_gap": "Examples do not establish current recognition, measurement, master-trust or participant-allocation rules; current plan GAAP remains unverified."
+      },
+      {
+        "question": "When is a plan audit required and what can the audit address?",
+        "status": "partial",
+        "source_keys": [
+          "specialist_reporting_benefits_dolaudit",
+          "specialist_reporting_dol_2023_dc_count",
+          "specialist_reporting_dol_form_selector",
+          "specialist_reporting_dol_waiver_faq",
+          "f2_specialist_reporting_5500_2025_instructions",
+          "f2_specialist_reporting_dol_small_pension_waiver"
+        ],
+        "finding": "2025 instructions add current-year schedule/audit and ERISA §103(a)(3)(C) election routing; current eCFR §2520.104-46 directly states qualifying small-pension waiver asset/bonding, disclosures and records conditions.",
+        "remaining_gap": "Plan classification, audit standard details, election prerequisites, current-year facts and distinct welfare/other exceptions still require review."
+      },
+      {
+        "question": "What special requirements apply to a defined-benefit plan?",
+        "status": "partial",
+        "source_keys": [
+          "specialist_reporting_benefits_db",
+          "f2_specialist_reporting_5500_2025_instructions",
+          "f2_specialist_reporting_pcusa_db_statements"
+        ],
+        "finding": "2025 instructions route single-employer DB plans to Schedule SB and multiemployer DB plans to Schedule MB with enrolled-actuary certification; an actual audited DB example illustrates plan-related assets/liabilities and accumulated benefit information.",
+        "remaining_gap": "Current plan GAAP, actuarial measurement, minimum funding, PBGC coverage and sponsor accounting need separate authoritative and fact-specific review."
+      },
+      {
+        "question": "How does the current Form 5500 small-plan count relate to an ERISA audit requirement or waiver?",
+        "status": "supported",
+        "source_keys": [
+          "specialist_reporting_dol_2023_dc_count",
+          "specialist_reporting_dol_form_selector",
+          "specialist_reporting_dol_waiver_faq",
+          "f2_specialist_reporting_5500_2025_instructions",
+          "f2_specialist_reporting_dol_small_pension_waiver"
+        ],
+        "finding": "2025 instructions and current regulation confirm plan-year/type-specific count and filing routes and that the small pension audit waiver is a separate conditional branch; DC beginning-year account-balance count rule applies from plan years beginning Jan. 1, 2023.",
+        "remaining_gap": "Apply the current year, plan type, count, assets/bonding, disclosures and other filing exceptions to the actual plan."
+      }
+    ],
+    "recommended_additions": [
+      "Separate sponsor accounting, plan financial statements, Form 5500 reporting and ERISA audit decision paths.",
+      "Plan close map from payroll and participant subledger to trust/custodian evidence, investments, benefits, fees, plan statements and Form 5500 schedules.",
+      "Current FASB plan-GAAP and AICPA audit-standard verification pointer; do not treat 2015 ASU or illustrative filings as complete current GAAP."
+    ],
+    "unresolved_gaps": [
+      "Current consolidated ASC 960/962/965 requirements were not directly read; zero-text ASC attempt is not proof of paywall or unavailability.",
+      "Current audit-standard requirements and every ERISA §103(a)(3)(C) prerequisite were not fully reviewed.",
+      "Plan type, count, ERISA coverage, waiver conditions, trust/master trust, actuarial assumptions and other filing exceptions change the result."
+    ],
+    "priority_rationale": "An employer benefit guide does not answer the separate reporting, participant-account, investment and ERISA filing questions of a plan administrator or plan auditor."
+  },
+  {
+    "number": 6,
+    "title": "Small-business reporting and accountant services",
+    "brief": "06-small-business-reporting-and-accountant-services.md",
+    "baseline_status": "Adjacent / partial",
+    "existing_record_ids": [
+      "guide-q-reporting-basis",
+      "guide-q-compliance-assurance",
+      "guide-q-professional-governance",
+      "src_ias08pol",
+      "src_1os761s",
+      "src_secfrm26",
+      "src_roadmap_gasb34_basis",
+      "src_roadmap_fasab34",
+      "src_0ww9s76",
+      "src_1ky30oj",
+      "src_cfr200grants",
+      "src_0ukc3p8",
+      "src_1qpx6gc",
+      "src_1l42i21",
+      "src_1l45nk0"
+    ],
+    "baseline_summary": "Baseline provides framework routing, special-purpose assurance and professional-governance coverage but is broad/global and not a practical US small-business basis-conversion or accountant-service distinction guide.",
+    "questions": [
+      {
+        "question": "How should cash, modified-cash, tax and US GAAP outputs be distinguished?",
+        "status": "partial",
+        "source_keys": [
+          "specialist_reporting_smallbiz_pub538",
+          "specialist_reporting_smallbiz_pub583",
+          "specialist_reporting_deloitte_special_purpose",
+          "f2_specialist_reporting_irs_pub334_2025"
+        ],
+        "finding": "IRS tax cash/accrual and inventory rules are tax-method guidance; Deloitte explains special-purpose cash, modified-cash, tax, regulatory and contractual bases and notes there is no standardized modified-cash recipe.",
+        "remaining_gap": "Need the intended users, contract, included/excluded accruals and current SSARS/reporting rules to define the basis for the entity."
+      },
+      {
+        "question": "What bookkeeping evidence supports a small-business close and financial reports?",
+        "status": "supported",
+        "source_keys": [
+          "specialist_reporting_smallbiz_pub583"
+        ],
+        "finding": "Prior direct IRS Pub. 583 reading supports source documents, separate business banking, recordkeeping and bank reconciliation as useful tax-close evidence.",
+        "remaining_gap": "Retention and control requirements remain tax-, contract-, employment-, litigation- and entity-dependent."
+      },
+      {
+        "question": "When can a taxpayer use cash vs accrual and change methods?",
+        "status": "partial",
+        "source_keys": [
+          "specialist_reporting_smallbiz_pub538",
+          "f2_specialist_reporting_irs_2026_448c",
+          "f2_specialist_reporting_irs_pub334_2025"
+        ],
+        "finding": "For covered §448(c) corporation/partnership tests, Rev. Proc. 2025-32 states a $32 million average gross-receipts threshold for tax years beginning in 2026; Pub. 334 describes cash/accrual, inventory exception and Form 3115 method changes.",
+        "remaining_gap": "The threshold is not universal cash-method permission; entity type, aggregated receipts, tax-shelter, inventory, contracts and tax year must be checked."
+      },
+      {
+        "question": "What distinguishes preparation, compilation, review and audit engagements?",
+        "status": "partial",
+        "source_keys": [
+          "specialist_reporting_ssars_current",
+          "specialist_reporting_aicpa_service_comparison",
+          "specialist_reporting_jofa_arc70_explanation",
+          "f2_specialist_reporting_aicpa_services_comparison",
+          "f2_specialist_reporting_ssars27_public_summary"
+        ],
+        "finding": "AICPA public comparison distinguishes no-assurance preparation/compilation, limited-assurance review and reasonable-assurance audit; SSARS 27 summary describes a narrow future-effective CS 100/AR-C 70 preparation exception.",
+        "remaining_gap": "Full current AR-C/AU-C text, exact report legends, prerequisites and state overlays remain unread; SSARS 27 was available here only as a public summary."
+      },
+      {
+        "question": "What is the accountant’s responsibility boundary for the requested service?",
+        "status": "partial",
+        "source_keys": [
+          "specialist_reporting_ssars_current",
+          "specialist_reporting_aicpa_service_comparison",
+          "specialist_reporting_jofa_arc70_explanation",
+          "f2_specialist_reporting_aicpa_services_comparison",
+          "f2_specialist_reporting_ssars27_public_summary"
+        ],
+        "finding": "Public AICPA service guidance supports stating the selected service and assurance boundary; SSARS 27 summary clarifies one narrow consulting-engagement exception.",
+        "remaining_gap": "Engagement letter, management responsibility, client records, independence, exact current standards, state law and actual service facts determine the accountant’s duties."
+      }
+    ],
+    "recommended_additions": [
+      "Basis/service selector that distinguishes tax, internal, contractual/regulatory and GAAP reports and makes the assurance level and selected basis visible.",
+      "Tax-method route that collects year, entity, aggregation, tax-shelter, inventory, contract and method-change facts before showing a cash/accrual answer.",
+      "Close-evidence checklist tying source documents, bank reconciliation, ledger and report lines, with unsupported estimates flagged for review."
+    ],
+    "unresolved_gaps": [
+      "Modified cash has no single standardized adjustment recipe in the sources reviewed.",
+      "Full current AR-C/AU-C text, exact report wording, engagement exclusions and state-law duties were not read; SSARS 27 source is summary only.",
+      "Tax-method eligibility depends on facts not supplied, and 2026 threshold does not create a universal cash-method right."
+    ],
+    "priority_rationale": "Existing basis and assurance guides do not explain the common small-business gap between cash records, tax returns, adjusted statements and engagement assurance level."
+  }
+]

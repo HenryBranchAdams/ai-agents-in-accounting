@@ -1,0 +1,93 @@
+[
+  {
+    "question_id": "FO-T1",
+    "question": "How do fiduciary principal and income classifications differ from federal distributable net income, including the treatment of capital gains?",
+    "existing_question_ids": [
+      "rq-family-office-trust-beneficiary"
+    ],
+    "prior_coverage": "Existing answer routes to Texas Chapter 116 and 2025 Form 1041 instructions, says governing instrument/local law control fiduciary categories, and distinguishes those categories from DNI, distribution deductions, and K-1 character. It did not detail federal capital-gain inclusion routes.",
+    "new_finding": "Treas. Reg. §1.643(b)-1 ties Subchapter J 'income' to the instrument and applicable local law, subject to traditional-principles limits and recognition of reasonable total-return apportionment. DNI is a separate modified taxable-income computation. Capital gains are ordinarily excluded, with specified inclusion routes subject to the common governing-instrument/local-law or authorized reasonable-and-impartial-discretion condition, plus charitable-gain inclusion under §1.643(a)-3(c). Texas Chapter 116 supplies only a selected local-law example, including bounded gain adjustment and death-time allocation rules.",
+    "source_keys": [
+      "fo24_trust_texas116",
+      "fo24_trust_reg643b1",
+      "fo24_trust_reg643a3",
+      "fo24_trust_irs1041_2025"
+    ],
+    "disposition": "deepened",
+    "remaining_gaps": [
+      "Trust terms, applicable jurisdiction, exercise of fiduciary discretion, beneficiary distribution facts, and return-year treatment determine application.",
+      "2025 IRS return instructions and 2025 CFR text do not establish all later-year/current consolidated authority.",
+      "No current US GAAP trust financial-reporting conclusion is established."
+    ],
+    "dependency_types": [
+      "entity-facts",
+      "current-authority",
+      "rights"
+    ],
+    "recommended_next_step": "Enrich existing Texas and Form 1041 source links, add the two Treasury regulations, and keep fiduciary income/principal, DNI, realized gains, distribution deductions, and K-1 character as separate guide schedules."
+  },
+  {
+    "question_id": "FO-T2",
+    "question": "How do grantor and nongrantor trust reporting/bookkeeping differ, and how should tax liability, payment, and reimbursement be distinguished?",
+    "existing_question_ids": [
+      "rq-family-office-trust-beneficiary",
+      "rq-family-office-tax-coordination"
+    ],
+    "prior_coverage": "Existing 2025 IRS Form 1041 source routes grantor-trust items to the owner and keeps taxpayer, entity, and year distinct. It did not detail partial grantor portions, optional information-reporting methods, owner-paid taxes, or reimbursement authority.",
+    "new_finding": "Under §§671-3 and 671-4, owner-attributable items follow the owner; a grantor portion generally uses an attached owner statement, while a nongrantor portion follows ordinary Form 1041/DNI/K-1 rules. Optional methods for wholly grantor-owned trusts carry specific conditions. Rev. Rul. 2004-64 treats the owner's payment of tax on owner-attributed income as payment of the owner's own liability, not a gift. Mandatory reimbursement can cause §2036 inclusion; discretionary authority alone does not, whether or not exercised, assuming no understanding, but combined facts may change the result. IRS gives prospective application protection for trusts created before Oct. 4, 2004 from adverse use of the Situation 2 holding. Nongrantor trust payment of a person's legal obligation is analyzed separately under §1.662(a)-4.",
+    "source_keys": [
+      "fo24_trust_irs1041_2025",
+      "fo24_trust_reg6713",
+      "fo24_trust_reg6714",
+      "fo24_trust_rev2004_64",
+      "fo24_trust_reg662a4"
+    ],
+    "disposition": "deepened",
+    "remaining_gaps": [
+      "Owner attribution, trust portion, optional method eligibility, reimbursement rights, and estate inclusion require instrument, local law, trustee-control, creditor-access, and other actual facts.",
+      "No universal GAAP or fiduciary-ledger posting for a grantor's tax payment/reimbursement is established.",
+      "IRS instructions are tax-year 2025 and later tax law/instructions need verification."
+    ],
+    "dependency_types": [
+      "entity-facts",
+      "current-authority",
+      "research",
+      "rights"
+    ],
+    "recommended_next_step": "Add linked owner-portion, taxpayer, payment source, tax year, and reimbursement-authority fields to the guide intake; retain a human tax/legal review gate for actual reimbursements."
+  },
+  {
+    "question_id": "FO-T3",
+    "question": "What should a death-time estate/trust opening schedule distinguish for assets, basis, IRD, and beneficiary distributions?",
+    "existing_question_ids": [
+      "rq-family-office-tax-coordination",
+      "rq-family-office-trust-beneficiary"
+    ],
+    "prior_coverage": "Existing 2025 Publication 559 distinguishes decedent final return, estate return, and transfer-tax routing at a high level. Texas Chapter 116 already supplies selected trust principal/income rules, but death-time basis, IRD, and grantor reporting transition mechanics were not deeply covered.",
+    "new_finding": "A date-of-death schedule should identify the decedent's property/right and value separately from probate, gross-estate, tax-basis, and trust fiduciary categories. Qualifying property generally uses §1014 value at death or an elected alternate valuation date; §1014(c) excludes IRD rights from basis adjustment. IRD depends on entitlement and noninclusion under the decedent's method, with cash/accrual and contingent-claim distinctions. Estate/Form 1041, final individual return, Form 706, trust records, and beneficiary/K-1 schedules remain separate. Texas §116.101-.102 supplies a selected death-time receipt-allocation example. If death ends grantor ownership, §1.671-4(h) addresses method cessation and new TIN for a continuing wholly grantor-owned trust.",
+    "source_keys": [
+      "fo24_trust_p559_2025",
+      "fo24_trust_irs1041_2025",
+      "fo24_trust_reg1014_1",
+      "fo24_trust_reg1014_10",
+      "fo24_trust_reg691a1",
+      "fo24_trust_reg6714",
+      "fo24_trust_reg662a4",
+      "fo24_trust_texas116",
+      "fo24_trust_reg643a3"
+    ],
+    "disposition": "deepened",
+    "remaining_gaps": [
+      "Probate ownership, gross-estate inclusion, valuations, basis history, tax accounting method, elections, IRD character, special partnership/installment rules, and beneficiary shares depend on actual records and elections.",
+      "Consistent-basis rules apply only to property within §1.1014-10(c)(1), when the decedent’s federal estate-tax return is filed after Sept. 17, 2024; detailed categories/exceptions remain asset-specific. No general probate inventory requirement is claimed.",
+      "IRS Pub. 559 and Form 1041 sources are 2025 editions; later-year instructions and amended authority remain to be checked."
+    ],
+    "dependency_types": [
+      "entity-facts",
+      "current-authority",
+      "research",
+      "rights"
+    ],
+    "recommended_next_step": "Enrich the existing 2025 P559/1041 and Texas Chapter 116 sources; add CFR basis/IRD/reporting-transition sources and use an opening schedule that keeps title, value, basis, IRD, fiduciary allocation, taxpayer, and distribution evidence separate."
+  }
+]
