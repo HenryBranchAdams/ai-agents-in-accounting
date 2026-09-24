@@ -1,0 +1,822 @@
+[
+  {
+    "number": 1,
+    "title": "Partnership and LLC accounting",
+    "brief": "01-partnership-llc.md",
+    "baseline_status": "Adjacent / partial screening matches; no adequacy conclusion",
+    "existing_record_ids": [
+      "guide-q-equity",
+      "guide-q-tax-returns",
+      "guide-q-related-parties",
+      "guide-family-office-us-accounting",
+      "rq-equity-scope-treatment",
+      "rq-equity-evidence-controls",
+      "rq-tax-returns-form",
+      "rq-tax-returns-authorization",
+      "rq-related-parties-identify",
+      "rq-related-parties-intercompany",
+      "rq-uk-cis-payroll",
+      "rq-ca-tax-period",
+      "rq-us-nonprofit-award-close",
+      "rq-aa-i123-related",
+      "rq-tax-returns-us-corporate-return-and-information-reporting",
+      "rq-aa-i121-equity-classification",
+      "rq-aa-i121-convertible",
+      "rq-us-nonprofit-federal-reporting",
+      "rq-holding-us-financing",
+      "rq-holding-us-services",
+      "rq-holding-us-dividends-tax",
+      "rq-arts-gaming-tax-obligation",
+      "rq-other-household-employer-payroll",
+      "rq-family-office-perimeter",
+      "rq-family-office-shared-costs",
+      "rq-family-office-tax-coordination",
+      "rq-family-office-supplemental-close",
+      "coverage-rq-aa-i123-related",
+      "coverage-aa-i122-q-tax-returns-2026-09-18",
+      "coverage-aa-i121-equity-2026-09-18.121",
+      "coverage-us-nonprofit-federal-reporting-2026-09-19",
+      "coverage-holding-us-financing",
+      "coverage-holding-us-services",
+      "coverage-holding-us-dividends-tax",
+      "coverage-rq-arts-gaming-tax-obligation",
+      "coverage-rq-other-household-employer-payroll",
+      "coverage-family-office-perimeter",
+      "coverage-family-office-capital-activity",
+      "coverage-family-office-shared-costs",
+      "coverage-family-office-trust-beneficiary",
+      "coverage-family-office-tax-coordination",
+      "coverage-family-office-supplemental-close",
+      "src_irs1099",
+      "src_irs8879p",
+      "src_irs8879c",
+      "src_0w0lkv7",
+      "src_cfr200grants",
+      "src_hmrc_fps_payroll",
+      "src_construction_fasb_2014_09",
+      "src_construction_fasb_201817",
+      "src_roadmap_ias32_financial_instruments_presentation",
+      "src_roadmap_ias24_related_parties",
+      "src_roadmap_uk_cis",
+      "src_roadmap_ca_gsthst",
+      "src_nonprofit_fasb_2018_08",
+      "src_nonprofit_fasb_2016_14",
+      "src_nonprofit_irs_990_2025",
+      "src_fasb_201502",
+      "src_aa_i123_fas57",
+      "src_aa122_irs_i1120_2025",
+      "src_aa122_irs_i1042_2025",
+      "src_aa122_irs_i1042s_2026",
+      "src_aa122_irs_w8bene",
+      "src_aa122_irs_presumption",
+      "src_fasb_asu_201601_equity_investments",
+      "src_fasb_asc815_hedging",
+      "src_fasb_asu_202006_convertibles",
+      "src_aa_i109_arb51_amended",
+      "src_aa_i109_cfr_14829_2025",
+      "src_aa_i113_irs_gaming_ubti",
+      "src_aa_i115_irs_household_employer",
+      "src_family_office_sec_2011_rule",
+      "src_family_office_texas_principal_income",
+      "src_family_office_irs_k1_1065_2025",
+      "src_family_office_irs_1041_2025",
+      "src_family_office_irs_k1_1041_2025",
+      "src_family_office_irs_p559_2025"
+    ],
+    "baseline_summary": "Inclusive baseline: 4 guide matches, 23 question matches, 15 assessment matches, and 35 linked source records. Matches are shared/adjacent and do not prove depth or sufficiency.",
+    "questions": [
+      {
+        "question": "Are book capital, section 704(b) capital, tax-basis capital, and outside basis distinct?",
+        "status": "supported",
+        "source_keys": [
+          "cp_irs_k1",
+          "cp_irs_1065",
+          "cp_reg704",
+          "f2_capital_property_743_reg"
+        ],
+        "finding": "Tax measures remain distinct: §743(b) creates transferee-only partnership-property basis and tax-item adjustments; it does not change common inside basis or the transferee’s capital account. That answers the tax-basis distinction, not GAAP equity presentation.",
+        "remaining_gap": "Current US GAAP partnership presentation and partner-specific ledger/liability facts remain open."
+      },
+      {
+        "question": "How do cash/noncash contributions and built-in gain/loss affect capital and later allocations?",
+        "status": "supported",
+        "source_keys": [
+          "cp_irs_1065",
+          "cp_reg704",
+          "f2_capital_property_704c_reg"
+        ],
+        "finding": "A’s contributed property carries a $6,000 initial built-in gain; after first-year tax depreciation, a $9,000 year-two sale sends $5,400 gain to A. If AB then liquidates with $19,000 cash, A has $9,400 basis and $100 gain while B has $9,600 basis and $100 loss.",
+        "remaining_gap": "The example is tax regulation, not client facts or a GAAP capital-account policy; agreement method choice and special 704(c) rules remain."
+      },
+      {
+        "question": "How are profits/losses allocated and midyear admissions/exits handled?",
+        "status": "supported",
+        "source_keys": [
+          "cp_irs_1065",
+          "cp_reg704"
+        ],
+        "finding": "Prior sources still describe agreement-based allocations and varying-interest rules; this pass adds no new midyear-admission or safe-harbor evidence.",
+        "remaining_gap": "Actual allocations, admission/exit dates, agreement and applicable tax-year elections remain entity-specific."
+      },
+      {
+        "question": "How do distributions, withdrawals, liability relief, and service payments affect partners?",
+        "status": "supported",
+        "source_keys": [
+          "cp_irs_pub541",
+          "cp_irs_1065",
+          "cp_irs_k1",
+          "f2_capital_property_distribution_regs",
+          "f2_capital_property_uscode_736"
+        ],
+        "finding": "General tax routes distinguish §734(b) common-basis adjustment from §743(b) transferee-only basis; §736 classifies full-interest retirement payments and §736(b)(2)-(3) has conditional receivables/goodwill scope.",
+        "remaining_gap": "Complex noncash/liability distributions and service payments require the actual facts, agreement, partner/entity status and current-year tax law."
+      },
+      {
+        "question": "How are transfers, retirement, liquidation and windup represented?",
+        "status": "partial",
+        "source_keys": [
+          "cp_irs_pub541",
+          "cp_irs_1065",
+          "f2_capital_property_distribution_regs",
+          "f2_capital_property_uscode_736"
+        ],
+        "finding": "General tax mechanics now separate a third-party transfer from partnership liquidation payments, distinguish §736(a) from §736(b), and reconcile final distributions to outside basis; the proposed windup schedule keeps tax and book measures separate.",
+        "remaining_gap": "The question also asks how windup is represented: US GAAP presentation, legal transfer/windup rights, member status, and agreement-specific allocation/payment terms remain unresolved."
+      }
+    ],
+    "recommended_additions": [
+      "Add a dedicated role- and accounting-basis-specific guide using the scope and reconciliations in the brief.",
+      "Add a worked 704(c) multiyear schedule ending in liquidation, with outside-basis and §731/§732 reconciliation.",
+      "Add conditional §736 treatment and §734/§743 election/mandatory-trigger distinctions; keep GAAP equity and agreement rights separate."
+    ],
+    "unresolved_gaps": [
+      "No professional accounting review was performed.",
+      "No entity-specific contracts, ledger data, or state-by-state legal/tax analysis were available.",
+      "Current Codification wording and entity-specific application remain to be checked; this follow-up does not infer that current ASC verification requires paid access."
+    ],
+    "priority_rationale": "Partnership structures are common across investment, real-estate, operating and family-office entities; book capital, tax capital and outside basis are commonly conflated."
+  },
+  {
+    "number": 2,
+    "title": "Fund accounting and investment partnerships",
+    "brief": "02-fund-accounting.md",
+    "baseline_status": "Adjacent / partial screening matches; no adequacy conclusion",
+    "existing_record_ids": [
+      "guide-q-investments",
+      "guide-q-valuation-impairment",
+      "guide-q-digital-assets",
+      "guide-q-funds-custody",
+      "guide-aa-i124-institutional",
+      "guide-i97-harvesting-contractor",
+      "guide-aa-i106-finance-insurance",
+      "guide-arts-recreation-us-close",
+      "guide-other-services-us-close",
+      "guide-family-office-us-accounting",
+      "rq-investments-classification",
+      "rq-investments-losses",
+      "rq-valuation-impairment-trigger",
+      "rq-valuation-impairment-fair-value",
+      "rq-digital-assets-custody",
+      "rq-funds-custody-ownership",
+      "rq-funds-custody-fees",
+      "rq-aa-i124-funds-custody",
+      "rq-i97-support-cost-custody",
+      "rq-aa-i123-jv",
+      "rq-aa-i121-investment-classification",
+      "rq-aa-i121-investment-losses",
+      "rq-aa-i121-valuation-trigger",
+      "rq-aa-i121-fair-value",
+      "rq-aa-i121-digital-custody",
+      "rq-us-nonprofit-endowment-spending",
+      "rq-holding-us-investment",
+      "rq-aa-i106-funds-valuation-custody",
+      "rq-aa-i106-broker-adviser-protection",
+      "rq-aa-i106-insurance-reinsurance",
+      "rq-arts-gaming-tax-obligation",
+      "rq-arts-gaming-custody-settlement",
+      "rq-other-laundry-custody-batch",
+      "rq-other-funeral-preneed-deposit",
+      "rq-other-household-reimbursements-controls",
+      "rq-family-office-perimeter",
+      "rq-family-office-capital-activity",
+      "rq-family-office-shared-costs",
+      "rq-family-office-trust-beneficiary",
+      "rq-family-office-tax-coordination",
+      "rq-family-office-supplemental-close",
+      "coverage-aa-i124-q-funds-custody",
+      "coverage-rq-aa-i123-acquisition",
+      "coverage-rq-aa-i123-jv",
+      "coverage-rq-aa-i123-related",
+      "coverage-rq-aa-i123-loss",
+      "coverage-rq-aa-i123-guarantee",
+      "coverage-rq-aa-i123-recovery",
+      "coverage-rq-aa-i123-exit",
+      "coverage-rq-aa-i123-disposal",
+      "coverage-rq-aa-i123-environment",
+      "coverage-aa-i121-investments-2026-09-18.121",
+      "coverage-aa-i121-valuation-impairment-2026-09-18.121",
+      "coverage-aa-i121-digital-assets-2026-09-18.121",
+      "coverage-transport-rq-transport-role-event-boundary",
+      "coverage-transport-rq-transport-freight-passenger-cutoff-surcharge",
+      "coverage-transport-rq-transport-carrier-settlement-claims",
+      "coverage-transport-rq-transport-leased-fleet-maintenance",
+      "coverage-transport-rq-transport-customer-owned-warehouse-claims",
+      "coverage-us-nonprofit-endowment-2026-09-19",
+      "coverage-holding-us-investment",
+      "coverage-aa-i106-funds-2026-09-19",
+      "coverage-aa-i106-broker-2026-09-19",
+      "coverage-aa-i106-insurance-2026-09-19",
+      "coverage-us-government-fiduciary-custodial",
+      "coverage-rq-arts-gaming-tax-obligation",
+      "coverage-rq-arts-gaming-custody-settlement",
+      "coverage-rq-other-laundry-custody-batch",
+      "coverage-rq-other-funeral-preneed-deposit",
+      "coverage-rq-other-household-reimbursements-controls",
+      "coverage-family-office-perimeter",
+      "coverage-family-office-capital-activity",
+      "coverage-family-office-trust-beneficiary",
+      "src_ifrs09a",
+      "src_ias36imp",
+      "src_0vuruu2",
+      "src_fercacct",
+      "src_cfr200grants",
+      "src_asu202308",
+      "src_secsab122",
+      "src_ffiec051_instructions_2025",
+      "src_occ_baas_2026",
+      "src_naic_sap_hierarchy_2026",
+      "src_cms255210_transmittal25_2026",
+      "src_construction_fasb_2014_09",
+      "src_construction_fasb_202305",
+      "src_construction_fasb_201817",
+      "src_roadmap_naics2022_manual",
+      "src_roadmap_ifrs13_overview",
+      "src_roadmap_ifric_crypto_2019",
+      "src_roadmap_gasb34_basis",
+      "src_roadmap_gasb103",
+      "src_roadmap_fasab34",
+      "src_roadmap_fasab53",
+      "src_roadmap_ias32_financial_instruments_presentation",
+      "src_roadmap_sec_custody_2003",
+      "src_roadmap_ecfr_41324f_2026",
+      "src_roadmap_cms_2552_10_r24",
+      "src_nonprofit_fasb_2018_08",
+      "src_nonprofit_fasb_2016_14",
+      "src_nonprofit_irs_990_2025",
+      "src_fasb_asu2016_08_principal_agent",
+      "src_fasb_201502",
+      "src_aa_i124_ferc101",
+      "src_aa_i124_custody",
+      "src_aa_i124_oilgas",
+      "src_aa_i124_naic",
+      "src_i97_usda_arms",
+      "src_aa_i123_fas57",
+      "src_aa122_irs_i1120_2025",
+      "src_fasb_asu_201601_equity_investments",
+      "src_fasb_asu_201613_credit_losses",
+      "src_fasb_asu_202203_sale_restrictions",
+      "src_fasb_asc820_fair_value",
+      "src_fasb_asc360_impairment",
+      "src_fasb_asu_202502_crypto_safeguarding",
+      "src_fasb_asu_201910_effective_dates",
+      "src_nonprofit_illinois_upmifa_2009",
+      "src_aa_i109_arb51_amended",
+      "src_aa_i106_occ_acl_2026",
+      "src_aa_i106_sec_2a5_2020",
+      "src_aa_i106_sec_15c3_3",
+      "src_aa_i106_naic_appm_2026",
+      "src_aa_i113_irs_gaming_ubti",
+      "src_aa_i115_ftc_funeral_rule",
+      "src_aa_i115_irs_household_employer",
+      "src_family_office_sec_2011_rule",
+      "src_family_office_texas_principal_income",
+      "src_family_office_irs_k1_1065_2025",
+      "src_family_office_irs_1041_2025",
+      "src_family_office_irs_k1_1041_2025",
+      "src_family_office_irs_p559_2025"
+    ],
+    "baseline_summary": "Inclusive baseline: 10 guide matches, 31 question matches, 32 assessment matches, and 59 linked source records. Matches are shared/adjacent and do not prove depth or sufficiency.",
+    "questions": [
+      {
+        "question": "How should a US fund close distinguish portfolio assets/NAV, investor capital, manager/GP, and portfolio-company books?",
+        "status": "supported",
+        "source_keys": [
+          "cp_kpmg_investment_companies_2026",
+          "cp_sec_custody",
+          "cp_irs_1065"
+        ],
+        "finding": "Prior ASC 946 and custody materials already distinguish fund assets/NAV and investor capital from GP/manager and portfolio-company reporting; this pass reinforces the boundary but adds no new consolidation evidence.",
+        "remaining_gap": "ASC 810 and legal title/control require the actual structure, contracts, and ledger."
+      },
+      {
+        "question": "What valuation evidence supports private investment fair value and NAV?",
+        "status": "partial",
+        "source_keys": [
+          "cp_kpmg_investment_companies_2026",
+          "cp_sec_2a5",
+          "f2_capital_property_bdo_valuation"
+        ],
+        "finding": "BDO’s 2018 discussion of a working draft adds a general calibration and security-class method framework, but current authoritative security-class guidance is unverified and entity-specific value remains open.",
+        "remaining_gap": "The source is a nonauthoritative 2018 discussion of an AICPA working draft; current authoritative security-class guidance, actual class rights, transaction orderliness, measurement-date inputs and professional valuation remain unverified; IPEV remains excluded."
+      },
+      {
+        "question": "How should commitments, capital calls, distributions and unfunded commitments reconcile?",
+        "status": "supported",
+        "source_keys": [
+          "cp_ilpa",
+          "cp_irs_1065"
+        ],
+        "finding": "Prior ILPA notice examples and IRS tax reporting sources already provide the general call/distribution/unfunded commitment reconciliation scope.",
+        "remaining_gap": "Actual commitment terms, call types, subsequent changes and unusual distributions remain agreement-dependent."
+      },
+      {
+        "question": "How do carried-interest fees versus profit allocations affect fund, GP, and manager statements?",
+        "status": "partial",
+        "source_keys": [
+          "cp_kpmg_investment_companies_2026",
+          "cp_kpmg_hedge_illustrative_2025",
+          "f2_capital_property_fasb_revenue_qa",
+          "f2_capital_property_kpmg_revenue_2025",
+          "f2_capital_property_deloitte_carry_323",
+          "f2_capital_property_ares_2018_10q"
+        ],
+        "finding": "Fund class allocation and manager carry revenue are separate questions. FASB staff’s 2020 view is that service-compensation carry is within Topic 606 regardless of cash/equity form; KPMG’s 2025 interpretation of the 2016 TRG/SEC Observer comments allows a consistent ownership model on specific facts with full ASC 810/323 analysis. Ares used ASC 323 for carry and ASC 606 for incentive fees in 2018.",
+        "remaining_gap": "Not a universal policy choice or Board-level conclusion. Reporting-entity structure, contract substance, variable-consideration reversal, clawback, consolidation/equity-method facts and current Codification remain necessary."
+      },
+      {
+        "question": "How do custody, investor delivery, and regulatory audit duties interact?",
+        "status": "partial",
+        "source_keys": [
+          "cp_sec_custody",
+          "cp_sec_vacatur"
+        ],
+        "finding": "Custody, audit, investor delivery and adviser obligations remain a separate regulatory analysis from fund accounting.",
+        "remaining_gap": "Current adviser and pool status, custody, audit exception, delivery dates, Form PF/CFTC/ERISA facts and later legal developments require current review."
+      },
+      {
+        "question": "How should ASC 946 fund financial statements present net assets, class NAV/capital activity, subscriptions, and realized/unrealized performance?",
+        "status": "supported",
+        "source_keys": [
+          "cp_kpmg_investment_companies_2026",
+          "cp_kpmg_hedge_illustrative_2025"
+        ],
+        "finding": "Prior ASC 946 technical material already supports the general fund financial-statement and class-capital presentation path.",
+        "remaining_gap": "Registered-fund requirements and applicable statement set depend on fund status and reporting facts; current Codification review remains."
+      },
+      {
+        "question": "How are management fees, fee waivers, expense limitations, and offsets presented in an ASC 946 fund?",
+        "status": "supported",
+        "source_keys": [
+          "cp_kpmg_investment_companies_2026",
+          "f2_capital_property_kpmg_revenue_2025",
+          "f2_capital_property_deloitte_carry_323"
+        ],
+        "finding": "Fund management-fee expense/waiver/offset accounting is distinct from the manager’s contract revenue. The new manager-side evidence treats separate management services under Topic 606 while analyzing carried interest independently as service compensation or a possible equity ownership arrangement.",
+        "remaining_gap": "Fund fee terms, waiver/expense-cap mechanics, offsets, consolidation, manager contract and ledger remain unreviewed."
+      },
+      {
+        "question": "How should contractual waterfall distributions sequence return of capital, preferred return, catch-up, carry and clawback?",
+        "status": "partial",
+        "source_keys": [
+          "cp_ilpa_model_lpa_deal_by_deal"
+        ],
+        "finding": "Prior ILPA model LPA shows one waterfall sequence and bracketed alternatives; it remains an illustration, not a universal distribution rule.",
+        "remaining_gap": "No actual waterfall, side letters, preferred-return basis, clawback or realized/unrealized ledger was inspected."
+      },
+      {
+        "question": "How do hedge high-water marks, classes/series and side pockets affect investor NAV and incentive allocations?",
+        "status": "partial",
+        "source_keys": [
+          "cp_kpmg_hedge_illustrative_2025",
+          "cp_kpmg_investment_companies_2026",
+          "f2_capital_property_klgates_equalization",
+          "f2_capital_property_irishfunds_equalization"
+        ],
+        "finding": "Historical Irish/practitioner methods explain HWM equalization alternatives, but general side-pocket mechanics and private-partnership subscription entries are not fully resolved.",
+        "remaining_gap": "Actual side-pocket participation, dealing NAV, fee reversals, HWM, crystallization, and private-partnership subscription accounting depend on fund contracts and administrator records; the guide is historical Irish practice, not US authority."
+      },
+      {
+        "question": "How do ASC 946 investor-class allocations reflect unrealized marks, carried interest and clawback at the reporting date?",
+        "status": "supported",
+        "source_keys": [
+          "cp_kpmg_investment_companies_2026",
+          "f2_capital_property_fasb_revenue_qa",
+          "f2_capital_property_kpmg_revenue_2025"
+        ],
+        "finding": "ASC 946 fund-class allocation of marks, fees and carry is not the same reporting question as the GP/manager’s carry revenue or investment. The latter may involve Topic 606 or a fact-supported ownership model under interpretive sources.",
+        "remaining_gap": "Actual fund agreement, carry classification in GP/manager statements, clawback and participant compensation require entity-specific analysis and current GAAP review."
+      },
+      {
+        "question": "How should ASC 946 subscription equalization and class capital transactions be reflected?",
+        "status": "partial",
+        "source_keys": [
+          "cp_kpmg_investment_companies_2026",
+          "cp_kpmg_hedge_illustrative_2025",
+          "f2_capital_property_klgates_equalization",
+          "f2_capital_property_irishfunds_equalization"
+        ],
+        "finding": "Hedge-fund share equalization must preserve each subscriber’s issue NAV/HWM and accrued-fee position, but these administrator methods do not answer the ASC 946 entry or private partnership subscription equalization amount.",
+        "remaining_gap": "Actual subscription ledger, LPA, administrator method, retroactive NAV adjustments and current ASC 946 treatment remain open."
+      }
+    ],
+    "recommended_additions": [
+      "Add a focused ASC 946 fund financial-statement and close guide using KPMG’s current public technical handbook as interpretive context; clearly distinguish authority from professional interpretation.",
+      "Add a separate waterfall/carry schedule branch linked to a model LPA and actual fund-document inputs, plus a hedge classes/series/equalization/side-pocket branch using illustrative statements.",
+      "Retain the restricted IPEV lead as discovery-only pending a rights review; do not carry forward substantive claims.",
+      "Map fund, GP, manager and portfolio-company reporting as separate reporting entities.",
+      "Show the manager carry service-revenue versus ownership analysis and hedge equalization methods separately from ASC 946 fund-class entries."
+    ],
+    "unresolved_gaps": [
+      "No professional accounting review was performed.",
+      "No entity-specific contracts, ledger data, or state-by-state legal/tax analysis were available.",
+      "IPEV remains a rights-restricted discovery lead only; its substantive text is excluded and no valuation claim is based on it.",
+      "Current Codification wording and entity-specific application remain to be checked; this follow-up does not infer that current ASC verification requires paid access."
+    ],
+    "priority_rationale": "Fund reporting crosses legal entities, NAV, investor capital, adviser fees and regulatory custody; available corpus routes are fragmented."
+  },
+  {
+    "number": 8,
+    "title": "Private equity, venture capital, and hedge funds",
+    "brief": "08-pe-vc-hedge.md",
+    "baseline_status": "Adjacent / partial screening matches; no adequacy conclusion",
+    "existing_record_ids": [
+      "guide-q-consolidation",
+      "guide-q-investments",
+      "guide-q-government-funds",
+      "guide-q-funds-custody",
+      "guide-industry-naics2022-525",
+      "guide-us-nonprofit-endowment-spending",
+      "guide-us-education-public-appropriations",
+      "guide-us-professional-services-contract-to-ledger",
+      "guide-family-office-us-accounting",
+      "rq-consolidation-scope-treatment",
+      "rq-consolidation-evidence-controls",
+      "rq-consolidation-us-control-models",
+      "rq-us-receivables-contract-assets",
+      "rq-investments-classification",
+      "rq-investments-losses",
+      "rq-government-funds-budget-103",
+      "rq-credit-intermediation-deposit",
+      "rq-funds-custody-ownership",
+      "rq-funds-custody-fees",
+      "rq-us-education-withdrawal-return",
+      "rq-aa-i124-funds-custody",
+      "rq-aa-i121-investment-classification",
+      "rq-aa-i121-investment-losses",
+      "rq-us-nonprofit-endowment-spending",
+      "rq-holding-us-perimeter",
+      "rq-holding-us-investment",
+      "rq-holding-us-dividends-tax",
+      "rq-holding-us-close",
+      "rq-aa-i106-lending-deposit-servicing",
+      "rq-aa-i106-funds-valuation-custody",
+      "rq-aa-i106-broker-adviser-protection",
+      "rq-aa-i106-insurance-reinsurance",
+      "rq-accommodation-food-platform-settlement",
+      "rq-arts-event-ticket-refund",
+      "rq-arts-gaming-tax-obligation",
+      "rq-arts-gaming-custody-settlement",
+      "rq-other-laundry-custody-batch",
+      "rq-other-funeral-preneed-deposit",
+      "rq-other-household-reimbursements-controls",
+      "rq-family-office-perimeter",
+      "rq-family-office-capital-activity",
+      "rq-family-office-shared-costs",
+      "rq-family-office-trust-beneficiary",
+      "rq-family-office-tax-coordination",
+      "rq-family-office-supplemental-close",
+      "coverage-reporting-foundations-consolidation-2026-09-17",
+      "coverage-aa-i124-q-funds-custody",
+      "coverage-aa-i121-investments-2026-09-18.121",
+      "coverage-us-nonprofit-endowment-2026-09-19",
+      "coverage-holding-us-perimeter",
+      "coverage-holding-us-investment",
+      "coverage-holding-us-dividends-tax",
+      "coverage-holding-us-close",
+      "coverage-aa-i106-funds-2026-09-19",
+      "coverage-aa-i106-broker-2026-09-19",
+      "coverage-aa-i106-insurance-2026-09-19",
+      "coverage-rq-arts-gaming-tax-obligation",
+      "coverage-rq-arts-gaming-custody-settlement",
+      "coverage-rq-other-laundry-custody-batch",
+      "coverage-rq-other-funeral-preneed-deposit",
+      "coverage-rq-other-household-reimbursements-controls",
+      "coverage-family-office-perimeter",
+      "coverage-family-office-capital-activity",
+      "coverage-family-office-trust-beneficiary",
+      "src_1os761s",
+      "src_ifrs09a",
+      "src_ifrs10a",
+      "src_irs_pub15_2026",
+      "src_ffiec051_instructions_2025",
+      "src_occ_baas_2026",
+      "src_naic_sap_hierarchy_2026",
+      "src_construction_fasb_2014_09",
+      "src_construction_texas_trust_funds",
+      "src_construction_texas_mechanics_liens",
+      "src_construction_fasb_202505",
+      "src_construction_fasb_201817",
+      "src_roadmap_naics2022_manual",
+      "src_roadmap_gasb34_basis",
+      "src_roadmap_gasb103",
+      "src_roadmap_texas_fund_basis",
+      "src_roadmap_ias32_financial_instruments_presentation",
+      "src_roadmap_sec_custody_2003",
+      "src_nonprofit_fasb_2016_14",
+      "src_nonprofit_irs_990_2025",
+      "src_fasb_asu2016_08_principal_agent",
+      "src_fasb_asu2016_13_credit_losses",
+      "src_fasb_201502",
+      "src_education_fsa_2526_disbursement",
+      "src_education_fsa_2526_withdrawal",
+      "src_education_gasb35",
+      "src_aa_i124_custody",
+      "src_aa_i124_naic",
+      "src_aa_i123_fas57",
+      "src_aa122_irs_i1120_2025",
+      "src_fasb_asu_201601_equity_investments",
+      "src_fasb_asu_201613_credit_losses",
+      "src_fasb_asu_202203_sale_restrictions",
+      "src_fasb_asc820_fair_value",
+      "src_fasb_asu_201910_effective_dates",
+      "src_dol_factsheet21_recordkeeping",
+      "src_transport_ecfr_passenger_374",
+      "src_nonprofit_illinois_upmifa_2009",
+      "src_aa_i109_arb51_amended",
+      "src_aa_i109_secsx_3a02_2025",
+      "src_aa_i106_occ_acl_2026",
+      "src_aa_i106_sec_2a5_2020",
+      "src_aa_i106_sec_15c3_3",
+      "src_aa_i106_naic_appm_2026",
+      "src_professional_irs_pub15a_2026",
+      "src_professional_california_rule_115",
+      "src_aa_i113_irs_gaming_ubti",
+      "src_aa_i115_irs_household_employer",
+      "src_family_office_sec_2011_rule",
+      "src_family_office_texas_principal_income",
+      "src_family_office_irs_k1_1065_2025",
+      "src_family_office_irs_1041_2025",
+      "src_family_office_irs_k1_1041_2025",
+      "src_family_office_irs_p559_2025"
+    ],
+    "baseline_summary": "Inclusive baseline: 9 guide matches, 36 question matches, 19 assessment matches, and 54 linked source records. Matches are shared/adjacent and do not prove depth or sufficiency.",
+    "questions": [
+      {
+        "question": "How do PE/VC valuation and recent-round calibration support fair value by security class?",
+        "status": "partial",
+        "source_keys": [
+          "cp_kpmg_investment_companies_2026",
+          "f2_capital_property_bdo_valuation"
+        ],
+        "finding": "BDO’s 2018 working-draft interpretation expands the unit-of-account, calibration and model-selection map; current authoritative security-class guidance and any specific valuation remain unverified.",
+        "remaining_gap": "Current authoritative security-class/fair-value guidance remains unverified; the BDO source summarizes a 2018 working draft, and actual rights, inputs and valuation require case-specific analysis; IPEV remains excluded."
+      },
+      {
+        "question": "How do calls, distributions, unfunded commitments and investor notices reconcile?",
+        "status": "supported",
+        "source_keys": [
+          "cp_ilpa",
+          "cp_irs_1065"
+        ],
+        "finding": "Prior ILPA and IRS materials already support call, distribution, unfunded-commitment and investor-notice reconciliation.",
+        "remaining_gap": "Actual LPA and unusual call/distribution rights remain untested."
+      },
+      {
+        "question": "How are preferred return, catch-up, carry, escrow and clawback modeled?",
+        "status": "partial",
+        "source_keys": [
+          "cp_ilpa_model_lpa_deal_by_deal",
+          "cp_kpmg_investment_companies_2026"
+        ],
+        "finding": "Prior ILPA model LPA gives one preferred-return/catch-up/carry/clawback illustration; no new waterfall evidence was added.",
+        "remaining_gap": "Escrow, clawback security, whole-fund versus deal-by-deal waterfall and actual carry terms remain agreement-specific."
+      },
+      {
+        "question": "How do fund and adviser reporting requirements differ after the 2023 rule vacatur?",
+        "status": "supported",
+        "source_keys": [
+          "cp_sec_vacatur",
+          "cp_sec_custody",
+          "cp_sec_formpf"
+        ],
+        "finding": "Prior SEC vacatur and custody/Form PF sources remain the basis for the bounded fund/adviser regulatory distinction.",
+        "remaining_gap": "Recheck adviser-specific custody, filing thresholds, CFTC/ERISA status and rule changes for the relevant date."
+      },
+      {
+        "question": "How should hedge fund dealing NAV, high-water marks, equalization and side pockets be computed?",
+        "status": "partial",
+        "source_keys": [
+          "cp_kpmg_hedge_illustrative_2025",
+          "cp_kpmg_investment_companies_2026",
+          "f2_capital_property_klgates_equalization",
+          "f2_capital_property_irishfunds_equalization"
+        ],
+        "finding": "Historical Irish administrator/practitioner materials describe investor capital accounts, series accounting and equalization methods each preserve HWM/cohort fee history differently. A historical 2009 Irish administrator guide gives a $1,000 credit example and the brief derives a labeled later-$107 comparison.",
+        "remaining_gap": "Method selection, actual dealing NAV, fee reversals, side-pocket participation, crystallization, and redemption terms require the actual fund documents and administrator records."
+      },
+      {
+        "question": "What does a new JV recognize at formation, and what is distinct for venturer accounting?",
+        "status": "supported",
+        "source_keys": [
+          "cp_fasb_jv"
+        ],
+        "finding": "Prior FASB joint-venture formation source supports the effective-date and formation-versus-venturer-accounting distinction.",
+        "remaining_gap": "Investor’s subsequent control/equity-method analysis remains separate and fact-dependent."
+      },
+      {
+        "question": "How do fund NAV and investor capital allocations reflect unrealized marks, fees, carry and clawback under ASC 946?",
+        "status": "supported",
+        "source_keys": [
+          "cp_kpmg_investment_companies_2026",
+          "f2_capital_property_fasb_revenue_qa",
+          "f2_capital_property_kpmg_revenue_2025"
+        ],
+        "finding": "The fund’s ASC 946 investor-class allocation of fair-value changes, expenses and carry must be kept separate from a GP/manager’s carried-interest reporting as service revenue or an ownership interest.",
+        "remaining_gap": "The actual agreement determines the class allocation and carry amount; precise current ASC 946 treatment and GP/manager method remain to verify."
+      },
+      {
+        "question": "How should new subscriptions/redemptions and class/series equalization be tracked?",
+        "status": "partial",
+        "source_keys": [
+          "cp_kpmg_investment_companies_2026",
+          "cp_kpmg_hedge_illustrative_2025",
+          "f2_capital_property_klgates_equalization",
+          "f2_capital_property_irishfunds_equalization"
+        ],
+        "finding": "Series/equalization structures explain how a new subscription can avoid bearing pre-entry appreciation fees, but they do not prescribe the ASC 946 transaction entry for a private partnership.",
+        "remaining_gap": "New-subscription pricing, share/interest issuance, retrospective equalization and redemption rights depend on LPA/PPM and actual subledger; GAAP entry not established."
+      }
+    ],
+    "recommended_additions": [
+      "Add separate PE/VC waterfall/carry and hedge class/series/equalization/side-pocket question paths, supported by model and illustrative materials but gated on actual LPA/PPM terms.",
+      "Use KPMG ASC 946 and hedge financial-statement examples as clearly attributed technical interpretations and examples; preserve security-level private valuation calibration as an open research question.",
+      "Do not reuse substantive IPEV content; retain only its restricted discovery status pending rights review.",
+      "Add a class-level private-investment valuation calibration worksheet tied to rights and measurement-date facts.",
+      "Compare equalization-credit/deposit, contingent-liquidation, investor-account and share-series methods; keep subscription and HWM terms explicit."
+    ],
+    "unresolved_gaps": [
+      "No professional accounting review was performed.",
+      "No entity-specific contracts, ledger data, or state-by-state legal/tax analysis were available.",
+      "IPEV valuation content remains restricted and is not used; private security calibration remains an open question.",
+      "Current Codification wording and entity-specific application remain to be checked; this follow-up does not infer that current ASC verification requires paid access."
+    ],
+    "priority_rationale": "PE/VC/hedge fund allocation, valuation and performance fee mechanics have material investor-reporting consequences and are absent from current dedicated guides."
+  },
+  {
+    "number": 9,
+    "title": "Real estate ownership and property management",
+    "brief": "09-real-estate.md",
+    "baseline_status": "Adjacent / partial screening matches; no adequacy conclusion",
+    "existing_record_ids": [
+      "guide-q-capital-assets",
+      "guide-q-leases",
+      "guide-industry-naics2022-531",
+      "guide-real-estate-us-roles",
+      "rq-capital-assets-scope-treatment",
+      "rq-capital-assets-evidence-controls",
+      "rq-leases-scope-treatment",
+      "rq-leases-evidence-controls",
+      "rq-security-access-boundary",
+      "rq-us-extractive-cost-stage",
+      "rq-us-extractive-other-mining",
+      "rq-i97-animal-disposition",
+      "rq-i97-timber-disposition",
+      "rq-utilities-plant-cost-lineage",
+      "rq-utilities-retirement-obligation-boundary",
+      "rq-us-i120-capital-assets-scope-treatment",
+      "rq-us-i120-capital-assets-evidence-controls",
+      "rq-us-i120-leases-scope-treatment",
+      "rq-us-i120-leases-evidence-controls",
+      "rq-transport-leased-fleet-maintenance",
+      "rq-support-waste-disposal-assurance",
+      "rq-aa-i107-property-acquisition-development",
+      "rq-aa-i107-rental-incentives-deposits",
+      "rq-aa-i107-equipment-lessor",
+      "rq-aa-i107-managed-property-settlement",
+      "coverage-i97-112-2026-09-18.97",
+      "coverage-i97-113-2026-09-18.97",
+      "coverage-utilities-2211-plant",
+      "coverage-utilities-2211-aro",
+      "coverage-aa-i120-capital-assets-scope-2026-09-18",
+      "coverage-aa-i120-capital-assets-evidence-2026-09-18",
+      "coverage-aa-i120-leases-scope-2026-09-18",
+      "coverage-aa-i120-leases-evidence-2026-09-18",
+      "coverage-transport-rq-transport-leased-fleet-maintenance",
+      "coverage-support-waste-disposal-assurance",
+      "coverage-aa-i107-rental-incentives-deposits",
+      "coverage-aa-i107-equipment-lessor",
+      "coverage-aa-i107-managed-property-settlement",
+      "src_1os761s",
+      "src_0pywo86",
+      "src_ias16ppe",
+      "src_ifrs16l",
+      "src_construction_fasb_2014_09",
+      "src_roadmap_naics2022_manual",
+      "src_fasb_asu2016_08_principal_agent",
+      "src_fasb_asu2015_11_inventory",
+      "src_aa_i124_ferc101",
+      "src_us_extractive_sec_mining_letter_2001",
+      "src_us_extractive_sec_410_2025",
+      "src_i97_usfs_timber_contract",
+      "src_i97_usda_arms",
+      "src_aa_i123_fas143",
+      "src_utilities_ferc_accounting_qa",
+      "src_utilities_fas143_aro",
+      "src_i120_fas34_asset_cost",
+      "src_i120_fas144_impairment",
+      "src_fasb_asu201602_leases",
+      "src_i120_asu202005_lease_dates",
+      "src_transport_fmcsa_maintenance_396",
+      "src_transport_fmcsa_leases_376",
+      "src_transport_ecfr_passenger_leases_390g",
+      "src_transport_ecfr_maintenance_3963",
+      "src_aa_i105_fasb_2016_10",
+      "src_aa_i110_epa_tsdf_assurance",
+      "src_aa_i107_fas67_real_estate_costs",
+      "src_aa_i107_fas66_real_estate_sales"
+    ],
+    "baseline_summary": "Inclusive baseline: 4 guide matches, 21 question matches, 13 assessment matches, and 28 linked source records. Matches are shared/adjacent and do not prove depth or sufficiency.",
+    "questions": [
+      {
+        "question": "How should owner, developer, manager, broker, contractor and REIT roles route?",
+        "status": "partial",
+        "source_keys": [
+          "cp_kpmg_real_estate_revenue_2026",
+          "cp_ey_real_estate_project_costs_2026",
+          "cp_irs_reit",
+          "f2_capital_property_ca_dre_trustregs_2026"
+        ],
+        "finding": "California provides a bounded role/accounting route when a licensed broker handles another person’s property-management funds: the broker must maintain trust-fund and separate beneficiary records and respect trust-fund deposit/disbursement rules. This does not define roles or law nationwide.",
+        "remaining_gap": "Owner/developer/manager/broker/contractor/REIT roles depend on entity chart, ownership, contracts, state licensing and law; the California broker rule does not cover every manager."
+      },
+      {
+        "question": "How should acquisition and development costs, CIP, placed-in-service, depreciation, and sale be separated?",
+        "status": "supported",
+        "source_keys": [
+          "cp_ey_real_estate_project_costs_2026",
+          "cp_kpmg_real_estate_revenue_2026",
+          "cp_irs_946"
+        ],
+        "finding": "Prior EY/KPMG and IRS sources already address development cost capitalization, book/tax depreciation and disposal; this pass adds no new cost guidance.",
+        "remaining_gap": "Property-use facts, component costs, acquired operating property, tax depreciation and exact current GAAP application remain."
+      },
+      {
+        "question": "How should rent, incentives, deposits, and lease components flow through a rent roll?",
+        "status": "partial",
+        "source_keys": [
+          "cp_kpmg_real_estate_revenue_2026",
+          "cp_irs_527",
+          "f2_capital_property_bdo_leases_2026",
+          "f2_capital_property_deloitte_security_deposits"
+        ],
+        "finding": "Secondary GAAP interpretation describes operating-lessor straight-line rent when collection is probable, variable rent on occurrence/collection as applicable, and separates refundable deposits, nonrefundable consideration and deposit retention; IRS Pub. 527 separately treats refundable deposits and advance rent for tax.",
+        "remaining_gap": "Lease incentives, components/CAM and actual deposit rights require lease/state law facts; tax timing differs from book treatment; exact current Codification application remains."
+      },
+      {
+        "question": "How should CAM/tenant recoveries reconcile and present?",
+        "status": "supported",
+        "source_keys": [
+          "cp_deloitte_asc842_cam",
+          "cp_deloitte_asc842_lessor_reimbursements"
+        ],
+        "finding": "Prior Deloitte lessor-reimbursement/CAM sources already support the bounded accounting route.",
+        "remaining_gap": "Actual lease terms, expedients, expense true-ups and allocation remain unreviewed."
+      },
+      {
+        "question": "How should property-manager cash collection and owner settlement reconcile?",
+        "status": "partial",
+        "source_keys": [
+          "cp_kpmg_real_estate_revenue_2026",
+          "f2_capital_property_deloitte_security_deposits",
+          "f2_capital_property_bdo_leases_2026",
+          "f2_capital_property_ca_dre_trustregs_2026"
+        ],
+        "finding": "California’s 2026 broker rules require receipt/disbursement control records, separate beneficiary/transaction ledgers, monthly ledger-to-control reconciliation and written consent for a disbursement that would create a trust-fund shortfall. This supplies a jurisdiction-specific custody-accounting floor. A separate owner statement/remittance formula remains contract-dependent; the proposed property settlement schedule is an editorial control.",
+        "remaining_gap": "The regulations do not establish a national rule or the contractual timing/calculation of owner remittances. Determine broker/license status, state/local law, agency and trust terms, owner approvals, fee rights, bank activity and tenant liabilities from the actual engagement."
+      },
+      {
+        "question": "What current federal REIT qualification data is needed?",
+        "status": "partial",
+        "source_keys": [
+          "cp_irs_reit",
+          "f2_capital_property_uscode_reit"
+        ],
+        "finding": "The inspected Code and 2025 IRS instructions provide a general REIT threshold checklist, but the question asks for current qualification data and full consolidation-through date, attribution/look-through, TRS and cure details remain open.",
+        "remaining_gap": "GovInfo display did not show its consolidation-through date; 2025 instructions are not 2026 instructions. Verify the year’s statute, regulations, attribution/look-through, TRS, cure and current return requirements before concluding qualification."
+      }
+    ],
+    "recommended_additions": [
+      "Expand the US real-estate guide with current ASC 970 development cost, ASC 842/606 lessor/CAM, real-estate seller revenue, and property-manager fee examples from EY, KPMG and Deloitte.",
+      "Add an owner/developer/manager reconciliation workbook outline that separates lease revenue, service fees, deposits, CAM billings/true-ups, project costs, tax basis and REIT tests; label control recommendations as editorial.",
+      "Keep state/local tenant-protection and property-manager trust/custody obligations as jurisdiction-specific open branches.",
+      "Add a role/basis map and a rent-roll bridge separating GAAP rent, tax rent, recoveries, deposits and liabilities.",
+      "Add a suggested manager-to-owner settlement control and a current-year REIT test data request; label controls as editorial and test status as date-dependent."
+    ],
+    "unresolved_gaps": [
+      "No professional accounting review was performed.",
+      "No entity-specific contracts, ledger data, or state-by-state legal/tax analysis were available.",
+      "Current Codification wording and entity-specific application remain to be checked; this follow-up does not infer that current ASC verification requires paid access."
+    ],
+    "priority_rationale": "Owners, developers, managers and REITs have different book/tax/legal bases; existing coverage is partial and includes historical accounting standards."
+  }
+]

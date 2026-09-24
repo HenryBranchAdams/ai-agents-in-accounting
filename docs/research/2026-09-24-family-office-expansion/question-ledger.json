@@ -1,0 +1,415 @@
+[
+  {
+    "question_id": "FO-L1",
+    "question": "How should family-loan principal, actual interest and below-market tax adjustments be kept distinct?",
+    "existing_question_ids": [
+      "rq-family-office-shared-costs",
+      "rq-family-office-tax-coordination",
+      "rq-family-office-supplemental-close"
+    ],
+    "prior_coverage": "Adjacent taxpayer/reciprocal-balance routing; no substantive below-market family-loan treatment in the dedicated guide.",
+    "new_finding": "Loan servicing and tax adjustments need separate schedules; loan category, relationship, period and exceptions determine §7872 treatment. An AFR lookup is not proof of a bona fide debt or a GAAP value.",
+    "source_keys": [
+      "fo24_loans_p550",
+      "fo24_loans_7872",
+      "fo24_loans_afr"
+    ],
+    "disposition": "partial",
+    "remaining_gaps": [
+      "Current statutory consolidation and exact applicable rate not verified.",
+      "Actual debt terms, enforceability, use of funds, tax facts and financial-reporting recognition/measurement remain unresolved."
+    ],
+    "dependency_types": [
+      "current-authority",
+      "entity-facts",
+      "research",
+      "rights"
+    ],
+    "recommended_next_step": "Draft an original loan servicing/tax reconciliation checklist; verify applicable current authority before source intake asserting current rules.",
+    "group": "loans-transfers",
+    "brief": "loans-transfers/brief.md",
+    "inventory_ids": [
+      "FO-S016",
+      "FO-S017",
+      "FO-S032"
+    ]
+  },
+  {
+    "question_id": "FO-L2",
+    "question": "What evidence links a family gift to donor reporting and recipient basis without equating gift value with book value?",
+    "existing_question_ids": [
+      "rq-family-office-tax-coordination"
+    ],
+    "prior_coverage": "Dedicated guide requests donor/donee/date/value information but has no detailed gift-disclosure/basis bridge.",
+    "new_finding": "Gift documentation and separate donor-basis, gift-date value and recipient gain/loss basis fields deepen the existing evidence request.",
+    "source_keys": [
+      "fo24_loans_i709",
+      "fo24_loans_p551"
+    ],
+    "disposition": "deepened",
+    "remaining_gaps": [
+      "Actual transfer completion, trust powers, valuation, basis adjustments, gift-tax attribution and current transaction-year reporting require review.",
+      "No GAAP recognition or individual filing/tax conclusion established."
+    ],
+    "dependency_types": [
+      "entity-facts",
+      "current-authority",
+      "rights"
+    ],
+    "recommended_next_step": "Add a bounded family-transfer documentation and basis subsection, using these dated IRS publications as interpretive tax sources.",
+    "group": "loans-transfers",
+    "brief": "loans-transfers/brief.md",
+    "inventory_ids": [
+      "FO-S026",
+      "FO-S033"
+    ]
+  },
+  {
+    "question_id": "FO-O1",
+    "question": "How should a family-office service company evidence shared service costs and reimbursements, and distinguish personal/family expenses from costs potentially within a trade or business?",
+    "existing_question_ids": [
+      "rq-family-office-shared-costs",
+      "rq-family-office-perimeter",
+      "rq-family-office-tax-coordination"
+    ],
+    "prior_coverage": "The existing family-office guide separates entity ledgers, requires reciprocal IDs and supported cost drivers, allocates employee/benefit time, and isolates personal costs. It does not develop the current §§162/262 tax-purpose boundary or the fact-specific Lender comparison.",
+    "new_finding": "Current §§162 and 262 give the federal tax boundary; payment by the company or a ledger label does not establish deductibility. Lender supports a fact-specific inquiry into sustained investment-management operations, actual services, staff, clients, and compensation, not a blanket conclusion or household-cost ruling. Retain business-purpose, service-benefit, allocation, and personal-cost evidence before classification.",
+    "source_keys": [
+      "fo24_irc162",
+      "fo24_irc262",
+      "fo24_lender"
+    ],
+    "disposition": "deepened",
+    "remaining_gaps": [
+      "Current consolidated tax regulations and additional case law were not researched.",
+      "Actual service agreements, staff duties, space usage, invoices, reimbursement terms, and taxpayer facts are unknown.",
+      "No entity-specific deduction, compensation, reimbursement, or benefit conclusion is established."
+    ],
+    "dependency_types": [
+      "current-authority",
+      "entity-facts",
+      "research"
+    ],
+    "recommended_next_step": "If source intake proceeds, enrich the existing shared-costs answer with a separate tax-purpose evidence sequence; retain an explicit no-conclusion caveat for actual deductions.",
+    "group": "office-philanthropy",
+    "brief": "office-philanthropy/brief.md",
+    "inventory_ids": [
+      "FO-S038",
+      "FO-S046",
+      "FO-S047"
+    ]
+  },
+  {
+    "question_id": "FO-O2",
+    "question": "How do private foundations and donor-advised funds differ in legal/accounting ownership, family payments and compensation restrictions, and tracking of grants, administration, and investment costs?",
+    "existing_question_ids": [
+      "rq-us-nonprofit-cross-industry-routing",
+      "rq-us-nonprofit-federal-reporting"
+    ],
+    "prior_coverage": "Existing nonprofit FASB and Form 990 sources cover broad NFP presentation and reporting, including `src_nonprofit_fasb_2016_14` and `src_nonprofit_irs_990_2025`; neither supplies a focused DAF-versus-foundation ownership and family-payment treatment. The FASB source is a historical ASU and current Codification text was not reviewed.",
+    "new_finding": "A DAF is an account controlled by its charitable sponsor, with advisory donor privileges and §4966/4967 restrictions on distributions/benefits. A private foundation is a separate organization with §4941 self-dealing limits for transactions with §4946 disqualified persons; only a narrow reasonable, necessary exempt-purpose service exception applies to compensation/reimbursement. Form 990-PF tracks charitable grants/disbursements, administration, investment, and indirect expenses. Column (d) is cash-basis receipts/disbursements regardless of book method and cannot be bridged to accrual books by allocation alone.",
+    "source_keys": [
+      "fo24_irc4941",
+      "fo24_irc4946",
+      "fo24_irc4966_4967",
+      "fo24_irs_pf_self_dealing_acts",
+      "fo24_irs_pf_comp_exception",
+      "fo24_irs_daf",
+      "fo24_irs_i990_2025",
+      "fo24_irs_i990pf_2025"
+    ],
+    "disposition": "new-supported",
+    "remaining_gaps": [
+      "No private-foundation accounting standards research beyond the historical existing ASU was performed; current ASC was not reviewed.",
+      "Sponsor agreement, foundation organizing documents, donor/advisor status, family/control relationships, services, and distributions are unknown.",
+      "No legal conclusion on a particular payment, compensation arrangement, grant, or return classification is established."
+    ],
+    "dependency_types": [
+      "current-authority",
+      "entity-facts",
+      "rights"
+    ],
+    "recommended_next_step": "Add a distinct philanthropy ownership/control and expense-tracking answer that keeps DAF sponsor records separate from a foundation’s legal-entity books and federal return schedules.",
+    "group": "office-philanthropy",
+    "brief": "office-philanthropy/brief.md",
+    "inventory_ids": [
+      "FO-S018",
+      "FO-S019",
+      "FO-S020",
+      "FO-S027",
+      "FO-S028",
+      "FO-S048",
+      "FO-S049",
+      "FO-S050"
+    ]
+  },
+  {
+    "question_id": "FO-O3",
+    "question": "How should records distinguish a household employee from office payroll and reimbursement, including who is the actual employer versus which entity pays or processes payroll?",
+    "existing_question_ids": [
+      "rq-family-office-shared-costs",
+      "rq-family-office-supplemental-close",
+      "rq-other-household-employer-payroll",
+      "rq-other-household-reimbursements-controls"
+    ],
+    "prior_coverage": "The family-office guide already asks for employee/benefit time allocation and reciprocal payroll entries. The household close guide covers household-employee records and reimbursement controls, using existing sources `src_aa_i115_irs_household_employer`, `src_irs_pub15_2026`, and `src_professional_irs_pub15a_2026`.",
+    "new_finding": "The 2026 IRS sources separate household-work/control tests and common-law worker status from payment and payroll processing. A household or office entity is not the employer merely because it funds or reimburses payroll. Payroll outsourcing generally leaves the employer responsible; a designated section 3504 agent can carry specified duties with its own EIN and joint liability. Connect, but do not collapse, employment agreement/control evidence, employer identity, wage/withholding records, reimbursement records, and payroll-service records.",
+    "source_keys": [
+      "fo24_irs_pub926_2026",
+      "fo24_irs_pub15_2026",
+      "fo24_irs_pub15a_2026"
+    ],
+    "disposition": "deepened",
+    "remaining_gaps": [
+      "No household or office worker facts, payroll contract, section 3504 designation, or employer identity were provided.",
+      "No federal threshold calculations, state household-employment rules, or Form I-9/work-authorization requirements were researched."
+    ],
+    "dependency_types": [
+      "current-authority",
+      "entity-facts",
+      "research"
+    ],
+    "recommended_next_step": "Cross-link the household-employer and reimbursement-control answers with an explicit payer, processor, agent, and employer role reconciliation.",
+    "group": "office-philanthropy",
+    "brief": "office-philanthropy/brief.md",
+    "inventory_ids": [
+      "FO-S030",
+      "FO-S031",
+      "FO-S035"
+    ]
+  },
+  {
+    "question_id": "FO-R1",
+    "question": "Which reporting basis and perimeter support personal financial statements, GAAP consolidated statements, and a supplemental family aggregation, and how do their measurements differ?",
+    "existing_question_ids": [
+      "rq-family-office-perimeter",
+      "rq-family-office-supplemental-close"
+    ],
+    "prior_coverage": "The existing guide separates entity ownership from its supplemental family close and labels its example provisional, but does not explain ASC 274's personal-statement basis. It cites the historical 2015 consolidation ASU rather than current Topic 810 analysis and gives no statement-date estimated-tax calculation.",
+    "new_finding": "ASC 274 is the distinct personal-financial-statement route for an individual, spouses, or family. The underlying SOP describes estimated current values/amounts and an estimated tax provision on applicable statement-value versus tax-basis differences, separately from current taxes payable. It says to show a substantial going-concern business interest as one amount rather than combine its separate assets and liabilities with personal items. ASC 810 consolidation is a separate reporting-entity control analysis. A supplemental family aggregation needs explicit inclusion, beneficial-interest, measurement, restriction, tax and elimination rules; it is not automatically either of the other statements. The current detailed ASC 274 paragraphs were not directly read.",
+    "source_keys": [
+      "fo24_asc274_sop82_1",
+      "fo24_deloitte_asc274_overview",
+      "fo24_fasb_asc_landing",
+      "fo24_fasb_274_handout_2026",
+      "fo24_kpmg_consolidation_2026"
+    ],
+    "disposition": "partial",
+    "remaining_gaps": [
+      "Direct current ASC 274 paragraph text and subsequent changes remain unverified; the historical SOP and current topic overview do not replace that check.",
+      "Actual reporting purpose, intended users, legal ownership and beneficial interests, state property law, tax bases and supported reporting-date valuations require entity-specific evidence.",
+      "An actual ASC 274 tax calculation and statement disclosures require current tax law and professional review."
+    ],
+    "dependency_types": [
+      "current-authority",
+      "entity-facts",
+      "research",
+      "rights"
+    ],
+    "recommended_next_step": "If this answer is integrated, present ASC 274, ASC 810 and supplemental family aggregation as separate statement choices. Recheck detailed ASC 274 wording and require supported current values, beneficial-interest evidence, tax-basis schedules and disclosures before describing an actual personal statement as complete.",
+    "group": "reporting-investments",
+    "brief": "reporting-investments/brief.md",
+    "inventory_ids": [
+      "FO-S001",
+      "FO-S003",
+      "FO-S036",
+      "FO-S042",
+      "FO-S043"
+    ]
+  },
+  {
+    "question_id": "FO-R2",
+    "question": "When does investment-company accounting apply to a fund versus a family investor or holding entity, and when can an investor rely on reported NAV, including a stale NAV?",
+    "existing_question_ids": [
+      "rq-family-office-capital-activity",
+      "rq-family-office-supplemental-close"
+    ],
+    "prior_coverage": "The existing guide distinguishes commitments, funded calls, book carrying amount, tax basis and dated NAV, but leaves the stale-NAV measurement unresolved. It does not fully distinguish the fund's own ASC 946 accounting from the investor's separate consolidation, equity-method or instrument-measurement analysis.",
+    "new_finding": "ASC 946 treatment of a fund does not automatically apply to its family investor, service company, trust or holding entity. The entity is assessed separately for ASC 946 scope, ASC 810 consolidation and other applicable models. For an eligible investor interest without readily determinable fair value, ASC 820's NAV practical expedient requires ASC 946-consistent NAV as of the investor's measurement date; when the latest NAV is stale or inconsistent, the investor considers whether adjustment is needed to reporting-date NAV. A dated bridge is evidence for that judgment, not an automatic formula. Prior tax materials R040, R049/R050 and R120/R121 remain separate tax-capital and basis sources, not GAAP valuation authority.",
+    "source_keys": [
+      "fo24_kpmg_investment_companies_2026",
+      "fo24_kpmg_consolidation_2026",
+      "fo24_deloitte_asc820_nav_2026",
+      "fo24_reuse_r040_reg704",
+      "fo24_reuse_r049_form1065",
+      "fo24_reuse_r050_k1",
+      "fo24_reuse_r120_reg704c",
+      "fo24_reuse_r121_reg743"
+    ],
+    "disposition": "deepened",
+    "remaining_gaps": [
+      "The investor's legal form, investment rights, control, equity-method status, ASC 946 scope, instrument classification and NAV-expedient eligibility are fact-specific.",
+      "A stale NAV requires fund reporting-date data, subsequent capital activity, underlying valuation changes, liabilities, class allocations and contractual waterfall support; those inputs are not present in the example.",
+      "Current ASC text and any effective-date changes should be checked for the actual reporting date; KPMG and Deloitte remain secondary technical sources."
+    ],
+    "dependency_types": [
+      "current-authority",
+      "entity-facts",
+      "research",
+      "rights"
+    ],
+    "recommended_next_step": "Keep the existing provisional carrying amount and stale-NAV difference unresolved until the investor's accounting model is documented and a fund-to-investor reporting-date NAV bridge is supported. Retain tax-basis schedules separately.",
+    "group": "reporting-investments",
+    "brief": "reporting-investments/brief.md",
+    "inventory_ids": [
+      "FO-S002",
+      "FO-S011",
+      "FO-S012",
+      "FO-S013",
+      "FO-S023",
+      "FO-S024",
+      "FO-S036",
+      "FO-S037"
+    ]
+  },
+  {
+    "question_id": "FO-R3",
+    "question": "What does the current SEC family-office exclusion require, and what does that test not determine about the accounting perimeter?",
+    "existing_question_ids": [
+      "rq-family-office-perimeter"
+    ],
+    "prior_coverage": "The existing guide cites the 2011 SEC adopting release and correctly treats adviser status as distinct from custody, but it flags that later amendments and current rule text were not established.",
+    "new_finding": "The current eCFR text read for this packet requires only defined family clients, ownership wholly by family clients, exclusive control by family members or family entities, and no public holding-out as an investment adviser, subject to the rule's defined categories, grandfathering and involuntary-transfer provisions. This is an adviser-exclusion test; it does not establish ownership of trust assets, ASC 810 control, ASC 274 reporting, GAAP consolidation, or an Investment Company Act exclusion.",
+    "source_keys": [
+      "fo24_ecfr_family_office_rule"
+    ],
+    "disposition": "deepened",
+    "remaining_gaps": [
+      "The family-client relationships, client population, office ownership/control, public representations and any applicable alternative statutory or regulatory pathway must be assessed for the actual office.",
+      "This research is not a legal opinion and does not resolve adviser registration, Investment Company Act status or state-law obligations."
+    ],
+    "dependency_types": [
+      "current-authority",
+      "entity-facts",
+      "research",
+      "rights"
+    ],
+    "recommended_next_step": "Replace the guide's historical-only rule citation with the current eCFR text as a separate regulatory note, retain the 2011 release as history, and route actual eligibility to counsel using client, ownership and control facts.",
+    "group": "reporting-investments",
+    "brief": "reporting-investments/brief.md",
+    "inventory_ids": [
+      "FO-S004"
+    ]
+  },
+  {
+    "question_id": "FO-T1",
+    "question": "How do fiduciary principal and income classifications differ from federal distributable net income, including the treatment of capital gains?",
+    "existing_question_ids": [
+      "rq-family-office-trust-beneficiary"
+    ],
+    "prior_coverage": "Existing answer routes to Texas Chapter 116 and 2025 Form 1041 instructions, says governing instrument/local law control fiduciary categories, and distinguishes those categories from DNI, distribution deductions, and K-1 character. It did not detail federal capital-gain inclusion routes.",
+    "new_finding": "Treas. Reg. §1.643(b)-1 ties Subchapter J 'income' to the instrument and applicable local law, subject to traditional-principles limits and recognition of reasonable total-return apportionment. DNI is a separate modified taxable-income computation. Capital gains are ordinarily excluded, with specified inclusion routes subject to the common governing-instrument/local-law or authorized reasonable-and-impartial-discretion condition, plus charitable-gain inclusion under §1.643(a)-3(c). Texas Chapter 116 supplies only a selected local-law example, including bounded gain adjustment and death-time allocation rules.",
+    "source_keys": [
+      "fo24_trust_texas116",
+      "fo24_trust_reg643b1",
+      "fo24_trust_reg643a3",
+      "fo24_trust_irs1041_2025"
+    ],
+    "disposition": "deepened",
+    "remaining_gaps": [
+      "Trust terms, applicable jurisdiction, exercise of fiduciary discretion, beneficiary distribution facts, and return-year treatment determine application.",
+      "2025 IRS return instructions and 2025 CFR text do not establish all later-year/current consolidated authority.",
+      "No current US GAAP trust financial-reporting conclusion is established."
+    ],
+    "dependency_types": [
+      "entity-facts",
+      "current-authority",
+      "rights"
+    ],
+    "recommended_next_step": "Enrich existing Texas and Form 1041 source links, add the two Treasury regulations, and keep fiduciary income/principal, DNI, realized gains, distribution deductions, and K-1 character as separate guide schedules.",
+    "group": "trust-estate",
+    "brief": "trust-estate/brief.md",
+    "inventory_ids": [
+      "FO-S005",
+      "FO-S006",
+      "FO-S021",
+      "FO-S045"
+    ]
+  },
+  {
+    "question_id": "FO-T2",
+    "question": "How do grantor and nongrantor trust reporting/bookkeeping differ, and how should tax liability, payment, and reimbursement be distinguished?",
+    "existing_question_ids": [
+      "rq-family-office-trust-beneficiary",
+      "rq-family-office-tax-coordination"
+    ],
+    "prior_coverage": "Existing 2025 IRS Form 1041 source routes grantor-trust items to the owner and keeps taxpayer, entity, and year distinct. It did not detail partial grantor portions, optional information-reporting methods, owner-paid taxes, or reimbursement authority.",
+    "new_finding": "Under §§671-3 and 671-4, owner-attributable items follow the owner; a grantor portion generally uses an attached owner statement, while a nongrantor portion follows ordinary Form 1041/DNI/K-1 rules. Optional methods for wholly grantor-owned trusts carry specific conditions. Rev. Rul. 2004-64 treats the owner's payment of tax on owner-attributed income as payment of the owner's own liability, not a gift. Mandatory reimbursement can cause §2036 inclusion; discretionary authority alone does not, whether or not exercised, assuming no understanding, but combined facts may change the result. IRS gives prospective application protection for trusts created before Oct. 4, 2004 from adverse use of the Situation 2 holding. Nongrantor trust payment of a person's legal obligation is analyzed separately under §1.662(a)-4.",
+    "source_keys": [
+      "fo24_trust_irs1041_2025",
+      "fo24_trust_reg6713",
+      "fo24_trust_reg6714",
+      "fo24_trust_rev2004_64",
+      "fo24_trust_reg662a4"
+    ],
+    "disposition": "deepened",
+    "remaining_gaps": [
+      "Owner attribution, trust portion, optional method eligibility, reimbursement rights, and estate inclusion require instrument, local law, trustee-control, creditor-access, and other actual facts.",
+      "No universal GAAP or fiduciary-ledger posting for a grantor's tax payment/reimbursement is established.",
+      "IRS instructions are tax-year 2025 and later tax law/instructions need verification."
+    ],
+    "dependency_types": [
+      "entity-facts",
+      "current-authority",
+      "research",
+      "rights"
+    ],
+    "recommended_next_step": "Add linked owner-portion, taxpayer, payment source, tax year, and reimbursement-authority fields to the guide intake; retain a human tax/legal review gate for actual reimbursements.",
+    "group": "trust-estate",
+    "brief": "trust-estate/brief.md",
+    "inventory_ids": [
+      "FO-S007",
+      "FO-S008",
+      "FO-S009",
+      "FO-S021",
+      "FO-S029"
+    ]
+  },
+  {
+    "question_id": "FO-T3",
+    "question": "What should a death-time estate/trust opening schedule distinguish for assets, basis, IRD, and beneficiary distributions?",
+    "existing_question_ids": [
+      "rq-family-office-tax-coordination",
+      "rq-family-office-trust-beneficiary"
+    ],
+    "prior_coverage": "Existing 2025 Publication 559 distinguishes decedent final return, estate return, and transfer-tax routing at a high level. Texas Chapter 116 already supplies selected trust principal/income rules, but death-time basis, IRD, and grantor reporting transition mechanics were not deeply covered.",
+    "new_finding": "A date-of-death schedule should identify the decedent's property/right and value separately from probate, gross-estate, tax-basis, and trust fiduciary categories. Qualifying property generally uses §1014 value at death or an elected alternate valuation date; §1014(c) excludes IRD rights from basis adjustment. IRD depends on entitlement and noninclusion under the decedent's method, with cash/accrual and contingent-claim distinctions. Estate/Form 1041, final individual return, Form 706, trust records, and beneficiary/K-1 schedules remain separate. Texas §116.101-.102 supplies a selected death-time receipt-allocation example. If death ends grantor ownership, §1.671-4(h) addresses method cessation and new TIN for a continuing wholly grantor-owned trust.",
+    "source_keys": [
+      "fo24_trust_p559_2025",
+      "fo24_trust_irs1041_2025",
+      "fo24_trust_reg1014_1",
+      "fo24_trust_reg1014_10",
+      "fo24_trust_reg691a1",
+      "fo24_trust_reg6714",
+      "fo24_trust_reg662a4",
+      "fo24_trust_texas116",
+      "fo24_trust_reg643a3"
+    ],
+    "disposition": "deepened",
+    "remaining_gaps": [
+      "Probate ownership, gross-estate inclusion, valuations, basis history, tax accounting method, elections, IRD character, special partnership/installment rules, and beneficiary shares depend on actual records and elections.",
+      "Consistent-basis rules apply only to property within §1.1014-10(c)(1), when the decedent’s federal estate-tax return is filed after Sept. 17, 2024; detailed categories/exceptions remain asset-specific. No general probate inventory requirement is claimed.",
+      "IRS Pub. 559 and Form 1041 sources are 2025 editions; later-year instructions and amended authority remain to be checked."
+    ],
+    "dependency_types": [
+      "entity-facts",
+      "current-authority",
+      "research",
+      "rights"
+    ],
+    "recommended_next_step": "Enrich the existing 2025 P559/1041 and Texas Chapter 116 sources; add CFR basis/IRD/reporting-transition sources and use an opening schedule that keeps title, value, basis, IRD, fiduciary allocation, taxpayer, and distribution evidence separate.",
+    "group": "trust-estate",
+    "brief": "trust-estate/brief.md",
+    "inventory_ids": [
+      "FO-S005",
+      "FO-S007",
+      "FO-S009",
+      "FO-S010",
+      "FO-S014",
+      "FO-S015",
+      "FO-S021",
+      "FO-S034",
+      "FO-S045"
+    ]
+  }
+]
