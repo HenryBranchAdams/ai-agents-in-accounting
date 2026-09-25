@@ -1,0 +1,278 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ASC scoping rule authoring record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "rule_id",
+    "version",
+    "lifecycle",
+    "unit_type",
+    "asc_targets",
+    "authority",
+    "predicates",
+    "effects",
+    "tests",
+    "review"
+  ],
+  "properties": {
+    "rule_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "version": {
+      "type": "string"
+    },
+    "lifecycle": {
+      "enum": [
+        "draft",
+        "source_verified",
+        "logic_reviewed",
+        "tested",
+        "published",
+        "retired"
+      ]
+    },
+    "unit_type": {
+      "enum": [
+        "reporting_package",
+        "entity",
+        "relationship",
+        "transaction",
+        "contract_component",
+        "instrument",
+        "balance_population",
+        "disclosure",
+        "transition"
+      ]
+    },
+    "asc_targets": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "authority": {
+      "type": "object",
+      "required": [
+        "corpus_snapshot_id",
+        "scope_paragraphs",
+        "content_hashes",
+        "definition_bindings",
+        "effective_version_rule_id"
+      ],
+      "properties": {
+        "corpus_snapshot_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "scope_paragraphs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "content_hashes": {
+          "type": "object"
+        },
+        "definition_bindings": {
+          "type": "object"
+        },
+        "effective_version_rule_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "supporting_source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "predicates": {
+      "type": "object",
+      "required": [
+        "all_required",
+        "alternative_triggers",
+        "exceptions",
+        "residual_obligations"
+      ],
+      "properties": {
+        "all_required": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/expr"
+          }
+        },
+        "alternative_triggers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/expr"
+          }
+        },
+        "exceptions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/expr"
+          }
+        },
+        "residual_obligations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/expr"
+          }
+        }
+      }
+    },
+    "effects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "effect",
+          "target_id",
+          "condition"
+        ],
+        "properties": {
+          "effect": {
+            "enum": [
+              "include",
+              "exclude_for_stated_scope_reason",
+              "route_to",
+              "require_fact",
+              "require_review",
+              "add_reference",
+              "offer_election",
+              "invalidate_dependent_conclusion"
+            ]
+          },
+          "target_id": {
+            "type": "string"
+          },
+          "condition": {
+            "$ref": "#/$defs/expr"
+          },
+          "rationale_template": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "tests": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "review": {
+      "type": "object",
+      "required": [
+        "author",
+        "technical_reviewer",
+        "approved_at"
+      ],
+      "properties": {
+        "author": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "technical_reviewer": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "approved_at": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    }
+  },
+  "$defs": {
+    "expr": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "fact_id",
+            "op",
+            "value"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "fact_id": {
+              "type": "string"
+            },
+            "op": {
+              "enum": [
+                "eq",
+                "neq",
+                "gt",
+                "gte",
+                "lt",
+                "lte",
+                "in",
+                "contains",
+                "known"
+              ]
+            },
+            "value": {}
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "all"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "all": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/expr"
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "any"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "any": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/expr"
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "not"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "not": {
+              "$ref": "#/$defs/expr"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
