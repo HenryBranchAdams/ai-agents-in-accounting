@@ -231,7 +231,23 @@ test("pilot rights and historical records are preserved; public entry routes sta
       assert.deepEqual(r.provenance, previous.provenance, r.id);
       assert.equal(r.review_status, previous.review_status);
       assert.equal(r.reviewed_at, previous.reviewed_at);
-      if (!ids.includes(r.id)) assert.deepEqual(r, previous, r.id);
+      if (!ids.includes(r.id)) {
+        const retained = structuredClone(r);
+        // This intake appends evidence only. Every historical byte represented
+        // by this record must still match after removing that named addition.
+        const appended = retained.data.supplemental_reviews?.filter(review => review.batch === "partnership-foundations-2026-09-27") || [];
+        if (appended.length) {
+          assert.ok(["src_family_office_irs_k1_1065_2025", "src_fo_ref_irs_i1065", "src_fo_ref_irs_p541", "src_fo_ref_tax_partner_share"].includes(r.id), r.id);
+          assert.equal(appended.length, 1, r.id);
+          assert.equal(appended[0].checked_url, previous.source_url);
+          retained.data.supplemental_reviews = retained.data.supplemental_reviews.filter(review => review.batch !== "partnership-foundations-2026-09-27");
+          if (!Object.hasOwn(previous.data, "supplemental_reviews")) {
+            assert.equal(retained.data.supplemental_reviews.length, 0, `${r.id}: unexpected extra reviews`);
+            delete retained.data.supplemental_reviews;
+          }
+        }
+        assert.deepEqual(retained, previous, r.id);
+      }
     }
   }
   for (const route of ["/", "/library", ...ids.map((id) => "/records/" + id)]) {
