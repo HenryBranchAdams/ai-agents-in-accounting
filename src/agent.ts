@@ -533,7 +533,7 @@ function searchCorpus(args: SearchInput) {
   };
 }
 function readRecord(args: ReturnType<typeof inputSchemas.get.parse>) {
-  if (args.passage_id && (args.section || args.cursor))
+  if (args.passage_id !== undefined && (args.section !== undefined || args.cursor !== undefined))
     throw new AgentError("INVALID_ARGUMENT", "Use passage_id without section or cursor.");
   const item = indexedById.get(args.id);
   if (!item)

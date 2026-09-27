@@ -39,3 +39,9 @@ test('a cited passage can be retrieved exactly without reading the whole guide',
   assert.throws(() => cli('get', [guide, '--passage-id', 'missing#summary:0']), /UNKNOWN_PASSAGE/);
   assert.throws(() => cli('get', [guide, '--passage-id', selected.id, '--section', 'summary']), /INVALID_ARGUMENT/);
 });
+
+test('empty exact selectors cannot silently fall back to broader retrieval', () => {
+  assert.throws(() => cli('get', [guide, '--passage-id', '', '--section', 'data.research_questions']), /INVALID_ARGUMENT/);
+  assert.throws(() => cli('get', [guide, '--passage-id', `${guide}#summary:0`, '--section', '']), /INVALID_ARGUMENT/);
+  assert.throws(() => cli('get', [guide, '--passage-id', `${guide}#summary:0`, '--cursor', '']), /INVALID_ARGUMENT/);
+});

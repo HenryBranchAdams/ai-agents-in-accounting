@@ -91,7 +91,7 @@ export const inputSchemas = {
   }),
   get: z.strictObject({
     id,
-    passage_id: z.string().max(400).optional().describe("Exact passage ID from search or get; mutually exclusive with section and cursor. Scoped to corpus and retrieval schema versions."),
+    passage_id: z.string().min(1).max(400).optional().describe("Exact passage ID from search or get; mutually exclusive with section and cursor. Scoped to corpus and retrieval schema versions."),
     include_relations: z.boolean().default(false).describe("Opt in to bounded one-hop typed relationships."),
     relation_direction: z.enum(["out", "in", "both"]).default("both"),
     relation_types: z.array(z.enum(["cites", "cited_by", "supports", "qualifies", "contradicts", "supersedes", "related"])).max(7).optional(),
