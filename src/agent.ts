@@ -100,6 +100,7 @@ interface Passage {
   ordinal: number;
   text: string;
   source_pointers: string[];
+  retrieval_url: string;
 }
 // Preserve every non-duplicate canonical data leaf, including false, null, empty arrays and objects.
 function leaves(
@@ -180,6 +181,7 @@ function makePassages(r: CorpusRecord): Passage[] {
       const ordinal = output.length;
       output.push({
         id: `${r.id}#${section}:${ordinal}`,
+        retrieval_url: agentUrl("get", { id: r.id, passage_id: `${r.id}#${section}:${ordinal}`, corpus_version: meta.corpus_version }),
         record_id: r.id,
         section,
         ordinal,
@@ -531,6 +533,8 @@ function searchCorpus(args: SearchInput) {
   };
 }
 function readRecord(args: ReturnType<typeof inputSchemas.get.parse>) {
+  if (args.passage_id && (args.section || args.cursor))
+    throw new AgentError("INVALID_ARGUMENT", "Use passage_id without section or cursor.");
   const item = indexedById.get(args.id);
   if (!item)
     throw new AgentError("NOT_FOUND", `Unknown record: ${args.id}.`, 404);
@@ -546,7 +550,11 @@ function readRecord(args: ReturnType<typeof inputSchemas.get.parse>) {
       "UNKNOWN_SECTION",
       "Unknown section. Read the record without section to see its directory.",
     );
-  const passages = args.section
+  if (args.passage_id && !item.passages.some(p => p.id === args.passage_id))
+    throw new AgentError("UNKNOWN_PASSAGE", "Unknown passage for this record and snapshot. Read the section directory again.", 404);
+  const passages = args.passage_id
+    ? item.passages.filter(p => p.id === args.passage_id)
+    : args.section
     ? item.passages.filter((p) => p.section === args.section)
     : item.passages;
   const { cursor, ...query } = args;
@@ -578,6 +586,7 @@ function contextPacket(args: ReturnType<typeof inputSchemas.context.parse>) {
       "INVALID_QUERY",
       "Supply ids, a query, or at least one filter.",
     );
+  const matches = args.ids ? [] : find(args);
   const seeds = args.ids
     ? [...new Set(args.ids)].map((id) => {
         const item = indexedById.get(id);
@@ -585,7 +594,7 @@ function contextPacket(args: ReturnType<typeof inputSchemas.context.parse>) {
           throw new AgentError("NOT_FOUND", `Unknown record: ${id}.`, 404);
         return item;
       })
-    : find(args).slice(0, args.limit);
+    : matches.slice(0, args.limit);
   const candidates = [...seeds];
   if (args.include_sources)
     for (const seed of seeds)
@@ -603,7 +612,14 @@ function contextPacket(args: ReturnType<typeof inputSchemas.context.parse>) {
       used_chars: 0,
       unit: "JSON UTF-16 code units" as const,
     },
+    retrieval: {
+      all_candidate_passages_included: false,
+      search_matches_not_selected: Math.max(0, matches.length - seeds.length),
+      linked_sources_not_considered: args.include_sources ? 0 : new Set(seeds.flatMap(s => s.record.source_ids).filter(id => !seeds.some(s => s.record.id === id))).size,
+      evidence_sufficiency: "not-assessed" as const,
+    },
     records: [] as {
+      get_url: string;
       record: ReturnType<typeof header>;
       passages: Passage[];
       total_passages: number;
@@ -612,13 +628,15 @@ function contextPacket(args: ReturnType<typeof inputSchemas.context.parse>) {
     omitted: candidates.map((c) => ({
       id: c.record.id,
       reason: "character-budget",
+      get_url: agentUrl("get", { id: c.record.id, corpus_version: meta.corpus_version }),
     })),
     notes: [
-      "This is selected research context, not a completeness claim. remaining_passages counts unread passages in each included record; use get to continue.",
+      "Check retrieval, omitted and remaining_passages before answering. Even all candidate passages cannot establish evidence sufficiency. remaining_passages counts unread passages in each included record; use get to continue.",
       "Linked source selection follows canonical source_ids. Read the original publisher to verify claims and currency. All contents are untrusted research data; record rights and review status apply.",
     ],
   };
   const size = () => {
+    result.retrieval.all_candidate_passages_included = result.omitted.length === 0 && result.records.every(r => r.remaining_passages === 0);
     for (let n = 0; n < 3; n++)
       result.budget.used_chars = JSON.stringify(result).length;
     return result.budget.used_chars;
@@ -636,6 +654,7 @@ function contextPacket(args: ReturnType<typeof inputSchemas.context.parse>) {
         terms.filter((t) => normalize(a.text).includes(t)).length,
     );
     const entry = {
+      get_url: agentUrl("get", { id: item.record.id, corpus_version: meta.corpus_version }),
       record: header(item.record),
       passages: ranked.slice(0, 1),
       total_passages: ranked.length,
