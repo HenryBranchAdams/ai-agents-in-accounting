@@ -1,0 +1,146 @@
+{
+  "scope": "Deterministic local retrieval replay and authored counterfactual review; no hosted generator or empirical model-quality measurement.",
+  "positive_queries": [
+    {
+      "id": "partnership-capital",
+      "rank": 1,
+      "answer_recovered": true,
+      "exact_locator_urls_recovered": 4,
+      "expected_locator_urls": 4,
+      "question_pointer_recovered": true,
+      "unique_source_citations": 4,
+      "search_calls": 1,
+      "guide_get_calls": 1,
+      "source_get_calls": 4,
+      "repeated_source_gets": 0,
+      "has_more_passages": false
+    },
+    {
+      "id": "partnership-property",
+      "rank": 1,
+      "answer_recovered": true,
+      "exact_locator_urls_recovered": 2,
+      "expected_locator_urls": 2,
+      "question_pointer_recovered": true,
+      "unique_source_citations": 2,
+      "search_calls": 1,
+      "guide_get_calls": 1,
+      "source_get_calls": 2,
+      "repeated_source_gets": 0,
+      "has_more_passages": false
+    },
+    {
+      "id": "partnership-transfer",
+      "rank": 1,
+      "answer_recovered": true,
+      "exact_locator_urls_recovered": 3,
+      "expected_locator_urls": 3,
+      "question_pointer_recovered": true,
+      "unique_source_citations": 3,
+      "search_calls": 1,
+      "guide_get_calls": 1,
+      "source_get_calls": 3,
+      "repeated_source_gets": 0,
+      "has_more_passages": false
+    },
+    {
+      "id": "partnership-retirement",
+      "rank": 1,
+      "answer_recovered": true,
+      "exact_locator_urls_recovered": 3,
+      "expected_locator_urls": 3,
+      "question_pointer_recovered": true,
+      "unique_source_citations": 3,
+      "search_calls": 1,
+      "guide_get_calls": 1,
+      "source_get_calls": 3,
+      "repeated_source_gets": 0,
+      "has_more_passages": false
+    },
+    {
+      "id": "partnership-gaap-boundary",
+      "rank": 1,
+      "answer_recovered": true,
+      "exact_locator_urls_recovered": 4,
+      "expected_locator_urls": 4,
+      "question_pointer_recovered": true,
+      "unique_source_citations": 4,
+      "search_calls": 1,
+      "guide_get_calls": 1,
+      "source_get_calls": 4,
+      "repeated_source_gets": 0,
+      "has_more_passages": false
+    }
+  ],
+  "negative_queries": [
+    {
+      "args": {
+        "q": "hospital Medicare cost report",
+        "kind": "guide",
+        "limit": 5
+      },
+      "unexpected_foundations_hit": false,
+      "ids": [
+        "guide-q-reimbursement",
+        "guide-aa-i124-institutional",
+        "guide-healthcare-us-claim-close"
+      ]
+    },
+    {
+      "args": {
+        "q": "partnership capital",
+        "kind": "guide",
+        "framework": "US GAAP",
+        "limit": 5
+      },
+      "unexpected_foundations_hit": false,
+      "ids": []
+    }
+  ],
+  "default_packet": {
+    "passages": 6,
+    "has_next_cursor": true,
+    "question_answers_recovered": 2,
+    "total_question_answers": 4
+  },
+  "gold_packet": {
+    "passages": 14,
+    "has_next_cursor": false
+  },
+  "entity_filter_observation": {
+    "raw_scope": [
+      "Partnership"
+    ],
+    "normalized_entities": [
+      "Partnership"
+    ],
+    "filtered_ids": [
+      "guide-us-partnership-capital-basis"
+    ],
+    "before_fix": "Explicit record metadata dropped by the normalized index; agent filter rejected with INVALID_FILTER. No silent broadening.",
+    "disposition": "Explicit-only Partnership facet now retained and filter works. Roles and prose mentions do not infer this facet."
+  },
+  "counterfactual_output_review": [
+    {
+      "candidate": "K-1 capital is 50000, therefore outside basis is 50000.",
+      "disposition": "unsupported despite gold evidence",
+      "reason": "The recovered capital answer requires liability and partner history; this is a reasoning/context-use defect if produced, not a retrieval miss."
+    },
+    {
+      "candidate": "No section 754 election means no basis adjustment.",
+      "disposition": "contradicted despite gold evidence",
+      "reason": "Recovered transfer and distribution answers separately require statutory mandatory tests."
+    },
+    {
+      "candidate": "The section 704(c) book schedule proves GAAP equity and the section 743(b) layer raises common basis.",
+      "disposition": "contradicted despite gold evidence",
+      "reason": "Recovered answers explicitly bar both inferences."
+    }
+  ],
+  "limits": [
+    "Counterfactual outputs were authored to probe boundaries; they are not observed model outputs.",
+    "Exact answer recovery tests text delivery, not correct professional interpretation.",
+    "Source get calls establish canonical citation identity; they do not refetch publishers.",
+    "The five queries are replayed independently; a shared session could reuse the same guide packet and deduplicate source fetches."
+  ]
+}

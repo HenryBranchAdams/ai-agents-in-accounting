@@ -26062,5 +26062,264 @@
         "approval_status": "No real approval or operating effectiveness established"
       }
     }
+  },
+  {
+    "id": "example-us-partnership-capital-basis",
+    "kind": "example",
+    "title": "US partnership capital and basis: synthetic reconciliation",
+    "summary": "Original synthetic tax schedules separate contribution layers, tax capital, outside basis and transfer-only adjustments. Financial-reporting capital remains undetermined.",
+    "topics": [
+      "Partnership capital and basis",
+      "US partnership tax"
+    ],
+    "industries": [],
+    "jurisdiction": "United States",
+    "source_type": "Original bounded research synthesis",
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_family_office_irs_k1_1065_2025",
+      "src_fo_ref_irs_i1065",
+      "src_fo_ref_irs_p541",
+      "src_fo_ref_tax_partner_share",
+      "src_partnership_704c_cfr2025",
+      "src_partnership_743_cfr2025",
+      "src_partnership_uscode743",
+      "src_partnership_uscode734",
+      "src_partnership_uscode736"
+    ],
+    "related_ids": [
+      "guide-us-partnership-capital-basis"
+    ],
+    "reviewed_at": "2026-09-27",
+    "review_status": "editorially-reviewed",
+    "provenance": {
+      "added_on": "2026-09-27",
+      "reviewer": "Codex AI-assisted source and synthetic reconciliation review",
+      "note": "Original synthesis; no professional sign-off.",
+      "research_file": "data/research/partnership-foundations-2026-09-27.json"
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Original annotations only. External publications retain their own terms; access does not establish reuse permission.",
+      "full_text_stored": false
+    },
+    "data": {
+      "scope": "US federal partnership tax foundations; 2025 IRS instructions, December 2025 Publication 541, specified annual CFR and separately dated live observations. Later-year applicability and source currency require review.",
+      "synthetic": true,
+      "financial_reporting_capital": null,
+      "gaap_conclusion": "not-established",
+      "assumptions": [
+        "Two domestic partners A and B, equal allocations under an assumed valid agreement.",
+        "Traditional section 704(c) method; supplied straight-line annual book depreciation 2000 and tax depreciation 800; not a current depreciation eligibility conclusion.",
+        "No liabilities, other special allocations, section 743(b) adjustments or prior basis differences in the contribution branch.",
+        "Contribution, year-one activity, year-two sale, then cash-only full liquidation; no intervening events."
+      ],
+      "contribution_branch": {
+        "currency": "USD",
+        "contributed_property": {
+          "value": 20000,
+          "tax_basis": 8000,
+          "initial_704c_layer": 12000
+        },
+        "cash_contribution_B": 20000,
+        "events": [
+          {
+            "event": "contribution",
+            "common_asset_tax_basis": 28000,
+            "capital_704b": [
+              20000,
+              20000
+            ],
+            "tax_capital": [
+              8000,
+              20000
+            ],
+            "outside_basis": [
+              8000,
+              20000
+            ],
+            "property_704c_layer": 12000
+          },
+          {
+            "event": "year_one_depreciation",
+            "book_depreciation": [
+              1000,
+              1000
+            ],
+            "tax_depreciation": [
+              0,
+              800
+            ],
+            "common_asset_tax_basis": 27200,
+            "capital_704b": [
+              19000,
+              19000
+            ],
+            "tax_capital": [
+              8000,
+              19200
+            ],
+            "outside_basis": [
+              8000,
+              19200
+            ],
+            "property_704c_layer": 10800
+          },
+          {
+            "event": "year_one_cash_income",
+            "cash_income": 1000,
+            "income_allocation": [
+              500,
+              500
+            ],
+            "common_asset_tax_basis": 28200,
+            "capital_704b": [
+              19500,
+              19500
+            ],
+            "tax_capital": [
+              8500,
+              19700
+            ],
+            "outside_basis": [
+              8500,
+              19700
+            ],
+            "property_704c_layer": 10800
+          },
+          {
+            "event": "year_two_sale",
+            "proceeds": 18000,
+            "asset_tax_basis_before_sale": 7200,
+            "tax_gain": [
+              10800,
+              0
+            ],
+            "cash_after_sale": 39000,
+            "common_asset_tax_basis": 39000,
+            "capital_704b": [
+              19500,
+              19500
+            ],
+            "tax_capital": [
+              19300,
+              19700
+            ],
+            "outside_basis": [
+              19300,
+              19700
+            ],
+            "property_704c_layer": 0
+          },
+          {
+            "event": "cash_only_full_liquidation",
+            "cash_distributed": [
+              19500,
+              19500
+            ],
+            "section731_gain_loss": [
+              200,
+              -200
+            ],
+            "outside_basis_after": [
+              0,
+              0
+            ],
+            "capital_704b_after": [
+              0,
+              0
+            ],
+            "tax_capital_before_final_return_adjustments": [
+              -200,
+              200
+            ],
+            "note": "Partner-level gain/loss is not partnership operating income. Final Item L adjustments require separate return reconciliation; the residual is not silently forced into outside basis."
+          }
+        ]
+      },
+      "transfer_branch": {
+        "scope": "Separate counterexample; no liabilities, one nondepreciable asset, equal partners, no section 704(c) layer or book revaluation. Assumed valid section 754 election.",
+        "common_inside_basis_before": 100000,
+        "common_inside_basis_after": 100000,
+        "asset_value": 160000,
+        "transferee_price_and_outside_basis": 80000,
+        "transferee_share_common_basis": 50000,
+        "section743b_adjustment": 30000,
+        "transferred_tax_capital": 50000,
+        "transferred_704b_capital": 50000,
+        "common_gain_on_sale_at_value": 60000,
+        "transferee_common_gain": 30000,
+        "transferee_special_offset": -30000,
+        "transferee_net_gain": 0
+      },
+      "missing_context_cases": [
+        {
+          "facts": "Only K-1 tax capital of 50000 is supplied.",
+          "outside_basis": null,
+          "disposition": "unresolved",
+          "dependencies": [
+            "liability allocation",
+            "partner basis history"
+          ]
+        },
+        {
+          "facts": "Transfer; section 754 election unknown.",
+          "adjustment": null,
+          "disposition": "unresolved",
+          "dependencies": [
+            "election evidence",
+            "mandatory trigger and exception facts"
+          ]
+        },
+        {
+          "facts": "No section 754 election; aggregate inside basis 900000, value 600000; qualifying transfer; no statutory exception.",
+          "mandatory_test": "section 743(d)(1)(A)",
+          "mandatory_trigger": true,
+          "adjustment_amount": null,
+          "dependencies": [
+            "transferee-specific basis and section 755 allocation"
+          ]
+        },
+        {
+          "facts": "Tax section 704(c) schedule only; financial-reporting capital requested.",
+          "gaap_equity": null,
+          "disposition": "unsupported",
+          "dependencies": [
+            "authorized current GAAP evidence",
+            "entity facts"
+          ]
+        },
+        {
+          "facts": "Retiring LLC member; LPA, liability and partner-status facts missing.",
+          "section736_classification": null,
+          "disposition": "unresolved",
+          "dependencies": [
+            "LPA",
+            "liability relief",
+            "general-partner status",
+            "capital intensity",
+            "whole-interest liquidation"
+          ]
+        }
+      ],
+      "limitations": [
+        "Selected federal tax passages only; current US GAAP partnership presentation remains an access/review gap.",
+        "Actual LPA or operating agreement, tax classification, elections, liability allocation, valuation, partner history, jurisdiction and transaction dates are required.",
+        "No professional review, actual client calculation, independent agent-performance evidence or whole-industry sufficiency.",
+        "Synthetic data only; arithmetic and assumed tax facts do not establish actual return treatment or GAAP presentation."
+      ],
+      "examples": [
+        {
+          "id": "contribution-sale-liquidation",
+          "description": "Synthetic contribution branch: see contribution_branch for the event-by-event reconciliation."
+        },
+        {
+          "id": "transferee-special-basis",
+          "description": "Synthetic independent transfer branch: see transfer_branch."
+        }
+      ]
+    }
   }
 ]
