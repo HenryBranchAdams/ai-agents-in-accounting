@@ -78,6 +78,29 @@ test(
       const citations = context.records
         .map((entry) => ({ id: entry.record.citation.record_id, url: entry.record.citation.original_source_url }))
         .filter((citation) => citation.url);
+      // Source candidates need not fit beside the seed's provenance. Follow an
+      // explicit omission instead of treating the bounded packet as sufficient.
+      if (!citations.length) {
+        assert.equal(context.retrieval.all_candidate_passages_included, false);
+        const omitted = context.omitted.find(entry => followedResult.record.source_ids.includes(entry.id));
+        assert.ok(omitted, "a linked source must be available for selective follow-up");
+        const followUp = new URL(omitted.get_url, "https://corpus.test");
+        assert.equal(followUp.pathname, "/api/v1/agent/get");
+        assert.equal(followUp.searchParams.get("id"), omitted.id);
+        assert.equal(followUp.searchParams.get("corpus_version"), context.corpus_version);
+        const source = await client.callTool({
+          name: "corpus_get",
+          arguments: { id: omitted.id, corpus_version: context.corpus_version, limit: 1 },
+        });
+        assert.equal(source.isError, undefined, JSON.stringify(source));
+        const record = source.structuredContent.record;
+        assert.equal(record.id, omitted.id);
+        assert.equal(record.kind, "source");
+        assert.ok(record.citation.original_source_url);
+        assert.ok(record.rights);
+        assert.ok(record.review_status);
+        citations.push({ id: record.id, url: record.citation.original_source_url });
+      }
       assert.ok(citations.length > 0);
       for (const entry of context.records) {
         assert.ok(entry.record.rights);
