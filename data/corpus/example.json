@@ -26321,5 +26321,148 @@
         }
       ]
     }
+  },
+  {
+    "id": "example-cost-purpose-bridge",
+    "kind": "example",
+    "title": "Cost-purpose bridge: three separate synthetic reconciliations",
+    "summary": "Original arithmetic separates inventory variances, service-line decisions and an assumed contract-cost exclusion. The cases are independent and do not approve an entry or claim.",
+    "topics": [
+      "Cost purpose",
+      "Cost objects and allocation",
+      "Inventory, conversion costs and cost of sales"
+    ],
+    "industries": [],
+    "jurisdiction": "United States; purpose-specific scope",
+    "source_type": "Original bounded research synthesis",
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [
+      "src_cost_kpmg_inventory_2025",
+      "src_cost_openstax_keep_discontinue",
+      "src_cost_far_312011",
+      "src_cost_far_312012",
+      "src_cost_far_312014"
+    ],
+    "related_ids": [
+      "guide-cost-purpose-bridge"
+    ],
+    "reviewed_at": "2026-09-28",
+    "review_status": "editorially-reviewed",
+    "provenance": {
+      "added_on": "2026-09-28",
+      "reviewer": "Codex AI-assisted scoped source and synthetic arithmetic review",
+      "note": "Original synthesis; not professional sign-off.",
+      "research_file": "docs/research/2026-09-28-cost-purpose-bridge.md"
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Original annotations only; external publications retain their terms. Access does not establish training or redistribution permission.",
+      "full_text_stored": false
+    },
+    "data": {
+      "synthetic": true,
+      "scope": "Independent original USD scenarios; assumptions are not accounting determinations.",
+      "normal_capacity_example_id": "example-aa-i101-manufacturing-conversion",
+      "standard_cost": {
+        "assumptions": [
+          "No opening stock or WIP; 1,000 identical units completed, 600 sold and 400 retained.",
+          "Standard cost is $50/unit. A $5,000 unfavorable normal variance relates uniformly to these units.",
+          "Separately identified $3,000 abnormal idle/waste cost is outside that normal variance. Allocation is a synthetic assumption, not a universal variance method."
+        ],
+        "units_completed": 1000,
+        "units_sold": 600,
+        "units_remaining": 400,
+        "standard_unit_cost": 50,
+        "normal_variance": 5000,
+        "abnormal_period_cost": 3000,
+        "actual_total": 58000,
+        "ending_inventory": 22000,
+        "cost_of_sales": 33000,
+        "total_period_expense": 36000,
+        "favorable_sensitivity": {
+          "normal_variance": -5000,
+          "ending_inventory": 18000,
+          "cost_of_sales": 27000,
+          "total_period_expense": 30000,
+          "actual_total": 48000
+        },
+        "missing_variance_classification": {
+          "inventory_adjustment": null,
+          "status": "unresolved",
+          "reason": "Need cost-flow attribution and evidence distinguishing normal variance from abnormal costs."
+        }
+      },
+      "decision": {
+        "assumptions": [
+          "One-period service line; all revenue and variable cost disappear on closure.",
+          "Only $120,000 of traceable fixed cost is avoidable; remaining traceable and common costs continue.",
+          "No closure cost, transferred demand or alternative capacity benefit in the base case."
+        ],
+        "revenue": 1000000,
+        "variable_cost": 620000,
+        "traceable_fixed_cost": 300000,
+        "avoidable_fixed_cost": 120000,
+        "continuing_traceable_fixed_cost": 180000,
+        "allocated_common_cost": 60000,
+        "continuing_common_cost": 60000,
+        "contribution_margin": 380000,
+        "fully_allocated_profit": 20000,
+        "closure_income_change": -260000,
+        "alternative_use_sensitivity": {
+          "additional_contribution": 300000,
+          "closure_income_change": 40000
+        },
+        "missing_avoidability": {
+          "closure_income_change": null,
+          "status": "unresolved"
+        }
+      },
+      "contract": {
+        "assumptions": [
+          "A separate illustrative contract ledger starts at $100,000 standard cost plus $8,000 applicable variance, with no credits or cost of money.",
+          "For arithmetic only, assume $6,000 is excluded by an applicable award restriction; the remaining amount still requires all other allowability tests."
+        ],
+        "standard_cost": 100000,
+        "variance": 8000,
+        "total_allocable_cost": 108000,
+        "assumed_exclusion": 6000,
+        "candidate_after_exclusion": 102000,
+        "approved_claim": null,
+        "billing_amount": null,
+        "revenue": null,
+        "status": "unresolved-pending-award-and-records",
+        "counterexample": "Allocable does not mean allowable; no contract facts means no approved claim."
+      },
+      "tax_cost": {
+        "amount": null,
+        "status": "unresolved-separate-purpose"
+      },
+      "limitations": [
+        "Synthetic scenarios; no client data, posting authority or approved claim.",
+        "Current consolidated ASC 330 was not independently reviewed; dated KPMG interpretation and historical manufacturing evidence do not establish current authority.",
+        "Entity cost method, normal-capacity range, production records, decision horizon and executed award terms are required.",
+        "Tax cost is a separate unresolved purpose. No tax capitalization, deduction or basis conclusion is supplied.",
+        "No professional accounting/legal review, operating effectiveness, empirical agent performance or whole-industry sufficiency is established."
+      ],
+      "examples": [
+        {
+          "id": "standard-cost",
+          "title": "Normal variance and abnormal cost",
+          "pointer": "/data/standard_cost"
+        },
+        {
+          "id": "decision",
+          "title": "Continue or discontinue a service line",
+          "pointer": "/data/decision"
+        },
+        {
+          "id": "contract",
+          "title": "Contract cost and assumed exclusion",
+          "pointer": "/data/contract"
+        }
+      ]
+    }
   }
 ]
