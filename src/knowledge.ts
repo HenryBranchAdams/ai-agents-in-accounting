@@ -37,6 +37,9 @@ const entityLabels = [
   ["public compan(y|ies)|listed compan(y|ies)", "Public company"], ["service provider|software provider", "Service provider"],
   ["healthcare|health care", "Healthcare"],
 ] as const;
+// Partnership is explicit-only: a partner/GP/trustee role or a prose mention
+// does not establish the entity type. Other inferred scopes keep their rules.
+const explicitEntityLabels: readonly string[] = [...entityLabels.map(([, label]) => label), "Partnership"];
 function basis(pointers: string[], status: Basis["status"] = "recorded"): Basis { return { pointers: [...new Set(pointers)], status }; }
 function dateFrom(v: unknown): string | null {
   if (typeof v !== "string") return null;
@@ -84,7 +87,7 @@ export function createKnowledgeIndex(records: KnowledgeRecord[]) {
     const frameworks = [...new Set([...explicitFrameworks, ...inferredFrameworkLabels, ...detectedFrameworks].map(alias))];
     const entityText = [rawScope, text(c.applicability_note), ...array(c.applicability)].join(" ");
     const detectedEntities = entityLabels.filter(([pattern]) => new RegExp(`\\b(?:${pattern})\\b`, "i").test(entityText)).map(([, label]) => label);
-    const explicitEntities = pick(r, ["entity", "entities", "entity_scope"]).filter((value) => entityLabels.some(([, label]) => norm(value) === norm(label)));
+    const explicitEntities = pick(r, ["entity", "entities", "entity_scope"]).filter((value) => explicitEntityLabels.some((label) => norm(value) === norm(label)));
     const entities = [...new Set([...explicitEntities, ...detectedEntities])];
     const productMatch = /xero/i.test(rawScope) ? "Xero" : /sap/i.test(rawScope) ? "SAP" : /oracle/i.test(rawScope) ? "Oracle" : /netsuite/i.test(rawScope) ? "NetSuite" : /quickbooks/i.test(rawScope) ? "QuickBooks" : undefined;
     const products = [...new Set([...pick(r, ["product", "products", "systems", "software"]), ...(productScope && productMatch ? [productMatch] : [])])].map((x) => x.slice(0, 160));

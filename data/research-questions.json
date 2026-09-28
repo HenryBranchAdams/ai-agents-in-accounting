@@ -1925,5 +1925,116 @@
       "Commitments differ from funded capital.",
       "Principal/income is not tax character."
     ]
+  },
+  {
+    "id": "partnership-capital",
+    "user_question": "How do financial-reporting capital, section 704(b) capital, K-1 tax capital and outside basis differ?",
+    "search_query": "partnership capital outside basis",
+    "kind": "guide",
+    "expected_ids": [
+      "guide-us-partnership-capital-basis"
+    ],
+    "excluded_ids": [],
+    "required_citations": 1,
+    "expected_scope": "US federal partnership tax foundations; 2025 IRS instructions, December 2025 Publication 541, specified annual CFR and separately dated live observations. Later-year applicability and source currency require review.",
+    "claims_assert_only_supported": [
+      "K-1 capital alone cannot establish outside basis. Keep four measures separate: financial-reporting capital under its selected framework; section 704(b) capital for tax allocations; Item L tax capital; and the partner\u2019s outside basis. A liability share and partner-specific history can separate outside basis from tax capital. Current US GAAP partnership presentation remains an unresolved evidence gap; a tax regulation\u2019s book value does not establish a GAAP equity conclusion."
+    ],
+    "expected_question_id": "rq-partnership-capital-measures",
+    "expected_pointer": "/data/research_questions/0",
+    "expected_source_ids": [
+      "src_family_office_irs_k1_1065_2025",
+      "src_fo_ref_irs_i1065",
+      "src_fo_ref_irs_p541",
+      "src_fo_ref_tax_partner_share"
+    ]
+  },
+  {
+    "id": "partnership-property",
+    "user_question": "How is a contributed-property section 704(c) layer tracked?",
+    "search_query": "contributed property 704(c)",
+    "kind": "guide",
+    "expected_ids": [
+      "guide-us-partnership-capital-basis"
+    ],
+    "excluded_ids": [],
+    "required_citations": 1,
+    "expected_scope": "US federal partnership tax foundations; 2025 IRS instructions, December 2025 Publication 541, specified annual CFR and separately dated live observations. Later-year applicability and source currency require review.",
+    "claims_assert_only_supported": [
+      "Identify each property\u2019s contribution-date value, adjusted tax basis, contributor and chosen method. Carry the difference through depreciation and disposition. Under the traditional method, the ceiling rule can prevent matching tax deductions to section 704(b) book allocations. Curative and remedial methods need separate analysis; this worked material uses only the traditional method. None of these tax methods establishes GAAP measurement."
+    ],
+    "expected_question_id": "rq-partnership-contributed-property",
+    "expected_pointer": "/data/research_questions/1",
+    "expected_source_ids": [
+      "src_partnership_704c_cfr2025",
+      "src_fo_ref_tax_partner_share"
+    ]
+  },
+  {
+    "id": "partnership-transfer",
+    "user_question": "When does section 743(b) apply, and does it change common inside basis or capital?",
+    "search_query": "743(b) common basis",
+    "kind": "guide",
+    "expected_ids": [
+      "guide-us-partnership-capital-basis"
+    ],
+    "excluded_ids": [],
+    "required_citations": 1,
+    "expected_scope": "US federal partnership tax foundations; 2025 IRS instructions, December 2025 Publication 541, specified annual CFR and separately dated live observations. Later-year applicability and source currency require review.",
+    "claims_assert_only_supported": [
+      "A section 743(b) adjustment is transferee-specific; it cannot change common inside basis or capital accounts. Compute common allocations, then the transferee\u2019s separate adjustment. No section 754 election does not mean no adjustment: section 743(a),(d) requires a separate substantial-built-in-loss test. Either aggregate basis over value exceeding $250,000 or transferee hypothetical loss exceeding $250,000 can trigger it, subject to applicable exceptions in (e),(f). An unknown election or missing valuation is unresolved, not a negative finding."
+    ],
+    "expected_question_id": "rq-partnership-transferee-adjustment",
+    "expected_pointer": "/data/research_questions/2",
+    "expected_source_ids": [
+      "src_partnership_743_cfr2025",
+      "src_partnership_uscode743",
+      "src_fo_ref_irs_i1065"
+    ]
+  },
+  {
+    "id": "partnership-retirement",
+    "user_question": "How should a distribution, retirement or partner-to-partner sale be routed?",
+    "search_query": "partnership retirement distributions",
+    "kind": "guide",
+    "expected_ids": [
+      "guide-us-partnership-capital-basis"
+    ],
+    "excluded_ids": [],
+    "required_citations": 1,
+    "expected_scope": "US federal partnership tax foundations; 2025 IRS instructions, December 2025 Publication 541, specified annual CFR and separately dated live observations. Later-year applicability and source currency require review.",
+    "claims_assert_only_supported": [
+      "Identify the payer and whether the entire interest is liquidated. Ordinary distributions require sections 731/732 analysis using outside basis, liability relief and property type. A partner-to-partner purchase follows the transfer route. Partnership retirement payments require section 736: property consideration under (b), other payments under (a), with income-dependent amounts distinguished from guaranteed payments. The receivables/goodwill exclusion in (b)(2) requires both conditions in (b)(3); goodwill also depends on the agreement. Section 734 common-basis review after distributions includes a mandatory substantial-basis-reduction branch even without a section 754 election."
+    ],
+    "expected_question_id": "rq-partnership-distribution-retirement",
+    "expected_pointer": "/data/research_questions/3",
+    "expected_source_ids": [
+      "src_fo_ref_irs_p541",
+      "src_partnership_uscode736",
+      "src_partnership_uscode734"
+    ]
+  },
+  {
+    "id": "partnership-gaap-boundary",
+    "user_question": "Does the section 704(c) example prove GAAP equity presentation?",
+    "search_query": "partnership GAAP equity",
+    "kind": "guide",
+    "expected_ids": [
+      "guide-us-partnership-capital-basis"
+    ],
+    "excluded_ids": [],
+    "required_citations": 1,
+    "expected_scope": "Current GAAP partnership presentation remains unresolved.",
+    "claims_assert_only_supported": [
+      "Tax material cannot establish a GAAP conclusion."
+    ],
+    "expected_question_id": "rq-partnership-capital-measures",
+    "expected_pointer": "/data/research_questions/0",
+    "expected_source_ids": [
+      "src_family_office_irs_k1_1065_2025",
+      "src_fo_ref_irs_i1065",
+      "src_fo_ref_irs_p541",
+      "src_fo_ref_tax_partner_share"
+    ]
   }
 ]

@@ -15,6 +15,12 @@ function fixture() {
   const catalogPath=path.join(root, 'data/catalog.json'), catalog=read(catalogPath);
   catalog.corpus_version='2026-09-21.5';
   fs.writeFileSync(catalogPath,JSON.stringify(catalog));
+  // The importer freezes source digests at its own edition. Reconstruct that
+  // source population instead of weakening its guard for later scoped reviews.
+  const historical = new Map(read('data/releases/2026-09-21.5/corpus.json').records.filter(r=>r.kind==='source').map(r=>[r.id,r]));
+  const sourcePath=path.join(root,'data/corpus/source.json');
+  const sources=read(sourcePath).map(r=>historical.get(r.id)||r);
+  fs.writeFileSync(sourcePath,JSON.stringify(sources));
   return root;
 }
 const fileSnapshot = root => new Map(['source','guide','collection'].map(k => [`data/corpus/${k}.json`, fs.readFileSync(path.join(root, `data/corpus/${k}.json`))]));
