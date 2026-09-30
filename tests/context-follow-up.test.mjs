@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
 import { execFileSync } from 'node:child_process';
 const cli = (op, args = []) => JSON.parse(execFileSync(process.execPath, ['scripts/corpus.mjs', op, ...args], { encoding: 'utf8' }));
 const guide = 'guide-family-office-us-accounting';
@@ -20,7 +21,8 @@ test('a controller context packet exposes unfinished retrieval and actionable fo
     assert.equal(url.searchParams.get('corpus_version'), description.corpus_version);
   }
   const excluded = cli('context', ['--ids', guide, '--include-sources', 'false', ...pin]);
-  assert.equal(excluded.retrieval.linked_sources_not_considered, 10);
+  const canonical=JSON.parse(fs.readFileSync('data/corpus/guide.json','utf8')).find(r=>r.id===guide);
+  assert.equal(excluded.retrieval.linked_sources_not_considered, new Set(canonical.source_ids).size);
   const limited = cli('context', ['--q', 'family office', '--limit', '1', ...pin]);
   assert.ok(limited.retrieval.search_matches_not_selected > 0);
 });
