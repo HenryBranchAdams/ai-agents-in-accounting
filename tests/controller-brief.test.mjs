@@ -15,9 +15,10 @@ const htmlText=s=>s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>
 test('controller orientation preserves the accepted technical questions and their partial assessments',()=>{
  const original=JSON.parse(execFileSync('git',['show',`${base}:data/corpus/guide.json`],{encoding:'utf8',maxBuffer:32*1024*1024})).find(r=>r.id===id);
  const retained=structuredClone(guide);delete retained.data.editorial_brief;
- assert.deepEqual(retained,original,'Only the separately reviewed editorial brief may be appended');
+ assert.deepEqual(retained.source_ids,[...original.source_ids,'src_fo_ref_sec_family_rule']);retained.source_ids.pop();
+ assert.deepEqual(retained,original,'Only the named editorial brief and supplemental source link may be appended');
  assert.deepEqual(guide.data.research_questions,original.data.research_questions);
- for(const key of ['source_ids','reviewed_at','review_status','rights','provenance'])assert.deepEqual(guide[key],original[key],key);
+ for(const key of ['reviewed_at','review_status','rights','provenance'])assert.deepEqual(guide[key],original[key],key);
  const assessments=JSON.parse(fs.readFileSync('data/coverage/assessments.json')).assessments;
  for(const q of guide.data.research_questions){
   assert.equal(q.assessment_status,'partial');

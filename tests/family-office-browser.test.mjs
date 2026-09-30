@@ -72,6 +72,18 @@ test('family-office native reading works on desktop/mobile with and without Java
    assert.ok((await page.locator('#answer').innerText()).includes('six family-office assessments remain partial'));
    await page.screenshot({path:path.join(directory,`${name}-controller.png`)});
    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Controller page overflows viewport');
+   const currencyId='src_fo_ref_sec_family_rule';
+   assert.ok((await page.locator('main').innerText()).includes('Supplemental source-currency note'));
+   await followSuggestedReading(page,currencyId);
+   await page.waitForURL(origin+'/records/'+currencyId);
+   const currencyDetails=page.getByText('Complete record details',{exact:true});
+   if(!await currencyDetails.evaluate(el=>el.parentElement.open)){await currencyDetails.focus();await page.keyboard.press('Enter');}
+   assert.equal(await currencyDetails.evaluate(el=>el.parentElement.open),true);
+   assert.ok((await page.locator('main').innerText()).includes('September 25, 2026'));
+   assert.ok((await page.locator('main').innerText()).includes('September 26-30 changes were not established'));
+   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Currency source page overflows viewport');
+   await page.screenshot({path:path.join(directory,`${name}-currency-source.png`)});
+   await page.goBack();await page.waitForURL(origin+'/records/'+controllerId);
    const detail=page.getByText('Complete record details',{exact:true});
    await detail.focus();await page.keyboard.press('Enter');
    assert.equal(await detail.evaluate(el=>el.parentElement.open),true);
