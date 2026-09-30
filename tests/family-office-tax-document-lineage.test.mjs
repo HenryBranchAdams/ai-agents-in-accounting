@@ -93,5 +93,9 @@ test('tax lineage exports and paginated retrieval retain amounts, identities and
  const passages=[];let cursor;const seen=new Set();
  do{const result=executeAgent('get',{id,section:'data.tax_document_lineage',limit:3,...(cursor?{cursor}:{})});passages.push(...result.passages);cursor=result.next_cursor;if(cursor){assert.ok(!seen.has(cursor));seen.add(cursor);assert.ok(seen.size<100);}}while(cursor);
  assert.ok(passages.some(p=>p.source_pointers.some(s=>s.startsWith('/data/tax_document_lineage/'))));
- const text=passages.map(p=>p.text).join('\n');for(const marker of ['I-P-2025-v1-copy','I-P-2025-v2','I-T-2025-v1','I-P-2024-v1','reassessment-required','outside_basis_cents'])assert.ok(text.includes(marker),marker);
+ const text=passages.map(p=>p.text).join('\n');for(const marker of ['I-P-2025-v1-copy','I-P-2025-v2','I-T-2025-v1','I-P-2024-v1','reassessment-required','outside basis cents: null'])assert.ok(text.includes(marker),marker);
+ for(const index of [0,1]){
+  const pointer=`/data/tax_document_lineage/handoff_populations/${index}/outside_basis_cents`;
+  assert.ok(passages.some(p=>p.source_pointers.includes(pointer)&&p.text.includes(`handoff populations / ${index} / outside basis cents: null`)),pointer);
+ }
 });
