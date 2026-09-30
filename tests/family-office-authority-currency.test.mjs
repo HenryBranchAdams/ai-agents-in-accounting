@@ -42,3 +42,22 @@ test('currency evidence separates observation, publisher currency and title-leve
  assert.equal(source.data.source_rights.full_text_stored,false);
  assert.equal(source.data.source_rights.permission_scope,null);
 });
+
+test('supplemental currency note is visible and retrievable without replacing historical answers',async()=>{
+ const[{getRecord,recordMarkdown,records},{executeAgent},{editorialReviewReport},{default:worker}]=await Promise.all([import('../dist/internal/corpus.mjs'),import('../dist/internal/agent.mjs'),import('../scripts/editorial-review.mjs'),import('./worker-fixture.mjs')]);
+ const guideId='guide-family-office-us-accounting',guide=getRecord(guideId),brief=guide.data.editorial_brief;
+ const historical=JSON.parse(execFileSync('git',['show','caf023cbed4cd651274201708b45501ddc1aa0ad:data/corpus/guide.json'],{encoding:'utf8',maxBuffer:32*1024*1024})).find(r=>r.id===guideId);
+ const retained=structuredClone(guide);delete retained.data.editorial_brief;assert.deepEqual(retained,historical);
+ assert.ok(brief.reading_order.includes(id));
+ assert.equal(brief.findings.filter(f=>f.source_ids.includes(id)).length,1);
+ assert.equal(editorialReviewReport(records).find(r=>r.record_id===guideId).status,'dependencies-unchanged');
+ const response=await worker.fetch(new Request(`https://corpus.example/records/${guideId}`));assert.equal(response.status,200);
+ const html=await response.text(),md=recordMarkdown(guide);
+ for(const text of ['Supplemental source-currency note','September 25','September 26–30 changes']){assert.ok(html.includes(text));assert.ok(md.includes(text));}
+ assert.ok(html.includes(`/records/${id}`));assert.ok(md.includes(`/records/${id}`));
+ const sourceResponse=await worker.fetch(new Request(`https://corpus.example/records/${id}`));assert.equal(sourceResponse.status,200);
+ assert.ok((await sourceResponse.text()).includes('authoritative but unofficial'));
+ let cursor;const passages=[];
+ do{const r=executeAgent('get',{id,section:'data.currency',limit:3,...(cursor?{cursor}:{})});passages.push(...r.passages);cursor=r.next_cursor;}while(cursor);
+ const text=passages.map(p=>p.text).join('\n');for(const marker of ['2026-09-30','2026-09-25','false'])assert.ok(text.includes(marker),marker);
+});
