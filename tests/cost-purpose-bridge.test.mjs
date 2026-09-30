@@ -90,6 +90,10 @@ test('additions preserve all prior records, source rights, mappings, assessments
         assert.equal(retained.data.editorial_brief.reading.review.reviewed_at,'2026-09-30');
         delete retained.data.editorial_brief;
       }
+      if(old.id==='example-family-office-four-entity-close'){
+        assert.equal(retained.data.tax_document_lineage.classification,'original-synthetic');
+        for(const key of ['editorial_brief','tax_document_lineage'])delete retained.data[key];
+      }
       assert.deepEqual(retained,old,old.id);
     }
   }

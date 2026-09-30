@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {execFileSync} from 'node:child_process';
-import {editorialHash} from '../scripts/editorial-review.mjs';
+import {editorialHash,editorialReviewReport} from '../scripts/editorial-review.mjs';
 const id='example-family-office-four-entity-close';
 const example=JSON.parse(readFileSync(new URL('../data/corpus/example.json',import.meta.url))).find(r=>r.id===id),lineage=example.data.tax_document_lineage;
 const fields=['issuer_id','recipient_id','form_family','issuer_period_start','issuer_period_end'];
@@ -82,6 +82,10 @@ test('lineage references are complete and duplicate and supersession relationshi
 test('tax lineage exports and paginated retrieval retain amounts, identities and unresolved current selection',async()=>{
  const [{getRecord,recordMarkdown,records},{executeAgent},{default:worker}]=await Promise.all([import('../dist/internal/corpus.mjs'),import('../dist/internal/agent.mjs'),import('./worker-fixture.mjs')]);
  const built=getRecord(id);assert.deepEqual(built,example);const byId=new Map(records.map(r=>[r.id,r]));
+ const expected=[id,'guide-family-office-us-accounting','workflow-family-office-entity-close','control-family-office-ownership-payments'];
+ const reviews=editorialReviewReport(records).filter(r=>expected.includes(r.record_id));
+ assert.deepEqual(reviews.map(r=>r.record_id).sort(),expected.sort());assert.ok(reviews.every(r=>r.status==='dependencies-unchanged'));
+ assert.match(built.data.editorial_brief.answer,/retains the original four-entity close/);
  for(const d of built.data.editorial_brief.reading.review.dependencies){assert.ok(byId.has(d.record_id));assert.equal(editorialHash(byId.get(d.record_id)),d.sha256,d.record_id);}
  const response=await worker.fetch(new Request(`https://corpus.example/records/${id}`));assert.equal(response.status,200);const html=await response.text(),md=recordMarkdown(built);
  assert.ok(html.includes(built.data.editorial_brief.question));const anchor=built.data.editorial_brief.reading.example.anchor;assert.ok(html.includes(`id="${anchor}"`));assert.ok(html.includes(`/records/${id}#${anchor}`));
