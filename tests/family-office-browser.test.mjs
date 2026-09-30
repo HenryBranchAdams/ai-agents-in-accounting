@@ -70,6 +70,11 @@ test('family-office native reading works on desktop/mobile with and without Java
    await page.keyboard.press('Enter');
    await page.locator('main a[href="/records/workflow-family-office-entity-close"]').first().click();
    await page.waitForURL(origin+'/records/workflow-family-office-entity-close');
+   await page.getByRole('heading',{name:'How should a family-office close reach a reviewable family report?',exact:true}).waitFor({state:'visible'});
+   assert.ok((await page.locator('#worked-example').innerText()).includes('$150,000'));
+   assert.ok((await page.locator('#answer').innerText()).includes('Missing values and transfer permissions remain unknown'));
+   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Close-policy page overflows viewport');
+   await page.screenshot({path:path.join(directory,`${name}-close-policy.png`)});
    await page.goBack();await page.waitForURL(origin+'/records/'+controllerId);
    assert.deepEqual(errors,[],'Browser console/runtime/assets must be healthy');
    assert.ok(requests.every(url=>new URL(url).origin===origin),'Reading makes only same-origin requests');
