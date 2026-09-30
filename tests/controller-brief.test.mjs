@@ -14,6 +14,8 @@ const htmlText=s=>s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>
 
 test('controller orientation preserves the accepted technical questions and their partial assessments',()=>{
  const original=JSON.parse(execFileSync('git',['show',`${base}:data/corpus/guide.json`],{encoding:'utf8',maxBuffer:32*1024*1024})).find(r=>r.id===id);
+ const retained=structuredClone(guide);delete retained.data.editorial_brief;
+ assert.deepEqual(retained,original,'Only the separately reviewed editorial brief may be appended');
  assert.deepEqual(guide.data.research_questions,original.data.research_questions);
  for(const key of ['source_ids','reviewed_at','review_status','rights','provenance'])assert.deepEqual(guide[key],original[key],key);
  const assessments=JSON.parse(fs.readFileSync('data/coverage/assessments.json')).assessments;
@@ -41,13 +43,14 @@ test('controller reading is visible before record metadata and preserves native 
 });
 
 test('bounded agent retrieval exposes the controller evidence boundary and precise source pointers',()=>{
- const result=executeAgent('get',{id,section:'data.editorial_brief.reading.critical_limitation',limit:20});
- assert.ok(result.passages.length);
- assert.ok(result.passages.some(p=>p.text.includes('six family-office assessments remain partial')));
- assert.ok(result.passages.every(p=>p.source_pointers.some(pointer=>pointer.startsWith('/data/editorial_brief/reading/critical_limitation'))));
+ const directory=executeAgent('get',{id,limit:1});
+ assert.ok(directory.sections.some(s=>s.id==='data.editorial_brief'));
+ const passages=[];let cursor,result;
+ do{result=executeAgent('get',{id,section:'data.editorial_brief',limit:20,...(cursor?{cursor}:{})});passages.push(...result.passages);cursor=result.next_cursor;}while(cursor);
+ const limitation=passages.find(p=>p.source_pointers.includes('/data/editorial_brief/reading/critical_limitation'));
+ assert.ok(limitation?.text.includes('six family-office assessments remain partial'));
  assert.equal(result.record.rights.full_text_stored,false);
- const roles=executeAgent('get',{id,section:'data.editorial_brief.reading.example',limit:20});
- const text=roles.passages.map(p=>p.text).join('\n');
+ const text=passages.filter(p=>p.source_pointers.some(pointer=>pointer.startsWith('/data/editorial_brief/reading/example/'))).map(p=>p.text).join('\n');
  assert.match(text,/Unresolved account title/);
  assert.match(text,/processor/);
  assert.match(text,/donor|Donor/);

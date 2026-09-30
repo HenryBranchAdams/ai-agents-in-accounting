@@ -82,7 +82,16 @@ test('additions preserve all prior records, source rights, mappings, assessments
   const atBase=file=>JSON.parse(execFileSync('git',['show',`${base}:${file}`],{encoding:'utf8',maxBuffer:64*1024*1024}));
   for(const kind of ['source','guide','example','term']) {
     const current=new Map(read(`data/corpus/${kind}.json`).map(r=>[r.id,r]));
-    for(const old of atBase(`data/corpus/${kind}.json`))assert.deepEqual(current.get(old.id),old,old.id);
+    for(const old of atBase(`data/corpus/${kind}.json`)){
+      const retained=structuredClone(current.get(old.id));
+      // The later controller increment appends one separately reviewed brief;
+      // all pre-existing fields still satisfy this exact preservation contract.
+      if(old.id==='guide-family-office-us-accounting'){
+        assert.equal(retained.data.editorial_brief.reading.review.reviewed_at,'2026-09-30');
+        delete retained.data.editorial_brief;
+      }
+      assert.deepEqual(retained,old,old.id);
+    }
   }
   const mappings=read('data/coverage/mapping-overrides.json').records;
   for(const [id,old] of Object.entries(atBase('data/coverage/mapping-overrides.json').records))assert.deepEqual(mappings[id],old,id);
