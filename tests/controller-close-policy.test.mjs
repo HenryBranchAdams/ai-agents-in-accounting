@@ -68,7 +68,7 @@ test('unmatched amounts, excluded counterparties and restricted cash do not beco
 test('close-policy exports expose proposed practice, reconciled amounts and unresolved authority',async()=>{
  const response=await worker.fetch(new Request(`https://corpus.example/records/${id}`));assert.equal(response.status,200);
  const html=await response.text(),md=recordMarkdown(workflow);
- assert.ok(html.includes(workflow.data.editorial_brief.question));assert.ok(html.includes('id="detail-reporting_bridge"'));
+ assert.ok(html.includes(workflow.data.editorial_brief.question));const anchor=workflow.data.editorial_brief.reading.example.anchor;assert.ok(html.includes(`id="${anchor}"`),'Worked example link target must exist');assert.ok(html.includes(`/records/${id}#${anchor}`));
  for(const value of ['$206,000','$200,000','$150,000','Unknown']){assert.ok(html.includes(value));assert.ok(md.includes(value));}
  const result=executeAgent('get',{id,section:'data.reporting_bridge',limit:20});
  assert.ok(result.passages.some(p=>p.source_pointers.some(s=>s.startsWith('/data/reporting_bridge/'))));
