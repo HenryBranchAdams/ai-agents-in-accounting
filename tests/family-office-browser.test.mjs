@@ -74,7 +74,7 @@ test('family-office native reading works on desktop/mobile with and without Java
    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Controller page overflows viewport');
    const currencyId='src_family_office_ecfr_20260925';
    assert.ok((await page.locator('main').innerText()).includes('Supplemental source-currency note'));
-   await page.locator(`main a[href="/records/${currencyId}"]`).first().click();
+   await followSuggestedReading(page,currencyId);
    await page.waitForURL(origin+'/records/'+currencyId);
    assert.ok((await page.locator('main').innerText()).includes('September 25, 2026'));
    assert.ok((await page.locator('main').innerText()).includes('September 26-30 changes were not established'));
