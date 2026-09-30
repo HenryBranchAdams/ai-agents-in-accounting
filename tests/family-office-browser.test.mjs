@@ -106,7 +106,7 @@ test('family-office native reading works on desktop/mobile with and without Java
    await page.screenshot({path:path.join(directory,`${name}-event-packet.png`)});
    await page.goBack();await page.waitForURL(origin+'/records/workflow-family-office-entity-close');
    const lineageId='example-family-office-four-entity-close';
-   await page.locator(`main a[href="/records/${lineageId}"]`).first().click();
+   await followSuggestedReading(page,lineageId);
    await page.waitForURL(origin+'/records/'+lineageId);
    await page.getByRole('heading',{name:'How can a family-office handoff preserve corrected tax-document history without double counting?',exact:true}).waitFor({state:'visible'});
    assert.ok((await page.locator('#answer').innerText()).includes('retains the original four-entity close'));
