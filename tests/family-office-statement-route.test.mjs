@@ -1,0 +1,20 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import {execFileSync} from 'node:child_process';
+import {editorialHash} from '../scripts/editorial-review.mjs';
+const base='03c8061c3ec2bb0f68ca12f90224f9bd13611c5c';
+const read=p=>JSON.parse(fs.readFileSync(p));
+const previous=p=>JSON.parse(execFileSync('git',['show',`${base}:${p}`],{encoding:'utf8',maxBuffer:64*1024*1024}));
+test('statement-population reading route adds only its declared close brief link and scoped receipt',()=>{
+ const id='example-family-office-statement-population',file='data/corpus/workflow.json';
+ const old=previous(file),current=read(file),retained=structuredClone(current),workflow=retained.find(r=>r.id==='workflow-family-office-entity-close');
+ const prior=old.find(r=>r.id===workflow.id),brief=workflow.data.editorial_brief,priorBrief=prior.data.editorial_brief;
+ assert.deepEqual(brief.reading_order,[...priorBrief.reading_order,id]);brief.reading_order.pop();
+ const example=read('data/corpus/example.json').find(r=>r.id===id);
+ assert.deepEqual(brief.reading.review.dependencies,[...priorBrief.reading.review.dependencies,{record_id:id,sha256:editorialHash(example)}]);brief.reading.review.dependencies.pop();
+ const suffix=' The separate statement-population illustration distinguishes supplied-set document coverage from independently established account completeness; its synthetic amounts are independent of the close bridge.';
+ assert.equal(brief.reading.review.scope,priorBrief.reading.review.scope+suffix);brief.reading.review.scope=priorBrief.reading.review.scope;
+ assert.deepEqual(retained,old,'Every workflow field outside the three declared brief additions stays identical');
+ assert.equal(editorialHash(workflow),editorialHash(prior),'Brief-only link requires no unrelated dependency refresh');
+});
