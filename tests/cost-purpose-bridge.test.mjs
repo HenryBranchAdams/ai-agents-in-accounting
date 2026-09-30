@@ -87,6 +87,7 @@ test('additions preserve all prior records, source rights, mappings, assessments
       // The later controller increment appends one separately reviewed brief;
       // all pre-existing fields still satisfy this exact preservation contract.
       if(old.id==='guide-family-office-us-accounting'){
+        assert.deepEqual(retained.source_ids,[...old.source_ids,'src_family_office_ecfr_20260925']);retained.source_ids.pop();
         assert.equal(retained.data.editorial_brief.reading.review.reviewed_at,'2026-09-30');
         delete retained.data.editorial_brief;
       }
