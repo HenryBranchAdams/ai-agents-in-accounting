@@ -4,6 +4,14 @@ import path from 'node:path';
 import fs from 'node:fs';
 import {productionBrowser} from './browser-support/production.mjs';
 
+async function followSuggestedReading(page,id){
+ const disclosure=page.getByText('Complete reading order',{exact:true});
+ if(!await disclosure.evaluate(el=>el.parentElement.open)){
+  await disclosure.focus();await page.keyboard.press('Enter');
+ }
+ await page.locator(`#suggested-reading a[href="/records/${id}"]`).first().click();
+}
+
 // Flow: library search -> native collection -> topic/source/context -> Back/Forward.
 // The same built pages must remain readable with JavaScript disabled.
 test('family-office native reading works on desktop/mobile with and without JavaScript',{timeout:180000},async t=>{
@@ -85,7 +93,7 @@ test('family-office native reading works on desktop/mobile with and without Java
    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Close-policy page overflows viewport');
    await page.screenshot({path:path.join(directory,`${name}-close-policy.png`)});
    const eventId='control-family-office-ownership-payments';
-   await page.locator(`main a[href="/records/${eventId}"]`).first().click();
+   await followSuggestedReading(page,eventId);
    await page.waitForURL(origin+'/records/'+eventId);
    await page.getByRole('heading',{name:'What should a family-office controller hand to a specialist when an event changes the evidence?',exact:true}).waitFor({state:'visible'});
    assert.ok((await page.locator('#worked-example').innerText()).includes('$4,000'));
