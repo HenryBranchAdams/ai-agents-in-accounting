@@ -27412,7 +27412,7 @@
             "dependencies": [
               {
                 "record_id": "example-family-office-statement-population",
-                "sha256": "54588f512a838ec9e0e92d9b192254f286094459b7365c301ebc666a3a0f5b0f"
+                "sha256": "db99dc8514efea8581fadf6bb7476c12369342703de3f5db9d8be4bbc5d98f43"
               },
               {
                 "record_id": "workflow-family-office-entity-close",
@@ -27441,7 +27441,25 @@
             ]
           }
         }
-      }
+      },
+      "examples": [
+        {
+          "id": "INITIAL",
+          "title": "Partial current-period supplied inventory",
+          "pointer": "/data/statement_population/scenarios/0"
+        },
+        {
+          "id": "LATER",
+          "title": "Later supplied-set document coverage with unresolved inventory",
+          "pointer": "/data/statement_population/scenarios/1"
+        }
+      ],
+      "limitations": [
+        "Synthetic independent fictional scenarios; no real accounts or revision of the existing four-entity close.",
+        "The raw delivery sum mixes duplicate, stale and unexpected evidence and is not a valid financial total.",
+        "Document coverage concerns only the supplied inventory. It establishes neither complete family cash nor family wealth, ownership, custody-rule compliance, valuation or available liquidity.",
+        "No actual account, financial action, ingestion engine, professional assurance, operational control test or live agent efficacy is represented."
+      ]
     }
   }
 ]
