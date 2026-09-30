@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {execFileSync} from 'node:child_process';
-import {editorialHash} from '../scripts/editorial-review.mjs';
+import {editorialHash,editorialReviewReport} from '../scripts/editorial-review.mjs';
 const id='control-family-office-ownership-payments';
 const control=JSON.parse(readFileSync(new URL('../data/corpus/control.json',import.meta.url))).find(r=>r.id===id);
 const packet=control.data.event_handoff;
@@ -62,6 +62,10 @@ test('event handoff exports and bounded retrieval preserve partial response and 
  const [{getRecord,recordMarkdown,records},{executeAgent},{default:worker}]=await Promise.all([import('../dist/internal/corpus.mjs'),import('../dist/internal/agent.mjs'),import('./worker-fixture.mjs')]);
  const built=getRecord(id);assert.deepEqual(built,control);
  const byId=new Map(records.map(r=>[r.id,r]));
+ const reviewIds=[id,'guide-family-office-us-accounting','workflow-family-office-entity-close'];
+ const reviews=editorialReviewReport(records).filter(r=>reviewIds.includes(r.record_id));
+ assert.deepEqual(reviews.map(r=>r.record_id).sort(),reviewIds.sort());
+ assert.ok(reviews.every(r=>r.status==='dependencies-unchanged'));
  for(const d of built.data.editorial_brief.reading.review.dependencies){assert.ok(byId.has(d.record_id),d.record_id);assert.equal(d.sha256,editorialHash(byId.get(d.record_id)),d.record_id);}
  for(const route of packet.event_routes)for(const routeId of route.record_ids)assert.ok(byId.has(routeId),routeId);
  for(const routeId of ['guide-fo-reference-fo-21','guide-fo-reference-fo-23','guide-fo-reference-fo-24'])assert.ok(byId.get(routeId).data.family_office_reference.questions.every(q=>q.status==='discovery-question-not-answered'));
