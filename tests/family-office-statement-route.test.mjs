@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {execFileSync} from 'node:child_process';
 import {editorialHash} from '../scripts/editorial-review.mjs';
-const base='03c8061c3ec2bb0f68ca12f90224f9bd13611c5c';
+const base='57a8148a3fe8ef6a7691733bbd6de6229a126e50';
 const read=p=>JSON.parse(fs.readFileSync(p));
 const previous=p=>JSON.parse(execFileSync('git',['show',`${base}:${p}`],{encoding:'utf8',maxBuffer:64*1024*1024}));
 test('statement-population reading route adds only its declared close brief link and scoped receipt',()=>{

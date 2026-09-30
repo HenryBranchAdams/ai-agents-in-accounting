@@ -15,7 +15,7 @@ function derive(f,scenario){
 }
 
 test('statement population appends one original example and preserves every existing example',()=>{
- const prior=JSON.parse(execFileSync('git',['show','630e6e4:data/corpus/example.json'],{encoding:'utf8',maxBuffer:32*1024*1024}));assert.equal(examples.length,prior.length+1);assert.deepEqual(examples.filter(r=>r.id!==id),prior);
+ const prior=JSON.parse(execFileSync('git',['show','57a8148a3fe8ef6a7691733bbd6de6229a126e50:data/corpus/example.json'],{encoding:'utf8',maxBuffer:32*1024*1024}));assert.equal(examples.length,prior.length+1);assert.deepEqual(examples.filter(r=>r.id!==id),prior);
  validateSchema(record,JSON.parse(readFileSync('schemas/record.schema.json','utf8')),id);
  assert.deepEqual(record.source_ids,[]);assert.equal(record.rights.full_text_stored,false);assert.equal(fixture.classification,'original-synthetic');assert.match(fixture.scope,/independent fictional/);
  const self=record.data.editorial_brief.reading.review.dependencies.find(d=>d.record_id===id);assert.ok(self);assert.equal(self.sha256,editorialHash(record));
