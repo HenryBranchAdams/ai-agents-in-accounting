@@ -57,6 +57,20 @@ test('family-office native reading works on desktop/mobile with and without Java
     await page.locator(`#family-office-reference a[href="${entry}"]`).click();await page.waitForURL(origin+entry);
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Page overflows viewport');
    }
+   const controllerId='guide-family-office-us-accounting';
+   await page.goto(origin+'/records/'+controllerId);
+   await page.getByRole('heading',{name:'What should a family-office controller establish first?',exact:true}).waitFor({state:'visible'});
+   for(const section of records.find(r=>r.id===controllerId).data.editorial_brief.reading.sections)assert.equal(await page.getByRole('heading',{name:section.title,exact:true}).count(),1);
+   assert.ok((await page.locator('#answer').innerText()).includes('six family-office assessments remain partial'));
+   await page.screenshot({path:path.join(directory,`${name}-controller.png`)});
+   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Controller page overflows viewport');
+   const detail=page.getByText('Complete record details',{exact:true});
+   await detail.focus();await page.keyboard.press('Enter');
+   assert.equal(await detail.evaluate(el=>el.parentElement.open),true);
+   await page.keyboard.press('Enter');
+   await page.locator('main a[href="/records/workflow-family-office-entity-close"]').first().click();
+   await page.waitForURL(origin+'/records/workflow-family-office-entity-close');
+   await page.goBack();await page.waitForURL(origin+'/records/'+controllerId);
    assert.deepEqual(errors,[],'Browser console/runtime/assets must be healthy');
    assert.ok(requests.every(url=>new URL(url).origin===origin),'Reading makes only same-origin requests');
    journey.status='passed';

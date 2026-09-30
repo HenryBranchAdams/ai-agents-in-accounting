@@ -233,6 +233,12 @@ test("pilot rights and historical records are preserved; public entry routes sta
       assert.equal(r.reviewed_at, previous.reviewed_at);
       if (!ids.includes(r.id)) {
         const retained = structuredClone(r);
+        // A later controller brief is additive; retain the exact historical
+        // record comparison after removing only this named, reviewed addition.
+        if (r.id === 'guide-family-office-us-accounting') {
+          assert.equal(retained.data.editorial_brief.reading.review.reviewed_at, '2026-09-30');
+          delete retained.data.editorial_brief;
+        }
         // This intake appends evidence only. Every historical byte represented
         // by this record must still match after removing that named addition.
         const appended = retained.data.supplemental_reviews?.filter(review => review.batch === "partnership-foundations-2026-09-27") || [];
