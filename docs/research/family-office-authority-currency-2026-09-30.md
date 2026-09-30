@@ -39,3 +39,7 @@ The September 26-30 interval is unverified; no assertion of absence of later cha
 ## Authored implementation following research
 
 The subsequent implementation adds `src_family_office_ecfr_20260925` to `data/corpus/source.json` and two focused preservation/currency tests. Every pre-existing source byte is retained. The source is supplemental metadata and original synthesis; no guide, accepted question, coverage assessment, catalog or edition artifact is changed in this work package. Integration owns any supplemental reading note and full release validation. The research-only description above records the preceding investigation, not a claim that this implementation changes no files.
+
+## Canonical source linkage
+
+The controller guide declares the one new source in its canonical source list, in addition to the supplemental reading note and dependency receipt. Every prior source link remains in order, and the six original research-question objects and their source lists remain unchanged. The control and close dependency receipts are refreshed for that explicit guide relationship. Preservation tests verify the exact original source list plus this single append before comparing every historical field.

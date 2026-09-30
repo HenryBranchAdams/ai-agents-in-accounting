@@ -236,6 +236,7 @@ test("pilot rights and historical records are preserved; public entry routes sta
         // A later controller brief is additive; retain the exact historical
         // record comparison after removing only this named, reviewed addition.
         if (r.id === 'guide-family-office-us-accounting') {
+          assert.deepEqual(retained.source_ids, [...previous.source_ids, 'src_family_office_ecfr_20260925']);retained.source_ids.pop();
           assert.equal(retained.data.editorial_brief.reading.review.reviewed_at, '2026-09-30');
           delete retained.data.editorial_brief;
         }

@@ -47,7 +47,8 @@ test('supplemental currency note is visible and retrievable without replacing hi
  const[{getRecord,recordMarkdown,records},{executeAgent},{editorialReviewReport},{default:worker}]=await Promise.all([import('../dist/internal/corpus.mjs'),import('../dist/internal/agent.mjs'),import('../scripts/editorial-review.mjs'),import('./worker-fixture.mjs')]);
  const guideId='guide-family-office-us-accounting',guide=getRecord(guideId),brief=guide.data.editorial_brief;
  const historical=JSON.parse(execFileSync('git',['show','caf023cbed4cd651274201708b45501ddc1aa0ad:data/corpus/guide.json'],{encoding:'utf8',maxBuffer:32*1024*1024})).find(r=>r.id===guideId);
- const retained=structuredClone(guide);delete retained.data.editorial_brief;assert.deepEqual(retained,historical);
+ const retained=structuredClone(guide);delete retained.data.editorial_brief;
+ assert.deepEqual(retained.source_ids,[...historical.source_ids,id]);retained.source_ids.pop();assert.deepEqual(retained,historical);
  assert.ok(brief.reading_order.includes(id));
  assert.equal(brief.findings.filter(f=>f.source_ids.includes(id)).length,1);
  assert.equal(editorialReviewReport(records).find(r=>r.record_id===guideId).status,'dependencies-unchanged');
