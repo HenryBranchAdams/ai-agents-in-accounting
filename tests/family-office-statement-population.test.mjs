@@ -59,5 +59,18 @@ test('statement population native exports and bounded retrieval preserve partial
  const response=await worker.fetch(new Request(`https://corpus.example/records/${id}`));assert.equal(response.status,200);const html=await response.text(),md=recordMarkdown(built);for(const marker of ['$50,000','$66,000','4/4','supplied inventory','Missing; unknown']){assert.ok(html.includes(marker),marker);assert.ok(md.includes(marker),marker);}
  const anchor=built.data.editorial_brief.reading.example.anchor;assert.ok(html.includes(`id="${anchor}"`));assert.ok(html.includes(`/records/${id}#${anchor}`));const directory=executeAgent('get',{id,limit:1});assert.ok(directory.sections.some(s=>s.id==='data.statement_population'));
  const passages=[],seen=new Set();let cursor;do{const result=executeAgent('get',{id,section:'data.statement_population',limit:3,...(cursor?{cursor}:{})});passages.push(...result.passages);cursor=result.next_cursor;if(cursor){assert.ok(!seen.has(cursor));seen.add(cursor);assert.ok(seen.size<100);}}while(cursor);
- const text=passages.map(p=>p.text).join('\n');for(const marker of ['not-established','X-UNKNOWN','missing_current_account_ids','supplied_expected_set_total_cents','permission_to_spend'])assert.ok(text.includes(marker),marker);assert.ok(passages.some(p=>p.source_pointers.some(s=>s.startsWith('/data/statement_population/'))));
+ // Passage text normalizes field labels; source pointers preserve canonical JSON keys.
+ const requireLeaf=(suffix,line)=>{const pointer=`/data/statement_population/${suffix}`;assert.ok(passages.some(p=>p.source_pointers.includes(pointer)&&p.text.split('\n').includes(`statement population / ${line}`)),`${pointer}: ${line}`);};
+ requireLeaf('expected_inventory/independently_verified_complete','expected inventory / independently verified complete: false');
+ requireLeaf('scenarios/0/missing_current_account_ids/0','scenarios / 0 / missing current account ids / 0: T-RESERVE');
+ requireLeaf('scenarios/0/missing_current_account_ids/1','scenarios / 0 / missing current account ids / 1: P-SAVINGS');
+ requireLeaf('scenarios/0/supplied_expected_set_total_cents','scenarios / 0 / supplied expected set total cents: null');
+ requireLeaf('scenarios/1/missing_current_account_ids','scenarios / 1 / missing current account ids: []');
+ requireLeaf('scenarios/1/supplied_expected_set_total_cents','scenarios / 1 / supplied expected set total cents: 6600000');
+ requireLeaf('scenarios/1/status','scenarios / 1 / status: supplied-set-document-coverage-only');
+ for(const i of [0,1]){
+  requireLeaf(`scenarios/${i}/inventory_completeness`,`scenarios / ${i} / inventory completeness: not-established`);
+  requireLeaf(`scenarios/${i}/unexpected_account_ids/0`,`scenarios / ${i} / unexpected account ids / 0: X-UNKNOWN`);
+  for(const [key,label] of [['permission_to_spend','permission to spend'],['unexpected_account_membership','unexpected account membership'],['unexpected_account_owner','unexpected account owner']])requireLeaf(`scenarios/${i}/${key}`,`scenarios / ${i} / ${label}: null`);
+ }
 });
