@@ -130,6 +130,15 @@ test('the intake preserves previous source history and unrelated mapping associa
       current.data.supplemental_reviews=current.data.supplemental_reviews.filter(r=>r.batch!==packet.id);
       if(!Object.hasOwn(old.data,'supplemental_reviews'))delete current.data.supplemental_reviews;
     }
+    if(old.id==='src_fo_ref_sec_family_rule'){
+      const batch='family-office-ecfr-2026-09-30';
+      assert.equal(current.data.supplemental_reviews.filter(r=>r.batch===batch).length,1);
+      current.data.supplemental_reviews=current.data.supplemental_reviews.filter(r=>r.batch!==batch);
+      if(!Object.hasOwn(old.data,'supplemental_reviews')){
+        assert.deepEqual(current.data.supplemental_reviews,[],'No other source-history append is permitted');
+        delete current.data.supplemental_reviews;
+      }
+    }
     assert.deepEqual(current,old,`${old.id}: historical source changed beyond appended evidence`);
   }
   const current=JSON.parse(fs.readFileSync('data/coverage/mapping-overrides.json'));
