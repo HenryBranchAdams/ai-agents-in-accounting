@@ -8,7 +8,7 @@ import {
   knowledge,
   coverage,
 } from "./corpus";
-import { expandQuery, expandIndexedText, normalizeJurisdiction } from "./knowledge";
+import { expandQuery, expandIndexedText, numericTokens, numericQuerySpecificity, normalizeJurisdiction } from "./knowledge";
 import {
   agentSchemaVersion,
   inputSchemas,
@@ -203,7 +203,7 @@ function makePassages(r: CorpusRecord): Passage[] {
 }
 const index = records.map((record) => {
   const passages = makePassages(record);
-  return {
+  const item = {
     record,
     get passages() { return makePassages(record); },
     title: expandIndexedText(record.title),
@@ -232,6 +232,7 @@ const index = records.map((record) => {
       ].join("\n").replace(/\b(?:source-checked|editorially-reviewed|inherited(?:-[a-z]+)*-not-reverified)\b/g, ""),
     ),
   };
+  return Object.assign(item, { numericTokens: numericTokens(item.text + " " + item.facets) });
 });
 const indexedById = new Map(index.map((item) => [item.record.id, item]));
 const reviewStatuses = [...new Set(records.map((r) => r.review_status))].sort();
@@ -281,6 +282,7 @@ function termsFor(q: string) {
 function find(input: QueryInput) {
   verifyFilters(input);
   const terms = termsFor(input.q);
+  const numericTerms = terms.filter(t => /^\d+$/.test(t));
   const collection = input.collection ? getRecord(input.collection) : null;
   return index
     .filter(
@@ -326,6 +328,7 @@ function find(input: QueryInput) {
       const start = Math.max(0, hit - 70);
       return {
         ...item,
+        numericSpecificity: numericQuerySpecificity(item.numericTokens, numericTerms),
         match: {
           score: terms.reduce(
             (score, t) =>
@@ -344,6 +347,7 @@ function find(input: QueryInput) {
     })
     .sort(
       (a, b) =>
+        b.numericSpecificity - a.numericSpecificity ||
         b.match.score - a.match.score ||
         a.record.title.localeCompare(b.record.title) ||
         a.record.id.localeCompare(b.record.id),
@@ -524,7 +528,7 @@ function searchCorpus(args: SearchInput) {
       filterNames.filter((k) => args[k] !== undefined).map((k) => [k, args[k]]),
     ),
     ranking:
-      "Lexical relevance: title 12, summary 5, metadata 2, body 1 per term; title then ID break ties. Not an evidence-quality score.",
+      "Lexical relevance: distinct exact plain-numeric query tokens first (hyphenated and decimal identifiers remain distinct), then lexical score (title 12, summary 5, metadata 2, body 1 per term); title then ID break ties. Not an evidence-quality score.",
     ...pagination("search", args, found.length, offset, selected.length),
     results: selected.map((item) => ({
       ...card(item.record),
