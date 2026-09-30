@@ -13,7 +13,7 @@ import ecosystems from "../data/corpus/ecosystem.json";
 import guides from "../data/corpus/guide.json";
 import collections from "../data/corpus/collection.json";
 import examples from "../data/corpus/example.json";
-import { createKnowledgeIndex, expandQuery, expandIndexedText, normalizeJurisdiction, type Profile } from "./knowledge";
+import { createKnowledgeIndex, expandQuery, expandIndexedText, numericTokens, numericQuerySpecificity, normalizeJurisdiction, type Profile } from "./knowledge";
 import { createCoverageIndex } from "./coverage";
 export { expandQuery } from "./knowledge";
 
@@ -87,12 +87,16 @@ const normalize = (s: string) =>
     .normalize("NFKD")
     .replace(/[\u0300-\u036f]/g, "")
     .toLowerCase();
-const indexed = records.map((r) => ({
-  r,
-  title: expandIndexedText(r.title),
-  summary: expandIndexedText(r.summary),
-  text: expandIndexedText(JSON.stringify(r)),
-}));
+const indexed = records.map((r) => {
+  const text = expandIndexedText(JSON.stringify(r));
+  return {
+    r,
+    title: expandIndexedText(r.title),
+    summary: expandIndexedText(r.summary),
+    text,
+    numericTokens: numericTokens(text),
+  };
+});
 const values = (fn: (r: CorpusRecord) => string[]) =>
   [...new Set(records.flatMap(fn))]
     .filter(Boolean)
@@ -143,6 +147,7 @@ export function search(params: URLSearchParams) {
   const limit = number("limit", 20, 100);
   let terms: string[] = [];
   try { terms = q ? expandQuery(q) : []; } catch { throw new QueryError("Close every quoted phrase."); }
+  const numericTerms = terms.filter(t => /^\d+$/.test(t));
   const topic = params.get("topic");
   const industry = params.get("industry");
   const naics = params.get('naics'), questionFamily = params.get('question_family');
@@ -178,6 +183,7 @@ export function search(params: URLSearchParams) {
     )
     .map((item) => ({
       ...item,
+      numericSpecificity: numericQuerySpecificity(item.numericTokens, numericTerms),
       score: terms.reduce(
         (sum, t) =>
           sum +
@@ -188,6 +194,7 @@ export function search(params: URLSearchParams) {
     }))
     .sort(
       (a, b) =>
+        b.numericSpecificity - a.numericSpecificity ||
         b.score - a.score ||
         a.r.title.localeCompare(b.r.title) ||
         a.r.id.localeCompare(b.r.id),

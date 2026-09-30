@@ -126,3 +126,13 @@ export function createKnowledgeIndex(records: KnowledgeRecord[]) {
   };
   return { profiles, byId, profile: (id: string) => profiles.get(id), relations };
 }
+
+// Preserve substring candidate retrieval while preferring actual numeric tokens
+// over digits embedded in other identifiers (15 versus 115, 15-T or 1.15).
+export function numericTokens(value: string): ReadonlySet<string> {
+  return new Set((value.toLowerCase().match(/[a-z0-9]+(?:[.-][a-z0-9]+)*/g) || []).filter(token => /^\d+$/.test(token)));
+}
+export function numericQuerySpecificity(tokens: ReadonlySet<string>, numericTerms: string[]): number {
+  if (!numericTerms.length) return 0;
+  return new Set(numericTerms.filter(term => tokens.has(term))).size;
+}
