@@ -26948,5 +26948,518 @@
         }
       ]
     }
+  },
+  {
+    "id": "example-family-office-statement-population",
+    "kind": "example",
+    "title": "Family office account-statement population: synthetic completeness exceptions",
+    "summary": "Compare a supplied four-account inventory with current, missing, stale, duplicate and unexpected statement evidence. A partial subtotal and even full supplied-set document coverage do not establish a complete family account population.",
+    "topics": [
+      "Family office accounting",
+      "Statement population completeness"
+    ],
+    "industries": [],
+    "jurisdiction": null,
+    "source_type": "Original synthetic evidence-reconciliation example",
+    "publisher": "Accounting Agents contributors",
+    "source_url": null,
+    "source_ids": [],
+    "related_ids": [
+      "workflow-family-office-entity-close",
+      "control-family-office-ownership-payments",
+      "example-bank-reconciliation",
+      "example-aa-i124-role-routing",
+      "guide-fo-reference-ctx-03",
+      "guide-fo-reference-fo-06"
+    ],
+    "reviewed_at": "2026-09-30",
+    "review_status": "editorially-reviewed",
+    "provenance": {
+      "added_on": "2026-09-30",
+      "reviewer": "Codex AI-assisted original synthetic design",
+      "scope": "Supplied-set arithmetic, evidence identity and explicit uncertainty; no publisher, legal or professional review.",
+      "research_file": "docs/research/family-office-statement-population-2026-09-30.md",
+      "note": "Original independent fictional fixture. Existing examples and source records are preserved; no operational or professional verification."
+    },
+    "rights": {
+      "metadata": "CC0-1.0",
+      "content": "CC-BY-4.0",
+      "external_content": "Original fictional example only. Related external publications retain their own rights; no publisher text or reuse permission supplied.",
+      "full_text_stored": false
+    },
+    "data": {
+      "statement_population": {
+        "classification": "original-synthetic",
+        "currency": "USD",
+        "unit": "cents",
+        "target_period_start": "2026-09-01",
+        "target_period_end": "2026-09-30",
+        "scope": "An independent fictional administrative fixture; none of these balances revise the existing four-entity close or represent actual accounts.",
+        "assumptions": [
+          "The inventory is a supplied expected set, not independently established complete family ownership. Entity aliases are stipulated register entries, not verified title.",
+          "Each statement amount is its cash component only. Securities, other assets, valuation, legal ownership and permitted use are not inferred.",
+          "Duplicate delivery A-copy explicitly refers to the same statement A. Current-period evidence must match both period endpoints and account identity.",
+          "Initial and later states retain every delivery in their selected population. Missing current-period balances stay null, and stale amounts are not carried forward.",
+          "The unexpected account remains an open inventory-membership exception even after every supplied expected account has current evidence."
+        ],
+        "expected_inventory": {
+          "id": "INVENTORY-FO-SYNTHETIC",
+          "as_of": "2026-09-30",
+          "evidence_id": "EVIDENCE-INVENTORY",
+          "scope": "Four supplied account aliases for this invented administrative statement collection",
+          "independently_verified_complete": false,
+          "accounts": [
+            {
+              "id": "O-OPERATING",
+              "stipulated_register_entity": "O"
+            },
+            {
+              "id": "I-CUSTODY",
+              "stipulated_register_entity": "I"
+            },
+            {
+              "id": "T-RESERVE",
+              "stipulated_register_entity": "T"
+            },
+            {
+              "id": "P-SAVINGS",
+              "stipulated_register_entity": "P"
+            }
+          ]
+        },
+        "statements": [
+          {
+            "id": "A",
+            "account_id": "O-OPERATING",
+            "period_start": "2026-09-01",
+            "period_end": "2026-09-30",
+            "currency": "USD",
+            "measure": "cash-component-only",
+            "cash_cents": 2000000,
+            "evidence_id": "EVIDENCE-A"
+          },
+          {
+            "id": "B",
+            "account_id": "I-CUSTODY",
+            "period_start": "2026-09-01",
+            "period_end": "2026-09-30",
+            "currency": "USD",
+            "measure": "cash-component-only",
+            "cash_cents": 3000000,
+            "evidence_id": "EVIDENCE-B"
+          },
+          {
+            "id": "C",
+            "account_id": "P-SAVINGS",
+            "period_start": "2026-08-01",
+            "period_end": "2026-08-31",
+            "currency": "USD",
+            "measure": "cash-component-only",
+            "cash_cents": 800000,
+            "evidence_id": "EVIDENCE-C"
+          },
+          {
+            "id": "X",
+            "account_id": "X-UNKNOWN",
+            "period_start": "2026-09-01",
+            "period_end": "2026-09-30",
+            "currency": "USD",
+            "measure": "cash-component-only",
+            "cash_cents": 5000000,
+            "evidence_id": "EVIDENCE-X"
+          },
+          {
+            "id": "D",
+            "account_id": "T-RESERVE",
+            "period_start": "2026-09-01",
+            "period_end": "2026-09-30",
+            "currency": "USD",
+            "measure": "cash-component-only",
+            "cash_cents": 700000,
+            "evidence_id": "EVIDENCE-D"
+          },
+          {
+            "id": "E",
+            "account_id": "P-SAVINGS",
+            "period_start": "2026-09-01",
+            "period_end": "2026-09-30",
+            "currency": "USD",
+            "measure": "cash-component-only",
+            "cash_cents": 900000,
+            "evidence_id": "EVIDENCE-E"
+          }
+        ],
+        "deliveries": [
+          {
+            "id": "DEL-A",
+            "statement_id": "A",
+            "received_on": "2026-10-02",
+            "duplicate_of_delivery_id": null
+          },
+          {
+            "id": "DEL-A-COPY",
+            "statement_id": "A",
+            "received_on": "2026-10-03",
+            "duplicate_of_delivery_id": "DEL-A"
+          },
+          {
+            "id": "DEL-B",
+            "statement_id": "B",
+            "received_on": "2026-10-02",
+            "duplicate_of_delivery_id": null
+          },
+          {
+            "id": "DEL-C",
+            "statement_id": "C",
+            "received_on": "2026-10-02",
+            "duplicate_of_delivery_id": null
+          },
+          {
+            "id": "DEL-X",
+            "statement_id": "X",
+            "received_on": "2026-10-03",
+            "duplicate_of_delivery_id": null
+          },
+          {
+            "id": "DEL-D",
+            "statement_id": "D",
+            "received_on": "2026-10-05",
+            "duplicate_of_delivery_id": null
+          },
+          {
+            "id": "DEL-E",
+            "statement_id": "E",
+            "received_on": "2026-10-05",
+            "duplicate_of_delivery_id": null
+          }
+        ],
+        "evidence_register": [
+          {
+            "id": "EVIDENCE-INVENTORY",
+            "synthetic": true,
+            "purpose": "Invented supplied expected account list; no independent completeness verification."
+          },
+          {
+            "id": "EVIDENCE-A",
+            "synthetic": true,
+            "purpose": "Invented statement identity, period and cash-component reference for A; no actual statement body."
+          },
+          {
+            "id": "EVIDENCE-B",
+            "synthetic": true,
+            "purpose": "Invented statement identity, period and cash-component reference for B; no actual statement body."
+          },
+          {
+            "id": "EVIDENCE-C",
+            "synthetic": true,
+            "purpose": "Invented statement identity, period and cash-component reference for C; no actual statement body."
+          },
+          {
+            "id": "EVIDENCE-X",
+            "synthetic": true,
+            "purpose": "Invented statement identity, period and cash-component reference for X; no actual statement body."
+          },
+          {
+            "id": "EVIDENCE-D",
+            "synthetic": true,
+            "purpose": "Invented statement identity, period and cash-component reference for D; no actual statement body."
+          },
+          {
+            "id": "EVIDENCE-E",
+            "synthetic": true,
+            "purpose": "Invented statement identity, period and cash-component reference for E; no actual statement body."
+          }
+        ],
+        "scenarios": [
+          {
+            "id": "INITIAL",
+            "delivery_ids": [
+              "DEL-A",
+              "DEL-A-COPY",
+              "DEL-B",
+              "DEL-C",
+              "DEL-X"
+            ],
+            "included_statement_ids": [
+              "A",
+              "B"
+            ],
+            "current_expected_account_ids": [
+              "O-OPERATING",
+              "I-CUSTODY"
+            ],
+            "absent_account_ids": [
+              "T-RESERVE"
+            ],
+            "stale_only_account_ids": [
+              "P-SAVINGS"
+            ],
+            "missing_current_account_ids": [
+              "T-RESERVE",
+              "P-SAVINGS"
+            ],
+            "account_current_cash_cents": {
+              "O-OPERATING": 2000000,
+              "I-CUSTODY": 3000000,
+              "T-RESERVE": null,
+              "P-SAVINGS": null
+            },
+            "observed_current_expected_subtotal_cents": 5000000,
+            "supplied_expected_set_total_cents": null,
+            "raw_delivery_amount_sum_cents": 12800000,
+            "coverage": {
+              "current_expected_accounts": 2,
+              "supplied_expected_accounts": 4
+            },
+            "status": "partial-supplied-set-document-coverage",
+            "duplicate_delivery_ids": [
+              "DEL-A-COPY"
+            ],
+            "unexpected_account_ids": [
+              "X-UNKNOWN"
+            ],
+            "stale_statement_ids": [
+              "C"
+            ],
+            "inventory_completeness": "not-established",
+            "unexpected_account_membership": null,
+            "unexpected_account_owner": null,
+            "permission_to_spend": null,
+            "open_questions": [
+              "Does X belong in the declared inventory, and what evidence establishes its owner?",
+              "Is the supplied inventory complete for the actual intended reporting scope?",
+              "What title, rights, restrictions and permitted-use evidence would be needed before relying on these balances?"
+            ]
+          },
+          {
+            "id": "LATER",
+            "delivery_ids": [
+              "DEL-A",
+              "DEL-A-COPY",
+              "DEL-B",
+              "DEL-C",
+              "DEL-X",
+              "DEL-D",
+              "DEL-E"
+            ],
+            "included_statement_ids": [
+              "A",
+              "B",
+              "D",
+              "E"
+            ],
+            "current_expected_account_ids": [
+              "O-OPERATING",
+              "I-CUSTODY",
+              "T-RESERVE",
+              "P-SAVINGS"
+            ],
+            "absent_account_ids": [],
+            "stale_only_account_ids": [],
+            "missing_current_account_ids": [],
+            "account_current_cash_cents": {
+              "O-OPERATING": 2000000,
+              "I-CUSTODY": 3000000,
+              "T-RESERVE": 700000,
+              "P-SAVINGS": 900000
+            },
+            "observed_current_expected_subtotal_cents": 6600000,
+            "supplied_expected_set_total_cents": 6600000,
+            "raw_delivery_amount_sum_cents": 14400000,
+            "coverage": {
+              "current_expected_accounts": 4,
+              "supplied_expected_accounts": 4
+            },
+            "status": "supplied-set-document-coverage-only",
+            "duplicate_delivery_ids": [
+              "DEL-A-COPY"
+            ],
+            "unexpected_account_ids": [
+              "X-UNKNOWN"
+            ],
+            "stale_statement_ids": [
+              "C"
+            ],
+            "inventory_completeness": "not-established",
+            "unexpected_account_membership": null,
+            "unexpected_account_owner": null,
+            "permission_to_spend": null,
+            "open_questions": [
+              "Does X belong in the declared inventory, and what evidence establishes its owner?",
+              "Is the supplied inventory complete for the actual intended reporting scope?",
+              "What title, rights, restrictions and permitted-use evidence would be needed before relying on these balances?"
+            ]
+          }
+        ],
+        "limitations": [
+          "The raw delivery sum mixes duplicate, stale and unexpected evidence and is not a valid financial total.",
+          "Document coverage concerns only the supplied inventory. It establishes neither complete family cash nor family wealth, ownership, custody-rule compliance, valuation or available liquidity.",
+          "No actual account, financial action, ingestion engine, professional assurance, operational control test or live agent efficacy is represented."
+        ]
+      },
+      "editorial_brief": {
+        "question": "Does a reconciled statement subtotal cover the expected family-office account population?",
+        "answer": "Only for the declared evidence set and period. In this separate synthetic fixture, two of four expected accounts have current statements, producing a $50,000 observed subtotal while the supplied-set total remains unknown. Later evidence supports $66,000 for the four supplied accounts, but an unexpected account and unverified inventory completeness remain unresolved.",
+        "findings": [
+          {
+            "claim": "The original fixture separates supplied inventory coverage from observed statement amounts and actual population completeness.",
+            "classification": "original-synthetic",
+            "source_ids": [],
+            "locator": "This record: data.statement_population.expected_inventory and scenarios INITIAL/LATER.",
+            "qualification": "Invented accounting-administration evidence only; no external authority or real-world completeness conclusion."
+          }
+        ],
+        "unknowns": [
+          "Actual complete account population, title, rights, restrictions and permitted use.",
+          "Initial current balances of T-RESERVE and P-SAVINGS.",
+          "Inventory membership and owner of X-UNKNOWN in both states."
+        ],
+        "reading_order": [
+          "workflow-family-office-entity-close",
+          "control-family-office-ownership-payments",
+          "example-bank-reconciliation",
+          "example-aa-i124-role-routing",
+          "guide-fo-reference-ctx-03",
+          "guide-fo-reference-fo-06"
+        ],
+        "reading": {
+          "scope": "Independent fictional statement-population exercise in USD; original close amounts are unchanged.",
+          "critical_limitation": "Even 4/4 document coverage is only coverage of a supplied inventory. It is not proof of complete family assets, ownership, valuation or spendable cash.",
+          "sections": [
+            {
+              "title": "Reconcile the expected set before labeling a total",
+              "paragraphs": [
+                "A supplied inventory lists four account aliases. September statements A and B cover O and I with $20,000 and $30,000 cash components. T has no delivery; P has only an August statement. The $50,000 observed subtotal does not fill either missing September balance with zero.",
+                "Statement X shows $50,000 but is not in the supplied inventory. Keep its membership and owner unresolved. Do not silently add it or conclude that absence from the inventory proves it is unrelated."
+              ]
+            },
+            {
+              "title": "Retain duplicates and stale evidence without counting them as current",
+              "paragraphs": [
+                "The second delivery of A is explicitly identified as the same statement. It remains in the evidence history and contributes no second amount. P’s August $8,000 is retained with its date; it is not September evidence.",
+                "Adding all initial delivery amounts produces $128,000 by mixing a duplicate, stale evidence and an unexpected account. That number is an invalid comparison illustrating the error, not a financial total."
+              ]
+            },
+            {
+              "title": "All supplied accounts can be covered while inventory questions remain open",
+              "paragraphs": [
+                "Later synthetic September statements provide T $7,000 and P $9,000. The supplied four-account cash-component total becomes $66,000, with 4/4 current document coverage.",
+                "X remains an unresolved membership/ownership exception, and the supplied inventory is still not independently verified complete. No legal title, custody-rule, investment valuation or spending authority follows from statement coverage."
+              ]
+            }
+          ],
+          "example": {
+            "title": "Supplied inventory evidence by account",
+            "classification": "original-synthetic",
+            "record_id": "example-family-office-statement-population",
+            "anchor": "record-content",
+            "assumptions": "Independent invented accounts and amounts; original four-entity close unchanged. Entity aliases are supplied register labels only.",
+            "columns": [
+              "Account",
+              "Initial evidence",
+              "Later evidence"
+            ],
+            "rows": [
+              [
+                "O-OPERATING",
+                "September $20,000",
+                "Same statement"
+              ],
+              [
+                "I-CUSTODY",
+                "September cash $30,000",
+                "Same statement"
+              ],
+              [
+                "T-RESERVE",
+                "Missing; unknown",
+                "September $7,000"
+              ],
+              [
+                "P-SAVINGS",
+                "August only; unknown",
+                "September $9,000"
+              ],
+              [
+                "X-UNKNOWN",
+                "Unexpected $50,000",
+                "Membership unresolved"
+              ]
+            ]
+          },
+          "responsibilities": [
+            {
+              "role": "Evidence preparer",
+              "task": "Compare account and exact-period sets, retain deliveries and label exceptions and subtotal scope.",
+              "boundary": "A matching set does not verify title or inventory completeness."
+            },
+            {
+              "role": "Accountable reviewer",
+              "task": "Resolve inventory membership and obtain independent population, title and restriction evidence as needed.",
+              "boundary": "This example supplies no actual review or authority to operate an account."
+            }
+          ],
+          "exception": {
+            "title": "Missing evidence is not a zero balance",
+            "paragraphs": [
+              "The initial expected-set total is null. The later expected-set total is limited to the stipulated inventory, while X remains unresolved. Neither state is labeled complete family cash."
+            ]
+          },
+          "review": {
+            "reviewed_at": "2026-09-30",
+            "reviewer": "Codex AI-assisted editorial synthesis",
+            "scope": "Original synthetic set reconciliation and contextual reading links; no publisher re-verification, legal or professional classification, control effectiveness or empirical agent review.",
+            "dependencies": [
+              {
+                "record_id": "example-family-office-statement-population",
+                "sha256": "db99dc8514efea8581fadf6bb7476c12369342703de3f5db9d8be4bbc5d98f43"
+              },
+              {
+                "record_id": "workflow-family-office-entity-close",
+                "sha256": "2e2bf182d0720889701e494e0ee0f4699397ebea0c9e51b44d91010470d3f95e"
+              },
+              {
+                "record_id": "control-family-office-ownership-payments",
+                "sha256": "4dae476a7557eec6bcc329a80746ad1bbc23e376603914660b09640a95fdd973"
+              },
+              {
+                "record_id": "example-bank-reconciliation",
+                "sha256": "8b970fa762796c30195093e9364ae152c0d31b8b2a3e34f6e2e905cbbdefc804"
+              },
+              {
+                "record_id": "example-aa-i124-role-routing",
+                "sha256": "6337e5ca2fe5af49af2c214490679f2845a4a6fdbed4889cfbecb59c169b9664"
+              },
+              {
+                "record_id": "guide-fo-reference-ctx-03",
+                "sha256": "8b872ab58245d01bf9a079b4ef355868d85eb55f61142c1082ce15fa58ba871e"
+              },
+              {
+                "record_id": "guide-fo-reference-fo-06",
+                "sha256": "6172fa52d112a157d0746a4a49f63baf5fd095e3f96b654a251fdc0871ed5b7e"
+              }
+            ]
+          }
+        }
+      },
+      "examples": [
+        {
+          "id": "INITIAL",
+          "title": "Partial current-period supplied inventory",
+          "pointer": "/data/statement_population/scenarios/0"
+        },
+        {
+          "id": "LATER",
+          "title": "Later supplied-set document coverage with unresolved inventory",
+          "pointer": "/data/statement_population/scenarios/1"
+        }
+      ],
+      "limitations": [
+        "Synthetic independent fictional scenarios; no real accounts or revision of the existing four-entity close.",
+        "The raw delivery sum mixes duplicate, stale and unexpected evidence and is not a valid financial total.",
+        "Document coverage concerns only the supplied inventory. It establishes neither complete family cash nor family wealth, ownership, custody-rule compliance, valuation or available liquidity.",
+        "No actual account, financial action, ingestion engine, professional assurance, operational control test or live agent efficacy is represented."
+      ]
+    }
   }
 ]
