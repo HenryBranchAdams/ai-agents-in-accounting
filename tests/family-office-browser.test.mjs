@@ -64,6 +64,15 @@ test('family-office native reading works on desktop/mobile with and without Java
    assert.ok((await page.locator('#answer').innerText()).includes('six family-office assessments remain partial'));
    await page.screenshot({path:path.join(directory,`${name}-controller.png`)});
    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Controller page overflows viewport');
+   const currencyId='src_family_office_ecfr_20260925';
+   assert.ok((await page.locator('main').innerText()).includes('Supplemental source-currency note'));
+   await page.locator(`main a[href="/records/${currencyId}"]`).first().click();
+   await page.waitForURL(origin+'/records/'+currencyId);
+   assert.ok((await page.locator('main').innerText()).includes('September 25, 2026'));
+   assert.ok((await page.locator('main').innerText()).includes('September 26-30 changes were not established'));
+   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Currency source page overflows viewport');
+   await page.screenshot({path:path.join(directory,`${name}-currency-source.png`)});
+   await page.goBack();await page.waitForURL(origin+'/records/'+controllerId);
    const detail=page.getByText('Complete record details',{exact:true});
    await detail.focus();await page.keyboard.press('Enter');
    assert.equal(await detail.evaluate(el=>el.parentElement.open),true);
