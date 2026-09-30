@@ -1,10 +1,10 @@
 # Family-office exclusion: bounded source-currency increment
 
-Research observation date: 2026-09-30 UTC. Owner: authority_research. Read-only investigation; no repository edits, professional review, operational validation, or full-text ingestion.
+Research observation date: 2026-09-30 UTC. Owner: authority_research. Selected-source investigation followed by a bounded supplemental review; no professional review, operational validation or full-text ingestion.
 
 ## Decision
 
-A narrow metadata-and-original-summary source addition is supportable. It can supplement the historical 2011 source with the eCFR text displayed as current through **2026-09-25**, and explain the **2016 removal of expired transition provisions**. It cannot establish currency through September 30 or settle entity-specific adviser status. Preserve the existing historical source and the accepted research question; retain partial coverage and all other authority gaps.
+A narrow metadata-and-original-summary supplemental review is supportable. It can supplement the historical 2011 source with the eCFR text displayed as current through **2026-09-25**, and explain the **2016 removal of expired transition provisions**. It cannot establish currency through September 30 or settle entity-specific adviser status. Preserve the existing historical source and the accepted research question; retain partial coverage and all other authority gaps.
 
 The web fetch tool could not retrieve the eCFR section, but the supported in-app browser successfully displayed the government page and its publication-date banner. This is an observed source reading, not an inference from search snippets.
 
@@ -26,20 +26,20 @@ Do not shorten this to “current law verified September 30” or “single-fami
 
 ## Safe implementation scope for integration owner
 
-- Add a new stable source, provisionally `src_family_office_ecfr_20260925`, rather than rewriting `src_family_office_sec_2011_rule` into a current source. Keep the existing historical URL, review date and rights intact.
-- Record observation date separately from publisher currency date and amendment effective date. Classification can be `source-checked` with `substantive-excerpt` scope if the integration owner verifies this research receipt; never professional review.
+- Reuse `src_fo_ref_sec_family_rule`, the existing identity for this exact eCFR URL. Append batch `family-office-ecfr-2026-09-30` under `data.supplemental_reviews`. Preserve every prior field, including discovery annotations, null review date, discovery status and rights; also preserve the distinct historical 2011 source.
+- Record observation date separately from publisher currency date and amendment effective date. The supplemental review has `substantive-excerpt` scope; it does not overwrite the source’s original discovery status or establish professional review.
 - Store only URLs, locators, dates, original summary, provenance and limitations. Keep `full_text_stored: false` and unknown external reuse rights. The government-domain/legal-status page alone should not trigger broad rights or training-permission changes.
-- Add a bounded editorial currency note linked to the new source without changing the six accepted research questions or their answers. Explicitly identify this as supplemental evidence. Do not upgrade partial assessments or refresh unrelated source reviews. Check any editorial dependency hashes affected by additions.
+- Add a bounded editorial currency note linked to the reused source without changing the six accepted research questions or their answers. Explicitly identify this as supplemental evidence. Do not upgrade partial assessments or refresh unrelated source reviews. Check any editorial dependency hashes affected by additions.
 - Structural/export tests should verify date distinctions, source routing, preservation and limitations. Such tests demonstrate corpus behavior, not legal validity or actual live agent efficacy.
 
 ## Remaining limits / stopping condition
 
 The September 26-30 interval is unverified; no assertion of absence of later changes. No comprehensive current CFR/Federal Register/LSA audit, later interpretive releases, court decisions, exemptive orders, state adviser laws, or entity documents was undertaken. The narrow published-source claim is ready for independent review. A broader legal-currentness claim remains blocked by these missing checks and must not ship as established.
 
-## Authored implementation following research
+## Authored implementation and source-identity correction
 
-The subsequent implementation adds `src_family_office_ecfr_20260925` to `data/corpus/source.json` and two focused preservation/currency tests. Every pre-existing source byte is retained. The source is supplemental metadata and original synthesis; no guide, accepted question, coverage assessment, catalog or edition artifact is changed in this work package. Integration owns any supplemental reading note and full release validation. The research-only description above records the preceding investigation, not a claim that this implementation changes no files.
+The final source design appends one named supplemental review to `src_fo_ref_sec_family_rule`. The unreleased duplicate identity was removed after importer tests identified the exact URL collision. The existing source population stays at 917 records. Every historical field and source record is retained; only this named review is added. No importer identity guard is weakened. Observation date, displayed currency, title-level amendment date, selected locators, checks and limitations are nested in this review. External reuse rights remain unknown and full-text storage remains false.
 
 ## Canonical source linkage
 
-The controller guide declares the one new source in its canonical source list, in addition to the supplemental reading note and dependency receipt. Every prior source link remains in order, and the six original research-question objects and their source lists remain unchanged. The control and close dependency receipts are refreshed for that explicit guide relationship. Preservation tests verify the exact original source list plus this single append before comparing every historical field.
+The controller guide appends the reused source ID to its original source list, alongside the supplemental reading note and dependency receipt. Every prior source link remains in order, and all six original research-question objects and source lists remain unchanged. Control and close dependency receipts reflect that explicit guide relationship. Focused preservation tests remove only the named supplemental review or guide link before comparing historical fields. Source and guide retrieval tests use the supplemental-review path, and the browser check opens the native record-details disclosure before inspecting that evidence. No UI component change is required.

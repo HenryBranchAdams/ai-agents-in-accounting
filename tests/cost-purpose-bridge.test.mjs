@@ -87,13 +87,19 @@ test('additions preserve all prior records, source rights, mappings, assessments
       // The later controller increment appends one separately reviewed brief;
       // all pre-existing fields still satisfy this exact preservation contract.
       if(old.id==='guide-family-office-us-accounting'){
-        assert.deepEqual(retained.source_ids,[...old.source_ids,'src_family_office_ecfr_20260925']);retained.source_ids.pop();
+        assert.deepEqual(retained.source_ids,[...old.source_ids,'src_fo_ref_sec_family_rule']);retained.source_ids.pop();
         assert.equal(retained.data.editorial_brief.reading.review.reviewed_at,'2026-09-30');
         delete retained.data.editorial_brief;
       }
       if(old.id==='example-family-office-four-entity-close'){
         assert.equal(retained.data.tax_document_lineage.classification,'original-synthetic');
         for(const key of ['editorial_brief','tax_document_lineage'])delete retained.data[key];
+      }
+      if(old.id==='src_fo_ref_sec_family_rule'){
+        const batch='family-office-ecfr-2026-09-30';
+        assert.equal(retained.data.supplemental_reviews.filter(r=>r.batch===batch).length,1);
+        retained.data.supplemental_reviews=retained.data.supplemental_reviews.filter(r=>r.batch!==batch);
+        if(!Object.hasOwn(old.data,'supplemental_reviews'))delete retained.data.supplemental_reviews;
       }
       assert.deepEqual(retained,old,old.id);
     }
