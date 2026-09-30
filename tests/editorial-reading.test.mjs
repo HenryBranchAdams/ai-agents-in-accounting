@@ -239,6 +239,10 @@ test("pilot rights and historical records are preserved; public entry routes sta
           assert.equal(retained.data.editorial_brief.reading.review.reviewed_at, '2026-09-30');
           delete retained.data.editorial_brief;
         }
+        if (r.id === 'control-family-office-ownership-payments') {
+          assert.equal(retained.data.event_handoff.classification, 'original-editorial-proposal');
+          for (const key of ['editorial_brief', 'event_handoff']) delete retained.data[key];
+        }
         if (r.id === 'workflow-family-office-entity-close') {
           assert.equal(retained.data.reporting_policy.classification, 'original-editorial-proposal');
           assert.equal(retained.data.reporting_bridge.classification, 'original-synthetic');

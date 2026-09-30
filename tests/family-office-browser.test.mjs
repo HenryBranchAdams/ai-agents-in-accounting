@@ -4,6 +4,14 @@ import path from 'node:path';
 import fs from 'node:fs';
 import {productionBrowser} from './browser-support/production.mjs';
 
+async function followSuggestedReading(page,id){
+ const disclosure=page.getByText('Complete reading order',{exact:true});
+ if(!await disclosure.evaluate(el=>el.parentElement.open)){
+  await disclosure.focus();await page.keyboard.press('Enter');
+ }
+ await page.locator(`#suggested-reading a[href="/records/${id}"]`).first().click();
+}
+
 // Flow: library search -> native collection -> topic/source/context -> Back/Forward.
 // The same built pages must remain readable with JavaScript disabled.
 test('family-office native reading works on desktop/mobile with and without JavaScript',{timeout:180000},async t=>{
@@ -75,6 +83,19 @@ test('family-office native reading works on desktop/mobile with and without Java
    assert.ok((await page.locator('#answer').innerText()).includes('Missing values and transfer permissions remain unknown'));
    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Close-policy page overflows viewport');
    await page.screenshot({path:path.join(directory,`${name}-close-policy.png`)});
+   const eventId='control-family-office-ownership-payments';
+   await followSuggestedReading(page,eventId);
+   await page.waitForURL(origin+'/records/'+eventId);
+   await page.getByRole('heading',{name:'What should a family-office controller hand to a specialist when an event changes the evidence?',exact:true}).waitFor({state:'visible'});
+   assert.ok((await page.locator('#worked-example').innerText()).includes('$4,000'));
+   assert.ok((await page.locator('#answer').innerText()).includes('Preserve unresolved questions after a partial response'));
+   const eventDetail=page.getByText('Complete record details',{exact:true});
+   await eventDetail.focus();await page.keyboard.press('Enter');
+   assert.equal(await eventDetail.evaluate(el=>el.parentElement.open),true);
+   await page.keyboard.press('Enter');
+   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Event-packet page overflows viewport');
+   await page.screenshot({path:path.join(directory,`${name}-event-packet.png`)});
+   await page.goBack();await page.waitForURL(origin+'/records/workflow-family-office-entity-close');
    await page.goBack();await page.waitForURL(origin+'/records/'+controllerId);
    assert.deepEqual(errors,[],'Browser console/runtime/assets must be healthy');
    assert.ok(requests.every(url=>new URL(url).origin===origin),'Reading makes only same-origin requests');
