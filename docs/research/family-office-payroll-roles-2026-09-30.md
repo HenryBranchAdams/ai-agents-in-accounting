@@ -12,7 +12,7 @@ The missing useful connection is separating four facts: **what services were per
 
 [IRS Publication 926](https://www.irs.gov/publications/p926), live page headed **Publication 926 (2026)** and **For use in 2026**, read with supported browser; page last reviewed/updated **30-Apr-2026**. Selected locators:
 
-- “Do You Have a Household Employee?” (`#id11`): control of both the task and its manner matters.
+- “Do You Have a Household Employee?” (`#en_US_2026_publink100086722`): control of both the task and its manner matters.
 - “Household work” (`#en_US_2026_publink100086724`): work in/around a private home; private secretary, tutor and librarian services are excluded even at home.
 - “Workers who aren’t your employees” (`#en_US_2026_publink100086725`): worker-controlled independent business and agency-controlled work are distinct branches.
 - “Payment option for business employers” (`#en_US_2026_publink100086762`) and “Business employment tax returns” (`#en_US_2026_publink100086772`): the specified business/farm-owner reporting choice can place household employment taxes on business returns instead of Schedule H; it does not permit the stated Schedule C/F deduction for household wages/taxes.

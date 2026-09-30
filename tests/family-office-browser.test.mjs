@@ -72,6 +72,15 @@ test('family-office native reading works on desktop/mobile with and without Java
    assert.ok((await page.locator('#answer').innerText()).includes('six family-office assessments remain partial'));
    await page.screenshot({path:path.join(directory,`${name}-controller.png`)});
    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Controller page overflows viewport');
+   const payrollId='guide-family-office-payroll-roles';
+   await followSuggestedReading(page,payrollId);await page.waitForURL(origin+'/records/'+payrollId);
+   await page.getByRole('heading',{name:'What evidence distinguishes household work, office-company employment and payment administration?',exact:true}).waitFor({state:'visible'});
+   assert.ok((await page.locator('#answer').innerText()).includes('Mixed or conflicting facts remain unresolved'));
+   assert.ok((await page.locator('#worked-example').innerText()).includes('U: mixed duties'));
+   assert.ok((await page.locator('#worked-example').innerText()).includes('Unresolved'));
+   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Payroll-role page overflows viewport');
+   await page.screenshot({path:path.join(directory,`${name}-payroll-roles.png`)});
+   await page.goBack();await page.waitForURL(origin+'/records/'+controllerId);
    const currencyId='src_family_office_ecfr_20260925';
    assert.ok((await page.locator('main').innerText()).includes('Supplemental source-currency note'));
    await followSuggestedReading(page,currencyId);

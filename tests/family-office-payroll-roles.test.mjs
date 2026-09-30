@@ -70,9 +70,10 @@ test('reading table preserves all cases and declared evidence dependencies',()=>
  assert.deepEqual([...cases.keys()],['H','O','U','F']);
  const brief=guide.data.editorial_brief, reading=brief.reading;
  assert.equal(reading.example.classification,'original-synthetic');
- assert.deepEqual(reading.example.rows,guide.data.synthetic_cases.map(c=>[
-  `${c.id}: ${c.title}`,c.facts.join(' '),`${c.research_route??'Unresolved'} — ${c.boundary}`
- ]));
+ const routeLabels={'household-employment':'Household route only','office-employment':'Office route only','household-employment-with-stipulated-reporting-option':'Household; reporting choice stipulated'};
+ assert.deepEqual(reading.example.rows.map(row=>row[0].split(':')[0]),[...cases.keys()]);
+ assert.deepEqual(reading.example.rows.map(row=>row.slice(1)),guide.data.synthetic_cases.map(c=>[c.control_holder??'Unresolved',routeLabels[c.research_route]??'Unresolved']));
+ assert.ok(reading.sections[0].paragraphs.some(p=>p.includes('supplied assumptions')));
  for(const row of reading.example.rows)assert.equal(row.length,reading.example.columns.length);
  const dependencies=new Map(reading.review.dependencies.map(d=>[d.record_id,d.sha256]));
  assert.equal(dependencies.size,reading.review.dependencies.length);
@@ -82,4 +83,37 @@ test('reading table preserves all cases and declared evidence dependencies',()=>
  for(const f of brief.findings)for(const id of f.source_ids)assert.ok(dependencies.has(id)&&guide.source_ids.includes(id));
  for(const c of cases.values())for(const id of c.source_ids)assert.ok(guide.source_ids.includes(id));
  assert.equal(editorialReviewReport(records).find(r=>r.record_id===guide.id).status,'dependencies-unchanged');
+});
+
+test('payroll integration preserves prior guides and source evidence with one declared reading connection',()=>{
+ const prior=JSON.parse(readFileSync('data/releases/2026-09-30.5/corpus.json','utf8')).records;
+ const oldGuides=prior.filter(r=>r.kind==='guide');assert.equal(records.filter(r=>r.kind==='guide').length,oldGuides.length+1);
+ for(const old of oldGuides){
+  const retained=structuredClone(byId.get(old.id));
+  if(old.id==='guide-family-office-us-accounting'){
+   const current=retained.data.editorial_brief,previous=old.data.editorial_brief;
+   assert.deepEqual(current.reading_order,[...previous.reading_order,guide.id]);current.reading_order.pop();
+   assert.deepEqual(current.reading.review.dependencies,[...previous.reading.review.dependencies,{record_id:guide.id,sha256:editorialHash(guide)}]);current.reading.review.dependencies.pop();
+   assert.equal(current.reading.review.scope,previous.reading.review.scope+' The separately scoped payroll-role guide was checked for consistent household, company and payment-administrator boundaries; professional classification remains outside this orientation.');current.reading.review.scope=previous.reading.review.scope;
+   const section=current.reading.sections.find(s=>s.title==='8. People and service operations'),priorSection=previous.reading.sections.find(s=>s.title===section.title);
+   assert.deepEqual(section.paragraphs,[...priorSection.paragraphs,'The separate household and office payroll guide compares stipulated household work, company administration and unresolved mixed duties. Its selected 2026 IRS passages support research routing; home location, a paying account or Form 941 alone does not establish employer identity or a business deduction.']);section.paragraphs.pop();
+  }
+  assert.deepEqual(retained,old,old.id);
+ }
+ for(const old of prior.filter(r=>r.kind==='source'))assert.deepEqual(byId.get(old.id),old,old.id);
+});
+
+test('payroll reading and bounded retrieval retain conditional roles and unresolved facts',async()=>{
+ const[{getRecord,recordMarkdown},{executeAgent},{default:worker}]=await Promise.all([import('../dist/internal/corpus.mjs'),import('../dist/internal/agent.mjs'),import('./worker-fixture.mjs')]);
+ const built=getRecord(guide.id);assert.deepEqual(built,guide);
+ const response=await worker.fetch(new Request(`https://corpus.example/records/${guide.id}`));assert.equal(response.status,200);
+ const html=await response.text(),md=recordMarkdown(built);
+ for(const marker of ['Mixed or conflicting facts remain unresolved','U: mixed duties','Unresolved']){assert.ok(html.includes(marker),marker);assert.ok(md.includes(marker),marker);}
+ const anchor=built.data.editorial_brief.reading.example.anchor;assert.ok(html.includes(`id="${anchor}"`));assert.ok(html.includes(`/records/${guide.id}#${anchor}`));
+ for(const id of guide.source_ids)assert.ok(html.includes(`/records/${id}`),id);
+ const directory=executeAgent('get',{id:guide.id,limit:1});assert.ok(directory.sections.some(s=>s.id==='data.synthetic_cases'));
+ let cursor;const passages=[],seen=new Set();
+ do{const result=executeAgent('get',{id:guide.id,section:'data.synthetic_cases',limit:2,...(cursor?{cursor}:{})});passages.push(...result.passages);cursor=result.next_cursor;if(cursor){assert.ok(!seen.has(cursor));seen.add(cursor);assert.ok(seen.size<100);}}while(cursor);
+ const text=passages.map(p=>p.text).join('\n');for(const marker of ['conditional-on-stipulated-facts','unresolved','individual-H','company-O'])assert.ok(text.includes(marker),marker);
+ assert.ok(passages.some(p=>p.source_pointers.some(pointer=>pointer.startsWith('/data/synthetic_cases/'))));
 });
