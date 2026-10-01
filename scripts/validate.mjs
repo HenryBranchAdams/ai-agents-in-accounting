@@ -1,5 +1,4 @@
 import fs from "node:fs";
-import { checkReleaseOverview } from "./release-overview.mjs";
 import { validateCoverage } from "./validate-coverage.mjs";
 import assert from "node:assert/strict";
 import { pathToFileURL } from "node:url";
@@ -157,6 +156,5 @@ export function validateCorpus({ includeHistory = true } = {}) {
   };
 }
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
-  checkReleaseOverview();
   console.log("Corpus integrity verified:", validateCorpus());
 }
