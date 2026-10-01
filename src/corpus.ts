@@ -13,9 +13,9 @@ import ecosystems from "../data/corpus/ecosystem.json";
 import guides from "../data/corpus/guide.json";
 import collections from "../data/corpus/collection.json";
 import examples from "../data/corpus/example.json";
-import { createKnowledgeIndex, expandQuery, expandIndexedText, numericTokens, numericQuerySpecificity, normalizeJurisdiction, type Profile } from "./knowledge";
+import { createKnowledgeIndex, expandQuery, expandIndexedText, numericTokens, numericQuerySpecificity, normalizeJurisdiction, applicabilityExclusion, type Profile } from "./knowledge";
 import { createCoverageIndex } from "./coverage";
-export { expandQuery } from "./knowledge";
+export { expandQuery, createKnowledgeIndex, applicabilityExclusion } from "./knowledge";
 
 export type Json =
   string | number | boolean | null | Json[] | { [key: string]: Json };
@@ -177,7 +177,7 @@ export function search(params: URLSearchParams) {
         (!framework || knowledge.profile(r.id)?.scope.frameworks.includes(framework)) &&
         (!entity || knowledge.profile(r.id)?.scope.entities.includes(entity)) &&
         (!product || knowledge.profile(r.id)?.scope.products.includes(product)) &&
-        (!asOf || (() => { const p = knowledge.profile(r.id)?.scope.period; const full = (v: string | null) => !!v && /^\d{4}-\d{2}-\d{2}$/.test(v); return !!p && full(p.effective_from) && p.effective_from! <= asOf && (!p.effective_to || (full(p.effective_to) && p.effective_to >= asOf)); })()) &&
+        (!asOf || !applicabilityExclusion(knowledge.profile(r.id)?.scope.period, asOf)) &&
         (!collection || collection.source_ids.includes(r.id)) &&
         terms.every((t) => text.includes(t)),
     )
