@@ -1,3 +1,4 @@
+import {assertApplicabilityReviewState, assertPinnedApplicabilityDependencies} from './fixtures/family-office-applicability-review.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -84,9 +85,9 @@ test('tax lineage exports and paginated retrieval retain amounts, identities and
  const built=getRecord(id);assert.deepEqual(built,example);const byId=new Map(records.map(r=>[r.id,r]));
  const expected=[id,'guide-family-office-us-accounting','workflow-family-office-entity-close','control-family-office-ownership-payments'];
  const reviews=editorialReviewReport(records).filter(r=>expected.includes(r.record_id));
- assert.deepEqual(reviews.map(r=>r.record_id).sort(),expected.sort());assert.ok(reviews.every(r=>r.status==='dependencies-unchanged'));
+ assert.deepEqual(reviews.map(r=>r.record_id).sort(),expected.sort());assertApplicabilityReviewState(reviews);
  assert.match(built.data.editorial_brief.answer,/retains the original four-entity close/);
- for(const d of built.data.editorial_brief.reading.review.dependencies){assert.ok(byId.has(d.record_id));assert.equal(editorialHash(byId.get(d.record_id)),d.sha256,d.record_id);}
+ assertPinnedApplicabilityDependencies(built,byId);
  const response=await worker.fetch(new Request(`https://corpus.example/records/${id}`));assert.equal(response.status,200);const html=await response.text(),md=recordMarkdown(built);
  assert.ok(html.includes(built.data.editorial_brief.question));const anchor=built.data.editorial_brief.reading.example.anchor;assert.ok(html.includes(`id="${anchor}"`));assert.ok(html.includes(`/records/${id}#${anchor}`));
  for(const phrase of ['$12,000','$2,000','$32,000','current selection unknown']){assert.ok(html.includes(phrase),phrase);assert.ok(md.includes(phrase),phrase);}

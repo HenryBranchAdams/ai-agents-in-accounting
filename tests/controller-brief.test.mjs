@@ -1,3 +1,4 @@
+import {assertApplicabilityReviewState} from './fixtures/family-office-applicability-review.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -25,7 +26,7 @@ test('controller orientation preserves the accepted technical questions and thei
   assert.ok(assessments.some(a=>JSON.stringify(a).includes(q.id)&&a.status==='partial'));
  }
  const report=editorialReviewReport(records).find(r=>r.record_id===id);
- assert.equal(report.status,'dependencies-unchanged');
+ assertApplicabilityReviewState([report]);
  assert.match(brief.reading.critical_limitation,/Discovery routes remain discovery/);
 });
 

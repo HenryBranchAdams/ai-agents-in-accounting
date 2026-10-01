@@ -1,3 +1,4 @@
+import {assertApplicabilityReviewState, assertPinnedApplicabilityDependencies} from './fixtures/family-office-applicability-review.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -65,8 +66,8 @@ test('event handoff exports and bounded retrieval preserve partial response and 
  const reviewIds=[id,'guide-family-office-us-accounting','workflow-family-office-entity-close'];
  const reviews=editorialReviewReport(records).filter(r=>reviewIds.includes(r.record_id));
  assert.deepEqual(reviews.map(r=>r.record_id).sort(),reviewIds.sort());
- assert.ok(reviews.every(r=>r.status==='dependencies-unchanged'));
- for(const d of built.data.editorial_brief.reading.review.dependencies){assert.ok(byId.has(d.record_id),d.record_id);assert.equal(d.sha256,editorialHash(byId.get(d.record_id)),d.record_id);}
+ assertApplicabilityReviewState(reviews);
+ assertPinnedApplicabilityDependencies(built,byId);
  for(const route of packet.event_routes)for(const routeId of route.record_ids)assert.ok(byId.has(routeId),routeId);
  for(const routeId of ['guide-fo-reference-fo-21','guide-fo-reference-fo-23','guide-fo-reference-fo-24'])assert.ok(byId.get(routeId).data.family_office_reference.questions.every(q=>q.status==='discovery-question-not-answered'));
  const response=await worker.fetch(new Request(`https://corpus.example/records/${id}`));assert.equal(response.status,200);

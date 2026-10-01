@@ -1,3 +1,4 @@
+import { writeFamilyOfficeResearchPacks } from './family-office-research-packs.mjs';
 import { writeLibraryMap } from "./library-map.mjs";
 import { writeConnectionsIndex } from "./connections-index.mjs";
 import { clientEntryUrl } from "./client-entries.mjs";
@@ -45,6 +46,7 @@ await build({
 });
 const { meta, records, corpusExport, corpusMarkdown, knowledge, coverage } =
   await import("../dist/internal/corpus.mjs");
+if (!preview) writeFamilyOfficeResearchPacks(records, meta, "dist/client/downloads");
 let agentIndexRows, agentPassageRows, agentJsonSchema;
 if (!preview) {
 await build({

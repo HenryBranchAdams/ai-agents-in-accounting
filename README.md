@@ -6,9 +6,29 @@ The corpus brings original source references together with accounting workflows,
 
 The [roadmap](docs/roadmap.md) records the research expansion and remaining evidence work. Read the [roadmap handoff](docs/checkpoint-roadmap-2026-09-12.md) for counts, reading paths, validation and publication boundaries. Earlier checkpoints preserve historical states; retired product plans are not the current backlog.
 
-The corpus contains **1,061 records**, including **630 source references, 186 guides, 73 workflows, 35 collections and 7 examples**. All 715 inherited records have documented review dispositions; this does not mean every source received a substantive full-text review. The expansion provides 178 named research questions across all 62 families, connected construction examples, four contrasting industry packages and four selected jurisdiction packages. Coverage includes 96 subsector profiles, 5,952 applicability screenings and 1,012 individual industry exception reviews.
+<!-- release-overview:start -->
+The canonical edition is **`2026-10-01.2`**, with **1,561 records**. These counts come from the [release manifest](data/releases/2026-10-01.2/manifest.json) and its verified snapshot.
 
-**176 named questions remain partial and 2 are evidence gaps. No entire family, subsector or detailed industry is assessed sufficient.** Scoped AI-assisted source checks, classification review and software validation do not establish professional accounting verification or production effectiveness. The canonical edition is `2026-09-11.2`. The [live site](https://accounting-agents.madebyhenry.chatgpt.site) exposes its served edition at `/api/v1/meta`; deployment and corpus versions are separate. See [mission and coverage](data/catalog.json).
+| Record kind | Count |
+| --- | ---: |
+| action | 10 |
+| authority | 6 |
+| collection | 38 |
+| control | 45 |
+| design | 24 |
+| ecosystem | 5 |
+| example | 54 |
+| guide | 279 |
+| process | 8 |
+| source | 917 |
+| template | 14 |
+| term | 59 |
+| workflow | 102 |
+
+There are **77 preserved editions**; the current edition's preserved predecessor is [`2026-10-01.1`](data/releases/2026-10-01.1/manifest.json). Release history records corpus changes; it does not establish source currency, professional review or deployment.
+<!-- release-overview:end -->
+
+No entire accounting family, subsector or detailed industry is assessed sufficient. Scoped AI-assisted source checks, classification review and software validation do not establish professional accounting verification or production effectiveness. The [live site](https://accounting-agents.madebyhenry.chatgpt.site) exposes its served edition at `/api/v1/meta`; deployment and corpus versions are separate. See [mission and coverage](data/catalog.json).
 
 ## Run locally
 
@@ -58,7 +78,7 @@ The MCP command serves stdio. Use `--transport http --port 5178` for Streamable 
 - `/downloads/manifest.json`: verify sizes and SHA-256 hashes.
 - `/openapi.json`, `/llms.txt`, `/AGENTS.md`: discover the interface.
 
-Record data lives in [`data/corpus`](data/corpus). The same records drive the site, search, and exports. Generated artifacts go in `dist/` and are not committed. The source export includes new files even before Git staging. Use `node scripts/reconstruct-source-archive.mjs` after downloading the manifest and all listed parts.
+Record data lives in [`data/corpus`](data/corpus). The same records drive the site, search, and exports. Generated artifacts go in `dist/` and are not committed. After staging a corpus edition, run `node scripts/release-overview.mjs --write` to refresh the README summary; validation enforces parity with preserved release metadata. The source export includes new files even before Git staging. Use `node scripts/reconstruct-source-archive.mjs` after downloading the manifest and all listed parts.
 
 ## Contribute
 
@@ -76,4 +96,4 @@ Research briefs at `/briefs` now include construction WIP, tax transitions, mult
 
 The reading surface puts search and three starting paths on the homepage, keeps filtered results compact with removable filter links, and provides source findings, applicability, limitations, citation, and provenance navigation. Review scope and unknown rights remain visible. Official shadcn/ui components use shared Slate semantic tokens. Research brief cards and corpus content are server-rendered; only navigation hydrates.
 
-`/changes` links versioned snapshots; `/records/{id}/history` identifies canonical changes against the newest preserved predecessor (currently 2026-09-11.1). `/maintenance` exposes unresolved reviews, rights and source observations. Run `npm run maintenance` to inspect the queue; live checks are explicit and never upgrade source review status. See [maintenance](docs/maintenance.md) and [retrieval regression coverage](docs/research-questions.md).
+`/changes` links versioned snapshots; `/records/{id}/history` identifies canonical changes against the newest preserved predecessor (identified in the generated release overview above). `/maintenance` exposes unresolved reviews, rights and source observations. Run `npm run maintenance` to inspect the queue; live checks are explicit and never upgrade source review status. See [maintenance](docs/maintenance.md) and [retrieval regression coverage](docs/research-questions.md).

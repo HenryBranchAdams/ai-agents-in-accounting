@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const agentSchemaVersion = "1.3.0";
+export const agentSchemaVersion = "1.4.0";
 const id = z
   .string()
   .regex(/^[a-zA-Z0-9_-]{1,160}$/)
@@ -196,6 +196,7 @@ const match = z.object({
   snippet: z.string(),
   passage_id: z.string().nullable(),
 });
+const temporalFilter = z.object({ as_of: z.string(), excluded: z.record(z.string(), z.int()), note: z.string() }).nullable();
 const navigation = z.object({
   total: z.int(),
   returned: z.int(),
@@ -237,6 +238,7 @@ export const outputSchemas = {
     query: z.string(),
     filters: extra,
     ranking: z.string(),
+    temporal_filter: temporalFilter,
     ...navigation.shape,
     results: z.array(card.extend({ match })),
   }),
@@ -253,6 +255,7 @@ export const outputSchemas = {
   context: z.object({
     ...envelope,
     query: z.string(),
+    temporal_filter: temporalFilter,
     budget: z.object({
       max_chars: z.int(),
       used_chars: z.int(),

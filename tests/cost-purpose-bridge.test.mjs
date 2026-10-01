@@ -1,3 +1,4 @@
+import {beforeApplicabilityAudit} from './fixtures/applicability-preservation.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -83,7 +84,7 @@ test('additions preserve all prior records, source rights, mappings, assessments
   for(const kind of ['source','guide','example','term']) {
     const current=new Map(read(`data/corpus/${kind}.json`).map(r=>[r.id,r]));
     for(const old of atBase(`data/corpus/${kind}.json`)){
-      const retained=structuredClone(current.get(old.id));
+      const retained=beforeApplicabilityAudit(current.get(old.id),old);
       // The later controller increment appends one separately reviewed brief;
       // all pre-existing fields still satisfy this exact preservation contract.
       if(old.id==='guide-family-office-us-accounting'){

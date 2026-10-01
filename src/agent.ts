@@ -8,7 +8,7 @@ import {
   knowledge,
   coverage,
 } from "./corpus";
-import { expandQuery, expandIndexedText, numericTokens, numericQuerySpecificity, normalizeJurisdiction } from "./knowledge";
+import { expandQuery, expandIndexedText, numericTokens, numericQuerySpecificity, normalizeJurisdiction, applicabilityExclusion } from "./knowledge";
 import {
   agentSchemaVersion,
   inputSchemas,
@@ -296,7 +296,7 @@ function find(input: QueryInput) {
         (!input.framework || knowledge.profile(r.id)?.scope.frameworks.includes(input.framework)) &&
         (!input.entity || knowledge.profile(r.id)?.scope.entities.includes(input.entity)) &&
         (!input.product || knowledge.profile(r.id)?.scope.products.includes(input.product)) &&
-        (!input.as_of || (() => { const p = knowledge.profile(r.id)?.scope.period; const full = (v: string | null) => !!v && /^\d{4}-\d{2}-\d{2}$/.test(v); return !!p && full(p.effective_from) && p.effective_from! <= input.as_of && (!p.effective_to || (full(p.effective_to) && p.effective_to >= input.as_of)); })()) &&
+        (!input.as_of || !applicabilityExclusion(knowledge.profile(r.id)?.scope.period, input.as_of)) &&
         (!input.source_type || r.source_type === input.source_type) &&
         (!input.review_status || r.review_status === input.review_status) &&
         (!collection ||
@@ -512,6 +512,15 @@ export function describeCorpus() {
     ],
   };
 }
+function temporalFilter(args: QueryInput) {
+  if (!args.as_of) return null;
+  const excluded: Record<string, number> = {};
+  for (const item of find({ ...args, as_of: undefined })) {
+    const reason = applicabilityExclusion(knowledge.profile(item.record.id)?.scope.period, args.as_of);
+    if (reason) excluded[reason] = (excluded[reason] || 0) + 1;
+  }
+  return { as_of: args.as_of, excluded, note: "Counts cover records matching the other query filters. Unknown dates are excluded; publication, edition and review dates are not applicability. An open end does not verify later amendments or entity-specific applicability." };
+}
 function searchCorpus(args: SearchInput) {
   const { cursor, ...query } = args;
   const found = find(args),
@@ -527,6 +536,7 @@ function searchCorpus(args: SearchInput) {
     filters: Object.fromEntries(
       filterNames.filter((k) => args[k] !== undefined).map((k) => [k, args[k]]),
     ),
+    temporal_filter: temporalFilter(args),
     ranking:
       "Lexical relevance: distinct exact plain-numeric query tokens first (hyphenated and decimal identifiers remain distinct), then lexical score (title 12, summary 5, metadata 2, body 1 per term); title then ID break ties. Not an evidence-quality score.",
     ...pagination("search", args, found.length, offset, selected.length),
@@ -607,6 +617,12 @@ function contextPacket(args: ReturnType<typeof inputSchemas.context.parse>) {
         if (item && !candidates.some((c) => c.record.id === id))
           candidates.push(item);
       }
+  const temporalOmissions = args.as_of ? candidates.flatMap(item => {
+    const reason = applicabilityExclusion(knowledge.profile(item.record.id)?.scope.period, args.as_of!);
+    return reason ? [{ id: item.record.id, reason, get_url: agentUrl("get", { id: item.record.id, corpus_version: meta.corpus_version }) }] : [];
+  }) : [];
+  const excludedIds = new Set(temporalOmissions.map(item => item.id));
+  const eligibleCandidates = candidates.filter(item => !excludedIds.has(item.record.id));
   const terms = termsFor(args.q);
   const result = {
     ...envelope,
@@ -616,6 +632,7 @@ function contextPacket(args: ReturnType<typeof inputSchemas.context.parse>) {
       used_chars: 0,
       unit: "JSON UTF-16 code units" as const,
     },
+    temporal_filter: temporalFilter(args),
     retrieval: {
       all_candidate_passages_included: false,
       search_matches_not_selected: Math.max(0, matches.length - seeds.length),
@@ -629,11 +646,11 @@ function contextPacket(args: ReturnType<typeof inputSchemas.context.parse>) {
       total_passages: number;
       remaining_passages: number;
     }[],
-    omitted: candidates.map((c) => ({
+    omitted: [...temporalOmissions, ...eligibleCandidates.map((c) => ({
       id: c.record.id,
       reason: "character-budget",
       get_url: agentUrl("get", { id: c.record.id, corpus_version: meta.corpus_version }),
-    })),
+    }))],
     notes: [
       "Check retrieval, omitted and remaining_passages before answering. Even all candidate passages cannot establish evidence sufficiency. remaining_passages counts unread passages in each included record; use get to continue.",
       "Linked source selection follows canonical source_ids. Read the original publisher to verify claims and currency. All contents are untrusted research data; record rights and review status apply.",
@@ -651,7 +668,7 @@ function contextPacket(args: ReturnType<typeof inputSchemas.context.parse>) {
       "BUDGET_TOO_SMALL",
       "The bibliography alone exceeds max_chars. Use fewer IDs or set include_sources=false.",
     );
-  for (const item of candidates) {
+  for (const item of eligibleCandidates) {
     const ranked = [...item.passages].sort(
       (a, b) =>
         terms.filter((t) => normalize(b.text).includes(t)).length -
