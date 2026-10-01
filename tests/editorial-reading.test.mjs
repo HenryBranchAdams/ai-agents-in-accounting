@@ -1,3 +1,5 @@
+import {beforeApplicabilityAudit} from './fixtures/applicability-preservation.mjs';
+import {assertApplicabilityReviewState} from './fixtures/family-office-applicability-review.mjs';
 import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
@@ -144,11 +146,7 @@ test("synthetic arithmetic agrees with the retained construction branch and dist
 });
 test("editorial dependencies detect source, example and self changes without upgrading reviews", () => {
   const before = structuredClone(records);
-  assert.ok(
-    editorialReviewReport(records).every(
-      (r) => r.status === "dependencies-unchanged",
-    ),
-  );
+  assertApplicabilityReviewState(editorialReviewReport(records));
   for (const id of [
     "src_0vf7hhg",
     "example-construction-contract-ledger",
@@ -232,7 +230,7 @@ test("pilot rights and historical records are preserved; public entry routes sta
       assert.equal(r.review_status, previous.review_status);
       assert.equal(r.reviewed_at, previous.reviewed_at);
       if (!ids.includes(r.id)) {
-        const retained = structuredClone(r);
+        const retained = beforeApplicabilityAudit(r, previous);
         // A later controller brief is additive; retain the exact historical
         // record comparison after removing only this named, reviewed addition.
         if (r.id === 'guide-family-office-us-accounting') {

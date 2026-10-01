@@ -1,3 +1,4 @@
+import {beforeApplicabilityAudit} from './fixtures/applicability-preservation.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {executeAgent} from '../dist/internal/agent.mjs';
@@ -125,7 +126,7 @@ test('the intake preserves previous source history and unrelated mapping associa
   const packet=JSON.parse(fs.readFileSync('data/research/partnership-foundations-2026-09-27.json'));
   const atBase=file=>JSON.parse(execFileSync('git',['show',`${packet.base_sha}:${file}`],{encoding:'utf8',maxBuffer:32*1024*1024}));
   for(const old of atBase('data/corpus/source.json')){
-    const current=structuredClone(getRecord(old.id));
+    const current=beforeApplicabilityAudit(getRecord(old.id),old);
     if(packet.supplemental_reviews.some(s=>s.record_id===old.id)){
       current.data.supplemental_reviews=current.data.supplemental_reviews.filter(r=>r.batch!==packet.id);
       if(!Object.hasOwn(old.data,'supplemental_reviews'))delete current.data.supplemental_reviews;

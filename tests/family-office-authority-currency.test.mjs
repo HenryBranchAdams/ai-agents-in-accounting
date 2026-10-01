@@ -1,3 +1,5 @@
+import {assertApplicabilityReviewState} from './fixtures/family-office-applicability-review.mjs';
+import {beforeApplicabilityAudit} from './fixtures/applicability-preservation.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -13,7 +15,7 @@ test('family-office currency review reuses the unique source and preserves histo
  const prior=JSON.parse(execFileSync('git',['show','e6dbd4c:data/corpus/source.json'],{encoding:'utf8',maxBuffer:32*1024*1024}));
  assert.equal(sources.length,prior.length);
  for(const record of prior){
-  const retained=structuredClone(sources.find(r=>r.id===record.id));
+  const retained=beforeApplicabilityAudit(sources.find(r=>r.id===record.id),record);
   if(record.id===id){
    assert.equal(retained.data.supplemental_reviews.filter(r=>r.batch===batch).length,1);
    retained.data.supplemental_reviews=retained.data.supplemental_reviews.filter(r=>r.batch!==batch);
@@ -62,7 +64,7 @@ test('supplemental currency note is visible and retrievable without replacing hi
  assert.deepEqual(retained.source_ids,[...historical.source_ids,id]);retained.source_ids.pop();assert.deepEqual(retained,historical);
  assert.ok(brief.reading_order.includes(id));
  assert.equal(brief.findings.filter(f=>f.source_ids.includes(id)).length,1);
- assert.equal(editorialReviewReport(records).find(r=>r.record_id===guideId).status,'dependencies-unchanged');
+ assertApplicabilityReviewState([editorialReviewReport(records).find(r=>r.record_id===guideId)]);
  const response=await worker.fetch(new Request(`https://corpus.example/records/${guideId}`));assert.equal(response.status,200);
  const html=await response.text(),md=recordMarkdown(guide);
  for(const text of ['Supplemental source-currency note','September 25','September 26–30 changes']){assert.ok(html.includes(text));assert.ok(md.includes(text));}

@@ -1,3 +1,4 @@
+import {assertApplicabilityReviewState} from './fixtures/family-office-applicability-review.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
@@ -15,7 +16,7 @@ test('close policy extends the workflow without changing its accepted steps, sou
  assert.deepEqual(retained,original);
  const reviews=editorialReviewReport(records).filter(r=>[id,'guide-family-office-us-accounting'].includes(r.record_id));
  assert.deepEqual(reviews.map(r=>r.record_id).sort(),[id,'guide-family-office-us-accounting'].sort());
- assert.ok(reviews.every(r=>r.status==='dependencies-unchanged'));
+ assertApplicabilityReviewState(reviews);
  const policy=workflow.data.reporting_policy;
  assert.equal(policy.classification,'original-editorial-proposal');
  assert.ok(policy.report_contract.every(field=>field.evidence&&field.stop));

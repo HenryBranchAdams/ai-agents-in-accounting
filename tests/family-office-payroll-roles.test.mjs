@@ -1,3 +1,4 @@
+import {beforeApplicabilityAudit} from './fixtures/applicability-preservation.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -100,7 +101,7 @@ test('payroll integration preserves prior guides and source evidence with one de
   }
   assert.deepEqual(retained,old,old.id);
  }
- for(const old of prior.filter(r=>r.kind==='source'))assert.deepEqual(byId.get(old.id),old,old.id);
+ for(const old of prior.filter(r=>r.kind==='source'))assert.deepEqual(beforeApplicabilityAudit(byId.get(old.id),old),old,old.id);
 });
 
 test('payroll reading and bounded retrieval retain conditional roles and unresolved facts',async()=>{
