@@ -60,6 +60,10 @@ The MCP command serves stdio. Use `--transport http --port 5178` for Streamable 
 
 Record data lives in [`data/corpus`](data/corpus). The same records drive the site, search, and exports. Generated artifacts go in `dist/` and are not committed. The source export includes new files even before Git staging. Use `node scripts/reconstruct-source-archive.mjs` after downloading the manifest and all listed parts.
 
+## ASC scoping design reference
+
+The [ASC scoping checklist design](docs/asc-scoping/README.md) contains the product specification, 133 proposed questions, rule-authoring schema, 28 proposed acceptance scenarios, and an official-source register. It is design material, not a deployed checklist or a validated ASC ruleset. The package includes content-integrity tests and a lossless JSON export; the public corpus and its coverage claims are unchanged.
+
 ## Contribute
 
 See [CONTRIBUTING.md](CONTRIBUTING.md), the [record policy](docs/corpus-policy.md), and [AGENTS.md](AGENTS.md). Prefer original publishers and useful accounting context. Preserve uncertainty and rights. The goal is exhaustive coverage through traceable additions, not inflated record counts.
