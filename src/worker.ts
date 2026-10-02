@@ -45,11 +45,12 @@ import type { AgentOperation } from "./agent-contract";
 
 // ASSETS uses Cloudflare's built-in Fetcher. Its generated binding shape is checked during package verification.
 type Env = { ASSETS?: Fetcher };
+declare const LICENSED_FONT_ASSETS: string[];
 const commonHeaders = {
   "X-Content-Type-Options": "nosniff",
   "Referrer-Policy": "strict-origin-when-cross-origin",
   "Content-Security-Policy":
-    "default-src 'none'; connect-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; form-action 'self'; base-uri 'none'; frame-ancestors 'none'",
+    `${typeof LICENSED_FONT_ASSETS !== "undefined" && LICENSED_FONT_ASSETS.length ? "font-src 'self'; " : ""}default-src 'none'; connect-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; form-action 'self'; base-uri 'none'; frame-ancestors 'none'`,
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Methods": "GET, HEAD, OPTIONS",
   "Access-Control-Allow-Headers": "Accept, If-None-Match",
@@ -615,7 +616,7 @@ async function route(request: Request, env: Env) {
     );
   if (
     env.ASSETS &&
-    ((typeof CLIENT_ASSETS !== "undefined" && CLIENT_ASSETS.includes(path)) || /^\/(downloads\/[^/]+|releases\/\d{4}-\d{2}-\d{2}\.\d+\/(?:corpus\.json(?:\.gz|l)?|manifest\.json|changes\.json|record-history\.jsonl)|releases\/index\.json|style\.css|favicon\.svg|AGENTS\.md)$/.test(path))
+    ((typeof LICENSED_FONT_ASSETS !== "undefined" && LICENSED_FONT_ASSETS.includes(path)) || (typeof CLIENT_ASSETS !== "undefined" && CLIENT_ASSETS.includes(path)) || /^\/(downloads\/[^/]+|releases\/\d{4}-\d{2}-\d{2}\.\d+\/(?:corpus\.json(?:\.gz|l)?|manifest\.json|changes\.json|record-history\.jsonl)|releases\/index\.json|style\.css|favicon\.svg|AGENTS\.md)$/.test(path))
   ) {
     const asset = await env.ASSETS.fetch(new Request(request.url, { method: "GET" }));
     if (asset.status === 200 && isSourceArchivePartPath(path)) {
