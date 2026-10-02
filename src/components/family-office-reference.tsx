@@ -1,4 +1,5 @@
 import { getRecord, type CorpusRecord, type Json } from "../corpus";
+import reconciliation from "../../data/research/family-office-reference-2026-09-21/reconciliation.json";
 
 // A read-only projection of canonical data. No browser island or second index.
 type ObjectValue = Record<string, Json>;
@@ -15,6 +16,18 @@ const href = (value: Json | undefined): string | undefined => {
 function RecordLink({ id }: { id: Json | undefined }) {
   const record = getRecord(text(id));
   return record ? <a href={`/records/${record.id}`}>{record.title}</a> : <span>Reference unavailable</span>;
+}
+// These are the integration's explicit identity decisions, not inferred aliases.
+const candidateSources = new Map(reconciliation.rows.map(row => [row.candidate_id, row.record_id]));
+function GapSources({ ids }: { ids: Json[] }) {
+  return <><h4>Starting sources</h4>{ids.length ? <ul>{ids.map((id, i) => {
+    const candidateId = text(id);
+    const canonicalId = candidateSources.get(candidateId);
+    const source = canonicalId ? getRecord(canonicalId) : undefined;
+    return <li key={`${candidateId}-${i}`}><code>{candidateId}</code>{": "}{source?.kind === "source"
+      ? <><a href={`/records/${source.id}`}>{source.title}</a>{" "}(<code>{source.id}</code>)</>
+      : <>Canonical source unavailable{canonicalId ? <> (<code>{canonicalId}</code>)</> : null}</>}</li>;
+  })}</ul> : <p>No starting source IDs recorded.</p>}</>;
 }
 function Sources({ values }: { values: Json[] }) {
   return <ol>{values.map((value, i) => {
@@ -68,7 +81,7 @@ export function FamilyOfficeReference({ record }: { record: CorpusRecord }) {
   }
   if (value.type === "gaps") return <section id="family-office-reference"><h2>Remaining evidence and access work</h2><p>{text(value.integration_note)}</p>{array(value.gaps).map(gap => {
     const row = object(gap);
-    return <section key={text(row.id)}><h3>{text(row.id)}. {text(row.title)}</h3><p>{text(row.status)}</p><p>{text(row.missing_evidence_or_context)}</p><p>{text(row.why_it_matters)}</p><p><strong>Next research action:</strong>{" "}{text(row.next_research_action)}</p><p>{text(row.completion_test)}</p></section>;
+    return <section id={`gap-${text(row.id)}`} key={text(row.id)}><h3>{text(row.id)}. {text(row.title)}</h3><p>{text(row.status)}</p><p>{text(row.missing_evidence_or_context)}</p><p>{text(row.why_it_matters)}</p><p><strong>Next research action:</strong>{" "}{text(row.next_research_action)}</p><GapSources ids={array(row.starting_source_ids)} /><p>{text(row.completion_test)}</p></section>;
   })}</section>;
   if (value.type === "asc") {
     const lookup = object(value.lookup);
