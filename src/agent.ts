@@ -202,7 +202,6 @@ function makePassages(r: CorpusRecord): Passage[] {
   });
 }
 const index = records.map((record) => {
-  const passages = makePassages(record);
   const item = {
     record,
     get passages() { return makePassages(record); },
@@ -221,16 +220,16 @@ const index = records.map((record) => {
         ...(knowledge.profile(record.id)?.scope.products || []),
       ].join(" "),
     ),
-    text: expandIndexedText(
+    get text() { return expandIndexedText(
       [
         record.id,
         record.title,
         record.summary,
-        ...passages
+        ...makePassages(record)
           .filter((p) => !/^data\.(rights|provenance)$/.test(p.section))
           .map((p) => p.text),
       ].join("\n").replace(/\b(?:source-checked|editorially-reviewed|inherited(?:-[a-z]+)*-not-reverified)\b/g, ""),
-    ),
+    ); },
   };
   return Object.assign(item, { numericTokens: numericTokens(item.text + " " + item.facets) });
 });
@@ -285,8 +284,9 @@ function find(input: QueryInput) {
   const numericTerms = terms.filter(t => /^\d+$/.test(t));
   const collection = input.collection ? getRecord(input.collection) : null;
   return index
-    .filter(
-      ({ record: r, text, facets }) =>
+    .flatMap((item) => {
+      const r = item.record;
+      if (!(
         (!input.kind || r.kind === input.kind) &&
         (!input.naics || coverage.profiles.get(r.id)?.industry_mappings.some(m=>m.industry_code===input.naics)) &&
         (!input.question_family || coverage.profiles.get(r.id)?.question_mappings.some(m=>m.question_id===input.question_family)) &&
@@ -301,21 +301,21 @@ function find(input: QueryInput) {
         (!input.review_status || r.review_status === input.review_status) &&
         (!collection ||
           collection.source_ids.includes(r.id) ||
-          collection.related_ids.includes(r.id)) &&
-        terms.every((t) => text.includes(t) || facets.includes(t)),
-    )
-    .map((item) => {
+          collection.related_ids.includes(r.id)))) return [];
+      // Retain normalized body text only for this eligible record's evaluation.
+      const body = terms.length ? item.text : "";
+      if (!terms.every((t) => body.includes(t) || item.facets.includes(t))) return [];
       const matched_fields = [
         terms.some((t) => item.title.includes(t)) && "title",
         terms.some((t) => item.summary.includes(t)) && "summary",
         terms.some((t) => item.facets.includes(t)) && "metadata",
       ].filter(Boolean) as string[];
-      const ranked = item.passages
+      const ranked = terms.length ? item.passages
         .map((p) => ({
           p,
           hits: terms.filter((t) => normalize(p.text).includes(t)).length,
         }))
-        .sort((a, b) => b.hits - a.hits);
+        .sort((a, b) => b.hits - a.hits) : [];
       const best = ranked.find((p) => p.hits)?.p;
       if (best && !matched_fields.includes(best.section))
         matched_fields.push(best.section);
@@ -326,8 +326,9 @@ function find(input: QueryInput) {
           .filter((n) => n >= 0)
           .sort((a, b) => a - b)[0] ?? 0;
       const start = Math.max(0, hit - 70);
-      return {
-        ...item,
+      return [{
+        record: item.record,
+        get passages() { return item.passages; },
         numericSpecificity: numericQuerySpecificity(item.numericTokens, numericTerms),
         match: {
           score: terms.reduce(
@@ -336,14 +337,14 @@ function find(input: QueryInput) {
               (item.title.includes(t) ? 12 : 0) +
               (item.summary.includes(t) ? 5 : 0) +
               (item.facets.includes(t) ? 2 : 0) +
-              (item.text.includes(t) ? 1 : 0),
+              (body.includes(t) ? 1 : 0),
             0,
           ),
           matched_fields,
           snippet: (start ? "…" : "") + excerpt(text.slice(start), 260),
           passage_id: best?.id ?? null,
         },
-      };
+      }];
     })
     .sort(
       (a, b) =>

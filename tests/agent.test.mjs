@@ -175,6 +175,21 @@ test("agent search ranks meaningful matches, supports phrases and filters, and s
   assert.ok(JSON.stringify(result).length < originalBytes * 0.5);
 });
 
+test("empty agent search retains summary matches and canonical tie ordering", () => {
+  const expected = [...canonical].sort((a, b) => a.title.localeCompare(b.title) || a.id.localeCompare(b.id));
+  const result = call("search", { limit: 25 });
+  assert.deepEqual(result.results.map(row => row.id), expected.slice(0, 25).map(record => record.id));
+  for (const row of result.results) {
+    const record = byId.get(row.id);
+    assert.deepEqual(row.match, {
+      score: 0,
+      matched_fields: [],
+      snippet: record.summary.length <= 260 ? record.summary : record.summary.slice(0, 259) + "…",
+      passage_id: null,
+    });
+  }
+});
+
 test("cursor pagination covers the complete corpus once and rejects changes and stale versions", () => {
   const seen = [],
     args = { limit: 25 };

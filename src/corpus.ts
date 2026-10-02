@@ -87,16 +87,24 @@ const normalize = (s: string) =>
     .normalize("NFKD")
     .replace(/[\u0300-\u036f]/g, "")
     .toLowerCase();
-const indexed = records.map((r) => {
-  const text = expandIndexedText(JSON.stringify(r));
-  return {
-    r,
-    title: expandIndexedText(r.title),
-    summary: expandIndexedText(r.summary),
-    text,
-    numericTokens: numericTokens(text),
-  };
-});
+function buildBrowserSearchIndex() {
+  return records.map((r) => {
+    const text = expandIndexedText(JSON.stringify(r));
+    return {
+      r,
+      title: expandIndexedText(r.title),
+      summary: expandIndexedText(r.summary),
+      text,
+      numericTokens: numericTokens(text),
+    };
+  });
+}
+// Agent retrieval owns its own search index. Build this separate browser index
+// only after a valid browser search requests it, rather than retaining both.
+let indexed: ReturnType<typeof buildBrowserSearchIndex> | undefined;
+function browserSearchIndex() {
+  return indexed ||= buildBrowserSearchIndex();
+}
 const values = (fn: (r: CorpusRecord) => string[]) =>
   [...new Set(records.flatMap(fn))]
     .filter(Boolean)
@@ -161,7 +169,7 @@ export function search(params: URLSearchParams) {
   const product = params.get("product");
   const asOf = params.get("as_of");
   if (asOf && (!/^\d{4}-\d{2}-\d{2}$/.test(asOf) || !Number.isFinite(Date.parse(asOf)) || new Date(asOf).toISOString().slice(0,10) !== asOf)) throw new QueryError("as_of must be a valid YYYY-MM-DD date.");
-  const matches = indexed
+  const matches = browserSearchIndex()
     .filter(
       ({ r, text }) =>
         (!kind ||
