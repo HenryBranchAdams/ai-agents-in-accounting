@@ -9,6 +9,7 @@ import { coverageInputs } from './validate-coverage.mjs';
 import { readSnapshotHistory, writeSnapshotHistory } from './snapshot-history.mjs';
 import { historySummaryPlugin } from './history-summary.mjs';
 import { writeReleaseArtifacts } from './release-history.mjs';
+import { editionCatalog } from './edition-catalog.mjs';
 
 const [version, date] = process.argv.slice(2);
 if (!/^\d{4}-\d{2}-\d{2}\.\d+$/.test(version || '') || !/^\d{4}-\d{2}-\d{2}$/.test(date || '')) throw new Error('Expected prospective edition and preparation date');
@@ -33,8 +34,7 @@ const headers = {
 for (const [file, fields] of Object.entries(headers)) {
   const value = read(file);
   for (const field of fields) value[field] = version;
-  if (file === 'data/catalog.json') value.updated_at = date;
-  write(file, value);
+  write(file, file === 'data/catalog.json' ? editionCatalog(value, version, date) : value);
 }
 write('data/coverage/record-mappings.json', generateMappings());
 validateCorpus();
