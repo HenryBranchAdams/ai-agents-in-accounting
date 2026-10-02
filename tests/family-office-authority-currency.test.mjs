@@ -14,9 +14,9 @@ const supplemental=source.data.supplemental_reviews.find(r=>r.batch===batch);
 test('family-office currency review reuses the unique source and preserves historical fields',()=>{
  const prior=JSON.parse(execFileSync('git',['show','e6dbd4c:data/corpus/source.json'],{encoding:'utf8',maxBuffer:32*1024*1024}));
  const priorIds=new Set(prior.map(record=>record.id));
- assert.equal(sources.length,prior.length+2);
- // Only the separately reviewed estate intake adds source identities.
- assert.deepEqual(sources.filter(record=>!priorIds.has(record.id)).map(record=>record.id).sort(),['src_estate_irs_8971_202508','src_estate_td9991_20240917']);
+ assert.equal(sources.length,prior.length+3);
+ // Only the separately reviewed estate intake and October ruling add source identities.
+ assert.deepEqual(sources.filter(record=>!priorIds.has(record.id)).map(record=>record.id).sort(),['src_estate_irs_8971_202508','src_estate_td9991_20240917','src_irs_afr_rr2026_19']);
  for(const record of prior){
   const retained=beforeApplicabilityAudit(sources.find(r=>r.id===record.id),record);
   if(record.id===id){
