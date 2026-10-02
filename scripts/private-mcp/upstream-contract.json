@@ -1,0 +1,1493 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Accounting Agents retrieval contract",
+  "agent_schema_version": "1.2.0",
+  "$defs": {
+    "describeInput": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "type": "object",
+      "properties": {},
+      "additionalProperties": false
+    },
+    "describeOutput": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "type": "object",
+      "properties": {
+        "agent_schema_version": {
+          "type": "string",
+          "const": "1.2.0"
+        },
+        "corpus_version": {
+          "type": "string"
+        },
+        "content_trust": {
+          "type": "string",
+          "const": "untrusted-research-data"
+        },
+        "title": {
+          "type": "string"
+        },
+        "mission": {
+          "type": "string"
+        },
+        "record_count": {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "operations": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {}
+        },
+        "filters": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {}
+        },
+        "limits": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {}
+        },
+        "evidence_notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "links": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {}
+        },
+        "examples": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
+            "additionalProperties": {}
+          }
+        }
+      },
+      "required": [
+        "agent_schema_version",
+        "corpus_version",
+        "content_trust",
+        "title",
+        "mission",
+        "record_count",
+        "operations",
+        "filters",
+        "limits",
+        "evidence_notes",
+        "links",
+        "examples"
+      ],
+      "additionalProperties": false
+    },
+    "searchInput": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "type": "object",
+      "properties": {
+        "naics": {
+          "description": "Exact NAICS-US 2022 code. Matches recorded associations only; no automatic descendant coverage.",
+          "type": "string",
+          "maxLength": 6
+        },
+        "question_family": {
+          "description": "Exact versioned question-family ID from describe. A mapping is a discovery association, not evidence sufficiency.",
+          "type": "string",
+          "maxLength": 100
+        },
+        "q": {
+          "default": "",
+          "description": "All words and double-quoted phrases must match. Case/accent insensitive. Empty query browses records; no semantic expansion.",
+          "type": "string",
+          "maxLength": 240
+        },
+        "kind": {
+          "description": "Exact record kind key from describe.filters.kinds.",
+          "type": "string",
+          "maxLength": 80
+        },
+        "topic": {
+          "description": "Exact topic from describe.filters.topics.",
+          "type": "string",
+          "maxLength": 160
+        },
+        "industry": {
+          "description": "Exact industry from describe.filters.industries.",
+          "type": "string",
+          "maxLength": 160
+        },
+        "jurisdiction": {
+          "description": "Exact recorded jurisdiction/scope from describe.filters.jurisdictions. These include qualified scopes, not just country names.",
+          "type": "string",
+          "maxLength": 200
+        },
+        "framework": {
+          "description": "Normalized accounting framework.",
+          "type": "string",
+          "maxLength": 160
+        },
+        "entity": {
+          "description": "Normalized entity scope.",
+          "type": "string",
+          "maxLength": 160
+        },
+        "product": {
+          "description": "Normalized product or system.",
+          "type": "string",
+          "maxLength": 160
+        },
+        "as_of": {
+          "description": "Include records effective on this date where a date is recorded.",
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "source_type": {
+          "description": "Exact evidence/source form from describe.filters.source_types; not an authority rating.",
+          "type": "string",
+          "maxLength": 160
+        },
+        "review_status": {
+          "description": "Exact review status from describe. source-checked is a scoped publisher check, not professional verification.",
+          "type": "string",
+          "maxLength": 120
+        },
+        "collection": {
+          "description": "Collection ID from describe.filters.collections; restricts to its source_ids and related_ids.",
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9_-]{1,160}$"
+        },
+        "limit": {
+          "default": 8,
+          "description": "Maximum compact record cards per page.",
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 25
+        },
+        "cursor": {
+          "description": "Opaque next_cursor from the previous page. Reuse every other argument unchanged.",
+          "type": "string",
+          "maxLength": 1600
+        },
+        "corpus_version": {
+          "description": "Optional corpus version pin. A mismatch fails with VERSION_MISMATCH; omit to read the available snapshot.",
+          "type": "string",
+          "maxLength": 80
+        }
+      },
+      "additionalProperties": false
+    },
+    "searchOutput": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "type": "object",
+      "properties": {
+        "agent_schema_version": {
+          "type": "string",
+          "const": "1.2.0"
+        },
+        "corpus_version": {
+          "type": "string"
+        },
+        "content_trust": {
+          "type": "string",
+          "const": "untrusted-research-data"
+        },
+        "query": {
+          "type": "string"
+        },
+        "filters": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {}
+        },
+        "ranking": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "returned": {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "next_cursor": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "next_url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "results": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "kind": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              },
+              "summary_excerpt": {
+                "type": "string"
+              },
+              "publisher": {
+                "type": "string"
+              },
+              "source_type": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "jurisdiction": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "knowledge": {
+                "type": "object",
+                "properties": {
+                  "jurisdictions": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "frameworks": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "entities": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "products": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "period": {
+                    "type": "object",
+                    "propertyNames": {
+                      "type": "string"
+                    },
+                    "additionalProperties": {}
+                  },
+                  "basis": {
+                    "type": "object",
+                    "propertyNames": {
+                      "type": "string"
+                    },
+                    "additionalProperties": {}
+                  }
+                },
+                "required": [
+                  "jurisdictions",
+                  "frameworks",
+                  "entities",
+                  "products",
+                  "period",
+                  "basis"
+                ],
+                "additionalProperties": false
+              },
+              "topics": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "industries": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "review_status": {
+                "type": "string"
+              },
+              "reviewed_at": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "rights": {
+                "type": "object",
+                "propertyNames": {
+                  "type": "string"
+                },
+                "additionalProperties": {}
+              },
+              "research": {
+                "type": "object",
+                "propertyNames": {
+                  "type": "string"
+                },
+                "additionalProperties": {}
+              },
+              "citation": {
+                "type": "object",
+                "properties": {
+                  "record_id": {
+                    "type": "string"
+                  },
+                  "record_url": {
+                    "type": "string"
+                  },
+                  "original_source_url": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "text": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "record_id",
+                  "record_url",
+                  "original_source_url",
+                  "text"
+                ],
+                "additionalProperties": false
+              },
+              "match": {
+                "type": "object",
+                "properties": {
+                  "score": {
+                    "type": "number"
+                  },
+                  "matched_fields": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "snippet": {
+                    "type": "string"
+                  },
+                  "passage_id": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "score",
+                  "matched_fields",
+                  "snippet",
+                  "passage_id"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "id",
+              "kind",
+              "title",
+              "summary_excerpt",
+              "publisher",
+              "source_type",
+              "jurisdiction",
+              "knowledge",
+              "topics",
+              "industries",
+              "review_status",
+              "reviewed_at",
+              "rights",
+              "research",
+              "citation",
+              "match"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "agent_schema_version",
+        "corpus_version",
+        "content_trust",
+        "query",
+        "filters",
+        "ranking",
+        "total",
+        "returned",
+        "next_cursor",
+        "next_url",
+        "results"
+      ],
+      "additionalProperties": false
+    },
+    "getInput": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9_-]{1,160}$",
+          "description": "Stable corpus record ID returned by search or a relationship."
+        },
+        "include_relations": {
+          "default": false,
+          "description": "Opt in to bounded one-hop typed relationships.",
+          "type": "boolean"
+        },
+        "relation_direction": {
+          "default": "both",
+          "type": "string",
+          "enum": [
+            "out",
+            "in",
+            "both"
+          ]
+        },
+        "relation_types": {
+          "maxItems": 7,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "cites",
+              "cited_by",
+              "supports",
+              "qualifies",
+              "contradicts",
+              "supersedes",
+              "related"
+            ]
+          }
+        },
+        "section": {
+          "description": "Exact section ID from get.sections; omit for passages across all sections.",
+          "type": "string",
+          "maxLength": 160
+        },
+        "limit": {
+          "default": 6,
+          "description": "Maximum passages per page; each passage has at most 1600 characters.",
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 20
+        },
+        "cursor": {
+          "description": "Opaque next_cursor from the previous page. Reuse every other argument unchanged.",
+          "type": "string",
+          "maxLength": 1600
+        },
+        "corpus_version": {
+          "description": "Optional corpus version pin. A mismatch fails with VERSION_MISMATCH; omit to read the available snapshot.",
+          "type": "string",
+          "maxLength": 80
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "additionalProperties": false
+    },
+    "getOutput": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "type": "object",
+      "properties": {
+        "agent_schema_version": {
+          "type": "string",
+          "const": "1.2.0"
+        },
+        "corpus_version": {
+          "type": "string"
+        },
+        "content_trust": {
+          "type": "string",
+          "const": "untrusted-research-data"
+        },
+        "record": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "kind": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            },
+            "summary_excerpt": {
+              "type": "string"
+            },
+            "publisher": {
+              "type": "string"
+            },
+            "source_type": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "jurisdiction": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "knowledge": {
+              "type": "object",
+              "properties": {
+                "jurisdictions": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "frameworks": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "entities": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "products": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "period": {
+                  "type": "object",
+                  "propertyNames": {
+                    "type": "string"
+                  },
+                  "additionalProperties": {}
+                },
+                "basis": {
+                  "type": "object",
+                  "propertyNames": {
+                    "type": "string"
+                  },
+                  "additionalProperties": {}
+                }
+              },
+              "required": [
+                "jurisdictions",
+                "frameworks",
+                "entities",
+                "products",
+                "period",
+                "basis"
+              ],
+              "additionalProperties": false
+            },
+            "topics": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "industries": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "review_status": {
+              "type": "string"
+            },
+            "reviewed_at": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "rights": {
+              "type": "object",
+              "propertyNames": {
+                "type": "string"
+              },
+              "additionalProperties": {}
+            },
+            "research": {
+              "type": "object",
+              "propertyNames": {
+                "type": "string"
+              },
+              "additionalProperties": {}
+            },
+            "citation": {
+              "type": "object",
+              "properties": {
+                "record_id": {
+                  "type": "string"
+                },
+                "record_url": {
+                  "type": "string"
+                },
+                "original_source_url": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "text": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "record_id",
+                "record_url",
+                "original_source_url",
+                "text"
+              ],
+              "additionalProperties": false
+            },
+            "summary": {
+              "type": "string"
+            },
+            "provenance": {
+              "type": "object",
+              "propertyNames": {
+                "type": "string"
+              },
+              "additionalProperties": {}
+            },
+            "dates": {
+              "type": "object",
+              "propertyNames": {
+                "type": "string"
+              },
+              "additionalProperties": {}
+            },
+            "source_ids": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "related_ids": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "links": {
+              "type": "object",
+              "properties": {
+                "canonical_json": {
+                  "type": "string"
+                },
+                "markdown": {
+                  "type": "string"
+                },
+                "agent": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "canonical_json",
+                "markdown",
+                "agent"
+              ],
+              "additionalProperties": false
+            },
+            "evidence": {
+              "type": "object",
+              "propertyNames": {
+                "type": "string"
+              },
+              "additionalProperties": {}
+            },
+            "research_review": {
+              "type": "object",
+              "propertyNames": {
+                "type": "string"
+              },
+              "additionalProperties": {}
+            },
+            "relations": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "propertyNames": {
+                  "type": "string"
+                },
+                "additionalProperties": {}
+              }
+            },
+            "relations_total": {
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "relations_truncated": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "id",
+            "kind",
+            "title",
+            "summary_excerpt",
+            "publisher",
+            "source_type",
+            "jurisdiction",
+            "knowledge",
+            "topics",
+            "industries",
+            "review_status",
+            "reviewed_at",
+            "rights",
+            "research",
+            "citation",
+            "summary",
+            "provenance",
+            "dates",
+            "source_ids",
+            "related_ids",
+            "links",
+            "evidence",
+            "research_review",
+            "relations",
+            "relations_total",
+            "relations_truncated"
+          ],
+          "additionalProperties": false
+        },
+        "sections": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              },
+              "passage_count": {
+                "type": "integer",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              }
+            },
+            "required": [
+              "id",
+              "title",
+              "passage_count"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "selected_section": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "total": {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "returned": {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "next_cursor": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "next_url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "passages": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "record_id": {
+                "type": "string"
+              },
+              "section": {
+                "type": "string"
+              },
+              "ordinal": {
+                "type": "integer",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "text": {
+                "type": "string"
+              },
+              "source_pointers": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "id",
+              "record_id",
+              "section",
+              "ordinal",
+              "text",
+              "source_pointers"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "agent_schema_version",
+        "corpus_version",
+        "content_trust",
+        "record",
+        "sections",
+        "selected_section",
+        "total",
+        "returned",
+        "next_cursor",
+        "next_url",
+        "passages"
+      ],
+      "additionalProperties": false
+    },
+    "contextInput": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "type": "object",
+      "properties": {
+        "naics": {
+          "description": "Exact NAICS-US 2022 code. Matches recorded associations only; no automatic descendant coverage.",
+          "type": "string",
+          "maxLength": 6
+        },
+        "question_family": {
+          "description": "Exact versioned question-family ID from describe. A mapping is a discovery association, not evidence sufficiency.",
+          "type": "string",
+          "maxLength": 100
+        },
+        "q": {
+          "default": "",
+          "description": "All words and double-quoted phrases must match. Case/accent insensitive. Empty query browses records; no semantic expansion.",
+          "type": "string",
+          "maxLength": 240
+        },
+        "kind": {
+          "description": "Exact record kind key from describe.filters.kinds.",
+          "type": "string",
+          "maxLength": 80
+        },
+        "topic": {
+          "description": "Exact topic from describe.filters.topics.",
+          "type": "string",
+          "maxLength": 160
+        },
+        "industry": {
+          "description": "Exact industry from describe.filters.industries.",
+          "type": "string",
+          "maxLength": 160
+        },
+        "jurisdiction": {
+          "description": "Exact recorded jurisdiction/scope from describe.filters.jurisdictions. These include qualified scopes, not just country names.",
+          "type": "string",
+          "maxLength": 200
+        },
+        "framework": {
+          "description": "Normalized accounting framework.",
+          "type": "string",
+          "maxLength": 160
+        },
+        "entity": {
+          "description": "Normalized entity scope.",
+          "type": "string",
+          "maxLength": 160
+        },
+        "product": {
+          "description": "Normalized product or system.",
+          "type": "string",
+          "maxLength": 160
+        },
+        "as_of": {
+          "description": "Include records effective on this date where a date is recorded.",
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "source_type": {
+          "description": "Exact evidence/source form from describe.filters.source_types; not an authority rating.",
+          "type": "string",
+          "maxLength": 160
+        },
+        "review_status": {
+          "description": "Exact review status from describe. source-checked is a scoped publisher check, not professional verification.",
+          "type": "string",
+          "maxLength": 120
+        },
+        "collection": {
+          "description": "Collection ID from describe.filters.collections; restricts to its source_ids and related_ids.",
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9_-]{1,160}$"
+        },
+        "ids": {
+          "description": "Explicit seed IDs, mutually exclusive with q and filters. Duplicate IDs are deduplicated in order.",
+          "minItems": 1,
+          "maxItems": 8,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-zA-Z0-9_-]{1,160}$",
+            "description": "Stable corpus record ID returned by search or a relationship."
+          }
+        },
+        "limit": {
+          "default": 4,
+          "description": "Number of seed search matches considered; does not truncate explicit ids or their linked bibliography.",
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 8
+        },
+        "max_chars": {
+          "default": 12000,
+          "description": "Maximum JSON.stringify(packet).length, including metadata and omission notes. UTF-16 code units, not tokens, bytes or MCP framing.",
+          "type": "integer",
+          "minimum": 4000,
+          "maximum": 40000
+        },
+        "include_sources": {
+          "default": true,
+          "description": "Consider linked source_ids after seed records. Excluded candidates appear in omitted; rights and provenance are never removed to fit.",
+          "type": "boolean"
+        },
+        "corpus_version": {
+          "description": "Optional corpus version pin. A mismatch fails with VERSION_MISMATCH; omit to read the available snapshot.",
+          "type": "string",
+          "maxLength": 80
+        }
+      },
+      "additionalProperties": false
+    },
+    "contextOutput": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "type": "object",
+      "properties": {
+        "agent_schema_version": {
+          "type": "string",
+          "const": "1.2.0"
+        },
+        "corpus_version": {
+          "type": "string"
+        },
+        "content_trust": {
+          "type": "string",
+          "const": "untrusted-research-data"
+        },
+        "query": {
+          "type": "string"
+        },
+        "budget": {
+          "type": "object",
+          "properties": {
+            "max_chars": {
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "used_chars": {
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "unit": {
+              "type": "string",
+              "const": "JSON UTF-16 code units"
+            }
+          },
+          "required": [
+            "max_chars",
+            "used_chars",
+            "unit"
+          ],
+          "additionalProperties": false
+        },
+        "records": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "record": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "kind": {
+                    "type": "string"
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "summary_excerpt": {
+                    "type": "string"
+                  },
+                  "publisher": {
+                    "type": "string"
+                  },
+                  "source_type": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "jurisdiction": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "knowledge": {
+                    "type": "object",
+                    "properties": {
+                      "jurisdictions": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "frameworks": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "entities": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "products": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "period": {
+                        "type": "object",
+                        "propertyNames": {
+                          "type": "string"
+                        },
+                        "additionalProperties": {}
+                      },
+                      "basis": {
+                        "type": "object",
+                        "propertyNames": {
+                          "type": "string"
+                        },
+                        "additionalProperties": {}
+                      }
+                    },
+                    "required": [
+                      "jurisdictions",
+                      "frameworks",
+                      "entities",
+                      "products",
+                      "period",
+                      "basis"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "topics": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "industries": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "review_status": {
+                    "type": "string"
+                  },
+                  "reviewed_at": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "rights": {
+                    "type": "object",
+                    "propertyNames": {
+                      "type": "string"
+                    },
+                    "additionalProperties": {}
+                  },
+                  "research": {
+                    "type": "object",
+                    "propertyNames": {
+                      "type": "string"
+                    },
+                    "additionalProperties": {}
+                  },
+                  "citation": {
+                    "type": "object",
+                    "properties": {
+                      "record_id": {
+                        "type": "string"
+                      },
+                      "record_url": {
+                        "type": "string"
+                      },
+                      "original_source_url": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "text": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "record_id",
+                      "record_url",
+                      "original_source_url",
+                      "text"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "summary": {
+                    "type": "string"
+                  },
+                  "provenance": {
+                    "type": "object",
+                    "propertyNames": {
+                      "type": "string"
+                    },
+                    "additionalProperties": {}
+                  },
+                  "dates": {
+                    "type": "object",
+                    "propertyNames": {
+                      "type": "string"
+                    },
+                    "additionalProperties": {}
+                  },
+                  "source_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "related_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "links": {
+                    "type": "object",
+                    "properties": {
+                      "canonical_json": {
+                        "type": "string"
+                      },
+                      "markdown": {
+                        "type": "string"
+                      },
+                      "agent": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "canonical_json",
+                      "markdown",
+                      "agent"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "evidence": {
+                    "type": "object",
+                    "propertyNames": {
+                      "type": "string"
+                    },
+                    "additionalProperties": {}
+                  },
+                  "research_review": {
+                    "type": "object",
+                    "propertyNames": {
+                      "type": "string"
+                    },
+                    "additionalProperties": {}
+                  },
+                  "relations": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "propertyNames": {
+                        "type": "string"
+                      },
+                      "additionalProperties": {}
+                    }
+                  },
+                  "relations_total": {
+                    "type": "integer",
+                    "minimum": -9007199254740991,
+                    "maximum": 9007199254740991
+                  },
+                  "relations_truncated": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "id",
+                  "kind",
+                  "title",
+                  "summary_excerpt",
+                  "publisher",
+                  "source_type",
+                  "jurisdiction",
+                  "knowledge",
+                  "topics",
+                  "industries",
+                  "review_status",
+                  "reviewed_at",
+                  "rights",
+                  "research",
+                  "citation",
+                  "summary",
+                  "provenance",
+                  "dates",
+                  "source_ids",
+                  "related_ids",
+                  "links",
+                  "evidence",
+                  "research_review",
+                  "relations",
+                  "relations_total",
+                  "relations_truncated"
+                ],
+                "additionalProperties": false
+              },
+              "passages": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "record_id": {
+                      "type": "string"
+                    },
+                    "section": {
+                      "type": "string"
+                    },
+                    "ordinal": {
+                      "type": "integer",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "text": {
+                      "type": "string"
+                    },
+                    "source_pointers": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "record_id",
+                    "section",
+                    "ordinal",
+                    "text",
+                    "source_pointers"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "total_passages": {
+                "type": "integer",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "remaining_passages": {
+                "type": "integer",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              }
+            },
+            "required": [
+              "record",
+              "passages",
+              "total_passages",
+              "remaining_passages"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "omitted": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "reason": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "reason"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "agent_schema_version",
+        "corpus_version",
+        "content_trust",
+        "query",
+        "budget",
+        "records",
+        "omitted",
+        "notes"
+      ],
+      "additionalProperties": false
+    }
+  }
+}
