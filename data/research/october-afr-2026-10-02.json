@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "observed_at": "2026-10-02",
+  "source_id": "src_irs_afr_rr2026_19",
+  "source_url": "https://www.irs.gov/pub/irs-drop/rr-26-19.pdf",
+  "pdf_sha256": "5baef5d7ab63efcd02684d2f700fe463c58ff78d6ff142bfcf23cd933ba2e914",
+  "pdf_pages": 4,
+  "published_rate_month": "2026-10",
+  "review_scope": "PDF page 1 overview; page 2 Table 1 base AFR rows (12 cells); page 4 Table 5 section 7520 rate. All proposed cells checked against locally rendered PDF pages.",
+  "verification_method": "Direct official IRS PDF read plus visual inspection of locally rendered pages 1, 2 and 4 using pdftoppm; each proposed numeric cell checked with its visible row and column label. Extracted text was not the sole numeric evidence.",
+  "visual_checks": [
+    {
+      "page": 1,
+      "verified": "Ruling identity, October 2026 label and separate Table 1 section 1274(d)/Table 5 section 7520 purposes"
+    },
+    {
+      "page": 2,
+      "table": 1,
+      "rows": "Base AFR rows only",
+      "column_order": [
+        "annual",
+        "semiannual",
+        "quarterly",
+        "monthly"
+      ],
+      "values_percent": {
+        "short-term": [
+          "4.25",
+          "4.21",
+          "4.19",
+          "4.17"
+        ],
+        "mid-term": [
+          "4.61",
+          "4.56",
+          "4.53",
+          "4.52"
+        ],
+        "long-term": [
+          "5.22",
+          "5.15",
+          "5.12",
+          "5.10"
+        ]
+      }
+    },
+    {
+      "page": 4,
+      "table": 5,
+      "statutory_purpose": "section 7520",
+      "value_percent": "5.60",
+      "compounding": "not-stated-in-table"
+    }
+  ],
+  "professional_review_status": "pending",
+  "external_rights": "unknown",
+  "full_text_stored": false,
+  "limits": [
+    "No entire PDF, screenshot or publisher prose stored in corpus or repository",
+    "No numeric input outside the visually checked cells",
+    "Month scope does not establish transaction applicability or universal date bounds"
+  ]
+}

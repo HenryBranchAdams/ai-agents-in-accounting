@@ -15,7 +15,9 @@ test('Form 706 reuses its identity and preserves every existing record and histo
   for (const kind of ['source', 'guide']) {
     const prior = previous(`data/corpus/${kind}.json`);
     const now = records.filter(record => record.kind === kind);
-    assert.equal(now.length, prior.length);
+    assert.equal(now.length, prior.length + (kind === 'source' ? 1 : 0));
+    const priorIds = new Set(prior.map(record => record.id));
+    assert.deepEqual(now.filter(record => !priorIds.has(record.id)).map(record => record.id), kind === 'source' ? ['src_irs_afr_rr2026_19'] : []);
     for (const old of prior) assert.deepEqual(beforeForm706Supplement(now.find(record => record.id === old.id), old), old, old.id);
   }
   assert.equal(records.filter(record => record.source_url === current.source_url).length, 1);

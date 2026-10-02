@@ -1,12 +1,12 @@
 {
   "schema_version": "1.0.0",
-  "mapping_version": "2026-10-02.3",
+  "mapping_version": "2026-10-02.5",
   "topology_version": "2026-09-11.1",
-  "corpus_version": "2026-10-02.3",
+  "corpus_version": "2026-10-02.5",
   "generated_at": "2026-09-19",
-  "corpus_sha256": "7b7c7a7a0c27d3ba0ec36ba660330a6acbf2f3ce8440175692bb16a1ef2c700b",
+  "corpus_sha256": "b1b0764a1e32602fce2c6c06e69879807a1a21b007d4bf0ba5850d41aec9da06",
   "rules_sha256": "550b2bb485399af996bac6ed34542d7a91170d4b31b5e5026e0e9c2c32068b9d",
-  "overrides_sha256": "da1364bad1e4c64f729fb8e26efa9cd092f5f9c1c57b436d547ae5459c33879e",
+  "overrides_sha256": "d23fe409e6cbc056391e8a99dc6873d2b580faec7b8612830fb9cc1de93dbb36",
   "method": "Deterministic title/topic associations, conservative industry crosswalk, and explicit editorial additions. All initial links are candidates; source review status is unchanged.",
   "mappings": [
     {
@@ -54255,6 +54255,25 @@
               "field": "/title",
               "matched": "Transfer Expenses",
               "rule": "title:grants-contributions"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_irs_afr_rr2026_19",
+      "question_mappings": [
+        {
+          "question_id": "q-revenue",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Revenue",
+              "rule": "title:revenue"
             }
           ]
         }
