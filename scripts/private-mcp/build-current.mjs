@@ -102,13 +102,20 @@ export async function buildCurrent({ artifact, destination, sourceRevision }) {
   });
   assert(Object.keys(result.metafile.inputs).every(file => !/(?:data\/corpus|dist\/internal\/agent|agent-client\.mjs)/.test(file)), 'Derivative imported canonical source or local fallback.');
   assert(Object.values(result.metafile.outputs).every(output => output.imports.every(item => !item.external)), 'Derivative has an external module dependency.');
-  const workerBytes = Object.values(result.metafile.outputs).reduce((total, output) => total + output.bytes, 0);
+  const noticeText = Object.entries(notices).map(([file, body]) => `${file}\n\n${body}`).join('\n\n');
+  assert(!noticeText.includes('*/'), 'Permission text contains a JavaScript comment terminator.');
+  const legalComment = Buffer.from(`\n/*! Private derivative licenses and attribution\n\n${noticeText}\n*/\n`);
+  const outputFiles = result.outputFiles.map(output => ({ path: output.path,
+    contents: path.relative(destination, output.path) === 'server/index.js' ? Buffer.concat([output.contents, legalComment]) : output.contents }));
+  assert(outputFiles.some(output => path.relative(destination, output.path) === 'server/index.js'), 'Private entry module missing.');
+  const workerBytes = outputFiles.reduce((total, output) => total + output.contents.length, 0);
   assert(workerBytes < 64 * 1024 * 1024, 'Private Worker exceeds 64 MiB.');
-  for (const output of result.outputFiles) { fs.mkdirSync(path.dirname(output.path), { recursive: true }); fs.writeFileSync(output.path, output.contents); }
+  for (const output of outputFiles) { fs.mkdirSync(path.dirname(output.path), { recursive: true }); fs.writeFileSync(output.path, output.contents); }
   for (const [file, body] of Object.entries(notices)) fs.writeFileSync(path.join(destination, file), body);
   const report = { ...pin, worker_bytes: workerBytes, compressed_data_bytes: Object.values(inventory).reduce((sum, asset) => sum + asset.bytes, 0),
     modules: Object.keys(result.metafile.outputs).map(file => ({ file: path.relative(destination, file), sha256: hash(fs.readFileSync(file)) })),
     notices: Object.entries(notices).map(([file, body]) => ({ file, sha256: hash(body) })),
+    embedded_notices_sha256: hash(legalComment), embedded_notices_bytes: legalComment.length,
     limitations: 'Private deployment derivative only; artifact provenance must be authenticated by the integration owner. Canonical public URLs may serve an older edition.' };
   fs.writeFileSync(path.join(destination, 'private-qualification.json'), JSON.stringify(report, null, 2) + '\n');
   return report;

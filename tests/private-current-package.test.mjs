@@ -47,6 +47,11 @@ test('private derivative packages only sealed modules with pinned inventory and 
   assert.deepEqual(fs.readdirSync(setup.destination).sort(), ['ATTRIBUTION.md', 'LICENSE', 'LICENSE-CONTENT.md', 'LICENSE-DATA.md', 'LICENSE_POLICY.md', 'NOTICE.md', 'THIRD_PARTY_NOTICES.md', 'private-qualification.json', 'server']);
   assert.match(fs.readFileSync(path.join(setup.destination, 'THIRD_PARTY_NOTICES.md'), 'utf8'), /react-remove-scroll-bar 2.3.8/);
   assert.equal(report.notices.length, 7);
+  const entry = fs.readFileSync(path.join(setup.destination, 'server/index.js'), 'utf8');
+  for (const notice of report.notices) assert.ok(entry.includes(fs.readFileSync(path.join(setup.destination, notice.file), 'utf8')), notice.file);
+  assert.match(entry, /\/\*! Private derivative licenses and attribution/);
+  assert.ok(report.embedded_notices_bytes > 0);
+  assert.equal(report.worker_bytes, report.modules.reduce((sum, module) => sum + fs.statSync(path.join(setup.destination, module.file)).size, 0));
   assert.ok(report.modules.every(module => module.file.startsWith('server/') && /^[a-f0-9]{64}$/.test(module.sha256)));
   assert.ok(report.compressed_data_bytes > 0);
 });
