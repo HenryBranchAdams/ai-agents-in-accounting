@@ -7,7 +7,7 @@ The corpus brings original source references together with accounting workflows,
 The [roadmap](docs/roadmap.md) records the research expansion and remaining evidence work. Read the [roadmap handoff](docs/checkpoint-roadmap-2026-09-12.md) for counts, reading paths, validation and publication boundaries. Earlier checkpoints preserve historical states; retired product plans are not the current backlog.
 
 <!-- release-overview:start -->
-The canonical edition is **`2026-10-02.1`**, with **1,561 records**. These counts come from the [release manifest](data/releases/2026-10-02.1/manifest.json) and its verified snapshot.
+The canonical edition is **`2026-10-02.2`**, with **1,564 records**. These counts come from the [release manifest](data/releases/2026-10-02.2/manifest.json) and its verified snapshot.
 
 | Record kind | Count |
 | --- | ---: |
@@ -18,14 +18,14 @@ The canonical edition is **`2026-10-02.1`**, with **1,561 records**. These count
 | design | 24 |
 | ecosystem | 5 |
 | example | 54 |
-| guide | 279 |
+| guide | 280 |
 | process | 8 |
-| source | 917 |
+| source | 919 |
 | template | 14 |
 | term | 59 |
 | workflow | 102 |
 
-There are **78 preserved editions**; the current edition's preserved predecessor is [`2026-10-01.2`](data/releases/2026-10-01.2/manifest.json). Release history records corpus changes; it does not establish source currency, professional review or deployment.
+There are **79 preserved editions**; the current edition's preserved predecessor is [`2026-10-02.1`](data/releases/2026-10-02.1/manifest.json). Release history records corpus changes; it does not establish source currency, professional review or deployment.
 <!-- release-overview:end -->
 
 No entire accounting family, subsector or detailed industry is assessed sufficient. Scoped AI-assisted source checks, classification review and software validation do not establish professional accounting verification or production effectiveness. The [live site](https://accounting-agents.madebyhenry.chatgpt.site) exposes its served edition at `/api/v1/meta`; deployment and corpus versions are separate. See [mission and coverage](data/catalog.json).
