@@ -17,6 +17,7 @@ test('bounded estate intake preserves all prior records and protected research a
   for (const kind of ['source', 'guide']) {
     const old = prior(`data/corpus/${kind}.json`);
     const current = records.filter(record => record.kind === kind);
+    assert.equal(current.length, old.length + (kind === 'source' ? 2 : 1));
     const oldIds = new Set(old.map(record => record.id));
     const additions = current.filter(record => !oldIds.has(record.id)).map(record => record.id).sort();
     assert.deepEqual(additions, kind === 'source' ? [instruction.id, rule.id].sort() : [guide.id]);
