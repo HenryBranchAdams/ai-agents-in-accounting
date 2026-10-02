@@ -88,7 +88,10 @@ test('reading table preserves all cases and declared evidence dependencies',()=>
 
 test('payroll integration preserves prior guides and source evidence with one declared reading connection',()=>{
  const prior=JSON.parse(readFileSync('data/releases/2026-09-30.5/corpus.json','utf8')).records;
- const oldGuides=prior.filter(r=>r.kind==='guide');assert.equal(records.filter(r=>r.kind==='guide').length,oldGuides.length+1);
+ const oldGuides=prior.filter(r=>r.kind==='guide'),oldGuideIds=new Set(oldGuides.map(r=>r.id));
+ assert.equal(records.filter(r=>r.kind==='guide').length,oldGuides.length+2);
+ // Payroll adds its declared guide; the later estate intake adds one separate discovery route.
+ assert.deepEqual(records.filter(r=>r.kind==='guide'&&!oldGuideIds.has(r.id)).map(r=>r.id).sort(),[guide.id,'guide-estate-beneficiary-reporting-lineage'].sort());
  for(const old of oldGuides){
   const retained=structuredClone(byId.get(old.id));
   if(old.id==='guide-family-office-us-accounting'){
