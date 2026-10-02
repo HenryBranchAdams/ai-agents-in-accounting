@@ -33,8 +33,23 @@ test("aliases expand within longer queries and quoted phrases stay literal", () 
   assert.deepEqual(expandQuery('"SoD"'), ["sod"]);
 });
 
-test("invalid as_of dates are rejected by the agent contract", () => {
-  assert.throws(() => executeAgent("search", { q: "ifrs", as_of: "2026-9-1" }), (e) => e.code === "INVALID_ARGUMENT");
+test("invalid calendar dates fail before retrieval in agent and reading search", () => {
+  for (const as_of of ["2026-9-1", "2025-02-29", "2025-02-30", "1900-02-29", "2025-04-31", "2025-00-01", "2025-13-01", "2025-01-00", "2025-01-32", "2025-01-01T00:00:00Z"]) {
+    for (const op of ["search", "context"])
+      assert.throws(() => executeAgent(op, { q: "SEC family office", as_of }), (e) => e.code === "INVALID_ARGUMENT", `${op}: ${as_of}`);
+    assert.throws(() => search(new URLSearchParams({ q: "SEC family office", as_of })), /valid YYYY-MM-DD/, as_of);
+  }
+});
+
+test("valid leap days and year boundaries retain dated retrieval and omission reporting", () => {
+  for (const as_of of ["2000-02-29", "2024-02-29", "2025-01-01", "2025-12-31"]) {
+    const reading = search(new URLSearchParams({ q: "SEC family office", as_of }));
+    const agent = executeAgent("search", { q: "SEC family office", as_of });
+    assert.equal(agent.total, reading.total, as_of);
+    assert.equal(agent.temporal_filter.as_of, as_of);
+    const context = executeAgent("context", { q: "SEC family office", as_of });
+    assert.equal(context.temporal_filter.as_of, as_of);
+  }
 });
 
 test("legacy workflow and explicit supersedes edges are exposed", () => {
