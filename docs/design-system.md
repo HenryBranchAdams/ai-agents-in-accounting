@@ -31,7 +31,7 @@ Slate 50 supplies the page background, white supplies cards/popovers, Slate 900 
 
 Application extensions are explicit: `overlay` for the modal scrim, `destructive-foreground`, and platform `Canvas` / `CanvasText` colors for native select options. The favicon repeats Slate values because standalone SVG does not inherit the page theme.
 
-Typography and layout are application decisions, not shadcn defaults: system sans text, Georgia editorial headings, system monospace, Tailwind's quarter-rem spacing scale, `library` (84rem) and `reading` (52rem) content widths. The radius scale derives from the standard `--radius`. Components own their built-in appearance; callers use variants/sizes and layout classes.
+Typography and layout are application decisions, not shadcn defaults: ABC Areal text and editorial headings when the licensed deployment overlay is present (system sans and Georgia fallbacks), system monospace, Tailwind's quarter-rem spacing scale, `library` (84rem) and `reading` (52rem) content widths. The radius scale derives from the standard `--radius`. Components own their built-in appearance; callers use variants/sizes and layout classes.
 
 ## Composition and delivery
 
@@ -138,3 +138,26 @@ registry source or adding lint exceptions. Canvas colors use the existing Slate
 semantic tokens, resolved to RGB by the browser for Cytoscape. Layout, responsive
 canvas sizing and record-list structure are application CSS. New layout dependencies
 retain their MIT notices in LICENSES. No runtime force-layout dependency is shipped.
+
+## Areal deployment typography
+
+Henry's original free ABC Areal WOFF2 files are deployment assets, separate from
+the open-source corpus. Dinamo's [Areal download](https://abcdinamo.com/free/areal)
+identifies a free-font license; [terms §9.12](https://abcdinamo.com/licenses) cover
+web use. Section 10 prohibits public repository redistribution. No binaries are
+committed or included in corpus/source downloads. The font credit appears only
+when the licensed overlay is built.
+
+Set `AREAL_FONT_DIR` to the materialized originals outside the checkout before
+`npm run check` or a deployment build. The build verifies all six static WOFF2
+files against pinned sizes and SHA-256 values before writing, preserves their
+bytes, emits content-addressed assets under `dist/client/fonts`, and records
+weights, styles and hashes in release metadata. CSS uses `font-display: swap`;
+regular, medium and bold have original italic counterparts. The existing system
+monospace, sizes, spacing, colors and content widths remain. Without the external
+input, builds use their normal fallback fonts and request no unavailable assets.
+
+The read-only asset router permits only the exact generated font URLs. Licensed
+builds permit same-origin fonts in CSP; other script, frame and access rules stay
+unchanged. Verify the licensed build itself with desktop/mobile browser checks;
+CI intentionally has no licensed binary input and verifies the fallback build.
