@@ -91,3 +91,29 @@ test('normal production build exports the packs from the same corpus edition', (
   assert.deepEqual(exported, buildFamilyOfficeResearchPacks(records, meta));
   assert.equal(fs.readFileSync('dist/client/downloads/family-office-research-packs.md', 'utf8'), researchPacksMarkdown(exported));
 });
+
+test('portable Form 1041 evidence retains consistent calendar, fiscal and conditional short-year scope', () => {
+  const source = index.get('src_family_office_irs_1041_2025');
+  const audit = JSON.parse(fs.readFileSync('data/research/family-office-applicability-2026-10-01.json', 'utf8'));
+  const decision = audit.rows.find(row => row.id === source.id).decision;
+  assert.equal(source.data.effective_period, decision);
+  assert.equal(source.data.source_review.effective_period, decision);
+  assert.equal(source.data.effective_note, decision);
+  assert.equal(source.data.applicability_audit.note, decision);
+  const bundle = JSON.parse(JSON.stringify(buildFamilyOfficeResearchPacks(records, meta)));
+  const evidence = bundle.packs.flatMap(pack => pack.evidence).filter(row => row.record_id === source.id);
+  assert.ok(evidence.length > 0);
+  for (const row of evidence) {
+    assert.equal(row.effective_period, decision);
+    assert.equal(row.period_metadata.effective_note, decision);
+    assert.equal(row.period_metadata.effective_from, null);
+    assert.equal(row.period_metadata.effective_to, null);
+    assert.deepEqual(row.rights, source.rights);
+    assert.equal(row.reviewed_at, '2026-09-19');
+    assert.equal(row.review_status, 'source-checked');
+  }
+  const markdown = researchPacksMarkdown(bundle);
+  assert.ok(markdown.includes(decision));
+  assert.ok(markdown.includes(`Effective period: ${decision}. Applicability:`));
+  assert.ok(!source.data.effective_period.includes('Tax year 2025 only'));
+});

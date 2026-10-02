@@ -5,7 +5,8 @@ const audit = JSON.parse(fs.readFileSync('data/research/family-office-applicabil
 const rows = new Map(audit.rows.map(row => [row.id, row]));
 
 // Historical preservation comparisons allow only this separately reviewed,
-// ledger-bound addition. Callers still compare every remaining field exactly.
+// ledger-bound addition and the two contradictory Form 1041 period fields.
+// Callers still compare every remaining field exactly.
 export function beforeApplicabilityAudit(current, historical) {
   const retained = structuredClone(current);
   const row = retained?.kind === 'source' ? rows.get(retained.id) : null;
@@ -29,6 +30,18 @@ export function beforeApplicabilityAudit(current, historical) {
     if (Object.hasOwn(expected, key)) {
       assert.deepEqual(retained.data[key], expected[key], `${row.id}: audit ${key} differs from ledger`);
       delete retained.data[key];
+    }
+  }
+  // The original "2025 only" prose contradicted this source's ledger-backed
+  // fiscal/short-year scope. Permit only that exact correction in both fields.
+  if (row.id === 'src_family_office_irs_1041_2025') {
+    for (const [currentPeriod, historicalPeriod] of [
+      [retained.data, historical.data],
+      [retained.data.source_review, historical.data.source_review],
+    ]) {
+      assert.equal(historicalPeriod.effective_period, 'Tax year 2025 only; no automatic transfer to the illustrative 2026 close.', 'Expected original Form 1041 period');
+      assert.equal(currentPeriod.effective_period, row.decision, 'Form 1041 period correction differs from ledger');
+      currentPeriod.effective_period = historicalPeriod.effective_period;
     }
   }
   return retained;
