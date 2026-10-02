@@ -1,3 +1,4 @@
+import {beforeForm706Supplement} from './form706-preservation.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 
@@ -8,7 +9,7 @@ const rows = new Map(audit.rows.map(row => [row.id, row]));
 // ledger-bound addition and the two contradictory Form 1041 period fields.
 // Callers still compare every remaining field exactly.
 export function beforeApplicabilityAudit(current, historical) {
-  const retained = structuredClone(current);
+  const retained = beforeForm706Supplement(current, historical);
   const row = retained?.kind === 'source' ? rows.get(retained.id) : null;
   if (!row) return retained;
   const expected = {
