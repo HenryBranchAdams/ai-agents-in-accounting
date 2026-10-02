@@ -9,14 +9,17 @@ const records = loadRecords(), byId = new Map(records.map(record => [record.id, 
 const instruction = byId.get('src_estate_irs_8971_202508');
 const rule = byId.get('src_estate_td9991_20240917');
 const guide = byId.get('guide-estate-beneficiary-reporting-lineage');
-const baseline = '9b84ded';
+// The accepted 2026-10-02.1 edition includes the separately reviewed Form 1041 correction.
+const baseline = 'a3efcd6';
 const prior = file => JSON.parse(execFileSync('git', ['show', `${baseline}:${file}`], {encoding: 'utf8', maxBuffer: 32 * 1024 * 1024}));
 
 test('bounded estate intake preserves all prior records and protected research annotations', () => {
   for (const kind of ['source', 'guide']) {
     const old = prior(`data/corpus/${kind}.json`);
     const current = records.filter(record => record.kind === kind);
-    assert.equal(current.length, old.length + (kind === 'source' ? 2 : 1));
+    const oldIds = new Set(old.map(record => record.id));
+    const additions = current.filter(record => !oldIds.has(record.id)).map(record => record.id).sort();
+    assert.deepEqual(additions, kind === 'source' ? [instruction.id, rule.id].sort() : [guide.id]);
     for (const record of old) assert.deepEqual(byId.get(record.id), record, record.id);
   }
   for (const file of ['data/research/family-office-applicability-2026-10-01.json', 'docs/research/2026-09-24-family-office-controller/source-inventory.json']) {
