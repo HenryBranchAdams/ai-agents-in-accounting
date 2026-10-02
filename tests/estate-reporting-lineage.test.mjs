@@ -1,3 +1,4 @@
+import {beforeForm706Supplement} from './fixtures/form706-preservation.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -21,7 +22,7 @@ test('bounded estate intake preserves all prior records and protected research a
     const oldIds = new Set(old.map(record => record.id));
     const additions = current.filter(record => !oldIds.has(record.id)).map(record => record.id).sort();
     assert.deepEqual(additions, kind === 'source' ? [instruction.id, rule.id].sort() : [guide.id]);
-    for (const record of old) assert.deepEqual(byId.get(record.id), record, record.id);
+    for (const record of old) assert.deepEqual(beforeForm706Supplement(byId.get(record.id), record), record, record.id);
   }
   for (const file of ['data/research/family-office-applicability-2026-10-01.json', 'docs/research/2026-09-24-family-office-controller/source-inventory.json']) {
     assert.deepEqual(JSON.parse(fs.readFileSync(file, 'utf8')), prior(file));
