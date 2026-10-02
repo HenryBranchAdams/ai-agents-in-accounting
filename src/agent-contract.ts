@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const agentSchemaVersion = "1.4.0";
+export const agentSchemaVersion = "1.4.1";
 const id = z
   .string()
   .regex(/^[a-zA-Z0-9_-]{1,160}$/)
@@ -55,7 +55,7 @@ const filters = {
   framework: z.string().max(160).optional().describe("Normalized accounting framework."),
   entity: z.string().max(160).optional().describe("Normalized entity scope."),
   product: z.string().max(160).optional().describe("Normalized product or system."),
-  as_of: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional().describe("Include records effective on this date where a date is recorded."),
+  as_of: z.iso.date().optional().describe("Calendar-valid YYYY-MM-DD date. Include only records with complete recorded applicability; unknown dates are excluded."),
   source_type: z
     .string()
     .max(160)
