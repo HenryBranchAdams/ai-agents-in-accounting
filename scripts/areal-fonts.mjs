@@ -22,7 +22,7 @@ export function prepareArealFonts({directory,root=process.cwd()}={}) {
  // Validate every input before the build writes anything. No conversion/subsetting.
  const faces=arealFaces.map(([name,weight,style,bytes,sha256])=>{
   const filename=`ABCAreal-${name}.woff2`,file=path.join(source,filename);
-  if(fs.lstatSync(file).isSymbolicLink())throw new Error('Font inputs must be original regular files');
+  if(!fs.lstatSync(file).isFile())throw new Error('Font inputs must be original regular files');
   const body=fs.readFileSync(file);verifyFontBytes(body,bytes,sha256);
   return {body,weight,style,bytes,sha256,url:`/fonts/areal-${name.toLowerCase()}-${sha256.slice(0,12)}.woff2`};
  });

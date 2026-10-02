@@ -5,8 +5,8 @@ import os from 'node:os';
 import path from 'node:path';
 import {createHash} from 'node:crypto';
 import {prepareArealFonts,writeArealFonts,verifyFontBytes,arealFaces} from '../scripts/areal-fonts.mjs';
-import {sourceFiles} from '../scripts/source-archive.mjs';
-import worker from '../dist/server/index.js';
+import {sourceFiles,sourceMembership} from '../scripts/source-archive.mjs';
+import worker from './worker-fixture.mjs';
 const sha=b=>createHash('sha256').update(b).digest('hex');
 
 test('unlicensed builds request no fonts and retain readable fallback stacks',()=>{
@@ -32,13 +32,13 @@ test('inputs inside the source checkout and incomplete external downloads fail b
 });
 test('font overlay preserves bytes, serves content-addressed URLs and does not expand source membership',t=>{
  const dir=fs.mkdtempSync(path.join(os.tmpdir(),'areal-output-'));t.after(()=>fs.rmSync(dir,{recursive:true,force:true}));
- const before=sourceFiles();fs.writeFileSync(path.join(dir,'style.css'),'body{}');
+ const before=sourceMembership();fs.writeFileSync(path.join(dir,'style.css'),'body{}');
  const body=Buffer.from('wOF2synthetic-overlay-test'),digest=sha(body),url=`/fonts/areal-regular-${digest.slice(0,12)}.woff2`;
  const manifest=writeArealFonts({faces:[{body,weight:400,style:'normal',bytes:body.length,sha256:digest,url}]},dir);
  assert.deepEqual(fs.readFileSync(path.join(dir,url.slice(1))),body);
  assert.match(fs.readFileSync(path.join(dir,'style.css'),'utf8'),/font-display:swap/);
  assert.equal(manifest.files[0].sha256,digest);assert.ok(!JSON.stringify(manifest).includes(dir));
- assert.deepEqual(sourceFiles(),before);assert.ok(!before.some(file=>/\.(woff2?|ttf|otf)$/.test(file)));
+ assert.deepEqual(sourceMembership(),before);assert.ok(!sourceFiles().some(file=>/\.(woff2?|ttf|otf)$/.test(file)));
  assert.deepEqual(arealFaces.map(face=>[face[1],face[2]]),[[400,'normal'],[400,'italic'],[500,'normal'],[500,'italic'],[700,'normal'],[700,'italic']]);
 });
 test('primary build serves only its qualified font URLs and keeps binaries out of downloads',async()=>{
@@ -55,7 +55,7 @@ test('primary build serves only its qualified font URLs and keeps binaries out o
   const res=await worker.fetch(new Request('https://example.test'+face.url),env);assert.equal(res.status,200);assert.equal(res.headers.get('content-type'),'font/woff2');
  }
  assert.equal(fetches,meta.licensed_fonts?.files.length||0);
- const rejected=await worker.fetch(new Request('https://example.test/fonts/arbitrary.woff2'),env);assert.equal(rejected.status,404);
+ const rejected=await worker.fetch(new Request('https://example.test/fonts/arbitrary.woff2'),env);assert.equal(rejected.status,404);assert.equal(fetches,meta.licensed_fonts?.files.length||0);
  if(meta.licensed_fonts){assert.match(html,/ABC Areal by Dinamo/);assert.match((await worker.fetch(new Request('https://example.test/'))).headers.get('Content-Security-Policy'),/font-src 'self'/);}
- else{assert.doesNotMatch(css,/@font-face/);assert.doesNotMatch(html,/ABC Areal by Dinamo/);}
+ else{assert.doesNotMatch((await worker.fetch(new Request('https://example.test/'))).headers.get('Content-Security-Policy'),/font-src/);assert.doesNotMatch(css,/@font-face/);assert.doesNotMatch(html,/ABC Areal by Dinamo/);}
 });
