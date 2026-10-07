@@ -6,6 +6,7 @@ import { meta } from "../corpus";
 declare const STYLE_VERSION: string;
 declare const NAVIGATION_SCRIPT: string;
 declare const PREVIEW_BUILD: boolean;
+declare const LICENSED_FONT_ASSETS: string[];
 export function shell(
   title: string,
   description: string,
@@ -97,6 +98,11 @@ export function shell(
                   project metadata and editorial content. Publisher rights
                   remain separate.
                 </p>
+                {typeof LICENSED_FONT_ASSETS !== "undefined" && LICENSED_FONT_ASSETS.length > 0 ? (
+                  <p className="mt-3 text-muted-foreground">
+                    Typeface: <a href="https://abcdinamo.com/typefaces/areal">ABC Areal by Dinamo</a>.
+                  </p>
+                ) : null}
               </div>
               <nav
                 aria-label="Footer"
