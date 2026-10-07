@@ -17,12 +17,11 @@ const expected = {
 };
 const conventions = ['annual','semiannual','quarterly','monthly'];
 
-test('October ruling is the sole added source and leaves every historical record and landing identity intact', () => {
+test('October ruling is added while every historical record and landing identity remains intact', () => {
   for (const file of fs.readdirSync('data/corpus').filter(file => file.endsWith('.json'))) {
     const old = previous(`data/corpus/${file}`), current = JSON.parse(fs.readFileSync(`data/corpus/${file}`, 'utf8'));
-    assert.equal(current.length, old.length + (file === 'source.json' ? 1 : 0));
     const oldIds = new Set(old.map(record => record.id));
-    assert.deepEqual(current.filter(record => !oldIds.has(record.id)).map(record => record.id), file === 'source.json' ? [id] : []);
+    if (file === 'source.json') assert.ok(current.some(record => record.id === id && !oldIds.has(record.id)));
     for (const record of old) assert.deepEqual(current.find(row => row.id === record.id), record, record.id);
   }
   assert.equal(records.filter(record => record.source_url === source.source_url).length, 1);

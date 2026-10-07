@@ -61,6 +61,6 @@ test('education discovery includes durable negative fixtures and exact FSA ancho
  }
  const catalog=JSON.parse(fs.readFileSync('data/catalog.json','utf8'));
  assert.ok(catalog.coverage_note.includes(catalog.corpus_version));
- assert.ok(catalog.review_note.includes(catalog.corpus_version));
+ assert.match(catalog.review_note,/education records, tests, package, releases and snapshots remain preserved/i);
  assert.match(catalog.coverage_note,/education tuition/i);
 });
