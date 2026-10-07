@@ -13,9 +13,9 @@ import ecosystems from "../data/corpus/ecosystem.json";
 import guides from "../data/corpus/guide.json";
 import collections from "../data/corpus/collection.json";
 import examples from "../data/corpus/example.json";
-import { createKnowledgeIndex, expandQuery, expandIndexedText, normalizeJurisdiction, type Profile } from "./knowledge";
+import { createKnowledgeIndex, expandQuery, expandIndexedText, numericTokens, numericQuerySpecificity, normalizeJurisdiction, applicabilityExclusion, type Profile } from "./knowledge";
 import { createCoverageIndex } from "./coverage";
-export { expandQuery } from "./knowledge";
+export { expandQuery, createKnowledgeIndex, applicabilityExclusion } from "./knowledge";
 
 export type Json =
   string | number | boolean | null | Json[] | { [key: string]: Json };
@@ -87,12 +87,24 @@ const normalize = (s: string) =>
     .normalize("NFKD")
     .replace(/[\u0300-\u036f]/g, "")
     .toLowerCase();
-const indexed = records.map((r) => ({
-  r,
-  title: expandIndexedText(r.title),
-  summary: expandIndexedText(r.summary),
-  text: expandIndexedText(JSON.stringify(r)),
-}));
+function buildBrowserSearchIndex() {
+  return records.map((r) => {
+    const text = expandIndexedText(JSON.stringify(r));
+    return {
+      r,
+      title: expandIndexedText(r.title),
+      summary: expandIndexedText(r.summary),
+      text,
+      numericTokens: numericTokens(text),
+    };
+  });
+}
+// Agent retrieval owns its own search index. Build this separate browser index
+// only after a valid browser search requests it, rather than retaining both.
+let indexed: ReturnType<typeof buildBrowserSearchIndex> | undefined;
+function browserSearchIndex() {
+  return indexed ||= buildBrowserSearchIndex();
+}
 const values = (fn: (r: CorpusRecord) => string[]) =>
   [...new Set(records.flatMap(fn))]
     .filter(Boolean)
@@ -143,6 +155,7 @@ export function search(params: URLSearchParams) {
   const limit = number("limit", 20, 100);
   let terms: string[] = [];
   try { terms = q ? expandQuery(q) : []; } catch { throw new QueryError("Close every quoted phrase."); }
+  const numericTerms = terms.filter(t => /^\d+$/.test(t));
   const topic = params.get("topic");
   const industry = params.get("industry");
   const naics = params.get('naics'), questionFamily = params.get('question_family');
@@ -156,7 +169,7 @@ export function search(params: URLSearchParams) {
   const product = params.get("product");
   const asOf = params.get("as_of");
   if (asOf && (!/^\d{4}-\d{2}-\d{2}$/.test(asOf) || !Number.isFinite(Date.parse(asOf)) || new Date(asOf).toISOString().slice(0,10) !== asOf)) throw new QueryError("as_of must be a valid YYYY-MM-DD date.");
-  const matches = indexed
+  const matches = browserSearchIndex()
     .filter(
       ({ r, text }) =>
         (!kind ||
@@ -172,12 +185,13 @@ export function search(params: URLSearchParams) {
         (!framework || knowledge.profile(r.id)?.scope.frameworks.includes(framework)) &&
         (!entity || knowledge.profile(r.id)?.scope.entities.includes(entity)) &&
         (!product || knowledge.profile(r.id)?.scope.products.includes(product)) &&
-        (!asOf || (() => { const p = knowledge.profile(r.id)?.scope.period; const full = (v: string | null) => !!v && /^\d{4}-\d{2}-\d{2}$/.test(v); return !!p && full(p.effective_from) && p.effective_from! <= asOf && (!p.effective_to || (full(p.effective_to) && p.effective_to >= asOf)); })()) &&
+        (!asOf || !applicabilityExclusion(knowledge.profile(r.id)?.scope.period, asOf)) &&
         (!collection || collection.source_ids.includes(r.id)) &&
         terms.every((t) => text.includes(t)),
     )
     .map((item) => ({
       ...item,
+      numericSpecificity: numericQuerySpecificity(item.numericTokens, numericTerms),
       score: terms.reduce(
         (sum, t) =>
           sum +
@@ -188,6 +202,7 @@ export function search(params: URLSearchParams) {
     }))
     .sort(
       (a, b) =>
+        b.numericSpecificity - a.numericSpecificity ||
         b.score - a.score ||
         a.r.title.localeCompare(b.r.title) ||
         a.r.id.localeCompare(b.r.id),

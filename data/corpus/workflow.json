@@ -28064,7 +28064,415 @@
         "Selected source passages and synthetic bookkeeping do not establish current consolidated GAAP, entity-specific legal or tax conclusions, or professional review.",
         "Private-fund measurement, standalone interest measurement, tax elections, governing documents and actual ownership/control require further evidence.",
         "No operational financial data or empirical agent performance is established. Source rights and later source currency remain unresolved."
-      ]
+      ],
+      "reporting_policy": {
+        "classification": "original-editorial-proposal",
+        "scope": "A proposed evidence and review policy for a bounded management aggregation. It is not a mandatory close calendar, GAAP consolidation policy, personal financial statement standard or authorization to post, pay or file.",
+        "report_contract": [
+          {
+            "field": "Purpose and audience",
+            "evidence": "Named management question, intended recipients and approved confidentiality scope",
+            "stop": "Do not reuse a family dashboard as a lender, fiduciary, statutory or tax report without reviewing its separate requirements."
+          },
+          {
+            "field": "Period and perimeter",
+            "evidence": "Reporting date, included entity/account IDs, ownership or inclusion rationale and excluded interests",
+            "stop": "Do not include an asset merely because the office can see or administer it."
+          },
+          {
+            "field": "Basis and measurement",
+            "evidence": "Entity accounting basis, line-item method, source date, currency and valuation uncertainty",
+            "stop": "Do not rename provisional carrying amounts as current fair value or net worth."
+          },
+          {
+            "field": "Restrictions and obligations",
+            "evidence": "Account owner, governing restrictions, debt terms and separately tracked unfunded commitments",
+            "stop": "Do not treat all visible cash as freely transferable or all commitments as recognized liabilities."
+          },
+          {
+            "field": "Reconciliation and adjustments",
+            "evidence": "Source-to-ledger reconciliation, reciprocal counterparty/transaction matches, separate adjustment IDs and bridge to entity books",
+            "stop": "Do not eliminate unmatched differences or edit entity books to force the presentation to agree."
+          },
+          {
+            "field": "Review and exceptions",
+            "evidence": "Preparer, reviewer, missing items, materiality criteria selected by the accountable reviewer, exception owner and final disposition",
+            "stop": "Do not mark a close approved merely because totals balance or a program passes."
+          }
+        ],
+        "cadence": [
+          {
+            "stage": "Before close",
+            "work": "Confirm entity/account population, period, reporting promises and the evidence request list. Assign preparers, reviewers and specialist contacts.",
+            "evidence": "Population register and scoped close timetable."
+          },
+          {
+            "stage": "Reconcile entity books",
+            "work": "Match bank, custody, payroll, vendor, loan and investment schedules to each ledger. Retain cutoff and missing-statement exceptions.",
+            "evidence": "Entity trial balances, supporting statements and reconciliation workpapers."
+          },
+          {
+            "stage": "Review cross-entity activity",
+            "work": "Match both parties, transaction, amount, period and authority; distinguish reimbursement, loan, fee, capital and beneficiary flows.",
+            "evidence": "Reciprocal schedule and underlying agreements; unresolved differences remain open."
+          },
+          {
+            "stage": "Build the declared view",
+            "work": "Apply only supported presentation adjustments within the declared perimeter; retain source columns, adjustment IDs, dates and restrictions.",
+            "evidence": "Unadjusted-to-adjusted report bridge and a dated measurement exception list."
+          },
+          {
+            "stage": "Release or hold the report",
+            "work": "Obtain the named reviewer disposition. Separate an approved report, a draft with disclosed exceptions and a report held for unresolved evidence.",
+            "evidence": "Versioned report and reviewer record; no publication or financial operation is performed here."
+          }
+        ],
+        "specialist_triggers": [
+          "Unclear ownership, trust restriction, authority or related-party agreement: the accountable owner/fiduciary and legal adviser.",
+          "Unclear consolidation, reporting basis, recognition or presentation: the accounting reviewer with current applicable standards.",
+          "Stale or unsupported material value: the valuation and accounting reviewers; carry the date and uncertainty until resolved.",
+          "Book-to-tax difference, missing K-1, return year or election: the responsible tax adviser.",
+          "Entity-specific cash shortfall or proposed cross-entity funding: the authorized owner/fiduciary and treasury adviser."
+        ]
+      },
+      "reporting_bridge": {
+        "classification": "original-synthetic",
+        "currency": "USD",
+        "unit": "cents",
+        "period_end": "2026-09-30",
+        "assumptions": [
+          "Invented amounts illustrate a management report only. The named O and I ledgers contain direct assets, with no cross-held ownership interest embedded in them; no GAAP consolidation conclusion is supplied.",
+          "The declared report includes only O and I. T trust cash and P personal cash are outside this report. Their exclusion is a chosen synthetic perimeter, not a legal conclusion.",
+          "The reciprocal O receivable and I payable are assumed supported, same-period and inside the perimeter. Presentation adjustments do not change either entity ledger.",
+          "The private-fund carrying amount is provisional and its supporting value is stale. Current value, current-value net assets and tax basis are not supplied.",
+          "The 14-day forecast assumes no other receipts or payments, including no settlement of the $6,000 interentity payable within the horizon. The $60,000 unfunded commitment includes the assumed $25,000 call, rather than being additional to it.",
+          "The liquidity schedule is separate from recognition: the unfunded commitment is a planning fact, not an assumed additional recorded liability. No cross-entity transfer authority is supplied."
+        ],
+        "entities": [
+          {
+            "id": "O",
+            "included": true,
+            "cash_cents": 5000000,
+            "interentity_receivable_cents": 600000,
+            "investment_carry_cents": 0,
+            "external_liabilities_cents": 1000000,
+            "interentity_payable_cents": 0
+          },
+          {
+            "id": "I",
+            "included": true,
+            "cash_cents": 3000000,
+            "interentity_receivable_cents": 0,
+            "investment_carry_cents": 12000000,
+            "external_liabilities_cents": 4000000,
+            "interentity_payable_cents": 600000
+          },
+          {
+            "id": "T",
+            "included": false,
+            "cash_cents": 8000000,
+            "restriction": "Trust resources: actual use depends on the instrument and fiduciary authority."
+          },
+          {
+            "id": "P",
+            "included": false,
+            "cash_cents": 2000000,
+            "restriction": "Personal cash is outside the selected management-report perimeter."
+          }
+        ],
+        "reciprocal_match": {
+          "id": "O-I-01",
+          "receivable_entity": "O",
+          "payable_entity": "I",
+          "amount_cents": 600000,
+          "period": "2026-09",
+          "status": "assumed-supported-for-example"
+        },
+        "presentation": {
+          "before": {
+            "assets_cents": 20600000,
+            "liabilities_cents": 5600000,
+            "net_assets_cents": 15000000
+          },
+          "adjustment": {
+            "id": "PRESENT-O-I-01",
+            "asset_cents": -600000,
+            "liability_cents": -600000,
+            "entity_ledger_effect_cents": 0
+          },
+          "after": {
+            "assets_cents": 20000000,
+            "liabilities_cents": 5000000,
+            "carrying_net_assets_cents": 15000000
+          },
+          "current_value_net_assets_cents": null,
+          "measurement_exception": {
+            "entity": "I",
+            "carrying_amount_cents": 12000000,
+            "source_date": "2026-06-30",
+            "current_value_cents": null,
+            "status": "unresolved-stale-value"
+          }
+        },
+        "liquidity": {
+          "entity": "I",
+          "horizon": "next 14 days",
+          "opening_cash_cents": 3000000,
+          "confirmed_inflows_cents": 0,
+          "assumed_call_due_cents": 2500000,
+          "external_debt_service_due_cents": 800000,
+          "unfunded_commitment_cents": 6000000,
+          "projected_closing_cash_cents": -300000,
+          "approved_external_funding_cents": null,
+          "office_cash_transfer_authority": null,
+          "trust_cash_transfer_authority": null
+        },
+        "counterexamples": [
+          {
+            "id": "unmatched-balance",
+            "receivable_cents": 600000,
+            "payable_cents": 500000,
+            "unexplained_difference_cents": 100000,
+            "approved_elimination_cents": null,
+            "disposition": "Hold the adjustment for reconciliation; do not plug the difference."
+          },
+          {
+            "id": "counterparty-outside-perimeter",
+            "receivable_entity": "O",
+            "payable_entity": "I",
+            "included_entities": [
+              "O"
+            ],
+            "elimination_cents": 0,
+            "disposition": "Keep the receivable in the selected view; the counterparty is outside this perimeter."
+          },
+          {
+            "id": "stale-value",
+            "current_value_net_assets_cents": null,
+            "disposition": "Keep the carrying-value label and measurement exception; arithmetic cannot establish current value."
+          },
+          {
+            "id": "aggregate-cash-is-not-funding-authority",
+            "visible_cash_cents": 18000000,
+            "entity_I_projected_cash_cents": -300000,
+            "authorized_transfer_cents": null,
+            "disposition": "Escalate the I shortfall; cash visible in O, T or P does not authorize an I funding transfer."
+          }
+        ]
+      },
+      "editorial_brief": {
+        "question": "How should a family-office close reach a reviewable family report?",
+        "answer": "Close the entity books first, then build a separately labeled report for a declared purpose and perimeter. Retain an explicit bridge from source statements to ledgers to presentation adjustments, and show restrictions, stale values and unresolved differences. The proposed policy and synthetic bridge below illustrate the evidence needed; they do not establish compliance or authorize financial activity.",
+        "findings": [
+          {
+            "claim": "The accepted family-office close workflow separates entity reconciliation, investment and tax measures, reciprocal matching and supplemental adjustments.",
+            "classification": "existing-scoped-research-synthesis",
+            "source_ids": [
+              "src_family_office_sec_2011_rule",
+              "src_fasb_201502",
+              "src_fasb_asu_201601_equity_investments",
+              "src_family_office_irs_k1_1065_2025",
+              "src_aa_i123_fas57",
+              "src_family_office_texas_principal_income",
+              "src_family_office_irs_1041_2025",
+              "src_family_office_irs_k1_1041_2025",
+              "src_family_office_irs_p559_2025",
+              "src_aa122_irs_i1120_2025"
+            ],
+            "locator": "Existing workflow steps 1–6 and guide-family-office-us-accounting question rq-family-office-supplemental-close; original source locators remain in that guide.",
+            "qualification": "No publisher re-verification or current accounting-standard conclusion. The new policy and numbers are original editorial proposals and synthetic illustrations."
+          }
+        ],
+        "unknowns": [
+          "Actual reporting basis, perimeter, governing documents and current standards.",
+          "Current private-fund value, tax basis and authority to transfer resources in this synthetic case.",
+          "Named professional acceptance, operating-control effectiveness and live agent efficacy."
+        ],
+        "reading_order": [
+          "guide-family-office-us-accounting",
+          "example-family-office-four-entity-close",
+          "control-family-office-ownership-payments",
+          "guide-holding-management-us-close",
+          "guide-us-partnership-capital-basis",
+          "treasury-cash",
+          "example-family-office-statement-population"
+        ],
+        "reading": {
+          "scope": "US-first original close-policy proposal and a synthetic O/I management aggregation; prior technical source scopes and dates remain unchanged.",
+          "critical_limitation": "A balanced carrying-value aggregation is not GAAP consolidation, current-value net worth, a tax return or evidence of authority to spend. Missing values and transfer permissions remain unknown.",
+          "sections": [
+            {
+              "title": "Agree the reporting contract",
+              "paragraphs": [
+                "Record purpose, audience, period, perimeter, basis, valuation dates, restrictions, adjustment method and reviewer before selecting balances. The policy fields in the complete record are proposed evidence requirements, not a universal legal checklist.",
+                "An entity report, management aggregation, personal financial statement and fiduciary or tax report require different analyses. Resolve the applicable requirements with the accountable specialist before applying a compliance label."
+              ]
+            },
+            {
+              "title": "Keep a three-stage bridge",
+              "paragraphs": [
+                "First reconcile source documents to each entity ledger. Second match reciprocal balances using counterparty, transaction, period and support. Third apply separately identified presentation adjustments inside the declared report perimeter. Preserve all three stages and the reviewer’s disposition.",
+                "The example removes a supported $6,000 receivable/payable pair from the management view without changing either ledger. Net assets stay $150,000 because both assets and liabilities decrease equally. If the counterpart is outside the perimeter or the amounts do not reconcile, that adjustment cannot be copied unchanged."
+              ]
+            },
+            {
+              "title": "Make incomplete evidence visible",
+              "paragraphs": [
+                "The $120,000 fund amount remains provisional and dated June 30. Neither the balanced bridge nor a later cash notice makes it a September current value. Current-value net assets and tax basis are intentionally not calculated.",
+                "Use an exception log with the affected report, missing evidence, owner and next review date. A report may be held, or issued as a clearly identified draft only under the accountable reviewer’s policy; a passing test never supplies that approval."
+              ]
+            },
+            {
+              "title": "Keep planning distinct from recorded liabilities and authority",
+              "paragraphs": [
+                "The investment entity has $30,000 cash, a $25,000 assumed call and $8,000 debt service in the next 14 days, producing a $3,000 projected shortfall under the assumption of no other receipts or payments, including no interentity-payable settlement, in that horizon. Its $60,000 total unfunded commitment includes the $25,000 call and is a separate planning fact; this example does not recognize that entire amount as a liability.",
+                "Visible office, trust and personal cash do not resolve the shortfall without lawful and documented funding authority. The forecast goes to the authorized owner or fiduciary and treasury adviser; no transfer or investment decision is executed."
+              ]
+            }
+          ],
+          "example": {
+            "title": "Synthetic carrying-value report bridge",
+            "classification": "original-synthetic",
+            "assumptions": "O and I only; USD; direct assets without cross-held ownership interests. The $6,000 reciprocal balance is assumed supported. Trust and personal resources are excluded, and private-fund current value remains unresolved.",
+            "columns": [
+              "Management-view measure",
+              "Before adjustment",
+              "Presentation adjustment",
+              "After adjustment"
+            ],
+            "rows": [
+              [
+                "Assets",
+                "$206,000",
+                "−$6,000",
+                "$200,000"
+              ],
+              [
+                "Liabilities",
+                "$56,000",
+                "−$6,000",
+                "$50,000"
+              ],
+              [
+                "Carrying-value net assets",
+                "$150,000",
+                "$0",
+                "$150,000"
+              ],
+              [
+                "Current-value net assets",
+                "Unknown",
+                "Not inferred",
+                "Unknown"
+              ]
+            ],
+            "record_id": "workflow-family-office-entity-close",
+            "anchor": "record-content"
+          },
+          "responsibilities": [
+            {
+              "role": "Preparer",
+              "task": "Reconcile sources, ledgers and reciprocal items; prepare the separate report bridge.",
+              "boundary": "No authority to fill missing values, approve reports or move cash is inferred."
+            },
+            {
+              "role": "Report reviewer",
+              "task": "Resolve basis/perimeter questions and decide whether exceptions prevent release.",
+              "boundary": "A balanced report is not professional acceptance or current-value assurance."
+            },
+            {
+              "role": "Relevant specialist / authorized owner",
+              "task": "Resolve the accounting, valuation, legal, tax or liquidity question within the documented role.",
+              "boundary": "Advice and report access do not themselves confer transaction authority."
+            }
+          ],
+          "exception": {
+            "title": "A difference is an unresolved item, not an adjustment target",
+            "paragraphs": [
+              "If O records $6,000 due from I but I records only $5,000 payable, retain the $1,000 difference and reconcile its cause. The synthetic counterexample deliberately leaves the approved elimination unknown. If I is outside the selected perimeter, retain O’s receivable instead of importing a two-entity elimination."
+            ]
+          },
+          "review": {
+            "reviewed_at": "2026-09-30",
+            "reviewer": "Codex AI-assisted editorial synthesis",
+            "scope": "Original policy and synthetic arithmetic over existing scoped records. No new publisher check, professional sign-off, real closing evidence or live agent efficacy. The additive control event packet was checked for consistent evidence and partial-response boundaries; existing technical conclusions remain unchanged. The separately added synthetic document-lineage illustration preserves the original close and leaves tax treatment and recipient reporting year unresolved. The controller guide adds one declared supplemental source link; its historical questions and original source links remain unchanged. The separate statement-population illustration distinguishes supplied-set document coverage from independently established account completeness; its synthetic amounts are independent of the close bridge.",
+            "dependencies": [
+              {
+                "record_id": "workflow-family-office-entity-close",
+                "sha256": "2e2bf182d0720889701e494e0ee0f4699397ebea0c9e51b44d91010470d3f95e"
+              },
+              {
+                "record_id": "src_family_office_sec_2011_rule",
+                "sha256": "e0b10bed52e7e4b40c9f9f283f558442ee6dba165b934ddaa1ff312349249c8d"
+              },
+              {
+                "record_id": "src_fasb_201502",
+                "sha256": "83bdd6fcf5078ef704d6f411d90d6453875bd3f7472b3415a7ebbcee4f991c8b"
+              },
+              {
+                "record_id": "src_fasb_asu_201601_equity_investments",
+                "sha256": "5295803557e0baccd5cd518b25ee08c9c165f7a3f153e44155260e57329fa20f"
+              },
+              {
+                "record_id": "src_family_office_irs_k1_1065_2025",
+                "sha256": "da7952c32fbb766a107a256ef1910047234db7e994a17289651be24e887f1e3d"
+              },
+              {
+                "record_id": "src_aa_i123_fas57",
+                "sha256": "ccbdda2c00f494a66048ec2efc345f78f9ee9b010d910ef75abb56bd00b8005a"
+              },
+              {
+                "record_id": "src_family_office_texas_principal_income",
+                "sha256": "e7df10df8d9e28a3c8f7011a3ffbb8775baff40cc956eb9a10afa5000258af2a"
+              },
+              {
+                "record_id": "src_family_office_irs_1041_2025",
+                "sha256": "4b47cb8a3b1bd5ed9ef783b4e1dd01d4e2bdaf5bbea4c337c381522097471454"
+              },
+              {
+                "record_id": "src_family_office_irs_k1_1041_2025",
+                "sha256": "b82c4816ba2df73505e1c15b9ab447b034fc8ac9d5130ae507254ac5d1d7fbc6"
+              },
+              {
+                "record_id": "src_family_office_irs_p559_2025",
+                "sha256": "9e766a64265681a777d85c94d6cbc90e6a3efcba04dfcdfda3d0d9870296c055"
+              },
+              {
+                "record_id": "src_aa122_irs_i1120_2025",
+                "sha256": "1915ad4c951bd65a0c7825b7ad26c88ea1a96d5063b5c9e2d62d5db090fc0562"
+              },
+              {
+                "record_id": "guide-family-office-us-accounting",
+                "sha256": "10f4465921a6e2c9361ce0c58889fde29386efa93c3d2830f3413233cb19be0a"
+              },
+              {
+                "record_id": "example-family-office-four-entity-close",
+                "sha256": "ef5ef883493036b0ae10ba30e24012a8d2f199fda48f16bdd94e0fd77f055358"
+              },
+              {
+                "record_id": "control-family-office-ownership-payments",
+                "sha256": "4dae476a7557eec6bcc329a80746ad1bbc23e376603914660b09640a95fdd973"
+              },
+              {
+                "record_id": "guide-holding-management-us-close",
+                "sha256": "eb9a04cab15166a48a1896e0e4499b805f6f306d50624579e3d3dca32759a888"
+              },
+              {
+                "record_id": "guide-us-partnership-capital-basis",
+                "sha256": "b004f7bee4ffab03270e978cc4e5a06ff92d55652f4dfbdee8f8fc05971d23ef"
+              },
+              {
+                "record_id": "treasury-cash",
+                "sha256": "2b959c78c9e6b09a9018c4836097cbc280bff45e6101066206c204a3ebaad248"
+              },
+              {
+                "record_id": "example-family-office-statement-population",
+                "sha256": "db99dc8514efea8581fadf6bb7476c12369342703de3f5db9d8be4bbc5d98f43"
+              }
+            ]
+          }
+        }
+      }
     }
   }
 ]

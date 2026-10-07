@@ -155,5 +155,6 @@ export function validateCorpus({ includeHistory = true } = {}) {
     version: meta.corpus_version,
   };
 }
-if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href)
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   console.log("Corpus integrity verified:", validateCorpus());
+}

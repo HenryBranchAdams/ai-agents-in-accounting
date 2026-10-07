@@ -11,7 +11,7 @@
     "dev": "node scripts/preview.mjs",
     "build": "node scripts/build.mjs",
     "start": "node scripts/serve.mjs",
-    "validate": "node scripts/validate.mjs",
+    "validate": "node scripts/validate.mjs && node scripts/release-overview.mjs",
     "typecheck": "tsc --noEmit",
     "lint": "npm run typecheck && npm run validate && npm run lint:ui && node scripts/verify-design-lint.mjs",
     "test": "npm run build && npm run test:only",

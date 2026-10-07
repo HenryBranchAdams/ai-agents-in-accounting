@@ -37,11 +37,24 @@ const entityLabels = [
   ["public compan(y|ies)|listed compan(y|ies)", "Public company"], ["service provider|software provider", "Service provider"],
   ["healthcare|health care", "Healthcare"],
 ] as const;
+// Partnership is explicit-only: a partner/GP/trustee role or a prose mention
+// does not establish the entity type. Other inferred scopes keep their rules.
+const explicitEntityLabels: readonly string[] = [...entityLabels.map(([, label]) => label), "Partnership"];
 function basis(pointers: string[], status: Basis["status"] = "recorded"): Basis { return { pointers: [...new Set(pointers)], status }; }
 function dateFrom(v: unknown): string | null {
   if (typeof v !== "string") return null;
   const m = v.match(/\b(\d{4})[-/.](\d{1,2})(?:[-/.](\d{1,2}))?\b/);
   return m ? `${m[1]}-${m[2].padStart(2,"0")}${m[3] ? `-${m[3].padStart(2,"0")}` : ""}` : null;
+}
+// Applicability requires calendar-valid complete bounds; publication and review dates
+// never substitute for a missing effective date.
+export function applicabilityExclusion(period: Profile["scope"]["period"] | undefined, asOf: string): string | null {
+  const full = (value: string | null | undefined) => !!value && /^\d{4}-\d{2}-\d{2}$/.test(value) && Number.isFinite(Date.parse(value)) && new Date(value).toISOString().slice(0, 10) === value;
+  if (!period || !full(period.effective_from)) return "unknown-effective-from";
+  if (period.effective_to && !full(period.effective_to)) return "unknown-effective-to";
+  if (period.effective_from! > asOf) return "before-effective-from";
+  if (period.effective_to && period.effective_to < asOf) return "after-effective-to";
+  return null;
 }
 export function normalizeTerm(value: string) { return alias(value); }
 export function normalizeJurisdiction(value: string) { return jurisdiction(value); }
@@ -84,16 +97,18 @@ export function createKnowledgeIndex(records: KnowledgeRecord[]) {
     const frameworks = [...new Set([...explicitFrameworks, ...inferredFrameworkLabels, ...detectedFrameworks].map(alias))];
     const entityText = [rawScope, text(c.applicability_note), ...array(c.applicability)].join(" ");
     const detectedEntities = entityLabels.filter(([pattern]) => new RegExp(`\\b(?:${pattern})\\b`, "i").test(entityText)).map(([, label]) => label);
-    const explicitEntities = pick(r, ["entity", "entities", "entity_scope"]).filter((value) => entityLabels.some(([, label]) => norm(value) === norm(label)));
+    const explicitEntities = pick(r, ["entity", "entities", "entity_scope"]).filter((value) => explicitEntityLabels.some((label) => norm(value) === norm(label)));
     const entities = [...new Set([...explicitEntities, ...detectedEntities])];
     const productMatch = /xero/i.test(rawScope) ? "Xero" : /sap/i.test(rawScope) ? "SAP" : /oracle/i.test(rawScope) ? "Oracle" : /netsuite/i.test(rawScope) ? "NetSuite" : /quickbooks/i.test(rawScope) ? "QuickBooks" : undefined;
     const products = [...new Set([...pick(r, ["product", "products", "systems", "software"]), ...(productScope && productMatch ? [productMatch] : [])])].map((x) => x.slice(0, 160));
     const published = dateFrom(d.publication?.published_at || d.publication?.date || d.publication_date || d.published_at || d.published_or_status);
-    const effective = dateFrom(d.effective_date || d.effective_from || c.effective_date);
+    const applicabilityDate = (value: unknown) => typeof value === "string" && /^\d{4}[-/.]\d{1,2}(?:[-/.]\d{1,2})?$/.test(value.trim()) ? dateFrom(value.trim()) : null;
+    const effective = applicabilityDate(d.effective_date || d.effective_from || c.effective_date);
+    const effectiveTo = typeof d.effective_to === "string" && d.effective_to.trim() ? applicabilityDate(d.effective_to) || d.effective_to.trim() : null;
     const profile: Profile = {
       scope: { jurisdictions, frameworks, entities, products,
-        period: { published_at: published, effective_from: effective, effective_to: dateFrom(d.effective_to), effective_note: text(d.effective_note || d.effective_reporting_period || d.published_or_status) || null },
-        basis: { jurisdictions: basis(jurisdictions.length ? ["/jurisdiction"] : [], jurisdictions.length ? "recorded" : "unknown"), frameworks: basis(frameworks.length ? (explicitFrameworks.length ? ["framework", "frameworks", "accounting_framework"].filter(k => d[k]).map(k => `/data/${k}`) : detectedFrameworks.length ? ["/title", ...(r.jurisdiction ? ["/jurisdiction"] : []), ...(c.applicability_note ? ["/data/curation/applicability_note"] : []), ...(c.applicability ? ["/data/curation/applicability"] : [])] : []) : [], frameworks.length ? (explicitFrameworks.length ? "recorded" : "inferred") : "unknown"), entities: basis(entities.length ? (explicitEntities.length ? ["entity", "entities", "entity_scope"].filter(k => d[k]).map(k => `/data/${k}`) : c.applicability_note ? ["/data/curation/applicability_note"] : c.applicability?.length ? ["/data/curation/applicability"] : ["/jurisdiction"]) : [], entities.length ? (explicitEntities.length ? "recorded" : "inferred") : "unknown"), products: basis(products.length ? (productScope ? ["/jurisdiction"] : d.product ? ["/data/product"] : d.products ? ["/data/products"] : d.systems ? ["/data/systems"] : d.software ? ["/data/software"] : []) : [], products.length ? (productScope ? "inferred" : "recorded") : "unknown"), period: basis([d.publication ? "/data/publication" : "", d.effective_date ? "/data/effective_date" : "", d.effective_reporting_period ? "/data/effective_reporting_period" : "", d.published_or_status ? "/data/published_or_status" : ""].filter(Boolean), published || effective || d.effective_reporting_period || d.published_or_status ? "recorded" : "unknown") }
+        period: { published_at: published, effective_from: effective, effective_to: effectiveTo, effective_note: text(d.effective_note || d.effective_reporting_period || d.published_or_status) || null },
+        basis: { jurisdictions: basis(jurisdictions.length ? ["/jurisdiction"] : [], jurisdictions.length ? "recorded" : "unknown"), frameworks: basis(frameworks.length ? (explicitFrameworks.length ? ["framework", "frameworks", "accounting_framework"].filter(k => d[k]).map(k => `/data/${k}`) : detectedFrameworks.length ? ["/title", ...(r.jurisdiction ? ["/jurisdiction"] : []), ...(c.applicability_note ? ["/data/curation/applicability_note"] : []), ...(c.applicability ? ["/data/curation/applicability"] : [])] : []) : [], frameworks.length ? (explicitFrameworks.length ? "recorded" : "inferred") : "unknown"), entities: basis(entities.length ? (explicitEntities.length ? ["entity", "entities", "entity_scope"].filter(k => d[k]).map(k => `/data/${k}`) : c.applicability_note ? ["/data/curation/applicability_note"] : c.applicability?.length ? ["/data/curation/applicability"] : ["/jurisdiction"]) : [], entities.length ? (explicitEntities.length ? "recorded" : "inferred") : "unknown"), products: basis(products.length ? (productScope ? ["/jurisdiction"] : d.product ? ["/data/product"] : d.products ? ["/data/products"] : d.systems ? ["/data/systems"] : d.software ? ["/data/software"] : []) : [], products.length ? (productScope ? "inferred" : "recorded") : "unknown"), period: basis([d.publication ? "/data/publication" : "", d.effective_date ? "/data/effective_date" : "", d.effective_from ? "/data/effective_from" : "", d.effective_to ? "/data/effective_to" : "", c.effective_date ? "/data/curation/effective_date" : "", d.effective_note ? "/data/effective_note" : "", d.effective_reporting_period ? "/data/effective_reporting_period" : "", d.published_or_status ? "/data/published_or_status" : ""].filter(Boolean), published || effective || effectiveTo || d.effective_note || d.effective_reporting_period || d.published_or_status ? "recorded" : "unknown") }
       },
       evidence: { claims: [{ text: r.summary || r.title, classification: r.kind === "source" ? "record-summary" : "editorial-description", source_ids: [r.id], source_url: r.source_url || null, source_pointers: ["/summary"] }, ...((Array.isArray(d.evidence) ? d.evidence : []).flatMap((e: any, i: number) => e && typeof e === "object" && text(e.claim) ? [{ text: text(e.claim), classification: text(e.classification) || "recorded-claim", source_ids: [r.id], source_url: text(e.source?.url) || r.source_url || null, source_pointers: [`/data/evidence/${i}/claim`] }] : [])), ...((Array.isArray(d.relationship_profile?.claims) ? d.relationship_profile.claims : []).flatMap((e: any, i: number) => e && typeof e === "object" && text(e.text) ? [{ text: text(e.text), classification: text(e.evidence_classification) || "recorded-claim", source_ids: [r.id], source_url: r.source_url || null, source_pointers: [`/data/relationship_profile/claims/${i}/text`] }] : []))], limitations: [...array(d.limitations), ...array(d.relationship_profile?.limitations), ...array(c.limitations), ...array(d.source_review?.limitations), ...array(d.source_review?.limits), ...array(d.remaining_gaps), ...(Array.isArray(d.supplemental_reviews) ? d.supplemental_reviews.flatMap((r: any) => array(r.limitations)) : [])], review: { status: r.review_status || "unknown", date: r.reviewed_at || null, scope: text(r.provenance?.scope || r.provenance?.review_scope || r.provenance?.note) || "unknown", outcome: text(r.provenance?.outcome) || null }, rights: r.rights || {} }
     };
@@ -122,4 +137,14 @@ export function createKnowledgeIndex(records: KnowledgeRecord[]) {
     return out.filter((e, i, a) => a.findIndex((x) => x.from === e.from && x.to === e.to && x.type === e.type) === i);
   };
   return { profiles, byId, profile: (id: string) => profiles.get(id), relations };
+}
+
+// Preserve substring candidate retrieval while preferring actual numeric tokens
+// over digits embedded in other identifiers (15 versus 115, 15-T or 1.15).
+export function numericTokens(value: string): ReadonlySet<string> {
+  return new Set((value.toLowerCase().match(/[a-z0-9]+(?:[.-][a-z0-9]+)*/g) || []).filter(token => /^\d+$/.test(token)));
+}
+export function numericQuerySpecificity(tokens: ReadonlySet<string>, numericTerms: string[]): number {
+  if (!numericTerms.length) return 0;
+  return new Set(numericTerms.filter(term => tokens.has(term))).size;
 }

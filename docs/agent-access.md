@@ -106,3 +106,38 @@ node scripts/corpus.mjs get src_asu201815
 The corresponding HTTP query uses `question_family=q-project-wip`. Use `next_cursor` with identical arguments when the selected section continues. Inspect `rights`, `citation`, `research_review`, `source_ids`, passage `source_pointers`, and limitations; a bounded page may omit an answer's later qualifications. `/api/v1/coverage?industry=236&question=q-project-wip` returns screening evidence and named-answer links. A leaf query such as `industry=524210` returns that leaf's review and explicitly labels broader screening as parent context.
 
 The research schema and six linked coverage downloads represent the declared question population, applicability, leaf exceptions, limited classification correspondences and unresolved evidence. They do not replace canonical records. Source-review and editorial-review ledgers retain all 715 inherited dispositions, including unsuccessful access. The API, CLI, MCP, human pages and exports use the same local build; no new public deployment is implied.
+
+## Controller transition walkthrough
+
+The [worked learning map](controller-transition.md) explains what can transfer from fund control to a family office, why familiar treatments need new applicability checks, and which facts remain unresolved. It is an editorial synthesis of existing scoped annotations, not newly verified accounting advice.
+
+Start with `describe` and pin the returned corpus version. Decompose a broad question into short searches (240 characters maximum; all terms must match):
+
+```sh
+node scripts/corpus.mjs describe
+node scripts/corpus.mjs search --q "family office" --limit 25
+node scripts/corpus.mjs search --q "investment company" --limit 25
+node scripts/corpus.mjs search --q "bank reconciliation" --limit 25
+node scripts/corpus.mjs search --q "trust principal income" --limit 25
+node scripts/corpus.mjs context --ids guide-family-office-us-accounting --max-chars 12000
+node scripts/corpus.mjs get guide-family-office-us-accounting --section data.research_questions --limit 20
+```
+
+Add `--corpus-version VERSION` to search/get/context. Follow `next_cursor` with all other arguments unchanged when relevant passages remain. Inspect the section directory and select the sections needed for the question; do not read the entire corpus by default. Follow the named source IDs and their review/limitation sections. A source record is still a project annotation; publisher verification is separate.
+
+Retrieval schema `1.3.0` adds:
+
+- `retrieval.all_candidate_passages_included`: whether the packet contains every passage of its selected seed and considered source records. This is **not** corpus coverage or answer completeness.
+- `retrieval.search_matches_not_selected`: matches outside the seed limit, before source expansion. Broaden or paginate search if relevant subjects are missing.
+- `retrieval.linked_sources_not_considered`: distinct linked sources outside the seeds when `include_sources=false`. Zero does not prove source support was read: inspect `omitted` and `remaining_passages` too.
+- `retrieval.evidence_sufficiency`: always `not-assessed`. Retrieval never certifies an accounting answer.
+- Version-pinned `get_url` on included and omitted records. These start a record read, not a cursor after ranked context passages; deduplicate by passage ID while selecting relevant sections.
+- `retrieval_url` on each passage and `get --passage-id 'ID'` for one exact passage. Do not combine passage selection with section/cursor. Passage IDs are scoped to corpus **and retrieval schema** versions; record both from the response and rediscover passages after either changes. A corpus pin alone does not pin the retrieval schema.
+
+Before answering, account for each material claim: passage read, original source locator, authority/edition limits, applicability facts and remaining gap. Explain the reasoning and give a labeled synthetic application where helpful. An unread passage or source may be relevant; either retrieve it or disclose the unanswered point. A machine-readable warning cannot force a consumer to continue, and complete retrieval cannot establish current GAAP, legal or tax applicability.
+
+## Historical applicability (retrieval schema 1.4.1)
+
+`as_of` requires a real calendar date in `YYYY-MM-DD` form across API, CLI and MCP search/context. Invalid days, months and non-leap-year February 29 fail before retrieval; valid leap days remain accepted. This matches reading-search date validation. `as_of` selects only complete, calendar-valid recorded applicability bounds, inclusive at both ends. Publication, edition and review dates never supply a missing start. A missing end is an open recorded interval, not proof of later amendments or continued entity applicability. Search and context return `temporal_filter` (null without `as_of`), with exclusion counts by reason for records matching the other query filters. These counts precede pagination and selection; character-budget omissions remain separate. Linked sources in dated context packets also require eligible dates and report their exclusion reason in `omitted`.
+
+The bounded [family-office audit](../data/research/family-office-applicability-2026-10-01.json) records eight decisions. Only the published SEC rule has a supported complete effective start, August 29, 2011. Seven windows remain unknown, including 2025 tax instructions with fiscal-year and short-year conditions. Retrieve these editions without `as_of`, then establish the taxpayer period and provision-specific applicability at the publisher. The audit does not renew substantive review or establish professional sign-off.

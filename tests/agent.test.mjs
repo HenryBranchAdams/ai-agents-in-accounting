@@ -175,6 +175,21 @@ test("agent search ranks meaningful matches, supports phrases and filters, and s
   assert.ok(JSON.stringify(result).length < originalBytes * 0.5);
 });
 
+test("empty agent search retains summary matches and canonical tie ordering", () => {
+  const expected = [...canonical].sort((a, b) => a.title.localeCompare(b.title) || a.id.localeCompare(b.id));
+  const result = call("search", { limit: 25 });
+  assert.deepEqual(result.results.map(row => row.id), expected.slice(0, 25).map(record => record.id));
+  for (const row of result.results) {
+    const record = byId.get(row.id);
+    assert.deepEqual(row.match, {
+      score: 0,
+      matched_fields: [],
+      snippet: record.summary.length <= 260 ? record.summary : record.summary.slice(0, 259) + "…",
+      passage_id: null,
+    });
+  }
+});
+
 test("cursor pagination covers the complete corpus once and rejects changes and stale versions", () => {
   const seen = [],
     args = { limit: 25 };
@@ -408,6 +423,27 @@ test("CLI JSON and errors agree with the API, including repeated context IDs", a
   }
 });
 
+test("calendar dates have consistent API and CLI validation and preserve valid dated results", async () => {
+  for (const op of ["search", "context"]) {
+    for (const as_of of ["2025-02-30", "2025-13-01", "1900-02-29"]) {
+      const response = await api(`/api/v1/agent/${op}?q=SEC%20family%20office&as_of=${as_of}`);
+      assert.equal(response.status, 400);
+      assert.equal((await response.json()).error.code, "INVALID_ARGUMENT");
+      const result = await cli([op, "--q", "SEC family office", "--as-of", as_of]);
+      assert.equal(result.code, 1);
+      assert.equal(result.stdout, "");
+      assert.equal(JSON.parse(result.stderr).error.code, "INVALID_ARGUMENT");
+    }
+    const args = { q: "SEC family office", as_of: "2024-02-29" };
+    const response = await api(`/api/v1/agent/${op}?q=SEC%20family%20office&as_of=${args.as_of}`);
+    assert.equal(response.status, 200);
+    assert.deepEqual(await response.json(), call(op, args));
+    const result = await cli([op, "--q", args.q, "--as-of", args.as_of]);
+    assert.equal(result.code, 0, result.stderr);
+    assert.deepEqual(JSON.parse(result.stdout), call(op, args));
+  }
+});
+
 test("remote connector validates HTTP responses, version pinning and transport failures", async () => {
   const client = createCorpusClient({
     baseUrl: "https://corpus.test",
@@ -521,6 +557,16 @@ async function verifyMcp(client, transport) {
   });
   assert.equal(missing.isError, true);
   assert.equal(JSON.parse(missing.content[0].text).error.code, "NOT_FOUND");
+  for (const op of ["search", "context"]) {
+    for (const as_of of ["2025-02-30", "2025-13-01", "1900-02-29"]) {
+      const result = await client.callTool({ name: `corpus_${op}`, arguments: { q: "SEC family office", as_of } });
+      assert.equal(result.isError, true, `${op}: ${as_of}`);
+    }
+    const args = { q: "SEC family office", as_of: "2024-02-29" };
+    const result = await client.callTool({ name: `corpus_${op}`, arguments: args });
+    assert.ok(!result.isError, JSON.stringify(result));
+    assert.deepEqual(result.structuredContent, call(op, args));
+  }
   const resources = await client.listResources();
   assert.equal(resources.resources[0].uri, "accounting-corpus://describe");
   const templates = await client.listResourceTemplates();

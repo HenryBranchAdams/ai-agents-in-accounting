@@ -31,7 +31,7 @@ test('generated index identity matches its bytes and bounded API/List facts agre
     const params = new URLSearchParams({ focus });
     const response = await get('/api/v1/connections?' + params); assert.equal(response.status, 200, focus);
     const body = await response.text(), view = JSON.parse(body);
-    assert.equal(view.corpus_version, '2026-09-22.2'); assert.equal(view.index_version, metadata.index_version);
+    assert.equal(view.corpus_version, JSON.parse(fs.readFileSync('data/catalog.json')).corpus_version); assert.equal(view.index_version, metadata.index_version);
     assert.ok(Buffer.byteLength(body) <= 150 * 1024, `${focus}: default payload budget`);
     assert.ok(view.nodes.length <= 25); assert.ok(view.edges.length <= 160);
     const page = (await (await get('/connections?' + params)).text()).replaceAll('<!-- -->', '');

@@ -1,0 +1,11 @@
+# Family-office event evidence handoff
+
+This original editorial proposal extends the existing ownership/payment control with a descriptive event packet. The packet separates reported facts, dates and requested amounts from evidence, specialist questions and scoped responses. It preserves the original control's objectives, activities, source IDs, rights and historical review metadata. Existing trust, estate and transfer discovery questions remain unanswered.
+
+Two invented cases illustrate the boundary. A proposal to transfer 10 units supplies neither execution evidence nor a denominator, effective date, value, basis or accounting/tax classification. The packet does not prescribe recognition timing or determine ledger ownership. A requested $4,000 trust distribution includes an original approval and a conflicting later message. An invented independent verification response resolves only that instruction discrepancy; principal/income, tax character and execution remain unknown. Earlier evidence and the original open-question set remain visible beside the later response.
+
+The reading brief uses the existing native renderer and links to existing discovery/context records. No publisher material is reverified, no new legal rule or mandatory procedure is asserted, and no private document or financial account is used. Response role and capacity remain explicit. A complete evidence packet is not permission to pay, post, file or modify account access.
+
+Source checks preserve the original control, verify unknown facts and derive remaining open questions from response coverage. Integration tests check rendered/exported content, dependency hashes and paginated retrieval. These deterministic tests establish fixture consistency and retrieval behavior only; they do not establish live skill efficacy, control operating effectiveness, current authority or professional acceptance.
+
+The controller guide and close workflow both hash this control as an editorial dependency. Their scoped review receipts must be refreshed during integration, followed by serialized edition preparation, independent exact-head review, full committed verification and CI. No release or deployment is claimed by this authored increment alone.

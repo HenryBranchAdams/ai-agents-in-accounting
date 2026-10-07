@@ -1,3 +1,5 @@
+import {prepareArealFonts, writeArealFonts} from "./areal-fonts.mjs";
+import { writeFamilyOfficeResearchPacks } from './family-office-research-packs.mjs';
 import { writeLibraryMap } from "./library-map.mjs";
 import { writeConnectionsIndex } from "./connections-index.mjs";
 import { clientEntryUrl } from "./client-entries.mjs";
@@ -25,6 +27,7 @@ import {
 
 const preview = process.argv.includes("--preview");
 if (process.argv.slice(2).some(arg => arg !== "--preview")) throw new Error("Usage: build.mjs [--preview]");
+const licensedFontInputs = prepareArealFonts({directory: process.env.AREAL_FONT_DIR});
 const buildStarted = performance.now();
 console.log("Validated", validateCorpus({ includeHistory: !preview }));
 // Full snapshots are export artifacts, never executable application data.
@@ -45,6 +48,7 @@ await build({
 });
 const { meta, records, corpusExport, corpusMarkdown, knowledge, coverage } =
   await import("../dist/internal/corpus.mjs");
+if (!preview) writeFamilyOfficeResearchPacks(records, meta, "dist/client/downloads");
 let agentIndexRows, agentPassageRows, agentJsonSchema;
 if (!preview) {
 await build({
@@ -81,6 +85,7 @@ execFileSync(
   ],
   { stdio: "inherit" },
 );
+const licensedFonts = writeArealFonts(licensedFontInputs, "dist/client");
 const clientBuild = await build({
   entryPoints: { navigation: "src/client/navigation.tsx", "library-map": "src/client/library-map.tsx" },
   splitting: true,
@@ -351,6 +356,7 @@ const applicationBuild = await build({
     LIBRARY_MAP_SCRIPT: JSON.stringify(libraryMapScript),
     CLIENT_ASSETS: JSON.stringify(Object.keys(clientBuild.metafile.outputs).filter(file => file.endsWith(".js")).map(file => "/assets/" + path.basename(file))),
     PREVIEW_BUILD: JSON.stringify(preview),
+    LICENSED_FONT_ASSETS: JSON.stringify(licensedFonts?.files.map(face => face.url) || []),
     PUBLICATION_DATA: JSON.stringify(publication),
     STYLE_VERSION: JSON.stringify(
       createHash("sha256")
@@ -364,7 +370,7 @@ const applicationBuild = await build({
   target: "es2023", minify: true, legalComments: "eof", write: false, metafile: true,
 });
 const releaseStorage = preview ? { id: "preview", files: {} } : prepareStorage();
-const releaseMeta = { build_mode: preview ? "preview" : "release", input_digest: preview ? process.env.PREVIEW_INPUT_DIGEST || null : null, corpus_version: meta.corpus_version, source_revision: (preview ? process.env.PREVIEW_SOURCE_REVISION : null) || execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim(), storage_manifest: releaseStorage.id };
+const releaseMeta = { licensed_fonts: licensedFonts, build_mode: preview ? "preview" : "release", input_digest: preview ? process.env.PREVIEW_INPUT_DIGEST || null : null, corpus_version: meta.corpus_version, source_revision: (preview ? process.env.PREVIEW_SOURCE_REVISION : null) || execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim(), storage_manifest: releaseStorage.id };
 fs.writeFileSync("dist/internal/release-meta.json", JSON.stringify(releaseMeta));
 fs.writeFileSync("dist/internal/runtime-application.mjs", `export function createApplication(RUNTIME_DATA) { ${applicationBuild.outputFiles[0].text}; return compiledApplication.default; }`);
 await build({

@@ -1,0 +1,15 @@
+# Numeric-token specificity in lexical retrieval
+
+A new, relevant payroll guide exposed a pre-existing ranking weakness. `Publication 15 payroll tax` awarded numeric substring relevance to `15-T`, `15-A` and `i115`. The indirect-tax boundary guide dropped to sixth, violating the unchanged first-five fixture. Adding pagination or weakening that fixture would not resolve the initial-route regression.
+
+The bounded correction retains all existing candidate matching. Among candidates it first counts distinct, purely numeric expanded query terms present as complete indexed tokens. ASCII alphanumeric tokens keep internal dot or hyphen segments, so `15` differs from `115`, `15-T`, `15-A`, `p15` and `1.15`. An exact cross-reference elsewhere in a record can still count; this is lexical specificity, not a determination of document identity or evidence quality.
+
+Only expanded terms consisting entirely of digits receive the extra priority. Compound identifiers such as `1042-S`, `45-day`, `704(c)` and `743(b)`, decimals and multiword quoted phrases retain existing query semantics. With no plain-numeric terms, specificity is zero for every candidate and the previous ordering is unchanged. Repeated numeric query terms count once at this stage.
+
+Both search surfaces use the same helper and cache numeric tokens at index initialization. They retain their existing, different lexical weights. Agent ordering is numeric specificity, then the existing lexical score, then title and ID. The response ranking explanation declares that priority; `match.score` remains the lexical component and is not the overall ordering key. No response field or schema changes. Candidate filters and pagination population remain unchanged.
+
+The original 118 research-query fixtures and expected/excluded IDs remain unchanged. Offline checks recovered every expected first-five route, including the indirect-tax guide and the existing specialist payroll fixture. All 118 candidate totals and all 113 nonnumeric first-25 orderings matched the baseline. These are deterministic retrieval checks, not live skill efficacy or substantive accounting validation. Full build, browser, protocol and final-candidate validation remain integration gates.
+
+Local timing check (20 warm runs, same query/corpus/process, not a formal benchmark): median 27.57 ms before and 27.90 ms after cached specificity, means 27.95/28.30 ms. Initial per-request tokenization added about 11 ms and was replaced with index-time token caching. The existing dynamic passage getter remains intact. No-numeric requests return zero specificity without allocating a token set.
+
+Validation receipt: original research-question suite 3/3 passed; focused numeric ranking suite 5/5 passed, including both search surfaces, complete pagination population, retained substring matches, quoted/compound behavior and the new payroll-role query. No original fixture contract was edited. These results need independent review and exact-head full qualification before release.

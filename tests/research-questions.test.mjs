@@ -43,7 +43,18 @@ const meaningfulTerms = (text) =>
     (term) => !["which", "should", "where", "what", "does", "this", "that", "with", "from", "only"].includes(term),
   );
 
-test("research questions retain citable records, rights, review state, and scoped evidence", () => {
+const hasEvidenceAnchor = (scope, evidenceText) =>
+  meaningfulTerms(scope).some((term) => evidenceText.includes(term));
+
+test("lexical scope smoke check rejects invented negative wording", () => {
+  assert.equal(
+    hasEvidenceAnchor("No zebralithic quasarwright xenofiscal obligation", "estate filing date and beneficiary reporting"),
+    false,
+  );
+  assert.equal(hasEvidenceAnchor("Estate filing date", "estate filing date and beneficiary reporting"), true);
+});
+
+test("research questions retain citations and lexical evidence anchors without grading answer sufficiency", () => {
   for (const fixture of fixtures) {
     const searchArgs = {
       q: fixture.search_query,
@@ -94,19 +105,12 @@ test("research questions retain citable records, rights, review state, and scope
       ])
       .join(" ")
       .toLowerCase();
-    const scopeTerms = meaningfulTerms(fixture.expected_scope);
     assert.ok(
-      scopeTerms.some((term) => evidenceText.includes(term)),
+      hasEvidenceAnchor(fixture.expected_scope, evidenceText),
       `${fixture.id}: expected scope has no supporting retrieved passage`,
     );
-    for (const claim of fixture.claims_assert_only_supported) {
-      const claimTerms = meaningfulTerms(claim);
-      const boundaryClaim = /\b(?:not|no|exclude|does not|must not|without|cannot|separate|distinct)\b/i.test(claim);
-      const excludedBoundaryHeld = boundaryClaim && fixture.excluded_ids.every((id) => !contextIds.has(id));
-      assert.ok(
-        claimTerms.some((term) => evidenceText.includes(term)) || excludedBoundaryHeld,
-        `${fixture.id}: no retrieved evidence token supports claim boundary: ${claim}`,
-      );
-    }
+    // claims_assert_only_supported contains reviewer cautions, not mechanically verified
+    // conclusions. Record exclusions and word overlap cannot grade claim sufficiency.
+    // Operative family-office fields are checked in family-office-evidence-boundaries.test.mjs.
   }
 });

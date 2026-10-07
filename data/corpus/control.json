@@ -4608,7 +4608,508 @@
       ],
       "limitations": [
         "Editorial control proposals; no operating-effectiveness test or professional assurance."
-      ]
+      ],
+      "event_handoff": {
+        "classification": "original-editorial-proposal",
+        "scope": "A descriptive evidence handoff for family-office events. It is not a legal/tax decision system, transaction workflow, mandatory control standard or authority to operate accounts.",
+        "packet_fields": [
+          "event_id",
+          "reported_on",
+          "reported_effective_date",
+          "event_status",
+          "affected_entity_ids",
+          "reported_facts",
+          "evidence_register",
+          "questions",
+          "recipient_roles",
+          "responses",
+          "open_question_ids",
+          "disposition",
+          "next_review_date"
+        ],
+        "field_note": "Case id is the event_id; recipient roles are recorded per question. Reported dates are not verified effective dates. Null represents missing evidence, not a zero value or negative professional conclusion.",
+        "event_routes": [
+          {
+            "id": "proposed-transfer",
+            "event": "Proposed ownership transfer",
+            "evidence_needed": [
+              "Proposal and executed instrument, if any",
+              "Party identities and documented capacities",
+              "Unit denominator, relevant dates, valuation and basis support"
+            ],
+            "recipient_roles": [
+              "legal adviser",
+              "accountable owner or fiduciary",
+              "accounting and tax reviewers"
+            ],
+            "question": "What happened, when, to whose rights, and which separate accounting and tax questions remain?",
+            "record_ids": [
+              "guide-fo-reference-fo-24",
+              "guide-fo-reference-ctx-02",
+              "guide-fo-reference-ctx-08"
+            ],
+            "boundary": "No transfer, gift, recognition date or tax character is inferred from a proposal."
+          },
+          {
+            "id": "reported-authority-event",
+            "event": "Reported death, incapacity or change in authority",
+            "evidence_needed": [
+              "Reported event and date distinguished from substantiated evidence",
+              "Relevant instrument, appointment and account-title records",
+              "Affected entities, periods and unresolved role changes"
+            ],
+            "recipient_roles": [
+              "legal adviser",
+              "documented fiduciary or authorized representative",
+              "tax and accounting reviewers"
+            ],
+            "question": "Which evidence and capacities must be established before conclusions about authority, period or reporting can be made?",
+            "record_ids": [
+              "guide-fo-reference-fo-23",
+              "guide-fo-reference-ctx-02",
+              "guide-fo-reference-ctx-06"
+            ],
+            "boundary": "The report alone does not determine succession, estate ownership, a filing obligation or a deadline."
+          },
+          {
+            "id": "distribution-request",
+            "event": "Trust beneficiary distribution request",
+            "evidence_needed": [
+              "Request, instrument and relevant fiduciary disposition",
+              "Separate principal/income support",
+              "Separate taxpayer-year evidence"
+            ],
+            "recipient_roles": [
+              "trustee acting in documented capacity",
+              "fiduciary accounting reviewer",
+              "tax adviser"
+            ],
+            "question": "Which rights, disposition and distinct accounting/tax evidence support this request?",
+            "record_ids": [
+              "guide-fo-reference-fo-21",
+              "guide-fo-reference-ctx-06",
+              "guide-fo-reference-ctx-08"
+            ],
+            "boundary": "Beneficiary status, requested amount, principal/income allocation and taxable amount are not interchangeable."
+          },
+          {
+            "id": "changed-instruction",
+            "event": "Changed payment instruction",
+            "evidence_needed": [
+              "Original and changed instruction references",
+              "Independent verification evidence",
+              "Relevant authorized disposition and unresolved discrepancies"
+            ],
+            "recipient_roles": [
+              "control reviewer",
+              "authorized decision-maker in documented capacity"
+            ],
+            "question": "What independently supported evidence resolves the discrepancy, and what remains unknown?",
+            "record_ids": [
+              "guide-fo-reference-fo-06",
+              "guide-fo-reference-ctx-03"
+            ],
+            "boundary": "Receipt of a message or review response is not proof of payment execution. No account or access change is made."
+          }
+        ],
+        "synthetic_cases": [
+          {
+            "id": "EVENT-TRANSFER",
+            "classification": "original-synthetic",
+            "reported_on": "2026-09-30",
+            "reported_effective_date": "2026-10-01",
+            "event_status": "proposal-only",
+            "affected_entity_ids": [
+              "I",
+              "P",
+              "T"
+            ],
+            "reported_facts": [
+              "A synthetic email proposes moving 10 units in I from P to T. It does not establish execution or legal/tax character."
+            ],
+            "evidence_register": [
+              {
+                "id": "PROPOSAL-10-UNITS",
+                "synthetic": true,
+                "description": "Invented proposal referring to 10 units and a requested October 1 date; no executed instrument supplied."
+              }
+            ],
+            "unknowns": {
+              "executed_effective_date": null,
+              "total_units_outstanding": null,
+              "ownership_percentage": null,
+              "fair_value_cents": null,
+              "tax_basis_cents": null,
+              "legal_classification": null,
+              "accounting_treatment": null
+            },
+            "questions": [
+              {
+                "id": "TRANSFER-OCCURRED",
+                "text": "What evidence establishes whether, in which capacity and when a transfer actually occurred?",
+                "recipient_roles": [
+                  "legal adviser",
+                  "accountable owner or fiduciary"
+                ]
+              },
+              {
+                "id": "TRANSFER-MEASUREMENT",
+                "text": "What separately supported measurement and accounting treatment applies?",
+                "recipient_roles": [
+                  "accounting reviewer",
+                  "valuation reviewer"
+                ]
+              },
+              {
+                "id": "TRANSFER-TAX",
+                "text": "Which taxpayer, year, character and basis evidence needs review?",
+                "recipient_roles": [
+                  "tax adviser"
+                ]
+              }
+            ],
+            "responses": [],
+            "open_question_ids": [
+              "TRANSFER-OCCURRED",
+              "TRANSFER-MEASUREMENT",
+              "TRANSFER-TAX"
+            ],
+            "disposition": "incomplete-evidence",
+            "next_review_date": null,
+            "conclusion": "The packet records a proposal and missing support. It supplies no ownership change, recognition-date rule, ledger posting or tax conclusion.",
+            "rejected_inferences": [
+              "A proposal proves a completed gift.",
+              "Ten units means ten percent without a denominator.",
+              "An internal family view removes the separate participants’ legal or tax questions."
+            ]
+          },
+          {
+            "id": "EVENT-DISTRIBUTION",
+            "classification": "original-synthetic",
+            "reported_on": "2026-09-30",
+            "reported_effective_date": null,
+            "event_status": "request-with-conflicting-instructions",
+            "affected_entity_ids": [
+              "T",
+              "P"
+            ],
+            "reported_facts": [
+              "A synthetic request for a $4,000 T distribution to P refers to an original destination. A later message proposes a different destination."
+            ],
+            "amount_cents": 400000,
+            "currency": "USD",
+            "evidence_register": [
+              {
+                "id": "REQUEST-4000",
+                "synthetic": true,
+                "description": "Invented request; does not establish payment or tax character."
+              },
+              {
+                "id": "TRUSTEE-ORIGINAL",
+                "synthetic": true,
+                "description": "Invented trustee approval references the original destination and this request only."
+              },
+              {
+                "id": "MESSAGE-CHANGED",
+                "synthetic": true,
+                "description": "Invented later message proposes changed destination details; independent verification is initially absent."
+              }
+            ],
+            "questions": [
+              {
+                "id": "DIST-INSTRUCTION",
+                "text": "Has the instruction discrepancy been independently reconciled and the relevant authorized disposition documented?",
+                "recipient_roles": [
+                  "control reviewer",
+                  "trustee acting in documented fiduciary capacity"
+                ]
+              },
+              {
+                "id": "DIST-ACCOUNTING",
+                "text": "What instrument and applicable accounting evidence supports principal/income treatment?",
+                "recipient_roles": [
+                  "fiduciary accounting reviewer"
+                ]
+              },
+              {
+                "id": "DIST-TAX",
+                "text": "Which taxpayer-year evidence supports any tax characterization?",
+                "recipient_roles": [
+                  "tax adviser"
+                ]
+              },
+              {
+                "id": "DIST-EXECUTION",
+                "text": "Is there evidence that the described payment occurred?",
+                "recipient_roles": [
+                  "reconciliation preparer"
+                ]
+              }
+            ],
+            "initial_state": {
+              "response_ids": [],
+              "open_question_ids": [
+                "DIST-INSTRUCTION",
+                "DIST-ACCOUNTING",
+                "DIST-TAX",
+                "DIST-EXECUTION"
+              ],
+              "disposition": "unresolved-instruction-discrepancy"
+            },
+            "responses": [
+              {
+                "id": "RESPONSE-INSTRUCTION",
+                "classification": "original-synthetic",
+                "respondent_role": "control reviewer",
+                "respondent_capacity": "independent reviewer of this synthetic instruction discrepancy only",
+                "covered_question_ids": [
+                  "DIST-INSTRUCTION"
+                ],
+                "evidence_ids": [
+                  "CALLBACK-RECEIPT",
+                  "TRUSTEE-RECONFIRMATION"
+                ],
+                "conclusion": "The invented callback receipt confirms the later message was erroneous; the invented trustee reconfirmation refers to the original destination. This response resolves only the discrepancy in this illustration."
+              }
+            ],
+            "additional_evidence": [
+              {
+                "id": "CALLBACK-RECEIPT",
+                "synthetic": true,
+                "description": "Invented record of verification through an independently established contact; no contact or account details stored."
+              },
+              {
+                "id": "TRUSTEE-RECONFIRMATION",
+                "synthetic": true,
+                "description": "Invented reconfirmation of original instruction in the trustee capacity, linked to this request only."
+              }
+            ],
+            "reviewed_state": {
+              "response_ids": [
+                "RESPONSE-INSTRUCTION"
+              ],
+              "open_question_ids": [
+                "DIST-ACCOUNTING",
+                "DIST-TAX",
+                "DIST-EXECUTION"
+              ],
+              "disposition": "partially-reviewed",
+              "payment_executed": null,
+              "principal_income_treatment": null,
+              "taxable_amount_cents": null
+            },
+            "next_review_date": null,
+            "conclusion": "A response can resolve one evidence question while other questions remain open. This descriptive packet performs no payment, posting or filing and establishes no operating effectiveness.",
+            "rejected_inferences": [
+              "A requested $4,000 distribution is $4,000 of taxable income.",
+              "Review of destination evidence proves payment execution.",
+              "One resolved question closes every accounting and tax question."
+            ]
+          }
+        ],
+        "completion_boundary": "A response closes only its expressly covered question in the synthetic illustration. Retain unaddressed questions and evidence history. No automatic recognition, payment, filing, access change or legal/tax conclusion follows."
+      },
+      "editorial_brief": {
+        "question": "What should a family-office controller hand to a specialist when an event changes the evidence?",
+        "answer": "Assemble a dated packet separating what was reported, what documents support it, which question needs a decision and the capacity of the person answering. Preserve unresolved questions after a partial response. This original proposal illustrates evidence organization; it does not determine accounting, legal or tax treatment or authorize a transaction.",
+        "findings": [
+          {
+            "claim": "The existing family-office control distinguishes ownership, reciprocal evidence, payment authority and sensitive-data boundaries.",
+            "classification": "existing-scoped-research-synthesis",
+            "source_ids": [
+              "src_family_office_sec_2011_rule",
+              "src_fasb_201502",
+              "src_fasb_asu_201601_equity_investments",
+              "src_family_office_irs_k1_1065_2025",
+              "src_aa_i123_fas57",
+              "src_family_office_texas_principal_income",
+              "src_family_office_irs_1041_2025",
+              "src_family_office_irs_k1_1041_2025",
+              "src_family_office_irs_p559_2025",
+              "src_aa122_irs_i1120_2025"
+            ],
+            "locator": "Existing control objectives, activities and evidence list; selected technical source locators remain in guide-family-office-us-accounting.",
+            "qualification": "The new event packet is original editorial design. No publisher material was rechecked, no current rule asserted and no professional or operating-effectiveness review supplied."
+          }
+        ],
+        "unknowns": [
+          "Actual instruments, authority, event facts and current applicable standards or law.",
+          "Unresolved accounting, valuation, taxpayer-year, payment and filing questions.",
+          "Named professional acceptance, operating effectiveness and live agent efficacy."
+        ],
+        "reading_order": [
+          "guide-family-office-us-accounting",
+          "workflow-family-office-entity-close",
+          "guide-fo-reference-fo-24",
+          "guide-fo-reference-ctx-02",
+          "guide-fo-reference-ctx-08",
+          "guide-fo-reference-fo-23",
+          "guide-fo-reference-ctx-06",
+          "guide-fo-reference-fo-21",
+          "guide-fo-reference-fo-06",
+          "guide-fo-reference-ctx-03"
+        ],
+        "reading": {
+          "scope": "Original evidence-handoff proposal with two invented event cases; existing technical and discovery routes retain their original scopes.",
+          "critical_limitation": "A proposed event is not an executed event. A response resolving one question does not settle unrelated accounting, legal, tax or execution questions.",
+          "sections": [
+            {
+              "title": "Record the report without converting it into a conclusion",
+              "paragraphs": [
+                "Keep reported facts and dates separate from executed instruments, account evidence and verified effective dates. Identify each affected entity and the capacity in which a person acts. The packet can be incomplete; unknown facts stay unknown.",
+                "For a proposed transfer, ask what supports whether and when it occurred. Do not infer completed ownership, a gift classification, a recognition date or a percentage from an unsupported proposal. Relevant accounting treatment remains a separate review question."
+              ]
+            },
+            {
+              "title": "Ask a precise question of the relevant role",
+              "paragraphs": [
+                "A legal adviser can address instrument and authority questions; an accounting reviewer addresses the applicable reporting question; a tax adviser needs taxpayer and year evidence. A fiduciary disposition and a control reviewer’s verification address different capacities. These are editorial routing suggestions, not a determination of professional duties.",
+                "Existing trust, estate, transfer and context records are discovery routes. Their unanswered research questions remain unanswered; linking them does not supply current law or family-specific evidence."
+              ]
+            },
+            {
+              "title": "Preserve the boundary of a partial response",
+              "paragraphs": [
+                "Record the response ID, role and capacity, evidence references, expressly covered question IDs and remaining open questions. Keep the earlier evidence inventory and discrepancy visible. A response to one question cannot be reused as an answer to all others.",
+                "The synthetic distribution response reconciles an instruction discrepancy only. Principal/income treatment, taxable amount and payment execution remain unknown. The packet performs no payment, posting, filing or account change."
+              ]
+            }
+          ],
+          "example": {
+            "title": "Two synthetic event packets",
+            "classification": "original-synthetic",
+            "record_id": "control-family-office-ownership-payments",
+            "anchor": "record-content",
+            "assumptions": "Invented identifiers and amounts; no private documents, bank details or actual event. Reported dates and requested amounts are not conclusions.",
+            "columns": [
+              "Event",
+              "Evidence supplied",
+              "What remains unresolved"
+            ],
+            "rows": [
+              [
+                "Proposed 10-unit transfer",
+                "Proposal only; requested October 1 date",
+                "Execution, denominator, effective date, value, basis and treatment"
+              ],
+              [
+                "Requested $4,000 trust distribution",
+                "Original approval and conflicting message; later narrow verification response",
+                "Principal/income, tax character and execution remain unknown"
+              ]
+            ]
+          },
+          "responsibilities": [
+            {
+              "role": "Controller / preparer",
+              "task": "Assemble and reconcile the reported facts, evidence references and open questions.",
+              "boundary": "Assembly is not a professional conclusion or transaction authority."
+            },
+            {
+              "role": "Relevant specialist or documented decision-maker",
+              "task": "Respond within a stated role and capacity, identifying evidence and the questions addressed.",
+              "boundary": "A response has only its stated scope; unaddressed questions remain open."
+            }
+          ],
+          "exception": {
+            "title": "Reviewed is not the same as resolved in full",
+            "paragraphs": [
+              "The distribution packet retains its initial discrepancy and later partial response. The open-question set loses only the instruction question; accounting, tax and execution questions stay open. A missing response is not an approval, and an absent date is not an invented deadline."
+            ]
+          },
+          "review": {
+            "reviewed_at": "2026-09-30",
+            "reviewer": "Codex AI-assisted editorial synthesis",
+            "scope": "Original event-packet design and fidelity to existing canonical control and discovery boundaries. No publisher re-verification, current-law, professional, control-effectiveness or empirical agent review. The controller guide adds one declared supplemental source link; its historical questions and original source links remain unchanged.",
+            "dependencies": [
+              {
+                "record_id": "control-family-office-ownership-payments",
+                "sha256": "4dae476a7557eec6bcc329a80746ad1bbc23e376603914660b09640a95fdd973"
+              },
+              {
+                "record_id": "src_family_office_sec_2011_rule",
+                "sha256": "e0b10bed52e7e4b40c9f9f283f558442ee6dba165b934ddaa1ff312349249c8d"
+              },
+              {
+                "record_id": "src_fasb_201502",
+                "sha256": "83bdd6fcf5078ef704d6f411d90d6453875bd3f7472b3415a7ebbcee4f991c8b"
+              },
+              {
+                "record_id": "src_fasb_asu_201601_equity_investments",
+                "sha256": "5295803557e0baccd5cd518b25ee08c9c165f7a3f153e44155260e57329fa20f"
+              },
+              {
+                "record_id": "src_family_office_irs_k1_1065_2025",
+                "sha256": "da7952c32fbb766a107a256ef1910047234db7e994a17289651be24e887f1e3d"
+              },
+              {
+                "record_id": "src_aa_i123_fas57",
+                "sha256": "ccbdda2c00f494a66048ec2efc345f78f9ee9b010d910ef75abb56bd00b8005a"
+              },
+              {
+                "record_id": "src_family_office_texas_principal_income",
+                "sha256": "e7df10df8d9e28a3c8f7011a3ffbb8775baff40cc956eb9a10afa5000258af2a"
+              },
+              {
+                "record_id": "src_family_office_irs_1041_2025",
+                "sha256": "4b47cb8a3b1bd5ed9ef783b4e1dd01d4e2bdaf5bbea4c337c381522097471454"
+              },
+              {
+                "record_id": "src_family_office_irs_k1_1041_2025",
+                "sha256": "b82c4816ba2df73505e1c15b9ab447b034fc8ac9d5130ae507254ac5d1d7fbc6"
+              },
+              {
+                "record_id": "src_family_office_irs_p559_2025",
+                "sha256": "9e766a64265681a777d85c94d6cbc90e6a3efcba04dfcdfda3d0d9870296c055"
+              },
+              {
+                "record_id": "src_aa122_irs_i1120_2025",
+                "sha256": "1915ad4c951bd65a0c7825b7ad26c88ea1a96d5063b5c9e2d62d5db090fc0562"
+              },
+              {
+                "record_id": "guide-family-office-us-accounting",
+                "sha256": "10f4465921a6e2c9361ce0c58889fde29386efa93c3d2830f3413233cb19be0a"
+              },
+              {
+                "record_id": "workflow-family-office-entity-close",
+                "sha256": "2e2bf182d0720889701e494e0ee0f4699397ebea0c9e51b44d91010470d3f95e"
+              },
+              {
+                "record_id": "guide-fo-reference-fo-24",
+                "sha256": "5c06808de7027c55a3a92cbb59a82f47475b1ddceb23d8b560c0721e41187fa4"
+              },
+              {
+                "record_id": "guide-fo-reference-ctx-02",
+                "sha256": "a6255ebd20b83f575acd2419d14ecf258d470687250a14433311af3c0add062f"
+              },
+              {
+                "record_id": "guide-fo-reference-ctx-08",
+                "sha256": "7d50a5e56810ec6294b18f370ee67fe88d645ce33fba0e84d9c8202a84827571"
+              },
+              {
+                "record_id": "guide-fo-reference-fo-23",
+                "sha256": "a1573bc8636f5704d94d60ec5e0329e157dd2c11cd77d72e47b9db2cc40e7c91"
+              },
+              {
+                "record_id": "guide-fo-reference-ctx-06",
+                "sha256": "84639c93aaee6fa899d3f3d1d90cc64f25b7fae2d0fc303e7fb739eaac2f7360"
+              },
+              {
+                "record_id": "guide-fo-reference-fo-21",
+                "sha256": "67c972cb10198b1565e8b0bcfaff7d0fe32803e34acf36379ebdec7a1ebff074"
+              },
+              {
+                "record_id": "guide-fo-reference-fo-06",
+                "sha256": "6172fa52d112a157d0746a4a49f63baf5fd095e3f96b654a251fdc0871ed5b7e"
+              },
+              {
+                "record_id": "guide-fo-reference-ctx-03",
+                "sha256": "8b872ab58245d01bf9a079b4ef355868d85eb55f61142c1082ce15fa58ba871e"
+              }
+            ]
+          }
+        }
+      }
     }
   }
 ]

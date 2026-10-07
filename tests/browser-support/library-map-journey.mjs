@@ -235,9 +235,31 @@ export async function libraryMapJourney(browser, origin, directory, receipt) {
         const panBefore = JSON.parse(
           await canvas.getAttribute("data-viewport"),
         ).pan;
-        await page.mouse.move(bounds.x + 10, bounds.y + 10);
+        // Corpus additions can place a draggable node at a fixed corner point.
+        // Start on observed background so this exercises panning, not node drag.
+        const background = await canvas.evaluate((element) => {
+          const viewport = JSON.parse(element.dataset.viewport);
+          const nodes = JSON.parse(element.dataset.positions).map((node) => ({
+            x: node.x * viewport.zoom + viewport.pan.x,
+            y: node.y * viewport.zoom + viewport.pan.y,
+          }));
+          const labels = JSON.parse(element.dataset.labels);
+          let best = { x: 0, y: 0, clearance: -1 };
+          for (let x = 50; x < element.clientWidth - 65; x += 25) {
+            for (let y = 50; y < element.clientHeight - 45; y += 25) {
+              if (labels.some((r) =>
+                x > r.x - 10 && x < r.x + r.w + 10 &&
+                y > r.y - 10 && y < r.y + r.h + 10)) continue;
+              const clearance = Math.min(...nodes.map((n) => Math.hypot(n.x - x, n.y - y)));
+              if (clearance > best.clearance) best = { x, y, clearance };
+            }
+          }
+          return best;
+        });
+        assert.ok(background.clearance > 40, "A clear background drag target exists");
+        await page.mouse.move(bounds.x + background.x, bounds.y + background.y);
         await page.mouse.down();
-        await page.mouse.move(bounds.x + 55, bounds.y + 35, { steps: 5 });
+        await page.mouse.move(bounds.x + background.x + 45, bounds.y + background.y + 25, { steps: 5 });
         await page.mouse.up();
         await page.waitForFunction(
           (before) =>

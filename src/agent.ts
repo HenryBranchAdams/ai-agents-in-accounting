@@ -8,7 +8,7 @@ import {
   knowledge,
   coverage,
 } from "./corpus";
-import { expandQuery, expandIndexedText, normalizeJurisdiction } from "./knowledge";
+import { expandQuery, expandIndexedText, numericTokens, numericQuerySpecificity, normalizeJurisdiction, applicabilityExclusion } from "./knowledge";
 import {
   agentSchemaVersion,
   inputSchemas,
@@ -100,6 +100,7 @@ interface Passage {
   ordinal: number;
   text: string;
   source_pointers: string[];
+  retrieval_url: string;
 }
 // Preserve every non-duplicate canonical data leaf, including false, null, empty arrays and objects.
 function leaves(
@@ -180,6 +181,7 @@ function makePassages(r: CorpusRecord): Passage[] {
       const ordinal = output.length;
       output.push({
         id: `${r.id}#${section}:${ordinal}`,
+        retrieval_url: agentUrl("get", { id: r.id, passage_id: `${r.id}#${section}:${ordinal}`, corpus_version: meta.corpus_version }),
         record_id: r.id,
         section,
         ordinal,
@@ -200,8 +202,7 @@ function makePassages(r: CorpusRecord): Passage[] {
   });
 }
 const index = records.map((record) => {
-  const passages = makePassages(record);
-  return {
+  const item = {
     record,
     get passages() { return makePassages(record); },
     title: expandIndexedText(record.title),
@@ -219,17 +220,18 @@ const index = records.map((record) => {
         ...(knowledge.profile(record.id)?.scope.products || []),
       ].join(" "),
     ),
-    text: expandIndexedText(
+    get text() { return expandIndexedText(
       [
         record.id,
         record.title,
         record.summary,
-        ...passages
+        ...makePassages(record)
           .filter((p) => !/^data\.(rights|provenance)$/.test(p.section))
           .map((p) => p.text),
       ].join("\n").replace(/\b(?:source-checked|editorially-reviewed|inherited(?:-[a-z]+)*-not-reverified)\b/g, ""),
-    ),
+    ); },
   };
+  return Object.assign(item, { numericTokens: numericTokens(item.text + " " + item.facets) });
 });
 const indexedById = new Map(index.map((item) => [item.record.id, item]));
 const reviewStatuses = [...new Set(records.map((r) => r.review_status))].sort();
@@ -279,10 +281,12 @@ function termsFor(q: string) {
 function find(input: QueryInput) {
   verifyFilters(input);
   const terms = termsFor(input.q);
+  const numericTerms = terms.filter(t => /^\d+$/.test(t));
   const collection = input.collection ? getRecord(input.collection) : null;
   return index
-    .filter(
-      ({ record: r, text, facets }) =>
+    .flatMap((item) => {
+      const r = item.record;
+      if (!(
         (!input.kind || r.kind === input.kind) &&
         (!input.naics || coverage.profiles.get(r.id)?.industry_mappings.some(m=>m.industry_code===input.naics)) &&
         (!input.question_family || coverage.profiles.get(r.id)?.question_mappings.some(m=>m.question_id===input.question_family)) &&
@@ -292,26 +296,26 @@ function find(input: QueryInput) {
         (!input.framework || knowledge.profile(r.id)?.scope.frameworks.includes(input.framework)) &&
         (!input.entity || knowledge.profile(r.id)?.scope.entities.includes(input.entity)) &&
         (!input.product || knowledge.profile(r.id)?.scope.products.includes(input.product)) &&
-        (!input.as_of || (() => { const p = knowledge.profile(r.id)?.scope.period; const full = (v: string | null) => !!v && /^\d{4}-\d{2}-\d{2}$/.test(v); return !!p && full(p.effective_from) && p.effective_from! <= input.as_of && (!p.effective_to || (full(p.effective_to) && p.effective_to >= input.as_of)); })()) &&
+        (!input.as_of || !applicabilityExclusion(knowledge.profile(r.id)?.scope.period, input.as_of)) &&
         (!input.source_type || r.source_type === input.source_type) &&
         (!input.review_status || r.review_status === input.review_status) &&
         (!collection ||
           collection.source_ids.includes(r.id) ||
-          collection.related_ids.includes(r.id)) &&
-        terms.every((t) => text.includes(t) || facets.includes(t)),
-    )
-    .map((item) => {
+          collection.related_ids.includes(r.id)))) return [];
+      // Retain normalized body text only for this eligible record's evaluation.
+      const body = terms.length ? item.text : "";
+      if (!terms.every((t) => body.includes(t) || item.facets.includes(t))) return [];
       const matched_fields = [
         terms.some((t) => item.title.includes(t)) && "title",
         terms.some((t) => item.summary.includes(t)) && "summary",
         terms.some((t) => item.facets.includes(t)) && "metadata",
       ].filter(Boolean) as string[];
-      const ranked = item.passages
+      const ranked = terms.length ? item.passages
         .map((p) => ({
           p,
           hits: terms.filter((t) => normalize(p.text).includes(t)).length,
         }))
-        .sort((a, b) => b.hits - a.hits);
+        .sort((a, b) => b.hits - a.hits) : [];
       const best = ranked.find((p) => p.hits)?.p;
       if (best && !matched_fields.includes(best.section))
         matched_fields.push(best.section);
@@ -322,8 +326,10 @@ function find(input: QueryInput) {
           .filter((n) => n >= 0)
           .sort((a, b) => a - b)[0] ?? 0;
       const start = Math.max(0, hit - 70);
-      return {
-        ...item,
+      return [{
+        record: item.record,
+        get passages() { return item.passages; },
+        numericSpecificity: numericQuerySpecificity(item.numericTokens, numericTerms),
         match: {
           score: terms.reduce(
             (score, t) =>
@@ -331,17 +337,18 @@ function find(input: QueryInput) {
               (item.title.includes(t) ? 12 : 0) +
               (item.summary.includes(t) ? 5 : 0) +
               (item.facets.includes(t) ? 2 : 0) +
-              (item.text.includes(t) ? 1 : 0),
+              (body.includes(t) ? 1 : 0),
             0,
           ),
           matched_fields,
           snippet: (start ? "…" : "") + excerpt(text.slice(start), 260),
           passage_id: best?.id ?? null,
         },
-      };
+      }];
     })
     .sort(
       (a, b) =>
+        b.numericSpecificity - a.numericSpecificity ||
         b.match.score - a.match.score ||
         a.record.title.localeCompare(b.record.title) ||
         a.record.id.localeCompare(b.record.id),
@@ -506,6 +513,15 @@ export function describeCorpus() {
     ],
   };
 }
+function temporalFilter(args: QueryInput) {
+  if (!args.as_of) return null;
+  const excluded: Record<string, number> = {};
+  for (const item of find({ ...args, as_of: undefined })) {
+    const reason = applicabilityExclusion(knowledge.profile(item.record.id)?.scope.period, args.as_of);
+    if (reason) excluded[reason] = (excluded[reason] || 0) + 1;
+  }
+  return { as_of: args.as_of, excluded, note: "Counts cover records matching the other query filters. Unknown dates are excluded; publication, edition and review dates are not applicability. An open end does not verify later amendments or entity-specific applicability." };
+}
 function searchCorpus(args: SearchInput) {
   const { cursor, ...query } = args;
   const found = find(args),
@@ -521,8 +537,9 @@ function searchCorpus(args: SearchInput) {
     filters: Object.fromEntries(
       filterNames.filter((k) => args[k] !== undefined).map((k) => [k, args[k]]),
     ),
+    temporal_filter: temporalFilter(args),
     ranking:
-      "Lexical relevance: title 12, summary 5, metadata 2, body 1 per term; title then ID break ties. Not an evidence-quality score.",
+      "Lexical relevance: distinct exact plain-numeric query tokens first (hyphenated and decimal identifiers remain distinct), then lexical score (title 12, summary 5, metadata 2, body 1 per term); title then ID break ties. Not an evidence-quality score.",
     ...pagination("search", args, found.length, offset, selected.length),
     results: selected.map((item) => ({
       ...card(item.record),
@@ -531,6 +548,8 @@ function searchCorpus(args: SearchInput) {
   };
 }
 function readRecord(args: ReturnType<typeof inputSchemas.get.parse>) {
+  if (args.passage_id !== undefined && (args.section !== undefined || args.cursor !== undefined))
+    throw new AgentError("INVALID_ARGUMENT", "Use passage_id without section or cursor.");
   const item = indexedById.get(args.id);
   if (!item)
     throw new AgentError("NOT_FOUND", `Unknown record: ${args.id}.`, 404);
@@ -546,7 +565,11 @@ function readRecord(args: ReturnType<typeof inputSchemas.get.parse>) {
       "UNKNOWN_SECTION",
       "Unknown section. Read the record without section to see its directory.",
     );
-  const passages = args.section
+  if (args.passage_id && !item.passages.some(p => p.id === args.passage_id))
+    throw new AgentError("UNKNOWN_PASSAGE", "Unknown passage for this record and snapshot. Read the section directory again.", 404);
+  const passages = args.passage_id
+    ? item.passages.filter(p => p.id === args.passage_id)
+    : args.section
     ? item.passages.filter((p) => p.section === args.section)
     : item.passages;
   const { cursor, ...query } = args;
@@ -578,6 +601,7 @@ function contextPacket(args: ReturnType<typeof inputSchemas.context.parse>) {
       "INVALID_QUERY",
       "Supply ids, a query, or at least one filter.",
     );
+  const matches = args.ids ? [] : find(args);
   const seeds = args.ids
     ? [...new Set(args.ids)].map((id) => {
         const item = indexedById.get(id);
@@ -585,7 +609,7 @@ function contextPacket(args: ReturnType<typeof inputSchemas.context.parse>) {
           throw new AgentError("NOT_FOUND", `Unknown record: ${id}.`, 404);
         return item;
       })
-    : find(args).slice(0, args.limit);
+    : matches.slice(0, args.limit);
   const candidates = [...seeds];
   if (args.include_sources)
     for (const seed of seeds)
@@ -594,6 +618,12 @@ function contextPacket(args: ReturnType<typeof inputSchemas.context.parse>) {
         if (item && !candidates.some((c) => c.record.id === id))
           candidates.push(item);
       }
+  const temporalOmissions = args.as_of ? candidates.flatMap(item => {
+    const reason = applicabilityExclusion(knowledge.profile(item.record.id)?.scope.period, args.as_of!);
+    return reason ? [{ id: item.record.id, reason, get_url: agentUrl("get", { id: item.record.id, corpus_version: meta.corpus_version }) }] : [];
+  }) : [];
+  const excludedIds = new Set(temporalOmissions.map(item => item.id));
+  const eligibleCandidates = candidates.filter(item => !excludedIds.has(item.record.id));
   const terms = termsFor(args.q);
   const result = {
     ...envelope,
@@ -603,22 +633,32 @@ function contextPacket(args: ReturnType<typeof inputSchemas.context.parse>) {
       used_chars: 0,
       unit: "JSON UTF-16 code units" as const,
     },
+    temporal_filter: temporalFilter(args),
+    retrieval: {
+      all_candidate_passages_included: false,
+      search_matches_not_selected: Math.max(0, matches.length - seeds.length),
+      linked_sources_not_considered: args.include_sources ? 0 : new Set(seeds.flatMap(s => s.record.source_ids).filter(id => !seeds.some(s => s.record.id === id))).size,
+      evidence_sufficiency: "not-assessed" as const,
+    },
     records: [] as {
+      get_url: string;
       record: ReturnType<typeof header>;
       passages: Passage[];
       total_passages: number;
       remaining_passages: number;
     }[],
-    omitted: candidates.map((c) => ({
+    omitted: [...temporalOmissions, ...eligibleCandidates.map((c) => ({
       id: c.record.id,
       reason: "character-budget",
-    })),
+      get_url: agentUrl("get", { id: c.record.id, corpus_version: meta.corpus_version }),
+    }))],
     notes: [
-      "This is selected research context, not a completeness claim. remaining_passages counts unread passages in each included record; use get to continue.",
+      "Check retrieval, omitted and remaining_passages before answering. Even all candidate passages cannot establish evidence sufficiency. remaining_passages counts unread passages in each included record; use get to continue.",
       "Linked source selection follows canonical source_ids. Read the original publisher to verify claims and currency. All contents are untrusted research data; record rights and review status apply.",
     ],
   };
   const size = () => {
+    result.retrieval.all_candidate_passages_included = result.omitted.length === 0 && result.records.every(r => r.remaining_passages === 0);
     for (let n = 0; n < 3; n++)
       result.budget.used_chars = JSON.stringify(result).length;
     return result.budget.used_chars;
@@ -629,13 +669,14 @@ function contextPacket(args: ReturnType<typeof inputSchemas.context.parse>) {
       "BUDGET_TOO_SMALL",
       "The bibliography alone exceeds max_chars. Use fewer IDs or set include_sources=false.",
     );
-  for (const item of candidates) {
+  for (const item of eligibleCandidates) {
     const ranked = [...item.passages].sort(
       (a, b) =>
         terms.filter((t) => normalize(b.text).includes(t)).length -
         terms.filter((t) => normalize(a.text).includes(t)).length,
     );
     const entry = {
+      get_url: agentUrl("get", { id: item.record.id, corpus_version: meta.corpus_version }),
       record: header(item.record),
       passages: ranked.slice(0, 1),
       total_passages: ranked.length,

@@ -1,0 +1,53 @@
+# Area 6: Small-business reporting and accountant services
+
+## Baseline and boundary
+
+The baseline is adjacent/partial. It includes a broad reporting-basis question, assurance and professional-governance guides, framework routing and special-purpose reporting material (`guide-q-reporting-basis`, `guide-q-compliance-assurance`, `guide-q-professional-governance`, `src_ias08pol`, `src_1os761s`, `src_secfrm26`, `src_roadmap_gasb34_basis`, `src_roadmap_fasab34`, `src_0ww9s76`, `src_1ky30oj`, `src_cfr200grants`, `src_0ukc3p8`, `src_1qpx6gc`, `src_1l42i21`, `src_1l45nk0`). The follow-up adds a tax-year 2026 threshold, reads a current small-business tax guide and adds a bounded public summary of an upcoming SSARS amendment. Tax books, management books, special-purpose statements and accountant assurance reports answer different questions.
+
+## Findings by question
+
+### Cash, modified cash, tax and US GAAP outputs
+
+IRS tax publications describe tax cash and accrual methods. A tax cash method generally recognizes income and deductions under tax timing rules, with statutory exceptions; an accrual method follows tax recognition rules for income and expenses. For inventory, Publication 334 describes a small-business taxpayer exception subject to gross-receipts and tax-shelter conditions, with permitted methods that may include non-incidental materials and supplies or conformity with applicable financial-accounting treatment (`f2_specialist_reporting_irs_pub334_2025`, “Accounting Methods,” “Inventories,” and “Change in Accounting Method”). Those tax choices do not automatically define financial statements for a bank, owner or other user.
+
+Deloitte's public special-purpose reporting guidance distinguishes cash, modified-cash, tax, regulatory and contractual frameworks and notes that modified-cash adjustments are not a standardized recipe (`specialist_reporting_deloitte_special_purpose`, “Typical special purpose exceptions” and “Common stumbling blocks”; 2024 companion, pp. 2-5). A useful statement should identify the intended user and reporting basis and describe significant departures or omitted accruals. Whether to include accounts receivable, payable, inventory, depreciation, debt or other items depends on the agreed basis, engagement type and user need; a vendor example is not a universally accepted policy. US GAAP statements require the applicable GAAP framework and complete recognition, measurement, presentation and disclosure, not simply conversion from the tax trial balance.
+
+### Bookkeeping evidence for the close
+
+The prior-read IRS Publication 583 provides practical tax recordkeeping direction on source documents, separate business banking, checkbook records and bank reconciliation (`specialist_reporting_smallbiz_pub583`, “Recordkeeping,” “Supporting Documents,” “Business checkbook,” and “Reconciling the checking account”). For a small-business close, maintain a trace from invoices, receipts, payroll and bank activity to the general ledger; reconcile cash and key third-party balances; document cutoff, classifications, estimates and owner transactions; and retain support under applicable tax and business requirements. Those are control and evidence practices, not a uniform legal retention period or assertion that all small businesses need the same control system. Retention depends on tax, contract, employment, litigation and other requirements.
+
+### Tax cash versus accrual eligibility and method changes
+
+For taxable years beginning in 2026, the IRS states a $32 million average gross-receipts threshold under the covered §448(c) tests for corporations and partnerships (`f2_specialist_reporting_irs_2026_448c`, Rev. Proc. 2025-32 §3.34). Publication 334 separately describes inventory treatment for an eligible small-business taxpayer that is not a tax shelter and meets the applicable receipts test (`f2_specialist_reporting_irs_pub334_2025`). The $32 million figure is not a universal election to use tax cash accounting. Apply the relevant Code provision after determining entity type, controlled/aggregated receipts, tax-shelter status, inventories, long-term contracts and any other statutory exception. The 2025 publication's indexed figure is for that edition; do not reuse it as the 2026 threshold.
+
+The IRS says an accounting-method change generally requires Form 3115 and IRS consent procedures. Eligibility, scope of change, adjustment and automatic versus advance-consent treatment depend on the proposed method and current procedure. Confirm the current tax-year law and instructions before preparing a return or filing a change request.
+
+### Preparation, compilation, review and audit
+
+The AICPA public comparison distinguishes service levels: preparation is without assurance; compilation also gives no assurance and requires a disclosure if the accountant is not independent; review involves inquiry and analytical procedures and provides limited assurance; an audit involves independence, risk assessment and evidence procedures, providing reasonable but not absolute assurance (`f2_specialist_reporting_aicpa_services_comparison`, service comparison sections; compare the previously read AICPA compilation/review/audit explainer, `specialist_reporting_aicpa_service_comparison`). These labels describe different engagements, not the quality of a bookkeeper or business, and a financial statement cannot be represented as audited when no audit was performed.
+
+The public AICPA SSARS index identified an edition current as of August 2026 but did not expose the complete AR-C text in the prior review (`specialist_reporting_ssars_current`). The Journal of Accountancy interview with the AICPA ARSC chair explains that preparation applicability depends on the service actually undertaken and distinguishes preparation from consulting/accounting assistance (`specialist_reporting_jofa_arc70_explanation`, transcript lines 126-168). These are useful explainers, not a substitute for the current standard's exact scope, presentation and report text.
+
+SSARS No. 27's public one-page summary explains a narrow exception: AR-C 70 need not apply when preparation of financial statements is not the primary objective of a CS 100 consulting engagement; the accountant may elect to apply AR-C 70. The summary states an effective date for financial-statement periods ending on or after December 15, 2026, with early implementation permitted (`f2_specialist_reporting_ssars27_public_summary`). As of this September 2026 review, that effective date is upcoming. The complete SSARS No. 27 text was not read. Do not generalize the consulting exception to an engagement whose primary objective is preparing financial statements or to other service/report requirements.
+
+### Accountant responsibility boundary
+
+The engagement request should state whether the accountant is doing bookkeeping, tax return preparation, a financial statement preparation, compilation, review, audit or consulting project; identify the framework, intended users, period, deliverables, management-provided records and decisions; and spell out whether any assurance is provided. Management remains responsible for the business's underlying transactions, records and decisions, while the accountant's specific duties and report depend on the service and governing standards. The public sources do not establish an exhaustive current responsibility matrix, exact AR-C legends or state-specific duties. Those details require the engagement letter, the current AR-C/AU-C text, state accountancy law and facts.
+
+## Research and authoring recommendations
+
+Provide a basis selector that asks who will use the statements, for what decision, whether the output is for tax, internal management, contract/regulatory reporting or general-purpose external reporting, and what the accountant is engaged to do. Require the selected basis, significant departures, assurance level and report type to be visible in the output. Separate tax method eligibility from basis selection for financial statements. For tax method changes, collect entity classification, aggregation, tax-shelter, inventory, contract and tax-year facts before presenting a route. For the close, keep source documents and bank/ledger reconciliations linked to the report line and disclose unsupported or estimated amounts for human follow-up.
+
+## Unresolved gaps
+
+Modified cash has no single standardized adjustment recipe in the public guidance reviewed. The exact current AR-C/AU-C paragraphs and report wording, engagement exclusions, management responsibility requirements and state-law overlays were not directly read. SSARS 27 was read only through its public one-page summary; the full text remains unverified, and its effective date had not yet arrived at retrieval. Small-business tax eligibility must be calculated from live ownership/aggregation, entity, tax-shelter, inventory, contract and year facts. None of the general sources selects a suitable reporting basis or service for a particular business.
+
+## Sources
+
+- [IRS Publication 334, Tax Guide for Small Business, 2025](https://www.irs.gov/publications/p334) (`f2_specialist_reporting_irs_pub334_2025`).
+- [IRS Internal Revenue Bulletin 2025-45, Rev. Proc. 2025-32](https://www.irs.gov/irb/2025-45_IRB), §3.34 (`f2_specialist_reporting_irs_2026_448c`).
+- [Deloitte, The how and why of special purpose financial statements](https://www.deloitte.com/us/en/services/audit/articles/special-purpose-framework.html) (prior-package source `specialist_reporting_deloitte_special_purpose`).
+- [IRS Publication 583, Starting a Business and Keeping Records](https://www.irs.gov/publications/p583) (prior-package source `specialist_reporting_smallbiz_pub583`).
+- [AICPA financial statement service comparison](https://www.aicpa-cima.com/resources/landing/financial-statement-services) (`f2_specialist_reporting_aicpa_services_comparison`); [AICPA compilation, review and audit explainer](https://www.aicpa-cima.com/professional-insights/video/what-is-the-difference-among-a-compilation-review-and-audit) (prior-package source `specialist_reporting_aicpa_service_comparison`).
+- [AICPA SSARS No. 27 at a Glance](https://assets.ctfassets.net/rb9cdnjh59cm/7j88rWPDLzBcvLTgiG7HKr/e69117484a0151047e348eb768524b87/ssars-27-at-a-glance.pdf) (`f2_specialist_reporting_ssars27_public_summary`).
+- [AICPA SSARS currently effective index](https://www.aicpa-cima.com/resources/download/aicpa-ssarss-currently-effective) and [Journal of Accountancy ARSC/AR-C 70 interview](https://www.journalofaccountancy.com/podcast/cpa-news-explaining-the-role-of-arsc-and-its-decision-tree/) (prior-package sources, index/interview only, not full standard text).

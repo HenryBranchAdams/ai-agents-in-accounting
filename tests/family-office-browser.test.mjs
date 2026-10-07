@@ -4,6 +4,14 @@ import path from 'node:path';
 import fs from 'node:fs';
 import {productionBrowser} from './browser-support/production.mjs';
 
+async function followSuggestedReading(page,id){
+ const disclosure=page.getByText('Complete reading order',{exact:true});
+ if(!await disclosure.evaluate(el=>el.parentElement.open)){
+  await disclosure.focus();await page.keyboard.press('Enter');
+ }
+ await page.locator(`#suggested-reading a[href="/records/${id}"]`).first().click();
+}
+
 // Flow: library search -> native collection -> topic/source/context -> Back/Forward.
 // The same built pages must remain readable with JavaScript disabled.
 test('family-office native reading works on desktop/mobile with and without JavaScript',{timeout:180000},async t=>{
@@ -57,6 +65,86 @@ test('family-office native reading works on desktop/mobile with and without Java
     await page.locator(`#family-office-reference a[href="${entry}"]`).click();await page.waitForURL(origin+entry);
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Page overflows viewport');
    }
+   const controllerId='guide-family-office-us-accounting';
+   await page.goto(origin+'/records/'+controllerId);
+   await page.getByRole('heading',{name:'What should a family-office controller establish first?',exact:true}).waitFor({state:'visible'});
+   for(const section of records.find(r=>r.id===controllerId).data.editorial_brief.reading.sections)assert.equal(await page.getByRole('heading',{name:section.title,exact:true}).count(),1);
+   assert.ok((await page.locator('#answer').innerText()).includes('six family-office assessments remain partial'));
+   await page.screenshot({path:path.join(directory,`${name}-controller.png`)});
+   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Controller page overflows viewport');
+   const payrollId='guide-family-office-payroll-roles';
+   await followSuggestedReading(page,payrollId);await page.waitForURL(origin+'/records/'+payrollId);
+   await page.getByRole('heading',{name:'What evidence distinguishes household work, office-company employment and payment administration?',exact:true}).waitFor({state:'visible'});
+   assert.ok((await page.locator('#answer').innerText()).includes('Mixed or conflicting facts remain unresolved'));
+   assert.ok((await page.locator('#worked-example').innerText()).includes('U: mixed duties'));
+   assert.ok((await page.locator('#worked-example').innerText()).includes('Unresolved'));
+   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Payroll-role page overflows viewport');
+   await page.screenshot({path:path.join(directory,`${name}-payroll-roles.png`)});
+   await page.goBack();await page.waitForURL(origin+'/records/'+controllerId);
+   const currencyId='src_fo_ref_sec_family_rule';
+   assert.ok((await page.locator('main').innerText()).includes('Supplemental source-currency note'));
+   await followSuggestedReading(page,currencyId);
+   await page.waitForURL(origin+'/records/'+currencyId);
+   const currencyDetails=page.getByText('Complete record details',{exact:true});
+   if(!await currencyDetails.evaluate(el=>el.parentElement.open)){await currencyDetails.focus();await page.keyboard.press('Enter');}
+   assert.equal(await currencyDetails.evaluate(el=>el.parentElement.open),true);
+   assert.ok((await page.locator('main').innerText()).includes('September 25, 2026'));
+   assert.ok((await page.locator('main').innerText()).includes('September 26-30 changes were not established'));
+   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Currency source page overflows viewport');
+   await page.screenshot({path:path.join(directory,`${name}-currency-source.png`)});
+   await page.goBack();await page.waitForURL(origin+'/records/'+controllerId);
+   const detail=page.getByText('Complete record details',{exact:true});
+   await detail.focus();await page.keyboard.press('Enter');
+   assert.equal(await detail.evaluate(el=>el.parentElement.open),true);
+   await page.keyboard.press('Enter');
+   await page.locator('main a[href="/records/workflow-family-office-entity-close"]').first().click();
+   await page.waitForURL(origin+'/records/workflow-family-office-entity-close');
+   await page.getByRole('heading',{name:'How should a family-office close reach a reviewable family report?',exact:true}).waitFor({state:'visible'});
+   assert.ok((await page.locator('#worked-example').innerText()).includes('$150,000'));
+   assert.ok((await page.locator('#answer').innerText()).includes('Missing values and transfer permissions remain unknown'));
+   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Close-policy page overflows viewport');
+   await page.screenshot({path:path.join(directory,`${name}-close-policy.png`)});
+   const eventId='control-family-office-ownership-payments';
+   await followSuggestedReading(page,eventId);
+   await page.waitForURL(origin+'/records/'+eventId);
+   await page.getByRole('heading',{name:'What should a family-office controller hand to a specialist when an event changes the evidence?',exact:true}).waitFor({state:'visible'});
+   assert.ok((await page.locator('#worked-example').innerText()).includes('$4,000'));
+   assert.ok((await page.locator('#answer').innerText()).includes('Preserve unresolved questions after a partial response'));
+   const eventDetail=page.getByText('Complete record details',{exact:true});
+   await eventDetail.focus();await page.keyboard.press('Enter');
+   assert.equal(await eventDetail.evaluate(el=>el.parentElement.open),true);
+   await page.keyboard.press('Enter');
+   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Event-packet page overflows viewport');
+   await page.screenshot({path:path.join(directory,`${name}-event-packet.png`)});
+   await page.goBack();await page.waitForURL(origin+'/records/workflow-family-office-entity-close');
+   const populationId='example-family-office-statement-population';
+   await followSuggestedReading(page,populationId);await page.waitForURL(origin+'/records/'+populationId);
+   await page.getByRole('heading',{name:'Does a reconciled statement subtotal cover the expected family-office account population?',exact:true}).waitFor({state:'visible'});
+   const populationAnswer=await page.locator('#answer').innerText();
+   for(const text of ['$50,000','$66,000','supplied-set total remains unknown','unverified inventory completeness remain unresolved'])assert.ok(populationAnswer.includes(text));
+   const populationTable=await page.locator('#worked-example').innerText();
+   for(const text of ['T-RESERVE','Missing; unknown','August only; unknown','Membership unresolved'])assert.ok(populationTable.includes(text));
+   const populationDetail=page.getByText('Complete record details',{exact:true});
+   await populationDetail.focus();await page.keyboard.press('Enter');assert.equal(await populationDetail.evaluate(el=>el.parentElement.open),true);
+   await page.keyboard.press('Enter');
+   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Statement-population page overflows viewport');
+   await page.screenshot({path:path.join(directory,`${name}-statement-population.png`)});
+   await page.goBack();await page.waitForURL(origin+'/records/workflow-family-office-entity-close');
+   const lineageId='example-family-office-four-entity-close';
+   await followSuggestedReading(page,lineageId);
+   await page.waitForURL(origin+'/records/'+lineageId);
+   await page.getByRole('heading',{name:'How can a family-office handoff preserve corrected tax-document history without double counting?',exact:true}).waitFor({state:'visible'});
+   assert.ok((await page.locator('#answer').innerText()).includes('retains the original four-entity close'));
+   assert.ok((await page.locator('#worked-example').innerText()).includes('$12,000'));
+   assert.ok((await page.locator('#worked-example').innerText()).includes('current selection unknown'));
+   const lineageDetail=page.getByText('Complete record details',{exact:true});
+   await lineageDetail.focus();await page.keyboard.press('Enter');
+   assert.equal(await lineageDetail.evaluate(el=>el.parentElement.open),true);
+   await page.keyboard.press('Enter');
+   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Tax-lineage page overflows viewport');
+   await page.screenshot({path:path.join(directory,`${name}-tax-lineage.png`)});
+   await page.goBack();await page.waitForURL(origin+'/records/workflow-family-office-entity-close');
+   await page.goBack();await page.waitForURL(origin+'/records/'+controllerId);
    assert.deepEqual(errors,[],'Browser console/runtime/assets must be healthy');
    assert.ok(requests.every(url=>new URL(url).origin===origin),'Reading makes only same-origin requests');
    journey.status='passed';
