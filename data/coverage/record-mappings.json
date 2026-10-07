@@ -1,12 +1,12 @@
 {
   "schema_version": "1.0.0",
-  "mapping_version": "2026-10-02.5",
+  "mapping_version": "2026-10-02.6",
   "topology_version": "2026-09-11.1",
-  "corpus_version": "2026-10-02.5",
+  "corpus_version": "2026-10-02.6",
   "generated_at": "2026-09-19",
-  "corpus_sha256": "b1b0764a1e32602fce2c6c06e69879807a1a21b007d4bf0ba5850d41aec9da06",
+  "corpus_sha256": "cc73eb4071610ba30dbd4c34db9c30b68549f571adda0ddd68adbde816a786d8",
   "rules_sha256": "550b2bb485399af996bac6ed34542d7a91170d4b31b5e5026e0e9c2c32068b9d",
-  "overrides_sha256": "d23fe409e6cbc056391e8a99dc6873d2b580faec7b8612830fb9cc1de93dbb36",
+  "overrides_sha256": "a685d5f482e5885ce048022728ca99424df956834d5b77285f1dc37dbb85caad",
   "method": "Deterministic title/topic associations, conservative industry crosswalk, and explicit editorial additions. All initial links are candidates; source review status is unchanged.",
   "mappings": [
     {
@@ -2747,6 +2747,302 @@
       "industry_scope": "shared-context",
       "industry_mappings": [],
       "note": "Shared context; no industry-specific coverage credit."
+    },
+    {
+      "record_id": "collection-fanout-accounting-mcp",
+      "question_mappings": [
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "MCP",
+              "rule": "title:interfaces"
+            },
+            {
+              "field": "/topics/0",
+              "matched": "Agent interoperability",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "collection-fanout-bank-data",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "collection-fanout-document-extraction",
+      "question_mappings": [
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Document extraction",
+              "rule": "title:interfaces"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "collection-fanout-durable-workflows",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Agent engineering",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "collection-fanout-erp-agents",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "collection-fanout-expenses",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "collection-fanout-financial-data",
+      "question_mappings": [
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Data and interoperability",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "collection-fanout-netsuite-interfaces",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "collection-fanout-open-source-accounting",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "collection-fanout-payroll",
+      "question_mappings": [
+        {
+          "question_id": "q-payroll",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Payroll",
+              "rule": "title:payroll"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "collection-fanout-professional-guidance",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "collection-fanout-quickbooks-interfaces",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "collection-fanout-receivables",
+      "question_mappings": [
+        {
+          "question_id": "q-receivables-credit",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Receivables",
+              "rule": "title:receivables-credit"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "collection-fanout-research-and-evaluation",
+      "question_mappings": [
+        {
+          "question_id": "q-evaluation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "evaluat",
+              "rule": "title:evaluation"
+            },
+            {
+              "field": "/topics/0",
+              "matched": "Evaluation and evidence",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "collection-fanout-revenue",
+      "question_mappings": [
+        {
+          "question_id": "q-revenue",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Revenue",
+              "rule": "title:revenue"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "collection-fanout-sage-intacct-interfaces",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "collection-fanout-sap-interfaces",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "collection-fanout-security-and-privacy",
+      "question_mappings": [
+        {
+          "question_id": "q-security",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Security",
+              "rule": "title:security"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "collection-fanout-stripe-and-reconciliation",
+      "question_mappings": [
+        {
+          "question_id": "q-data-lineage",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "reconcil",
+              "rule": "title:data-lineage"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "collection-fanout-structured-standards",
+      "question_mappings": [
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Data and interoperability",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "collection-fanout-tax-interfaces",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "collection-fanout-xero-interfaces",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
     },
     {
       "record_id": "collection-field-notes-deployments",
@@ -48912,6 +49208,3631 @@
           ]
         }
       ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_00bb24eb1d75",
+      "question_mappings": [
+        {
+          "question_id": "q-cash-settlement",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "bank account",
+              "rule": "title:cash-settlement"
+            }
+          ]
+        },
+        {
+          "question_id": "q-data-lineage",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Reconcil",
+              "rule": "title:data-lineage"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_02e1f9bd40d9",
+      "question_mappings": [
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "API",
+              "rule": "title:interfaces"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_041bc204842c",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_057c2ae9f1f3",
+      "question_mappings": [
+        {
+          "question_id": "q-cash-settlement",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Payment",
+              "rule": "title:cash-settlement"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_06840c69e1d4",
+      "question_mappings": [
+        {
+          "question_id": "q-payroll",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "payroll",
+              "rule": "title:payroll"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_0b512eaba00f",
+      "question_mappings": [
+        {
+          "question_id": "q-purchasing-payables",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Payables",
+              "rule": "title:purchasing-payables"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_0b87ac68a91e",
+      "question_mappings": [
+        {
+          "question_id": "q-evaluation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Evaluation and evidence",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_0c1bee1de0fd",
+      "question_mappings": [
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Schema",
+              "rule": "title:interfaces"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_0c3527c970a2",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_0ca4f3c97321",
+      "question_mappings": [
+        {
+          "question_id": "q-purchasing-payables",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Payables",
+              "rule": "title:purchasing-payables"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_0eb42607e9ad",
+      "question_mappings": [
+        {
+          "question_id": "q-revenue",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Revenue",
+              "rule": "title:revenue"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_101f7a757d1c",
+      "question_mappings": [
+        {
+          "question_id": "q-payroll",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Payroll",
+              "rule": "title:payroll"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_1085f600b43c",
+      "question_mappings": [
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Data and interoperability",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_10fc13093614",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_13e2e10ac779",
+      "question_mappings": [
+        {
+          "question_id": "q-purchasing-payables",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Payables",
+              "rule": "title:purchasing-payables"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_148143461efa",
+      "question_mappings": [
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "MCP",
+              "rule": "title:interfaces"
+            },
+            {
+              "field": "/topics/0",
+              "matched": "Agent interoperability",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_183c9f2b21c9",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_18cc62184ece",
+      "question_mappings": [
+        {
+          "question_id": "q-evaluation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Evaluation and evidence",
+              "rule": "topic-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-reuse-rights",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "dataset",
+              "rule": "title:reuse-rights"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_19156de8a00a",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_19e06b2ffef6",
+      "question_mappings": [
+        {
+          "question_id": "q-evaluation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Evaluation and evidence",
+              "rule": "topic-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-tax-methods",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Accounting method",
+              "rule": "title:tax-methods"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_1b491c54b800",
+      "question_mappings": [
+        {
+          "question_id": "q-evaluation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Evaluation and evidence",
+              "rule": "topic-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-reuse-rights",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "dataset",
+              "rule": "title:reuse-rights"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_1cd43ae32b47",
+      "question_mappings": [
+        {
+          "question_id": "q-ledger-close",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Journal Entr",
+              "rule": "title:ledger-close"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_25d7b7df11e3",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_265ff7146f18",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_270fe0c57295",
+      "question_mappings": [
+        {
+          "question_id": "q-evaluation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Evaluation and evidence",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_276b9c0f77ee",
+      "question_mappings": [
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "API",
+              "rule": "title:interfaces"
+            }
+          ]
+        },
+        {
+          "question_id": "q-ledger-close",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Journal Entr",
+              "rule": "title:ledger-close"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_27976a9f54c2",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_287fa5c58dd6",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_29252e5745f5",
+      "question_mappings": [
+        {
+          "question_id": "q-ledger-close",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Journal Entr",
+              "rule": "title:ledger-close"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_2b0afbcd4b9d",
+      "question_mappings": [
+        {
+          "question_id": "q-human-authority",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Posting",
+              "rule": "title:human-authority"
+            }
+          ]
+        },
+        {
+          "question_id": "q-ledger-close",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Journal Entr",
+              "rule": "title:ledger-close"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_2bde238349dc",
+      "question_mappings": [
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "schema",
+              "rule": "title:interfaces"
+            }
+          ]
+        },
+        {
+          "question_id": "q-revenue",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Revenue",
+              "rule": "title:revenue"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_2c1b6a60dbae",
+      "question_mappings": [
+        {
+          "question_id": "q-receivables-credit",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "receivable",
+              "rule": "title:receivables-credit"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_2c5bade7efa2",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_2e024db63a27",
+      "question_mappings": [
+        {
+          "question_id": "q-reimbursement",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "reimbursement",
+              "rule": "title:reimbursement"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_2f63b98fe834",
+      "question_mappings": [
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "API",
+              "rule": "title:interfaces"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_2ff3d6291c94",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_3017f5cba3cf",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_385f1543da47",
+      "question_mappings": [
+        {
+          "question_id": "q-ledger-close",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Journal Entr",
+              "rule": "title:ledger-close"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_3a9d87b285e3",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Reasoning",
+              "rule": "title:agent-design"
+            }
+          ]
+        },
+        {
+          "question_id": "q-evaluation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Evaluation and evidence",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_3c97d73eac3f",
+      "question_mappings": [
+        {
+          "question_id": "q-evaluation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Evaluation and evidence",
+              "rule": "topic-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-security",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "privacy",
+              "rule": "title:security"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_3d0af70411e9",
+      "question_mappings": [
+        {
+          "question_id": "q-reimbursement",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "reimbursement",
+              "rule": "title:reimbursement"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_3eb2951d5ebd",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_4051df8b4569",
+      "question_mappings": [
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "API",
+              "rule": "title:interfaces"
+            },
+            {
+              "field": "/topics/0",
+              "matched": "Data and interoperability",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_409b376675ff",
+      "question_mappings": [
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Agent interoperability",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_40a52dd5d36f",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_4100358a5b10",
+      "question_mappings": [
+        {
+          "question_id": "q-data-lineage",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "reconcil",
+              "rule": "title:data-lineage"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_41426db368ae",
+      "question_mappings": [
+        {
+          "question_id": "q-revenue",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Revenue",
+              "rule": "title:revenue"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_43a68088fe70",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_44cb0daa9639",
+      "question_mappings": [
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "API",
+              "rule": "title:interfaces"
+            },
+            {
+              "field": "/topics/0",
+              "matched": "Data and interoperability",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_46623d81a759",
+      "question_mappings": [
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "schema",
+              "rule": "title:interfaces"
+            }
+          ]
+        },
+        {
+          "question_id": "q-purchasing-payables",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "invoice",
+              "rule": "title:purchasing-payables"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_4a8be9872c48",
+      "question_mappings": [
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Data and interoperability",
+              "rule": "topic-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-purchasing-payables",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "invoice",
+              "rule": "title:purchasing-payables"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_4c0783099ff0",
+      "question_mappings": [
+        {
+          "question_id": "q-payroll",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Payroll",
+              "rule": "title:payroll"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_4d3978927205",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Agent engineering",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_4d51f8370628",
+      "question_mappings": [
+        {
+          "question_id": "q-data-lineage",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Reconcil",
+              "rule": "title:data-lineage"
+            }
+          ]
+        },
+        {
+          "question_id": "q-ledger-close",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Ledger Reconciliation",
+              "rule": "title:ledger-close"
+            }
+          ]
+        },
+        {
+          "question_id": "q-purchasing-payables",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Payables",
+              "rule": "title:purchasing-payables"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_4eb0b6ec8c5d",
+      "question_mappings": [
+        {
+          "question_id": "q-cash-settlement",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Cash application",
+              "rule": "title:cash-settlement"
+            }
+          ]
+        },
+        {
+          "question_id": "q-data-lineage",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "reconcil",
+              "rule": "title:data-lineage"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_5035e1a5ef42",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_5100863be7f9",
+      "question_mappings": [
+        {
+          "question_id": "q-evaluation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Evaluat",
+              "rule": "title:evaluation"
+            },
+            {
+              "field": "/topics/0",
+              "matched": "Evaluation and evidence",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_516e294fafef",
+      "question_mappings": [
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "API",
+              "rule": "title:interfaces"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_5207b2ecbe7b",
+      "question_mappings": [
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "MCP",
+              "rule": "title:interfaces"
+            },
+            {
+              "field": "/topics/0",
+              "matched": "Agent interoperability",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_53a3daf224e3",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_54c705c911fc",
+      "question_mappings": [
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Data and interoperability",
+              "rule": "topic-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-revenue",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Billing",
+              "rule": "title:revenue"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_55da69215b52",
+      "question_mappings": [
+        {
+          "question_id": "q-evaluation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Benchmark",
+              "rule": "title:evaluation"
+            },
+            {
+              "field": "/topics/0",
+              "matched": "Evaluation and evidence",
+              "rule": "topic-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-purchasing-payables",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Invoice",
+              "rule": "title:purchasing-payables"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_572616af8145",
+      "question_mappings": [
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "API",
+              "rule": "title:interfaces"
+            }
+          ]
+        },
+        {
+          "question_id": "q-ledger-close",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Journal Entr",
+              "rule": "title:ledger-close"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_575775b31e29",
+      "question_mappings": [
+        {
+          "question_id": "q-data-lineage",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "reconcil",
+              "rule": "title:data-lineage"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_5811eff1639f",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_58a4a8aa4408",
+      "question_mappings": [
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "API",
+              "rule": "title:interfaces"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_5aec384475b5",
+      "question_mappings": [
+        {
+          "question_id": "q-data-lineage",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "reconcil",
+              "rule": "title:data-lineage"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_5d5ee0842211",
+      "question_mappings": [
+        {
+          "question_id": "q-data-lineage",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "reconcil",
+              "rule": "title:data-lineage"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_5e05ad18f86f",
+      "question_mappings": [
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "API",
+              "rule": "title:interfaces"
+            }
+          ]
+        },
+        {
+          "question_id": "q-revenue",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Revenue",
+              "rule": "title:revenue"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_5ea4aa5bde6b",
+      "question_mappings": [
+        {
+          "question_id": "q-income-tax",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Income Tax",
+              "rule": "title:income-tax"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_60344369eefa",
+      "question_mappings": [
+        {
+          "question_id": "q-cost-allocation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Cost Allocation",
+              "rule": "title:cost-allocation"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_63692de04ab0",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_644212d1a1f0",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_6557a7fc3023",
+      "question_mappings": [
+        {
+          "question_id": "q-revenue",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Revenue",
+              "rule": "title:revenue"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_66aa5a17a7c9",
+      "question_mappings": [
+        {
+          "question_id": "q-evaluation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Evaluation and evidence",
+              "rule": "topic-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-reuse-rights",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "dataset",
+              "rule": "title:reuse-rights"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_66f6345535cb",
+      "question_mappings": [
+        {
+          "question_id": "q-revenue",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "revenue",
+              "rule": "title:revenue"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_68b201faf017",
+      "question_mappings": [
+        {
+          "question_id": "q-payroll",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Payroll",
+              "rule": "title:payroll"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_68c54c05bed1",
+      "question_mappings": [
+        {
+          "question_id": "q-human-authority",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Authorization",
+              "rule": "title:human-authority"
+            }
+          ]
+        },
+        {
+          "question_id": "q-security",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Identity",
+              "rule": "title:security"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_68e4c860f8c3",
+      "question_mappings": [
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "API",
+              "rule": "title:interfaces"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_69b423b84aa2",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_6a4751b7b880",
+      "question_mappings": [
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "API",
+              "rule": "title:interfaces"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_6b22f68a4272",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_6b4815c823ed",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_6b74673f03af",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Agent engineering",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_6bbd21687457",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_6cc69bb7149e",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_6d3cfaf1d946",
+      "question_mappings": [
+        {
+          "question_id": "q-human-authority",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Posting",
+              "rule": "title:human-authority"
+            }
+          ]
+        },
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "API",
+              "rule": "title:interfaces"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_721775ca71f7",
+      "question_mappings": [
+        {
+          "question_id": "q-payroll",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "payroll",
+              "rule": "title:payroll"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_7246c92c8bb4",
+      "question_mappings": [
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "API",
+              "rule": "title:interfaces"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_74356df8f3f7",
+      "question_mappings": [
+        {
+          "question_id": "q-professional-governance",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "ethics",
+              "rule": "title:professional-governance"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_754e08ddc596",
+      "question_mappings": [
+        {
+          "question_id": "q-cash-settlement",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Payment",
+              "rule": "title:cash-settlement"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_77a102e0bb08",
+      "question_mappings": [
+        {
+          "question_id": "q-security",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Security",
+              "rule": "title:security"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_7962510d431d",
+      "question_mappings": [
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Data and interoperability",
+              "rule": "topic-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-revenue",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Billing",
+              "rule": "title:revenue"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_79eb54bb929e",
+      "question_mappings": [
+        {
+          "question_id": "q-payroll",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "payroll",
+              "rule": "title:payroll"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_7b06ba57a718",
+      "question_mappings": [
+        {
+          "question_id": "q-data-lineage",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "reconcil",
+              "rule": "title:data-lineage"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_7cefa45a3c43",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_7dd57631bd24",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Agent engineering",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_7e6ec8bd95c9",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Agent engineering",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_850310f42ad2",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Agent engineering",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_851d84b83f4a",
+      "question_mappings": [
+        {
+          "question_id": "q-data-lineage",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Reconcil",
+              "rule": "title:data-lineage"
+            }
+          ]
+        },
+        {
+          "question_id": "q-revenue",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Revenue",
+              "rule": "title:revenue"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_85a6623d864b",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Reasoning",
+              "rule": "title:agent-design"
+            }
+          ]
+        },
+        {
+          "question_id": "q-evaluation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Benchmark",
+              "rule": "title:evaluation"
+            },
+            {
+              "field": "/topics/0",
+              "matched": "Evaluation and evidence",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_8b194462fcc7",
+      "question_mappings": [
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "API",
+              "rule": "title:interfaces"
+            }
+          ]
+        },
+        {
+          "question_id": "q-reimbursement",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Reimbursement",
+              "rule": "title:reimbursement"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_8c9678b94462",
+      "question_mappings": [
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Data and interoperability",
+              "rule": "topic-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-purchasing-payables",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "invoice",
+              "rule": "title:purchasing-payables"
+            }
+          ]
+        },
+        {
+          "question_id": "q-revenue",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "billing",
+              "rule": "title:revenue"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_8de162edcbbe",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_8e49f3f5077d",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Tool Use",
+              "rule": "title:agent-design"
+            }
+          ]
+        },
+        {
+          "question_id": "q-evaluation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Evaluat",
+              "rule": "title:evaluation"
+            },
+            {
+              "field": "/topics/0",
+              "matched": "Evaluation and evidence",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_8ea03884ae19",
+      "question_mappings": [
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Agent interoperability",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_91ef24969ff4",
+      "question_mappings": [
+        {
+          "question_id": "q-purchasing-payables",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Invoice",
+              "rule": "title:purchasing-payables"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_9307e1bece00",
+      "question_mappings": [
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Data and interoperability",
+              "rule": "topic-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-presentation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "XBRL",
+              "rule": "title:presentation"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_9488a2f9cd5c",
+      "question_mappings": [
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "API",
+              "rule": "title:interfaces"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_9497206439ad",
+      "question_mappings": [
+        {
+          "question_id": "q-data-lineage",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "reconcil",
+              "rule": "title:data-lineage"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_952d0e77cc0b",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_95511c912b76",
+      "question_mappings": [
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "API",
+              "rule": "title:interfaces"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_95cc8fa32cda",
+      "question_mappings": [
+        {
+          "question_id": "q-revenue",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "revenue",
+              "rule": "title:revenue"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_97561ad5cfbc",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_9bd56533e385",
+      "question_mappings": [
+        {
+          "question_id": "q-evaluation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Benchmark",
+              "rule": "title:evaluation"
+            },
+            {
+              "field": "/topics/0",
+              "matched": "Evaluation and evidence",
+              "rule": "topic-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-security",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Privacy",
+              "rule": "title:security"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_9d04644ab214",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Retrieval",
+              "rule": "title:agent-design"
+            }
+          ]
+        },
+        {
+          "question_id": "q-evaluation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Benchmark",
+              "rule": "title:evaluation"
+            },
+            {
+              "field": "/topics/0",
+              "matched": "Evaluation and evidence",
+              "rule": "topic-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-reuse-rights",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Dataset",
+              "rule": "title:reuse-rights"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_9ef7d757bed3",
+      "question_mappings": [
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "schema",
+              "rule": "title:interfaces"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_9f9312000ad1",
+      "question_mappings": [
+        {
+          "question_id": "q-security",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Prompt injection",
+              "rule": "title:security"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_a30eb12b94ec",
+      "question_mappings": [
+        {
+          "question_id": "q-evaluation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Evaluation and evidence",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_a42e721931ec",
+      "question_mappings": [
+        {
+          "question_id": "q-evaluation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Benchmark",
+              "rule": "title:evaluation"
+            },
+            {
+              "field": "/topics/0",
+              "matched": "Evaluation and evidence",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_a53834f95c61",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_a6463f5433f6",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_a662e115cbb6",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_a71993e0ec5c",
+      "question_mappings": [
+        {
+          "question_id": "q-purchasing-payables",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Payables",
+              "rule": "title:purchasing-payables"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_a80af492d026",
+      "question_mappings": [
+        {
+          "question_id": "q-evaluation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Evaluation and evidence",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_abd3e18c34a9",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Agent engineering",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_ac8ea957fa62",
+      "question_mappings": [
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "MCP",
+              "rule": "title:interfaces"
+            },
+            {
+              "field": "/topics/0",
+              "matched": "Agent interoperability",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_ad183d298f29",
+      "question_mappings": [
+        {
+          "question_id": "q-ledger-close",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Journal Entr",
+              "rule": "title:ledger-close"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_ad2559315c83",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_af769eb1857e",
+      "question_mappings": [
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "document extraction",
+              "rule": "title:interfaces"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_afc1dfc6d9a4",
+      "question_mappings": [
+        {
+          "question_id": "q-evaluation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Benchmark",
+              "rule": "title:evaluation"
+            },
+            {
+              "field": "/topics/0",
+              "matched": "Evaluation and evidence",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_b0a12f445150",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Agent engineering",
+              "rule": "topic-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-human-authority",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Approval",
+              "rule": "title:human-authority"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_b0a53227bd99",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_b0cdf21168f4",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Retrieval",
+              "rule": "title:agent-design"
+            }
+          ]
+        },
+        {
+          "question_id": "q-evaluation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Benchmark",
+              "rule": "title:evaluation"
+            },
+            {
+              "field": "/topics/0",
+              "matched": "Evaluation and evidence",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_b0d74b2cdd86",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_b2017f664675",
+      "question_mappings": [
+        {
+          "question_id": "q-evaluation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Benchmark",
+              "rule": "title:evaluation"
+            },
+            {
+              "field": "/topics/0",
+              "matched": "Evaluation and evidence",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_b66a4131a441",
+      "question_mappings": [
+        {
+          "question_id": "q-evaluation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Benchmark",
+              "rule": "title:evaluation"
+            },
+            {
+              "field": "/topics/0",
+              "matched": "Evaluation and evidence",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_b6f79e4a7475",
+      "question_mappings": [
+        {
+          "question_id": "q-ledger-close",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Journal Entr",
+              "rule": "title:ledger-close"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_b701ab3a51d1",
+      "question_mappings": [
+        {
+          "question_id": "q-cash-settlement",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "bank reconciliation",
+              "rule": "title:cash-settlement"
+            }
+          ]
+        },
+        {
+          "question_id": "q-data-lineage",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Reconcil",
+              "rule": "title:data-lineage"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_b74a89a1f268",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_b78a662be0b2",
+      "question_mappings": [
+        {
+          "question_id": "q-evaluation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "evaluat",
+              "rule": "title:evaluation"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_b859e9be4c32",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_bb2b1290523a",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_bb6002b349be",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_bc6ef63f0892",
+      "question_mappings": [
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "API",
+              "rule": "title:interfaces"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_bdf9e23fd21a",
+      "question_mappings": [
+        {
+          "question_id": "q-receivables-credit",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "receivable",
+              "rule": "title:receivables-credit"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_bfe42de6c093",
+      "question_mappings": [
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Data and interoperability",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_c0fe486dbfc3",
+      "question_mappings": [
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Data and interoperability",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_c1cb70e83c96",
+      "question_mappings": [
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Data and interoperability",
+              "rule": "topic-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-revenue",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Billing",
+              "rule": "title:revenue"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_c1f6fcfd98a0",
+      "question_mappings": [
+        {
+          "question_id": "q-indirect-tax",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "VAT",
+              "rule": "title:indirect-tax"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_c29701144feb",
+      "question_mappings": [
+        {
+          "question_id": "q-human-authority",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "posting",
+              "rule": "title:human-authority"
+            }
+          ]
+        },
+        {
+          "question_id": "q-ledger-close",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "journal-entr",
+              "rule": "title:ledger-close"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_c4f4fd5e2c5e",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_c541f85af812",
+      "question_mappings": [
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "API",
+              "rule": "title:interfaces"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_c79a5cdd67e2",
+      "question_mappings": [
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Data and interoperability",
+              "rule": "topic-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-revenue",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Billing",
+              "rule": "title:revenue"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_c7d81d51b223",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_c800f1ddffdb",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_c9985cdbc7f5",
+      "question_mappings": [
+        {
+          "question_id": "q-evaluation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "benchmark",
+              "rule": "title:evaluation"
+            },
+            {
+              "field": "/topics/0",
+              "matched": "Evaluation and evidence",
+              "rule": "topic-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-reuse-rights",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "dataset",
+              "rule": "title:reuse-rights"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_cb61d057863f",
+      "question_mappings": [
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "API",
+              "rule": "title:interfaces"
+            }
+          ]
+        },
+        {
+          "question_id": "q-ledger-close",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Journal Entr",
+              "rule": "title:ledger-close"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_cd015bbc9386",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_cd8840d09937",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_ce582bf095de",
+      "question_mappings": [
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "API",
+              "rule": "title:interfaces"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_cf70450eebea",
+      "question_mappings": [
+        {
+          "question_id": "q-purchasing-payables",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Payable",
+              "rule": "title:purchasing-payables"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_cf863d1df20d",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_d0fdd50936a1",
+      "question_mappings": [
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "MCP",
+              "rule": "title:interfaces"
+            }
+          ]
+        },
+        {
+          "question_id": "q-security",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Security",
+              "rule": "title:security"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_d5c3ea6d6ae5",
+      "question_mappings": [
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "API",
+              "rule": "title:interfaces"
+            }
+          ]
+        },
+        {
+          "question_id": "q-ledger-close",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Journal Entr",
+              "rule": "title:ledger-close"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_d6c08cf03dbd",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_d7cf3a1d8267",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_d7ead1a32cc1",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_da1047b3002c",
+      "question_mappings": [
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "API",
+              "rule": "title:interfaces"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_dcaf035da14f",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Reasoning",
+              "rule": "title:agent-design"
+            }
+          ]
+        },
+        {
+          "question_id": "q-evaluation",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Benchmark",
+              "rule": "title:evaluation"
+            },
+            {
+              "field": "/topics/0",
+              "matched": "Evaluation and evidence",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_dd9aaafd1ec0",
+      "question_mappings": [
+        {
+          "question_id": "q-revenue",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Revenue",
+              "rule": "title:revenue"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_ddeea3db2d08",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_de9a44e1e1cd",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_e2ba95387887",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_e350e0ae0ef0",
+      "question_mappings": [
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Data and interoperability",
+              "rule": "topic-association"
+            }
+          ]
+        },
+        {
+          "question_id": "q-revenue",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Billing",
+              "rule": "title:revenue"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_e3e885d4791b",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_e47c8b630550",
+      "question_mappings": [
+        {
+          "question_id": "q-cash-settlement",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "payment",
+              "rule": "title:cash-settlement"
+            }
+          ]
+        },
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "API",
+              "rule": "title:interfaces"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_e4a7f9a99e19",
+      "question_mappings": [
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "API",
+              "rule": "title:interfaces"
+            }
+          ]
+        },
+        {
+          "question_id": "q-reimbursement",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Reimbursement",
+              "rule": "title:reimbursement"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_e57071188ca6",
+      "question_mappings": [
+        {
+          "question_id": "q-data-lineage",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "reconcil",
+              "rule": "title:data-lineage"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_e81206997bbf",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_e9076f24a8c0",
+      "question_mappings": [
+        {
+          "question_id": "q-agent-design",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/topics/0",
+              "matched": "Agent engineering",
+              "rule": "topic-association"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_e9a0ac8513c8",
+      "question_mappings": [
+        {
+          "question_id": "q-ledger-close",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Journal Entr",
+              "rule": "title:ledger-close"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_e9c61176285f",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_e9c645ea811e",
+      "question_mappings": [
+        {
+          "question_id": "q-indirect-tax",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "vat",
+              "rule": "title:indirect-tax"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_ea75c33a174e",
+      "question_mappings": [
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "API",
+              "rule": "title:interfaces"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_eaa9b51ac90d",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_ec9668f6e462",
+      "question_mappings": [
+        {
+          "question_id": "q-ledger-close",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Journal Entr",
+              "rule": "title:ledger-close"
+            }
+          ]
+        },
+        {
+          "question_id": "q-related-parties",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Intercompany",
+              "rule": "title:related-parties"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_ef25983783eb",
+      "question_mappings": [
+        {
+          "question_id": "q-purchasing-payables",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "invoice",
+              "rule": "title:purchasing-payables"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_f1cd549123fa",
+      "question_mappings": [
+        {
+          "question_id": "q-revenue",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "revenue",
+              "rule": "title:revenue"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_f3edd8f77c09",
+      "question_mappings": [
+        {
+          "question_id": "q-interfaces",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "schema",
+              "rule": "title:interfaces"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_f45fbf7262ab",
+      "question_mappings": [
+        {
+          "question_id": "q-ledger-close",
+          "status": "candidate",
+          "basis": [
+            {
+              "field": "/title",
+              "matched": "Journal Entr",
+              "rule": "title:ledger-close"
+            }
+          ]
+        }
+      ],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_f8541332f57e",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_f90acf829196",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_f95b405fd60f",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_fab0f3aefcd9",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_fc11a650e731",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_fe2dc5171622",
+      "question_mappings": [],
+      "industry_scope": "unassigned",
+      "industry_mappings": [],
+      "note": "Industry scope has not been assigned. This is not evidence of irrelevance."
+    },
+    {
+      "record_id": "src_fanout_fe8ecd2a01a1",
+      "question_mappings": [],
       "industry_scope": "unassigned",
       "industry_mappings": [],
       "note": "Industry scope has not been assigned. This is not evidence of irrelevance."

@@ -2,6 +2,8 @@
 
 This retained research pass contains **198 new source records and 22 collections**, grouped by accounting use. Start with [SOURCES.md](SOURCES.md).
 
+These records were integrated into canonical edition `2026-10-02.6`. [The integration record](APPLY.md) preserves the transfer patch and its original validation limits.
+
 ## Method
 
 Firecrawl, Exa and Parallel Search were used for 32 retained discovery calls spanning 58 query attempts. They returned 415 result appearances, consolidated into 382 candidate URLs. Normalization handles tracking parameters, arXiv versions/mirrors, GitHub README aliases and language duplicates. Twenty-six candidates matched existing corpus URLs. Two hundred five selected pages were fetched with Parallel Search; 36 thin or ambiguous pages were rechecked with Exa. Seven selected candidates were subsequently excluded, leaving 198 additions.
