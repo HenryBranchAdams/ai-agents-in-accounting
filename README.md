@@ -80,6 +80,10 @@ The MCP command serves stdio. Use `--transport http --port 5178` for Streamable 
 
 Record data lives in [`data/corpus`](data/corpus). The same records drive the site, search, and exports. Generated artifacts go in `dist/` and are not committed. After staging a corpus edition, run `node scripts/release-overview.mjs --write` to refresh the README summary; validation enforces parity with preserved release metadata. The source export includes new files even before Git staging. Use `node scripts/reconstruct-source-archive.mjs` after downloading the manifest and all listed parts.
 
+## Historical ASC scoping research
+
+The [September 22, 2026 ASC scoping design package](docs/asc-scoping/README.md) is preserved as a historical research artifact. It contains a product specification, 133 proposed questions, a rule-authoring schema, 28 proposed acceptance scenarios, and an official-source register. It is not a current roadmap, deployed checklist, or validated ASC ruleset. The package integrity checks preserve the original material; the public corpus and its coverage claims are unchanged.
+
 ## Contribute
 
 See [CONTRIBUTING.md](CONTRIBUTING.md), the [record policy](docs/corpus-policy.md), and [AGENTS.md](AGENTS.md). Prefer original publishers and useful accounting context. Preserve uncertainty and rights. The goal is exhaustive coverage through traceable additions, not inflated record counts.
